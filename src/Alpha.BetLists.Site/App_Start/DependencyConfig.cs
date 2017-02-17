@@ -25,11 +25,7 @@
 
             RegisterMediator(container);
 
-            RegisterCrossCuttingConcerns(container);
-
             RegisterDataAccesses(container);
-
-            RegisterServices(container);
 
             // This is an extension method from the integration package.
             container.RegisterMvcControllers(Assembly.GetExecutingAssembly());
@@ -58,27 +54,6 @@
         private static IEnumerable<Assembly> GetAssemblies()
         {
             yield return typeof(HomeController).Assembly;
-        }
-
-        private static void RegisterCrossCuttingConcerns(Container container)
-        {
-        }
-
-        private static void RegisterServices(Container container)
-        {
-            container.Register(
-                () =>
-                {
-                    if (HttpContext.Current != null
-                        && (HttpContext.Current.Handler is IRequiresSessionState
-                        || HttpContext.Current.Handler is IReadOnlySessionState))
-                    {
-                        return UserSession.Current;
-                    }
-
-                    return new UserSessionBase(string.Empty);
-                },
-                Lifestyle.Transient);
         }
 
         private static void RegisterDataAccesses(Container container)
