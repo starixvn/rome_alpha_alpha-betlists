@@ -1,0 +1,9 @@
+﻿@using Fanex.BetList.Core.Entities
+@using Fanex.BetList.Core.Builder
+
+@helper Render(BetListHTMLBuilder builder, ITicket ticket)
+{
+    <td class="trans-block">
+        @builder.BuildTrans(ticket)
+    </td>
+}

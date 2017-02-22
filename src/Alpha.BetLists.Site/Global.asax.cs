@@ -1,25 +1,54 @@
 ﻿namespace Alpha.BetLists.Site
 {
+    using System.Diagnostics;
+    using System.Reflection;
     using System.Web.Mvc;
     using System.Web.Routing;
     using App_Start;
-    using Auth.Web;
-    using Sunplus.Agent.Utilities;
+    using Auth.Filters;
+    using Configurations;
+    using Fanex.Data;
+    using ONEbook.UM.Filters;
+    using Web;
+    using Web.Helpers;
 
     public class MvcApplication : System.Web.HttpApplication
     {
         protected void Application_Start()
         {
+            ViewEngines.Engines.Clear();
+            ViewEngines.Engines.Add(new RazorViewEngine());
+            MvcHandler.DisableMvcResponseHeader = true;
+
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
             DependencyConfig.Init();
 
-            Fanex.Data.Configuration.DbSettingProviderManager.Current.Start();
+            AppSettings.Verify();
+
+            DbSettingProviderManager
+                .StartNewSession()
+                .UseDefaultConnectionStringProvider()
+                .UseDefaultDbSettingProvider(
+                    resourcePath: AppSettings.StoreProcedurePath,
+                    enableWatching: true)
+                .Run();
 
             ShareSession.Init();
 
-            Logs.WriteInfo("Alpha - Bet Lists - Application Start");
+            GlobalFilters.Filters.Add(new CheckUMFilter());
+            GlobalFilters.Filters.Add(new CheckBelongingFilter());
+
+            StaticResources.Init(GetBuildVersion());
+        }
+
+        private static string GetBuildVersion()
+        {
+            Assembly assembly = Assembly.GetCallingAssembly();
+            FileVersionInfo versionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
+
+            return versionInfo.FileVersion;
         }
     }
 }

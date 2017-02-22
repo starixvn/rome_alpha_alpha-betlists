@@ -1,0 +1,10 @@
+﻿@using Fanex.BetList.Core.TicketHelper
+@using Fanex.BetList.Core.Entities
+@using Fanex.BetList.Core.Builder
+
+@helper Render(BetListHTMLBuilder builder, ITicket ticket, List<ITicketData> ticketData, GetCachePropertyById getOddsTypeNameFunc = null)
+{
+    <td class="odds-block">
+        @builder.BuildOdds(ticket, ticketData, getOddsTypeNameFunc ?? CacheRef.GetOddsTypeName)
+    </td>
+}

@@ -1,0 +1,9 @@
+﻿@using Fanex.BetList.Core.Entities
+@using Fanex.BetList.Core.Builder
+
+@helper Render(BetListHTMLBuilder builder, ITicket ticket, ITicketHelper helper, List<ITicketData> ticketData, bool isShowScoreMap)
+{
+    <td class="choice-block">
+        @builder.BuildChoice(ticket, helper, ticketData, isShowScoreMap)
+    </td>
+}

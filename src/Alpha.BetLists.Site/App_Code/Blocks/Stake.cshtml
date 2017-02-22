@@ -1,0 +1,9 @@
+﻿@using Fanex.BetList.Core.Entities
+@using Fanex.BetList.Core.Builder
+
+@helper Render(BetListHTMLBuilder builder, ITicket ticket)
+{
+    <td class="stake-block">
+        @builder.BuildStake(ticket)
+    </td>
+}

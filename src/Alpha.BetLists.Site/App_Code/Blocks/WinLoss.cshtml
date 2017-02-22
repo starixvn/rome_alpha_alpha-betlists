@@ -1,0 +1,16 @@
+﻿@using Alpha.BetLists.Site.ViewModels.Blocks
+
+@helper Render(WinLossBlockViewModel model)
+{
+    <td class="win-loss-block">
+        <div>
+            <span class="win-loss">@model.WinLoss</span>
+        </div>
+        @if (model.CommVisibility)
+        {
+            <div>
+                <span class="comm">@model.Comm</span>
+            </div>
+        }
+    </td>
+}
