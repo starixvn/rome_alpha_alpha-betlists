@@ -1,9 +1,6 @@
 ﻿namespace Alpha.BetLists.Site.Helpers
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web;
     using System.Web.Mvc;
     using BetLists.Models;
     using Requests;
@@ -11,7 +8,7 @@
     public class QueryEntityModelBinder : DefaultModelBinder
     {
         private static readonly Type[] IUserType = { typeof(IUser) };
-        private static readonly Type ReportBaseQueryType = typeof(BaseQuery);
+        private static readonly Type BaseQueryType = typeof(BaseQuery);
 
         protected override object CreateModel(
             ControllerContext controllerContext,
@@ -19,7 +16,7 @@
             Type modelType)
         {
             if (modelType != null
-                && ReportBaseQueryType.IsAssignableFrom(modelType)
+                && BaseQueryType.IsAssignableFrom(modelType)
                 && modelType.GetConstructor(IUserType) != null)
             {
                 return CreateInstanceOfAssignableReportBaseQuery(modelType);

@@ -129,4 +129,52 @@
   <data name="NoInformationIsAvailable" xml:space="preserve">
     <value>ไม่มีข้อมูล</value>
   </data>
+  <data name="transtime" xml:space="preserve">
+    <value>เวลาการดำเนินการ</value>
+  </data>
+  <data name="choice" xml:space="preserve">
+    <value>เลือก</value>
+  </data>
+  <data name="odds" xml:space="preserve">
+    <value>ราคา</value>
+  </data>
+  <data name="stake" xml:space="preserve">
+    <value>เงินเดิมพัน </value>
+  </data>
+  <data name="lblWinLoss" xml:space="preserve">
+    <value>ได้ เสีย</value>
+  </data>
+  <data name="status" xml:space="preserve">
+    <value>สถานะ</value>
+  </data>
+  <data name="agentPT" xml:space="preserve">
+    <value>ค่าแบ่งสู้ของเอเย่น</value>
+  </data>
+  <data name="masterPT" xml:space="preserve">
+    <value>ค่าแบ่งสู้ของมาสเตอร์</value>
+  </data>
+  <data name="superPT" xml:space="preserve">
+    <value>ค่าแบ่งสู้ของซุปเปอร์</value>
+  </data>
+  <data name="lblComm" xml:space="preserve">
+    <value>คอมมิชชั่น</value>
+  </data>
+  <data name="subTotal" xml:space="preserve">
+    <value>ยอดรวม</value>
+  </data>
+  <data name="Subtotal_com" xml:space="preserve">
+    <value>ผลรวมย่อย คอมมิชชั่น</value>
+  </data>
+  <data name="Subtotal_wl" xml:space="preserve">
+    <value>ผลรวมย่อย( ชนะ แพ้ )</value>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>หมายเหตุ</value>
+  </data>
+  <data name="CommissionRoundNote" xml:space="preserve">
+    <value>การคำนวณค่าคอมมิชั่นไว้สำหรับอ้างอิงเท่านั้น ดังนั้น เมื่อสรุปค่าคอมทั้งหมด ยอดรวมคอมมิชั่นอาจจะแตกต่างจากผลรวมค่าคอมมิชั่น.</value>
+  </data>
+  <data name="result" xml:space="preserve">
+    <value>ผลการแข่งขัน</value>
+  </data>
 </root>

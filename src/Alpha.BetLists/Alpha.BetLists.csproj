@@ -38,12 +38,18 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.BetTrade, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.Core.2.16.2.5\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
+      <HintPath>..\..\packages\Fanex.BetList.Core.2.16.3.0-beta\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.BetList.Core, Version=2.16.2.5, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.Core.2.16.2.5\lib\net40\Fanex.BetList.Core.dll</HintPath>
+    <Reference Include="Fanex.BetList.Core, Version=2.16.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.Core.2.16.3.0-beta\lib\net40\Fanex.BetList.Core.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="Fanex.BetList.Example.Data">
+      <HintPath>..\..\..\..\SPU\core-bet-list\Fanex.BetList.Example.MVC\bin\Fanex.BetList.Example.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.BetList.Example.MVC">
+      <HintPath>..\..\..\..\SPU\core-bet-list\Fanex.BetList.Example.MVC\bin\Fanex.BetList.Example.MVC.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.Caching, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Caching.2.1.0\lib\net461\Fanex.Caching.dll</HintPath>
@@ -145,8 +151,10 @@
     </Compile>
     <Compile Include="Configurations\AppSettings.cs" />
     <Compile Include="Criteria\GetBalanceUpDayAndMoveBetsDayCriteria.cs" />
-    <Compile Include="Criteria\WinLossByDate\GetBetListWinLossByDateCriteria.cs" />
-    <Compile Include="Criteria\WinLossByDate\GetBetListWinLossByDateOldCriteria.cs" />
+    <Compile Include="Criteria\GetMixParlayDetailCriteria.cs" />
+    <Compile Include="Criteria\GetSystemParlayDetailCriteria.cs" />
+    <Compile Include="Criteria\WinLoss\GetBetListWinLossByDateCriteria.cs" />
+    <Compile Include="Criteria\WinLoss\GetBetListWinLossByDateOldCriteria.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
@@ -157,6 +165,7 @@
     <Compile Include="Models\UserLevel.cs" />
     <Compile Include="Params\WinLossParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\MixParlayService.cs" />
     <Compile Include="Services\ReportDateService.cs" />
     <Compile Include="Services\WinLossService.cs" />
   </ItemGroup>

@@ -8,6 +8,8 @@
     using Auth.Filters;
     using Configurations;
     using Fanex.Data;
+    using Fanex.Data.OldConnectionStringProvider;
+    using Helpers;
     using ONEbook.UM.Filters;
     using Web;
     using Web.Helpers;
@@ -29,7 +31,7 @@
 
             DbSettingProviderManager
                 .StartNewSession()
-                .UseDefaultConnectionStringProvider()
+                .Use(new OldConnectionStringProvider())
                 .UseDefaultDbSettingProvider(
                     resourcePath: AppSettings.StoreProcedurePath,
                     enableWatching: true)
@@ -39,6 +41,8 @@
 
             GlobalFilters.Filters.Add(new CheckUMFilter());
             GlobalFilters.Filters.Add(new CheckBelongingFilter());
+
+            ModelBinders.Binders.DefaultBinder = new QueryEntityModelBinder();
 
             StaticResources.Init(GetBuildVersion());
         }

@@ -8,14 +8,17 @@
     {
         public BetListData(
             IEnumerable<ITicket> tickets,
-            IEnumerable<ITicketData> ticketData)
+            List<ITicketData> ticketData)
         {
             Tickets = tickets ?? Enumerable.Empty<ITicket>();
-            TicketData = ticketData ?? Enumerable.Empty<ITicketData>();
+            TicketData = ticketData ?? new List<ITicketData>();
+            Total = Tickets.Count();
         }
 
         public IEnumerable<ITicket> Tickets { get; }
 
-        public IEnumerable<ITicketData> TicketData { get; }
+        public List<ITicketData> TicketData { get; }
+
+        public int Total { get; }
     }
 }

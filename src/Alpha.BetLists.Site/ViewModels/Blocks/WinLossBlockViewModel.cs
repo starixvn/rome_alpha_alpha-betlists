@@ -28,6 +28,7 @@
                         WinLoss = "-";
                         Comm = string.Empty;
                     }
+
                     break;
 
                 case BetStatus.Void:
@@ -35,6 +36,7 @@
                         WinLoss = ticket.BetTypeId.Equals(500) ? "(NW) 0.00" : string.Empty;
                         Comm = "0.00";
                     }
+
                     break;
 
                 case BetStatus.Reject:
@@ -42,6 +44,7 @@
                         WinLoss = "0.00";
                         Comm = string.Empty;
                     }
+
                     break;
 
                 default:
@@ -60,6 +63,7 @@
 
                         WinLoss = netWin + ConvertByBetType.Winloss(ticket.Winlost);
                     }
+
                     break;
             }
         }

@@ -4,22 +4,13 @@ namespace Alpha.BetLists.Builders.HtmlBuilders.AgentPTBuilder
     using Fanex.BetList.Core.Entities;
     using Templates;
 
-    /// <summary>
-    /// Build AgentPT
-    /// </summary>
     public class AgentPT71 : AgentPT1
     {
-        /// <summary>
-        /// Renders the specified ticket.
-        /// </summary>
-        /// <param name="ticket">The ticket.</param>
-        /// <param name="ticketData"></param>
-        /// <returns></returns>
         public override AgentPT_Template Render(ITicket ticket, List<ITicketData> ticketData)
         {
             base.Render(ticket, ticketData);
 
-            // Do not show percent of PT & Commission for this type of ticket
+            //// Do not show percent of PT & Commission for this type of ticket
 
             this.Template.AgentPT.Visible = false;
 

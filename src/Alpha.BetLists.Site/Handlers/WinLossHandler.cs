@@ -1,6 +1,8 @@
 ﻿namespace Alpha.BetLists.Site.Handlers
 {
     using Extensions;
+    using Fanex.BetList.Core.Builder;
+    using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Factories;
     using MediatR;
     using Params;
@@ -12,11 +14,17 @@
         IRequestHandler<WinLossQuery, WinLossViewModel>
     {
         private readonly WinLossService winLossService;
-        private readonly IBetListFactory betListFactory;
+        private readonly IBetListHTMLBuilder builder;
+        private readonly ITicketHelper ticketHelper;
 
-        public WinLossHandler(WinLossService winLossService)
+        public WinLossHandler(
+            WinLossService winLossService,
+            IBetListHTMLBuilder builder,
+            ITicketHelper ticketHelper)
         {
             this.winLossService = winLossService;
+            this.builder = builder;
+            this.ticketHelper = ticketHelper;
         }
 
         public WinLossViewModel Handle(WinLossQuery message)
@@ -24,12 +32,13 @@
             var winLossParam = new WinLossParam(
                 message.CustId,
                 message.ProductIds.ToListInt(),
-                message.FromDate, message.ToDate,
+                message.FromDate,
+                message.ToDate,
                 message.Language);
 
             var betlistData = winLossService.GetBetList(winLossParam);
 
-            return new WinLossViewModel(message, betlistData);
+            return new WinLossViewModel(message, betlistData, builder, ticketHelper);
         }
     }
 }

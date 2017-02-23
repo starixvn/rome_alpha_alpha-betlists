@@ -1,15 +1,13 @@
 ﻿namespace Alpha.BetLists.Site.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web;
+    using System.Diagnostics.CodeAnalysis;
     using System.Web.Mvc;
     using System.Web.SessionState;
     using MediatR;
     using ViewModels;
     using Web;
 
+    [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1304:NonPrivateReadonlyFieldsMustBeginWithUpperCaseLetter", Justification = "Reviewed.")]
     [SessionState(SessionStateBehavior.ReadOnly)]
     public abstract class BetListBaseController : BaseController
     {

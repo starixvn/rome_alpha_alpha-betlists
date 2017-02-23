@@ -3,7 +3,7 @@
     using System;
     using BetLists.Models;
 
-    public class BaseQuery
+    public abstract class BaseQuery
     {
         protected BaseQuery(IUser viewer)
         {

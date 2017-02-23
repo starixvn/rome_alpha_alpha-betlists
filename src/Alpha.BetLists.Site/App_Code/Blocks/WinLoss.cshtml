@@ -1,15 +1,18 @@
-﻿@using Alpha.BetLists.Site.ViewModels.Blocks
+﻿@using Fanex.BetList.Core.Entities
+@using Alpha.BetLists.Site.ViewModels.Blocks
 
-@helper Render(WinLossBlockViewModel model)
+@helper Render(ITicket ticket)
 {
+    var model = new WinLossBlockViewModel(ticket);
+
     <td class="win-loss-block">
         <div>
-            <span class="win-loss">@model.WinLoss</span>
+            <span class="win-loss">@(new HtmlString(model.WinLoss))</span>
         </div>
         @if (model.CommVisibility)
         {
             <div>
-                <span class="comm">@model.Comm</span>
+                <span class="comm">@(new HtmlString(model.Comm))</span>
             </div>
         }
     </td>

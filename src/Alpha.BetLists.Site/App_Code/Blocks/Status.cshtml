@@ -1,9 +1,9 @@
 ﻿@using Fanex.BetList.Core.Entities
 @using Fanex.BetList.Core.Builder
 
-@helper Render(BetListHTMLBuilder builder, ITicket ticket, ITicketHelper helper, List<ITicketData> ticketData, bool isShowVNIP)
+@helper Render(IBetListHTMLBuilder builder, ITicket ticket, ITicketHelper helper, List<ITicketData> ticketData, bool isShowVNIP)
 {
     <td class="status-block">
-        @builder.BuildStatus(ticket, helper, ticketData, isShowVNIP)
+        @(new HtmlString(builder.BuildStatus(ticket, helper, ticketData, isShowVNIP)))
     </td>
 }

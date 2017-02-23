@@ -129,4 +129,53 @@
   <data name="NoInformationIsAvailable" xml:space="preserve">
     <value>情報がありません</value>
   </data>
+  <data name="transtime" xml:space="preserve">
+    <value>取り引き時間
+</value>
+  </data>
+  <data name="choice" xml:space="preserve">
+    <value>選択</value>
+  </data>
+  <data name="odds" xml:space="preserve">
+    <value>オッズ</value>
+  </data>
+  <data name="stake" xml:space="preserve">
+    <value>ベット</value>
+  </data>
+  <data name="lblWinLoss" xml:space="preserve">
+    <value>勝ち負け</value>
+  </data>
+  <data name="status" xml:space="preserve">
+    <value>状態</value>
+  </data>
+  <data name="agentPT" xml:space="preserve">
+    <value>Agent PT</value>
+  </data>
+  <data name="masterPT" xml:space="preserve">
+    <value>Master PT</value>
+  </data>
+  <data name="superPT" xml:space="preserve">
+    <value>Super PT</value>
+  </data>
+  <data name="lblComm" xml:space="preserve">
+    <value>手数料</value>
+  </data>
+  <data name="subTotal" xml:space="preserve">
+    <value>Sub Total</value>
+  </data>
+  <data name="Subtotal_com" xml:space="preserve">
+    <value>小計(手数料)</value>
+  </data>
+  <data name="Subtotal_wl" xml:space="preserve">
+    <value>Subtotal(winlost)</value>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="CommissionRoundNote" xml:space="preserve">
+    <value>Com. is rounded for reference only. Therefore, Subtotal Com. amount may be different from the sum of Com. when it sums all the actual Com. amounts.</value>
+  </data>
+  <data name="result" xml:space="preserve">
+    <value>結果</value>
+  </data>
 </root>

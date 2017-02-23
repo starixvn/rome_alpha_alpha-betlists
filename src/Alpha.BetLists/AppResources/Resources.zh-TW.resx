@@ -129,4 +129,52 @@
   <data name="NoInformationIsAvailable" xml:space="preserve">
     <value>沒資料顯示</value>
   </data>
+  <data name="transtime" xml:space="preserve">
+    <value>交易時間</value>
+  </data>
+  <data name="choice" xml:space="preserve">
+    <value>選擇</value>
+  </data>
+  <data name="odds" xml:space="preserve">
+    <value>賠率</value>
+  </data>
+  <data name="stake" xml:space="preserve">
+    <value>投注額 </value>
+  </data>
+  <data name="lblWinLoss" xml:space="preserve">
+    <value>輸贏</value>
+  </data>
+  <data name="status" xml:space="preserve">
+    <value>狀態</value>
+  </data>
+  <data name="agentPT" xml:space="preserve">
+    <value>代理占成数</value>
+  </data>
+  <data name="masterPT" xml:space="preserve">
+    <value>总代理占成数</value>
+  </data>
+  <data name="superPT" xml:space="preserve">
+    <value>超级总代理占成数</value>
+  </data>
+  <data name="lblComm" xml:space="preserve">
+    <value>佣金</value>
+  </data>
+  <data name="subTotal" xml:space="preserve">
+    <value>小計</value>
+  </data>
+  <data name="Subtotal_com" xml:space="preserve">
+    <value>小計(佣金)</value>
+  </data>
+  <data name="Subtotal_wl" xml:space="preserve">
+    <value>小計(輸贏)</value>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>注意</value>
+  </data>
+  <data name="CommissionRoundNote" xml:space="preserve">
+    <value>佣金整數計算僅供參考. 因此, 當總和所有實際的佣金數時, 小計佣金數與總計佣金數也許會有差異.</value>
+  </data>
+  <data name="result" xml:space="preserve">
+    <value>賽果</value>
+  </data>
 </root>

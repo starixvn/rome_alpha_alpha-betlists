@@ -5,9 +5,6 @@ namespace Alpha.BetLists.Builders.HtmlBuilders.SuperPTBuilder
     using Fanex.BetList.Core.Utils;
     using Templates;
 
-    /// <summary>
-    /// Build SuperPT
-    /// </summary>
     public class SuperPT500 : SuperPT1
     {
         public override SuperPT_Template Render(ITicket ticket, List<ITicketData> ticketData)

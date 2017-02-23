@@ -1,22 +1,27 @@
 ﻿@using Fanex.BetList.Core.Entities
-@using Fanex.BetList.Core.Builder
-@using Alpha.BetLists.Models
 @using Alpha.BetLists.Builders.HtmlBuilders
+@using Alpha.BetLists.Models
 
-@helper Render(BetListHTMLBuilder builder, ITicket ticket, List<ITicketData> ticketData, UserLevel custLevel)
+@helper Render(ITicket ticket, List<ITicketData> ticketData, UserLevel custLevel)
 {
-    <td class="position-taking-block">
-        @if (custLevel.IsAgentLevel())
-        {
-            @builder.BuildAgentPT(ticket, ticketData)
-        }
-        else if (custLevel.IsMasterLevel())
-        {
-            @builder.BuildMasterPT(ticket, ticketData)
-        }
-        else if (custLevel.IsSuperLevel())
-        {
-            @builder.BuildSuperPT(ticket, ticketData)
-        }
-    </td>
+
+if (custLevel.IsAgentLevel())
+{
+        <td class="position-taking-block">
+            @(new HtmlString(BetListHtmlBuilderExt.BuildAgentPT(ticket, ticketData)))
+        </td>
+}
+else if (custLevel.IsMasterLevel())
+{
+        <td class="position-taking-block">
+            @(new HtmlString(BetListHtmlBuilderExt.BuildMasterPT(ticket, ticketData)))
+        </td>
+}
+else if (custLevel.IsSuperLevel())
+{
+        <td class="position-taking-block">
+            @(new HtmlString(BetListHtmlBuilderExt.BuildSuperPT(ticket, ticketData)))
+        </td>
+}
+
 }

@@ -129,4 +129,55 @@
   <data name="NoInformationIsAvailable" xml:space="preserve">
     <value>Thông tin chưa được cập nhật</value>
   </data>
+  <data name="transtime" xml:space="preserve">
+    <value>Thời gian</value>
+    <comment>Not found</comment>
+  </data>
+  <data name="choice" xml:space="preserve">
+    <value>Lựa chọn</value>
+  </data>
+  <data name="odds" xml:space="preserve">
+    <value>Tỷ lệ</value>
+  </data>
+  <data name="stake" xml:space="preserve">
+    <value>Tiền cược</value>
+  </data>
+  <data name="lblWinLoss" xml:space="preserve">
+    <value>Thắng thua</value>
+  </data>
+  <data name="status" xml:space="preserve">
+    <value>Trạng thái</value>
+  </data>
+  <data name="agentPT" xml:space="preserve">
+    <value>PT của Agent</value>
+  </data>
+  <data name="masterPT" xml:space="preserve">
+    <value>PT của Master</value>
+  </data>
+  <data name="superPT" xml:space="preserve">
+    <value>PT của Super</value>
+  </data>
+  <data name="lblComm" xml:space="preserve">
+    <value>Hoa hồng</value>
+  </data>
+  <data name="subTotal" xml:space="preserve">
+    <value>Tổng phụ</value>
+  </data>
+  <data name="Subtotal_com" xml:space="preserve">
+    <value>Tổng phụ (hoa hồng)</value>
+    <comment>Not found</comment>
+  </data>
+  <data name="Subtotal_wl" xml:space="preserve">
+    <value>Tổng phụ (thắng thua)</value>
+    <comment>Not found</comment>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>Lưu ý</value>
+  </data>
+  <data name="CommissionRoundNote" xml:space="preserve">
+    <value>Com. is rounded for reference only. Therefore, Subtotal Com. amount may be different from the sum of Com. when it sums all the actual Com. amounts.</value>
+  </data>
+  <data name="result" xml:space="preserve">
+    <value>Kết quả</value>
+  </data>
 </root>

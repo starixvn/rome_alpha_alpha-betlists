@@ -1,0 +1,63 @@
+﻿@using Alpha.BetLists.Site.ViewModels.WinLoss
+
+@model WinLossViewModel
+
+@{
+    ViewBag.Title = "Win Loss Bet List";
+}
+
+<h2>@Model.Title</h2>
+
+<table class="tblRpt tblRpt-bordered tblRpt-striped width-100per tablesorter tblRpt-hover">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>@Resources.transtime</th>
+            <th>@Resources.choice</th>
+            <th>@Resources.odds</th>
+            <th>@Resources.stake</th>
+            <th>@Resources.lblWinLoss</th>
+            <th>@Resources.status</th>
+
+            @if (Model.AllowToViewSuperPT)
+            {
+                <th>@Resources.superPT/ @Resources.lblComm</th>
+            }
+
+            @if (Model.AllowToViewMasterPT)
+            {
+                <th>@Resources.masterPT/ @Resources.lblComm</th>
+            }
+
+            <th>@Resources.agentPT/ @Resources.lblComm</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < Model.BetListData.Total; i++)
+        {
+            var ticket = Model.BetListData.Tickets.ElementAt(i);
+
+            <tr>
+                <td>@(i + 1)</td>
+                @Trans.Render(Model.Builder, ticket)
+                @Choice.Render(Model.Builder, ticket, Model.TicketHelper, Model.BetListData.TicketData, Model.CanViewScoreMap)
+                @Odds.Render(Model.Builder, ticket, Model.BetListData.TicketData)
+                @Stake.Render(Model.Builder, ticket)
+                @WinLoss.Render(ticket)
+                @Status.Render(Model.Builder, ticket, Model.TicketHelper, Model.BetListData.TicketData, Model.DisplayVNIP)
+
+                @if (Model.AllowToViewSuperPT)
+                {
+                    @PositionTaking.Render(ticket, Model.BetListData.TicketData, UserLevel.Super)
+                }
+
+                @if (Model.AllowToViewMasterPT)
+                {
+                    @PositionTaking.Render(ticket, Model.BetListData.TicketData, UserLevel.Master)
+                }
+
+                @PositionTaking.Render(ticket, Model.BetListData.TicketData, UserLevel.Agent)
+            </tr>
+        }
+    </tbody>
+</table>

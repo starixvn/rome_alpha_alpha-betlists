@@ -61,11 +61,65 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agent PT.
+        /// </summary>
+        public static string agentPT {
+            get {
+                return ResourceManager.GetString("agentPT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bet List.
         /// </summary>
         public static string BetList {
             get {
                 return ResourceManager.GetString("BetList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choice.
+        /// </summary>
+        public static string choice {
+            get {
+                return ResourceManager.GetString("choice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Com. is rounded for reference only. Therefore, Subtotal Com. amount may be different from the sum of Com. when it sums all the actual Com. amounts..
+        /// </summary>
+        public static string CommissionRoundNote {
+            get {
+                return ResourceManager.GetString("CommissionRoundNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Comm.
+        /// </summary>
+        public static string lblComm {
+            get {
+                return ResourceManager.GetString("lblComm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Win Loss.
+        /// </summary>
+        public static string lblWinLoss {
+            get {
+                return ResourceManager.GetString("lblWinLoss", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Master PT.
+        /// </summary>
+        public static string masterPT {
+            get {
+                return ResourceManager.GetString("masterPT", resourceCulture);
             }
         }
         
@@ -79,11 +133,101 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Note.
+        /// </summary>
+        public static string Note {
+            get {
+                return ResourceManager.GetString("Note", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Odds.
+        /// </summary>
+        public static string odds {
+            get {
+                return ResourceManager.GetString("odds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Place.
         /// </summary>
         public static string place {
             get {
                 return ResourceManager.GetString("place", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Results.
+        /// </summary>
+        public static string result {
+            get {
+                return ResourceManager.GetString("result", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stake.
+        /// </summary>
+        public static string stake {
+            get {
+                return ResourceManager.GetString("stake", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Status.
+        /// </summary>
+        public static string status {
+            get {
+                return ResourceManager.GetString("status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sub Total.
+        /// </summary>
+        public static string subTotal {
+            get {
+                return ResourceManager.GetString("subTotal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subtotal(Com.).
+        /// </summary>
+        public static string Subtotal_com {
+            get {
+                return ResourceManager.GetString("Subtotal_com", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subtotal(winlost).
+        /// </summary>
+        public static string Subtotal_wl {
+            get {
+                return ResourceManager.GetString("Subtotal_wl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Super PT.
+        /// </summary>
+        public static string superPT {
+            get {
+                return ResourceManager.GetString("superPT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trans.Time.
+        /// </summary>
+        public static string transtime {
+            get {
+                return ResourceManager.GetString("transtime", resourceCulture);
             }
         }
         
