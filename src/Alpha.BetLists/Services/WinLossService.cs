@@ -6,7 +6,6 @@
     using Criteria.WinLossByDate;
     using Extensions;
     using Fanex.BetList.Core.Entities;
-    using Fanex.BetList.Example.MVC.Services;
     using Fanex.Data.Repository;
     using Models;
     using Params;
@@ -29,41 +28,8 @@
             this.dynamicRepository = dynamicRepository;
         }
 
-        public BetListData GetDataSource()
-        {
-            var model = new Fanex.BetList.Example.MVC.ViewModel.BetListData();
-            Fanex.BetList.Example.MVC.ViewModel.BetListData betListData = (new DataService()).GetBetListData("~/App_Data/BetListDummyData1.xls", model.BetTypeId);
-
-            // check whether request filter by bet type id, and does not contain select all
-            if (model.BetTypeId != 0)
-            {
-                model.Tickets = betListData
-                    .Tickets
-                    .Where(ticket => model.BetTypeId == ticket.BetTypeId)
-                    .Select(ticket => ticket)
-                    .ToList();
-
-                model.TicketData = betListData
-                  .TicketData
-                  .Where(ticketData => model.BetTypeId == ticketData.BetTypeId)
-                  .Select(ticket => ticket)
-                  .ToList();
-
-                model.TicketData = model.TicketData ?? new List<ITicketData>();
-                model.Tickets = model.Tickets ?? new List<ITicket>();
-            }
-            else
-            {
-                model.TicketData = betListData.TicketData ?? new List<ITicketData>();
-                model.Tickets = betListData.Tickets ?? new List<ITicket>();
-            }
-
-            return new BetListData(model.Tickets, model.TicketData);
-        }
-
         public BetListData GetBetList(WinLossParam param)
         {
-            return GetDataSource();
             var balanceUpDate = reportDateService.GetBalanceUpDay();
             var beforeBalanceUpDate = balanceUpDate.AddDays(-1);
             Tuple<IEnumerable<Ticket>, IEnumerable<TicketData>> betListDataTuple;

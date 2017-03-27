@@ -45,12 +45,6 @@
       <HintPath>..\..\packages\Fanex.BetList.Core.2.16.3.0-beta\lib\net40\Fanex.BetList.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.BetList.Example.Data">
-      <HintPath>..\..\..\..\SPU\core-bet-list\Fanex.BetList.Example.MVC\bin\Fanex.BetList.Example.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="Fanex.BetList.Example.MVC">
-      <HintPath>..\..\..\..\SPU\core-bet-list\Fanex.BetList.Example.MVC\bin\Fanex.BetList.Example.MVC.dll</HintPath>
-    </Reference>
     <Reference Include="Fanex.Caching, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Caching.2.1.0\lib\net461\Fanex.Caching.dll</HintPath>
       <Private>True</Private>
@@ -158,6 +152,7 @@
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Models\BalanceUpDayAndMoveBetsDay.cs" />
     <Compile Include="Models\BetListData.cs" />
     <Compile Include="Models\Enumeration.cs" />

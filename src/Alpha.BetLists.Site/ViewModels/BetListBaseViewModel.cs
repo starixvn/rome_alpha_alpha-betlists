@@ -44,6 +44,7 @@
         public bool CanViewScoreMap { get; }
 
         // TODO: will refactor soon
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "VNIP", Justification = "Reviewed!")]
         public bool DisplayVNIP => UserSession.Current.IsAdminCanViewVNIP;
     }
 }

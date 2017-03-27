@@ -276,7 +276,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Allbet.css" />
     <Content Include="App_Data\SPNames\DBAGE.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\DBLOG.bodb_CustomerLog.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\DBONUSER.ON_USER.BODBDownlineNet.xml" />
