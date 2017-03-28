@@ -1,0 +1,26 @@
+Build started 3/27/2017 1:53:03 PM.
+Project "D:\Repositories\Alpha\alpha-betlists\build\BuildTasks.targets" on node 1 (default targets).
+MyTargets:
+  
+  WebCompiler: Begin cleaning output of compilerconfig.json
+  WebCompiler: Done cleaning output of compilerconfig.json
+  
+  WebCompiler: Begin compiling compilerconfig.json
+  	Compiled assets/styles/bet-list.css
+  	Minified assets/styles/bet-list.min.css
+  WebCompiler: Done compiling compilerconfig.json
+  
+  Bundler: Cleaning output from bundleconfig.json
+  Bundler: Done cleaning output file from bundleconfig.json
+  
+  Bundler: Begin processing bundleconfig.json
+  	Bundled assets/bundles/default.css
+  	Minified assets/bundles/default.min.css
+  Bundler: Done processing bundleconfig.json
+Done Building Project "D:\Repositories\Alpha\alpha-betlists\build\BuildTasks.targets" (default targets).
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:00.92
