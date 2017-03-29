@@ -3,9 +3,9 @@
 
 @helper Render(ITicket ticket)
 {
-    var model = new WinLossBlockViewModel(ticket);
+var model = new WinLossBlockViewModel(ticket);
 
-    <td class="win-loss-block">
+    <td class="win-loss-block r nonbreak">
         <div>
             <span class="win-loss">@(new HtmlString(model.WinLoss))</span>
         </div>

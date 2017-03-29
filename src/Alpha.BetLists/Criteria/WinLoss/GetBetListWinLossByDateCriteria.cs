@@ -12,7 +12,8 @@
             DateTime fromDate,
             DateTime toDate,
             DateTime moveBetsDate,
-            string language)
+            string language,
+            bool showProgressiveBonus = false)
         {
             CustId = custId;
             FromDate = fromDate;
@@ -20,6 +21,7 @@
             MoveBetsDate = moveBetsDate;
             Language = language;
             ProductIds = productIds;
+            ShowProgressiveBonus = showProgressiveBonus;
         }
 
         public int CustId { get; }
@@ -35,11 +37,12 @@
 
         public string ProductIds { get; }
 
+        public bool ShowProgressiveBonus { get; } = false;
+
         public override string GetSettingKey() => "Age_BetList_SelWinLossByDate_Mem";
 
         public override bool IsValid() =>
             CustId > 0
-            && !string.IsNullOrWhiteSpace(Language)
             && !string.IsNullOrWhiteSpace(ProductIds)
             && FromDate >= MoveBetsDate
             && ToDate >= FromDate;

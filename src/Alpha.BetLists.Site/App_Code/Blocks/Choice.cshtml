@@ -3,7 +3,7 @@
 
 @helper Render(IBetListHTMLBuilder builder, ITicket ticket, ITicketHelper helper, List<ITicketData> ticketData, bool isShowScoreMap)
 {
-    <td class="choice-block">
+    <td class="choice-block r bl_evt">
         @(new HtmlString(builder.BuildChoice(ticket, helper, ticketData, isShowScoreMap)))
     </td>
 }

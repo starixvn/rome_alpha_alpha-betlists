@@ -38,12 +38,12 @@
             {
                 if (param.ToDate.IsBefore(beforeBalanceUpDate))
                 {
-                    betListDataTuple = GetBetListOld(param, param.ToDate);
+                    betListDataTuple = GetBetListBeforeBalanceUpDay(param, param.ToDate);
                 }
                 else
                 {
                     betListDataTuple = GetBetList(param, fromDate: beforeBalanceUpDate);
-                    var oldBetListDataTuple = GetBetListOld(param, toDate: beforeBalanceUpDate);
+                    var oldBetListDataTuple = GetBetListBeforeBalanceUpDay(param, toDate: beforeBalanceUpDate);
 
                     return new BetListData(
                         betListDataTuple.Item1.Concat(oldBetListDataTuple.Item1),
@@ -70,7 +70,7 @@
                             param.Language));
         }
 
-        private Tuple<IEnumerable<Ticket>, IEnumerable<TicketData>> GetBetListOld(WinLossParam param, DateTime toDate)
+        private Tuple<IEnumerable<Ticket>, IEnumerable<TicketData>> GetBetListBeforeBalanceUpDay(WinLossParam param, DateTime toDate)
         {
             return dynamicRepository.FetchMultiple<Ticket, TicketData>(
                         new GetBetListWinLossByDateOldCriteria(

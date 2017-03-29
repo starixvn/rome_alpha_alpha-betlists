@@ -1,5 +1,5 @@
-Build started 3/27/2017 1:53:03 PM.
-Project "D:\Repositories\Alpha\alpha-betlists\build\BuildTasks.targets" on node 1 (default targets).
+Build started 3/29/2017 1:51:48 PM.
+Project "D:\Project\nexcel-project\alpha\alpha-betlists\build\BuildTasks.targets" on node 1 (default targets).
 MyTargets:
   
   WebCompiler: Begin cleaning output of compilerconfig.json
@@ -17,10 +17,10 @@ MyTargets:
   	Bundled assets/bundles/default.css
   	Minified assets/bundles/default.min.css
   Bundler: Done processing bundleconfig.json
-Done Building Project "D:\Repositories\Alpha\alpha-betlists\build\BuildTasks.targets" (default targets).
+Done Building Project "D:\Project\nexcel-project\alpha\alpha-betlists\build\BuildTasks.targets" (default targets).
 
 Build succeeded.
     0 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:00.92
+Time Elapsed 00:00:01.15

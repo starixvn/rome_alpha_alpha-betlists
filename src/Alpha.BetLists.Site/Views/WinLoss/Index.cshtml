@@ -8,7 +8,7 @@
 
 <h2>@Model.Title</h2>
 
-<table class="tblRpt tblRpt-bordered tblRpt-striped width-100per tablesorter tblRpt-hover">
+<table class="tblRpt tblRpt-bordered tblRpt-striped width-100per tablesorter tblRpt-hover hor-minimalist-a">
     <thead>
         <tr>
             <th>#</th>
@@ -38,7 +38,7 @@
             var ticket = Model.BetListData.Tickets.ElementAt(i);
 
             <tr>
-                <td>@(i + 1)</td>
+                <td class='w-order'>@(i + 1)</td>
                 @Trans.Render(Model.Builder, ticket)
                 @Choice.Render(Model.Builder, ticket, Model.TicketHelper, Model.BetListData.TicketData, Model.CanViewScoreMap)
                 @Odds.Render(Model.Builder, ticket, Model.BetListData.TicketData)

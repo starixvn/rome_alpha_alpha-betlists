@@ -33,7 +33,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>..\..\build\AnalysisRules\FanexUnitTestRules.Error.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>..\..\build\AnalysisRules\FanexRules.Error.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -61,7 +61,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.BetTrade, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.Core.2.16.3.0-beta\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
+      <HintPath>..\..\packages\Fanex.BetList.Core.2.18.0.0\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.CockFighting, Version=1.0.0.4, Culture=neutral, processorArchitecture=MSIL">
@@ -72,8 +72,8 @@
       <HintPath>..\..\packages\Fanex.BetList.ColossusBets.1.0.1.7\lib\net40\Fanex.BetList.ColossusBets.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.BetList.Core, Version=2.16.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.Core.2.16.3.0-beta\lib\net40\Fanex.BetList.Core.dll</HintPath>
+    <Reference Include="Fanex.BetList.Core, Version=2.18.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.Core.2.18.0.0\lib\net40\Fanex.BetList.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.GlobalGaming, Version=1.0.0.5, Culture=neutral, processorArchitecture=MSIL">
@@ -296,7 +296,7 @@
     <Content Include="assets\styles\images\lastGoal.gif" />
     <Content Include="assets\styles\images\note_title.gif" />
     <Content Include="Global.asax" />
-    <Content Include="App_Data\SPNames\DBARC.bodb_Archive.BODBDownlineNet" />
+    <Content Include="App_Data\SPNames\DBARC.bodb_Archive.BODBDownlineNet.xml" />
     <Content Include="App_Code\Blocks\Trans.cshtml" />
     <Content Include="App_Code\Blocks\Choice.cshtml" />
     <Content Include="App_Code\Blocks\Odds.cshtml" />
@@ -338,6 +338,7 @@
     <None Include="Web.backupMNLNap2.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </None>
+    <None Include="Web.ConnectionStrings.config" />
     <None Include="Web.napexternal.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </None>
