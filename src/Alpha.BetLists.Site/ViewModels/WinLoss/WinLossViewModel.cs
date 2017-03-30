@@ -2,10 +2,11 @@
 {
     using AppResources;
     using BetLists.Models;
-    using Blocks;
+    using Configurations;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Requests.WinLoss;
+    using Web.Helpers;
 
     public class WinLossViewModel : BetListBaseViewModel
     {

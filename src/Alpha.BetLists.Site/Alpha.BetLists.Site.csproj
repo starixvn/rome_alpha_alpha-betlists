@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="..\..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -24,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>2.1</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -280,8 +282,12 @@
     <Content Include="App_Data\SPNames\DBLOG.bodb_CustomerLog.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\DBONUSER.ON_USER.BODBDownlineNet.xml" />
     <Content Include="assets\bundles\default.css" />
+    <Content Include="assets\bundles\default.js" />
     <Content Include="assets\bundles\default.min.css">
       <DependentUpon>default.css</DependentUpon>
+    </Content>
+    <Content Include="assets\bundles\default.min.js">
+      <DependentUpon>default.js</DependentUpon>
     </Content>
     <Content Include="assets\styles\bet-list.css">
       <DependentUpon>bet-list.scss</DependentUpon>
@@ -291,10 +297,17 @@
     </Content>
     <Content Include="assets\styles\images\1F.gif" />
     <Content Include="assets\styles\images\1L.gif" />
+    <Content Include="assets\styles\images\ajax-loader.gif" />
     <Content Include="assets\styles\images\firstGoal.gif" />
     <Content Include="assets\styles\images\green-star.gif" />
     <Content Include="assets\styles\images\lastGoal.gif" />
     <Content Include="assets\styles\images\note_title.gif" />
+    <Content Include="assets\styles\result-popup.css">
+      <DependentUpon>result-popup.scss</DependentUpon>
+    </Content>
+    <Content Include="assets\styles\result-popup.min.css">
+      <DependentUpon>result-popup.css</DependentUpon>
+    </Content>
     <Content Include="Global.asax" />
     <Content Include="App_Data\SPNames\DBARC.bodb_Archive.BODBDownlineNet.xml" />
     <Content Include="App_Code\Blocks\Trans.cshtml" />
@@ -316,10 +329,14 @@
     <Content Include="App_Data\BetListDummyData.xls" />
     <Content Include="App_Data\AuthorizationSection.config" />
     <Content Include="App_Data\BetListDummyData1.xls" />
+    <Content Include="assets\scripts\typings\globals\jquery\typings.json" />
+    <Content Include="assets\scripts\typings\globals\bootstrap\typings.json" />
+    <Content Include="assets\styles\result-popup.scss" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
+    <Content Include="Views\Shared\ResultDetailsPopup.cshtml" />
     <None Include="Web.backupMNL.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </None>
@@ -453,9 +470,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="assets\scripts\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Alpha.BetLists.Builders\Alpha.BetLists.Builders.csproj">
       <Project>{c4d18432-0c45-40e3-b851-30ddf6e809ea}</Project>
@@ -466,11 +481,24 @@
       <Name>Alpha.BetLists</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="assets\scripts\details\default-details.ts" />
+    <TypeScriptCompile Include="assets\scripts\result\default-result.ts" />
+    <TypeScriptCompile Include="assets\scripts\result\casino-result.ts" />
+    <TypeScriptCompile Include="assets\scripts\result\sportsbook-result.ts" />
+    <TypeScriptCompile Include="assets\scripts\typings\globals\bootstrap\index.d.ts" />
+    <TypeScriptCompile Include="assets\scripts\typings\globals\jquery\index.d.ts" />
+    <TypeScriptCompile Include="assets\scripts\typings\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <ProjectExtensions>

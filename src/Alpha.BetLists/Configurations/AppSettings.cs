@@ -18,6 +18,8 @@
 
         public static string StoreProcedurePath => GetConfigValue("StoreProcedurePath");
 
+        public static string ResultAppPath => GetConfigValue("ResultSiteVirtualPath") ?? "site-results";
+
         public static string GetConfigValue(string configName) => AppSettingValues[configName];
 
         public static void Verify()

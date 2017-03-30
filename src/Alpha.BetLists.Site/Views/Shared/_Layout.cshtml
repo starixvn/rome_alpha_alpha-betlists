@@ -16,7 +16,9 @@
     @RenderBody()
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
     @StaticResources.AssetScripts.Render("/bundles/site-betlists/default")
+    @StaticResources.RenderScripts("~/assets/bundles/default")
     @Html.Partial("Piwik")
+    @Html.Partial("ResultDetailsPopup")
     @RenderSection("Scripts", required: false)
 </body>
 </html>

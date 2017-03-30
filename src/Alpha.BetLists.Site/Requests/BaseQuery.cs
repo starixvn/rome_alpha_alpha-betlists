@@ -29,5 +29,9 @@
         public byte ViewerLevelId { get; }
 
         public UserLevel ViewerLevel { get; }
+
+        public string Type { get; set; }
+
+        public bool IsHistoricReport { get; set; }
     }
 }

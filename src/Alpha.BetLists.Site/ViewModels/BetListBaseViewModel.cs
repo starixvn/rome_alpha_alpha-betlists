@@ -3,10 +3,12 @@
     using System;
     using System.Diagnostics.CodeAnalysis;
     using BetLists.Models;
+    using Configurations;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Requests;
     using Sunplus.Agent.Model.Entities;
+    using Web.Helpers;
 
     [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1304:NonPrivateReadonlyFieldsMustBeginWithUpperCaseLetter", Justification = "Reviewed.")]
     public abstract class BetListBaseViewModel
@@ -26,9 +28,15 @@
             BetListData = betListData;
             Builder = builder;
             TicketHelper = ticketHelper;
+            ProductsId = baseQuery.ProductIds;
+            BetListType = baseQuery.Type;
+            CustId = baseQuery.CustId;
+            IsHistoricReport = baseQuery.IsHistoricReport;
         }
 
         public string CustName { get; protected set; }
+
+        public int CustId { get; protected set; }
 
         public DateTime FromDate { get; protected set; }
 
@@ -46,5 +54,15 @@
         // TODO: will refactor soon
         [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "VNIP", Justification = "Reviewed!")]
         public bool DisplayVNIP => UserSession.Current.IsAdminCanViewVNIP;
+
+        public string ProductsId { get; protected set; }
+
+        public string BetListType { get; protected set; }
+
+        public bool IsHistoricReport { get; protected set; }
+
+        public string ResultsDetailPath => AppPathHelper.GetAppPath(AppSettings.ResultAppPath, "~") + "Normal/ResultDetails";
+
+        public string OldMainPath => MicroSites.OldMainUrl("~");
     }
 }

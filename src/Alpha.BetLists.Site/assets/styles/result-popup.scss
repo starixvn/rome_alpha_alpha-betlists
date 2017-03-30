@@ -1,0 +1,23 @@
+﻿#result-details-modal {
+    .modal-dialog {
+        margin: 30px auto;
+    }
+
+    .modal-header {
+        padding: 0 16px;
+    }
+
+    .modal-header .close {
+        margin-top: 10px;
+    }
+
+    .modal-body {
+        text-align: center;
+
+        iframe {
+            display: none;
+            width: 100%;
+            height: 400px;
+        }
+    }
+}

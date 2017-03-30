@@ -2,5 +2,11 @@
   {
     "outputFile": "assets/styles/bet-list.css",
     "inputFile": "assets/styles/bet-list.scss"
+  },
+
+  {
+    "outputFile": "assets/styles/result-popup.css",
+    "inputFile": "assets/styles/result-popup.scss"
   }
+
 ]

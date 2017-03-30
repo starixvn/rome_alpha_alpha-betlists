@@ -2,7 +2,17 @@
   {
     "outputFileName": "assets/bundles/default.css",
     "inputFiles": [
-      "assets/styles/bet-list.css"
+      "assets/styles/bet-list.css",
+      "assets/styles/result-popup.css"
+    ]
+  },
+
+  {
+    "outputFileName": "assets/bundles/default.js",
+    "inputFiles": [
+      "assets/scripts/result/sportsbook-result.js",
+      "assets/scripts/result/casino-result.js",
+      "assets/scripts/result/default-result.js"
     ]
   }
 ]
