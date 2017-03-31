@@ -3,16 +3,20 @@
     "outputFileName": "assets/bundles/default.css",
     "inputFiles": [
       "assets/styles/bet-list.css",
-      "assets/styles/result-popup.css"
+      "assets/styles/details-popup.css"
     ]
   },
 
   {
     "outputFileName": "assets/bundles/default.js",
     "inputFiles": [
-      "assets/scripts/result/sportsbook-result.js",
-      "assets/scripts/result/casino-result.js",
-      "assets/scripts/result/default-result.js"
+      "assets/scripts/src/common/popup-details.js",
+      "assets/scripts/src/common/utils.js",
+      "assets/scripts/src/result-details/sportsbook-result-details.js",
+      "assets/scripts/src/result-details/casino-result-details.js",
+      "assets/scripts/src/result-details/default-result-details.js",
+      "assets/scripts/src/ticket-details/sportsbook-ticket-details.js",
+      "assets/scripts/src/ticket-details/casino-ticket-details.js"
     ]
   }
 ]

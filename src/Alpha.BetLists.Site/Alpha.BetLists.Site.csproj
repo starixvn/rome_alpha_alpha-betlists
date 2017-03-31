@@ -295,6 +295,12 @@
     <Content Include="assets\styles\bet-list.min.css">
       <DependentUpon>bet-list.css</DependentUpon>
     </Content>
+    <Content Include="assets\styles\details-popup.css">
+      <DependentUpon>details-popup.scss</DependentUpon>
+    </Content>
+    <Content Include="assets\styles\details-popup.min.css">
+      <DependentUpon>details-popup.css</DependentUpon>
+    </Content>
     <Content Include="assets\styles\images\1F.gif" />
     <Content Include="assets\styles\images\1L.gif" />
     <Content Include="assets\styles\images\ajax-loader.gif" />
@@ -302,12 +308,6 @@
     <Content Include="assets\styles\images\green-star.gif" />
     <Content Include="assets\styles\images\lastGoal.gif" />
     <Content Include="assets\styles\images\note_title.gif" />
-    <Content Include="assets\styles\result-popup.css">
-      <DependentUpon>result-popup.scss</DependentUpon>
-    </Content>
-    <Content Include="assets\styles\result-popup.min.css">
-      <DependentUpon>result-popup.css</DependentUpon>
-    </Content>
     <Content Include="Global.asax" />
     <Content Include="App_Data\SPNames\DBARC.bodb_Archive.BODBDownlineNet.xml" />
     <Content Include="App_Code\Blocks\Trans.cshtml" />
@@ -331,12 +331,12 @@
     <Content Include="App_Data\BetListDummyData1.xls" />
     <Content Include="assets\scripts\typings\globals\jquery\typings.json" />
     <Content Include="assets\scripts\typings\globals\bootstrap\typings.json" />
-    <Content Include="assets\styles\result-popup.scss" />
+    <Content Include="assets\styles\details-popup.scss" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
-    <Content Include="Views\Shared\ResultDetailsPopup.cshtml" />
+    <Content Include="Views\Shared\DetailsPopup.cshtml" />
     <None Include="Web.backupMNL.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </None>
@@ -470,7 +470,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="assets\scripts\tests\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Alpha.BetLists.Builders\Alpha.BetLists.Builders.csproj">
       <Project>{c4d18432-0c45-40e3-b851-30ddf6e809ea}</Project>
@@ -482,10 +484,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="assets\scripts\details\default-details.ts" />
-    <TypeScriptCompile Include="assets\scripts\result\default-result.ts" />
-    <TypeScriptCompile Include="assets\scripts\result\casino-result.ts" />
-    <TypeScriptCompile Include="assets\scripts\result\sportsbook-result.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\common\popup-details.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\common\utils.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\ticket-details\default-ticket-details.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\ticket-details\casino-ticket-details.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\ticket-details\sportsbook-ticket-details.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\result-details\default-result-details.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\result-details\casino-result-details.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\result-details\sportsbook-result-details.ts" />
     <TypeScriptCompile Include="assets\scripts\typings\globals\bootstrap\index.d.ts" />
     <TypeScriptCompile Include="assets\scripts\typings\globals\jquery\index.d.ts" />
     <TypeScriptCompile Include="assets\scripts\typings\index.d.ts" />

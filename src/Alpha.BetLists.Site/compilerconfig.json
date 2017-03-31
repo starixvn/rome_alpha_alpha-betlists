@@ -5,8 +5,8 @@
   },
 
   {
-    "outputFile": "assets/styles/result-popup.css",
-    "inputFile": "assets/styles/result-popup.scss"
+    "outputFile": "assets/styles/details-popup.css",
+    "inputFile": "assets/styles/details-popup.scss"
   }
 
 ]
