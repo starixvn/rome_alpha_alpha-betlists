@@ -19,5 +19,9 @@
         public string Language => userSession.Language;
 
         public byte LevelId => userSession.RoleId;
+
+        public int AdminId => userSession.AdminId;
+
+        public bool IsInternal => userSession.IsInternal;
     }
 }

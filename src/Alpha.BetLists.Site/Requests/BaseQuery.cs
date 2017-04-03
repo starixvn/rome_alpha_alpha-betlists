@@ -7,7 +7,7 @@
     {
         protected BaseQuery(IUser viewer)
         {
-            ViewerId = viewer.Id;
+            ViewerId = viewer.IsInternal ? viewer.AdminId : viewer.Id;
             ViewerLevelId = viewer.LevelId;
             ViewerLevel = Enumeration.FromValue<UserLevel>(ViewerLevelId);
         }

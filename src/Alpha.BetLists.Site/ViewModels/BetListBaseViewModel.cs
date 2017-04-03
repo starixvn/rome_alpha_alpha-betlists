@@ -32,6 +32,8 @@
             BetListType = baseQuery.Type;
             CustId = baseQuery.CustId;
             IsHistoricReport = baseQuery.IsHistoricReport;
+            ViewId = baseQuery.ViewerId;
+            ViewLevelId = baseQuery.ViewerLevelId;
         }
 
         public string CustName { get; protected set; }
@@ -64,5 +66,9 @@
         public string ResultsDetailPath => AppPathHelper.GetAppPath(AppSettings.ResultAppPath, "~") + "Normal/ResultDetails";
 
         public string OldMainPath => MicroSites.OldMainUrl("~");
+
+        public int ViewId { get; protected set; }
+
+        public byte ViewLevelId { get; protected set; }
     }
 }

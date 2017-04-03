@@ -16,8 +16,9 @@
             return this.instance;
         }
 
-        public Show = (url: string) => {
+        public Show = (url: string, title?: string, width?: number, height?: number) => {
             this.DetailsLoadingImage.show();
+            this.DetailsTitle.html(title ? title : 'Details');
             this.DetailsFrame.contents().find('body').html('');
             this.DetailsFrame.attr('src', url);
             this.DetailsModal.modal({ show: true });
@@ -26,7 +27,9 @@
         private registerEvents = () => {
             this.DetailsFrame.on('load', () => {
                 this.DetailsLoadingImage.hide();
-                var detailTitle = this.DetailsFrame.contents().find('title').html();
+                const detailTitle = this.DetailsFrame.contents().find('title').html() ?
+                    this.DetailsFrame.contents().find('title').html() :
+                    this.DetailsTitle.html();
                 this.DetailsTitle.html(detailTitle);
                 this.DetailsFrame.show();
             })

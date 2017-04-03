@@ -484,14 +484,17 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="assets\scripts\src\betlist\choice\score-map.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\common\app-path.ts" />
     <TypeScriptCompile Include="assets\scripts\src\common\popup-details.ts" />
     <TypeScriptCompile Include="assets\scripts\src\common\utils.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\ticket-details\default-ticket-details.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\ticket-details\casino-ticket-details.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\ticket-details\sportsbook-ticket-details.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\result-details\default-result-details.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\result-details\casino-result-details.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\result-details\sportsbook-result-details.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\betlist\status\ip-details.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\betlist\choice\ticket-details\base-ticket-details.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\betlist\choice\ticket-details\casino-ticket-details.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\betlist\choice\ticket-details\sportsbook-ticket-details.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\betlist\status\result-details\base-result-details.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\betlist\status\result-details\casino-result-details.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\betlist\status\result-details\sportsbook-result-details.ts" />
     <TypeScriptCompile Include="assets\scripts\typings\globals\bootstrap\index.d.ts" />
     <TypeScriptCompile Include="assets\scripts\typings\globals\jquery\index.d.ts" />
     <TypeScriptCompile Include="assets\scripts\typings\index.d.ts" />

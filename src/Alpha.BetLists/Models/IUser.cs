@@ -9,5 +9,9 @@
         string Language { get; }
 
         byte LevelId { get; }
+
+        int AdminId { get; }
+
+        bool IsInternal { get; }
     }
 }

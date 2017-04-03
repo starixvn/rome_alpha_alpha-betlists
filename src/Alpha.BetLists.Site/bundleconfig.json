@@ -12,11 +12,14 @@
     "inputFiles": [
       "assets/scripts/src/common/popup-details.js",
       "assets/scripts/src/common/utils.js",
-      "assets/scripts/src/result-details/sportsbook-result-details.js",
-      "assets/scripts/src/result-details/casino-result-details.js",
-      "assets/scripts/src/result-details/default-result-details.js",
-      "assets/scripts/src/ticket-details/sportsbook-ticket-details.js",
-      "assets/scripts/src/ticket-details/casino-ticket-details.js"
+      "assets/scripts/src/common/app-path.js",
+      "assets/scripts/src/betlist/status/result-details/base-result-details.js",
+      "assets/scripts/src/betlist/status/result-details/sportsbook-result-details.js",
+      "assets/scripts/src/betlist/status/result-details/casino-result-details.js",
+      "assets/scripts/src/betlist/status/ip-details/default-ip-details.js",
+      "assets/scripts/src/betlist/choice/ticket-details/base-ticket-details.js",
+      "assets/scripts/src/betlist/choice/ticket-details/sportsbook-ticket-details.js",
+      "assets/scripts/src/betlist/choice/ticket-details/casino-ticket-details.js"
     ]
   }
 ]

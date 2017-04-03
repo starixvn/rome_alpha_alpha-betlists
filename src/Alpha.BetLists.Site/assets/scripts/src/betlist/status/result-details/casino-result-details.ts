@@ -1,13 +1,5 @@
-﻿namespace ResultDetails {
-    export class CasinoResultDetails implements ResultDetails {
-        protected readonly ProductIds: string = $('#product-ids').val();
-        protected readonly OldMainPath: string = $('#old-main-path').val();
-        protected readonly BetListType: string = $('#betlist-type').val();
-        protected readonly FromDate: string = $('#from-date').val();
-        protected readonly ToDate: string = $('#to-date').val();
-        protected readonly CustId: string = $('#cust-id').val();
-        protected readonly IsHistoricReport: boolean = $('#is-historic-report').val();
-
+﻿namespace BetList.Status.ResultDetails {
+    export class CasinoResultDetails extends BaseResultDetails implements ResultDetails {
         public ViewResultDetails = (
             matchId?: number,
             race?: number,
@@ -30,7 +22,7 @@
                 + '&tdate=' + this.ToDate
                 + '&isHistoryReport=' + this.IsHistoricReport ? 1 : 0;
 
-            window.location.href = this.OldMainPath + 'RnGCasino/HandHistory' + params;
+            window.location.href = Common.AppPath.OldMainAppPath + 'RnGCasino/HandHistory' + params;
         }
     }
 
@@ -54,7 +46,7 @@
                 + '&fdate=' + this.FromDate
                 + '&tdate-' + this.ToDate;
 
-            window.location.href = this.OldMainPath + '_BetList/P2P/TableSession.aspx' + params;
+            window.location.href = Common.AppPath.OldMainAppPath + '_BetList/P2P/TableSession.aspx' + params;
         }
     }
 }

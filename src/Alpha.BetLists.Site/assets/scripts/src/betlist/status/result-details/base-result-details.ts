@@ -1,4 +1,4 @@
-﻿namespace ResultDetails {
+﻿namespace BetList.Status.ResultDetails {
     export class ResultDetailsFactory {
         private static sportsbookResult: ResultDetails;
         private static mixParlayResult: ResultDetails;
@@ -31,9 +31,17 @@
         }
     }
 
-    export class DefaultResultDetails {
+    export class BaseResultDetails {
+        protected readonly ResultDetailsPath: string = $("#result-details-path").val();
+        protected readonly ProductIds: string = $('#product-ids').val();
+        protected readonly BetListType: string = $('#betlist-type').val();
+        protected readonly FromDate: string = $('#from-date').val();
+        protected readonly ToDate: string = $('#to-date').val();
+        protected readonly CustId: string = $('#cust-id').val();
+        protected readonly IsHistoricReport: boolean = $('#is-historic-report').val();
+
         public static get Instance() {
-            return new DefaultResultDetails();
+            return new BaseResultDetails();
         }
 
         public ViewResultDetails = (
@@ -56,5 +64,5 @@
 let ViewResult: Function;
 
 $(document).ready(() => {
-    ViewResult = ResultDetails.DefaultResultDetails.Instance.ViewResultDetails;
+    ViewResult = BetList.Status.ResultDetails.BaseResultDetails.Instance.ViewResultDetails;
 })

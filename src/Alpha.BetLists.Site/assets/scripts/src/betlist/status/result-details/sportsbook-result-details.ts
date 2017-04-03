@@ -1,4 +1,4 @@
-﻿namespace ResultDetails {
+﻿namespace BetList.Status.ResultDetails {
     export interface ResultDetails {
         ViewResultDetails(matchId?: number,
             race?: number,
@@ -13,9 +13,7 @@
             betId?: number): void;
     }
 
-    export class SportsbookResultDetails implements ResultDetails {
-        protected readonly ResultDetailsPath: string = $("#result-details-path").val();
-
+    export class SportsbookResultDetails extends BaseResultDetails implements ResultDetails {
         public ViewResultDetails = (
             matchId?: number,
             race?: number,
@@ -36,7 +34,7 @@
                 + '&isOutright=' + isOutright
                 + '&refnum=' + refNo
                 + '&betid=' + betId
-                + '&isViewResultFromBetList=false';
+                + '&isViewResultFromBetList=true';
 
             Common.PopupDetails.Instance.Show(this.ResultDetailsPath + params)
         };
