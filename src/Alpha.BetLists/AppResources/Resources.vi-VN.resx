@@ -180,4 +180,16 @@
   <data name="result" xml:space="preserve">
     <value>Kết quả</value>
   </data>
+  <data name="subTotalWinlost" xml:space="preserve">
+    <value>Tổng phụ (thắng thua)</value>
+  </data>
+  <data name="subTotalCom" xml:space="preserve">
+    <value>Tổng phụ (hoa hồng)</value>
+  </data>
+  <data name="total" xml:space="preserve">
+    <value>Tổng cộng</value>
+  </data>
+  <data name="memberBetList" xml:space="preserve">
+    <value>Danh sách đặt cược của Member</value>
+  </data>
 </root>

@@ -1,0 +1,18 @@
+﻿@using Alpha.BetLists.AppResources;
+
+@helper Render(int subTotalColSpan, int statusColSpan, string subTotalWinLoss, string subTotalCommission, string total)
+{
+    <tr class="bl_footertotal">
+        <td class="text-right" colspan="@subTotalColSpan">
+            <div>@Resources.subTotalWinlost:</div>
+            <div>@Resources.subTotalCom:</div>
+            <div>@Resources.total:</div>
+        </td>
+        <td class="text-right">
+            <div>@(new HtmlString(subTotalWinLoss))</div>
+            <div>@(new HtmlString(subTotalCommission))</div>
+            <div>@(new HtmlString(total))</div>
+        </td>
+        <td colspan="@statusColSpan"></td>
+    </tr>
+}

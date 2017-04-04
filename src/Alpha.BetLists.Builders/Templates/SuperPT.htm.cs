@@ -13,7 +13,7 @@ namespace Alpha.BetLists.Builders
 	{
 		public class SuperPT_Template : Template
 		{
-			protected static string s0 = "<div class=\"position-taking\">";
+			protected static string s0 = "<div class=\"position-taking bl_underdog\">";
 			public SuperPT_SuperPT_Block SuperPT = new SuperPT_SuperPT_Block();
 			public SuperPT_SuperPTValue_Block SuperPTValue = new SuperPT_SuperPTValue_Block();
 			protected static string s1 = "</div>";

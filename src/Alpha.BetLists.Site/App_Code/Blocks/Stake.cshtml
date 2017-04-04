@@ -3,7 +3,7 @@
 
 @helper Render(IBetListHTMLBuilder builder, ITicket ticket)
 {
-    <td class="stake-block bl_underdog">
+    <td class="stake-block bl_underdog text-right">
         @(new HtmlString(builder.BuildStake(ticket)))
     </td>
 }

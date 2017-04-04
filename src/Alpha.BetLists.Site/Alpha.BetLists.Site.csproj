@@ -332,6 +332,8 @@
     <Content Include="assets\scripts\typings\globals\jquery\typings.json" />
     <Content Include="assets\scripts\typings\globals\bootstrap\typings.json" />
     <Content Include="assets\styles\details-popup.scss" />
+    <Content Include="App_Code\Blocks\Footer.cshtml" />
+    <Content Include="App_Code\Blocks\NoInfomation.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>

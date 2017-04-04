@@ -6,7 +6,12 @@
     ViewBag.Title = "Win Loss Bet List";
 }
 
-<h2>@Model.Title</h2>
+<div class="bl_title">
+    @Model.Title
+    <div class="bl-export-excel">
+        <span id="icon-excel" class="icon icon-excel" title="Excel"></span>
+    </div>
+</div>
 
 @Html.Hidden("old-main-path", Model.OldMainPath)
 @Html.Hidden("result-details-path", Model.ResultsDetailPath)
@@ -16,59 +21,73 @@
 @Html.Hidden("to-date", Model.ToDate)
 @Html.Hidden("cust-id", Model.CustId)
 @Html.Hidden("is-historic-report", Model.IsHistoricReport)
-@Html.Hidden("viewer-id", Model.ViewId)
-@Html.Hidden("viewer-level-id", Model.ViewLevelId)
+@Html.Hidden("viewer-id", Model.ViewerIdOrViewerAdminId)
+@Html.Hidden("viewer-level-id", Model.ViewerLevelId)
 
-<table class="tblRpt tblRpt-bordered tblRpt-striped width-100per tablesorter tblRpt-hover hor-minimalist-a">
+<table class="tblRpt tblRpt-bordered tblRpt-striped width-100per tablesorter tblRpt-hover tbl-betlist">
     <thead>
         <tr>
-            <th>#</th>
-            <th>@Resources.transtime</th>
+            <th class="col-number">#</th>
+            <th class="col-transtime">@Resources.transtime</th>
             <th>@Resources.choice</th>
-            <th>@Resources.odds</th>
-            <th>@Resources.stake</th>
-            <th>@Resources.lblWinLoss</th>
-            <th>@Resources.status</th>
+            <th class="col-odds">@Resources.odds</th>
+            <th class="col-stake">@Resources.stake</th>
+            <th class="col-winloss">@Resources.lblWinLoss</th>
+            <th class="col-status">@Resources.status</th>
 
             @if (Model.AllowToViewSuperPT)
             {
-                <th>@Resources.superPT/ @Resources.lblComm</th>
+                <th class="col-pt">@Resources.superPT/ @Resources.lblComm</th>
             }
 
             @if (Model.AllowToViewMasterPT)
             {
-                <th>@Resources.masterPT/ @Resources.lblComm</th>
+                <th class="col-pt">@Resources.masterPT/ @Resources.lblComm</th>
             }
 
-            <th>@Resources.agentPT/ @Resources.lblComm</th>
+            <th class="col-pt">@Resources.agentPT/ @Resources.lblComm</th>
         </tr>
     </thead>
     <tbody>
-        @for (int i = 0; i < Model.BetListData.Total; i++)
+        @if (Model.BetListData.Tickets.Any())
         {
-            var ticket = Model.BetListData.Tickets.ElementAt(i);
+            for (int i = 0; i < Model.BetListData.Total; i++)
+            {
+                var ticket = Model.BetListData.Tickets.ElementAt(i);
 
-            <tr>
-                <td class='w-order'>@(i + 1)</td>
-                @Trans.Render(Model.Builder, ticket)
-                @Choice.Render(Model.Builder, ticket, Model.TicketHelper, Model.BetListData.TicketData, Model.CanViewScoreMap)
-                @Odds.Render(Model.Builder, ticket, Model.BetListData.TicketData)
-                @Stake.Render(Model.Builder, ticket)
-                @WinLoss.Render(ticket)
-                @Status.Render(Model.Builder, ticket, Model.TicketHelper, Model.BetListData.TicketData, Model.DisplayVNIP)
+                <tr>
+                    <td class='w-order text-center'>@(i + 1)</td>
+                    @Trans.Render(Model.Builder, ticket)
+                    @Choice.Render(Model.Builder, ticket, Model.TicketHelper, Model.BetListData.TicketData, Model.CanViewScoreMap)
+                    @Odds.Render(Model.Builder, ticket, Model.BetListData.TicketData)
+                    @Stake.Render(Model.Builder, ticket)
+                    @WinLoss.Render(ticket)
+                    @Status.Render(Model.Builder, ticket, Model.TicketHelper, Model.BetListData.TicketData, Model.DisplayVNIP)
 
-                @if (Model.AllowToViewSuperPT)
-                {
-                    @PositionTaking.Render(ticket, Model.BetListData.TicketData, UserLevel.Super)
-                }
+                    @if (Model.AllowToViewSuperPT)
+                    {
+                        @PositionTaking.Render(ticket, Model.BetListData.TicketData, UserLevel.Super)
+                    }
 
-                @if (Model.AllowToViewMasterPT)
-                {
-                    @PositionTaking.Render(ticket, Model.BetListData.TicketData, UserLevel.Master)
-                }
+                    @if (Model.AllowToViewMasterPT)
+                    {
+                        @PositionTaking.Render(ticket, Model.BetListData.TicketData, UserLevel.Master)
+                    }
 
-                @PositionTaking.Render(ticket, Model.BetListData.TicketData, UserLevel.Agent)
-            </tr>
+                    @PositionTaking.Render(ticket, Model.BetListData.TicketData, UserLevel.Agent)
+                </tr>
+            }
+
+            @Footer.Render(
+            Model.FooterSubTotalColSpan,
+            Model.FooterStatusColSpan,
+            Model.FooterSubTotalWinLoss,
+            Model.FooterSubTotalCommission,
+            Model.FooterTotal)
+        }
+        else
+        {
+            @NoInfomation.Render(Model.TotalColumn)
         }
     </tbody>
 </table>

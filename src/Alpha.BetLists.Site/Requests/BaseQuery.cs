@@ -7,9 +7,10 @@
     {
         protected BaseQuery(IUser viewer)
         {
-            ViewerId = viewer.IsInternal ? viewer.AdminId : viewer.Id;
+            ViewerId = viewer.Id;
             ViewerLevelId = viewer.LevelId;
             ViewerLevel = Enumeration.FromValue<UserLevel>(ViewerLevelId);
+            ViewerIdOrViewerAdminId = viewer.IsInternal ? viewer.AdminId : viewer.Id;
         }
 
         public int CustId { get; set; }
@@ -27,6 +28,8 @@
         public int ViewerId { get; }
 
         public byte ViewerLevelId { get; }
+
+        public int ViewerIdOrViewerAdminId { get; }
 
         public UserLevel ViewerLevel { get; }
 

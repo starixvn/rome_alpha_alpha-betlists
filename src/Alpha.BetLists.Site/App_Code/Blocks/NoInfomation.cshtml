@@ -1,0 +1,10 @@
+﻿@using Alpha.BetLists.AppResources;
+
+@helper Render(int colspan)
+{
+    <tbody>
+        <tr>
+            <td colspan="@colspan" align="center">@Resources.NoInformationIsAvailable</td>
+        </tr>
+    </tbody>
+}

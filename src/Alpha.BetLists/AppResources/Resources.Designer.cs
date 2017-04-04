@@ -124,6 +124,24 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Member.
+        /// </summary>
+        public static string member {
+            get {
+                return ResourceManager.GetString("member", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Member Bet List.
+        /// </summary>
+        public static string memberBetList {
+            get {
+                return ResourceManager.GetString("memberBetList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No information is available.
         /// </summary>
         public static string NoInformationIsAvailable {
@@ -214,11 +232,38 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Subtotal(Com.).
+        /// </summary>
+        public static string subTotalCom {
+            get {
+                return ResourceManager.GetString("subTotalCom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subtotal(winlost).
+        /// </summary>
+        public static string subTotalWinlost {
+            get {
+                return ResourceManager.GetString("subTotalWinlost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Super PT.
         /// </summary>
         public static string superPT {
             get {
                 return ResourceManager.GetString("superPT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total.
+        /// </summary>
+        public static string total {
+            get {
+                return ResourceManager.GetString("total", resourceCulture);
             }
         }
         

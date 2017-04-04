@@ -13,7 +13,7 @@ namespace Alpha.BetLists.Builders
 	{
 		public class AgentPT_Template : Template
 		{
-			protected static string s0 = "<div class=\"position-taking\">";
+			protected static string s0 = "<div class=\"position-taking bl_underdog\">";
 			public AgentPT_AgentPT_Block AgentPT = new AgentPT_AgentPT_Block();
 			public AgentPT_AgentPTValue_Block AgentPTValue = new AgentPT_AgentPTValue_Block();
 			protected static string s1 = "</div>";

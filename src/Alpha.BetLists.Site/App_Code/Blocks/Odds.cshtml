@@ -4,7 +4,7 @@
 
 @helper Render(IBetListHTMLBuilder builder, ITicket ticket, List<ITicketData> ticketData, GetCachePropertyById getOddsTypeNameFunc = null)
 {
-    <td class="odds-block bl_underdog nonbreak">
+    <td class="odds-block bl_underdog nonbreak text-right">
         @(new HtmlString(builder.BuildOdds(ticket, ticketData, getOddsTypeNameFunc ?? CacheRef.GetOddsTypeName)))
     </td>
 }

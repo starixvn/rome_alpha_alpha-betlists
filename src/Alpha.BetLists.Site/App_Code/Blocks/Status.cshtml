@@ -3,7 +3,7 @@
 
 @helper Render(IBetListHTMLBuilder builder, ITicket ticket, ITicketHelper helper, List<ITicketData> ticketData, bool isShowVNIP)
 {
-    <td class="status-block c">
+    <td class="status-block text-center">
         @(new HtmlString(builder.BuildStatus(ticket, helper, ticketData, isShowVNIP)))
     </td>
 }

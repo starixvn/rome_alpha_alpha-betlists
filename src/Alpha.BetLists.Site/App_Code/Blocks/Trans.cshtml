@@ -3,7 +3,7 @@
 
 @helper Render(IBetListHTMLBuilder builder, ITicket ticket)
 {
-    <td class="trans-block c nonbreak">
+    <td class="trans-block text-center nonbreak">
         @(new HtmlString(builder.BuildTrans(ticket)))
     </td>
 }

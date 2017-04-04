@@ -177,4 +177,16 @@
   <data name="result" xml:space="preserve">
     <value>赛果</value>
   </data>
+  <data name="subTotalWinlost" xml:space="preserve">
+    <value>小计(输赢)</value>
+  </data>
+  <data name="subTotalCom" xml:space="preserve">
+    <value>小计(佣金)</value>
+  </data>
+  <data name="total" xml:space="preserve">
+    <value>总和</value>
+  </data>
+  <data name="memberBetList" xml:space="preserve">
+    <value>会员</value>
+  </data>
 </root>

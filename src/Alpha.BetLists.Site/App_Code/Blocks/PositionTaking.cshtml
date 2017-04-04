@@ -7,19 +7,19 @@
 
 if (custLevel.IsAgentLevel())
 {
-        <td class="position-taking-block r">
+        <td class="position-taking-block text-right">
             @(new HtmlString(BetListHtmlBuilderExt.BuildAgentPT(ticket, ticketData)))
         </td>
 }
 else if (custLevel.IsMasterLevel())
 {
-        <td class="position-taking-block r">
+        <td class="position-taking-block text-right">
             @(new HtmlString(BetListHtmlBuilderExt.BuildMasterPT(ticket, ticketData)))
         </td>
 }
 else if (custLevel.IsSuperLevel())
 {
-        <td class="position-taking-block r">
+        <td class="position-taking-block text-right">
             @(new HtmlString(BetListHtmlBuilderExt.BuildSuperPT(ticket, ticketData)))
         </td>
 }
