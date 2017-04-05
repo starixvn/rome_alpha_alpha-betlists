@@ -1,6 +1,7 @@
 ﻿namespace Alpha.BetLists.Site.Controllers
 {
     using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
     using System.Web.Mvc;
     using System.Web.SessionState;
     using MediatR;
@@ -9,7 +10,7 @@
 
     [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1304:NonPrivateReadonlyFieldsMustBeginWithUpperCaseLetter", Justification = "Reviewed.")]
     [SessionState(SessionStateBehavior.ReadOnly)]
-    public abstract class BetListBaseController : BaseController
+    public abstract class BetListBaseController : BaseAsyncController
     {
         protected readonly IMediator mediator;
 
@@ -21,14 +22,14 @@
         private FileContentResult GetExcelContent(ExcelFileViewModel viewModel)
             => File(viewModel.Content, viewModel.ContentType, viewModel.Name);
 
-        protected ActionResult View<TResponse>(IRequest<TResponse> message)
+        protected async Task<ActionResult> View<TResponse>(IRequest<TResponse> message)
         {
-            return View(mediator.Send(message));
+            return View(await mediator.Send(message));
         }
 
-        protected FileContentResult ExcelView(IRequest<ExcelFileViewModel> message)
+        protected async Task<FileContentResult> ExcelView(IRequest<ExcelFileViewModel> message)
         {
-            return GetExcelContent(mediator.Send(message));
+            return GetExcelContent(await mediator.Send(message));
         }
     }
 }

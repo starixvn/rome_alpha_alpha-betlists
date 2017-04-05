@@ -1,5 +1,6 @@
 ﻿namespace Alpha.BetLists.Site.Handlers
 {
+    using System.Threading.Tasks;
     using Extensions;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
@@ -11,7 +12,7 @@
     using ViewModels.WinLoss;
 
     public class WinLossHandler :
-        IRequestHandler<WinLossQuery, WinLossViewModel>
+        IAsyncRequestHandler<WinLossQuery, WinLossViewModel>
     {
         private readonly WinLossService winLossService;
         private readonly IBetListHTMLBuilder builder;
@@ -27,7 +28,7 @@
             this.ticketHelper = ticketHelper;
         }
 
-        public WinLossViewModel Handle(WinLossQuery message)
+        public async Task<WinLossViewModel> Handle(WinLossQuery message)
         {
             var winLossParam = new WinLossParam(
                 message.CustId,
@@ -36,7 +37,7 @@
                 message.ToDate,
                 message.Language);
 
-            var betlistData = winLossService.GetBetList(winLossParam);
+            var betlistData = await winLossService.GetBetList(winLossParam);
 
             return new WinLossViewModel(message, betlistData, builder, ticketHelper);
         }

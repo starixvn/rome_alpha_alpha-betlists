@@ -12,6 +12,7 @@
     using Fanex.BetList.Core.TicketHelper;
     using Fanex.Data.Repository;
     using MediatR;
+    using MediatR.Pipeline;
     using Models;
     using Services;
     using SimpleInjector;
@@ -54,9 +55,12 @@
             container.RegisterSingleton<IMediator, Mediator>();
             container.Register(typeof(IRequestHandler<,>), assemblies);
             container.Register(typeof(IAsyncRequestHandler<,>), assemblies);
-
+            container.Register(typeof(ICancellableAsyncRequestHandler<>), assemblies);
             container.RegisterCollection(typeof(INotificationHandler<>), assemblies);
             container.RegisterCollection(typeof(IAsyncNotificationHandler<>), assemblies);
+            container.RegisterCollection(typeof(ICancellableAsyncNotificationHandler<>), assemblies);
+            container.RegisterCollection(typeof(IPipelineBehavior<,>), assemblies);
+
             container.RegisterSingleton(new SingleInstanceFactory(container.GetInstance));
             container.RegisterSingleton(new MultiInstanceFactory(container.GetAllInstances));
         }

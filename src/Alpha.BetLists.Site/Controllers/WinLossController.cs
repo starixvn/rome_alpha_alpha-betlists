@@ -1,5 +1,6 @@
 ﻿namespace Alpha.BetLists.Site.Controllers
 {
+    using System.Threading.Tasks;
     using System.Web.Mvc;
     using MediatR;
     using Requests.WinLoss;
@@ -10,7 +11,7 @@
         {
         }
 
-        public ActionResult Index(WinLossQuery message)
-            => View(message);
+        public async Task<ActionResult> Index(WinLossQuery message)
+            => await View(message);
     }
 }
