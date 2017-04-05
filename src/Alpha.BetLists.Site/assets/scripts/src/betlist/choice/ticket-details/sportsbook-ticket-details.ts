@@ -28,10 +28,10 @@
             return this.instance;
         }
 
-        public ShowMixParlaySubbets = (transId: string) => {
+        public ShowMixParlayTickets = (transId: string) => {
             const params = '?transId=' + transId;
             const url = Common.AppPath.OldMainAppPath + '_BetList/MixParlay/MixParlay.aspx' + params;
-            this.showComboMixParlaySubbets(transId, '', url);
+            this.showComboMixParlayTickets(transId, '', url);
         }
 
         public ShowComboParlayDetails = (refNo: string, winlostDate: Date, transId: string, betId: string, custId: string) => {
@@ -44,13 +44,13 @@
             Common.PopupDetails.Instance.Show(Common.AppPath.OldMainAppPath + '_BetList/MixParlay/CombinationMixParlayDetail.aspx' + params);
         }
 
-        public ShowComboParlayOldSubbets = (transId: string, transIndex: string) => {
+        public ShowComboParlayOldTickets = (transId: string, transIndex: string) => {
             const params = '?transid=' + transId;
             const url = Common.AppPath.OldMainAppPath + '_BetList/MixParlay/CombinationMixParlay.aspx' + params;
-            this.showComboMixParlaySubbets(transId, transIndex, params);
+            this.showComboMixParlayTickets(transId, transIndex, params);
         }
 
-        public ShowComboParlayNewSubbets = (
+        public ShowComboParlayNewTickets = (
             transId: string,
             transIndex: string,
             refNo: string,
@@ -65,10 +65,10 @@
                 + '&betteam=' + betTeam;
 
             const url = Common.AppPath.OldMainAppPath + '_BetList/MixParlay/CombinationMixParlay.aspx' + params;
-            this.showComboMixParlaySubbets(transId, transIndex, url);
+            this.showComboMixParlayTickets(transId, transIndex, url);
         }
 
-        private showComboMixParlaySubbets = (transId: string, transIndex: string, url: string) => {
+        private showComboMixParlayTickets = (transId: string, transIndex: string, url: string) => {
             const subbetsContent: JQuery = $('#divEvent_' + transId + transIndex);
             const comboOfferName = $('#combinationOfferName_' + transId + transIndex);
 
@@ -110,9 +110,9 @@ let showNewCombMP: Function;
 let showColossusBetsDetails: Function
 
 $(document).ready(() => {
-    showMP = BetList.Choice.TicketDetails.ParlayTicketDetails.Instance.ShowMixParlaySubbets;
+    showMP = BetList.Choice.TicketDetails.ParlayTicketDetails.Instance.ShowMixParlayTickets;
     showCombMPDetail = BetList.Choice.TicketDetails.ParlayTicketDetails.Instance.ShowComboParlayDetails;
-    showCombMP = BetList.Choice.TicketDetails.ParlayTicketDetails.Instance.ShowComboParlayOldSubbets;
-    showNewCombMP = BetList.Choice.TicketDetails.ParlayTicketDetails.Instance.ShowComboParlayNewSubbets;
+    showCombMP = BetList.Choice.TicketDetails.ParlayTicketDetails.Instance.ShowComboParlayOldTickets;
+    showNewCombMP = BetList.Choice.TicketDetails.ParlayTicketDetails.Instance.ShowComboParlayNewTickets;
     showColossusBetsDetails = BetList.Choice.TicketDetails.SportsbookTicketDetails.Instance.ShowColossusBetsDetails;
 })

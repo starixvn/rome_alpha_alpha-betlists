@@ -192,4 +192,10 @@
   <data name="memberBetList" xml:space="preserve">
     <value>Member Bet List</value>
   </data>
+  <data name="agentptcomm" xml:space="preserve">
+    <value>Agent PT/ Comm</value>
+  </data>
+  <data name="number" xml:space="preserve">
+    <value>#</value>
+  </data>
 </root>

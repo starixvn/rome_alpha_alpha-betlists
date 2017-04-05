@@ -13,5 +13,8 @@
 
         public async Task<ActionResult> Index(WinLossQuery message)
             => await View(message);
+
+        public async Task<FileContentResult> Excel(WinLossExcelQuery message)
+            => await ExcelView(message);
     }
 }

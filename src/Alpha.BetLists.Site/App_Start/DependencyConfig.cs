@@ -14,6 +14,8 @@
     using MediatR;
     using MediatR.Pipeline;
     using Models;
+    using ONEbook.SpreadSheets;
+    using ONEbook.SpreadSheets.NPOI;
     using Services;
     using SimpleInjector;
     using SimpleInjector.Integration.Web;
@@ -73,8 +75,11 @@
         private static void RegisterBetListCore(Container container)
         {
             container.RegisterPerWebRequest<ITicketHelper, TicketHelper>();
+            container.Register(typeof(Workbook<>), typeof(NpoiWorkbook<>), Lifestyle.Scoped);
             container.RegisterPerWebRequest<IBetListFactory<BetListHTMLBuilder>, BetListHTMLFactory>();
+            container.RegisterPerWebRequest<IBetListFactory<BetListExcelBuilder>, BetListExcelFactory>();
             container.RegisterPerWebRequest<IBetListHTMLBuilder>(() => container.GetInstance<IBetListFactory<BetListHTMLBuilder>>().CreateBuilder());
+            container.RegisterPerWebRequest<IBetListExcelBuilder>(() => container.GetInstance<IBetListFactory<BetListExcelBuilder>>().CreateBuilder());
         }
 
         private static void RegisterDataAccesses(Container container)
