@@ -1,13 +1,13 @@
-using System.Collections.Generic;
-using Alpha.BetLists.AppResources;
-using Alpha.BetLists.Builders.Models;
-using Alpha.BetLists.Models;
-using Fanex.BetList.Core.Entities;
-using Fanex.BetList.Core.Utils;
-using NPOI.SS.UserModel;
-
 namespace Alpha.BetLists.Builder.ExcelBuilders
 {
+    using System.Collections.Generic;
+    using Alpha.BetLists.AppResources;
+    using Alpha.BetLists.Builders.Models;
+    using Alpha.BetLists.Models;
+    using Fanex.BetList.Core.Entities;
+    using Fanex.BetList.Core.Utils;
+    using NPOI.SS.UserModel;
+
     public static class BetListExcelBuilderExt
     {
         public static IRichTextString BuildWinLoss(string winLoss, string commission, RTFHelper rtfHelper)

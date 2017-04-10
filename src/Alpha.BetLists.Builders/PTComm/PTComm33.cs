@@ -29,20 +29,21 @@
             var refTicketData = IsVirtualRacing ?
                 TicketData.FindAll(item => item.RefNo.Equals(Ticket.TransId.ToString())) :
                 TicketData.FindAll(item => item.RefNo.Equals(Ticket.RefNo));
+            var refTicketDataItem = refTicketData.LastOrDefault(item => item.BetTypeId == (isWin ? WinBetId : PlaceBetId));
 
             decimal positionTaking;
 
             if (userLevel.IsSuperLevel())
             {
-                positionTaking = refTicketData.LastOrDefault(item => item.BetTypeId == (isWin ? WinBetId : PlaceBetId)).SuperPT;
+                positionTaking = refTicketDataItem.SuperPT;
             }
             else if (userLevel.IsMasterLevel())
             {
-                positionTaking = refTicketData.LastOrDefault(item => item.BetTypeId == (isWin ? WinBetId : PlaceBetId)).MasterPT;
+                positionTaking = refTicketDataItem.MasterPT;
             }
             else
             {
-                positionTaking = refTicketData.LastOrDefault(item => item.BetTypeId == (isWin ? WinBetId : PlaceBetId)).AgentPT;
+                positionTaking = refTicketDataItem.AgentPT;
             }
 
             return Formatter.FormatNumber2(positionTaking, null);

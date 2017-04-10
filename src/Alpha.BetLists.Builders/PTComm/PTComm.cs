@@ -27,7 +27,7 @@
 
         public virtual string PositionTaking => ConvertByBetType.PtValue(PTByUserLevel[UserLevel]);
 
-        public virtual string PositionTakingPercent => ConvertByBetType.Pt(PTSettingByUserLevel[UserLevel]);
+        public virtual string PositionTakingPercent => ConvertByBetType.Pt(PTSettingByUserLevel[UserLevel]) + "%";
 
         public virtual string Commission => ConvertByBetType.Comm(CommByUserLevel[UserLevel]);
 

@@ -94,31 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExcelBuilders\BetListExcelBuilderExt.cs" />
-    <Compile Include="HtmlBuilders\AgentPTBuilder\AgentPT1.cs" />
-    <Compile Include="HtmlBuilders\AgentPTBuilder\AgentPT1233.cs" />
-    <Compile Include="HtmlBuilders\AgentPTBuilder\AgentPT33.cs" />
-    <Compile Include="HtmlBuilders\AgentPTBuilder\AgentPT500.cs" />
-    <Compile Include="HtmlBuilders\AgentPTBuilder\AgentPT501.cs" />
-    <Compile Include="HtmlBuilders\AgentPTBuilder\AgentPT71.cs" />
-    <Compile Include="HtmlBuilders\AgentPTBuilder\AgentPT73.cs" />
-    <Compile Include="HtmlBuilders\AgentPTBuilder\IAgentPT.cs" />
     <Compile Include="HtmlBuilders\BetListHtmlBuilderExt.cs" />
-    <Compile Include="HtmlBuilders\MasterPTBuilder\IMasterPT.cs" />
-    <Compile Include="HtmlBuilders\MasterPTBuilder\MasterPT1.cs" />
-    <Compile Include="HtmlBuilders\MasterPTBuilder\MasterPT1233.cs" />
-    <Compile Include="HtmlBuilders\MasterPTBuilder\MasterPT33.cs" />
-    <Compile Include="HtmlBuilders\MasterPTBuilder\MasterPT500.cs" />
-    <Compile Include="HtmlBuilders\MasterPTBuilder\MasterPT501.cs" />
-    <Compile Include="HtmlBuilders\MasterPTBuilder\MasterPT71.cs" />
-    <Compile Include="HtmlBuilders\MasterPTBuilder\MasterPT73.cs" />
-    <Compile Include="HtmlBuilders\SuperPTBuilder\ISuperPT.cs" />
-    <Compile Include="HtmlBuilders\SuperPTBuilder\SuperPT1.cs" />
-    <Compile Include="HtmlBuilders\SuperPTBuilder\SuperPT1233.cs" />
-    <Compile Include="HtmlBuilders\SuperPTBuilder\SuperPT33.cs" />
-    <Compile Include="HtmlBuilders\SuperPTBuilder\SuperPT500.cs" />
-    <Compile Include="HtmlBuilders\SuperPTBuilder\SuperPT501.cs" />
-    <Compile Include="HtmlBuilders\SuperPTBuilder\SuperPT71.cs" />
-    <Compile Include="HtmlBuilders\SuperPTBuilder\SuperPT73.cs" />
     <Compile Include="PTComm\PTComm33.cs" />
     <Compile Include="PTComm\PTComm71.cs" />
     <Compile Include="PTComm\PTComm501.cs" />
@@ -126,18 +102,16 @@
     <Compile Include="PTComm\PTComm.cs" />
     <Compile Include="PTComm\PTCommFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Templates\AgentPT.htm.cs" />
-    <Compile Include="Templates\MasterPT.htm.cs" />
-    <Compile Include="Templates\SuperPT.htm.cs" />
+    <Compile Include="Templates\PTComm.htm.cs" />
+    <Compile Include="Templates\PTRacing.htm.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Templates\AgentPT.htm" />
-    <Content Include="Templates\MasterPT.htm" />
-    <Content Include="Templates\SuperPT.htm" />
+    <Content Include="Templates\PTRacing.htm" />
+    <Content Include="Templates\PTComm.htm" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Alpha.BetLists\Alpha.BetLists.csproj">

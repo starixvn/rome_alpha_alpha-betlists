@@ -1,107 +1,86 @@
 namespace Alpha.BetLists.Builders.HtmlBuilders
 {
-    using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using AgentPTBuilder;
+    using BetLists.Models;
     using Fanex.BetList.Core.Entities;
-    using MasterPTBuilder;
-    using SuperPTBuilder;
+    using Models;
+    using Templates;
 
     public static class BetListHtmlBuilderExt
     {
-        private const string SuperPTBuilderNameSpace = "Alpha.BetLists.Builders.HtmlBuilders.SuperPTBuilder";
-        private const string MasterPTBuilderNameSpace = "Alpha.BetLists.Builders.HtmlBuilders.MasterPTBuilder";
-        private const string AgentPTBuilderNameSpace = "Alpha.BetLists.Builders.HtmlBuilders.AgentPTBuilder";
-
-        public static string BuildSuperPT(ITicket ticket, List<ITicketData> ticketData)
+        public static string BuildPTCom(ITicket ticket, List<ITicketData> ticketData, UserLevel userLevel)
         {
-            ISuperPT superPTBuilder = CreateSuperPTBuilder(ticket.BetTypeId);
-            return superPTBuilder.Render(ticket, ticketData);
+            var template = new PTComm_Template();
+            var positionTakingComm = PTCommFactory.CreateInstance(ticket, ticketData, userLevel);
+
+            RenderPTPercent(template, ticket, positionTakingComm);
+            RenderPTValue(template, positionTakingComm);
+            RenderCommPercent(template, positionTakingComm);
+            RenderCommValue(template, positionTakingComm);
+
+            return template;
         }
 
-        public static string BuildMasterPT(ITicket ticket, List<ITicketData> ticketData)
+        private static void RenderPTPercent(PTComm_Template template, ITicket ticket, PTComm positionTakingComm)
         {
-            IMasterPT masterPTBuilder = CreateMasterPTBuilder(ticket.BetTypeId);
-            return masterPTBuilder.Render(ticket, ticketData);
-        }
-
-        public static string BuildAgentPT(ITicket ticket, List<ITicketData> ticketData)
-        {
-            IAgentPT agentPTBuilder = CreateAgentPTBuilder(ticket.BetTypeId);
-            return agentPTBuilder.Render(ticket, ticketData);
-        }
-
-        [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1118:ParameterMustNotSpanMultipleLines", Justification = "Reviewed.")]
-        private static IMasterPT CreateMasterPTBuilder(int bettype)
-        {
-            string typeName = string.Join(
-                                            null,
-                                            new string[]
-                                            {
-                                                MasterPTBuilderNameSpace,
-                                                ".MasterPT",
-                                                bettype.ToString()
-                                            });
-
-            Type type = Type.GetType(typeName);
-
-            if (type == null)
+            if (ticket.BetTypeId == (33 | 1233))
             {
-                return new MasterPT1();
+                RenderRacingPTValue(template, positionTakingComm);
+                return;
+            }
+
+            if (!string.IsNullOrEmpty(positionTakingComm.PositionTakingPercent) && positionTakingComm.VisibilePositionTakingPercent)
+            {
+                template.PT.PT_Percent = positionTakingComm.PositionTakingPercent;
             }
             else
             {
-                return Activator.CreateInstance(type) as IMasterPT;
+                template.PT.Hide();
             }
         }
 
-        [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1118:ParameterMustNotSpanMultipleLines", Justification = "Reviewed.")]
-        private static ISuperPT CreateSuperPTBuilder(int bettype)
+        private static void RenderPTValue(PTComm_Template template, PTComm positionTakingComm)
         {
-            string typeName = string.Join(
-                                            null,
-                                            new string[]
-                                            {
-                                                SuperPTBuilderNameSpace,
-                                                ".SuperPT",
-                                                bettype.ToString()
-                                            });
-
-            Type type = Type.GetType(typeName);
-
-            if (type == null)
+            if (!string.IsNullOrEmpty(positionTakingComm.PositionTaking) && positionTakingComm.VisiblePositionTaking)
             {
-                return new SuperPT1();
+                template.PTValue.PT_Value = positionTakingComm.PositionTaking;
             }
             else
             {
-                return Activator.CreateInstance(type) as ISuperPT;
+                template.PTValue.Hide();
             }
         }
 
-        [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1118:ParameterMustNotSpanMultipleLines", Justification = "Reviewed.")]
-        private static IAgentPT CreateAgentPTBuilder(int bettype)
+        private static void RenderCommPercent(PTComm_Template template, PTComm positionTakingComm)
         {
-            string typeName = string.Join(
-                                           null,
-                                           new string[]
-                                            {
-                                                AgentPTBuilderNameSpace,
-                                                ".AgentPT",
-                                                bettype.ToString()
-                                            });
-
-            Type type = Type.GetType(typeName);
-
-            if (type == null)
+            if (!string.IsNullOrEmpty(positionTakingComm.CommissionPercent) && positionTakingComm.VisibileCommisionPercent)
             {
-                return new AgentPT1();
+                template.Comm.Comm_Percent = positionTakingComm.CommissionPercent;
             }
             else
             {
-                return Activator.CreateInstance(type) as IAgentPT;
+                template.Comm.Hide();
             }
+        }
+
+        private static void RenderCommValue(PTComm_Template template, PTComm positionTakingComm)
+        {
+            if (!string.IsNullOrEmpty(positionTakingComm.Commission) && positionTakingComm.VisibleCommision)
+            {
+                template.CommValue.Comm_value = positionTakingComm.Commission;
+            }
+            else
+            {
+                template.CommValue.Hide();
+            }
+        }
+
+        private static void RenderRacingPTValue(PTComm_Template template, PTComm positionTakingComm)
+        {
+            var racingTemplate = new PTRacing_Template();
+            racingTemplate.PT_Win = positionTakingComm.PositionTakingWin;
+            racingTemplate.PT_Place = positionTakingComm.PositionTakingPlace;
+            template.Comm.Comm_Percent = racingTemplate;
         }
     }
 }

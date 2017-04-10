@@ -1,11 +1,15 @@
 ﻿namespace Alpha.BetLists.Site.Handlers.WinLoss
 {
+    using System.Linq;
     using System.Threading.Tasks;
+    using System.Web;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using MediatR;
     using Requests.WinLoss;
     using Services;
+    using SmartPunter.Services;
+    using Sunplus.Agent.Model.Base;
     using ViewModels.WinLoss;
 
     public class WinLossHandler : WinLossBaseHandler, IAsyncRequestHandler<WinLossQuery, WinLossViewModel>

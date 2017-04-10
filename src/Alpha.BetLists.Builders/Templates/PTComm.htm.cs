@@ -11,25 +11,25 @@ namespace Alpha.BetLists.Builders
 	using Templates;
 	namespace Templates
 	{
-		public class SuperPT_Template : Template
+		public class PTComm_Template : Template
 		{
 			protected static string s0 = "<div class=\"position-taking bl_underdog\">";
-			public SuperPT_SuperPT_Block SuperPT = new SuperPT_SuperPT_Block();
-			public SuperPT_SuperPTValue_Block SuperPTValue = new SuperPT_SuperPTValue_Block();
+			public PTComm_PT_Block PT = new PTComm_PT_Block();
+			public PTComm_PTValue_Block PTValue = new PTComm_PTValue_Block();
 			protected static string s1 = "</div>";
-			public SuperPT_SuperComm_Block SuperComm = new SuperPT_SuperComm_Block();
-			public SuperPT_SuperCommValue_Block SuperCommValue = new SuperPT_SuperCommValue_Block();
+			public PTComm_Comm_Block Comm = new PTComm_Comm_Block();
+			public PTComm_CommValue_Block CommValue = new PTComm_CommValue_Block();
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
 					bd.Append(s0);
-					if(null != SuperPT) SuperPT.ToString(ref bd);
-					if(null != SuperPTValue) SuperPTValue.ToString(ref bd);
+					if(null != PT) PT.ToString(ref bd);
+					if(null != PTValue) PTValue.ToString(ref bd);
 					bd.Append(s1);
-					if(null != SuperComm) SuperComm.ToString(ref bd);
-					if(null != SuperCommValue) SuperCommValue.ToString(ref bd);
+					if(null != Comm) Comm.ToString(ref bd);
+					if(null != CommValue) CommValue.ToString(ref bd);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
@@ -42,10 +42,10 @@ namespace Alpha.BetLists.Builders
 
 		}
 
-		public class SuperPT_SuperPT_Block: Block
+		public class PTComm_PT_Block: Block
 		{
 			protected static string s2 = "<font class=\"pt-value\">";
-			public string superPT_setting = "{superPT_setting}";
+			public string PT_Percent = "{PT_Percent}";
 			protected static string s3 = "</font><br />";
 			public override void ToString(ref StringBuilder bd)
 			{
@@ -53,17 +53,17 @@ namespace Alpha.BetLists.Builders
 				if(RenderChild)
 				{
 					bd.Append(s2);
-					bd.Append(superPT_setting);
+					bd.Append(PT_Percent);
 					bd.Append(s3);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
 		}
 
-		public class SuperPT_SuperPTValue_Block: Block
+		public class PTComm_PTValue_Block: Block
 		{
 			protected static string s4 = "<span class=\"pt-winloss\">";
-			public string superPT_value = "{superPT_value}";
+			public string PT_Value = "{PT_Value}";
 			protected static string s5 = "</span><br />";
 			public override void ToString(ref StringBuilder bd)
 			{
@@ -71,39 +71,39 @@ namespace Alpha.BetLists.Builders
 				if(RenderChild)
 				{
 					bd.Append(s4);
-					bd.Append(superPT_value);
+					bd.Append(PT_Value);
 					bd.Append(s5);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
 		}
 
-		public class SuperPT_SuperComm_Block: Block
+		public class PTComm_Comm_Block: Block
 		{
-			public string superComm_setting = "{superComm_setting}";
+			public string Comm_Percent = "{Comm_Percent}";
 			protected static string s6 = "<br />";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(superComm_setting);
+					bd.Append(Comm_Percent);
 					bd.Append(s6);
 				}
 				if(IsAssigned){bd.Append(Value);}
 			}
 		}
 
-		public class SuperPT_SuperCommValue_Block: Block
+		public class PTComm_CommValue_Block: Block
 		{
-			public string superComm_value = "{superComm_value}";
+			public string Comm_value = "{Comm_value}";
 			protected static string s7 = "<br />";
 			public override void ToString(ref StringBuilder bd)
 			{
 				if(!Visible) return;
 				if(RenderChild)
 				{
-					bd.Append(superComm_value);
+					bd.Append(Comm_value);
 					bd.Append(s7);
 				}
 				if(IsAssigned){bd.Append(Value);}
