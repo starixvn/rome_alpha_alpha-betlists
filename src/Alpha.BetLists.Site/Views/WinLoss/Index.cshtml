@@ -10,11 +10,12 @@
     @Model.Title
     <div class="bl-export-excel">
         <a id="icon-excel" class="icon icon-excel" title="Excel"
-           href="@Url.Action("Excel", "WinLoss", new {
-                CustId = Model.CustId,
-                ProductIds = Model.ProductsId,
-                FromDate = Model.FromDate,
-                ToDate = Model.ToDate})">
+           href="@Url.Action("Excel", "WinLoss",
+                new { CustName = Model.CustName,
+                    CustId = Model.CustId,
+                    ProductIds = Model.ProductsId,
+                    FromDate = Model.FromDate,
+                    ToDate = Model.ToDate })">
         </a>
     </div>
 </div>

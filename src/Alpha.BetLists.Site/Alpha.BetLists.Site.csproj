@@ -347,6 +347,8 @@
     <Content Include="App_Code\Common\Footer.cshtml" />
     <Content Include="App_Code\Common\NoInfomation.cshtml" />
     <Content Include="App_Data\ExcelTemplates\Agent.xls" />
+    <Content Include="App_Data\ExcelTemplates\Master.xls" />
+    <Content Include="App_Data\ExcelTemplates\Super.xls" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>

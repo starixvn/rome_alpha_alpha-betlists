@@ -31,7 +31,7 @@
             { UserLevel.Super, 4 }
         };
 
-        private static readonly string[] FooterTotalExcludeStatus = { BetStatus.Running, BetStatus.Waiting, BetStatus.Void, BetStatus.Reject };
+        private static readonly string[] TotalExcludingStatus = { BetStatus.Running, BetStatus.Waiting, BetStatus.Void, BetStatus.Reject };
 
         protected readonly BaseQuery baseQuery;
 
@@ -55,7 +55,6 @@
             ViewerIdOrViewerAdminId = baseQuery.ViewerIdOrViewerAdminId;
             ViewerLevelId = baseQuery.ViewerLevelId;
             ViewerLevel = baseQuery.ViewerLevel;
-            GenerateFooterData();
         }
 
         public string CustName { get; protected set; }
@@ -100,25 +99,19 @@
         public virtual int FooterStatusColSpan
             => FooterStatusColSpanByViewLevelId[ViewerLevel];
 
-        public string FooterSubTotalWinLoss { get; protected set; }
+        public string FooterSubTotalWinLoss => ConvertByBetType.Winloss(TotalWinLoss);
 
-        public string FooterSubTotalCommission { get; protected set; }
+        public string FooterSubTotalCommission => ConvertByBetType.Comm(TotalCommission);
 
-        public string FooterTotal { get; protected set; }
+        public string FooterTotal => ConvertByBetType.Winloss(TotalWinLoss + TotalCommission);
 
         public int TotalColumn => TotalColumnByViewLevelId[ViewerLevel];
 
-        private void GenerateFooterData()
-        {
-            var filteredTickets = BetListData.Tickets
-               .Where(ticket => !FooterTotalExcludeStatus.Contains(ticket.Status.ToLowerInvariant()));
+        protected virtual decimal TotalWinLoss => TotalFilteredTickets.Where(ticket => ticket.BetTypeId != 500).Sum(ticket => ticket.Winlost);
 
-            var subTotalWinLoss = filteredTickets.Where(ticket => ticket.BetTypeId != 500).Sum(ticket => ticket.Winlost);
-            var subTotalCommission = filteredTickets.Sum(ticket => ticket.PlayerComm);
+        protected virtual decimal TotalCommission => TotalFilteredTickets.Sum(ticket => ticket.PlayerComm);
 
-            FooterSubTotalWinLoss = ConvertByBetType.Winloss(subTotalWinLoss);
-            FooterSubTotalCommission = ConvertByBetType.Comm(subTotalCommission);
-            FooterTotal = ConvertByBetType.Winloss(subTotalWinLoss + subTotalCommission);
-        }
+        protected IEnumerable<ITicket> TotalFilteredTickets
+            => BetListData.Tickets.Where(ticket => !TotalExcludingStatus.Contains(ticket.Status.ToLowerInvariant()));
     }
 }

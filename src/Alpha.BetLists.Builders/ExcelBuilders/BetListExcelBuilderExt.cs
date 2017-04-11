@@ -1,15 +1,40 @@
 namespace Alpha.BetLists.Builder.ExcelBuilders
 {
     using System.Collections.Generic;
-    using Alpha.BetLists.AppResources;
-    using Alpha.BetLists.Builders.Models;
-    using Alpha.BetLists.Models;
+    using AppResources;
+    using Builders.Models;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Utils;
+    using Models;
     using NPOI.SS.UserModel;
 
     public static class BetListExcelBuilderExt
     {
+        public static IRichTextString BuildFooterHeader(RTFHelper rtfHelper)
+        {
+            rtfHelper.RTFRenderer.AddText($"{Resources.Subtotal_wl}:\n");
+            rtfHelper.RTFRenderer.AddText($"{Resources.Subtotal_com}:\n");
+            rtfHelper.RTFRenderer.AddText($"{Resources.total}:");
+
+            var footerHeaderRtfText = rtfHelper.RTFRenderer.Render();
+            rtfHelper.RTFRenderer.Clear();
+
+            return footerHeaderRtfText;
+        }
+
+        public static IRichTextString BuildFooter(string totalWinLoss, string totalCommission, string total, RTFHelper rtfHelper)
+        {
+            var rtfNumber = new RTFNumber(rtfHelper.RTFRenderer, rtfHelper.PosFont, rtfHelper.NegFont);
+            rtfNumber.Render(totalWinLoss);
+            rtfNumber.Render("\n" + totalCommission);
+            rtfNumber.Render("\n" + total);
+
+            var footerRtfText = rtfHelper.RTFRenderer.Render();
+            rtfHelper.RTFRenderer.Clear();
+
+            return footerRtfText;
+        }
+
         public static IRichTextString BuildWinLoss(string winLoss, string commission, RTFHelper rtfHelper)
         {
             var rtfNumber = new RTFNumber(rtfHelper.RTFRenderer, rtfHelper.PosFont, rtfHelper.NegFont);

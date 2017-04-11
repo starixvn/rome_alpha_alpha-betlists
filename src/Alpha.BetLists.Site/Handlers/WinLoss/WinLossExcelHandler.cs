@@ -51,10 +51,11 @@
                     .Header(Resources.ResourceManager.GetString)
                     .Title(winLossViewModel.Title)
                     .Body(betlistData.Tickets, GetBodyRowMapper(message, winLossViewModel))
+                    .Footer(new Ticket(), GetFooterRowMapper(winLossViewModel))
                     .Sheet(Resources.BetList)
                     .ExportToBytes();
 
-            return new ExcelFileViewModel("BetList", fileContent);
+            return new ExcelFileViewModel(winLossViewModel.Title, fileContent);
         }
 
         private TemplateInfo GetTemplateInfo(WinLossExcelQuery message)
@@ -62,23 +63,50 @@
                    GetExcelTemplatePath(message.ViewerLevel.DisplayName),
                    noInfomationText: Resources.NoInformationIsAvailable,
                    bodyStartIndex: 3,
-                   bodyEndIndex: 4);
+                   bodyEndIndex: 4,
+                   footerEndIndex: 5);
 
         private Mapper<ITicket> GetBodyRowMapper(WinLossExcelQuery message, WinLossViewModel winlossViewModel)
-            => GetRowMapper(message, winlossViewModel);
-
-        private Mapper<ITicket> GetRowMapper(WinLossExcelQuery message, WinLossViewModel winlossViewModel)
         {
             var ticketData = winlossViewModel.BetListData.TicketData;
             var canViewScoreMap = winlossViewModel.CanViewScoreMap;
+
             var mapper = new Mapper<ITicket>()
                 .Map(B, ticket => excelBuilder.CreateTransBuilder(ticket.BetTypeId).RenderRTF(ticket, ticketHelper))
                 .Map(C, ticket => excelBuilder.CreateChoiceBuilder(ticket.BetTypeId).RenderRTF(ticket, ticketHelper, ticketData, canViewScoreMap, rtfHelper).FirstOrDefault())
                 .Map(D, ticket => excelBuilder.CreateOddsBuilder(ticket.BetTypeId).RenderRTF(ticket, ticketData, GetOddsTypeName, rtfHelper))
                 .Map(E, ticket => excelBuilder.CreateStakeBuilder(ticket.BetTypeId).RenderRTF(ticket, rtfHelper))
                 .Map(F, ticket => BuildWinLoss(ticket))
-                .Map(G, ticket => excelBuilder.CreateStatusBuilder(ticket.BetTypeId).RenderRTF(ticket, ticketHelper, ticketData, true, rtfHelper))
-                .Map(H, ticket => BuildPTCommmission(ticket, ticketData, message.ViewerLevel));
+                .Map(G, ticket => excelBuilder.CreateStatusBuilder(ticket.BetTypeId).RenderRTF(ticket, ticketHelper, ticketData, true, rtfHelper));
+
+            if (message.ViewerLevel.IsAgentLevel())
+            {
+                mapper.Map(H, ticket => BuildPTCommmission(ticket, ticketData, UserLevel.Agent));
+            }
+
+            if (message.ViewerLevel.IsMasterLevel())
+            {
+                mapper
+                    .Map(H, ticket => BuildPTCommmission(ticket, ticketData, UserLevel.Master))
+                    .Map(I, ticket => BuildPTCommmission(ticket, ticketData, UserLevel.Agent));
+            }
+
+            if (message.ViewerLevel.IsSuperLevel())
+            {
+                mapper
+                    .Map(H, ticket => BuildPTCommmission(ticket, ticketData, UserLevel.Super))
+                    .Map(I, ticket => BuildPTCommmission(ticket, ticketData, UserLevel.Master))
+                    .Map(J, ticket => BuildPTCommmission(ticket, ticketData, UserLevel.Agent));
+            }
+
+            return mapper;
+        }
+
+        private Mapper<ITicket> GetFooterRowMapper(WinLossViewModel winlossViewModel)
+        {
+            var mapper = new Mapper<ITicket>()
+                .Map(A, _ => BetListExcelBuilderExt.BuildFooterHeader(rtfHelper))
+                .Map(F, _ => BuildFooter(winlossViewModel));
 
             return mapper;
         }
@@ -94,8 +122,13 @@
         }
 
         private IRichTextString BuildPTCommmission(ITicket ticket, List<ITicketData> ticketData, UserLevel userLevel)
-        {
-            return BetListExcelBuilderExt.BuildPTCommmission(ticket, ticketData, userLevel, rtfHelper);
-        }
+            => BetListExcelBuilderExt.BuildPTCommmission(ticket, ticketData, userLevel, rtfHelper);
+
+        private IRichTextString BuildFooter(WinLossViewModel winlossViewModel)
+            => BetListExcelBuilderExt.BuildFooter(
+                winlossViewModel.FooterSubTotalWinLoss,
+                winlossViewModel.FooterSubTotalCommission,
+                winlossViewModel.FooterTotal,
+                rtfHelper);
     }
 }

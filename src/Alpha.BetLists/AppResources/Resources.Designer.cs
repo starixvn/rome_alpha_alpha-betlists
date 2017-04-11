@@ -133,6 +133,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Master PT/ Comm.
+        /// </summary>
+        public static string masterptcomm {
+            get {
+                return ResourceManager.GetString("masterptcomm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Member.
         /// </summary>
         public static string member {
@@ -223,15 +232,6 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sub Total.
-        /// </summary>
-        public static string subTotal {
-            get {
-                return ResourceManager.GetString("subTotal", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Subtotal(Com.).
         /// </summary>
         public static string Subtotal_com {
@@ -250,29 +250,20 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Subtotal(Com.).
-        /// </summary>
-        public static string subTotalCom {
-            get {
-                return ResourceManager.GetString("subTotalCom", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Subtotal(winlost).
-        /// </summary>
-        public static string subTotalWinlost {
-            get {
-                return ResourceManager.GetString("subTotalWinlost", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Super PT.
         /// </summary>
         public static string superPT {
             get {
                 return ResourceManager.GetString("superPT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Super PT/ Comm.
+        /// </summary>
+        public static string superptcomm {
+            get {
+                return ResourceManager.GetString("superptcomm", resourceCulture);
             }
         }
         
