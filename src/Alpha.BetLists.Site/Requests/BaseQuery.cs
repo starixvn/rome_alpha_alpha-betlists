@@ -11,6 +11,7 @@
             ViewerLevelId = viewer.LevelId;
             ViewerLevel = Enumeration.FromValue<UserLevel>(ViewerLevelId);
             ViewerIdOrViewerAdminId = viewer.IsInternal ? viewer.AdminId : viewer.Id;
+            DisplayVNIP = viewer.IsAdminCanViewVNIP;
         }
 
         public int CustId { get; set; }
@@ -30,6 +31,8 @@
         public byte ViewerLevelId { get; }
 
         public int ViewerIdOrViewerAdminId { get; }
+
+        public bool DisplayVNIP { get; }
 
         public UserLevel ViewerLevel { get; }
 

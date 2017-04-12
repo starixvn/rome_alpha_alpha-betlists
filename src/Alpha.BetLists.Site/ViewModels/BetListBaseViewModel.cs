@@ -55,6 +55,7 @@
             ViewerIdOrViewerAdminId = baseQuery.ViewerIdOrViewerAdminId;
             ViewerLevelId = baseQuery.ViewerLevelId;
             ViewerLevel = baseQuery.ViewerLevel;
+            DisplayVNIP = baseQuery.DisplayVNIP;
         }
 
         public string CustName { get; protected set; }
@@ -74,9 +75,7 @@
         // TODO: will implement here
         public bool CanViewScoreMap { get; }
 
-        // TODO: will refactor soon
-        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "VNIP", Justification = "Reviewed!")]
-        public bool DisplayVNIP => UserSession.Current.IsAdminCanViewVNIP;
+        public bool DisplayVNIP { get; }
 
         public string ProductsId { get; protected set; }
 
@@ -87,6 +86,8 @@
         public string ResultsDetailPath => AppPathHelper.GetAppPath(AppSettings.ResultAppPath, "~") + "Normal/ResultDetails";
 
         public string OldMainPath => MicroSites.OldMainUrl("~");
+
+        public string MainPath => MicroSites.MainUrl();
 
         public int ViewerIdOrViewerAdminId { get; protected set; }
 

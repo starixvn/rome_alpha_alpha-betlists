@@ -38,11 +38,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.BetTrade, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.Core.2.18.0.1-beta\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
+      <HintPath>..\..\packages\Fanex.BetList.Core.2.24.0.0-beta\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.BetList.Core, Version=2.18.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.Core.2.18.0.1-beta\lib\net40\Fanex.BetList.Core.dll</HintPath>
+    <Reference Include="Fanex.BetList.Core, Version=2.24.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.Core.2.24.0.0-beta\lib\net40\Fanex.BetList.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.Caching, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -145,6 +145,7 @@
     </Compile>
     <Compile Include="Configurations\AppSettings.cs" />
     <Compile Include="Criteria\GetBalanceUpDayAndMoveBetsDayCriteria.cs" />
+    <Compile Include="Criteria\GetIPVNCriteria.cs" />
     <Compile Include="Criteria\GetMixParlayDetailCriteria.cs" />
     <Compile Include="Criteria\GetSystemParlayDetailCriteria.cs" />
     <Compile Include="Criteria\WinLoss\GetBetListWinLossByDateCriteria.cs" />
@@ -156,10 +157,12 @@
     <Compile Include="Models\BalanceUpDayAndMoveBetsDay.cs" />
     <Compile Include="Models\BetListData.cs" />
     <Compile Include="Models\Enumeration.cs" />
+    <Compile Include="Models\IPRange.cs" />
     <Compile Include="Models\IUser.cs" />
     <Compile Include="Models\UserLevel.cs" />
     <Compile Include="Params\WinLossParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IPService.cs" />
     <Compile Include="Services\MixParlayService.cs" />
     <Compile Include="Services\ReportDateService.cs" />
     <Compile Include="Services\WinLossService.cs" />

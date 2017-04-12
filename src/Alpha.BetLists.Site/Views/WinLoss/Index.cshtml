@@ -19,18 +19,6 @@
         </a>
     </div>
 </div>
-
-@Html.Hidden("old-main-path", Model.OldMainPath)
-@Html.Hidden("result-details-path", Model.ResultsDetailPath)
-@Html.Hidden("product-ids", Model.ProductsId)
-@Html.Hidden("betlist-type", Model.BetListType)
-@Html.Hidden("from-date", Model.FromDate)
-@Html.Hidden("to-date", Model.ToDate)
-@Html.Hidden("cust-id", Model.CustId)
-@Html.Hidden("is-historic-report", Model.IsHistoricReport)
-@Html.Hidden("viewer-id", Model.ViewerIdOrViewerAdminId)
-@Html.Hidden("viewer-level-id", Model.ViewerLevelId)
-
 <table class="tblRpt tblRpt-bordered tblRpt-striped width-100per tablesorter tblRpt-hover tbl-betlist">
     <thead>
         <tr>
@@ -98,3 +86,15 @@
         }
     </tbody>
 </table>
+
+@Html.Hidden("main-path", Model.MainPath)
+@Html.Hidden("old-main-path", Model.OldMainPath)
+@Html.Hidden("result-details-path", Model.ResultsDetailPath)
+@Html.Hidden("product-ids", Model.ProductsId)
+@Html.Hidden("betlist-type", Model.BetListType)
+@Html.Hidden("from-date", Model.FromDate)
+@Html.Hidden("to-date", Model.ToDate)
+@Html.Hidden("cust-id", Model.CustId)
+@Html.Hidden("is-historic-report", Model.IsHistoricReport)
+@Html.Hidden("viewer-id", Model.ViewerIdOrViewerAdminId)
+@Html.Hidden("viewer-level-id", Model.ViewerLevelId)

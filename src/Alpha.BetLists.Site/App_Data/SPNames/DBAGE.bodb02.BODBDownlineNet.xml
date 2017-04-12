@@ -37,4 +37,15 @@
       <Mapping DataField="spositiontaking" ObjectProperty="SuperPT" Class="TicketData"></Mapping>
     </Setting>
   </Function>
+
+  <Function Name="Mix Parlay">
+    <Setting Key="Age_BetList_SelParlayDetail" SpName="Age_BetList_SelParlayDetail" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
+      <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="Ticket"></Mapping>
+      <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="Ticket"></Mapping>
+      <Mapping DataField="Hdp1" ObjectProperty="Handicap1" Class="Ticket"></Mapping>
+      <Mapping DataField="Hdp2" ObjectProperty="Handicap2" Class="Ticket"></Mapping>
+      <Mapping DataField="LiveIndicator" ObjectProperty="IsLive" Class="Ticket"></Mapping>
+      <Mapping DataField="BetStatus" ObjectProperty="EventStatus" Class="Ticket"></Mapping>
+    </Setting>
+  </Function>
 </Functions>

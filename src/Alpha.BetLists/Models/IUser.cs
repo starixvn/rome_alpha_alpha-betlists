@@ -13,5 +13,7 @@
         int AdminId { get; }
 
         bool IsInternal { get; }
+
+        bool IsAdminCanViewVNIP { get; }
     }
 }

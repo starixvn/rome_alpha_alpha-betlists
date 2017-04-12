@@ -23,5 +23,7 @@
         public int AdminId => userSession.AdminId;
 
         public bool IsInternal => userSession.IsInternal;
+
+        public bool IsAdminCanViewVNIP => userSession.IsAdminCanViewVNIP;
     }
 }
