@@ -30,7 +30,8 @@
 
         public ShowMixParlayTickets = (transId: string) => {
             const params = '?transId=' + transId;
-            const url = Common.AppPath.OldMainAppPath + '_BetList/MixParlay/MixParlay.aspx' + params;
+            //const url = Common.AppPath.OldMainAppPath + '_BetList/MixParlay/MixParlay.aspx' + params;
+            const url = Common.AppPath.MainAppPath + 'MixParlay/Index';
             this.showComboMixParlayTickets(transId, '', url);
         }
 
@@ -69,20 +70,20 @@
         }
 
         private showComboMixParlayTickets = (transId: string, transIndex: string, url: string) => {
-            const subbetsContent: JQuery = $('#divEvent_' + transId + transIndex);
+            const ticketsContent: JQuery = $('#divEvent_' + transId + transIndex);
             const comboOfferName = $('#combinationOfferName_' + transId + transIndex);
 
-            if (subbetsContent.html() === '') {
+            if (ticketsContent.html() === '') {
                 const getComboMixParlaySetting: JQueryAjaxSettings = {
                     method: 'GET',
                     url: url,
                     beforeSend: () => {
                         const blockIconContent = '<span class="block-icon-small "></span>';
-                        subbetsContent.html(blockIconContent);
-                        subbetsContent.show();
+                        ticketsContent.html(blockIconContent);
+                        ticketsContent.show();
                     },
                     success: (responseHtml) => {
-                        subbetsContent.html(responseHtml);
+                        ticketsContent.html(responseHtml);
                         comboOfferName.hide();
                     },
                 }
@@ -90,12 +91,12 @@
                 $.ajax(getComboMixParlaySetting);
             }
             else {
-                if (subbetsContent.is(':visible')) {
-                    subbetsContent.hide();
+                if (ticketsContent.is(':visible')) {
+                    ticketsContent.hide();
                     comboOfferName.show();
                 }
                 else {
-                    subbetsContent.show();
+                    ticketsContent.show();
                     comboOfferName.hide();
                 }
             }

@@ -6,13 +6,14 @@
     using System.Web.Mvc;
     using BetLists.Models;
     using Controllers;
+    using DataAccesses;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Factories;
     using Fanex.BetList.Core.TicketHelper;
     using Fanex.Data.Repository;
+    using Helpers;
     using MediatR;
-    using MediatR.Pipeline;
     using Models;
     using ONEbook.SpreadSheets;
     using ONEbook.SpreadSheets.NPOI;
@@ -20,6 +21,8 @@
     using SimpleInjector;
     using SimpleInjector.Integration.Web;
     using SimpleInjector.Integration.Web.Mvc;
+    using SmartPunter.DataAccesses;
+    using SmartPunter.Services;
     using Sunplus.Agent.Model.Base;
     using Sunplus.Agent.Model.Entities;
 
@@ -85,6 +88,7 @@
         private static void RegisterDataAccesses(Container container)
         {
             container.Register<IDynamicRepository, DynamicRepository>(Lifestyle.Singleton);
+            container.Register<ISmartPunterDataAccess, SmartPunterDataAccess>(Lifestyle.Singleton);
         }
 
         private static void RegisterServices(Container container)
@@ -93,6 +97,16 @@
             container.RegisterSingleton<IUser, User>();
             container.Register<WinLossService, WinLossServiceImpl>(Lifestyle.Singleton);
             container.Register<ReportDateService, ReportDateServiceImpl>(Lifestyle.Singleton);
+            container.Register<MixParlayService, MixParlayServiceImpl>(Lifestyle.Singleton);
+            container.Register<ISmartPunterService, SmartPunterService>(Lifestyle.Singleton);
+            container.Register(
+                () => SmartPunterBetListMonitor.CreateInstance(
+                    container.GetInstance<IUserSession>(),
+                    container.GetInstance<ISmartPunterService>(),
+                    IPHelper.CustomerIP),
+                Lifestyle.Singleton);
+
+            container.Register<IPService, IPServiceImpl>(Lifestyle.Singleton);
         }
     }
 }

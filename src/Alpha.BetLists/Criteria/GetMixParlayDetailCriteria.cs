@@ -18,6 +18,6 @@
 
         public override string GetSettingKey() => "Age_BetList_SelParlayDetail";
 
-        public override bool IsValid() => TransId > 0 && !string.IsNullOrWhiteSpace(Language);
+        public override bool IsValid() => TransId > 0;
     }
 }
