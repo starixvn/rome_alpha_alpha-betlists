@@ -1,4 +1,4 @@
-﻿namespace Alpha.BetLists.Criteria
+﻿namespace Alpha.BetLists.Criteria.Parlay
 {
     using Fanex.Data.Repository;
 

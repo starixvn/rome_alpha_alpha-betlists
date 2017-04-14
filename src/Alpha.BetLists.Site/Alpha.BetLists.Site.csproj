@@ -357,7 +357,7 @@
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
     <Content Include="Views\Shared\DetailsPopup.cshtml" />
-    <Content Include="Views\MixParlay\Index.cshtml" />
+    <Content Include="Views\Parlay\MixParlay.cshtml" />
     <None Include="Web.backupMNL.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </None>
@@ -462,14 +462,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BetListBaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MixParlayController.cs" />
+    <Compile Include="Controllers\ParlayController.cs" />
     <Compile Include="Controllers\WinLossController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Handlers\BetListBaseHandler.cs" />
-    <Compile Include="Handlers\Parlay\MixParlayHandler.cs" />
+    <Compile Include="Handlers\ParlayHandler.cs" />
     <Compile Include="Handlers\WinLoss\WinLossBaseHandler.cs" />
     <Compile Include="Handlers\WinLoss\WinLossExcelHandler.cs" />
     <Compile Include="Handlers\WinLoss\WinLossHandler.cs" />
@@ -478,12 +478,14 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\BaseQuery.cs" />
+    <Compile Include="Requests\Parlay\CombinationMixParlayQuery.cs" />
     <Compile Include="Requests\Parlay\MixParlayQuery.cs" />
     <Compile Include="Requests\WinLoss\WinLossExcelQuery.cs" />
     <Compile Include="Requests\WinLoss\WinLossQuery.cs" />
     <Compile Include="ViewModels\BetListBaseViewModel.cs" />
     <Compile Include="ViewModels\Blocks\WinLossBlockViewModel.cs" />
     <Compile Include="ViewModels\ExcelFileViewModel.cs" />
+    <Compile Include="ViewModels\Parlay\CombinationMixParlayViewModel.cs" />
     <Compile Include="ViewModels\Parlay\MixParlayViewModel.cs" />
     <Compile Include="ViewModels\WinLoss\WinLossViewModel.cs" />
   </ItemGroup>

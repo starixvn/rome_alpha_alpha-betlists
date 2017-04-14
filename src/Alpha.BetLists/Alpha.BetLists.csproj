@@ -158,8 +158,9 @@
     <Compile Include="Configurations\AppSettings.cs" />
     <Compile Include="Criteria\GetBalanceUpDayAndMoveBetsDayCriteria.cs" />
     <Compile Include="Criteria\GetIPVNCriteria.cs" />
-    <Compile Include="Criteria\GetMixParlayDetailCriteria.cs" />
-    <Compile Include="Criteria\GetSystemParlayDetailCriteria.cs" />
+    <Compile Include="Criteria\Parlay\GetCombinationMixParlayDetailCriteria.cs" />
+    <Compile Include="Criteria\Parlay\GetMixParlayDetailCriteria.cs" />
+    <Compile Include="Criteria\Parlay\GetSystemParlayDetailCriteria.cs" />
     <Compile Include="Criteria\SmartPunter\SmartPunterSMACheckerWriteLogCriteria.cs" />
     <Compile Include="Criteria\SmartPunter\SmartPunterWriteLogNoDataCriteria.cs" />
     <Compile Include="Criteria\SmartPunter\SmartPunterWriteLogCriteria.cs" />
@@ -182,7 +183,7 @@
     <Compile Include="Params\WinLossParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IPService.cs" />
-    <Compile Include="Services\MixParlayService.cs" />
+    <Compile Include="Services\ParlayService.cs" />
     <Compile Include="Services\ReportDateService.cs" />
     <Compile Include="Services\WinLossService.cs" />
   </ItemGroup>

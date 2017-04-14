@@ -97,7 +97,7 @@
             container.RegisterSingleton<IUser, User>();
             container.Register<WinLossService, WinLossServiceImpl>(Lifestyle.Singleton);
             container.Register<ReportDateService, ReportDateServiceImpl>(Lifestyle.Singleton);
-            container.Register<MixParlayService, MixParlayServiceImpl>(Lifestyle.Singleton);
+            container.Register<ParlayService, ParlayServiceImpl>(Lifestyle.Singleton);
             container.Register<ISmartPunterService, SmartPunterService>(Lifestyle.Singleton);
             container.Register(
                 () => SmartPunterBetListMonitor.CreateInstance(

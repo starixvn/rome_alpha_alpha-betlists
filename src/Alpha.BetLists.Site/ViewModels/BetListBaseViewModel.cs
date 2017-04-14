@@ -1,38 +1,17 @@
 ﻿namespace Alpha.BetLists.Site.ViewModels
 {
     using System;
-    using System.Collections;
-    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
     using BetLists.Models;
     using Configurations;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
-    using Fanex.BetList.Core.Utils;
     using Requests;
-    using Sunplus.Agent.Model.Entities;
     using Web.Helpers;
 
     [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1304:NonPrivateReadonlyFieldsMustBeginWithUpperCaseLetter", Justification = "Reviewed.")]
     public abstract class BetListBaseViewModel
     {
-        private static readonly IDictionary<UserLevel, int> TotalColumnByViewLevelId = new Dictionary<UserLevel, int>
-        {
-            { UserLevel.Agent, 8 },
-            { UserLevel.Master, 9 },
-            { UserLevel.Super, 10 }
-        };
-
-        private static readonly IDictionary<UserLevel, int> FooterStatusColSpanByViewLevelId = new Dictionary<UserLevel, int>
-        {
-            { UserLevel.Agent, 2 },
-            { UserLevel.Master, 3 },
-            { UserLevel.Super, 4 }
-        };
-
-        private static readonly string[] TotalExcludingStatus = { BetStatus.Running, BetStatus.Waiting, BetStatus.Void, BetStatus.Reject };
-
         protected readonly BaseQuery baseQuery;
 
         protected BetListBaseViewModel(
@@ -93,26 +72,6 @@
 
         public byte ViewerLevelId { get; protected set; }
 
-        public UserLevel ViewerLevel { get; set; }
-
-        public int FooterSubTotalColSpan { get; protected set; } = 5;
-
-        public virtual int FooterStatusColSpan
-            => FooterStatusColSpanByViewLevelId[ViewerLevel];
-
-        public string FooterSubTotalWinLoss => ConvertByBetType.Winloss(TotalWinLoss);
-
-        public string FooterSubTotalCommission => ConvertByBetType.Comm(TotalCommission);
-
-        public string FooterTotal => ConvertByBetType.Winloss(TotalWinLoss + TotalCommission);
-
-        public int TotalColumn => TotalColumnByViewLevelId[ViewerLevel];
-
-        protected virtual decimal TotalWinLoss => TotalFilteredTickets.Where(ticket => ticket.BetTypeId != 500).Sum(ticket => ticket.Winlost);
-
-        protected virtual decimal TotalCommission => TotalFilteredTickets.Sum(ticket => ticket.PlayerComm);
-
-        protected IEnumerable<ITicket> TotalFilteredTickets
-            => BetListData.Tickets.Where(ticket => !TotalExcludingStatus.Contains(ticket.Status.ToLowerInvariant()));
+        public UserLevel ViewerLevel { get; protected set; }
     }
 }

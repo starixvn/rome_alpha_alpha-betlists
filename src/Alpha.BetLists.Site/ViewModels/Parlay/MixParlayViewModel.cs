@@ -7,7 +7,11 @@
 
     public class MixParlayViewModel : BetListBaseViewModel
     {
-        public MixParlayViewModel(BaseQuery query, BetListData betListData, IBetListHTMLBuilder builder, ITicketHelper ticketHelper)
+        public MixParlayViewModel(
+            BaseQuery query,
+            BetListData betListData,
+            IBetListHTMLBuilder builder,
+            ITicketHelper ticketHelper)
             : base(query, betListData, builder, ticketHelper)
         {
         }
