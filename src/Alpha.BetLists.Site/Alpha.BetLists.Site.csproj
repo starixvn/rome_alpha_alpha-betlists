@@ -380,7 +380,6 @@
     <None Include="Web.backupMNLNap2.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </None>
-    <None Include="Web.ConnectionStrings.config" />
     <None Include="Web.napexternal.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </None>
