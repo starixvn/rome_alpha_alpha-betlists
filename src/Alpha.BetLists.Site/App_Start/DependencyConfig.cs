@@ -25,6 +25,7 @@
     using SmartPunter.Services;
     using Sunplus.Agent.Model.Base;
     using Sunplus.Agent.Model.Entities;
+    using Utilities.IP;
 
     public static class DependencyConfig
     {
