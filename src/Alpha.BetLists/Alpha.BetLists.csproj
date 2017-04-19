@@ -157,9 +157,8 @@
     </Compile>
     <Compile Include="Configurations\AppSettings.cs" />
     <Compile Include="Criteria\GetBalanceUpDayAndMoveBetsDayCriteria.cs" />
-    <Compile Include="Criteria\Parlay\GetCombinationMixParlayDetailCriteria.cs" />
-    <Compile Include="Criteria\Parlay\GetMixParlayDetailCriteria.cs" />
-    <Compile Include="Criteria\Parlay\GetSystemParlayDetailCriteria.cs" />
+    <Compile Include="Criteria\Parlay\GetParlayBetListCriteria.cs" />
+    <Compile Include="Criteria\Parlay\GetComboParlayDetailCriteria.cs" />
     <Compile Include="Criteria\SmartPunter\SmartPunterSMACheckerWriteLogCriteria.cs" />
     <Compile Include="Criteria\SmartPunter\SmartPunterWriteLogNoDataCriteria.cs" />
     <Compile Include="Criteria\SmartPunter\SmartPunterWriteLogCriteria.cs" />
@@ -177,6 +176,9 @@
     <Compile Include="Models\BetListData.cs" />
     <Compile Include="Models\Enumeration.cs" />
     <Compile Include="Models\IUser.cs" />
+    <Compile Include="Models\Parlay\MatchDetail.cs" />
+    <Compile Include="Models\Parlay\ComboParlayDetail.cs" />
+    <Compile Include="Models\Parlay\ComboParlayDetailData.cs" />
     <Compile Include="Models\UserLevel.cs" />
     <Compile Include="Params\WinLossParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -189,4 +189,46 @@
   <data name="memberBetList" xml:space="preserve">
     <value>รายการการวางเดิมพันของสมาชิก</value>
   </data>
+  <data name="running" xml:space="preserve">
+    <value>กำลังแข่งขัน</value>
+  </data>
+  <data name="reject" xml:space="preserve">
+    <value>ปฏิเสธ</value>
+  </data>
+  <data name="refund" xml:space="preserve">
+    <value>คืนเงิน</value>
+  </data>
+  <data name="won" xml:space="preserve">
+    <value>ชนะ</value>
+  </data>
+  <data name="lose" xml:space="preserve">
+    <value>แพ้</value>
+  </data>
+  <data name="draw" xml:space="preserve">
+    <value>เสมอ</value>
+  </data>
+  <data name="waiting" xml:space="preserve">
+    <value>รอ</value>
+  </data>
+  <data name="voided" xml:space="preserve">
+    <value>โมฆะ</value>
+  </data>
+  <data name="losingtickets" xml:space="preserve">
+    <value>ตั๋วทั้งหมดที่เสีย</value>
+  </data>
+  <data name="lblSystemParlay" xml:space="preserve">
+    <value>ระบบของ Parlay</value>
+  </data>
+  <data name="CombinationResultTooHuge" xml:space="preserve">
+    <value>มีจำนวนตั๋วที่ทายผลในบอลชุดจำนวนมาก รบวนทำการคลิ๊ก&lt;a href={0}&gt;ที่ลิงค์นี้เ&lt;/a&gt;พื่อทำการดาวโหลดไฟร์ Excel ซึ่งประกอบไปด้วยรายการต่าง ๆ แบบเต็มรูปแบบทั้งหมด</value>
+  </data>
+  <data name="date" xml:space="preserve">
+    <value>วันที่</value>
+  </data>
+  <data name="events" xml:space="preserve">
+    <value>การแข่งขัน</value>
+  </data>
+  <data name="outstanding" xml:space="preserve">
+    <value>การเดิมพันที่ยังไม่สิ้นสุด</value>
+  </data>
 </root>

@@ -1,15 +1,11 @@
 ﻿namespace Alpha.BetLists.Criteria.Parlay
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using Fanex.Data.Repository;
 
-    public class GetSystemParlayDetailCriteria : CriteriaBase
+    public class GetComboParlayDetailCriteria : CriteriaBase
     {
-        public GetSystemParlayDetailCriteria(
+        public GetComboParlayDetailCriteria(
             long transId,
             long refNo,
             long betId,
@@ -41,8 +37,10 @@
 
         public string Language { get; }
 
+        public decimal Outstanding { get; set; }
+
         public override string GetSettingKey() => "Acc_BetlistCombinationParlay_Details";
 
-        public override bool IsValid() => TransId > 0 && !string.IsNullOrWhiteSpace(Language);
+        public override bool IsValid() => TransId > 0;
     }
 }

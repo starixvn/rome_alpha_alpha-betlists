@@ -87,7 +87,7 @@
     </tbody>
 </table>
 
-@Html.Hidden("main-path", Model.MainPath)
+@Html.Hidden("betlist-path", HttpContext.Current.Response.ApplyAppPathModifier("~/"))
 @Html.Hidden("old-main-path", Model.OldMainPath)
 @Html.Hidden("result-details-path", Model.ResultsDetailPath)
 @Html.Hidden("product-ids", Model.ProductsId)

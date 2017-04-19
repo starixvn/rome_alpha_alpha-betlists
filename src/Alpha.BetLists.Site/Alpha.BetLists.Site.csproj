@@ -356,12 +356,15 @@
     <Content Include="App_Data\ExcelTemplates\Agent.xls" />
     <Content Include="App_Data\ExcelTemplates\Master.xls" />
     <Content Include="App_Data\ExcelTemplates\Super.xls" />
+    <Content Include="App_Data\ExcelTemplates\ComboParlayDetail.xls" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
     <Content Include="Views\Shared\DetailsPopup.cshtml" />
     <Content Include="Views\Parlay\MixParlay.cshtml" />
+    <Content Include="Views\Parlay\ComboParlay.cshtml" />
+    <Content Include="Views\Parlay\ComboParlayDetail.cshtml" />
     <None Include="Web.backupMNL.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </None>
@@ -391,6 +394,7 @@
     </None>
     <None Include="Web.napinternal2.config">
       <DependentUpon>Web.local.config</DependentUpon>
+      <SubType>Designer</SubType>
     </None>
     <None Include="Web.pro.config">
       <DependentUpon>Web.local.config</DependentUpon>
@@ -472,7 +476,10 @@
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Handlers\BetListBaseHandler.cs" />
-    <Compile Include="Handlers\ParlayHandler.cs" />
+    <Compile Include="Handlers\Parlay\ComboParlayDetailWorkbook.cs" />
+    <Compile Include="Handlers\Parlay\ParlayExcelHandler.cs" />
+    <Compile Include="Handlers\Parlay\ParlayBaseHandler.cs" />
+    <Compile Include="Handlers\Parlay\ParlayHandler.cs" />
     <Compile Include="Handlers\WinLoss\WinLossBaseHandler.cs" />
     <Compile Include="Handlers\WinLoss\WinLossExcelHandler.cs" />
     <Compile Include="Handlers\WinLoss\WinLossHandler.cs" />
@@ -481,14 +488,18 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\BaseQuery.cs" />
-    <Compile Include="Requests\Parlay\CombinationMixParlayQuery.cs" />
+    <Compile Include="Requests\Parlay\ComboParlayDetailExcelQuery.cs" />
+    <Compile Include="Requests\Parlay\ComboParlayDetailQuery.cs" />
+    <Compile Include="Requests\Parlay\ComboParlayQuery.cs" />
     <Compile Include="Requests\Parlay\MixParlayQuery.cs" />
     <Compile Include="Requests\WinLoss\WinLossExcelQuery.cs" />
     <Compile Include="Requests\WinLoss\WinLossQuery.cs" />
     <Compile Include="ViewModels\BetListBaseViewModel.cs" />
     <Compile Include="ViewModels\Blocks\WinLossBlockViewModel.cs" />
     <Compile Include="ViewModels\ExcelFileViewModel.cs" />
-    <Compile Include="ViewModels\Parlay\CombinationMixParlayViewModel.cs" />
+    <Compile Include="ViewModels\Parlay\ComboParlayDetailWrapper.cs" />
+    <Compile Include="ViewModels\Parlay\ComboParlayDetailViewModel.cs" />
+    <Compile Include="ViewModels\Parlay\ComboParlayViewModel.cs" />
     <Compile Include="ViewModels\Parlay\MixParlayViewModel.cs" />
     <Compile Include="ViewModels\WinLoss\WinLossViewModel.cs" />
   </ItemGroup>

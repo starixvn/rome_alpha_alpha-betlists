@@ -66,8 +66,6 @@
 
         public string OldMainPath => MicroSites.OldMainUrl("~");
 
-        public string MainPath => MicroSites.MainUrl();
-
         public int ViewerIdOrViewerAdminId { get; protected set; }
 
         public byte ViewerLevelId { get; protected set; }

@@ -12,6 +12,7 @@
     using Fanex.BetList.Core.Factories;
     using Fanex.BetList.Core.TicketHelper;
     using Fanex.Data.Repository;
+    using Handlers.Parlay;
     using Helpers;
     using MediatR;
     using Models;
@@ -84,6 +85,7 @@
             container.RegisterPerWebRequest<IBetListFactory<BetListExcelBuilder>, BetListExcelFactory>();
             container.RegisterPerWebRequest<IBetListHTMLBuilder>(() => container.GetInstance<IBetListFactory<BetListHTMLBuilder>>().CreateBuilder());
             container.RegisterPerWebRequest<IBetListExcelBuilder>(() => container.GetInstance<IBetListFactory<BetListExcelBuilder>>().CreateBuilder());
+            container.RegisterSingleton<ComboParlayDetailWorkbook, ComboParlayDetailWorkbookImpl>();
         }
 
         private static void RegisterDataAccesses(Container container)

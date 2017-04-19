@@ -20,6 +20,8 @@
 
         public static string ResultAppPath => GetConfigValue("ResultSiteVirtualPath") ?? "site-results";
 
+        public static string BetListAppPath => GetConfigValue("BetListAppPath") ?? "site-betlists";
+
         public static string GetConfigValue(string configName) => AppSettingValues[configName];
 
         public static void Verify()

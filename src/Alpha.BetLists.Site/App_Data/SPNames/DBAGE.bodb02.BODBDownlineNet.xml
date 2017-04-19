@@ -40,12 +40,14 @@
 
   <Function Name="Mix Parlay">
     <Setting Key="Age_BetList_SelParlayDetail" SpName="Age_BetList_SelParlayDetail" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
-      <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="Ticket"></Mapping>
-      <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="Ticket"></Mapping>
-      <Mapping DataField="Hdp1" ObjectProperty="Handicap1" Class="Ticket"></Mapping>
-      <Mapping DataField="Hdp2" ObjectProperty="Handicap2" Class="Ticket"></Mapping>
-      <Mapping DataField="LiveIndicator" ObjectProperty="IsLive" Class="Ticket"></Mapping>
+      <Mapping DataField="BetType" ObjectProperty="BetTypeId"></Mapping>
+      <Mapping DataField="SportType" ObjectProperty="SportTypeId"></Mapping>
+      <Mapping DataField="Hdp1" ObjectProperty="Handicap1"></Mapping>
+      <Mapping DataField="Hdp2" ObjectProperty="Handicap2" ></Mapping>
+      <Mapping DataField="LiveIndicator" ObjectProperty="IsLive" ></Mapping>
       <Mapping DataField="BetStatus" ObjectProperty="EventStatus" Class="Ticket"></Mapping>
+    </Setting>
+    <Setting Key="Acc_BetlistCombinationParlay_Details" SpName="Acc_BetlistCombinationParlay_Details" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
     </Setting>
   </Function>
 </Functions>

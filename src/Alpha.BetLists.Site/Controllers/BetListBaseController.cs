@@ -27,6 +27,11 @@
             return View(await mediator.Send(message));
         }
 
+        protected async Task<ActionResult> PartialView<TResponse>(IRequest<TResponse> message)
+        {
+            return PartialView(await mediator.Send(message));
+        }
+
         protected async Task<FileContentResult> ExcelView(IRequest<ExcelFileViewModel> message)
         {
             return GetExcelContent(await mediator.Send(message));

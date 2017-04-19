@@ -2,9 +2,9 @@
 {
     using Fanex.Data.Repository;
 
-    public class GetMixParlayDetailCriteria : CriteriaBase
+    public class GetParlayBetListCriteria : CriteriaBase
     {
-        public GetMixParlayDetailCriteria(
+        public GetParlayBetListCriteria(
             long transId,
             string language)
         {

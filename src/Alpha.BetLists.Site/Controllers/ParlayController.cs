@@ -12,9 +12,15 @@
         }
 
         public async Task<ActionResult> MixParlay(MixParlayQuery message)
+            => await PartialView(message);
+
+        public async Task<ActionResult> ComboParlay(ComboParlayQuery message)
+            => await PartialView(message);
+
+        public async Task<ActionResult> ComboParlayDetail(ComboParlayDetailQuery message)
             => await View(message);
 
-        public async Task<ActionResult> CombinationMixParlay(CombinationMixParlayQuery message)
-            => await View(message);
+        public async Task<ActionResult> ComboParlayDetailExcel(ComboParlayDetailExcelQuery message)
+            => await ExcelView(message);
     }
 }

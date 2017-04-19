@@ -11,7 +11,5 @@
         }
 
         public long TransId { get; set; }
-
-        public string Language { get; set; }
     }
 }

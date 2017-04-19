@@ -1,0 +1,77 @@
+﻿@using Alpha.BetLists.Site.ViewModels.Parlay
+@model ComboParlayDetailViewModel
+@{
+    ViewBag.Title = Model.Title;
+}
+
+@helper RenderDetailItems(IGrouping<string, ComboParlayDetailWrapper> groupDetailItem)
+{
+var showWinLostDate = false;
+foreach (var item in groupDetailItem)
+{
+        <tr>
+            @if (!showWinLostDate)
+            {
+                <td class="text-center" rowspan="@groupDetailItem.Count()">@groupDetailItem.Key</td>
+                showWinLostDate = true;
+            }
+            <td class="text-left">
+                @foreach (var eventDetail in item.Events)
+                {
+                    <div>@eventDetail</div>
+                }
+            </td>
+            <td class="text-right bl_underdog">@Html.Raw(item.Odds)</td>
+            <td class="text-right bl_underdog">@Html.Raw(item.Stake)</td>
+            <td class="text-right">
+                <div class="bl_underdog">@Html.Raw(item.WinLost)</div>
+                <div class="bl_underdog">@Html.Raw(item.Comm)</div>
+            </td>
+            <td class="text-center bl_status">@item.Status</td>
+        </tr>
+}
+}
+<table class="tblRpt tblRpt-bordered tblRpt-striped width-100per tablesorter tblRpt-hover">
+    <thead>
+        <tr>
+            <th>@Resources.date</th>
+            <th>@Resources.events</th>
+            <th>@Resources.odds</th>
+            <th>@Resources.stake</th>
+            <th>@Resources.lblWinLoss</th>
+            <th>@Resources.status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.IsDataTooHuge)
+        {
+            <tr class="text-center">
+                <td colspan="6">@Resources.CombinationResultTooHuge</td>
+            </tr>
+        }
+        else
+        {
+            foreach (var group in Model.ComboParlayDetailWrapperGroups)
+            {
+                @RenderDetailItems(group);
+                <tr class="bl_footertotal">
+                    <td class="text-right" colspan="4">@Resources.subTotal:</td>
+                    <td class="text-right">@Html.Raw(Model.SubTotalWinLost(group))</td>
+                    <td></td>
+                </tr>
+            }
+        }
+    </tbody>
+    <tfoot>
+        <tr class="bl_footertotal">
+            <td class="text-right" colspan="4">@Resources.outstanding:</td>
+            <td class="text-right">@Html.Raw(Model.OutStanding)</td>
+            <td></td>
+        </tr>
+        <tr class="bl_footertotal">
+            <td class="text-right" colspan="4">@Resources.total:</td>
+            <td class="text-right">@Html.Raw(Model.TotalWinLost)</td>
+            <td></td>
+        </tr>
+    </tfoot>
+</table>

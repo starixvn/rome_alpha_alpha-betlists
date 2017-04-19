@@ -31,7 +31,7 @@
         public ShowMixParlayTickets = (transId: string) => {
             const params = '?transId=' + transId;
             //const url = Common.AppPath.OldMainAppPath + '_BetList/MixParlay/MixParlay.aspx' + params;
-            const url = Common.AppPath.MainAppPath + 'MixParlay/Index';
+            const url = Common.AppPath.BetListAppPath + 'Parlay/MixParlay';
             this.showComboMixParlayTickets(transId, '', url);
         }
 
@@ -42,12 +42,12 @@
                 + '&betid=' + betId
                 + '&custid=' + custId;
 
-            Common.PopupDetails.Instance.Show(Common.AppPath.OldMainAppPath + '_BetList/MixParlay/CombinationMixParlayDetail.aspx' + params);
+            Common.PopupDetails.Instance.Show(Common.AppPath.BetListAppPath + 'Parlay/ComboParlayDetail' + params);
         }
 
         public ShowComboParlayOldTickets = (transId: string, transIndex: string) => {
             const params = '?transid=' + transId;
-            const url = Common.AppPath.OldMainAppPath + '_BetList/MixParlay/CombinationMixParlay.aspx' + params;
+            const url = Common.AppPath.BetListAppPath + 'Parlay/ComboParlay' + params;
             this.showComboMixParlayTickets(transId, transIndex, params);
         }
 
@@ -60,12 +60,12 @@
             betCheck: string,
             betTeam: string) => {
             const params = '?transid=' + transId
-                + '&hdp1=' + handicap1
-                + '&hdp2=' + handicap2
+                + '&handicap1=' + handicap1
+                + '&handicap2=' + handicap2
                 + '&betcheck=' + betCheck
                 + '&betteam=' + betTeam;
 
-            const url = Common.AppPath.OldMainAppPath + '_BetList/MixParlay/CombinationMixParlay.aspx' + params;
+            const url = Common.AppPath.BetListAppPath + 'Parlay/CombinationMixParlay' + params;
             this.showComboMixParlayTickets(transId, transIndex, url);
         }
 
@@ -83,6 +83,7 @@
                         ticketsContent.show();
                     },
                     success: (responseHtml) => {
+                        debugger;
                         ticketsContent.html(responseHtml);
                         comboOfferName.hide();
                     },

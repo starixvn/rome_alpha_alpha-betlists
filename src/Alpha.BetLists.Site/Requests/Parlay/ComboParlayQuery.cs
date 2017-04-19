@@ -4,9 +4,9 @@
     using MediatR;
     using ViewModels.Parlay;
 
-    public class CombinationMixParlayQuery : BaseQuery, IRequest<CombinationMixParlayViewModel>
+    public class ComboParlayQuery : BaseQuery, IRequest<ComboParlayViewModel>
     {
-        public CombinationMixParlayQuery(IUser viewer) : base(viewer)
+        public ComboParlayQuery(IUser viewer) : base(viewer)
         {
         }
 
@@ -19,7 +19,5 @@
         public string BetCheck { get; set; }
 
         public string BetTeam { get; set; }
-
-        public string Language { get; set; }
     }
 }
