@@ -30,14 +30,13 @@
 
         public ShowMixParlayTickets = (transId: string) => {
             const params = '?transId=' + transId;
-            //const url = Common.AppPath.OldMainAppPath + '_BetList/MixParlay/MixParlay.aspx' + params;
             const url = Common.AppPath.BetListAppPath + 'Parlay/MixParlay';
             this.showComboMixParlayTickets(transId, '', url);
         }
 
         public ShowComboParlayDetails = (refNo: string, winlostDate: Date, transId: string, betId: string, custId: string) => {
             const params = '?refno=' + refNo
-                + '&wldate=' + winlostDate
+                + '&winlostdate=' + winlostDate
                 + '&transid=' + transId
                 + '&betid=' + betId
                 + '&custid=' + custId;
@@ -65,7 +64,7 @@
                 + '&betcheck=' + betCheck
                 + '&betteam=' + betTeam;
 
-            const url = Common.AppPath.BetListAppPath + 'Parlay/CombinationMixParlay' + params;
+            const url = Common.AppPath.BetListAppPath + 'Parlay/ComboParlay' + params;
             this.showComboMixParlayTickets(transId, transIndex, url);
         }
 

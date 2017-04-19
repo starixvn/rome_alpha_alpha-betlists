@@ -29,7 +29,7 @@
                 message.CustId,
                 message.Language);
 
-            return new ComboParlayDetailViewModel(comboParlayDetailData, TicketHelper);
+            return new ComboParlayDetailViewModel(message, comboParlayDetailData, TicketHelper);
         }
     }
 }

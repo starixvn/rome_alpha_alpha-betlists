@@ -6,10 +6,16 @@
     using AppResources;
     using BetLists.Models.Parlay;
     using Fanex.BetList.Core.Entities;
+    using System.Web;
+    using Requests.Parlay;
+    using System.Web.Mvc;
 
     public class ComboParlayDetailViewModel
     {
-        public ComboParlayDetailViewModel(ComboParlayDetailData comboParlayDetailData, ITicketHelper ticketHelper)
+        public ComboParlayDetailViewModel(
+            ComboParlayDetailQuery query,
+            ComboParlayDetailData comboParlayDetailData,
+            ITicketHelper ticketHelper)
         {
             ComboParlayDetailWrappers = new List<ComboParlayDetailWrapper>(comboParlayDetailData.ComboParlayDetails
                     .Select(d => new ComboParlayDetailWrapper(d, comboParlayDetailData.MatchDetails, ticketHelper)));
@@ -19,6 +25,7 @@
             Title = Resources.lblSystemParlay;
             TotalWinLost = ConvertByBetType.Winloss(comboParlayDetailData.ComboParlayDetails.Sum(d => d.WinLost + d.PlayerComm));
             IsDataTooHuge = comboParlayDetailData.ComboParlayDetails.Count() > 5000;
+            HugeDataLabel = string.Format(Resources.CombinationResultTooHuge, BuildComboParlayDetailExcelUrl(query));
         }
 
         public IEnumerable<ComboParlayDetailWrapper> ComboParlayDetailWrappers { get; }
@@ -33,7 +40,16 @@
 
         public bool IsDataTooHuge { get; }
 
+        public string HugeDataLabel { get; }
+
         public string SubTotalWinLost(IEnumerable<ComboParlayDetailWrapper> group)
             => ConvertByBetType.Winloss(group.Sum(item => item.ComboParlayDetail.WinLost + item.ComboParlayDetail.PlayerComm));
+
+        private string BuildComboParlayDetailExcelUrl(ComboParlayDetailQuery query)
+        {
+            var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
+
+            return urlHelper.Action("ComboParlayDetailExcel", "Parlay", query);
+        }
     }
 }

@@ -42,16 +42,18 @@ foreach (var item in groupDetailItem)
             <th>@Resources.status</th>
         </tr>
     </thead>
-    <tbody>
-        @if (Model.IsDataTooHuge)
-        {
-            <tr class="text-center">
-                <td colspan="6">@Resources.CombinationResultTooHuge</td>
+    @if (Model.IsDataTooHuge)
+    {
+        <tbody>
+            <tr class="text-center" style="overflow-wrap: break-word">
+                <td colspan="6">@Html.Raw(Model.HugeDataLabel)</td>
             </tr>
-        }
-        else
-        {
-            foreach (var group in Model.ComboParlayDetailWrapperGroups)
+        </tbody>
+    }
+    else
+    {
+        <tbody>
+            @foreach (var group in Model.ComboParlayDetailWrapperGroups)
             {
                 @RenderDetailItems(group);
                 <tr class="bl_footertotal">
@@ -60,18 +62,18 @@ foreach (var item in groupDetailItem)
                     <td></td>
                 </tr>
             }
-        }
-    </tbody>
-    <tfoot>
-        <tr class="bl_footertotal">
-            <td class="text-right" colspan="4">@Resources.outstanding:</td>
-            <td class="text-right">@Html.Raw(Model.OutStanding)</td>
-            <td></td>
-        </tr>
-        <tr class="bl_footertotal">
-            <td class="text-right" colspan="4">@Resources.total:</td>
-            <td class="text-right">@Html.Raw(Model.TotalWinLost)</td>
-            <td></td>
-        </tr>
-    </tfoot>
+        </tbody>
+        <tfoot>
+            <tr class="bl_footertotal">
+                <td class="text-right" colspan="4">@Resources.outstanding:</td>
+                <td class="text-right">@Html.Raw(Model.OutStanding)</td>
+                <td></td>
+            </tr>
+            <tr class="bl_footertotal">
+                <td class="text-right" colspan="4">@Resources.total:</td>
+                <td class="text-right">@Html.Raw(Model.TotalWinLost)</td>
+                <td></td>
+            </tr>
+        </tfoot>
+    }
 </table>
