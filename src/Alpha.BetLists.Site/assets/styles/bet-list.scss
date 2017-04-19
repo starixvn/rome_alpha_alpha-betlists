@@ -150,12 +150,15 @@ a {
 }
 
 .bl-export-excel {
-    color: #1f7244;
     cursor: pointer;
     font-size: 19px;
     float: right;
     margin-top: 4px;
     padding-right: 4px;
+
+    a {
+        color: #1f7244;
+    }
 }
 
 div.match + div.league, div.league, .no-details {
@@ -371,8 +374,8 @@ td.nonbreak {
     }
 }
 
-.sport-213, .sport-214, .sport-215, .sport-216, .sport-217, .sport-218{
-    .detail, .ng2-detail, .result{
-        display:none;
+.sport-213, .sport-214, .sport-215, .sport-216, .sport-217, .sport-218 {
+    .detail, .ng2-detail, .result {
+        display: none;
     }
 }

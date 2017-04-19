@@ -534,6 +534,8 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="assets\scripts\src\betlist\choice\score-map.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\betlist\choice\ticket-details\other-ticket-details.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\betlist\status\result-details\other-result-details.ts" />
     <TypeScriptCompile Include="assets\scripts\src\common\app-path.ts" />
     <TypeScriptCompile Include="assets\scripts\src\common\popup-details.ts" />
     <TypeScriptCompile Include="assets\scripts\src\common\utils.ts" />
