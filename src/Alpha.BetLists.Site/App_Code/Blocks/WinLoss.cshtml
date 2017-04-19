@@ -3,11 +3,11 @@
 
 @helper Render(ITicket ticket)
 {
-var model = new WinLossBlockViewModel(ticket);
+var model = new WinLostBlockViewModel(ticket);
 
     <td class="win-loss-block text-right nonbreak">
         <div>
-            <span class="win-loss">@(new HtmlString(model.WinLoss))</span>
+            <span class="win-loss">@(new HtmlString(model.WinLost))</span>
         </div>
         @if (model.CommVisibility)
         {

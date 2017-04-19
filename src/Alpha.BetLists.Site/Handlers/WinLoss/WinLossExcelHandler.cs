@@ -113,10 +113,10 @@
 
         private IRichTextString BuildWinLoss(ITicket ticket)
         {
-            var winLossBlockViewModel = new WinLossBlockViewModel(ticket);
+            var winLossBlockViewModel = new WinLostBlockViewModel(ticket);
 
             return BetListExcelBuilderExt.BuildWinLoss(
-                winLossBlockViewModel.WinLoss,
+                winLossBlockViewModel.WinLost,
                 winLossBlockViewModel.CommVisibility ? winLossBlockViewModel.Comm : string.Empty,
                 rtfHelper);
         }
