@@ -4,6 +4,7 @@
         private static mixParlayResult: ResultDetails;
         private static casinoResult: ResultDetails;
         private static p2pResult: ResultDetails;
+        private static ng2Result: ResultDetails;
 
         public static CreateInstance(betTypeId: number): ResultDetails {
             if (betTypeId === 71 || betTypeId === 72) {
@@ -17,8 +18,8 @@
             }
 
             if (betTypeId >= 2501 && betTypeId <= 2699) {
-                // TODO: NG2Result
-                return;
+                this.ng2Result = Common.Utils.IsNullOrUndefinedOrEmpty(this.ng2Result) ? new NG2ResultDetails() : this.ng2Result;
+                return this.ng2Result;
             }
 
             if (betTypeId === 9 || betTypeId === 29) {
@@ -32,7 +33,7 @@
     }
 
     export class BaseResultDetails {
-        protected readonly ResultDetailsPath: string = $("#result-details-path").val();
+        protected readonly ResultDetailsPath: string = Common.AppPath.ResultsAppPath + "Normal/ResultDetails";
         protected readonly ProductIds: string = $('#product-ids').val();
         protected readonly BetListType: string = $('#betlist-type').val();
         protected readonly FromDate: string = $('#from-date').val();

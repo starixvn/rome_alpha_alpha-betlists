@@ -76,6 +76,21 @@
             window.location.href = url;
         }
     }
+
+    export class NG2TicketDetails extends BaseTicketDetails {
+        private static instance: NG2TicketDetails;
+
+        public static get Instance() {
+            this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new NG2TicketDetails() : this.instance;
+            return this.instance;
+        }
+
+        public ShowNG2BetDetails = (transId: string, refNo: string, custId: string) => {
+            const params = "?refNo=" + refNo;
+
+            Common.PopupDetails.Instance.Show(Common.AppPath.ResultsAppPath + 'ng2/ParlayDetail' + params);
+        }
+    }
 }
 
 let showRnGCasinoDetails: Function;
@@ -94,6 +109,7 @@ $(document).ready(() => {
     showVoidBridgeDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.CreateInstance("Macau Games").ShowDetails;
     showGlobalGaming = BetList.Choice.TicketDetails.CasinoTicketDetails.CreateInstance("Fishing World").ShowDetails;
     showTodayRunningBetsDetails = BetList.Choice.TicketDetails.AllbetTicketDetails.Instance.ShowRunningBetsDetails;
+    showNG2Details = BetList.Choice.TicketDetails.NG2TicketDetails.Instance.ShowNG2BetDetails;
     ViewHandHistory = BetList.Choice.TicketDetails.P2PTicketDetails.Instance.ShowHandHistory;
     ViewHandHistoryDetail = BetList.Choice.TicketDetails.P2PTicketDetails.Instance.ShowHandHistoryDetail;
     ViewCommissionDetail = BetList.Choice.TicketDetails.P2PTicketDetails.Instance.ShowCommissionDetail;

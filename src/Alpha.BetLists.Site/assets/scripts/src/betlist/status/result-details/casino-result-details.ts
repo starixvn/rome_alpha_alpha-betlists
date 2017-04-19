@@ -49,4 +49,23 @@
             window.location.href = Common.AppPath.OldMainAppPath + '_BetList/P2P/TableSession.aspx' + params;
         }
     }
+
+    export class NG2ResultDetails extends CasinoResultDetails implements ResultDetails {
+        public ViewResultDetails = (
+            matchId?: number,
+            race?: number,
+            betTypeId?: number,
+            sportTypeId?: number,
+            refNo?: string,
+            userName?: string,
+            winLostDate?: Date,
+            refNoMixParlay?: number,
+            league?: number,
+            isOutright?: boolean,
+            betId?: number) => {
+            var params = '?gambleId=' + matchId;
+
+            Common.PopupDetails.Instance.Show(Common.AppPath.ResultsAppPath + 'ng2/TicketDetail' + params);
+        }
+    }
 }

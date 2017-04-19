@@ -62,7 +62,7 @@
 
         public bool IsHistoricReport { get; protected set; }
 
-        public string ResultsDetailPath => AppPathHelper.GetAppPath(AppSettings.ResultAppPath, "~") + "Normal/ResultDetails";
+        public string ResultsPath => AppPathHelper.GetAppPath(AppSettings.ResultAppPath, "~");
 
         public string OldMainPath => MicroSites.OldMainUrl("~");
 
