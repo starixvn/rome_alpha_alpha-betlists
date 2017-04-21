@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+
     using AppResources;
     using BetLists.Models;
     using Builder.ExcelBuilders;
@@ -13,6 +14,8 @@
     using ONEbook.SpreadSheets;
     using Requests.WinLoss;
     using Services;
+    using SmartPunter.Services;
+    using Utilities.IP;
     using ViewModels;
     using ViewModels.Blocks;
     using ViewModels.WinLoss;
@@ -20,31 +23,27 @@
 
     public class WinLossExcelHandler : WinLossBaseHandler, IAsyncRequestHandler<WinLossExcelQuery, ExcelFileViewModel>
     {
-        private readonly WinLossService winLossService;
-        private readonly ITicketHelper ticketHelper;
-        private readonly RTFHelper rtfHelper;
-        private readonly IBetListExcelBuilder excelBuilder;
         private readonly Workbook<ITicket> workbook;
 
         public WinLossExcelHandler(
             WinLossService winLossService,
-            ITicketHelper ticketHelper,
+            IBetListHTMLBuilder builder,
             IBetListExcelBuilder excelBuilder,
+            ITicketHelper ticketHelper,
+            ISmartPunterBetListMonitor monitorService,
+            IPService ipService,
             Workbook<ITicket> workbook)
+            : base(winLossService, builder, excelBuilder, ticketHelper, monitorService, ipService)
         {
-            this.winLossService = winLossService;
-            this.ticketHelper = ticketHelper;
-            this.excelBuilder = excelBuilder;
             this.workbook = workbook;
-            rtfHelper = excelBuilder.RTFHelper;
         }
 
         public async Task<ExcelFileViewModel> Handle(WinLossExcelQuery message)
         {
             var winLossParam = CreateWinLossParam(message);
-            var betlistData = await winLossService.GetBetList(winLossParam);
+            var betlistData = await WinLossService.GetBetList(winLossParam);
 
-            var winLossViewModel = new WinLossViewModel(message, betlistData, null, ticketHelper);
+            var winLossViewModel = new WinLossViewModel(message, betlistData, null, TicketHelper);
 
             var fileContent = workbook
                     .UseTemplate(GetTemplateInfo(message))
@@ -72,12 +71,12 @@
             var canViewScoreMap = winlossViewModel.CanViewScoreMap;
 
             var mapper = new Mapper<ITicket>()
-                .Map(B, ticket => excelBuilder.CreateTransBuilder(ticket.BetTypeId).RenderRTF(ticket, ticketHelper))
-                .Map(C, ticket => excelBuilder.CreateChoiceBuilder(ticket.BetTypeId).RenderRTF(ticket, ticketHelper, ticketData, canViewScoreMap, rtfHelper).FirstOrDefault())
-                .Map(D, ticket => excelBuilder.CreateOddsBuilder(ticket.BetTypeId).RenderRTF(ticket, ticketData, GetOddsTypeName, rtfHelper))
-                .Map(E, ticket => excelBuilder.CreateStakeBuilder(ticket.BetTypeId).RenderRTF(ticket, rtfHelper))
+                .Map(B, ticket => ExcelBuilder.CreateTransBuilder(ticket.BetTypeId).RenderRTF(ticket, TicketHelper))
+                .Map(C, ticket => ExcelBuilder.CreateChoiceBuilder(ticket.BetTypeId).RenderRTF(ticket, TicketHelper, ticketData, canViewScoreMap, RtfHelper).FirstOrDefault())
+                .Map(D, ticket => ExcelBuilder.CreateOddsBuilder(ticket.BetTypeId).RenderRTF(ticket, ticketData, GetOddsTypeName, RtfHelper))
+                .Map(E, ticket => ExcelBuilder.CreateStakeBuilder(ticket.BetTypeId).RenderRTF(ticket, RtfHelper))
                 .Map(F, ticket => BuildWinLoss(ticket))
-                .Map(G, ticket => excelBuilder.CreateStatusBuilder(ticket.BetTypeId).RenderRTF(ticket, ticketHelper, ticketData, true, rtfHelper));
+                .Map(G, ticket => ExcelBuilder.CreateStatusBuilder(ticket.BetTypeId).RenderRTF(ticket, TicketHelper, ticketData, true, RtfHelper));
 
             if (message.ViewerLevel.IsAgentLevel())
             {
@@ -105,7 +104,7 @@
         private Mapper<ITicket> GetFooterRowMapper(WinLossViewModel winlossViewModel)
         {
             var mapper = new Mapper<ITicket>()
-                .Map(A, _ => BetListExcelBuilderExt.BuildFooterHeader(rtfHelper))
+                .Map(A, _ => BetListExcelBuilderExt.BuildFooterHeader(RtfHelper))
                 .Map(F, _ => BuildFooter(winlossViewModel));
 
             return mapper;
@@ -118,17 +117,17 @@
             return BetListExcelBuilderExt.BuildWinLoss(
                 winLossBlockViewModel.WinLost,
                 winLossBlockViewModel.CommVisibility ? winLossBlockViewModel.Comm : string.Empty,
-                rtfHelper);
+                RtfHelper);
         }
 
         private IRichTextString BuildPTCommmission(ITicket ticket, List<ITicketData> ticketData, UserLevel userLevel)
-            => BetListExcelBuilderExt.BuildPTCommmission(ticket, ticketData, userLevel, rtfHelper);
+            => BetListExcelBuilderExt.BuildPTCommmission(ticket, ticketData, userLevel, RtfHelper);
 
         private IRichTextString BuildFooter(WinLossViewModel winlossViewModel)
             => BetListExcelBuilderExt.BuildFooter(
                 winlossViewModel.FooterSubTotalWinLoss,
                 winlossViewModel.FooterSubTotalCommission,
                 winlossViewModel.FooterTotal,
-                rtfHelper);
+                RtfHelper);
     }
 }

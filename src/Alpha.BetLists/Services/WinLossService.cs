@@ -32,19 +32,19 @@
         public async Task<BetListData> GetBetList(WinLossParam param)
         {
             var balanceUpDate = reportDateService.GetBalanceUpDay();
-            var beforeBalanceUpDate = balanceUpDate.AddDays(-1);
+            var previousBalanceUpDate = balanceUpDate.AddDays(-1);
             Tuple<IEnumerable<Ticket>, IEnumerable<TicketData>> betListDataTuple;
 
             if (param.FromDate.IsBefore(balanceUpDate))
             {
-                if (param.ToDate.IsBefore(beforeBalanceUpDate))
+                if (param.ToDate.IsBefore(previousBalanceUpDate))
                 {
                     betListDataTuple = await GetBetListBeforeBalanceUpDay(param, param.ToDate);
                 }
                 else
                 {
-                    betListDataTuple = await GetBetList(param, fromDate: beforeBalanceUpDate);
-                    var oldBetListDataTuple = await GetBetListBeforeBalanceUpDay(param, toDate: beforeBalanceUpDate);
+                    betListDataTuple = await GetBetList(param, fromDate: previousBalanceUpDate);
+                    var oldBetListDataTuple = await GetBetListBeforeBalanceUpDay(param, toDate: previousBalanceUpDate);
 
                     return new BetListData(
                         betListDataTuple.Item1.Concat(oldBetListDataTuple.Item1),

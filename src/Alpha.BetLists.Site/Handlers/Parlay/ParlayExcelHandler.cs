@@ -13,22 +13,27 @@
     using Parlay;
     using Requests.Parlay;
     using Services;
+    using SmartPunter.Services;
+    using Utilities.IP;
     using ViewModels;
     using ViewModels.Parlay;
+
     using static ONEbook.SpreadSheets.Column;
 
     public class ParlayExcelHandler : ParlayBaseHandler, IAsyncRequestHandler<ComboParlayDetailExcelQuery, ExcelFileViewModel>
     {
         private readonly ComboParlayDetailWorkbook workbook;
-        private RTFHelper rtfHelper;
 
         public ParlayExcelHandler(
             ParlayService parlayService,
-            ITicketHelper ticketHelper,
+            IBetListHTMLBuilder builder,
             IBetListExcelBuilder excelBuilder,
-            ComboParlayDetailWorkbook workbook) : base(parlayService, ticketHelper)
+            ITicketHelper ticketHelper,
+            ISmartPunterBetListMonitor monitorService,
+            IPService ipService,
+            ComboParlayDetailWorkbook workbook)
+            : base(parlayService, builder, excelBuilder, ticketHelper, monitorService, ipService)
         {
-            this.rtfHelper = excelBuilder.RTFHelper;
             this.workbook = workbook ?? new ComboParlayDetailWorkbookImpl();
         }
 
@@ -96,24 +101,24 @@
         {
             for (var i = 0; i < detail.Events.Count(); i++)
             {
-                rtfHelper.RTFRenderer.AddText((i > 0 ? "\n" : string.Empty) + detail.Events[i]);
+                RtfHelper.RTFRenderer.AddText((i > 0 ? "\n" : string.Empty) + detail.Events[i]);
             }
 
-            var eventRtfText = rtfHelper.RTFRenderer.Render();
-            rtfHelper.RTFRenderer.Clear();
+            var eventRtfText = RtfHelper.RTFRenderer.Render();
+            RtfHelper.RTFRenderer.Clear();
 
             return eventRtfText;
         }
 
         private IRichTextString RenderWinLossComm(ComboParlayDetailWrapper detail)
         {
-            var rtfNumber = new RTFNumber(rtfHelper.RTFRenderer, rtfHelper.PosFont, rtfHelper.NegFont);
+            var rtfNumber = new RTFNumber(RtfHelper.RTFRenderer, RtfHelper.PosFont, RtfHelper.NegFont);
 
             rtfNumber.Render(detail.WinLost + "\n");
             rtfNumber.Render(detail.Comm);
 
-            var rtfText = rtfHelper.RTFRenderer.Render();
-            rtfHelper.RTFRenderer.Clear();
+            var rtfText = RtfHelper.RTFRenderer.Render();
+            RtfHelper.RTFRenderer.Clear();
 
             return rtfText;
         }

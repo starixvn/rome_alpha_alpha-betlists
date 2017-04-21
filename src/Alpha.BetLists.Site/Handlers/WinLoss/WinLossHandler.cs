@@ -1,6 +1,5 @@
 ﻿namespace Alpha.BetLists.Site.Handlers.WinLoss
 {
-    using System.Linq;
     using System.Threading.Tasks;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
@@ -13,36 +12,25 @@
 
     public class WinLossHandler : WinLossBaseHandler, IAsyncRequestHandler<WinLossQuery, WinLossViewModel>
     {
-        private readonly WinLossService winLossService;
-        private readonly IBetListHTMLBuilder builder;
-        private readonly ITicketHelper ticketHelper;
-        private readonly ISmartPunterBetListMonitor monitorService;
-        private readonly IPService ipService;
-
         public WinLossHandler(
             WinLossService winLossService,
             IBetListHTMLBuilder builder,
+            IBetListExcelBuilder excelBuilder,
             ITicketHelper ticketHelper,
             ISmartPunterBetListMonitor monitorService,
             IPService ipService)
+            : base(winLossService, builder, excelBuilder, ticketHelper, monitorService, ipService)
         {
-            this.winLossService = winLossService;
-            this.builder = builder;
-            this.ticketHelper = ticketHelper;
-            this.monitorService = monitorService;
-            this.ipService = ipService;
         }
 
         public async Task<WinLossViewModel> Handle(WinLossQuery message)
         {
             var winLossParam = CreateWinLossParam(message);
-            var betlistData = await winLossService.GetBetList(winLossParam);
+            var betlistData = await WinLossService.GetBetList(winLossParam);
 
-            monitorService.WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets.ToList());
+            WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
-            ticketHelper.IsVnIp = ipService.IsVNIP;
-
-            return new WinLossViewModel(message, betlistData, builder, ticketHelper);
+            return new WinLossViewModel(message, betlistData, Builder, TicketHelper);
         }
     }
 }

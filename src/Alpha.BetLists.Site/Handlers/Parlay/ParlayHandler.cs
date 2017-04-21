@@ -7,6 +7,8 @@
     using MediatR;
     using Requests.Parlay;
     using Services;
+    using SmartPunter.Services;
+    using Utilities.IP;
     using ViewModels.Parlay;
 
     public class ParlayHandler : ParlayBaseHandler,
@@ -14,28 +16,29 @@
         IAsyncRequestHandler<ComboParlayQuery, ComboParlayViewModel>,
         IAsyncRequestHandler<ComboParlayDetailQuery, ComboParlayDetailViewModel>
     {
-        private readonly IBetListHTMLBuilder builder;
-
         public ParlayHandler(
             ParlayService parlayService,
             IBetListHTMLBuilder builder,
-            ITicketHelper ticketHelper) : base(parlayService, ticketHelper)
+            IBetListExcelBuilder excelBuilder,
+            ITicketHelper ticketHelper,
+            ISmartPunterBetListMonitor monitorService,
+            IPService ipService)
+            : base(parlayService, builder, excelBuilder, ticketHelper, monitorService, ipService)
         {
-            this.builder = builder;
         }
 
         public async Task<MixParlayViewModel> Handle(MixParlayQuery message)
         {
             var tickets = await ParlayService.GetParlayBetList(message.TransId, message.Language);
 
-            return new MixParlayViewModel(message, new BetListData(tickets, null), builder, TicketHelper);
+            return new MixParlayViewModel(message, new BetListData(tickets, null), Builder, TicketHelper);
         }
 
         public async Task<ComboParlayViewModel> Handle(ComboParlayQuery message)
         {
             var tickets = await ParlayService.GetParlayBetList(message.TransId, message.Language);
 
-            return new ComboParlayViewModel(message, new BetListData(tickets, null), builder, TicketHelper);
+            return new ComboParlayViewModel(message, new BetListData(tickets, null), Builder, TicketHelper);
         }
 
         public async Task<ComboParlayDetailViewModel> Handle(ComboParlayDetailQuery message)

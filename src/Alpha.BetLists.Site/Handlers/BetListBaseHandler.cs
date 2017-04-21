@@ -1,16 +1,48 @@
 ﻿namespace Alpha.BetLists.Site.Handlers
 {
     using System;
+    using System.Collections.Generic;
     using System.IO;
-    using System.Web;
+    using System.Linq;
     using System.Web.Hosting;
+    using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.TicketHelper;
+    using SmartPunter.Services;
+    using Utilities.IP;
 
     public class BetListBaseHandler
     {
         private const string ExcelTemplateDir = "~/App_Data/ExcelTemplates/{0}.{1}";
         private Func<string, string> mapPath;
+
+        public BetListBaseHandler(
+            IBetListHTMLBuilder builder,
+            IBetListExcelBuilder excelBuilder,
+            ITicketHelper ticketHelper,
+            ISmartPunterBetListMonitor monitorService,
+            IPService ipService)
+        {
+            Builder = builder;
+            ExcelBuilder = excelBuilder;
+            TicketHelper = ticketHelper;
+            RtfHelper = excelBuilder.RTFHelper;
+            MonitorService = monitorService;
+            IpService = ipService;
+            TicketHelper.IsVnIp = IpService.IsVNIP;
+        }
+
+        protected IBetListHTMLBuilder Builder { get; }
+
+        protected IBetListExcelBuilder ExcelBuilder { get; }
+
+        protected ITicketHelper TicketHelper { get; }
+
+        protected RTFHelper RtfHelper { get; }
+
+        protected ISmartPunterBetListMonitor MonitorService { get; }
+
+        protected IPService IpService { get; }
 
         protected internal GetCachePropertyById GetOddsTypeName { get; set; } = CacheRef.GetOddsTypeName;
 
@@ -39,6 +71,11 @@
             }
 
             throw new FileNotFoundException($"Template {absolutePath} does not exist");
+        }
+
+        protected void WriteLog(int custId, IEnumerable<ITicket> tickets)
+        {
+            MonitorService.WriteLog(custId, tickets.ToList());
         }
     }
 }
