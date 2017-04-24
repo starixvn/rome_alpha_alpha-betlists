@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Alpha.BetLists.Services;
 using Alpha.BetLists.Site.Requests.WinLossByMatch;
 using Alpha.BetLists.Site.ViewModels.WinLoss;
@@ -13,37 +12,25 @@ namespace Alpha.BetLists.Site.Handlers.WinLossByMatch
 {
     public class WinLossByMatchHandler : WinLossByMatchBaseHandler, IAsyncRequestHandler<WinLossByMatchQuery, WinLossViewModel>
     {
-        private readonly WinLossByMatchService winLossService;
-        private readonly ISmartPunterBetListMonitor monitorService;
-        private readonly IBetListHTMLBuilder builder;
-        private readonly ITicketHelper ticketHelper;
-        private readonly IPService ipService;
-
         public WinLossByMatchHandler(
             WinLossByMatchService winLossService,
             ISmartPunterBetListMonitor monitorService,
             IBetListHTMLBuilder builder,
+            IBetListExcelBuilder excelBuilder,
             ITicketHelper ticketHelper,
             IPService ipService)
+            : base(winLossService, monitorService, builder, excelBuilder, ticketHelper, ipService)
         {
-            this.winLossService = winLossService;
-
-            this.monitorService = monitorService;
-            this.builder = builder;
-            this.ticketHelper = ticketHelper;
-            this.ipService = ipService;
         }
 
         public async Task<WinLossViewModel> Handle(WinLossByMatchQuery message)
         {
             var winLossParam = CreateWinLossParam(message);
-            var betlistData = await winLossService.GetBetList(winLossParam);
+            var betlistData = await WinLossService.GetBetList(winLossParam);
 
-            monitorService.WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets.ToList());
+            WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
-            ticketHelper.IsVnIp = ipService.IsVNIP;
-
-            return new WinLossViewModel(message, betlistData, builder, ticketHelper);
+            return new WinLossViewModel(message, betlistData, Builder, TicketHelper);
         }
     }
 }
