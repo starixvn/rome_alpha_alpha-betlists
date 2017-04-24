@@ -97,18 +97,22 @@
 
         private static void RegisterServices(Container container)
         {
+#pragma warning disable CS0618 // Type or member is obsolete
             container.RegisterSingleton<IUserSession, UserSessionExt>();
+#pragma warning restore CS0618 // Type or member is obsolete
             container.RegisterSingleton<IUser, User>();
             container.Register<WinLossService, WinLossServiceImpl>(Lifestyle.Singleton);
             container.Register<ReportDateService, ReportDateServiceImpl>(Lifestyle.Singleton);
             container.Register<ParlayService, ParlayServiceImpl>(Lifestyle.Singleton);
             container.Register<ISmartPunterService, SmartPunterService>(Lifestyle.Singleton);
+#pragma warning disable CS0618 // Type or member is obsolete
             container.Register(
                 () => SmartPunterBetListMonitor.CreateInstance(
                     container.GetInstance<IUserSession>(),
                     container.GetInstance<ISmartPunterService>(),
                     IPHelper.CustomerIP),
                 Lifestyle.Singleton);
+#pragma warning restore CS0618 // Type or member is obsolete
 
             container.Register<IPService, IPServiceImpl>(Lifestyle.Singleton);
         }

@@ -5,9 +5,13 @@
 
     public class User : IUser
     {
+#pragma warning disable CS0618 // Type or member is obsolete
         private readonly IUserSession userSession;
+#pragma warning restore CS0618 // Type or member is obsolete
 
+#pragma warning disable CS0618 // Type or member is obsolete
         public User(IUserSession userSession)
+#pragma warning restore CS0618 // Type or member is obsolete
         {
             this.userSession = userSession;
         }
