@@ -5,6 +5,7 @@
     using System.Linq;
     using Fanex.BetList.Core.Entities;
     using Models;
+    using Models.Parlay;
     using Ploeh.AutoFixture;
 
     public class BetListDataTest
@@ -32,5 +33,15 @@
 
         public static readonly BetListData OldBetListData
             = new BetListData(OldTickets, OldTicketData.ToList<ITicketData>());
+
+        public static readonly IEnumerable<ComboParlayDetail> ComboParlayDetails = fixture.CreateMany<ComboParlayDetail>();
+
+        public static readonly IEnumerable<MatchDetail> MatchDetails = fixture.CreateMany<MatchDetail>();
+
+        public static readonly Tuple<IEnumerable<ComboParlayDetail>, IEnumerable<MatchDetail>> ComboParlayDetailTuple
+            = new Tuple<IEnumerable<ComboParlayDetail>, IEnumerable<MatchDetail>>(ComboParlayDetails, MatchDetails);
+
+        public static readonly ComboParlayDetailData ComboParlayDetailData
+            = new ComboParlayDetailData(ComboParlayDetails, MatchDetails, 0);
     }
 }
