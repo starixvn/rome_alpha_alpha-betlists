@@ -7,7 +7,7 @@
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Utils;
-    using Requests.WinLoss;
+    using Requests;
 
     public class WinLossViewModel : BetListBaseViewModel
     {
@@ -25,7 +25,7 @@
             { UserLevel.Super, 4 }
         };
 
-        public WinLossViewModel(WinLossQuery query, BetListData betListData, IBetListHTMLBuilder builder, ITicketHelper ticketHelper)
+        public WinLossViewModel(BaseQuery query, BetListData betListData, IBetListHTMLBuilder builder, ITicketHelper ticketHelper)
             : base(query, betListData, builder, ticketHelper)
         {
             Title = GetTitle(query).ToUpperInvariant();
@@ -60,7 +60,7 @@
 
         protected decimal TotalCommission { get; }
 
-        private string GetTitle(WinLossQuery query)
+        private string GetTitle(BaseQuery query)
             => $"{Resources.memberBetList} {query.FromDate.ToShortDateString()} --> {query.ToDate.ToShortDateString()} - {query.CustName}";
     }
 }

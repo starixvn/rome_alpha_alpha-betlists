@@ -1,0 +1,87 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Alpha.BetLists.Criteria.WinLossByMatch;
+using Alpha.BetLists.Helpers;
+using Alpha.BetLists.Models;
+using Alpha.BetLists.Params;
+using Fanex.BetList.Core.Entities;
+using Fanex.Data.Repository;
+
+namespace Alpha.BetLists.Services
+{
+    public interface WinLossByMatchService
+    {
+        Task<BetListData> GetBetList(WinLossByMatchParam param);
+    }
+
+    public class WinLossByMatchServiceImpl : WinLossByMatchService
+    {
+        private readonly ReportDateService reportDateService;
+        private readonly IDynamicRepository dynamicRepository;
+
+        public WinLossByMatchServiceImpl(
+            ReportDateService reportDateService,
+            IDynamicRepository dynamicRepository)
+        {
+            this.reportDateService = reportDateService;
+            this.dynamicRepository = dynamicRepository;
+        }
+
+        public async Task<BetListData> GetBetList(WinLossByMatchParam param)
+        {
+            Tuple<IEnumerable<Ticket>, IEnumerable<TicketData>> betListDataTuple;
+
+            if (BetTypeHelper.IsOutRight(param.BetType))
+            {
+                betListDataTuple = await GetWinlossOutright(param);
+            }
+            else if (BetTypeHelper.IsHorseRacing(param.BetType))
+            {
+                betListDataTuple = await GetWinlossRacing(param);
+            }
+            else
+            {
+                betListDataTuple = await GetWinlossOthers(param);
+            }
+
+            return new BetListData(betListDataTuple.Item1, betListDataTuple.Item2.ToList<ITicketData>());
+        }
+
+        private async Task<Tuple<IEnumerable<Ticket>, IEnumerable<TicketData>>> GetWinlossOutright(WinLossByMatchParam param)
+            => await dynamicRepository.FetchMultipleAsync<Ticket, TicketData>(
+                new GetWinLossOutrightCriteria(
+                    param.CustId,
+                    param.LeagueId,
+                    param.Language,
+                    param.FromDate,
+                    param.ToDate,
+                    reportDateService.GetMoveBetsDay(),
+                    param.CustLevel));
+
+        private async Task<Tuple<IEnumerable<Ticket>, IEnumerable<TicketData>>> GetWinlossRacing(WinLossByMatchParam param)
+            => await dynamicRepository.FetchMultipleAsync<Ticket, TicketData>(
+                new GetWinLossRacingCriteria(
+                    param.CustId,
+                    param.LeagueId,
+                    param.BetType,
+                    param.Race,
+                    param.Language,
+                    param.FromDate,
+                    param.ToDate,
+                    reportDateService.GetMoveBetsDay(),
+                    param.CustLevel));
+
+        private async Task<Tuple<IEnumerable<Ticket>, IEnumerable<TicketData>>> GetWinlossOthers(WinLossByMatchParam param)
+            => await dynamicRepository.FetchMultipleAsync<Ticket, TicketData>(
+                new GetWinLossOthersCriteria(
+                    param.CustId,
+                    param.MatchId,
+                    param.BetType,
+                    param.Language,
+                    param.CustName,
+                    param.LiveIndicator,
+                    param.CustLevel));
+    }
+}

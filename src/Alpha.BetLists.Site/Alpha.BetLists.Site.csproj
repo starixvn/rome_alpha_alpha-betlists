@@ -36,6 +36,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>..\..\build\AnalysisRules\FanexRules.Error.ruleset</CodeAnalysisRuleSet>
+    <NoWarn>618</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -298,12 +299,40 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\SPNames\DBCust.IPDB.BODBDownlineNet.xml" />
-    <Content Include="App_Data\SPNames\DBPOLICY.bodb02.BODBDownlineNet.xml" />
-    <Content Include="App_Data\SPNames\DBCust.CustDB.BODBDownlineNet.xml" />
-    <Content Include="App_Data\SPNames\DBAGE.bodb02.BODBDownlineNet.xml" />
-    <Content Include="App_Data\SPNames\DBLOG.bodb_CustomerLog.BODBDownlineNet.xml" />
-    <Content Include="App_Data\SPNames\DBONUSER.ON_USER.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Internal\DBAGE.bodb02.BODBDownlineNetView.xml" />
+    <Content Include="App_Data\SPNames\Internal\DBARC.bodb_Archive.BODBDownlineNetView.xml" />
+    <Content Include="App_Data\SPNames\Internal\DBCUST.CustDB.BODBDownlineNetView.xml" />
+    <Content Include="App_Data\SPNames\Internal\DBCust.IPDB.BODBDownlineNetView.xml" />
+    <Content Include="App_Data\SPNames\Internal\DBLOG.bodb_CustomerLog.BODBDownlineNetView.xml" />
+    <Content Include="App_Data\SPNames\Internal\DBONUSER.ON_USER.BODBDownlineNetView.xml" />
+    <Content Include="App_Data\SPNames\Internal\DBPOLICY.bodb02.BODBDownlineNetView.xml" />
+    <Content Include="App_Data\SPNames\Local\DBCust.IPDB.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Local\DBPOLICY.bodb02.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Local\DBCust.CustDB.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Local\DBAGE.bodb02.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Local\DBLOG.bodb_CustomerLog.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Local\DBONUSER.ON_USER.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Pro\DBAGE.bodb02.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Pro\DBARC.bodb_Archive.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Pro\DBCUST.CustDB.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Pro\DBCust.IPDB.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Pro\DBLOG.bodb_CustomerLog.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Pro\DBONUSER.ON_USER.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Pro\DBPOLICY.bodb02.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\SIT\DBAGE.bodb02.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\SIT\DBARC.bodb_Archive.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\SIT\DBCUST.CustDB.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\SIT\DBCust.IPDB.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\SIT\DBLOG.bodb_CustomerLog.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\SIT\DBONUSER.ON_USER.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\SIT\DBPOLICY.bodb02.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\UAT\DBAGE.bodb02.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\UAT\DBARC.bodb_Archive.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\UAT\DBCUST.CustDB.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\UAT\DBCust.IPDB.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\UAT\DBLOG.bodb_CustomerLog.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\UAT\DBONUSER.ON_USER.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\UAT\DBPOLICY.bodb02.BODBDownlineNet.xml" />
     <Content Include="assets\bundles\default.css" />
     <Content Include="assets\bundles\default.js" />
     <Content Include="assets\bundles\default.min.css">
@@ -332,7 +361,7 @@
     <Content Include="assets\styles\images\lastGoal.gif" />
     <Content Include="assets\styles\images\note_title.gif" />
     <Content Include="Global.asax" />
-    <Content Include="App_Data\SPNames\DBARC.bodb_Archive.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Local\DBARC.bodb_Archive.BODBDownlineNet.xml" />
     <Content Include="App_Code\Blocks\Trans.cshtml" />
     <Content Include="App_Code\Blocks\Choice.cshtml" />
     <Content Include="App_Code\Blocks\Odds.cshtml" />
@@ -474,6 +503,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BetListBaseController.cs" />
     <Compile Include="Controllers\ParlayController.cs" />
+    <Compile Include="Controllers\WinLossByMatchController.cs" />
     <Compile Include="Controllers\WinLossController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -484,6 +514,8 @@
     <Compile Include="Handlers\Parlay\ParlayExcelHandler.cs" />
     <Compile Include="Handlers\Parlay\ParlayBaseHandler.cs" />
     <Compile Include="Handlers\Parlay\ParlayHandler.cs" />
+    <Compile Include="Handlers\WinLossByMatch\WinLossByMatchBaseHandler.cs" />
+    <Compile Include="Handlers\WinLossByMatch\WinLossByMatchHandler.cs" />
     <Compile Include="Handlers\WinLoss\WinLossBaseHandler.cs" />
     <Compile Include="Handlers\WinLoss\WinLossExcelHandler.cs" />
     <Compile Include="Handlers\WinLoss\WinLossHandler.cs" />
@@ -496,6 +528,8 @@
     <Compile Include="Requests\Parlay\ComboParlayDetailQuery.cs" />
     <Compile Include="Requests\Parlay\ComboParlayQuery.cs" />
     <Compile Include="Requests\Parlay\MixParlayQuery.cs" />
+    <Compile Include="Requests\WinLossByMatch\WinLossByMatchExcelQuery.cs" />
+    <Compile Include="Requests\WinLossByMatch\WinLossByMatchQuery.cs" />
     <Compile Include="Requests\WinLoss\WinLossExcelQuery.cs" />
     <Compile Include="Requests\WinLoss\WinLossQuery.cs" />
     <Compile Include="ViewModels\BetListBaseViewModel.cs" />
@@ -565,7 +599,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>64593</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

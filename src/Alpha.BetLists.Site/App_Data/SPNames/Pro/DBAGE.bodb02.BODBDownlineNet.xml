@@ -1,0 +1,282 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Functions>
+  <Function Name="Base Functions">
+    <Setting Key="Age_SelBalanceUpDay" SpName="Age_SelBalanceUpDay" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
+  </Function>
+  <Function Name="Check Belonging">
+    <Setting Key="Age_CustomerSelCheckBelonging" SpName="Age_CustomerSelCheckBelonging" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_CustSubPageAccessSel" SpName="Age_CustSubPageAccessSel" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_Rpt_CustomerConsolidatedGroup_CheckBelonging" SpName="Age_Rpt_CustomerConsolidatedGroup_CheckBelonging" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_CustomerStatusSel" SpName="Age_CustomerStatusSel" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
+  </Function>
+
+  <Function Name="Win Loss">
+    <Setting Key="Age_BetList_SelWinLossByDate_Mem" SpName="Age_BetList_SelWinLossByDate_Mem_UAT1" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
+      <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="Ticket"></Mapping>
+      <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="Ticket"></Mapping>
+      <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="Ticket"></Mapping>
+      <Mapping DataField="hdp2" ObjectProperty="Handicap2" Class="Ticket"></Mapping>
+      <Mapping DataField="actual_stake" ObjectProperty="ActualStake" Class="Ticket"></Mapping>
+      <Mapping DataField="awinlost" ObjectProperty="AgentWinlost" Class="Ticket"></Mapping>
+      <Mapping DataField="mwinlost" ObjectProperty="MasterWinlost" Class="Ticket"></Mapping>
+      <Mapping DataField="swinlost" ObjectProperty="SuperWinlost" Class="Ticket"></Mapping>
+      <Mapping DataField="acomm" ObjectProperty="AgentComm" Class="Ticket"></Mapping>
+      <Mapping DataField="scomm" ObjectProperty="SuperComm" Class="Ticket"></Mapping>
+      <Mapping DataField="apositiontaking" ObjectProperty="AgentPositionTaking" Class="Ticket"></Mapping>
+      <Mapping DataField="mpositiontaking" ObjectProperty="MasterPositionTaking" Class="Ticket"></Mapping>
+      <Mapping DataField="spositiontaking" ObjectProperty="SuperPositionTaking" Class="Ticket"></Mapping>
+      <Mapping DataField="adiscount" ObjectProperty="AgentDiscount" Class="Ticket"></Mapping>
+      <Mapping DataField="mdiscount" ObjectProperty="MasterDiscount" Class="Ticket"></Mapping>
+      <Mapping DataField="sdiscount" ObjectProperty="SuperDiscount" Class="Ticket"></Mapping>
+      <Mapping DataField="liveindicator" ObjectProperty="IsLive" Class="Ticket"></Mapping>
+      <Mapping DataField="betstatus" ObjectProperty="EventStatus" Class="Ticket"></Mapping>
+
+      <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketData"></Mapping>
+      <Mapping DataField="apositiontaking" ObjectProperty="AgentPT" Class="TicketData"></Mapping>
+      <Mapping DataField="mpositiontaking" ObjectProperty="MasterPT" Class="TicketData"></Mapping>
+      <Mapping DataField="spositiontaking" ObjectProperty="SuperPT" Class="TicketData"></Mapping>
+    </Setting>
+  </Function>
+
+  <Function Name="Mix Parlay">
+    <Setting Key="Age_BetList_SelParlayDetail" SpName="Age_BetList_SelParlayDetail" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
+      <Mapping DataField="BetType" ObjectProperty="BetTypeId"></Mapping>
+      <Mapping DataField="SportType" ObjectProperty="SportTypeId"></Mapping>
+      <Mapping DataField="Hdp1" ObjectProperty="Handicap1"></Mapping>
+      <Mapping DataField="Hdp2" ObjectProperty="Handicap2" ></Mapping>
+      <Mapping DataField="LiveIndicator" ObjectProperty="IsLive" ></Mapping>
+      <Mapping DataField="BetStatus" ObjectProperty="EventStatus" Class="Ticket"></Mapping>
+    </Setting>
+    <Setting Key="Acc_BetlistCombinationParlay_Details" SpName="Acc_BetlistCombinationParlay_Details" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
+    </Setting>
+  </Function>
+  <Function Name="Win Loss By Match">
+    <Setting Key="Age_BetList_SelWinlossOutright_Ag" SpName="Age_BetList_SelWinlossOutright_Ag" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
+      <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="Ticket"></Mapping>
+      <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="Ticket"></Mapping>
+      <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="Ticket"></Mapping>
+      <Mapping DataField="hdp2" ObjectProperty="Handicap2" Class="Ticket"></Mapping>
+      <Mapping DataField="actual_stake" ObjectProperty="ActualStake" Class="Ticket"></Mapping>
+      <Mapping DataField="awinlost" ObjectProperty="AgentWinlost" Class="Ticket"></Mapping>
+      <Mapping DataField="mwinlost" ObjectProperty="MasterWinlost" Class="Ticket"></Mapping>
+      <Mapping DataField="swinlost" ObjectProperty="SuperWinlost" Class="Ticket"></Mapping>
+      <Mapping DataField="acomm" ObjectProperty="AgentComm" Class="Ticket"></Mapping>
+      <Mapping DataField="scomm" ObjectProperty="SuperComm" Class="Ticket"></Mapping>
+      <Mapping DataField="apositiontaking" ObjectProperty="AgentPositionTaking" Class="Ticket"></Mapping>
+      <Mapping DataField="mpositiontaking" ObjectProperty="MasterPositionTaking" Class="Ticket"></Mapping>
+      <Mapping DataField="spositiontaking" ObjectProperty="SuperPositionTaking" Class="Ticket"></Mapping>
+      <Mapping DataField="adiscount" ObjectProperty="AgentDiscount" Class="Ticket"></Mapping>
+      <Mapping DataField="mdiscount" ObjectProperty="MasterDiscount" Class="Ticket"></Mapping>
+      <Mapping DataField="sdiscount" ObjectProperty="SuperDiscount" Class="Ticket"></Mapping>
+      <Mapping DataField="liveindicator" ObjectProperty="IsLive" Class="Ticket"></Mapping>
+      <Mapping DataField="betstatus" ObjectProperty="EventStatus" Class="Ticket"></Mapping>
+
+      <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketData"></Mapping>
+      <Mapping DataField="apositiontaking" ObjectProperty="AgentPT" Class="TicketData"></Mapping>
+      <Mapping DataField="mpositiontaking" ObjectProperty="MasterPT" Class="TicketData"></Mapping>
+      <Mapping DataField="spositiontaking" ObjectProperty="SuperPT" Class="TicketData"></Mapping>
+    </Setting>
+    <Setting Key="Age_BetList_SelWinlossOutright_MAg" SpName="Age_BetList_SelWinlossOutright_MAg" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
+      <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="Ticket"></Mapping>
+      <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="Ticket"></Mapping>
+      <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="Ticket"></Mapping>
+      <Mapping DataField="hdp2" ObjectProperty="Handicap2" Class="Ticket"></Mapping>
+      <Mapping DataField="actual_stake" ObjectProperty="ActualStake" Class="Ticket"></Mapping>
+      <Mapping DataField="awinlost" ObjectProperty="AgentWinlost" Class="Ticket"></Mapping>
+      <Mapping DataField="mwinlost" ObjectProperty="MasterWinlost" Class="Ticket"></Mapping>
+      <Mapping DataField="swinlost" ObjectProperty="SuperWinlost" Class="Ticket"></Mapping>
+      <Mapping DataField="acomm" ObjectProperty="AgentComm" Class="Ticket"></Mapping>
+      <Mapping DataField="scomm" ObjectProperty="SuperComm" Class="Ticket"></Mapping>
+      <Mapping DataField="apositiontaking" ObjectProperty="AgentPositionTaking" Class="Ticket"></Mapping>
+      <Mapping DataField="mpositiontaking" ObjectProperty="MasterPositionTaking" Class="Ticket"></Mapping>
+      <Mapping DataField="spositiontaking" ObjectProperty="SuperPositionTaking" Class="Ticket"></Mapping>
+      <Mapping DataField="adiscount" ObjectProperty="AgentDiscount" Class="Ticket"></Mapping>
+      <Mapping DataField="mdiscount" ObjectProperty="MasterDiscount" Class="Ticket"></Mapping>
+      <Mapping DataField="sdiscount" ObjectProperty="SuperDiscount" Class="Ticket"></Mapping>
+      <Mapping DataField="liveindicator" ObjectProperty="IsLive" Class="Ticket"></Mapping>
+      <Mapping DataField="betstatus" ObjectProperty="EventStatus" Class="Ticket"></Mapping>
+
+      <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketData"></Mapping>
+      <Mapping DataField="apositiontaking" ObjectProperty="AgentPT" Class="TicketData"></Mapping>
+      <Mapping DataField="mpositiontaking" ObjectProperty="MasterPT" Class="TicketData"></Mapping>
+      <Mapping DataField="spositiontaking" ObjectProperty="SuperPT" Class="TicketData"></Mapping>
+    </Setting>
+    <Setting Key="Age_BetList_SelWinlossOutright_SAg" SpName="Age_BetList_SelWinlossOutright_SAg" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
+      <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="Ticket"></Mapping>
+      <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="Ticket"></Mapping>
+      <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="Ticket"></Mapping>
+      <Mapping DataField="hdp2" ObjectProperty="Handicap2" Class="Ticket"></Mapping>
+      <Mapping DataField="actual_stake" ObjectProperty="ActualStake" Class="Ticket"></Mapping>
+      <Mapping DataField="awinlost" ObjectProperty="AgentWinlost" Class="Ticket"></Mapping>
+      <Mapping DataField="mwinlost" ObjectProperty="MasterWinlost" Class="Ticket"></Mapping>
+      <Mapping DataField="swinlost" ObjectProperty="SuperWinlost" Class="Ticket"></Mapping>
+      <Mapping DataField="acomm" ObjectProperty="AgentComm" Class="Ticket"></Mapping>
+      <Mapping DataField="scomm" ObjectProperty="SuperComm" Class="Ticket"></Mapping>
+      <Mapping DataField="apositiontaking" ObjectProperty="AgentPositionTaking" Class="Ticket"></Mapping>
+      <Mapping DataField="mpositiontaking" ObjectProperty="MasterPositionTaking" Class="Ticket"></Mapping>
+      <Mapping DataField="spositiontaking" ObjectProperty="SuperPositionTaking" Class="Ticket"></Mapping>
+      <Mapping DataField="adiscount" ObjectProperty="AgentDiscount" Class="Ticket"></Mapping>
+      <Mapping DataField="mdiscount" ObjectProperty="MasterDiscount" Class="Ticket"></Mapping>
+      <Mapping DataField="sdiscount" ObjectProperty="SuperDiscount" Class="Ticket"></Mapping>
+      <Mapping DataField="liveindicator" ObjectProperty="IsLive" Class="Ticket"></Mapping>
+      <Mapping DataField="betstatus" ObjectProperty="EventStatus" Class="Ticket"></Mapping>
+
+      <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketData"></Mapping>
+      <Mapping DataField="apositiontaking" ObjectProperty="AgentPT" Class="TicketData"></Mapping>
+      <Mapping DataField="mpositiontaking" ObjectProperty="MasterPT" Class="TicketData"></Mapping>
+      <Mapping DataField="spositiontaking" ObjectProperty="SuperPT" Class="TicketData"></Mapping>
+    </Setting>
+
+    <Setting Key="Age_BetList_SelWinlossHR_Ag" SpName="Age_BetList_SelWinlossHR_Ag" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
+      <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="Ticket"></Mapping>
+      <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="Ticket"></Mapping>
+      <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="Ticket"></Mapping>
+      <Mapping DataField="hdp2" ObjectProperty="Handicap2" Class="Ticket"></Mapping>
+      <Mapping DataField="actual_stake" ObjectProperty="ActualStake" Class="Ticket"></Mapping>
+      <Mapping DataField="awinlost" ObjectProperty="AgentWinlost" Class="Ticket"></Mapping>
+      <Mapping DataField="mwinlost" ObjectProperty="MasterWinlost" Class="Ticket"></Mapping>
+      <Mapping DataField="swinlost" ObjectProperty="SuperWinlost" Class="Ticket"></Mapping>
+      <Mapping DataField="acomm" ObjectProperty="AgentComm" Class="Ticket"></Mapping>
+      <Mapping DataField="scomm" ObjectProperty="SuperComm" Class="Ticket"></Mapping>
+      <Mapping DataField="apositiontaking" ObjectProperty="AgentPositionTaking" Class="Ticket"></Mapping>
+      <Mapping DataField="mpositiontaking" ObjectProperty="MasterPositionTaking" Class="Ticket"></Mapping>
+      <Mapping DataField="spositiontaking" ObjectProperty="SuperPositionTaking" Class="Ticket"></Mapping>
+      <Mapping DataField="adiscount" ObjectProperty="AgentDiscount" Class="Ticket"></Mapping>
+      <Mapping DataField="mdiscount" ObjectProperty="MasterDiscount" Class="Ticket"></Mapping>
+      <Mapping DataField="sdiscount" ObjectProperty="SuperDiscount" Class="Ticket"></Mapping>
+      <Mapping DataField="liveindicator" ObjectProperty="IsLive" Class="Ticket"></Mapping>
+      <Mapping DataField="betstatus" ObjectProperty="EventStatus" Class="Ticket"></Mapping>
+
+      <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketData"></Mapping>
+      <Mapping DataField="apositiontaking" ObjectProperty="AgentPT" Class="TicketData"></Mapping>
+      <Mapping DataField="mpositiontaking" ObjectProperty="MasterPT" Class="TicketData"></Mapping>
+      <Mapping DataField="spositiontaking" ObjectProperty="SuperPT" Class="TicketData"></Mapping>
+    </Setting>
+    <Setting Key="Age_BetList_SelWinlossHR_MAg" SpName="Age_BetList_SelWinlossHR_MAg" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
+      <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="Ticket"></Mapping>
+      <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="Ticket"></Mapping>
+      <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="Ticket"></Mapping>
+      <Mapping DataField="hdp2" ObjectProperty="Handicap2" Class="Ticket"></Mapping>
+      <Mapping DataField="actual_stake" ObjectProperty="ActualStake" Class="Ticket"></Mapping>
+      <Mapping DataField="awinlost" ObjectProperty="AgentWinlost" Class="Ticket"></Mapping>
+      <Mapping DataField="mwinlost" ObjectProperty="MasterWinlost" Class="Ticket"></Mapping>
+      <Mapping DataField="swinlost" ObjectProperty="SuperWinlost" Class="Ticket"></Mapping>
+      <Mapping DataField="acomm" ObjectProperty="AgentComm" Class="Ticket"></Mapping>
+      <Mapping DataField="scomm" ObjectProperty="SuperComm" Class="Ticket"></Mapping>
+      <Mapping DataField="apositiontaking" ObjectProperty="AgentPositionTaking" Class="Ticket"></Mapping>
+      <Mapping DataField="mpositiontaking" ObjectProperty="MasterPositionTaking" Class="Ticket"></Mapping>
+      <Mapping DataField="spositiontaking" ObjectProperty="SuperPositionTaking" Class="Ticket"></Mapping>
+      <Mapping DataField="adiscount" ObjectProperty="AgentDiscount" Class="Ticket"></Mapping>
+      <Mapping DataField="mdiscount" ObjectProperty="MasterDiscount" Class="Ticket"></Mapping>
+      <Mapping DataField="sdiscount" ObjectProperty="SuperDiscount" Class="Ticket"></Mapping>
+      <Mapping DataField="liveindicator" ObjectProperty="IsLive" Class="Ticket"></Mapping>
+      <Mapping DataField="betstatus" ObjectProperty="EventStatus" Class="Ticket"></Mapping>
+
+      <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketData"></Mapping>
+      <Mapping DataField="apositiontaking" ObjectProperty="AgentPT" Class="TicketData"></Mapping>
+      <Mapping DataField="mpositiontaking" ObjectProperty="MasterPT" Class="TicketData"></Mapping>
+      <Mapping DataField="spositiontaking" ObjectProperty="SuperPT" Class="TicketData"></Mapping>
+    </Setting>
+    <Setting Key="Age_BetList_SelWinlossHR_SAg" SpName="Age_BetList_SelWinlossHR_SAg" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
+      <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="Ticket"></Mapping>
+      <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="Ticket"></Mapping>
+      <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="Ticket"></Mapping>
+      <Mapping DataField="hdp2" ObjectProperty="Handicap2" Class="Ticket"></Mapping>
+      <Mapping DataField="actual_stake" ObjectProperty="ActualStake" Class="Ticket"></Mapping>
+      <Mapping DataField="awinlost" ObjectProperty="AgentWinlost" Class="Ticket"></Mapping>
+      <Mapping DataField="mwinlost" ObjectProperty="MasterWinlost" Class="Ticket"></Mapping>
+      <Mapping DataField="swinlost" ObjectProperty="SuperWinlost" Class="Ticket"></Mapping>
+      <Mapping DataField="acomm" ObjectProperty="AgentComm" Class="Ticket"></Mapping>
+      <Mapping DataField="scomm" ObjectProperty="SuperComm" Class="Ticket"></Mapping>
+      <Mapping DataField="apositiontaking" ObjectProperty="AgentPositionTaking" Class="Ticket"></Mapping>
+      <Mapping DataField="mpositiontaking" ObjectProperty="MasterPositionTaking" Class="Ticket"></Mapping>
+      <Mapping DataField="spositiontaking" ObjectProperty="SuperPositionTaking" Class="Ticket"></Mapping>
+      <Mapping DataField="adiscount" ObjectProperty="AgentDiscount" Class="Ticket"></Mapping>
+      <Mapping DataField="mdiscount" ObjectProperty="MasterDiscount" Class="Ticket"></Mapping>
+      <Mapping DataField="sdiscount" ObjectProperty="SuperDiscount" Class="Ticket"></Mapping>
+      <Mapping DataField="liveindicator" ObjectProperty="IsLive" Class="Ticket"></Mapping>
+      <Mapping DataField="betstatus" ObjectProperty="EventStatus" Class="Ticket"></Mapping>
+
+      <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketData"></Mapping>
+      <Mapping DataField="apositiontaking" ObjectProperty="AgentPT" Class="TicketData"></Mapping>
+      <Mapping DataField="mpositiontaking" ObjectProperty="MasterPT" Class="TicketData"></Mapping>
+      <Mapping DataField="spositiontaking" ObjectProperty="SuperPT" Class="TicketData"></Mapping>
+    </Setting>
+
+    <Setting Key="Age_BetList_SelWinlossByBettypeMatch_Ag" SpName="Age_BetList_SelWinlossByBettypeMatch_Ag" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
+      <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="Ticket"></Mapping>
+      <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="Ticket"></Mapping>
+      <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="Ticket"></Mapping>
+      <Mapping DataField="hdp2" ObjectProperty="Handicap2" Class="Ticket"></Mapping>
+      <Mapping DataField="actual_stake" ObjectProperty="ActualStake" Class="Ticket"></Mapping>
+      <Mapping DataField="awinlost" ObjectProperty="AgentWinlost" Class="Ticket"></Mapping>
+      <Mapping DataField="mwinlost" ObjectProperty="MasterWinlost" Class="Ticket"></Mapping>
+      <Mapping DataField="swinlost" ObjectProperty="SuperWinlost" Class="Ticket"></Mapping>
+      <Mapping DataField="acomm" ObjectProperty="AgentComm" Class="Ticket"></Mapping>
+      <Mapping DataField="scomm" ObjectProperty="SuperComm" Class="Ticket"></Mapping>
+      <Mapping DataField="apositiontaking" ObjectProperty="AgentPositionTaking" Class="Ticket"></Mapping>
+      <Mapping DataField="mpositiontaking" ObjectProperty="MasterPositionTaking" Class="Ticket"></Mapping>
+      <Mapping DataField="spositiontaking" ObjectProperty="SuperPositionTaking" Class="Ticket"></Mapping>
+      <Mapping DataField="adiscount" ObjectProperty="AgentDiscount" Class="Ticket"></Mapping>
+      <Mapping DataField="mdiscount" ObjectProperty="MasterDiscount" Class="Ticket"></Mapping>
+      <Mapping DataField="sdiscount" ObjectProperty="SuperDiscount" Class="Ticket"></Mapping>
+      <Mapping DataField="liveindicator" ObjectProperty="IsLive" Class="Ticket"></Mapping>
+      <Mapping DataField="betstatus" ObjectProperty="EventStatus" Class="Ticket"></Mapping>
+
+      <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketData"></Mapping>
+      <Mapping DataField="apositiontaking" ObjectProperty="AgentPT" Class="TicketData"></Mapping>
+      <Mapping DataField="mpositiontaking" ObjectProperty="MasterPT" Class="TicketData"></Mapping>
+      <Mapping DataField="spositiontaking" ObjectProperty="SuperPT" Class="TicketData"></Mapping>
+    </Setting>
+    <Setting Key="Age_BetList_SelWinlossByBettypeMatch_MAg" SpName="Age_BetList_SelWinlossByBettypeMatch_MAg" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
+      <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="Ticket"></Mapping>
+      <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="Ticket"></Mapping>
+      <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="Ticket"></Mapping>
+      <Mapping DataField="hdp2" ObjectProperty="Handicap2" Class="Ticket"></Mapping>
+      <Mapping DataField="actual_stake" ObjectProperty="ActualStake" Class="Ticket"></Mapping>
+      <Mapping DataField="awinlost" ObjectProperty="AgentWinlost" Class="Ticket"></Mapping>
+      <Mapping DataField="mwinlost" ObjectProperty="MasterWinlost" Class="Ticket"></Mapping>
+      <Mapping DataField="swinlost" ObjectProperty="SuperWinlost" Class="Ticket"></Mapping>
+      <Mapping DataField="acomm" ObjectProperty="AgentComm" Class="Ticket"></Mapping>
+      <Mapping DataField="scomm" ObjectProperty="SuperComm" Class="Ticket"></Mapping>
+      <Mapping DataField="apositiontaking" ObjectProperty="AgentPositionTaking" Class="Ticket"></Mapping>
+      <Mapping DataField="mpositiontaking" ObjectProperty="MasterPositionTaking" Class="Ticket"></Mapping>
+      <Mapping DataField="spositiontaking" ObjectProperty="SuperPositionTaking" Class="Ticket"></Mapping>
+      <Mapping DataField="adiscount" ObjectProperty="AgentDiscount" Class="Ticket"></Mapping>
+      <Mapping DataField="mdiscount" ObjectProperty="MasterDiscount" Class="Ticket"></Mapping>
+      <Mapping DataField="sdiscount" ObjectProperty="SuperDiscount" Class="Ticket"></Mapping>
+      <Mapping DataField="liveindicator" ObjectProperty="IsLive" Class="Ticket"></Mapping>
+      <Mapping DataField="betstatus" ObjectProperty="EventStatus" Class="Ticket"></Mapping>
+
+      <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketData"></Mapping>
+      <Mapping DataField="apositiontaking" ObjectProperty="AgentPT" Class="TicketData"></Mapping>
+      <Mapping DataField="mpositiontaking" ObjectProperty="MasterPT" Class="TicketData"></Mapping>
+      <Mapping DataField="spositiontaking" ObjectProperty="SuperPT" Class="TicketData"></Mapping>
+    </Setting>
+    <Setting Key="Age_BetList_SelWinlossByBettypeMatch_SAg" SpName="Age_BetList_SelWinlossByBettypeMatch_SAg" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
+      <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="Ticket"></Mapping>
+      <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="Ticket"></Mapping>
+      <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="Ticket"></Mapping>
+      <Mapping DataField="hdp2" ObjectProperty="Handicap2" Class="Ticket"></Mapping>
+      <Mapping DataField="actual_stake" ObjectProperty="ActualStake" Class="Ticket"></Mapping>
+      <Mapping DataField="awinlost" ObjectProperty="AgentWinlost" Class="Ticket"></Mapping>
+      <Mapping DataField="mwinlost" ObjectProperty="MasterWinlost" Class="Ticket"></Mapping>
+      <Mapping DataField="swinlost" ObjectProperty="SuperWinlost" Class="Ticket"></Mapping>
+      <Mapping DataField="acomm" ObjectProperty="AgentComm" Class="Ticket"></Mapping>
+      <Mapping DataField="scomm" ObjectProperty="SuperComm" Class="Ticket"></Mapping>
+      <Mapping DataField="apositiontaking" ObjectProperty="AgentPositionTaking" Class="Ticket"></Mapping>
+      <Mapping DataField="mpositiontaking" ObjectProperty="MasterPositionTaking" Class="Ticket"></Mapping>
+      <Mapping DataField="spositiontaking" ObjectProperty="SuperPositionTaking" Class="Ticket"></Mapping>
+      <Mapping DataField="adiscount" ObjectProperty="AgentDiscount" Class="Ticket"></Mapping>
+      <Mapping DataField="mdiscount" ObjectProperty="MasterDiscount" Class="Ticket"></Mapping>
+      <Mapping DataField="sdiscount" ObjectProperty="SuperDiscount" Class="Ticket"></Mapping>
+      <Mapping DataField="liveindicator" ObjectProperty="IsLive" Class="Ticket"></Mapping>
+      <Mapping DataField="betstatus" ObjectProperty="EventStatus" Class="Ticket"></Mapping>
+
+      <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketData"></Mapping>
+      <Mapping DataField="apositiontaking" ObjectProperty="AgentPT" Class="TicketData"></Mapping>
+      <Mapping DataField="mpositiontaking" ObjectProperty="MasterPT" Class="TicketData"></Mapping>
+      <Mapping DataField="spositiontaking" ObjectProperty="SuperPT" Class="TicketData"></Mapping>
+    </Setting>
+  </Function>
+</Functions>

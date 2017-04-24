@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Functions>
+  <Function Name="NAP Permissions">
+    <Setting Key="Acc_Con_FileNameSelByCustID" SpName="Acc_Con_FileNameSelByCustID" DbName="DBPOLICY.bodb02.BODBDownlineNet" Plain="0" />
+    <Setting Key="Acc_CustomerIsInternalAdmin" SpName="Acc_CustomerIsInternalAdmin" DbName="DBPOLICY.bodb02.BODBDownlineNet" Plain="0" />
+  </Function>
+</Functions>
