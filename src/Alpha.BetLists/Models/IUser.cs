@@ -15,5 +15,7 @@
         bool IsInternal { get; }
 
         bool IsAdminCanViewVNIP { get; }
+
+        string LangKey { get; }
     }
 }

@@ -2,6 +2,7 @@
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using AppResources;
     using BetLists.Models;
     using Configurations;
     using Fanex.BetList.Core.Builder;
@@ -71,5 +72,10 @@
         public byte ViewerLevelId { get; protected set; }
 
         public UserLevel ViewerLevel { get; protected set; }
+
+        protected string GetTitle(BaseQuery query)
+            => query.FromDate == DateTime.MinValue || query.ToDate == DateTime.MinValue
+            ? Resources.memberBetList
+            : $"{Resources.memberBetList} {query.FromDate.ToShortDateString()} --> {query.ToDate.ToShortDateString()} - {query.CustName}";
     }
 }

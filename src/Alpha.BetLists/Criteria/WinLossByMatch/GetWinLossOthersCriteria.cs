@@ -48,6 +48,6 @@ namespace Alpha.BetLists.Criteria.WinLossByMatch
             ? "Age_BetList_SelWinlossByBettypeMatch_MAg"
             : "Age_BetList_SelWinlossByBettypeMatch_Ag";
 
-        public override bool IsValid() => CustId > 0 && !string.IsNullOrWhiteSpace(Language);
+        public override bool IsValid() => CustId > 0;
     }
 }

@@ -43,10 +43,10 @@
             <th class="col-pt">@Resources.agentPT/ @Resources.lblComm</th>
         </tr>
     </thead>
-    <tbody>
-        @if (Model.BetListData.Tickets.Any())
-        {
-            for (int i = 0; i < Model.BetListData.Total; i++)
+    @if (Model.BetListData.Tickets.Any())
+    {
+        <tbody>
+            @for (int i = 0; i < Model.BetListData.Total; i++)
             {
                 var ticket = Model.BetListData.Tickets.ElementAt(i);
 
@@ -79,12 +79,12 @@
             Model.FooterSubTotalWinLoss,
             Model.FooterSubTotalCommission,
             Model.FooterTotal)
-        }
-        else
-        {
-            @Common.NoInfomation.Render(Model.TotalColumn)
-        }
-    </tbody>
+
+        </tbody> }
+    else
+    {
+        @Common.NoInfomation.Render(Model.TotalColumn)
+    }
 </table>
 
 @Html.Hidden("betlist-path", HttpContext.Current.Response.ApplyAppPathModifier("~/"))

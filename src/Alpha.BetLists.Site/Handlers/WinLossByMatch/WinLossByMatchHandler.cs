@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Alpha.BetLists.Services;
 using Alpha.BetLists.Site.Requests.WinLossByMatch;
-using Alpha.BetLists.Site.ViewModels.WinLoss;
+using Alpha.BetLists.Site.ViewModels.WinLossByMatch;
 using Alpha.SmartPunter.Services;
 using Alpha.Utilities.IP;
 using Fanex.BetList.Core.Builder;
@@ -10,7 +10,7 @@ using MediatR;
 
 namespace Alpha.BetLists.Site.Handlers.WinLossByMatch
 {
-    public class WinLossByMatchHandler : WinLossByMatchBaseHandler, IAsyncRequestHandler<WinLossByMatchQuery, WinLossViewModel>
+    public class WinLossByMatchHandler : WinLossByMatchBaseHandler, IAsyncRequestHandler<WinLossByMatchQuery, WinLossByMatchViewModel>
     {
         public WinLossByMatchHandler(
             WinLossByMatchService winLossService,
@@ -23,14 +23,14 @@ namespace Alpha.BetLists.Site.Handlers.WinLossByMatch
         {
         }
 
-        public async Task<WinLossViewModel> Handle(WinLossByMatchQuery message)
+        public async Task<WinLossByMatchViewModel> Handle(WinLossByMatchQuery message)
         {
             var winLossParam = CreateWinLossParam(message);
             var betlistData = await WinLossService.GetBetList(winLossParam);
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
-            return new WinLossViewModel(message, betlistData, Builder, TicketHelper);
+            return new WinLossByMatchViewModel(message, betlistData, Builder, TicketHelper);
         }
     }
 }

@@ -1,13 +1,14 @@
 ﻿using Alpha.BetLists.Models;
-using Alpha.BetLists.Site.ViewModels.WinLoss;
+using Alpha.BetLists.Site.ViewModels.WinLossByMatch;
 using MediatR;
 
 namespace Alpha.BetLists.Site.Requests.WinLossByMatch
 {
-    public class WinLossByMatchQuery : BaseQuery, IRequest<WinLossViewModel>
+    public class WinLossByMatchQuery : BaseQuery, IRequest<WinLossByMatchViewModel>
     {
         public WinLossByMatchQuery(IUser viewer) : base(viewer)
         {
+            Language = viewer.LangKey;
         }
 
         public int BetType { get; set; }

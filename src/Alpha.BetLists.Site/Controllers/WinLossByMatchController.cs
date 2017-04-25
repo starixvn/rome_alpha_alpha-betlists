@@ -12,9 +12,9 @@
         }
 
         public async Task<ActionResult> Index(WinLossByMatchQuery message)
-            => View("~/Views/WinLoss/Index.cshtml", await mediator.Send(message));
+            => await View(message);
 
-        // public async Task<FileContentResult> Excel(WinLossByMatchExcelQuery message)
-        //    => await ExcelView(message);
+        public async Task<FileContentResult> Excel(WinLossByMatchExcelQuery message)
+            => await ExcelView(message);
     }
 }

@@ -391,6 +391,9 @@
     <Content Include="App_Data\ExcelTemplates\Super.xls" />
     <Content Include="App_Data\ExcelTemplates\ComboParlayDetail.xls" />
     <Content Include="assets\styles\bet-list-2.scss" />
+    <Content Include="App_Data\ExcelTemplates\WinLossByMatch\Agent.xls" />
+    <Content Include="App_Data\ExcelTemplates\WinLossByMatch\Master.xls" />
+    <Content Include="App_Data\ExcelTemplates\WinLossByMatch\Super.xls" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -399,6 +402,7 @@
     <Content Include="Views\Parlay\MixParlay.cshtml" />
     <Content Include="Views\Parlay\ComboParlay.cshtml" />
     <Content Include="Views\Parlay\ComboParlayDetail.cshtml" />
+    <Content Include="Views\WinLossByMatch\Index.cshtml" />
     <None Include="Web.backupMNL.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </None>
@@ -515,6 +519,7 @@
     <Compile Include="Handlers\Parlay\ParlayBaseHandler.cs" />
     <Compile Include="Handlers\Parlay\ParlayHandler.cs" />
     <Compile Include="Handlers\WinLossByMatch\WinLossByMatchBaseHandler.cs" />
+    <Compile Include="Handlers\WinLossByMatch\WinLossByMatchExcelHandler.cs" />
     <Compile Include="Handlers\WinLossByMatch\WinLossByMatchHandler.cs" />
     <Compile Include="Handlers\WinLoss\WinLossBaseHandler.cs" />
     <Compile Include="Handlers\WinLoss\WinLossExcelHandler.cs" />
@@ -539,6 +544,7 @@
     <Compile Include="ViewModels\Parlay\ComboParlayDetailViewModel.cs" />
     <Compile Include="ViewModels\Parlay\ComboParlayViewModel.cs" />
     <Compile Include="ViewModels\Parlay\MixParlayViewModel.cs" />
+    <Compile Include="ViewModels\WinLossByMatch\WinLossByMatchViewModel.cs" />
     <Compile Include="ViewModels\WinLoss\WinLossViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -58,7 +58,6 @@ namespace Alpha.BetLists.Criteria.WinLossByMatch
 
         public override bool IsValid() =>
             CustId > 0
-            && ToDate >= FromDate
-            && !string.IsNullOrWhiteSpace(Language);
+            && ToDate >= FromDate;
     }
 }
