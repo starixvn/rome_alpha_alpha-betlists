@@ -23,9 +23,9 @@
             WinLossService = winLossService;
         }
 
-        protected WinLossService WinLossService { get; }
+        protected internal WinLossService WinLossService { get; }
 
-        protected WinLossParam CreateWinLossParam(WinLossQuery message)
+        protected internal WinLossParam CreateWinLossParam(WinLossQuery message)
         {
             return new WinLossParam(
                message.CustId,

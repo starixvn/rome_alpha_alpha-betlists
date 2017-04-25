@@ -10,6 +10,6 @@
             DynamicRepository = Substitute.For<IDynamicRepository>();
         }
 
-        public IDynamicRepository DynamicRepository { get; set; }
+        public IDynamicRepository DynamicRepository { get; }
     }
 }

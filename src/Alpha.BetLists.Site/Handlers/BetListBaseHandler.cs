@@ -32,17 +32,17 @@
             TicketHelper.IsVnIp = IpService.IsVNIP;
         }
 
-        protected IBetListHTMLBuilder Builder { get; }
+        protected internal IBetListHTMLBuilder Builder { get; }
 
-        protected IBetListExcelBuilder ExcelBuilder { get; }
+        protected internal IBetListExcelBuilder ExcelBuilder { get; }
 
-        protected ITicketHelper TicketHelper { get; }
+        protected internal ITicketHelper TicketHelper { get; }
 
-        protected RTFHelper RtfHelper { get; }
+        protected internal RTFHelper RtfHelper { get; }
 
-        protected ISmartPunterBetListMonitor MonitorService { get; }
+        protected internal ISmartPunterBetListMonitor MonitorService { get; }
 
-        protected IPService IpService { get; }
+        protected internal IPService IpService { get; }
 
         protected internal GetCachePropertyById GetOddsTypeName { get; set; } = CacheRef.GetOddsTypeName;
 
@@ -52,7 +52,7 @@
             set { mapPath = value; }
         }
 
-        private Func<string, bool> IsFileExist { get; set; } = File.Exists;
+        internal Func<string, bool> IsFileExist { get; set; } = File.Exists;
 
         protected internal virtual string GetExcelTemplatePath(string templateName, string fileExtension = "xls")
         {
@@ -73,9 +73,7 @@
             throw new FileNotFoundException($"Template {absolutePath} does not exist");
         }
 
-        protected void WriteLog(int custId, IEnumerable<ITicket> tickets)
-        {
-            MonitorService.WriteLog(custId, tickets.ToList());
-        }
+        protected internal void WriteLog(int custId, IEnumerable<ITicket> tickets)
+            => MonitorService.WriteLog(custId, tickets.ToList());
     }
 }
