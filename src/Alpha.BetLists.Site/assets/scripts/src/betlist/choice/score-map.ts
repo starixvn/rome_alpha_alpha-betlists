@@ -8,7 +8,7 @@
         }
 
         public ShowScoreMap = (matchIds: string, betType: string, liveIndicator: number) => {
-            var params = liveIndicator == 1 ?
+            const params = liveIndicator == 1 ?
                 "leagueId=-1&matchIds=" + matchIds + "&bettypes_live=" + betType + "&bettypes_dead=-1" :
                 "leagueId=-1&matchIds=" + matchIds + "&bettypes_live=-1&bettypes_dead=" + betType;
 
