@@ -402,6 +402,7 @@
     <Content Include="Views\Parlay\ComboParlay.cshtml" />
     <Content Include="Views\Parlay\ComboParlayDetail.cshtml" />
     <Content Include="Views\WinLossByMatch\Index.cshtml" />
+    <Content Include="Views\Shared\WinLossTable.cshtml" />
     <None Include="Web.backupMNL.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </None>

@@ -28,17 +28,24 @@
             BaseQuery query,
             BetListData betListData,
             IBetListHTMLBuilder builder,
-            ITicketHelper ticketHelper)
+            ITicketHelper ticketHelper,
+            bool showMemberName = false)
             : base(query, betListData, builder, ticketHelper)
         {
             Title = GetTitle(query).ToUpperInvariant();
             TotalWinLoss = BetListData.Tickets.Where(ticket => ticket.BetTypeId != 500).Sum(ticket => ticket.Winlost);
             TotalCommission = BetListData.Tickets.Sum(ticket => ticket.PlayerComm);
+
+            var numberOfMemberColumns = showMemberName ? 1 : 0;
+
             FooterStatusColSpan = FooterStatusColSpanByViewLevelId[ViewerLevel];
             FooterSubTotalWinLoss = ConvertByBetType.Winloss(TotalWinLoss);
             FooterSubTotalCommission = ConvertByBetType.Comm(TotalCommission);
             FooterTotal = ConvertByBetType.Winloss(TotalWinLoss + TotalCommission);
-            TotalColumn = TotalColumnByViewLevelId[ViewerLevel];
+            TotalColumn = TotalColumnByViewLevelId[ViewerLevel] + numberOfMemberColumns;
+
+            FooterSubTotalColSpan = 5 + numberOfMemberColumns;
+            ShowMemberName = showMemberName;
         }
 
         public bool AllowToViewSuperPT => baseQuery.ViewerLevel.IsSuperLevel();
@@ -47,7 +54,7 @@
 
         public string Title { get; }
 
-        public int FooterSubTotalColSpan { get; } = 5;
+        public int FooterSubTotalColSpan { get; }
 
         public int FooterStatusColSpan { get; }
 
@@ -59,8 +66,10 @@
 
         public int TotalColumn { get; }
 
-        protected decimal TotalWinLoss { get; }
+        public decimal TotalWinLoss { get; }
 
-        protected decimal TotalCommission { get; }
+        public decimal TotalCommission { get; }
+
+        public bool ShowMemberName { get; }
     }
 }
