@@ -60,8 +60,7 @@
         }
 
         private async Task<Tuple<IEnumerable<Ticket>, IEnumerable<TicketData>>> GetBetList(WinLossParam param, DateTime fromDate)
-        {
-            return await dynamicRepository.FetchMultipleAsync<Ticket, TicketData>(
+            => await dynamicRepository.FetchMultipleAsync<Ticket, TicketData>(
                         new GetBetListWinLossByDateCriteria(
                             param.CustId,
                             param.ProductIds.JoinWithComma(),
@@ -69,17 +68,14 @@
                             param.ToDate,
                             reportDateService.GetMoveBetsDay(),
                             param.Language));
-        }
 
         private async Task<Tuple<IEnumerable<Ticket>, IEnumerable<TicketData>>> GetBetListBeforeBalanceUpDay(WinLossParam param, DateTime toDate)
-        {
-            return await dynamicRepository.FetchMultipleAsync<Ticket, TicketData>(
+            => await dynamicRepository.FetchMultipleAsync<Ticket, TicketData>(
                         new GetBetListWinLossByDateOldCriteria(
                             param.CustId,
                             param.ProductIds.JoinWithComma(),
                             param.FromDate,
                             toDate,
                             param.Language));
-        }
     }
 }

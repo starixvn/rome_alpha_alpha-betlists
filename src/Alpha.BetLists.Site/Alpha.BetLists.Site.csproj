@@ -370,7 +370,6 @@
     <Content Include="App_Code\Blocks\Status.cshtml" />
     <Content Include="App_Code\Blocks\PositionTaking.cshtml" />
     <Content Include="Views\Shared\InvalidBetList.cshtml" />
-    <Content Include="Views\Shared\Piwik.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\WinLoss\Index.cshtml" />
