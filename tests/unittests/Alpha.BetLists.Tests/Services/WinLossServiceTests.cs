@@ -2,11 +2,10 @@
 {
     using System;
     using System.Linq;
+    using BetLists.Criteria.WinLossByDate;
     using BetLists.Services;
-    using Criteria.WinLossByDate;
     using Extensions;
     using Fanex.BetList.Core.Entities;
-    using Fanex.Data.Repository;
     using Fixtures;
     using NSubstitute;
     using Params;

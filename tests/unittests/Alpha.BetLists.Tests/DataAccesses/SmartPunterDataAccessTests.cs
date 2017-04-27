@@ -1,8 +1,8 @@
 ﻿namespace Alpha.BetLists.Tests.DataAccesses
 {
     using System.Collections.Generic;
+    using BetLists.Criteria.SmartPunter;
     using BetLists.DataAccesses;
-    using Criteria.SmartPunter;
     using Fixtures;
     using NSubstitute;
     using SmartPunter.Criteria;

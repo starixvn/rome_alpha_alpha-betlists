@@ -2,8 +2,8 @@
 {
     using System;
     using System.Linq;
+    using BetLists.Criteria.Parlay;
     using BetLists.Services;
-    using Criteria.Parlay;
     using Fanex.BetList.Core.Entities;
     using Fixtures;
     using Models.Parlay;

@@ -149,14 +149,19 @@
     <Compile Include="Collections\FanexDataCollection.cs" />
     <Compile Include="Collections\FanexCacheCollection.cs" />
     <Compile Include="Collections\FanexLibsCollection.cs" />
+    <Compile Include="Constants\BetTypeIdConstants.cs" />
+    <Compile Include="Criteria\WinLossByMatch\GetWinLossOutrightCriteriaTests.cs" />
+    <Compile Include="Criteria\WinLossByMatch\GetWinLossRacingCriteriaTests.cs" />
     <Compile Include="DataAccesses\SmartPunterDataAccessTests.cs" />
     <Compile Include="Fixtures\FanexDataFixture.cs" />
     <Compile Include="Fixtures\FanexCacheFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ParlayServiceImplTests.cs" />
     <Compile Include="Services\ReportDateServiceImplTests.cs" />
+    <Compile Include="Services\WinLossByMatchServiceTests.cs" />
     <Compile Include="Services\WinLossServiceTests.cs" />
     <Compile Include="TestData\BetListDataForTest.cs" />
+    <Compile Include="Criteria\WinLossByMatch\GetWinLossOthersCriteriaTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

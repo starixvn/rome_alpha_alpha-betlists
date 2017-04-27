@@ -1,8 +1,8 @@
 ﻿namespace Alpha.BetLists.Tests.Services
 {
     using System;
+    using BetLists.Criteria;
     using BetLists.Services;
-    using Criteria;
     using Fanex.Caching;
     using Fanex.Data.Repository;
     using Fixtures;

@@ -10,7 +10,7 @@ namespace Alpha.BetLists.Site.Handlers.WinLossByMatch
 {
     public class WinLossByMatchBaseHandler : BetListBaseHandler
     {
-        protected readonly WinLossByMatchService WinLossService;
+        protected internal readonly WinLossByMatchService WinLossService;
 
         public WinLossByMatchBaseHandler(
             WinLossByMatchService winLossService,
@@ -24,7 +24,7 @@ namespace Alpha.BetLists.Site.Handlers.WinLossByMatch
             WinLossService = winLossService;
         }
 
-        protected WinLossByMatchParam CreateWinLossParam(WinLossByMatchQuery message)
+        protected internal WinLossByMatchParam CreateWinLossParam(WinLossByMatchQuery message)
             => new WinLossByMatchParam(
                 message.CustId,
                 message.LeagueId,
