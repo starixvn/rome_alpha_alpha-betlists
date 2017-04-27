@@ -1,7 +1,4 @@
-﻿using System.IO;
-using System.Threading.Tasks;
-using System.Web.Mvc;
-using Alpha.BetLists.Models;
+﻿using Alpha.BetLists.Models;
 using Alpha.BetLists.Site.Controllers;
 using Alpha.BetLists.Site.Requests.WinLossByMatch;
 using Alpha.BetLists.Site.ViewModels;
