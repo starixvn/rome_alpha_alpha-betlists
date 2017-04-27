@@ -14,7 +14,7 @@
             { UserLevel.Super, 4 }
         };
 
-        public Footer(BetListData betListData, UserLevel viewerLevel)
+        public Footer(BetListData betListData, UserLevel viewerLevel, bool showMemberName)
         {
             TotalWinLoss = betListData.Tickets.Where(ticket => ticket.BetTypeId != 500).Sum(ticket => ticket.Winlost);
             TotalCommission = betListData.Tickets.Sum(ticket => ticket.PlayerComm);
@@ -22,6 +22,7 @@
             SubTotalWinLoss = ConvertByBetType.Winloss(TotalWinLoss);
             SubTotalCommission = ConvertByBetType.Comm(TotalCommission);
             Total = ConvertByBetType.Winloss(TotalWinLoss + TotalCommission);
+            SubTotalColSpan += showMemberName ? 1 : 0;
         }
 
         public int SubTotalColSpan { get; } = 5;

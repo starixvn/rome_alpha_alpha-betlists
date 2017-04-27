@@ -88,11 +88,14 @@
 
         protected internal virtual TemplateInfo GetTemplateInfo(UserLevel viewerLevel)
             => new TemplateInfo(
-                   GetExcelTemplatePath(viewerLevel.DisplayName),
+                   ExcelTemplatePath(viewerLevel),
                    noInfomationText: Resources.NoInformationIsAvailable,
                    bodyStartIndex: 3,
                    bodyEndIndex: 4,
                    footerEndIndex: 5);
+
+        protected internal virtual string ExcelTemplatePath(UserLevel viewerLevel)
+            => GetExcelTemplatePath(viewerLevel.DisplayName);
 
         protected internal virtual Mapper<ITicket> GetBodyRowMapper(UserLevel viewerLevel, BetListBaseViewModel viewModel)
         {
@@ -100,29 +103,23 @@
             var canViewScoreMap = viewModel.CanViewScoreMap;
 
             var mapper = new Mapper<ITicket>()
-                .Map(B, ticket => ExcelBuilder.CreateTransBuilder(ticket.BetTypeId).RenderRTF(ticket, TicketHelper))
-                .Map(C, ticket => ExcelBuilder.CreateChoiceBuilder(ticket.BetTypeId).RenderRTF(ticket, TicketHelper, ticketData, canViewScoreMap, RtfHelper).FirstOrDefault())
-                .Map(D, ticket => ExcelBuilder.CreateOddsBuilder(ticket.BetTypeId).RenderRTF(ticket, ticketData, GetOddsTypeName, RtfHelper))
-                .Map(E, ticket => ExcelBuilder.CreateStakeBuilder(ticket.BetTypeId).RenderRTF(ticket, RtfHelper))
+                .Map(B, ticket => BuildTrans(ticket))
+                .Map(C, ticket => BuildChoice(ticket, viewModel))
+                .Map(D, ticket => BuildOdds(ticket, viewModel))
+                .Map(E, ticket => BuildStake(ticket))
                 .Map(F, ticket => BuildWinLoss(ticket))
-                .Map(G, ticket => ExcelBuilder.CreateStatusBuilder(ticket.BetTypeId).RenderRTF(ticket, TicketHelper, ticketData, true, RtfHelper));
+                .Map(G, ticket => BuildStatus(ticket, viewModel));
 
-            if (viewerLevel.IsAgentLevel())
-            {
-                mapper.Map(H, ticket => BuildPTCommmission(ticket, ticketData, UserLevel.Agent));
-            }
+            mapper.Map(H, ticket => BuildPTCommmission(ticket, ticketData, viewerLevel));
 
             if (viewerLevel.IsMasterLevel())
             {
-                mapper
-                    .Map(H, ticket => BuildPTCommmission(ticket, ticketData, UserLevel.Master))
-                    .Map(I, ticket => BuildPTCommmission(ticket, ticketData, UserLevel.Agent));
+                mapper.Map(I, ticket => BuildPTCommmission(ticket, ticketData, UserLevel.Agent));
             }
 
             if (viewerLevel.IsSuperLevel())
             {
                 mapper
-                    .Map(H, ticket => BuildPTCommmission(ticket, ticketData, UserLevel.Super))
                     .Map(I, ticket => BuildPTCommmission(ticket, ticketData, UserLevel.Master))
                     .Map(J, ticket => BuildPTCommmission(ticket, ticketData, UserLevel.Agent));
             }
@@ -138,6 +135,28 @@
 
             return mapper;
         }
+
+        protected virtual IRichTextString BuildTrans(ITicket ticket)
+            => ExcelBuilder.CreateTransBuilder(ticket.BetTypeId).RenderRTF(ticket, TicketHelper);
+
+        protected virtual IRichTextString BuildChoice(ITicket ticket, BetListBaseViewModel viewModel)
+            => ExcelBuilder
+                .CreateChoiceBuilder(ticket.BetTypeId)
+                .RenderRTF(ticket, TicketHelper, viewModel.BetListData.TicketData, viewModel.CanViewScoreMap, RtfHelper)
+                .FirstOrDefault();
+
+        protected virtual IRichTextString BuildOdds(ITicket ticket, BetListBaseViewModel viewModel)
+            => ExcelBuilder
+                .CreateOddsBuilder(ticket.BetTypeId)
+                .RenderRTF(ticket, viewModel.BetListData.TicketData, GetOddsTypeName, RtfHelper);
+
+        public virtual IRichTextString BuildStake(ITicket ticket)
+            => ExcelBuilder.CreateStakeBuilder(ticket.BetTypeId).RenderRTF(ticket, RtfHelper);
+
+        public virtual IRichTextString BuildStatus(ITicket ticket, BetListBaseViewModel viewModel)
+            => ExcelBuilder
+                .CreateStatusBuilder(ticket.BetTypeId)
+                .RenderRTF(ticket, TicketHelper, viewModel.BetListData.TicketData, true, RtfHelper);
 
         protected virtual IRichTextString BuildWinLoss(ITicket ticket)
         {

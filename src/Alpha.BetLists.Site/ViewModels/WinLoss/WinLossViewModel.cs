@@ -14,15 +14,9 @@
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper,
             bool showMemberName = false)
-            : base(query, betListData, builder, ticketHelper)
+            : base(query, betListData, builder, ticketHelper, showMemberName)
         {
-            Footer = new Footer(betListData, baseQuery.ViewerLevel);
-
-            var numberOfMemberColumns = showMemberName ? 1 : 0;
-
-
-            FooterSubTotalColSpan = 5 + numberOfMemberColumns;
-            ShowMemberName = showMemberName;
+            Footer = new Footer(betListData, baseQuery.ViewerLevel, showMemberName);
         }
 
         public bool AllowToViewSuperPT => baseQuery.ViewerLevel.IsSuperLevel();
@@ -30,6 +24,5 @@
         public bool AllowToViewMasterPT => baseQuery.ViewerLevel.IsMasterOrSuperLevel();
 
         public Footer Footer { get; }
-        public bool ShowMemberName { get; }
     }
 }

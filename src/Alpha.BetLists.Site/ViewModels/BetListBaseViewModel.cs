@@ -27,7 +27,8 @@
             BaseQuery query,
             BetListData betListData,
             IBetListHTMLBuilder builder,
-            ITicketHelper ticketHelper)
+            ITicketHelper ticketHelper,
+            bool showMemberName = false)
         {
             baseQuery = query;
             CustName = query.CustName;
@@ -45,7 +46,8 @@
             ViewerLevel = baseQuery.ViewerLevel;
             DisplayVNIP = baseQuery.DisplayVNIP;
             Title = GetTitle(query).ToUpperInvariant();
-            TotalColumn = TotalColumnByViewLevelId[ViewerLevel];
+            TotalColumn = TotalColumnByViewLevelId[ViewerLevel] + (showMemberName ? 1 : 0);
+            ShowMemberName = showMemberName;
         }
 
         public string CustName { get; protected set; }
@@ -82,10 +84,12 @@
         public byte ViewerLevelId { get; protected set; }
 
         public UserLevel ViewerLevel { get; protected set; }
-        
+
         public string Title { get; protected set; }
 
         public int TotalColumn { get; protected set; }
+
+        public bool ShowMemberName { get; }
 
         protected string GetTitle(BaseQuery query)
             => query.FromDate == DateTime.MinValue || query.ToDate == DateTime.MinValue
