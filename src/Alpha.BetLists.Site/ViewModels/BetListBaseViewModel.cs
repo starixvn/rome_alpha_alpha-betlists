@@ -1,6 +1,7 @@
 ﻿namespace Alpha.BetLists.Site.ViewModels
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using AppResources;
     using BetLists.Models;
@@ -13,6 +14,13 @@
     [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1304:NonPrivateReadonlyFieldsMustBeginWithUpperCaseLetter", Justification = "Reviewed.")]
     public abstract class BetListBaseViewModel
     {
+        private static readonly IDictionary<UserLevel, int> TotalColumnByViewLevelId = new Dictionary<UserLevel, int>
+        {
+            { UserLevel.Agent, 8 },
+            { UserLevel.Master, 9 },
+            { UserLevel.Super, 10 }
+        };
+
         protected readonly BaseQuery baseQuery;
 
         protected BetListBaseViewModel(
@@ -36,6 +44,8 @@
             ViewerLevelId = baseQuery.ViewerLevelId;
             ViewerLevel = baseQuery.ViewerLevel;
             DisplayVNIP = baseQuery.DisplayVNIP;
+            Title = GetTitle(query).ToUpperInvariant();
+            TotalColumn = TotalColumnByViewLevelId[ViewerLevel];
         }
 
         public string CustName { get; protected set; }
@@ -72,6 +82,10 @@
         public byte ViewerLevelId { get; protected set; }
 
         public UserLevel ViewerLevel { get; protected set; }
+        
+        public string Title { get; protected set; }
+
+        public int TotalColumn { get; protected set; }
 
         protected string GetTitle(BaseQuery query)
             => query.FromDate == DateTime.MinValue || query.ToDate == DateTime.MinValue

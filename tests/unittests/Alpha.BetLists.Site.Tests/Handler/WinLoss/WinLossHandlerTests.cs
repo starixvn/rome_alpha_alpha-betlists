@@ -24,7 +24,6 @@
         private readonly BetListFixture betlistFixture;
         private readonly WinLossHandler winLossHandler;
         private readonly WinLossService winLossService;
-        private readonly IUser user;
         private readonly WinLossQuery query;
         private readonly CompareLogic compareLogic;
 
@@ -34,10 +33,7 @@
             winLossService = Substitute.For<WinLossService>();
             winLossService.GetBetList(Arg.Any<WinLossParam>()).Returns(BetListDataTest.BetListData);
 
-            user = Substitute.For<IUser>();
-            user.Id.Returns(2);
-            user.LevelId.Returns(UserLevel.Agent.Value);
-            query = new WinLossQuery(user);
+            query = new WinLossQuery(this.betlistFixture.User);
 
             winLossHandler = new WinLossHandler(
                 winLossService,
@@ -55,7 +51,7 @@
 
         [Theory]
         [InlineData(1, 1)]
-        [InlineData(0, 2)]
+        [InlineData(0, 10)]
         public void Handle_Always_CallWriteLog(int custId, int expectedId)
         {
             // Arrange

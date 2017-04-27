@@ -538,6 +538,7 @@
     <Compile Include="Requests\WinLoss\WinLossExcelQuery.cs" />
     <Compile Include="Requests\WinLoss\WinLossQuery.cs" />
     <Compile Include="ViewModels\BetListBaseViewModel.cs" />
+    <Compile Include="ViewModels\Blocks\Footer.cs" />
     <Compile Include="ViewModels\Blocks\WinLostBlockViewModel.cs" />
     <Compile Include="ViewModels\ExcelFileViewModel.cs" />
     <Compile Include="ViewModels\Parlay\ComboParlayDetailWrapper.cs" />

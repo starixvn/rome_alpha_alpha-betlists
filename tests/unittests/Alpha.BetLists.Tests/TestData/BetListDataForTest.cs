@@ -6,11 +6,15 @@
     using Fanex.BetList.Core.Entities;
     using Models;
     using Models.Parlay;
+    using NPOI.HSSF.UserModel;
+    using NPOI.SS.UserModel;
     using Ploeh.AutoFixture;
 
     public class BetListDataTest
     {
         private static IFixture fixture = new Fixture();
+
+        public static readonly ITicket Ticket = fixture.Create<Ticket>();
 
         public static readonly IEnumerable<Ticket> Tickets = fixture.CreateMany<Ticket>();
 
@@ -43,5 +47,15 @@
 
         public static readonly ComboParlayDetailData ComboParlayDetailData
             = new ComboParlayDetailData(ComboParlayDetails, MatchDetails, 0);
+
+        public static readonly IRichTextString TransRtf = new HSSFRichTextString("Trans");
+
+        public static readonly List<IRichTextString> ChoiceRtf = new List<IRichTextString> { new HSSFRichTextString("Choice") };
+
+        public static readonly IRichTextString OddsRtf = new HSSFRichTextString("Odds");
+
+        public static readonly IRichTextString StakeRtf = new HSSFRichTextString("Stake");
+
+        public static readonly IRichTextString StatusRtf = new HSSFRichTextString("Status");
     }
 }
