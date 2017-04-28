@@ -80,18 +80,25 @@ namespace Alpha.BetLists.Site.Tests.Handler.WinLossByMatch
             {
                 CustId = 1,
                 CustLevelId = 2,
+                CustName = "CustName",
                 FromDate = DateTime.Today,
                 ToDate = DateTime.Today,
-                Language = "en"
+                Language = "en",
+
+                LeagueId = 2,
+                MatchId = 3,
+                BetType = 4,
+                Race = "5",
+                LiveIndicator = 1
             };
 
-            var expectedParam = new WinLossByMatchParam(1, 2, 3, 4, "5", 1, "en", "CustName", DateTime.Today, DateTime.Today, UserLevel.Super);
+            var expectedParam = new WinLossByMatchParam(1, 2, 3, 4, "5", 1, "en", "CustName", DateTime.Today, DateTime.Today, UserLevel.Agent);
 
             // Act
             winLossHandler.Handle(query).GetAwaiter().GetResult();
 
             // Assert
-            winLossService.Received().GetBetList(Arg.Is<WinLossByMatchParam>(p => compareLogic.Compare(p, p).AreEqual));
+            winLossService.Received().GetBetList(Arg.Is<WinLossByMatchParam>(p => compareLogic.Compare(expectedParam, p).AreEqual));
         }
 
         [Fact]

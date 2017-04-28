@@ -522,7 +522,7 @@
     <Compile Include="Handlers\BetListBaseHandler.cs" />
     <Compile Include="Handlers\ParlayWinLossByMatch\ParlayWinLossByMatchBaseHandler.cs" />
     <Compile Include="Handlers\ParlayWinLossByMatch\ParlayWinLossByMatchExcelHanlder.cs" />
-    <Compile Include="Handlers\ParlayWinLossByMatch\ParlayWinLossByMatchHanlder.cs" />
+    <Compile Include="Handlers\ParlayWinLossByMatch\ParlayWinLossByMatchHandler.cs" />
     <Compile Include="Handlers\Parlay\ComboParlayDetailWorkbook.cs" />
     <Compile Include="Handlers\Parlay\ParlayExcelHandler.cs" />
     <Compile Include="Handlers\Parlay\ParlayBaseHandler.cs" />

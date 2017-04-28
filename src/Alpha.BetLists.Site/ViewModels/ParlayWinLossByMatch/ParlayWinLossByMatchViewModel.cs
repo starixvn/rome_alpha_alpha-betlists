@@ -1,6 +1,5 @@
 ﻿using Alpha.BetLists.AppResources;
 using Alpha.BetLists.Models;
-using Alpha.BetLists.Site.Requests;
 using Alpha.BetLists.Site.Requests.WinLossByMatch;
 using Alpha.BetLists.Site.ViewModels.WinLoss;
 using Alpha.RemotingRef;

@@ -15,11 +15,11 @@ namespace Alpha.BetLists.Tests.Services
 {
     [Trait("Category", "WinLossByMatch")]
     [Collection("FanexDataCollection")]
-    public class WinLossByMatchServiceTests
+    public class WinLossByMatchServiceImplTests
     {
         private readonly WinLossByMatchServiceImpl winLossService;
 
-        public WinLossByMatchServiceTests(FanexDataFixture dataFixture)
+        public WinLossByMatchServiceImplTests(FanexDataFixture dataFixture)
         {
             dataFixture.DynamicRepository
                 .FetchMultipleAsync<Ticket, TicketData>(Arg.Any<GetWinLossOutrightCriteria>())

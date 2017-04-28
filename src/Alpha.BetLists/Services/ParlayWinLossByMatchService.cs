@@ -27,7 +27,7 @@ namespace Alpha.BetLists.Services
 
         public async Task<IEnumerable<ITicket>> GetBetList(ParlayWinLossByMatchParam param)
         {
-            var criteria = new GetMixParlayWinLossByMatchCriteria(
+            var criteria = new GetParlayWinLossByMatchCriteria(
                 param.CustId,
                 param.BetType,
                 param.Language,

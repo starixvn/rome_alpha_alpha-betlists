@@ -57,7 +57,7 @@ namespace Alpha.BetLists.Tests.Criteria.WinLossByMatch
         [Theory]
         [InlineData(1)]
         [InlineData(int.MaxValue)]
-        public void IsValid_ValidDateRange_ReturnsTrue(int custId)
+        public void IsValid_ValidCriteria_ReturnsTrue(int custId)
         {
             // Arrange
             var criteria = new GetWinLossRacingCriteria(custId, 0, 0, string.Empty, string.Empty, DateTime.Today, DateTime.Today, DateTime.Today, UserLevel.Agent);

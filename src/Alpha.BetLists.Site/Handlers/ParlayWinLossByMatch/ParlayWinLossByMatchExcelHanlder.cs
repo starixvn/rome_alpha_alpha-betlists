@@ -29,11 +29,12 @@ namespace Alpha.BetLists.Site.Handlers.ParlayWinLossByMatch
             IBetListExcelBuilder excelBuilder,
             ITicketHelper ticketHelper,
             IPService ipService,
-            Workbook<ITicket> workbook)
+            Workbook<ITicket> workbook,
+            WinLossByMatchExcelHandler winLossByMatchExcelHandler = null)
             : base(winLossService, monitorService, builder, excelBuilder, ticketHelper, ipService)
         {
             this.workbook = workbook;
-            winLossByMatchExcelHandler = new WinLossByMatchExcelHandler(
+            this.winLossByMatchExcelHandler = winLossByMatchExcelHandler ?? new WinLossByMatchExcelHandler(
                 null,
                 monitorService,
                 builder,

@@ -11,10 +11,10 @@ using MediatR;
 
 namespace Alpha.BetLists.Site.Handlers.ParlayWinLossByMatch
 {
-    public class ParlayWinLossByMatchHanlder
+    public class ParlayWinLossByMatchHandler
         : ParlayWinLossByMatchBaseHandler, IAsyncRequestHandler<ParlayWinLossByMatchQuery, ParlayWinLossByMatchViewModel>
     {
-        public ParlayWinLossByMatchHanlder(
+        public ParlayWinLossByMatchHandler(
             ParlayWinLossByMatchService winLossService,
             ISmartPunterBetListMonitor monitorService,
             IBetListHTMLBuilder builder,

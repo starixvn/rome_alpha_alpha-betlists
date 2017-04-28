@@ -5,9 +5,9 @@ using Fanex.Data.Repository;
 
 namespace Alpha.BetLists.Criteria.ParlayWinLossByMatch
 {
-    public class GetMixParlayWinLossByMatchCriteria : CriteriaBase
+    public class GetParlayWinLossByMatchCriteria : CriteriaBase
     {
-        public GetMixParlayWinLossByMatchCriteria(
+        public GetParlayWinLossByMatchCriteria(
             int custId,
             int betType,
             string language,

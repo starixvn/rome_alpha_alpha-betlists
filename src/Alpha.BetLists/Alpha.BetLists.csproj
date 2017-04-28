@@ -162,7 +162,7 @@
     <Compile Include="Criteria\SmartPunter\SmartPunterSMACheckerCriteria.cs" />
     <Compile Include="Criteria\SmartPunter\NAPUserPermissionCriteria.cs" />
     <Compile Include="Criteria\SmartPunter\InternalAdminCheckerCriteria.cs" />
-    <Compile Include="Criteria\ParlayWinLossByMatch\GetMixParlayWinLossByMatchCriteria.cs" />
+    <Compile Include="Criteria\ParlayWinLossByMatch\GetParlayWinLossByMatchCriteria.cs" />
     <Compile Include="Criteria\WinLossByMatch\GetWinLossOthersCriteria.cs" />
     <Compile Include="Criteria\WinLossByMatch\GetWinLossOutrightCriteria.cs" />
     <Compile Include="Criteria\WinLossByMatch\GetWinLossRacingCriteria.cs" />
