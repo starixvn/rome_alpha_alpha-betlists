@@ -13,5 +13,8 @@ namespace Alpha.BetLists.Site.Controllers
 
         public async Task<ActionResult> Index(ParlayWinLossByMatchQuery message)
             => await View(message);
+
+        public async Task<FileContentResult> Excel(ParlayWinLossByMatchExcelQuery message)
+            => await ExcelView(message);
     }
 }

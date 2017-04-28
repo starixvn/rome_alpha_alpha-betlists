@@ -44,7 +44,7 @@
             currentRowIndex = 1;
 
             var fileContent = workbook
-                .UseTemplate(GetTemplateInfo(message))
+                .UseTemplate(GetTemplateInfo(message.CustLevel))
                 .Header(Resources.ResourceManager.GetString)
                 .Title(viewModel.Title)
                 .Body(betlistData.Tickets, GetBodyRowMapper(message.ViewerLevel, viewModel))
@@ -55,19 +55,17 @@
             return new ExcelFileViewModel(viewModel.Title, fileContent);
         }
 
-        private TemplateInfo GetTemplateInfo(WinLossByMatchExcelQuery message)
-            => new TemplateInfo(
-                GetExcelTemplatePath($"WinLossByMatch\\{message.ViewerLevel.DisplayName}"),
-                noInfomationText: Resources.NoInformationIsAvailable,
-                bodyStartIndex: 3,
-                bodyEndIndex: 4,
-                footerEndIndex: 5);
+        public void SetCurrentRowIndex(int rowIndex)
+        {
+            currentRowIndex = rowIndex;
+        }
+
+        protected internal override string ExcelTemplatePath(UserLevel viewerLevel)
+            => GetExcelTemplatePath($"WinLossByMatch\\{viewerLevel.DisplayName}");
 
         protected internal override Mapper<ITicket> GetBodyRowMapper(UserLevel viewerLevel, BetListBaseViewModel viewModel)
         {
             var ticketData = viewModel.BetListData.TicketData;
-            var canViewScoreMap = viewModel.CanViewScoreMap;
-
             var mapper = new Mapper<ITicket>()
                 .Map(A, _ => currentRowIndex++)
                 .Map(B, ticket => ticket.UserName)

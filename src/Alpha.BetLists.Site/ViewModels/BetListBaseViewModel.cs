@@ -85,15 +85,18 @@
 
         public UserLevel ViewerLevel { get; protected set; }
 
-        public string Title { get; protected set; }
+        public string Title { get; set; }
 
         public int TotalColumn { get; protected set; }
 
         public bool ShowMemberName { get; }
 
-        protected string GetTitle(BaseQuery query)
-            => query.FromDate == DateTime.MinValue || query.ToDate == DateTime.MinValue
-            ? Resources.memberBetList
-            : $"{Resources.memberBetList} {query.FromDate.ToShortDateString()} --> {query.ToDate.ToShortDateString()} - {query.CustName}";
+        public string GetTitle(BaseQuery query)
+            => HasDateParam(query)
+            ? $"{Resources.memberBetList} {query.FromDate.ToShortDateString()} --> {query.ToDate.ToShortDateString()} - {query.CustName}"
+            : Resources.memberBetList;
+
+        public bool HasDateParam(BaseQuery query)
+            => query.FromDate != DateTime.MinValue && query.ToDate != DateTime.MinValue;
     }
 }
