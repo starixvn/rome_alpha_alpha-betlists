@@ -117,6 +117,7 @@
             container.Register<IPService, IPServiceImpl>(Lifestyle.Singleton);
 
             container.Register<WinLossByMatchService, WinLossByMatchServiceImpl>(Lifestyle.Singleton);
+            container.Register<ParlayWinLossByMatchService, ParlayWinLossByMatchServiceImpl>(Lifestyle.Singleton);
         }
     }
 }

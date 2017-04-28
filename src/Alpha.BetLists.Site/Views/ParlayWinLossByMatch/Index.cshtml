@@ -1,0 +1,28 @@
+﻿@using Alpha.BetLists.Site.ViewModels.ParlayWinLossByMatch
+
+@model ParlayWinLossByMatchViewModel
+
+@{
+    ViewBag.Title = "Parlay Win Loss By Match Bet List";
+}
+
+<div class="bl_title">
+    @Model.Title
+    <div class="bl-export-excel">
+        <a id="icon-excel" class="icon icon-excel" title="Excel"
+           href="@Url.Action("Excel", "ParlayWinLossByMatch",
+                new
+                {
+                    CustName = Model.CustName,
+                    CustId = Model.CustId,
+                    ProductIds = Model.ProductsId,
+                    FromDate = Model.FromDate,
+                    ToDate = Model.ToDate,
+                    BetType = Model.BetType,
+                    CustLevelId = Model.CustLevelId
+                })">
+        </a>
+    </div>
+</div>
+
+@Html.Partial("WinLossTable", Model)
