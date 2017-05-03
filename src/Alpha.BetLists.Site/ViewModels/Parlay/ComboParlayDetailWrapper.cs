@@ -29,7 +29,8 @@
             ComboParlayDetail = comboParlayDetail;
             MatchDetails = matchDetails;
             Odds = GetOdds();
-            Status = statusToResources[ComboParlayDetail.Status.ToLowerInvariant()];
+            string statusResource;
+            Status = statusToResources.TryGetValue(ComboParlayDetail.Status.ToLowerInvariant(), out statusResource) ? statusResource : string.Empty;
             Events = GetEvents(ticketHelper);
             WinLostDate = Formatter.ShortDateFormat(comboParlayDetail.WinLostDate);
             WinLost = ConvertByBetType.Winloss(comboParlayDetail.WinLost);

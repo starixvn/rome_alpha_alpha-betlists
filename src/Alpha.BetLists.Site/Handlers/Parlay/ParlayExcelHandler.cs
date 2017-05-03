@@ -4,6 +4,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using AppResources;
+    using BetLists.Models;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Utils;
@@ -48,7 +49,7 @@
                     DetailsSubTotalMapper(comboParlayDetailViewModel),
                     FooterMapper(comboParlayDetailViewModel, isTotalWinLost: false),
                     FooterMapper(comboParlayDetailViewModel, isTotalWinLost: true))
-                .UseTemplate(GetTemplateInfo())
+                .UseTemplate(GetTemplateInfo(message.ViewerLevel))
                 .Sheet(comboParlayDetailViewModel.Title)
                 .Title(comboParlayDetailViewModel.Title)
                 .Header(Resources.ResourceManager.GetString)
@@ -57,8 +58,8 @@
             return new ExcelFileViewModel(comboParlayDetailViewModel.Title, fileContent);
         }
 
-        private TemplateInfo GetTemplateInfo()
-           => new TemplateInfo(
+        protected internal override TemplateInfo GetTemplateInfo(UserLevel viewerLevel)
+            => new TemplateInfo(
                   GetExcelTemplatePath("ComboParlayDetail"),
                   noInfomationText: Resources.NoInformationIsAvailable,
                   bodyStartIndex: 3,

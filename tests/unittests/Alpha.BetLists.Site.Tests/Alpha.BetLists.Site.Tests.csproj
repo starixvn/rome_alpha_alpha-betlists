@@ -238,16 +238,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Collection\ParlayBetListCollection.cs" />
     <Compile Include="Collection\BetListCollection.cs" />
     <Compile Include="Constants\LanguageCode.cs" />
     <Compile Include="Controllers\ParlayWinLossByMatchControllerTests.cs" />
     <Compile Include="Controllers\WinLossByMatchControllerTests.cs" />
     <Compile Include="Fixtures\BetListFixture.cs" />
+    <Compile Include="Fixtures\ParlayServiceFixture.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Handler\BetListBaseHandlerTests.cs" />
     <Compile Include="Handler\ParlayWinLossByMatch\ParlayWinLossByMatchBaseHandlerTests.cs" />
     <Compile Include="Handler\ParlayWinLossByMatch\ParlayWinLossByMatchExcelHanlderTests.cs" />
     <Compile Include="Handler\ParlayWinLossByMatch\ParlayWinLossByMatchHanlderTests.cs" />
+    <Compile Include="Handler\Parlay\ComboParlayDetailWorkbookTests.cs" />
+    <Compile Include="Handler\Parlay\ParlayExcelHandlerTests.cs" />
+    <Compile Include="Handler\Parlay\ParlayHandlerTests.cs" />
     <Compile Include="Handler\WinLossByMatch\WinLossByMatchBaseHandlerTests.cs" />
     <Compile Include="Handler\WinLossByMatch\WinLossByMatchExcelHandlerTests.cs" />
     <Compile Include="Handler\WinLossByMatch\WinLossByMatchHandlerTests.cs" />
@@ -281,6 +286,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

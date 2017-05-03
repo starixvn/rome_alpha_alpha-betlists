@@ -158,7 +158,7 @@
     <Compile Include="Services\ReportDateServiceImplTests.cs" />
     <Compile Include="Services\WinLossByMatchServiceImplTests.cs" />
     <Compile Include="Services\WinLossServiceTests.cs" />
-    <Compile Include="TestData\BetListDataForTest.cs" />
+    <Compile Include="TestData\BetListDataTest.cs" />
     <Compile Include="Criteria\WinLossByMatch\GetWinLossOthersCriteriaTests.cs" />
   </ItemGroup>
   <ItemGroup>

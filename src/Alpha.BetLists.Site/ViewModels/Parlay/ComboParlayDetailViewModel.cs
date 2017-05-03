@@ -17,6 +17,7 @@
             ComboParlayDetailData comboParlayDetailData,
             ITicketHelper ticketHelper)
         {
+            Query = query;
             ComboParlayDetailWrappers = new List<ComboParlayDetailWrapper>(comboParlayDetailData.ComboParlayDetails
                     .Select(d => new ComboParlayDetailWrapper(d, comboParlayDetailData.MatchDetails, ticketHelper)));
             ComboParlayDetailWrapperGroups = ComboParlayDetailWrappers.GroupBy(w => w.WinLostDate);
@@ -25,8 +26,9 @@
             Title = Resources.lblSystemParlay;
             TotalWinLost = ConvertByBetType.Winloss(comboParlayDetailData.ComboParlayDetails.Sum(d => d.WinLost + d.PlayerComm));
             IsDataTooHuge = comboParlayDetailData.ComboParlayDetails.Count() > 5000;
-            HugeDataLabel = string.Format(Resources.CombinationResultTooHuge, BuildComboParlayDetailExcelUrl(query));
         }
+
+        public ComboParlayDetailQuery Query { get; }
 
         public IEnumerable<ComboParlayDetailWrapper> ComboParlayDetailWrappers { get; }
 
@@ -40,7 +42,7 @@
 
         public bool IsDataTooHuge { get; }
 
-        public string HugeDataLabel { get; }
+        public string HugeDataLabel => string.Format(Resources.CombinationResultTooHuge, BuildComboParlayDetailExcelUrl(Query));
 
         public string SubTotalWinLost(IEnumerable<ComboParlayDetailWrapper> group)
             => ConvertByBetType.Winloss(group.Sum(item => item.ComboParlayDetail.WinLost + item.ComboParlayDetail.PlayerComm));

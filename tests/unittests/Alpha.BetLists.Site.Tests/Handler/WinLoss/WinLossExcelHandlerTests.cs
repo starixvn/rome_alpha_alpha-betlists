@@ -15,6 +15,8 @@
     using Params;
     using Requests.WinLoss;
     using Services;
+    using ViewModels;
+    using ViewModels.WinLoss;
     using Xunit;
 
     [Trait("Category", "WinLossBetList")]
@@ -128,6 +130,61 @@
 
             // Assert
             workbook.Received().Title(Arg.Is(title.ToUpperInvariant()));
+        }
+
+        [Fact]
+        public void Handle_Workbook_Body()
+        {
+            // Act
+            winLossExcelHandler.Handle(query).GetAwaiter().GetResult();
+
+            // Assert
+            workbook.Received().Body(Arg.Is(BetListDataTest.Tickets), Arg.Any<Mapper<ITicket>>());
+        }
+
+        [Fact]
+        public void Handle_Workbook_Footer()
+        {
+            // Act
+            winLossExcelHandler.Handle(query).GetAwaiter().GetResult();
+
+            // Assert
+            workbook.Received().Footer(Arg.Any<Ticket>(), Arg.Any<Mapper<ITicket>>());
+        }
+
+        [Fact]
+        public void Handle_Workbook_Sheet()
+        {
+            // Act
+            winLossExcelHandler.Handle(query).GetAwaiter().GetResult();
+
+            // Assert
+            workbook.Received().Sheet(Arg.Is(Resources.BetList));
+        }
+
+        [Fact]
+        public void Handle_Workbook_CallExportToBytes()
+        {
+            // Act
+            winLossExcelHandler.Handle(query).GetAwaiter().GetResult();
+
+            // Assert
+            workbook.Received().ExportToBytes();
+        }
+
+        [Fact]
+        public void Handle_Always_ReturnExcelViewModel()
+        {
+            // Arrange
+            var winLossViewModel = new WinLossViewModel(query, BetListDataTest.BetListData, null, betlistFixture.TicketHelper);
+            workbook.ExportToBytes().Returns(BetListDataTest.ExcelFileContent);
+            var expectedViewModel = new ExcelFileViewModel(winLossViewModel.Title, BetListDataTest.ExcelFileContent);
+
+            // Act
+            var actualViewModel = winLossExcelHandler.Handle(query).GetAwaiter().GetResult();
+
+            // Assert
+            Assert.True(compareLogic.Compare(actualViewModel, expectedViewModel).AreEqual);
         }
     }
 }

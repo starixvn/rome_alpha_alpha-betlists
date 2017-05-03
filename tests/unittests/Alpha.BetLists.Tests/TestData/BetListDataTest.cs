@@ -57,5 +57,7 @@
         public static readonly IRichTextString StakeRtf = new HSSFRichTextString("Stake");
 
         public static readonly IRichTextString StatusRtf = new HSSFRichTextString("Status");
+
+        public static readonly byte[] ExcelFileContent = fixture.CreateMany<byte>().ToArray();
     }
 }

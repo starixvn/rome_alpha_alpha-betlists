@@ -3,6 +3,8 @@
     using BetLists.Models;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
+    using Fanex.BetList.Core.Utils;
+    using NPOI.HSSF.UserModel;
     using NSubstitute;
     using SmartPunter.Services;
     using Utilities.IP;
@@ -16,6 +18,7 @@
             TicketHelper = Substitute.For<ITicketHelper>();
             MoniterService = Substitute.For<ISmartPunterBetListMonitor>();
             IpService = Substitute.For<IPService>();
+            ExcelBuilder.RTFHelper.Returns(CreateRtfHelper());
             RtfHelper = ExcelBuilder.RTFHelper;
 
             User = Substitute.For<IUser>();
@@ -38,5 +41,21 @@
         public IPService IpService { get; }
 
         public IUser User { get; }
+
+        private RTFHelper CreateRtfHelper()
+        {
+            var workbook = new HSSFWorkbook();
+
+            return new RTFHelper()
+            {
+                NegFont = workbook.CreateFont(),
+                NormalFont = workbook.CreateFont(),
+                PosFont = workbook.CreateFont(),
+                NegFontCrossed = workbook.CreateFont(),
+                NormalFontCrossed = workbook.CreateFont(),
+                PosFontCrossed = workbook.CreateFont(),
+                RTFRenderer = new RtfTextRender()
+            };
+        }
     }
 }
