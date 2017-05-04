@@ -8,7 +8,7 @@
     using AppResources;
     using BetLists.Models;
     using BetLists.Tests.TestData;
-    using Builder.ExcelBuilders;
+    using Builders.ExcelBuilders;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.TicketHelper;
     using Fixtures;
@@ -17,8 +17,8 @@
     using NSubstitute;
     using ONEbook.SpreadSheets;
     using Requests.WinLoss;
-    using ViewModels.Blocks;
-    using ViewModels.WinLoss;
+    using Site.ViewModels.Blocks;
+    using Site.ViewModels.WinLoss;
     using Xunit;
     using static ONEbook.SpreadSheets.Column;
 

@@ -14,8 +14,8 @@
     using NSubstitute;
     using ONEbook.SpreadSheets;
     using Requests.Parlay;
-    using ViewModels;
-    using ViewModels.Parlay;
+    using Site.ViewModels;
+    using Site.ViewModels.Parlay;
     using Xunit;
     using static ONEbook.SpreadSheets.Column;
 

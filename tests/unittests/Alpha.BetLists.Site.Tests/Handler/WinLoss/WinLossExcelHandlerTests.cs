@@ -15,8 +15,8 @@
     using Params;
     using Requests.WinLoss;
     using Services;
-    using ViewModels;
-    using ViewModels.WinLoss;
+    using Site.ViewModels;
+    using Site.ViewModels.WinLoss;
     using Xunit;
 
     [Trait("Category", "WinLossBetList")]

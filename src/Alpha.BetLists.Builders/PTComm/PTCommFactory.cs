@@ -1,14 +1,14 @@
-﻿namespace Alpha.BetLists.Builders.Models
+﻿namespace Alpha.BetLists.Builders.PTComm
 {
     using System.Collections.Generic;
-    using BetLists.Models;
     using Fanex.BetList.Core.Entities;
+    using Models;
 
     public static class PTCommFactory
     {
         public static PTComm CreateInstance(ITicket ticket, List<ITicketData> ticketData, UserLevel userLevel)
         {
-            if (ticket.BetTypeId == (33 | 1233))
+            if (ticket.BetTypeId == 33 || ticket.BetTypeId == 1233)
             {
                 return new PTComm33(ticket, ticketData, userLevel).InitPTCommData();
             }
@@ -23,7 +23,7 @@
                 return new PTComm501(ticket, userLevel).InitPTCommData();
             }
 
-            if (ticket.BetTypeId == (71 | 73))
+            if (ticket.BetTypeId == 71 || ticket.BetTypeId == 73)
             {
                 return new PTComm71(ticket, userLevel).InitPTCommData();
             }

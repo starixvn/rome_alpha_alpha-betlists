@@ -1,14 +1,14 @@
 namespace Alpha.BetLists.Builders.HtmlBuilders
 {
     using System.Collections.Generic;
-    using BetLists.Models;
     using Fanex.BetList.Core.Entities;
     using Models;
+    using PTComm;
     using Templates;
 
     public static class BetListHtmlBuilderExt
     {
-        public static string BuildPTCom(ITicket ticket, List<ITicketData> ticketData, UserLevel userLevel)
+        public static PTComm_Template BuildPTComm(ITicket ticket, List<ITicketData> ticketData, UserLevel userLevel)
         {
             var template = new PTComm_Template();
             var positionTakingComm = PTCommFactory.CreateInstance(ticket, ticketData, userLevel);
@@ -23,7 +23,7 @@ namespace Alpha.BetLists.Builders.HtmlBuilders
 
         private static void RenderPTPercent(PTComm_Template template, ITicket ticket, PTComm positionTakingComm)
         {
-            if (ticket.BetTypeId == (33 | 1233))
+            if (ticket.BetTypeId == 33 || ticket.BetTypeId == 1233)
             {
                 RenderRacingPTValue(template, positionTakingComm);
                 return;
@@ -77,10 +77,11 @@ namespace Alpha.BetLists.Builders.HtmlBuilders
 
         private static void RenderRacingPTValue(PTComm_Template template, PTComm positionTakingComm)
         {
+            var positionTakingComm33 = positionTakingComm as PTComm33;
             var racingTemplate = new PTRacing_Template();
-            racingTemplate.PT_Win = positionTakingComm.PositionTakingWin;
-            racingTemplate.PT_Place = positionTakingComm.PositionTakingPlace;
-            template.Comm.Comm_Percent = racingTemplate;
+            racingTemplate.PT_Win = positionTakingComm33.PositionTakingWin;
+            racingTemplate.PT_Place = positionTakingComm33.PositionTakingPlace;
+            template.PT.PT_Percent = racingTemplate;
         }
     }
 }

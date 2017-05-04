@@ -7,7 +7,7 @@
     using KellermanSoftware.CompareNetObjects;
     using NSubstitute;
     using Requests.Parlay;
-    using ViewModels.Parlay;
+    using Site.ViewModels.Parlay;
     using Xunit;
 
     [Trait("Category", "BaseBetList")]

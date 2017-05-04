@@ -7,7 +7,7 @@
     using System.Web.Hosting;
     using AppResources;
     using BetLists.Models;
-    using Builder.ExcelBuilders;
+    using Builders.ExcelBuilders;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.TicketHelper;

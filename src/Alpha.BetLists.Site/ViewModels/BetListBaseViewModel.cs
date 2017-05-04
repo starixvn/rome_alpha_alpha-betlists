@@ -65,7 +65,7 @@
         public ITicketHelper TicketHelper { get; protected set; }
 
         // TODO: will implement here
-        public bool CanViewScoreMap { get; }
+        public bool CanViewScoreMap { get; } = false;
 
         public bool DisplayVNIP { get; }
 
@@ -85,7 +85,7 @@
 
         public UserLevel ViewerLevel { get; protected set; }
 
-        public string Title { get; set; }
+        public string Title { get; protected set; }
 
         public int TotalColumn { get; protected set; }
 

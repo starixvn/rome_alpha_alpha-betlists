@@ -4,24 +4,7 @@
 
 @helper Render(ITicket ticket, List<ITicketData> ticketData, UserLevel custLevel)
 {
-
-if (custLevel.IsAgentLevel())
-{
-        <td class="position-taking-block text-right">
-            @(new HtmlString(BetListHtmlBuilderExt.BuildPTCom(ticket, ticketData, UserLevel.Agent)))
-        </td>
-}
-else if (custLevel.IsMasterLevel())
-{
-        <td class="position-taking-block text-right">
-            @(new HtmlString(BetListHtmlBuilderExt.BuildPTCom(ticket, ticketData, UserLevel.Master)))
-        </td>
-}
-else if (custLevel.IsSuperLevel())
-{
-        <td class="position-taking-block text-right">
-            @(new HtmlString(BetListHtmlBuilderExt.BuildPTCom(ticket, ticketData, UserLevel.Super)))
-        </td>
-}
-
+    <td class="position-taking-block text-right">
+        @(new HtmlString(BetListHtmlBuilderExt.BuildPTComm(ticket, ticketData, custLevel)))
+    </td>
 }

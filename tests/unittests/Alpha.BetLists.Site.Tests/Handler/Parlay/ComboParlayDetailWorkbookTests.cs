@@ -11,7 +11,7 @@
     using NSubstitute;
     using ONEbook.SpreadSheets;
     using Requests.Parlay;
-    using ViewModels.Parlay;
+    using Site.ViewModels.Parlay;
     using Xunit;
 
     [Trait("Category", "BaseBetList")]

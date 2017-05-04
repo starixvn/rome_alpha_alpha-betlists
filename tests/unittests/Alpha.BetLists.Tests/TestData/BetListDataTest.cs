@@ -14,8 +14,6 @@
     {
         private static IFixture fixture = new Fixture();
 
-        public static readonly ITicket Ticket = fixture.Create<Ticket>();
-
         public static readonly IEnumerable<Ticket> Tickets = fixture.CreateMany<Ticket>();
 
         public static readonly IEnumerable<Ticket> OldTickets = fixture.CreateMany<Ticket>();
@@ -59,5 +57,7 @@
         public static readonly IRichTextString StatusRtf = new HSSFRichTextString("Status");
 
         public static readonly byte[] ExcelFileContent = fixture.CreateMany<byte>().ToArray();
+
+        public static ITicket Ticket => fixture.Create<Ticket>();
     }
 }

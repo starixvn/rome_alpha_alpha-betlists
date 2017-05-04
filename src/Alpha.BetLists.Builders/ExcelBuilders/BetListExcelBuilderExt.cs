@@ -1,12 +1,12 @@
-namespace Alpha.BetLists.Builder.ExcelBuilders
+namespace Alpha.BetLists.Builders.ExcelBuilders
 {
     using System.Collections.Generic;
     using AppResources;
-    using Builders.Models;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Utils;
     using Models;
     using NPOI.SS.UserModel;
+    using PTComm;
 
     public static class BetListExcelBuilderExt
     {
@@ -112,11 +112,12 @@ namespace Alpha.BetLists.Builder.ExcelBuilders
 
         private static void RenderRacingPTValue(RTFNumber rtfNumber, RTFHelper rtfHelper, PTComm positionTakingComm)
         {
+            var positionTakingComm33 = positionTakingComm as PTComm33;
             rtfHelper.RTFRenderer.AddText($"{Resources.Win}: ", rtfHelper.PosFont);
-            rtfNumber.Render(positionTakingComm.PositionTakingWin);
+            rtfNumber.Render(positionTakingComm33.PositionTakingWin);
 
             rtfHelper.RTFRenderer.AddText($"\n{Resources.place}: ", rtfHelper.PosFont);
-            rtfNumber.Render(positionTakingComm.PositionTakingWin + "\n");
+            rtfNumber.Render(positionTakingComm33.PositionTakingPlace + "\n");
         }
     }
 }

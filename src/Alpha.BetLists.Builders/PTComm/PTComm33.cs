@@ -1,4 +1,4 @@
-﻿namespace Alpha.BetLists.Builders.Models
+﻿namespace Alpha.BetLists.Builders.PTComm
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -18,6 +18,10 @@
 
         protected List<ITicketData> TicketData { get; }
 
+        public string PositionTakingWin { get; }
+
+        public string PositionTakingPlace { get; }
+
         public int WinBetId => !IsVirtualRacing ? 31 : 1231;
 
         public int PlaceBetId => !IsVirtualRacing ? 32 : 1232;
@@ -31,19 +35,22 @@
                 TicketData.FindAll(item => item.RefNo.Equals(Ticket.RefNo));
             var refTicketDataItem = refTicketData.LastOrDefault(item => item.BetTypeId == (isWin ? WinBetId : PlaceBetId));
 
-            decimal positionTaking;
+            decimal positionTaking = 0;
 
-            if (userLevel.IsSuperLevel())
+            if (refTicketDataItem != null)
             {
-                positionTaking = refTicketDataItem.SuperPT;
-            }
-            else if (userLevel.IsMasterLevel())
-            {
-                positionTaking = refTicketDataItem.MasterPT;
-            }
-            else
-            {
-                positionTaking = refTicketDataItem.AgentPT;
+                if (userLevel.IsSuperLevel())
+                {
+                    positionTaking = refTicketDataItem.SuperPT;
+                }
+                else if (userLevel.IsMasterLevel())
+                {
+                    positionTaking = refTicketDataItem.MasterPT;
+                }
+                else
+                {
+                    positionTaking = refTicketDataItem.AgentPT;
+                }
             }
 
             return Formatter.FormatNumber2(positionTaking, null);

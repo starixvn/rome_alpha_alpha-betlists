@@ -1,4 +1,4 @@
-﻿namespace Alpha.BetLists.Builders.Models
+﻿namespace Alpha.BetLists.Builders.PTComm
 {
     using System.Collections.Generic;
     using BetLists.Models;

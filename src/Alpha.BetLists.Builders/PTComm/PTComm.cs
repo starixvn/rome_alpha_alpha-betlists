@@ -1,4 +1,4 @@
-﻿namespace Alpha.BetLists.Builders.Models
+﻿namespace Alpha.BetLists.Builders.PTComm
 {
     using System.Collections.Generic;
     using BetLists.Models;
@@ -12,10 +12,6 @@
             Ticket = ticket ?? new Ticket();
             UserLevel = userLevel;
         }
-
-        public string PositionTakingWin { get; protected set; }
-
-        public string PositionTakingPlace { get; protected set; }
 
         public virtual bool VisiblePositionTaking => !BetStatusIsRunningOrWaiting();
 
