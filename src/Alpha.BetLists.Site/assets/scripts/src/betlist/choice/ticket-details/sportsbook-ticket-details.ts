@@ -13,10 +13,10 @@
                 + "&TransId=" + transId
                 + "&CustId=" + custId
                 + "&EventId=" + eventId
-                + "&RoleId=" + this.ViewerLevelId
-                + "&AccId=" + this.ViewerId;
+                + "&RoleId=" + this.ViewerLevelId()
+                + "&AccId=" + this.ViewerId();
 
-            Common.PopupDetails.Instance.Show(Common.AppPath.OldMainAppPath + 'ColossusBets/BetDetails?' + params);
+            Common.PopupDetails.Instance.Show(Common.AppPath.OldMainAppPath() + 'ColossusBets/BetDetails?' + params);
         }
     }
 
@@ -28,12 +28,6 @@
             return this.instance;
         }
 
-        public ShowMixParlayTickets = (transId: string) => {
-            const params = '?transId=' + transId;
-            const url = Common.AppPath.BetListAppPath + 'Parlay/MixParlay';
-            this.showComboMixParlayTickets(transId, '', url);
-        }
-
         public ShowComboParlayDetails = (refNo: string, winlostDate: Date, transId: string, betId: string, custId: string) => {
             const params = '?refno=' + refNo
                 + '&winlostdate=' + winlostDate
@@ -41,13 +35,19 @@
                 + '&betid=' + betId
                 + '&custid=' + custId;
 
-            Common.PopupDetails.Instance.Show(Common.AppPath.BetListAppPath + 'Parlay/ComboParlayDetail' + params);
+            Common.PopupDetails.Instance.Show(Common.AppPath.BetListAppPath() + 'Parlay/ComboParlayDetail' + params);
+        }
+
+        public ShowMixParlayTickets = (transId: string) => {
+            const params = '?transid=' + transId;
+            const url = Common.AppPath.BetListAppPath() + 'Parlay/MixParlay' + params;;
+            this.showComboMixParlayTickets(transId, '', url);
         }
 
         public ShowComboParlayOldTickets = (transId: string, transIndex: string) => {
             const params = '?transid=' + transId;
-            const url = Common.AppPath.BetListAppPath + 'Parlay/ComboParlay' + params;
-            this.showComboMixParlayTickets(transId, transIndex, params);
+            const url = Common.AppPath.BetListAppPath() + 'Parlay/ComboParlay' + params;
+            this.showComboMixParlayTickets(transId, transIndex, url);
         }
 
         public ShowComboParlayNewTickets = (
@@ -64,7 +64,7 @@
                 + '&betcheck=' + betCheck
                 + '&betteam=' + betTeam;
 
-            const url = Common.AppPath.BetListAppPath + 'Parlay/ComboParlay' + params;
+            const url = Common.AppPath.BetListAppPath() + 'Parlay/ComboParlay' + params;
             this.showComboMixParlayTickets(transId, transIndex, url);
         }
 
@@ -77,12 +77,11 @@
                     method: 'GET',
                     url: url,
                     beforeSend: () => {
-                        const blockIconContent = '<span class="block-icon-small "></span>';
+                        const blockIconContent = '<span class="block-icon-small"></span>';
                         ticketsContent.html(blockIconContent);
                         ticketsContent.show();
                     },
                     success: (responseHtml) => {
-                        debugger;
                         ticketsContent.html(responseHtml);
                         comboOfferName.hide();
                     },

@@ -41,12 +41,12 @@ namespace Alpha.BetLists.Builders.ExcelBuilders
 
             if (!string.IsNullOrEmpty(winLoss))
             {
-                rtfNumber.Render(winLoss);
+                rtfNumber.Render(winLoss + "\n");
             }
 
             if (!string.IsNullOrEmpty(commission))
             {
-                rtfNumber.Render("\n" + commission);
+                rtfNumber.Render(commission);
             }
 
             var winLossRtfText = rtfHelper.RTFRenderer.Render();
@@ -74,7 +74,7 @@ namespace Alpha.BetLists.Builders.ExcelBuilders
 
         private static void RenderPTPercent(RTFNumber rtfNumber, RTFHelper rtfHelper, ITicket ticket, PTComm positionTakingComm)
         {
-            if (ticket.BetTypeId == (33 | 1233))
+            if (ticket.BetTypeId == 33 || ticket.BetTypeId == 1233)
             {
                 RenderRacingPTValue(rtfNumber, rtfHelper, positionTakingComm);
                 return;

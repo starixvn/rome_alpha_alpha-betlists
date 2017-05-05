@@ -345,6 +345,18 @@
     <Content Include="assets\bundles\default.min.js">
       <DependentUpon>default.js</DependentUpon>
     </Content>
+    <Content Include="assets\scripts\tests\app\templates\common-template.html" />
+    <Content Include="assets\scripts\tests\app\templates\parlay-template.html" />
+    <Content Include="assets\scripts\tests\libs\bootstrap-datetimepicker.js" />
+    <Content Include="assets\scripts\tests\libs\bootstrap-modal.js" />
+    <Content Include="assets\scripts\tests\libs\datepicker.js" />
+    <Content Include="assets\scripts\tests\libs\jasmine-jquery.js" />
+    <Content Include="assets\scripts\tests\libs\jasmine.js" />
+    <Content Include="assets\scripts\tests\libs\jquery-blockui.js" />
+    <Content Include="assets\scripts\tests\libs\jquery.js" />
+    <Content Include="assets\scripts\tests\libs\moment.js" />
+    <Content Include="assets\scripts\tests\libs\store.js" />
+    <Content Include="assets\scripts\tests\libs\tooltip.js" />
     <Content Include="assets\styles\bet-list.css">
       <DependentUpon>bet-list.scss</DependentUpon>
     </Content>
@@ -397,6 +409,10 @@
     <Content Include="App_Data\ExcelTemplates\WinLossByMatch\Agent.xls" />
     <Content Include="App_Data\ExcelTemplates\WinLossByMatch\Master.xls" />
     <Content Include="App_Data\ExcelTemplates\WinLossByMatch\Super.xls" />
+    <Content Include="assets\scripts\tests\chutzpah.json" />
+    <Content Include="assets\scripts\typings.json" />
+    <Content Include="assets\scripts\typings\globals\jasmine\typings.json" />
+    <Content Include="assets\scripts\typings\globals\jasmine-jquery\typings.json" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -573,7 +589,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="assets\scripts\tests\" />
+    <Folder Include="assets\scripts\tests\app\common\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Alpha.BetLists.Builders\Alpha.BetLists.Builders.csproj">
@@ -599,12 +615,21 @@
     <TypeScriptCompile Include="assets\scripts\src\betlist\status\result-details\base-result-details.ts" />
     <TypeScriptCompile Include="assets\scripts\src\betlist\status\result-details\casino-result-details.ts" />
     <TypeScriptCompile Include="assets\scripts\src\betlist\status\result-details\sportsbook-result-details.ts" />
+    <TypeScriptCompile Include="assets\scripts\tests\app\choice\ticket-details\score-map-tests.ts" />
+    <TypeScriptCompile Include="assets\scripts\tests\app\choice\ticket-details\base-ticket-details-tests.ts" />
+    <TypeScriptCompile Include="assets\scripts\tests\app\choice\ticket-details\other-ticket-details-tests.ts" />
+    <TypeScriptCompile Include="assets\scripts\tests\app\choice\ticket-details\sportsbook-ticket-details-tests.ts" />
+    <TypeScriptCompile Include="assets\scripts\tests\app\choice\ticket-details\casino-ticket-details-tests.ts" />
+    <TypeScriptCompile Include="assets\scripts\tests\app\status\base-result-details-tests.ts" />
     <TypeScriptCompile Include="assets\scripts\typings\globals\bootstrap\index.d.ts" />
+    <TypeScriptCompile Include="assets\scripts\typings\globals\jasmine-jquery\index.d.ts" />
+    <TypeScriptCompile Include="assets\scripts\typings\globals\jasmine\index.d.ts" />
     <TypeScriptCompile Include="assets\scripts\typings\globals\jquery\index.d.ts" />
     <TypeScriptCompile Include="assets\scripts\typings\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

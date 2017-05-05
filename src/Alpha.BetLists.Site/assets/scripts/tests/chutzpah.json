@@ -1,0 +1,45 @@
+﻿{
+  "Framework": "jasmine",
+  "EnableCodeCoverage": "true",
+  "Compile": {
+    "Mode": "External",
+    "Extensions": [ ".ts" ]
+  },
+  "CodeCoverageExcludes": [
+    "*\\libs\\*"
+  ],
+  "CodeCoverageIgnores": [
+    "*\\tests\\*"
+  ],
+  "TestHarnessLocationMode": "SettingsFileAdjacent",
+  "References": [
+    { "Path": "libs/jquery.js" },
+    { "Path": "libs/jasmine.js" },
+    { "Path": "libs/jasmine-jquery.js" },
+    { "Path": "libs/bootstrap-modal.js" },
+    { "Path": "../src/common/app-path.ts" },
+    { "Path": "../src/common/popup-details.ts" },
+    { "Path": "../src/common/utils.ts" },
+    { "Path": "app/templates/common-template.ts" },
+    { "Path": "app/templates/template.html" },
+    { "Path": "../src/betlist/choice/ticket-details/base-ticket-details.ts" },
+    { "Path": "../src/betlist/choice/ticket-details/casino-ticket-details.ts" },
+    { "Path": "../src/betlist/choice/ticket-details/sportsbook-ticket-details.ts" },
+    { "Path": "../src/betlist/choice/ticket-details/other-ticket-details.ts" },
+    { "Path": "../src/betlist/choice/score-map.ts" },
+
+    { "Path": "../src/betlist/status/result-details/base-result-details.ts" },
+    { "Path": "../src/betlist/status/result-details/casino-result-details.ts" }
+
+  ],
+  "Tests": [
+    {
+      "Path": "app/choice",
+      "Excludes": [ "**.js.map" ]
+    },
+    {
+      "Path": "app/status",
+      "Excludes": [ "**.js.map" ]
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "resolution": "main",
+  "tree": {
+    "src": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/9b6db1a1561a26ba5644587e1dad420645d112f1/jasmine-jquery/index.d.ts",
+    "raw": "registry:dt/jasmine-jquery#1.5.8+20170315092920",
+    "typings": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/9b6db1a1561a26ba5644587e1dad420645d112f1/jasmine-jquery/index.d.ts"
+  }
+}

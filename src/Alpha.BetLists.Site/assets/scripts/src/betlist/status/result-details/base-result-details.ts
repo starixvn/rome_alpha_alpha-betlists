@@ -33,7 +33,7 @@
     }
 
     export class BaseResultDetails {
-        protected readonly ResultDetailsPath: string = Common.AppPath.ResultsAppPath + "Normal/ResultDetails";
+        protected readonly ResultDetailsPath: string = Common.AppPath.ResultsAppPath() + "Normal/ResultDetails";
         protected readonly ProductIds: string = $('#product-ids').val();
         protected readonly BetListType: string = $('#betlist-type').val();
         protected readonly FromDate: string = $('#from-date').val();

@@ -36,7 +36,7 @@
                 + '&betid=' + betId
                 + '&isViewResultFromBetList=true';
 
-            Common.PopupDetails.Instance.Show(this.ResultDetailsPath + params)
+            Common.PopupDetails.Instance.Show(this.ResultDetailsPath + params);
         };
     }
 

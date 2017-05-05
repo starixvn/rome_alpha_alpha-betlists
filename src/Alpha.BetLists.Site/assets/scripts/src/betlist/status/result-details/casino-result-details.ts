@@ -22,7 +22,7 @@
                 + '&tdate=' + this.ToDate
                 + '&isHistoryReport=' + this.IsHistoricReport ? 1 : 0;
 
-            window.location.href = Common.AppPath.OldMainAppPath + 'RnGCasino/HandHistory' + params;
+            window.location.href = Common.AppPath.OldMainAppPath() + 'RnGCasino/HandHistory' + params;
         }
     }
 
@@ -46,7 +46,7 @@
                 + '&fdate=' + this.FromDate
                 + '&tdate-' + this.ToDate;
 
-            window.location.href = Common.AppPath.OldMainAppPath + '_BetList/P2P/TableSession.aspx' + params;
+            window.location.href = Common.AppPath.OldMainAppPath() + '_BetList/P2P/TableSession.aspx' + params;
         }
     }
 }

@@ -10,7 +10,7 @@
         public ShowNG2BetDetails = (transId: string, refNo: string, custId: string) => {
             const params = "?refNo=" + refNo;
 
-            Common.PopupDetails.Instance.Show(Common.AppPath.ResultsAppPath + 'ng2/ParlayDetail' + params);
+            Common.PopupDetails.Instance.Show(Common.AppPath.ResultsAppPath() + 'ng2/ParlayDetail' + params);
         }
     }
 }
