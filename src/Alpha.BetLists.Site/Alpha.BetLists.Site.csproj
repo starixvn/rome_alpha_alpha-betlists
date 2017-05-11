@@ -532,6 +532,7 @@
     <Compile Include="App_Start\DependencyConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BetListBaseController.cs" />
+    <Compile Include="Controllers\OutstandingController.cs" />
     <Compile Include="Controllers\ParlayController.cs" />
     <Compile Include="Controllers\ParlayWinLossByMatchController.cs" />
     <Compile Include="Controllers\WinLossByMatchController.cs" />
@@ -541,6 +542,7 @@
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Handlers\BetListBaseHandler.cs" />
+    <Compile Include="Handlers\Outstanding\OutstandingHandler.cs" />
     <Compile Include="Handlers\ParlayWinLossByMatch\ParlayWinLossByMatchBaseHandler.cs" />
     <Compile Include="Handlers\ParlayWinLossByMatch\ParlayWinLossByMatchExcelHanlder.cs" />
     <Compile Include="Handlers\ParlayWinLossByMatch\ParlayWinLossByMatchHandler.cs" />
@@ -559,6 +561,7 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\BaseQuery.cs" />
+    <Compile Include="Requests\Outstanding\OutstandingQuery.cs" />
     <Compile Include="Requests\ParlayWinLossByMatch\ParlayWinLossByMatchExcelQuery.cs" />
     <Compile Include="Requests\ParlayWinLossByMatch\ParlayWinLossByMatchQuery.cs" />
     <Compile Include="Requests\Parlay\ComboParlayDetailExcelQuery.cs" />
@@ -573,6 +576,7 @@
     <Compile Include="ViewModels\Blocks\Footer.cs" />
     <Compile Include="ViewModels\Blocks\WinLostBlockViewModel.cs" />
     <Compile Include="ViewModels\ExcelFileViewModel.cs" />
+    <Compile Include="ViewModels\Outstanding\OutstandingViewModel.cs" />
     <Compile Include="ViewModels\ParlayWinLossByMatch\ParlayWinLossByMatchViewModel.cs" />
     <Compile Include="ViewModels\Parlay\ComboParlayDetailWrapper.cs" />
     <Compile Include="ViewModels\Parlay\ComboParlayDetailViewModel.cs" />

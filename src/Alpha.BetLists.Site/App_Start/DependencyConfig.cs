@@ -118,6 +118,7 @@
 
             container.Register<WinLossByMatchService, WinLossByMatchServiceImpl>(Lifestyle.Singleton);
             container.Register<ParlayWinLossByMatchService, ParlayWinLossByMatchServiceImpl>(Lifestyle.Singleton);
+            container.Register<OutstandingService, OutstandingServiceImpl>(Lifestyle.Singleton);
         }
     }
 }
