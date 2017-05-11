@@ -346,7 +346,9 @@
       <DependentUpon>default.js</DependentUpon>
     </Content>
     <Content Include="assets\scripts\tests\app\templates\common-template.html" />
+    <Content Include="assets\scripts\tests\app\templates\iframe-template.html" />
     <Content Include="assets\scripts\tests\app\templates\parlay-template.html" />
+    <Content Include="assets\scripts\tests\app\templates\popup-template.html" />
     <Content Include="assets\scripts\tests\libs\bootstrap-datetimepicker.js" />
     <Content Include="assets\scripts\tests\libs\bootstrap-modal.js" />
     <Content Include="assets\scripts\tests\libs\datepicker.js" />
@@ -588,9 +590,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="assets\scripts\tests\app\common\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Alpha.BetLists.Builders\Alpha.BetLists.Builders.csproj">
       <Project>{c4d18432-0c45-40e3-b851-30ddf6e809ea}</Project>
@@ -620,7 +620,13 @@
     <TypeScriptCompile Include="assets\scripts\tests\app\choice\ticket-details\other-ticket-details-tests.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\choice\ticket-details\sportsbook-ticket-details-tests.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\choice\ticket-details\casino-ticket-details-tests.ts" />
+    <TypeScriptCompile Include="assets\scripts\tests\app\common\popup-details-tests.ts" />
+    <TypeScriptCompile Include="assets\scripts\tests\app\status\ip-details-tests.ts" />
+    <TypeScriptCompile Include="assets\scripts\tests\app\status\other-result-details-tests.ts" />
+    <TypeScriptCompile Include="assets\scripts\tests\app\status\sportsbook-result-details-tests.ts" />
+    <TypeScriptCompile Include="assets\scripts\tests\app\status\casino-result-details-tests.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\status\base-result-details-tests.ts" />
+    <TypeScriptCompile Include="assets\scripts\tests\app\templates\popup-template.ts" />
     <TypeScriptCompile Include="assets\scripts\typings\globals\bootstrap\index.d.ts" />
     <TypeScriptCompile Include="assets\scripts\typings\globals\jasmine-jquery\index.d.ts" />
     <TypeScriptCompile Include="assets\scripts\typings\globals\jasmine\index.d.ts" />

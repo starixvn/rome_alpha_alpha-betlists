@@ -20,8 +20,6 @@
     { "Path": "../src/common/app-path.ts" },
     { "Path": "../src/common/popup-details.ts" },
     { "Path": "../src/common/utils.ts" },
-    { "Path": "app/templates/common-template.ts" },
-    { "Path": "app/templates/template.html" },
     { "Path": "../src/betlist/choice/ticket-details/base-ticket-details.ts" },
     { "Path": "../src/betlist/choice/ticket-details/casino-ticket-details.ts" },
     { "Path": "../src/betlist/choice/ticket-details/sportsbook-ticket-details.ts" },
@@ -29,8 +27,10 @@
     { "Path": "../src/betlist/choice/score-map.ts" },
 
     { "Path": "../src/betlist/status/result-details/base-result-details.ts" },
-    { "Path": "../src/betlist/status/result-details/casino-result-details.ts" }
-
+    { "Path": "../src/betlist/status/result-details/sportsbook-result-details.ts" },
+    { "Path": "../src/betlist/status/result-details/casino-result-details.ts" },
+    { "Path": "../src/betlist/status/result-details/other-result-details.ts" },
+    { "Path": "../src/betlist/status/ip-details.ts" }
   ],
   "Tests": [
     {
@@ -39,6 +39,11 @@
     },
     {
       "Path": "app/status",
+      "Excludes": [ "**.js.map" ]
+    },
+
+    {
+      "Path": "app/common",
       "Excludes": [ "**.js.map" ]
     }
   ]

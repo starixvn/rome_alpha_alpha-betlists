@@ -12,7 +12,7 @@
             league?: number,
             isOutright?: boolean,
             betId?: number) => {
-            var params = '?gambleId=' + matchId;
+            const params = '?gambleId=' + matchId;
 
             Common.PopupDetails.Instance.Show(Common.AppPath.ResultsAppPath() + 'ng2/TicketDetail' + params);
         }

@@ -32,7 +32,7 @@
                     this.DetailsTitle.html();
                 this.DetailsTitle.html(detailTitle);
                 this.DetailsFrame.show();
-            })
+            });
         }
     }
 }

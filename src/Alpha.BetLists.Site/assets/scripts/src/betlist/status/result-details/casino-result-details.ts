@@ -12,7 +12,7 @@
             league?: number,
             isOutright?: boolean,
             betId?: number) => {
-            var params = '?typegame=casinogame&ibcrefno=' + refNo
+            const params = '?typegame=casinogame&ibcrefno=' + refNo
                 + '&bettype=Casino'
                 + '&uname=' + userName
                 + '&type=' + this.BetListType
@@ -20,9 +20,9 @@
                 + '&productIds=' + this.ProductIds
                 + '&fdate=' + this.FromDate
                 + '&tdate=' + this.ToDate
-                + '&isHistoryReport=' + this.IsHistoricReport ? 1 : 0;
+                + '&isHistoryReport=' + (this.IsHistoricReport ? 1 : 0);
 
-            window.location.href = Common.AppPath.OldMainAppPath() + 'RnGCasino/HandHistory' + params;
+            window.location.replace(Common.AppPath.OldMainAppPath() + 'RnGCasino/HandHistory' + params);
         }
     }
 
@@ -39,14 +39,14 @@
             league?: number,
             isOutright?: boolean,
             betId?: number) => {
-            var params = '?typegame=p2pgame&ibcrefno=' + refNo
+            const params = '?typegame=p2pgame&ibcrefno=' + refNo
                 + '&bettype=' + betTypeId
                 + '&uname=' + userName
                 + '&custid=' + this.CustId
                 + '&fdate=' + this.FromDate
                 + '&tdate-' + this.ToDate;
 
-            window.location.href = Common.AppPath.OldMainAppPath() + '_BetList/P2P/TableSession.aspx' + params;
+            window.location.replace(Common.AppPath.OldMainAppPath() + '_BetList/P2P/TableSession.aspx' + params);
         }
     }
 }

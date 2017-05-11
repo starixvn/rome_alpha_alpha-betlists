@@ -1,14 +1,79 @@
 ﻿describe("Status_ResultDetails_", () => {
     describe("Factory_", () => {
-        it("CreateInstance_ByBetType -> Return Expected Instance", () => {
+        [71, 72].forEach((betType: number) => {
+            it("CreateInstance_ByBetType -> Return CasinoResultDetails Instance", () => {
+                // Act
+                let actualInstance = BetList.Status.ResultDetails.ResultDetailsFactory.CreateInstance(betType);
+
+                // Assert
+                expect(actualInstance).toEqual(jasmine.any(BetList.Status.ResultDetails.CasinoResultDetails));
+            });
+        });
+
+        [1000, 1001, 1002].forEach((betType: number) => {
+            it("CreateInstance_ByBetType -> Return P2PResultDetails Instance", () => {
+                // Act
+                let actualInstance = BetList.Status.ResultDetails.ResultDetailsFactory.CreateInstance(betType);
+
+                // Assert
+                expect(actualInstance).toEqual(jasmine.any(BetList.Status.ResultDetails.P2PResultDetails));
+            });
+        });
+
+        for (let betType = 2501; betType <= 2699; betType++) {
+            it("CreateInstance_ByBetType -> Return NG2ResultDetails Instance", () => {
+                // Act
+                let actualInstance = BetList.Status.ResultDetails.ResultDetailsFactory.CreateInstance(betType);
+
+                // Assert
+                expect(actualInstance).toEqual(jasmine.any(BetList.Status.ResultDetails.NG2ResultDetails));
+            });
+        };
+
+        [9, 29].forEach((betType: number) => {
+            it("CreateInstance_ByBetType -> Return MixParlayResultDetails Instance", () => {
+                // Act
+                let actualInstance = BetList.Status.ResultDetails.ResultDetailsFactory.CreateInstance(betType);
+
+                // Assert
+                expect(actualInstance).toEqual(jasmine.any(BetList.Status.ResultDetails.MixParlayResultDetails));
+            });
+        });
+
+        [1, 2, 3, 4, 5].forEach((betType: number) => {
+            it("CreateInstance_ByBetType -> Return SportsbookResultDetails Instance", () => {
+                // Act
+                let actualInstance = BetList.Status.ResultDetails.ResultDetailsFactory.CreateInstance(betType);
+
+                // Assert
+                expect(actualInstance).toEqual(jasmine.any(BetList.Status.ResultDetails.SportsbookResultDetails));
+            });
+        });
+    });
+
+    describe("Base_", () => {
+        it("ViewResultDetails -> Create Instance View Result Details", () => {
             // Arrange
-            const betType = 71;
+            const betType = 1;
+            const date = new Date();
+            let instance = BetList.Status.ResultDetails.ResultDetailsFactory.CreateInstance(betType);
+            let viewResultDetailsSpy = spyOn(instance, "ViewResultDetails");
 
             // Act
-            let actualInstance = BetList.Status.ResultDetails.ResultDetailsFactory.CreateInstance(betType);
+            BetList.Status.ResultDetails.BaseResultDetails.Instance.ViewResultDetails(1, 1, betType, 1, "1", "user", date, 1, 1, false, 1);
 
             // Assert
-            expect(actualInstance).toEqual(jasmine.any(BetList.Status.ResultDetails.CasinoResultDetails));
+            expect(viewResultDetailsSpy).toHaveBeenCalledWith(1, 1, betType, 1, "1", "user", date, 1, 1, false, 1);
+        });
+    });
+
+    describe("GlobalResultsFunction_", () => {
+        it("ViewResult -> Assign Expected Function", () => {
+            // Arrange
+            const expectedResultDetailsFunc = BetList.Status.ResultDetails.BaseResultDetails.Instance.ViewResultDetails;
+
+            // Act & Assert
+            expect(ViewResult).toBe(expectedResultDetailsFunc);
         });
     });
 });

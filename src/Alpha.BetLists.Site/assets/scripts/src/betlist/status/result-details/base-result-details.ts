@@ -39,10 +39,12 @@
         protected readonly FromDate: string = $('#from-date').val();
         protected readonly ToDate: string = $('#to-date').val();
         protected readonly CustId: string = $('#cust-id').val();
-        protected readonly IsHistoricReport: boolean = $('#is-historic-report').val();
+        protected readonly IsHistoricReport: boolean = Common.Utils.ParseBoolean($('#is-historic-report').val());
+        private static instance: BaseResultDetails;
 
         public static get Instance() {
-            return new BaseResultDetails();
+            this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new BaseResultDetails() : this.instance;
+            return this.instance;
         }
 
         public ViewResultDetails = (

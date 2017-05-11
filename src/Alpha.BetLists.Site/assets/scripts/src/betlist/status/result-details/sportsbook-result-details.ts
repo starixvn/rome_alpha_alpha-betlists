@@ -26,7 +26,7 @@
             league?: number,
             isOutright?: boolean,
             betId?: number) => {
-            var params = '?matchid=' + matchId
+            const params = '?matchid=' + matchId
                 + '&bettypeid=' + betTypeId
                 + '&race=' + race
                 + '&sportId=' + sportTypeId
@@ -53,7 +53,7 @@
             league?: number,
             isOutright?: boolean,
             betId?: number) => {
-            var params = '?refnum=' + refNoMixParlay
+            const params = '?refnum=' + refNoMixParlay
                 + '&wldate=' + winLostDate
                 + '&bettypeid=' + betTypeId
                 + '&matchid=1&isViewResultFromBetList=true';
