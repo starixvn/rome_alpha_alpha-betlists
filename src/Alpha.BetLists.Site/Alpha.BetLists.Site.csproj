@@ -311,6 +311,7 @@
     <Content Include="App_Data\SPNames\Internal\DBLOG.bodb_CustomerLog.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Internal\DBONUSER.ON_USER.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Internal\DBPOLICY.bodb02.BODBDownlineNetView.xml" />
+    <Content Include="App_Data\SPNames\Local\DBAGE.bodb_AGE.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Local\DBCust.IPDB.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Local\DBPOLICY.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Local\DBCust.CustDB.BODBDownlineNet.xml" />
@@ -418,6 +419,7 @@
     <Content Include="assets\scripts\typings\globals\jasmine-jquery\typings.json" />
     <Content Include="Alpha.BetLists.Site.Debug.ruleset" />
     <Content Include="Alpha.BetLists.Site.ruleset" />
+    <Content Include="App_Code\Components\ProductMultiSelection.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -429,6 +431,7 @@
     <Content Include="Views\WinLossByMatch\Index.cshtml" />
     <Content Include="Views\Shared\WinLossTable.cshtml" />
     <Content Include="Views\ParlayWinLossByMatch\Index.cshtml" />
+    <Content Include="Views\Outstanding\Index.cshtml" />
     <None Include="Web.backupMNL.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </None>
@@ -575,7 +578,10 @@
     <Compile Include="ViewModels\BetListBaseViewModel.cs" />
     <Compile Include="ViewModels\Blocks\Footer.cs" />
     <Compile Include="ViewModels\Blocks\WinLostBlockViewModel.cs" />
+    <Compile Include="ViewModels\Components\DateRangePickerViewModel.cs" />
+    <Compile Include="ViewModels\Components\ProductMultiSelectionViewModel.cs" />
     <Compile Include="ViewModels\ExcelFileViewModel.cs" />
+    <Compile Include="ViewModels\Outstanding\OutstandingFilterViewModel.cs" />
     <Compile Include="ViewModels\Outstanding\OutstandingViewModel.cs" />
     <Compile Include="ViewModels\ParlayWinLossByMatch\ParlayWinLossByMatchViewModel.cs" />
     <Compile Include="ViewModels\Parlay\ComboParlayDetailWrapper.cs" />
@@ -586,7 +592,9 @@
     <Compile Include="ViewModels\WinLoss\WinLossViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\web.config" />
+    <Content Include="Views\web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="packages.config" />
     <Content Include="Web.AppSettings.config" />
     <None Include="Web.Debug.config">
@@ -626,6 +634,9 @@
     <TypeScriptCompile Include="assets\scripts\src\betlist\status\result-details\base-result-details.ts" />
     <TypeScriptCompile Include="assets\scripts\src\betlist\status\result-details\casino-result-details.ts" />
     <TypeScriptCompile Include="assets\scripts\src\betlist\status\result-details\sportsbook-result-details.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\components\core.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\components\daterangepicker.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\components\productmultiselection.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\choice\ticket-details\score-map-tests.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\choice\ticket-details\base-ticket-details-tests.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\choice\ticket-details\other-ticket-details-tests.ts" />
@@ -640,6 +651,7 @@
     <TypeScriptCompile Include="assets\scripts\typings\globals\bootstrap\index.d.ts" />
     <TypeScriptCompile Include="assets\scripts\typings\globals\jasmine-jquery\index.d.ts" />
     <TypeScriptCompile Include="assets\scripts\typings\globals\jasmine\index.d.ts" />
+    <TypeScriptCompile Include="assets\scripts\typings\globals\jquery.cookie\index.d.ts" />
     <TypeScriptCompile Include="assets\scripts\typings\globals\jquery\index.d.ts" />
     <TypeScriptCompile Include="assets\scripts\typings\index.d.ts" />
   </ItemGroup>

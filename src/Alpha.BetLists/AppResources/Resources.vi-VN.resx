@@ -234,4 +234,52 @@
   <data name="outstanding" xml:space="preserve">
     <value>Tiền chưa xử lý</value>
   </data>
+  <data name="BetlistRunning" xml:space="preserve">
+    <value>Danh sách cược ( đang diễn ra )</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Hôm nay</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>Hôm qua</value>
+  </data>
+  <data name="LastWeek" xml:space="preserve">
+    <value>Tuần trước</value>
+  </data>
+  <data name="LastMonth" xml:space="preserve">
+    <value>Tháng trước</value>
+  </data>
+  <data name="SinceLastMonth" xml:space="preserve">
+    <value>Từ tháng trước</value>
+  </data>
+  <data name="SpecificDate" xml:space="preserve">
+    <value>Ngày riêng biệt</value>
+  </data>
+  <data name="ThisWeek" xml:space="preserve">
+    <value>Tuần này</value>
+  </data>
+  <data name="ThisMonth" xml:space="preserve">
+    <value>Tháng này</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>Từ</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>Đến</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Xác nhận</value>
+  </data>
+  <data name="SelectProducts" xml:space="preserve">
+    <value>Lựa chọn sản phẩm</value>
+  </data>
+  <data name="AllProducts" xml:space="preserve">
+    <value>Tất cả sản phẩm</value>
+  </data>
+  <data name="Selected" xml:space="preserve">
+    <value>Đã chọn</value>
+  </data>
+  <data name="ThereIsNoProduct" xml:space="preserve">
+    <value>Không có sản phẩm nào</value>
+  </data>
 </root>

@@ -195,6 +195,7 @@
     <Compile Include="Services\ReportDateService.cs" />
     <Compile Include="Services\WinLossByMatchService.cs" />
     <Compile Include="Services\WinLossService.cs" />
+    <Compile Include="Utils\SystemTime.cs" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.5.9.0.1001\analyzers\Google.Protobuf.dll" />

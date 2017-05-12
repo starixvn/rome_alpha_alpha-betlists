@@ -37,7 +37,7 @@
                 message.ToDate,
                 message.GetAll,
                 message.Language,
-                message.UserName);
+                message.CustName);
 
             var betlistData = await outstandingService.GetBetList(outstandingParam);
 

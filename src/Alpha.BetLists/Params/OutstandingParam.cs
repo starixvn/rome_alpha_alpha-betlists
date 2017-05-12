@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using Utils;
 
     public class OutstandingParam
     {
@@ -15,8 +16,18 @@
             string userName)
         {
             CustId = custId;
-            FromDate = fromDate;
-            ToDate = toDate;
+
+            if (getAll)
+            {
+                FromDate = SystemTime.Today.AddDays(-7);
+                ToDate = SystemTime.Today;
+            }
+            else
+            {
+                FromDate = fromDate == DateTime.MinValue ? SystemTime.Today.AddDays(-1) : fromDate;
+                ToDate = toDate == DateTime.MinValue ? SystemTime.Today.AddDays(-1) : toDate;
+            }
+
             GetAll = getAll;
             Language = language;
             UserName = userName;

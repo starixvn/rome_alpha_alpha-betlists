@@ -1,7 +1,10 @@
 ﻿namespace Alpha.BetLists.Site.Requests.Outstanding
 {
     using BetLists.Models;
+    using Extensions;
     using MediatR;
+    using System;
+    using Utils;
     using ViewModels.Outstanding;
 
     public class OutstandingQuery : BaseQuery, IRequest<OutstandingViewModel>
@@ -12,6 +15,8 @@
 
         public bool GetAll { get; set; }
 
-        public string UserName { get; set; }
+        public DateTime MinDate => SystemTime.Today.AddMonths(-3).FirstDayOfMonth();
+
+        public int UserSelectedDateRangeOption { get; set; }
     }
 }

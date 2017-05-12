@@ -231,4 +231,52 @@
   <data name="outstanding" xml:space="preserve">
     <value>未完成交易</value>
   </data>
+  <data name="BetlistRunning" xml:space="preserve">
+    <value>投注歷史(進行中)</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>今日賽事</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>昨天</value>
+  </data>
+  <data name="LastWeek" xml:space="preserve">
+    <value>上週</value>
+  </data>
+  <data name="LastMonth" xml:space="preserve">
+    <value>上月</value>
+  </data>
+  <data name="SinceLastMonth" xml:space="preserve">
+    <value>從上個月起</value>
+  </data>
+  <data name="SpecificDate" xml:space="preserve">
+    <value>特定日期</value>
+  </data>
+  <data name="ThisWeek" xml:space="preserve">
+    <value>这星期</value>
+  </data>
+  <data name="ThisMonth" xml:space="preserve">
+    <value>這個月</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>從</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>到</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>提交</value>
+  </data>
+  <data name="SelectProducts" xml:space="preserve">
+    <value>選擇產品</value>
+  </data>
+  <data name="AllProducts" xml:space="preserve">
+    <value>所有產品</value>
+  </data>
+  <data name="Selected" xml:space="preserve">
+    <value>選定</value>
+  </data>
+  <data name="ThereIsNoProduct" xml:space="preserve">
+    <value>沒有產品</value>
+  </data>
 </root>

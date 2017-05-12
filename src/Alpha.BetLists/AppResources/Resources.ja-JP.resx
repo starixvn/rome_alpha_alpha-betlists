@@ -232,4 +232,22 @@
   <data name="outstanding" xml:space="preserve">
     <value>未払い</value>
   </data>
+  <data name="BetlistRunning" xml:space="preserve">
+    <value>ベットリスト (実行中)</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>今日</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>昨日</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>送金元</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>から</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>送信</value>
+  </data>
 </root>

@@ -1,0 +1,22 @@
+﻿@using Alpha.BetLists.AppResources;
+@using Alpha.BetLists.Site.ViewModels.Components;
+
+@helper Render(ProductMultiSelectionViewModel model)
+{
+    <div class="form-group">
+        <select id="dropdown-product"
+                data-has-any-product="@model.Products.Any()"
+                data-label-select-products="@Resources.SelectProducts"
+                data-label-selected="@Resources.Selected"
+                data-label-all-products="@Resources.AllProducts"
+                data-label-there-is-no-product="@Resources.ThereIsNoProduct"
+                data-language="@model.Language"
+                multiple="multiple" class="select-multiple">
+            @foreach (var product in model.Products)
+            {
+                <option value="@product.Value" @(product.Selected ? " selected=\"selected\"" : string.Empty)>@product.Text</option>
+            }
+        </select>
+        <input type="hidden" name="UserSelectedProductIds" id="product-ids" value="@model.UserSelectedProductIds" />
+    </div>
+}

@@ -231,4 +231,31 @@
   <data name="outstanding" xml:space="preserve">
     <value>대기 포인트</value>
   </data>
+  <data name="BetlistRunning" xml:space="preserve">
+    <value>배팅 목록(진행중)</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>오늘</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>어제</value>
+  </data>
+  <data name="LastWeek" xml:space="preserve">
+    <value>마지막 주</value>
+  </data>
+  <data name="LastMonth" xml:space="preserve">
+    <value>마지막 달</value>
+  </data>
+  <data name="SinceLastMonth" xml:space="preserve">
+    <value>지난달부터</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>시작일</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>종료일</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>확인</value>
+  </data>
 </root>

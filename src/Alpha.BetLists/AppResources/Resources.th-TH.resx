@@ -231,4 +231,52 @@
   <data name="outstanding" xml:space="preserve">
     <value>การเดิมพันที่ยังไม่สิ้นสุด</value>
   </data>
+  <data name="BetlistRunning" xml:space="preserve">
+    <value>รายการการเดิมพัน ( ที่กำลังแข่ง )</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>วันนี้</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>เมื่อวาน</value>
+  </data>
+  <data name="LastWeek" xml:space="preserve">
+    <value>สัปดาห์ล่าสุด</value>
+  </data>
+  <data name="LastMonth" xml:space="preserve">
+    <value>เดือนล่าสุด</value>
+  </data>
+  <data name="SinceLastMonth" xml:space="preserve">
+    <value>ตั้งแต่เดือนครั้งสุดท้าย</value>
+  </data>
+  <data name="SpecificDate" xml:space="preserve">
+    <value>วันที่เฉพาะเจาะจง</value>
+  </data>
+  <data name="ThisWeek" xml:space="preserve">
+    <value>สัปดาห์นี้</value>
+  </data>
+  <data name="ThisMonth" xml:space="preserve">
+    <value>เดือนนี้</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>จาก</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>ถึง</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>ตกลง</value>
+  </data>
+  <data name="SelectProducts" xml:space="preserve">
+    <value>เลือกผลิตภัณฑ์</value>
+  </data>
+  <data name="AllProducts" xml:space="preserve">
+    <value>สินค้าทั้งหมด</value>
+  </data>
+  <data name="Selected" xml:space="preserve">
+    <value>เลือก</value>
+  </data>
+  <data name="ThereIsNoProduct" xml:space="preserve">
+    <value>ไม่มีสินค้า</value>
+  </data>
 </root>

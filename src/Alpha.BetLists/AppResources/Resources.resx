@@ -240,4 +240,52 @@
   <data name="outstanding" xml:space="preserve">
     <value>Outstanding</value>
   </data>
+  <data name="BetlistRunning" xml:space="preserve">
+    <value>Bet List (Running)</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Today</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>Yesterday</value>
+  </data>
+  <data name="LastWeek" xml:space="preserve">
+    <value>Last Week</value>
+  </data>
+  <data name="LastMonth" xml:space="preserve">
+    <value>Last Month</value>
+  </data>
+  <data name="SinceLastMonth" xml:space="preserve">
+    <value>Since Last Month</value>
+  </data>
+  <data name="SpecificDate" xml:space="preserve">
+    <value>Specific Dates</value>
+  </data>
+  <data name="ThisWeek" xml:space="preserve">
+    <value>This Week</value>
+  </data>
+  <data name="ThisMonth" xml:space="preserve">
+    <value>This Month</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>To</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="SelectProducts" xml:space="preserve">
+    <value>Select Products</value>
+  </data>
+  <data name="AllProducts" xml:space="preserve">
+    <value>All Products</value>
+  </data>
+  <data name="Selected" xml:space="preserve">
+    <value>selected</value>
+  </data>
+  <data name="ThereIsNoProduct" xml:space="preserve">
+    <value>There is no product.</value>
+  </data>
 </root>
