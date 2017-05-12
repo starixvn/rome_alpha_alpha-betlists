@@ -16,37 +16,57 @@
         Popup = new Common.PopupDetails();
     });
 
-    it("Show -> Expected Behavior", () => {
-        // Arrange
-        DetailsFrame.off("load").on("load", () => { });
+    describe("Show()", () => {
+        beforeEach(() => {
+            // Arrange
+            DetailsFrame.off("load").on("load", () => { });
 
-        // Act
-        Popup.Show("3423423432432");
+            // Act
+            Popup.Show("3423423432432");
+        });
 
-        // Assert
-        expect(DetailsTitle).toHaveHtml("Details");
-        expect(DetailsFrame.contents().find("body")).toHaveHtml("");
-        expect(DetailsFrame).toHaveAttr("src", "3423423432432");
-        expect(DetailsModal).toBeVisible();
+        it("Should Have Expected Details Title", () => {
+            expect(DetailsTitle).toHaveHtml("Details");
+        });
+
+        it("Should Clear Frame Body Content", () => {
+            expect(DetailsFrame.contents().find("body")).toHaveHtml("");
+        });
+
+        it("Should Have Correct Source of Frame", () => {
+            expect(DetailsFrame).toHaveAttr("src", "3423423432432");
+        });
+
+        it("Should Show Details Model", () => {
+            expect(DetailsModal).toBeVisible();
+        });
+
+        describe("When Show Has Title Value", () => {
+            it("Should Have Expected Details Title", () => {
+                // Act
+                Popup.Show("3423423432432", "title");
+
+                // Assert
+                expect(DetailsTitle).toHaveHtml("title");
+            });
+        });
+
+        describe("OnLoad", () => {
+            beforeEach(() => {
+                DetailsFrame.trigger("load");
+            });
+
+            it("Should Hide Details Loading Image", () => {
+                expect(DetailsLoadingImage).toBeHidden();
+            });
+
+            it("Should Show Details Title With Expected Value", () => {
+                expect(DetailsTitle.html()).toBe("Details");
+            });
+
+            it("Should Show Details Model", () => {
+                expect(DetailsModal).toBeVisible();
+            });
+        });
     });
-
-    it("Show_TitleHasValue -> Expected Behavior", () => {
-        // Arrange
-        DetailsFrame.off("load").on("load", () => { });
-
-        // Act
-        Popup.Show("3423423432432", "title");
-
-        // Assert
-        expect(DetailsTitle).toHaveHtml("title");
-    });
-
-    it("Show_OnLoad -> Expected Behavior", () => {
-        // Act
-        DetailsFrame.trigger("load");
-
-        // Assert
-        expect(DetailsLoadingImage).toBeHidden();
-        expect(DetailsTitle.html()).toBe("Details");
-    });
-})
+});

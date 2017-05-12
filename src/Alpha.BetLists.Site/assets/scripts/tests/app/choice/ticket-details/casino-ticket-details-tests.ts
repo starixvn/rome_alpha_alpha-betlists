@@ -9,9 +9,9 @@
     });
 
     describe("Casino_", () => {
-        ["sport",
-            null].forEach((sportName) => {
-                it("ShowDetails -> Call Show Popup Details", () => {
+        describe("ShowDetails()", () => {
+            ["sport", null].forEach((sportName) => {
+                it("Should Call Show Popup Details With Expected Url", () => {
                     // Arrange
                     const defaultSportName = "RNG Casino";
                     const refNo = "111";
@@ -30,58 +30,69 @@
                     expect(popupDetailsShow).toHaveBeenCalledWith("old-path/LiveCasinoBetList/BetDetail/RNGBetDetail" + params);
                 });
             });
+        });
     });
 
     describe("Allbet_", () => {
-        it("ShowRunningBetsDetails -> Call Show Popup Details", () => {
-            // Arrange
-            const refNo = "111";
-            const winLossDate: Date = new Date();
-            const custId = "1";
-            const transType = "winlost";
-            const params = 'refno=' + refNo + '&custid=' + custId + '&transType=' + transType;
+        describe("ShowRunningBetsDetails()", () => {
+            it("Should Call Show Popup Details With Expected Url", () => {
+                // Arrange
+                const refNo = "111";
+                const winLossDate: Date = new Date();
+                const custId = "1";
+                const transType = "winlost";
+                const params = 'refno=' + refNo + '&custid=' + custId + '&transType=' + transType;
 
-            // Act
-            BetList.Choice.TicketDetails.AllbetTicketDetails.Instance.ShowRunningBetsDetails(refNo, winLossDate, custId, transType);
+                // Act
+                BetList.Choice.TicketDetails.AllbetTicketDetails.Instance.ShowRunningBetsDetails(refNo, winLossDate, custId, transType);
 
-            // Assert
-            expect(popupDetailsShow).toHaveBeenCalledWith(
-                'old-path/LiveCasinoBetList/BetDetail/Index?' + params,
-                'Allbet - Detailed Bet list - ' + winLossDate.toString().split(' ')[0])
+                // Assert
+                expect(popupDetailsShow).toHaveBeenCalledWith(
+                    'old-path/LiveCasinoBetList/BetDetail/Index?' + params,
+                    'Allbet - Detailed Bet list - ' + winLossDate.toString().split(' ')[0])
+            });
         });
-    })
+    });
 
     describe("GlobalDetailsFunction_", () => {
-        it("showRnGCasinoDetails -> Assign Correct Show Details Function", () => {
-            // Arrange
-            const showDetailsFunc = BetList.Choice.TicketDetails.CasinoTicketDetails.CreateInstance("RNG Casino").ShowDetails;
+        describe("showRnGCasinoDetails", () => {
+            it("Should Be Assigned Show Details RnG Casino Function", () => {
+                // Arrange
+                const showDetailsFunc = BetList.Choice.TicketDetails.CasinoTicketDetails.CreateInstance("RNG Casino").ShowDetails;
 
-            // Assert
-            expect(showRnGCasinoDetails).toBe(showDetailsFunc);
-        })
+                // Assert
+                expect(showRnGCasinoDetails).toBe(showDetailsFunc);
+            });
+        });
 
-        it("showVoidBridgeDetails -> Assign Correct Show Details Function", () => {
-            // Arrange
-            const showDetailsFunc = BetList.Choice.TicketDetails.CasinoTicketDetails.CreateInstance("Macau Games").ShowDetails;
+        describe("showVoidBridgeDetails", () => {
+            it("Should Be Assigned Show Details Macau Games Function", () => {
+                // Arrange
+                const showDetailsFunc = BetList.Choice.TicketDetails.CasinoTicketDetails.CreateInstance("Macau Games").ShowDetails;
 
-            // Assert
-            expect(showVoidBridgeDetails).toBe(showDetailsFunc);
-        })
+                // Assert
+                expect(showVoidBridgeDetails).toBe(showDetailsFunc);
+            });
+        });
 
-        it("showGlobalGaming -> Assign Correct Show Details Function", () => {
-            // Arrange
-            const showDetailsFunc = BetList.Choice.TicketDetails.CasinoTicketDetails.CreateInstance("Fishing World").ShowDetails;
+        describe("showGlobalGaming", () => {
+            it("Should Be Assigned Show Details Fishing World Function", () => {
+                // Arrange
+                const showDetailsFunc = BetList.Choice.TicketDetails.CasinoTicketDetails.CreateInstance("Fishing World").ShowDetails;
 
-            // Assert
-            expect(showGlobalGaming).toBe(showDetailsFunc);
-        })
+                // Assert
+                expect(showGlobalGaming).toBe(showDetailsFunc);
+            });
+        });
 
-        it("showTodayRunningBetsDetails -> Assign Correct Show Details Function", () => {
-            // Arrange
-            const showDetailsFunc = BetList.Choice.TicketDetails.AllbetTicketDetails.Instance.ShowRunningBetsDetails;
+        describe("showTodayRunningBetsDetails", () => {
+            it("Should Be Assigned Show Details AllBet Function", () => {
+                // Arrange
+                const showDetailsFunc = BetList.Choice.TicketDetails.AllbetTicketDetails.Instance.ShowRunningBetsDetails;
 
-            // Assert
-            expect(showTodayRunningBetsDetails).toBe(showDetailsFunc);
-        })
+                // Assert
+                expect(showTodayRunningBetsDetails).toBe(showDetailsFunc);
+            });
+        });
     })
 });

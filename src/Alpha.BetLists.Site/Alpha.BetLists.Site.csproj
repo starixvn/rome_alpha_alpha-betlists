@@ -626,7 +626,6 @@
     <TypeScriptCompile Include="assets\scripts\tests\app\status\sportsbook-result-details-tests.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\status\casino-result-details-tests.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\status\base-result-details-tests.ts" />
-    <TypeScriptCompile Include="assets\scripts\tests\app\templates\popup-template.ts" />
     <TypeScriptCompile Include="assets\scripts\typings\globals\bootstrap\index.d.ts" />
     <TypeScriptCompile Include="assets\scripts\typings\globals\jasmine-jquery\index.d.ts" />
     <TypeScriptCompile Include="assets\scripts\typings\globals\jasmine\index.d.ts" />
