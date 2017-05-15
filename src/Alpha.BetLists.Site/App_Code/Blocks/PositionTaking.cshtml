@@ -5,6 +5,6 @@
 @helper Render(ITicket ticket, List<ITicketData> ticketData, UserLevel custLevel)
 {
     <td class="position-taking-block text-right">
-        @(new HtmlString(BetListHtmlBuilderExt.BuildPTComm(ticket, ticketData, custLevel)))
+        @(new HtmlString(BetListHtmlBuilderExt.BuildPtComm(ticket, ticketData, custLevel)))
     </td>
 }

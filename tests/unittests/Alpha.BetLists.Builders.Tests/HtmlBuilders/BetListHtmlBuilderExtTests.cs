@@ -28,7 +28,7 @@
             expectedPTPercent.PT_Place = positionTakingComm.PositionTakingPlace;
 
             // Act
-            var actualTemplate = BetListHtmlBuilderExt.BuildPTComm(ticket, BetListDataTest.TicketData.ToList<ITicketData>(), UserLevel.Agent);
+            var actualTemplate = BetListHtmlBuilderExt.BuildPtComm(ticket, BetListDataTest.TicketData.ToList<ITicketData>(), UserLevel.Agent);
 
             // Assert
             Assert.Equal(expectedPTPercent, actualTemplate.PT.PT_Percent);
@@ -43,7 +43,7 @@
                 = PTCommFactory.CreateInstance(ticket, BetListDataTest.TicketData.ToList<ITicketData>(), UserLevel.Agent);
 
             // Act
-            var actualTemplate = BetListHtmlBuilderExt.BuildPTComm(ticket, BetListDataTest.TicketData.ToList<ITicketData>(), UserLevel.Agent);
+            var actualTemplate = BetListHtmlBuilderExt.BuildPtComm(ticket, BetListDataTest.TicketData.ToList<ITicketData>(), UserLevel.Agent);
 
             // Assert
             Assert.Equal(positionTakingComm.PositionTakingPercent, actualTemplate.PT.PT_Percent);
@@ -57,7 +57,7 @@
             ticket.BetTypeId = 71; // Bet type 71 will hide PT Percent
 
             // Act
-            var actualTemplate = BetListHtmlBuilderExt.BuildPTComm(ticket, BetListDataTest.TicketData.ToList<ITicketData>(), UserLevel.Agent);
+            var actualTemplate = BetListHtmlBuilderExt.BuildPtComm(ticket, BetListDataTest.TicketData.ToList<ITicketData>(), UserLevel.Agent);
 
             // Assert
             Assert.False(actualTemplate.PT.Visible);
@@ -72,7 +72,7 @@
                 = PTCommFactory.CreateInstance(ticket, BetListDataTest.TicketData.ToList<ITicketData>(), UserLevel.Agent);
 
             // Act
-            var actualTemplate = BetListHtmlBuilderExt.BuildPTComm(ticket, BetListDataTest.TicketData.ToList<ITicketData>(), UserLevel.Agent);
+            var actualTemplate = BetListHtmlBuilderExt.BuildPtComm(ticket, BetListDataTest.TicketData.ToList<ITicketData>(), UserLevel.Agent);
 
             // Assert
             Assert.Equal(positionTakingComm.PositionTaking, actualTemplate.PTValue.PT_Value);
@@ -88,7 +88,7 @@
                 = PTCommFactory.CreateInstance(ticket, BetListDataTest.TicketData.ToList<ITicketData>(), UserLevel.Agent);
 
             // Act
-            var actualTemplate = BetListHtmlBuilderExt.BuildPTComm(ticket, BetListDataTest.TicketData.ToList<ITicketData>(), UserLevel.Agent);
+            var actualTemplate = BetListHtmlBuilderExt.BuildPtComm(ticket, BetListDataTest.TicketData.ToList<ITicketData>(), UserLevel.Agent);
 
             // Assert
             Assert.False(actualTemplate.PTValue.Visible);
@@ -103,7 +103,7 @@
                 = PTCommFactory.CreateInstance(ticket, BetListDataTest.TicketData.ToList<ITicketData>(), UserLevel.Agent);
 
             // Act
-            var actualTemplate = BetListHtmlBuilderExt.BuildPTComm(ticket, BetListDataTest.TicketData.ToList<ITicketData>(), UserLevel.Agent);
+            var actualTemplate = BetListHtmlBuilderExt.BuildPtComm(ticket, BetListDataTest.TicketData.ToList<ITicketData>(), UserLevel.Agent);
 
             // Assert
             Assert.Equal(positionTakingComm.CommissionPercent, actualTemplate.Comm.Comm_Percent);
@@ -119,7 +119,7 @@
                 = PTCommFactory.CreateInstance(ticket, BetListDataTest.TicketData.ToList<ITicketData>(), UserLevel.Agent);
 
             // Act
-            var actualTemplate = BetListHtmlBuilderExt.BuildPTComm(ticket, BetListDataTest.TicketData.ToList<ITicketData>(), UserLevel.Agent);
+            var actualTemplate = BetListHtmlBuilderExt.BuildPtComm(ticket, BetListDataTest.TicketData.ToList<ITicketData>(), UserLevel.Agent);
 
             // Assert
             Assert.False(actualTemplate.Comm.Visible);
@@ -134,7 +134,7 @@
                 = PTCommFactory.CreateInstance(ticket, BetListDataTest.TicketData.ToList<ITicketData>(), UserLevel.Agent);
 
             // Act
-            var actualTemplate = BetListHtmlBuilderExt.BuildPTComm(ticket, BetListDataTest.TicketData.ToList<ITicketData>(), UserLevel.Agent);
+            var actualTemplate = BetListHtmlBuilderExt.BuildPtComm(ticket, BetListDataTest.TicketData.ToList<ITicketData>(), UserLevel.Agent);
 
             // Assert
             Assert.Equal(positionTakingComm.Commission, actualTemplate.CommValue.Comm_value);
@@ -150,7 +150,7 @@
                 = PTCommFactory.CreateInstance(ticket, BetListDataTest.TicketData.ToList<ITicketData>(), UserLevel.Agent);
 
             // Act
-            var actualTemplate = BetListHtmlBuilderExt.BuildPTComm(ticket, BetListDataTest.TicketData.ToList<ITicketData>(), UserLevel.Agent);
+            var actualTemplate = BetListHtmlBuilderExt.BuildPtComm(ticket, BetListDataTest.TicketData.ToList<ITicketData>(), UserLevel.Agent);
 
             // Assert
             Assert.False(actualTemplate.CommValue.Visible);

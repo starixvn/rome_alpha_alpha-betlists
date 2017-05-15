@@ -1,9 +1,7 @@
 ﻿namespace Alpha.BetLists.Site.Helpers
 {
-    using System.Collections.Generic;
-    using System.Text.RegularExpressions;
     using System.Web;
-    using BetLists.Models;
+    using Configurations;
 
     public static class IPHelper
     {
@@ -12,7 +10,8 @@
             var ipAddress = HttpContext.Current?.Request?.ServerVariables["HTTP_X_FORWARDED_FOR"]
                 ?? HttpContext.Current?.Request?.ServerVariables["REMOTE_ADDR"];
 
-            return (string.IsNullOrEmpty(ipAddress) || ipAddress.Equals("::1")) ? "127.0.0.1" : ipAddress.Split(',')[0];
+            return (string.IsNullOrEmpty(ipAddress) || ipAddress.Equals(AppSettings.DefaultIpAddress))
+                ? AppSettings.LocalIpAddress : ipAddress.Split(',')[0];
         }
     }
 }

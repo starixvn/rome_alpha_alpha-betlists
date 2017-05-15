@@ -66,6 +66,26 @@
                   bodyEndIndex: 5,
                   footerEndIndex: 7);
 
+        private static Mapper<IEnumerable<ComboParlayDetailWrapper>> DetailsSubTotalMapper(ComboParlayDetailViewModel viewModel)
+        {
+            var mapper = new Mapper<IEnumerable<ComboParlayDetailWrapper>>();
+
+            return mapper
+                .Map(A, _ => Resources.subTotal + ":")
+                .Map(E, details => viewModel.SubTotalWinLost(details));
+        }
+
+        private static Mapper<IEnumerable<ComboParlayDetailWrapper>> FooterMapper(ComboParlayDetailViewModel viewModel, bool isTotalWinLost)
+        {
+            var mapper = new Mapper<IEnumerable<ComboParlayDetailWrapper>>();
+
+            mapper
+                .Map(A, _ => (isTotalWinLost ? Resources.total : Resources.outstanding) + ":")
+                .Map(E, _ => isTotalWinLost ? viewModel.TotalWinLost : viewModel.OutStanding);
+
+            return mapper;
+        }
+
         private Mapper<IEnumerable<ComboParlayDetailWrapper>> DetailsMapper()
         {
             var mapper = new Mapper<IEnumerable<ComboParlayDetailWrapper>>();
@@ -78,29 +98,9 @@
                 .Map(F, details => details.First().Status);
         }
 
-        private Mapper<IEnumerable<ComboParlayDetailWrapper>> DetailsSubTotalMapper(ComboParlayDetailViewModel viewModel)
-        {
-            var mapper = new Mapper<IEnumerable<ComboParlayDetailWrapper>>();
-
-            return mapper
-                .Map(A, _ => Resources.subTotal + ":")
-                .Map(E, details => viewModel.SubTotalWinLost(details));
-        }
-
-        private Mapper<IEnumerable<ComboParlayDetailWrapper>> FooterMapper(ComboParlayDetailViewModel viewModel, bool isTotalWinLost)
-        {
-            var mapper = new Mapper<IEnumerable<ComboParlayDetailWrapper>>();
-
-            mapper
-                .Map(A, _ => (isTotalWinLost ? Resources.total : Resources.outstanding) + ":")
-                .Map(E, _ => isTotalWinLost ? viewModel.TotalWinLost : viewModel.OutStanding);
-
-            return mapper;
-        }
-
         private IRichTextString RenderEvent(ComboParlayDetailWrapper detail)
         {
-            for (var i = 0; i < detail.Events.Count(); i++)
+            for (var i = 0; i < detail.Events.Count; i++)
             {
                 RtfHelper.RTFRenderer.AddText((i > 0 ? "\n" : string.Empty) + detail.Events[i]);
             }

@@ -8,24 +8,24 @@ namespace Alpha.BetLists.Builders.HtmlBuilders
 
     public static class BetListHtmlBuilderExt
     {
-        public static PTComm_Template BuildPTComm(ITicket ticket, List<ITicketData> ticketData, UserLevel userLevel)
+        public static PTComm_Template BuildPtComm(ITicket ticket, List<ITicketData> ticketData, UserLevel userLevel)
         {
             var template = new PTComm_Template();
             var positionTakingComm = PTCommFactory.CreateInstance(ticket, ticketData, userLevel);
 
-            RenderPTPercent(template, ticket, positionTakingComm);
-            RenderPTValue(template, positionTakingComm);
+            RenderPtPercent(template, ticket, positionTakingComm);
+            RenderPtValue(template, positionTakingComm);
             RenderCommPercent(template, positionTakingComm);
             RenderCommValue(template, positionTakingComm);
 
             return template;
         }
 
-        private static void RenderPTPercent(PTComm_Template template, ITicket ticket, PTComm positionTakingComm)
+        private static void RenderPtPercent(PTComm_Template template, ITicket ticket, PTComm positionTakingComm)
         {
             if (ticket.BetTypeId == 33 || ticket.BetTypeId == 1233)
             {
-                RenderRacingPTValue(template, positionTakingComm);
+                RenderRacingPtValue(template, positionTakingComm);
                 return;
             }
 
@@ -39,7 +39,7 @@ namespace Alpha.BetLists.Builders.HtmlBuilders
             }
         }
 
-        private static void RenderPTValue(PTComm_Template template, PTComm positionTakingComm)
+        private static void RenderPtValue(PTComm_Template template, PTComm positionTakingComm)
         {
             if (!string.IsNullOrEmpty(positionTakingComm.PositionTaking) && positionTakingComm.VisiblePositionTaking)
             {
@@ -75,7 +75,7 @@ namespace Alpha.BetLists.Builders.HtmlBuilders
             }
         }
 
-        private static void RenderRacingPTValue(PTComm_Template template, PTComm positionTakingComm)
+        private static void RenderRacingPtValue(PTComm_Template template, PTComm positionTakingComm)
         {
             var positionTakingComm33 = positionTakingComm as PTComm33;
             var racingTemplate = new PTRacing_Template();

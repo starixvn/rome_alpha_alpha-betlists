@@ -37,7 +37,7 @@
 
         public string ProductIds { get; }
 
-        public bool ShowProgressiveBonus { get; } = false;
+        public bool ShowProgressiveBonus { get; }
 
         public override string GetSettingKey() => "Age_BetList_SelWinLossByDate_Mem";
 

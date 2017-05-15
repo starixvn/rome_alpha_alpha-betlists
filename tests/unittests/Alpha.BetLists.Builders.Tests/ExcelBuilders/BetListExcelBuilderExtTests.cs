@@ -107,7 +107,7 @@
                     $"{positionTakingComm.Commission}\n");
 
             // Act
-            var actualRtfText = BetListExcelBuilderExt.BuildPTCommmission(ticket, ticketData, UserLevel.Agent, rtfHelper);
+            var actualRtfText = BetListExcelBuilderExt.BuildPtCommmission(ticket, ticketData, UserLevel.Agent, rtfHelper);
 
             // Assert
             Assert.Equal(expectedRtfText.String, actualRtfText.String);
@@ -127,7 +127,7 @@
                     $"{positionTakingComm.Commission}\n");
 
             // Act
-            var actualRtfText = BetListExcelBuilderExt.BuildPTCommmission(ticket, ticketData, UserLevel.Agent, rtfHelper);
+            var actualRtfText = BetListExcelBuilderExt.BuildPtCommmission(ticket, ticketData, UserLevel.Agent, rtfHelper);
 
             // Assert
             Assert.Equal(expectedRtfText.String, actualRtfText.String);
@@ -148,7 +148,7 @@
                     $"{positionTakingComm.CommissionPercent}\n");
 
             // Act
-            var actualRtfText = BetListExcelBuilderExt.BuildPTCommmission(ticket, ticketData, UserLevel.Agent, rtfHelper);
+            var actualRtfText = BetListExcelBuilderExt.BuildPtCommmission(ticket, ticketData, UserLevel.Agent, rtfHelper);
 
             // Assert
             Assert.Equal(expectedRtfText.String, actualRtfText.String);

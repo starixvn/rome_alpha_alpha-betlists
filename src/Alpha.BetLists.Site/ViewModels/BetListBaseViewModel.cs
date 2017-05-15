@@ -65,7 +65,7 @@
         public ITicketHelper TicketHelper { get; protected set; }
 
         // TODO: will implement here
-        public bool CanViewScoreMap { get; } = false;
+        public bool CanViewScoreMap { get; }
 
         public bool DisplayVNIP { get; }
 

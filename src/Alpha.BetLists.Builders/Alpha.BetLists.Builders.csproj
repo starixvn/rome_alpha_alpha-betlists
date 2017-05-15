@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>Alpha.BetLists.Builders.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -28,6 +29,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>Alpha.BetLists.Builders.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Fanex.BetList.BetTrade, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
@@ -90,6 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExcelBuilders\BetListExcelBuilderExt.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="HtmlBuilders\BetListHtmlBuilderExt.cs" />
     <Compile Include="PTComm\PTComm33.cs" />
     <Compile Include="PTComm\PTComm71.cs" />
@@ -102,6 +105,7 @@
     <Compile Include="Templates\PTRacing.htm.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Alpha.BetLists.Builders.ruleset" />
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
@@ -115,7 +119,11 @@
       <Name>Alpha.BetLists</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.5.9.0.1001\analyzers\Google.Protobuf.dll" />
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.5.9.0.1001\analyzers\SonarAnalyzer.CSharp.dll" />
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.5.9.0.1001\analyzers\SonarAnalyzer.dll" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -127,6 +127,12 @@
             FillFooterValue(sheet, isTotalWinLost: true);
         }
 
+        private static void MergeDetailsDateTimeCells(Sheet sheet, int beginRowIndex, int endRowIndex)
+        {
+            var npoiSheet = sheet as NpoiSheet;
+            npoiSheet.Sheet.AddMergedRegion(new CellRangeAddress(beginRowIndex, endRowIndex, 0, 0));
+        }
+
         private void FillFooterValue(Sheet sheet, bool isTotalWinLost)
         {
             var row = sheet.GetRow(currentRowIndex++);
@@ -159,12 +165,6 @@
             var row = sheet.GetRow(currentRowIndex++);
             row.CopyCellsFrom(SubTotalRowTemplate);
             FillCells(row, detailGroup, DetailsSubTotalMapper.Mappings);
-        }
-
-        private void MergeDetailsDateTimeCells(Sheet sheet, int beginRowIndex, int endRowIndex)
-        {
-            var npoiSheet = sheet as NpoiSheet;
-            npoiSheet.Sheet.AddMergedRegion(new CellRangeAddress(beginRowIndex, endRowIndex, 0, 0));
         }
     }
 }

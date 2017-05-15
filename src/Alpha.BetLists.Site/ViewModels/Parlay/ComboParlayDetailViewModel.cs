@@ -47,7 +47,7 @@
         public string SubTotalWinLost(IEnumerable<ComboParlayDetailWrapper> group)
             => ConvertByBetType.Winloss(group.Sum(item => item.ComboParlayDetail.WinLost + item.ComboParlayDetail.PlayerComm));
 
-        private string BuildComboParlayDetailExcelUrl(ComboParlayDetailQuery query)
+        private static string BuildComboParlayDetailExcelUrl(ComboParlayDetailQuery query)
         {
             var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
 

@@ -3,9 +3,9 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using BetLists.Models;
+    using BetLists.Models.Parlay;
     using Fanex.BetList.Core.Entities;
-    using Models;
-    using Models.Parlay;
     using NPOI.HSSF.UserModel;
     using NPOI.SS.UserModel;
     using Ploeh.AutoFixture;

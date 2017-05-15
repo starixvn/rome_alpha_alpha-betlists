@@ -21,9 +21,9 @@
 
         public virtual bool VisibileCommisionPercent => true;
 
-        public virtual string PositionTaking => ConvertByBetType.PtValue(PTByUserLevel[UserLevel]);
+        public virtual string PositionTaking => ConvertByBetType.PtValue(PtByUserLevel[UserLevel]);
 
-        public virtual string PositionTakingPercent => ConvertByBetType.Pt(PTSettingByUserLevel[UserLevel]) + "%";
+        public virtual string PositionTakingPercent => ConvertByBetType.Pt(PtSettingByUserLevel[UserLevel]) + "%";
 
         public virtual string Commission => ConvertByBetType.Comm(CommByUserLevel[UserLevel]);
 
@@ -34,27 +34,27 @@
 
         protected UserLevel UserLevel { get; }
 
-        protected Dictionary<UserLevel, object> PTByUserLevel { get; set; }
+        protected Dictionary<UserLevel, object> PtByUserLevel { get; set; }
 
-        protected Dictionary<UserLevel, object> PTSettingByUserLevel { get; set; }
+        protected Dictionary<UserLevel, object> PtSettingByUserLevel { get; set; }
 
         protected Dictionary<UserLevel, object> CommByUserLevel { get; set; }
 
         protected Dictionary<UserLevel, object> CommSettingByUserLevel { get; set; }
 
-        public PTComm InitPTCommData()
+        public PTComm InitPtCommData()
         {
-            InitPTByUserLevel();
-            InitPTSettingByUserLevel();
+            InitPtByUserLevel();
+            InitPtSettingByUserLevel();
             InitCommByUserLevel();
             InitCommSettingByUserLevel();
 
             return this;
         }
 
-        protected virtual void InitPTByUserLevel()
+        protected virtual void InitPtByUserLevel()
         {
-            PTByUserLevel = new Dictionary<UserLevel, object>
+            PtByUserLevel = new Dictionary<UserLevel, object>
             {
                 { UserLevel.Super, Ticket.SuperWinlost },
                 { UserLevel.Master, Ticket.MasterWinlost },
@@ -62,9 +62,9 @@
             };
         }
 
-        protected virtual void InitPTSettingByUserLevel()
+        protected virtual void InitPtSettingByUserLevel()
         {
-            PTSettingByUserLevel = new Dictionary<UserLevel, object>
+            PtSettingByUserLevel = new Dictionary<UserLevel, object>
             {
                 { UserLevel.Super, Ticket.SuperPositionTaking },
                 { UserLevel.Master, Ticket.MasterPositionTaking },

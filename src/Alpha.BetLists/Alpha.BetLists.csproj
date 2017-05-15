@@ -22,7 +22,7 @@
     <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>..\..\build\AnalysisRules\FanexRules.Error.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>Alpha.BetLists.Debug.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,6 +31,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>Alpha.BetLists.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Alpha.SmartPunter, Version=1.0.0.6, Culture=neutral, processorArchitecture=MSIL">
@@ -192,8 +193,14 @@
     <Compile Include="Services\WinLossByMatchService.cs" />
     <Compile Include="Services\WinLossService.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.5.9.0.1001\analyzers\Google.Protobuf.dll" />
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.5.9.0.1001\analyzers\SonarAnalyzer.CSharp.dll" />
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.5.9.0.1001\analyzers\SonarAnalyzer.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Alpha.BetLists.Debug.ruleset" />
+    <None Include="Alpha.BetLists.ruleset" />
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>

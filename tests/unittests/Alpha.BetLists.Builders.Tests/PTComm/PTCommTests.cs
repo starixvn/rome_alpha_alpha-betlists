@@ -120,7 +120,7 @@
 
             // Act
             var actualPTComm = new PTComm(ticket, Enumeration.FromValue<UserLevel>(userLevelId));
-            actualPTComm.InitPTCommData();
+            actualPTComm.InitPtCommData();
 
             // Assert
             Assert.Equal(ConvertByBetType.PtValue(expectedPTValue), actualPTComm.PositionTaking);
@@ -140,7 +140,7 @@
 
             // Act
             var actualPTComm = new PTComm(ticket, Enumeration.FromValue<UserLevel>(userLevelId));
-            actualPTComm.InitPTCommData();
+            actualPTComm.InitPtCommData();
 
             // Assert
             Assert.Equal(ConvertByBetType.Pt(expectedPTPercent) + "%", actualPTComm.PositionTakingPercent);
@@ -160,7 +160,7 @@
 
             // Act
             var actualPTComm = new PTComm(ticket, Enumeration.FromValue<UserLevel>(userLevelId));
-            actualPTComm.InitPTCommData();
+            actualPTComm.InitPtCommData();
 
             // Assert
             Assert.Equal(ConvertByBetType.Comm(expectedComission), actualPTComm.Commission);
@@ -181,7 +181,7 @@
 
             // Act
             var actualPTComm = new PTComm(ticket, Enumeration.FromValue<UserLevel>(userLevelId));
-            actualPTComm.InitPTCommData();
+            actualPTComm.InitPtCommData();
 
             // Assert
             Assert.Equal($"2x {ConvertByBetType.Comm_Percentage(expectedComissionPercent)}%", actualPTComm.CommissionPercent);
@@ -202,7 +202,7 @@
 
             // Act
             var actualPTComm = new PTComm(ticket, Enumeration.FromValue<UserLevel>(userLevelId));
-            actualPTComm.InitPTCommData();
+            actualPTComm.InitPtCommData();
 
             // Assert
             Assert.Equal($"{ConvertByBetType.Comm_Percentage(expectedComissionPercent)}%", actualPTComm.CommissionPercent);

@@ -1,11 +1,11 @@
-﻿using System.Linq;
-using Alpha.BetLists.Constants;
-
-namespace Alpha.BetLists.Helpers
+﻿namespace Alpha.BetLists.Helpers
 {
+    using System.Linq;
+    using Constants;
+
     public static class BetTypeHelper
     {
-        public static readonly int[] HorseRacingBetType = new[]
+        public static readonly int[] HorseRacingBetType =
         {
             BetTypeIdConstants.HorseRacing_Win,
             BetTypeIdConstants.HorseRacing_Place,

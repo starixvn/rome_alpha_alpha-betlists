@@ -17,6 +17,13 @@
 
         public string Comm { get; private set; }
 
+        private static bool DisplayComm(ITicket ticket)
+        {
+            var isIMBCMatch = ticket.SuperDiscount < 0 || ticket.MasterDiscount < 0 || ticket.AgentDiscount < 0;
+
+            return ticket.BetTypeId != 501 || !isIMBCMatch;
+        }
+
         private void SetData(ITicket ticket)
         {
             var status = ticket.Status.ToLowerInvariant();
@@ -44,13 +51,6 @@
                     Comm = ticket.BetTypeId == 500 ? ConvertByBetType.Winloss(ticket.PlayerComm) : ConvertByBetType.Comm(ticket.PlayerComm);
                     break;
             }
-        }
-
-        private bool DisplayComm(ITicket ticket)
-        {
-            var isIMBCMatch = ticket.SuperDiscount < 0 || ticket.MasterDiscount < 0 || ticket.AgentDiscount < 0;
-
-            return ticket.BetTypeId == 501 ? !isIMBCMatch : true;
         }
     }
 }

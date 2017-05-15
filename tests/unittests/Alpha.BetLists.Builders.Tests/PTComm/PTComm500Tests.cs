@@ -24,7 +24,7 @@
 
             // Act
             var actualPTComm = new PTComm500(ticket, Enumeration.FromValue<UserLevel>(userLevelId));
-            actualPTComm.InitPTCommData();
+            actualPTComm.InitPtCommData();
 
             // Assert
             Assert.Equal($"2x {ConvertByBetType.Comm_Percentage(expectedComissionPercent)}%", actualPTComm.CommissionPercent);
@@ -45,7 +45,7 @@
 
             // Act
             var actualPTComm = new PTComm500(ticket, Enumeration.FromValue<UserLevel>(userLevelId));
-            actualPTComm.InitPTCommData();
+            actualPTComm.InitPtCommData();
 
             // Assert
             Assert.Equal($"{ConvertByBetType.Comm_Percentage(expectedComissionPercent)}%", actualPTComm.CommissionPercent);

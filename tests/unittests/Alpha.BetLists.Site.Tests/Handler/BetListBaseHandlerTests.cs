@@ -325,7 +325,7 @@
         {
             // Arrange
             var ticket = BetListDataTest.Ticket;
-            var positionTakingCommRtf = BetListExcelBuilderExt.BuildPTCommmission(ticket, viewModel.BetListData.TicketData, UserLevel.Agent, betlistFixture.RtfHelper);
+            var positionTakingCommRtf = BetListExcelBuilderExt.BuildPtCommmission(ticket, viewModel.BetListData.TicketData, UserLevel.Agent, betlistFixture.RtfHelper);
 
             // Act
             var mapper = baseHandler.GetBodyRowMapper(UserLevel.Agent, viewModel);
@@ -340,9 +340,9 @@
             // Arrange
             var ticket = BetListDataTest.Ticket;
             var positionTakingCommMasterRtf
-                = BetListExcelBuilderExt.BuildPTCommmission(ticket, viewModel.BetListData.TicketData, UserLevel.Master, betlistFixture.RtfHelper);
+                = BetListExcelBuilderExt.BuildPtCommmission(ticket, viewModel.BetListData.TicketData, UserLevel.Master, betlistFixture.RtfHelper);
             var positionTakingCommAgentRtf
-                = BetListExcelBuilderExt.BuildPTCommmission(ticket, viewModel.BetListData.TicketData, UserLevel.Agent, betlistFixture.RtfHelper);
+                = BetListExcelBuilderExt.BuildPtCommmission(ticket, viewModel.BetListData.TicketData, UserLevel.Agent, betlistFixture.RtfHelper);
 
             // Act
             var mapper = baseHandler.GetBodyRowMapper(UserLevel.Master, viewModel);
@@ -358,11 +358,11 @@
             // Arrange
             var ticket = BetListDataTest.Ticket;
             var positionTakingCommSuperRtf
-                = BetListExcelBuilderExt.BuildPTCommmission(ticket, viewModel.BetListData.TicketData, UserLevel.Super, betlistFixture.RtfHelper);
+                = BetListExcelBuilderExt.BuildPtCommmission(ticket, viewModel.BetListData.TicketData, UserLevel.Super, betlistFixture.RtfHelper);
             var positionTakingCommMasterRtf
-                = BetListExcelBuilderExt.BuildPTCommmission(ticket, viewModel.BetListData.TicketData, UserLevel.Master, betlistFixture.RtfHelper);
+                = BetListExcelBuilderExt.BuildPtCommmission(ticket, viewModel.BetListData.TicketData, UserLevel.Master, betlistFixture.RtfHelper);
             var positionTakingCommAgentRtf
-                = BetListExcelBuilderExt.BuildPTCommmission(ticket, viewModel.BetListData.TicketData, UserLevel.Agent, betlistFixture.RtfHelper);
+                = BetListExcelBuilderExt.BuildPtCommmission(ticket, viewModel.BetListData.TicketData, UserLevel.Agent, betlistFixture.RtfHelper);
 
             // Act
             var mapper = baseHandler.GetBodyRowMapper(UserLevel.Super, viewModel);

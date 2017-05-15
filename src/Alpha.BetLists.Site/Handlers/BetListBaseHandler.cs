@@ -100,7 +100,6 @@
         protected internal virtual Mapper<ITicket> GetBodyRowMapper(UserLevel viewerLevel, BetListBaseViewModel viewModel)
         {
             var ticketData = viewModel.BetListData.TicketData;
-            var canViewScoreMap = viewModel.CanViewScoreMap;
 
             var mapper = new Mapper<ITicket>()
                 .Map(B, ticket => BuildTrans(ticket))
@@ -110,18 +109,18 @@
                 .Map(F, ticket => BuildWinLoss(ticket))
                 .Map(G, ticket => BuildStatus(ticket, viewModel));
 
-            mapper.Map(H, ticket => BuildPTCommmission(ticket, ticketData, viewerLevel));
+            mapper.Map(H, ticket => BuildPtCommmission(ticket, ticketData, viewerLevel));
 
             if (viewerLevel.IsMasterLevel())
             {
-                mapper.Map(I, ticket => BuildPTCommmission(ticket, ticketData, UserLevel.Agent));
+                mapper.Map(I, ticket => BuildPtCommmission(ticket, ticketData, UserLevel.Agent));
             }
 
             if (viewerLevel.IsSuperLevel())
             {
                 mapper
-                    .Map(I, ticket => BuildPTCommmission(ticket, ticketData, UserLevel.Master))
-                    .Map(J, ticket => BuildPTCommmission(ticket, ticketData, UserLevel.Agent));
+                    .Map(I, ticket => BuildPtCommmission(ticket, ticketData, UserLevel.Master))
+                    .Map(J, ticket => BuildPtCommmission(ticket, ticketData, UserLevel.Agent));
             }
 
             return mapper;
@@ -168,8 +167,8 @@
                 RtfHelper);
         }
 
-        protected virtual IRichTextString BuildPTCommmission(ITicket ticket, List<ITicketData> ticketData, UserLevel userLevel)
-            => BetListExcelBuilderExt.BuildPTCommmission(ticket, ticketData, userLevel, RtfHelper);
+        protected virtual IRichTextString BuildPtCommmission(ITicket ticket, List<ITicketData> ticketData, UserLevel userLevel)
+            => BetListExcelBuilderExt.BuildPtCommmission(ticket, ticketData, userLevel, RtfHelper);
 
         protected virtual IRichTextString BuildFooter(Footer footerData)
             => BetListExcelBuilderExt.BuildFooter(

@@ -55,14 +55,14 @@ namespace Alpha.BetLists.Builders.ExcelBuilders
             return winLossRtfText;
         }
 
-        public static IRichTextString BuildPTCommmission(ITicket ticket, List<ITicketData> ticketData, UserLevel userLevel, RTFHelper rtfHelper)
+        public static IRichTextString BuildPtCommmission(ITicket ticket, List<ITicketData> ticketData, UserLevel userLevel, RTFHelper rtfHelper)
         {
             var rtfNumber = new RTFNumber(rtfHelper.RTFRenderer, rtfHelper.PosFont, rtfHelper.NegFont);
 
             var positionTakingComm = PTCommFactory.CreateInstance(ticket, ticketData, userLevel);
 
-            RenderPTPercent(rtfNumber, rtfHelper, ticket, positionTakingComm);
-            RenderPTValue(rtfNumber, positionTakingComm);
+            RenderPtPercent(rtfNumber, rtfHelper, ticket, positionTakingComm);
+            RenderPtValue(rtfNumber, positionTakingComm);
             RenderCommPercent(rtfNumber, positionTakingComm);
             RenderCommValue(rtfNumber, positionTakingComm);
 
@@ -72,11 +72,11 @@ namespace Alpha.BetLists.Builders.ExcelBuilders
             return rtfText;
         }
 
-        private static void RenderPTPercent(RTFNumber rtfNumber, RTFHelper rtfHelper, ITicket ticket, PTComm positionTakingComm)
+        private static void RenderPtPercent(RTFNumber rtfNumber, RTFHelper rtfHelper, ITicket ticket, PTComm positionTakingComm)
         {
             if (ticket.BetTypeId == 33 || ticket.BetTypeId == 1233)
             {
-                RenderRacingPTValue(rtfNumber, rtfHelper, positionTakingComm);
+                RenderRacingPtValue(rtfNumber, rtfHelper, positionTakingComm);
                 return;
             }
 
@@ -86,7 +86,7 @@ namespace Alpha.BetLists.Builders.ExcelBuilders
             }
         }
 
-        private static void RenderPTValue(RTFNumber rtfNumber, PTComm positionTakingComm)
+        private static void RenderPtValue(RTFNumber rtfNumber, PTComm positionTakingComm)
         {
             if (!string.IsNullOrEmpty(positionTakingComm.PositionTaking) && positionTakingComm.VisiblePositionTaking)
             {
@@ -110,7 +110,7 @@ namespace Alpha.BetLists.Builders.ExcelBuilders
             }
         }
 
-        private static void RenderRacingPTValue(RTFNumber rtfNumber, RTFHelper rtfHelper, PTComm positionTakingComm)
+        private static void RenderRacingPtValue(RTFNumber rtfNumber, RTFHelper rtfHelper, PTComm positionTakingComm)
         {
             var positionTakingComm33 = positionTakingComm as PTComm33;
             rtfHelper.RTFRenderer.AddText($"{Resources.Win}: ", rtfHelper.PosFont);

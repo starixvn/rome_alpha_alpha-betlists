@@ -152,6 +152,8 @@
     <Compile Include="DataAccesses\SmartPunterDataAccessTests.cs" />
     <Compile Include="Fixtures\FanexDataFixture.cs" />
     <Compile Include="Fixtures\FanexCacheFixture.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Models\EnumerationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ParlayServiceImplTests.cs" />
     <Compile Include="Services\ParlayWinLossByMatchServiceImplTests.cs" />
@@ -160,6 +162,7 @@
     <Compile Include="Services\WinLossServiceTests.cs" />
     <Compile Include="TestData\BetListDataTest.cs" />
     <Compile Include="Criteria\WinLossByMatch\GetWinLossOthersCriteriaTests.cs" />
+    <Compile Include="TestData\UserLevelTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

@@ -2,11 +2,11 @@
 {
     using System;
     using BetLists.Criteria;
+    using BetLists.Models;
     using BetLists.Services;
     using Fanex.Caching;
     using Fanex.Data.Repository;
     using Fixtures;
-    using Models;
     using NSubstitute;
     using Xunit;
 

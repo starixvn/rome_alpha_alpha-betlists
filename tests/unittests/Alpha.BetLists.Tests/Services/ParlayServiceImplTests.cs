@@ -3,10 +3,10 @@
     using System;
     using System.Linq;
     using BetLists.Criteria.Parlay;
+    using BetLists.Models.Parlay;
     using BetLists.Services;
     using Fanex.BetList.Core.Entities;
     using Fixtures;
-    using Models.Parlay;
     using NSubstitute;
     using TestData;
     using Xunit;

@@ -17,6 +17,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alpha.BetLists.Builders", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alpha.BetLists.Builders.Tests", "tests\unittests\Alpha.BetLists.Builders.Tests\Alpha.BetLists.Builders.Tests.csproj", "{40E53E15-ABD2-4DD6-8456-342B3749A55E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SonarQube", "SonarQube", "{902C1E73-BAA5-42DA-ABC1-9056F5AE94B1}"
+	ProjectSection(SolutionItems) = preProject
+		SonarQube\Alpha-BetListCSharp.ruleset = SonarQube\Alpha-BetListCSharp.ruleset
+		SonarQube\SolutionBinding.sqconfig = SonarQube\SolutionBinding.sqconfig
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
