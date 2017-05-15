@@ -155,6 +155,7 @@
     <Compile Include="Configurations\AppSettings.cs" />
     <Compile Include="Constants\BetTypeIdConstants.cs" />
     <Compile Include="Criteria\GetBalanceUpDayAndMoveBetsDayCriteria.cs" />
+    <Compile Include="Criteria\GetProductsCriteria.cs" />
     <Compile Include="Criteria\Outstanding\GetBetListRunningByDateCriteria.cs" />
     <Compile Include="Criteria\Parlay\GetParlayBetListCriteria.cs" />
     <Compile Include="Criteria\Parlay\GetComboParlayDetailCriteria.cs" />
@@ -183,6 +184,7 @@
     <Compile Include="Models\Parlay\MatchDetail.cs" />
     <Compile Include="Models\Parlay\ComboParlayDetail.cs" />
     <Compile Include="Models\Parlay\ComboParlayDetailData.cs" />
+    <Compile Include="Models\Product.cs" />
     <Compile Include="Models\UserLevel.cs" />
     <Compile Include="Params\OutstandingParam.cs" />
     <Compile Include="Params\ParlayWinLossByMatchParam.cs" />
@@ -192,6 +194,7 @@
     <Compile Include="Services\OutstandingService.cs" />
     <Compile Include="Services\ParlayService.cs" />
     <Compile Include="Services\ParlayWinLossByMatchService.cs" />
+    <Compile Include="Services\ProductService.cs" />
     <Compile Include="Services\ReportDateService.cs" />
     <Compile Include="Services\WinLossByMatchService.cs" />
     <Compile Include="Services\WinLossService.cs" />

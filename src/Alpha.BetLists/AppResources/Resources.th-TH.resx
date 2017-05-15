@@ -279,4 +279,13 @@
   <data name="ThereIsNoProduct" xml:space="preserve">
     <value>ไม่มีสินค้า</value>
   </data>
+  <data name="CanOnlyViewDataAfterTimeHistoryReport" xml:space="preserve">
+    <value>ท่านสามารถดูรายงานข้อมูลได้จาก {0}.</value>
+  </data>
+  <data name="DailyStatement" xml:space="preserve">
+    <value>บัญชีรายวัน</value>
+  </data>
+  <data name="GetAll" xml:space="preserve">
+    <value>ได้รับทั้งหมด</value>
+  </data>
 </root>

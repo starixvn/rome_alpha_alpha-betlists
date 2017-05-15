@@ -3,37 +3,50 @@
     using AppResources;
     using BetLists.Models;
     using Components;
+    using Extensions;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Requests.Outstanding;
     using System;
-    using System.Collections;
     using System.Collections.Generic;
     using System.Web.Mvc;
+    using Utils;
 
     public class OutstandingViewModel : BetListBaseViewModel
     {
+        private const string StatementProductIds = "1,6,2";
         private readonly OutstandingQuery query;
 
         public OutstandingViewModel(
             OutstandingQuery query,
             BetListData betListData,
+            IEnumerable<SelectListItem> products,
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper,
             bool showMemberName = false)
             : base(query, betListData, builder, ticketHelper, showMemberName)
         {
             this.query = query;
+
             Title = $"{Resources.BetlistRunning} - {query.CustName}";
+            Products = products;
+
+            ViewDataInstructionMessage = string.Format(
+                Resources.CanOnlyViewDataAfterTimeHistoryReport,
+                query.MinDate.ToShortDateWithSlash());
         }
+
+        public bool GetAll => query.GetAll;
 
         public bool AllowToViewSuperPT => baseQuery.ViewerLevel.IsSuperLevel();
 
         public bool AllowToViewMasterPT => baseQuery.ViewerLevel.IsMasterOrSuperLevel();
 
+        public string ViewDataInstructionMessage { get; }
+
         public IEnumerable<SelectListItem> Products { get; }
 
-        private DateRangePickerViewModel DateRangePickerViewModel =>
+        public DateRangePickerViewModel DateRangePickerViewModel =>
             new DateRangePickerViewModel(
                 query.MinDate,
                 DateTime.MaxValue,
@@ -41,17 +54,44 @@
                 ToDate,
                 query.UserSelectedDateRangeOption);
 
-        private ProductMultiSelectionViewModel ProductMultiSelectionViewModel =>
+        public ProductMultiSelectionViewModel ProductMultiSelectionViewModel =>
             new ProductMultiSelectionViewModel(
                 Products,
                 ProductsId,
                 query.Language);
 
-        public OutstandingFilterViewModel FilterViewModel =>
-            new OutstandingFilterViewModel(
-                CustId,
-                CustName,
-                DateRangePickerViewModel,
-                ProductMultiSelectionViewModel);
+        public string BuildBetListLink()
+        {
+            var url = Helpers.UrlHelper.MapExMainPath("~/_Reports/BetList/OutstandingDetail.aspx");
+            var routeValues = new Dictionary<string, object>
+            {
+                ["username"] = CustName,
+                ["option"] = 4,
+                ["custid"] = CustId,
+                ["fdate"] = SystemTime.Today.AddDays(-1).ToShortDateWithSlash(),
+                ["tdate"] = SystemTime.Today.ToShortDateWithSlash(),
+                ["page"] = 1,
+                ["chkgetall"] = "on",
+                ["productIds"] = StatementProductIds,
+                ["FilterPostback"] = "1"
+            };
+
+            return Helpers.UrlHelper.AddQueryStringParamsFunc(url, routeValues);
+        }
+
+        public string BuildDailyStatementLink()
+        {
+            var url = Helpers.UrlHelper.MapExMainPath("~/Finance/StatementMember");
+            var routeValues = new Dictionary<string, object>
+            {
+                ["CustId"] = CustId,
+                ["username"] = CustName,
+                ["RoleId"] = 1,
+                ["productIds"] = StatementProductIds,
+                ["FilterPostback"] = "1"
+            };
+
+            return Helpers.UrlHelper.AddQueryStringParamsFunc(url, routeValues);
+        }
     }
 }

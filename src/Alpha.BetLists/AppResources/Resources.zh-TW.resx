@@ -279,4 +279,13 @@
   <data name="ThereIsNoProduct" xml:space="preserve">
     <value>沒有產品</value>
   </data>
+  <data name="CanOnlyViewDataAfterTimeHistoryReport" xml:space="preserve">
+    <value>您可查看報表數據從 {0}. </value>
+  </data>
+  <data name="DailyStatement" xml:space="preserve">
+    <value>每日帳目</value>
+  </data>
+  <data name="GetAll" xml:space="preserve">
+    <value>顯示全部</value>
+  </data>
 </root>

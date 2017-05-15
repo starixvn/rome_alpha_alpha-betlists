@@ -347,6 +347,10 @@
     <Content Include="assets\bundles\default.min.js">
       <DependentUpon>default.js</DependentUpon>
     </Content>
+    <Content Include="assets\bundles\outstanding\outstanding.js" />
+    <Content Include="assets\bundles\outstanding\outstanding.min.js">
+      <DependentUpon>outstanding.js</DependentUpon>
+    </Content>
     <Content Include="assets\scripts\tests\app\templates\common-template.html" />
     <Content Include="assets\scripts\tests\app\templates\iframe-template.html" />
     <Content Include="assets\scripts\tests\app\templates\parlay-template.html" />
@@ -420,6 +424,7 @@
     <Content Include="Alpha.BetLists.Site.Debug.ruleset" />
     <Content Include="Alpha.BetLists.Site.ruleset" />
     <Content Include="App_Code\Components\ProductMultiSelection.cshtml" />
+    <Content Include="assets\scripts\typings\globals\jquery.blockui\typings.json" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -561,6 +566,7 @@
     <Compile Include="Handlers\WinLoss\WinLossHandler.cs" />
     <Compile Include="Helpers\IPHelper.cs" />
     <Compile Include="Helpers\QueryEntityModelBinder.cs" />
+    <Compile Include="Helpers\UrlHelper.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\BaseQuery.cs" />
@@ -581,7 +587,6 @@
     <Compile Include="ViewModels\Components\DateRangePickerViewModel.cs" />
     <Compile Include="ViewModels\Components\ProductMultiSelectionViewModel.cs" />
     <Compile Include="ViewModels\ExcelFileViewModel.cs" />
-    <Compile Include="ViewModels\Outstanding\OutstandingFilterViewModel.cs" />
     <Compile Include="ViewModels\Outstanding\OutstandingViewModel.cs" />
     <Compile Include="ViewModels\ParlayWinLossByMatch\ParlayWinLossByMatchViewModel.cs" />
     <Compile Include="ViewModels\Parlay\ComboParlayDetailWrapper.cs" />
@@ -637,6 +642,8 @@
     <TypeScriptCompile Include="assets\scripts\src\components\core.ts" />
     <TypeScriptCompile Include="assets\scripts\src\components\daterangepicker.ts" />
     <TypeScriptCompile Include="assets\scripts\src\components\productmultiselection.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\components\single-selection-dropdown.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\outstanding\outstanding.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\choice\ticket-details\score-map-tests.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\choice\ticket-details\base-ticket-details-tests.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\choice\ticket-details\other-ticket-details-tests.ts" />
@@ -651,6 +658,7 @@
     <TypeScriptCompile Include="assets\scripts\typings\globals\bootstrap\index.d.ts" />
     <TypeScriptCompile Include="assets\scripts\typings\globals\jasmine-jquery\index.d.ts" />
     <TypeScriptCompile Include="assets\scripts\typings\globals\jasmine\index.d.ts" />
+    <TypeScriptCompile Include="assets\scripts\typings\globals\jquery.blockui\index.d.ts" />
     <TypeScriptCompile Include="assets\scripts\typings\globals\jquery.cookie\index.d.ts" />
     <TypeScriptCompile Include="assets\scripts\typings\globals\jquery\index.d.ts" />
     <TypeScriptCompile Include="assets\scripts\typings\index.d.ts" />

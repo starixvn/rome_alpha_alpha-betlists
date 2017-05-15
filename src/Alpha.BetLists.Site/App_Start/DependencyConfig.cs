@@ -1,9 +1,5 @@
 ﻿namespace Alpha.BetLists.Site.App_Start
 {
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Reflection;
-    using System.Web.Mvc;
     using BetLists.Models;
     using Controllers;
     using DataAccesses;
@@ -11,7 +7,6 @@
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Factories;
     using Fanex.BetList.Core.TicketHelper;
-    using Fanex.Caching;
     using Fanex.Data.Repository;
     using Handlers.Parlay;
     using Helpers;
@@ -19,6 +14,7 @@
     using Models;
     using ONEbook.SpreadSheets;
     using ONEbook.SpreadSheets.NPOI;
+    using RemotingRef;
     using Services;
     using SimpleInjector;
     using SimpleInjector.Integration.Web;
@@ -27,6 +23,11 @@
     using SmartPunter.Services;
     using Sunplus.Agent.Model.Base;
     using Sunplus.Agent.Model.Entities;
+    using Sunplus.Agent.Model.Entities.Permission;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Reflection;
+    using System.Web.Mvc;
     using Utilities.IP;
 
     public static class DependencyConfig
@@ -97,7 +98,6 @@
 
         private static void RegisterServices(Container container)
         {
-#pragma warning disable CS0618 // Type or member is obsolete
             container.RegisterSingleton<IUserSession, UserSessionExt>();
 #pragma warning restore CS0618 // Type or member is obsolete
             container.RegisterSingleton<IUser, User>();
@@ -119,6 +119,14 @@
             container.Register<WinLossByMatchService, WinLossByMatchServiceImpl>(Lifestyle.Singleton);
             container.Register<ParlayWinLossByMatchService, ParlayWinLossByMatchServiceImpl>(Lifestyle.Singleton);
             container.Register<OutstandingService, OutstandingServiceImpl>(Lifestyle.Singleton);
+
+            container.RegisterSingleton<CacheRefService, CacheRefServiceImpl>();
+            container.Register<ProductService>(
+                () => new ProductServiceImpl(
+                    container.GetInstance<IDynamicRepository>(),
+                    UserPermission.HasPermissionOnProduct,
+                    new CacheRefServiceImpl().GetProductName),
+                Lifestyle.Singleton);
         }
     }
 }

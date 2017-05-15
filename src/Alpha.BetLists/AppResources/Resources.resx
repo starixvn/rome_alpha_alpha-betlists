@@ -288,4 +288,16 @@
   <data name="ThereIsNoProduct" xml:space="preserve">
     <value>There is no product.</value>
   </data>
+  <data name="CanOnlyViewDataAfterTimeHistoryReport" xml:space="preserve">
+    <value>You can view the report data from {0}.</value>
+  </data>
+  <data name="BetList_Running" xml:space="preserve">
+    <value>Bet List (Running)</value>
+  </data>
+  <data name="DailyStatement" xml:space="preserve">
+    <value>Daily Statement</value>
+  </data>
+  <data name="GetAll" xml:space="preserve">
+    <value>Get All</value>
+  </data>
 </root>

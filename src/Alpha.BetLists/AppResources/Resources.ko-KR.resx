@@ -258,4 +258,13 @@
   <data name="Submit" xml:space="preserve">
     <value>확인</value>
   </data>
+  <data name="CanOnlyViewDataAfterTimeHistoryReport" xml:space="preserve">
+    <value>You can view the report data from {0}. </value>
+  </data>
+  <data name="DailyStatement" xml:space="preserve">
+    <value>일일 정책</value>
+  </data>
+  <data name="GetAll" xml:space="preserve">
+    <value>전체 선택</value>
+  </data>
 </root>

@@ -250,4 +250,7 @@
   <data name="Submit" xml:space="preserve">
     <value>送信</value>
   </data>
+  <data name="DailyStatement" xml:space="preserve">
+    <value>日別明細書</value>
+  </data>
 </root>

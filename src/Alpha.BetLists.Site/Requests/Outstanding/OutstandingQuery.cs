@@ -11,11 +11,12 @@
     {
         public OutstandingQuery(IUser viewer) : base(viewer)
         {
+            MinDate = SystemTime.Today.AddMonths(-3).FirstDayOfMonth();
         }
 
         public bool GetAll { get; set; }
 
-        public DateTime MinDate => SystemTime.Today.AddMonths(-3).FirstDayOfMonth();
+        public DateTime MinDate { get; }
 
         public int UserSelectedDateRangeOption { get; set; }
     }

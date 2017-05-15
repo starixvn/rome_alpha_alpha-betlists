@@ -282,4 +282,13 @@
   <data name="ThereIsNoProduct" xml:space="preserve">
     <value>Không có sản phẩm nào</value>
   </data>
+  <data name="CanOnlyViewDataAfterTimeHistoryReport" xml:space="preserve">
+    <value>Bạn có thể tra cứu dữ liệu báo cáo từ ngày {0}.</value>
+  </data>
+  <data name="DailyStatement" xml:space="preserve">
+    <value>Thông báo hằng ngày</value>
+  </data>
+  <data name="GetAll" xml:space="preserve">
+    <value>Chọn hết</value>
+  </data>
 </root>

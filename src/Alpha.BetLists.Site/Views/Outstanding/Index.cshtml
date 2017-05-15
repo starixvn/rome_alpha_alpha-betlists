@@ -10,7 +10,28 @@
 </div>
 
 <form class="form-inline filter" role="form" id="betlist-form">
-    @ProductMultiSelection.Render(Model.FilterViewModel.ProductMultiSelectionViewModel)
+    <div class="form-group">
+        <select id="dropdown-betlist-type">
+            <option value="1" data-url="@Model.BuildDailyStatementLink()">@Resources.DailyStatement</option>
+            <option value="2" data-url="@Model.BuildBetListLink()">@Resources.BetList</option>
+            <option value="3" selected="selected">@Resources.BetList_Running</option>
+        </select>
+    </div>
+
+    @ProductMultiSelection.Render(Model.ProductMultiSelectionViewModel)
+
+    <div class="form-group">
+        <label>
+            @Resources.GetAll
+            @Html.CheckBox("get-all", Model.GetAll)
+        </label>
+    </div>
+
+    @DateRangePicker.Render(Model.DateRangePickerViewModel)
+
+    <div class="note">
+        <span class="star">*</span>@Model.ViewDataInstructionMessage
+    </div>
 </form>
 
 <table class="tblRpt tblRpt-bordered tblRpt-striped width-100per tablesorter tblRpt-hover tbl-betlist">
@@ -87,9 +108,11 @@
 @Html.Hidden("results-path", Model.ResultsPath)
 @Html.Hidden("product-ids", Model.ProductsId)
 @Html.Hidden("betlist-type", Model.BetListType)
-@Html.Hidden("from-date", Model.FromDate)
-@Html.Hidden("to-date", Model.ToDate)
 @Html.Hidden("cust-id", Model.CustId)
 @Html.Hidden("is-historic-report", Model.IsHistoricReport)
 @Html.Hidden("viewer-id", Model.ViewerIdOrViewerAdminId)
 @Html.Hidden("viewer-level-id", Model.ViewerLevelId)
+
+@section Scripts{
+    @StaticResources.RenderScripts("~/assets/bundles/outstanding/outstanding")
+}

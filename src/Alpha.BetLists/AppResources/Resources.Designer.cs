@@ -99,9 +99,27 @@ namespace Alpha.BetLists.AppResources {
         /// <summary>
         ///   Looks up a localized string similar to Bet List (Running).
         /// </summary>
+        public static string BetList_Running {
+            get {
+                return ResourceManager.GetString("BetList_Running", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bet List (Running).
+        /// </summary>
         public static string BetlistRunning {
             get {
                 return ResourceManager.GetString("BetlistRunning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can view the report data from {0}..
+        /// </summary>
+        public static string CanOnlyViewDataAfterTimeHistoryReport {
+            get {
+                return ResourceManager.GetString("CanOnlyViewDataAfterTimeHistoryReport", resourceCulture);
             }
         }
         
@@ -129,6 +147,15 @@ namespace Alpha.BetLists.AppResources {
         public static string CommissionRoundNote {
             get {
                 return ResourceManager.GetString("CommissionRoundNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Daily Statement.
+        /// </summary>
+        public static string DailyStatement {
+            get {
+                return ResourceManager.GetString("DailyStatement", resourceCulture);
             }
         }
         
@@ -165,6 +192,15 @@ namespace Alpha.BetLists.AppResources {
         public static string From {
             get {
                 return ResourceManager.GetString("From", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get All.
+        /// </summary>
+        public static string GetAll {
+            get {
+                return ResourceManager.GetString("GetAll", resourceCulture);
             }
         }
         
