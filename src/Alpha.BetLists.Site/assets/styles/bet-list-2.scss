@@ -1,6 +1,13 @@
 ﻿@import "mixins";
 @import "variables";
 
+body {
+    background-color: transparent;
+    font-size: $font-size;
+    font-family: $font-family;
+    line-height: 20px;
+}
+
 a {
     text-decoration: none;
 }
@@ -126,6 +133,12 @@ a {
 
 .bl_stype, .sport {
     color: #0066CC;
+}
+
+.bl_match {
+    color: $text-color;
+    font-weight: normal;
+    line-height: 15px;
 }
 
 .bl_footertotal {
@@ -300,6 +313,10 @@ div.match + div.league, div.league, .no-details {
     }
 }
 
+.strike_through {
+    text-decoration: line-through;
+}
+
 td.nonbreak {
     white-space: nowrap;
 }
@@ -358,6 +375,10 @@ td.nonbreak {
 
 .ftd-choice, .bdd-choice {
     color: #484848;
+}
+
+.colossus-bets-details {
+    display: none;
 }
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
