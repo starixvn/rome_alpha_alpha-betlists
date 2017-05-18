@@ -121,6 +121,7 @@
             container.Register<OutstandingService, OutstandingServiceImpl>(Lifestyle.Singleton);
 
             container.RegisterSingleton<CacheRefService, CacheRefServiceImpl>();
+            container.Register<ForeCastService, ForeCastServiceImpl>(Lifestyle.Singleton);
             container.Register<ProductService>(
                 () => new ProductServiceImpl(
                     container.GetInstance<IDynamicRepository>(),

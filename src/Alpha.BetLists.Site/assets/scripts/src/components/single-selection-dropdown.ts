@@ -1,6 +1,4 @@
-﻿/// <reference path="core.ts" />
-
-"use strict";
+﻿"use strict";
 interface JQuery {
     multiselect(option: any): void;
 }

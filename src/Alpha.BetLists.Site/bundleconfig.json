@@ -18,6 +18,7 @@
       "assets/scripts/src/betlist/status/result-details/casino-result-details.js",
       "assets/scripts/src/betlist/status/result-details/other-result-details.js",
       "assets/scripts/src/betlist/status/ip-details.js",
+      "assets/scripts/src/betlist/choice/score-map.js",
       "assets/scripts/src/betlist/choice/ticket-details/base-ticket-details.js",
       "assets/scripts/src/betlist/choice/ticket-details/sportsbook-ticket-details.js",
       "assets/scripts/src/betlist/choice/ticket-details/casino-ticket-details.js",
@@ -35,7 +36,6 @@
   {
     "outputFileName": "assets/bundles/outstanding/outstanding.js",
     "inputFiles": [
-      "assets/scripts/src/components/core.js",
       "assets/scripts/src/components/daterangepicker.js",
       "assets/scripts/src/components/productmultiselection.js",
       "assets/scripts/src/components/single-selection-dropdown.js",

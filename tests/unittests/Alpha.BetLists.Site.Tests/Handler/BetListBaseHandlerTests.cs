@@ -222,7 +222,7 @@
             // Arrange
             var ticket = BetListDataTest.Ticket;
             betlistFixture.ExcelBuilder.CreateChoiceBuilder(ticket.BetTypeId)
-               .RenderRTF(ticket, betlistFixture.TicketHelper, viewModel.BetListData.TicketData, viewModel.CanViewScoreMap, betlistFixture.RtfHelper)
+               .RenderRTF(ticket, betlistFixture.TicketHelper, viewModel.BetListData.TicketData, viewModel.CanViewScoreMap(ticket), betlistFixture.RtfHelper)
                .Returns(BetListDataTest.ChoiceRtf);
 
             // Act

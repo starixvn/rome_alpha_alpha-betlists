@@ -1,6 +1,4 @@
-﻿/// <reference path="core.ts" />
-
-"use strict";
+﻿"use strict";
 interface JQuery {
     multiselect(option: any): void;
 }
@@ -30,12 +28,13 @@ class ProductMultiSelectionComponent {
         this.options = <ProductMultiSelectionOption>this.$.extend({}, this.options, options);
 
         this.$dropdownProduct = this.$("#" + this.options.dropdownId);
-        let hasAnyProduct = alphaBetLists.convertAttributeToBool(this.$dropdownProduct.data("has-any-product"));
+        let hasAnyProduct = this.convertAttributeToBool(this.$dropdownProduct.data("has-any-product"));
         this.$hiddenInput = this.$("#" + this.options.productsInputId);
+        let numberDisplayedProductsOnFilter = 1;
 
         this.$dropdownProduct.multiselect({
             maxHeight: 300,
-            numberDisplayed: alphaBetLists.numberDisplayedProductsOnFilter,
+            numberDisplayed: numberDisplayedProductsOnFilter,
             nonSelectedText: hasAnyProduct
                 ? this.$dropdownProduct.data("label-select-products")
                 : this.$dropdownProduct.data("label-there-is-no-product"),
@@ -80,5 +79,9 @@ class ProductMultiSelectionComponent {
         });
 
         return selected;
+    };
+
+    convertAttributeToBool = (attrValue: string) => {
+        return !!attrValue && attrValue.toString().toLowerCase() === "true";
     };
 }

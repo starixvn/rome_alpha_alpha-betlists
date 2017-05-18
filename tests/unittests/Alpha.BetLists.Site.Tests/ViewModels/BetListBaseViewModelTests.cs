@@ -112,7 +112,7 @@
             var viewModel = new WinLossViewModel(query, BetListDataTest.BetListData, betListFixture.HtmlBuilder, betListFixture.TicketHelper, true);
 
             // Assert
-            Assert.Equal(false, viewModel.CanViewScoreMap);
+            Assert.Equal(false, viewModel.CanViewScoreMap(BetListDataTest.Ticket));
         }
 
         [Fact]

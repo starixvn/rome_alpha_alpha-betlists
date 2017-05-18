@@ -1,6 +1,4 @@
-﻿/// <reference path="core.ts" />
-
-"use strict";
+﻿"use strict";
 
 interface JQuery {
     nexDatePicker(option: any): void;
@@ -39,10 +37,11 @@ class DateRangePickerComponent {
         let minDate = dateRangePicker.data("mindate");
         let maxDate = dateRangePicker.data("maxdate");
         this.$reportForm = this.$("#" + this.options.reportFormId);
+        let shortDateWithSlashFormat: "MM/DD/YYYY";
 
         dateRangePicker.nexDatePicker({
             datePickerFormat: {
-                dateFormat: alphaBetLists.format.shortDateWithSlash_DatePicker
+                dateFormat: shortDateWithSlashFormat
             },
             selectedItem: dateRangePicker.data("selecteddaterange"),
             minDate: new Date(minDate),

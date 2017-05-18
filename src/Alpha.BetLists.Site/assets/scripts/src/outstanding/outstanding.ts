@@ -1,5 +1,4 @@
-﻿/// <reference path="../components/core.ts" />
-/// <reference path="../components/daterangepicker.ts" />
+﻿/// <reference path="../components/daterangepicker.ts" />
 /// <reference path="../components/productmultiselection.ts" />
 
 "use strict";
@@ -54,7 +53,7 @@ class OutstandingView {
         this.$tableBetlist = this.$(".tbl-betlist");
         this.$betlistForm = this.$("#betlist-form");
 
-        this.$pageTitle = this.$(".bl_title")
+        this.$pageTitle = this.$(".bl_title");
         this.$fromDate = this.$("#from-date");
         this.$toDate = this.$("#to-date");
         this.$custId = this.$("#CustId");
@@ -96,7 +95,7 @@ class OutstandingView {
             return;
         }
 
-        this.$isFilterVisible.val(String(alphaBetLists.screenSmallThan768() ? false : params.IsFilterVisible));
+        this.$isFilterVisible.val(String(this.screenSmallThan768() ? false : params.IsFilterVisible));
     };
 
     onClickIconFilter = () => {
@@ -137,6 +136,12 @@ class OutstandingView {
     };
 
     showValidaProductError = () => this.$multiSelectButton.addClass("error");
+
+    screenSmallThan768 = () => {
+        var currentWindowWidth = screen.width || this.$(window).width();
+
+        return currentWindowWidth < 768;
+    };
 }
 
 $(function () {

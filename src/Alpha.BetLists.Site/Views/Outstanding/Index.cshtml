@@ -79,48 +79,53 @@
     @if (Model.BetListData.Tickets.Any())
     {
         <tbody>
-            @for (int i = 0; i < Model.BetListData.Total; i++)
-            {
-                var ticket = Model.BetListData.Tickets.ElementAt(i);
-
-                <tr>
-                    <td class='w-order text-center'>@(i + 1)</td>
-                    @if (Model.ShowMemberName)
+            @{
+                var i = 1;
+                foreach (var ticket in Model.BetListData.Tickets)
+                {
+                    <tr>
+                        <td class='w-order text-center'>@i</td>
+                        @if (Model.ShowMemberName)
                     {
-                        <td class="text-center">@ticket.UserName</td>
-                    }
+                            <td class="text-center">@ticket.UserName</td>
+                        }
 
-                    @Trans.Render(Model.Builder, ticket)
-                    @Choice.Render(Model.Builder, ticket, Model.TicketHelper, Model.BetListData.TicketData, Model.CanViewScoreMap)
-                    @Odds.Render(Model.Builder, ticket, Model.BetListData.TicketData)
-                    @Stake.Render(Model.Builder, ticket)
-                    @Status.Render(Model.Builder, ticket, Model.TicketHelper, Model.BetListData.TicketData, Model.DisplayVNIP)
+                        @Trans.Render(Model.Builder, ticket)
+                        @Choice.Render(Model.Builder, ticket, Model.TicketHelper, Model.BetListData.TicketData, Model.CanViewScoreMap(ticket))
+                        @Odds.Render(Model.Builder, ticket, Model.BetListData.TicketData)
+                        @Stake.Render(Model.Builder, ticket)
+                        @Status.Render(Model.Builder, ticket, Model.TicketHelper, Model.BetListData.TicketData, Model.DisplayVNIP)
 
-                    @if (Model.AllowToViewSuperPT)
+                        @if (Model.AllowToViewSuperPT)
                     {
-                        @PositionTaking.Render(ticket, Model.BetListData.TicketData, UserLevel.Super)
-                    }
+                            @PositionTaking.Render(ticket, Model.BetListData.TicketData, UserLevel.Super)
+                        }
 
-                    @if (Model.AllowToViewMasterPT)
+                        @if (Model.AllowToViewMasterPT)
                     {
-                        @PositionTaking.Render(ticket, Model.BetListData.TicketData, UserLevel.Master)
-                    }
+                            @PositionTaking.Render(ticket, Model.BetListData.TicketData, UserLevel.Master)
+                        }
 
-                    @PositionTaking.Render(ticket, Model.BetListData.TicketData, UserLevel.Agent)
-                </tr>
+                        @PositionTaking.Render(ticket, Model.BetListData.TicketData, UserLevel.Agent)
+                    </tr>
+                    i++;
+                }
             }
         </tbody>
-    }
-    else
-    {
-        @Common.NoInfomation.Render(Model.TotalColumn)
-    }
+                }
+                else
+                {
+                    @Common.NoInfomation.Render(Model.TotalColumn)
+                }
 </table>
 
 @Html.Hidden("betlist-path", HttpContext.Current.Response.ApplyAppPathModifier("~/"))
 @Html.Hidden("old-main-path", Model.OldMainPath)
 @Html.Hidden("results-path", Model.ResultsPath)
+@Html.Hidden("product-ids", Model.ProductsId)
 @Html.Hidden("betlist-type", Model.BetListType)
+@Html.Hidden("from-date", Model.FromDate)
+@Html.Hidden("to-date", Model.ToDate)
 @Html.Hidden("cust-id", Model.CustId)
 @Html.Hidden("is-historic-report", Model.IsHistoricReport)
 @Html.Hidden("viewer-id", Model.ViewerIdOrViewerAdminId)

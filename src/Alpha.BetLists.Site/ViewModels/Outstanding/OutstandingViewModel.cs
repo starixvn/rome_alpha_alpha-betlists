@@ -10,6 +10,7 @@
     using Requests.Outstanding;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Web.Mvc;
     using Utils;
 
@@ -23,6 +24,7 @@
             OutstandingParam param,
             BetListData betListData,
             IEnumerable<SelectListItem> products,
+            IEnumerable<int> supportScoreMapBettypeIds,
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper,
             bool showMemberName = false)
@@ -30,9 +32,10 @@
         {
             this.query = query;
 
-            Title = $"{Resources.BetlistRunning} - {query.CustName}";
-
             Products = products;
+            SupportScoreMapBettypeIds = supportScoreMapBettypeIds;
+
+            Title = $"{Resources.BetlistRunning} - {query.CustName}";
             ProductsId = param.ProductIds.JoinWithComma();
             FromDate = param.FromDate;
             ToDate = param.ToDate;
@@ -54,6 +57,8 @@
 
         public bool IsFilterVisible => query.IsFilterVisible;
 
+        public IEnumerable<int> SupportScoreMapBettypeIds { get; }
+
         public IEnumerable<SelectListItem> Products { get; }
 
         public DateRangePickerViewModel DateRangePickerViewModel =>
@@ -69,6 +74,8 @@
                 Products,
                 ProductsId,
                 query.Language);
+
+        public override bool CanViewScoreMap(ITicket ticket) => SupportScoreMapBettypeIds.Contains(ticket.BetTypeId);
 
         public string BuildBetListLink()
         {

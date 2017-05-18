@@ -141,7 +141,7 @@
         protected virtual IRichTextString BuildChoice(ITicket ticket, BetListBaseViewModel viewModel)
             => ExcelBuilder
                 .CreateChoiceBuilder(ticket.BetTypeId)
-                .RenderRTF(ticket, TicketHelper, viewModel.BetListData.TicketData, viewModel.CanViewScoreMap, RtfHelper)
+                .RenderRTF(ticket, TicketHelper, viewModel.BetListData.TicketData, viewModel.CanViewScoreMap(ticket), RtfHelper)
                 .FirstOrDefault();
 
         protected virtual IRichTextString BuildOdds(ITicket ticket, BetListBaseViewModel viewModel)

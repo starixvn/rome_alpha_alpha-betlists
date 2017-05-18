@@ -64,9 +64,6 @@
 
         public ITicketHelper TicketHelper { get; protected set; }
 
-        // TODO: will implement here
-        public bool CanViewScoreMap { get; }
-
         public bool DisplayVNIP { get; }
 
         public string ProductsId { get; protected set; }
@@ -98,5 +95,8 @@
 
         public bool HasDateParam(BaseQuery query)
             => query.FromDate != DateTime.MinValue && query.ToDate != DateTime.MinValue;
+
+        // TODO: will implement here
+        public virtual bool CanViewScoreMap(ITicket ticket) => false;
     }
 }

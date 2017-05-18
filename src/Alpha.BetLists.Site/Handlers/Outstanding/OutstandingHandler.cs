@@ -20,10 +20,12 @@
     {
         private readonly OutstandingService outstandingService;
         private readonly ProductService productService;
+        private readonly ForeCastService foreCastService;
 
         public OutstandingHandler(
             OutstandingService oustandingService,
             ProductService productService,
+            ForeCastService foreCastService,
             IBetListHTMLBuilder builder,
             IBetListExcelBuilder excelBuilder,
             ITicketHelper ticketHelper,
@@ -33,6 +35,7 @@
         {
             this.outstandingService = oustandingService;
             this.productService = productService;
+            this.foreCastService = foreCastService;
         }
 
         public async Task<OutstandingViewModel> Handle(OutstandingQuery message)
@@ -49,8 +52,8 @@
                 message.CustName);
 
             var betlistData = await outstandingService.GetBetList(outstandingParam);
-
             var products = productService.GetProductsForCustomer(message.CustId);
+            var supportScoreMapBettypeIds = foreCastService.GetBetTypeIdsSupportScoreMap();
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
@@ -59,6 +62,7 @@
                 outstandingParam,
                 betlistData,
                 BuildProductSelectListItems(outstandingParam.ProductIds, products),
+                supportScoreMapBettypeIds,
                 Builder,
                 TicketHelper);
         }

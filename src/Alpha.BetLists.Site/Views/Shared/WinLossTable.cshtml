@@ -46,7 +46,7 @@
                     }
 
                     @Trans.Render(Model.Builder, ticket)
-                    @Choice.Render(Model.Builder, ticket, Model.TicketHelper, Model.BetListData.TicketData, Model.CanViewScoreMap)
+                    @Choice.Render(Model.Builder, ticket, Model.TicketHelper, Model.BetListData.TicketData, Model.CanViewScoreMap(ticket))
                     @Odds.Render(Model.Builder, ticket, Model.BetListData.TicketData)
                     @Stake.Render(Model.Builder, ticket)
                     @WinLoss.Render(ticket)
