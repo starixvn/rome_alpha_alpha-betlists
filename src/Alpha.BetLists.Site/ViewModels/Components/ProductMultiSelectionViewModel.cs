@@ -7,11 +7,11 @@
     {
         public ProductMultiSelectionViewModel(
             IEnumerable<SelectListItem> products,
-            string userSelectedProductIds,
+            string productIds,
             string language)
         {
             Products = products;
-            UserSelectedProductIds = userSelectedProductIds;
+            ProductIds = productIds;
             Language = language;
         }
 
@@ -19,6 +19,6 @@
 
         public string Language { get; }
 
-        public string UserSelectedProductIds { get; }
+        public string ProductIds { get; }
     }
 }

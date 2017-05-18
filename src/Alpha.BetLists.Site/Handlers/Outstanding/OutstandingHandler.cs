@@ -37,11 +37,11 @@
 
         public async Task<OutstandingViewModel> Handle(OutstandingQuery message)
         {
-            var products = productService.GetProductsForCustomer(message.CustId);
+            var validUserSelectedProductIds = productService.FilterProductIdsByCustomer(message.CustId, message.ProductIds.ToListInt());
 
             var outstandingParam = new OutstandingParam(
                 message.CustId,
-                message.ProductIds.ToListInt(),
+                validUserSelectedProductIds,
                 message.FromDate,
                 message.ToDate,
                 message.GetAll,
@@ -50,9 +50,17 @@
 
             var betlistData = await outstandingService.GetBetList(outstandingParam);
 
+            var products = productService.GetProductsForCustomer(message.CustId);
+
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
-            return new OutstandingViewModel(message, betlistData, BuildProductSelectListItems(outstandingParam.ProductIds, products), Builder, TicketHelper);
+            return new OutstandingViewModel(
+                message,
+                outstandingParam,
+                betlistData,
+                BuildProductSelectListItems(outstandingParam.ProductIds, products),
+                Builder,
+                TicketHelper);
         }
 
         private IEnumerable<SelectListItem> BuildProductSelectListItems(

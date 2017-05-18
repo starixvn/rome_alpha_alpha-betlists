@@ -16,8 +16,10 @@
 
         public bool GetAll { get; set; }
 
-        public DateTime MinDate { get; }
+        public bool IsFilterVisible { get; set; } = true;
 
         public int UserSelectedDateRangeOption { get; set; }
+
+        public DateTime MinDate { get; }
     }
 }

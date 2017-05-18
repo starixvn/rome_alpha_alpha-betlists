@@ -26,6 +26,13 @@
   },
 
   {
+    "outputFileName": "assets/bundles/outstanding.css",
+    "inputFiles": [
+      "assets/styles/outstanding.css"
+    ]
+  },
+
+  {
     "outputFileName": "assets/bundles/outstanding/outstanding.js",
     "inputFiles": [
       "assets/scripts/src/components/core.js",

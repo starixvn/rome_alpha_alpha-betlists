@@ -1,0 +1,101 @@
+﻿@import "mixins";
+@import "variables";
+
+.bl_title {
+    .hidefilter-element {
+        display: none;
+    }
+
+    &.hide-filter {
+        .showfilter-element {
+            display: none;
+        }
+
+        .hidefilter-element {
+            display: block;
+        }
+    }
+
+    .list-icon {
+        float: right;
+
+        ul li {
+            cursor: pointer;
+            color: $icon-color;
+            float: left;
+
+            [class^='icon'] {
+                font-size: 16px;
+                padding: 0 10px;
+                vertical-align: middle;
+                position: relative;
+                top: -2px;
+            }
+
+            .icon-filter {
+                font-size: 22px;
+                @include ripple-effect-icon($margin-left: 2px, $height: 36px, $width: 36px, $top: -2px);
+            }
+        }
+    }
+}
+
+// Filter
+.note {
+    .star {
+        color: #ff0101;
+        padding-right: 8px;
+    }
+}
+
+.filter {
+    display: table;
+    width: 100%;
+    clear: both;
+
+    #historicreport-switch {
+        text-decoration: none !important;
+    }
+
+    .multiselect .multiselect-selected-text {
+        width: 130px;
+    }
+
+    select.select-multiple {
+        height: $height-normal;
+        width: 160px;
+    }
+
+    .error, .btn-group button.multiselect.error {
+        border: 1px solid $filter-error-border-color;
+        padding: 4px 10px;
+    }
+
+    select.dropdown-daterange {
+        width: 160px;
+    }
+
+    .input-group.date .form-control {
+        -webkit-appearance: none;
+    }
+
+    .daterange-picker .input-group.date {
+        width: 128px;
+    }
+
+    .daterange-container {
+        vertical-align: top;
+    }
+
+    .form-group {
+        .btn-submit, .btn-group {
+            float: left;
+        }
+
+        &.daterange-picker {
+            .ui_nexdatepicker_edit_field, .ui_nexdatepicker_lbl_field {
+                margin-bottom: 15px;
+            }
+        }
+    }
+}

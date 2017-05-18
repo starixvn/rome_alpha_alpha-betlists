@@ -12,6 +12,11 @@ class AlphaBetLists {
     };
 
     numberDisplayedProductsOnFilter = 1;
+    screenSmallThan768 = () => {
+        var currentWindowWidth = screen.width || this.$(window).width();
+
+        return currentWindowWidth < 768;
+    };
 
     convertAttributeToBool = (attrValue: string) => {
         return !!attrValue && attrValue.toString().toLowerCase() === "true";

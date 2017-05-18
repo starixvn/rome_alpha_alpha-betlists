@@ -11,7 +11,11 @@ class OutstandingView {
     $multiSelectButton: JQuery;
     $userSelectedDateRangeOption: JQuery;
     $betlistForm: JQuery;
+    $pageTitle: JQuery;
     $submitButton: JQuery;
+    $isFilterVisible: JQuery;
+
+    $getallCheckbox: JQuery;
     $fromDate: JQuery;
     $toDate: JQuery;
     $custId: JQuery;
@@ -41,6 +45,7 @@ class OutstandingView {
         this.cacheDOMElements();
         this.bindFilter();
         this.registerEvents();
+        this.$getallCheckbox.trigger("change");
 
         this.$.unblockUI();
     };
@@ -48,9 +53,14 @@ class OutstandingView {
     cacheDOMElements = () => {
         this.$tableBetlist = this.$(".tbl-betlist");
         this.$betlistForm = this.$("#betlist-form");
+
+        this.$pageTitle = this.$(".bl_title")
         this.$fromDate = this.$("#from-date");
         this.$toDate = this.$("#to-date");
-        this.$custId = this.$("#cust-id");
+        this.$custId = this.$("#CustId");
+
+        this.$getallCheckbox = this.$("#GetAll");
+        this.$isFilterVisible = this.$("#IsFilterVisible");
     };
 
     bindFilter = () => {
@@ -70,6 +80,8 @@ class OutstandingView {
 
     public registerEvents() {
         this.$betlistForm.submit(this.onSubmitEvent);
+        this.$(".icon-filter").on("click", this.onClickIconFilter);
+        this.$getallCheckbox.change(this.onChangeGetAllCheckbox);
     }
 
     onSubmitEvent = (e: any) => {
@@ -83,7 +95,36 @@ class OutstandingView {
 
             return;
         }
+
+        this.$isFilterVisible.val(String(alphaBetLists.screenSmallThan768() ? false : params.IsFilterVisible));
     };
+
+    onClickIconFilter = () => {
+        let filter = this.$betlistForm;
+        let currentHideState = filter.hasClass("hide");
+
+        if (currentHideState) {
+            this.$pageTitle.removeClass("hide-filter");
+            this.$betlistForm.removeClass("hide");
+        } else {
+            this.$pageTitle.addClass("hide-filter");
+            this.$betlistForm.addClass("hide");
+        }
+    };
+
+    onChangeGetAllCheckbox = () => {
+        let checkbox = this.$getallCheckbox;
+        let checked = checkbox.is(":checked");
+
+        if (checked) {
+            this.$fromDate.prop("disabled", true);
+            this.$toDate.prop("disabled", true);
+        }
+        else {
+            this.$fromDate.prop("disabled", false);
+            this.$toDate.prop("disabled", false);
+        }
+    }
 
     getParams = () => {
         let selectedProducts = this.productMultiSelectionComponent.getSelectedItems();
@@ -91,6 +132,7 @@ class OutstandingView {
         return {
             CustId: custId,
             IsAnyProductSelected: selectedProducts.length > 0,
+            IsFilterVisible: !this.$betlistForm.is(":hidden")
         };
     };
 

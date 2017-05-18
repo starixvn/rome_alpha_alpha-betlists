@@ -5,11 +5,25 @@
     ViewBag.Title = "Outstanding Bet List";
 }
 
+@section Styles{
+    @StaticResources.AssetStyles.Render("/bundles/site-betlists/outstanding")
+    @StaticResources.RenderStyles("~/assets/bundles/outstanding")
+}
 <div class="bl_title">
     @Model.Title
+
+    <div class="list-icon">
+        <ul>
+            <li class="showfilter-element"><span class="icon-arrow-up-drop-circle icon-filter" title="@Resources.HideFilter"></span></li>
+            <li class="hidefilter-element"><span class="icon-arrow-down-drop-circle icon-filter" title="@Resources.ShowFilter"></span></li>
+        </ul>
+    </div>
 </div>
 
-<form class="form-inline filter" role="form" id="betlist-form">
+<form class="form-inline filter @(Model.IsFilterVisible ? string.Empty : "hide") role="form" id="betlist-form">
+    @Html.Hidden("CustId", Model.CustId)
+    @Html.Hidden("CustName", Model.CustName)
+    @Html.Hidden("IsFilterVisible", Model.IsFilterVisible)
     <div class="form-group">
         <select id="dropdown-betlist-type">
             <option value="1" data-url="@Model.BuildDailyStatementLink()">@Resources.DailyStatement</option>
@@ -23,7 +37,7 @@
     <div class="form-group">
         <label>
             @Resources.GetAll
-            @Html.CheckBox("get-all", Model.GetAll)
+            @Html.CheckBox("GetAll", Model.GetAll)
         </label>
     </div>
 
@@ -106,7 +120,6 @@
 @Html.Hidden("betlist-path", HttpContext.Current.Response.ApplyAppPathModifier("~/"))
 @Html.Hidden("old-main-path", Model.OldMainPath)
 @Html.Hidden("results-path", Model.ResultsPath)
-@Html.Hidden("product-ids", Model.ProductsId)
 @Html.Hidden("betlist-type", Model.BetListType)
 @Html.Hidden("cust-id", Model.CustId)
 @Html.Hidden("is-historic-report", Model.IsHistoricReport)
@@ -114,5 +127,6 @@
 @Html.Hidden("viewer-level-id", Model.ViewerLevelId)
 
 @section Scripts{
+    @StaticResources.AssetScripts.Render("/bundles/site-betlists/outstanding")
     @StaticResources.RenderScripts("~/assets/bundles/outstanding/outstanding")
 }

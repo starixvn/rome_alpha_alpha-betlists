@@ -11,6 +11,8 @@
     public interface ProductService
     {
         IEnumerable<Product> GetProductsForCustomer(int custId);
+
+        IEnumerable<int> FilterProductIdsByCustomer(int custId, IEnumerable<int> productIds);
     }
 
     public class ProductServiceImpl : ProductService
@@ -47,6 +49,17 @@
                 new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(CustProductsCacheTimeInMinutes)));
 
             return custProducts;
+        }
+
+        public IEnumerable<int> FilterProductIdsByCustomer(int custId, IEnumerable<int> productIds)
+        {
+            var customerProductIds = GetProductsForCustomer(custId).Select(product => product.Id);
+
+            var productIdList = productIds == null || !productIds.Any()
+                ? customerProductIds
+                : customerProductIds.Where(product => productIds.Contains(product));
+
+            return productIdList;
         }
 
         private IEnumerable<Product> GetProductsForReport()

@@ -288,4 +288,10 @@
   <data name="GetAll" xml:space="preserve">
     <value>ได้รับทั้งหมด</value>
   </data>
+  <data name="HideFilter" xml:space="preserve">
+    <value>ซ่อนตัวกรอง</value>
+  </data>
+  <data name="ShowFilter" xml:space="preserve">
+    <value>แสดงผลตัวกรอง</value>
+  </data>
 </root>

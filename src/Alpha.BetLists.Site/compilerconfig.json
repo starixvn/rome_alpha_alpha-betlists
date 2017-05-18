@@ -7,6 +7,11 @@
   {
     "outputFile": "assets/styles/details-popup.css",
     "inputFile": "assets/styles/details-popup.scss"
+  },
+
+  {
+    "outputFile": "assets/styles/outstanding.css",
+    "inputFile": "assets/styles/outstanding.scss"
   }
 
 ]

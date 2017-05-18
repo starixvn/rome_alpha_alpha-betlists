@@ -347,6 +347,10 @@
     <Content Include="assets\bundles\default.min.js">
       <DependentUpon>default.js</DependentUpon>
     </Content>
+    <Content Include="assets\bundles\outstanding.css" />
+    <Content Include="assets\bundles\outstanding.min.css">
+      <DependentUpon>outstanding.css</DependentUpon>
+    </Content>
     <Content Include="assets\bundles\outstanding\outstanding.js" />
     <Content Include="assets\bundles\outstanding\outstanding.min.js">
       <DependentUpon>outstanding.js</DependentUpon>
@@ -384,6 +388,12 @@
     <Content Include="assets\styles\images\green-star.gif" />
     <Content Include="assets\styles\images\lastGoal.gif" />
     <Content Include="assets\styles\images\note_title.gif" />
+    <Content Include="assets\styles\outstanding.css">
+      <DependentUpon>outstanding.scss</DependentUpon>
+    </Content>
+    <Content Include="assets\styles\outstanding.min.css">
+      <DependentUpon>outstanding.css</DependentUpon>
+    </Content>
     <Content Include="Global.asax" />
     <Content Include="App_Data\SPNames\Local\DBARC.bodb_Archive.BODBDownlineNet.xml" />
     <Content Include="App_Code\Blocks\Trans.cshtml" />
@@ -425,6 +435,8 @@
     <Content Include="Alpha.BetLists.Site.ruleset" />
     <Content Include="App_Code\Components\ProductMultiSelection.cshtml" />
     <Content Include="assets\scripts\typings\globals\jquery.blockui\typings.json" />
+    <Content Include="App_Code\Components\DateRangePicker.cshtml" />
+    <Content Include="assets\styles\outstanding.scss" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>

@@ -6,6 +6,7 @@
     using Extensions;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
+    using Params;
     using Requests.Outstanding;
     using System;
     using System.Collections.Generic;
@@ -19,6 +20,7 @@
 
         public OutstandingViewModel(
             OutstandingQuery query,
+            OutstandingParam param,
             BetListData betListData,
             IEnumerable<SelectListItem> products,
             IBetListHTMLBuilder builder,
@@ -29,7 +31,13 @@
             this.query = query;
 
             Title = $"{Resources.BetlistRunning} - {query.CustName}";
+
             Products = products;
+            ProductsId = param.ProductIds.JoinWithComma();
+            FromDate = param.FromDate;
+            ToDate = param.ToDate;
+            CustId = param.CustId;
+            CustName = param.UserName;
 
             ViewDataInstructionMessage = string.Format(
                 Resources.CanOnlyViewDataAfterTimeHistoryReport,
@@ -43,6 +51,8 @@
         public bool AllowToViewMasterPT => baseQuery.ViewerLevel.IsMasterOrSuperLevel();
 
         public string ViewDataInstructionMessage { get; }
+
+        public bool IsFilterVisible => query.IsFilterVisible;
 
         public IEnumerable<SelectListItem> Products { get; }
 
