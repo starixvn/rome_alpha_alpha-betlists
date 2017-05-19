@@ -7,6 +7,8 @@
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Factories;
     using Fanex.BetList.Core.TicketHelper;
+    using Fanex.BetListDetail.Lucky3.DataAccesses;
+    using Fanex.BetListDetail.Lucky3.Services;
     using Fanex.Data.Repository;
     using Handlers.Parlay;
     using Helpers;
@@ -29,9 +31,6 @@
     using System.Reflection;
     using System.Web.Mvc;
     using Utilities.IP;
-    using Auth.Configurations;
-    using Fanex.BetListDetail.Lucky3.DataAccesses;
-    using Fanex.BetListDetail.Lucky3.Services;
 
     public static class DependencyConfig
     {
@@ -97,7 +96,7 @@
         {
             container.Register<IDynamicRepository, DynamicRepository>(Lifestyle.Singleton);
             container.Register<ISmartPunterDataAccess, SmartPunterDataAccess>(Lifestyle.Singleton);
-            if(BetLists.Configurations.AppSettings.EnabledStaticData)
+            if (BetLists.Configurations.AppSettings.EnabledStaticData)
             {
                 container.Register<ILucky3DataAccess, Lucky3ExcelDataAccess>(Lifestyle.Singleton);
             }

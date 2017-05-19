@@ -8,10 +8,6 @@
 
     public class Lucky3ExcelDataAccess : ILucky3DataAccess
     {
-        public Lucky3ExcelDataAccess()
-        {
-        }
-
         public IEnumerable<Lucky3DetailModel> GetLucky3Detail(IGetLucky3DetailParameter criteria)
         {
             var details = NpoiHelper.LoadData<Lucky3DetailModel>(

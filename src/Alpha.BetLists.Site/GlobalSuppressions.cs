@@ -50,6 +50,8 @@
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "Pt", Scope = "member", Target = "Alpha.BetLists.Site.Handlers.BetListBaseHandler.#BuildPtCommmission(Fanex.BetList.Core.Entities.ITicket,System.Collections.Generic.List`1<Fanex.BetList.Core.Entities.ITicketData>,Alpha.BetLists.Models.UserLevel)")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Sonar Code Smell", "S2325:Methods and properties that don't access instance data should be static", Justification = "<Pending>", Scope = "member", Target = "~M:Alpha.BetLists.Site.MvcApplication.Application_Start")]
 
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Sonar Code Smell", "S110:Inheritance tree of classes should not be too deep", Justification = "<Pending>", Scope = "type", Target = "~T:Alpha.BetLists.Site.Controllers.Lucky3Controller")]// attributes that are applied to this project.
+
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling", Scope = "member", Target = "Alpha.BetLists.Site.App_Start.DependencyConfig.#RegisterServices(SimpleInjector.Container)")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Sonar Code Smell", "S110:Inheritance tree of classes should not be too deep", Justification = "<Pending>", Scope = "type", Target = "~T:Alpha.BetLists.Site.Controllers.CancelledBetController")]// attributes that are applied to this project.
 

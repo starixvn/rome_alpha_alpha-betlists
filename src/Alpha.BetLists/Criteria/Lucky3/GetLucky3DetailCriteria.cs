@@ -8,17 +8,17 @@
     {
         public GetLucky3DetailCriteria(IGetLucky3DetailParameter commandData)
         {
-            criteria = commandData;
+            Criteria = commandData;
         }
 
         [SpParam(Ignored = true)]
-        private IGetLucky3DetailParameter criteria { get; set; }
+        private IGetLucky3DetailParameter Criteria { get; set; }
 
         public long CustId
         {
             get
             {
-                return criteria.CustomerId;
+                return Criteria.CustomerId;
             }
         }
 
@@ -26,12 +26,12 @@
         {
             get
             {
-                return criteria.TransactionId;
+                return Criteria.TransactionId;
             }
         }
 
         public override string GetSettingKey() => "Acc_BetList_Lucky3_Detail";
 
-        public override bool IsValid() => criteria.IsValid();
+        public override bool IsValid() => Criteria.IsValid();
     }
 }
