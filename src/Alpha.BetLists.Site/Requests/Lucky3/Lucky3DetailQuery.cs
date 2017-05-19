@@ -1,0 +1,15 @@
+﻿namespace Alpha.BetLists.Site.Requests.Parlay
+{
+    using BetLists.Models;
+    using Fanex.BetListDetail.Lucky3.ViewModels;
+    using MediatR;
+
+    public class Lucky3DetailQuery : BaseQuery, IRequest<Lucky3DetailViewModel>
+    {
+        public Lucky3DetailQuery(IUser viewer) : base(viewer)
+        {
+        }
+
+        public long TransactionId { get; set; }
+    }
+}

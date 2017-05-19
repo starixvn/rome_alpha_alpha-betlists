@@ -58,6 +58,10 @@
       <HintPath>..\..\packages\Fanex.BetList.NumberGame.1.0.0.6\lib\net40\Fanex.BetList.NumberGame.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Fanex.BetListDetail.Lucky3, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetListDetail.Lucky3.1.0.0.0-beta9\lib\Fanex.BetListDetail.Lucky3.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Fanex.Caching, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Caching.2.1.0\lib\net461\Fanex.Caching.dll</HintPath>
       <Private>True</Private>
@@ -159,6 +163,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Security" />
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -195,6 +200,7 @@
     <Compile Include="Criteria\RunningBetList\GetBetListRunningByDateCriteria.cs" />
     <Compile Include="Criteria\Parlay\GetParlayBetListCriteria.cs" />
     <Compile Include="Criteria\Parlay\GetComboParlayDetailCriteria.cs" />
+    <Compile Include="Criteria\Lucky3\GetLucky3DetailCriteria.cs" />
     <Compile Include="Criteria\SmartPunter\SmartPunterSMACheckerWriteLogCriteria.cs" />
     <Compile Include="Criteria\SmartPunter\SmartPunterWriteLogNoDataCriteria.cs" />
     <Compile Include="Criteria\SmartPunter\SmartPunterWriteLogCriteria.cs" />
@@ -208,12 +214,15 @@
     <Compile Include="Criteria\WinLoss\GetBetListWinLossByDateCriteria.cs" />
     <Compile Include="Criteria\WinLoss\GetBetListWinLossByDateOldCriteria.cs" />
     <Compile Include="Criteria\GetProductsByGroupHeadlineCriteria.cs" />
+    <Compile Include="DataAccesses\Excel\Lucky3ExcelDataAccess.cs" />
+    <Compile Include="DataAccesses\Lucky3DataAccess.cs" />
     <Compile Include="DataAccesses\SmartPunterDataAccess.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Helpers\BetTypeHelper.cs" />
+    <Compile Include="Helpers\NpoiHelper.cs" />
     <Compile Include="Models\BalanceUpDayAndMoveBetsDay.cs" />
     <Compile Include="Models\BetListData.cs" />
     <Compile Include="Models\CancelledBet\CancelledBetModel.cs" />

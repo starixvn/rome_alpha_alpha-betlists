@@ -152,6 +152,10 @@
       <HintPath>..\..\packages\Fanex.BetList.Voidbridge.1.0.0.15\lib\net40\Fanex.BetList.Voidbridge.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Fanex.BetListDetail.Lucky3, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetListDetail.Lucky3.1.0.0.0-beta9\lib\Fanex.BetListDetail.Lucky3.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Fanex.Caching, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Caching.2.1.0\lib\net461\Fanex.Caching.dll</HintPath>
       <Private>True</Private>
@@ -360,8 +364,9 @@
     <Content Include="App_Data\activitytracking.uat.json">
       <DependentUpon>activitytracking.json</DependentUpon>
     </Content>
-    <Content Include="App_Data\SPNames\Internal\DBAGE.bodb02.BODBDownlineNetView.xml" />
+    <Content Include="App_Data\SPNames\Internal\DBAGE.bodb02.BODBDownlineNetView.xml"/>
     <Content Include="App_Data\SPNames\Internal\DBAGE.bodb_AGE.BODBDownlineNetView.xml" />
+    </Content>
     <Content Include="App_Data\SPNames\Internal\DBARC.bodb_Archive.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Internal\DBCUST.CustDB.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Internal\DBCust.IPDB.BODBDownlineNet.xml" />
@@ -502,6 +507,7 @@
     <Content Include="App_Code\Blocks\WinLoss.cshtml" />
     <Content Include="App_Code\Blocks\Status.cshtml" />
     <Content Include="App_Code\Blocks\PositionTaking.cshtml" />
+    <Content Include="Views\Lucky3\Styles\index.css" />
     <Content Include="Views\Shared\InvalidBetList.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
@@ -530,6 +536,7 @@
     <Content Include="assets\scripts\typings.json" />
     <Content Include="assets\scripts\typings\globals\jasmine\typings.json" />
     <Content Include="assets\scripts\typings\globals\jasmine-jquery\typings.json" />
+    <Content Include="App_Data\ExcelData\Lucky3.xls" />
     <Content Include="Alpha.BetLists.Site.Debug.ruleset" />
     <Content Include="Alpha.BetLists.Site.ruleset" />
     <Content Include="assets\styles\last-bets.scss" />
@@ -554,6 +561,7 @@
     <Content Include="Views\Shared\WinLossTable.cshtml" />
     <Content Include="Views\ParlayWinLossByMatch\Index.cshtml" />
     <Content Include="Views\RunningBetList\Index.cshtml" />
+    <Content Include="Views\Lucky3\ViewDetail.cshtml" />
     <Content Include="Views\CancelledBet\Index.cshtml" />
     <Content Include="Views\MemberBetList\Index.cshtml" />
     <Content Include="Views\DailyStatement\Index.cshtml" />
@@ -669,6 +677,7 @@
     <Compile Include="Constants\UserSelectedDateRangeOptionConstant.cs" />
     <Compile Include="Controllers\BetListBaseController.cs" />
     <Compile Include="Controllers\DailyStatementController.cs" />
+    <Compile Include="Controllers\Lucky3Controller.cs" />
     <Compile Include="Controllers\MemberBetListController.cs" />
     <Compile Include="Controllers\LastBetsController.cs" />
     <Compile Include="Controllers\RunningBetListController.cs" />
@@ -689,6 +698,7 @@
     <Compile Include="Handlers\BetListExcelBaseHandler.cs" />
     <Compile Include="Handlers\BetListBaseHandler.cs" />
     <Compile Include="Handlers\DailyStatement\DailyStatementExcelHandler.cs" />
+    <Compile Include="Handlers\Lucky3\Lucky3Handler.cs" />
     <Compile Include="Handlers\DailyStatement\DailyStatementHandler.cs" />
     <Compile Include="Handlers\MemberBetList\MemberBetListHandler.cs" />
     <Compile Include="Handlers\LastBets\LastBetsHandler.cs" />
@@ -709,6 +719,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\BaseQuery.cs" />
     <Compile Include="Requests\DailyStatement\DailyStatementExcelQuery.cs" />
+    <Compile Include="Requests\Lucky3\Lucky3DetailQuery.cs" />
     <Compile Include="Requests\DailyStatement\DailyStatementQuery.cs" />
     <Compile Include="Requests\MemberBetList\MemberBetListQuery.cs" />
     <Compile Include="Requests\RunningBetList\RunningBetListQuery.cs" />
