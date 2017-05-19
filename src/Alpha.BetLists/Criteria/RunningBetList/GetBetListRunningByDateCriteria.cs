@@ -1,13 +1,13 @@
-﻿namespace Alpha.BetLists.Params
+﻿namespace Alpha.BetLists.Criteria.RunningBetList
 {
     using System;
-    using System.Collections.Generic;
+    using Fanex.Data.Repository;
 
-    public class OutstandingParam
+    public class GetBetListRunningByDateCriteria : CriteriaBase
     {
-        public OutstandingParam(
+        public GetBetListRunningByDateCriteria(
             int custId,
-            IEnumerable<int> productIds,
+            string productIds,
             DateTime fromDate,
             DateTime toDate,
             bool getAll,
@@ -15,18 +15,8 @@
             string userName)
         {
             CustId = custId;
-
-            if (getAll)
-            {
-                FromDate = DateTime.Today.AddDays(-7);
-                ToDate = DateTime.Today;
-            }
-            else
-            {
-                FromDate = fromDate == DateTime.MinValue ? DateTime.Today.AddDays(-1) : fromDate;
-                ToDate = toDate == DateTime.MinValue ? DateTime.Today.AddDays(-1) : toDate;
-            }
-
+            FromDate = fromDate;
+            ToDate = toDate;
             GetAll = getAll;
             Language = language;
             UserName = userName;
@@ -45,6 +35,13 @@
 
         public string UserName { get; }
 
-        public IEnumerable<int> ProductIds { get; }
+        public string ProductIds { get; }
+
+        public override string GetSettingKey() => "Age_BetList_SelRunningByDate_Mem";
+
+        public override bool IsValid() =>
+            CustId > 0
+            && !string.IsNullOrWhiteSpace(ProductIds)
+            && ToDate >= FromDate;
     }
 }

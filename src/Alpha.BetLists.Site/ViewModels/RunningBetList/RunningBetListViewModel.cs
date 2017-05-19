@@ -1,4 +1,4 @@
-﻿namespace Alpha.BetLists.Site.ViewModels.Outstanding
+﻿namespace Alpha.BetLists.Site.ViewModels.RunningBetList
 {
     using AppResources;
     using BetLists.Models;
@@ -7,20 +7,20 @@
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Params;
-    using Requests.Outstanding;
+    using Requests.RunningBetList;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
 
-    public class OutstandingViewModel : BetListBaseViewModel
+    public class RunningBetListViewModel : BetListBaseViewModel
     {
         private const string StatementProductIds = "1,6,2";
-        private readonly OutstandingQuery query;
+        private readonly RunningBetListQuery query;
 
-        public OutstandingViewModel(
-            OutstandingQuery query,
-            OutstandingParam param,
+        public RunningBetListViewModel(
+            RunningBetListQuery query,
+            RunningBetListParam param,
             BetListData betListData,
             IEnumerable<SelectListItem> products,
             IEnumerable<int> supportScoreMapBettypeIds,

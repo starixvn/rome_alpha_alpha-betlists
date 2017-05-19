@@ -5,14 +5,14 @@
     using System.Linq;
     using Xunit;
 
-    [Trait("Category", "Outstanding")]
-    public class OutstandingParamTests
+    [Trait("Category", "RunningBetList")]
+    public class RunningBetListParamTests
     {
         [Fact]
         public void Constructor_GetAllIsTrue_SetFromDateIsSevenDaysAgo()
         {
             // Arrange
-            var param = new OutstandingParam(1, Enumerable.Empty<int>(), DateTime.MinValue, DateTime.MinValue, true, string.Empty, string.Empty);
+            var param = new RunningBetListParam(1, Enumerable.Empty<int>(), DateTime.MinValue, DateTime.MinValue, true, string.Empty, string.Empty);
             var expectedFromDate = DateTime.Today.AddDays(-7);
 
             // Act
@@ -26,7 +26,7 @@
         public void Constructor_GetAllIsTrue_SetToDateIsToday()
         {
             // Arrange
-            var param = new OutstandingParam(1, Enumerable.Empty<int>(), DateTime.MinValue, DateTime.MinValue, true, string.Empty, string.Empty);
+            var param = new RunningBetListParam(1, Enumerable.Empty<int>(), DateTime.MinValue, DateTime.MinValue, true, string.Empty, string.Empty);
             var expectedToDate = DateTime.Today;
 
             // Act
@@ -40,7 +40,7 @@
         public void Constructor_GetAllIsFalseAndNotSupportFromDate_SetFromDateIsOneDayAgo()
         {
             // Arrange
-            var param = new OutstandingParam(1, Enumerable.Empty<int>(), DateTime.MinValue, DateTime.MinValue, false, string.Empty, string.Empty);
+            var param = new RunningBetListParam(1, Enumerable.Empty<int>(), DateTime.MinValue, DateTime.MinValue, false, string.Empty, string.Empty);
             var expectedFromDate = DateTime.Today.AddDays(-1);
 
             // Act
@@ -54,7 +54,7 @@
         public void Constructor_GetAllIsFalseAndNotSupportToDate_SetFromDateIsOneDayAgo()
         {
             // Arrange
-            var param = new OutstandingParam(1, Enumerable.Empty<int>(), DateTime.MinValue, DateTime.MinValue, false, string.Empty, string.Empty);
+            var param = new RunningBetListParam(1, Enumerable.Empty<int>(), DateTime.MinValue, DateTime.MinValue, false, string.Empty, string.Empty);
             var expectedToDate = DateTime.Today.AddDays(-1);
 
             // Act
@@ -68,7 +68,7 @@
         public void Constructor_GetAllIsFalseAndSupportFromDate_ReturnsSupportedDate()
         {
             // Arrange
-            var param = new OutstandingParam(1, Enumerable.Empty<int>(), DateTime.Today, DateTime.Today, false, string.Empty, string.Empty);
+            var param = new RunningBetListParam(1, Enumerable.Empty<int>(), DateTime.Today, DateTime.Today, false, string.Empty, string.Empty);
             var expectedFromDate = DateTime.Today;
 
             // Act
@@ -82,7 +82,7 @@
         public void Constructor_GetAllIsFalseAndSupportToDate_ReturnsSupportedDate()
         {
             // Arrange
-            var param = new OutstandingParam(1, Enumerable.Empty<int>(), DateTime.Today, DateTime.Today, false, string.Empty, string.Empty);
+            var param = new RunningBetListParam(1, Enumerable.Empty<int>(), DateTime.Today, DateTime.Today, false, string.Empty, string.Empty);
             var expectedToDate = DateTime.Today;
 
             // Act

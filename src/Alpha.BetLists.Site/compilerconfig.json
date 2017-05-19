@@ -10,8 +10,8 @@
   },
 
   {
-    "outputFile": "assets/styles/outstanding.css",
-    "inputFile": "assets/styles/outstanding.scss"
+    "outputFile": "assets/styles/filter.css",
+    "inputFile": "assets/styles/filter.scss"
   }
 
 ]

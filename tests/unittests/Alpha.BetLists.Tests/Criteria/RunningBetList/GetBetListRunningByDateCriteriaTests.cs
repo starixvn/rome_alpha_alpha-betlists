@@ -1,10 +1,10 @@
-﻿namespace Alpha.BetLists.Tests.Criteria.Outstanding
+﻿namespace Alpha.BetLists.Tests.Criteria.RunningBetList
 {
-    using BetLists.Criteria.Outstanding;
+    using BetLists.Criteria.RunningBetList;
     using System;
     using Xunit;
 
-    [Trait("Category", "Outstanding")]
+    [Trait("Category", "RunningBetList")]
     public class GetBetListRunningByDateCriteriaTests
     {
         [Fact]

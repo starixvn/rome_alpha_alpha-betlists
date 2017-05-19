@@ -1,36 +1,36 @@
-﻿namespace Alpha.BetLists.Site.Tests.Handler.Outstanding
+﻿namespace Alpha.BetLists.Site.Tests.Handler.RunningBetList
 {
     using BetLists.Tests.TestData;
     using Fanex.BetList.Core.Entities;
     using Fixtures;
-    using Handlers.Outstanding;
+    using Handlers.RunningBetList;
     using KellermanSoftware.CompareNetObjects;
     using NSubstitute;
     using Params;
-    using Requests.Outstanding;
+    using Requests.RunningBetList;
     using Services;
     using System.Collections.Generic;
     using System.Linq;
     using Xunit;
 
-    [Trait("Category", "Outstanding")]
+    [Trait("Category", "RunningBetList")]
     [Collection("BetListCollection")]
-    public class OutstandingHandlerTests
+    public class RunningBetListHandlerTests
     {
         private readonly BetListFixture betlistFixture;
-        private readonly OutstandingHandler outstandingHandler;
-        private readonly OutstandingService outstandingService;
+        private readonly RunningBetListHandler runningBetListHandler;
+        private readonly RunningBetListService runningBetListService;
         private readonly ProductService productService;
         private readonly ForeCastService foreCastService;
-        private readonly OutstandingQuery query;
+        private readonly RunningBetListQuery query;
         private readonly CompareLogic compareLogic;
 
-        public OutstandingHandlerTests(BetListFixture betlistFixture)
+        public RunningBetListHandlerTests(BetListFixture betlistFixture)
         {
             this.betlistFixture = betlistFixture;
 
-            outstandingService = Substitute.For<OutstandingService>();
-            outstandingService.GetBetList(Arg.Any<OutstandingParam>()).Returns(BetListDataTest.BetListData);
+            runningBetListService = Substitute.For<RunningBetListService>();
+            runningBetListService.GetBetList(Arg.Any<RunningBetListParam>()).Returns(BetListDataTest.BetListData);
 
             productService = Substitute.For<ProductService>();
             productService.FilterProductIdsByCustomer(Arg.Any<int>(), Arg.Any<IEnumerable<int>>()).Returns(BetListDataTest.ProductIds);
@@ -38,10 +38,10 @@
             foreCastService = Substitute.For<ForeCastService>();
             foreCastService.GetBetTypeIdsSupportScoreMap().Returns(BetListDataTest.BettypeIds);
 
-            query = new OutstandingQuery(this.betlistFixture.User);
+            query = new RunningBetListQuery(this.betlistFixture.User);
 
-            outstandingHandler = new OutstandingHandler(
-                outstandingService,
+            runningBetListHandler = new RunningBetListHandler(
+                runningBetListService,
                 productService,
                 foreCastService,
                 this.betlistFixture.HtmlBuilder,
@@ -65,7 +65,7 @@
             query.CustId = custId;
 
             // Act
-            outstandingHandler.Handle(query).GetAwaiter().GetResult();
+            runningBetListHandler.Handle(query).GetAwaiter().GetResult();
 
             // Assert
             betlistFixture.MoniterService.Received().WriteLog(

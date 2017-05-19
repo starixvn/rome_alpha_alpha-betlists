@@ -3,34 +3,34 @@
     using BetLists.Models;
     using MediatR;
     using NSubstitute;
-    using Requests.Outstanding;
+    using Requests.RunningBetList;
     using Site.Controllers;
     using Xunit;
 
-    [Trait("Category", "Outstanding")]
-    public class OutstandingControllerTests
+    [Trait("Category", "RunningBetList")]
+    public class RunningBetListControllerTests
     {
         private readonly IMediator mediator;
-        private readonly OutstandingController outstandingController;
+        private readonly RunningBetListController runningBetListController;
         private readonly IUser user;
 
-        public OutstandingControllerTests()
+        public RunningBetListControllerTests()
         {
             mediator = Substitute.For<IMediator>();
             user = Substitute.For<IUser>();
             user.LevelId.Returns(UserLevel.Agent.Value);
 
-            outstandingController = new OutstandingController(mediator);
+            runningBetListController = new RunningBetListController(mediator);
         }
 
         [Fact]
-        public void Index_Always_CallsMediatorSendOutstandingQuery()
+        public void Index_Always_CallsMediatorSendRunningBetListQuery()
         {
             // Arrange
-            var message = new OutstandingQuery(user);
+            var message = new RunningBetListQuery(user);
 
             // Act
-            outstandingController.Index(message).GetAwaiter().GetResult();
+            runningBetListController.Index(message).GetAwaiter().GetResult();
 
             // Assert
             mediator.Received().Send(message);

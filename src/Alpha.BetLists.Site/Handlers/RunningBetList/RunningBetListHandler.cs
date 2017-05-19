@@ -1,4 +1,4 @@
-﻿namespace Alpha.BetLists.Site.Handlers.Outstanding
+﻿namespace Alpha.BetLists.Site.Handlers.RunningBetList
 {
     using BetLists.Models;
     using Extensions;
@@ -6,7 +6,7 @@
     using Fanex.BetList.Core.Entities;
     using MediatR;
     using Params;
-    using Requests.Outstanding;
+    using Requests.RunningBetList;
     using Services;
     using SmartPunter.Services;
     using System.Collections.Generic;
@@ -14,16 +14,16 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using Utilities.IP;
-    using ViewModels.Outstanding;
+    using ViewModels.RunningBetList;
 
-    public class OutstandingHandler : BetListBaseHandler, IAsyncRequestHandler<OutstandingQuery, OutstandingViewModel>
+    public class RunningBetListHandler : BetListBaseHandler, IAsyncRequestHandler<RunningBetListQuery, RunningBetListViewModel>
     {
-        private readonly OutstandingService outstandingService;
+        private readonly RunningBetListService runningBetListService;
         private readonly ProductService productService;
         private readonly ForeCastService foreCastService;
 
-        public OutstandingHandler(
-            OutstandingService oustandingService,
+        public RunningBetListHandler(
+            RunningBetListService oustandingService,
             ProductService productService,
             ForeCastService foreCastService,
             IBetListHTMLBuilder builder,
@@ -33,16 +33,16 @@
             IPService ipService)
             : base(builder, excelBuilder, ticketHelper, monitorService, ipService)
         {
-            this.outstandingService = oustandingService;
+            this.runningBetListService = oustandingService;
             this.productService = productService;
             this.foreCastService = foreCastService;
         }
 
-        public async Task<OutstandingViewModel> Handle(OutstandingQuery message)
+        public async Task<RunningBetListViewModel> Handle(RunningBetListQuery message)
         {
             var validUserSelectedProductIds = productService.FilterProductIdsByCustomer(message.CustId, message.ProductIds.ToListInt());
 
-            var outstandingParam = new OutstandingParam(
+            var runningBetListParam = new RunningBetListParam(
                 message.CustId,
                 validUserSelectedProductIds,
                 message.FromDate,
@@ -51,17 +51,17 @@
                 message.Language,
                 message.CustName);
 
-            var betlistData = await outstandingService.GetBetList(outstandingParam);
+            var betlistData = await runningBetListService.GetBetList(runningBetListParam);
             var products = productService.GetProductsForCustomer(message.CustId);
             var supportScoreMapBettypeIds = foreCastService.GetBetTypeIdsSupportScoreMap();
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
-            return new OutstandingViewModel(
+            return new RunningBetListViewModel(
                 message,
-                outstandingParam,
+                runningBetListParam,
                 betlistData,
-                BuildProductSelectListItems(outstandingParam.ProductIds, products),
+                BuildProductSelectListItems(runningBetListParam.ProductIds, products),
                 supportScoreMapBettypeIds,
                 Builder,
                 TicketHelper);

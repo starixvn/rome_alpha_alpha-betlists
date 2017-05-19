@@ -1,6 +1,6 @@
 ﻿namespace Alpha.BetLists.Services
 {
-    using Criteria.Outstanding;
+    using Criteria.RunningBetList;
     using Extensions;
     using Fanex.BetList.Core.Entities;
     using Fanex.Data.Repository;
@@ -9,21 +9,21 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    public interface OutstandingService
+    public interface RunningBetListService
     {
-        Task<BetListData> GetBetList(OutstandingParam param);
+        Task<BetListData> GetBetList(RunningBetListParam param);
     }
 
-    public class OutstandingServiceImpl : OutstandingService
+    public class RunningBetListServiceImpl : RunningBetListService
     {
         private readonly IDynamicRepository dynamicRepository;
 
-        public OutstandingServiceImpl(IDynamicRepository dynamicRepository)
+        public RunningBetListServiceImpl(IDynamicRepository dynamicRepository)
         {
             this.dynamicRepository = dynamicRepository;
         }
 
-        public async Task<BetListData> GetBetList(OutstandingParam param)
+        public async Task<BetListData> GetBetList(RunningBetListParam param)
         {
             var betListDataTuple = await dynamicRepository.FetchMultipleAsync<Ticket, TicketData>(
                 new GetBetListRunningByDateCriteria(

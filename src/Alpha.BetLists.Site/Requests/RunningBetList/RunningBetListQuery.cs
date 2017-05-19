@@ -1,14 +1,14 @@
-﻿namespace Alpha.BetLists.Site.Requests.Outstanding
+﻿namespace Alpha.BetLists.Site.Requests.RunningBetList
 {
     using BetLists.Models;
     using Extensions;
     using MediatR;
     using System;
-    using ViewModels.Outstanding;
+    using ViewModels.RunningBetList;
 
-    public class OutstandingQuery : BaseQuery, IRequest<OutstandingViewModel>
+    public class RunningBetListQuery : BaseQuery, IRequest<RunningBetListViewModel>
     {
-        public OutstandingQuery(IUser viewer) : base(viewer)
+        public RunningBetListQuery(IUser viewer) : base(viewer)
         {
             MinDate = DateTime.Today.AddMonths(-3).FirstDayOfMonth();
         }

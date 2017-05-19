@@ -27,19 +27,19 @@
   },
 
   {
-    "outputFileName": "assets/bundles/outstanding.css",
+    "outputFileName": "assets/bundles/filter.css",
     "inputFiles": [
-      "assets/styles/outstanding.css"
+      "assets/styles/filter.css"
     ]
   },
 
   {
-    "outputFileName": "assets/bundles/outstanding/outstanding.js",
+    "outputFileName": "assets/bundles/running-betlist/running-betlist.js",
     "inputFiles": [
       "assets/scripts/src/components/daterangepicker.js",
       "assets/scripts/src/components/productmultiselection.js",
       "assets/scripts/src/components/single-selection-dropdown.js",
-      "assets/scripts/src/outstanding/outstanding.js"
+      "assets/scripts/src/running-betlist/running-betlist.js"
     ]
   }
 ]

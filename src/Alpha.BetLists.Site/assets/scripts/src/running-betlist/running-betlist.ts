@@ -3,7 +3,7 @@
 
 "use strict";
 
-class OutstandingView {
+class RunningBetListView {
     $: JQueryStatic;
     $tableBetlist: JQuery;
 
@@ -145,12 +145,12 @@ class OutstandingView {
 }
 
 $(function () {
-    const outstandingView = new OutstandingView(
+    const runningBetListView = new RunningBetListView(
         $,
         new DateRangePickerComponent($),
         new ProductMultiSelectionComponent($),
         new SingleSelectionDropdownComponent($),
         window.location);
 
-    outstandingView.init();
+    runningBetListView.init();
 })

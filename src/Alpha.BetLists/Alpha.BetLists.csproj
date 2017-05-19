@@ -157,7 +157,7 @@
     <Compile Include="Criteria\GetBalanceUpDayAndMoveBetsDayCriteria.cs" />
     <Compile Include="Criteria\GetProductsCriteria.cs" />
     <Compile Include="Criteria\GetScoreMapBetTypesCriteria.cs" />
-    <Compile Include="Criteria\Outstanding\GetBetListRunningByDateCriteria.cs" />
+    <Compile Include="Criteria\RunningBetList\GetBetListRunningByDateCriteria.cs" />
     <Compile Include="Criteria\Parlay\GetParlayBetListCriteria.cs" />
     <Compile Include="Criteria\Parlay\GetComboParlayDetailCriteria.cs" />
     <Compile Include="Criteria\SmartPunter\SmartPunterSMACheckerWriteLogCriteria.cs" />
@@ -188,13 +188,13 @@
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ScoreMap.cs" />
     <Compile Include="Models\UserLevel.cs" />
-    <Compile Include="Params\OutstandingParam.cs" />
+    <Compile Include="Params\RunningBetListParam.cs" />
     <Compile Include="Params\ParlayWinLossByMatchParam.cs" />
     <Compile Include="Params\WinLossByMatchParam.cs" />
     <Compile Include="Params\WinLossParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ForeCastService.cs" />
-    <Compile Include="Services\OutstandingService.cs" />
+    <Compile Include="Services\RunningBetListService.cs" />
     <Compile Include="Services\ParlayService.cs" />
     <Compile Include="Services\ParlayWinLossByMatchService.cs" />
     <Compile Include="Services\ProductService.cs" />
