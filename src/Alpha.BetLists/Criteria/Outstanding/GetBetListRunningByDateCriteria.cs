@@ -41,7 +41,7 @@
 
         public override bool IsValid() =>
             CustId > 0
-            && !string.IsNullOrEmpty(ProductIds)
+            && !string.IsNullOrWhiteSpace(ProductIds)
             && ToDate >= FromDate;
     }
 }

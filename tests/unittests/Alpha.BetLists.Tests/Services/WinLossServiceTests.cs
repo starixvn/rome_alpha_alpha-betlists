@@ -1,14 +1,14 @@
 ﻿namespace Alpha.BetLists.Tests.Services
 {
-    using System;
-    using System.Linq;
     using BetLists.Criteria.WinLossByDate;
+    using BetLists.Extensions;
+    using BetLists.Params;
     using BetLists.Services;
-    using Extensions;
     using Fanex.BetList.Core.Entities;
     using Fixtures;
     using NSubstitute;
-    using Params;
+    using System;
+    using System.Linq;
     using TestData;
     using Xunit;
 

@@ -24,6 +24,8 @@
 
         public static readonly IEnumerable<int> ProductIds = fixture.CreateMany<int>();
 
+        public static readonly IEnumerable<int> BettypeIds = fixture.CreateMany<int>();
+
         public static readonly Tuple<IEnumerable<Ticket>, IEnumerable<TicketData>> BetListDataTuple
             = new Tuple<IEnumerable<Ticket>, IEnumerable<TicketData>>(Tickets, TicketData);
 

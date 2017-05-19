@@ -4,14 +4,13 @@
     using Extensions;
     using MediatR;
     using System;
-    using Utils;
     using ViewModels.Outstanding;
 
     public class OutstandingQuery : BaseQuery, IRequest<OutstandingViewModel>
     {
         public OutstandingQuery(IUser viewer) : base(viewer)
         {
-            MinDate = SystemTime.Today.AddMonths(-3).FirstDayOfMonth();
+            MinDate = DateTime.Today.AddMonths(-3).FirstDayOfMonth();
         }
 
         public bool GetAll { get; set; }

@@ -242,12 +242,14 @@
     <Compile Include="Collection\ParlayBetListCollection.cs" />
     <Compile Include="Collection\BetListCollection.cs" />
     <Compile Include="Constants\LanguageCode.cs" />
+    <Compile Include="Controllers\OutstandingControllerTests.cs" />
     <Compile Include="Controllers\ParlayWinLossByMatchControllerTests.cs" />
     <Compile Include="Controllers\WinLossByMatchControllerTests.cs" />
     <Compile Include="Fixtures\BetListFixture.cs" />
     <Compile Include="Fixtures\ParlayServiceFixture.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Handler\BetListBaseHandlerTests.cs" />
+    <Compile Include="Handler\Outstanding\OutstandingHandlerTests.cs" />
     <Compile Include="Handler\ParlayWinLossByMatch\ParlayWinLossByMatchBaseHandlerTests.cs" />
     <Compile Include="Handler\ParlayWinLossByMatch\ParlayWinLossByMatchExcelHanlderTests.cs" />
     <Compile Include="Handler\ParlayWinLossByMatch\ParlayWinLossByMatchHanlderTests.cs" />

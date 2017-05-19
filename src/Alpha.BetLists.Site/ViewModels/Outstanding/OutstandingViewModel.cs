@@ -12,7 +12,6 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
-    using Utils;
 
     public class OutstandingViewModel : BetListBaseViewModel
     {
@@ -85,8 +84,8 @@
                 ["username"] = CustName,
                 ["option"] = 4,
                 ["custid"] = CustId,
-                ["fdate"] = SystemTime.Today.AddDays(-1).ToShortDateWithSlash(),
-                ["tdate"] = SystemTime.Today.ToShortDateWithSlash(),
+                ["fdate"] = DateTime.Today.AddDays(-1).ToShortDateWithSlash(),
+                ["tdate"] = DateTime.Today.ToShortDateWithSlash(),
                 ["page"] = 1,
                 ["chkgetall"] = "on",
                 ["productIds"] = StatementProductIds,
