@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Functions>
-  <Function Name="Win Loss">
+  <Function Name="Running BetList">
     <Setting Key="Age_BetList_SelRunningByDate_Mem" SpName="Age_BetList_SelRunningByDate_Mem_UAT1" DbName="DBAGE.bodb_AGE.BODBDownlineNetView" Plain="0">
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="Ticket"></Mapping>
       <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="Ticket"></Mapping>
