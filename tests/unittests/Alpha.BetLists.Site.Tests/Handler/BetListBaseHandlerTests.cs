@@ -1,10 +1,5 @@
 ﻿namespace Alpha.BetLists.Site.Tests.Handler
 {
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    using System.Web.Hosting;
     using AppResources;
     using BetLists.Models;
     using BetLists.Tests.TestData;
@@ -15,10 +10,15 @@
     using Handlers;
     using KellermanSoftware.CompareNetObjects;
     using NSubstitute;
-    using ONEbook.SpreadSheets;
     using Requests.WinLoss;
     using Site.ViewModels.Blocks;
     using Site.ViewModels.WinLoss;
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Web.Hosting;
+    using System.Web.Mvc;
     using Xunit;
     using static ONEbook.SpreadSheets.Column;
 
@@ -186,7 +186,7 @@
             // Arrange
             baseHandler.IsFileExist = path => true;
             baseHandler.MapPath = path => path;
-            var expectedTemplateInfo = new TemplateInfo(
+            var expectedTemplateInfo = new ONEbook.SpreadSheets.TemplateInfo(
                 $"~/App_Data/ExcelTemplates/{UserLevel.Agent.DisplayName}.xls",
                 noInfomationText: Resources.NoInformationIsAvailable,
                 bodyStartIndex: 3,
@@ -403,6 +403,78 @@
 
             // Assert
             Assert.Equal(footerRtf, mapper.Mappings[F].Invoke(BetListDataTest.Ticket));
+        }
+
+        [Fact]
+        public void BuildProductSelectListItems_NullProducts_ReturnsEmptySelectListItem()
+        {
+            // Arrange
+            IEnumerable<Product> products = null;
+            var expectedSelectListItems = Enumerable.Empty<SelectListItem>();
+
+            // Act
+            var actualSelectListItems = baseHandler.BuildProductSelectListItems(Enumerable.Empty<int>(), products);
+
+            // Assert
+            Assert.Equal(expectedSelectListItems, actualSelectListItems);
+        }
+
+        [Fact]
+        public void BuildProductSelectListItems_EmptyProductList_ReturnsEmptySelectListItem()
+        {
+            // Arrange
+            var products = Enumerable.Empty<Product>();
+            var userSelectedProductIds = Enumerable.Empty<int>();
+            var expectedSelectListItems = Enumerable.Empty<SelectListItem>();
+
+            // Act
+            var actualSelectListItems = baseHandler.BuildProductSelectListItems(userSelectedProductIds, products);
+
+            // Assert
+            Assert.Equal(expectedSelectListItems, actualSelectListItems);
+        }
+
+        [Fact]
+        public void BuildProductSelectListItems_HasDataProductList_ReturnsCorrectSelectListItem()
+        {
+            // Arrange
+            Func<int, string> getProductDisplayName = (id) => $"Product {id}";
+
+            IEnumerable<Product> products = new List<Product>
+            {
+                new Product(1, "Product 1", getProductDisplayName),
+                new Product(2, "Product 2", getProductDisplayName),
+                new Product(3, "Product 3", getProductDisplayName)
+            };
+
+            var userSelectedProductIds = new List<int> { 1, 3 };
+            IEnumerable<SelectListItem> expectedSelectListItems = new List<SelectListItem>
+            {
+                new SelectListItem
+                {
+                    Text = "Product 1",
+                    Value = "1",
+                    Selected = true
+                },
+                new SelectListItem
+                {
+                    Text = "Product 2",
+                    Value = "2",
+                    Selected = false
+                },
+                new SelectListItem
+                {
+                    Text = "Product 3",
+                    Value = "3",
+                    Selected = true
+                }
+            };
+
+            // Act
+            var actualSelectListItems = baseHandler.BuildProductSelectListItems(userSelectedProductIds, products).ToList();
+
+            // Assert
+            Assert.True(compareLogic.Compare(expectedSelectListItems, actualSelectListItems).AreEqual);
         }
     }
 }

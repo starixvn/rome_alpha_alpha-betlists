@@ -16,16 +16,8 @@
         {
             CustId = custId;
 
-            if (getAll)
-            {
-                FromDate = DateTime.Today.AddDays(-7);
-                ToDate = DateTime.Today;
-            }
-            else
-            {
-                FromDate = fromDate == DateTime.MinValue ? DateTime.Today.AddDays(-1) : fromDate;
-                ToDate = toDate == DateTime.MinValue ? DateTime.Today.AddDays(-1) : toDate;
-            }
+            FromDate = fromDate == DateTime.MinValue ? DateTime.Today.AddDays(-7) : fromDate;
+            ToDate = toDate == DateTime.MinValue ? DateTime.Today : toDate;
 
             GetAll = getAll;
             Language = language;

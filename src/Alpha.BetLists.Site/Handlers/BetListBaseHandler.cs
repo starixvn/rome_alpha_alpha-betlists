@@ -1,10 +1,5 @@
 ﻿namespace Alpha.BetLists.Site.Handlers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    using System.Web.Hosting;
     using AppResources;
     using BetLists.Models;
     using Builders.ExcelBuilders;
@@ -14,6 +9,12 @@
     using NPOI.SS.UserModel;
     using ONEbook.SpreadSheets;
     using SmartPunter.Services;
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Web.Hosting;
+    using System.Web.Mvc;
     using Utilities.IP;
     using ViewModels;
     using ViewModels.Blocks;
@@ -65,6 +66,29 @@
         protected internal void WriteLog(int custId, IEnumerable<ITicket> tickets)
              => MonitorService.WriteLog(custId, tickets.ToList());
 
+        protected internal IEnumerable<SelectListItem> BuildProductSelectListItems(
+            IEnumerable<int> userSelectedProductIds,
+            IEnumerable<Product> products)
+        {
+            if (products == null
+                || !products.Any())
+            {
+                return Enumerable.Empty<SelectListItem>();
+            }
+
+            return products.Select(product =>
+            {
+                var productSelectListItem = new SelectListItem
+                {
+                    Text = product.DisplayName,
+                    Value = product.Id.ToString(),
+                    Selected = userSelectedProductIds.Contains(product.Id)
+                };
+
+                return productSelectListItem;
+            });
+        }
+
         #region Excel
 
         protected internal virtual string GetExcelTemplatePath(string templateName, string fileExtension = "xls")
@@ -86,8 +110,8 @@
             throw new FileNotFoundException($"Template {absolutePath} does not exist");
         }
 
-        protected internal virtual TemplateInfo GetTemplateInfo(UserLevel viewerLevel)
-            => new TemplateInfo(
+        protected internal virtual ONEbook.SpreadSheets.TemplateInfo GetTemplateInfo(UserLevel viewerLevel)
+            => new ONEbook.SpreadSheets.TemplateInfo(
                    ExcelTemplatePath(viewerLevel),
                    noInfomationText: Resources.NoInformationIsAvailable,
                    bodyStartIndex: 3,

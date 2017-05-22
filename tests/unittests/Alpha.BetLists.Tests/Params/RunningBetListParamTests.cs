@@ -9,10 +9,10 @@
     public class RunningBetListParamTests
     {
         [Fact]
-        public void Constructor_GetAllIsTrue_SetFromDateIsSevenDaysAgo()
+        public void Constructor_NotSupportFromDate_SetFromDateIsSevenDayAgo()
         {
             // Arrange
-            var param = new RunningBetListParam(1, Enumerable.Empty<int>(), DateTime.MinValue, DateTime.MinValue, true, string.Empty, string.Empty);
+            var param = new RunningBetListParam(1, Enumerable.Empty<int>(), DateTime.MinValue, DateTime.MinValue, false, string.Empty, string.Empty);
             var expectedFromDate = DateTime.Today.AddDays(-7);
 
             // Act
@@ -23,10 +23,10 @@
         }
 
         [Fact]
-        public void Constructor_GetAllIsTrue_SetToDateIsToday()
+        public void Constructor_NotSupportToDate_SetFromDateIsToday()
         {
             // Arrange
-            var param = new RunningBetListParam(1, Enumerable.Empty<int>(), DateTime.MinValue, DateTime.MinValue, true, string.Empty, string.Empty);
+            var param = new RunningBetListParam(1, Enumerable.Empty<int>(), DateTime.MinValue, DateTime.MinValue, false, string.Empty, string.Empty);
             var expectedToDate = DateTime.Today;
 
             // Act
@@ -37,35 +37,7 @@
         }
 
         [Fact]
-        public void Constructor_GetAllIsFalseAndNotSupportFromDate_SetFromDateIsOneDayAgo()
-        {
-            // Arrange
-            var param = new RunningBetListParam(1, Enumerable.Empty<int>(), DateTime.MinValue, DateTime.MinValue, false, string.Empty, string.Empty);
-            var expectedFromDate = DateTime.Today.AddDays(-1);
-
-            // Act
-            var actualFromDate = param.FromDate;
-
-            // Assert
-            Assert.Equal(expectedFromDate, actualFromDate);
-        }
-
-        [Fact]
-        public void Constructor_GetAllIsFalseAndNotSupportToDate_SetFromDateIsOneDayAgo()
-        {
-            // Arrange
-            var param = new RunningBetListParam(1, Enumerable.Empty<int>(), DateTime.MinValue, DateTime.MinValue, false, string.Empty, string.Empty);
-            var expectedToDate = DateTime.Today.AddDays(-1);
-
-            // Act
-            var actualToDate = param.ToDate;
-
-            // Assert
-            Assert.Equal(expectedToDate, actualToDate);
-        }
-
-        [Fact]
-        public void Constructor_GetAllIsFalseAndSupportFromDate_ReturnsSupportedDate()
+        public void Constructor_SupportFromDate_ReturnsSupportedDate()
         {
             // Arrange
             var param = new RunningBetListParam(1, Enumerable.Empty<int>(), DateTime.Today, DateTime.Today, false, string.Empty, string.Empty);
@@ -79,7 +51,7 @@
         }
 
         [Fact]
-        public void Constructor_GetAllIsFalseAndSupportToDate_ReturnsSupportedDate()
+        public void Constructor_SupportToDate_ReturnsSupportedDate()
         {
             // Arrange
             var param = new RunningBetListParam(1, Enumerable.Empty<int>(), DateTime.Today, DateTime.Today, false, string.Empty, string.Empty);

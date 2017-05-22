@@ -27,7 +27,7 @@
     <div class="form-group">
         <select id="dropdown-betlist-type">
             <option value="1" data-url="@Model.BuildDailyStatementLink()">@Resources.DailyStatement</option>
-            <option value="2" data-url="@Model.BuildBetListLink()">@Resources.BetList</option>
+            <option value="2" data-url="@Model.BuildBetListLink(Url.Action("Index","MemberBetList"))">@Resources.BetList</option>
             <option value="3" selected="selected">@Resources.BetList_Running</option>
         </select>
     </div>
@@ -35,10 +35,12 @@
     @ProductMultiSelection.Render(Model.ProductMultiSelectionViewModel)
 
     <div class="form-group">
-        <label>
+        <label class="check-box">
             @Resources.GetAll
-            @Html.CheckBox("GetAll", Model.GetAll)
         </label>
+        <div class="input-group">
+            @Html.CheckBox("GetAll", Model.GetAll)
+        </div>
     </div>
 
     @DateRangePicker.Render(Model.DateRangePickerViewModel)

@@ -15,7 +15,6 @@
 
     public class RunningBetListViewModel : BetListBaseViewModel
     {
-        private const string StatementProductIds = "1,6,2";
         private readonly RunningBetListQuery query;
 
         public RunningBetListViewModel(
@@ -76,38 +75,19 @@
 
         public override bool CanViewScoreMap(ITicket ticket) => SupportScoreMapBettypeIds.Contains(ticket.BetTypeId);
 
-        public string BuildBetListLink()
+        public string BuildBetListLink(string link)
         {
-            var url = Helpers.UrlHelper.MapExMainPath("~/_Reports/BetList/OutstandingDetail.aspx");
-            var routeValues = new Dictionary<string, object>
-            {
-                ["username"] = CustName,
-                ["option"] = 4,
-                ["custid"] = CustId,
-                ["fdate"] = DateTime.Today.AddDays(-1).ToShortDateWithSlash(),
-                ["tdate"] = DateTime.Today.ToShortDateWithSlash(),
-                ["page"] = 1,
-                ["chkgetall"] = "on",
-                ["productIds"] = StatementProductIds,
-                ["FilterPostback"] = "1"
-            };
-
-            return Helpers.UrlHelper.AddQueryStringParamsFunc(url, routeValues);
-        }
-
-        public string BuildDailyStatementLink()
-        {
-            var url = Helpers.UrlHelper.MapExMainPath("~/Finance/StatementMember");
             var routeValues = new Dictionary<string, object>
             {
                 ["CustId"] = CustId,
-                ["username"] = CustName,
-                ["RoleId"] = 1,
-                ["productIds"] = StatementProductIds,
-                ["FilterPostback"] = "1"
+                ["CustName"] = CustName,
+                ["FromDate"] = DateTime.Today.AddDays(-1).ToShortDateWithSlash(),
+                ["ToDate"] = DateTime.Today.ToShortDateWithSlash(),
+                ["ProductIds"] = ProductsId,
+                ["FilterPostback"] = 1
             };
 
-            return Helpers.UrlHelper.AddQueryStringParamsFunc(url, routeValues);
+            return Helpers.UrlHelper.AddQueryStringParamsFunc(link, routeValues);
         }
     }
 }

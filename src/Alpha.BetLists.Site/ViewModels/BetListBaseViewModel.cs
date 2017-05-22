@@ -14,6 +14,8 @@
     [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1304:NonPrivateReadonlyFieldsMustBeginWithUpperCaseLetter", Justification = "Reviewed.")]
     public abstract class BetListBaseViewModel
     {
+        private const string StatementProductIds = "1,6,2";
+
         private static readonly IDictionary<UserLevel, int> TotalColumnByViewLevelId = new Dictionary<UserLevel, int>
         {
             { UserLevel.Agent, 8 },
@@ -98,5 +100,20 @@
 
         // TODO: will implement here
         public virtual bool CanViewScoreMap(ITicket ticket) => false;
+
+        public string BuildDailyStatementLink()
+        {
+            var url = Helpers.UrlHelper.MapExMainPath("~/Finance/StatementMember");
+            var routeValues = new Dictionary<string, object>
+            {
+                ["CustId"] = CustId,
+                ["username"] = CustName,
+                ["RoleId"] = 1,
+                ["productIds"] = StatementProductIds,
+                ["FilterPostback"] = "1"
+            };
+
+            return Helpers.UrlHelper.AddQueryStringParamsFunc(url, routeValues);
+        }
     }
 }

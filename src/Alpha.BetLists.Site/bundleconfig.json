@@ -39,7 +39,19 @@
       "assets/scripts/src/components/daterangepicker.js",
       "assets/scripts/src/components/productmultiselection.js",
       "assets/scripts/src/components/single-selection-dropdown.js",
+      "assets/scripts/src/member-betlist/member-betlist.js",
       "assets/scripts/src/running-betlist/running-betlist.js"
+    ]
+  },
+
+  {
+    "outputFileName": "assets/bundles/member-betlist/member-betlist.js",
+    "inputFiles": [
+      "assets/scripts/src/components/daterangepicker.js",
+      "assets/scripts/src/components/productmultiselection.js",
+      "assets/scripts/src/components/single-selection-dropdown.js",
+      "assets/scripts/src/member-betlist/member-betlist.js",
+      "assets/scripts/src/member-betlist/member-betlist-init.js"
     ]
   }
 ]

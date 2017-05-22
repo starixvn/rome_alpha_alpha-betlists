@@ -1,0 +1,130 @@
+﻿@using Alpha.BetLists.Site.ViewModels.MemberBetList
+@model MemberBeListViewModel
+
+@{
+    ViewBag.Title = "Member Bet List";
+}
+
+@section Styles{
+    @StaticResources.AssetStyles.Render("/bundles/site-betlists/filter")
+    @StaticResources.RenderStyles("~/assets/bundles/filter")
+}
+<div class="bl_title">
+    @Model.Title
+
+    <div class="list-icon">
+        <ul>
+            <li class="showfilter-element"><span class="icon-arrow-up-drop-circle icon-filter" title="@Resources.HideFilter"></span></li>
+            <li class="hidefilter-element"><span class="icon-arrow-down-drop-circle icon-filter" title="@Resources.ShowFilter"></span></li>
+        </ul>
+    </div>
+</div>
+
+<form class="form-inline filter @(Model.IsFilterVisible ? string.Empty : "hide") role="form" id="betlist-form">
+    @Html.Hidden("CustId", Model.CustId)
+    @Html.Hidden("CustName", Model.CustName)
+    @Html.Hidden("IsFilterVisible", Model.IsFilterVisible)
+    <div class="form-group">
+        <select id="dropdown-betlist-type">
+            <option value="1" data-url="@Model.BuildDailyStatementLink()">@Resources.DailyStatement</option>
+            <option value="2" selected="selected">@Resources.BetList</option>
+            <option value="3" data-url="@Model.BuildRunningBetListLink(Url.Action("Index","RunningBetList"))">@Resources.BetList_Running</option>
+        </select>
+    </div>
+
+    @ProductMultiSelection.Render(Model.ProductMultiSelectionViewModel)
+
+    @DateRangePicker.Render(Model.DateRangePickerViewModel)
+
+    <div class="note">
+        <span class="star">*</span>@Model.ViewDataInstructionMessage
+    </div>
+</form>
+
+<table class="tblRpt tblRpt-bordered tblRpt-striped width-100per tablesorter tblRpt-hover tbl-betlist">
+    <thead>
+        <tr>
+            <th class="col-number">#</th>
+            @if (Model.ShowMemberName)
+            {
+                <th class="col-member">@Resources.member</th>
+            }
+
+            <th class="col-transtime">@Resources.transtime</th>
+            <th>@Resources.choice</th>
+            <th class="col-odds">@Resources.odds</th>
+            <th class="col-stake">@Resources.stake</th>
+            <th class="col-status">@Resources.status</th>
+
+            @if (Model.AllowToViewSuperPT)
+            {
+                <th class="col-pt">@Resources.superPT/ @Resources.lblComm</th>
+            }
+
+            @if (Model.AllowToViewMasterPT)
+            {
+                <th class="col-pt">@Resources.masterPT/ @Resources.lblComm</th>
+            }
+
+            <th class="col-pt">@Resources.agentPT/ @Resources.lblComm</th>
+        </tr>
+    </thead>
+    @if (Model.BetListData.Tickets.Any())
+    {
+        <tbody>
+            @{
+                var i = 1;
+                foreach (var ticket in Model.BetListData.Tickets)
+                {
+                    <tr>
+                        <td class='w-order text-center'>@i</td>
+                        @if (Model.ShowMemberName)
+                    {
+                            <td class="text-center">@ticket.UserName</td>
+                        }
+
+                        @Trans.Render(Model.Builder, ticket)
+                        @Choice.Render(Model.Builder, ticket, Model.TicketHelper, Model.BetListData.TicketData, Model.CanViewScoreMap(ticket))
+                        @Odds.Render(Model.Builder, ticket, Model.BetListData.TicketData)
+                        @Stake.Render(Model.Builder, ticket)
+                        @Status.Render(Model.Builder, ticket, Model.TicketHelper, Model.BetListData.TicketData, Model.DisplayVNIP)
+
+                        @if (Model.AllowToViewSuperPT)
+                    {
+                            @PositionTaking.Render(ticket, Model.BetListData.TicketData, UserLevel.Super)
+                        }
+
+                        @if (Model.AllowToViewMasterPT)
+                    {
+                            @PositionTaking.Render(ticket, Model.BetListData.TicketData, UserLevel.Master)
+                        }
+
+                        @PositionTaking.Render(ticket, Model.BetListData.TicketData, UserLevel.Agent)
+                    </tr>
+                    i++;
+                }
+            }
+        </tbody>
+                }
+                else
+                {
+                    @Common.NoInfomation.Render(Model.TotalColumn)
+                }
+</table>
+
+@Html.Hidden("betlist-path", HttpContext.Current.Response.ApplyAppPathModifier("~/"))
+@Html.Hidden("old-main-path", Model.OldMainPath)
+@Html.Hidden("results-path", Model.ResultsPath)
+@Html.Hidden("product-ids", Model.ProductsId)
+@Html.Hidden("betlist-type", Model.BetListType)
+@Html.Hidden("from-date", Model.FromDate)
+@Html.Hidden("to-date", Model.ToDate)
+@Html.Hidden("cust-id", Model.CustId)
+@Html.Hidden("is-historic-report", Model.IsHistoricReport)
+@Html.Hidden("viewer-id", Model.ViewerIdOrViewerAdminId)
+@Html.Hidden("viewer-level-id", Model.ViewerLevelId)
+
+@section Scripts{
+    @StaticResources.AssetScripts.Render("/bundles/site-betlists/filter")
+    @StaticResources.RenderScripts("~/assets/bundles/member-betlist/member-betlist")
+}

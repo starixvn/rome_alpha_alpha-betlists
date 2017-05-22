@@ -355,6 +355,10 @@
     <Content Include="assets\bundles\filter.min.css">
       <DependentUpon>filter.css</DependentUpon>
     </Content>
+    <Content Include="assets\bundles\member-betlist\member-betlist.js" />
+    <Content Include="assets\bundles\member-betlist\member-betlist.min.js">
+      <DependentUpon>member-betlist.js</DependentUpon>
+    </Content>
     <Content Include="assets\bundles\running-betlist\running-betlist.js" />
     <Content Include="assets\bundles\running-betlist\running-betlist.min.js">
       <DependentUpon>running-betlist.js</DependentUpon>
@@ -459,6 +463,7 @@
     <Content Include="Views\Shared\WinLossTable.cshtml" />
     <Content Include="Views\ParlayWinLossByMatch\Index.cshtml" />
     <Content Include="Views\RunningBetList\Index.cshtml" />
+    <Content Include="Views\MemberBetList\Index.cshtml" />
     <None Include="Web.backupMNL.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </None>
@@ -562,6 +567,7 @@
     <Compile Include="App_Start\DependencyConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BetListBaseController.cs" />
+    <Compile Include="Controllers\MemberBetListController.cs" />
     <Compile Include="Controllers\RunningBetListController.cs" />
     <Compile Include="Controllers\ParlayController.cs" />
     <Compile Include="Controllers\ParlayWinLossByMatchController.cs" />
@@ -572,6 +578,7 @@
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Handlers\BetListBaseHandler.cs" />
+    <Compile Include="Handlers\MemberBetList\MemberBetListHandler.cs" />
     <Compile Include="Handlers\RunningBetList\RunningBetListHandler.cs" />
     <Compile Include="Handlers\ParlayWinLossByMatch\ParlayWinLossByMatchBaseHandler.cs" />
     <Compile Include="Handlers\ParlayWinLossByMatch\ParlayWinLossByMatchExcelHanlder.cs" />
@@ -592,6 +599,7 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\BaseQuery.cs" />
+    <Compile Include="Requests\MemberBetList\MemberBetListQuery.cs" />
     <Compile Include="Requests\RunningBetList\RunningBetListQuery.cs" />
     <Compile Include="Requests\ParlayWinLossByMatch\ParlayWinLossByMatchExcelQuery.cs" />
     <Compile Include="Requests\ParlayWinLossByMatch\ParlayWinLossByMatchQuery.cs" />
@@ -609,6 +617,7 @@
     <Compile Include="ViewModels\Components\DateRangePickerViewModel.cs" />
     <Compile Include="ViewModels\Components\ProductMultiSelectionViewModel.cs" />
     <Compile Include="ViewModels\ExcelFileViewModel.cs" />
+    <Compile Include="ViewModels\MemberBetList\MemberBeListViewModel.cs" />
     <Compile Include="ViewModels\RunningBetList\RunningBetListViewModel.cs" />
     <Compile Include="ViewModels\ParlayWinLossByMatch\ParlayWinLossByMatchViewModel.cs" />
     <Compile Include="ViewModels\Parlay\ComboParlayDetailWrapper.cs" />
@@ -664,6 +673,8 @@
     <TypeScriptCompile Include="assets\scripts\src\components\daterangepicker.ts" />
     <TypeScriptCompile Include="assets\scripts\src\components\productmultiselection.ts" />
     <TypeScriptCompile Include="assets\scripts\src\components\single-selection-dropdown.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\member-betlist\member-betlist-init.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\member-betlist\member-betlist.ts" />
     <TypeScriptCompile Include="assets\scripts\src\running-betlist\running-betlist.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\choice\ticket-details\score-map-tests.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\choice\ticket-details\base-ticket-details-tests.ts" />
@@ -688,6 +699,7 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

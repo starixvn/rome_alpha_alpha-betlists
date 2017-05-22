@@ -66,28 +66,5 @@
                 Builder,
                 TicketHelper);
         }
-
-        internal IEnumerable<SelectListItem> BuildProductSelectListItems(
-            IEnumerable<int> userSelectedProductIds,
-            IEnumerable<Product> products)
-        {
-            if (products == null
-                || !products.Any())
-            {
-                return Enumerable.Empty<SelectListItem>();
-            }
-
-            return products.Select(product =>
-            {
-                var productSelectListItem = new SelectListItem
-                {
-                    Text = product.DisplayName,
-                    Value = product.Id.ToString(),
-                    Selected = userSelectedProductIds.Contains(product.Id)
-                };
-
-                return productSelectListItem;
-            });
-        }
     }
 }
