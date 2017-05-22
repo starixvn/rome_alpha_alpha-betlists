@@ -67,7 +67,7 @@
                 TicketHelper);
         }
 
-        private IEnumerable<SelectListItem> BuildProductSelectListItems(
+        internal IEnumerable<SelectListItem> BuildProductSelectListItems(
             IEnumerable<int> userSelectedProductIds,
             IEnumerable<Product> products)
         {
