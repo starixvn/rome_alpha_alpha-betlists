@@ -1,4 +1,4 @@
-﻿namespace Alpha.BetLists.Site.Requests.Parlay
+﻿namespace Alpha.BetLists.Site.Requests.Lucky3
 {
     using BetLists.Models;
     using Fanex.BetListDetail.Lucky3.ViewModels;

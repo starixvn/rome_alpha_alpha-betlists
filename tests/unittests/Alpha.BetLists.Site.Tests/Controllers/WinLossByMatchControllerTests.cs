@@ -23,7 +23,7 @@ namespace Alpha.BetLists.Site.Tests.Controllers
 
             winLossController = new WinLossByMatchController(mediator);
         }
-
+       
         [Fact]
         public void Index_Always_CallsMediatorSendWinLossByMatchQuery()
         {

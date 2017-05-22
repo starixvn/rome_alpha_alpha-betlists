@@ -57,6 +57,10 @@
       <HintPath>..\..\..\packages\Fanex.BetList.NumberGame.1.0.0.6\lib\net40\Fanex.BetList.NumberGame.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Fanex.BetListDetail.Lucky3, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Fanex.BetListDetail.Lucky3.1.0.0.0-beta9\lib\Fanex.BetListDetail.Lucky3.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Fanex.Caching, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Fanex.Caching.2.1.0\lib\net461\Fanex.Caching.dll</HintPath>
       <Private>True</Private>
@@ -181,6 +185,7 @@
     <Compile Include="Configurations\AppSettingsTests.cs" />
     <Compile Include="Constants\BetTypeIdConstants.cs" />
     <Compile Include="Constants\DefaultVariables.cs" />
+    <Compile Include="Criteria\Lucky3\GetLucky3DetailCriteriaTests.cs" />
     <Compile Include="Criteria\DailyStatement\GetAllBetListByDayCriteriaTests.cs" />
     <Compile Include="Criteria\DailyStatement\GetAllBetListByDayOldCriteriaTests.cs" />
     <Compile Include="Criteria\GetProductsByGroupHeadlineCriteriaTests.cs" />
@@ -202,6 +207,7 @@
     <Compile Include="Criteria\ParlayWinLossByMatch\GetParlayWinLossByMatchCriteriaTests.cs" />
     <Compile Include="Criteria\WinLossByMatch\GetWinLossOutrightCriteriaTests.cs" />
     <Compile Include="Criteria\WinLossByMatch\GetWinLossRacingCriteriaTests.cs" />
+    <Compile Include="DataAccesses\Lucky3DataAccessTests.cs" />
     <Compile Include="DataAccesses\SmartPunterDataAccessTests.cs" />
     <Compile Include="Extensions\DateTimeExtensionsTests.cs" />
     <Compile Include="Extensions\StringExtensionsTests.cs" />

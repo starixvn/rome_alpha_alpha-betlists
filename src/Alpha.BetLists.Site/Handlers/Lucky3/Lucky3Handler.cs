@@ -4,7 +4,7 @@
     using Fanex.BetListDetail.Lucky3.Services;
     using Fanex.BetListDetail.Lucky3.ViewModels;
     using MediatR;
-    using Requests.Parlay;
+    using Requests.Lucky3;
 
     public class Lucky3Handler : IRequestHandler<Lucky3DetailQuery, Lucky3DetailViewModel>
     {

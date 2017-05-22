@@ -63,6 +63,10 @@
       <HintPath>..\..\..\packages\Fanex.BetList.NumberGame.1.0.0.6\lib\net40\Fanex.BetList.NumberGame.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Fanex.BetListDetail.Lucky3, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Fanex.BetListDetail.Lucky3.1.0.0.0-beta9\lib\Fanex.BetListDetail.Lucky3.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Fanex.Caching, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Fanex.Caching.2.1.0\lib\net461\Fanex.Caching.dll</HintPath>
       <Private>True</Private>
@@ -255,6 +259,7 @@
     <Compile Include="Collection\BetListCollection.cs" />
     <Compile Include="Constants\LanguageCode.cs" />
     <Compile Include="Controllers\DailyStatementControllerTests.cs" />
+    <Compile Include="Controllers\Lucky3ControllerTests.cs" />
     <Compile Include="Controllers\CancelledBetControllerTests.cs" />
     <Compile Include="Controllers\LastBetsControllerTests.cs" />
     <Compile Include="Controllers\MemberBetListControllerTests.cs" />
@@ -267,6 +272,7 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Handler\BetListBaseHandlerTests.cs" />
     <Compile Include="Handler\BetListExcelBaseHandlerTests.cs" />
+    <Compile Include="Handler\Lucky3\Lucky3HanderTests.cs" />
     <Compile Include="Handler\DailyStatement\DailyStatementExcelHandlerTests.cs" />
     <Compile Include="Handler\DailyStatement\DailyStatementHandlerTests.cs" />
     <Compile Include="Handler\CancelledBet\CancelledBetExcelHandlerTests.cs" />
@@ -334,7 +340,6 @@
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
