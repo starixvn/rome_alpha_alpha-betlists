@@ -22,6 +22,34 @@ namespace Alpha.BetLists.Tests.Criteria.Lucky3
         }
 
         [Fact]
+        public void CustId_Always_ReturnCustomerIdOfParameter()
+        {
+            //// Arrange
+            var expectedId = 123456;
+            parameter.CustomerId.Returns(expectedId);
+
+            //// Act
+            var act = criteria.CustId;
+
+            //// Assert
+            Assert.Equal(expectedId, act);
+        }
+
+        [Fact]
+        public void TransactionId_Always_ReturnTransactionIdOfParameter()
+        {
+            //// Arrange
+            var expectedId = 123456;
+            parameter.TransactionId.Returns(expectedId);
+
+            //// Act
+            var act = criteria.TransId;
+
+            //// Assert
+            Assert.Equal(expectedId, act);
+        }
+
+        [Fact]
         public void GetSettingKey_Alway_ReturnCorrectKey()
         {
             //// Arrange            
