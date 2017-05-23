@@ -2,6 +2,7 @@
     export class PopupDetails {
         private static instance: PopupDetails;
         private readonly DetailsModal = $('#details-modal');
+        private readonly DetailsModalContent = $("#details-modal .modal-dialog");
         private readonly DetailsTitle = $('#details-modal .modal-title');
         private readonly DetailsFrame = $('#details-modal iframe');
         private readonly DetailsLoadingImage = $('#details-modal #loading-image');
@@ -16,11 +17,13 @@
             return this.instance;
         }
 
-        public Show = (url: string, title?: string, width?: number, height?: number) => {
+        public Show = (url: string, title?: string, width: number = 900, height: number = 500) => {
             this.DetailsLoadingImage.show();
             this.DetailsTitle.html(title ? title : 'Details');
             this.DetailsFrame.contents().find('body').html('');
             this.DetailsFrame.attr('src', url);
+            this.DetailsModalContent.width(width);
+            this.DetailsModalContent.height(height);
             this.DetailsModal.modal({ show: true });
         }
 

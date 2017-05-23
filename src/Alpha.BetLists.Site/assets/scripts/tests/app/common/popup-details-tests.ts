@@ -3,6 +3,7 @@
     let DetailsFrame: JQuery;
     let DetailsTitle: JQuery;
     let DetailsModal: JQuery;
+    let DetailsModalContent: JQuery;
     let Popup: Common.PopupDetails;
 
     beforeEach(() => {
@@ -13,6 +14,7 @@
         DetailsFrame = $('#details-modal iframe');
         DetailsTitle = $('#details-modal .modal-title');
         DetailsModal = $('#details-modal');
+        DetailsModalContent = $("#details-modal .modal-dialog");
         Popup = new Common.PopupDetails();
     });
 
@@ -39,6 +41,11 @@
 
         it("Should Show Details Model", () => {
             expect(DetailsModal).toBeVisible();
+        });
+
+        it("Should Set Width Height Modal Content From Param", () => {
+            expect(DetailsModalContent.width()).toBe(900);
+            expect(DetailsModalContent.height()).toBe(500);
         });
 
         describe("When Show Has Title Value", () => {
