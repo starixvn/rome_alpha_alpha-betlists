@@ -88,10 +88,6 @@
     }
 
     .form-group {
-        .btn-submit, .btn-group {
-            float: left;
-        }
-
         &.daterange-picker {
             .ui_nexdatepicker_edit_field, .ui_nexdatepicker_lbl_field {
                 margin-bottom: 15px;
@@ -101,5 +97,13 @@
 
     .check-box {
         margin-bottom: 0;
+
+        input[type="checkbox"] {
+            margin-left: 8px;
+        }
+    }
+
+    .radio input[type="radio"] {
+        position: relative;
     }
 }

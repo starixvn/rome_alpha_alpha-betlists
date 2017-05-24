@@ -37,10 +37,8 @@
     <div class="form-group">
         <label class="check-box">
             @Resources.GetAll
-        </label>
-        <div class="input-group">
             @Html.CheckBox("GetAll", Model.GetAll)
-        </div>
+        </label>
     </div>
 
     @DateRangePicker.Render(Model.DateRangePickerViewModel)

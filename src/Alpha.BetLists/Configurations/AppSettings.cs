@@ -22,6 +22,8 @@
 
         public static string BetListAppPath => GetConfigValue("BetListAppPath") ?? "site-betlists";
 
+        public static string ReportsAppPath => GetConfigValue("ReportsAppPath") ?? "site-reports";
+
         public static string DefaultIpAddress => GetConfigValue("DefaultIpAddress");
 
         public static string LocalIpAddress => GetConfigValue("LocalIpAddress");

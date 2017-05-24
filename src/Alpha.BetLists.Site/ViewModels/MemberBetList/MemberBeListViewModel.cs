@@ -72,8 +72,7 @@
                 ["CustName"] = CustName,
                 ["FromDate"] = DateTime.Today.AddDays(-7).ToShortDateWithSlash(),
                 ["ToDate"] = DateTime.Today.ToShortDateWithSlash(),
-                ["ProductIds"] = ProductsId,
-                ["FilterPostback"] = 1
+                ["ProductIds"] = ProductsId
             };
 
             return Helpers.UrlHelper.AddQueryStringParamsFunc(link, routeValues);

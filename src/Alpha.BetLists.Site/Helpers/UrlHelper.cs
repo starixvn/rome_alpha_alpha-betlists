@@ -1,5 +1,6 @@
 ﻿namespace Alpha.BetLists.Site.Helpers
 {
+    using Configurations;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -9,6 +10,9 @@
     {
         [ThreadStatic]
         private static Func<string, string> mapExMainPath;
+
+        [ThreadStatic]
+        private static Func<string, string> mapReportsPath;
 
         [ThreadStatic]
         private static Func<string, IDictionary<string, object>, string> addQueryStringParamsFunc;
@@ -39,6 +43,19 @@
             }
         }
 
+        public static Func<string, string> MapReportsPath
+        {
+            get
+            {
+                return mapReportsPath ?? GetReportsPath;
+            }
+
+            internal set
+            {
+                mapReportsPath = value;
+            }
+        }
+
         internal static string AddQueryStringParams(string url, IDictionary<string, object> routeValues)
         {
             if (!routeValues.Any())
@@ -50,5 +67,7 @@
 
             return $"{url}?{queryString}";
         }
+
+        internal static string GetReportsPath(string virtualPath = "~/Outstanding/Index") => AppPathHelper.GetAppPath(AppSettings.ReportsAppPath, virtualPath);
     }
 }
