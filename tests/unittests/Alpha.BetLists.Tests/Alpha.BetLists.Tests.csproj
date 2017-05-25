@@ -149,6 +149,7 @@
     <Compile Include="Constants\DefaultVariables.cs" />
     <Compile Include="Criteria\GetProductsCriteriaTests.cs" />
     <Compile Include="Criteria\GetScoreMapBetTypesCriteriaTests.cs" />
+    <Compile Include="Criteria\MemberBetList\GetBetListAllByDateCriteriaTests.cs" />
     <Compile Include="Criteria\RunningBetList\GetBetListRunningByDateCriteriaTests.cs" />
     <Compile Include="Criteria\ParlayWinLossByMatch\GetParlayWinLossByMatchCriteriaTests.cs" />
     <Compile Include="Criteria\WinLossByMatch\GetWinLossOutrightCriteriaTests.cs" />
@@ -160,9 +161,11 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Models\EnumerationTests.cs" />
     <Compile Include="Models\ProductTests.cs" />
+    <Compile Include="Params\MemberBetListParamTests.cs" />
     <Compile Include="Params\RunningBetListParamTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ForeCastServiceImplTests.cs" />
+    <Compile Include="Services\MemberBetListServiceImplTests.cs" />
     <Compile Include="Services\RunningBetListServiceImplTests.cs" />
     <Compile Include="Services\ParlayServiceImplTests.cs" />
     <Compile Include="Services\ParlayWinLossByMatchServiceImplTests.cs" />
@@ -188,6 +191,7 @@
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

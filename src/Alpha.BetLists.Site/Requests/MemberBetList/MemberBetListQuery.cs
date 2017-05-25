@@ -7,7 +7,7 @@
     using Utils;
     using ViewModels.MemberBetList;
 
-    public class MemberBetListQuery : BaseQuery, IRequest<MemberBeListViewModel>
+    public class MemberBetListQuery : BaseQuery, IRequest<MemberBetListViewModel>
     {
         public MemberBetListQuery(IUser viewer) : base(viewer)
         {

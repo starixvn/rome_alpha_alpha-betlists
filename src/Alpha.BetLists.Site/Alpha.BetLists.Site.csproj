@@ -611,7 +611,7 @@
     <Compile Include="ViewModels\Components\DateRangePickerViewModel.cs" />
     <Compile Include="ViewModels\Components\ProductMultiSelectionViewModel.cs" />
     <Compile Include="ViewModels\ExcelFileViewModel.cs" />
-    <Compile Include="ViewModels\MemberBetList\MemberBeListViewModel.cs" />
+    <Compile Include="ViewModels\MemberBetList\MemberBetListViewModel.cs" />
     <Compile Include="ViewModels\RunningBetList\RunningBetListViewModel.cs" />
     <Compile Include="ViewModels\ParlayWinLossByMatch\ParlayWinLossByMatchViewModel.cs" />
     <Compile Include="ViewModels\Parlay\ComboParlayDetailWrapper.cs" />

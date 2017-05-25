@@ -10,18 +10,20 @@
     using Requests.MemberBetList;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Web.Mvc;
     using Utils;
 
-    public class MemberBeListViewModel : BetListBaseViewModel
+    public class MemberBetListViewModel : BetListBaseViewModel
     {
         private readonly MemberBetListQuery query;
 
-        public MemberBeListViewModel(
+        public MemberBetListViewModel(
             MemberBetListQuery query,
             MemberBetListParam param,
             BetListData betListData,
             IEnumerable<SelectListItem> products,
+            IEnumerable<int> supportScoreMapBettypeIds,
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper)
             : base(query, betListData, builder, ticketHelper, false)
@@ -29,12 +31,15 @@
             this.query = query;
 
             Products = products;
+            SupportScoreMapBettypeIds = supportScoreMapBettypeIds;
+
             FromDate = param.FromDate;
             ToDate = param.ToDate;
             CustId = param.CustId;
             CustName = param.UserName;
 
             Title = $"{Resources.BetList} - {query.CustName}";
+            ProductsId = param.ProductIds.JoinWithComma();
             ViewDataInstructionMessage = string.Format(
                 Resources.CanOnlyViewDataAfterTimeHistoryReport,
                 query.MinDate.ToShortDateWithSlash());
@@ -47,6 +52,8 @@
         public string ViewDataInstructionMessage { get; }
 
         public bool IsFilterVisible => query.IsFilterVisible;
+
+        public IEnumerable<int> SupportScoreMapBettypeIds { get; }
 
         public IEnumerable<SelectListItem> Products { get; }
 
@@ -77,5 +84,9 @@
 
             return Helpers.UrlHelper.AddQueryStringParamsFunc(link, routeValues);
         }
+
+        public override bool CanViewScoreMap(ITicket ticket)
+            => ticket.Status.Equals(BetStatus.Running)
+            && SupportScoreMapBettypeIds.Contains(ticket.BetTypeId);
     }
 }

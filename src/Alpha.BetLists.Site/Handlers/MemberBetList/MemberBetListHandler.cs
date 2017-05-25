@@ -12,14 +12,16 @@
     using Utilities.IP;
     using ViewModels.MemberBetList;
 
-    public class MemberBetListHandler : BetListBaseHandler, IAsyncRequestHandler<MemberBetListQuery, MemberBeListViewModel>
+    public class MemberBetListHandler : BetListBaseHandler, IAsyncRequestHandler<MemberBetListQuery, MemberBetListViewModel>
     {
         private readonly MemberBetListService memberBetListService;
         private readonly ProductService productService;
+        private readonly ForeCastService foreCastService;
 
         public MemberBetListHandler(
             MemberBetListService memberBetListService,
             ProductService productService,
+            ForeCastService foreCastService,
             IBetListHTMLBuilder builder,
             IBetListExcelBuilder excelBuilder,
             ITicketHelper ticketHelper,
@@ -29,9 +31,10 @@
         {
             this.memberBetListService = memberBetListService;
             this.productService = productService;
+            this.foreCastService = foreCastService;
         }
 
-        public async Task<MemberBeListViewModel> Handle(MemberBetListQuery message)
+        public async Task<MemberBetListViewModel> Handle(MemberBetListQuery message)
         {
             var validUserSelectedProductIds = productService.FilterProductIdsByCustomer(message.CustId, message.ProductIds.ToListInt());
 
@@ -45,14 +48,16 @@
 
             var betlistData = await memberBetListService.GetBetList(memberBetListParam);
             var products = productService.GetProductsForCustomer(message.CustId);
+            var supportScoreMapBettypeIds = foreCastService.GetBetTypeIdsSupportScoreMap();
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
-            return new MemberBeListViewModel(
+            return new MemberBetListViewModel(
                 message,
                 memberBetListParam,
                 betlistData,
                 BuildProductSelectListItems(memberBetListParam.ProductIds, products),
+                supportScoreMapBettypeIds,
                 Builder,
                 TicketHelper);
         }

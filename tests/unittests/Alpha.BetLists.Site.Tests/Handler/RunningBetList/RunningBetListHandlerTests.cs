@@ -1,6 +1,5 @@
 ﻿namespace Alpha.BetLists.Site.Tests.Handler.RunningBetList
 {
-    using BetLists.Models;
     using BetLists.Tests.TestData;
     using Fanex.BetList.Core.Entities;
     using Fixtures;
@@ -94,7 +93,7 @@
 
             foreCastService.GetBetTypeIdsSupportScoreMap().Returns(BetListDataTest.BettypeIds);
 
-            var runningBetListParram = new RunningBetListParam(
+            var runningBetListParam = new RunningBetListParam(
                 1,
                 validUserSelectedProductIds,
                 query.FromDate,
@@ -105,7 +104,7 @@
 
             var expectedRunningViewModel = new RunningBetListViewModel(
                 query,
-                runningBetListParram,
+                runningBetListParam,
                 BetListDataTest.BetListData,
                 Enumerable.Empty<SelectListItem>(),
                 BetListDataTest.BettypeIds,
