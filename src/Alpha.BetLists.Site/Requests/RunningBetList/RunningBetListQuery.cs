@@ -4,15 +4,16 @@
     using Extensions;
     using MediatR;
     using System;
+    using Utils;
     using ViewModels.RunningBetList;
 
     public class RunningBetListQuery : BaseQuery, IRequest<RunningBetListViewModel>
     {
         public RunningBetListQuery(IUser viewer) : base(viewer)
         {
-            MinDate = DateTime.Today.AddMonths(-3).FirstDayOfMonth();
-            FromDate = DateTime.Today.AddDays(-7);
-            ToDate = DateTime.Today;
+            MinDate = SystemTime.Today.AddMonths(-3).FirstDayOfMonth();
+            FromDate = SystemTime.Today.AddDays(-7);
+            ToDate = SystemTime.Today;
         }
 
         public bool GetAll { get; set; }

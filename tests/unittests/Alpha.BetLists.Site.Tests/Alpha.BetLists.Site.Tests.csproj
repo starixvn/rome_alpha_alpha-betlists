@@ -262,9 +262,12 @@
     <Compile Include="Handler\WinLoss\WinLossExcelHandlerTests.cs" />
     <Compile Include="Handler\WinLoss\WinLossHandlerTests.cs" />
     <Compile Include="Handler\WinLoss\WinLossBaseHandlerTests.cs" />
+    <Compile Include="Helpers\UrlHelperTests.cs" />
+    <Compile Include="Helpers\UrlHelperTestSetUp.cs" />
     <Compile Include="Models\UserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Request\BaseQueryTests.cs" />
+    <Compile Include="Request\RunningBetList\RunningBetListQueryTests.cs" />
     <Compile Include="ViewModels\BetListBaseViewModelTests.cs" />
     <Compile Include="ViewModels\Blocks\FooterTests.cs" />
     <Compile Include="ViewModels\Blocks\WinLostBlockViewModelTests.cs" />
@@ -272,6 +275,7 @@
     <Compile Include="ViewModels\Parlay\ComboParlayDetailViewModelTests.cs" />
     <Compile Include="ViewModels\Parlay\ComboParlayDetailWrapperTests.cs" />
     <Compile Include="ViewModels\Parlay\ComboParlayViewModelTests.cs" />
+    <Compile Include="ViewModels\RunningBetList\RunningBetListViewModelTests.cs" />
     <Compile Include="ViewModels\WinLoss\WinLossViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>

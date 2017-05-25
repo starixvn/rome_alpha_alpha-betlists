@@ -9,9 +9,6 @@
     public static class UrlHelper
     {
         [ThreadStatic]
-        private static Func<string, string> mapExMainPath;
-
-        [ThreadStatic]
         private static Func<string, string> mapReportsPath;
 
         [ThreadStatic]
@@ -27,19 +24,6 @@
             internal set
             {
                 addQueryStringParamsFunc = value;
-            }
-        }
-
-        public static Func<string, string> MapExMainPath
-        {
-            get
-            {
-                return mapExMainPath ?? MicroSites.OldMainUrl;
-            }
-
-            internal set
-            {
-                mapExMainPath = value;
             }
         }
 

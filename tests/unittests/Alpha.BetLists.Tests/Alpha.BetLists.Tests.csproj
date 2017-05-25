@@ -146,6 +146,7 @@
     <Compile Include="Collections\FanexCacheCollection.cs" />
     <Compile Include="Collections\FanexLibsCollection.cs" />
     <Compile Include="Constants\BetTypeIdConstants.cs" />
+    <Compile Include="Constants\DefaultVariables.cs" />
     <Compile Include="Criteria\GetProductsCriteriaTests.cs" />
     <Compile Include="Criteria\GetScoreMapBetTypesCriteriaTests.cs" />
     <Compile Include="Criteria\RunningBetList\GetBetListRunningByDateCriteriaTests.cs" />
@@ -172,6 +173,7 @@
     <Compile Include="TestData\BetListDataTest.cs" />
     <Compile Include="Criteria\WinLossByMatch\GetWinLossOthersCriteriaTests.cs" />
     <Compile Include="TestData\UserLevelTest.cs" />
+    <Compile Include="Utils\SystemTimeTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

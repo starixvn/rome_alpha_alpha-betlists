@@ -12,6 +12,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
+    using Utils;
 
     public class RunningBetListViewModel : BetListBaseViewModel
     {
@@ -80,8 +81,8 @@
             {
                 ["CustId"] = CustId,
                 ["CustName"] = CustName,
-                ["FromDate"] = DateTime.Today.AddDays(-1).ToShortDateWithSlash(),
-                ["ToDate"] = DateTime.Today.ToShortDateWithSlash(),
+                ["FromDate"] = SystemTime.Today.AddDays(-1).ToShortDateWithSlash(),
+                ["ToDate"] = SystemTime.Today.ToShortDateWithSlash(),
                 ["ProductIds"] = ProductsId
             };
 

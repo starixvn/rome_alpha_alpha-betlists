@@ -1,13 +1,16 @@
 ﻿namespace Alpha.BetLists.Site.Tests.ViewModels
 {
-    using System;
     using AppResources;
     using BetLists.Tests.TestData;
     using Fixtures;
+    using Helpers;
     using NSubstitute;
     using Requests;
     using Requests.WinLoss;
+    using Site.Helpers;
     using Site.ViewModels.WinLoss;
+    using System;
+    using System.Collections.Generic;
     using Xunit;
 
     [Trait("Category", "BaseBetList")]
@@ -266,6 +269,33 @@
 
             // Assert
             Assert.Equal(true, viewModel.ShowMemberName);
+        }
+
+        [Fact]
+        public void BuildDailyStatementLink_Always_ReturnsCorrectLink()
+        {
+            // Arrange
+            query = new WinLossQuery(betListFixture.User)
+            {
+                CustId = 1,
+                CustName = "CustName",
+                ProductIds = "1,2,3"
+            };
+            UrlHelperTestSetUp.SetUp();
+            var viewModel = new WinLossViewModel(query, BetListDataTest.BetListData, betListFixture.HtmlBuilder, betListFixture.TicketHelper, true);
+
+            // Act
+            viewModel.BuildDailyStatementLink();
+
+            // Assert
+            UrlHelper.AddQueryStringParamsFunc.Received().Invoke(
+                "NewReportsPath",
+                Arg.Is<Dictionary<string, object>>(
+                    routeValues =>
+                    (int)routeValues["CustId"] == 1
+                    && (string)routeValues["CustName"] == "CustName"
+                    && (int)routeValues["CustLevelId"] == 1
+                    && (string)routeValues["ProductIds"] == "1,2,3"));
         }
     }
 }

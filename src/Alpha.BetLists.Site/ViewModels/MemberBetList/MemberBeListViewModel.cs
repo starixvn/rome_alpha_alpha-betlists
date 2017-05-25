@@ -11,6 +11,7 @@
     using System;
     using System.Collections.Generic;
     using System.Web.Mvc;
+    using Utils;
 
     public class MemberBeListViewModel : BetListBaseViewModel
     {
@@ -69,8 +70,8 @@
             {
                 ["CustId"] = CustId,
                 ["CustName"] = CustName,
-                ["FromDate"] = DateTime.Today.AddDays(-7).ToShortDateWithSlash(),
-                ["ToDate"] = DateTime.Today.ToShortDateWithSlash(),
+                ["FromDate"] = SystemTime.Today.AddDays(-7).ToShortDateWithSlash(),
+                ["ToDate"] = SystemTime.Today.ToShortDateWithSlash(),
                 ["ProductIds"] = ProductsId
             };
 

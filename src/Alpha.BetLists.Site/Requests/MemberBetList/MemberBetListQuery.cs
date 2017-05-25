@@ -4,15 +4,16 @@
     using Extensions;
     using MediatR;
     using System;
+    using Utils;
     using ViewModels.MemberBetList;
 
     public class MemberBetListQuery : BaseQuery, IRequest<MemberBeListViewModel>
     {
         public MemberBetListQuery(IUser viewer) : base(viewer)
         {
-            MinDate = DateTime.Today.AddMonths(-3).FirstDayOfMonth();
-            FromDate = DateTime.Today;
-            ToDate = DateTime.Today.AddDays(7);
+            MinDate = SystemTime.Today.AddMonths(-3).FirstDayOfMonth();
+            FromDate = SystemTime.Today;
+            ToDate = SystemTime.Today.AddDays(7);
         }
 
         public bool IsFilterVisible { get; set; } = true;
