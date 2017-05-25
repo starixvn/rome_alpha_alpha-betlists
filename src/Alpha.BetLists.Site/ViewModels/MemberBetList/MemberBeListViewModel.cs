@@ -22,9 +22,8 @@
             BetListData betListData,
             IEnumerable<SelectListItem> products,
             IBetListHTMLBuilder builder,
-            ITicketHelper ticketHelper,
-            bool showMemberName = false)
-            : base(query, betListData, builder, ticketHelper, showMemberName)
+            ITicketHelper ticketHelper)
+            : base(query, betListData, builder, ticketHelper, false)
         {
             this.query = query;
 

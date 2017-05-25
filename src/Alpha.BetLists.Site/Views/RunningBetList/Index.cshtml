@@ -20,7 +20,7 @@
     </div>
 </div>
 
-<form class="form-inline filter @(Model.IsFilterVisible ? string.Empty : "hide") role="form" id="betlist-form">
+<form class="form-inline filter @(Model.IsFilterVisible ? string.Empty : "hide")" role="form" id="betlist-form">
     @Html.Hidden("CustId", Model.CustId)
     @Html.Hidden("CustName", Model.CustName)
     @Html.Hidden("IsFilterVisible", Model.IsFilterVisible)
@@ -52,10 +52,6 @@
     <thead>
         <tr>
             <th class="col-number">#</th>
-            @if (Model.ShowMemberName)
-            {
-                <th class="col-member">@Resources.member</th>
-            }
 
             <th class="col-transtime">@Resources.transtime</th>
             <th>@Resources.choice</th>
@@ -85,11 +81,6 @@
                 {
                     <tr>
                         <td class='w-order text-center'>@i</td>
-                        @if (Model.ShowMemberName)
-                    {
-                            <td class="text-center">@ticket.UserName</td>
-                        }
-
                         @Trans.Render(Model.Builder, ticket)
                         @Choice.Render(Model.Builder, ticket, Model.TicketHelper, Model.BetListData.TicketData, Model.CanViewScoreMap(ticket))
                         @Odds.Render(Model.Builder, ticket, Model.BetListData.TicketData)

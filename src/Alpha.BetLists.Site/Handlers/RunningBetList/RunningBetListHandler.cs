@@ -1,6 +1,5 @@
 ﻿namespace Alpha.BetLists.Site.Handlers.RunningBetList
 {
-    using BetLists.Models;
     using Extensions;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
@@ -9,10 +8,7 @@
     using Requests.RunningBetList;
     using Services;
     using SmartPunter.Services;
-    using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
-    using System.Web.Mvc;
     using Utilities.IP;
     using ViewModels.RunningBetList;
 
@@ -23,7 +19,7 @@
         private readonly ForeCastService foreCastService;
 
         public RunningBetListHandler(
-            RunningBetListService oustandingService,
+            RunningBetListService runningBetListService,
             ProductService productService,
             ForeCastService foreCastService,
             IBetListHTMLBuilder builder,
@@ -33,7 +29,7 @@
             IPService ipService)
             : base(builder, excelBuilder, ticketHelper, monitorService, ipService)
         {
-            this.runningBetListService = oustandingService;
+            this.runningBetListService = runningBetListService;
             this.productService = productService;
             this.foreCastService = foreCastService;
         }

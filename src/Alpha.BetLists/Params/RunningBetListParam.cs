@@ -1,5 +1,6 @@
 ﻿namespace Alpha.BetLists.Params
 {
+    using Extensions;
     using System;
     using System.Collections.Generic;
 
@@ -16,8 +17,8 @@
         {
             CustId = custId;
 
-            FromDate = fromDate == DateTime.MinValue ? DateTime.Today.AddDays(-7) : fromDate;
-            ToDate = toDate == DateTime.MinValue ? DateTime.Today : toDate;
+            FromDate = fromDate.ToStartOfDay();
+            ToDate = toDate.ToEndOfDay();
 
             GetAll = getAll;
             Language = language;

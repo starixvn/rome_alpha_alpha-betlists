@@ -12,6 +12,7 @@
             ViewerLevel = Enumeration.FromValue<UserLevel>(ViewerLevelId);
             ViewerIdOrViewerAdminId = viewer.IsInternal ? viewer.AdminId : viewer.Id;
             DisplayVNIP = viewer.IsAdminCanViewVNIP;
+            Language = viewer.Language;
         }
 
         public int CustId { get; set; }

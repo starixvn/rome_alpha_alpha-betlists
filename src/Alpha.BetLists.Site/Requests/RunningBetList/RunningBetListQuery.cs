@@ -11,6 +11,8 @@
         public RunningBetListQuery(IUser viewer) : base(viewer)
         {
             MinDate = DateTime.Today.AddMonths(-3).FirstDayOfMonth();
+            FromDate = DateTime.Today.AddDays(-7);
+            ToDate = DateTime.Today;
         }
 
         public bool GetAll { get; set; }

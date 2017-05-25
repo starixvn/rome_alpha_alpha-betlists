@@ -7,7 +7,7 @@
 class MemberBetListView {
     $: JQueryStatic;
 
-    $multiSelectButton: JQuery;
+    $multiSelectProductButton: JQuery;
     $userSelectedDateRangeOption: JQuery;
     $betlistForm: JQuery;
     $pageTitle: JQuery;
@@ -57,7 +57,7 @@ class MemberBetListView {
         this.betlistTypeComponent.render(betlistTypeComponentOption);
 
         this.productMultiSelectionComponent.render();
-        this.$multiSelectButton = this.$("#dropdown-product").parent().find(".multiselect.btn");
+        this.$multiSelectProductButton = this.$("#dropdown-product").parent().find(".multiselect.btn");
 
         this.dateRangePickerComponent.render();
     };
@@ -110,7 +110,7 @@ class MemberBetListView {
         };
     };
 
-    showValidaProductError = () => this.$multiSelectButton.addClass("error");
+    showValidaProductError = () => this.$multiSelectProductButton.addClass("error");
 
     screenSmallThan768 = () => {
         var currentWindowWidth = screen.width || this.$(window).width();

@@ -16,5 +16,11 @@
 
         public static DateTime FirstDayOfMonth(this DateTime dateTime)
             => new DateTime(dateTime.Year, dateTime.Month, 1);
+
+        public static DateTime ToStartOfDay(this DateTime dateTime)
+            => new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, 0, 0, 0);
+
+        public static DateTime ToEndOfDay(this DateTime dateTime)
+            => new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, 23, 59, 59);
     }
 }

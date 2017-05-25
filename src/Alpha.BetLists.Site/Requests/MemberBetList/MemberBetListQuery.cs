@@ -11,6 +11,8 @@
         public MemberBetListQuery(IUser viewer) : base(viewer)
         {
             MinDate = DateTime.Today.AddMonths(-3).FirstDayOfMonth();
+            FromDate = DateTime.Today;
+            ToDate = DateTime.Today.AddDays(7);
         }
 
         public bool IsFilterVisible { get; set; } = true;
