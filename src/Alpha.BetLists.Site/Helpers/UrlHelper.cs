@@ -1,6 +1,5 @@
 ﻿namespace Alpha.BetLists.Site.Helpers
 {
-    using Configurations;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -31,7 +30,7 @@
         {
             get
             {
-                return mapReportsPath ?? GetReportsPath;
+                return mapReportsPath ?? MicroSites.ReportsUrl;
             }
 
             internal set
@@ -51,7 +50,5 @@
 
             return $"{url}?{queryString}";
         }
-
-        internal static string GetReportsPath(string virtualPath = "~/Outstanding/Index") => AppPathHelper.GetAppPath(AppSettings.ReportsAppPath, virtualPath);
     }
 }
