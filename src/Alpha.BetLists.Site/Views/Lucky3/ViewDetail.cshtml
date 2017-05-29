@@ -84,15 +84,15 @@
                     <td>@Model.FormatWinLost(ticket.Winlost)</td>
                     @if (Model.IsSuper)
                     {
-                        <td>@Model.FormatDiscount(ticket.SuperDiscount) <br /> @Model.FormatCommission(ticket.SuperCommission)</td>
+                        <td>@Model.FormatDiscount(ticket.SuperDiscount) <br /> @Model.FormatMoney(ticket.SuperCommission)</td>
                     }
                     @if (Model.IsSuper || Model.IsMaster)
                     {
-                        <td>@Model.FormatDiscount(ticket.MasterDiscount) <br /> @Model.FormatCommission(ticket.MasterCommission)</td>
+                        <td>@Model.FormatDiscount(ticket.MasterDiscount) <br /> @Model.FormatMoney(ticket.MasterCommission)</td>
                     }
                     @if (Model.IsAgent || Model.IsMaster || Model.IsSuper)
                     {
-                        <td>@Model.FormatDiscount(ticket.AgentDiscount) <br /> @Model.FormatCommission(ticket.AgentCommission)</td>
+                        <td>@Model.FormatDiscount(ticket.AgentDiscount) <br /> @Model.FormatMoney(ticket.AgentCommission)</td>
                     }
 
                     <td>@ticket.Status</td>
@@ -117,20 +117,20 @@
 
                 <td>Lose</td>
             </tr>
-            <tr class="bl_footertotal">
-                <td colspan="5" class="text-right">@Resources.Total</td>
+            <tr>
+                <td colspan="5">@Resources.Total</td>
                 <td>@Model.FormatWinLost(Model.TotalWinlost)</td>
                 @if (Model.IsSuper)
                 {
-                    <td>@Model.FormatCommission(Model.TotalSuperCommission)</td>
+                    <td>@Model.FormatMoney(Model.TotalSuperCommission)</td>
                 }
                 @if (Model.IsSuper || Model.IsMaster)
                 {
-                    <td>@Model.FormatCommission(Model.TotalMasterCommission)</td>
+                    <td>@Model.FormatMoney(Model.TotalMasterCommission)</td>
                 }
                 @if (Model.IsAgent || Model.IsMaster || Model.IsSuper)
                 {
-                    <td>@Model.FormatCommission(Model.TotalAgentCommission)</td>
+                    <td>@Model.FormatMoney(Model.TotalAgentCommission)</td>
                 }
 
                 <td></td>

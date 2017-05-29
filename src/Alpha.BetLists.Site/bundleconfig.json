@@ -22,7 +22,8 @@
       "assets/scripts/src/betlist/choice/ticket-details/base-ticket-details.js",
       "assets/scripts/src/betlist/choice/ticket-details/sportsbook-ticket-details.js",
       "assets/scripts/src/betlist/choice/ticket-details/casino-ticket-details.js",
-      "assets/scripts/src/betlist/choice/ticket-details/other-ticket-details.js"
+      "assets/scripts/src/betlist/choice/ticket-details/other-ticket-details.js",
+      "assets/scripts/src/betlist/choice/ticket-details/numbergame-ticket-details.js"
     ]
   },
 
