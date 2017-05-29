@@ -364,7 +364,9 @@
       <DependentUpon>running-betlist.js</DependentUpon>
     </Content>
     <Content Include="assets\scripts\tests\app\templates\common-template.html" />
+    <Content Include="assets\scripts\tests\app\templates\daterangepicker-template.html" />
     <Content Include="assets\scripts\tests\app\templates\iframe-template.html" />
+    <Content Include="assets\scripts\tests\app\templates\member-betlist-template.html" />
     <Content Include="assets\scripts\tests\app\templates\parlay-template.html" />
     <Content Include="assets\scripts\tests\app\templates\popup-template.html" />
     <Content Include="assets\scripts\tests\libs\bootstrap-datetimepicker.js" />
@@ -375,6 +377,8 @@
     <Content Include="assets\scripts\tests\libs\jquery-blockui.js" />
     <Content Include="assets\scripts\tests\libs\jquery.js" />
     <Content Include="assets\scripts\tests\libs\moment.js" />
+    <Content Include="assets\scripts\tests\libs\multiselect.js" />
+    <Content Include="assets\scripts\tests\libs\nexDatePicker.js" />
     <Content Include="assets\scripts\tests\libs\store.js" />
     <Content Include="assets\scripts\tests\libs\tooltip.js" />
     <Content Include="assets\styles\bet-list.css">
@@ -676,6 +680,10 @@
     <TypeScriptCompile Include="assets\scripts\tests\app\choice\ticket-details\sportsbook-ticket-details-tests.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\choice\ticket-details\casino-ticket-details-tests.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\common\popup-details-tests.ts" />
+    <TypeScriptCompile Include="assets\scripts\tests\app\components\daterangepicker-tests.ts" />
+    <TypeScriptCompile Include="assets\scripts\tests\app\components\productmultiselection-tests.ts" />
+    <TypeScriptCompile Include="assets\scripts\tests\app\components\single-selection-dropdown-tests.ts" />
+    <TypeScriptCompile Include="assets\scripts\tests\app\member-betlist\member-betlist-test.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\status\ip-details-tests.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\status\other-result-details-tests.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\status\sportsbook-result-details-tests.ts" />

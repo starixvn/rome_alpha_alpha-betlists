@@ -7,10 +7,10 @@ interface JQuery {
 class DateRangePickerOption {
     constructor(
         public selectorId: string = "daterange-picker",
-        public reportFormId: string = "report-form",
+        public betlistFormId: string = "betlist-form",
         public onChange: Function = null) {
         this.selectorId = selectorId;
-        this.reportFormId = reportFormId;
+        this.betlistFormId = betlistFormId;
         this.onChange = onChange;
     }
 }
@@ -23,7 +23,7 @@ class DateRangePickerComponent {
         specificDates: 7
     };
     isCompleteInitDateRangePicker = false;
-    $reportForm: JQuery;
+    $betlistForm: JQuery;
 
     constructor($: JQueryStatic) {
         this.$ = $;
@@ -36,8 +36,8 @@ class DateRangePickerComponent {
         let currentDate = dateRangePicker.data("currentdate");
         let minDate = dateRangePicker.data("mindate");
         let maxDate = dateRangePicker.data("maxdate");
-        this.$reportForm = this.$("#" + this.options.reportFormId);
-        let shortDateWithSlashFormat: "MM/DD/YYYY";
+        this.$betlistForm = this.$("#" + this.options.betlistFormId);
+        let shortDateWithSlashFormat = "MM/DD/YYYY";
 
         dateRangePicker.nexDatePicker({
             datePickerFormat: {
@@ -54,7 +54,7 @@ class DateRangePickerComponent {
             },
             onQuickChooseChange: (selectValue: number) => {
                 if (this.isCompleteInitDateRangePicker && selectValue !== this.quickChooseType.specificDates) {
-                    this.$reportForm.submit();
+                    this.$betlistForm.submit();
                 }
             }
         });

@@ -6,6 +6,7 @@ declare function readFixtures(...uls: string[]): string;
 declare function preloadFixtures(...uls: string[]): void;
 declare function loadFixtures(...uls: string[]): void;
 declare function appendLoadFixtures(...uls: string[]): void;
+declare function setFixtures(html: string): string;
 declare function appendSetFixtures(html: string): void;
 
 declare function preloadStyleFixtures(...uls: string[]): void;

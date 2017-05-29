@@ -119,7 +119,7 @@
                     && (string)routeValues["CustName"] == "CustName"
                     && (string)routeValues["FromDate"] == "05/24/2017"
                     && (string)routeValues["ToDate"] == "05/25/2017"
-                    && (string)routeValues["ProductIds"] == ""));
+                    && (string)routeValues["ProductIds"] == string.Empty));
         }
 
         [Theory]

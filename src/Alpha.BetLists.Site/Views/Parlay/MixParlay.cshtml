@@ -7,7 +7,7 @@
         <div class="line"></div>
         foreach (var ticket in Model.BetListData.Tickets)
         {
-            Html.Raw(Model.Builder.BuildChoice(ticket, Model.TicketHelper, null, Model.CanViewScoreMap));
+            Html.Raw(Model.Builder.BuildChoice(ticket, Model.TicketHelper, null, Model.CanViewScoreMap(ticket)));
         }
     }
 </div>
