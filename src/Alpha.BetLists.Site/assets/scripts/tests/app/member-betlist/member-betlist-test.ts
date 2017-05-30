@@ -7,15 +7,14 @@
         href: ""
     };
 
-    let memberBetListView: MemberBetListView;
-
-    let cacheElements: jasmine.Spy,
+    let memberBetListView: MemberBetListView,
+        cacheElements: jasmine.Spy,
         registerEvents: jasmine.Spy,
         blockUI: jasmine.Spy,
         unblockUI: jasmine.Spy;
 
     beforeEach(() => {
-        jasmine.getFixtures().fixturesPath = "app/templates";
+        jasmine.getFixtures().fixturesPath = "app/templates/member-betlist";
         loadFixtures("member-betlist-template.html");
 
         memberBetListView = new MemberBetListView(
@@ -51,6 +50,11 @@
         it("_Call bindFilter", () => {
             // assert
             expect(memberBetListView.bindFilter).toHaveBeenCalled();
+        });
+
+        it("_Call registerEvents", () => {
+            // assert
+            expect(memberBetListView.registerEvents).toHaveBeenCalled();
         });
 
         it("_Calls unblockUI", () => {
@@ -144,6 +148,41 @@
             expect(jQueryFake.unblockUI).toHaveBeenCalled();
             expect(memberBetListView.$isFilterVisible.val).toHaveBeenCalledWith("true");
             expect(memberBetListView.$multiSelectProductButton.hasClass("error")).toBeFalsy();
+        });
+    });
+
+    describe("_onClickIconFilter", () => {
+        describe("_Filter is currently shown", () => {
+            beforeEach(() => {
+                // arrange
+                memberBetListView.cacheElements();
+
+                // act
+                memberBetListView.onClickIconFilter();
+            });
+
+            it("_Hides Filter", () => {
+                // assert
+                expect(memberBetListView.$pageTitle.hasClass("hide-filter")).toBeTruthy();
+                expect(memberBetListView.$betlistForm.hasClass("hide")).toBeTruthy();
+            });
+        });
+
+        describe("_Filter is currently hidden", () => {
+            beforeEach(() => {
+                // arrange
+                loadFixtures("member-betlist-with-hide-filter.html");
+                memberBetListView.cacheElements();
+
+                // act
+                memberBetListView.onClickIconFilter();
+            });
+
+            it("_Shows Filter", () => {
+                // assert
+                expect(memberBetListView.$pageTitle.hasClass("hide-filter")).toBeFalsy();
+                expect(memberBetListView.$betlistForm.hasClass("hide")).toBeFalsy();
+            });
         });
     });
 });

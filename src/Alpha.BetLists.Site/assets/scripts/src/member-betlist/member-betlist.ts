@@ -52,7 +52,7 @@ class MemberBetListView {
         this.$isFilterVisible = this.$("#IsFilterVisible");
     };
 
-    bindFilter = () => {
+    public bindFilter() {
         var betlistTypeComponentOption = new SingleSelectionDropdownOption("dropdown-betlist-type", "BetlistType", this.changeBetlistType);
         this.betlistTypeComponent.render(betlistTypeComponentOption);
 

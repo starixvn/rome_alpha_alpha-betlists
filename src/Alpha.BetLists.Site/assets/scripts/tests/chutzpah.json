@@ -43,7 +43,8 @@
     { "Path": "../src/components/productmultiselection.ts" },
     { "Path": "../src/components/single-selection-dropdown.ts" },
 
-    { "Path": "../src/member-betlist/member-betlist.ts" }
+    { "Path": "../src/member-betlist/member-betlist.ts" },
+    { "Path": "../src/running-betlist/running-betlist.ts" }
   ],
   "Tests": [
     {
@@ -64,6 +65,10 @@
     },
     {
       "Path": "app/member-betlist",
+      "Excludes": [ "**.js.map" ]
+    },
+    {
+      "Path": "app/running-betlist",
       "Excludes": [ "**.js.map" ]
     }
   ]

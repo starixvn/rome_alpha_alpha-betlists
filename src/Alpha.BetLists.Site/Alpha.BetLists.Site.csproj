@@ -366,9 +366,12 @@
     <Content Include="assets\scripts\tests\app\templates\common-template.html" />
     <Content Include="assets\scripts\tests\app\templates\daterangepicker-template.html" />
     <Content Include="assets\scripts\tests\app\templates\iframe-template.html" />
-    <Content Include="assets\scripts\tests\app\templates\member-betlist-template.html" />
+    <Content Include="assets\scripts\tests\app\templates\member-betlist\member-betlist-template.html" />
+    <Content Include="assets\scripts\tests\app\templates\member-betlist\member-betlist-with-hide-filter.html" />
     <Content Include="assets\scripts\tests\app\templates\parlay-template.html" />
     <Content Include="assets\scripts\tests\app\templates\popup-template.html" />
+    <Content Include="assets\scripts\tests\app\templates\running-betlist\running-betlist-template.html" />
+    <Content Include="assets\scripts\tests\app\templates\running-betlist\running-betlist-with-uncheck-getall-template.html" />
     <Content Include="assets\scripts\tests\libs\bootstrap-datetimepicker.js" />
     <Content Include="assets\scripts\tests\libs\bootstrap-modal.js" />
     <Content Include="assets\scripts\tests\libs\datepicker.js" />
@@ -564,6 +567,7 @@
   <ItemGroup>
     <Compile Include="App_Start\DependencyConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Constants\UserSelectedDateRangeOptionConstant.cs" />
     <Compile Include="Controllers\BetListBaseController.cs" />
     <Compile Include="Controllers\MemberBetListController.cs" />
     <Compile Include="Controllers\RunningBetListController.cs" />
@@ -684,6 +688,7 @@
     <TypeScriptCompile Include="assets\scripts\tests\app\components\productmultiselection-tests.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\components\single-selection-dropdown-tests.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\member-betlist\member-betlist-test.ts" />
+    <TypeScriptCompile Include="assets\scripts\tests\app\running-betlist\running-betlist-test.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\status\ip-details-tests.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\status\other-result-details-tests.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\status\sportsbook-result-details-tests.ts" />

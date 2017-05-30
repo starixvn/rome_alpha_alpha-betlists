@@ -1,6 +1,7 @@
 ﻿namespace Alpha.BetLists.Site.Requests.MemberBetList
 {
     using BetLists.Models;
+    using Constants;
     using Extensions;
     using MediatR;
     using System;
@@ -18,7 +19,7 @@
 
         public bool IsFilterVisible { get; set; } = true;
 
-        public int UserSelectedDateRangeOption { get; set; }
+        public int UserSelectedDateRangeOption { get; set; } = UserSelectedDateRangeOptionConstant.SpecificDates;
 
         public DateTime MinDate { get; }
     }

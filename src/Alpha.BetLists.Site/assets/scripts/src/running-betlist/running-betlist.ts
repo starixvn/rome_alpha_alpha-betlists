@@ -10,6 +10,7 @@ class RunningBetListView extends MemberBetListView {
     $getallCheckbox: JQuery;
     $fromDate: JQuery;
     $toDate: JQuery;
+    $dateRangeSubmitButton: JQuery;
 
     constructor(
         $: JQueryStatic,
@@ -40,9 +41,9 @@ class RunningBetListView extends MemberBetListView {
         this.$getallCheckbox = this.$("#GetAll");
     };
 
-    changeBetlistType = () => {
-        var url = this.betlistTypeComponent.$dropdown.find("option:selected").data("url");
-        this.windowLocation.href = url;
+    public bindFilter() {
+        super.bindFilter();
+        this.$dateRangeSubmitButton = this.$("#dropdown-daterange").parent().find(".btn-submit");
     };
 
     public registerEvents() {
@@ -57,10 +58,12 @@ class RunningBetListView extends MemberBetListView {
         if (checked) {
             this.$fromDate.prop("disabled", true);
             this.$toDate.prop("disabled", true);
+            this.$dateRangeSubmitButton.prop("disabled", true);
         }
         else {
             this.$fromDate.prop("disabled", false);
             this.$toDate.prop("disabled", false);
+            this.$dateRangeSubmitButton.prop("disabled", false);
         }
     }
 }
