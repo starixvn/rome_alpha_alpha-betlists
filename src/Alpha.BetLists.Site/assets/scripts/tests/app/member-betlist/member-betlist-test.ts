@@ -24,17 +24,16 @@
             productMultiSelectionComponent,
             betlistTypeComponent,
             windowLocation);
+
+        spyOn(jQueryFake, "blockUI");
+        spyOn(jQueryFake, "unblockUI");
+        spyOn(memberBetListView, "cacheElements").and.callThrough();
+        spyOn(memberBetListView, "bindFilter").and.callThrough();
+        spyOn(memberBetListView, "registerEvents").and.callThrough();
     });
 
     describe("_init", () => {
         beforeEach(() => {
-            // arrange
-            spyOn(jQueryFake, "blockUI");
-            spyOn(jQueryFake, "unblockUI");
-            spyOn(memberBetListView, "cacheElements").and.callThrough();
-            spyOn(memberBetListView, "bindFilter").and.callThrough();
-            spyOn(memberBetListView, "registerEvents").and.callThrough();
-
             // act
             memberBetListView.init();
         });
@@ -70,6 +69,81 @@
             expect(memberBetListView.$pageTitle).toBeDefined();
             expect(memberBetListView.$custId).toBeDefined();
             expect(memberBetListView.$isFilterVisible).toBeDefined();
+        });
+    });
+
+    describe("_bindFilter", () => {
+        beforeEach(() => {
+            // arrange
+            spyOn(betlistTypeComponent, "render");
+            spyOn(dateRangePickerComponent, "render");
+
+            // act
+            memberBetListView.bindFilter();
+        });
+
+        it("_Calls dateRangePickerComponent.render", () => {
+            // assert
+            expect(dateRangePickerComponent.render).toHaveBeenCalled();
+        });
+
+        it("_Calls betlistTypeComponent.render", () => {
+            // assert
+            expect(betlistTypeComponent.render).toHaveBeenCalledWith(
+                new SingleSelectionDropdownOption("dropdown-betlist-type", "BetlistType", memberBetListView.changeBetlistType));
+        });
+    });
+
+    describe("_changeBetlistType", () => {
+        beforeEach(() => {
+            // arrange
+            memberBetListView.init();
+            memberBetListView.betlistTypeComponent.$dropdown = $("#betlist-type");
+
+            // act
+            memberBetListView.changeBetlistType();
+        });
+
+        it("_assign location.href url", () => {
+            // assert
+            expect(windowLocation.href).toBe("NewPage");
+        });
+    });
+
+    describe("onSubmitEvent", () => {
+        let event = { preventDefault: jasmine.createSpy("preventDefault", () => null) };
+
+        beforeEach(() => {
+            // arrange
+            spyOn(productMultiSelectionComponent, "render").and.callThrough();
+            memberBetListView.init();
+        });
+
+        it("_Not select any product -> Blocks UI; Shows validate product error; Unblock UI;", () => {
+            // arrange
+            spyOn(productMultiSelectionComponent, "getSelectedItems").and.callFake(() => []);
+
+            // act
+            memberBetListView.onSubmitEvent(event);
+
+            // assert
+            expect(jQueryFake.blockUI).toHaveBeenCalled();
+            expect(jQueryFake.unblockUI).toHaveBeenCalled();
+            expect(memberBetListView.$multiSelectProductButton.hasClass("error")).toBeTruthy();
+        });
+
+        it("_Have selected any products -> Blocks UI; Unblock UI; Set correct Params;", () => {
+            // arrange
+            spyOn(memberBetListView.$isFilterVisible, "val");
+
+            // act
+            memberBetListView.onSubmitEvent(event);
+
+            // assert
+            expect(jQueryFake.blockUI).toHaveBeenCalled();
+            expect(jQueryFake.unblockUI).toHaveBeenCalled();
+            expect(memberBetListView.$isFilterVisible.val).toHaveBeenCalledWith("true");
+            expect(memberBetListView.$multiSelectProductButton.hasClass("error")).toBeFalsy();
         });
     });
 });
