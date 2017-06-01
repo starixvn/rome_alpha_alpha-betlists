@@ -13,8 +13,9 @@
     using System.Linq;
     using System.Web.Mvc;
     using Utils;
+    using WinLoss;
 
-    public class MemberBetListViewModel : BetListBaseViewModel
+    public class MemberBetListViewModel : WinLossViewModel
     {
         private readonly MemberBetListQuery query;
 
@@ -44,10 +45,6 @@
                 Resources.CanOnlyViewDataAfterTimeHistoryReport,
                 query.MinDate.ToShortDateWithSlash());
         }
-
-        public bool AllowToViewSuperPT => baseQuery.ViewerLevel.IsSuperLevel();
-
-        public bool AllowToViewMasterPT => baseQuery.ViewerLevel.IsMasterOrSuperLevel();
 
         public string ViewDataInstructionMessage { get; }
 
