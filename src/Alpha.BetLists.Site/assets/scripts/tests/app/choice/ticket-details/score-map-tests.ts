@@ -22,7 +22,7 @@
             BetList.Choice.ScoreMap.Instance.ShowScoreMap(matchIds, betType, liveIndicator);
 
             // Assert
-            expect(popupDetailsShow).toHaveBeenCalledWith(expectedUrl);
+            expect(popupDetailsShow).toHaveBeenCalledWith(expectedUrl, "", 1008);
         });
     })
 
