@@ -38,6 +38,7 @@
       <Mapping DataField="sdiscount" ObjectProperty="SuperDiscount" Class="Ticket"></Mapping>
       <Mapping DataField="liveindicator" ObjectProperty="IsLive" Class="Ticket"></Mapping>
       <Mapping DataField="betstatus" ObjectProperty="EventStatus" Class="Ticket"></Mapping>
+      <Mapping DataField="comstatus" ObjectProperty="CommStatus" Class="Ticket"></Mapping>
 
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketData"></Mapping>
       <Mapping DataField="apositiontaking" ObjectProperty="AgentPT" Class="TicketData"></Mapping>
@@ -78,6 +79,7 @@
       <Mapping DataField="sdiscount" ObjectProperty="SuperDiscount" Class="Ticket"></Mapping>
       <Mapping DataField="liveindicator" ObjectProperty="IsLive" Class="Ticket"></Mapping>
       <Mapping DataField="betstatus" ObjectProperty="EventStatus" Class="Ticket"></Mapping>
+      <Mapping DataField="comstatus" ObjectProperty="CommStatus" Class="Ticket"></Mapping>
 
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketData"></Mapping>
       <Mapping DataField="apositiontaking" ObjectProperty="AgentPT" Class="TicketData"></Mapping>
@@ -103,6 +105,7 @@
       <Mapping DataField="sdiscount" ObjectProperty="SuperDiscount" Class="Ticket"></Mapping>
       <Mapping DataField="liveindicator" ObjectProperty="IsLive" Class="Ticket"></Mapping>
       <Mapping DataField="betstatus" ObjectProperty="EventStatus" Class="Ticket"></Mapping>
+      <Mapping DataField="comstatus" ObjectProperty="CommStatus" Class="Ticket"></Mapping>
 
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketData"></Mapping>
       <Mapping DataField="apositiontaking" ObjectProperty="AgentPT" Class="TicketData"></Mapping>
@@ -128,6 +131,7 @@
       <Mapping DataField="sdiscount" ObjectProperty="SuperDiscount" Class="Ticket"></Mapping>
       <Mapping DataField="liveindicator" ObjectProperty="IsLive" Class="Ticket"></Mapping>
       <Mapping DataField="betstatus" ObjectProperty="EventStatus" Class="Ticket"></Mapping>
+      <Mapping DataField="comstatus" ObjectProperty="CommStatus" Class="Ticket"></Mapping>
 
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketData"></Mapping>
       <Mapping DataField="apositiontaking" ObjectProperty="AgentPT" Class="TicketData"></Mapping>
@@ -154,6 +158,7 @@
       <Mapping DataField="sdiscount" ObjectProperty="SuperDiscount" Class="Ticket"></Mapping>
       <Mapping DataField="liveindicator" ObjectProperty="IsLive" Class="Ticket"></Mapping>
       <Mapping DataField="betstatus" ObjectProperty="EventStatus" Class="Ticket"></Mapping>
+      <Mapping DataField="comstatus" ObjectProperty="CommStatus" Class="Ticket"></Mapping>
 
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketData"></Mapping>
       <Mapping DataField="apositiontaking" ObjectProperty="AgentPT" Class="TicketData"></Mapping>
@@ -179,6 +184,7 @@
       <Mapping DataField="sdiscount" ObjectProperty="SuperDiscount" Class="Ticket"></Mapping>
       <Mapping DataField="liveindicator" ObjectProperty="IsLive" Class="Ticket"></Mapping>
       <Mapping DataField="betstatus" ObjectProperty="EventStatus" Class="Ticket"></Mapping>
+      <Mapping DataField="comstatus" ObjectProperty="CommStatus" Class="Ticket"></Mapping>
 
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketData"></Mapping>
       <Mapping DataField="apositiontaking" ObjectProperty="AgentPT" Class="TicketData"></Mapping>
@@ -204,6 +210,7 @@
       <Mapping DataField="sdiscount" ObjectProperty="SuperDiscount" Class="Ticket"></Mapping>
       <Mapping DataField="liveindicator" ObjectProperty="IsLive" Class="Ticket"></Mapping>
       <Mapping DataField="betstatus" ObjectProperty="EventStatus" Class="Ticket"></Mapping>
+      <Mapping DataField="comstatus" ObjectProperty="CommStatus" Class="Ticket"></Mapping>
 
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketData"></Mapping>
       <Mapping DataField="apositiontaking" ObjectProperty="AgentPT" Class="TicketData"></Mapping>
@@ -230,6 +237,7 @@
       <Mapping DataField="sdiscount" ObjectProperty="SuperDiscount" Class="Ticket"></Mapping>
       <Mapping DataField="liveindicator" ObjectProperty="IsLive" Class="Ticket"></Mapping>
       <Mapping DataField="betstatus" ObjectProperty="EventStatus" Class="Ticket"></Mapping>
+      <Mapping DataField="comstatus" ObjectProperty="CommStatus" Class="Ticket"></Mapping>
 
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketData"></Mapping>
       <Mapping DataField="apositiontaking" ObjectProperty="AgentPT" Class="TicketData"></Mapping>
@@ -255,6 +263,7 @@
       <Mapping DataField="sdiscount" ObjectProperty="SuperDiscount" Class="Ticket"></Mapping>
       <Mapping DataField="liveindicator" ObjectProperty="IsLive" Class="Ticket"></Mapping>
       <Mapping DataField="betstatus" ObjectProperty="EventStatus" Class="Ticket"></Mapping>
+      <Mapping DataField="comstatus" ObjectProperty="CommStatus" Class="Ticket"></Mapping>
 
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketData"></Mapping>
       <Mapping DataField="apositiontaking" ObjectProperty="AgentPT" Class="TicketData"></Mapping>
@@ -280,6 +289,7 @@
       <Mapping DataField="sdiscount" ObjectProperty="SuperDiscount" Class="Ticket"></Mapping>
       <Mapping DataField="liveindicator" ObjectProperty="IsLive" Class="Ticket"></Mapping>
       <Mapping DataField="betstatus" ObjectProperty="EventStatus" Class="Ticket"></Mapping>
+      <Mapping DataField="comstatus" ObjectProperty="CommStatus" Class="Ticket"></Mapping>
 
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketData"></Mapping>
       <Mapping DataField="apositiontaking" ObjectProperty="AgentPT" Class="TicketData"></Mapping>
@@ -306,6 +316,7 @@
       <Mapping DataField="sdiscount" ObjectProperty="SuperDiscount" Class="Ticket"></Mapping>
       <Mapping DataField="liveindicator" ObjectProperty="IsLive" Class="Ticket"></Mapping>
       <Mapping DataField="betstatus" ObjectProperty="EventStatus" Class="Ticket"></Mapping>
+      <Mapping DataField="comstatus" ObjectProperty="CommStatus" Class="Ticket"></Mapping>
     </Setting>
     <Setting Key="Age_BetList_SelWinlossParlay_MAg" SpName="Age_BetList_SelWinlossParlay_MAg" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="Ticket"></Mapping>
@@ -326,6 +337,7 @@
       <Mapping DataField="sdiscount" ObjectProperty="SuperDiscount" Class="Ticket"></Mapping>
       <Mapping DataField="liveindicator" ObjectProperty="IsLive" Class="Ticket"></Mapping>
       <Mapping DataField="betstatus" ObjectProperty="EventStatus" Class="Ticket"></Mapping>
+      <Mapping DataField="comstatus" ObjectProperty="CommStatus" Class="Ticket"></Mapping>
     </Setting>
     <Setting Key="Age_BetList_SelWinlossParlay_SAg" SpName="Age_BetList_SelWinlossParlay_SAg" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="Ticket"></Mapping>
@@ -346,6 +358,7 @@
       <Mapping DataField="sdiscount" ObjectProperty="SuperDiscount" Class="Ticket"></Mapping>
       <Mapping DataField="liveindicator" ObjectProperty="IsLive" Class="Ticket"></Mapping>
       <Mapping DataField="betstatus" ObjectProperty="EventStatus" Class="Ticket"></Mapping>
+      <Mapping DataField="comstatus" ObjectProperty="CommStatus" Class="Ticket"></Mapping>
     </Setting>
   </Function>
 
@@ -375,6 +388,7 @@
       <Mapping DataField="sdiscount" ObjectProperty="SuperDiscount" Class="Ticket"></Mapping>
       <Mapping DataField="liveindicator" ObjectProperty="IsLive" Class="Ticket"></Mapping>
       <Mapping DataField="betstatus" ObjectProperty="EventStatus" Class="Ticket"></Mapping>
+      <Mapping DataField="comstatus" ObjectProperty="CommStatus" Class="Ticket"></Mapping>
 
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketData"></Mapping>
       <Mapping DataField="apositiontaking" ObjectProperty="AgentPT" Class="TicketData"></Mapping>
