@@ -26,6 +26,7 @@
             Title = Resources.lblSystemParlay;
             TotalWinLost = ConvertByBetType.Winloss(comboParlayDetailData.ComboParlayDetails.Sum(d => d.WinLost + d.PlayerComm));
             IsDataTooHuge = comboParlayDetailData.ComboParlayDetails.Count() > 5000;
+            IsRunningTicket = !comboParlayDetailData.ComboParlayDetails.Any();
         }
 
         public ComboParlayDetailQuery Query { get; }
@@ -41,6 +42,8 @@
         public string Title { get; }
 
         public bool IsDataTooHuge { get; }
+
+        public bool IsRunningTicket { get; }
 
         public string HugeDataLabel => string.Format(Resources.CombinationResultTooHuge, BuildComboParlayDetailExcelUrl(Query));
 

@@ -152,5 +152,19 @@
             // Assert
             Assert.Equal(expectedSubtotalWinLost, subtotalWinLost);
         }
+
+        [Fact]
+        public void IsRunningTicket_WhenHasNoData_True()
+        {
+            // Arrange
+            var comboParlayDetailsData = new ComboParlayDetailData(new List<ComboParlayDetail>(), new List<MatchDetail>(), 0);
+            var viewModel = new ComboParlayDetailViewModel(query, comboParlayDetailsData, ticketHelper);
+
+            // Act
+            var isRunningTicket = viewModel.IsRunningTicket;
+
+            // Assert
+            Assert.True(isRunningTicket);
+        }
     }
 }
