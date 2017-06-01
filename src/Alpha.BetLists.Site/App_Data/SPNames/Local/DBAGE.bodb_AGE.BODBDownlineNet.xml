@@ -20,6 +20,7 @@
       <Mapping DataField="sdiscount" ObjectProperty="SuperDiscount" Class="Ticket"></Mapping>
       <Mapping DataField="liveindicator" ObjectProperty="IsLive" Class="Ticket"></Mapping>
       <Mapping DataField="betstatus" ObjectProperty="EventStatus" Class="Ticket"></Mapping>
+      <Mapping DataField="comstatus" ObjectProperty="CommStatus" Class="Ticket"></Mapping>
 
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketData"></Mapping>
       <Mapping DataField="apositiontaking" ObjectProperty="AgentPT" Class="TicketData"></Mapping>
