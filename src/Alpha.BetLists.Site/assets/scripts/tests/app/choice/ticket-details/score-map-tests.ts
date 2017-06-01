@@ -16,7 +16,7 @@
             const params = liveIndicator == 1 ?
                 "leagueId=-1&matchIds=" + matchIds + "&bettypes_live=" + betType + "&bettypes_dead=-1" :
                 "leagueId=-1&matchIds=" + matchIds + "&bettypes_live=-1&bettypes_dead=" + betType;
-            const expectedUrl = "old-path/ForecastScoreMap/Index?" + params;
+            const expectedUrl = "totalbets-forecast-path/ForecastScoreMap/Index?" + params;
 
             // Act
             BetList.Choice.ScoreMap.Instance.ShowScoreMap(matchIds, betType, liveIndicator);

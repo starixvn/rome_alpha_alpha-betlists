@@ -76,6 +76,8 @@
 
         public string OldMainPath => MicroSites.OldMainUrl("~");
 
+        public string TotalBetsForeCastPath => AppPathHelper.GetAppPath(AppSettings.TotalBetsForeCastAppPath, "~");
+
         public int ViewerIdOrViewerAdminId { get; protected set; }
 
         public byte ViewerLevelId { get; protected set; }
