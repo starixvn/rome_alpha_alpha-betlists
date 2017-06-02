@@ -261,8 +261,8 @@
       <HintPath>..\..\packages\Sunplus.Agent.Model.IpFormatter.3.0.0.1\lib\net40\Sunplus.Agent.Model.IpFormatter.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sunplus.Agent.Utilities, Version=3.0.0.5, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Sunplus.Agent.Utilities.3.0.0.5\lib\net40\Sunplus.Agent.Utilities.dll</HintPath>
+    <Reference Include="Sunplus.Agent.Utilities, Version=3.0.0.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Sunplus.Agent.Utilities.3.0.0.4\lib\net40\Sunplus.Agent.Utilities.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Sunplus.Core.Common, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -328,7 +328,9 @@
     <Content Include="App_Data\SPNames\Local\DBCust.IPDB.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Local\DBPOLICY.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Local\DBCust.CustDB.BODBDownlineNet.xml" />
-    <Content Include="App_Data\SPNames\Local\DBAGE.bodb02.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Local\DBAGE.bodb02.BODBDownlineNet.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_Data\SPNames\Local\DBLOG.bodb_CustomerLog.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Local\DBONUSER.ON_USER.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Pro\DBAGE.bodb02.BODBDownlineNet.xml" />
@@ -374,6 +376,14 @@
     <Content Include="assets\bundles\member-betlist\member-betlist.js" />
     <Content Include="assets\bundles\member-betlist\member-betlist.min.js">
       <DependentUpon>member-betlist.js</DependentUpon>
+    </Content>
+    <Content Include="assets\bundles\last-bets.css" />
+    <Content Include="assets\bundles\last-bets.js" />
+    <Content Include="assets\bundles\last-bets.min.css">
+      <DependentUpon>last-bets.css</DependentUpon>
+    </Content>
+    <Content Include="assets\bundles\last-bets.min.js">
+      <DependentUpon>last-bets.js</DependentUpon>
     </Content>
     <Content Include="assets\bundles\running-betlist\running-betlist.js" />
     <Content Include="assets\bundles\running-betlist\running-betlist.min.js">
@@ -427,6 +437,12 @@
     <Content Include="assets\styles\images\green-star.gif" />
     <Content Include="assets\styles\images\lastGoal.gif" />
     <Content Include="assets\styles\images\note_title.gif" />
+    <Content Include="assets\styles\last-bets.css">
+      <DependentUpon>last-bets.scss</DependentUpon>
+    </Content>
+    <Content Include="assets\styles\last-bets.min.css">
+      <DependentUpon>last-bets.css</DependentUpon>
+    </Content>
     <Content Include="Global.asax" />
     <Content Include="App_Data\SPNames\Local\DBARC.bodb_Archive.BODBDownlineNet.xml" />
     <Content Include="App_Code\Blocks\Trans.cshtml" />
@@ -466,6 +482,7 @@
     <Content Include="assets\scripts\typings\globals\jasmine-jquery\typings.json" />
     <Content Include="Alpha.BetLists.Site.Debug.ruleset" />
     <Content Include="Alpha.BetLists.Site.ruleset" />
+    <Content Include="assets\styles\last-bets.scss" />
     <Content Include="App_Code\Components\ProductMultiSelection.cshtml" />
     <Content Include="assets\scripts\typings\globals\jquery.blockui\typings.json" />
     <Content Include="App_Code\Components\DateRangePicker.cshtml" />
@@ -487,6 +504,8 @@
     <Content Include="Views\RunningBetList\Index.cshtml" />
     <Content Include="Views\CancelledBet\Index.cshtml" />
     <Content Include="Views\MemberBetList\Index.cshtml" />
+    <Content Include="Views\LastBets\Index.cshtml" />
+    <Content Include="Views\LastBets\BetData.cshtml" />
     <Content Include="Web.backupMNL.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
@@ -582,8 +601,10 @@
     <Content Include="Web.AppSettings.uat2.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
-    <Content Include="Web.config" />
-    <Content Include="Web.uat2.config">
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Web.uat2.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
     <Content Include="tsconfig.json" />
@@ -594,6 +615,7 @@
     <Compile Include="Constants\UserSelectedDateRangeOptionConstant.cs" />
     <Compile Include="Controllers\BetListBaseController.cs" />
     <Compile Include="Controllers\MemberBetListController.cs" />
+    <Compile Include="Controllers\LastBetsController.cs" />
     <Compile Include="Controllers\RunningBetListController.cs" />
     <Compile Include="Controllers\CancelledBetController.cs" />
     <Compile Include="Handlers\CancelledBet\CancelledBetExcelHandler.cs" />
@@ -612,6 +634,7 @@
     <Compile Include="Handlers\BetListExcelBaseHandler.cs" />
     <Compile Include="Handlers\BetListBaseHandler.cs" />
     <Compile Include="Handlers\MemberBetList\MemberBetListHandler.cs" />
+    <Compile Include="Handlers\LastBets\LastBetsHandler.cs" />
     <Compile Include="Handlers\RunningBetList\RunningBetListHandler.cs" />
     <Compile Include="Handlers\ParlayWinLossByMatch\ParlayWinLossByMatchExcelHanlder.cs" />
     <Compile Include="Handlers\ParlayWinLossByMatch\ParlayWinLossByMatchHandler.cs" />
@@ -630,6 +653,9 @@
     <Compile Include="Requests\BaseQuery.cs" />
     <Compile Include="Requests\MemberBetList\MemberBetListQuery.cs" />
     <Compile Include="Requests\RunningBetList\RunningBetListQuery.cs" />
+    <Compile Include="Requests\LastBets\CheckCanViewLastBetsQuery.cs" />
+    <Compile Include="Requests\LastBets\GetLastBetsQuery.cs" />
+    <Compile Include="Requests\LastBets\LastBetsQuery.cs" />
     <Compile Include="Requests\ParlayWinLossByMatch\ParlayWinLossByMatchExcelQuery.cs" />
     <Compile Include="Requests\ParlayWinLossByMatch\ParlayWinLossByMatchQuery.cs" />
     <Compile Include="Requests\Parlay\ComboParlayDetailExcelQuery.cs" />
@@ -649,6 +675,8 @@
     <Compile Include="ViewModels\ExcelFileViewModel.cs" />
     <Compile Include="ViewModels\MemberBetList\MemberBetListViewModel.cs" />
     <Compile Include="ViewModels\RunningBetList\RunningBetListViewModel.cs" />
+    <Compile Include="ViewModels\LastBets\BetDataViewModel.cs" />
+    <Compile Include="ViewModels\LastBets\LastBetsViewModel.cs" />
     <Compile Include="ViewModels\ParlayWinLossByMatch\ParlayWinLossByMatchViewModel.cs" />
     <Compile Include="ViewModels\Parlay\ComboParlayDetailWrapper.cs" />
     <Compile Include="ViewModels\Parlay\ComboParlayDetailViewModel.cs" />
@@ -662,8 +690,10 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="packages.config" />
-    <Content Include="Web.AppSettings.config" />
-    <Content Include="Web.Debug.config">
+    <Content Include="Web.AppSettings.config">
+      <SubType>Designer</SubType>
+    </Content>
+     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Web.local.config" />
@@ -699,6 +729,7 @@
     <TypeScriptCompile Include="assets\scripts\src\betlist\status\result-details\sportsbook-result-details.ts" />
     <TypeScriptCompile Include="assets\scripts\src\components\daterangepicker.ts" />
     <TypeScriptCompile Include="assets\scripts\src\components\productmultiselection.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\last-bets\last-bets.ts" />
     <TypeScriptCompile Include="assets\scripts\src\components\single-selection-dropdown.ts" />
     <TypeScriptCompile Include="assets\scripts\src\member-betlist\member-betlist-init.ts" />
     <TypeScriptCompile Include="assets\scripts\src\member-betlist\member-betlist.ts" />
@@ -731,6 +762,9 @@
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="assets\scripts\tests\app\last-bets\" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.5.11.0.1761\analyzers\Google.Protobuf.dll" />

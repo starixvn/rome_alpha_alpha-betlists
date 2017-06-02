@@ -60,5 +60,18 @@
       "assets/scripts/src/member-betlist/member-betlist.js",
       "assets/scripts/src/member-betlist/member-betlist-init.js"
     ]
+  },
+  {
+    "outputFileName": "assets/bundles/last-bets.css",
+    "inputFiles": [
+      "assets/styles/last-bets.css"
+    ]
+  },
+  {
+    "outputFileName": "assets/bundles/last-bets.js",
+    "inputFiles": [
+      "assets/scripts/src/last-bets/last-bets.js",
+      "assets/scripts/src/last-bets/bet-list.js"
+    ]
   }
 ]

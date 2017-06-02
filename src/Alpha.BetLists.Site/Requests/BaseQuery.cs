@@ -7,6 +7,10 @@
     {
         protected BaseQuery(IUser viewer)
         {
+            // Default data, if query string had data, then get from query string.
+            CustId = viewer.Id;
+            CustName = viewer.Name;
+
             ViewerId = viewer.Id;
             ViewerLevelId = viewer.LevelId;
             ViewerLevel = Enumeration.FromValue<UserLevel>(ViewerLevelId);

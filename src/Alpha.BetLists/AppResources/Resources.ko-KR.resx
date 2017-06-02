@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -296,5 +296,23 @@
   </data>
   <data name="CancelledBet" xml:space="preserve">
     <value>취소된 배팅</value>
+  </data>
+  <data name="LastBetsMonitoring" xml:space="preserve">
+    <value>마지막베팅내역</value>
+  </data>
+  <data name="AllBetTypes" xml:space="preserve">
+    <value>모든 베팅 타입</value>
+  </data>
+  <data name="Handicap" xml:space="preserve">
+    <value>핸디캡</value>
+  </data>
+  <data name="OverUnder" xml:space="preserve">
+    <value>초과/미만</value>
+  </data>
+  <data name="Last" xml:space="preserve">
+    <value>마지막</value>
+  </data>
+  <data name="FunctionTurnOffError" xml:space="preserve">
+    <value>현재 많은 서버의 이용자로 인하여 일시적으로 이 기능을 사용하실수 없습니다. 잠시 후 다시 시도해 보시기 바랍니다. 서비스 이용에 불편을 드려 죄송합니다.</value>
   </data>
 </root>

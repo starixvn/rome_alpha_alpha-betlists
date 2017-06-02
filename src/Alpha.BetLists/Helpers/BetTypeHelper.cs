@@ -23,5 +23,9 @@
         public static bool IsOutRight(int betType) => betType == BetTypeIdConstants.Outright;
 
         public static bool IsHorseRacing(int betType) => HorseRacingBetType.Contains(betType);
+
+        public static bool IsWinPlace(int betType) =>
+            betType == BetTypeIdConstants.HorseRacing_WinPlace
+            || betType == BetTypeIdConstants.VirtualHorseRacing_WinPlace;
     }
 }

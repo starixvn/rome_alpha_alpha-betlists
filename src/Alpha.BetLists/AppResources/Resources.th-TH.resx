@@ -321,4 +321,23 @@
   <data name="CancelledBet" xml:space="preserve">
     <value>ยกเลิกการวางเดิมพัน</value>
   </data>
+  <data name="LastBetsMonitoring" xml:space="preserve">
+    <value>ตรวจสอบเดิมพันสุดท้าย</value>
+  </data>
+  <data name="AllBetTypes" xml:space="preserve">
+    <value>การเดิมพันทุกประเภท</value>
+  </data>
+  <data name="Handicap" xml:space="preserve">
+    <value>ราคาต่อรอง</value>
+  </data>
+  <data name="OverUnder" xml:space="preserve">
+    <value>สูง/ต่ำ</value>
+  </data>
+  <data name="Last" xml:space="preserve">
+    <value>หน้าสุดท้าย</value>
+  </data>
+  <data name="FunctionTurnOffError" xml:space="preserve">
+    <value>เนื่องจากเซิร์ฟเวอร์ไม่ว่างในขณะนี้  ดังนั้นฟังก์ชันนี้ถูกปิดชั่วคราวโปรดลองใหม่ภายหลัง ขออภัยในความไม่สะดวกมา ณ ที่นี้ด้วย</value>
+  </data>
+
 </root>

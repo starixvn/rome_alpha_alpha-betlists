@@ -1,0 +1,64 @@
+﻿@using Alpha.BetLists.Site.ViewModels.LastBets
+@using Alpha.BetLists.Constants
+@model LastBetsViewModel
+@{
+    ViewBag.Title = "Last Bets Monitoring";
+}
+@section Styles {
+    @StaticResources.RenderStyles("~/assets/bundles/last-bets")
+}
+<div class="bl_title">
+    @Resources.LastBetsMonitoring
+</div>
+<ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="@(Model.IsSelectedBetType(BetTypeIdConstants.AllBetTypes) ?"active":string.Empty)">
+        @Html.ActionLink(Resources.AllBetTypes, "Index", "LastBets", new { BetType = BetTypeIdConstants.AllBetTypes }, new { id = "tab-all-bet-types" })
+    </li>
+    <li role="presentation" class="@(Model.IsSelectedBetType(BetTypeIdConstants.Handicap) ?"active":string.Empty)">
+        @Html.ActionLink(Resources.Handicap, "Index", "LastBets", new { BetType = BetTypeIdConstants.Handicap }, new { id = "tab-handicap" })
+    </li>
+    <li role="presentation" class="@(Model.IsSelectedBetType(BetTypeIdConstants.OverUnder) ?"active":string.Empty)">
+        @Html.ActionLink(Resources.OverUnder, "Index", "LastBets", new { BetType = BetTypeIdConstants.OverUnder }, new { id = "tab-over-under" })
+    </li>
+    <li role="presentation" class="@(Model.IsSelectedBetType(BetTypeIdConstants.OtherBetTypes) ?"active":string.Empty)">
+        @Html.ActionLink(Resources.OtherBetTypes, "Index", "LastBets", new { BetType = BetTypeIdConstants.OtherBetTypes }, new { id = "tab-other-bet-types" })
+    </li>
+</ul>
+<div>
+    <span>@Resources.Last</span>
+    <ul class="page-size-container">
+        <li class="page-size @(Model.IsSelectedPageSize(10) ? "active" : string.Empty)">10</li>
+        <li class="page-size @(Model.IsSelectedPageSize(20) ? "active" : string.Empty)">20</li>
+        <li class="page-size @(Model.IsSelectedPageSize(30) ? "active" : string.Empty)">30</li>
+    </ul>
+    <span id="loading-icon" class="loading-icon hide"></span>
+</div>
+<div id="msg-error" class="msg msg-error hide">
+    @Resources.FunctionTurnOffError
+</div>
+<div id="bet-list-table-container">
+</div>
+
+<input id="bet-type" type="hidden" value="@Model.BetType" />
+<input id="get-bets-url" type="hidden" value="@Url.Action("BetData","LastBets")" />
+<input id="last-trans-id-cache-key" type="hidden" value="@Model.LastTransIdCacheKey" />
+<input id="reset-last-trans-id" type="hidden" value="@Model.ResetLastTransId.ToString()" />
+
+@Html.Hidden("betlist-path", HttpContext.Current.Response.ApplyAppPathModifier("~/"))
+@Html.Hidden("old-main-path", Model.OldMainPath)
+@Html.Hidden("results-path", Model.ResultsPath)
+@Html.Hidden("totalbets-forecast-path", Model.TotalBetsForecastPath)
+@Html.Hidden("product-ids", Model.ProductsId)
+@Html.Hidden("betlist-type", Model.BetListType)
+@Html.Hidden("from-date", Model.FromDate)
+@Html.Hidden("to-date", Model.ToDate)
+@Html.Hidden("cust-id", Model.CustId)
+@Html.Hidden("is-historic-report", Model.IsHistoricReport)
+@Html.Hidden("viewer-id", Model.ViewerIdOrViewerAdminId)
+@Html.Hidden("viewer-level-id", Model.ViewerLevelId)
+@Html.Hidden("colossusBets-PopUpDetail-Title", Resources.ColossusBetsPopUpDetailTitle)
+
+@section Scripts {
+    @StaticResources.AssetScripts.Render("/bundles/site-betlists/last-bets")
+    @StaticResources.RenderScripts("~/assets/bundles/last-bets")
+}

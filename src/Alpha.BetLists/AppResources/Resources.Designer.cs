@@ -115,6 +115,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All Bet Types.
+        /// </summary>
+        public static string AllBetTypes {
+            get {
+                return ResourceManager.GetString("AllBetTypes", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Bet List.
         /// </summary>
         public static string BetList {
@@ -278,6 +287,42 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Our server is too busy at the moment so this function is turned off temporarily. Please try again later and sorry for the inconvenience..
+        /// </summary>
+        public static string FunctionTurnOffError {
+            get {
+                return ResourceManager.GetString("FunctionTurnOffError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Handicap.
+        /// </summary>
+        public static string Handicap {
+            get {
+                return ResourceManager.GetString("Handicap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last.
+        /// </summary>
+        public static string Last {
+            get {
+                return ResourceManager.GetString("Last", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last Bets Monitoring.
+        /// </summary>
+        public static string LastBetsMonitoring {
+            get {
+                return ResourceManager.GetString("LastBetsMonitoring", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Last Week.
         /// </summary>
         public static string LastWeek {
@@ -413,11 +458,29 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Other Bettypes.
+        /// </summary>
+        public static string OtherBetTypes {
+            get {
+                return ResourceManager.GetString("OtherBetTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Outstanding.
         /// </summary>
         public static string outstanding {
             get {
                 return ResourceManager.GetString("outstanding", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Over/Under.
+        /// </summary>
+        public static string OverUnder {
+            get {
+                return ResourceManager.GetString("OverUnder", resourceCulture);
             }
         }
         

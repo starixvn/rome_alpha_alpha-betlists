@@ -325,4 +325,19 @@
     <value>Cược bị hủy</value>
     <comment>Not found</comment>
   </data>
+  <data name="LastBetsMonitoring" xml:space="preserve">
+    <value>Quản lý cược gần nhất</value>
+  </data>
+  <data name="AllBetTypes" xml:space="preserve">
+    <value>Tất cả loại cược</value>
+  </data>
+  <data name="Handicap" xml:space="preserve">
+    <value>Cược Chấp</value>
+  </data>
+  <data name="OverUnder" xml:space="preserve">
+    <value>Over/Under </value>
+  </data>
+  <data name="Last" xml:space="preserve">
+    <value>Cuối cùng</value>
+  </data>
 </root>

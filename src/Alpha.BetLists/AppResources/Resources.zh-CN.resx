@@ -320,4 +320,22 @@
   <data name="CancelledBet" xml:space="preserve">
     <value>已删除/作废注单</value>
   </data>
+   <data name="LastBetsMonitoring" xml:space="preserve">
+    <value>最后投注监测</value>
+  </data>
+  <data name="AllBetTypes" xml:space="preserve">
+    <value>所有投注种类</value>
+  </data>
+  <data name="Handicap" xml:space="preserve">
+    <value>亚洲盘</value>
+  </data>
+  <data name="OverUnder" xml:space="preserve">
+    <value>大小盘</value>
+  </data>
+  <data name="Last" xml:space="preserve">
+    <value>尾页</value>
+  </data>
+  <data name="FunctionTurnOffError" xml:space="preserve">
+    <value>由于目前服务器繁忙所以此功能暂时关闭，有请稍后再试。 不便之处 敬请见谅！</value>
+  </data>
 </root>

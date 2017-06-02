@@ -77,6 +77,10 @@
       <HintPath>..\..\..\packages\Fanex.File.1.0.0\lib\net40\IBCFile.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="KellermanSoftware.Compare-NET-Objects, Version=3.6.0.0, Culture=neutral, PublicKeyToken=d970ace04cc85217, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\CompareNETObjects.3.06.0.0\lib\net46\KellermanSoftware.Compare-NET-Objects.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="NPOI, Version=2.2.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\NPOI.2.2.1\lib\net40\NPOI.dll</HintPath>
       <Private>True</Private>
@@ -103,6 +107,10 @@
     </Reference>
     <Reference Include="Ploeh.AutoFixture, Version=3.50.2.0, Culture=neutral, PublicKeyToken=b24654c590009d4f, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\AutoFixture.3.50.2\lib\net40\Ploeh.AutoFixture.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ploeh.AutoFixture.Xunit2, Version=3.50.2.0, Culture=neutral, PublicKeyToken=b24654c590009d4f, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\AutoFixture.Xunit2.3.50.2\lib\net45\Ploeh.AutoFixture.Xunit2.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="RemotingRef, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -162,34 +170,49 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Collections\AnyValueCreatorCollection.cs" />
     <Compile Include="Collections\FanexDataCollection.cs" />
     <Compile Include="Collections\FanexCacheCollection.cs" />
     <Compile Include="Collections\FanexLibsCollection.cs" />
+    <Compile Include="Configurations\AppSettingsTests.cs" />
     <Compile Include="Constants\BetTypeIdConstants.cs" />
     <Compile Include="Constants\DefaultVariables.cs" />
     <Compile Include="Criteria\CancelledBet\GetCancelledBetCriteriaTests.cs" />
     <Compile Include="Criteria\CancelledBet\GetUsersHasCancelledBetByAgentCriteriaTests.cs" />
+    <Compile Include="Constants\RoleId.cs" />
+    <Compile Include="Criteria\GetBalanceUpDayAndMoveBetsDayCriteriaTests.cs" />
     <Compile Include="Criteria\CancelledBet\GetUsersHasCancelledBetByMasterCriteriaTests.cs" />
     <Compile Include="Criteria\CancelledBet\GetUsersHasCancelledBetBySuperCriteriaTests.cs" />
     <Compile Include="Criteria\GetProductsCriteriaTests.cs" />
     <Compile Include="Criteria\GetScoreMapBetTypesCriteriaTests.cs" />
+    <Compile Include="Criteria\LastBets\GetLastBetsCriteriaTests.cs" />
+    <Compile Include="Criteria\LastBets\GetRunningMatchCriteriaTests.cs" />
+    <Compile Include="Criteria\LastBets\GetRunningOutrightMatchCriteriaTests.cs" />
     <Compile Include="Criteria\MemberBetList\GetBetListAllByDateCriteriaTests.cs" />
+    <Compile Include="Criteria\Parlay\GetComboParlayDetailCriteriaTests.cs" />
+    <Compile Include="Criteria\Parlay\GetParlayBetListCriteriaTests.cs" />
     <Compile Include="Criteria\RunningBetList\GetBetListRunningByDateCriteriaTests.cs" />
     <Compile Include="Criteria\ParlayWinLossByMatch\GetParlayWinLossByMatchCriteriaTests.cs" />
     <Compile Include="Criteria\WinLossByMatch\GetWinLossOutrightCriteriaTests.cs" />
     <Compile Include="Criteria\WinLossByMatch\GetWinLossRacingCriteriaTests.cs" />
     <Compile Include="DataAccesses\SmartPunterDataAccessTests.cs" />
     <Compile Include="Extensions\DateTimeExtensionsTests.cs" />
+    <Compile Include="Extensions\StringExtensionsTests.cs" />
+    <Compile Include="Fixtures\AnyValueCreatorFixture.cs" />
     <Compile Include="Fixtures\FanexDataFixture.cs" />
     <Compile Include="Fixtures\FanexCacheFixture.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Helpers\BetTypeHelperTests.cs" />
     <Compile Include="Models\EnumerationTests.cs" />
     <Compile Include="Models\ProductTests.cs" />
+    <Compile Include="Models\UserLevelTests.cs" />
     <Compile Include="Params\MemberBetListParamTests.cs" />
     <Compile Include="Params\RunningBetListParamTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\EncryptionServiceImplTests.cs" />
     <Compile Include="Services\ForeCastServiceImplTests.cs" />
     <Compile Include="Services\CancelledBetServiceImplTests.cs" />
+    <Compile Include="Services\LastBetsServiceImplTests.cs" />
     <Compile Include="Services\MemberBetListServiceImplTests.cs" />
     <Compile Include="Services\RunningBetListServiceImplTests.cs" />
     <Compile Include="Services\ParlayServiceImplTests.cs" />
@@ -198,6 +221,8 @@
     <Compile Include="Services\ReportDateServiceImplTests.cs" />
     <Compile Include="Services\WinLossByMatchServiceImplTests.cs" />
     <Compile Include="Services\WinLossServiceTests.cs" />
+    <Compile Include="TestData\LastBetsTestData.cs" />
+    <Compile Include="TestData\UserLevelTestCases.cs" />
     <Compile Include="TestData\BetListDataTest.cs" />
     <Compile Include="Criteria\WinLossByMatch\GetWinLossOthersCriteriaTests.cs" />
     <Compile Include="TestData\UserLevelTest.cs" />
@@ -205,6 +230,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="AppReadme\Compare-NET-Objects-Help.chm" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

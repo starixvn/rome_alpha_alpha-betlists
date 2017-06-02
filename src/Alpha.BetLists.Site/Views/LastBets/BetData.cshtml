@@ -1,0 +1,51 @@
+﻿@using Alpha.BetLists.Site.ViewModels.LastBets
+@model BetDataViewModel
+@{
+    Layout = null;
+}
+
+<table class="tblRpt tblRpt-bordered tblRpt-striped width-100per tablesorter tblRpt-hover tbl-betlist">
+    <thead>
+        <tr>
+            <th class="col-number">#</th>
+            <th class="col-member">@Resources.member</th>
+            <th class="col-transtime">@Resources.transtime</th>
+            <th>@Resources.choice</th>
+            <th class="col-odds">@Resources.odds</th>
+            <th class="col-stake">@Resources.stake</th>
+            <th class="col-status">@Resources.status</th>
+        </tr>
+    </thead>
+
+    @if (Model.BetListData.Tickets.Any())
+    {
+        <tbody>
+            @{
+                var i = 1;
+
+                foreach (var ticket in Model.BetListData.Tickets)
+                {
+                    <tr>
+                        <td class='w-order text-center'>@i</td>
+                        <td class="text-center">@ticket.UserName</td>
+                        @Trans.Render(Model.Builder, ticket)
+                        @Choice.Render(Model.Builder, ticket, Model.TicketHelper, Model.BetListData.TicketData, Model.CanViewScoreMap(ticket))
+                        @Odds.Render(Model.Builder, ticket, Model.CreateTicketData(ticket))
+                        @Stake.Render(Model.Builder, ticket)
+                        @Status.Render(Model.Builder, ticket, Model.TicketHelper, Model.BetListData.TicketData, Model.DisplayVNIP)
+                    </tr>
+
+                    i++;
+                }
+            }
+
+        </tbody>
+                }
+                else
+                {
+                    @Common.NoInfomation.Render(Model.TotalColumn)
+                }
+</table>
+
+@Html.Hidden("last-trans-id",
+    Model.BetListData.Tickets.Any() ? Model.BetListData.Tickets.ElementAt(Model.BetListData.Total - 1).TransId : 0)
