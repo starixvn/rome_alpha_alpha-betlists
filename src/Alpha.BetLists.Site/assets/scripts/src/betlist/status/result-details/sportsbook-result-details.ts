@@ -36,7 +36,7 @@
                 + '&betid=' + betId
                 + '&isViewResultFromBetList=true';
 
-            Common.PopupDetails.Instance.Show(this.ResultDetailsPath + params);
+            Common.PopupDetails.Instance(window.top).Show(this.ResultDetailsPath + params, "", 730, 250);
         };
     }
 
@@ -57,8 +57,8 @@
                 + '&wldate=' + winLostDate
                 + '&bettypeid=' + betTypeId
                 + '&matchid=1&isViewResultFromBetList=true';
-
-            Common.PopupDetails.Instance.Show(this.ResultDetailsPath + params);
+            debugger
+            Common.PopupDetails.Instance(window.top).Show(this.ResultDetailsPath + params, "", 800, 500);
         };
     }
 }

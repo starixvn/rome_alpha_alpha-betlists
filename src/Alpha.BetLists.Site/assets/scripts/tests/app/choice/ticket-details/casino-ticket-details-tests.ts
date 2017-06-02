@@ -1,5 +1,5 @@
 ﻿describe("Choice_TicketDetails_", () => {
-    const PopupDetails = Common.PopupDetails.Instance
+    const PopupDetails = Common.PopupDetails.Instance(window.top);
     let popupDetailsShow: jasmine.Spy;
 
     beforeEach(() => {
@@ -78,7 +78,7 @@
                 // Assert
                 expect(popupDetailsShow).toHaveBeenCalledWith(
                     'old-path/LiveCasinoBetList/BetDetail/Index?' + params,
-                    'Allbet - Detailed Bet list - ' + winLossDate.toString().split(' ')[0], 1047)
+                    'Allbet - Detailed Bet list - ' + winLossDate.toString().split(' ')[0], 1047, 800);
             });
         });
     });

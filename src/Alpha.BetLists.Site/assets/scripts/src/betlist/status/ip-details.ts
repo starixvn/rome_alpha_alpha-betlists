@@ -8,7 +8,7 @@
         }
 
         public ShowIpInfo = (ip: string) => {
-            Common.PopupDetails.Instance.Show(
+            Common.PopupDetails.Instance(window.top).Show(
                 Common.AppPath.OldMainAppPath() + '_IPInfo/IpInfo.aspx?ip=' + ip,
                 'IP Details',
                 400,

@@ -306,4 +306,7 @@
   <data name="ShowFilter" xml:space="preserve">
     <value>Show filters</value>
   </data>
+  <data name="ColossusBetsPopUpDetailTitle" xml:space="preserve">
+    <value>Ticket details of</value>
+  </data>
 </root>

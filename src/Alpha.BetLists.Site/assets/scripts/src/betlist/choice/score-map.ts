@@ -12,7 +12,7 @@
                 "leagueId=-1&matchIds=" + matchIds + "&bettypes_live=" + betType + "&bettypes_dead=-1" :
                 "leagueId=-1&matchIds=" + matchIds + "&bettypes_live=-1&bettypes_dead=" + betType;
 
-            Common.PopupDetails.Instance.Show(Common.AppPath.TotalBetsForeCastAppPath() + "ForecastScoreMap/Index?" + params, "", 1008);
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.TotalBetsForeCastAppPath() + "ForecastScoreMap/Index?" + params, "", 1008);
         }
     }
 }

@@ -14,7 +14,7 @@
             betId?: number) => {
             const params = '?gambleId=' + matchId;
 
-            Common.PopupDetails.Instance.Show(Common.AppPath.ResultsAppPath() + 'ng2/TicketDetail' + params);
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ng2/TicketDetail' + params, "", 500, 400);
         }
     }
 }

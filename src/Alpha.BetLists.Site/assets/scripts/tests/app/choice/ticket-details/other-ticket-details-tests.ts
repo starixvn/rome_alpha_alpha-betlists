@@ -1,5 +1,5 @@
 ﻿describe("Choice_TicketDetails_", () => {
-    const PopupDetails = Common.PopupDetails.Instance
+    const PopupDetails = Common.PopupDetails.Instance(window.top);
     let popupDetailsShow: jasmine.Spy;
 
     beforeEach(() => {
@@ -18,7 +18,7 @@
             BetList.Choice.TicketDetails.NG2TicketDetails.Instance.ShowNG2BetDetails("1", refNo, "1");
 
             // Assert
-            expect(popupDetailsShow).toHaveBeenCalledWith(expectedUrl);
+            expect(popupDetailsShow).toHaveBeenCalledWith(expectedUrl, "", 600, 350);
         });
     });
 

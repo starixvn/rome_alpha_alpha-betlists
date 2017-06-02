@@ -1,10 +1,5 @@
 ﻿namespace Alpha.BetLists.Builders.Tests.Templates
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using Builders.Templates;
     using Xunit;
 
@@ -12,15 +7,15 @@
     public class PTRacing_TemplateTests
     {
         private const string PTRacingTemplate =
-            "<span class='pt-win blue' style='font-weight:normal;'>Win<b>{0}</b></span>" +
-            "<span class='pt-place' style='font-weight:normal;'>Place<b>{1}</b></span>";
+            "<span class='pt-win blue' style='font-weight:normal;'>Win:<b>&nbsp;{0}</b></span><br />" +
+            "<span class='pt-place' style='font-weight:normal;'>Place:<b>&nbsp;{1}</b></span>";
 
         [Fact]
         public void ToString_WhenCalled_ReturnHtmlString()
         {
             // Arrange
-            var positionTakingWin = "10";
-            var positionTakingPlace = "100";
+            var positionTakingWin = "10%";
+            var positionTakingPlace = "100%";
             var expectedTemplate = string.Format(PTRacingTemplate, positionTakingWin, positionTakingPlace);
 
             // Act

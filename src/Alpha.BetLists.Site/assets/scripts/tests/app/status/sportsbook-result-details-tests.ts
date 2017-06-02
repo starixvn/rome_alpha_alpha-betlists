@@ -10,7 +10,7 @@
     const league: number = 3;
     const isOutright: boolean = true;
     const betId: number = 1;
-    const PopupDetails = Common.PopupDetails.Instance
+    const PopupDetails = Common.PopupDetails.Instance(window.top);
     let popupDetailsShow: jasmine.Spy;
 
     beforeEach(() => {
@@ -36,7 +36,7 @@
             new BetList.Status.ResultDetails.SportsbookResultDetails().ViewResultDetails(matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, betId);
 
             // Assert
-            expect(popupDetailsShow).toHaveBeenCalledWith("result-path/Normal/ResultDetails" + params);
+            expect(popupDetailsShow).toHaveBeenCalledWith("result-path/Normal/ResultDetails" + params, "", 730, 250);
         });
     });
 
@@ -52,7 +52,7 @@
             new BetList.Status.ResultDetails.MixParlayResultDetails().ViewResultDetails(matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, betId);
 
             // Assert
-            expect(popupDetailsShow).toHaveBeenCalledWith("result-path/Normal/ResultDetails" + params);
+            expect(popupDetailsShow).toHaveBeenCalledWith("result-path/Normal/ResultDetails" + params, "", 800, 500);
         });
     });
 });

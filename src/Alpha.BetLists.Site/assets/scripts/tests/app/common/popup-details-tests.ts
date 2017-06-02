@@ -1,79 +1,28 @@
 ﻿describe("Common_PopupDetails_", () => {
-    let DetailsLoadingImage: JQuery;
-    let DetailsFrame: JQuery;
-    let DetailsTitle: JQuery;
-    let DetailsModal: JQuery;
-    let DetailsModalContent: JQuery;
     let Popup: Common.PopupDetails;
 
-    beforeEach(() => {
-        jasmine.getFixtures().fixturesPath = "app/templates";
-        loadFixtures("popup-template.html");
+    const topWindow = {
+        popupManager: {
+            openMultiple: jasmine.any(Function)
+        }
+    };
 
-        DetailsLoadingImage = $('#details-modal #loading-image');
-        DetailsFrame = $('#details-modal iframe');
-        DetailsTitle = $('#details-modal .modal-title');
-        DetailsModal = $('#details-modal');
-        DetailsModalContent = $("#details-modal .modal-dialog");
-        Popup = new Common.PopupDetails();
+    beforeEach(() => {
+        Popup = Common.PopupDetails.Instance(topWindow);
     });
 
     describe("Show()", () => {
         beforeEach(() => {
             // Arrange
-            DetailsFrame.off("load").on("load", () => { });
+            spyOn(topWindow.popupManager, "openMultiple");
 
             // Act
-            Popup.Show("3423423432432");
+            Popup.Show("3423423432432", "Title", 1120, 80);
         });
 
-        it("Should Have Expected Details Title", () => {
-            expect(DetailsTitle).toHaveHtml("Details");
-        });
-
-        it("Should Clear Frame Body Content", () => {
-            expect(DetailsFrame.contents().find("body")).toHaveHtml("");
-        });
-
-        it("Should Have Correct Source of Frame", () => {
-            expect(DetailsFrame).toHaveAttr("src", "3423423432432");
-        });
-
-        it("Should Show Details Model", () => {
-            expect(DetailsModal).toBeVisible();
-        });
-
-        it("Should Set Width Height Modal Content From Param", () => {
-            expect(DetailsModalContent.width()).toBe(900);
-            expect(DetailsModalContent.height()).toBe(500);
-        });
-
-        describe("When Show Has Title Value", () => {
-            it("Should Have Expected Details Title", () => {
-                // Act
-                Popup.Show("3423423432432", "title");
-
-                // Assert
-                expect(DetailsTitle).toHaveHtml("title");
-            });
-        });
-
-        describe("OnLoad", () => {
-            beforeEach(() => {
-                DetailsFrame.trigger("load");
-            });
-
-            it("Should Hide Details Loading Image", () => {
-                expect(DetailsLoadingImage).toBeHidden();
-            });
-
-            it("Should Show Details Title With Expected Value", () => {
-                expect(DetailsTitle.html()).toBe("Details");
-            });
-
-            it("Should Show Details Model", () => {
-                expect(DetailsModal).toBeVisible();
-            });
+        it("Calls openMultiple", () => {
+            // Assert
+            expect(topWindow.popupManager.openMultiple).toHaveBeenCalledWith("3423423432432", "Title", 1120, 80);
         });
     });
 });

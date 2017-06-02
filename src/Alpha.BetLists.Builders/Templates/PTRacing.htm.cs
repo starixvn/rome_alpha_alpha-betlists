@@ -15,11 +15,11 @@ namespace Alpha.BetLists.Builders
 		{
 			protected static string s0 = "<span class='pt-win blue' style='font-weight:normal;'>";
 			protected static string s1{get{return AppResources.Resources.Win;}}
-			protected static string s2 = "<b>";
+			protected static string s2 = ":<b>&nbsp;";
 			public string PT_Win = "{PT_Win}";
-			protected static string s3 = "</b></span><span class='pt-place' style='font-weight:normal;'>";
+			protected static string s3 = "</b></span><br /><span class='pt-place' style='font-weight:normal;'>";
 			protected static string s4{get{return AppResources.Resources.place;}}
-			protected static string s5 = "<b>";
+			protected static string s5 = ":<b>&nbsp;";
 			public string PT_Place = "{PT_Place}";
 			protected static string s6 = "</b></span>";
 			public override void ToString(ref StringBuilder bd)

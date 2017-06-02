@@ -1,5 +1,5 @@
 ﻿describe("Choice_TicketDetails_", () => {
-    const PopupDetails = Common.PopupDetails.Instance
+    const PopupDetails = Common.PopupDetails.Instance(window.top);
     let popupDetailsShow: jasmine.Spy;
 
     beforeEach(() => {
@@ -29,7 +29,7 @@
                 .ShowColossusBetsDetails(refNo, winLossDate, transId, custId, eventId);
 
             // Assert
-            expect(popupDetailsShow).toHaveBeenCalledWith('old-path/ColossusBets/BetDetails?' + params)
+            expect(popupDetailsShow).toHaveBeenCalledWith('old-path/ColossusBets/BetDetails?' + params, "Ticket details of 111", 1120, 800);
         });
     })
 
@@ -59,7 +59,7 @@
                 .ShowComboParlayDetails(refNo, winLossDate, transId, betId, custId);
 
             // Assert
-            expect(popupDetailsShow).toHaveBeenCalledWith('betlist-path/Parlay/ComboParlayDetail' + params);
+            expect(popupDetailsShow).toHaveBeenCalledWith('betlist-path/Parlay/ComboParlayDetail' + params, "", 800, 350);
         });
 
         it("ShowComboParlayNewTickets_WhenTicketsContentHtmlIsEmpty -> Call Ajax Get Content", () => {

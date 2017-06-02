@@ -72,7 +72,7 @@
             var actualPTComm = new PTComm33(ticket, ticketData, Enumeration.FromValue<UserLevel>(userLevelId));
 
             // Assert
-            Assert.Equal(Formatter.FormatNumber2(expectedPositionTaking, null), actualPTComm.PositionTakingWin);
+            Assert.Equal(Formatter.FormatNumber2(expectedPositionTaking, null) + "%", actualPTComm.PositionTakingWin);
         }
 
         [Theory]
@@ -88,7 +88,7 @@
             var actualPTComm = new PTComm33(ticket, new List<ITicketData>(), Enumeration.FromValue<UserLevel>(userLevelId));
 
             // Assert
-            Assert.Equal(Formatter.FormatNumber2(expectedPositionTaking, null), actualPTComm.PositionTakingWin);
+            Assert.Equal(Formatter.FormatNumber2(expectedPositionTaking, null) + "%", actualPTComm.PositionTakingWin);
         }
 
         [Theory]
@@ -104,7 +104,7 @@
             var actualPTComm = new PTComm33(ticket, ticketData, Enumeration.FromValue<UserLevel>(userLevelId));
 
             // Assert
-            Assert.Equal(Formatter.FormatNumber2(expectedPositionTaking, null), actualPTComm.PositionTakingWin);
+            Assert.Equal(Formatter.FormatNumber2(expectedPositionTaking, null) + "%", actualPTComm.PositionTakingWin);
         }
 
         [Theory]
@@ -120,7 +120,7 @@
             var actualPTComm = new PTComm33(ticket, new List<ITicketData>(), Enumeration.FromValue<UserLevel>(userLevelId));
 
             // Assert
-            Assert.Equal(Formatter.FormatNumber2(expectedPositionTaking, null), actualPTComm.PositionTakingWin);
+            Assert.Equal(Formatter.FormatNumber2(expectedPositionTaking, null) + "%", actualPTComm.PositionTakingWin);
         }
 
         [Theory]
@@ -136,7 +136,7 @@
             var actualPTComm = new PTComm33(ticket, ticketData, Enumeration.FromValue<UserLevel>(userLevelId));
 
             // Assert
-            Assert.Equal(Formatter.FormatNumber2(expectedPositionTaking, null), actualPTComm.PositionTakingPlace);
+            Assert.Equal(Formatter.FormatNumber2(expectedPositionTaking, null) + "%", actualPTComm.PositionTakingPlace);
         }
 
         [Theory]
@@ -152,7 +152,7 @@
             var actualPTComm = new PTComm33(ticket, new List<ITicketData>(), Enumeration.FromValue<UserLevel>(userLevelId));
 
             // Assert
-            Assert.Equal(Formatter.FormatNumber2(expectedPositionTaking, null), actualPTComm.PositionTakingPlace);
+            Assert.Equal(Formatter.FormatNumber2(expectedPositionTaking, null) + "%", actualPTComm.PositionTakingPlace);
         }
 
         [Theory]
@@ -168,7 +168,7 @@
             var actualPTComm = new PTComm33(ticket, ticketData, Enumeration.FromValue<UserLevel>(userLevelId));
 
             // Assert
-            Assert.Equal(Formatter.FormatNumber2(expectedPositionTaking, null), actualPTComm.PositionTakingPlace);
+            Assert.Equal(Formatter.FormatNumber2(expectedPositionTaking, null) + "%", actualPTComm.PositionTakingPlace);
         }
 
         [Theory]
@@ -184,7 +184,7 @@
             var actualPTComm = new PTComm33(ticket, new List<ITicketData>(), Enumeration.FromValue<UserLevel>(userLevelId));
 
             // Assert
-            Assert.Equal(Formatter.FormatNumber2(expectedPositionTaking, null), actualPTComm.PositionTakingPlace);
+            Assert.Equal(Formatter.FormatNumber2(expectedPositionTaking, null) + "%", actualPTComm.PositionTakingPlace);
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿describe("Choice_ScoreMap_", () => {
-    const PopupDetails = Common.PopupDetails.Instance
+    const PopupDetails = Common.PopupDetails.Instance(window.top);
     let popupDetailsShow: jasmine.Spy;
 
     beforeEach(() => {

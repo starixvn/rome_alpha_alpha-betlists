@@ -53,7 +53,7 @@
                 }
             }
 
-            return Formatter.FormatNumber2(positionTaking, null);
+            return Formatter.FormatNumber2(positionTaking, null) + "%";
         }
     }
 }

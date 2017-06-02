@@ -4,7 +4,7 @@
     beforeEach(() => {
         jasmine.getFixtures().fixturesPath = "app/templates";
         loadFixtures("common-template.html");
-        popUpDetailsShow = spyOn(Common.PopupDetails.Instance, "Show").and.callFake(() => { });
+        popUpDetailsShow = spyOn(Common.PopupDetails.Instance(window.top), "Show").and.callFake(() => { });
     })
 
     describe("IP_", () => {

@@ -15,8 +15,9 @@
                 + "&EventId=" + eventId
                 + "&RoleId=" + this.ViewerLevelId()
                 + "&AccId=" + this.ViewerId();
+            let title = this.ColossusBetsPopUpDetailTitle() + " " + refNo;
 
-            Common.PopupDetails.Instance.Show(Common.AppPath.OldMainAppPath() + 'ColossusBets/BetDetails?' + params);
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.OldMainAppPath() + 'ColossusBets/BetDetails?' + params, title, 1120, 800);
         }
     }
 
@@ -35,12 +36,12 @@
                 + '&betid=' + betId
                 + '&custid=' + custId;
 
-            Common.PopupDetails.Instance.Show(Common.AppPath.BetListAppPath() + 'Parlay/ComboParlayDetail' + params);
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'Parlay/ComboParlayDetail' + params, "", 800, 350);
         }
 
         public ShowMixParlayTickets = (transId: string) => {
             const params = '?transid=' + transId;
-            const url = Common.AppPath.BetListAppPath() + 'Parlay/MixParlay' + params;;
+            const url = Common.AppPath.BetListAppPath() + 'Parlay/MixParlay' + params;
             this.showComboMixParlayTickets(transId, '', url);
         }
 

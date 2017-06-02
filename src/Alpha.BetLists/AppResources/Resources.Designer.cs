@@ -133,6 +133,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ticket details of.
+        /// </summary>
+        public static string ColossusBetsPopUpDetailTitle {
+            get {
+                return ResourceManager.GetString("ColossusBetsPopUpDetailTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There is a huge number of combinations of this Parlay ticket, please kindly click on &lt;a href={0}&gt;this link&lt;/a&gt; to download an Excel file comprising the full list of all combinations..
         /// </summary>
         public static string CombinationResultTooHuge {
