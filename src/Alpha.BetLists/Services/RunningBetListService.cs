@@ -25,15 +25,16 @@
 
         public async Task<BetListData> GetBetList(RunningBetListParam param)
         {
-            var betListDataTuple = await dynamicRepository.FetchMultipleAsync<Ticket, TicketData>(
-                new GetBetListRunningByDateCriteria(
+            var criteria = new GetBetListRunningByDateCriteria(
                     param.CustId,
                     param.ProductIds.JoinWithComma(),
                     param.FromDate,
                     param.ToDate,
                     param.GetAll,
                     param.Language,
-                    param.UserName));
+                    param.UserName);
+
+            var betListDataTuple = await dynamicRepository.FetchMultipleAsync<Ticket, TicketData>(criteria);
 
             return new BetListData(betListDataTuple.Item1, betListDataTuple.Item2.ToList<ITicketData>());
         }

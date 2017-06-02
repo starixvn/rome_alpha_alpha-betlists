@@ -20,11 +20,7 @@
 
         public static string ResultAppPath => GetConfigValue("ResultSiteVirtualPath") ?? "site-results";
 
-        public static string BetListAppPath => GetConfigValue("BetListAppPath") ?? "site-betlists";
-
-        public static string ReportsAppPath => GetConfigValue("ReportsAppPath") ?? "site-reports";
-
-        public static string TotalBetsForeCastAppPath => GetConfigValue("ExTotalBetsForecastAppPath") ?? "ex-totalbetsforecast";
+        public static string TotalBetsForecastAppPath => GetConfigValue("ExTotalBetsForecastAppPath") ?? "ex-totalbetsforecast";
 
         public static string DefaultIpAddress => GetConfigValue("DefaultIpAddress");
 
