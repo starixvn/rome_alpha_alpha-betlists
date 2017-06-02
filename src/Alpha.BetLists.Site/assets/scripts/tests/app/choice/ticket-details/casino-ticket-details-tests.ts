@@ -78,7 +78,7 @@
                 // Assert
                 expect(popupDetailsShow).toHaveBeenCalledWith(
                     'old-path/LiveCasinoBetList/BetDetail/Index?' + params,
-                    'Allbet - Detailed Bet list - ' + winLossDate.toString().split(' ')[0])
+                    'Allbet - Detailed Bet list - ' + winLossDate.toString().split(' ')[0], 1047)
             });
         });
     });
