@@ -472,6 +472,7 @@
     <Content Include="Views\Shared\WinLossTable.cshtml" />
     <Content Include="Views\ParlayWinLossByMatch\Index.cshtml" />
     <Content Include="Views\RunningBetList\Index.cshtml" />
+    <Content Include="Views\CancelledBet\Index.cshtml" />
     <Content Include="Views\MemberBetList\Index.cshtml" />
     <Content Include="Web.backupMNL.config">
       <DependentUpon>Web.local.config</DependentUpon>
@@ -579,6 +580,9 @@
     <Compile Include="Controllers\BetListBaseController.cs" />
     <Compile Include="Controllers\MemberBetListController.cs" />
     <Compile Include="Controllers\RunningBetListController.cs" />
+    <Compile Include="Controllers\CancelledBetController.cs" />
+    <Compile Include="Handlers\CancelledBet\CancelledBetHandler.cs" />
+    <Compile Include="Requests\CancelledBet\CancelledBetQuery.cs" />
     <Compile Include="Controllers\ParlayController.cs" />
     <Compile Include="Controllers\ParlayWinLossByMatchController.cs" />
     <Compile Include="Controllers\WinLossByMatchController.cs" />
@@ -622,6 +626,7 @@
     <Compile Include="ViewModels\Blocks\Footer.cs" />
     <Compile Include="ViewModels\Blocks\WinLostBlockViewModel.cs" />
     <Compile Include="ViewModels\Components\DateRangePickerViewModel.cs" />
+    <Compile Include="ViewModels\CancelledBet\CancelledBetViewModel.cs" />
     <Compile Include="ViewModels\Components\ProductMultiSelectionViewModel.cs" />
     <Compile Include="ViewModels\ExcelFileViewModel.cs" />
     <Compile Include="ViewModels\MemberBetList\MemberBetListViewModel.cs" />

@@ -308,5 +308,35 @@
   </data>
   <data name="WinLossRoundNote" xml:space="preserve">
     <value>Win Loss is rounded for reference only. Therefore, Sub Total amount may be different from the sum of Win Loss when it sums all the actual Win Loss amounts.</value>
+    </data>
+  <data name="Agent" xml:space="preserve">
+    <value>Agent</value>
+  </data>
+  <data name="AllAgent" xml:space="preserve">
+    <value>All Agent</value>
+  </data>
+  <data name="AllMember" xml:space="preserve">
+    <value>All Member</value>
+  </data>
+  <data name="Bets" xml:space="preserve">
+    <value>bets</value>
+  </data>
+  <data name="Master" xml:space="preserve">
+    <value>Master</value>
+  </data>
+  <data name="UserBetCount" xml:space="preserve">
+    <value>{i.UserName} ({i.BetCount} bets)</value>
+  </data>
+  <data name="ExportToExcel" xml:space="preserve">
+    <value>Export To Excel</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="HideFilter" xml:space="preserve">
+    <value>Hide Filter</value>
+  </data>
+  <data name="ShowFilter" xml:space="preserve">
+    <value>Show Filter</value>
   </data>
 </root>

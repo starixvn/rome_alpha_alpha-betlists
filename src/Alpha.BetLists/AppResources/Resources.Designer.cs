@@ -61,6 +61,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agent.
+        /// </summary>
+        public static string Agent {
+            get {
+                return ResourceManager.GetString("Agent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Agent PT.
         /// </summary>
         public static string agentPT {
@@ -88,6 +97,24 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All Agent.
+        /// </summary>
+        public static string AllAgent {
+            get {
+                return ResourceManager.GetString("AllAgent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All Member.
+        /// </summary>
+        public static string AllMember {
+            get {
+                return ResourceManager.GetString("AllMember", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bet List.
         /// </summary>
         public static string BetList {
@@ -99,6 +126,15 @@ namespace Alpha.BetLists.AppResources {
         /// <summary>
         ///   Looks up a localized string similar to Bet List (Running).
         /// </summary>
+        ///   Looks up a localized string similar to bets.
+        /// </summary>
+        public static string Bets {
+            get {
+                return ResourceManager.GetString("Bets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         public static string BetlistRunning {
             get {
                 return ResourceManager.GetString("BetlistRunning", resourceCulture);
@@ -196,6 +232,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Export To Excel.
+        /// </summary>
+        public static string ExportToExcel {
+            get {
+                return ResourceManager.GetString("ExportToExcel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Get All.
         /// </summary>
         public static string GetAll {
@@ -273,6 +318,15 @@ namespace Alpha.BetLists.AppResources {
         public static string losingtickets {
             get {
                 return ResourceManager.GetString("losingtickets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Master.
+        /// </summary>
+        public static string Master {
+            get {
+                return ResourceManager.GetString("Master", resourceCulture);
             }
         }
         
@@ -408,6 +462,15 @@ namespace Alpha.BetLists.AppResources {
         public static string Selected {
             get {
                 return ResourceManager.GetString("Selected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Filter.
+        /// </summary>
+        public static string ShowFilter {
+            get {
+                return ResourceManager.GetString("ShowFilter", resourceCulture);
             }
         }
         
@@ -579,6 +642,15 @@ namespace Alpha.BetLists.AppResources {
         public static string transtime {
             get {
                 return ResourceManager.GetString("transtime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {i.UserName} ({i.BetCount} bets).
+        /// </summary>
+        public static string UserBetCount {
+            get {
+                return ResourceManager.GetString("UserBetCount", resourceCulture);
             }
         }
         

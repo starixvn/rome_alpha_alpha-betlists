@@ -281,6 +281,7 @@
     <Compile Include="ViewModels\Blocks\FooterTests.cs" />
     <Compile Include="ViewModels\Blocks\WinLostBlockViewModelTests.cs" />
     <Compile Include="ViewModels\Components\DateRangePickerViewModelTests.cs" />
+    <Compile Include="ViewModels\CancelledBet\CancelledBetViewModelTests.cs" />
     <Compile Include="ViewModels\ExcelFileViewModelTests.cs" />
     <Compile Include="ViewModels\MemberBetList\MemberBetListViewModelTests.cs" />
     <Compile Include="ViewModels\Parlay\ComboParlayDetailViewModelTests.cs" />

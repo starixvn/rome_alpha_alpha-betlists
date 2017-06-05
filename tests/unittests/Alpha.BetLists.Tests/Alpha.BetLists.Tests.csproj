@@ -173,6 +173,7 @@
     <Compile Include="Params\RunningBetListParamTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ForeCastServiceImplTests.cs" />
+    <Compile Include="Services\CancelledBetServiceImplTests.cs" />
     <Compile Include="Services\MemberBetListServiceImplTests.cs" />
     <Compile Include="Services\RunningBetListServiceImplTests.cs" />
     <Compile Include="Services\ParlayServiceImplTests.cs" />

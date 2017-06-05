@@ -1,0 +1,97 @@
+﻿@using Alpha.BetLists.Site.ViewModels.CancelledBet
+
+@model CancelledBetViewModel
+
+<div class="bl_title">
+    @Model.Title
+    <div class="list-icon" id="betlist-filter">
+        <ul>
+            <li class="showfilter-element"><span class="icon-arrow-up-drop-circle icon-filter" title="@Resources.HideFilter"></span></li>
+            <li class="hidefilter-element"><span class="icon-arrow-down-drop-circle icon-filter" title="@Resources.ShowFilter"></span></li>
+        </ul>
+    </div>
+</div>
+
+<form class="form-inline filter" role="form" id="betlist-form">
+    @Html.Hidden("CustId", Model.CustId)
+    @if (Model.IsShowMasterList)
+    {
+        <div class="form-group">
+            <select id="dropdown-masters">
+                @foreach (var master in Model.MasterList)
+                {
+                    <option value="@master.Value" @(master.Selected ? " selected=\"selected\"" : string.Empty)> @master.Text</option>
+                }
+            </select>
+        </div>
+    }
+    @if (Model.IsShowAgentList)
+    {
+        <div class="form-group">
+            <select id="dropdown-masters">
+                @foreach (var agent in Model.AgentList)
+                {
+                    <option value="@agent.Value" @(agent.Selected ? " selected=\"selected\"" : string.Empty)> @agent.Text</option>
+                }
+            </select>
+        </div>
+    }
+    @if (Model.IsShowMemberList)
+    {
+        <div class="form-group">
+            <select id="dropdown-masters">
+                @foreach (var member in Model.MemberList)
+                {
+                    <option value="@member.Value" @(member.Selected ? " selected=\"selected\"" : string.Empty)> @member.Text</option>
+                }
+            </select>
+        </div>
+    }
+
+    <div class="form-group">
+        <input type="submit" value="@Resources.Submit" class="btn-submit" />
+    </div>
+    <div class="form-group">
+        <span id="icon-excel" class="icon-excel" title="@Resources.ExportToExcel"></span>
+    </div>
+</form>
+
+<table class="tblRpt tblRpt-bordered tblRpt-striped width-100per tablesorter tblRpt-hover tbl-betlist">
+    <thead>
+        <tr>
+            <th class="col-number">#</th>
+            <th class="col-member">@Resources.member</th>
+            <th class="col-transtime">@Resources.transtime</th>
+            <th>@Resources.choice</th>
+            <th class="col-odds">@Resources.odds</th>
+            <th class="col-stake">@Resources.stake</th>
+            <th class="col-status">@Resources.status</th>
+        </tr>
+    </thead>
+    @if (Model.BetListData.Tickets.Any())
+    {
+        <tbody>
+            @for (int i = 0; i < Model.BetListData.Total; i++)
+            {
+                var ticket = Model.BetListData.Tickets.ElementAt(i);
+
+                <tr>
+                    <td class='w-order text-center'>@(i + 1)</td>
+
+                    <td class="text-center">@ticket.UserName</td>
+
+
+                    @Trans.Render(Model.Builder, ticket)
+                    @Choice.Render(Model.Builder, ticket, Model.TicketHelper, Model.BetListData.TicketData, Model.CanViewScoreMap)
+                    @Odds.Render(Model.Builder, ticket, Model.BetListData.TicketData)
+                    @Stake.Render(Model.Builder, ticket)
+                    @Status.Render(Model.Builder, ticket, Model.TicketHelper, Model.BetListData.TicketData, Model.DisplayVNIP)
+                </tr>
+            }
+        </tbody>
+    }
+    else
+    {
+        @Common.NoInfomation.Render(Model.TotalColumn)
+    }
+</table>
