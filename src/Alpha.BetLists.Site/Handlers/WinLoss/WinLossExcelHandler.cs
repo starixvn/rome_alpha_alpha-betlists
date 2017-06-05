@@ -2,6 +2,7 @@
 {
     using System.Threading.Tasks;
     using AppResources;
+    using BetLists.Models;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using MediatR;
@@ -15,7 +16,7 @@
 
     public class WinLossExcelHandler : WinLossBaseHandler, IAsyncRequestHandler<WinLossExcelQuery, ExcelFileViewModel>
     {
-        private readonly Workbook<ITicket> workbook;
+        private readonly Workbook<TicketDto> workbook;
 
         public WinLossExcelHandler(
             WinLossService winLossService,
@@ -24,7 +25,7 @@
             ITicketHelper ticketHelper,
             ISmartPunterBetListMonitor monitorService,
             IPService ipService,
-            Workbook<ITicket> workbook)
+            Workbook<TicketDto> workbook)
             : base(winLossService, builder, excelBuilder, ticketHelper, monitorService, ipService)
         {
             this.workbook = workbook;
@@ -42,7 +43,7 @@
                     .Header(Resources.ResourceManager.GetString)
                     .Title(winLossViewModel.Title)
                     .Body(betlistData.Tickets, GetBodyRowMapper(message.ViewerLevel, winLossViewModel))
-                    .Footer(new Ticket(), GetFooterRowMapper(winLossViewModel.Footer))
+                    .Footer(new TicketDto(), GetFooterRowMapper(winLossViewModel.Footer))
                     .Sheet(Resources.BetList)
                     .ExportToBytes();
 

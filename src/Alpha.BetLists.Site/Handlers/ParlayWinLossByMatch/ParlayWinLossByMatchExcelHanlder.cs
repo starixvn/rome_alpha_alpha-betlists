@@ -19,7 +19,7 @@ namespace Alpha.BetLists.Site.Handlers.ParlayWinLossByMatch
         : ParlayWinLossByMatchBaseHandler,
         IAsyncRequestHandler<ParlayWinLossByMatchExcelQuery, ExcelFileViewModel>
     {
-        private readonly Workbook<ITicket> workbook;
+        private readonly Workbook<TicketDto> workbook;
         private readonly WinLossByMatchExcelHandler winLossByMatchExcelHandler;
 
         public ParlayWinLossByMatchExcelHanlder(
@@ -29,7 +29,7 @@ namespace Alpha.BetLists.Site.Handlers.ParlayWinLossByMatch
             IBetListExcelBuilder excelBuilder,
             ITicketHelper ticketHelper,
             IPService ipService,
-            Workbook<ITicket> workbook,
+            Workbook<TicketDto> workbook,
             WinLossByMatchExcelHandler winLossByMatchExcelHandler = null)
             : base(winLossService, monitorService, builder, excelBuilder, ticketHelper, ipService)
         {
@@ -58,7 +58,7 @@ namespace Alpha.BetLists.Site.Handlers.ParlayWinLossByMatch
                 .Header(Resources.ResourceManager.GetString)
                 .Title(viewModel.Title)
                 .Body(tickets, winLossByMatchExcelHandler.GetBodyRowMapper(message.ViewerLevel, viewModel))
-                .Footer(new Ticket(), winLossByMatchExcelHandler.GetFooterRowMapper(viewModel.Footer))
+                .Footer(new TicketDto(), winLossByMatchExcelHandler.GetFooterRowMapper(viewModel.Footer))
                 .Sheet(Resources.BetList)
                 .ExportToBytes();
 

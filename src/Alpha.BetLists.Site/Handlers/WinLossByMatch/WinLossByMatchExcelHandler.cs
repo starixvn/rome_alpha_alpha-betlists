@@ -18,7 +18,7 @@
 
     public class WinLossByMatchExcelHandler : WinLossByMatchBaseHandler, IAsyncRequestHandler<WinLossByMatchExcelQuery, ExcelFileViewModel>
     {
-        private readonly Workbook<ITicket> workbook;
+        private readonly Workbook<TicketDto> workbook;
         private int currentRowIndex;
 
         public WinLossByMatchExcelHandler(
@@ -28,7 +28,7 @@
             IBetListExcelBuilder excelBuilder,
             ITicketHelper ticketHelper,
             IPService ipService,
-            Workbook<ITicket> workbook)
+            Workbook<TicketDto> workbook)
             : base(winLossService, monitorService, builder, excelBuilder, ticketHelper, ipService)
         {
             this.workbook = workbook;
@@ -48,7 +48,7 @@
                 .Header(Resources.ResourceManager.GetString)
                 .Title(viewModel.Title)
                 .Body(betlistData.Tickets, GetBodyRowMapper(message.ViewerLevel, viewModel))
-                .Footer(new Ticket(), GetFooterRowMapper(viewModel.Footer))
+                .Footer(new TicketDto(), GetFooterRowMapper(viewModel.Footer))
                 .Sheet(Resources.BetList)
                 .ExportToBytes();
 
@@ -63,10 +63,10 @@
         protected internal override string ExcelTemplatePath(UserLevel viewerLevel)
             => GetExcelTemplatePath($"WinLossByMatch\\{viewerLevel.DisplayName}");
 
-        protected internal override Mapper<ITicket> GetBodyRowMapper(UserLevel viewerLevel, BetListBaseViewModel viewModel)
+        protected internal override Mapper<TicketDto> GetBodyRowMapper(UserLevel viewerLevel, BetListBaseViewModel viewModel)
         {
             var ticketData = viewModel.BetListData.TicketData;
-            var mapper = new Mapper<ITicket>()
+            var mapper = new Mapper<TicketDto>()
                 .Map(A, _ => currentRowIndex++)
                 .Map(B, ticket => ticket.UserName)
                 .Map(C, ticket => BuildTrans(ticket))
@@ -93,7 +93,7 @@
             return mapper;
         }
 
-        protected internal override Mapper<ITicket> GetFooterRowMapper(Footer footer)
+        protected internal override Mapper<TicketDto> GetFooterRowMapper(Footer footer)
         {
             var mapper = base.GetFooterRowMapper(footer);
 

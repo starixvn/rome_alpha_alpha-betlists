@@ -7,15 +7,15 @@
     public class BetListData
     {
         public BetListData(
-            IEnumerable<ITicket> tickets,
+            IEnumerable<TicketDto> tickets,
             List<ITicketData> ticketData)
         {
-            Tickets = tickets ?? Enumerable.Empty<ITicket>();
+            Tickets = tickets ?? Enumerable.Empty<TicketDto>();
             TicketData = ticketData ?? new List<ITicketData>();
             Total = Tickets.Count();
         }
 
-        public IEnumerable<ITicket> Tickets { get; }
+        public IEnumerable<TicketDto> Tickets { get; }
 
         public List<ITicketData> TicketData { get; }
 

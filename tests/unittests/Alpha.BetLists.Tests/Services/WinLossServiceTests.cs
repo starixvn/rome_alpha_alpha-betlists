@@ -1,14 +1,15 @@
 ﻿namespace Alpha.BetLists.Tests.Services
 {
+    using System;
+    using System.Linq;
     using BetLists.Criteria.WinLossByDate;
     using BetLists.Extensions;
+    using BetLists.Models;
     using BetLists.Params;
     using BetLists.Services;
     using Fanex.BetList.Core.Entities;
     using Fixtures;
     using NSubstitute;
-    using System;
-    using System.Linq;
     using TestData;
     using Xunit;
 
@@ -28,11 +29,11 @@
             reportDateService.GetMoveBetsDay().Returns(DateTime.Today);
 
             dataFixture.DynamicRepository
-                .FetchMultipleAsync<Ticket, TicketData>(Arg.Any<GetBetListWinLossByDateCriteria>())
+                .FetchMultipleAsync<TicketDto, TicketData>(Arg.Any<GetBetListWinLossByDateCriteria>())
                 .Returns(BetListDataTest.BetListDataTuple);
 
             dataFixture.DynamicRepository
-                .FetchMultipleAsync<Ticket, TicketData>(Arg.Any<GetBetListWinLossByDateOldCriteria>())
+                .FetchMultipleAsync<TicketDto, TicketData>(Arg.Any<GetBetListWinLossByDateOldCriteria>())
                 .Returns(BetListDataTest.OldBetListDataTuple);
 
             winLossService = new WinLossServiceImpl(reportDateService, this.dataFixture.DynamicRepository);
@@ -74,7 +75,7 @@
             // Assert
             dataFixture.DynamicRepository
                 .Received()
-                .FetchMultipleAsync<Ticket, TicketData>(Arg.Is<GetBetListWinLossByDateCriteria>(c =>
+                .FetchMultipleAsync<TicketDto, TicketData>(Arg.Is<GetBetListWinLossByDateCriteria>(c =>
                     c.CustId == param.CustId
                     && c.ProductIds == param.ProductIds.JoinWithComma()
                     && c.FromDate == param.FromDate
@@ -118,7 +119,7 @@
             // Assert
             dataFixture.DynamicRepository
                 .Received()
-                .FetchMultipleAsync<Ticket, TicketData>(Arg.Is<GetBetListWinLossByDateOldCriteria>(c =>
+                .FetchMultipleAsync<TicketDto, TicketData>(Arg.Is<GetBetListWinLossByDateOldCriteria>(c =>
                     c.CustId == param.CustId
                     && c.ProductIds == param.ProductIds.JoinWithComma()
                     && c.FromDate == param.FromDate
@@ -161,7 +162,7 @@
             // Assert
             dataFixture.DynamicRepository
                 .Received()
-                .FetchMultipleAsync<Ticket, TicketData>(Arg.Is<GetBetListWinLossByDateOldCriteria>(c =>
+                .FetchMultipleAsync<TicketDto, TicketData>(Arg.Is<GetBetListWinLossByDateOldCriteria>(c =>
                     c.CustId == param.CustId
                     && c.ProductIds == param.ProductIds.JoinWithComma()
                     && c.FromDate == param.FromDate
@@ -170,7 +171,7 @@
 
             dataFixture.DynamicRepository
                 .Received()
-                .FetchMultipleAsync<Ticket, TicketData>(Arg.Is<GetBetListWinLossByDateCriteria>(c =>
+                .FetchMultipleAsync<TicketDto, TicketData>(Arg.Is<GetBetListWinLossByDateCriteria>(c =>
                     c.CustId == param.CustId
                     && c.ProductIds == param.ProductIds.JoinWithComma()
                     && c.FromDate == reportDateService.GetBalanceUpDay().AddDays(-1)

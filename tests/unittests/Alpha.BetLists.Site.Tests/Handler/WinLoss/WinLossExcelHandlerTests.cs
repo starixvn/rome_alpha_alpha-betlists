@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using AppResources;
+    using BetLists.Models;
     using BetLists.Tests.TestData;
     using Extensions;
     using Fanex.BetList.Core.Entities;
@@ -27,7 +28,7 @@
         private readonly WinLossExcelHandler winLossExcelHandler;
         private readonly WinLossService winLossService;
         private readonly WinLossExcelQuery query;
-        private readonly Workbook<ITicket> workbook;
+        private readonly Workbook<TicketDto> workbook;
         private readonly CompareLogic compareLogic;
 
         public WinLossExcelHandlerTests(BetListFixture betlistFixture)
@@ -39,7 +40,7 @@
             query = new WinLossExcelQuery(this.betlistFixture.User);
             InitQuery();
 
-            workbook = Substitute.For<Workbook<ITicket>>();
+            workbook = Substitute.For<Workbook<TicketDto>>();
             InitWorkbook();
 
             winLossExcelHandler = new WinLossExcelHandler(
@@ -65,9 +66,9 @@
             workbook.UseTemplate(Arg.Any<TemplateInfo>()).Returns(workbook);
             workbook.Title(Arg.Any<string>()).Returns(workbook);
             workbook.Header(Arg.Any<Func<string, string>>()).Returns(workbook);
-            workbook.Body(Arg.Any<IEnumerable<ITicket>>(), Arg.Any<Mapper<ITicket>>()).Returns(workbook);
+            workbook.Body(Arg.Any<IEnumerable<TicketDto>>(), Arg.Any<Mapper<TicketDto>>()).Returns(workbook);
             workbook.Sheet(Arg.Any<string>()).Returns(workbook);
-            workbook.Footer(Arg.Any<ITicket>(), Arg.Any<Mapper<ITicket>>()).Returns(workbook);
+            workbook.Footer(Arg.Any<TicketDto>(), Arg.Any<Mapper<TicketDto>>()).Returns(workbook);
         }
 
         private void InitQuery()
@@ -139,7 +140,7 @@
             winLossExcelHandler.Handle(query).GetAwaiter().GetResult();
 
             // Assert
-            workbook.Received().Body(Arg.Is(BetListDataTest.Tickets), Arg.Any<Mapper<ITicket>>());
+            workbook.Received().Body(Arg.Is(BetListDataTest.Tickets), Arg.Any<Mapper<TicketDto>>());
         }
 
         [Fact]
@@ -149,7 +150,7 @@
             winLossExcelHandler.Handle(query).GetAwaiter().GetResult();
 
             // Assert
-            workbook.Received().Footer(Arg.Any<Ticket>(), Arg.Any<Mapper<ITicket>>());
+            workbook.Received().Footer(Arg.Any<TicketDto>(), Arg.Any<Mapper<TicketDto>>());
         }
 
         [Fact]

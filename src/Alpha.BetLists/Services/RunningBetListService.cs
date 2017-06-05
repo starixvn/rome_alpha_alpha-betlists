@@ -34,7 +34,7 @@
                     param.Language,
                     param.UserName);
 
-            var betListDataTuple = await dynamicRepository.FetchMultipleAsync<Ticket, TicketData>(criteria);
+            var betListDataTuple = await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
 
             return new BetListData(betListDataTuple.Item1, betListDataTuple.Item2.ToList<ITicketData>());
         }

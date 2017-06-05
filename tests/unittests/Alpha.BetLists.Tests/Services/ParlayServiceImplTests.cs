@@ -3,6 +3,7 @@
     using System;
     using System.Linq;
     using BetLists.Criteria.Parlay;
+    using BetLists.Models;
     using BetLists.Models.Parlay;
     using BetLists.Services;
     using Fanex.BetList.Core.Entities;
@@ -34,7 +35,7 @@
         {
             // Arrange
             dataFixture.DynamicRepository
-                .FetchAsync<Ticket>(Arg.Is<GetParlayBetListCriteria>(c => c.TransId == 123 && c.Language == "en"))
+                .FetchAsync<TicketDto>(Arg.Is<GetParlayBetListCriteria>(c => c.TransId == 123 && c.Language == "en"))
                 .Returns(BetListDataTest.Tickets);
 
             // Act

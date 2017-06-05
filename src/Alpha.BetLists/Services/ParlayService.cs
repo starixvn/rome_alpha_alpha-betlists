@@ -5,11 +5,12 @@
     using Criteria.Parlay;
     using Fanex.BetList.Core.Entities;
     using Fanex.Data.Repository;
+    using Models;
     using Models.Parlay;
 
     public interface ParlayService
     {
-        Task<IEnumerable<ITicket>> GetParlayBetList(long transId, string language);
+        Task<IEnumerable<TicketDto>> GetParlayBetList(long transId, string language);
 
         Task<ComboParlayDetailData> GetComboParlayDetail(long transId, long refNo, long betId, int custId, string language);
     }
@@ -27,9 +28,9 @@
             this.dynamicRepository = dynamicRepository;
         }
 
-        public async Task<IEnumerable<ITicket>> GetParlayBetList(long transId, string language)
+        public async Task<IEnumerable<TicketDto>> GetParlayBetList(long transId, string language)
         {
-            var tickets = await dynamicRepository.FetchAsync<Ticket>(new GetParlayBetListCriteria(transId, language));
+            var tickets = await dynamicRepository.FetchAsync<TicketDto>(new GetParlayBetListCriteria(transId, language));
 
             return tickets;
         }

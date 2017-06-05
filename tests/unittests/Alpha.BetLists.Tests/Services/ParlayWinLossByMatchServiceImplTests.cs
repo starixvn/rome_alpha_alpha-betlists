@@ -21,7 +21,7 @@ namespace Alpha.BetLists.Tests.Services
         public ParlayWinLossByMatchServiceImplTests(FanexDataFixture dataFixture)
         {
             dataFixture.DynamicRepository
-                .FetchAsync<Ticket>(Arg.Any<GetParlayWinLossByMatchCriteria>())
+                .FetchAsync<TicketDto>(Arg.Any<GetParlayWinLossByMatchCriteria>())
                 .Returns(BetListDataTest.Tickets);
 
             var reportDateService = Substitute.For<ReportDateService>();

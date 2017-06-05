@@ -1,13 +1,14 @@
 ﻿namespace Alpha.BetLists.Tests.Services
 {
+    using System;
+    using System.Linq;
     using BetLists.Criteria.MemberBetList;
+    using BetLists.Models;
     using BetLists.Params;
     using BetLists.Services;
     using Fanex.BetList.Core.Entities;
     using Fixtures;
     using NSubstitute;
-    using System;
-    using System.Linq;
     using TestData;
     using Xunit;
 
@@ -20,7 +21,7 @@
         public MemberBetListServiceImplTests(FanexDataFixture dataFixture)
         {
             dataFixture.DynamicRepository
-                .FetchMultipleAsync<Ticket, TicketData>(Arg.Any<GetBetListAllByDateCriteria>())
+                .FetchMultipleAsync<TicketDto, TicketData>(Arg.Any<GetBetListAllByDateCriteria>())
                 .Returns(BetListDataTest.BetListDataTuple);
 
             memberBetListService = new MemberBetListServiceImpl(dataFixture.DynamicRepository);

@@ -188,6 +188,7 @@
     <Compile Include="Models\Parlay\ComboParlayDetailData.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ScoreMap.cs" />
+    <Compile Include="Models\TicketDto.cs" />
     <Compile Include="Models\UserLevel.cs" />
     <Compile Include="Params\MemberBetListParam.cs" />
     <Compile Include="Params\RunningBetListParam.cs" />

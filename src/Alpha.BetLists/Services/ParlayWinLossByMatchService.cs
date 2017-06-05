@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Alpha.BetLists.Criteria.ParlayWinLossByMatch;
+using Alpha.BetLists.Models;
 using Alpha.BetLists.Params;
 using Fanex.BetList.Core.Entities;
 using Fanex.Data.Repository;
@@ -9,7 +10,7 @@ namespace Alpha.BetLists.Services
 {
     public interface ParlayWinLossByMatchService
     {
-        Task<IEnumerable<ITicket>> GetBetList(ParlayWinLossByMatchParam param);
+        Task<IEnumerable<TicketDto>> GetBetList(ParlayWinLossByMatchParam param);
     }
 
     public class ParlayWinLossByMatchServiceImpl : ParlayWinLossByMatchService
@@ -25,7 +26,7 @@ namespace Alpha.BetLists.Services
             this.dynamicRepository = dynamicRepository;
         }
 
-        public async Task<IEnumerable<ITicket>> GetBetList(ParlayWinLossByMatchParam param)
+        public async Task<IEnumerable<TicketDto>> GetBetList(ParlayWinLossByMatchParam param)
         {
             var criteria = new GetParlayWinLossByMatchCriteria(
                 param.CustId,
@@ -36,7 +37,7 @@ namespace Alpha.BetLists.Services
                 reportDateService.GetMoveBetsDay(),
                 param.CustLevel);
 
-            var tickets = await dynamicRepository.FetchAsync<Ticket>(criteria);
+            var tickets = await dynamicRepository.FetchAsync<TicketDto>(criteria);
 
             return tickets;
         }

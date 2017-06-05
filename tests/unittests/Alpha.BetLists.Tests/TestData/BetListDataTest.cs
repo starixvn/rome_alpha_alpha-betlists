@@ -14,9 +14,9 @@
     {
         private static IFixture fixture = new Fixture();
 
-        public static readonly IEnumerable<Ticket> Tickets = fixture.CreateMany<Ticket>();
+        public static readonly IEnumerable<TicketDto> Tickets = fixture.CreateMany<TicketDto>();
 
-        public static readonly IEnumerable<Ticket> OldTickets = fixture.CreateMany<Ticket>();
+        public static readonly IEnumerable<TicketDto> OldTickets = fixture.CreateMany<TicketDto>();
 
         public static readonly IEnumerable<TicketData> TicketData = fixture.CreateMany<TicketData>();
 
@@ -26,11 +26,11 @@
 
         public static readonly IEnumerable<int> BettypeIds = fixture.CreateMany<int>();
 
-        public static readonly Tuple<IEnumerable<Ticket>, IEnumerable<TicketData>> BetListDataTuple
-            = new Tuple<IEnumerable<Ticket>, IEnumerable<TicketData>>(Tickets, TicketData);
+        public static readonly Tuple<IEnumerable<TicketDto>, IEnumerable<TicketData>> BetListDataTuple
+            = new Tuple<IEnumerable<TicketDto>, IEnumerable<TicketData>>(Tickets, TicketData);
 
-        public static readonly Tuple<IEnumerable<Ticket>, IEnumerable<TicketData>> OldBetListDataTuple
-            = new Tuple<IEnumerable<Ticket>, IEnumerable<TicketData>>(OldTickets, OldTicketData);
+        public static readonly Tuple<IEnumerable<TicketDto>, IEnumerable<TicketData>> OldBetListDataTuple
+            = new Tuple<IEnumerable<TicketDto>, IEnumerable<TicketData>>(OldTickets, OldTicketData);
 
         public static readonly BetListData BetListData
             = new BetListData(Tickets, TicketData.ToList<ITicketData>());
@@ -60,6 +60,6 @@
 
         public static readonly byte[] ExcelFileContent = fixture.CreateMany<byte>().ToArray();
 
-        public static ITicket Ticket => fixture.Create<Ticket>();
+        public static TicketDto Ticket => fixture.Create<TicketDto>();
     }
 }

@@ -63,8 +63,8 @@
             set { mapPath = value; }
         }
 
-        protected internal void WriteLog(int custId, IEnumerable<ITicket> tickets)
-             => MonitorService.WriteLog(custId, tickets.ToList());
+        protected internal void WriteLog(int custId, IEnumerable<TicketDto> tickets)
+             => MonitorService.WriteLog(custId, tickets.ToList<ITicket>());
 
         protected internal IEnumerable<SelectListItem> BuildProductSelectListItems(
             IEnumerable<int> userSelectedProductIds,
@@ -121,11 +121,11 @@
         protected internal virtual string ExcelTemplatePath(UserLevel viewerLevel)
             => GetExcelTemplatePath(viewerLevel.DisplayName);
 
-        protected internal virtual Mapper<ITicket> GetBodyRowMapper(UserLevel viewerLevel, BetListBaseViewModel viewModel)
+        protected internal virtual Mapper<TicketDto> GetBodyRowMapper(UserLevel viewerLevel, BetListBaseViewModel viewModel)
         {
             var ticketData = viewModel.BetListData.TicketData;
 
-            var mapper = new Mapper<ITicket>()
+            var mapper = new Mapper<TicketDto>()
                 .Map(B, ticket => BuildTrans(ticket))
                 .Map(C, ticket => BuildChoice(ticket, viewModel))
                 .Map(D, ticket => BuildOdds(ticket, viewModel))
@@ -150,9 +150,9 @@
             return mapper;
         }
 
-        protected internal virtual Mapper<ITicket> GetFooterRowMapper(Footer footer)
+        protected internal virtual Mapper<TicketDto> GetFooterRowMapper(Footer footer)
         {
-            var mapper = new Mapper<ITicket>()
+            var mapper = new Mapper<TicketDto>()
                 .Map(A, _ => BetListExcelBuilderExt.BuildFooterHeader(RtfHelper))
                 .Map(F, _ => BuildFooter(footer));
 

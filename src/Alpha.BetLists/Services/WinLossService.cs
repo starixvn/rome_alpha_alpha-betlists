@@ -33,7 +33,7 @@
         {
             var balanceUpDate = reportDateService.GetBalanceUpDay();
             var previousBalanceUpDate = balanceUpDate.AddDays(-1);
-            Tuple<IEnumerable<Ticket>, IEnumerable<TicketData>> betListDataTuple;
+            Tuple<IEnumerable<TicketDto>, IEnumerable<TicketData>> betListDataTuple;
 
             if (param.FromDate.IsBefore(balanceUpDate))
             {
@@ -59,8 +59,8 @@
             return new BetListData(betListDataTuple.Item1, betListDataTuple.Item2.ToList<ITicketData>());
         }
 
-        private async Task<Tuple<IEnumerable<Ticket>, IEnumerable<TicketData>>> GetBetList(WinLossParam param, DateTime fromDate)
-            => await dynamicRepository.FetchMultipleAsync<Ticket, TicketData>(
+        private async Task<Tuple<IEnumerable<TicketDto>, IEnumerable<TicketData>>> GetBetList(WinLossParam param, DateTime fromDate)
+            => await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(
                         new GetBetListWinLossByDateCriteria(
                             param.CustId,
                             param.ProductIds.JoinWithComma(),
@@ -69,8 +69,8 @@
                             reportDateService.GetMoveBetsDay(),
                             param.Language));
 
-        private async Task<Tuple<IEnumerable<Ticket>, IEnumerable<TicketData>>> GetBetListBeforeBalanceUpDay(WinLossParam param, DateTime toDate)
-            => await dynamicRepository.FetchMultipleAsync<Ticket, TicketData>(
+        private async Task<Tuple<IEnumerable<TicketDto>, IEnumerable<TicketData>>> GetBetListBeforeBalanceUpDay(WinLossParam param, DateTime toDate)
+            => await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(
                         new GetBetListWinLossByDateOldCriteria(
                             param.CustId,
                             param.ProductIds.JoinWithComma(),

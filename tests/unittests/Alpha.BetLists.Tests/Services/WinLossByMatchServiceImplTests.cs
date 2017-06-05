@@ -22,15 +22,15 @@ namespace Alpha.BetLists.Tests.Services
         public WinLossByMatchServiceImplTests(FanexDataFixture dataFixture)
         {
             dataFixture.DynamicRepository
-                .FetchMultipleAsync<Ticket, TicketData>(Arg.Any<GetWinLossOutrightCriteria>())
+                .FetchMultipleAsync<TicketDto, TicketData>(Arg.Any<GetWinLossOutrightCriteria>())
                 .Returns(BetListDataTest.BetListDataTuple);
 
             dataFixture.DynamicRepository
-                .FetchMultipleAsync<Ticket, TicketData>(Arg.Any<GetWinLossRacingCriteria>())
+                .FetchMultipleAsync<TicketDto, TicketData>(Arg.Any<GetWinLossRacingCriteria>())
                 .Returns(BetListDataTest.BetListDataTuple);
 
             dataFixture.DynamicRepository
-                .FetchMultipleAsync<Ticket, TicketData>(Arg.Any<GetWinLossOthersCriteria>())
+                .FetchMultipleAsync<TicketDto, TicketData>(Arg.Any<GetWinLossOthersCriteria>())
                 .Returns(BetListDataTest.BetListDataTuple);
 
             var reportDateService = Substitute.For<ReportDateService>();

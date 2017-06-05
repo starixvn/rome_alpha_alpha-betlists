@@ -23,7 +23,7 @@ namespace Alpha.BetLists.Site.Tests.Handler.WinLossByMatch
     {
         private readonly WinLossByMatchExcelHandler winLossHandler;
         private readonly IUser user;
-        private readonly Workbook<ITicket> workbook;
+        private readonly Workbook<TicketDto> workbook;
         private readonly DateTime today;
 
         public WinLossByMatchExcelHandlerTests(BetListFixture betlistFixture)
@@ -35,12 +35,12 @@ namespace Alpha.BetLists.Site.Tests.Handler.WinLossByMatch
             user.Id.Returns(2);
             user.LevelId.Returns(UserLevel.Agent.Value);
 
-            workbook = Substitute.For<Workbook<ITicket>>();
+            workbook = Substitute.For<Workbook<TicketDto>>();
             workbook.UseTemplate(Arg.Any<ONEbook.SpreadSheets.TemplateInfo>()).Returns(workbook);
             workbook.Header(Arg.Any<Func<string, string>>()).Returns(workbook);
             workbook.Title(Arg.Any<string>()).Returns(workbook);
-            workbook.Body(Arg.Any<IEnumerable<ITicket>>(), Arg.Any<Mapper<ITicket>>()).Returns(workbook);
-            workbook.Footer(Arg.Any<ITicket>(), Arg.Any<Mapper<ITicket>>()).Returns(workbook);
+            workbook.Body(Arg.Any<IEnumerable<TicketDto>>(), Arg.Any<Mapper<TicketDto>>()).Returns(workbook);
+            workbook.Footer(Arg.Any<TicketDto>(), Arg.Any<Mapper<TicketDto>>()).Returns(workbook);
             workbook.Sheet(Arg.Any<string>()).Returns(workbook);
 
             winLossHandler = Substitute.ForPartsOf<WinLossByMatchExcelHandler>(

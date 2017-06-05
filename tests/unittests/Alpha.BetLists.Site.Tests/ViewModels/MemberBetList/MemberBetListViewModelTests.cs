@@ -129,9 +129,11 @@
         public void CanViewScoreMap_Always_ReturnsCorrectValue(string ticketStatus, int bettypeId)
         {
             // Arrange
-            var ticket = Substitute.For<ITicket>();
-            ticket.BetTypeId.Returns(bettypeId);
-            ticket.Status.Returns(ticketStatus);
+            var ticket = new TicketDto
+            {
+                BetTypeId = bettypeId,
+                Status = ticketStatus
+            };
 
             var supportScoreMapBettypeIds = new List<int> { 1, 2, 3 };
             var expectedCanViewScoreMap = ticketStatus.Equals(BetStatus.Running) && supportScoreMapBettypeIds.Contains(bettypeId);

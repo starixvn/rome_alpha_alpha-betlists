@@ -1,5 +1,9 @@
 ﻿namespace Alpha.BetLists.Site.Tests.Handler.RunningBetList
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web.Mvc;
     using BetLists.Tests.TestData;
     using Fanex.BetList.Core.Entities;
     using Fixtures;
@@ -10,10 +14,6 @@
     using Requests.RunningBetList;
     using Services;
     using Site.ViewModels.RunningBetList;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web.Mvc;
     using Xunit;
 
     [Trait("Category", "RunningBetList")]

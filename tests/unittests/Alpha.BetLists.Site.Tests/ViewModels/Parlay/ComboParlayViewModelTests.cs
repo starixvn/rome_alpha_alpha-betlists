@@ -32,11 +32,11 @@
 
         private BetListData ComboParlayData => new BetListData(ComboParlayTickets, null);
 
-        private List<Ticket> ComboParlayTickets
-            => new List<Ticket>
+        private List<TicketDto> ComboParlayTickets
+            => new List<TicketDto>
             {
-                new Ticket { Currency = "UUS", Stake = 10, MatchId = 1 },
-                new Ticket { Currency = "UUS", Stake = 20, MatchId = 2 }
+                new TicketDto { Currency = "UUS", Stake = 10, MatchId = 1 },
+                new TicketDto { Currency = "UUS", Stake = 20, MatchId = 2 }
             };
 
         [Fact]
