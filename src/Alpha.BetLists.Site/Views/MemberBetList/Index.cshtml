@@ -43,6 +43,15 @@
 
 @Html.Partial("WinLossTable", Model)
 
+<div class="comm_note">
+    <div class="title">
+        <span class="star">*</span>@Resources.Note
+    </div>
+    <div class="content">
+        @Resources.CommissionRoundNote
+    </div>
+</div>
+
 @section Scripts{
     @StaticResources.AssetScripts.Render("/bundles/site-betlists/filter")
     @StaticResources.RenderScripts("~/assets/bundles/member-betlist/member-betlist")

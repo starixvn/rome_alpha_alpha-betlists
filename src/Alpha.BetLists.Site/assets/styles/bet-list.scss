@@ -381,6 +381,30 @@ td.nonbreak {
     display: none;
 }
 
+.comm_note {
+    float: left;
+    margin-top: 12px;
+    width: 100%;
+
+    .title {
+        margin-left: 4px;
+        padding-right: 4px;
+        line-height: 18px;
+        font-weight: bold;
+        color: $note-color;
+
+        .star {
+            color: #ff0101;
+            padding-right: 8px;
+        }
+    }
+
+    .content {
+        margin: 8px 20px 10px 20px;
+        font-style: italic;
+    }
+}
+
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
     .bl_time {
         font-size: 8px;
