@@ -85,5 +85,19 @@
         public override bool CanViewScoreMap(ITicket ticket)
             => ticket.Status.Equals(BetStatus.Running)
             && SupportScoreMapBettypeIds.Contains(ticket.BetTypeId);
+
+        public static string GetDailyStatementLink(int custId, string custName, string productIds)
+        {
+            var url = Helpers.UrlHelper.MapReportsPath("~/Statement/MemberStatement");
+            var routeValues = new Dictionary<string, object>
+            {
+                ["CustId"] = custId,
+                ["CustName"] = custName,
+                ["CustLevelId"] = 1,
+                ["ProductIds"] = productIds
+            };
+
+            return Helpers.UrlHelper.AddQueryStringParamsFunc(url, routeValues);
+        }
     }
 }

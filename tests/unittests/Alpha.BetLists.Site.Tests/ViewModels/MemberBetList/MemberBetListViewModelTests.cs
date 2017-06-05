@@ -5,6 +5,7 @@
     using BetLists.Tests.TestData;
     using Fanex.BetList.Core.Entities;
     using Fixtures;
+    using Helpers;
     using NSubstitute;
     using Params;
     using Requests.MemberBetList;
@@ -152,6 +153,27 @@
 
             // Assert
             Assert.Equal(expectedCanViewScoreMap, actualCanViewScoreMap);
+        }
+
+        [Fact]
+        public void GetDailyStatementLink_Always_ReturnsCorrectLink()
+        {
+            // Arrange
+
+            UrlHelperTestSetUp.SetUp();
+
+            // Act
+            MemberBetListViewModel.GetDailyStatementLink(1, "CustName", "1,2,3");
+
+            // Assert
+            Site.Helpers.UrlHelper.AddQueryStringParamsFunc.Received().Invoke(
+                "NewReportsPath",
+                Arg.Is<Dictionary<string, object>>(
+                    routeValues =>
+                    (int)routeValues["CustId"] == 1
+                    && (string)routeValues["CustName"] == "CustName"
+                    && (int)routeValues["CustLevelId"] == 1
+                    && (string)routeValues["ProductIds"] == "1,2,3"));
         }
     }
 }

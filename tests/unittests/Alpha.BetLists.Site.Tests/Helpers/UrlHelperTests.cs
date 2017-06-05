@@ -40,26 +40,5 @@
             // Assert
             Assert.Equal("url", actualUrl);
         }
-
-        [Fact]
-        public void GetDailyStatementLink_Always_ReturnsCorrectLink()
-        {
-            // Arrange
-
-            UrlHelperTestSetUp.SetUp();
-
-            // Act
-            UrlHelper.GetDailyStatementLink(1, "CustName", "1,2,3");
-
-            // Assert
-            UrlHelper.AddQueryStringParamsFunc.Received().Invoke(
-                "NewReportsPath",
-                Arg.Is<Dictionary<string, object>>(
-                    routeValues =>
-                    (int)routeValues["CustId"] == 1
-                    && (string)routeValues["CustName"] == "CustName"
-                    && (int)routeValues["CustLevelId"] == 1
-                    && (string)routeValues["ProductIds"] == "1,2,3"));
-        }
     }
 }

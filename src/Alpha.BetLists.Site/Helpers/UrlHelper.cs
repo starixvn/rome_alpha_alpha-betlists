@@ -50,19 +50,5 @@
 
             return $"{url}?{queryString}";
         }
-
-        public static string GetDailyStatementLink(int custId, string custName, string productIds)
-        {
-            var url = MapReportsPath("~/Statement/MemberStatement");
-            var routeValues = new Dictionary<string, object>
-            {
-                ["CustId"] = custId,
-                ["CustName"] = custName,
-                ["CustLevelId"] = 1,
-                ["ProductIds"] = productIds
-            };
-
-            return AddQueryStringParamsFunc(url, routeValues);
-        }
     }
 }
