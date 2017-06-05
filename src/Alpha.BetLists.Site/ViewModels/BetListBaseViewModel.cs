@@ -100,19 +100,5 @@
 
         // TODO: will implement here
         public virtual bool CanViewScoreMap(ITicket ticket) => false;
-
-        public string BuildDailyStatementLink()
-        {
-            var url = Helpers.UrlHelper.MapReportsPath("~/Statement/MemberStatement");
-            var routeValues = new Dictionary<string, object>
-            {
-                ["CustId"] = CustId,
-                ["CustName"] = CustName,
-                ["CustLevelId"] = 1,
-                ["ProductIds"] = ProductsId
-            };
-
-            return Helpers.UrlHelper.AddQueryStringParamsFunc(url, routeValues);
-        }
     }
 }

@@ -26,7 +26,7 @@
     @Html.Hidden("IsFilterVisible", Model.IsFilterVisible)
     <div class="form-group">
         <select id="dropdown-betlist-type">
-            <option value="1" data-url="@Model.BuildDailyStatementLink()">@Resources.DailyStatement</option>
+            <option value="1" data-url="@Alpha.BetLists.Site.Helpers.UrlHelper.GetDailyStatementLink(Model.CustId,Model.CustName,Model.ProductsId)">@Resources.DailyStatement</option>
             <option value="2" selected="selected">@Resources.BetList</option>
             <option value="3" data-url="@Model.BuildRunningBetListLink(Url.Action("Index","RunningBetList"))">@Resources.BetList_Running</option>
         </select>
