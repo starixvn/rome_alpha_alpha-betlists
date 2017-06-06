@@ -24,14 +24,10 @@ class RunningBetListView extends MemberBetListView {
     }
 
     init = () => {
-        this.$.blockUI();
-
         this.cacheDOMElements();
         this.bindFilter();
         this.registerEvents();
         this.$getallCheckbox.trigger("change");
-
-        this.$.unblockUI();
     };
 
     cacheDOMElements = () => {

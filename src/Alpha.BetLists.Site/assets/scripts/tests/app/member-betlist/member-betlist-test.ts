@@ -37,11 +37,6 @@
             memberBetListView.init();
         });
 
-        it("_Calls blockUI", () => {
-            // assert
-            expect(jQueryFake.blockUI).toHaveBeenCalled();
-        });
-
         it("_Call cacheElements", () => {
             // assert
             expect(memberBetListView.cacheElements).toHaveBeenCalled();
@@ -55,11 +50,6 @@
         it("_Call registerEvents", () => {
             // assert
             expect(memberBetListView.registerEvents).toHaveBeenCalled();
-        });
-
-        it("_Calls unblockUI", () => {
-            // assert
-            expect(jQueryFake.unblockUI).toHaveBeenCalled();
         });
     });
 
@@ -145,7 +135,6 @@
 
             // assert
             expect(jQueryFake.blockUI).toHaveBeenCalled();
-            expect(jQueryFake.unblockUI).toHaveBeenCalled();
             expect(memberBetListView.$isFilterVisible.val).toHaveBeenCalledWith("true");
             expect(memberBetListView.$multiSelectProductButton.hasClass("error")).toBeFalsy();
         });

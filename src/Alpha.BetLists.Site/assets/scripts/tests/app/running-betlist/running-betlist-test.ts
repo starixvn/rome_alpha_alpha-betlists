@@ -45,11 +45,6 @@
             runningBetlistView.init();
         });
 
-        it("_Calls blockUI", () => {
-            // assert
-            expect(jQueryFake.blockUI).toHaveBeenCalled();
-        });
-
         it("_Call cacheDOMElements", () => {
             // assert
             expect(runningBetlistView.cacheDOMElements).toHaveBeenCalled();
@@ -71,11 +66,6 @@
 
             // assert
             expect(runningBetlistView.onChangeGetAllCheckbox).toHaveBeenCalled();
-        });
-
-        it("_Calls unblockUI", () => {
-            // assert
-            expect(jQueryFake.unblockUI).toHaveBeenCalled();
         });
     });
 

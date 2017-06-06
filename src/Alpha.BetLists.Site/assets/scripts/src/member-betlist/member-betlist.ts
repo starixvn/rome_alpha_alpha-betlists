@@ -34,13 +34,9 @@ class MemberBetListView {
     }
 
     init = () => {
-        this.$.blockUI();
-
         this.cacheElements();
         this.bindFilter();
         this.registerEvents();
-
-        this.$.unblockUI();
     };
 
     public cacheElements() {
