@@ -14,6 +14,7 @@
             ITicketHelper ticketHelper)
             : base(query, betListData, builder, ticketHelper)
         {
+            TicketHelper.IsShowOddsWithChoice = true;
         }
     }
 }

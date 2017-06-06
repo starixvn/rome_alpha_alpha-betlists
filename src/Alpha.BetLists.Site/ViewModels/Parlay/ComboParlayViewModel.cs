@@ -17,6 +17,7 @@
             : base(query, betListData, builder, ticketHelper)
         {
             UnitStakeByOfferNames = GetUnitStakeByOfferName(query);
+            TicketHelper.IsShowOddsWithChoice = true;
         }
 
         public IDictionary<string, string> UnitStakeByOfferNames { get; }

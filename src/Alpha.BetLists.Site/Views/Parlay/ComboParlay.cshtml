@@ -1,19 +1,29 @@
 ﻿@using Alpha.BetLists.Site.ViewModels.Parlay
 @model ComboParlayViewModel
 
-<div class="ticket-list">
-    @if (Model.BetListData.Tickets.Any())
+@if (Model.BetListData.Tickets.Any())
+{
+    foreach (var unitStakeByOfferNames in Model.UnitStakeByOfferNames)
     {
-        foreach (var unitStakeByOfferNames in Model.UnitStakeByOfferNames)
-        {
-            <div>
-                @unitStakeByOfferNames.Key x <span class="unit-stake">@unitStakeByOfferNames.Value</span>
-            </div>
-        }
-        <div class="line"></div>
-        foreach (var ticket in Model.BetListData.Tickets)
-        {
-            @(new HtmlString(Model.Builder.BuildChoice(ticket, Model.TicketHelper, null, Model.CanViewScoreMap(ticket))))
-        }
+        <div class="offer-name-list">
+            @unitStakeByOfferNames.Key x <span class="unit-stake">@unitStakeByOfferNames.Value</span>
+        </div>
     }
-</div>
+
+    foreach (var ticket in Model.BetListData.Tickets)
+    {
+        <div class="ticket-list">
+            @(new HtmlString(Model.Builder.BuildChoice(ticket, Model.TicketHelper, null, Model.CanViewScoreMap(ticket))))
+        </div>
+
+        if (!ticket.Equals(Model.BetListData.Tickets.Last()))
+        {
+            <div class="line"></div>
+        }
+
+    }
+}
+else
+{
+    @Resources.NoInformationIsAvailable
+}

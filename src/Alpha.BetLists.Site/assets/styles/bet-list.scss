@@ -92,6 +92,15 @@ a {
     }
 }
 
+.line {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid $border-color;
+    width: 100%;
+    overflow: hidden;
+    text-align: left;
+}
+
 .bl_underdog, .underdog {
     color: #01122B;
     font-weight: bold !important;
@@ -323,6 +332,14 @@ div.match + div.league, div.league, .no-details {
 
 td.nonbreak {
     white-space: nowrap;
+}
+
+div.ticket-list div.void span, div.ticket-list div.void div {
+    text-decoration: line-through;
+}
+
+div.ticket-list div.void > div.match, div.ticket-list div.void div.firstGoal, div.ticket-list div.void div.lastGoal {
+    text-decoration: none;
 }
 
 .viewbrokengame-link {

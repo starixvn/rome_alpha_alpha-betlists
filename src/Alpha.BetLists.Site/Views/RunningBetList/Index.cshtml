@@ -80,8 +80,7 @@
                 var i = 1;
                 foreach (var ticket in Model.BetListData.Tickets)
                 {
-                    var transId = "r" + ticket.TransId;
-                    <tr id="@transId">
+                    <tr id="r@(ticket.TransId)">
                         <td class='w-order text-center'>@i</td>
                         @Trans.Render(Model.Builder, ticket)
                         @Choice.Render(Model.Builder, ticket, Model.TicketHelper, Model.BetListData.TicketData, Model.CanViewScoreMap(ticket))

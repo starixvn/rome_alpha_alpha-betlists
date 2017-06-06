@@ -37,8 +37,7 @@
             @for (int i = 0; i < Model.BetListData.Total; i++)
             {
                 var ticket = Model.BetListData.Tickets.ElementAt(i);
-                var transId = "r" + ticket.TransId;
-                <tr id="@transId">
+                <tr id="r@(ticket.TransId)">
                     <td class='w-order text-center'>@(i + 1)</td>
                     @if (Model.ShowMemberName)
                     {
