@@ -31,27 +31,26 @@ foreach (var item in groupDetailItem)
         </tr>
 }
 }
-<table class="tblRpt tblRpt-bordered tblRpt-striped width-100per tablesorter tblRpt-hover">
-    <thead>
-        <tr>
-            <th>@Resources.date</th>
-            <th>@Resources.events</th>
-            <th>@Resources.odds</th>
-            <th>@Resources.stake</th>
-            <th>@Resources.lblWinLoss</th>
-            <th>@Resources.status</th>
-        </tr>
-    </thead>
-    @if (Model.IsDataTooHuge)
-    {
-        <tbody>
-            <tr class="text-center" style="overflow-wrap: break-word">
-                <td colspan="6">@Html.Raw(Model.HugeDataLabel)</td>
+
+@if (Model.IsDataTooHuge)
+{
+    <div class="break-word">
+        @Html.Raw(Model.HugeDataLabel)
+    </div>
+}
+else
+{
+    <table class="tblRpt tblRpt-bordered tblRpt-striped width-100per tablesorter tblRpt-hover">
+        <thead>
+            <tr>
+                <th>@Resources.date</th>
+                <th>@Resources.events</th>
+                <th>@Resources.odds</th>
+                <th>@Resources.stake</th>
+                <th>@Resources.lblWinLoss</th>
+                <th>@Resources.status</th>
             </tr>
-        </tbody>
-    }
-    else
-    {
+        </thead>
         <tbody>
             @foreach (var group in Model.ComboParlayDetailWrapperGroups)
             {
@@ -78,5 +77,5 @@ foreach (var item in groupDetailItem)
                 </tr>
             }
         </tfoot>
-    }
-</table>
+    </table>
+}

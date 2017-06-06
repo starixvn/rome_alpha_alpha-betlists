@@ -1,7 +1,7 @@
 ﻿@using Alpha.BetLists.Site.ViewModels.Parlay
 @model ComboParlayViewModel
 
-@if (Model.BetListData.Tickets.Any())
+@if (Model.HasValidData)
 {
     foreach (var unitStakeByOfferNames in Model.UnitStakeByOfferNames)
     {

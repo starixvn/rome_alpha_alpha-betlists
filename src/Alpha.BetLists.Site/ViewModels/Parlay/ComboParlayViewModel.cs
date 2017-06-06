@@ -16,34 +16,47 @@
             ITicketHelper ticketHelper)
             : base(query, betListData, builder, ticketHelper)
         {
-            UnitStakeByOfferNames = GetUnitStakeByOfferName(query);
             TicketHelper.IsShowOddsWithChoice = true;
+            ComboParlayOfferNames = TicketHelper.GetCombinationMPOfferNameList(
+                query.BetTeam,
+                query.BetCheck,
+                query.Handicap1,
+                query.Handicap2);
+            ComboParlaySingleTickets = BetListData.Tickets
+                .Where(t => t.Stake > 0)
+                .OrderBy(t => t.MatchId)
+                .ToList();
+
+            UnitStakeByOfferNames = GetUnitStakeByOfferName(query);
         }
 
         public IDictionary<string, string> UnitStakeByOfferNames { get; }
 
+        public bool HasValidData
+            => ComboParlayOfferNames.Count <= ComboParlaySingleTickets.Count && ComboParlaySingleTickets.Any();
+
         private IDictionary<string, string> GetUnitStakeByOfferName(ComboParlayQuery query)
         {
             var offerNameUnitStakes = new Dictionary<string, string>();
-            var offerNames = TicketHelper.GetCombinationMPOfferNameList(query.BetTeam, query.BetCheck, query.Handicap1, query.Handicap2);
-            var comboTickets = BetListData.Tickets
-                .Where(t => t.Stake > 0)
-                .OrderBy(t => t.MatchId)
-                .ToArray();
 
-            if (comboTickets.Any())
+            var isSystemParlay = query.Handicap1 == 0;
+
+            if (HasValidData)
             {
-                var count = offerNames.Count();
-                for (var i = 0; i < count; i++)
+                var offerNamesAmount = ComboParlayOfferNames.Count;
+                for (var i = 0; i < offerNamesAmount; i++)
                 {
-                    var isSystemParlay = query.Handicap1 == 0;
-                    var comboTicket = isSystemParlay ? comboTickets[0] : comboTickets[i];
+                    var comboTicket = isSystemParlay ? ComboParlaySingleTickets[0] : ComboParlaySingleTickets[i];
 
-                    offerNameUnitStakes.Add(offerNames[i], comboTicket.Currency + " " + comboTicket.Stake.ToString("N0"));
+                    offerNameUnitStakes.Add(ComboParlayOfferNames[i], comboTicket.Currency + " " + comboTicket.Stake.ToString("N0"));
                 }
             }
 
             return offerNameUnitStakes;
         }
+
+        private IList<string> ComboParlayOfferNames { get; }
+
+        private List<TicketDto> ComboParlaySingleTickets { get; }
     }
 }

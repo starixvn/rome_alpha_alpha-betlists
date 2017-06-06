@@ -55,7 +55,7 @@
                 .Header(Resources.ResourceManager.GetString)
                 .ExportToBytes();
 
-            return new ExcelFileViewModel(comboParlayDetailViewModel.Title, fileContent);
+            return new ExcelFileViewModel("SystemParlay_Details", fileContent);
         }
 
         protected internal override TemplateInfo GetTemplateInfo(UserLevel viewerLevel)

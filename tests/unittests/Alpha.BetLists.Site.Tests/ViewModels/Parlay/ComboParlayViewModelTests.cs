@@ -18,21 +18,23 @@
     public class ComboParlayViewModelTests
     {
         private readonly BetListFixture betListFixture;
+        private readonly ComboParlayQuery query;
 
         public ComboParlayViewModelTests(BetListFixture betListFixture)
         {
             this.betListFixture = betListFixture;
+            query = new ComboParlayQuery(betListFixture.User);
         }
 
-        private List<string> ComboParlayOfferNames
+        private static List<string> ComboParlayOfferNames
             => new List<string>
             {
                 "Double", "Treble"
             };
 
-        private BetListData ComboParlayData => new BetListData(ComboParlayTickets, null);
+        private static BetListData ComboParlayData => new BetListData(ComboParlayTickets, null);
 
-        private List<TicketDto> ComboParlayTickets
+        private static List<TicketDto> ComboParlayTickets
             => new List<TicketDto>
             {
                 new TicketDto { Currency = "UUS", Stake = 10, MatchId = 1 },
@@ -40,12 +42,13 @@
             };
 
         [Fact]
-        public void UnitStakeByOfferNames_IsComboParlayTicket()
+        public void UnitStakeByOfferNames_IsComboParlayTicket_ReturnUnitStakeOfferNames()
         {
             // Arrange
-            var query = new ComboParlayQuery(betListFixture.User);
             query.Handicap1 = 1;
-            betListFixture.TicketHelper.GetCombinationMPOfferNameList(query.BetTeam, query.BetCheck, query.Handicap1, query.Handicap2)
+            betListFixture
+                .TicketHelper
+                .GetCombinationMPOfferNameList(query.BetTeam, query.BetCheck, query.Handicap1, query.Handicap2)
                 .Returns(ComboParlayOfferNames);
             var expectedUnitStakeOfferNames = new Dictionary<string, string>
             {
@@ -61,12 +64,13 @@
         }
 
         [Fact]
-        public void UnitStakeByOfferNames_IsSystemParlayTicket()
+        public void UnitStakeByOfferNames_IsSystemParlayTicket_ReturnUnitStakeOfferNames()
         {
             // Arrange
-            var query = new ComboParlayQuery(betListFixture.User);
             query.Handicap1 = 0;
-            betListFixture.TicketHelper.GetCombinationMPOfferNameList(query.BetTeam, query.BetCheck, query.Handicap1, query.Handicap2)
+            betListFixture
+                .TicketHelper
+                .GetCombinationMPOfferNameList(query.BetTeam, query.BetCheck, query.Handicap1, query.Handicap2)
                 .Returns(ComboParlayOfferNames);
             var expectedUnitStakeOfferNames = new Dictionary<string, string>
             {
@@ -76,6 +80,25 @@
 
             // Act
             var viewModel = new ComboParlayViewModel(query, ComboParlayData, betListFixture.HtmlBuilder, betListFixture.TicketHelper);
+
+            // Assert
+            Assert.Equal(expectedUnitStakeOfferNames, viewModel.UnitStakeByOfferNames);
+        }
+
+        [Fact]
+        public void UnitStakeByOfferNames_HasInvalidData_ReturnEmptyList()
+        {
+            // Arrange
+            query.Handicap1 = 0;
+            betListFixture
+                .TicketHelper
+                .GetCombinationMPOfferNameList(query.BetTeam, query.BetCheck, query.Handicap1, query.Handicap2)
+                .Returns(ComboParlayOfferNames);
+            var expectedUnitStakeOfferNames = new Dictionary<string, string>();
+            var emptyComboParlayData = new BetListData(new List<TicketDto>(), null);
+
+            // Act
+            var viewModel = new ComboParlayViewModel(query, emptyComboParlayData, betListFixture.HtmlBuilder, betListFixture.TicketHelper);
 
             // Assert
             Assert.Equal(expectedUnitStakeOfferNames, viewModel.UnitStakeByOfferNames);

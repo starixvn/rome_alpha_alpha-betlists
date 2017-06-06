@@ -426,6 +426,10 @@ div.ticket-list div.void > div.match, div.ticket-list div.void div.firstGoal, di
     }
 }
 
+.break-word {
+    overflow-wrap: break-word;
+}
+
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
     .bl_time {
         font-size: 8px;
