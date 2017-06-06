@@ -25,14 +25,21 @@
         {
             var offerNameUnitStakes = new Dictionary<string, string>();
             var offerNames = TicketHelper.GetCombinationMPOfferNameList(query.BetTeam, query.BetCheck, query.Handicap1, query.Handicap2);
-            var comboTickets = BetListData.Tickets.Where(t => t.Stake > 0).OrderBy(t => t.MatchId).ToArray();
+            var comboTickets = BetListData.Tickets
+                .Where(t => t.Stake > 0)
+                .OrderBy(t => t.MatchId)
+                .ToArray();
 
-            for (var i = 0; i < offerNames.Count(); i++)
+            if (comboTickets.Any())
             {
-                var isSystemParlay = query.Handicap1 == 0;
-                var comboTicket = isSystemParlay ? comboTickets[0] : comboTickets[i];
+                var count = offerNames.Count();
+                for (var i = 0; i < count; i++)
+                {
+                    var isSystemParlay = query.Handicap1 == 0;
+                    var comboTicket = isSystemParlay ? comboTickets[0] : comboTickets[i];
 
-                offerNameUnitStakes.Add(offerNames[i], comboTicket.Currency + " " + comboTicket.Stake.ToString("N0"));
+                    offerNameUnitStakes.Add(offerNames[i], comboTicket.Currency + " " + comboTicket.Stake.ToString("N0"));
+                }
             }
 
             return offerNameUnitStakes;
