@@ -31,6 +31,7 @@
 
     public class ComboParlayDetailWorkbookImpl : NpoiWorkbook<IEnumerable<ComboParlayDetailWrapper>>, ComboParlayDetailWorkbook
     {
+        private const int DataSheetIndex = 1;
         private int currentRowIndex;
 
         public ComboParlayDetailViewModel ComboParlayDetails { get; private set; }
@@ -83,8 +84,14 @@
             SubTotalRowTemplate = sheet.GetRow(currentRowIndex++);
             FooterRowTemplate = sheet.GetRow(currentRowIndex);
 
-            return sheet;
+            return GetSheetAt(DataSheetIndex);
         }
+
+        protected override void RemoveSheetAt(int sheetIndex)
+            => Workbook.RemoveSheetAt(TemplateInfo.SheetIndex);
+
+        protected override void FillSheetName(int index, string name)
+            => Workbook.SetSheetName(DataSheetIndex, name);
 
         protected override void FillBody(Sheet sheet)
         {

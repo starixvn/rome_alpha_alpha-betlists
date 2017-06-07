@@ -20,6 +20,7 @@
     public class BetListExcelBaseHandler : BetListBaseHandler
     {
         private const string ExcelTemplateDir = "~/App_Data/ExcelTemplates/{0}/{1}.{2}";
+        private int currentRowIndex = 1;
 
         public BetListExcelBaseHandler(
             IBetListHTMLBuilder builder,
@@ -88,6 +89,7 @@
             var ticketData = viewModel.BetListData.TicketData;
 
             var mapper = new Mapper<TicketDto>()
+                .Map(A, _ => currentRowIndex++)
                 .Map(B, ticket => BuildTrans(ticket))
                 .Map(C, ticket => BuildChoice(ticket, viewModel))
                 .Map(D, ticket => BuildOdds(ticket, viewModel))
