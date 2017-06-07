@@ -38,7 +38,6 @@
             winLossHandler = new WinLossHandler(
                 winLossService,
                 this.betlistFixture.HtmlBuilder,
-                this.betlistFixture.ExcelBuilder,
                 this.betlistFixture.TicketHelper,
                 this.betlistFixture.MoniterService,
                 this.betlistFixture.IpService);
@@ -103,6 +102,24 @@
 
             // Assert
             Assert.True(compareLogic.Compare(viewModel, expectedViewModel).AreEqual);
+        }
+
+        [Fact]
+        public void CreateWinLossParam_Always_ReturnWinLossParam()
+        {
+            // Arrange
+            var user = Substitute.For<IUser>();
+            user.LevelId.Returns(UserLevel.Agent.Value);
+
+            // Act
+            var param = WinLossHandler.CreateWinLossParam(query);
+
+            // Assert
+            Assert.True(param.CustId == query.CustId
+                && param.ProductIds.SequenceEqual(query.ProductIds.ToListInt())
+                && param.FromDate == query.FromDate
+                && param.ToDate == query.ToDate
+                && param.Language == query.Language);
         }
     }
 }

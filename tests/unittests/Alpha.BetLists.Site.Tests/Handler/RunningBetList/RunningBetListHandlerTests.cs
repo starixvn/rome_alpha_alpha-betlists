@@ -48,7 +48,6 @@
                 productService,
                 foreCastService,
                 this.betlistFixture.HtmlBuilder,
-                this.betlistFixture.ExcelBuilder,
                 this.betlistFixture.TicketHelper,
                 this.betlistFixture.MoniterService,
                 this.betlistFixture.IpService);

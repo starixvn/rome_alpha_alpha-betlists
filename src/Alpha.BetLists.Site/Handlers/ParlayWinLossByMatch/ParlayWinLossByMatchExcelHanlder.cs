@@ -1,29 +1,30 @@
-﻿using System.Threading.Tasks;
-using Alpha.BetLists.AppResources;
-using Alpha.BetLists.Models;
-using Alpha.BetLists.Services;
-using Alpha.BetLists.Site.Handlers.WinLossByMatch;
-using Alpha.BetLists.Site.Requests.WinLossByMatch;
-using Alpha.BetLists.Site.ViewModels;
-using Alpha.BetLists.Site.ViewModels.ParlayWinLossByMatch;
-using Alpha.SmartPunter.Services;
-using Alpha.Utilities.IP;
-using Fanex.BetList.Core.Builder;
-using Fanex.BetList.Core.Entities;
-using MediatR;
-using ONEbook.SpreadSheets;
-
-namespace Alpha.BetLists.Site.Handlers.ParlayWinLossByMatch
+﻿namespace Alpha.BetLists.Site.Handlers.ParlayWinLossByMatch
 {
+    using System.Threading.Tasks;
+    using AppResources;
+    using BetLists.Models;
+    using Fanex.BetList.Core.Builder;
+    using Fanex.BetList.Core.Entities;
+    using MediatR;
+    using ONEbook.SpreadSheets;
+    using Requests.WinLossByMatch;
+    using Services;
+    using SmartPunter.Services;
+    using Utilities.IP;
+    using ViewModels;
+    using ViewModels.ParlayWinLossByMatch;
+    using WinLossByMatch;
+
     public class ParlayWinLossByMatchExcelHanlder
-        : ParlayWinLossByMatchBaseHandler,
+        : BetListExcelBaseHandler,
         IAsyncRequestHandler<ParlayWinLossByMatchExcelQuery, ExcelFileViewModel>
     {
+        private readonly ParlayWinLossByMatchService parlayWinLossByMatchService;
         private readonly Workbook<TicketDto> workbook;
         private readonly WinLossByMatchExcelHandler winLossByMatchExcelHandler;
 
         public ParlayWinLossByMatchExcelHanlder(
-            ParlayWinLossByMatchService winLossService,
+            ParlayWinLossByMatchService parlayWinLossByMatchService,
             ISmartPunterBetListMonitor monitorService,
             IBetListHTMLBuilder builder,
             IBetListExcelBuilder excelBuilder,
@@ -31,23 +32,24 @@ namespace Alpha.BetLists.Site.Handlers.ParlayWinLossByMatch
             IPService ipService,
             Workbook<TicketDto> workbook,
             WinLossByMatchExcelHandler winLossByMatchExcelHandler = null)
-            : base(winLossService, monitorService, builder, excelBuilder, ticketHelper, ipService)
+            : base(builder, excelBuilder, ticketHelper, monitorService, ipService)
         {
             this.workbook = workbook;
             this.winLossByMatchExcelHandler = winLossByMatchExcelHandler ?? new WinLossByMatchExcelHandler(
                 null,
-                monitorService,
                 builder,
                 excelBuilder,
                 ticketHelper,
+                monitorService,
                 ipService,
                 workbook);
+            this.parlayWinLossByMatchService = parlayWinLossByMatchService;
         }
 
         public async Task<ExcelFileViewModel> Handle(ParlayWinLossByMatchExcelQuery message)
         {
-            var winLossParam = CreateWinLossParam(message);
-            var tickets = await WinLossService.GetBetList(winLossParam);
+            var winLossParam = ParlayWinLossByMatchHandler.CreateWinLossParam(message);
+            var tickets = await parlayWinLossByMatchService.GetBetList(winLossParam);
 
             var viewModel = new ParlayWinLossByMatchViewModel(message, new BetListData(tickets, null), null, TicketHelper);
 

@@ -103,7 +103,7 @@
 
             // Assert
             workbook.Received().UseTemplate(Arg.Is<TemplateInfo>(
-                t => t.TemplatePath == $"~/App_Data/ExcelTemplates/{query.ViewerLevel.DisplayName}.xls"
+                t => t.TemplatePath == $"~/App_Data/ExcelTemplates/WinLoss/{query.ViewerLevel.DisplayName}.xls"
                 && t.NoInfomationText == Resources.NoInformationIsAvailable
                 && t.BodyStartIndex == 3 - 1
                 && t.BodyEndIndex == 4 - 1

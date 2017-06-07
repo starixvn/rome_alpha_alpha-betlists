@@ -40,7 +40,6 @@ namespace Alpha.BetLists.Site.Tests.Handler.ParlayWinLossByMatch
                 winLossService,
                 this.betlistFixture.MoniterService,
                 this.betlistFixture.HtmlBuilder,
-                this.betlistFixture.ExcelBuilder,
                 this.betlistFixture.TicketHelper,
                 this.betlistFixture.IpService);
 
@@ -102,6 +101,21 @@ namespace Alpha.BetLists.Site.Tests.Handler.ParlayWinLossByMatch
 
             // Assert
             Assert.True(compareLogic.Compare(viewModel, expectedViewModel).AreEqual);
+        }
+
+        [Fact]
+        public void CreateWinLossByMatchParam_Always_ReturnWinLossParam()
+        {
+            // Arrange
+            user.LevelId.Returns(UserLevel.Agent.Value);
+            var query = CreateWinLossByMatchQuery();
+            var expectedParam = new ParlayWinLossByMatchParam(1, 2, "en", DateTime.Today, DateTime.Today, UserLevel.Super);
+
+            // Act
+            var actualParam = ParlayWinLossByMatchHandler.CreateWinLossParam(query);
+
+            // Assert
+            Assert.True(compareLogic.Compare(expectedParam, actualParam).AreEqual);
         }
 
         private ParlayWinLossByMatchQuery CreateWinLossByMatchQuery()

@@ -3,7 +3,7 @@
     using BetLists.Models;
     using BetLists.Tests.TestData;
     using Fixtures;
-    using Handlers;
+    using Handlers.Parlay;
     using KellermanSoftware.CompareNetObjects;
     using NSubstitute;
     using Requests.Parlay;
@@ -27,7 +27,6 @@
             parlayHandler = new ParlayHandler(
                 this.parlayServiceFixture.ParlayService,
                 betListFixture.HtmlBuilder,
-                betListFixture.ExcelBuilder,
                 betListFixture.TicketHelper,
                 betListFixture.MoniterService,
                 betListFixture.IpService);

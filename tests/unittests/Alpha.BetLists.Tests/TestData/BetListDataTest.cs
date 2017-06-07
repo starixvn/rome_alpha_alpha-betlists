@@ -40,6 +40,8 @@
 
         public static readonly IEnumerable<ComboParlayDetail> ComboParlayDetails = fixture.CreateMany<ComboParlayDetail>();
 
+        public static readonly IEnumerable<ComboParlayDetail> ComboParlayDetailsHuge = fixture.CreateMany<ComboParlayDetail>(5001);
+
         public static readonly IEnumerable<MatchDetail> MatchDetails = fixture.CreateMany<MatchDetail>();
 
         public static readonly Tuple<IEnumerable<ComboParlayDetail>, IEnumerable<MatchDetail>> ComboParlayDetailTuple

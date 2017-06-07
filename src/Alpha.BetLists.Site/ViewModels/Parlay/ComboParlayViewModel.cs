@@ -32,6 +32,10 @@
 
         public IDictionary<string, string> UnitStakeByOfferNames { get; }
 
+        private IList<string> ComboParlayOfferNames { get; }
+
+        private List<TicketDto> ComboParlaySingleTickets { get; }
+
         public bool HasValidData
             => ComboParlayOfferNames.Count <= ComboParlaySingleTickets.Count && ComboParlaySingleTickets.Any();
 
@@ -54,9 +58,5 @@
 
             return offerNameUnitStakes;
         }
-
-        private IList<string> ComboParlayOfferNames { get; }
-
-        private List<TicketDto> ComboParlaySingleTickets { get; }
     }
 }

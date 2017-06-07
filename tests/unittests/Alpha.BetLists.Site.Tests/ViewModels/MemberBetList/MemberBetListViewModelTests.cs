@@ -159,7 +159,6 @@
         public void GetDailyStatementLink_Always_ReturnsCorrectLink()
         {
             // Arrange
-
             UrlHelperTestSetUp.SetUp();
 
             // Act

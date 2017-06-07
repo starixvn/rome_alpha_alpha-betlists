@@ -166,5 +166,37 @@
             // Assert
             Assert.True(isRunningTicket);
         }
+
+        [Fact]
+        public void ComboParlayDetailViewModelCtor_IsDataNotHuge_InitData()
+        {
+            // Arrange
+            var comboParlayDetailsData = BetListDataTest.ComboParlayDetailData;
+
+            // Act
+            var viewModel = new ComboParlayDetailViewModel(query, comboParlayDetailsData, ticketHelper);
+
+            // Assert
+            Assert.True(
+                viewModel.ComboParlayDetailWrapperGroups.Any() &&
+                !string.IsNullOrEmpty(viewModel.OutStanding) &&
+                !string.IsNullOrEmpty(viewModel.TotalWinLost));
+        }
+
+        [Fact]
+        public void ComboParlayDetailViewModelCtor_IsExportingExcel_InitData()
+        {
+            // Arrange
+            var comboParlayDetailsData = new ComboParlayDetailData(BetListDataTest.ComboParlayDetailsHuge, BetListDataTest.MatchDetails, 10);
+
+            // Act
+            var viewModel = new ComboParlayDetailViewModel(query, comboParlayDetailsData, ticketHelper, isExportingExcel: true);
+
+            // Assert
+            Assert.True(
+                viewModel.ComboParlayDetailWrapperGroups.Any() &&
+                !string.IsNullOrEmpty(viewModel.OutStanding) &&
+                !string.IsNullOrEmpty(viewModel.TotalWinLost));
+        }
     }
 }

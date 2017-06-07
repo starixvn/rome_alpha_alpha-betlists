@@ -15,18 +15,24 @@
         public ComboParlayDetailViewModel(
             ComboParlayDetailQuery query,
             ComboParlayDetailData comboParlayDetailData,
-            ITicketHelper ticketHelper)
+            ITicketHelper ticketHelper,
+            bool isExportingExcel = false)
         {
-            Query = query;
-            ComboParlayDetailWrappers = new List<ComboParlayDetailWrapper>(comboParlayDetailData.ComboParlayDetails
-                    .Select(d => new ComboParlayDetailWrapper(d, comboParlayDetailData.MatchDetails, ticketHelper)));
-            ComboParlayDetailWrapperGroups = ComboParlayDetailWrappers.GroupBy(w => w.WinLostDate);
-
-            OutStanding = ConvertByBetType.Stake(comboParlayDetailData.Outstanding);
-            Title = Resources.lblSystemParlay;
-            TotalWinLost = ConvertByBetType.Winloss(comboParlayDetailData.ComboParlayDetails.Sum(d => d.WinLost + d.PlayerComm));
             IsDataTooHuge = comboParlayDetailData.ComboParlayDetails.Count() > 5000;
-            IsRunningTicket = !comboParlayDetailData.ComboParlayDetails.Any();
+            Query = query;
+            Title = Resources.lblSystemParlay;
+            var allowInitializingData = isExportingExcel || !IsDataTooHuge;
+
+            if (allowInitializingData)
+            {
+                ComboParlayDetailWrappers = new List<ComboParlayDetailWrapper>(comboParlayDetailData.ComboParlayDetails
+                        .Select(d => new ComboParlayDetailWrapper(d, comboParlayDetailData.MatchDetails, ticketHelper)));
+                ComboParlayDetailWrapperGroups = ComboParlayDetailWrappers.GroupBy(w => w.WinLostDate);
+
+                OutStanding = ConvertByBetType.Stake(comboParlayDetailData.Outstanding);
+                TotalWinLost = ConvertByBetType.Winloss(comboParlayDetailData.ComboParlayDetails.Sum(d => d.WinLost + d.PlayerComm));
+                IsRunningTicket = !comboParlayDetailData.ComboParlayDetails.Any();
+            }
         }
 
         public ComboParlayDetailQuery Query { get; }

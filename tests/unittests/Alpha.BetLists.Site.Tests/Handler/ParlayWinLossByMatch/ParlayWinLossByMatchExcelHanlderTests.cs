@@ -1,24 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Threading;
-using Alpha.BetLists.Models;
-using Alpha.BetLists.Params;
-using Alpha.BetLists.Services;
-using Alpha.BetLists.Site.Handlers.ParlayWinLossByMatch;
-using Alpha.BetLists.Site.Handlers.WinLossByMatch;
-using Alpha.BetLists.Site.Requests.WinLossByMatch;
-using Alpha.BetLists.Site.Tests.Constants;
-using Alpha.BetLists.Site.Tests.Fixtures;
-using Alpha.BetLists.Tests.TestData;
-using Alpha.RemotingRef;
-using Fanex.BetList.Core.Entities;
-using NSubstitute;
-using ONEbook.SpreadSheets;
-using Xunit;
-
-namespace Alpha.BetLists.Site.Tests.Handler.ParlayWinLossByMatch
+﻿namespace Alpha.BetLists.Site.Tests.Handler.ParlayWinLossByMatch
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Threading;
+    using Alpha.BetLists.Models;
+    using Alpha.BetLists.Params;
+    using Alpha.BetLists.Services;
+    using Alpha.BetLists.Site.Handlers.ParlayWinLossByMatch;
+    using Alpha.BetLists.Site.Handlers.WinLossByMatch;
+    using Alpha.BetLists.Site.Requests.WinLossByMatch;
+    using Alpha.BetLists.Site.Tests.Constants;
+    using Alpha.BetLists.Site.Tests.Fixtures;
+    using Alpha.BetLists.Tests.TestData;
+    using Alpha.RemotingRef;
+    using NSubstitute;
+    using ONEbook.SpreadSheets;
+    using Xunit;
+
     [Trait("Category", "ParlayWinLossByMatch")]
     [Collection("BetListCollection")]
     public class ParlayWinLossByMatchExcelHanlderTests
@@ -30,8 +29,8 @@ namespace Alpha.BetLists.Site.Tests.Handler.ParlayWinLossByMatch
 
         public ParlayWinLossByMatchExcelHanlderTests(BetListFixture betlistFixture)
         {
-            var winLossService = Substitute.For<ParlayWinLossByMatchService>();
-            winLossService.GetBetList(Arg.Any<ParlayWinLossByMatchParam>()).Returns(BetListDataTest.Tickets);
+            var parlayWinLossByMatchService = Substitute.For<ParlayWinLossByMatchService>();
+            parlayWinLossByMatchService.GetBetList(Arg.Any<ParlayWinLossByMatchParam>()).Returns(BetListDataTest.Tickets);
 
             user = Substitute.For<IUser>();
             user.Id.Returns(2);
@@ -45,19 +44,19 @@ namespace Alpha.BetLists.Site.Tests.Handler.ParlayWinLossByMatch
             workbook.Footer(Arg.Any<TicketDto>(), Arg.Any<Mapper<TicketDto>>()).Returns(workbook);
             workbook.Sheet(Arg.Any<string>()).Returns(workbook);
 
-            var winLossByMatchExcelHandler = Substitute.ForPartsOf<WinLossByMatchExcelHandler>(
+            var winLossByMatchExcelHandler = new WinLossByMatchExcelHandler(
                 null,
-                betlistFixture.MoniterService,
                 betlistFixture.HtmlBuilder,
                 betlistFixture.ExcelBuilder,
                 betlistFixture.TicketHelper,
+                betlistFixture.MoniterService,
                 betlistFixture.IpService,
                 workbook);
             winLossByMatchExcelHandler.MapPath = (path) => path;
             winLossByMatchExcelHandler.IsFileExist = (path) => true;
 
-            winLossHandler = Substitute.ForPartsOf<ParlayWinLossByMatchExcelHanlder>(
-                winLossService,
+            winLossHandler = new ParlayWinLossByMatchExcelHanlder(
+                parlayWinLossByMatchService,
                 betlistFixture.MoniterService,
                 betlistFixture.HtmlBuilder,
                 betlistFixture.ExcelBuilder,

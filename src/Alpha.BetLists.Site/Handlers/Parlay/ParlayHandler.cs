@@ -1,4 +1,4 @@
-﻿namespace Alpha.BetLists.Site.Handlers
+﻿namespace Alpha.BetLists.Site.Handlers.Parlay
 {
     using System.Threading.Tasks;
     using BetLists.Models;
@@ -11,37 +11,48 @@
     using Utilities.IP;
     using ViewModels.Parlay;
 
-    public class ParlayHandler : ParlayBaseHandler,
+    public class ParlayHandler : BetListBaseHandler,
         IAsyncRequestHandler<MixParlayQuery, MixParlayViewModel>,
         IAsyncRequestHandler<ComboParlayQuery, ComboParlayViewModel>,
         IAsyncRequestHandler<ComboParlayDetailQuery, ComboParlayDetailViewModel>
     {
+        private readonly ParlayService parlayService;
+
         public ParlayHandler(
             ParlayService parlayService,
             IBetListHTMLBuilder builder,
-            IBetListExcelBuilder excelBuilder,
             ITicketHelper ticketHelper,
             ISmartPunterBetListMonitor monitorService,
             IPService ipService)
-            : base(parlayService, builder, excelBuilder, ticketHelper, monitorService, ipService)
+            : base(builder, ticketHelper, monitorService, ipService)
         {
+            this.parlayService = parlayService;
         }
 
         public async Task<MixParlayViewModel> Handle(MixParlayQuery message)
         {
-            var tickets = await ParlayService.GetParlayBetList(message.TransId, message.Language);
+            var tickets = await parlayService.GetParlayBetList(message.TransId, message.Language);
 
             return new MixParlayViewModel(message, new BetListData(tickets, null), Builder, TicketHelper);
         }
 
         public async Task<ComboParlayViewModel> Handle(ComboParlayQuery message)
         {
-            var tickets = await ParlayService.GetParlayBetList(message.TransId, message.Language);
+            var tickets = await parlayService.GetParlayBetList(message.TransId, message.Language);
 
             return new ComboParlayViewModel(message, new BetListData(tickets, null), Builder, TicketHelper);
         }
 
         public async Task<ComboParlayDetailViewModel> Handle(ComboParlayDetailQuery message)
-            => await GetComboParlayDetail(message);
+        {
+            var comboParlayDetailData = await parlayService.GetComboParlayDetail(
+                          message.TransId,
+                          message.RefNo,
+                          message.BetId,
+                          message.CustId,
+                          message.Language);
+
+            return new ComboParlayDetailViewModel(message, comboParlayDetailData, TicketHelper, isExportingExcel: false);
+        }
     }
 }

@@ -16,28 +16,30 @@
     using ViewModels.WinLossByMatch;
     using static ONEbook.SpreadSheets.Column;
 
-    public class WinLossByMatchExcelHandler : WinLossByMatchBaseHandler, IAsyncRequestHandler<WinLossByMatchExcelQuery, ExcelFileViewModel>
+    public class WinLossByMatchExcelHandler : BetListExcelBaseHandler, IAsyncRequestHandler<WinLossByMatchExcelQuery, ExcelFileViewModel>
     {
+        private readonly WinLossByMatchService winLossByMatchService;
         private readonly Workbook<TicketDto> workbook;
         private int currentRowIndex;
 
         public WinLossByMatchExcelHandler(
-            WinLossByMatchService winLossService,
-            ISmartPunterBetListMonitor monitorService,
+            WinLossByMatchService winLossByMatchService,
             IBetListHTMLBuilder builder,
             IBetListExcelBuilder excelBuilder,
             ITicketHelper ticketHelper,
+            ISmartPunterBetListMonitor monitorService,
             IPService ipService,
             Workbook<TicketDto> workbook)
-            : base(winLossService, monitorService, builder, excelBuilder, ticketHelper, ipService)
+            : base(builder, excelBuilder, ticketHelper, monitorService, ipService)
         {
+            this.winLossByMatchService = winLossByMatchService;
             this.workbook = workbook;
         }
 
         public async Task<ExcelFileViewModel> Handle(WinLossByMatchExcelQuery message)
         {
-            var winLossParam = CreateWinLossParam(message);
-            var betlistData = await WinLossService.GetBetList(winLossParam);
+            var winLossParam = WinLossByMatchHandler.CreateWinLossParam(message);
+            var betlistData = await winLossByMatchService.GetBetList(winLossParam);
 
             var viewModel = new WinLossByMatchViewModel(message, betlistData, null, TicketHelper);
 
@@ -61,7 +63,7 @@
         }
 
         protected internal override string ExcelTemplatePath(UserLevel viewerLevel)
-            => GetExcelTemplatePath($"WinLossByMatch\\{viewerLevel.DisplayName}");
+            => GetExcelTemplatePath(viewerLevel.DisplayName);
 
         protected internal override Mapper<TicketDto> GetBodyRowMapper(UserLevel viewerLevel, BetListBaseViewModel viewModel)
         {

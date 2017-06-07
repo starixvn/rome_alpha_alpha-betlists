@@ -14,8 +14,9 @@
     using ViewModels;
     using ViewModels.WinLoss;
 
-    public class WinLossExcelHandler : WinLossBaseHandler, IAsyncRequestHandler<WinLossExcelQuery, ExcelFileViewModel>
+    public class WinLossExcelHandler : BetListExcelBaseHandler, IAsyncRequestHandler<WinLossExcelQuery, ExcelFileViewModel>
     {
+        private readonly WinLossService winLossService;
         private readonly Workbook<TicketDto> workbook;
 
         public WinLossExcelHandler(
@@ -26,15 +27,16 @@
             ISmartPunterBetListMonitor monitorService,
             IPService ipService,
             Workbook<TicketDto> workbook)
-            : base(winLossService, builder, excelBuilder, ticketHelper, monitorService, ipService)
+            : base(builder, excelBuilder, ticketHelper, monitorService, ipService)
         {
             this.workbook = workbook;
+            this.winLossService = winLossService;
         }
 
         public async Task<ExcelFileViewModel> Handle(WinLossExcelQuery message)
         {
-            var winLossParam = CreateWinLossParam(message);
-            var betlistData = await WinLossService.GetBetList(winLossParam);
+            var winLossParam = WinLossHandler.CreateWinLossParam(message);
+            var betlistData = await winLossService.GetBetList(winLossParam);
 
             var winLossViewModel = new WinLossViewModel(message, betlistData, null, TicketHelper);
 

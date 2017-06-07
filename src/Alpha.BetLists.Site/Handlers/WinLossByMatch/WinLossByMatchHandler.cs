@@ -1,36 +1,53 @@
-﻿using System.Threading.Tasks;
-using Alpha.BetLists.Services;
-using Alpha.BetLists.Site.Requests.WinLossByMatch;
-using Alpha.BetLists.Site.ViewModels.WinLossByMatch;
-using Alpha.SmartPunter.Services;
-using Alpha.Utilities.IP;
-using Fanex.BetList.Core.Builder;
-using Fanex.BetList.Core.Entities;
-using MediatR;
-
-namespace Alpha.BetLists.Site.Handlers.WinLossByMatch
+﻿namespace Alpha.BetLists.Site.Handlers.WinLossByMatch
 {
-    public class WinLossByMatchHandler : WinLossByMatchBaseHandler, IAsyncRequestHandler<WinLossByMatchQuery, WinLossByMatchViewModel>
+    using System.Threading.Tasks;
+    using Fanex.BetList.Core.Builder;
+    using Fanex.BetList.Core.Entities;
+    using MediatR;
+    using Params;
+    using Requests.WinLossByMatch;
+    using Services;
+    using SmartPunter.Services;
+    using Utilities.IP;
+    using ViewModels.WinLossByMatch;
+
+    public class WinLossByMatchHandler : BetListBaseHandler, IAsyncRequestHandler<WinLossByMatchQuery, WinLossByMatchViewModel>
     {
+        private readonly WinLossByMatchService winLossByMatchService;
+
         public WinLossByMatchHandler(
-            WinLossByMatchService winLossService,
-            ISmartPunterBetListMonitor monitorService,
-            IBetListHTMLBuilder builder,
-            IBetListExcelBuilder excelBuilder,
-            ITicketHelper ticketHelper,
-            IPService ipService)
-            : base(winLossService, monitorService, builder, excelBuilder, ticketHelper, ipService)
+           WinLossByMatchService winLossByMatchService,
+           IBetListHTMLBuilder builder,
+           ITicketHelper ticketHelper,
+           ISmartPunterBetListMonitor monitorService,
+           IPService ipService)
+            : base(builder, ticketHelper, monitorService, ipService)
         {
+            this.winLossByMatchService = winLossByMatchService;
         }
 
         public async Task<WinLossByMatchViewModel> Handle(WinLossByMatchQuery message)
         {
             var winLossParam = CreateWinLossParam(message);
-            var betlistData = await WinLossService.GetBetList(winLossParam);
+            var betlistData = await winLossByMatchService.GetBetList(winLossParam);
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
             return new WinLossByMatchViewModel(message, betlistData, Builder, TicketHelper);
         }
+
+        protected internal static WinLossByMatchParam CreateWinLossParam(WinLossByMatchQuery message)
+            => new WinLossByMatchParam(
+                message.CustId,
+                message.LeagueId,
+                message.MatchId,
+                message.BetType,
+                message.Race,
+                message.LiveIndicator,
+                message.Language,
+                message.CustName,
+                message.FromDate,
+                message.ToDate,
+                message.CustLevel);
     }
 }

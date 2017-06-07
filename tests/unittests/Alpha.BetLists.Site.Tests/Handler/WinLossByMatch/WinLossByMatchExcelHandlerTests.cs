@@ -43,12 +43,12 @@ namespace Alpha.BetLists.Site.Tests.Handler.WinLossByMatch
             workbook.Footer(Arg.Any<TicketDto>(), Arg.Any<Mapper<TicketDto>>()).Returns(workbook);
             workbook.Sheet(Arg.Any<string>()).Returns(workbook);
 
-            winLossHandler = Substitute.ForPartsOf<WinLossByMatchExcelHandler>(
+            winLossHandler = new WinLossByMatchExcelHandler(
                 winLossService,
-                betlistFixture.MoniterService,
                 betlistFixture.HtmlBuilder,
                 betlistFixture.ExcelBuilder,
                 betlistFixture.TicketHelper,
+                betlistFixture.MoniterService,
                 betlistFixture.IpService,
                 workbook);
             winLossHandler.MapPath = (path) => path;

@@ -1,22 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Alpha.BetLists.Extensions;
-using Alpha.BetLists.Models;
-using Alpha.BetLists.Params;
-using Alpha.BetLists.Services;
-using Alpha.BetLists.Site.Handlers.WinLossByMatch;
-using Alpha.BetLists.Site.Requests.WinLossByMatch;
-using Alpha.BetLists.Site.Tests.Fixtures;
-using Alpha.BetLists.Site.ViewModels.WinLossByMatch;
-using Alpha.BetLists.Tests.TestData;
-using Fanex.BetList.Core.Entities;
-using KellermanSoftware.CompareNetObjects;
-using NSubstitute;
-using Xunit;
-
-namespace Alpha.BetLists.Site.Tests.Handler.WinLossByMatch
+﻿namespace Alpha.BetLists.Site.Tests.Handler.WinLossByMatch
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using BetLists.Models;
+    using BetLists.Tests.TestData;
+    using Fanex.BetList.Core.Entities;
+    using Fixtures;
+    using Handlers.WinLossByMatch;
+    using KellermanSoftware.CompareNetObjects;
+    using NSubstitute;
+    using Params;
+    using Requests.WinLossByMatch;
+    using Services;
+    using Site.ViewModels.WinLossByMatch;
+    using Xunit;
+
     [Trait("Category", "WinLossByMatch")]
     [Collection("BetListCollection")]
     public class WinLossByMatchHandlerTests
@@ -39,10 +38,9 @@ namespace Alpha.BetLists.Site.Tests.Handler.WinLossByMatch
 
             winLossHandler = new WinLossByMatchHandler(
                 winLossService,
-                this.betlistFixture.MoniterService,
                 this.betlistFixture.HtmlBuilder,
-                this.betlistFixture.ExcelBuilder,
                 this.betlistFixture.TicketHelper,
+                this.betlistFixture.MoniterService,
                 this.betlistFixture.IpService);
 
             compareLogic = new CompareLogic(new ComparisonConfig
@@ -117,6 +115,21 @@ namespace Alpha.BetLists.Site.Tests.Handler.WinLossByMatch
 
             // Assert
             Assert.True(compareLogic.Compare(viewModel, expectedViewModel).AreEqual);
+        }
+
+        [Fact]
+        public void CreateWinLossByMatchParam_Always_ReturnWinLossParam()
+        {
+            // Arrange
+            var query = CreateWinLossByMatchQuery();
+
+            var expectedParam = new WinLossByMatchParam(1, 2, 3, 4, "5", 1, "en", "CustName", DateTime.Today, DateTime.Today, UserLevel.Super);
+
+            // Act
+            var actualParam = WinLossByMatchHandler.CreateWinLossParam(query);
+
+            // Assert
+            Assert.True(compareLogic.Compare(expectedParam, actualParam).AreEqual);
         }
 
         private WinLossByMatchQuery CreateWinLossByMatchQuery()

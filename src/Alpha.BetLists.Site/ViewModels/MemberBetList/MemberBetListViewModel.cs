@@ -48,43 +48,25 @@
 
         public string ViewDataInstructionMessage { get; }
 
-        public bool IsFilterVisible => query.IsFilterVisible;
-
         public IEnumerable<int> SupportScoreMapBettypeIds { get; }
 
         public IEnumerable<SelectListItem> Products { get; }
 
-        public DateRangePickerViewModel DateRangePickerViewModel =>
-            new DateRangePickerViewModel(
+        public bool IsFilterVisible => query.IsFilterVisible;
+
+        public DateRangePickerViewModel DateRangePickerViewModel
+            => new DateRangePickerViewModel(
                 query.MinDate,
                 DateTime.MaxValue,
                 FromDate,
                 ToDate,
                 query.UserSelectedDateRangeOption);
 
-        public ProductMultiSelectionViewModel ProductMultiSelectionViewModel =>
-            new ProductMultiSelectionViewModel(
+        public ProductMultiSelectionViewModel ProductMultiSelectionViewModel
+            => new ProductMultiSelectionViewModel(
                 Products,
                 ProductsId,
                 query.Language);
-
-        public string BuildRunningBetListLink(string link)
-        {
-            var routeValues = new Dictionary<string, object>
-            {
-                ["CustId"] = CustId,
-                ["CustName"] = CustName,
-                ["FromDate"] = SystemTime.Today.AddDays(-7).ToShortDateWithSlash(),
-                ["ToDate"] = SystemTime.Today.ToShortDateWithSlash(),
-                ["ProductIds"] = ProductsId
-            };
-
-            return Helpers.UrlHelper.AddQueryStringParamsFunc(link, routeValues);
-        }
-
-        public override bool CanViewScoreMap(ITicket ticket)
-            => ticket.Status.Equals(BetStatus.Running)
-            && SupportScoreMapBettypeIds.Contains(ticket.BetTypeId);
 
         public static string GetDailyStatementLink(int custId, string custName, string productIds)
         {
@@ -98,6 +80,24 @@
             };
 
             return Helpers.UrlHelper.AddQueryStringParamsFunc(url, routeValues);
+        }
+
+        public override bool CanViewScoreMap(ITicket ticket)
+           => ticket.Status.Equals(BetStatus.Running)
+           && SupportScoreMapBettypeIds.Contains(ticket.BetTypeId);
+
+        public string BuildRunningBetListLink(string link)
+        {
+            var routeValues = new Dictionary<string, object>
+            {
+                ["CustId"] = CustId,
+                ["CustName"] = CustName,
+                ["FromDate"] = SystemTime.Today.AddDays(-7).ToShortDateWithSlash(),
+                ["ToDate"] = SystemTime.Today.ToShortDateWithSlash(),
+                ["ProductIds"] = ProductsId
+            };
+
+            return Helpers.UrlHelper.AddQueryStringParamsFunc(link, routeValues);
         }
     }
 }

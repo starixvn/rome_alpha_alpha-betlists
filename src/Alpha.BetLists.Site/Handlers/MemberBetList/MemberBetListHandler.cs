@@ -23,11 +23,10 @@
             ProductService productService,
             ForeCastService foreCastService,
             IBetListHTMLBuilder builder,
-            IBetListExcelBuilder excelBuilder,
             ITicketHelper ticketHelper,
             ISmartPunterBetListMonitor monitorService,
             IPService ipService)
-            : base(builder, excelBuilder, ticketHelper, monitorService, ipService)
+            : base(builder, ticketHelper, monitorService, ipService)
         {
             this.memberBetListService = memberBetListService;
             this.productService = productService;

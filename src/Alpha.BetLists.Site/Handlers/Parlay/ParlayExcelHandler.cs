@@ -1,4 +1,4 @@
-﻿namespace Alpha.BetLists.Site.Handlers
+﻿namespace Alpha.BetLists.Site.Handlers.Parlay
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -11,7 +11,6 @@
     using MediatR;
     using NPOI.SS.UserModel;
     using ONEbook.SpreadSheets;
-    using Parlay;
     using Requests.Parlay;
     using Services;
     using SmartPunter.Services;
@@ -21,8 +20,9 @@
 
     using static ONEbook.SpreadSheets.Column;
 
-    public class ParlayExcelHandler : ParlayBaseHandler, IAsyncRequestHandler<ComboParlayDetailExcelQuery, ExcelFileViewModel>
+    public class ParlayExcelHandler : BetListExcelBaseHandler, IAsyncRequestHandler<ComboParlayDetailExcelQuery, ExcelFileViewModel>
     {
+        private readonly ParlayService parlayService;
         private readonly ComboParlayDetailWorkbook workbook;
 
         public ParlayExcelHandler(
@@ -33,14 +33,15 @@
             ISmartPunterBetListMonitor monitorService,
             IPService ipService,
             ComboParlayDetailWorkbook workbook)
-            : base(parlayService, builder, excelBuilder, ticketHelper, monitorService, ipService)
+            : base(builder, excelBuilder, ticketHelper, monitorService, ipService)
         {
             this.workbook = workbook ?? new ComboParlayDetailWorkbookImpl();
+            this.parlayService = parlayService;
         }
 
         public async Task<ExcelFileViewModel> Handle(ComboParlayDetailExcelQuery message)
         {
-            var comboParlayDetailViewModel = await GetComboParlayDetail(message);
+            var comboParlayDetailViewModel = await GetComboParlayDetail(message, isExportingExcel: true);
 
             var fileContent = workbook
                 .SetData(comboParlayDetailViewModel)
@@ -122,6 +123,18 @@
             RtfHelper.RTFRenderer.Clear();
 
             return rtfText;
+        }
+
+        private async Task<ComboParlayDetailViewModel> GetComboParlayDetail(ComboParlayDetailQuery message, bool isExportingExcel = false)
+        {
+            var comboParlayDetailData = await parlayService.GetComboParlayDetail(
+                message.TransId,
+                message.RefNo,
+                message.BetId,
+                message.CustId,
+                message.Language);
+
+            return new ComboParlayDetailViewModel(message, comboParlayDetailData, TicketHelper, isExportingExcel);
         }
     }
 }
