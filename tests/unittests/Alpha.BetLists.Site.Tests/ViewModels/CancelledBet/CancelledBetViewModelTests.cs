@@ -296,11 +296,13 @@ namespace Alpha.BetLists.Site.Tests.ViewModels.CancelledBet
         public void MemberList_SelectTheItem_TheSelectedOfItemIsTrue()
         {
             //// Arrange            
-            var query = new CancelledBetQuery(betListFixture.User);
+            var query = new CancelledBetQuery(betListFixture.User)
+            {
+                MemberId = 263
+            };
             var filter = new FilterCancelledBetModel()
             {
-                Members = userBetCounts,
-                MemberId = 263
+                Members = userBetCounts
             };
 
             var model = new CancelledBetModel(filter, BetListDataTest.BetListData);
@@ -317,11 +319,13 @@ namespace Alpha.BetLists.Site.Tests.ViewModels.CancelledBet
         public void AgentList_SelectTheItem_TheSelectedOfItemIsTrue()
         {
             //// Arrange            
-            var query = new CancelledBetQuery(betListFixture.User);
+            var query = new CancelledBetQuery(betListFixture.User)
+            {
+                AgentId = 263
+            };
             var filter = new FilterCancelledBetModel()
             {
-                Agents = userBetCounts,
-                AgentId = 263
+                Agents = userBetCounts
             };
             var model = new CancelledBetModel(filter, BetListDataTest.BetListData);
             var viewModel = new CancelledBetViewModel(query, model, betListFixture.HtmlBuilder, betListFixture.TicketHelper);
@@ -338,11 +342,13 @@ namespace Alpha.BetLists.Site.Tests.ViewModels.CancelledBet
         {
             //// Arrange
             betListFixture.User.LevelId.Returns(UserLevel.Super.Value);
-            var query = new CancelledBetQuery(betListFixture.User);
+            var query = new CancelledBetQuery(betListFixture.User)
+            {
+                MasterId = 263
+            };
             var filter = new FilterCancelledBetModel()
             {
-                Masters = userBetCounts,
-                MasterId = 263
+                Masters = userBetCounts
             };
             var model = new CancelledBetModel(filter, BetListDataTest.BetListData);
             var viewModel = new CancelledBetViewModel(query, model, betListFixture.HtmlBuilder, betListFixture.TicketHelper);

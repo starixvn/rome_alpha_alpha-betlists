@@ -300,4 +300,7 @@
   <data name="WinLossRoundNote" xml:space="preserve">
     <value>Để tiện cho việc tham khảo, giá trị Thắng Thua sẽ được làm tròn. Do đó, giá trị Tổng phụ (thắng thua) có thể sẽ khác với tổng của các giá trị Thắng Thua.</value>
   </data>
+  <data name="Bets" xml:space="preserve">
+    <value>bets</value>
+  </data>
 </root>

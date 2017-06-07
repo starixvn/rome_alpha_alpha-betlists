@@ -262,7 +262,7 @@ namespace Alpha.BetLists.Tests.Services
                 .FetchAsync<UserBetCount>(Arg.Any<GetUsersHasCancelledBetByAgentCriteria>())
                 .Returns(userBetCounts);
             dataFixture.DynamicRepository
-                .FetchMultipleAsync<Ticket, TicketData>(Arg.Any<GetCancelledBetCriteria>())
+                .FetchMultipleAsync<TicketDto, TicketData>(Arg.Any<GetCancelledBetCriteria>())
                 .Returns(BetListDataTest.BetListDataTuple);
         }
     }

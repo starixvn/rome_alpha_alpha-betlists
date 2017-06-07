@@ -28,7 +28,7 @@ namespace Alpha.BetLists.Services
         {
             var filter = await GetFilterCancelledBet(parameter);
 
-            var betList = await GetCancelledBetList(parameter);
+            var betList = await GetCancelledBetList(filter, parameter.Language);
 
             return new CancelledBetModel(filter, betList);
         }
@@ -63,7 +63,7 @@ namespace Alpha.BetLists.Services
             return masters;
         }
 
-        protected async Task<IEnumerable<UserBetCount>> GetUsersHasCancelledBetByAgent(int agentId)
+        protected async Task<IEnumerable<UserBetCount>> GetMembersHasCancelledBetByAgent(int agentId)
         {
             IEnumerable<UserBetCount> users = new List<UserBetCount>();
             var criteria = new GetUsersHasCancelledBetByAgentCriteria(agentId);
@@ -77,61 +77,91 @@ namespace Alpha.BetLists.Services
 
         protected async Task<FilterCancelledBetModel> GetFilterCancelledBet(CancelledBetParam parameter)
         {
-            var filter = new FilterCancelledBetModel();
             if (parameter.Level.IsSuperLevel())
             {
-                filter.Masters = await GetMasterUserHasCancelledBet(parameter.Level, parameter.CurrentUserId);
-                filter.MasterId = parameter.MasterId == 0 ? filter.Masters.FirstOrDefault().CustId : parameter.MasterId;
-
-                filter.Agents = await GetAgentUserHasCancelledBet(parameter.Level, filter.MasterId);
-                filter.AgentId = parameter.AgentId;
-
-                filter.Members = parameter.AgentId > 0 ? await GetUsersHasCancelledBetByAgent(filter.AgentId) : filter.Members;
-                filter.MemberId = parameter.MemberId;
+                return await GetFilterCancelledBetWhenUserIsSuper(parameter);
             }
-            else if (parameter.Level.IsMasterLevel())
+
+            if (parameter.Level.IsMasterLevel())
             {
-                filter.Agents = await GetAgentUserHasCancelledBet(parameter.Level, parameter.CurrentUserId);
-                filter.AgentId = parameter.AgentId == 0 ? filter.Agents.FirstOrDefault().CustId : parameter.AgentId;
-
-                filter.Members = await GetUsersHasCancelledBetByAgent(filter.AgentId);
-                filter.MemberId = parameter.MemberId;
-            }
-            else
-            {
-                filter.Members = await GetUsersHasCancelledBetByAgent(parameter.CurrentUserId);
-                filter.MemberId = parameter.MemberId;
+                return await GetFilterCancelledBetWhenUserIsMaster(parameter);
             }
 
-            return filter;
+            return await GetFilterCancelledBetWhenUserIsAgent(parameter);
         }
 
-        protected async Task<BetListData> GetCancelledBetList(CancelledBetParam parameter)
+        protected async Task<BetListData> GetCancelledBetList(FilterCancelledBetModel parameter, string language)
         {
             BetListData betData = null;
-            var id = parameter.MemberId;
-            var userLevel = UserLevel.Member;
-
-            if (id == 0 && parameter.AgentId > 0)
-            {
-                id = parameter.AgentId;
-                userLevel = UserLevel.Agent;
-            }
-            if (id == 0 && parameter.MasterId > 0)
-            {
-                id = parameter.MasterId;
-                userLevel = UserLevel.Master;
-            }
-
-            var criteria = new GetCancelledBetCriteria(id, userLevel, parameter.Language);
+            var criteria = CreateCancelledBetListCriteria(parameter, language);
             if (criteria.IsValid())
             {
-                var ticketData = await dynamicRepository.FetchMultipleAsync<Ticket, TicketData>(criteria);
+                var ticketData = await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
 
                 betData = new BetListData(ticketData.Item1, ticketData.Item2.ToList<ITicketData>());
             }
 
             return betData;
+        }
+
+        private static GetCancelledBetCriteria CreateCancelledBetListCriteria(FilterCancelledBetModel parameter, string language)
+        {
+            var id = parameter.MemberId;
+            var userLevel = UserLevel.Member;
+            if (id == 0)
+            {
+                if (parameter.AgentId > 0)
+                {
+                    id = parameter.AgentId;
+                    userLevel = UserLevel.Agent;
+                }
+                else
+                {
+                    id = parameter.MasterId;
+                    userLevel = UserLevel.Master;
+                }
+            }
+
+
+            return new GetCancelledBetCriteria(id, userLevel, language);
+        }
+
+        private async Task<FilterCancelledBetModel> GetFilterCancelledBetWhenUserIsSuper(CancelledBetParam parameter)
+        {
+            var filter = new FilterCancelledBetModel();
+
+            filter.Masters = await GetMasterUserHasCancelledBet(parameter.Level, parameter.CurrentUserId);
+            filter.MasterId = parameter.MasterId == 0 ? filter.Masters.FirstOrDefault().CustId : parameter.MasterId;
+
+            filter.Agents = await GetAgentUserHasCancelledBet(parameter.Level, filter.MasterId);
+            filter.AgentId = filter.Agents.Any(i => i.CustId == parameter.AgentId) ? parameter.AgentId : 0;
+
+            filter.Members = parameter.AgentId > 0 ? await GetMembersHasCancelledBetByAgent(filter.AgentId) : filter.Members;
+            filter.MemberId = filter.Members.Any(i => i.CustId == parameter.MemberId) ? parameter.MemberId : 0;
+
+            return filter;
+        }
+
+        private async Task<FilterCancelledBetModel> GetFilterCancelledBetWhenUserIsMaster(CancelledBetParam parameter)
+        {
+            var filter = new FilterCancelledBetModel();
+            filter.Agents = await GetAgentUserHasCancelledBet(parameter.Level, parameter.CurrentUserId);
+            filter.AgentId = parameter.AgentId == 0 ? filter.Agents.FirstOrDefault().CustId : parameter.AgentId;
+
+            filter.Members = await GetMembersHasCancelledBetByAgent(filter.AgentId);
+            filter.MemberId = filter.Members.Any(i => i.CustId == parameter.MemberId) ? parameter.MemberId : 0;
+
+            return filter;
+        }
+
+        private async Task<FilterCancelledBetModel> GetFilterCancelledBetWhenUserIsAgent(CancelledBetParam parameter)
+        {
+            var filter = new FilterCancelledBetModel();
+
+            filter.Members = await GetMembersHasCancelledBetByAgent(parameter.CurrentUserId);
+            filter.MemberId = parameter.MemberId == 0 ? filter.Members.FirstOrDefault().CustId : parameter.MemberId;
+
+            return filter;
         }
     }
 }

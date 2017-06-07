@@ -23,7 +23,6 @@
 <form class="form-inline filter @(Model.IsFilterVisible ? string.Empty : "hide")" role="form" id="betlist-form">
     @Html.Hidden("CustId", Model.CustId)
     @Html.Hidden("CustName", Model.CustName)
-    @Html.Hidden("IsFilterVisible", Model.IsFilterVisible)
     <div class="form-group">
         <select id="dropdown-betlist-type">
             <option value="1" data-url="@MemberBetListViewModel.GetDailyStatementLink(Model.CustId,Model.CustName,Model.ProductsId)">@Resources.DailyStatement</option>

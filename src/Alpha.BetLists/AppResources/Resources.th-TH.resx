@@ -296,5 +296,8 @@
   </data>
   <data name="WinLossRoundNote" xml:space="preserve">
     <value>ยอดได้เสียปัดเศษใช้เป็นข้อมูลอ้างอิงเท่านั้น ดังนั้น ผลรวมยอดได้เสียทั้งหมดที่เกิดขึ้นจริงอาจจะแตกจากจำนวนยอดปัดเศษ</value>
+    </data>
+  <data name="Bets" xml:space="preserve">
+    <value>bets</value>
   </data>
 </root>

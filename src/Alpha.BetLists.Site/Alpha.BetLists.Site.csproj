@@ -351,6 +351,10 @@
     <Content Include="App_Data\SPNames\UAT\DBLOG.bodb_CustomerLog.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\UAT\DBONUSER.ON_USER.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\UAT\DBPOLICY.bodb02.BODBDownlineNet.xml" />
+    <Content Include="assets\bundles\cancelled-betlist\cancelled-betlist.js" />
+    <Content Include="assets\bundles\cancelled-betlist\cancelled-betlist.min.js">
+      <DependentUpon>cancelled-betlist.js</DependentUpon>
+    </Content>
     <Content Include="assets\bundles\default.css" />
     <Content Include="assets\bundles\default.js" />
     <Content Include="assets\bundles\default.min.css">
@@ -667,6 +671,8 @@
     <TypeScriptCompile Include="assets\scripts\src\betlist\choice\score-map.ts" />
     <TypeScriptCompile Include="assets\scripts\src\betlist\choice\ticket-details\other-ticket-details.ts" />
     <TypeScriptCompile Include="assets\scripts\src\betlist\status\result-details\other-result-details.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\cancelled-betlist\cancelled-betlist-constants.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\cancelled-betlist\cancelled-betlist.ts" />
     <TypeScriptCompile Include="assets\scripts\src\common\app-path.ts" />
     <TypeScriptCompile Include="assets\scripts\src\common\popup-details.ts" />
     <TypeScriptCompile Include="assets\scripts\src\common\utils.ts" />

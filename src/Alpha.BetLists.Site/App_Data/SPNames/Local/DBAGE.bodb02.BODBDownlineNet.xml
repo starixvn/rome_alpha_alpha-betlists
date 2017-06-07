@@ -396,4 +396,11 @@
       <Mapping DataField="spositiontaking" ObjectProperty="SuperPT" Class="TicketData"></Mapping>
     </Setting>
   </Function>
+
+  <Function Name="Cancelleb BetList">
+    <Setting Key="Age_BetList_SelDeleted" SpName="Age_BetList_SelDeleted" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_BetList_SelDeleted_UserList_Ag" SpName="Age_BetList_SelDeleted_UserList_Ag" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_BetList_SelDeleted_UserList_MAg" SpName="Age_BetList_SelDeleted_UserList_MAg" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_BetList_SelDeleted_UserList_SAg" SpName="Age_BetList_SelDeleted_UserList_SAg" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
+  </Function>
 </Functions>

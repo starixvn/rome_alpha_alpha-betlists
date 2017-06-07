@@ -61,6 +61,20 @@
         width: 130px;
     }
 
+    .icon-excel, .icon-back {
+        cursor: pointer;
+        color: #1f7244;
+        font-size: 19px;
+        vertical-align: middle;
+        height: $height-normal;
+        float: left;
+
+        &:before {
+            position: relative;
+            top: 5px;
+        }
+    }
+
     select.select-multiple {
         height: $height-normal;
         width: 160px;
@@ -106,4 +120,8 @@
     .radio input[type="radio"] {
         position: relative;
     }
+}
+
+.icon-excel {
+    @include ripple-effect-icon($margin-left: -11px, $height: 36px, $width: 36px, $top: 0);
 }

@@ -267,4 +267,13 @@
   <data name="GetAll" xml:space="preserve">
     <value>전체 선택</value>
   </data>
+  <data name="Bets" xml:space="preserve">
+    <value>bets</value>
+  </data>
+  <data name="HideFilter" xml:space="preserve">
+    <value>Hide Filter</value>
+  </data>
+  <data name="ShowFilter" xml:space="preserve">
+    <value>Show Filter</value>
+  </data>
 </root>

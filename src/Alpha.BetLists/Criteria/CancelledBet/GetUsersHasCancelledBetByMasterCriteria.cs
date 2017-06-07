@@ -1,4 +1,5 @@
-﻿using Fanex.Data.Repository;
+﻿using Fanex.Data;
+using Fanex.Data.Repository;
 
 namespace Alpha.BetLists.Criteria.CancelledBet
 {
@@ -9,6 +10,7 @@ namespace Alpha.BetLists.Criteria.CancelledBet
             MasterId = masterId;
         }
 
+        [SpParam(SqlParamName = "CustId")]
         public int MasterId { get; }
 
         public override string GetSettingKey() => "Age_BetList_SelDeleted_UserList_MAg";

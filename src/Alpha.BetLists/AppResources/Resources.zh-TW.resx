@@ -295,6 +295,8 @@
     <value>顯示篩選</value>
   </data>
   <data name="WinLossRoundNote" xml:space="preserve">
-    <value>輸贏的進位值僅供參考。因此，所有輸贏相加的總計有可能和小計有差數。</value>
+    <value>輸贏的進位值僅供參考。因此，所有輸贏相加的總計有可能和小計有差數。</value></data>
+  <data name="Bets" xml:space="preserve">
+    <value>bets</value>
   </data>
 </root>

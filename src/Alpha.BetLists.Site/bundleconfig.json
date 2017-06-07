@@ -32,7 +32,13 @@
       "assets/styles/filter.css"
     ]
   },
-
+  {
+    "outputFileName": "assets/bundles/cancelled-betlist/cancelled-betlist.js",
+    "inputFiles": [
+      "assets/scripts/src/cancelled-betlist/cancelled-betlist-constants.js",
+      "assets/scripts/src/cancelled-betlist/cancelled-betlist.js"
+    ]
+  },
   {
     "outputFileName": "assets/bundles/running-betlist/running-betlist.js",
     "inputFiles": [

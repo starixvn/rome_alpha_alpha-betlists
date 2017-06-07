@@ -27,7 +27,7 @@ namespace Alpha.BetLists.Site.Handlers.CancelledBet
 
         public async Task<CancelledBetViewModel> Handle(CancelledBetQuery message)
         {
-            var parameter = new CancelledBetParam(message.ViewerLevel, message.CustId, message.MasterId, message.AgentId, message.MemberId, message.Language);
+            var parameter = new CancelledBetParam(message.ViewerLevel, message.ViewerId, message.MasterId, message.AgentId, message.MemberId, message.Language);
             var cancelledBet = await Service.GetCancelledBet(parameter);
 
             return new CancelledBetViewModel(message, cancelledBet, Builder, TicketHelper);

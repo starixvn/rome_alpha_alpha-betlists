@@ -129,6 +129,7 @@
                     UserPermission.HasPermissionOnProduct,
                     new CacheRefServiceImpl().GetProductName),
                 Lifestyle.Singleton);
+            container.Register<CancelledBetService, CancelledBetServiceImpl>();
         }
     }
 }

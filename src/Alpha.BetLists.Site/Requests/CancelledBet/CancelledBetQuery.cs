@@ -15,5 +15,6 @@ namespace Alpha.BetLists.Site.Requests.CancelledBet
         public int AgentId { get; set; }
 
         public int MemberId { get; set; }
+
     }
 }

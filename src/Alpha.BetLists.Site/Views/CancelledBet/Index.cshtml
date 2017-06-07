@@ -2,22 +2,32 @@
 
 @model CancelledBetViewModel
 
+@section Styles{
+    @StaticResources.AssetStyles.Render("/bundles/site-betlists/filter")
+    @StaticResources.RenderStyles("~/assets/bundles/filter")
+}
+
 <div class="bl_title">
     @Model.Title
-    <div class="list-icon" id="betlist-filter">
-        <ul>
-            <li class="showfilter-element"><span class="icon-arrow-up-drop-circle icon-filter" title="@Resources.HideFilter"></span></li>
-            <li class="hidefilter-element"><span class="icon-arrow-down-drop-circle icon-filter" title="@Resources.ShowFilter"></span></li>
-        </ul>
-    </div>
+    @if (Model.IsShowFilterIcon)
+    {
+        <div  class="list-icon" id="betlist-filter">
+            <ul>
+                <li class="showfilter-element"><span class="icon-arrow-up-drop-circle icon-filter" title="@Resources.HideFilter"></span></li>
+                <li class="hidefilter-element"><span class="icon-arrow-down-drop-circle icon-filter" title="@Resources.ShowFilter"></span></li>
+            </ul>
+        </div>
+    }   
+
 </div>
 
-<form class="form-inline filter" role="form" id="betlist-form">
+<form class="form-inline filter @(Model.IsShowFilterIcon ? string.Empty : "hide")" role="form" id="betlist-form">
     @Html.Hidden("CustId", Model.CustId)
     @if (Model.IsShowMasterList)
     {
         <div class="form-group">
-            <select id="dropdown-masters">
+            <label>@Resources.Master</label>
+            <select class="dropdown-users" id="dropdown-masters" name="masterId">
                 @foreach (var master in Model.MasterList)
                 {
                     <option value="@master.Value" @(master.Selected ? " selected=\"selected\"" : string.Empty)> @master.Text</option>
@@ -28,7 +38,8 @@
     @if (Model.IsShowAgentList)
     {
         <div class="form-group">
-            <select id="dropdown-masters">
+            <label>@Resources.Agent</label>
+            <select class="dropdown-users" id="dropdown-agents" name="agentId">
                 @foreach (var agent in Model.AgentList)
                 {
                     <option value="@agent.Value" @(agent.Selected ? " selected=\"selected\"" : string.Empty)> @agent.Text</option>
@@ -39,7 +50,8 @@
     @if (Model.IsShowMemberList)
     {
         <div class="form-group">
-            <select id="dropdown-masters">
+            <label>@Resources.member</label>
+            <select class="dropdown-users" id="dropdown-members" name="memberId">
                 @foreach (var member in Model.MemberList)
                 {
                     <option value="@member.Value" @(member.Selected ? " selected=\"selected\"" : string.Empty)> @member.Text</option>
@@ -49,12 +61,10 @@
     }
 
     <div class="form-group">
-        <input type="submit" value="@Resources.Submit" class="btn-submit" />
-    </div>
-    <div class="form-group">
         <span id="icon-excel" class="icon-excel" title="@Resources.ExportToExcel"></span>
     </div>
 </form>
+
 
 <table class="tblRpt tblRpt-bordered tblRpt-striped width-100per tablesorter tblRpt-hover tbl-betlist">
     <thead>
@@ -77,12 +87,9 @@
 
                 <tr>
                     <td class='w-order text-center'>@(i + 1)</td>
-
                     <td class="text-center">@ticket.UserName</td>
-
-
                     @Trans.Render(Model.Builder, ticket)
-                    @Choice.Render(Model.Builder, ticket, Model.TicketHelper, Model.BetListData.TicketData, Model.CanViewScoreMap)
+                    @Choice.Render(Model.Builder, ticket, Model.TicketHelper, Model.BetListData.TicketData, false)
                     @Odds.Render(Model.Builder, ticket, Model.BetListData.TicketData)
                     @Stake.Render(Model.Builder, ticket)
                     @Status.Render(Model.Builder, ticket, Model.TicketHelper, Model.BetListData.TicketData, Model.DisplayVNIP)
@@ -95,3 +102,7 @@
         @Common.NoInfomation.Render(Model.TotalColumn)
     }
 </table>
+@section Scripts{
+    @StaticResources.AssetScripts.Render("/bundles/site-betlists/filter")
+    @StaticResources.RenderScripts("~/assets/bundles/cancelled-betlist/cancelled-betlist")
+}

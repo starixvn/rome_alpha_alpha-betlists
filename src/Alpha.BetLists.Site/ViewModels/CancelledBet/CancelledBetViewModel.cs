@@ -19,7 +19,11 @@ namespace Alpha.BetLists.Site.ViewModels.CancelledBet
             ITicketHelper ticketHelper) : base(query, cancelledBet.BetListData, builder, ticketHelper, true)
         {
             Filter = cancelledBet.Filter;
+            Query = query;
+            Title = Resources.VoidAndReject;
         }
+
+        private CancelledBetQuery Query { get; }
 
         private FilterCancelledBetModel Filter { get; }
 
@@ -27,15 +31,17 @@ namespace Alpha.BetLists.Site.ViewModels.CancelledBet
 
         public bool IsShowAgentList => ViewerLevel.IsMasterOrSuperLevel() && Filter.Agents.Any();
 
-        public bool IsShowMemberList => Filter.MemberId != 0 && Filter.Members.Any();
+        public bool IsShowMemberList => !(ViewerLevel.IsSuperLevel() && Filter.AgentId == 0) && Filter.Members.Any();
 
-        public IEnumerable<SelectListItem> MasterList => BuildUserBetCount(Filter.Masters, Filter.MasterId);
+        public bool IsShowFilterIcon => IsShowMasterList || IsShowAgentList || IsShowMemberList;
+
+        public IEnumerable<SelectListItem> MasterList => BuildUserBetCount(Filter.Masters, Query.MasterId);
 
         public IEnumerable<SelectListItem> AgentList
         {
             get
             {
-                var list = BuildUserBetCount(Filter.Agents, Filter.AgentId).ToList();
+                var list = BuildUserBetCount(Filter.Agents, Query.AgentId).ToList();
                 if (!ViewerLevel.IsMasterLevel())
                 {
                     list.Insert(0, new SelectListItem { Text = Resources.AllAgent, Value = "0", Selected = Filter.AgentId == 0 });
@@ -49,7 +55,7 @@ namespace Alpha.BetLists.Site.ViewModels.CancelledBet
         {
             get
             {
-                var list = BuildUserBetCount(Filter.Members, Filter.MemberId).ToList();
+                var list = BuildUserBetCount(Filter.Members, Query.MemberId).ToList();
 
                 if (!ViewerLevel.IsAgentLevel())
                 {
@@ -60,8 +66,7 @@ namespace Alpha.BetLists.Site.ViewModels.CancelledBet
             }
         }
 
-
-        private IEnumerable<SelectListItem> BuildUserBetCount(IEnumerable<UserBetCount> users, int selectedId)
+        private static IEnumerable<SelectListItem> BuildUserBetCount(IEnumerable<UserBetCount> users, int selectedId)
             => users.Select(user => new SelectListItem
             {
                 Text = user.ToString(),
