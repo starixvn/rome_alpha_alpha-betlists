@@ -13,5 +13,8 @@ namespace Alpha.BetLists.Site.Controllers
 
         public async Task<ActionResult> Index(CancelledBetQuery message)
             => await View(message);
+
+        public async Task<FileContentResult> Excel(CancelledBetExcelQuery message)
+            => await ExcelView(message);
     }
 }

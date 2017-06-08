@@ -143,6 +143,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CancelBetList.
+        /// </summary>
+        public static string CancelledBet {
+            get {
+                return ResourceManager.GetString("CancelledBet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You can view the report data from {0}..
         /// </summary>
         public static string CanOnlyViewDataAfterTimeHistoryReport {

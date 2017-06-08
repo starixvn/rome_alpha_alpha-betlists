@@ -330,4 +330,7 @@
   <data name="VoidAndReject" xml:space="preserve">
     <value>Void/Rejected Bet List (Last 3 days)</value>
   </data>
+  <data name="CancelledBet" xml:space="preserve">
+    <value>CancelBetList</value>
+  </data>
 </root>

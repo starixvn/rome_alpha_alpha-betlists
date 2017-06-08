@@ -21,8 +21,7 @@
 
 </div>
 
-<form class="form-inline filter @(Model.IsShowFilterIcon ? string.Empty : "hide")" role="form" id="betlist-form">
-    @Html.Hidden("CustId", Model.CustId)
+<form class="form-inline filter @(Model.IsShowFilterIcon ? string.Empty : "hide")" role="form" id="betlist-form">    
     @if (Model.IsShowMasterList)
     {
         <div class="form-group">
@@ -61,7 +60,15 @@
     }
 
     <div class="form-group">
-        <span id="icon-excel" class="icon-excel" title="@Resources.ExportToExcel"></span>
+        <a id="icon-excel" class="icon icon-excel" title="Excel"
+           href="@Url.Action("Excel", "CancelledBet",
+                new
+                {
+                    MasterId = Model.Query.MasterId,
+                    AgentId= Model.Query.AgentId,
+                    MemberId = Model.Query.MemberId
+                })">
+        </a>
     </div>
 </form>
 
@@ -102,6 +109,10 @@
         @Common.NoInfomation.Render(Model.TotalColumn)
     }
 </table>
+@Html.Hidden("betlist-path", HttpContext.Current.Response.ApplyAppPathModifier("~/"))
+@Html.Hidden("old-main-path", Model.OldMainPath)
+@Html.Hidden("results-path", Model.ResultsPath)
+@Html.Hidden("totalbets-forecast-path", Model.TotalBetsForecastPath)
 @section Scripts{
     @StaticResources.AssetScripts.Render("/bundles/site-betlists/filter")
     @StaticResources.RenderScripts("~/assets/bundles/cancelled-betlist/cancelled-betlist")

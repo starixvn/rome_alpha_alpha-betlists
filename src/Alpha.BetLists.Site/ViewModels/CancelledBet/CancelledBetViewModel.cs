@@ -13,7 +13,7 @@ namespace Alpha.BetLists.Site.ViewModels.CancelledBet
     public class CancelledBetViewModel : BetListBaseViewModel
     {
         public CancelledBetViewModel(
-            CancelledBetQuery query,
+            CancelledBetBaseQuery query,
             CancelledBetModel cancelledBet,
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper) : base(query, cancelledBet.BetListData, builder, ticketHelper, true)
@@ -23,7 +23,7 @@ namespace Alpha.BetLists.Site.ViewModels.CancelledBet
             Title = Resources.VoidAndReject;
         }
 
-        private CancelledBetQuery Query { get; }
+        public CancelledBetBaseQuery Query { get; protected set; }
 
         private FilterCancelledBetModel Filter { get; }
 

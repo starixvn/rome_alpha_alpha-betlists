@@ -464,6 +464,9 @@
     <Content Include="assets\scripts\typings\globals\jquery.blockui\typings.json" />
     <Content Include="App_Code\Components\DateRangePicker.cshtml" />
     <Content Include="assets\styles\filter.scss" />
+    <Content Include="App_Data\ExcelTemplates\CancelledBet\Agent.xls" />
+    <Content Include="App_Data\ExcelTemplates\CancelledBet\Master.xls" />
+    <Content Include="App_Data\ExcelTemplates\CancelledBet\Super.xls" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -585,7 +588,10 @@
     <Compile Include="Controllers\MemberBetListController.cs" />
     <Compile Include="Controllers\RunningBetListController.cs" />
     <Compile Include="Controllers\CancelledBetController.cs" />
+    <Compile Include="Handlers\CancelledBet\CancelledBetExcelHandler.cs" />
     <Compile Include="Handlers\CancelledBet\CancelledBetHandler.cs" />
+    <Compile Include="Requests\CancelledBet\CancelledBetBaseQuery.cs" />
+    <Compile Include="Requests\CancelledBet\CancelledBetExcelQuery.cs" />
     <Compile Include="Requests\CancelledBet\CancelledBetQuery.cs" />
     <Compile Include="Controllers\ParlayController.cs" />
     <Compile Include="Controllers\ParlayWinLossByMatchController.cs" />
