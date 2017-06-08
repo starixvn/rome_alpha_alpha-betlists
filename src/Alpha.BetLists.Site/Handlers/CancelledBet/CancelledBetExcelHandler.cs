@@ -17,7 +17,7 @@ using static ONEbook.SpreadSheets.Column;
 
 namespace Alpha.BetLists.Site.Handlers.CancelledBet
 {
-    public class CancelledBetExcelHandler : BetListBaseHandler, IAsyncRequestHandler<CancelledBetExcelQuery, ExcelFileViewModel>
+    public class CancelledBetExcelHandler : BetListExcelBaseHandler, IAsyncRequestHandler<CancelledBetExcelQuery, ExcelFileViewModel>
     {
         private readonly CancelledBetService Service;
         private readonly Workbook<TicketDto> Workbook;
@@ -55,7 +55,7 @@ namespace Alpha.BetLists.Site.Handlers.CancelledBet
         }
 
         protected internal override string ExcelTemplatePath(UserLevel viewerLevel)
-           => GetExcelTemplatePath($"CancelledBet\\{viewerLevel.DisplayName}");
+           => GetExcelTemplatePath(viewerLevel.DisplayName);
 
         protected internal override Mapper<TicketDto> GetBodyRowMapper(UserLevel viewerLevel, BetListBaseViewModel viewModel)
         {
