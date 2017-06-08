@@ -122,7 +122,6 @@ namespace Alpha.BetLists.Services
                 }
             }
 
-
             return new GetCancelledBetCriteria(id, userLevel, language);
         }
 

@@ -6,9 +6,9 @@ namespace Alpha.BetLists.Criteria.CancelledBet
 {
     public class GetCancelledBetCriteria : CriteriaBase
     {
-        public GetCancelledBetCriteria(int custId, UserLevel userLevel,string language)
+        public GetCancelledBetCriteria(int custId, UserLevel userLevel, string language)
         {
-            CustId = custId;            
+            CustId = custId;
             Language = language;
             Level = userLevel;
         }
@@ -25,6 +25,5 @@ namespace Alpha.BetLists.Criteria.CancelledBet
         public override string GetSettingKey() => "Age_BetList_SelDeleted";
 
         public override bool IsValid() => CustId > 0;
-
     }
 }

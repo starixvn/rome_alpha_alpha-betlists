@@ -10,8 +10,7 @@ namespace Alpha.BetLists.Params
             int masterId,
             int agentId,
             int memberId,
-            string language
-            )
+            string language)
         {
             Level = level;
             CurrentUserId = currentUserId;
