@@ -1,6 +1,5 @@
 ﻿using Alpha.BetLists.AppResources;
 using Alpha.BetLists.Models.CancelledBet;
-using Alpha.BetLists.Site.Requests;
 using Alpha.BetLists.Site.Requests.CancelledBet;
 using Fanex.BetList.Core.Builder;
 using Fanex.BetList.Core.Entities;
@@ -23,7 +22,7 @@ namespace Alpha.BetLists.Site.ViewModels.CancelledBet
             Title = Resources.VoidAndReject;
         }
 
-        public CancelledBetBaseQuery Query { get; protected set; }
+        public CancelledBetBaseQuery Query { get; }
 
         private FilterCancelledBetModel Filter { get; }
 
@@ -44,7 +43,7 @@ namespace Alpha.BetLists.Site.ViewModels.CancelledBet
                 var list = BuildUserBetCount(Filter.Agents, Query.AgentId).ToList();
                 if (!ViewerLevel.IsMasterLevel())
                 {
-                    list.Insert(0, new SelectListItem { Text = Resources.AllAgent, Value = "0", Selected = Filter.AgentId == 0 });
+                    list.Insert(0, new SelectListItem { Text = Resources.AllAgent, Value = "0" });
                 }
 
                 return list;
@@ -59,7 +58,7 @@ namespace Alpha.BetLists.Site.ViewModels.CancelledBet
 
                 if (!ViewerLevel.IsAgentLevel())
                 {
-                    list.Insert(0, new SelectListItem { Text = Resources.AllMember, Value = "0", Selected = Filter.MemberId == 0 });
+                    list.Insert(0, new SelectListItem { Text = Resources.AllMember, Value = "0" });
                 }
 
                 return list;
