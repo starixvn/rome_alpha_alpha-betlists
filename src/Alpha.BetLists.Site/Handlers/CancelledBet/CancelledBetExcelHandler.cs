@@ -19,9 +19,10 @@ namespace Alpha.BetLists.Site.Handlers.CancelledBet
 {
     public class CancelledBetExcelHandler : BetListExcelBaseHandler, IAsyncRequestHandler<CancelledBetExcelQuery, ExcelFileViewModel>
     {
-        private readonly CancelledBetService Service;
-        private readonly Workbook<TicketDto> Workbook;
+        private readonly CancelledBetService service;
+        private readonly Workbook<TicketDto> workbook;
         private int currentRowIndex;
+
         public CancelledBetExcelHandler(
             CancelledBetService service,
             ISmartPunterBetListMonitor monitorService,
@@ -31,19 +32,19 @@ namespace Alpha.BetLists.Site.Handlers.CancelledBet
             IPService ipService,
             Workbook<TicketDto> workbook) : base(builder, excelBuilder, ticketHelper, monitorService, ipService)
         {
-            Service = service;
-            Workbook = workbook;
+            this.service = service;
+            this.workbook = workbook;
             currentRowIndex = 1;
         }
 
         public async Task<ExcelFileViewModel> Handle(CancelledBetExcelQuery message)
         {
             var parameter = new CancelledBetParam(message.ViewerLevel, message.ViewerId, message.MasterId, message.AgentId, message.MemberId, message.Language);
-            var cancelledBet = await Service.GetCancelledBet(parameter);
+            var cancelledBet = await service.GetCancelledBet(parameter);
 
             var viewModel = new CancelledBetViewModel(message, cancelledBet, Builder, TicketHelper);
 
-            var fileContent = Workbook
+            var fileContent = workbook
                 .UseTemplate(GetTemplateInfo(message.ViewerLevel))
                 .Header(Resources.ResourceManager.GetString)
                 .Title(viewModel.Title)

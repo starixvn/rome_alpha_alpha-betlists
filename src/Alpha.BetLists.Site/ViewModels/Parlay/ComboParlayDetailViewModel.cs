@@ -51,12 +51,12 @@
 
         public bool IsRunningTicket { get; }
 
-        public string HugeDataLabel => string.Format(Resources.CombinationResultTooHuge, BuildComboParlayDetailExcelLink(Query));
+        public string HugeDataLabel => string.Format(Resources.CombinationResultTooHuge, BuildComboParlayDetailExcelPath(Query));
 
         public string SubTotalWinLost(IEnumerable<ComboParlayDetailWrapper> group)
             => ConvertByBetType.Winloss(group.Sum(item => item.ComboParlayDetail.WinLost + item.ComboParlayDetail.PlayerComm));
 
-        private static string BuildComboParlayDetailExcelLink(ComboParlayDetailQuery query)
+        private static string BuildComboParlayDetailExcelPath(ComboParlayDetailQuery query)
         {
             var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
 

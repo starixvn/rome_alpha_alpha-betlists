@@ -73,6 +73,5 @@ namespace Alpha.BetLists.Site.ViewModels.CancelledBet
                 Value = user.CustId.ToString(),
                 Selected = user.CustId == selectedId
             });
-
     }
 }

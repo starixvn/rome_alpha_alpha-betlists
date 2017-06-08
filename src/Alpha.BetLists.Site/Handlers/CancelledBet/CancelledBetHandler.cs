@@ -11,26 +11,26 @@ namespace Alpha.BetLists.Site.Handlers.CancelledBet
 {
     public class CancelledBetHandler : IAsyncRequestHandler<CancelledBetQuery, CancelledBetViewModel>
     {
-        private readonly CancelledBetService Service;
-        private readonly IBetListHTMLBuilder Builder;
-        private readonly ITicketHelper TicketHelper;
+        private readonly CancelledBetService service;
+        private readonly IBetListHTMLBuilder builder;
+        private readonly ITicketHelper ticketHelper;
 
         public CancelledBetHandler(
             CancelledBetService service,
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper)
         {
-            Service = service;
-            Builder = builder;
-            TicketHelper = ticketHelper;
+            this.service = service;
+            this.builder = builder;
+            this.ticketHelper = ticketHelper;
         }
 
         public async Task<CancelledBetViewModel> Handle(CancelledBetQuery message)
         {
             var parameter = new CancelledBetParam(message.ViewerLevel, message.ViewerId, message.MasterId, message.AgentId, message.MemberId, message.Language);
-            var cancelledBet = await Service.GetCancelledBet(parameter);
+            var cancelledBet = await service.GetCancelledBet(parameter);
 
-            return new CancelledBetViewModel(message, cancelledBet, Builder, TicketHelper);
+            return new CancelledBetViewModel(message, cancelledBet, builder, ticketHelper);
         }
     }
 }
