@@ -24,15 +24,21 @@
             DateTime toDate,
             int userSelectedDateRangeOption,
             bool isRenderSubmitButton = true,
-            IEnumerable<SelectListItem> rangeOptions = null)
+            IEnumerable<string> visibleOptionValues = null)
         {
             MinDate = minDate;
             MaxDate = maxDate;
             FromDate = fromDate;
             ToDate = toDate;
             UserSelectedDateRangeOption = userSelectedDateRangeOption;
+
             //// TODO: ricky will refactor here
-            RangeOptions = rangeOptions ?? BuildRangeOptions(userSelectedDateRangeOption);
+            RangeOptions = BuildRangeOptions(userSelectedDateRangeOption);
+
+            if (visibleOptionValues != null)
+            {
+                RangeOptions = FilterRangeOptions(RangeOptions, visibleOptionValues);
+            }
 
             SelectedRangeOption = RangeOptions.FirstOrDefault(item => item.Value == userSelectedDateRangeOption.ToString());
 
@@ -75,5 +81,10 @@
                 return item;
             });
         }
+
+        private IEnumerable<SelectListItem> FilterRangeOptions(
+            IEnumerable<SelectListItem> rangeOptions,
+            IEnumerable<string> displayValues)
+            => rangeOptions.Where(item => displayValues.Contains(item.Value));
     }
 }

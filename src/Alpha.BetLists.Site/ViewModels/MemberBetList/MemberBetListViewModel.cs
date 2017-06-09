@@ -17,6 +17,12 @@
 
     public class MemberBetListViewModel : WinLossViewModel
     {
+        public static readonly IEnumerable<string> RangeOptions = new List<string> {
+            DateRangePickerViewModel.TodayOptionValue,
+            DateRangePickerViewModel.YesterdayOptionValue,
+            DateRangePickerViewModel.SpecificDateOptionValue
+        };
+
         private readonly MemberBetListQuery query;
 
         public MemberBetListViewModel(
@@ -62,7 +68,7 @@
                 ToDate,
                 query.UserSelectedDateRangeOption,
                 true,
-                BuildRangeOptions(query.UserSelectedDateRangeOption));
+                RangeOptions);
 
         public ProductMultiSelectionViewModel ProductMultiSelectionViewModel
             => new ProductMultiSelectionViewModel(
@@ -82,22 +88,6 @@
             };
 
             return Helpers.UrlHelper.AddQueryStringParamsFunc(url, routeValues);
-        }
-
-        public static IEnumerable<SelectListItem> BuildRangeOptions(int userSelectedDateRangeOption)
-        {
-            // Cannot use static here because Localization.
-            return (new List<SelectListItem>
-            {
-                new SelectListItem { Text = Resources.Today, Value = DateRangePickerViewModel.TodayOptionValue, Selected = true },
-                new SelectListItem { Text = Resources.Yesterday, Value = DateRangePickerViewModel.YesterdayOptionValue },
-                new SelectListItem { Text = Resources.SpecificDate, Value = DateRangePickerViewModel.SpecificDateOptionValue }
-            }).Select(item =>
-            {
-                item.Selected = item.Value == userSelectedDateRangeOption.ToString();
-
-                return item;
-            });
         }
 
         public override bool CanViewScoreMap(ITicket ticket)

@@ -68,7 +68,7 @@
                 ToDate,
                 query.UserSelectedDateRangeOption,
                 true,
-                MemberBetListViewModel.BuildRangeOptions(query.UserSelectedDateRangeOption));
+                MemberBetListViewModel.RangeOptions);
 
         public ProductMultiSelectionViewModel ProductMultiSelectionViewModel =>
             new ProductMultiSelectionViewModel(
