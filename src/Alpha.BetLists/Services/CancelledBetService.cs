@@ -86,7 +86,7 @@ namespace Alpha.BetLists.Services
 
         protected async Task<BetListData> GetCancelledBetList(FilterCancelledBetModel parameter, string language)
         {
-            BetListData betData = null;
+            var betData = new BetListData(new List<TicketDto>(), new List<ITicketData>());
             var criteria = CreateCancelledBetListCriteria(parameter, language);
             if (criteria.IsValid())
             {
@@ -124,7 +124,10 @@ namespace Alpha.BetLists.Services
             var filter = new FilterCancelledBetModel();
 
             filter.Masters = await GetUserHasCancelledBetBySuper(parameter.CurrentUserId);
-            filter.MasterId = parameter.MasterId == 0 ? filter.Masters.FirstOrDefault().CustId : parameter.MasterId;
+            if (parameter.MasterId == 0 && filter.Masters.Any())
+            {
+                filter.MasterId = filter.Masters.First().CustId;
+            }
 
             filter.Agents = await GetUserHasCancelledBetByMaster(filter.MasterId);
             filter.AgentId = filter.Agents.Any(i => i.CustId == parameter.AgentId) ? parameter.AgentId : 0;
@@ -139,7 +142,10 @@ namespace Alpha.BetLists.Services
         {
             var filter = new FilterCancelledBetModel();
             filter.Agents = await GetUserHasCancelledBetByMaster(parameter.CurrentUserId);
-            filter.AgentId = parameter.AgentId == 0 ? filter.Agents.FirstOrDefault().CustId : parameter.AgentId;
+            if (parameter.AgentId == 0 && filter.Agents.Any())
+            {
+                filter.AgentId = filter.Agents.First().CustId;
+            }
 
             filter.Members = await GetMembersHasCancelledBetByAgent(filter.AgentId);
             filter.MemberId = filter.Members.Any(i => i.CustId == parameter.MemberId) ? parameter.MemberId : 0;
@@ -152,7 +158,10 @@ namespace Alpha.BetLists.Services
             var filter = new FilterCancelledBetModel();
 
             filter.Members = await GetMembersHasCancelledBetByAgent(parameter.CurrentUserId);
-            filter.MemberId = parameter.MemberId == 0 ? filter.Members.FirstOrDefault().CustId : parameter.MemberId;
+            if (parameter.MemberId == 0 && filter.Members.Any())
+            {
+                filter.MemberId = filter.Members.First().CustId;
+            }
 
             return filter;
         }
