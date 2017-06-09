@@ -128,6 +128,10 @@ namespace Alpha.BetLists.Services
             {
                 filter.MasterId = filter.Masters.First().CustId;
             }
+            else
+            {
+                filter.MasterId = parameter.MasterId;
+            }
 
             filter.Agents = await GetUserHasCancelledBetByMaster(filter.MasterId);
             filter.AgentId = filter.Agents.Any(i => i.CustId == parameter.AgentId) ? parameter.AgentId : 0;
@@ -146,6 +150,10 @@ namespace Alpha.BetLists.Services
             {
                 filter.AgentId = filter.Agents.First().CustId;
             }
+            else
+            {
+                filter.AgentId = parameter.AgentId;
+            }
 
             filter.Members = await GetMembersHasCancelledBetByAgent(filter.AgentId);
             filter.MemberId = filter.Members.Any(i => i.CustId == parameter.MemberId) ? parameter.MemberId : 0;
@@ -161,6 +169,10 @@ namespace Alpha.BetLists.Services
             if (parameter.MemberId == 0 && filter.Members.Any())
             {
                 filter.MemberId = filter.Members.First().CustId;
+            }
+            else
+            {
+                filter.MemberId = parameter.MemberId;
             }
 
             return filter;
