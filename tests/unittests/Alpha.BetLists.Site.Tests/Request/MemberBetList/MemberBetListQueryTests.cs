@@ -50,11 +50,11 @@
         }
 
         [Fact]
-        public void ToDate_Always_ReturnsNextSevenDay()
+        public void ToDate_Always_ReturnsCurrentDate()
         {
             // Arrange
             var query = new MemberBetListQuery(user);
-            var expectedToDate = new DateTime(2017, 6, 1);
+            var expectedToDate = DefaultVariables.CurrentDate;
 
             // Act
             var actualToDate = query.ToDate;

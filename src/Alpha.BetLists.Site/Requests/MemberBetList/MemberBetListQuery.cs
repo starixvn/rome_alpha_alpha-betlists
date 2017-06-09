@@ -14,12 +14,12 @@
         {
             MinDate = SystemTime.Today.AddMonths(-3).FirstDayOfMonth();
             FromDate = SystemTime.Today;
-            ToDate = SystemTime.Today.AddDays(7);
+            ToDate = SystemTime.Today;
         }
 
         public bool IsFilterVisible { get; set; } = true;
 
-        public int UserSelectedDateRangeOption { get; set; } = UserSelectedDateRangeOptionConstant.SpecificDates;
+        public int UserSelectedDateRangeOption { get; set; }
 
         public DateTime MinDate { get; }
     }

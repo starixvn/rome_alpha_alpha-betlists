@@ -6,6 +6,7 @@
     using Extensions;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
+    using MemberBetList;
     using Params;
     using Requests.RunningBetList;
     using System;
@@ -65,7 +66,9 @@
                 DateTime.MaxValue,
                 FromDate,
                 ToDate,
-                query.UserSelectedDateRangeOption);
+                query.UserSelectedDateRangeOption,
+                true,
+                MemberBetListViewModel.BuildRangeOptions(query.UserSelectedDateRangeOption));
 
         public ProductMultiSelectionViewModel ProductMultiSelectionViewModel =>
             new ProductMultiSelectionViewModel(
