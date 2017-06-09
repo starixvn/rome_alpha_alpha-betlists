@@ -99,15 +99,6 @@ namespace Alpha.BetLists.AppResources {
         /// <summary>
         ///   Looks up a localized string similar to Bet List (Running).
         /// </summary>
-        public static string BetList_Running {
-            get {
-                return ResourceManager.GetString("BetList_Running", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Bet List (Running).
-        /// </summary>
         public static string BetlistRunning {
             get {
                 return ResourceManager.GetString("BetlistRunning", resourceCulture);
