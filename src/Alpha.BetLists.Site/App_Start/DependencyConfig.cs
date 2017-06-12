@@ -114,7 +114,7 @@
                 Lifestyle.Singleton);
 #pragma warning restore CS0618 // Type or member is obsolete
 
-            container.Register<IPService, IPServiceImpl>(Lifestyle.Singleton);
+            container.Register<IPService, Services.IPServiceImpl>(Lifestyle.Singleton);
 
             container.Register<WinLossByMatchService, WinLossByMatchServiceImpl>(Lifestyle.Singleton);
             container.Register<ParlayWinLossByMatchService, ParlayWinLossByMatchServiceImpl>(Lifestyle.Singleton);
