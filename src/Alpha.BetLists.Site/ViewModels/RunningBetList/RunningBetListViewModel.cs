@@ -3,6 +3,7 @@
     using AppResources;
     using BetLists.Models;
     using Components;
+    using Constants;
     using Extensions;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
@@ -86,7 +87,8 @@
                 ["CustName"] = CustName,
                 ["FromDate"] = SystemTime.Today.AddDays(-1).ToShortDateWithSlash(),
                 ["ToDate"] = SystemTime.Today.ToShortDateWithSlash(),
-                ["ProductIds"] = ProductsId
+                ["ProductIds"] = ProductsId,
+                ["UserSelectedDateRangeOption"] = UserSelectedDateRangeOptionConstant.SpecificDates
             };
 
             return Helpers.UrlHelper.AddQueryStringParamsFunc(link, routeValues);
