@@ -573,6 +573,10 @@
     <Content Include="App_Data\ExcelTemplates\CancelledBet\Super.xls" />
     <Content Include="App_Data\activitytracking.json" />
     <Content Include="assets\styles\bet-details.scss" />
+    <Content Include="App_Data\ExcelData\Products.xls" />
+    <Content Include="App_Data\ExcelData\RunningBetlist.xls" />
+    <Content Include="App_Data\ExcelData\ScoreMaps.xls" />
+    <Content Include="App_Data\ExcelData\MemberBetlist.xls" />
     <Content Include="App_Data\ExcelTemplates\BetListByBetType\Agent.xls" />
     <Content Include="App_Data\ExcelTemplates\BetListByBetType\Master.xls" />
     <Content Include="App_Data\ExcelTemplates\BetListByBetType\Super.xls" />
@@ -759,6 +763,9 @@
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
     <Content Include="tsconfig.json" />
+    <None Include="Web.AppSettings.auto.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </None>
     <Content Include="Views\CasinoDetails\Index.cshtml" />
     <Content Include="Views\CorrectScore\Index.cshtml" />
     <Content Include="Views\MixParlay\Index.cshtml" />
@@ -912,6 +919,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\tests\unittests\Alpha.BetLists.StaticData\Alpha.BetLists.StaticData.csproj">
+      <Project>{ad46527d-6231-4087-a84c-6ff70189ef78}</Project>
+      <Name>Alpha.BetLists.StaticData</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Alpha.BetLists.Builders\Alpha.BetLists.Builders.csproj">
       <Project>{c4d18432-0c45-40e3-b851-30ddf6e809ea}</Project>
       <Name>Alpha.BetLists.Builders</Name>

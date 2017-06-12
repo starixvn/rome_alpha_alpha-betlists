@@ -5,6 +5,7 @@
     using System.Reflection;
     using System.Web.Mvc;
     using BetLists.Models;
+    using Configurations;
     using Controllers;
     using DataAccesses;
     using Fanex.BetDetails.Casino.DataAccesses;
@@ -29,6 +30,7 @@
     using SimpleInjector.Integration.Web.Mvc;
     using SmartPunter.DataAccesses;
     using SmartPunter.Services;
+    using StaticData.DataAccesses;
     using Sunplus.Agent.Model.Base;
     using Sunplus.Agent.Model.Entities;
     using Sunplus.Agent.Model.Entities.Permission;
@@ -96,7 +98,15 @@
 
         private static void RegisterDataAccesses(Container container)
         {
-            container.Register<IDynamicRepository, DynamicRepository>(Lifestyle.Singleton);
+            if (AppSettings.EnabledStaticData)
+            {
+                container.Register<IDynamicRepository, StaticRepository>(Lifestyle.Singleton);
+            }
+            else
+            {
+                container.Register<IDynamicRepository, DynamicRepository>(Lifestyle.Singleton);
+            }
+
             container.Register<ISmartPunterDataAccess, SmartPunterDataAccess>(Lifestyle.Singleton);            
             container.Register<ILucky3DataAccess, Lucky3DataAccess>(Lifestyle.Singleton);            
             container.Register<ICasinoDetailsDataAccess, CasinoDetailsDataAccess>(Lifestyle.Singleton);

@@ -42,6 +42,8 @@
             }
         }
 
+        public static bool EnabledStaticData => GetConfigValue("EnabledStaticData") == "1";
+
         public static string GetConfigValue(string configName) => AppSettingValues[configName];
 
         public static void Verify()
