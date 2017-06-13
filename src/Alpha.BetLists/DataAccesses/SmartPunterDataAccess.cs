@@ -4,7 +4,6 @@
     using System.Linq;
     using Criteria.SmartPunter;
     using Fanex.Data.Repository;
-    using Fanex.Logging;
     using Models;
     using SmartPunter.Criteria;
     using SmartPunter.DataAccesses;
@@ -33,8 +32,6 @@
             var criteria = new NAPUserPermissionCriteria(criteriaData);
 
             var permissions = dynamicRepository.Fetch<NapUserFunctionPermission>(criteria);
-
-            LogService.Info($"CustId {criteria.CustId}, \r\nPermission: " + string.Join("\r\n", permissions.Select(p => p.FuncName)));
 
             return permissions.Any(p => p.FuncName.Equals(functionName, StringComparison.OrdinalIgnoreCase));
         }
