@@ -143,7 +143,7 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CancelBetList.
+        ///   Looks up a localized string similar to Cancelled Bets.
         /// </summary>
         public static string CancelledBet {
             get {
@@ -233,7 +233,7 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Export To Excel.
+        ///   Looks up a localized string similar to Export to Excel.
         /// </summary>
         public static string ExportToExcel {
             get {

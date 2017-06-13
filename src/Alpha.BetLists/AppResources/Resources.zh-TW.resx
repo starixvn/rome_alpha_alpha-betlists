@@ -299,4 +299,25 @@
   <data name="Bets" xml:space="preserve">
     <value>bets</value>
   </data>
+  <data name="member" xml:space="preserve">
+    <value>會員</value>
+  </data>
+  <data name="AllAgent" xml:space="preserve">
+    <value>所有代理</value>
+  </data>
+  <data name="Agent" xml:space="preserve">
+    <value>代理</value>
+  </data>
+  <data name="AllMember" xml:space="preserve">
+    <value>所有會員</value>
+  </data>
+  <data name="ExportToExcel" xml:space="preserve">
+    <value>導出到Excel</value>
+  </data>
+  <data name="VoidAndReject" xml:space="preserve">
+    <value>作廢/已刪除注單(3天紀錄)</value>
+  </data>
+  <data name="CancelledBet" xml:space="preserve">
+    <value>已刪除/作廢注單</value>
+  </data>
 </root>
