@@ -45,7 +45,7 @@ namespace Alpha.BetLists.Site.Handlers.LastBets
         }
 
         public LastBetsViewModel Handle(LastBetsQuery message)
-            => new LastBetsViewModel(message, null, builder, ticketHelper, encryptionService.CfsEncode($"LastTransId_{message.CustId}", 6));
+            => new LastBetsViewModel(message, null, builder, ticketHelper, encryptionService.CfsEncode($"LastTransId_{message.CustId}", numberOfEncodeResult: 6));
 
         public async Task<BetDataViewModel> Handle(GetLastBetsQuery message)
         {

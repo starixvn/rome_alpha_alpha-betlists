@@ -43,6 +43,6 @@ namespace Alpha.BetLists.Criteria.LastBets
             }
         }
 
-        public override bool IsValid() => CustId > 0;
+        public override bool IsValid() => CustId > 0 && PageSize > 0;
     }
 }

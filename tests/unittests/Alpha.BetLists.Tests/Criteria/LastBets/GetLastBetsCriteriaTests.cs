@@ -39,12 +39,10 @@ namespace Alpha.BetLists.Tests.Criteria.LastBets
         }
 
         [Theory]
-        [InlineData(int.MinValue, false)]
-        [InlineData(-1, false)]
-        [InlineData(0, false)]
-        [InlineData(1, true)]
-        [InlineData(int.MaxValue, true)]
-        public void IsValid_Always_ReturnsTrue(int custId, bool expectedIsValid)
+        [InlineData(int.MinValue)]
+        [InlineData(-1)]
+        [InlineData(0)]
+        public void IsValid_InvalidCustId_ReturnsFalse(int custId)
         {
             // Arrange
             var criteria = new GetLastBetsCriteria(
@@ -57,7 +55,48 @@ namespace Alpha.BetLists.Tests.Criteria.LastBets
             var actualIsValid = criteria.IsValid();
 
             // Assert
-            Assert.Equal(expectedIsValid, actualIsValid);
+            Assert.False(actualIsValid);
+        }
+
+        [Theory]
+        [InlineData(int.MinValue)]
+        [InlineData(-1)]
+        [InlineData(0)]
+        [InlineData(1)]
+        [InlineData(int.MaxValue)]
+        public void IsValid_InvalidPageSize_ReturnsFalse(int custId)
+        {
+            // Arrange
+            var criteria = new GetLastBetsCriteria(
+                betType: anyValueCreator.Create<int>(),
+                custId: custId,
+                transId: anyValueCreator.Create<long>(),
+                pageSize: 0);
+
+            // Act
+            var actualIsValid = criteria.IsValid();
+
+            // Assert
+            Assert.False(actualIsValid);
+        }
+
+        [Theory]
+        [InlineData(1)]
+        [InlineData(int.MaxValue)]
+        public void IsValid_ValidCriteria_ReturnsTrue(int custId)
+        {
+            // Arrange
+            var criteria = new GetLastBetsCriteria(
+                betType: anyValueCreator.Create<int>(),
+                custId: custId,
+                transId: anyValueCreator.Create<long>(),
+                pageSize: 1);
+
+            // Act
+            var actualIsValid = criteria.IsValid();
+
+            // Assert
+            Assert.True(actualIsValid);
         }
     }
 }

@@ -1,17 +1,29 @@
-﻿
+﻿.page-section {
+    text-align: center;
+    position: relative;
+    display: inline-block;
+    padding-right: 20px;
+}
 .page-size-container {
-    display: inline;
+    display: inline-block;
+    margin: 8px 5px;
 }
 
 .page-size {
     display: inline;
-    padding: 4px 8px;
-    color: #045ace;
+    padding: 3px 4px 2px;
     cursor: pointer;
-}
-
-.page-size.active {
-    font-weight: bold;
+    background: #eff5fc;
+    color: #1254fb;
+    border: 1px solid #84aaf8;
+    font-size: 11px;
+    margin-right: 3px;
+    letter-spacing: 0.05px;
+    &.active, &:hover {
+        font-weight: bold;
+        background: #cce4fc;
+        letter-spacing: 0;
+    }
 }
 
 .loading-icon {
@@ -19,5 +31,6 @@
     top: 8px;
     width: 16px;
     background: url(images/ajax-loader-small.gif) no-repeat top;
-    display: inline-block;
+    position: absolute;
+    right: 0;
 }

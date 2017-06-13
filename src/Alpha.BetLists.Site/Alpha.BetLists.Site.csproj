@@ -394,6 +394,9 @@
     <Content Include="assets\scripts\tests\app\templates\common-template.html" />
     <Content Include="assets\scripts\tests\app\templates\daterangepicker-template.html" />
     <Content Include="assets\scripts\tests\app\templates\iframe-template.html" />
+    <Content Include="assets\scripts\tests\app\templates\last-bets\not-reset-trans-id-template.html" />
+    <Content Include="assets\scripts\tests\app\templates\last-bets\reset-trans-id-template.html" />
+    <Content Include="assets\scripts\tests\app\templates\last-bets\normal-template.html" />
     <Content Include="assets\scripts\tests\app\templates\member-betlist\member-betlist-template.html" />
     <Content Include="assets\scripts\tests\app\templates\member-betlist\member-betlist-with-hide-filter.html" />
     <Content Include="assets\scripts\tests\app\templates\parlay-template.html" />
@@ -402,6 +405,7 @@
     <Content Include="assets\scripts\tests\app\templates\running-betlist\running-betlist-with-uncheck-getall-template.html" />
     <Content Include="assets\scripts\tests\libs\bootstrap-datetimepicker.js" />
     <Content Include="assets\scripts\tests\libs\bootstrap-modal.js" />
+    <Content Include="assets\scripts\tests\libs\cookie.js" />
     <Content Include="assets\scripts\tests\libs\datepicker.js" />
     <Content Include="assets\scripts\tests\libs\jasmine-jquery.js" />
     <Content Include="assets\scripts\tests\libs\jasmine.js" />
@@ -410,6 +414,7 @@
     <Content Include="assets\scripts\tests\libs\moment.js" />
     <Content Include="assets\scripts\tests\libs\multiselect.js" />
     <Content Include="assets\scripts\tests\libs\nexDatePicker.js" />
+    <Content Include="assets\scripts\tests\libs\shortcut.js" />
     <Content Include="assets\scripts\tests\libs\store.js" />
     <Content Include="assets\scripts\tests\libs\tooltip.js" />
     <Content Include="assets\styles\bet-list.css">
@@ -432,6 +437,7 @@
     </Content>
     <Content Include="assets\styles\images\1F.gif" />
     <Content Include="assets\styles\images\1L.gif" />
+    <Content Include="assets\styles\images\ajax-loader-small.gif" />
     <Content Include="assets\styles\images\ajax-loader.gif" />
     <Content Include="assets\styles\images\firstGoal.gif" />
     <Content Include="assets\styles\images\green-star.gif" />
@@ -604,7 +610,7 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
-    <None Include="Web.uat2.config">
+    <Content Include="Web.uat2.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
     <Content Include="tsconfig.json" />
@@ -693,7 +699,7 @@
     <Content Include="Web.AppSettings.config">
       <SubType>Designer</SubType>
     </Content>
-     <Content Include="Web.Debug.config">
+    <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Web.local.config" />
@@ -744,6 +750,7 @@
     <TypeScriptCompile Include="assets\scripts\tests\app\components\daterangepicker-tests.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\components\productmultiselection-tests.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\components\single-selection-dropdown-tests.ts" />
+    <TypeScriptCompile Include="assets\scripts\tests\app\last-bets\last-bets-tests.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\member-betlist\member-betlist-test.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\running-betlist\running-betlist-test.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\status\ip-details-tests.ts" />
@@ -762,9 +769,6 @@
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="assets\scripts\tests\app\last-bets\" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.5.11.0.1761\analyzers\Google.Protobuf.dll" />
@@ -808,13 +812,15 @@
     <Error Condition="!Exists('..\..\packages\Fanex.Chutzpah.4.3.3\build\Fanex.Chutzpah.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Fanex.Chutzpah.4.3.3\build\Fanex.Chutzpah.targets'))" />
   </Target>
   <PropertyGroup>
-    <PostBuildEvent>cd $(ProjectDir)
-cd ..
-cd ..
-cd build
-BuildTask.Release
+    <PostBuildEvent>
+      cd $(ProjectDir)
+      cd ..
+      cd ..
+      cd build
+      BuildTask.Release
       if not exist "$(WebProjectOutputDir)\bin\Roslyn" md "$(WebProjectOutputDir)\bin\Roslyn"
-      start /MIN xcopy /s /y /R "$(OutDir)roslyn\*.*" "$(WebProjectOutputDir)\bin\Roslyn"</PostBuildEvent>
+      start /MIN xcopy /s /y /R "$(OutDir)roslyn\*.*" "$(WebProjectOutputDir)\bin\Roslyn"
+    </PostBuildEvent>
   </PropertyGroup>
   <Import Project="..\..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.2\build\Fanex.Visual-StyleCop.MSBuild.Targets" Condition="Exists('..\..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.2\build\Fanex.Visual-StyleCop.MSBuild.Targets')" />
   <Import Project="..\..\packages\Fanex.Chutzpah.4.3.3\build\Fanex.Chutzpah.targets" Condition="Exists('..\..\packages\Fanex.Chutzpah.4.3.3\build\Fanex.Chutzpah.targets')" />

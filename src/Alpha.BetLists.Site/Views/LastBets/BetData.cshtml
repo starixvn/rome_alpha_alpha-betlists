@@ -47,5 +47,4 @@
                 }
 </table>
 
-@Html.Hidden("last-trans-id",
-    Model.BetListData.Tickets.Any() ? Model.BetListData.Tickets.ElementAt(Model.BetListData.Total - 1).TransId : 0)
+@Html.Hidden("last-trans-id", Model.LastTransId)

@@ -25,6 +25,11 @@ namespace Alpha.BetLists.Site.ViewModels.LastBets
 
         public IEnumerable<int> SupportScoreMapBettypeIds { get; }
 
+        public long LastTransId
+            => BetListData.Tickets.Any()
+            ? BetListData.Tickets.ElementAt(BetListData.Total - 1).TransId
+            : 0;
+
         public override bool CanViewScoreMap(ITicket ticket) => SupportScoreMapBettypeIds.Contains(ticket.BetTypeId);
 
         public List<ITicketData> CreateTicketData(ITicket ticket)

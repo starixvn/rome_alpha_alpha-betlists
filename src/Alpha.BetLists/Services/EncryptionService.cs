@@ -4,11 +4,11 @@ namespace Alpha.BetLists.Services
 {
     public interface EncryptionService
     {
-        string CfsEncode(string codeStr, int number);
+        string CfsEncode(string codeStr, int numberOfEncodeResult);
     }
 
     public class EncryptionServiceImpl : EncryptionService
     {
-        public string CfsEncode(string codeStr, int number) => Encryption.CfsEnCode(codeStr, number);
+        public string CfsEncode(string codeStr, int numberOfEncodeResult) => Encryption.CfsEnCode(codeStr, numberOfEncodeResult);
     }
 }

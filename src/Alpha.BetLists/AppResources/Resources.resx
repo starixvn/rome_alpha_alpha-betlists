@@ -354,4 +354,7 @@
   <data name="FunctionTurnOffError" xml:space="preserve">
     <value>Our server is too busy at the moment so this function is turned off temporarily. Please try again later and sorry for the inconvenience.</value>
   </data>
+  <data name="LastBets" xml:space="preserve">
+    <value>Last Bets</value>
+  </data>
 </root>

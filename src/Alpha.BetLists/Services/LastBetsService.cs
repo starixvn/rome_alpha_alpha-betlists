@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Alpha.BetLists.Configurations;
 using Alpha.BetLists.Criteria.LastBets;
 using Alpha.BetLists.Extensions;
-using Alpha.BetLists.Helpers;
 using Alpha.BetLists.Models;
 using Alpha.BetLists.Params.LastBets;
 using Fanex.BetList.Core.Entities;
@@ -65,7 +64,7 @@ namespace Alpha.BetLists.Services
             || param.IsEnableLastBetsMonitoring
             || param.UsersAlwaysAllowAccessBetsListMonitoring.Contains(param.CustId);
 
-        private static bool IsDummyMatch(int matchId) => matchId < 999;
+        private static bool IsDummyMatch(int matchId) => matchId <= 999;
 
         private static MatchInfo FilterMatch(int matchId, IEnumerable<MatchInfo> matches) =>
             matches != null

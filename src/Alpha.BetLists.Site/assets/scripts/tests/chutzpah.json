@@ -11,6 +11,7 @@
   "CodeCoverageIgnores": [
     "*\\tests\\*"
   ],
+  "CodeCoverageExecutionMode": "Manual",
   "TestHarnessLocationMode": "SettingsFileAdjacent",
   "References": [
     { "Path": "libs/jquery.js" },
@@ -23,6 +24,10 @@
     { "Path": "libs/bootstrap-datetimepicker.js" },
     { "Path": "libs/nexDatePicker.js" },
     { "Path": "libs/multiselect.js" },
+
+    { "Path": "libs/cookie.js" },
+    { "Path": "libs/store.js" },
+    { "Path": "libs/shortcut.js" },
 
     { "Path": "../src/common/app-path.ts" },
     { "Path": "../src/common/popup-details.ts" },
@@ -46,7 +51,9 @@
     { "Path": "../src/member-betlist/member-betlist.ts" },
     { "Path": "../src/running-betlist/running-betlist.ts" },
     { "Path": "../src/cancelled-betlist/cancelled-betlist.ts" },
-    { "Path": "../src/cancelled-betlist/cancelled-betlist-constants.ts" }
+    { "Path": "../src/cancelled-betlist/cancelled-betlist-constants.ts" },
+
+    { "Path": "../src/last-bets/last-bets.ts" }
   ],
   "Tests": [
     {
@@ -75,6 +82,10 @@
     },
     {
       "Path": "app/cancelled-betlist",
+      "Excludes": [ "**.js.map" ]
+    },
+    {
+      "Path": "app/last-bets",
       "Excludes": [ "**.js.map" ]
     }
   ]

@@ -1,6 +1,8 @@
 ﻿declare var shortcut: any;
 declare var store: any;
 
+"use strict";
+
 namespace BetList {
     export class LastBetsView {
         private static instance: LastBetsView;
@@ -43,7 +45,7 @@ namespace BetList {
             }
 
             this.loadLastBets(false);
-        }
+        };
 
         cacheElements = () => {
             this.$pageSize = $(".page-size");
@@ -51,7 +53,7 @@ namespace BetList {
             this.$msgError = $("#msg-error");
             this.$betListTableContainer = $("#bet-list-table-container");
 
-            this.betType = $("#bet-type").val();
+            this.betType = parseInt($("#bet-type").val(), 0);
             this.getBetsUrl = $("#get-bets-url").val();
         };
 
@@ -67,12 +69,12 @@ namespace BetList {
 
         changeLastBetRange = (element: JQuery) => {
             let range = element.html();
-            this.pageSize = parseInt(range);
+            this.pageSize = parseInt(range, 0);
 
             this.$pageSize.removeClass("active");
             element.addClass("active");
 
-            if (this.getLastBetsTimeOut != 0) {
+            if (this.getLastBetsTimeOut !== 0) {
                 clearTimeout(this.getLastBetsTimeOut);
             }
 
@@ -98,7 +100,7 @@ namespace BetList {
             };
 
             this.ajaxRequest = $.ajax({
-                method: 'GET',
+                method: "GET",
                 data: param,
                 url: this.getBetsUrl,
                 success: this.successGetLastBets,
@@ -113,7 +115,7 @@ namespace BetList {
             }
         };
 
-        successGetLastBets = (responseHtml) => {
+        successGetLastBets = (responseHtml: any) => {
             if (responseHtml.ErrorCode && responseHtml.ErrorCode !== "0") {
                 this.showError();
                 return;
@@ -127,31 +129,35 @@ namespace BetList {
 
             this.$betListTableContainer.html(responseHtml);
 
-            let lastTransId = parseInt($("#last-trans-id").val(), 0);
+            let lastTransId = parseInt(this.$betListTableContainer.find("#last-trans-id").val(), 0);
             if (lastTransId > 0) {
                 this.localStorage.set(this.lastTransIdCacheKey, lastTransId);
             }
 
-            this.getLastBetsTimeOut = setTimeout(() => { this.loadLastBets(true); }, this.timeToGetLastBets);
+            let self = this;
+            this.getLastBetsTimeOut = setTimeout(() => { self.loadLastBets(true); }, this.timeToGetLastBets);
+
             this.isCalling = false;
         };
 
         showError = () => {
             this.$msgError.removeClass("hide");
 
-            // Protection level, avoid through too many exceptions on server
-            this.getLastBetsTimeOut = setTimeout(() => { this.loadLastBets(true); }, this.timeToRetryGetLastBets);
+            // protection level, avoid through too many exceptions on server
+            let self = this;
+            this.getLastBetsTimeOut = setTimeout(() => { self.loadLastBets(true); }, this.timeToRetryGetLastBets);
         };
         completeGetLastBets = () => {
             this.$loadingIcon.addClass("hide");
         };
 
         setGetLastBetsTimeOut = () => {
-            if (this.getLastBetsTimeOut != 0) {
+            if (this.getLastBetsTimeOut !== 0) {
                 clearTimeout(this.getLastBetsTimeOut);
                 this.getLastBetsTimeOut = 0;
             } else {
-                this.getLastBetsTimeOut = setTimeout(this.loadLastBets(true), this.timeToGetLastBets);
+                let self = this;
+                this.getLastBetsTimeOut = setTimeout(() => { self.loadLastBets(true); }, this.timeToGetLastBets);
             }
         };
 
@@ -189,4 +195,4 @@ namespace BetList {
 
 $(document).ready(() => {
     BetList.LastBetsView.Instance.Init(shortcut, store);
-})
+});

@@ -106,6 +106,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+ 	///   Looks up a localized string similar to All Bet Types.
+        /// </summary>
+        public static string AllBetTypes {
+            get {
+                return ResourceManager.GetString("AllBetTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All Products.
         /// </summary>
         public static string AllProducts {
@@ -114,15 +123,6 @@ namespace Alpha.BetLists.AppResources {
             }
         }
         
-        /// <summary>
-        ///   Looks up a localized string similar to All Bet Types.
-        /// </summary>
-        public static string AllBetTypes {
-            get {
-                return ResourceManager.GetString("AllBetTypes", resourceCulture);
-            }
-        }
-
         /// <summary>
         ///   Looks up a localized string similar to Bet List.
         /// </summary>
@@ -260,38 +260,20 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Get All.
-        /// </summary>
-        public static string GetAll {
-            get {
-                return ResourceManager.GetString("GetAll", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Hide Filter.
-        /// </summary>
-        public static string HideFilter {
-            get {
-                return ResourceManager.GetString("HideFilter", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Last Month.
-        /// </summary>
-        public static string LastMonth {
-            get {
-                return ResourceManager.GetString("LastMonth", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Our server is too busy at the moment so this function is turned off temporarily. Please try again later and sorry for the inconvenience..
         /// </summary>
         public static string FunctionTurnOffError {
             get {
                 return ResourceManager.GetString("FunctionTurnOffError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get All.
+        /// </summary>
+        public static string GetAll {
+            get {
+                return ResourceManager.GetString("GetAll", resourceCulture);
             }
         }
         
@@ -305,11 +287,29 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hide filters.
+        /// </summary>
+        public static string HideFilter {
+            get {
+                return ResourceManager.GetString("HideFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Last.
         /// </summary>
         public static string Last {
             get {
                 return ResourceManager.GetString("Last", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last Bets.
+        /// </summary>
+        public static string LastBets {
+            get {
+                return ResourceManager.GetString("LastBets", resourceCulture);
             }
         }
         
@@ -321,7 +321,16 @@ namespace Alpha.BetLists.AppResources {
                 return ResourceManager.GetString("LastBetsMonitoring", resourceCulture);
             }
         }
-
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last Month.
+        /// </summary>
+        public static string LastMonth {
+            get {
+                return ResourceManager.GetString("LastMonth", resourceCulture);
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Last Week.
         /// </summary>

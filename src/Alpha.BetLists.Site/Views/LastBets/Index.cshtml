@@ -8,7 +8,7 @@
     @StaticResources.RenderStyles("~/assets/bundles/last-bets")
 }
 <div class="bl_title">
-    @Resources.LastBetsMonitoring
+    @Resources.LastBets
 </div>
 <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="@(Model.IsSelectedBetType(BetTypeIdConstants.AllBetTypes) ?"active":string.Empty)">
@@ -24,15 +24,17 @@
         @Html.ActionLink(Resources.OtherBetTypes, "Index", "LastBets", new { BetType = BetTypeIdConstants.OtherBetTypes }, new { id = "tab-other-bet-types" })
     </li>
 </ul>
-<div>
-    <span>@Resources.Last</span>
-    <ul class="page-size-container">
-        <li class="page-size @(Model.IsSelectedPageSize(10) ? "active" : string.Empty)">10</li>
-        <li class="page-size @(Model.IsSelectedPageSize(20) ? "active" : string.Empty)">20</li>
-        <li class="page-size @(Model.IsSelectedPageSize(30) ? "active" : string.Empty)">30</li>
-    </ul>
-    <span id="loading-icon" class="loading-icon hide"></span>
-</div>
+<center>
+    <div class="page-section">
+        <span>@Resources.Last</span>
+        <ul class="page-size-container">
+            <li id="page-size-10" class="page-size @(Model.IsSelectedPageSize(10) ? "active" : string.Empty)">10</li>
+            <li id="page-size-20" class="page-size @(Model.IsSelectedPageSize(20) ? "active" : string.Empty)">20</li>
+            <li id="page-size-30" class="page-size @(Model.IsSelectedPageSize(30) ? "active" : string.Empty)">30</li>
+        </ul>
+        <span id="loading-icon" class="loading-icon"></span>
+    </div>
+</center>
 <div id="msg-error" class="msg msg-error hide">
     @Resources.FunctionTurnOffError
 </div>
@@ -46,17 +48,10 @@
 
 @Html.Hidden("betlist-path", HttpContext.Current.Response.ApplyAppPathModifier("~/"))
 @Html.Hidden("old-main-path", Model.OldMainPath)
-@Html.Hidden("results-path", Model.ResultsPath)
 @Html.Hidden("totalbets-forecast-path", Model.TotalBetsForecastPath)
-@Html.Hidden("product-ids", Model.ProductsId)
-@Html.Hidden("betlist-type", Model.BetListType)
-@Html.Hidden("from-date", Model.FromDate)
-@Html.Hidden("to-date", Model.ToDate)
 @Html.Hidden("cust-id", Model.CustId)
-@Html.Hidden("is-historic-report", Model.IsHistoricReport)
 @Html.Hidden("viewer-id", Model.ViewerIdOrViewerAdminId)
 @Html.Hidden("viewer-level-id", Model.ViewerLevelId)
-@Html.Hidden("colossusBets-PopUpDetail-Title", Resources.ColossusBetsPopUpDetailTitle)
 
 @section Scripts {
     @StaticResources.AssetScripts.Render("/bundles/site-betlists/last-bets")

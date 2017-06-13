@@ -22,8 +22,6 @@ namespace Alpha.BetLists.Site.ViewModels.LastBets
             LastTransIdCacheKey = lastTransIdCacheKey;
         }
 
-        public int UserId { get; }
-
         public int BetType { get; }
 
         public int PageSize { get; }

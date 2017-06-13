@@ -126,5 +126,45 @@ namespace Alpha.BetLists.Site.Tests.ViewModels.LastBets
             // Assert
             Assert.True(compareLogic.Compare(expectedViewModel, actualValue).AreEqual);
         }
+
+        [Fact]
+        public void LastTransId_NoTicket_Returns0()
+        {
+            // Arrange
+            var query = new GetLastBetsQuery(user);
+            var betListData = new BetListData(null, null);
+            var viewModel = new BetDataViewModel(query, betListData, betlistFixture.HtmlBuilder, betlistFixture.TicketHelper, null);
+            var expectedLastTransId = 0;
+
+            // Act
+            var actualLastTransId = viewModel.LastTransId;
+
+            // Assert
+            Assert.Equal(expectedLastTransId, actualLastTransId);
+        }
+
+        [Fact]
+        public void LastTransId_HasTickets_ReturnsCorrectLastTransId()
+        {
+            // Arrange
+            var query = new GetLastBetsQuery(user);
+            var tickets = new List<TicketDto>
+            {
+                new TicketDto
+                {
+                    TransId = 1
+                }
+            };
+
+            var betListData = new BetListData(tickets, null);
+            var viewModel = new BetDataViewModel(query, betListData, betlistFixture.HtmlBuilder, betlistFixture.TicketHelper, null);
+            var expectedLastTransId = 1;
+
+            // Act
+            var actualLastTransId = viewModel.LastTransId;
+
+            // Assert
+            Assert.Equal(expectedLastTransId, actualLastTransId);
+        }
     }
 }
