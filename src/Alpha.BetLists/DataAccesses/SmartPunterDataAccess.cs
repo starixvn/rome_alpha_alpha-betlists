@@ -4,6 +4,7 @@
     using System.Linq;
     using Criteria.SmartPunter;
     using Fanex.Data.Repository;
+    using Models;
     using SmartPunter.Criteria;
     using SmartPunter.DataAccesses;
     using SmartPunter.Models;
@@ -30,9 +31,9 @@
         {
             var criteria = new NAPUserPermissionCriteria(criteriaData);
 
-            var functionNames = dynamicRepository.Fetch<string>(criteria);
+            var permissions = dynamicRepository.Fetch<NapUserFunctionPermission>(criteria);
 
-            return functionNames.Any(name => name.Equals(functionName, StringComparison.OrdinalIgnoreCase));
+            return permissions.Any(p => p.FuncName.Equals(functionName, StringComparison.OrdinalIgnoreCase));
         }
 
         public SMACustomer CheckSmartPunter(SmartPunterSMAChecker commandData)

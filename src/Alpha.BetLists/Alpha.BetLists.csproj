@@ -35,7 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Alpha.SmartPunter, Version=1.0.0.6, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Alpha.SmartPunter.1.0.0.0-WinLossBetList-07\lib\net40\Alpha.SmartPunter.dll</HintPath>
+      <HintPath>..\..\packages\Alpha.SmartPunter.1.0.0.0-WinLossBetList-09\lib\net40\Alpha.SmartPunter.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Alpha.Utilities.IP, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -191,6 +191,7 @@
     <Compile Include="Models\BetListData.cs" />
     <Compile Include="Models\Enumeration.cs" />
     <Compile Include="Models\IUser.cs" />
+    <Compile Include="Models\NapUserFunctionPermission.cs" />
     <Compile Include="Models\Parlay\MatchDetail.cs" />
     <Compile Include="Models\Parlay\ComboParlayDetail.cs" />
     <Compile Include="Models\Parlay\ComboParlayDetailData.cs" />
@@ -217,11 +218,6 @@
     <Compile Include="Utils\SystemTime.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.5.9.0.1001\analyzers\Google.Protobuf.dll" />
-    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.5.9.0.1001\analyzers\SonarAnalyzer.CSharp.dll" />
-    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.5.9.0.1001\analyzers\SonarAnalyzer.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Alpha.BetLists.Debug.ruleset" />
     <None Include="Alpha.BetLists.ruleset" />
     <None Include="app.config" />
@@ -239,7 +235,11 @@
     <EmbeddedResource Include="AppResources\Resources.zh-CN.resx" />
     <EmbeddedResource Include="AppResources\Resources.zh-TW.resx" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.5.11.0.1761\analyzers\Google.Protobuf.dll" />
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.5.11.0.1761\analyzers\SonarAnalyzer.CSharp.dll" />
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.5.11.0.1761\analyzers\SonarAnalyzer.dll" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.2\build\Fanex.Visual-StyleCop.MSBuild.Targets" Condition="Exists('..\..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.2\build\Fanex.Visual-StyleCop.MSBuild.Targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

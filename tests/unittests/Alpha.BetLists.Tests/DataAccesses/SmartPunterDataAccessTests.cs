@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using BetLists.Criteria.SmartPunter;
     using BetLists.DataAccesses;
+    using BetLists.Models;
     using Fixtures;
     using NSubstitute;
     using SmartPunter.Criteria;
@@ -56,10 +57,10 @@
             // Arrange
             var custId = 1;
             var functionName = "function";
-            var functionNameList = new List<string> { functionName };
+            var permissions = new List<NapUserFunctionPermission> { new NapUserFunctionPermission(1, "a", functionName, 1) };
             dataFixture.DynamicRepository
-                .Fetch<string>(Arg.Is<NAPUserPermissionCriteria>(c => c.CustId == custId))
-                .Returns(functionNameList);
+                .Fetch<NapUserFunctionPermission>(Arg.Is<NAPUserPermissionCriteria>(c => c.CustId == custId))
+                .Returns(permissions);
 
             // Act
             var actual = smartPunter.CheckPermission(new NAPUserPermission(custId), functionName);
@@ -74,16 +75,16 @@
             // Arrange
             var custId = 1;
             var functionName = "function";
-            var functionNameList = new List<string> { functionName };
+            var permissions = new List<NapUserFunctionPermission> { new NapUserFunctionPermission(1, "a", functionName, 1) };
             dataFixture.DynamicRepository
-                .Fetch<string>(Arg.Is<NAPUserPermissionCriteria>(c => c.CustId == custId))
-                .Returns(functionNameList);
+                .Fetch<NapUserFunctionPermission>(Arg.Is<NAPUserPermissionCriteria>(c => c.CustId == custId))
+                .Returns(permissions);
 
             // Act
             var actual = smartPunter.CheckPermission(new NAPUserPermission(custId), functionName);
 
             // Assert
-            dataFixture.DynamicRepository.Received().Fetch<string>(Arg.Is<NAPUserPermissionCriteria>(
+            dataFixture.DynamicRepository.Received().Fetch<NapUserFunctionPermission>(Arg.Is<NAPUserPermissionCriteria>(
                 c => c.CustId == 1));
         }
 
