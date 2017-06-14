@@ -16,7 +16,7 @@
             HtmlBuilder = Substitute.For<IBetListHTMLBuilder>();
             ExcelBuilder = Substitute.For<IBetListExcelBuilder>();
             TicketHelper = Substitute.For<ITicketHelper>();
-            MoniterService = Substitute.For<ISmartPunterBetListMonitor>();
+            MonitorService = Substitute.For<ISmartPunterBetListMonitor>();
             IpService = Substitute.For<IPService>();
             ExcelBuilder.RTFHelper.Returns(CreateRtfHelper());
             RtfHelper = ExcelBuilder.RTFHelper;
@@ -36,7 +36,7 @@
 
         public RTFHelper RtfHelper { get; internal set; }
 
-        public ISmartPunterBetListMonitor MoniterService { get; }
+        public ISmartPunterBetListMonitor MonitorService { get; }
 
         public IPService IpService { get; }
 

@@ -44,7 +44,7 @@
                 winLossService,
                 this.betlistFixture.HtmlBuilder,
                 this.betlistFixture.TicketHelper,
-                this.betlistFixture.MoniterService,
+                this.betlistFixture.MonitorService,
                 this.betlistFixture.IpService,
                 productService);
 
@@ -66,7 +66,7 @@
             winLossHandler.Handle(query).GetAwaiter().GetResult();
 
             // Assert
-            betlistFixture.MoniterService.Received().WriteLog(
+            betlistFixture.MonitorService.Received().WriteLog(
                 Arg.Is<int>(cid => cid == expectedId),
                 Arg.Is<IList<ITicket>>(t => t.SequenceEqual(BetListDataTest.Tickets)));
         }

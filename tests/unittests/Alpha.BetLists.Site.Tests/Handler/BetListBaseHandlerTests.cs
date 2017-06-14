@@ -34,7 +34,7 @@
             baseHandler = new BetListBaseHandler(
                 this.betlistFixture.HtmlBuilder,
                 this.betlistFixture.TicketHelper,
-                this.betlistFixture.MoniterService,
+                this.betlistFixture.MonitorService,
                 this.betlistFixture.IpService);
 
             query = new WinLossQuery(betlistFixture.User);
@@ -68,7 +68,7 @@
         public void MonitorService_Always_SetValueFromCtor()
         {
             // Act & Assert
-            Assert.Equal(baseHandler.MonitorService, betlistFixture.MoniterService);
+            Assert.Equal(baseHandler.MonitorService, betlistFixture.MonitorService);
         }
 
         [Fact]
@@ -119,7 +119,7 @@
             baseHandler.WriteLog(custId, tickets);
 
             // Assert
-            betlistFixture.MoniterService.Received().WriteLog(
+            betlistFixture.MonitorService.Received().WriteLog(
                 Arg.Is<int>(cid => cid == custId),
                 Arg.Is<IList<ITicket>>(t => t.SequenceEqual(tickets)));
         }

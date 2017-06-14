@@ -52,7 +52,7 @@
                 this.betlistFixture.HtmlBuilder,
                 this.betlistFixture.ExcelBuilder,
                 this.betlistFixture.TicketHelper,
-                this.betlistFixture.MoniterService,
+                this.betlistFixture.MonitorService,
                 this.betlistFixture.IpService,
                 workbook,
                 productService);

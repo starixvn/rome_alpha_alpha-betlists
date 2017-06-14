@@ -28,7 +28,7 @@
                 this.parlayServiceFixture.ParlayService,
                 betListFixture.HtmlBuilder,
                 betListFixture.TicketHelper,
-                betListFixture.MoniterService,
+                betListFixture.MonitorService,
                 betListFixture.IpService);
 
             comparer = new CompareLogic(new ComparisonConfig
