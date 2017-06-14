@@ -24,12 +24,12 @@ namespace Alpha.BetLists.Params
 
         public int CurrentUserId { get; }
 
-        public int MasterId { get; set; }
+        public int MasterId { get; }
 
-        public int AgentId { get; set; }
+        public int AgentId { get; }
 
-        public int MemberId { get; set; }
+        public int MemberId { get; }
 
-        public string Language { get; set; }
+        public string Language { get; }
     }
 }

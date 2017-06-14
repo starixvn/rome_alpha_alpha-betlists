@@ -6,24 +6,21 @@ namespace Alpha.BetLists.Criteria.CancelledBet
 {
     public class GetCancelledBetCriteria : CriteriaBase
     {
-        public GetCancelledBetCriteria(int custId, UserLevel userLevel, string language)
+        public GetCancelledBetCriteria(int custId, int roleId, string language)
         {
             CustId = custId;
             Language = language;
-            Level = userLevel;
+            RoleId = roleId;
         }
 
         public int CustId { get; }
 
-        public int RoleId => Level.Value;
-
-        [SpParam(Ignored = true)]
-        private UserLevel Level { get; }
+        public int RoleId { get; }
 
         public string Language { get; }
 
         public override string GetSettingKey() => "Age_BetList_SelDeleted";
 
-        public override bool IsValid() => CustId > 0;
+        public override bool IsValid() => CustId > 0 && (RoleId == UserLevel.Agent.Value || RoleId == UserLevel.Master.Value || RoleId == UserLevel.Master.Value);
     }
 }
