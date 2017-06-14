@@ -17,7 +17,8 @@
 
     public class MemberBetListViewModel : WinLossViewModel
     {
-        public static readonly IEnumerable<string> RangeOptions = new List<string> {
+        public static readonly IEnumerable<string> RangeOptions = new List<string>
+        {
             DateRangePickerViewModel.TodayOptionValue,
             DateRangePickerViewModel.YesterdayOptionValue,
             DateRangePickerViewModel.SpecificDateOptionValue

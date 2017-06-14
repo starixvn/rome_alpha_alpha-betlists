@@ -100,7 +100,6 @@
             Logs.WriteInfo(logMessage);
         }
 
-
         private static string GetBuildVersion()
         {
             Assembly assembly = Assembly.GetCallingAssembly();
