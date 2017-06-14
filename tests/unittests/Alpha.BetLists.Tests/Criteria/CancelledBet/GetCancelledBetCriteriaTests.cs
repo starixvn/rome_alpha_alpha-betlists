@@ -10,21 +10,18 @@ namespace Alpha.BetLists.Tests.Criteria.CancelledBet
 {
     public class GetCancelledBetCriteriaTests
     {
-        [Theory]
-        [InlineData(2)]
-        [InlineData(3)]
-        [InlineData(4)]
-        public void IsValid_ValidProperties_ReturnTrue(int roleId)
+        [Fact]
+        public void IsValid_ValidProperties_ReturnTrue()
         {
             //// Arrange
-            var criteria = new GetCancelledBetCriteria(263, roleId, "en");
+            var criteria = new GetCancelledBetCriteria(263, 2, "en");
 
             //// Act
             var act = criteria.IsValid();
 
             //// Assert
             Assert.True(act);
-        }
+        }        
 
         [Fact]
         public void GetSettingKey_Always_ReturnCorrectKey()

@@ -21,6 +21,6 @@ namespace Alpha.BetLists.Criteria.CancelledBet
 
         public override string GetSettingKey() => "Age_BetList_SelDeleted";
 
-        public override bool IsValid() => CustId > 0 && (RoleId == UserLevel.Agent.Value || RoleId == UserLevel.Master.Value || RoleId == UserLevel.Super.Value);
+        public override bool IsValid() => CustId > 0;
     }
 }
