@@ -1,4 +1,4 @@
-﻿namespace Alpha.BetLists.StaticData.ColumnIndex
+﻿namespace Alpha.BetLists.StaticData.ColumnIndexes
 {
     public enum TicketTemplateColumnIndex
     {
@@ -53,5 +53,10 @@
         EventDate,
         TransDesc,
         OddsSpread,
+        Currency,
+        OriginalBetType,
+        BetdaqId,
+        ExtraInfo,
+        OriginalStake
     }
 }

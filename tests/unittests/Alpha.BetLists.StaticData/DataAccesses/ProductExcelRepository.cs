@@ -1,6 +1,7 @@
 ﻿namespace Alpha.BetLists.StaticData.DataAccesses
 {
     using Helpers;
+    using IntegrationTest;
     using Models;
     using System.Collections.Generic;
 
@@ -8,11 +9,12 @@
     {
         public static IEnumerable<Product> GetProducts()
         {
-            return NpoiHelper.LoadData(
-                "Products",
-                row => new Product(
-                        (int)row.GetCell(0).NumericCellValue,
-                        row.GetCell(1).StringCellValue));
+            var workbook = NpoiHelper.LoadWorkbook("Products");
+            var sheet = workbook?.LoadSheet();
+
+            return sheet?.LoadData(row => new Product(
+                  (int)row.GetCell(0).NumericCellValue,
+                  row.GetCell(1).StringCellValue));
         }
     }
 }

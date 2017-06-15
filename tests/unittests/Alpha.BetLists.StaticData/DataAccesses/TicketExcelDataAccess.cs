@@ -1,170 +1,114 @@
-﻿using Alpha.BetLists.Models;
-using Alpha.BetLists.StaticData.ColumnIndex;
-using Alpha.BetLists.StaticData.Helpers;
-using Fanex.BetList.Core.Entities;
-using NPOI.HSSF.UserModel;
-using NPOI.SS.UserModel;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-
-namespace Alpha.BetLists.StaticData.DataAccesses
+﻿namespace Alpha.BetLists.StaticData.DataAccesses
 {
+    using ColumnIndexes;
+    using Fanex.BetList.Core.Entities;
+    using Fanex.Common;
+    using Helpers;
+    using IntegrationTest;
+    using Models;
+    using NPOI.SS.UserModel;
+    using System;
+    using System.Collections.Generic;
+
     public class TicketExcelDataAccess
     {
-        private string fileName;
-        private IWorkbook workbook;
-        private IFormulaEvaluator formulaEvaluator;
-        private DataFormatter dataFormatter;
+        private readonly IWorkbook workbook;
 
         public TicketExcelDataAccess(string fileName)
         {
-            this.fileName = fileName;
+            workbook = NpoiHelper.LoadWorkbook(fileName);
         }
 
-        public IEnumerable<TicketDto> GetTickets()
-        {
-            LazyLoadWorkbook();
+        public IEnumerable<TicketDto> GetTickets() => workbook.GetData("BetTickets", MapRowToTicketObject);
 
-            var betTicketSheet = workbook.GetSheet("BetTickets");
+        public IEnumerable<ITicketData> GetTicketData() => workbook.GetData("ReferenceData", MapRowToTicketDataObject);
 
-            IList<TicketDto> tickets = new List<TicketDto>();
-
-            if (betTicketSheet != null)
+        private static ITicketData MapRowToTicketDataObject(IRow row)
+            => new TicketData
             {
-                betTicketSheet.RemoveRow(betTicketSheet.GetRow(0));
-
-                foreach (IRow row in betTicketSheet)
-                {
-                    var ticket = MapRowToTicketObject(row);
-                    if (ticket != null && ticket.BetTypeId > 0)
-                    {
-                        tickets.Add(ticket);
-                    }
-                }
-            }
-
-            return tickets;
-        }
-
-        public IList<ITicketData> GetTicketData()
-        {
-            LazyLoadWorkbook();
-
-            var ticketDataSheet = workbook.GetSheet("ReferenceData");
-
-            IList<ITicketData> ticketData = new List<ITicketData>();
-
-            if (ticketDataSheet != null)
-            {
-                ticketDataSheet.RemoveRow(ticketDataSheet.GetRow(0));
-
-                foreach (IRow row in ticketDataSheet)
-                {
-                    var data = MapRowToTicketDataObject(row);
-                    if (data != null)
-                    {
-                        ticketData.Add(data);
-                    }
-                }
-            }
-
-            return ticketData;
-        }
-
-        private void LazyLoadWorkbook()
-        {
-            // Check to lazily initialize workbook object
-            if (workbook == null)
-            {
-                // Check if file path is valid
-                if (!string.IsNullOrWhiteSpace(fileName))
-                {
-                    workbook = NpoiHelper.LoadWorkbook(fileName);
-                    formulaEvaluator = new HSSFFormulaEvaluator(workbook);
-                    dataFormatter = new HSSFDataFormatter(new CultureInfo("en-US"));
-                }
-            }
-        }
-
-        private ITicketData MapRowToTicketDataObject(IRow row)
-        {
-            ITicketData data = new TicketData
-            {
-                AgentPT = Convert.ToDecimal(GetCellValue(row.GetCell((int)TicketDataTemplateColumnIndex.AgentPT))),
-                BetTeam = GetCellValue(row.GetCell((int)TicketDataTemplateColumnIndex.BetTeam)),
-                BetTypeId = Convert.ToInt32(GetCellValue(row.GetCell((int)TicketDataTemplateColumnIndex.BetTypeId))),
-                MasterPT = Convert.ToDecimal(GetCellValue(row.GetCell((int)TicketDataTemplateColumnIndex.MasterPT))),
-                Odds = Convert.ToDecimal(GetCellValue(row.GetCell((int)TicketDataTemplateColumnIndex.Odds))),
-                RefNo = GetCellValue(row.GetCell((int)TicketDataTemplateColumnIndex.RefNo)),
-                Stake = Convert.ToDecimal(GetCellValue(row.GetCell((int)TicketDataTemplateColumnIndex.Stake))),
-                Status = GetCellValue(row.GetCell((int)TicketDataTemplateColumnIndex.Status)),
-                SuperPT = Convert.ToDecimal(GetCellValue(row.GetCell((int)TicketDataTemplateColumnIndex.SuperPT))),
-                TransDesc = GetCellValue(row.GetCell((int)TicketDataTemplateColumnIndex.TransDesc))
+                AgentPT = GetCellValue<decimal>(row, TicketDataTemplateColumnIndex.AgentPT),
+                BetTeam = GetCellValue<string>(row, TicketDataTemplateColumnIndex.BetTeam),
+                BetTypeId = GetCellValue<int>(row, TicketDataTemplateColumnIndex.BetTypeId),
+                MasterPT = GetCellValue<decimal>(row, TicketDataTemplateColumnIndex.MasterPT),
+                Odds = GetCellValue<decimal>(row, TicketDataTemplateColumnIndex.Odds),
+                RefNo = GetCellValue<string>(row, TicketDataTemplateColumnIndex.RefNo),
+                Stake = GetCellValue<decimal>(row, TicketDataTemplateColumnIndex.Stake),
+                Status = GetCellValue<string>(row, TicketDataTemplateColumnIndex.Status),
+                SuperPT = GetCellValue<decimal>(row, TicketDataTemplateColumnIndex.SuperPT),
+                TransDesc = GetCellValue<string>(row, TicketDataTemplateColumnIndex.TransDesc)
             };
 
-            return data;
-        }
+        private static TicketDto MapRowToTicketObject(IRow row)
+            => new TicketDto
+            {
+                ActualStake = GetCellValue<decimal>(row, TicketTemplateColumnIndex.ActualStake),
+                AgentComm = GetCellValue<decimal>(row, TicketTemplateColumnIndex.AgentComm),
+                AgentDiscount = GetCellValue<decimal>(row, TicketTemplateColumnIndex.AgentDiscount),
+                AgentPositionTaking = GetCellValue<decimal>(row, TicketTemplateColumnIndex.AgentPositionTaking),
+                AgentWinlost = GetCellValue<decimal>(row, TicketTemplateColumnIndex.AgentWinlost),
+                AwayId = GetCellValue<long>(row, TicketTemplateColumnIndex.AwayId),
+                BetCheck = GetCellValue<string>(row, TicketTemplateColumnIndex.BetCheck),
+                BetId = GetCellValue<long>(row, TicketTemplateColumnIndex.BetId),
+                BetTeam = GetCellValue<string>(row, TicketTemplateColumnIndex.BetTeam),
+                BetTypeId = GetCellValue<int>(row, TicketTemplateColumnIndex.BetTypeId),
+                Comm = GetCellValue<decimal>(row, TicketTemplateColumnIndex.Comm),
+                CommStatus = GetCellValue<string>(row, TicketTemplateColumnIndex.CommStatus),
+                CustId = GetCellValue<long>(row, TicketTemplateColumnIndex.CustId),
+                Currency = GetCellValue<string>(row, TicketTemplateColumnIndex.Currency),
+                EventDate = GetCellValue<DateTime>(row, TicketTemplateColumnIndex.EventDate),
+                EventStatus = GetCellValue<string>(row, TicketTemplateColumnIndex.EventStatus),
+                Handicap1 = GetCellValue<decimal>(row, TicketTemplateColumnIndex.Handicap1),
+                Handicap2 = GetCellValue<decimal>(row, TicketTemplateColumnIndex.Handicap2),
+                HomeId = GetCellValue<long>(row, TicketTemplateColumnIndex.HomeId),
+                IP = GetCellValue<string>(row, TicketTemplateColumnIndex.IP),
+                IsLive = Convert.ToBoolean(GetCellValue<int>(row, TicketTemplateColumnIndex.IsLive)),
+                IsNeutral = Convert.ToBoolean(GetCellValue<int>(row, TicketTemplateColumnIndex.IsNeutral)),
+                LeagueId = GetCellValue<int>(row, TicketTemplateColumnIndex.LeagueId),
+                LiveAwayScore = GetCellValue<int>(row, TicketTemplateColumnIndex.LiveAwayScore),
+                LiveHomeScore = GetCellValue<int>(row, TicketTemplateColumnIndex.LiveHomeScore),
+                MasterDiscount = GetCellValue<decimal>(row, TicketTemplateColumnIndex.MasterDiscount),
+                MasterOdds = GetCellValue<decimal>(row, TicketTemplateColumnIndex.MasterOdds),
+                MasterPositionTaking = GetCellValue<decimal>(row, TicketTemplateColumnIndex.MasterPositionTaking),
+                MasterWinlost = GetCellValue<decimal>(row, TicketTemplateColumnIndex.MasterWinlost),
+                MatchCode = GetCellValue<string>(row, TicketTemplateColumnIndex.MatchCode),
+                MatchId = GetCellValue<int>(row, TicketTemplateColumnIndex.MatchId),
+                Odds = GetCellValue<decimal>(row, TicketTemplateColumnIndex.Odds),
+                OddsType = GetCellValue<string>(row, TicketTemplateColumnIndex.OddsType),
+                PlayerComm = GetCellValue<decimal>(row, TicketTemplateColumnIndex.PlayerComm),
+                Race = GetCellValue<string>(row, TicketTemplateColumnIndex.Race),
+                RefNo = GetCellValue<string>(row, TicketTemplateColumnIndex.RefNo),
+                ShowTime = GetCellValue<string>(row, TicketTemplateColumnIndex.ShowTime),
+                SportTypeId = GetCellValue<int>(row, TicketTemplateColumnIndex.SportTypeId),
+                Stake = GetCellValue<decimal>(row, TicketTemplateColumnIndex.Stake),
+                Status = GetCellValue<string>(row, TicketTemplateColumnIndex.Status),
+                SuperComm = GetCellValue<decimal>(row, TicketTemplateColumnIndex.SuperComm),
+                SuperDiscount = GetCellValue<decimal>(row, TicketTemplateColumnIndex.SuperDiscount),
+                SuperPositionTaking = GetCellValue<decimal>(row, TicketTemplateColumnIndex.SuperPositionTaking),
+                SuperWinlost = GetCellValue<decimal>(row, TicketTemplateColumnIndex.SuperWinlost),
+                TransDate = GetCellValue<DateTime>(row, TicketTemplateColumnIndex.TransDate),
+                TransId = GetCellValue<long>(row, TicketTemplateColumnIndex.TransId),
+                UserName = GetCellValue<string>(row, TicketTemplateColumnIndex.UserName),
+                Winlost = GetCellValue<decimal>(row, TicketTemplateColumnIndex.Winlost),
+                WinlostDate = GetCellValue<DateTime>(row, TicketTemplateColumnIndex.WinlostDate),
+                TransDesc = GetCellValue<string>(row, TicketTemplateColumnIndex.TransDesc),
+                OddsSpread = GetCellValue<decimal>(row, TicketTemplateColumnIndex.OddsSpread),
+                OriginalBetType = GetCellValue<int>(row, TicketTemplateColumnIndex.OriginalBetType),
+                BetdaqId = GetCellValue<long>(row, TicketTemplateColumnIndex.BetdaqId),
+                OriginalStake = GetCellValue<decimal>(row, TicketTemplateColumnIndex.OriginalStake)
+            };
 
-        private TicketDto MapRowToTicketObject(IRow row)
+        private static T GetCellValue<T>(IRow row, object columnIndex)
         {
-            var ticket = new TicketDto();
-            ticket.ActualStake = Convert.ToDecimal(GetCellValue(row.GetCell((int)TicketTemplateColumnIndex.ActualStake)));
-            ticket.AgentComm = Convert.ToDecimal(GetCellValue(row.GetCell((int)TicketTemplateColumnIndex.AgentComm)));
-            ticket.AgentDiscount = Convert.ToDecimal(GetCellValue(row.GetCell((int)TicketTemplateColumnIndex.AgentDiscount)));
-            ticket.AgentPositionTaking = Convert.ToDecimal(GetCellValue(row.GetCell((int)TicketTemplateColumnIndex.AgentPositionTaking)));
-            ticket.AgentWinlost = Convert.ToDecimal(GetCellValue(row.GetCell((int)TicketTemplateColumnIndex.AgentWinlost)));
-            ticket.AwayId = Convert.ToInt64(GetCellValue(row.GetCell((int)TicketTemplateColumnIndex.AwayId)));
-            ticket.BetCheck = GetCellValue(row.GetCell((int)TicketTemplateColumnIndex.BetCheck));
-            ticket.BetId = Convert.ToInt64(GetCellValue(row.GetCell((int)TicketTemplateColumnIndex.BetId)));
-            ticket.BetTeam = GetCellValue(row.GetCell((int)TicketTemplateColumnIndex.BetTeam));
-            ticket.BetTypeId = Convert.ToInt32(GetCellValue(row.GetCell((int)TicketTemplateColumnIndex.BetTypeId)));
-            ticket.Comm = Convert.ToDecimal(GetCellValue(row.GetCell((int)TicketTemplateColumnIndex.Comm)));
-            ticket.CommStatus = GetCellValue(row.GetCell((int)TicketTemplateColumnIndex.CommStatus));
-            ticket.CustId = Convert.ToInt64(GetCellValue(row.GetCell((int)TicketTemplateColumnIndex.CustId)));
-            ticket.EventDate = Convert.ToDateTime(GetCellValue(row.GetCell((int)TicketTemplateColumnIndex.EventDate)));
-            ticket.EventStatus = GetCellValue(row.GetCell((int)TicketTemplateColumnIndex.EventStatus));
-            ticket.Handicap1 = Convert.ToDecimal(GetCellValue(row.GetCell((int)TicketTemplateColumnIndex.Handicap1)));
-            ticket.Handicap2 = Convert.ToDecimal(GetCellValue(row.GetCell((int)TicketTemplateColumnIndex.Handicap2)));
-            ticket.HomeId = Convert.ToInt64(GetCellValue(row.GetCell((int)TicketTemplateColumnIndex.HomeId)));
-            ticket.IP = GetCellValue(row.GetCell((int)TicketTemplateColumnIndex.IP));
-            ticket.IsLive = Convert.ToBoolean(Convert.ToInt32(GetCellValue(row.GetCell((int)TicketTemplateColumnIndex.IsLive))));
-            ticket.IsNeutral = Convert.ToBoolean(Convert.ToInt32(GetCellValue(row.GetCell((int)TicketTemplateColumnIndex.IsNeutral))));
-            ticket.LeagueId = Convert.ToInt32(GetCellValue(row.GetCell((int)TicketTemplateColumnIndex.LeagueId)));
-            ticket.LiveAwayScore = Convert.ToInt32(GetCellValue(row.GetCell((int)TicketTemplateColumnIndex.LiveAwayScore)));
-            ticket.LiveHomeScore = Convert.ToInt32(GetCellValue(row.GetCell((int)TicketTemplateColumnIndex.LiveHomeScore)));
-            ticket.MasterDiscount = Convert.ToDecimal(GetCellValue(row.GetCell((int)TicketTemplateColumnIndex.MasterDiscount)));
-            ticket.MasterOdds = Convert.ToDecimal(GetCellValue(row.GetCell((int)TicketTemplateColumnIndex.MasterOdds)));
-            ticket.MasterPositionTaking = Convert.ToDecimal(GetCellValue(row.GetCell((int)TicketTemplateColumnIndex.MasterPositionTaking)));
-            ticket.MasterWinlost = Convert.ToDecimal(GetCellValue(row.GetCell((int)TicketTemplateColumnIndex.MasterWinlost)));
-            ticket.MatchCode = GetCellValue(row.GetCell((int)TicketTemplateColumnIndex.MatchCode));
-            ticket.MatchId = Convert.ToInt32(GetCellValue(row.GetCell((int)TicketTemplateColumnIndex.MatchId)));
-            ticket.Odds = Convert.ToDecimal(GetCellValue(row.GetCell((int)TicketTemplateColumnIndex.Odds)));
-            ticket.OddsType = GetCellValue(row.GetCell((int)TicketTemplateColumnIndex.OddsType));
-            ticket.PlayerComm = Convert.ToDecimal(GetCellValue(row.GetCell((int)TicketTemplateColumnIndex.PlayerComm)));
-            ticket.Race = GetCellValue(row.GetCell((int)TicketTemplateColumnIndex.Race));
-            ticket.RefNo = GetCellValue(row.GetCell((int)TicketTemplateColumnIndex.RefNo));
-            ticket.ShowTime = GetCellValue(row.GetCell((int)TicketTemplateColumnIndex.ShowTime));
-            ticket.SportTypeId = Convert.ToInt32(GetCellValue(row.GetCell((int)TicketTemplateColumnIndex.SportTypeId)));
-            ticket.Stake = Convert.ToDecimal(GetCellValue(row.GetCell((int)TicketTemplateColumnIndex.Stake)));
-            ticket.Status = GetCellValue(row.GetCell((int)TicketTemplateColumnIndex.Status));
-            ticket.SuperComm = Convert.ToDecimal(GetCellValue(row.GetCell((int)TicketTemplateColumnIndex.SuperComm)));
-            ticket.SuperDiscount = Convert.ToDecimal(GetCellValue(row.GetCell((int)TicketTemplateColumnIndex.SuperDiscount)));
-            ticket.SuperPositionTaking = Convert.ToDecimal(GetCellValue(row.GetCell((int)TicketTemplateColumnIndex.SuperPositionTaking)));
-            ticket.SuperWinlost = Convert.ToDecimal(GetCellValue(row.GetCell((int)TicketTemplateColumnIndex.SuperWinlost)));
-            ticket.TransDate = Convert.ToDateTime(GetCellValue(row.GetCell((int)TicketTemplateColumnIndex.TransDate)));
-            ticket.TransId = Convert.ToInt64(GetCellValue(row.GetCell((int)TicketTemplateColumnIndex.TransId)));
-            ticket.UserName = GetCellValue(row.GetCell((int)TicketTemplateColumnIndex.UserName));
-            ticket.Winlost = Convert.ToDecimal(GetCellValue(row.GetCell((int)TicketTemplateColumnIndex.Winlost)));
-            ticket.WinlostDate = Convert.ToDateTime(GetCellValue(row.GetCell((int)TicketTemplateColumnIndex.WinlostDate)));
-            ticket.TransDesc = GetCellValue(row.GetCell((int)TicketTemplateColumnIndex.TransDesc));
+            var cell = row.GetCell((int)columnIndex);
+            var value = cell?.GetValue();
 
-            return ticket;
+            if (value == null && typeof(T) == typeof(string))
+            {
+                value = string.Empty;
+            }
+
+            return Converter.To<T>(value);
         }
 
-        private string GetCellValue(ICell cell)
-        {
-            return NpoiHelper.GetValue(cell, dataFormatter, formulaEvaluator);
-        }
     }
 }

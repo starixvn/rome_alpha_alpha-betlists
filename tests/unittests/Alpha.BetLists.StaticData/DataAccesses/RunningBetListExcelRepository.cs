@@ -6,7 +6,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    public class RunningBetListExcelRepository
+    public static class RunningBetListExcelRepository
     {
         public static async Task<Tuple<IEnumerable<TicketDto>, IEnumerable<ITicketData>>> GetRunningBetList()
         {
