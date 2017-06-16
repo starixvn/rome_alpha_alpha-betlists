@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using BetLists.Models;
+    using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Utils;
 
     public class Footer
@@ -14,10 +15,15 @@
             { UserLevel.Super, 4 }
         };
 
-        public Footer(BetListData betListData, UserLevel viewerLevel, bool showMemberName)
+        public Footer(BetListData betListData, UserLevel viewerLevel, bool showMemberName, string[] excludingTicketStatus = null)
         {
-            TotalWinLoss = betListData.Tickets.Where(ticket => ticket.BetTypeId != 500).Sum(ticket => ticket.Winlost);
-            TotalCommission = betListData.Tickets.Sum(ticket => ticket.PlayerComm);
+            TotalWinLoss = betListData.Tickets.Sum(ticket =>
+               IsNotCricket(ticket.BetTypeId) &&
+               NotContainExcludingStatus(ticket, excludingTicketStatus) ? ticket.Winlost : 0);
+
+            TotalCommission = betListData.Tickets.Sum(ticket =>
+                NotContainExcludingStatus(ticket, excludingTicketStatus) ? ticket.PlayerComm : 0);
+
             StatusColSpan = FooterStatusColSpanByViewLevelId[viewerLevel];
             SubTotalWinLoss = ConvertByBetType.Winloss(TotalWinLoss);
             SubTotalCommission = ConvertByBetType.Comm(TotalCommission);
@@ -38,5 +44,10 @@
         public decimal TotalWinLoss { get; }
 
         public decimal TotalCommission { get; }
+
+        private static bool IsNotCricket(int betType) => betType != 500;
+
+        private static bool NotContainExcludingStatus(ITicket ticket, string[] excludingStatus)
+            => !(excludingStatus ?? new string[] { }).Contains(ticket.Status.ToLowerInvariant());
     }
 }
