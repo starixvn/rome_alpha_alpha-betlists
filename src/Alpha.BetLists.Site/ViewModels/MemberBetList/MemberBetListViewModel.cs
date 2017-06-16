@@ -17,7 +17,6 @@
 
     public class MemberBetListViewModel : WinLossViewModel
     {
-        
         private static readonly string[] ExcludingTicketStatus =
         {
             BetStatus.Running,
@@ -26,7 +25,7 @@
             BetStatus.Reject
         };
 
-        public static readonly IEnumerable<string> RangeOptions = new List<string>
+        public static readonly IEnumerable<string> RangeOptions = new List<string> {
             DateRangePickerViewModel.TodayOptionValue,
             DateRangePickerViewModel.YesterdayOptionValue,
             DateRangePickerViewModel.SpecificDateOptionValue
