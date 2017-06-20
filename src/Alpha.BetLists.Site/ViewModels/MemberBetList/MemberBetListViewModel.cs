@@ -17,8 +17,15 @@
 
     public class MemberBetListViewModel : WinLossViewModel
     {
-        public static readonly IEnumerable<string> RangeOptions = new List<string>
+        private static readonly string[] ExcludingTicketStatus =
         {
+            BetStatus.Running,
+            BetStatus.Waiting,
+            BetStatus.Void,
+            BetStatus.Reject
+        };
+
+        public static readonly IEnumerable<string> RangeOptions = new List<string> {
             DateRangePickerViewModel.TodayOptionValue,
             DateRangePickerViewModel.YesterdayOptionValue,
             DateRangePickerViewModel.SpecificDateOptionValue
@@ -34,7 +41,7 @@
             IEnumerable<int> supportScoreMapBettypeIds,
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper)
-            : base(query, betListData, builder, ticketHelper, false)
+            : base(query, betListData, builder, ticketHelper, false, ExcludingTicketStatus)
         {
             this.query = query;
 

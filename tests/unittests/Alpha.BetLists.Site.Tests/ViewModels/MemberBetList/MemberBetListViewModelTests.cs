@@ -16,6 +16,9 @@
     using System.Web.Mvc;
     using Utils;
     using Xunit;
+    using Fanex.BetList.Core.Utils;
+    using Xunit.Extensions;
+    using Ploeh.AutoFixture;
 
     [Trait("Category", "MemberBetList")]
     [Collection("BetListCollection")]
@@ -173,6 +176,36 @@
                     && (string)routeValues["CustName"] == "CustName"
                     && (int)routeValues["CustLevelId"] == 1
                     && (string)routeValues["ProductIds"] == "1,2,3"));
+        }
+
+        [Theory]
+        [InlineData(BetStatus.Running)]
+        [InlineData(BetStatus.Waiting)]
+        [InlineData(BetStatus.Void)]
+        [InlineData(BetStatus.Reject)]
+        public void FooterTotalWinLoss_Always_ExcludingStatus(string excludingStatus)
+        {
+            // Arrange
+            var tickets = new Fixture().CreateMany<TicketDto>();
+            tickets.First().Status = excludingStatus;
+            var totalWinLoss =
+                tickets.Sum(ticket => ticket.Winlost) -
+                tickets.First().Winlost;
+
+            var viewModel = new MemberBetListViewModel(
+                 query,
+                 param,
+                 new BetListData(tickets, null),
+                 Enumerable.Empty<SelectListItem>(),
+                 new List<int> { },
+                 betlistFixture.HtmlBuilder,
+                 betlistFixture.TicketHelper);
+
+            // Act
+            var actualTotalWinLoss = viewModel.Footer.TotalWinLoss;
+
+            // Assert
+            Assert.Equal(totalWinLoss, actualTotalWinLoss);
         }
     }
 }

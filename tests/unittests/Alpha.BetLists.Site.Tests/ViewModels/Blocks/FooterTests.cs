@@ -3,6 +3,7 @@
     using System.Linq;
     using BetLists.Models;
     using BetLists.Tests.TestData;
+    using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Utils;
     using Site.ViewModels.Blocks;
     using Xunit;
@@ -73,10 +74,30 @@
         }
 
         [Fact]
-        public void SubTotalWinLoss_Always_CalculateInCtor()
+        public void SubTotalWinLoss_ExcludingStatusHasValue_CalculateInCtor()
         {
             // Arrange
-            var totalWinLoss = BetListDataTest.Tickets.Where(ticket => ticket.BetTypeId != 500).Sum(ticket => ticket.Winlost);
+            BetListDataTest.Tickets.First().BetTypeId = 500;
+            BetListDataTest.Tickets.Last().Status = BetStatus.Running;
+            var totalWinLoss =
+                BetListDataTest.Tickets.Sum(ticket => ticket.Winlost) -
+                BetListDataTest.Tickets.First().Winlost -
+                BetListDataTest.Tickets.Last().Winlost;
+
+            var expectedSubTotalWinLoss = ConvertByBetType.Winloss(totalWinLoss);
+            var excludingStatus = new string[] { BetStatus.Running };
+            // Act
+            var footer = new Footer(BetListDataTest.BetListData, UserLevel.Agent, false, excludingStatus);
+
+            // Assert
+            Assert.Equal(expectedSubTotalWinLoss, footer.SubTotalWinLoss);
+        }
+
+        [Fact]
+        public void SubTotalWinLoss_ExcludingStatusIsNull_CalculateInCtor()
+        {
+            // Arrange
+            var totalWinLoss = BetListDataTest.Tickets.Sum(ticket => ticket.Winlost);
             var expectedSubTotalWinLoss = ConvertByBetType.Winloss(totalWinLoss);
 
             // Act
@@ -87,7 +108,24 @@
         }
 
         [Fact]
-        public void SubTotalCommission_Always_CalculateInCtor()
+        public void SubTotalCommission_ExcludingStatusHasValue_CalculateInCtor()
+        {
+            // Arrange
+            BetListDataTest.Tickets.Last().Status = BetStatus.Running;
+            var totalCommission = BetListDataTest.Tickets.Sum(ticket => ticket.PlayerComm)
+                - BetListDataTest.Tickets.Last().PlayerComm;
+            var expectedSubTotalCommission = ConvertByBetType.Comm(totalCommission);
+            var excludingStatus = new string[] { BetStatus.Running };
+
+            // Act
+            var footer = new Footer(BetListDataTest.BetListData, UserLevel.Agent, false, excludingStatus);
+
+            // Assert
+            Assert.Equal(expectedSubTotalCommission, footer.SubTotalCommission);
+        }
+
+        [Fact]
+        public void SubTotalCommission_ExcludingStatusIsNull_CalculateInCtor()
         {
             // Arrange
             var totalCommission = BetListDataTest.Tickets.Sum(ticket => ticket.PlayerComm);

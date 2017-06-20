@@ -13,10 +13,11 @@
             BetListData betListData,
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper,
-            bool showMemberName = false)
+            bool showMemberName = false,
+            string[] excludingTicketStatus = null)
             : base(query, betListData, builder, ticketHelper, showMemberName)
         {
-            Footer = new Footer(betListData, baseQuery.ViewerLevel, showMemberName);
+            Footer = new Footer(betListData, baseQuery.ViewerLevel, showMemberName, excludingTicketStatus);
         }
 
         public bool AllowToViewSuperPT => baseQuery.ViewerLevel.IsSuperLevel();
