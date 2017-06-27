@@ -48,6 +48,10 @@
         private static bool IsNotCricket(int betType) => betType != 500;
 
         private static bool NotContainExcludingStatus(ITicket ticket, string[] excludingStatus)
-            => !(excludingStatus ?? new string[] { }).Contains(ticket.Status.ToLowerInvariant());
+        {
+            var excludeStatus = excludingStatus ?? new string[] { };
+
+            return !excludeStatus.Contains(ticket.Status.ToLowerInvariant());
+        }
     }
 }

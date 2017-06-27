@@ -1,5 +1,9 @@
 ﻿namespace Alpha.BetLists.Site.Tests.ViewModels.MemberBetList
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web.Mvc;
     using BetLists.Models;
     using BetLists.Tests.Constants;
     using BetLists.Tests.TestData;
@@ -8,17 +12,11 @@
     using Helpers;
     using NSubstitute;
     using Params;
+    using Ploeh.AutoFixture;
     using Requests.MemberBetList;
     using Site.ViewModels.MemberBetList;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web.Mvc;
     using Utils;
     using Xunit;
-    using Fanex.BetList.Core.Utils;
-    using Xunit.Extensions;
-    using Ploeh.AutoFixture;
 
     [Trait("Category", "MemberBetList")]
     [Collection("BetListCollection")]

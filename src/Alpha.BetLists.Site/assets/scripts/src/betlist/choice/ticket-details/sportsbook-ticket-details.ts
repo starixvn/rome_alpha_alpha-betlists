@@ -36,7 +36,7 @@
                 + '&betid=' + betId
                 + '&custid=' + custId;
 
-            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'Parlay/ComboParlayDetail' + params, "", 800, 350);
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'Parlay/ComboParlayDetail' + params, "", 800, 438);
         }
 
         public ShowMixParlayTickets = (transId: string) => {

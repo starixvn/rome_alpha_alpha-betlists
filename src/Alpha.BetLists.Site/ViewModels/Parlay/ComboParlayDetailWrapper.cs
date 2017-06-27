@@ -78,15 +78,8 @@
         }
 
         private string GetOdds()
-        {
-            if (ComboParlayDetail.Status.ToLowerInvariant().Equals(BetStatus.Lose))
-            {
-                return "-";
-            }
-
-            var odds = ComboParlayDetail.Odds;
-
-            return odds > 0 ? odds.ToString("##0.###") : ConvertByBetType.Odds(odds);
-        }
+            => ComboParlayDetail.Status.ToLowerInvariant().Equals(BetStatus.Lose)
+            ? "-"
+            : ConvertByBetType.CommValue(ComboParlayDetail.Odds);
     }
 }

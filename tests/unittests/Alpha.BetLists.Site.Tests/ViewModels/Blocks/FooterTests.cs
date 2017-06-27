@@ -86,6 +86,7 @@
 
             var expectedSubTotalWinLoss = ConvertByBetType.Winloss(totalWinLoss);
             var excludingStatus = new string[] { BetStatus.Running };
+
             // Act
             var footer = new Footer(BetListDataTest.BetListData, UserLevel.Agent, false, excludingStatus);
 

@@ -59,7 +59,7 @@
                 .ShowComboParlayDetails(refNo, winLossDate, transId, betId, custId);
 
             // Assert
-            expect(popupDetailsShow).toHaveBeenCalledWith('betlist-path/Parlay/ComboParlayDetail' + params, "", 800, 350);
+            expect(popupDetailsShow).toHaveBeenCalledWith('betlist-path/Parlay/ComboParlayDetail' + params, "", 800, 438);
         });
 
         it("ShowComboParlayNewTickets_WhenTicketsContentHtmlIsEmpty -> Call Ajax Get Content", () => {
