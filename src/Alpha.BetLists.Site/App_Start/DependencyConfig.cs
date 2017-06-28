@@ -30,7 +30,6 @@
     using SimpleInjector.Integration.Web.Mvc;
     using SmartPunter.DataAccesses;
     using SmartPunter.Services;
-    using StaticData.DataAccesses;
     using Sunplus.Agent.Model.Base;
     using Sunplus.Agent.Model.Entities;
     using Sunplus.Agent.Model.Entities.Permission;
@@ -100,7 +99,7 @@
         {
             if (AppSettings.EnabledStaticData)
             {
-                container.Register<IDynamicRepository, StaticRepository>(Lifestyle.Singleton);
+                StaticData.AppStart.DependencyRegister.Register(container);
             }
             else
             {

@@ -1,28 +1,51 @@
-﻿namespace Alpha.BetLists.StaticData.DataAccesses
+﻿using Alpha.BetLists.Models;
+using Alpha.BetLists.StaticData.ColumnIndexes;
+using Alpha.BetLists.StaticData.Configurations;
+using Alpha.IntegrationTest.Npoi;
+using Alpha.IntegrationTest.Repository;
+using Fanex.BetList.Core.Entities;
+using Fanex.Data.Repository;
+using NPOI.SS.UserModel;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Web;
+
+namespace Alpha.BetLists.StaticData.DataAccesses
 {
-    using ColumnIndexes;
-    using Fanex.BetList.Core.Entities;
-    using Helpers;
-    using IntegrationTest;
-    using Models;
-    using NPOI.SS.UserModel;
-    using System;
-    using System.Collections.Generic;
-
-    public class TicketExcelDataAccess
+    public class BetListExcelRepository : ExcelRepository
     {
-        private readonly IWorkbook workbook;
-
-        public TicketExcelDataAccess(string fileName)
+        public override void InitMapper()
         {
-            workbook = NpoiHelper.LoadWorkbook(fileName);
+            Mapper = new MapperForStaticData();
         }
 
-        public IEnumerable<TicketDto> GetTickets() => workbook.GetData("BetTickets", MapRowToTicketObject);
+        public override async Task<Tuple<IEnumerable<TFirst>, IEnumerable<TSecond>>> FetchMultipleAsync<TFirst, TSecond>(ICriteria criteria)
+        {
+            var templateKey = criteria.GetType().Name;
 
-        public IEnumerable<ITicketData> GetTicketData() => workbook.GetData("ReferenceData", MapRowToTicketDataObject);
+            if (!Mapper.CriteriaToExcelFile.ContainsKey(templateKey))
+            {
+                return new Tuple<IEnumerable<TFirst>, IEnumerable<TSecond>>(Enumerable.Empty<TFirst>(), Enumerable.Empty<TSecond>());
+            }
 
-        private static ITicketData MapRowToTicketDataObject(IRow row)
+            var template = Mapper.CriteriaToExcelFile[templateKey];
+            var workbook = LoadWorkbook(template);
+
+            var tickets = workbook?.GetData("BetTickets", CreateTicket);
+            var ticketData = workbook?.GetData("ReferenceData", CreateTicketData);
+
+            return Tuple.Create(Enumerable.Cast<TFirst>(tickets), Enumerable.Cast<TSecond>(ticketData));
+        }
+
+        public override IWorkbook LoadWorkbook(string excelFileName)
+        {
+            var templatePath = HttpContext.Current.Server.MapPath($"~/App_Data/ExcelData/{excelFileName}.xls");
+            return NpoiWorkbook.Load(templatePath);
+        }
+
+        public static ITicketData CreateTicketData(IRow row)
             => new TicketData
             {
                 AgentPT = row.GetCellValue<decimal>(TicketDataTemplateColumnIndex.AgentPT),
@@ -37,7 +60,7 @@
                 TransDesc = row.GetCellValue<string>(TicketDataTemplateColumnIndex.TransDesc)
             };
 
-        private static TicketDto MapRowToTicketObject(IRow row)
+        public static TicketDto CreateTicket(IRow row)
             => new TicketDto
             {
                 ActualStake = row.GetCellValue<decimal>(TicketTemplateColumnIndex.ActualStake),

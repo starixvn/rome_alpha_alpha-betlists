@@ -1,20 +1,20 @@
 ﻿namespace Alpha.BetLists.StaticData.DataAccesses
 {
-    using Helpers;
-    using IntegrationTest;
+    using IntegrationTest.Npoi;
     using Models;
-    using System.Collections.Generic;
+    using NPOI.SS.UserModel;
 
-    public static class ProductExcelRepository
+    public class ProductExcelRepository : BetListExcelRepository
     {
-        public static IEnumerable<Product> GetProducts()
+        public override T Create<T>(IRow row)
         {
-            var workbook = NpoiHelper.LoadWorkbook("Products");
-            var sheet = workbook?.LoadSheet();
+            var columnIndex = 0;
 
-            return sheet?.LoadData(row => new Product(
-                  (int)row.GetCell(0).NumericCellValue,
-                  row.GetCell(1).StringCellValue));
+            object result = new Product(
+                id: row.GetCellValue<int>(columnIndex++),
+                name: row.GetCellValue<string>(columnIndex));
+
+            return (T)result;
         }
     }
 }

@@ -1,22 +1,22 @@
 ﻿namespace Alpha.BetLists.StaticData.DataAccesses
 {
-    using Helpers;
-    using IntegrationTest;
+    using IntegrationTest.Npoi;
     using Models;
-    using System.Collections.Generic;
+    using NPOI.SS.UserModel;
 
-    public static class ForcastExcelRepository
+    public class ForcastExcelRepository : BetListExcelRepository
     {
-        public static IEnumerable<ScoreMap> GetScoreMaps()
+        public override T Create<T>(IRow row)
         {
-            var workbook = NpoiHelper.LoadWorkbook("ScoreMaps");
-            var sheet = workbook?.LoadSheet();
+            var columnIndex = 0;
 
-            return sheet?.LoadData(row => new ScoreMap(
-                        (int)row.GetCell(0).NumericCellValue,
-                        (int)row.GetCell(1).NumericCellValue,
-                        row.GetCell(2).StringCellValue,
-                        row.GetCell(3).StringCellValue));
+            object result = new ScoreMap(
+                typeId: row.GetCellValue<int>(columnIndex++),
+                eventType: row.GetCellValue<int>(columnIndex++),
+                firstId: row.GetCellValue<string>(columnIndex++),
+                infoId: row.GetCellValue<string>(columnIndex));
+
+            return (T)result;
         }
     }
 }
