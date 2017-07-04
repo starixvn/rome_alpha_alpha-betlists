@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -293,5 +293,8 @@
   </data>
   <data name="ShowFilter" xml:space="preserve">
     <value>显示筛选</value>
+  </data>
+  <data name="WinLossRoundNote" xml:space="preserve">
+    <value>输赢的进位值仅供参考。因此，所有输赢相加的总计有可能和小计有差数。</value>
   </data>
 </root>

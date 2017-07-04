@@ -610,6 +610,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Win Loss is rounded for reference only. Therefore, Sub Total amount may be different from the sum of Win Loss when it sums all the actual Win Loss amounts..
+        /// </summary>
+        public static string WinLossRoundNote {
+            get {
+                return ResourceManager.GetString("WinLossRoundNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Won.
         /// </summary>
         public static string won {

@@ -163,25 +163,11 @@
         }
 
         [Fact]
-        public void Odds_StatusIsNotLose_OddsIsGreaterThanZero_ShowOdds()
-        {
-            // Arrange
-            var detail = new ComboParlayDetail(DateTime.Today, 1, 100, 1, "running", 10, 10, 10, 10);
-            var expectedOdds = detail.Odds.ToString("##0.###");
-
-            // Act
-            var viewModel = new ComboParlayDetailWrapper(detail, BetListDataTest.MatchDetails, ticketHelper);
-
-            // Assert
-            Assert.Equal(expectedOdds, viewModel.Odds);
-        }
-
-        [Fact]
-        public void Odds_StatusIsNotLose_OddsIsLessThanOrEqualZero_ShowOdds()
+        public void Odds_StatusIsNotLose_ShowOdds()
         {
             // Arrange
             var detail = new ComboParlayDetail(DateTime.Today, 1, 100, 1, "running", 0, 10, 10, 10);
-            var expectedOdds = ConvertByBetType.Odds(detail.Odds);
+            var expectedOdds = ConvertByBetType.CommValue(detail.Odds);
 
             // Act
             var viewModel = new ComboParlayDetailWrapper(detail, BetListDataTest.MatchDetails, ticketHelper);
