@@ -16,12 +16,12 @@
     {
         private readonly MemberBetListService memberBetListService;
         private readonly ProductService productService;
-        private readonly ForeCastService foreCastService;
+        private readonly ForecastService forecastService;
 
         public MemberBetListHandler(
             MemberBetListService memberBetListService,
             ProductService productService,
-            ForeCastService foreCastService,
+            ForecastService forecastService,
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper,
             ISmartPunterBetListMonitor monitorService,
@@ -30,7 +30,7 @@
         {
             this.memberBetListService = memberBetListService;
             this.productService = productService;
-            this.foreCastService = foreCastService;
+            this.forecastService = forecastService;
         }
 
         public async Task<MemberBetListViewModel> Handle(MemberBetListQuery message)
@@ -47,7 +47,7 @@
 
             var betlistData = await memberBetListService.GetBetList(memberBetListParam);
             var products = productService.GetProductsForCustomer(message.CustId);
-            var supportScoreMapBettypeIds = foreCastService.GetBetTypeIdsSupportScoreMap();
+            var supportScoreMapBetTypeIds = forecastService.GetBetTypeIdsSupportScoreMap();
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
@@ -56,7 +56,7 @@
                 memberBetListParam,
                 betlistData,
                 BuildProductSelectListItems(memberBetListParam.ProductIds, products),
-                supportScoreMapBettypeIds,
+                supportScoreMapBetTypeIds,
                 Builder,
                 TicketHelper);
         }

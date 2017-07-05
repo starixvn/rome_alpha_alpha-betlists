@@ -9,6 +9,11 @@
       <Mapping DataField="ProductID" ObjectProperty="id" />
       <Mapping DataField="ProductName" ObjectProperty="name" />
     </Setting>
+    <Setting Key="Age_Rpt_ConsolidatedGroupProductSel" SpName="Age_Rpt_ConsolidatedGroupProductSel" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
+      <Mapping DataField="IsShow" ObjectProperty="IsEnable" />
+      <Mapping DataField="ProductName" ObjectProperty="Name" />
+      <Mapping DataField="ProductId" ObjectProperty="Id" />
+    </Setting>
   </Function>
 
   <Function Name="Check Belonging">
@@ -525,8 +530,8 @@
 
     </Setting>
   </Function>
-  <Function Name="Last Bets Monitoring">
-    <Setting Key="Age_Monitor_BetlistSel_Ag_AllBettypes" SpName="Age_Monitor_BetlistSel_Ag_AllBettypes" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
+  <Function Name="Daily Statement">
+    <Setting Key="Age_BetList_SelByDayAll_Mem" SpName="Age_BetList_SelByDayAll_Mem_UAT2" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="TicketDto"></Mapping>
@@ -545,7 +550,7 @@
       <Mapping DataField="sdiscount" ObjectProperty="SuperDiscount" Class="TicketDto"></Mapping>
       <Mapping DataField="liveindicator" ObjectProperty="IsLive" Class="TicketDto"></Mapping>
       <Mapping DataField="betstatus" ObjectProperty="EventStatus" Class="TicketDto"></Mapping>
-    </Setting>
+      <Mapping DataField="comstatus" ObjectProperty="CommStatus" Class="TicketDto"></Mapping>
     <Setting Key="Age_Monitor_BetlistSel_Ag_HDP" SpName="Age_Monitor_BetlistSel_Ag_HDP" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="TicketDto"></Mapping>
@@ -609,5 +614,8 @@
 
     <Setting Key="Age_Monitor_MatchSel" SpName="Age_Monitor_MatchSel" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0"></Setting>
     <Setting Key="Age_Monitor_OutrightSel" SpName="Age_Monitor_OutrightSel" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0"></Setting>
+  </Function>
+      <Mapping DataField="spositiontaking" ObjectProperty="SuperPT" Class="TicketData"></Mapping>
+    </Setting>
   </Function>
 </Functions>

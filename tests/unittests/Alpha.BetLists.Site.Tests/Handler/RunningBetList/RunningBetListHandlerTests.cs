@@ -1,9 +1,5 @@
 ﻿namespace Alpha.BetLists.Site.Tests.Handler.RunningBetList
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web.Mvc;
     using BetLists.Tests.TestData;
     using Fanex.BetList.Core.Entities;
     using Fixtures;
@@ -14,6 +10,10 @@
     using Requests.RunningBetList;
     using Services;
     using Site.ViewModels.RunningBetList;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web.Mvc;
     using Xunit;
 
     [Trait("Category", "RunningBetList")]
@@ -24,7 +24,7 @@
         private readonly RunningBetListHandler runningBetListHandler;
         private readonly RunningBetListService runningBetListService;
         private readonly ProductService productService;
-        private readonly ForeCastService foreCastService;
+        private readonly ForecastService forecastService;
         private readonly RunningBetListQuery query;
         private readonly CompareLogic compareLogic;
 
@@ -38,15 +38,15 @@
             productService = Substitute.For<ProductService>();
             productService.FilterProductIdsByCustomer(Arg.Any<int>(), Arg.Any<IEnumerable<int>>()).Returns(BetListDataTest.ProductIds);
 
-            foreCastService = Substitute.For<ForeCastService>();
-            foreCastService.GetBetTypeIdsSupportScoreMap().Returns(BetListDataTest.BettypeIds);
+            forecastService = Substitute.For<ForecastService>();
+            forecastService.GetBetTypeIdsSupportScoreMap().Returns(BetListDataTest.BettypeIds);
 
             query = new RunningBetListQuery(this.betlistFixture.User);
 
             runningBetListHandler = new RunningBetListHandler(
                 runningBetListService,
                 productService,
-                foreCastService,
+                forecastService,
                 this.betlistFixture.HtmlBuilder,
                 this.betlistFixture.TicketHelper,
                 this.betlistFixture.MoniterService,
@@ -90,7 +90,7 @@
             var validUserSelectedProductIds = Enumerable.Empty<int>();
             productService.FilterProductIdsByCustomer(Arg.Any<int>(), Arg.Any<IEnumerable<int>>()).Returns(validUserSelectedProductIds);
 
-            foreCastService.GetBetTypeIdsSupportScoreMap().Returns(BetListDataTest.BettypeIds);
+            forecastService.GetBetTypeIdsSupportScoreMap().Returns(BetListDataTest.BettypeIds);
 
             var runningBetListParam = new RunningBetListParam(
                 1,

@@ -1,10 +1,10 @@
 ﻿namespace Alpha.BetLists.Services
 {
-    using System;
     using Criteria;
     using Fanex.Caching;
     using Fanex.Data.Repository;
     using Models;
+    using System;
 
     public interface ReportDateService
     {

@@ -1,9 +1,5 @@
 ﻿namespace Alpha.BetLists.Site.Tests.Handler.ParlayWinLossByMatch
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Globalization;
-    using System.Threading;
     using Alpha.BetLists.Models;
     using Alpha.BetLists.Params;
     using Alpha.BetLists.Services;
@@ -16,6 +12,10 @@
     using Alpha.RemotingRef;
     using NSubstitute;
     using ONEbook.SpreadSheets;
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Threading;
     using Xunit;
 
     [Trait("Category", "ParlayWinLossByMatch")]
@@ -26,9 +26,11 @@
         private readonly IUser user;
         private readonly Workbook<TicketDto> workbook;
         private readonly DateTime today;
+        private readonly BetListFixture betlistFixture;
 
         public ParlayWinLossByMatchExcelHanlderTests(BetListFixture betlistFixture)
         {
+            this.betlistFixture = betlistFixture;
             var parlayWinLossByMatchService = Substitute.For<ParlayWinLossByMatchService>();
             parlayWinLossByMatchService.GetBetList(Arg.Any<ParlayWinLossByMatchParam>()).Returns(BetListDataTest.Tickets);
 
@@ -42,7 +44,6 @@
             workbook.Title(Arg.Any<string>()).Returns(workbook);
             workbook.Body(Arg.Any<IEnumerable<TicketDto>>(), Arg.Any<Mapper<TicketDto>>()).Returns(workbook);
             workbook.Footer(Arg.Any<TicketDto>(), Arg.Any<Mapper<TicketDto>>()).Returns(workbook);
-            workbook.Sheet(Arg.Any<string>()).Returns(workbook);
 
             var winLossByMatchExcelHandler = new WinLossByMatchExcelHandler(
                 null,
@@ -117,19 +118,6 @@
             workbook.Received().Header(Arg.Any<Func<string, string>>());
         }
 
-        [Fact]
-        public void HandleExportWinLossByMatchExcelQuery_Always_ExportsCorrectSheetName()
-        {
-            // Arrange
-            var message = CreateWinLossByMatchExcelQuery(custLevelId: 4);
-
-            // Act
-            winLossHandler.Handle(message).GetAwaiter().GetResult();
-
-            // Assert
-            workbook.Received().Sheet(Arg.Is("Bet List"));
-        }
-
         private ParlayWinLossByMatchExcelQuery CreateWinLossByMatchExcelQuery(byte custLevelId, IUser fakeUser = null)
             => new ParlayWinLossByMatchExcelQuery(fakeUser ?? user)
             {
@@ -141,7 +129,9 @@
 
                 BetType = 9,
                 CustName = "CustName",
-                CustLevelId = custLevelId
+                CustLevelId = custLevelId,
+
+                RtfHelper = betlistFixture.RtfHelper
             };
     }
 }

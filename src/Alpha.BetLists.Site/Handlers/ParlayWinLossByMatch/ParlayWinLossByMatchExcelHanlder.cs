@@ -1,15 +1,16 @@
 ﻿namespace Alpha.BetLists.Site.Handlers.ParlayWinLossByMatch
 {
-    using System.Threading.Tasks;
     using AppResources;
     using BetLists.Models;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using MediatR;
     using ONEbook.SpreadSheets;
+    using ONEbook.SpreadSheets.NPOI;
     using Requests.WinLossByMatch;
     using Services;
     using SmartPunter.Services;
+    using System.Threading.Tasks;
     using Utilities.IP;
     using ViewModels;
     using ViewModels.ParlayWinLossByMatch;
@@ -20,8 +21,8 @@
         IAsyncRequestHandler<ParlayWinLossByMatchExcelQuery, ExcelFileViewModel>
     {
         private readonly ParlayWinLossByMatchService parlayWinLossByMatchService;
-        private readonly Workbook<TicketDto> workbook;
         private readonly WinLossByMatchExcelHandler winLossByMatchExcelHandler;
+        private Workbook<TicketDto> workbook;
 
         public ParlayWinLossByMatchExcelHanlder(
             ParlayWinLossByMatchService parlayWinLossByMatchService,
@@ -55,13 +56,14 @@
 
             winLossByMatchExcelHandler.SetCurrentRowIndex(rowIndex: 1);
 
+            workbook = workbook.UseTemplate(winLossByMatchExcelHandler.GetTemplateInfo(message.CustLevel));
+            winLossByMatchExcelHandler.RtfHelper = message.RtfHelper ?? InitRTFHelper((workbook as NpoiWorkbook<TicketDto>).Workbook);
+
             var fileContent = workbook
-                .UseTemplate(winLossByMatchExcelHandler.GetTemplateInfo(message.CustLevel))
                 .Header(Resources.ResourceManager.GetString)
                 .Title(viewModel.Title)
                 .Body(tickets, winLossByMatchExcelHandler.GetBodyRowMapper(message.ViewerLevel, viewModel))
                 .Footer(new TicketDto(), winLossByMatchExcelHandler.GetFooterRowMapper(viewModel.Footer))
-                .Sheet(Resources.BetList)
                 .ExportToBytes();
 
             return new ExcelFileViewModel(viewModel.Title, fileContent);

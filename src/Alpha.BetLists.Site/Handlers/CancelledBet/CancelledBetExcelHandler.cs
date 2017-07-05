@@ -1,4 +1,5 @@
-﻿using Alpha.BetLists.AppResources;
+﻿using System.Threading.Tasks;
+using Alpha.BetLists.AppResources;
 using Alpha.BetLists.Models;
 using Alpha.BetLists.Params;
 using Alpha.BetLists.Services;
@@ -11,10 +12,8 @@ using Fanex.BetList.Core.Builder;
 using Fanex.BetList.Core.Entities;
 using MediatR;
 using ONEbook.SpreadSheets;
-using System.Threading.Tasks;
-
-using static ONEbook.SpreadSheets.Column;
 using ONEbook.SpreadSheets.NPOI;
+using static ONEbook.SpreadSheets.Column;
 
 namespace Alpha.BetLists.Site.Handlers.CancelledBet
 {

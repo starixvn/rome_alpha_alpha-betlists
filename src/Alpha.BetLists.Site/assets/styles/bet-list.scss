@@ -261,6 +261,11 @@ div.match + div.league, div.league, .no-details {
     cursor: pointer;
     color: $link-color;
     font-size: 11px;
+
+    &:hover {
+        color: $link-hover-color;
+        text-decoration: none;
+    }
 }
 
 .detail {
@@ -400,6 +405,14 @@ div.ticket-list div.void > div.match, div.ticket-list div.void div.firstGoal, di
 
 .colossus-bets-details {
     display: none;
+}
+
+.allbet-bet-id {
+    color: #bbb;
+}
+
+.allbet-bet-type-name {
+    color: #696969;
 }
 
 .comm_note {

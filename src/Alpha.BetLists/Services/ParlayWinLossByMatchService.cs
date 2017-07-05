@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using Alpha.BetLists.Criteria.ParlayWinLossByMatch;
 using Alpha.BetLists.Models;
 using Alpha.BetLists.Params;
-using Fanex.BetList.Core.Entities;
 using Fanex.Data.Repository;
 
 namespace Alpha.BetLists.Services

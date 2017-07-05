@@ -177,12 +177,6 @@
   <data name="result" xml:space="preserve">
     <value>ผลการแข่งขัน</value>
   </data>
-  <data name="subTotalWinlost" xml:space="preserve">
-    <value>ผลรวมย่อย( ชนะ แพ้ )</value>
-  </data>
-  <data name="subTotalCom" xml:space="preserve">
-    <value>ผลรวมย่อย คอมมิชชั่น</value>
-  </data>
   <data name="total" xml:space="preserve">
     <value>ยอดรวม</value>
   </data>

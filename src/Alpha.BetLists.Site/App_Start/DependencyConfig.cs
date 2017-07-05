@@ -124,9 +124,10 @@
             container.Register<EncryptionService, EncryptionServiceImpl>(Lifestyle.Singleton);
 
             container.Register<MemberBetListService, MemberBetListServiceImpl>(Lifestyle.Singleton);
+            container.Register<DailyStatementService, DailyStatementServiceImpl>(Lifestyle.Singleton);
 
             container.RegisterSingleton<CacheRefService, CacheRefServiceImpl>();
-            container.Register<ForeCastService, ForeCastServiceImpl>(Lifestyle.Singleton);
+            container.Register<ForecastService, ForecastServiceImpl>(Lifestyle.Singleton);
             container.Register<ProductService>(
                 () => new ProductServiceImpl(
                     container.GetInstance<IDynamicRepository>(),

@@ -1,18 +1,21 @@
 ﻿namespace Alpha.BetLists.Services
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using Criteria;
     using Fanex.Caching;
     using Fanex.Data.Repository;
     using Models;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
+    using Params;
 
     public interface ProductService
     {
         IEnumerable<Product> GetProductsForCustomer(int custId);
 
         IEnumerable<int> FilterProductIdsByCustomer(int custId, IEnumerable<int> productIds);
+
+        IEnumerable<int> FilterProductIdsByGroupHeadline(IEnumerable<int> productIds, GetProductsByGroupHeadlineParam param);
     }
 
     public class ProductServiceImpl : ProductService
@@ -61,6 +64,24 @@
 
             return productIdList;
         }
+
+        public IEnumerable<Product> GetProductsByGroupHeadline(GetProductsByGroupHeadlineParam param)
+        {
+            var data = dynamicRepository.Fetch<Product>(new GetProductsByGroupHeadlineCriteria(param.CustId))
+                .Where(product => IsRemainSupportProduct(product, param.MinDate))
+                .Select(product => new Product(product.Id, product.Name, product.IsEnable, getProductName));
+
+            return data;
+        }
+
+        public IEnumerable<int> FilterProductIdsByGroupHeadline(IEnumerable<int> productIds, GetProductsByGroupHeadlineParam param)
+            => GetProductsByGroupHeadline(param)
+            .Select(product => product.Id)
+            .Where(id => productIds == null || !productIds.Any() || productIds.Contains(id));
+
+        private static bool IsRemainSupportProduct(Product product, DateTime minReportDate)
+            => product.IsEnable
+            && (!product.EndOfSupportDate.HasValue || minReportDate <= product.EndOfSupportDate.Value);
 
         private IEnumerable<Product> GetProductsForReport()
         {

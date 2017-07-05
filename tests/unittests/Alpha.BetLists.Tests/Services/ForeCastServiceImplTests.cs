@@ -12,13 +12,13 @@
 
     [Trait("Category", "BaseFunction")]
     [Collection("FanexLibsCollection")]
-    public class ForeCastServiceImplTests
+    public class ForecastServiceImplTests
     {
         private const string ScoreMapBetTypesCacheKey = "Alpha.BetLists.Services.ForeCastServiceImpl.ScoreMapBetTypes";
 
         private readonly FanexCacheFixture fanexCacheFixture;
         private readonly FanexDataFixture fanexDataFixture;
-        private readonly ForeCastService foreCastService;
+        private readonly ForecastService foreCastService;
 
         private readonly IEnumerable<ScoreMap> scoreMaps = new List<ScoreMap>
         {
@@ -28,14 +28,14 @@
             new ScoreMap(5, 0, "5,15", "5,15")
         };
 
-        public ForeCastServiceImplTests(
+        public ForecastServiceImplTests(
             FanexCacheFixture fanexCacheFixture,
             FanexDataFixture fanexDataFixture)
         {
             this.fanexCacheFixture = fanexCacheFixture;
             this.fanexDataFixture = fanexDataFixture;
 
-            foreCastService = new ForeCastServiceImpl(fanexDataFixture.DynamicRepository);
+            foreCastService = new ForecastServiceImpl(fanexDataFixture.DynamicRepository);
         }
 
         [Fact]

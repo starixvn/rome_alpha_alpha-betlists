@@ -21,6 +21,7 @@ namespace Alpha.BetLists.Tests.Services
         private readonly UserBetCount userBetCount1;
         private readonly IEnumerable<UserBetCount> userBetCounts;
         private readonly CancelledBetServiceImpl service;
+
         public CancelledBetServiceImplTests(FanexDataFixture dataFixture)
         {
             this.dataFixture = dataFixture;

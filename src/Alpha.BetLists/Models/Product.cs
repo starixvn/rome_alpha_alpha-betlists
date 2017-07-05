@@ -15,9 +15,22 @@
             EndOfSupportDate = endOfSupportDate;
         }
 
-        internal Product(int id, string name, DateTime? endOfSupportDate, Func<int, string> getProductDisplayName) : this(id, name, endOfSupportDate)
+        public Product(byte id, string name, bool isEnable)
+            : this(id, name, null)
+        {
+            IsEnable = isEnable;
+        }
+
+        internal Product(int id, string name, DateTime? endOfSupportDate, Func<int, string> getProductDisplayName)
+            : this(id, name, endOfSupportDate)
         {
             DisplayName = getProductDisplayName == null ? name : getProductDisplayName(id);
+        }
+
+        internal Product(int id, string name, bool isEnable, Func<int, string> getProductDisplayName)
+            : this(id, name, null, getProductDisplayName)
+        {
+            IsEnable = isEnable;
         }
 
         public int Id { get; }
@@ -27,5 +40,7 @@
         public DateTime? EndOfSupportDate { get; }
 
         public string DisplayName { get; }
+
+        public bool IsEnable { get; }
     }
 }

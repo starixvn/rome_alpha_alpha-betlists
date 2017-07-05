@@ -177,12 +177,6 @@
   <data name="result" xml:space="preserve">
     <value>결과 확인</value>
   </data>
-  <data name="subTotalWinlost" xml:space="preserve">
-    <value>소계(승패)</value>
-  </data>
-  <data name="subTotalCom" xml:space="preserve">
-    <value>소계(수수료)</value>
-  </data>
   <data name="total" xml:space="preserve">
     <value>총</value>
   </data>

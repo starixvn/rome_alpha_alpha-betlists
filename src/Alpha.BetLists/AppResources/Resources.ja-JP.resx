@@ -178,12 +178,6 @@
   <data name="result" xml:space="preserve">
     <value>結果</value>
   </data>
-  <data name="subTotalWinlost" xml:space="preserve">
-    <value>Subtotal(winlost)</value>
-  </data>
-  <data name="subTotalCom" xml:space="preserve">
-    <value>小計(手数料)</value>
-  </data>
   <data name="total" xml:space="preserve">
     <value>合計</value>
   </data>

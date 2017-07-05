@@ -10,9 +10,6 @@ using NSubstitute;
 using ONEbook.SpreadSheets;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Alpha.BetLists.Site.Tests.Handler.CancelledBet
@@ -40,7 +37,6 @@ namespace Alpha.BetLists.Site.Tests.Handler.CancelledBet
             workbook.Title(Arg.Any<string>()).Returns(workbook);
             workbook.Body(Arg.Any<IEnumerable<TicketDto>>(), Arg.Any<Mapper<TicketDto>>()).Returns(workbook);
             workbook.Footer(Arg.Any<TicketDto>(), Arg.Any<Mapper<TicketDto>>()).Returns(workbook);
-            workbook.Sheet(Arg.Any<string>()).Returns(workbook);
 
             handler = new CancelledBetExcelHandler(
                 service,
