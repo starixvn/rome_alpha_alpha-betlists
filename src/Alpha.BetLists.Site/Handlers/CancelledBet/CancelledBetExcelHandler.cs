@@ -47,6 +47,7 @@ namespace Alpha.BetLists.Site.Handlers.CancelledBet
             var fileContent = workbook
                 .UseTemplate(GetTemplateInfo(message.ViewerLevel))
                 .Header(Resources.ResourceManager.GetString)
+                .Title(Resources.VoidAndReject)
                 .Body(cancelledBet.BetListData.Tickets, GetBodyRowMapper(message.ViewerLevel, viewModel))                
                 .Sheet(Resources.CancelledBet)
                 .ExportToBytes();
