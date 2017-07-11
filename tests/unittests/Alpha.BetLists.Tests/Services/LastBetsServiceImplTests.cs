@@ -60,9 +60,10 @@ namespace Alpha.BetLists.Tests.Services
                 CreateTicketDto(BetTypeIdConstants.Outright, 0, null, null, null),
                 CreateTicketDto(BetTypeIdConstants.Handicap, 0, null, null, null),
                 CreateTicketDto(BetTypeIdConstants.VirtualHorseRacing_Win, 0, null, null, null),
-                CreateTicketDto(BetTypeIdConstants.HorseRacing_Win, 1000, string.Empty, string.Empty, string.Empty),
-                CreateTicketDto(BetTypeIdConstants.HorseRacing_Win, 1001, null, null, null),
-                CreateTicketDto(BetTypeIdConstants.Handicap, 1002, null, null, null)
+                CreateTicketDto(BetTypeIdConstants.HorseRacing_Win, 1000, null, null, null),
+                CreateTicketDto(BetTypeIdConstants.HorseRacing_Win, 1001, string.Empty, string.Empty, string.Empty),
+                CreateTicketDto(BetTypeIdConstants.Handicap, 1002, null, null, null),
+                CreateTicketDto(BetTypeIdConstants.Outright, 1003, null, null, null)
             };
 
             // Act

@@ -6,11 +6,11 @@ namespace Alpha.BetLists.Tests.Criteria.LastBets
 {
     [Trait("Category", "LastBets")]
     [Collection("AnyValueCreatorCollection")]
-    public class GetRunningMatchCriteriaTests
+    public class GetRunningOtherMatchCriteriaTests
     {
         private readonly AnyValueCreatorFixture anyValueCreator;
 
-        public GetRunningMatchCriteriaTests(AnyValueCreatorFixture anyValueCreator)
+        public GetRunningOtherMatchCriteriaTests(AnyValueCreatorFixture anyValueCreator)
         {
             this.anyValueCreator = anyValueCreator;
         }
@@ -40,6 +40,20 @@ namespace Alpha.BetLists.Tests.Criteria.LastBets
 
             // Assert
             Assert.True(actualIsValid);
+        }
+
+        [Fact]
+        public void MatchId_Always_ReturnsZero()
+        {
+            // Arrange
+            var criteria = new GetRunningOtherMatchCriteria();
+            var expectedMatchId = 0;
+
+            // Act
+            var actualMatchId = criteria.MatchId;
+
+            // Assert
+            Assert.Equal(expectedMatchId, actualMatchId);
         }
     }
 }

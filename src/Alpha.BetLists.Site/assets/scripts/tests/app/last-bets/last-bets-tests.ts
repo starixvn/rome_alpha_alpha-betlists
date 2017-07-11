@@ -130,7 +130,17 @@ describe("LastBets", () => {
 
         it("_Always_Binds shortcut.add", () => {
             // assert
-            expect(lastBetsView.shortcut.add).toHaveBeenCalledWith("Shift+P", lastBetsView.setGetLastBetsTimeOut);
+            expect(lastBetsView.shortcut.add).toHaveBeenCalledWith("Shift+P", lastBetsView.setGetLastBetsTimeOutByShortcut);
+        });
+        it("_Always_Binds $lblSwitch.click", () => {
+            // arrange
+            spyOn(lastBetsView.$chbSwitch, "click");
+
+            // act
+            lastBetsView.$lblSwitch.click();
+
+            // assert
+            expect(lastBetsView.$chbSwitch.click).toHaveBeenCalled();
         });
     });
     describe("_changeLastBetRange", () => {
@@ -368,6 +378,8 @@ describe("LastBets", () => {
         });
         it("_Always_setTimeout", () => {
             // arrange
+            loadFixtures("normal-template.html");
+
             jasmine.clock().install();
             spyOn(lastBetsView, "showError");
             let responseHtml = "Html";
@@ -450,6 +462,29 @@ describe("LastBets", () => {
             jasmine.clock().uninstall();
         });
     });
+    describe("_setGetLastBetsTimeOutByShortcut", () => {
+        beforeEach(() => {
+            // arrange
+            loadFixtures("normal-template.html");
+
+            cacheElements.and.callThrough();
+            lastBetsView.Init(shortcut, store);
+
+            spyOn(lastBetsView, "setGetLastBetsTimeOut");
+            spyOn(lastBetsView.$chbSwitch, "click");
+
+            // act
+            lastBetsView.setGetLastBetsTimeOutByShortcut();
+        });
+        it("_Always_Calls setGetLastBetsTimeOut", () => {
+            // assert
+            expect(lastBetsView.setGetLastBetsTimeOut).toHaveBeenCalled();
+        });
+        it("_Always_Calls $chbSwitch.click", () => {
+            // assert
+            expect(lastBetsView.$chbSwitch.click).toHaveBeenCalled();
+        });
+    });
 
     describe("_localStorage.get", () => {
         it("_Enable store -> Gets data from store", () => {
@@ -530,6 +565,87 @@ describe("LastBets", () => {
 
             // assert
             expect(actualCookieExpireOptions).toEqual(expectedCookieExpireOptions);
+        });
+    });
+
+    // isIE: can't be tested
+    // window.navigator.userAgent: can't be spied
+    describe("_replaceQueryStringValue", () => {
+        it("_Url Already Had Param -> Replaces Value", () => {
+            // arrange
+            let queryString = "http://demo?ParamName1=ParamValue1&ParamName=ParamValue";
+            let expectNewQueryString = "http://demo?ParamName1=ParamValue1&ParamName=NewParamValue";
+
+            // act
+            let actualNewQueryString = lastBetsView.replaceQueryStringValue(queryString, "ParamName", "NewParamValue");
+
+            // assert
+            expect(actualNewQueryString).toEqual(expectNewQueryString);
+        });
+
+        it("_Url Did Not Have Param -> Appends New Param", () => {
+            // arrange
+            let queryString = "http://demo?ParamName1=ParamValue1";
+            let expectNewQueryString = "http://demo?ParamName1=ParamValue1&ParamName2=ParamValue2";
+
+            // act
+            let actualNewQueryString = lastBetsView.replaceQueryStringValue(queryString, "ParamName2", "ParamValue2");
+
+            // assert
+            expect(actualNewQueryString).toEqual(expectNewQueryString);
+        });
+
+        it("_Url Did Not Have Query String -> Appends New Param With Question Mark", () => {
+            // arrange
+            let queryString = "http://demo";
+            let expectNewQueryString = "http://demo?ParamName2=ParamValue2";
+
+            // act
+            let actualNewQueryString = lastBetsView.replaceQueryStringValue(queryString, "ParamName2", "ParamValue2");
+
+            // assert
+            expect(actualNewQueryString).toEqual(expectNewQueryString);
+        });
+
+        it("_Url Is Null -> Return String empty", () => {
+            // arrange
+            let queryString = null;
+
+            // act
+            let actualNewQueryString = lastBetsView.replaceQueryStringValue(queryString, "ParamName2", "ParamValue2");
+
+            // assert
+            expect(actualNewQueryString).toEqual("");
+        });
+
+        it("_Url Is Undifined -> Return String empty", () => {
+            // arrange
+            let queryString;
+
+            // act
+            let actualNewQueryString = lastBetsView.replaceQueryStringValue(queryString, "ParamName2", "ParamValue2");
+
+            // assert
+            expect(actualNewQueryString).toEqual("");
+        });
+    });
+    describe("_replaceHrefParam", () => {
+        let replaceQueryStringValueSpy;
+
+        beforeEach(() => {
+            // arrange
+            loadFixtures("normal-template.html");
+
+            cacheElements.and.callThrough();
+            lastBetsView.Init(shortcut, store);
+            replaceQueryStringValueSpy = spyOn(lastBetsView, "replaceQueryStringValue");
+
+            // act
+            lastBetsView.replaceHrefParam("paramName", "paramValue");
+        });
+        it("_Always_Calls replaceQueryStringValue", () => {
+            // assert
+            expect(replaceQueryStringValueSpy.calls.allArgs()).toEqual([["?paramName=paramValue", "paramName", "paramValue"], ["?paramName1=paramValue1", "paramName", "paramValue"]]);
         });
     });
 });

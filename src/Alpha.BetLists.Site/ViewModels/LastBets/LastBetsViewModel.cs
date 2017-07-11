@@ -18,6 +18,8 @@ namespace Alpha.BetLists.Site.ViewModels.LastBets
         {
             PageSize = query.PageSize;
             ResetLastTransId = query.BetType == -1;
+            IsAutoRefresh = query.IsAutoRefresh;
+
             BetType = query.BetType == -1 ? BetTypeIdConstants.AllBetTypes : query.BetType;
             LastTransIdCacheKey = lastTransIdCacheKey;
         }
@@ -25,6 +27,8 @@ namespace Alpha.BetLists.Site.ViewModels.LastBets
         public int BetType { get; }
 
         public int PageSize { get; }
+
+        public bool IsAutoRefresh { get; }
 
         public string LastTransIdCacheKey { get; }
 

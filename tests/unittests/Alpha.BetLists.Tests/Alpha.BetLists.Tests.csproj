@@ -186,7 +186,7 @@
     <Compile Include="Criteria\GetProductsCriteriaTests.cs" />
     <Compile Include="Criteria\GetScoreMapBetTypesCriteriaTests.cs" />
     <Compile Include="Criteria\LastBets\GetLastBetsCriteriaTests.cs" />
-    <Compile Include="Criteria\LastBets\GetRunningMatchCriteriaTests.cs" />
+    <Compile Include="Criteria\LastBets\GetRunningOtherMatchCriteriaTests.cs" />
     <Compile Include="Criteria\LastBets\GetRunningOutrightMatchCriteriaTests.cs" />
     <Compile Include="Criteria\MemberBetList\GetBetListAllByDateCriteriaTests.cs" />
     <Compile Include="Criteria\Parlay\GetComboParlayDetailCriteriaTests.cs" />

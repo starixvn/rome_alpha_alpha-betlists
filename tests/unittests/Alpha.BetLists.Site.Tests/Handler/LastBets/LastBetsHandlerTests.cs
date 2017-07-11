@@ -89,7 +89,7 @@ namespace Alpha.BetLists.Site.Tests.Handler.LastBets
         }
 
         [Fact]
-        public void HandleGetLastBetsQuery_NotAutoLoad_WriteLog()
+        public void HandleGetLastBetsQuery_Always_WriteLog()
         {
             // Arrange
             var message = new GetLastBetsQuery(user);
@@ -103,21 +103,6 @@ namespace Alpha.BetLists.Site.Tests.Handler.LastBets
                 Arg.Is<IList<ITicket>>(t => t.SequenceEqual(BetListDataTest.Tickets)));
         }
 
-        [Fact]
-        public void HandleGetLastBetsQuery_AutoLoad_NotWriteLog()
-        {
-            // Arrange
-            var message = new GetLastBetsQuery(user)
-            {
-                IsAutoLoad = true
-            };
-
-            // Act
-            handler.Handle(message).GetAwaiter().GetResult();
-
-            // Assert
-            monitorService.DidNotReceive().WriteLog(Arg.Any<int>(), Arg.Any<IList<ITicket>>());
-        }
 
         [Fact]
         public void HandleGetLastBetsQuery_Always_ReturnsBetDataViewModel()

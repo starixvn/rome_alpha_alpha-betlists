@@ -41,5 +41,19 @@ namespace Alpha.BetLists.Tests.Criteria.LastBets
             // Assert
             Assert.True(actualIsValid);
         }
+
+        [Fact]
+        public void IsVirtualSportsRacing_Always_ReturnsFalse()
+        {
+            // Arrange
+            var criteria = new GetRunningOutrightMatchCriteria();
+            var expectedIsVirtualSportsRacing = false;
+
+            // Act
+            var actualIsVirtualSportsRacing = criteria.IsVirtualSportsRacing;
+
+            // Assert
+            Assert.Equal(expectedIsVirtualSportsRacing, actualIsVirtualSportsRacing);
+        }
     }
 }

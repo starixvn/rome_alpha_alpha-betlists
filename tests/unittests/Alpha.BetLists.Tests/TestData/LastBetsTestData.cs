@@ -14,6 +14,7 @@ namespace Alpha.BetLists.Tests.TestData
             CreateTicketDto(BetTypeIdConstants.HorseRacing_Win, 1000),
             CreateTicketDto(BetTypeIdConstants.HorseRacing_Win, 1001),
             CreateTicketDto(BetTypeIdConstants.Handicap, 1002),
+            CreateTicketDto(BetTypeIdConstants.Outright, 1003)
         };
 
         public static readonly IEnumerable<MatchInfo> RunningOutrightMatch = new List<MatchInfo>
@@ -21,14 +22,17 @@ namespace Alpha.BetLists.Tests.TestData
             CreateMatchInfo(matchId: 1000)
         };
 
-        public static readonly IEnumerable<MatchInfo> RunningOtherMatch = new List<MatchInfo>();
+        public static readonly IEnumerable<MatchInfo> RunningOtherMatch = new List<MatchInfo>
+        {
+            CreateMatchInfo(matchId: 1001)
+        };
 
         private static TicketDto CreateTicketDto(int betType, int matchId = 0)
-            => new TicketDto
-            {
-                BetTypeId = betType,
-                MatchId = matchId
-            };
+                => new TicketDto
+                {
+                    BetTypeId = betType,
+                    MatchId = matchId
+                };
 
         private static MatchInfo CreateMatchInfo(int matchId)
             => new MatchInfo(0, string.Empty, matchId, 0, string.Empty, 0, 0, string.Empty, string.Empty);

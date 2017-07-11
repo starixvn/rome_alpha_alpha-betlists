@@ -11,17 +11,17 @@
     @Resources.LastBets
 </div>
 <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="@(Model.IsSelectedBetType(BetTypeIdConstants.AllBetTypes) ?"active":string.Empty)">
-        @Html.ActionLink(Resources.AllBetTypes, "Index", "LastBets", new { BetType = BetTypeIdConstants.AllBetTypes }, new { id = "tab-all-bet-types" })
+    <li role="presentation" class="tab-report-type @(Model.IsSelectedBetType(BetTypeIdConstants.AllBetTypes) ?"active":string.Empty)">
+        @Html.ActionLink(Resources.AllBetTypes, "Index", "LastBets", new { BetType = BetTypeIdConstants.AllBetTypes, IsAutoRefresh = Model.IsAutoRefresh }, new { id = "tab-all-bet-types" })
     </li>
-    <li role="presentation" class="@(Model.IsSelectedBetType(BetTypeIdConstants.Handicap) ?"active":string.Empty)">
-        @Html.ActionLink(Resources.Handicap, "Index", "LastBets", new { BetType = BetTypeIdConstants.Handicap }, new { id = "tab-handicap" })
+    <li role="presentation" class="tab-report-type @(Model.IsSelectedBetType(BetTypeIdConstants.Handicap) ?"active":string.Empty)">
+        @Html.ActionLink(Resources.Handicap, "Index", "LastBets", new { BetType = BetTypeIdConstants.Handicap, IsAutoRefresh = Model.IsAutoRefresh }, new { id = "tab-handicap" })
     </li>
-    <li role="presentation" class="@(Model.IsSelectedBetType(BetTypeIdConstants.OverUnder) ?"active":string.Empty)">
-        @Html.ActionLink(Resources.OverUnder, "Index", "LastBets", new { BetType = BetTypeIdConstants.OverUnder }, new { id = "tab-over-under" })
+    <li role="presentation" class="tab-report-type @(Model.IsSelectedBetType(BetTypeIdConstants.OverUnder) ?"active":string.Empty)">
+        @Html.ActionLink(Resources.OverUnder, "Index", "LastBets", new { BetType = BetTypeIdConstants.OverUnder, IsAutoRefresh = Model.IsAutoRefresh }, new { id = "tab-over-under" })
     </li>
-    <li role="presentation" class="@(Model.IsSelectedBetType(BetTypeIdConstants.OtherBetTypes) ?"active":string.Empty)">
-        @Html.ActionLink(Resources.OtherBetTypes, "Index", "LastBets", new { BetType = BetTypeIdConstants.OtherBetTypes }, new { id = "tab-other-bet-types" })
+    <li role="presentation" class="tab-report-type @(Model.IsSelectedBetType(BetTypeIdConstants.OtherBetTypes) ?"active":string.Empty)">
+        @Html.ActionLink(Resources.OtherBetTypes, "Index", "LastBets", new { BetType = BetTypeIdConstants.OtherBetTypes, IsAutoRefresh = Model.IsAutoRefresh }, new { id = "tab-other-bet-types" })
     </li>
 </ul>
 <div class="page-section">
@@ -32,9 +32,9 @@
         <li id="page-size-30" class="page-size @(Model.IsSelectedPageSize(30) ? "active" : string.Empty)">30</li>
     </ul>
     <div id="btn-turn-off-on" class="btn-turn-off-on">
-        <input type="checkbox" id="chb-switch" checked />
+        <input type="checkbox" id="chb-switch" @(Model.IsAutoRefresh ? "checked" : string.Empty) />
         <label id="lbl-switch" class="switch">
-            <span class="slider" data-on="@Resources.On" data-off="@Resources.Off" ></span>
+            <span class="slider" data-on="@Resources.On" data-off="@Resources.Off"></span>
         </label>
         <span>@Resources.AutoRefresh</span>
     </div>
@@ -48,6 +48,7 @@
 </div>
 
 <input id="bet-type" type="hidden" value="@Model.BetType" />
+<input id="is-auto-refresh" type="hidden" value="@(Model.IsAutoRefresh ? "true":"false")" />
 <input id="get-bets-url" type="hidden" value="@Url.Action("BetData","LastBets")" />
 <input id="last-trans-id-cache-key" type="hidden" value="@Model.LastTransIdCacheKey" />
 <input id="reset-last-trans-id" type="hidden" value="@Model.ResetLastTransId.ToString()" />

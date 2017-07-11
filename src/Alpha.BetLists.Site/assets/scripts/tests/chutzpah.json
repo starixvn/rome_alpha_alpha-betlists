@@ -50,8 +50,8 @@
 
     { "Path": "../src/member-betlist/member-betlist.ts" },
     { "Path": "../src/running-betlist/running-betlist.ts" },
-    { "Path": "../src/cancelled-betlist/cancelled-betlist.ts" },
     { "Path": "../src/cancelled-betlist/cancelled-betlist-constants.ts" },
+    { "Path": "../src/cancelled-betlist/cancelled-betlist.ts" },
 
     { "Path": "../src/last-bets/last-bets.ts" }
   ],

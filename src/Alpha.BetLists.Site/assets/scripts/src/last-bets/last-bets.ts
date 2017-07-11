@@ -21,6 +21,7 @@ namespace BetList {
         $betListTableContainer: JQuery;
         $chbSwitch: JQuery;
         $lblSwitch: JQuery;
+        $isAutoRefresh: JQuery;
 
         betType: number = 0;
         getBetsUrl: string = "";
@@ -57,6 +58,8 @@ namespace BetList {
             this.$chbSwitch = $("#chb-switch");
             this.$lblSwitch = $("#lbl-switch");
 
+            this.$isAutoRefresh = $("#is-auto-refresh");
+
             this.betType = parseInt($("#bet-type").val(), 0);
             this.getBetsUrl = $("#get-bets-url").val();
         };
@@ -68,12 +71,11 @@ namespace BetList {
                 self.changeLastBetRange($(this));
             });
 
-            this.shortcut.add("Shift+P", this.setGetLastBetsTimeOut);
+            this.shortcut.add("Shift+P", this.setGetLastBetsTimeOutByShortcut);
 
             this.$chbSwitch.off("click").on("click", this.setGetLastBetsTimeOut);
             this.$lblSwitch.off("click").on("click", () => {
                 self.$chbSwitch.click();
-                return true;
             });
         };
 
@@ -144,8 +146,10 @@ namespace BetList {
                 this.localStorage.set(this.lastTransIdCacheKey, lastTransId);
             }
 
-            let self = this;
-            this.getLastBetsTimeOut = setTimeout(() => { self.loadLastBets(true); }, this.timeToGetLastBets);
+            if (this.convertAttributeToBool(this.$isAutoRefresh.val())) {
+                let self = this;
+                this.getLastBetsTimeOut = setTimeout(() => { self.loadLastBets(true); }, this.timeToGetLastBets);
+            }
 
             this.isCalling = false;
         };
@@ -161,13 +165,22 @@ namespace BetList {
             this.$loadingIcon.addClass("hide");
         };
 
+        setGetLastBetsTimeOutByShortcut = () => {
+            this.setGetLastBetsTimeOut();
+            this.$chbSwitch.click();
+        };
+
         setGetLastBetsTimeOut = () => {
             if (this.getLastBetsTimeOut !== 0) {
                 clearTimeout(this.getLastBetsTimeOut);
                 this.getLastBetsTimeOut = 0;
+                this.$isAutoRefresh.val("false");
+                this.replaceHrefParam("IsAutoRefresh", "false");
             } else {
                 let self = this;
                 this.getLastBetsTimeOut = setTimeout(() => { self.loadLastBets(true); }, this.timeToGetLastBets);
+                this.$isAutoRefresh.val("true");
+                this.replaceHrefParam("IsAutoRefresh", "true");
             }
         };
 
@@ -199,6 +212,33 @@ namespace BetList {
 
         convertAttributeToBool = (attrValue: string) => {
             return !!attrValue && attrValue.toString().toLowerCase() === "true";
+        };
+        replaceHrefParam = (paramName: string, paramValue: any) => {
+            let self = this;
+            let $linkClass = $(".tab-report-type");
+
+            $linkClass.each((index: number, element: Element) => {
+                let $link = $(element).find(">a");
+                let currentUrl = $link.attr("href");
+
+                currentUrl = self.replaceQueryStringValue(currentUrl, paramName, paramValue);
+
+                $link.attr("href", currentUrl);
+            });
+        };
+        replaceQueryStringValue = (queryString: string, paramName: string, paramValue: any) => {
+            if (typeof queryString === "undefined"
+                || queryString === null) {
+                return "";
+            }
+
+            var regex = new RegExp("([?&])" + paramName + "=[^&]*", "i");
+
+            var newQueryString = regex.test(queryString)
+                ? queryString.replace(regex, "$1" + paramName + "=" + paramValue)
+                : queryString + (queryString.indexOf("?") >= 0 ? "&" : "?") + paramName + "=" + paramValue;
+
+            return newQueryString;
         };
     }
 }
