@@ -124,6 +124,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Auto refresh.
+        /// </summary>
+        public static string AutoRefresh {
+            get {
+                return ResourceManager.GetString("AutoRefresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bet List.
         /// </summary>
         public static string BetList {
@@ -463,6 +472,24 @@ namespace Alpha.BetLists.AppResources {
         public static string odds {
             get {
                 return ResourceManager.GetString("odds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Off.
+        /// </summary>
+        public static string Off {
+            get {
+                return ResourceManager.GetString("Off", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to On.
+        /// </summary>
+        public static string On {
+            get {
+                return ResourceManager.GetString("On", resourceCulture);
             }
         }
         

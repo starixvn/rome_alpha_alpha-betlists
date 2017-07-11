@@ -31,12 +31,12 @@
         <li id="page-size-20" class="page-size @(Model.IsSelectedPageSize(20) ? "active" : string.Empty)">20</li>
         <li id="page-size-30" class="page-size @(Model.IsSelectedPageSize(30) ? "active" : string.Empty)">30</li>
     </ul>
-    <div class="btn-turnOffOn">
+    <div id="btn-turn-off-on" class="btn-turnOffOn">
         <label class="switch">
-            <input type="checkbox">
+            <input type="checkbox" data-on="@Resources.On" data-off="@Resources.Off" />
             <span class="slider"></span>
         </label>
-        <span>Auto refresh</span>
+        <span>@Resources.AutoRefresh</span>
     </div>
 
     <span id="loading-icon" class="loading-icon"></span>
