@@ -19,7 +19,8 @@ namespace BetList {
         $loadingIcon: JQuery;
         $msgError: JQuery;
         $betListTableContainer: JQuery;
-        $btnTurnOffOn: JQuery;
+        $chbSwitch: JQuery;
+        $lblSwitch: JQuery;
 
         betType: number = 0;
         getBetsUrl: string = "";
@@ -53,7 +54,8 @@ namespace BetList {
             this.$loadingIcon = $("#loading-icon");
             this.$msgError = $("#msg-error");
             this.$betListTableContainer = $("#bet-list-table-container");
-            this.$btnTurnOffOn = $("#btn-turn-off-on");
+            this.$chbSwitch = $("#chb-switch");
+            this.$lblSwitch = $("#lbl-switch");
 
             this.betType = parseInt($("#bet-type").val(), 0);
             this.getBetsUrl = $("#get-bets-url").val();
@@ -68,7 +70,11 @@ namespace BetList {
 
             this.shortcut.add("Shift+P", this.setGetLastBetsTimeOut);
 
-            this.$btnTurnOffOn.click(this.setGetLastBetsTimeOut);
+            this.$chbSwitch.off("click").on("click", this.setGetLastBetsTimeOut);
+            this.$lblSwitch.off("click").on("click", () => {
+                self.$chbSwitch.click();
+                return true;
+            });
         };
 
         changeLastBetRange = (element: JQuery) => {
