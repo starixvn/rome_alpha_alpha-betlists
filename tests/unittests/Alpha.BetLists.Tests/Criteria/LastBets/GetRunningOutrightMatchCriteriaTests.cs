@@ -19,7 +19,7 @@ namespace Alpha.BetLists.Tests.Criteria.LastBets
         public void GetSettingKey_Always_ReturnsCorrectSettingKey()
         {
             // Arrange
-            var criteria = new GetRunningOutrightMatchCriteria(isVirtualSportsRacing: anyValueCreator.Create<bool>());
+            var criteria = new GetRunningOutrightMatchCriteria();
             var expectedSettingKey = "Age_Monitor_OutrightSel";
 
             // Act
@@ -33,7 +33,7 @@ namespace Alpha.BetLists.Tests.Criteria.LastBets
         public void IsValid_Always_ReturnsTrue()
         {
             // Arrange
-            var criteria = new GetRunningOutrightMatchCriteria(isVirtualSportsRacing: anyValueCreator.Create<bool>());
+            var criteria = new GetRunningOutrightMatchCriteria();
 
             // Act
             var actualIsValid = criteria.IsValid();

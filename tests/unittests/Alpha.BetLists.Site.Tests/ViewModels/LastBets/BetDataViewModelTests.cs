@@ -64,69 +64,6 @@ namespace Alpha.BetLists.Site.Tests.ViewModels.LastBets
             Assert.Equal(expectedValue, actualValue);
         }
 
-        [Theory]
-        [InlineData(31)]
-        [InlineData(32)]
-        [InlineData(34)]
-        public void CreateTicketData_NotWinPlaceTicket_ReturnsNull(int betType)
-        {
-            // Arrange
-            var query = new GetLastBetsQuery(user);
-            var viewModel = new BetDataViewModel(query, null, betlistFixture.HtmlBuilder, betlistFixture.TicketHelper, null);
-            var ticket = new Ticket
-            {
-                BetTypeId = betType
-            };
-
-            // Act
-            var actualValue = viewModel.CreateTicketData(ticket);
-
-            // Assert
-            Assert.Null(actualValue);
-        }
-
-        [Theory]
-        [InlineData(33, 31, 32)]
-        [InlineData(1233, 1231, 1232)]
-        public void CreateTicketData_WinPlaceTicket_ReturnsCorrectData(
-            int betType,
-            int winBetType,
-            int placeBetType)
-        {
-            // Arrange
-            var query = new GetLastBetsQuery(user);
-            var viewModel = new BetDataViewModel(query, null, betlistFixture.HtmlBuilder, betlistFixture.TicketHelper, null);
-            var ticket = new Ticket
-            {
-                BetTypeId = betType
-            };
-
-            var expectedViewModel = new List<ITicketData>
-            {
-                new TicketData
-                {
-                    RefNo = ticket.RefNo,
-                    Status = ticket.Status,
-                    BetTeam = ticket.BetTeam,
-                    BetTypeId = winBetType,
-                    Odds = ticket.Handicap1
-                 },
-                new TicketData
-                {
-                    RefNo = ticket.RefNo,
-                    Status = ticket.Status,
-                    BetTypeId = placeBetType,
-                    Odds = ticket.Handicap2
-                }
-            };
-
-            // Act
-            var actualValue = viewModel.CreateTicketData(ticket);
-
-            // Assert
-            Assert.True(compareLogic.Compare(expectedViewModel, actualValue).AreEqual);
-        }
-
         [Fact]
         public void LastTransId_NoTicket_Returns0()
         {

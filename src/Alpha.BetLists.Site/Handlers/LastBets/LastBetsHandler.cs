@@ -54,10 +54,7 @@ namespace Alpha.BetLists.Site.Handlers.LastBets
             var betListData = new BetListData(tickets, null);
             var supportScoreMapBettypeIds = foreCastService.GetBetTypeIdsSupportScoreMap();
 
-            if (!message.IsAutoLoad)
-            {
-                WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, tickets);
-            }
+            WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, tickets);
 
             return new BetDataViewModel(message, betListData, builder, ticketHelper, supportScoreMapBettypeIds);
         }

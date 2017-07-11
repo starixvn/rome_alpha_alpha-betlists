@@ -202,7 +202,6 @@
     <Compile Include="Fixtures\FanexDataFixture.cs" />
     <Compile Include="Fixtures\FanexCacheFixture.cs" />
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="Helpers\BetTypeHelperTests.cs" />
     <Compile Include="Models\EnumerationTests.cs" />
     <Compile Include="Models\ProductTests.cs" />
     <Compile Include="Models\UserLevelTests.cs" />

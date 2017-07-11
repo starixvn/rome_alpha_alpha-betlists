@@ -65,36 +65,6 @@ namespace Alpha.BetLists.Tests.Configurations
             Assert.Equal(expectedLocalIpAddress, actualLocalIpAddress);
         }
 
-        [Fact]
-        public void LasteBetsVirtualSportRacingOutrightBetType_Always_ReturnsCorrectConfig()
-        {
-            // Arrange
-            AppSettings.AppSettingValues = new NameValueCollection();
-            AppSettings.AppSettingValues.Add("LasteBetsVirtualSportRacingOutrightBetType", "1231,1232,1233");
-            var expectedLasteBetsVirtualSportRacingOutrightBetType = "1231,1232,1233";
-
-            // Act
-            var actualLasteBetsVirtualSportRacingOutrightBetType = AppSettings.LasteBetsVirtualSportRacingOutrightBetType;
-
-            // Assert
-            Assert.Equal(expectedLasteBetsVirtualSportRacingOutrightBetType, actualLasteBetsVirtualSportRacingOutrightBetType);
-        }
-
-        [Fact]
-        public void LastBetsOtherOutrightBetType_Always_ReturnsCorrectConfig()
-        {
-            // Arrange
-            AppSettings.AppSettingValues = new NameValueCollection();
-            AppSettings.AppSettingValues.Add("LastBetsOtherOutrightBetType", "10,31,32,33");
-            var expectedLastBetsOtherOutrightBetType = "10,31,32,33";
-
-            // Act
-            var actualLastBetsOtherOutrightBetType = AppSettings.LastBetsOtherOutrightBetType;
-
-            // Assert
-            Assert.Equal(expectedLastBetsOtherOutrightBetType, actualLastBetsOtherOutrightBetType);
-        }
-
         [Theory]
         [InlineData("true", true)]
         [InlineData("false", false)]

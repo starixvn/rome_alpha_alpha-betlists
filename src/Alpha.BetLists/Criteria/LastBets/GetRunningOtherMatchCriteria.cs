@@ -4,12 +4,7 @@ namespace Alpha.BetLists.Criteria.LastBets
 {
     public class GetRunningOtherMatchCriteria : CriteriaBase
     {
-        public GetRunningOtherMatchCriteria(int matchId = 0)
-        {
-            MatchId = matchId;
-        }
-
-        public int MatchId { get; }
+        public int MatchId => 0;
 
         public override string GetSettingKey() => "Age_Monitor_MatchSel";
 

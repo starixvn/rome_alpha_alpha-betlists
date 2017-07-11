@@ -28,8 +28,6 @@ namespace Alpha.BetLists.Tests.Services
         {
             AppSettings.AppSettingValues = new NameValueCollection
             {
-                ["LasteBetsVirtualSportRacingOutrightBetType"] = "1231,1232,1233",
-                ["LastBetsOtherOutrightBetType"] = "10,31,32,33",
                 ["EnableBetsListMonitoring"] = "true",
                 ["UsersAlwaysAllowAccessBetsListMonitoring"] = "1176086"
             };

@@ -19,7 +19,7 @@ namespace Alpha.BetLists.Tests.Criteria.LastBets
         public void GetSettingKey_Always_ReturnsCorrectSettingKey()
         {
             // Arrange
-            var criteria = new GetRunningOtherMatchCriteria(matchId: anyValueCreator.Create<int>());
+            var criteria = new GetRunningOtherMatchCriteria();
             var expectedSettingKey = "Age_Monitor_MatchSel";
 
             // Act
@@ -33,7 +33,7 @@ namespace Alpha.BetLists.Tests.Criteria.LastBets
         public void IsValid_Always_ReturnsTrue()
         {
             // Arrange
-            var criteria = new GetRunningOtherMatchCriteria(matchId: anyValueCreator.Create<int>());
+            var criteria = new GetRunningOtherMatchCriteria();
 
             // Act
             var actualIsValid = criteria.IsValid();

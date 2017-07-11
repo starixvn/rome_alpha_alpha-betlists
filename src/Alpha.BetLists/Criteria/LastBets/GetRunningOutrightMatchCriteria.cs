@@ -5,13 +5,8 @@ namespace Alpha.BetLists.Criteria.LastBets
 {
     public class GetRunningOutrightMatchCriteria : CriteriaBase
     {
-        public GetRunningOutrightMatchCriteria(bool isVirtualSportsRacing)
-        {
-            IsVirtualSportsRacing = isVirtualSportsRacing;
-        }
-
         [SpParam(SqlParamName = "isvsracing")]
-        public bool IsVirtualSportsRacing { get; }
+        public bool IsVirtualSportsRacing => false;
 
         public override string GetSettingKey() => "Age_Monitor_OutrightSel";
 

@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Alpha.BetLists.Configurations;
 using Alpha.BetLists.Criteria.LastBets;
-using Alpha.BetLists.Extensions;
+using Alpha.BetLists.Helpers;
 using Alpha.BetLists.Models;
 using Alpha.BetLists.Params.LastBets;
 using Fanex.BetList.Core.Entities;
 using Fanex.Caching;
-using Fanex.Common;
 using Fanex.Data.Repository;
 
 namespace Alpha.BetLists.Services
@@ -23,22 +21,12 @@ namespace Alpha.BetLists.Services
 
     public class LastBetsServiceImpl : LastBetsService
     {
-        private const string RunningOutrightMatchesCacheKey = "Alpha.Reports.Services.Impl.LastBetsServiceImpl.RunningOutrightMatches.VirtualSports-";
+        private const string RunningOutrightMatchesCacheKey = "Alpha.Reports.Services.Impl.LastBetsServiceImpl.RunningOutrightMatchesCacheKey";
         private const string RunningOtherMatchesCacheKey = "Alpha.Reports.Services.Impl.LastBetsServiceImpl.RunningOtherMatchesCacheKey";
-
-        private static IEnumerable<int> virtualSportRacingOutrightBetType =
-            AppSettings.LasteBetsVirtualSportRacingOutrightBetType.SplitByCommaWithNoneEmptyEntries().ToListInt();
-
-        private static IEnumerable<int> otherOutrightBetType =
-            AppSettings.LastBetsOtherOutrightBetType.SplitByCommaWithNoneEmptyEntries().ToListInt();
-
-        private static IEnumerable<int> outrightBetType =
-            Enumerable.Concat(virtualSportRacingOutrightBetType, otherOutrightBetType);
 
         private readonly IDynamicRepository dynamicRepository;
 
-        public LastBetsServiceImpl(
-            IDynamicRepository dynamicRepository)
+        public LastBetsServiceImpl(IDynamicRepository dynamicRepository)
         {
             this.dynamicRepository = dynamicRepository;
         }
@@ -89,19 +77,18 @@ namespace Alpha.BetLists.Services
 
         private IEnumerable<MatchInfo> GetRunningMatches(int betType, bool getNewData)
         {
-            var isOutright = outrightBetType.Contains(betType);
+            var isOutright = BetTypeHelper.IsOutRight(betType);
 
             var matches = isOutright
-                ? GetRunningOutrightMatches(betType, getNewData)
+                ? GetRunningOutrightMatches(getNewData)
                 : GetRunningOtherMatches(getNewData);
 
             return matches;
         }
 
-        private IEnumerable<MatchInfo> GetRunningOutrightMatches(int betType, bool getNewData)
+        private IEnumerable<MatchInfo> GetRunningOutrightMatches(bool getNewData)
         {
-            var isVirtualSportsRacing = virtualSportRacingOutrightBetType.Contains(betType);
-            var cacheKey = RunningOutrightMatchesCacheKey + (isVirtualSportsRacing ? 1 : 0);
+            var cacheKey = RunningOutrightMatchesCacheKey;
 
             if (getNewData)
             {
@@ -110,8 +97,8 @@ namespace Alpha.BetLists.Services
 
             var matches = ConfiguredCacheService.GetOrSet(
                 cacheKey,
-                () => dynamicRepository.Fetch<MatchInfo>(new GetRunningOutrightMatchCriteria(isVirtualSportsRacing)),
-                new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromHours(1)));
+                () => dynamicRepository.Fetch<MatchInfo>(new GetRunningOutrightMatchCriteria()),
+                new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(15)));
 
             return matches;
         }
@@ -128,15 +115,14 @@ namespace Alpha.BetLists.Services
             var matches = ConfiguredCacheService.GetOrSet(
                 cacheKey,
                 () => dynamicRepository.Fetch<MatchInfo>(new GetRunningOtherMatchCriteria()),
-                new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromHours(1)));
+                new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(15)));
 
             return matches;
         }
 
         private MatchInfo GetMatchInfo(Ticket ticket, IEnumerable<MatchInfo> matches)
         {
-            var isVirtualSportsRacing = virtualSportRacingOutrightBetType.Contains(ticket.BetTypeId);
-            var matchId = isVirtualSportsRacing ? Converter.ToInt(ticket.Race) : ticket.MatchId;
+            var matchId = ticket.MatchId;
 
             var matchInfo = FilterMatch(matchId, matches);
 

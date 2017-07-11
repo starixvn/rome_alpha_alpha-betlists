@@ -30,10 +30,6 @@
 
         public static string LocalIpAddress => GetConfigValue("LocalIpAddress");
 
-        public static string LasteBetsVirtualSportRacingOutrightBetType => GetConfigValue("LasteBetsVirtualSportRacingOutrightBetType");
-
-        public static string LastBetsOtherOutrightBetType => GetConfigValue("LastBetsOtherOutrightBetType");
-
         public static bool EnableBetsListMonitoring => Converter.ToBool(GetConfigValue("EnableBetsListMonitoring"));
 
         public static IEnumerable<int> UsersAlwaysAllowAccessBetsListMonitoring
