@@ -24,17 +24,23 @@
         @Html.ActionLink(Resources.OtherBetTypes, "Index", "LastBets", new { BetType = BetTypeIdConstants.OtherBetTypes }, new { id = "tab-other-bet-types" })
     </li>
 </ul>
-<center>
-    <div class="page-section">
-        <span>@Resources.Last</span>
-        <ul class="page-size-container">
-            <li id="page-size-10" class="page-size @(Model.IsSelectedPageSize(10) ? "active" : string.Empty)">10</li>
-            <li id="page-size-20" class="page-size @(Model.IsSelectedPageSize(20) ? "active" : string.Empty)">20</li>
-            <li id="page-size-30" class="page-size @(Model.IsSelectedPageSize(30) ? "active" : string.Empty)">30</li>
-        </ul>
-        <span id="loading-icon" class="loading-icon"></span>
+<div class="page-section">
+    <span>@Resources.Last</span>
+    <ul class="page-size-container">
+        <li id="page-size-10" class="page-size @(Model.IsSelectedPageSize(10) ? "active" : string.Empty)">10</li>
+        <li id="page-size-20" class="page-size @(Model.IsSelectedPageSize(20) ? "active" : string.Empty)">20</li>
+        <li id="page-size-30" class="page-size @(Model.IsSelectedPageSize(30) ? "active" : string.Empty)">30</li>
+    </ul>
+    <div class="btn-turnOffOn">
+        <label class="switch">
+            <input type="checkbox">
+            <span class="slider"></span>
+        </label>
+        <span>Auto refresh</span>
     </div>
-</center>
+
+    <span id="loading-icon" class="loading-icon"></span>
+</div>
 <div id="msg-error" class="msg msg-error hide">
     @Resources.FunctionTurnOffError
 </div>
