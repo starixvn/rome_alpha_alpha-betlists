@@ -96,7 +96,7 @@
             {
                 var ticket = Model.BetListData.Tickets.ElementAt(i);
 
-                <tr>
+                <tr id="r@(ticket.TransId)">
                     <td class='w-order text-center'>@(i + 1)</td>
                     <td class="text-center">@ticket.UserName</td>
                     @Trans.Render(Model.Builder, ticket)
