@@ -23,7 +23,7 @@
     public class ParlayExcelHandler : BetListExcelBaseHandler, IAsyncRequestHandler<ComboParlayDetailExcelQuery, ExcelFileViewModel>
     {
         private readonly ParlayService parlayService;
-        private ComboParlayDetailWorkbook workbook;
+        private readonly ComboParlayDetailWorkbook workbook;
 
         public ParlayExcelHandler(
             ParlayService parlayService,
