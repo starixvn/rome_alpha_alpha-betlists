@@ -14,13 +14,14 @@ using ONEbook.SpreadSheets;
 using System.Threading.Tasks;
 
 using static ONEbook.SpreadSheets.Column;
+using ONEbook.SpreadSheets.NPOI;
 
 namespace Alpha.BetLists.Site.Handlers.CancelledBet
 {
     public class CancelledBetExcelHandler : BetListExcelBaseHandler, IAsyncRequestHandler<CancelledBetExcelQuery, ExcelFileViewModel>
     {
         private readonly CancelledBetService service;
-        private readonly Workbook<TicketDto> workbook;
+        private Workbook<TicketDto> workbook;
         private int currentRowIndex;
 
         public CancelledBetExcelHandler(
@@ -44,11 +45,13 @@ namespace Alpha.BetLists.Site.Handlers.CancelledBet
 
             var viewModel = new CancelledBetViewModel(message, cancelledBet, Builder, TicketHelper);
 
+            workbook = workbook.UseTemplate(GetTemplateInfo(message.ViewerLevel));
+            RtfHelper = InitRTFHelper((workbook as NpoiWorkbook<TicketDto>).Workbook);
+
             var fileContent = workbook
-                .UseTemplate(GetTemplateInfo(message.ViewerLevel))
                 .Header(Resources.ResourceManager.GetString)
                 .Title(Resources.VoidAndReject)
-                .Body(cancelledBet.BetListData.Tickets, GetBodyRowMapper(message.ViewerLevel, viewModel))                
+                .Body(cancelledBet.BetListData.Tickets, GetBodyRowMapper(message.ViewerLevel, viewModel))
                 .Sheet(Resources.CancelledBet)
                 .ExportToBytes();
 
@@ -67,7 +70,7 @@ namespace Alpha.BetLists.Site.Handlers.CancelledBet
                 .Map(D, ticket => BuildChoice(ticket, viewModel))
                 .Map(E, ticket => BuildOdds(ticket, viewModel))
                 .Map(F, ticket => BuildStake(ticket))
-                .Map(G, ticket => BuildStatus(ticket, viewModel));           
+                .Map(G, ticket => BuildStatus(ticket, viewModel));
 
             return mapper;
         }

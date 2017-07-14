@@ -23,7 +23,7 @@
     public class ParlayExcelHandler : BetListExcelBaseHandler, IAsyncRequestHandler<ComboParlayDetailExcelQuery, ExcelFileViewModel>
     {
         private readonly ParlayService parlayService;
-        private readonly ComboParlayDetailWorkbook workbook;
+        private ComboParlayDetailWorkbook workbook;
 
         public ParlayExcelHandler(
             ParlayService parlayService,
@@ -43,14 +43,18 @@
         {
             var comboParlayDetailViewModel = await GetComboParlayDetail(message, isExportingExcel: true);
 
-            var fileContent = workbook
+            var onebookWorkbook = workbook
                 .SetData(comboParlayDetailViewModel)
                 .SetRowMapper(
                     DetailsMapper(),
                     DetailsSubTotalMapper(comboParlayDetailViewModel),
                     FooterMapper(comboParlayDetailViewModel, isTotalWinLost: false),
                     FooterMapper(comboParlayDetailViewModel, isTotalWinLost: true))
-                .UseTemplate(GetTemplateInfo(message.ViewerLevel))
+                .UseTemplate(GetTemplateInfo(message.ViewerLevel));
+
+            RtfHelper = message.RtfHelper ?? InitRTFHelper(workbook.Workbook);
+
+            var fileContent = onebookWorkbook
                 .Sheet(comboParlayDetailViewModel.Title)
                 .Title(comboParlayDetailViewModel.Title)
                 .Header(Resources.ResourceManager.GetString)
@@ -67,22 +71,22 @@
                   bodyEndIndex: 5,
                   footerEndIndex: 7);
 
-        private static Mapper<IEnumerable<ComboParlayDetailWrapper>> DetailsSubTotalMapper(ComboParlayDetailViewModel viewModel)
+        private Mapper<IEnumerable<ComboParlayDetailWrapper>> DetailsSubTotalMapper(ComboParlayDetailViewModel viewModel)
         {
             var mapper = new Mapper<IEnumerable<ComboParlayDetailWrapper>>();
 
             return mapper
                 .Map(A, _ => Resources.subTotal + ":")
-                .Map(E, details => viewModel.SubTotalWinLost(details));
+                .Map(E, details => RenderNumber(viewModel.SubTotalWinLost(details)));
         }
 
-        private static Mapper<IEnumerable<ComboParlayDetailWrapper>> FooterMapper(ComboParlayDetailViewModel viewModel, bool isTotalWinLost)
+        private Mapper<IEnumerable<ComboParlayDetailWrapper>> FooterMapper(ComboParlayDetailViewModel viewModel, bool isTotalWinLost)
         {
             var mapper = new Mapper<IEnumerable<ComboParlayDetailWrapper>>();
 
             mapper
                 .Map(A, _ => (isTotalWinLost ? Resources.total : Resources.outstanding) + ":")
-                .Map(E, _ => isTotalWinLost ? viewModel.TotalWinLost : viewModel.OutStanding);
+                .Map(E, _ => RenderNumber(isTotalWinLost ? viewModel.TotalWinLost : viewModel.OutStanding));
 
             return mapper;
         }
@@ -93,7 +97,7 @@
 
             return mapper.Map(A, details => details.First().WinLostDate)
                 .Map(B, details => RenderEvent(details.First()))
-                .Map(C, details => details.First().Odds)
+                .Map(C, details => RenderNumber(details.First().Odds))
                 .Map(D, details => details.First().Stake)
                 .Map(E, details => RenderWinLossComm(details.First()))
                 .Map(F, details => details.First().Status);
@@ -118,6 +122,18 @@
 
             rtfNumber.Render(detail.WinLost + "\n");
             rtfNumber.Render(detail.Comm);
+
+            var rtfText = RtfHelper.RTFRenderer.Render();
+            RtfHelper.RTFRenderer.Clear();
+
+            return rtfText;
+        }
+
+        private IRichTextString RenderNumber(string numberValue)
+        {
+            var rtfNumber = new RTFNumber(RtfHelper.RTFRenderer, RtfHelper.PosFont, RtfHelper.NegFont);
+
+            rtfNumber.Render(numberValue);
 
             var rtfText = RtfHelper.RTFRenderer.Render();
             RtfHelper.RTFRenderer.Clear();
