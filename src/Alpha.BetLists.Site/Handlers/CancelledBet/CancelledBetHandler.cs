@@ -2,6 +2,7 @@
 using Alpha.BetLists.Services;
 using Alpha.BetLists.Site.Requests.CancelledBet;
 using Alpha.BetLists.Site.ViewModels.CancelledBet;
+using Alpha.Utilities.IP;
 using Fanex.BetList.Core.Builder;
 using Fanex.BetList.Core.Entities;
 using MediatR;
@@ -14,15 +15,19 @@ namespace Alpha.BetLists.Site.Handlers.CancelledBet
         private readonly CancelledBetService service;
         private readonly IBetListHTMLBuilder builder;
         private readonly ITicketHelper ticketHelper;
+        protected internal IPService IpService { get; }
 
         public CancelledBetHandler(
             CancelledBetService service,
             IBetListHTMLBuilder builder,
-            ITicketHelper ticketHelper)
+            ITicketHelper ticketHelper,
+            IPService ipService)
         {
             this.service = service;
             this.builder = builder;
             this.ticketHelper = ticketHelper;
+            this.IpService = ipService;
+            this.ticketHelper.IsVnIp = ipService.IsVNIP;
         }
 
         public async Task<CancelledBetViewModel> Handle(CancelledBetQuery message)

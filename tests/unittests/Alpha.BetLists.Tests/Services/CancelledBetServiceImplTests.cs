@@ -6,13 +6,9 @@ using Alpha.BetLists.Services;
 using Alpha.BetLists.Tests.Fixtures;
 using Alpha.BetLists.Tests.TestData;
 using Fanex.BetList.Core.Entities;
-using Fanex.Data.Repository;
 using NSubstitute;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Alpha.BetLists.Tests.Services

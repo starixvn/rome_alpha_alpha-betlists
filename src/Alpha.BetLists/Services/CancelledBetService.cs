@@ -33,28 +33,28 @@ namespace Alpha.BetLists.Services
             return new CancelledBetModel(filter, betList);
         }
 
-        protected async Task<IEnumerable<UserBetCount>> GetUserHasCancelledBetBySuper(int superId)
+        private async Task<IEnumerable<UserBetCount>> GetUserHasCancelledBetBySuper(int superId)
         {
             var criteria = new GetUsersHasCancelledBetBySuperCriteria(superId);
 
             return await dynamicRepository.FetchAsync<UserBetCount>(criteria);
         }
 
-        protected async Task<IEnumerable<UserBetCount>> GetUserHasCancelledBetByMaster(int masterId)
+        private async Task<IEnumerable<UserBetCount>> GetUserHasCancelledBetByMaster(int masterId)
         {
             var criteria = new GetUsersHasCancelledBetByMasterCriteria(masterId);
 
             return await dynamicRepository.FetchAsync<UserBetCount>(criteria);
         }
 
-        protected async Task<IEnumerable<UserBetCount>> GetMembersHasCancelledBetByAgent(int agentId)
+        private async Task<IEnumerable<UserBetCount>> GetMembersHasCancelledBetByAgent(int agentId)
         {
             var criteria = new GetUsersHasCancelledBetByAgentCriteria(agentId);
 
             return await dynamicRepository.FetchAsync<UserBetCount>(criteria);
         }
 
-        protected async Task<FilterCancelledBetModel> GetFilterCancelledBet(CancelledBetParam parameter)
+        private async Task<FilterCancelledBetModel> GetFilterCancelledBet(CancelledBetParam parameter)
         {
             if (parameter.Level.IsSuperLevel())
             {
@@ -69,7 +69,7 @@ namespace Alpha.BetLists.Services
             return await GetFilterCancelledBetByAgent(parameter);
         }
 
-        protected async Task<BetListData> GetCancelledBetList(FilterCancelledBetModel parameter, string language)
+        private async Task<BetListData> GetCancelledBetList(FilterCancelledBetModel parameter, string language)
         {
             var criteria = CreateCancelledBetListCriteria(parameter, language);
             var ticketData = await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);

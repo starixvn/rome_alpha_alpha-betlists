@@ -250,6 +250,7 @@
     <Compile Include="Collection\ParlayBetListCollection.cs" />
     <Compile Include="Collection\BetListCollection.cs" />
     <Compile Include="Constants\LanguageCode.cs" />
+    <Compile Include="Controllers\CancelledBetControllerTests.cs" />
     <Compile Include="Controllers\MemberBetListControllerTests.cs" />
     <Compile Include="Controllers\RunningBetListControllerTests.cs" />
     <Compile Include="Controllers\ParlayWinLossByMatchControllerTests.cs" />
@@ -259,6 +260,8 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Handler\BetListBaseHandlerTests.cs" />
     <Compile Include="Handler\BetListExcelBaseHandlerTests.cs" />
+    <Compile Include="Handler\CancelledBet\CancelledBetExcelHandlerTests.cs" />
+    <Compile Include="Handler\CancelledBet\CancelledBetHandlerTests.cs" />
     <Compile Include="Handler\MemberBetList\MemberBetListHandlerTests.cs" />
     <Compile Include="Handler\RunningBetList\RunningBetListHandlerTests.cs" />
     <Compile Include="Handler\ParlayWinLossByMatch\ParlayWinLossByMatchExcelHanlderTests.cs" />

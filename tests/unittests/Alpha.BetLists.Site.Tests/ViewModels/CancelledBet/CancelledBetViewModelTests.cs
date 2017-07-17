@@ -1,18 +1,12 @@
 ﻿using Alpha.BetLists.Models;
 using Alpha.BetLists.Models.CancelledBet;
-using Alpha.BetLists.Site.Requests;
 using Alpha.BetLists.Site.Requests.CancelledBet;
 using Alpha.BetLists.Site.Tests.Fixtures;
 using Alpha.BetLists.Site.ViewModels.CancelledBet;
 using Alpha.BetLists.Tests.TestData;
-using Fanex.BetList.Core.Builder;
-using Fanex.BetList.Core.Entities;
 using NSubstitute;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Alpha.BetLists.Site.Tests.ViewModels.CancelledBet

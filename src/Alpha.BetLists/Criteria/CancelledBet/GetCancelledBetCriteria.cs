@@ -1,6 +1,4 @@
-﻿using Alpha.BetLists.Models;
-using Fanex.Data;
-using Fanex.Data.Repository;
+﻿using Fanex.Data.Repository;
 
 namespace Alpha.BetLists.Criteria.CancelledBet
 {

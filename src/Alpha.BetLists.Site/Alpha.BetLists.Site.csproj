@@ -375,6 +375,7 @@
     <Content Include="assets\bundles\running-betlist\running-betlist.min.js">
       <DependentUpon>running-betlist.js</DependentUpon>
     </Content>
+    <Content Include="assets\scripts\tests\app\templates\Cancelled-betlist\cancelled-betlist-template.html" />
     <Content Include="assets\scripts\tests\app\templates\common-template.html" />
     <Content Include="assets\scripts\tests\app\templates\daterangepicker-template.html" />
     <Content Include="assets\scripts\tests\app\templates\iframe-template.html" />
@@ -695,6 +696,7 @@
     <TypeScriptCompile Include="assets\scripts\src\member-betlist\member-betlist-init.ts" />
     <TypeScriptCompile Include="assets\scripts\src\member-betlist\member-betlist.ts" />
     <TypeScriptCompile Include="assets\scripts\src\running-betlist\running-betlist.ts" />
+    <TypeScriptCompile Include="assets\scripts\tests\app\cancelled-betlist\cancelled-betlist-tests.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\choice\ticket-details\score-map-tests.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\choice\ticket-details\base-ticket-details-tests.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\choice\ticket-details\other-ticket-details-tests.ts" />
@@ -728,6 +730,7 @@
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.5.11.0.1761\analyzers\SonarAnalyzer.CSharp.dll" />
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.5.11.0.1761\analyzers\SonarAnalyzer.dll" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

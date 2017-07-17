@@ -46,8 +46,7 @@ namespace Alpha.BetLists.Site.Handlers.CancelledBet
             var viewModel = new CancelledBetViewModel(message, cancelledBet, Builder, TicketHelper);
 
             workbook = workbook.UseTemplate(GetTemplateInfo(message.ViewerLevel));
-            RtfHelper = InitRTFHelper((workbook as NpoiWorkbook<TicketDto>).Workbook);
-
+            RtfHelper = message.RtfHelper ?? InitRTFHelper((workbook as NpoiWorkbook<TicketDto>).Workbook);
             var fileContent = workbook
                 .Header(Resources.ResourceManager.GetString)
                 .Title(Resources.VoidAndReject)

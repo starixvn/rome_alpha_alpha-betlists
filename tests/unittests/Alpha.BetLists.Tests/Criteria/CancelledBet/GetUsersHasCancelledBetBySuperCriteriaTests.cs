@@ -3,6 +3,7 @@ using Xunit;
 
 namespace Alpha.BetLists.Tests.Criteria.CancelledBet
 {
+    [Trait("Category", "CancelledBet")]
     public class GetUsersHasCancelledBetBySuperCriteriaTests
     {
         [Fact]

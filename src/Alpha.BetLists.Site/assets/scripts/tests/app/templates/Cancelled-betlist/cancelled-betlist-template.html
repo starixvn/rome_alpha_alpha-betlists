@@ -1,0 +1,64 @@
+﻿<div class="bl_title">
+    <div class="list-icon" id="betlist-filter">
+        <ul>
+            <li class="showfilter-element"><span class="icon-arrow-up-drop-circle icon-filter" title="@Resources.HideFilter"></span></li>
+            <li class="hidefilter-element"><span class="icon-arrow-down-drop-circle icon-filter" title="@Resources.ShowFilter"></span></li>
+        </ul>
+    </div>
+    
+
+</div>
+
+<form class="form-inline filter cancelled-bet" role="form" id="betlist-form">
+    @if (Model.IsShowMasterList)
+    {
+    <div class="form-group">
+        <label>@Resources.Master</label>
+        <select class="dropdown-users" id="dropdown-masters" name="masterId">
+            @foreach (var master in Model.MasterList)
+            {
+            <option value="@master.Value" @(master.Selected ? " selected=\"selected\""
+                    string.Empty)> @master.Text</option>
+            }
+        </select>
+    </div>
+    }
+    @if (Model.IsShowAgentList)
+    {
+    <div class="form-group">
+        <label>@Resources.Agent</label>
+        <select class="dropdown-users" id="dropdown-agents" name="agentId">
+            @foreach (var agent in Model.AgentList)
+            {
+            <option value="@agent.Value" @(agent.Selected ? " selected=\"selected\""
+                    string.Empty)> @agent.Text</option>
+            }
+        </select>
+    </div>
+    }
+    @if (Model.IsShowMemberList)
+    {
+    <div class="form-group">
+        <label>@Resources.member</label>
+        <select class="dropdown-users" id="dropdown-members" name="memberId">
+            @foreach (var member in Model.MemberList)
+            {
+            <option value="@member.Value" @(member.Selected ? " selected=\"selected\""
+                    string.Empty)> @member.Text</option>
+            }
+        </select>
+    </div>
+    }
+
+    <div class="form-group">
+        <a id="icon-excel" class="icon icon-excel" title="Excel"
+           href="@Url.Action(" Excel", "CancelledBet" ,
+           new
+           {
+           MasterId=Model.Query.MasterId,
+           AgentId=Model.Query.AgentId,
+           MemberId=Model.Query.MemberId
+           })">
+        </a>
+    </div>
+</form>

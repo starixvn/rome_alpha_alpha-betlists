@@ -8,7 +8,7 @@ class CancelledBetListView {
     membersComponent: SingleSelectionDropdownComponent;
     agentsComponent: SingleSelectionDropdownComponent;
     mastersComponent: SingleSelectionDropdownComponent;
-    constructor($: JQueryStatic, reportTypeComponent: SingleSelectionDropdownComponent,) {
+    constructor($: JQueryStatic, reportTypeComponent: SingleSelectionDropdownComponent) {
         this.$ = $;
         this.$constants = new CancelledBetListConstants();
         this.membersComponent = reportTypeComponent;
@@ -16,20 +16,23 @@ class CancelledBetListView {
         this.mastersComponent = reportTypeComponent;
     }
 
-    init = () => {
+    public init = () => {
+        this.initComponents();
+        this.cacheElements();
+        this.registerEvents();
+    }
+
+    public initComponents = () => {
         var membersOption = new SingleSelectionDropdownOption("dropdown-members", "ReportType", this.onChangeSelectedOfUsersDropdown);
         this.membersComponent.render(membersOption);
         var agentsOption = new SingleSelectionDropdownOption("dropdown-agents", "ReportType", this.onChangeSelectedOfUsersDropdown);
         this.agentsComponent.render(agentsOption);
         var mastersOption = new SingleSelectionDropdownOption("dropdown-masters", "ReportType", this.onChangeSelectedOfUsersDropdown);
         this.mastersComponent.render(mastersOption);
-        this.cacheElements();
-        this.registerEvents();
     }
 
-    registerEvents() {
+    public registerEvents() {
         this.$(this.$constants.betListFilterId).on("click", this.onClickIconFilter);
-        //this.$(this.$constants.dropdownUsersClass).on("change", this.onChangeSelectedOfUsersDropdown);
     }
 
     onChangeSelectedOfUsersDropdown = () => {
@@ -49,9 +52,9 @@ class CancelledBetListView {
         }
     }
 
-    cacheElements() {
+    public cacheElements() {
         this.$betlistForm = this.$("#betlist-form");
-        this.$pageTitle = this.$(".bl_title"); 
+        this.$pageTitle = this.$(".bl_title");
     };
 }
 
