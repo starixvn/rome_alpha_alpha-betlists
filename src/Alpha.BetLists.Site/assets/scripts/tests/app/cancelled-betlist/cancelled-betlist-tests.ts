@@ -6,8 +6,8 @@
         registerEvents: jasmine.Spy;
 
     beforeEach(() => {
-        jasmine.getFixtures().fixturesPath = "app/templates/cancelled-bet";
-        loadFixtures("cancelled-bet-template.html");
+        jasmine.getFixtures().fixturesPath = "app/templates/cancelled-betlist";
+        loadFixtures("cancelled-betlist-template.html");
 
         cancelledBetView = new CancelledBetListView(
             jQueryFake,
@@ -72,7 +72,7 @@
         describe("_Filter is currently hidden", () => {
             beforeEach(() => {
                 // arrange
-                loadFixtures("cancelled-bet-with-hide-filter.html");
+                loadFixtures("cancelled-betlist-template-with-hide-filter.html");
                 cancelledBetView.cacheElements();
 
                 // act
@@ -90,25 +90,16 @@
     describe("_initComponents", () => {
         beforeEach(() => {
             // arrange
+            cancelledBetView.cacheElements();
             spyOn(singleSelectionDropdownComponent, "render");
 
             // act
             cancelledBetView.initComponents();
         });
 
-        it("_Call membersComponent.Render", () => {
+        it("_Call Component.Render 3 times", () => {
             // assert
-            expect(singleSelectionDropdownComponent.render).toHaveBeenCalledWith("dropdown-members", "ReportType", cancelledBetView.onChangeSelectedOfUsersDropdown);
-        });
-
-        it("_Call agentsComponent.Render", () => {
-            // assert
-            expect(singleSelectionDropdownComponent.render).toHaveBeenCalledWith("dropdown-agents", "ReportType", cancelledBetView.onChangeSelectedOfUsersDropdown);
-        });
-
-        it("_Call mastersComponent.Render", () => {
-            // assert
-            expect(singleSelectionDropdownComponent.render).toHaveBeenCalledWith("dropdown-masters", "ReportType", cancelledBetView.onChangeSelectedOfUsersDropdown);
-        });
+            expect(singleSelectionDropdownComponent.render).toHaveBeenCalledTimes(3);
+        });        
     });
 })

@@ -375,6 +375,7 @@
     <Content Include="assets\bundles\running-betlist\running-betlist.min.js">
       <DependentUpon>running-betlist.js</DependentUpon>
     </Content>
+    <Content Include="assets\scripts\tests\app\templates\Cancelled-betlist\cancelled-betlist-template-with-hide-filter.html" />
     <Content Include="assets\scripts\tests\app\templates\Cancelled-betlist\cancelled-betlist-template.html" />
     <Content Include="assets\scripts\tests\app\templates\common-template.html" />
     <Content Include="assets\scripts\tests\app\templates\daterangepicker-template.html" />
