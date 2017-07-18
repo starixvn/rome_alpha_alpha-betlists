@@ -34,7 +34,7 @@
 
         public ITicketHelper TicketHelper { get; }
 
-        public RTFHelper RtfHelper { get; }
+        public RTFHelper RtfHelper { get; internal set; }
 
         public ISmartPunterBetListMonitor MoniterService { get; }
 

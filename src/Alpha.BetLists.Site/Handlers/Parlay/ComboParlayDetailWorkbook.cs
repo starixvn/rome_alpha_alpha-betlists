@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using NPOI.SS.UserModel;
     using NPOI.SS.Util;
     using ONEbook.SpreadSheets;
     using ONEbook.SpreadSheets.NPOI;
@@ -10,6 +11,8 @@
 
     public interface ComboParlayDetailWorkbook
     {
+        IWorkbook Workbook { get; }
+
         Workbook<IEnumerable<ComboParlayDetailWrapper>> UseTemplate(TemplateInfo templateInfo);
 
         Workbook<IEnumerable<ComboParlayDetailWrapper>> Sheet(string sheetName);

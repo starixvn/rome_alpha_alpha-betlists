@@ -7,12 +7,12 @@
     using BetLists.Tests.TestData;
     using Fanex.BetList.Core.Utils;
     using Fixtures;
-    using Handlers;
     using Handlers.Parlay;
     using KellermanSoftware.CompareNetObjects;
     using NPOI.SS.UserModel;
     using NSubstitute;
     using ONEbook.SpreadSheets;
+    using ONEbook.SpreadSheets.NPOI;
     using Requests.Parlay;
     using Site.ViewModels;
     using Site.ViewModels.Parlay;
@@ -40,6 +40,7 @@
             InitWorkbook();
 
             query = new ComboParlayDetailExcelQuery(betListFixture.User);
+            query.RtfHelper = this.betListFixture.RtfHelper;
 
             parlayExcelHandler = new ParlayExcelHandler(
                 parlayServiceFixture.ParlayService,
@@ -125,19 +126,19 @@
                 Arg.Is<Mapper<IEnumerable<ComboParlayDetailWrapper>>>(m =>
                     m.Mappings[A].Invoke(details).Equals(details.First().WinLostDate)
                     && m.Mappings[B].Invoke(details).Equals(RenderEvent(details.First()))
-                    && m.Mappings[C].Invoke(details).Equals(details.First().Odds)
+                    && m.Mappings[C].Invoke(details).Equals(RenderNumber(details.First().Odds))
                     && m.Mappings[D].Invoke(details).Equals(details.First().Stake)
                     && m.Mappings[E].Invoke(details).Equals(RenderWinLossComm(details.First()))
                     && m.Mappings[F].Invoke(details).Equals(details.First().Status)),
                 Arg.Is<Mapper<IEnumerable<ComboParlayDetailWrapper>>>(m =>
                     m.Mappings[A].Invoke(details).Equals(Resources.subTotal + ":")
-                    && m.Mappings[E].Invoke(details).Equals(viewModel.SubTotalWinLost(details))),
+                    && m.Mappings[E].Invoke(details).Equals(RenderNumber(viewModel.SubTotalWinLost(details)))),
                 Arg.Is<Mapper<IEnumerable<ComboParlayDetailWrapper>>>(m =>
                     m.Mappings[A].Invoke(details).Equals(Resources.outstanding + ":")
-                    && m.Mappings[E].Invoke(details).Equals(viewModel.OutStanding)),
+                    && m.Mappings[E].Invoke(details).Equals(RenderNumber(viewModel.OutStanding))),
                 Arg.Is<Mapper<IEnumerable<ComboParlayDetailWrapper>>>(m =>
                     m.Mappings[A].Invoke(details).Equals(Resources.total + ":")
-                    && m.Mappings[E].Invoke(details).Equals(viewModel.TotalWinLost)));
+                    && m.Mappings[E].Invoke(details).Equals(RenderNumber(viewModel.TotalWinLost))));
         }
 
         private IRichTextString RenderEvent(ComboParlayDetailWrapper detail)
@@ -162,6 +163,18 @@
 
             rtfNumber.Render(detail.WinLost + "\n");
             rtfNumber.Render(detail.Comm);
+
+            var rtfText = betListFixture.RtfHelper.RTFRenderer.Render();
+            betListFixture.RtfHelper.RTFRenderer.Clear();
+
+            return rtfText;
+        }
+
+        private IRichTextString RenderNumber(string winLoss)
+        {
+            var rtfNumber = new RTFNumber(betListFixture.RtfHelper.RTFRenderer, betListFixture.RtfHelper.PosFont, betListFixture.RtfHelper.NegFont);
+
+            rtfNumber.Render(winLoss);
 
             var rtfText = betListFixture.RtfHelper.RTFRenderer.Render();
             betListFixture.RtfHelper.RTFRenderer.Clear();

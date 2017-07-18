@@ -39,16 +39,16 @@
             }
         }
 
-        internal static string AddQueryStringParams(string link, IDictionary<string, object> routeValues)
+        internal static string AddQueryStringParams(string path, IDictionary<string, object> routeValues)
         {
             if (!routeValues.Any())
             {
-                return link;
+                return path;
             }
 
             var queryString = string.Join("&", routeValues.Select(kvp => $"{kvp.Key}={kvp.Value}"));
 
-            return $"{link}?{queryString}";
+            return $"{path}?{queryString}";
         }
     }
 }

@@ -155,6 +155,10 @@
     <Compile Include="Collections\FanexLibsCollection.cs" />
     <Compile Include="Constants\BetTypeIdConstants.cs" />
     <Compile Include="Constants\DefaultVariables.cs" />
+    <Compile Include="Criteria\CancelledBet\GetCancelledBetCriteriaTests.cs" />
+    <Compile Include="Criteria\CancelledBet\GetUsersHasCancelledBetByAgentCriteriaTests.cs" />
+    <Compile Include="Criteria\CancelledBet\GetUsersHasCancelledBetByMasterCriteriaTests.cs" />
+    <Compile Include="Criteria\CancelledBet\GetUsersHasCancelledBetBySuperCriteriaTests.cs" />
     <Compile Include="Criteria\GetProductsCriteriaTests.cs" />
     <Compile Include="Criteria\GetScoreMapBetTypesCriteriaTests.cs" />
     <Compile Include="Criteria\MemberBetList\GetBetListAllByDateCriteriaTests.cs" />
@@ -173,6 +177,7 @@
     <Compile Include="Params\RunningBetListParamTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ForeCastServiceImplTests.cs" />
+    <Compile Include="Services\CancelledBetServiceImplTests.cs" />
     <Compile Include="Services\MemberBetListServiceImplTests.cs" />
     <Compile Include="Services\RunningBetListServiceImplTests.cs" />
     <Compile Include="Services\ParlayServiceImplTests.cs" />

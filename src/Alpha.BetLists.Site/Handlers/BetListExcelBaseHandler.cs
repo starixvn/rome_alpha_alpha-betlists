@@ -9,6 +9,7 @@
     using Builders.ExcelBuilders;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
+    using Fanex.BetList.Core.Utils;
     using NPOI.SS.UserModel;
     using ONEbook.SpreadSheets;
     using SmartPunter.Services;
@@ -17,6 +18,12 @@
     using ViewModels.Blocks;
     using static ONEbook.SpreadSheets.Column;
 
+    /// <summary>
+    /// Bet list excel base builder for default method that help to export Excel.
+    /// Please kindly note that excel file needs to be opened with Microsoft Office Excel.
+    /// If you got the issue about excel file's cell show text in only one line.
+    /// Please add empty line to cell in Template Excel File
+    /// </summary>
     public class BetListExcelBaseHandler : BetListBaseHandler
     {
         private const string ExcelTemplateDir = "~/App_Data/ExcelTemplates/{0}/{1}.{2}";
@@ -36,7 +43,7 @@
 
         protected internal IBetListExcelBuilder ExcelBuilder { get; }
 
-        protected internal RTFHelper RtfHelper { get; }
+        protected internal RTFHelper RtfHelper { get; set; }
 
         protected internal virtual string GetExcelTemplatePath(string templateName, string fileExtension = "xls")
         {
@@ -164,5 +171,62 @@
                 footerData.SubTotalCommission,
                 footerData.Total,
                 RtfHelper);
+
+        /// <summary>
+        /// Inititalize RTFHelper for create Font of Workbook for rendering correct format.
+        /// Need to call this method after calling UseTemplate method of ONEBook.SpreadSheet
+        /// </summary>
+        /// <param name="workbook"></param>
+        /// <returns></returns>
+        protected internal static RTFHelper InitRTFHelper(IWorkbook workbook)
+        {
+            var rtfHelper = new RTFHelper
+            {
+                NegFont = workbook.CreateFont(),
+                NormalFont = workbook.CreateFont(),
+                PosFont = workbook.CreateFont(),
+                NegFontCrossed = workbook.CreateFont(),
+                NormalFontCrossed = workbook.CreateFont(),
+                PosFontCrossed = workbook.CreateFont(),
+                RTFRenderer = new RtfTextRender()
+            };
+
+            InitRTFHelperFonts(rtfHelper);
+
+            return rtfHelper;
+        }
+
+        private static void InitRTFHelperFonts(RTFHelper rtfHelper)
+        {
+            rtfHelper.PosFont.Boldweight = (short)FontBoldWeight.Bold;
+            rtfHelper.PosFontCrossed.Boldweight = (short)FontBoldWeight.Bold;
+
+            rtfHelper.NegFont.Boldweight = (short)FontBoldWeight.Bold;
+            rtfHelper.NegFontCrossed.Boldweight = (short)FontBoldWeight.Bold;
+
+            rtfHelper.NormalFont.Boldweight = (short)FontBoldWeight.Normal;
+            rtfHelper.NormalFontCrossed.Boldweight = (short)FontBoldWeight.Normal;
+
+            rtfHelper.NegFont.FontName = "Tahoma";
+            rtfHelper.NegFontCrossed.FontName = "Tahoma";
+            rtfHelper.NormalFont.FontName = "Tahoma";
+            rtfHelper.NormalFontCrossed.FontName = "Tahoma";
+            rtfHelper.PosFont.FontName = "Tahoma";
+            rtfHelper.PosFontCrossed.FontName = "Tahoma";
+
+            rtfHelper.NegFont.FontHeightInPoints = 9;
+            rtfHelper.NegFontCrossed.FontHeightInPoints = 9;
+            rtfHelper.NormalFont.FontHeightInPoints = 9;
+            rtfHelper.NormalFontCrossed.FontHeightInPoints = 9;
+            rtfHelper.PosFont.FontHeightInPoints = 9;
+            rtfHelper.PosFontCrossed.FontHeightInPoints = 9;
+
+            rtfHelper.NormalFontCrossed.IsStrikeout = true;
+            rtfHelper.PosFontCrossed.IsStrikeout = true;
+            rtfHelper.NegFontCrossed.IsStrikeout = true;
+
+            rtfHelper.NegFont.Color = (short)FontColor.Red;
+            rtfHelper.NegFontCrossed.Color = (short)FontColor.Red;
+        }
     }
 }

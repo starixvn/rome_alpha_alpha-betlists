@@ -295,6 +295,29 @@
     <value>显示筛选</value>
   </data>
   <data name="WinLossRoundNote" xml:space="preserve">
-    <value>输赢的进位值仅供参考。因此，所有输赢相加的总计有可能和小计有差数。</value>
+    <value>输赢的进位值仅供参考。因此，所有输赢相加的总计有可能和小计有差数。</value></data>
+  <data name="Bets" xml:space="preserve">
+    <value>bets</value>
+  </data>
+  <data name="member" xml:space="preserve">
+    <value>会员</value>
+  </data>
+  <data name="AllAgent" xml:space="preserve">
+    <value>所有代理</value>
+  </data>
+  <data name="Agent" xml:space="preserve">
+    <value>代理</value>
+  </data>
+  <data name="AllMember" xml:space="preserve">
+    <value>所有会员</value>
+  </data>
+  <data name="ExportToExcel" xml:space="preserve">
+    <value>导出到Excel</value>
+  </data>
+  <data name="VoidAndReject" xml:space="preserve">
+    <value>作废/已删除注单(3天纪录)</value>
+  </data>
+  <data name="CancelledBet" xml:space="preserve">
+    <value>已删除/作废注单</value>
   </data>
 </root>

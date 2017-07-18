@@ -93,8 +93,8 @@
     <Reference Include="MediatR, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\MediatR.3.0.1\lib\net45\MediatR.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\EnterpriseLibrary.Common.5.0.414.0\lib\net40\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -250,6 +250,7 @@
     <Compile Include="Collection\ParlayBetListCollection.cs" />
     <Compile Include="Collection\BetListCollection.cs" />
     <Compile Include="Constants\LanguageCode.cs" />
+    <Compile Include="Controllers\CancelledBetControllerTests.cs" />
     <Compile Include="Controllers\MemberBetListControllerTests.cs" />
     <Compile Include="Controllers\RunningBetListControllerTests.cs" />
     <Compile Include="Controllers\ParlayWinLossByMatchControllerTests.cs" />
@@ -259,6 +260,8 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Handler\BetListBaseHandlerTests.cs" />
     <Compile Include="Handler\BetListExcelBaseHandlerTests.cs" />
+    <Compile Include="Handler\CancelledBet\CancelledBetExcelHandlerTests.cs" />
+    <Compile Include="Handler\CancelledBet\CancelledBetHandlerTests.cs" />
     <Compile Include="Handler\MemberBetList\MemberBetListHandlerTests.cs" />
     <Compile Include="Handler\RunningBetList\RunningBetListHandlerTests.cs" />
     <Compile Include="Handler\ParlayWinLossByMatch\ParlayWinLossByMatchExcelHanlderTests.cs" />
@@ -281,6 +284,7 @@
     <Compile Include="ViewModels\Blocks\FooterTests.cs" />
     <Compile Include="ViewModels\Blocks\WinLostBlockViewModelTests.cs" />
     <Compile Include="ViewModels\Components\DateRangePickerViewModelTests.cs" />
+    <Compile Include="ViewModels\CancelledBet\CancelledBetViewModelTests.cs" />
     <Compile Include="ViewModels\ExcelFileViewModelTests.cs" />
     <Compile Include="ViewModels\MemberBetList\MemberBetListViewModelTests.cs" />
     <Compile Include="ViewModels\Parlay\ComboParlayDetailViewModelTests.cs" />

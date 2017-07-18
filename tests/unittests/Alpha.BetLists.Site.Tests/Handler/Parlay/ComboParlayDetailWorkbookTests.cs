@@ -28,6 +28,7 @@
             workbook = new ComboParlayDetailWorkbookImpl();
             this.betListFixture = betListFixture;
             query = new ComboParlayDetailExcelQuery(this.betListFixture.User);
+            query.RtfHelper = this.betListFixture.RtfHelper;
             sheet = Substitute.For<Sheet>();
         }
 
