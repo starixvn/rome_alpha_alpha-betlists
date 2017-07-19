@@ -213,8 +213,8 @@
       <HintPath>..\..\packages\ONEbook.SpreadSheets.1.0.0.1\lib\net461\ONEbook.SpreadSheets.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ONEbook.SpreadSheets.NPOI, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ONEbook.SpreadSheets.NPOI.1.0.0.2-beta1\lib\net461\ONEbook.SpreadSheets.NPOI.dll</HintPath>
+    <Reference Include="ONEbook.SpreadSheets.NPOI, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ONEbook.SpreadSheets.NPOI.1.0.0.3\lib\net461\ONEbook.SpreadSheets.NPOI.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ONEbook.UM, Version=2.0.2.7, Culture=neutral, processorArchitecture=MSIL">
