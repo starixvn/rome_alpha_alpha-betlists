@@ -1,4 +1,9 @@
-﻿using Alpha.BetLists.Models;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Web;
+using Alpha.BetLists.Models;
 using Alpha.BetLists.StaticData.ColumnIndexes;
 using Alpha.BetLists.StaticData.Configurations;
 using Alpha.IntegrationTest.Npoi;
@@ -6,11 +11,6 @@ using Alpha.IntegrationTest.Repository;
 using Fanex.BetList.Core.Entities;
 using Fanex.Data.Repository;
 using NPOI.SS.UserModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
 
 namespace Alpha.BetLists.StaticData.DataAccesses
 {
@@ -18,31 +18,30 @@ namespace Alpha.BetLists.StaticData.DataAccesses
     {
         public override void InitMapper()
         {
-            Mapper = new MapperForStaticData();
+            Mapper = new DataModelMapper();
+        }
+        public override IWorkbook LoadWorkbook(string excelFileName)
+        {
+            var templatePath = HttpContext.Current.Server.MapPath($"~/App_Data/ExcelData/{excelFileName}.xls");
+            return NpoiWorkbook.Load(templatePath);
         }
 
         public override async Task<Tuple<IEnumerable<TFirst>, IEnumerable<TSecond>>> FetchMultipleAsync<TFirst, TSecond>(ICriteria criteria)
         {
             var templateKey = criteria.GetType().Name;
 
-            if (!Mapper.CriteriaToExcelFile.ContainsKey(templateKey))
+            if (!StaticDataMapper.CriteriaMaps.ContainsKey(templateKey))
             {
                 return new Tuple<IEnumerable<TFirst>, IEnumerable<TSecond>>(Enumerable.Empty<TFirst>(), Enumerable.Empty<TSecond>());
             }
 
-            var template = Mapper.CriteriaToExcelFile[templateKey];
+            var template = StaticDataMapper.CriteriaMaps[templateKey];
             var workbook = LoadWorkbook(template);
 
             var tickets = workbook?.GetData("BetTickets", CreateTicket);
             var ticketData = workbook?.GetData("ReferenceData", CreateTicketData);
 
             return Tuple.Create(Enumerable.Cast<TFirst>(tickets), Enumerable.Cast<TSecond>(ticketData));
-        }
-
-        public override IWorkbook LoadWorkbook(string excelFileName)
-        {
-            var templatePath = HttpContext.Current.Server.MapPath($"~/App_Data/ExcelData/{excelFileName}.xls");
-            return NpoiWorkbook.Load(templatePath);
         }
 
         public static ITicketData CreateTicketData(IRow row)

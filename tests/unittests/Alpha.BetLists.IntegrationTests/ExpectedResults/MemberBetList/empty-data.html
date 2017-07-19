@@ -1,0 +1,202 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Member Bet List</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favico.ico" />
+
+    <link href="/assets/bundles/common/common.css?v=453" rel="stylesheet" type="text/css">
+    <link href="/assets/bundles/site-betlists/default.css?v=" rel="stylesheet" type="text/css">
+    <link href="/assets/bundles/default.css?v=" rel="stylesheet" type="text/css">
+    
+    <link href="/assets/bundles/site-betlists/filter.css?v=" rel="stylesheet" type="text/css">
+    <link href="/assets/bundles/filter.css?v=" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+    
+
+<div class="bl_title">
+    Bet List - member11
+
+    <div class="list-icon">
+        <ul>
+            <li class="showfilter-element"><span class="icon-arrow-up-drop-circle icon-filter" title="Hide Filter"></span></li>
+            <li class="hidefilter-element"><span class="icon-arrow-down-drop-circle icon-filter" title="Show Filter"></span></li>
+        </ul>
+    </div>
+</div>
+
+<form class="form-inline filter " role="form" id="betlist-form">
+    <input data-val="true" data-val-number="The field CustId must be a number." data-val-required="The CustId field is required." id="CustId" name="CustId" type="hidden" value="2237314" />
+    <input id="CustName" name="CustName" type="hidden" value="member11" />
+    <div class="form-group">
+        <select id="dropdown-betlist-type">
+            <option value="1" data-url="/site-reportsStatement/site-reportsMemberStatement?CustId=2237314&amp;CustName=member11&amp;CustLevelId=1&amp;ProductIds=8">Daily Statement</option>
+            <option value="2" selected="selected">Bet List</option>
+            <option value="3" data-url="/RunningBetList?CustId=2237314&amp;CustName=member11&amp;FromDate=07/20/2017&amp;ToDate=07/27/2017&amp;ProductIds=8">Bet List (Running)</option>
+        </select>
+    </div>
+
+        <div class="form-group">
+        <select id="dropdown-product"
+                data-has-any-product="True"
+                data-label-select-products="Select Products"
+                data-label-selected="selected"
+                data-label-all-products="All Products"
+                data-label-there-is-no-product="There is no product."
+                data-language="en"
+                multiple="multiple" class="select-multiple">
+                <option value="8"  selected=&quot;selected&quot;>Keno</option>
+        </select>
+        <input type="hidden" name="ProductIds" id="product-ids" value="8" />
+    </div>
+
+
+        <div id="daterange-picker"
+         class="daterange-picker"
+         data-currentdate="7/27/2017 12:00:00 AM"
+         data-mindate="04/01/2017"
+         data-maxdate="12/31/9999">
+    </div>
+    <div class="form-group">
+        <label>From</label>
+
+        <div class="control date">
+            <div id="from-date-container"
+                 class="input-group date fromdate">
+                <input type="text"
+                       id="from-date"
+                       name="FromDate"
+                       readonly="readonly"
+                       autocomplete="off"
+                       class="ui_nexdatepicker_datetextbox ui_nexdatepicker_fromdate form-control"
+                       value="07/27/2017" />
+                <span class="input-group-addon">
+                    <span class="icon-calendar" id="fdate_trigger"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>To</label>
+
+        <div class="control date">
+            <div id="to-date-container"
+                 class="input-group date todate">
+                <input type="text"
+                       id="to-date"
+                       name="ToDate"
+                       readonly="readonly"
+                       autocomplete="off"
+                       class="ui_nexdatepicker_datetextbox ui_nexdatepicker_todate form-control"
+                       value="07/27/2017" />
+                <span class="input-group-addon">
+                    <span class="icon-calendar" id="tdate_trigger"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+        <div class="form-group">
+            <input type="submit" value="Submit" class="btn-submit" />
+        </div>
+    <div class="form-group">
+        <div class="dropdown daterange-dropdown" id="dropdown-daterange">
+            <input type="hidden" name="UserSelectedDateRangeOption" id="hidden-range-option" value="0" />
+            <button class="btn-submit dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span id="range-label">Today</span>
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="range-label">
+                    <li><a href="#" class="range-option" data-value="0">Today</a></li>
+                    <li><a href="#" class="range-option" data-value="1">Yesterday</a></li>
+                    <li><a href="#" class="range-option" data-value="7">Specific Dates</a></li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="note">
+        <span class="star">*</span>You can view the report data from 04/01/2017.
+    </div>
+</form>
+
+
+<table class="tblRpt tblRpt-bordered tblRpt-striped width-100per tablesorter tblRpt-hover tbl-betlist">
+    <thead>
+        <tr>
+            <th class="col-number">#</th>
+
+            <th class="col-transtime">Trans.Time</th>
+            <th>Choice</th>
+            <th class="col-odds">Odds</th>
+            <th class="col-stake">Stake</th>
+            <th class="col-winloss">Win Loss</th>
+            <th class="col-status">Status</th>
+
+                <th class="col-pt">Super PT/ Comm</th>
+
+                <th class="col-pt">Master PT/ Comm</th>
+
+            <th class="col-pt">Agent PT/ Comm</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td colspan="10" class="text-center">No information is available</td>
+        </tr>
+    </tbody>
+</table>
+
+<input id="betlist-path" name="betlist-path" type="hidden" value="/" />
+<input id="old-main-path" name="old-main-path" type="hidden" value="/ex-main" />
+<input id="results-path" name="results-path" type="hidden" value="/site-results" />
+<input id="totalbets-forecast-path" name="totalbets-forecast-path" type="hidden" value="/ex-totalbetsforecast" />
+<input id="product-ids" name="product-ids" type="hidden" value="8" />
+<input id="betlist-type" name="betlist-type" type="hidden" value="" />
+<input id="from-date" name="from-date" type="hidden" value="7/27/2017 12:00:00 AM" />
+<input id="to-date" name="to-date" type="hidden" value="7/27/2017 11:59:59 PM" />
+<input id="cust-id" name="cust-id" type="hidden" value="2237314" />
+<input id="is-historic-report" name="is-historic-report" type="hidden" value="False" />
+<input id="viewer-id" name="viewer-id" type="hidden" value="0" />
+<input id="viewer-level-id" name="viewer-level-id" type="hidden" value="4" />
+<input id="colossusBets-PopUpDetail-Title" name="colossusBets-PopUpDetail-Title" type="hidden" value="Ticket details of" />
+
+<div class="comm_note">
+    <div class="title">
+        <span class="star">*</span>Note
+    </div>
+    <div class="content">
+        Com. is rounded for reference only. Therefore, Subtotal Com. amount may be different from the sum of Com. when it sums all the actual Com. amounts.
+    </div>
+</div>
+
+
+    <script src="/assets/bundles/common/common.js?v=453" type="text/javascript"></script>
+    <script src="/assets/bundles/site-betlists/default.js?v=" type="text/javascript"></script>
+    <script src="/assets/bundles/default.js?v=" type="text/javascript"></script>
+    <div class="modal fade" id="details-modal" tabindex="-1" role="dialog" aria-labelledby="details-title">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Details</h4>
+            </div>
+            <div class="modal-body">
+                <img id="loading-image" src="/assets/styles/images/ajax-loader.gif" style="margin: auto" />
+                <iframe src="about:blank" frameborder="0" scrolling="yes"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+    
+    <script src="/assets/bundles/site-betlists/filter.js?v=" type="text/javascript"></script>
+    <script src="/assets/bundles/member-betlist/member-betlist.js?v=" type="text/javascript"></script>
+
+
+    
+</body>
+</html>

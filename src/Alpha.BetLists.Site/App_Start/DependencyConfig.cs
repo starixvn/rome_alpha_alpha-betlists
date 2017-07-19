@@ -30,6 +30,7 @@
     using SimpleInjector.Integration.Web.Mvc;
     using SmartPunter.DataAccesses;
     using SmartPunter.Services;
+    using StaticData;
     using Sunplus.Agent.Model.Base;
     using Sunplus.Agent.Model.Entities;
     using Sunplus.Agent.Model.Entities.Permission;
@@ -115,7 +116,6 @@
         {
             container.RegisterSingleton<IUserSession, UserSessionExt>();
 #pragma warning restore CS0618 // Type or member is obsolete
-            container.RegisterSingleton<IUser, User>();
             container.Register<WinLossService, WinLossServiceImpl>(Lifestyle.Singleton);
             container.Register<ReportDateService, ReportDateServiceImpl>(Lifestyle.Singleton);
             container.Register<ParlayService, ParlayServiceImpl>(Lifestyle.Singleton);
@@ -157,6 +157,14 @@
             container.Register<RunningBetListByBetTypeService, RunningBetListByBetTypeServiceImpl>(Lifestyle.Singleton);
             container.Register<RunningBetListByBetTypeAndMatchService, RunningBetListByBetTypeAndMatchServiceImpl>(Lifestyle.Singleton);
             container.Register<RacingByMatchService, RacingByMatchServiceImpl>(Lifestyle.Singleton);
+            if (AppSettings.IsIntegrationTest)
+            {
+                container.RegisterSingleton<IUser, IntegrationTestUser>();
+            }
+            else
+            {
+                container.RegisterSingleton<IUser, User>();
+            }
         }
     }
 }

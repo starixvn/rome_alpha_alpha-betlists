@@ -10,7 +10,7 @@ namespace Alpha.BetLists.StaticData.AppStart
     {
         public static void Register(Container container)
         {
-            container.Register<IMapperForStaticData, MapperForStaticData>(Lifestyle.Singleton);
+            container.Register<IRepositoryMapper, RepositoryMapper>(Lifestyle.Singleton);
             container.Register<IDynamicRepository, StaticRepository>(Lifestyle.Singleton);
         }
     }

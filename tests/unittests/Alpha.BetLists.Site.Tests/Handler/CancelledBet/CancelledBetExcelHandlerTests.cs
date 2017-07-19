@@ -40,7 +40,7 @@
 
             handler = new CancelledBetExcelHandler(
                 service,
-                betListFixture.MoniterService,
+                betListFixture.MonitorService,
                 betListFixture.HtmlBuilder,
                 betListFixture.ExcelBuilder,
                 betListFixture.TicketHelper,

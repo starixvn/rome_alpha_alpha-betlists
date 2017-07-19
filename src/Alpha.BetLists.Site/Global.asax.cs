@@ -43,12 +43,15 @@
 
             ShareSession.Init();
 
-            GlobalFilters.Filters.Add(new CheckUMFilter());
-            GlobalFilters.Filters.Add(new CheckBelongingFilter());
+            if (!AppSettings.IsIntegrationTest)
+            {
+                GlobalFilters.Filters.Add(new CheckUMFilter());
+                GlobalFilters.Filters.Add(new CheckBelongingFilter());
+            }
 
             ModelBinders.Binders.DefaultBinder = new QueryEntityModelBinder();
 
-            StaticResources.Init(GetBuildVersion());
+            StaticResources.Init(AppSettings.IsIntegrationTest ? string.Empty : GetBuildVersion());
         }
 
         protected void Application_Error()

@@ -36,3 +36,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyFileVersion("1.0.0.0")]
 [assembly: InternalsVisibleTo("Alpha.BetLists.Tests")]
 [assembly: InternalsVisibleTo("Alpha.BetLists.Site.Tests")]
+[assembly: InternalsVisibleTo("Alpha.BetLists.IntegrationTests")]
