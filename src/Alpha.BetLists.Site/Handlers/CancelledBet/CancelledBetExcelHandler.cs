@@ -51,7 +51,6 @@ namespace Alpha.BetLists.Site.Handlers.CancelledBet
                 .Header(Resources.ResourceManager.GetString)
                 .Title(Resources.VoidAndReject)
                 .Body(cancelledBet.BetListData.Tickets, GetBodyRowMapper(message.ViewerLevel, viewModel))
-                .Sheet(Resources.CancelledBet)
                 .ExportToBytes();
 
             return new ExcelFileViewModel(Resources.CancelledBet, fileContent);
