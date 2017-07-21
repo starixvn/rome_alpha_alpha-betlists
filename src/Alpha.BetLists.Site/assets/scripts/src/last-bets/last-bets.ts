@@ -166,8 +166,7 @@ namespace BetList {
         };
 
         setGetLastBetsTimeOutByShortcut = () => {
-            this.setGetLastBetsTimeOut();
-            this.$chbSwitch.click();
+            this.$lblSwitch.click();
         };
 
         setGetLastBetsTimeOut = () => {

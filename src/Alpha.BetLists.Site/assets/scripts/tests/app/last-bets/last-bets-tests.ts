@@ -476,13 +476,9 @@ describe("LastBets", () => {
             // act
             lastBetsView.setGetLastBetsTimeOutByShortcut();
         });
-        it("_Always_Calls setGetLastBetsTimeOut", () => {
+        it("_Always_Calls $lblSwitch.click", () => {
             // assert
-            expect(lastBetsView.setGetLastBetsTimeOut).toHaveBeenCalled();
-        });
-        it("_Always_Calls $chbSwitch.click", () => {
-            // assert
-            expect(lastBetsView.$chbSwitch.click).toHaveBeenCalled();
+            expect(lastBetsView.$lblSwitch.click).toHaveBeenCalled();
         });
     });
 
