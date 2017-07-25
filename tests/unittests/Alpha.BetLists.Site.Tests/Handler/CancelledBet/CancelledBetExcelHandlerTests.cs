@@ -123,21 +123,7 @@ namespace Alpha.BetLists.Site.Tests.Handler.CancelledBet
             //// Assert
             workbook.Received().Title(Arg.Any<string>());
         }
-
-        [Fact]
-        public void Handle_Always_CallSheetOfWorkbook()
-        {
-            //// Arrange
-            var model = new CancelledBetModel(new FilterCancelledBetModel(), BetListDataTest.BetListData);
-            service.GetCancelledBet(Arg.Any<CancelledBetParam>()).Returns(model);
-
-            //// Act
-            handler.Handle(query).GetAwaiter().GetResult();
-
-            //// Assert
-            workbook.Received().Sheet(Arg.Any<string>());
-        }
-
+        
         [Fact]
         public void Handle_Always_CallExportToBytesOfWorkbook()
         {
