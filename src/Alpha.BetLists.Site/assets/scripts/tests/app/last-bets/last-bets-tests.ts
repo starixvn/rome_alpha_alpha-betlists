@@ -471,7 +471,7 @@ describe("LastBets", () => {
             lastBetsView.Init(shortcut, store);
 
             spyOn(lastBetsView, "setGetLastBetsTimeOut");
-            spyOn(lastBetsView.$chbSwitch, "click");
+            spyOn(lastBetsView.$lblSwitch, "click");
 
             // act
             lastBetsView.setGetLastBetsTimeOutByShortcut();
