@@ -30,7 +30,7 @@
             });
         };
 
-        [9, 29].forEach((betType: number) => {
+        [9, 29, 2799].forEach((betType: number) => {
             it("CreateInstance_ByBetType -> Return MixParlayResultDetails Instance", () => {
                 // Act
                 let actualInstance = BetList.Status.ResultDetails.ResultDetailsFactory.CreateInstance(betType);

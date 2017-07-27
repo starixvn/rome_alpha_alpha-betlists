@@ -22,7 +22,7 @@
                 return this.ng2Result;
             }
 
-            if (betTypeId === 9 || betTypeId === 29) {
+            if (betTypeId === 9 || betTypeId === 29 || betTypeId === 2799) {
                 this.mixParlayResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.mixParlayResult) ? new MixParlayResultDetails() : this.mixParlayResult;
                 return this.mixParlayResult;
             }
