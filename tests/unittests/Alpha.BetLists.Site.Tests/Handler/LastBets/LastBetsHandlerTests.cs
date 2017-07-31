@@ -14,6 +14,7 @@ using Alpha.BetLists.Tests.TestData;
 using Alpha.SmartPunter.Services;
 using Alpha.Web.Models;
 using Fanex.BetList.Core.Entities;
+using Fanex.Caching;
 using KellermanSoftware.CompareNetObjects;
 using NSubstitute;
 using Xunit;
@@ -24,6 +25,7 @@ namespace Alpha.BetLists.Site.Tests.Handler.LastBets
     [Collection("BetListCollection")]
     public class LastBetsHandlerTests
     {
+        private const string LatestTransIdCacheKey = "Alpha.Reports.Handlers.LastBets.LatestTransIdCacheKey";
         private readonly LastBetsHandler handler;
         private readonly LastBetsService service;
         private readonly IUser user;
@@ -33,6 +35,7 @@ namespace Alpha.BetLists.Site.Tests.Handler.LastBets
         private readonly ForeCastService foreCastService;
         private readonly IEnumerable<int> supportScoreMapBettypeIds;
         private readonly ISmartPunterBetListMonitor monitorService;
+        private readonly IEnumerable<TicketDto> tickets;
 
         public LastBetsHandlerTests(BetListFixture betlistFixture)
         {
@@ -42,7 +45,9 @@ namespace Alpha.BetLists.Site.Tests.Handler.LastBets
             Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
 
             service = Substitute.For<LastBetsService>();
-            service.GetLastBets(Arg.Any<GetLastBetsParam>()).Returns(BetListDataTest.BetListData.Tickets);
+
+            tickets = CreateTickets();
+            service.GetLastBets(Arg.Any<GetLastBetsParam>()).Returns(tickets);
 
             encryptionService = Substitute.For<EncryptionService>();
             encryptionService.CfsEncode(Arg.Any<string>(), Arg.Any<int>()).Returns("EncodedString");
@@ -89,27 +94,11 @@ namespace Alpha.BetLists.Site.Tests.Handler.LastBets
         }
 
         [Fact]
-        public void HandleGetLastBetsQuery_Always_WriteLog()
-        {
-            // Arrange
-            var message = new GetLastBetsQuery(user);
-
-            // Act
-            handler.Handle(message).GetAwaiter().GetResult();
-
-            // Assert
-            monitorService.Received().WriteLog(
-                Arg.Any<int>(),
-                Arg.Is<IList<ITicket>>(t => t.SequenceEqual(BetListDataTest.Tickets)));
-        }
-
-
-        [Fact]
         public void HandleGetLastBetsQuery_Always_ReturnsBetDataViewModel()
         {
             // Arrange
             var message = new GetLastBetsQuery(user);
-            var betListData = new BetListData(BetListDataTest.BetListData.Tickets, null);
+            var betListData = new BetListData(tickets, null);
             var expectedViewModel = new BetDataViewModel(
                 message,
                 betListData,
@@ -154,6 +143,95 @@ namespace Alpha.BetLists.Site.Tests.Handler.LastBets
 
             // Assert
             Assert.True(compareLogic.Compare(actualResult, actualResult).AreEqual);
+        }
+
+        [Fact]
+        public void HandleGetLastBetsQuery_FirstView_WriteLog()
+        {
+            // Arrange
+            var message = new GetLastBetsQuery(user);
+
+            var latestTransIdCacheKey = $"{LatestTransIdCacheKey}-CustId2";
+            ConfiguredCacheService.Remove(latestTransIdCacheKey);
+
+            // Act
+            handler.Handle(message).GetAwaiter().GetResult();
+
+            // Assert
+            monitorService.Received().WriteLog(
+                Arg.Any<int>(),
+                Arg.Is<IList<ITicket>>(t => t.SequenceEqual(tickets)));
+        }
+
+        [Fact]
+        public void HandleGetLastBetsQuery_NotFirstViewAndHaveNewTickets_WriteLog()
+        {
+            // Arrange
+            var message = new GetLastBetsQuery(user);
+
+            var latestTransIdCacheKey = $"{LatestTransIdCacheKey}-CustId2";
+            ConfiguredCacheService.Set<long>(latestTransIdCacheKey, 10);
+
+            var expectedWriteLogTickets = new List<ITicket> {
+                new TicketDto { TransId = 30 },
+                new TicketDto { TransId = 20 }
+            };
+
+            // Act
+            handler.Handle(message).GetAwaiter().GetResult();
+
+            // Assert
+            monitorService.Received().WriteLog(
+                Arg.Any<int>(),
+                Arg.Is<IList<ITicket>>(t => compareLogic.Compare(t, expectedWriteLogTickets).AreEqual));
+        }
+
+        [Fact]
+        public void HandleGetLastBetsQuery_NotFirstViewAndNotHaveNewTickets_NotCallWriteLog()
+        {
+            // Arrange
+            var message = new GetLastBetsQuery(user);
+
+            var latestTransIdCacheKey = $"{LatestTransIdCacheKey}-CustId2";
+            ConfiguredCacheService.Set<long>(latestTransIdCacheKey, 30);
+
+            // Act
+            handler.Handle(message).GetAwaiter().GetResult();
+
+            // Assert
+            monitorService.DidNotReceive().WriteLog(
+                Arg.Any<int>(),
+                Arg.Any<IList<ITicket>>());
+        }
+
+        [Fact]
+        public void HandleGetLastBetsQuery_NotFirstViewAndHaveNewTickets_StoreLatestTransId()
+        {
+            // Arrange
+            var message = new GetLastBetsQuery(user);
+
+            var latestTransIdCacheKey = $"{LatestTransIdCacheKey}-CustId2";
+            ConfiguredCacheService.Set<long>(latestTransIdCacheKey, 10);
+
+            var expectedCachedTransId = 30;
+
+            // Act
+            handler.Handle(message).GetAwaiter().GetResult();
+            var actualCachedTransId = ConfiguredCacheService.Get<long>(latestTransIdCacheKey);
+
+            // Assert
+            Assert.Equal(expectedCachedTransId, actualCachedTransId);
+        }
+
+        private IEnumerable<TicketDto> CreateTickets()
+        {
+            var result = new List<TicketDto> {
+                new TicketDto { TransId = 30 },
+                new TicketDto { TransId = 20 },
+                new TicketDto { TransId = 10 }
+            };
+
+            return result;
         }
     }
 }

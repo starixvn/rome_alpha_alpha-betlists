@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Alpha.BetLists.AppResources;
 using Alpha.BetLists.Constants;
 using Alpha.BetLists.Models;
@@ -11,6 +12,7 @@ using Alpha.Utilities.IP;
 using Alpha.Web.Models;
 using Fanex.BetList.Core.Builder;
 using Fanex.BetList.Core.Entities;
+using Fanex.Caching;
 using MediatR;
 
 namespace Alpha.BetLists.Site.Handlers.LastBets
@@ -21,6 +23,7 @@ namespace Alpha.BetLists.Site.Handlers.LastBets
         IAsyncRequestHandler<GetLastBetsQuery, BetDataViewModel>,
         IRequestHandler<CheckCanViewLastBetsQuery, Result>
     {
+        private const string LatestTransIdCacheKey = "Alpha.Reports.Handlers.LastBets.LatestTransIdCacheKey";
         private readonly LastBetsService lastBetsService;
         private readonly IBetListHTMLBuilder builder;
         private readonly ITicketHelper ticketHelper;
@@ -54,7 +57,18 @@ namespace Alpha.BetLists.Site.Handlers.LastBets
             var betListData = new BetListData(tickets, null);
             var supportScoreMapBettypeIds = foreCastService.GetBetTypeIdsSupportScoreMap();
 
-            WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, tickets);
+            var latestTransIdCacheKey = $"{LatestTransIdCacheKey}-CustId{message.CustId}";
+            var previousLatestTransId = ConfiguredCacheService.Get<long>(latestTransIdCacheKey);
+
+            var newTickets = tickets.Where(t => t.TransId > previousLatestTransId);
+
+            if (previousLatestTransId == 0 || newTickets.Any())
+            {
+                WriteLog(message.CustId, newTickets);
+
+                var latestTransId = newTickets.First().TransId;
+                ConfiguredCacheService.Set(latestTransIdCacheKey, latestTransId);
+            }
 
             return new BetDataViewModel(message, betListData, builder, ticketHelper, supportScoreMapBettypeIds);
         }
