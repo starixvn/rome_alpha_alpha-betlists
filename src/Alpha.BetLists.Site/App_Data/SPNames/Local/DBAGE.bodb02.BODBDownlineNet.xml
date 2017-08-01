@@ -62,7 +62,7 @@
       <Mapping DataField="LiveIndicator" ObjectProperty="IsLive" ></Mapping>
       <Mapping DataField="BetStatus" ObjectProperty="EventStatus" Class="TicketDto"></Mapping>
     </Setting>
-    <Setting Key="Acc_BetlistCombinationParlay_Details" SpName="Acc_BetlistCombinationParlay_Details" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
+    <Setting Key="Acc_BetlistCombinationParlay_Details" SpName="Acc_BetlistCombinationParlay_Details_UAT4" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
     </Setting>
   </Function>
   <Function Name="Win Loss By Match">
