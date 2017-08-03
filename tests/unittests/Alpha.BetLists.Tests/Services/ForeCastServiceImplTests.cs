@@ -18,7 +18,7 @@
 
         private readonly FanexCacheFixture fanexCacheFixture;
         private readonly FanexDataFixture fanexDataFixture;
-        private readonly ForecastService foreCastService;
+        private readonly ForecastService forecastService;
 
         private readonly IEnumerable<ScoreMap> scoreMaps = new List<ScoreMap>
         {
@@ -35,7 +35,7 @@
             this.fanexCacheFixture = fanexCacheFixture;
             this.fanexDataFixture = fanexDataFixture;
 
-            foreCastService = new ForecastServiceImpl(fanexDataFixture.DynamicRepository);
+            forecastService = new ForecastServiceImpl(fanexDataFixture.DynamicRepository);
         }
 
         [Fact]
@@ -50,7 +50,7 @@
             fanexDataFixture.DynamicRepository.Fetch<ScoreMap>(Arg.Any<GetScoreMapBetTypesCriteria>()).Returns(scoreMaps);
 
             // Act
-            var actualBettypeIds = foreCastService.GetBetTypeIdsSupportScoreMap();
+            var actualBettypeIds = forecastService.GetBetTypeIdsSupportScoreMap();
 
             // Assert
             Assert.Equal(expectedBettypeIds, actualBettypeIds);

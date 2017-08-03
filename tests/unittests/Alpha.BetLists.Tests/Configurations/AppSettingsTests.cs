@@ -24,7 +24,7 @@ namespace Alpha.BetLists.Tests.Configurations
         {
             // Arrange
             AppSettings.AppSettingValues = new NameValueCollection();
-            AppSettings.AppSettingValues.Add("StoreProcedurePath", "Local");
+            AppSettings.AppSettingValues.Add("StoredProcedurePath", "Local");
             var passVerify = false;
 
             // Act

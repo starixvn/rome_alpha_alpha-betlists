@@ -32,7 +32,7 @@ namespace Alpha.BetLists.Site.Tests.Handler.LastBets
         private readonly CompareLogic compareLogic;
         private readonly BetListFixture betlistFixture;
         private readonly EncryptionService encryptionService;
-        private readonly ForeCastService foreCastService;
+        private readonly ForecastService forecastService;
         private readonly IEnumerable<int> supportScoreMapBettypeIds;
         private readonly ISmartPunterBetListMonitor monitorService;
         private readonly IEnumerable<TicketDto> tickets;
@@ -52,9 +52,9 @@ namespace Alpha.BetLists.Site.Tests.Handler.LastBets
             encryptionService = Substitute.For<EncryptionService>();
             encryptionService.CfsEncode(Arg.Any<string>(), Arg.Any<int>()).Returns("EncodedString");
 
-            foreCastService = Substitute.For<ForeCastService>();
+            forecastService = Substitute.For<ForecastService>();
             supportScoreMapBettypeIds = new List<int> { 1 };
-            foreCastService.GetBetTypeIdsSupportScoreMap().Returns(supportScoreMapBettypeIds);
+            forecastService.GetBetTypeIdsSupportScoreMap().Returns(supportScoreMapBettypeIds);
 
             monitorService = Substitute.For<ISmartPunterBetListMonitor>();
 
@@ -62,7 +62,7 @@ namespace Alpha.BetLists.Site.Tests.Handler.LastBets
                 service,
                 this.betlistFixture.HtmlBuilder,
                 this.betlistFixture.TicketHelper,
-                foreCastService,
+                forecastService,
                 monitorService,
                 this.betlistFixture.IpService,
                 encryptionService);

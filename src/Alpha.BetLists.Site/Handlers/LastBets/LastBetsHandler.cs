@@ -27,14 +27,14 @@ namespace Alpha.BetLists.Site.Handlers.LastBets
         private readonly LastBetsService lastBetsService;
         private readonly IBetListHTMLBuilder builder;
         private readonly ITicketHelper ticketHelper;
-        private readonly ForeCastService foreCastService;
+        private readonly ForecastService forecastService;
         private readonly EncryptionService encryptionService;
 
         public LastBetsHandler(
             LastBetsService lastBetsService,
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper,
-            ForeCastService foreCastService,
+            ForecastService forecastService,
             ISmartPunterBetListMonitor monitorService,
             IPService ipService,
             EncryptionService encryptionService) :
@@ -43,7 +43,7 @@ namespace Alpha.BetLists.Site.Handlers.LastBets
             this.lastBetsService = lastBetsService;
             this.builder = builder;
             this.ticketHelper = ticketHelper;
-            this.foreCastService = foreCastService;
+            this.forecastService = forecastService;
             this.encryptionService = encryptionService;
         }
 
@@ -55,7 +55,7 @@ namespace Alpha.BetLists.Site.Handlers.LastBets
             var param = new GetLastBetsParam(message.BetType, message.CustId, message.TransId, message.PageSize);
             var tickets = await lastBetsService.GetLastBets(param);
             var betListData = new BetListData(tickets, null);
-            var supportScoreMapBettypeIds = foreCastService.GetBetTypeIdsSupportScoreMap();
+            var supportScoreMapBettypeIds = forecastService.GetBetTypeIdsSupportScoreMap();
 
             var latestTransIdCacheKey = $"{LatestTransIdCacheKey}-CustId{message.CustId}";
             var previousLatestTransId = ConfiguredCacheService.Get<long>(latestTransIdCacheKey);
