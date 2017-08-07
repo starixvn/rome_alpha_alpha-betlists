@@ -30,7 +30,7 @@
     using SimpleInjector.Integration.Web.Mvc;
     using SmartPunter.DataAccesses;
     using SmartPunter.Services;
-    using StaticData;
+    using StaticData.Models;
     using Sunplus.Agent.Model.Base;
     using Sunplus.Agent.Model.Entities;
     using Sunplus.Agent.Model.Entities.Permission;
@@ -159,7 +159,7 @@
             container.Register<RacingByMatchService, RacingByMatchServiceImpl>(Lifestyle.Singleton);
             if (AppSettings.IsIntegrationTest)
             {
-                container.RegisterSingleton<IUser, IntegrationTestUser>();
+                container.RegisterSingleton<IUser, StaticUserSession>();
             }
             else
             {

@@ -20,7 +20,7 @@ namespace Alpha.BetLists.StaticData.Configurations
             {
                 if (modelMaps == null)
                 {
-                    modelMaps = GetModelMaps();
+                    modelMaps = FromExpectedModelToExcel();
                 }
 
                 return modelMaps;
@@ -35,7 +35,7 @@ namespace Alpha.BetLists.StaticData.Configurations
             {
                 if (criteriaMaps == null)
                 {
-                    criteriaMaps = GetCriteriaMaps();
+                    criteriaMaps = FromCriteriaToExcel();
                 }
 
                 return criteriaMaps;
@@ -44,13 +44,13 @@ namespace Alpha.BetLists.StaticData.Configurations
             set { criteriaMaps = value; }
         }
 
-        private static IDictionary<string, string> GetModelMaps() => new Dictionary<string, string>
+        private static IDictionary<string, string> FromExpectedModelToExcel() => new Dictionary<string, string>
         {
             [nameof(Product)] = "Products",
             [nameof(ScoreMap)] = "ScoreMaps"
         };
 
-        private static IDictionary<string, string> GetCriteriaMaps() => new Dictionary<string, string>
+        private static IDictionary<string, string> FromCriteriaToExcel() => new Dictionary<string, string>
         {
             [nameof(GetBetListRunningByDateCriteria)] = "RunningBetlist",
             [nameof(GetBetListAllByDateCriteria)] = "MemberBetlist"

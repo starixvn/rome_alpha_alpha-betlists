@@ -3,6 +3,7 @@ using Alpha.BetLists.IntegrationTests.Extensions;
 using Alpha.BetLists.IntegrationTests.Fixtures;
 using Alpha.BetLists.IntegrationTests.Helpers;
 using Alpha.BetLists.StaticData.Configurations;
+using Alpha.BetLists.StaticData.Models;
 using Alpha.BetLists.Utils;
 using Xunit;
 
@@ -10,7 +11,7 @@ namespace Alpha.BetLists.IntegrationTests.Controllers
 {
     public class MemberBetlistControllerTests : BaseBetListsIntegrationTest
     {
-        public MemberBetlistControllerTests(AppHostFixture appHostFixture)
+        public MemberBetlistControllerTests(BetListAppHostFixture appHostFixture)
             : base(appHostFixture)
         {
         }
@@ -24,12 +25,16 @@ namespace Alpha.BetLists.IntegrationTests.Controllers
 
             AppHost.Start(session =>
             {
+                // Arrange
+                StaticUserSession.SetValues(0, string.Empty, "en", 4, 1, false, false, "E");
                 SystemTime.Today = new DateTime(2017, 7, 27);
                 StaticDataMapper.CriteriaMaps["GetBetListAllByDateCriteria"] = dataFileName;
 
+                // Act
                 var result = session.Get("MemberBetList/Index?CustID=2237314&CustName=member11");
 
-                AssertExtension.Equal(expectedResult.Replace("\r\n", "\n"), result.ResponseText.Replace("\r\n", "\n"));
+                // Assert
+                AssertExtension.Equal(expectedResult.StandardizeNewLine(), result.ResponseText.StandardizeNewLine());
             });
         }
     }

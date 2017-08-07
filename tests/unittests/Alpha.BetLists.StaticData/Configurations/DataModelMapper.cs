@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Alpha.IntegrationTest.Mapper;
+using Alpha.StaticData.Mappers;
 
 namespace Alpha.BetLists.StaticData.Configurations
 {

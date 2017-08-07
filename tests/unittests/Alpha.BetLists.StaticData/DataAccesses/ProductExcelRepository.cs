@@ -1,7 +1,7 @@
 ﻿namespace Alpha.BetLists.StaticData.DataAccesses
 {
-    using IntegrationTest.Npoi;
-    using Models;
+    using Alpha.StaticData.Npoi;
+    using BetLists.Models;
     using NPOI.SS.UserModel;
 
     public class ProductExcelRepository : BetListExcelRepository
@@ -11,8 +11,8 @@
             var columnIndex = 0;
 
             object result = new Product(
-                id: row.GetCellValue<int>(columnIndex++),
-                name: row.GetCellValue<string>(columnIndex));
+                id: row.Get<int>(columnIndex++),
+                name: row.Get<string>(columnIndex));
 
             return (T)result;
         }

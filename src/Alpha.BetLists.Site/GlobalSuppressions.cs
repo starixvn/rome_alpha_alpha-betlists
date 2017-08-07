@@ -137,6 +137,9 @@
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Sonar Code Smell", "S110:Inheritance tree of classes should not be too deep", Justification = "<Pending>", Scope = "type", Target = "~T:Alpha.BetLists.Site.Controllers.BetDetailController")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "RTF", Scope = "member", Target = "Alpha.BetLists.Site.Handlers.BetListExcelBaseHandler.#InitRTFHelper(NPOI.SS.UserModel.IWorkbook)")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "RNG", Scope = "type", Target = "Alpha.BetLists.Site.Requests.BetDetail.RNGCasinoQuery")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "RTF", Scope = "member", Target = "Alpha.BetLists.Site.Handlers.BetListExcelBaseHandler.#InitRTFHelper(NPOI.SS.UserModel.IWorkbook)")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "Ip", Scope = "member", Target = "Alpha.BetLists.Site.Handlers.CancelledBet.CancelledBetHandler.#IpService")]
+
 
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Sonar Code Smell", "S3216:\"ConfigureAwait(false)\" should be used", Justification = "<Pending>", Scope = "member", Target = "~M:Alpha.BetLists.Site.Controllers.BetDetailController.RNGCasino(Alpha.BetLists.Site.Requests.BetDetail.RNGCasinoQuery)~System.Threading.Tasks.Task{System.Web.Mvc.ActionResult}")]
 

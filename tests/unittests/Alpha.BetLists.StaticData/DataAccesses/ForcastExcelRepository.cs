@@ -1,7 +1,7 @@
 ﻿namespace Alpha.BetLists.StaticData.DataAccesses
 {
-    using IntegrationTest.Npoi;
-    using Models;
+    using Alpha.StaticData.Npoi;
+    using BetLists.Models;
     using NPOI.SS.UserModel;
 
     public class ForcastExcelRepository : BetListExcelRepository
@@ -11,10 +11,10 @@
             var columnIndex = 0;
 
             object result = new ScoreMap(
-                typeId: row.GetCellValue<int>(columnIndex++),
-                eventType: row.GetCellValue<int>(columnIndex++),
-                firstId: row.GetCellValue<string>(columnIndex++),
-                infoId: row.GetCellValue<string>(columnIndex));
+                typeId: row.Get<int>(columnIndex++),
+                eventType: row.Get<int>(columnIndex++),
+                firstId: row.Get<string>(columnIndex++),
+                infoId: row.Get<string>(columnIndex));
 
             return (T)result;
         }

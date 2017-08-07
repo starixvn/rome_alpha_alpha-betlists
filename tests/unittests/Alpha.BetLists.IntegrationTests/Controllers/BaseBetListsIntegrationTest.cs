@@ -4,12 +4,12 @@ using Xunit;
 
 namespace Alpha.BetLists.IntegrationTests.Controllers
 {
-    [Collection("AppHostCollection")]
+    [Collection("BetListAppHostCollection")]
     public class BaseBetListsIntegrationTest
     {
         protected AppHost AppHost;
 
-        public BaseBetListsIntegrationTest(AppHostFixture appHostFixture)
+        public BaseBetListsIntegrationTest(BetListAppHostFixture appHostFixture)
         {
             AppHost = appHostFixture.AppHost;
         }

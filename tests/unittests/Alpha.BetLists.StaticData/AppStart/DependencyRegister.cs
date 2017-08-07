@@ -1,6 +1,6 @@
 ﻿using Alpha.BetLists.StaticData.Configurations;
-using Alpha.IntegrationTest.Mapper;
-using Alpha.IntegrationTest.Repository;
+using Alpha.StaticData.Mappers;
+using Alpha.StaticData.Repositories;
 using Fanex.Data.Repository;
 using SimpleInjector;
 

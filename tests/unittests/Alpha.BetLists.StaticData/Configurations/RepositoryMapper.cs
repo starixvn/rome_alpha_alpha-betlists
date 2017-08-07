@@ -4,7 +4,7 @@ using Alpha.BetLists.Criteria;
 using Alpha.BetLists.Criteria.MemberBetList;
 using Alpha.BetLists.Criteria.RunningBetList;
 using Alpha.BetLists.StaticData.DataAccesses;
-using Alpha.IntegrationTest.Mapper;
+using Alpha.StaticData.Mappers;
 
 namespace Alpha.BetLists.StaticData.Configurations
 {

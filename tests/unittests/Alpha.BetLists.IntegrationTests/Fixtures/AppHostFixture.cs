@@ -4,18 +4,19 @@ using MvcIntegrationTestFramework.Hosting;
 
 namespace Alpha.BetLists.IntegrationTests.Fixtures
 {
-    public class AppHostFixture : IDisposable
+    public abstract class AppHostFixture : IDisposable
     {
-        private const string projectName = "src\\Alpha.BetLists.Site";
-        private string projectPath;
+        private readonly string projectPath;
 
-        public AppHostFixture()
+        protected AppHostFixture()
         {
-            projectPath = GetProjectPath(projectName);
+            var virtualPath = SetWebsiteDirectory();
+
+            projectPath = GetProjectPath(virtualPath);
             CopyConfigFile(projectPath);
 
             AppHost.LoadAllBinaries = true;
-            AppHost = AppHost.Simulate(projectName);
+            AppHost = AppHost.Simulate(virtualPath);
         }
 
         public AppHost AppHost { get; }
@@ -26,13 +27,15 @@ namespace Alpha.BetLists.IntegrationTests.Fixtures
             File.Copy("Web.Original.config", Path.Combine(projectPath, "Web.config"), true);
         }
 
-        private static string GetProjectPath(string projectName)
+        public abstract string SetWebsiteDirectory();
+
+        private static string GetProjectPath(string virtualPath)
         {
             var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
             while (Path.GetPathRoot(baseDirectory) != baseDirectory)
             {
                 baseDirectory = baseDirectory.Substring(0, baseDirectory.LastIndexOf("\\", StringComparison.Ordinal));
-                var mvcPath = Path.Combine(baseDirectory, projectName);
+                var mvcPath = Path.Combine(baseDirectory, virtualPath);
 
                 if (Directory.Exists(mvcPath))
                 {
