@@ -1,4 +1,6 @@
-﻿namespace Alpha.BetLists.IntegrationTests.Fixtures
+﻿using Alpha.IntegrationTests.Fixtures;
+
+namespace Alpha.BetLists.IntegrationTests.Fixtures
 {
     public class BetListAppHostFixture : AppHostFixture
     {

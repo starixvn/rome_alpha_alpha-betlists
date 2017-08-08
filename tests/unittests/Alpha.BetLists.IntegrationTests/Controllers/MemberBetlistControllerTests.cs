@@ -1,10 +1,10 @@
 ﻿using System;
-using Alpha.BetLists.IntegrationTests.Extensions;
 using Alpha.BetLists.IntegrationTests.Fixtures;
-using Alpha.BetLists.IntegrationTests.Helpers;
 using Alpha.BetLists.StaticData.Configurations;
 using Alpha.BetLists.StaticData.Models;
 using Alpha.BetLists.Utils;
+using Alpha.IntegrationTests.Extensions;
+using Alpha.IntegrationTests.Helpers;
 using Xunit;
 
 namespace Alpha.BetLists.IntegrationTests.Controllers
