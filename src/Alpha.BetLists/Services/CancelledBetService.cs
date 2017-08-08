@@ -33,6 +33,27 @@ namespace Alpha.BetLists.Services
             return new CancelledBetModel(filter, betList);
         }
 
+        private static GetCancelledBetCriteria CreateCancelledBetListCriteria(FilterCancelledBetModel parameter, string language)
+        {
+            var id = parameter.MemberId;
+            var userLevel = UserLevel.Member;
+            if (id == 0)
+            {
+                if (parameter.AgentId > 0)
+                {
+                    id = parameter.AgentId;
+                    userLevel = UserLevel.Agent;
+                }
+                else
+                {
+                    id = parameter.MasterId;
+                    userLevel = UserLevel.Master;
+                }
+            }
+
+            return new GetCancelledBetCriteria(id, userLevel.Value, language);
+        }
+
         private async Task<IEnumerable<UserBetCount>> GetUserHasCancelledBetBySuper(int superId)
         {
             var criteria = new GetUsersHasCancelledBetBySuperCriteria(superId);
@@ -75,27 +96,6 @@ namespace Alpha.BetLists.Services
             var ticketData = await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
 
             return new BetListData(ticketData.Item1, ticketData.Item2.ToList<ITicketData>());
-        }
-
-        private static GetCancelledBetCriteria CreateCancelledBetListCriteria(FilterCancelledBetModel parameter, string language)
-        {
-            var id = parameter.MemberId;
-            var userLevel = UserLevel.Member;
-            if (id == 0)
-            {
-                if (parameter.AgentId > 0)
-                {
-                    id = parameter.AgentId;
-                    userLevel = UserLevel.Agent;
-                }
-                else
-                {
-                    id = parameter.MasterId;
-                    userLevel = UserLevel.Master;
-                }
-            }
-
-            return new GetCancelledBetCriteria(id, userLevel.Value, language);
         }
 
         private async Task<FilterCancelledBetModel> GetFilterCancelledBetBySuper(CancelledBetParam parameter)

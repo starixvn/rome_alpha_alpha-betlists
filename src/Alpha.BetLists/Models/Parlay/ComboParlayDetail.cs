@@ -6,7 +6,7 @@
     {
         public ComboParlayDetail(
             DateTime winlostDate,
-            int transId,
+            long transId,
             long serial,
             int statusId,
             string status,
@@ -28,7 +28,7 @@
 
         public DateTime WinLostDate { get; }
 
-        public int TransId { get; }
+        public long TransId { get; }
 
         public long Serial { get; }
 
