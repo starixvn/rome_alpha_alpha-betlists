@@ -1,6 +1,6 @@
 ﻿using System;
 using Alpha.BetLists.IntegrationTests.Fixtures;
-using Alpha.BetLists.StaticData.Configurations;
+using Alpha.BetLists.StaticData.Mappers;
 using Alpha.BetLists.StaticData.Models;
 using Alpha.BetLists.Utils;
 using Alpha.IntegrationTests.Extensions;
@@ -9,9 +9,10 @@ using Xunit;
 
 namespace Alpha.BetLists.IntegrationTests.Controllers
 {
-    public class MemberBetlistControllerTests : BaseBetListsIntegrationTest
+    [Trait("Integration", "MemberBetList")]
+    public class MemberBetListControllerTests : BaseBetListsIntegrationTest
     {
-        public MemberBetlistControllerTests(BetListAppHostFixture appHostFixture)
+        public MemberBetListControllerTests(BetListAppHostFixture appHostFixture)
             : base(appHostFixture)
         {
         }

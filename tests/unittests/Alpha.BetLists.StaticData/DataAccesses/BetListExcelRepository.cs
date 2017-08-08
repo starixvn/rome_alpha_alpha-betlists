@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using Alpha.BetLists.Models;
-using Alpha.BetLists.StaticData.Configurations;
+using Alpha.BetLists.StaticData.Mappers;
 using Alpha.StaticData.NPOIExtensions;
 using Alpha.StaticData.Repositories;
 using Fanex.BetList.Core.Entities;

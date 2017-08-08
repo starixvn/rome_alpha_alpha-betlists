@@ -4,7 +4,7 @@ using Alpha.StaticData.Npoi;
 using NPOI.SS.UserModel;
 using static Alpha.BetLists.StaticData.ColumnIndexes.TicketTemplateColumnIndex;
 
-namespace Alpha.BetLists.StaticData.Configurations
+namespace Alpha.BetLists.StaticData.Mappers
 {
     public static class TicketDtoMapper
     {

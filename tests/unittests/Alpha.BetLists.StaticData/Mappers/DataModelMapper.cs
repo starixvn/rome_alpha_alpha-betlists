@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Alpha.StaticData.Mappers;
 
-namespace Alpha.BetLists.StaticData.Configurations
+namespace Alpha.BetLists.StaticData.Mappers
 {
     public class DataModelMapper : IDataModelMapper
     {

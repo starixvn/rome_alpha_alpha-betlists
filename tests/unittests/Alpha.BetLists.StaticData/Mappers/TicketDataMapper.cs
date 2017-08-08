@@ -3,7 +3,7 @@ using Fanex.BetList.Core.Entities;
 using NPOI.SS.UserModel;
 using static Alpha.BetLists.StaticData.ColumnIndexes.TicketDataTemplateColumnIndex;
 
-namespace Alpha.BetLists.StaticData.Configurations
+namespace Alpha.BetLists.StaticData.Mappers
 {
     public static class TicketDataMapper
     {

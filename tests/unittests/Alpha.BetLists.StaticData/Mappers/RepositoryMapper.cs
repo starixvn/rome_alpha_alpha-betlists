@@ -6,7 +6,7 @@ using Alpha.BetLists.Criteria.RunningBetList;
 using Alpha.BetLists.StaticData.DataAccesses;
 using Alpha.StaticData.Mappers;
 
-namespace Alpha.BetLists.StaticData.Configurations
+namespace Alpha.BetLists.StaticData.Mappers
 {
     public class RepositoryMapper : IRepositoryMapper
     {

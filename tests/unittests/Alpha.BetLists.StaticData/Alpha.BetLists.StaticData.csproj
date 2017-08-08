@@ -129,11 +129,11 @@
   <ItemGroup>
     <Compile Include="AppStart\DependencyRegister.cs" />
     <Compile Include="ColumnIndexes\TicketDataTemplateColumnIndex.cs" />
-    <Compile Include="Configurations\DataModelMapper.cs" />
-    <Compile Include="Configurations\StaticDataMapper.cs" />
-    <Compile Include="Configurations\RepositoryMapper.cs" />
-    <Compile Include="Configurations\TicketDataMapper.cs" />
-    <Compile Include="Configurations\TicketDtoMapper.cs" />
+    <Compile Include="Mappers\DataModelMapper.cs" />
+    <Compile Include="Mappers\StaticDataMapper.cs" />
+    <Compile Include="Mappers\RepositoryMapper.cs" />
+    <Compile Include="Mappers\TicketDataMapper.cs" />
+    <Compile Include="Mappers\TicketDtoMapper.cs" />
     <Compile Include="DataAccesses\BetListExcelRepository.cs" />
     <Compile Include="DataAccesses\ForcastExcelRepository.cs" />
     <Compile Include="DataAccesses\ProductExcelRepository.cs" />

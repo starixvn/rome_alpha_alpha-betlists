@@ -112,7 +112,7 @@
     <Compile Include="Controllers\BaseBetListsIntegrationTest.cs" />
     <Compile Include="Collections\BetListAppHostCollection.cs" />
     <Compile Include="Fixtures\BetListAppHostFixture.cs" />
-    <Compile Include="Controllers\MemberBetlistControllerTests.cs" />
+    <Compile Include="Controllers\MemberBetListControllerTests.cs" />
     <Compile Include="Controllers\RunningBetListControllerTests.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -126,10 +126,16 @@
     <Content Include="ExpectedResults\MemberBetList\exist-data.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ExpectedResults\RunningBetList\empty-data.html">
+    <Content Include="ExpectedResults\RunningBetList\getall-empty-data.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ExpectedResults\RunningBetList\exist-data.html">
+    <Content Include="ExpectedResults\RunningBetList\getall-exist-data.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ExpectedResults\RunningBetList\support-daterange-empty-data.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ExpectedResults\RunningBetList\support-daterange-exist-data.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Web.Integration.config">
