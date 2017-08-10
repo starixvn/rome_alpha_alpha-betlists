@@ -34,7 +34,7 @@ namespace Alpha.BetLists.Site.Tests.ViewModels.LastBets
                 BetType = betType
             };
 
-            var viewModel = new LastBetsViewModel(query, null, betlistFixture.HtmlBuilder, betlistFixture.TicketHelper, string.Empty);
+            var viewModel = new LastBetsViewModel(query, null, betlistFixture.HtmlBuilder, betlistFixture.TicketHelper, string.Empty, string.Empty);
 
             // Act
             var actualResetLastTransId = viewModel.ResetLastTransId;
@@ -55,7 +55,7 @@ namespace Alpha.BetLists.Site.Tests.ViewModels.LastBets
                 BetType = betType
             };
 
-            var viewModel = new LastBetsViewModel(query, null, betlistFixture.HtmlBuilder, betlistFixture.TicketHelper, string.Empty);
+            var viewModel = new LastBetsViewModel(query, null, betlistFixture.HtmlBuilder, betlistFixture.TicketHelper, string.Empty, string.Empty);
 
             // Act
             var actualBetType = viewModel.BetType;
@@ -75,7 +75,7 @@ namespace Alpha.BetLists.Site.Tests.ViewModels.LastBets
                 BetType = 1
             };
 
-            var viewModel = new LastBetsViewModel(query, null, betlistFixture.HtmlBuilder, betlistFixture.TicketHelper, string.Empty);
+            var viewModel = new LastBetsViewModel(query, null, betlistFixture.HtmlBuilder, betlistFixture.TicketHelper, string.Empty, string.Empty);
 
             // Act
             var actualIsSelectedBetType = viewModel.IsSelectedBetType(betType);
@@ -95,7 +95,7 @@ namespace Alpha.BetLists.Site.Tests.ViewModels.LastBets
                 PageSize = 10
             };
 
-            var viewModel = new LastBetsViewModel(query, null, betlistFixture.HtmlBuilder, betlistFixture.TicketHelper, string.Empty);
+            var viewModel = new LastBetsViewModel(query, null, betlistFixture.HtmlBuilder, betlistFixture.TicketHelper, string.Empty, string.Empty);
 
             // Act
             var actualIsSelectedPageSize = viewModel.IsSelectedPageSize(pageSize);

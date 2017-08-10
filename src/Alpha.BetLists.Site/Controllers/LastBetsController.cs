@@ -24,7 +24,7 @@ namespace Alpha.BetLists.Site.Controllers
 
             if (canViewLastBets.ErrCode != ErrorCodeConstants.None)
             {
-                return Json(canViewLastBets);
+                return Json(canViewLastBets, JsonRequestBehavior.AllowGet);
             }
 
             return await View(message);

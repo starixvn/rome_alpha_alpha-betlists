@@ -13,7 +13,8 @@ namespace Alpha.BetLists.Site.ViewModels.LastBets
             BetListData betListData,
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper,
-            string lastTransIdCacheKey)
+            string lastTransIdCacheKey,
+            string latestTransIdCacheKey)
             : base(query, betListData, builder, ticketHelper, showMemberName: true)
         {
             PageSize = query.PageSize;
@@ -22,6 +23,7 @@ namespace Alpha.BetLists.Site.ViewModels.LastBets
 
             BetType = query.BetType == -1 ? BetTypeIdConstants.AllBetTypes : query.BetType;
             LastTransIdCacheKey = lastTransIdCacheKey;
+            LatestTransIdCacheKey = latestTransIdCacheKey;
         }
 
         public int BetType { get; }
@@ -31,6 +33,8 @@ namespace Alpha.BetLists.Site.ViewModels.LastBets
         public bool IsAutoRefresh { get; }
 
         public string LastTransIdCacheKey { get; }
+
+        public string LatestTransIdCacheKey { get; }
 
         public bool ResetLastTransId { get; }
 

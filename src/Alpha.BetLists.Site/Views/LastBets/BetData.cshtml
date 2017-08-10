@@ -25,7 +25,7 @@
 
                 foreach (var ticket in Model.BetListData.Tickets)
                 {
-                    <tr>
+                    <tr id="r@(ticket.TransId)">
                         <td class='w-order text-center'>@i</td>
                         <td class="text-center">@ticket.UserName</td>
                         @Trans.Render(Model.Builder, ticket)
@@ -48,3 +48,4 @@
 </table>
 
 @Html.Hidden("last-trans-id", Model.LastTransId)
+@Html.Hidden("latest-trans-id", Model.LatestTransId)

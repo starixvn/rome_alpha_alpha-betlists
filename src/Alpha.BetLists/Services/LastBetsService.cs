@@ -73,6 +73,7 @@ namespace Alpha.BetLists.Services
             ticket.AwayId = matchInfo.AwayId;
             ticket.Race = matchInfo.Race;
             ticket.ShowTime = matchInfo.ShowTime;
+            ticket.IsNeutral = matchInfo.IsNeutral;
         }
 
         private IEnumerable<MatchInfo> GetRunningMatches(int betType, bool getNewData)

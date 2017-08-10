@@ -34,6 +34,7 @@ namespace BetList {
         ajaxRequest: JQueryXHR;
 
         lastTransIdCacheKey: string = "";
+        latestTransIdCacheKey: string = "";
 
         public Init = (shortcut: any, store: any) => {
             this.shortcut = shortcut;
@@ -43,8 +44,11 @@ namespace BetList {
             this.registerEvents();
 
             this.lastTransIdCacheKey = $("#last-trans-id-cache-key").val();
+            this.latestTransIdCacheKey = $("#latest-trans-id-cache-key").val();
+
             if (this.convertAttributeToBool($("#reset-last-trans-id").val())) {
                 this.localStorage.set(this.lastTransIdCacheKey, 0);
+                this.localStorage.set(this.latestTransIdCacheKey, 0);
             }
 
             this.loadLastBets(false);
@@ -62,6 +66,7 @@ namespace BetList {
 
             this.betType = parseInt($("#bet-type").val(), 0);
             this.getBetsUrl = $("#get-bets-url").val();
+            this.pageSize = parseInt($(".page-size.active").html());
         };
 
         registerEvents = () => {
@@ -86,6 +91,8 @@ namespace BetList {
             this.$pageSize.removeClass("active");
             element.addClass("active");
 
+            this.replaceHrefParam("PageSize", this.pageSize);
+
             if (this.getLastBetsTimeOut !== 0) {
                 clearTimeout(this.getLastBetsTimeOut);
             }
@@ -94,21 +101,27 @@ namespace BetList {
         };
 
         loadLastBets = (isAutoLoad: boolean) => {
-            this.$loadingIcon.removeClass("hide");
+            if (!isAutoLoad) {
+                this.localStorage.set(this.lastTransIdCacheKey, 0);
+                this.localStorage.set(this.latestTransIdCacheKey, 0);
+            }
 
             if (this.isCalling) {
                 this.abortRequest();
             }
 
-            this.isCalling = true;
+            this.$loadingIcon.removeClass("hide");
 
+            this.isCalling = true;
             let lastTransId = this.localStorage.get(this.lastTransIdCacheKey);
+            let latestTransId = this.localStorage.get(this.latestTransIdCacheKey);
 
             let param = {
                 BetType: this.betType,
                 PageSize: this.pageSize,
                 IsAutoLoad: isAutoLoad,
-                TransId: lastTransId ? lastTransId - 1 : 0
+                TransId: lastTransId ? lastTransId - 1 : 0,
+                LatestTransId: latestTransId
             };
 
             this.ajaxRequest = $.ajax({
@@ -116,7 +129,7 @@ namespace BetList {
                 data: param,
                 url: this.getBetsUrl,
                 success: this.successGetLastBets,
-                error: this.showError,
+                error: this.errorRequest,
                 complete: this.completeGetLastBets
             });
         };
@@ -127,8 +140,17 @@ namespace BetList {
             }
         };
 
+        errorRequest = (request: any) => {
+            if (request.statusText === "abort") {
+                return;
+            }
+
+            this.showError();
+        };
+
         successGetLastBets = (responseHtml: any) => {
-            if (responseHtml.ErrorCode && responseHtml.ErrorCode !== "0") {
+            if ((responseHtml.ErrorCode && responseHtml.ErrorCode !== "0") ||
+                (responseHtml.ErrCode && responseHtml.ErrCode !== "0")) {
                 this.showError();
                 return;
             }
@@ -142,9 +164,13 @@ namespace BetList {
             this.$betListTableContainer.html(responseHtml);
 
             let lastTransId = parseInt(this.$betListTableContainer.find("#last-trans-id").val(), 0);
+
             if (lastTransId > 0) {
                 this.localStorage.set(this.lastTransIdCacheKey, lastTransId);
             }
+
+            let latestTransId = parseInt(this.$betListTableContainer.find("#latest-trans-id").val(), 0);
+            this.localStorage.set(this.latestTransIdCacheKey, latestTransId);
 
             if (this.convertAttributeToBool(this.$isAutoRefresh.val())) {
                 let self = this;

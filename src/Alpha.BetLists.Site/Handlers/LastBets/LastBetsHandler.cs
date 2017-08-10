@@ -12,7 +12,6 @@ using Alpha.Utilities.IP;
 using Alpha.Web.Models;
 using Fanex.BetList.Core.Builder;
 using Fanex.BetList.Core.Entities;
-using Fanex.Caching;
 using MediatR;
 
 namespace Alpha.BetLists.Site.Handlers.LastBets
@@ -23,7 +22,6 @@ namespace Alpha.BetLists.Site.Handlers.LastBets
         IAsyncRequestHandler<GetLastBetsQuery, BetDataViewModel>,
         IRequestHandler<CheckCanViewLastBetsQuery, Result>
     {
-        private const string LatestTransIdCacheKey = "Alpha.Reports.Handlers.LastBets.LatestTransIdCacheKey";
         private readonly LastBetsService lastBetsService;
         private readonly IBetListHTMLBuilder builder;
         private readonly ITicketHelper ticketHelper;
@@ -48,29 +46,35 @@ namespace Alpha.BetLists.Site.Handlers.LastBets
         }
 
         public LastBetsViewModel Handle(LastBetsQuery message)
-            => new LastBetsViewModel(message, null, builder, ticketHelper, encryptionService.CfsEncode($"LastTransId_{message.CustId}", numberOfEncodeResult: 6));
+            => new LastBetsViewModel(
+                message,
+                null,
+                builder,
+                ticketHelper,
+                encryptionService.CfsEncode($"LastTransId_{message.CustId}", numberOfEncodeResult: 6),
+                encryptionService.CfsEncode($"LatestTransId_{message.CustId}", numberOfEncodeResult: 6));
 
         public async Task<BetDataViewModel> Handle(GetLastBetsQuery message)
         {
+            var isManualLoad = !message.IsAutoLoad;
+
             var param = new GetLastBetsParam(message.BetType, message.CustId, message.TransId, message.PageSize);
             var tickets = await lastBetsService.GetLastBets(param);
             var betListData = new BetListData(tickets, null);
             var supportScoreMapBettypeIds = forecastService.GetBetTypeIdsSupportScoreMap();
 
-            var latestTransIdCacheKey = $"{LatestTransIdCacheKey}-CustId{message.CustId}";
-            var previousLatestTransId = ConfiguredCacheService.Get<long>(latestTransIdCacheKey);
+            var previousLatestTransId = isManualLoad ? 0 : message.LatestTransId;
 
             var newTickets = tickets.Where(t => t.TransId > previousLatestTransId);
 
-            if (previousLatestTransId == 0 || newTickets.Any())
+            if (isManualLoad || newTickets.Any())
             {
                 WriteLog(message.CustId, newTickets);
-
-                var latestTransId = newTickets.First().TransId;
-                ConfiguredCacheService.Set(latestTransIdCacheKey, latestTransId);
             }
 
-            return new BetDataViewModel(message, betListData, builder, ticketHelper, supportScoreMapBettypeIds);
+            var latestTransId = newTickets.Any() ? newTickets.First().TransId : message.LatestTransId;
+
+            return new BetDataViewModel(latestTransId, message, betListData, builder, ticketHelper, supportScoreMapBettypeIds);
         }
 
         public Result Handle(CheckCanViewLastBetsQuery message)

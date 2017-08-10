@@ -84,6 +84,7 @@ namespace Alpha.BetLists.Site.Tests.Handler.LastBets
                 null,
                 betlistFixture.HtmlBuilder,
                 betlistFixture.TicketHelper,
+                "EncodedString",
                 "EncodedString");
 
             // Act
@@ -100,6 +101,7 @@ namespace Alpha.BetLists.Site.Tests.Handler.LastBets
             var message = new GetLastBetsQuery(user);
             var betListData = new BetListData(tickets, null);
             var expectedViewModel = new BetDataViewModel(
+                30,
                 message,
                 betListData,
                 betlistFixture.HtmlBuilder,
@@ -145,11 +147,14 @@ namespace Alpha.BetLists.Site.Tests.Handler.LastBets
             Assert.True(compareLogic.Compare(actualResult, actualResult).AreEqual);
         }
 
-        [Fact]
-        public void HandleGetLastBetsQuery_FirstView_WriteLog()
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void HandleGetLastBetsQuery_FirstView_WriteLog(bool autoLoad)
         {
             // Arrange
             var message = new GetLastBetsQuery(user);
+            message.IsAutoLoad = autoLoad;
 
             var latestTransIdCacheKey = $"{LatestTransIdCacheKey}-CustId2";
             ConfiguredCacheService.Remove(latestTransIdCacheKey);
@@ -164,13 +169,12 @@ namespace Alpha.BetLists.Site.Tests.Handler.LastBets
         }
 
         [Fact]
-        public void HandleGetLastBetsQuery_NotFirstViewAndHaveNewTickets_WriteLog()
+        public void HandleGetLastBetsQuery_AutoLoadNotFirstViewAndHaveNewTickets_WriteLog()
         {
             // Arrange
             var message = new GetLastBetsQuery(user);
-
-            var latestTransIdCacheKey = $"{LatestTransIdCacheKey}-CustId2";
-            ConfiguredCacheService.Set<long>(latestTransIdCacheKey, 10);
+            message.IsAutoLoad = true;
+            message.LatestTransId = 10;
 
             var expectedWriteLogTickets = new List<ITicket> {
                 new TicketDto { TransId = 30 },
@@ -187,13 +191,12 @@ namespace Alpha.BetLists.Site.Tests.Handler.LastBets
         }
 
         [Fact]
-        public void HandleGetLastBetsQuery_NotFirstViewAndNotHaveNewTickets_NotCallWriteLog()
+        public void HandleGetLastBetsQuery_AutoLoadNotHaveNewTickets_NotCallWriteLog()
         {
             // Arrange
             var message = new GetLastBetsQuery(user);
-
-            var latestTransIdCacheKey = $"{LatestTransIdCacheKey}-CustId2";
-            ConfiguredCacheService.Set<long>(latestTransIdCacheKey, 30);
+            message.IsAutoLoad = true;
+            message.LatestTransId = 30;
 
             // Act
             handler.Handle(message).GetAwaiter().GetResult();
@@ -202,25 +205,6 @@ namespace Alpha.BetLists.Site.Tests.Handler.LastBets
             monitorService.DidNotReceive().WriteLog(
                 Arg.Any<int>(),
                 Arg.Any<IList<ITicket>>());
-        }
-
-        [Fact]
-        public void HandleGetLastBetsQuery_NotFirstViewAndHaveNewTickets_StoreLatestTransId()
-        {
-            // Arrange
-            var message = new GetLastBetsQuery(user);
-
-            var latestTransIdCacheKey = $"{LatestTransIdCacheKey}-CustId2";
-            ConfiguredCacheService.Set<long>(latestTransIdCacheKey, 10);
-
-            var expectedCachedTransId = 30;
-
-            // Act
-            handler.Handle(message).GetAwaiter().GetResult();
-            var actualCachedTransId = ConfiguredCacheService.Get<long>(latestTransIdCacheKey);
-
-            // Assert
-            Assert.Equal(expectedCachedTransId, actualCachedTransId);
         }
 
         private IEnumerable<TicketDto> CreateTickets()

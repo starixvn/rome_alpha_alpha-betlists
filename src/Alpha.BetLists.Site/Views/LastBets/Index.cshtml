@@ -12,16 +12,16 @@
 </div>
 <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="tab-report-type @(Model.IsSelectedBetType(BetTypeIdConstants.AllBetTypes) ?"active":string.Empty)">
-        @Html.ActionLink(Resources.AllBetTypes, "Index", "LastBets", new { BetType = BetTypeIdConstants.AllBetTypes, IsAutoRefresh = Model.IsAutoRefresh }, new { id = "tab-all-bet-types" })
+        @Html.ActionLink(Resources.AllBetTypes, "Index", "LastBets", new { BetType = BetTypeIdConstants.AllBetTypes, IsAutoRefresh = Model.IsAutoRefresh, PageSize = Model.PageSize }, new { id = "tab-all-bet-types" })
     </li>
     <li role="presentation" class="tab-report-type @(Model.IsSelectedBetType(BetTypeIdConstants.Handicap) ?"active":string.Empty)">
-        @Html.ActionLink(Resources.Handicap, "Index", "LastBets", new { BetType = BetTypeIdConstants.Handicap, IsAutoRefresh = Model.IsAutoRefresh }, new { id = "tab-handicap" })
+        @Html.ActionLink(Resources.Handicap, "Index", "LastBets", new { BetType = BetTypeIdConstants.Handicap, IsAutoRefresh = Model.IsAutoRefresh, PageSize = Model.PageSize }, new { id = "tab-handicap" })
     </li>
     <li role="presentation" class="tab-report-type @(Model.IsSelectedBetType(BetTypeIdConstants.OverUnder) ?"active":string.Empty)">
-        @Html.ActionLink(Resources.OverUnder, "Index", "LastBets", new { BetType = BetTypeIdConstants.OverUnder, IsAutoRefresh = Model.IsAutoRefresh }, new { id = "tab-over-under" })
+        @Html.ActionLink(Resources.OverUnder, "Index", "LastBets", new { BetType = BetTypeIdConstants.OverUnder, IsAutoRefresh = Model.IsAutoRefresh, PageSize = Model.PageSize }, new { id = "tab-over-under" })
     </li>
     <li role="presentation" class="tab-report-type @(Model.IsSelectedBetType(BetTypeIdConstants.OtherBetTypes) ?"active":string.Empty)">
-        @Html.ActionLink(Resources.OtherBetTypes, "Index", "LastBets", new { BetType = BetTypeIdConstants.OtherBetTypes, IsAutoRefresh = Model.IsAutoRefresh }, new { id = "tab-other-bet-types" })
+        @Html.ActionLink(Resources.OtherBetTypes, "Index", "LastBets", new { BetType = BetTypeIdConstants.OtherBetTypes, IsAutoRefresh = Model.IsAutoRefresh, PageSize = Model.PageSize }, new { id = "tab-other-bet-types" })
     </li>
 </ul>
 <div class="page-section">
@@ -51,6 +51,7 @@
 <input id="is-auto-refresh" type="hidden" value="@(Model.IsAutoRefresh ? "true":"false")" />
 <input id="get-bets-url" type="hidden" value="@Url.Action("BetData","LastBets")" />
 <input id="last-trans-id-cache-key" type="hidden" value="@Model.LastTransIdCacheKey" />
+<input id="latest-trans-id-cache-key" type="hidden" value="@Model.LatestTransIdCacheKey" />
 <input id="reset-last-trans-id" type="hidden" value="@Model.ResetLastTransId.ToString()" />
 
 @Html.Hidden("betlist-path", HttpContext.Current.Response.ApplyAppPathModifier("~/"))

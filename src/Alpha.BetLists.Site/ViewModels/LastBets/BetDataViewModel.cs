@@ -10,6 +10,7 @@ namespace Alpha.BetLists.Site.ViewModels.LastBets
     public class BetDataViewModel : BetListBaseViewModel
     {
         public BetDataViewModel(
+            long latestTransId,
             GetLastBetsQuery query,
             BetListData betListData,
             IBetListHTMLBuilder builder,
@@ -17,11 +18,14 @@ namespace Alpha.BetLists.Site.ViewModels.LastBets
             IEnumerable<int> supportScoreMapBettypeIds)
             : base(query, betListData, builder, ticketHelper, showMemberName: true)
         {
+            LatestTransId = latestTransId;
             TotalColumn = 7;
             SupportScoreMapBettypeIds = supportScoreMapBettypeIds;
         }
 
         public IEnumerable<int> SupportScoreMapBettypeIds { get; }
+
+        public long LatestTransId { get; }
 
         public long LastTransId
             => BetListData.Tickets.Any()

@@ -17,5 +17,7 @@ namespace Alpha.BetLists.Site.Requests.LastBets
         public int PageSize { get; set; }
 
         public bool IsAutoLoad { get; set; }
+
+        public long LatestTransId { get; set; }
     }
 }

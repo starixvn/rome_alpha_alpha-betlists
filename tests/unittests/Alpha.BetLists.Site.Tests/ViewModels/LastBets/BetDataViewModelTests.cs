@@ -34,7 +34,7 @@ namespace Alpha.BetLists.Site.Tests.ViewModels.LastBets
             // Arrange
             var expectedValue = 7;
             var query = new GetLastBetsQuery(user);
-            var viewModel = new BetDataViewModel(query, null, betlistFixture.HtmlBuilder, betlistFixture.TicketHelper, null);
+            var viewModel = new BetDataViewModel(0, query, null, betlistFixture.HtmlBuilder, betlistFixture.TicketHelper, null);
 
             // Act
             var actualValue = viewModel.TotalColumn;
@@ -51,7 +51,7 @@ namespace Alpha.BetLists.Site.Tests.ViewModels.LastBets
             // Arrange
             var query = new GetLastBetsQuery(user);
             var supportScoreMapBettypeIds = new List<int> { 1, 2, 3 };
-            var viewModel = new BetDataViewModel(query, null, betlistFixture.HtmlBuilder, betlistFixture.TicketHelper, supportScoreMapBettypeIds);
+            var viewModel = new BetDataViewModel(0, query, null, betlistFixture.HtmlBuilder, betlistFixture.TicketHelper, supportScoreMapBettypeIds);
             var ticket = new Ticket
             {
                 BetTypeId = betType
@@ -70,7 +70,7 @@ namespace Alpha.BetLists.Site.Tests.ViewModels.LastBets
             // Arrange
             var query = new GetLastBetsQuery(user);
             var betListData = new BetListData(null, null);
-            var viewModel = new BetDataViewModel(query, betListData, betlistFixture.HtmlBuilder, betlistFixture.TicketHelper, null);
+            var viewModel = new BetDataViewModel(0, query, betListData, betlistFixture.HtmlBuilder, betlistFixture.TicketHelper, null);
             var expectedLastTransId = 0;
 
             // Act
@@ -94,7 +94,7 @@ namespace Alpha.BetLists.Site.Tests.ViewModels.LastBets
             };
 
             var betListData = new BetListData(tickets, null);
-            var viewModel = new BetDataViewModel(query, betListData, betlistFixture.HtmlBuilder, betlistFixture.TicketHelper, null);
+            var viewModel = new BetDataViewModel(0, query, betListData, betlistFixture.HtmlBuilder, betlistFixture.TicketHelper, null);
             var expectedLastTransId = 1;
 
             // Act

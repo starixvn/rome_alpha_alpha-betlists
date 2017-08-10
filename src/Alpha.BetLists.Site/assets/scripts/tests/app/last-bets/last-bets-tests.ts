@@ -198,6 +198,8 @@ describe("LastBets", () => {
         });
     });
     describe("_loadLastBets", () => {
+        let localStorageSetSpy;
+
         beforeEach(() => {
             // arrange
             loadFixtures("normal-template.html");
@@ -208,8 +210,8 @@ describe("LastBets", () => {
             spyOn(lastBetsView, "abortRequest");
 
             loadLastBets.and.callThrough();
-            spyOn(lastBetsView.localStorage, "set");
-            spyOn(lastBetsView.localStorage, "get").and.returnValues("1");
+            localStorageSetSpy = spyOn(lastBetsView.localStorage, "set");
+            spyOn(lastBetsView.localStorage, "get").and.callFake(() => 1);
         });
 
         it("_Always_Show loading icon", () => {
@@ -257,13 +259,38 @@ describe("LastBets", () => {
                     BetType: lastBetsView.betType,
                     PageSize: lastBetsView.pageSize,
                     IsAutoLoad: false,
-                    TransId: 0
+                    TransId: 0,
+                    LatestTransId: 1
                 },
                 url: lastBetsView.getBetsUrl,
                 success: lastBetsView.successGetLastBets,
-                error: lastBetsView.showError,
+                error: lastBetsView.errorRequest,
                 complete: lastBetsView.completeGetLastBets
             });
+        });
+
+        it("_Auto Load_Not Reset Last Trans Id", () => {
+            // arrange
+            let lastTransId = 10;
+            lastBetsView.localStorage.set(lastBetsView.lastTransIdCacheKey, lastTransId);
+            let callCount = localStorageSetSpy.calls.count();
+
+            // act
+            lastBetsView.loadLastBets(true);
+
+            // assert
+            expect(localStorageSetSpy.calls.count()).toBe(callCount);
+        });
+        it("_Not Auto Load_Reset Last Trans Id", () => {
+            // arrange
+            let lastTransId = 10;
+            lastBetsView.localStorage.set(lastBetsView.lastTransIdCacheKey, lastTransId);
+
+            // act
+            lastBetsView.loadLastBets(false);
+
+            // assert
+            expect(lastBetsView.localStorage.set).toHaveBeenCalledWith("LastTransIdCacheKey", 0);
         });
     });
     describe("_abortRequest", () => {
@@ -297,6 +324,7 @@ describe("LastBets", () => {
     });
     describe("_successGetLastBets", () => {
         beforeEach(() => {
+            loadFixtures("normal-template.html");
             spyOn(lastBetsView.localStorage, "set");
             spyOn(lastBetsView.localStorage, "get").and.returnValues("1");
         });
@@ -305,6 +333,17 @@ describe("LastBets", () => {
             // arrange
             spyOn(lastBetsView, "showError");
             let responseHtml = { ErrorCode: 1 };
+
+            // act
+            lastBetsView.successGetLastBets(responseHtml);
+
+            // assert
+            expect(lastBetsView.showError).toHaveBeenCalled();
+        });
+        it("_Has error_Show error", () => {
+            // arrange
+            spyOn(lastBetsView, "showError");
+            let responseHtml = { ErrCode: 1 };
 
             // act
             lastBetsView.successGetLastBets(responseHtml);
@@ -361,7 +400,7 @@ describe("LastBets", () => {
             lastBetsView.successGetLastBets(responseHtml);
 
             // assert
-            expect(lastBetsView.localStorage.set).not.toHaveBeenCalled();
+            expect(lastBetsView.localStorage.set).not.toHaveBeenCalledWith("LastTransIdCacheKey", jasmine.any(Number));
         });
         it("_Have data_Set lastTransId", () => {
             // arrange
@@ -642,6 +681,28 @@ describe("LastBets", () => {
         it("_Always_Calls replaceQueryStringValue", () => {
             // assert
             expect(replaceQueryStringValueSpy.calls.allArgs()).toEqual([["?paramName=paramValue", "paramName", "paramValue"], ["?paramName1=paramValue1", "paramName", "paramValue"]]);
+        });
+    });
+    describe("errorRequest", () => {
+        it("_Cancel Request_Not Show Error", () => {
+            // arrange
+            spyOn(lastBetsView, "showError");
+
+            // act
+            lastBetsView.errorRequest({ statusText: "abort" });
+
+            // assert
+            expect(lastBetsView.showError).not.toHaveBeenCalled();
+        });
+        it("_Not Cancel Request_Show Error", () => {
+            // arrange
+            spyOn(lastBetsView, "showError");
+
+            // act
+            lastBetsView.errorRequest({ statusText: "error" });
+
+            // assert
+            expect(lastBetsView.showError).toHaveBeenCalled();
         });
     });
 });
