@@ -16,7 +16,7 @@
             set { appSettingValues = value; }
         }
 
-        public static string StoreProcedurePath => GetConfigValue("StoredProcedurePath");
+        public static string StoredProcedurePath => GetConfigValue("StoredProcedurePath");
 
         public static string ResultAppPath => GetConfigValue("ResultSiteVirtualPath") ?? "site-results";
 
@@ -30,7 +30,7 @@
 
         public static void Verify()
         {
-            Require(StoreProcedurePath, nameof(StoreProcedurePath));
+            Require(StoredProcedurePath, nameof(StoredProcedurePath));
         }
 
         private static void Require(string key, string keyName)

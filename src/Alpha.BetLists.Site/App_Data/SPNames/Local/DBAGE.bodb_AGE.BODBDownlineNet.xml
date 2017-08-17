@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Functions SiteId="105" SiteName="Alpha">
   <Function Name="Running BetList">
     <Setting Key="Age_BetList_SelRunningByDate_Mem" SpName="Age_BetList_SelRunningByDate_Mem" DbName="DBAGE.bodb_AGE.BODBDownlineNet" Plain="0">
@@ -21,6 +21,7 @@
       <Mapping DataField="liveindicator" ObjectProperty="IsLive" Class="TicketDto"></Mapping>
       <Mapping DataField="betstatus" ObjectProperty="EventStatus" Class="TicketDto"></Mapping>
       <Mapping DataField="comstatus" ObjectProperty="CommStatus" Class="TicketDto"></Mapping>
+      <Mapping DataField="modds" ObjectProperty="MasterOdds" Class="TicketDto"></Mapping>
 
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketData"></Mapping>
       <Mapping DataField="apositiontaking" ObjectProperty="AgentPT" Class="TicketData"></Mapping>
