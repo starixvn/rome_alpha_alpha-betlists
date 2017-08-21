@@ -336,6 +336,9 @@
   <data name="LastBetsMonitoring" xml:space="preserve">
     <value>Last Bets Monitoring</value>
   </data>
+  <data name="lblMixParlay" xml:space="preserve">
+    <value>Mix Parlay</value>
+  </data>
   <data name="AllBetTypes" xml:space="preserve">
     <value>All Bet Types</value>
   </data>

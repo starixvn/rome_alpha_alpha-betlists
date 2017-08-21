@@ -358,6 +358,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mix Parlay.
+        /// </summary>
+        public static string lblMixParlay {
+            get {
+                return ResourceManager.GetString("lblMixParlay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to System Parlay.
         /// </summary>
         public static string lblSystemParlay {

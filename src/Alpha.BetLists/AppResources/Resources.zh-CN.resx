@@ -338,6 +338,9 @@
   <data name="OtherBetTypes" xml:space="preserve">
     <value>其他投注项目</value>
   </data>
+  <data name="lblMixParlay" xml:space="preserve">
+    <value>混合过关</value>
+  </data>
   <data name="Page" xml:space="preserve">
     <value>页</value>
   </data>

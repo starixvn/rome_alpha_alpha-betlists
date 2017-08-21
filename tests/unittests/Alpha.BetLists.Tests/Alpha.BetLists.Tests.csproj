@@ -198,6 +198,7 @@
     <Compile Include="Criteria\CancelledBet\GetUsersHasCancelledBetCriteriaTests.cs" />
     <Compile Include="Constants\RoleId.cs" />
     <Compile Include="Criteria\GetBalanceUpDayAndMoveBetsDayCriteriaTests.cs" />
+    <Compile Include="Criteria\CorrectScore\GetRunningCorrectScoreCriteriaTests.cs" />
     <Compile Include="Criteria\GetProductsCriteriaTests.cs" />
     <Compile Include="Criteria\GetScoreMapBetTypesCriteriaTests.cs" />
     <Compile Include="Criteria\LastBets\GetLastBetsCriteriaTests.cs" />
@@ -212,6 +213,7 @@
     <Compile Include="Criteria\SmartPunter\SmartPunterWriteLogNoDataCommandTests.cs" />
     <Compile Include="Criteria\WinLossByDate\GetBetListWinLossByDateOldCriteriaTests.cs" />
     <Compile Include="Criteria\Parlay\GetComboParlayDetailCriteriaTests.cs" />
+    <Compile Include="Criteria\RunningBetListByBetType\GetBetListRunningByBetTypeCriteriaTests.cs" />
     <Compile Include="Criteria\Parlay\GetParlayBetListCriteriaTests.cs" />
     <Compile Include="Criteria\RunningBetList\GetBetListRunningByDateCriteriaTests.cs" />
     <Compile Include="Criteria\ParlayWinLossByMatch\GetParlayWinLossByMatchCriteriaTests.cs" />
@@ -234,11 +236,13 @@
     <Compile Include="Params\RunningBetListParamTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DailyStatementServiceImplTests.cs" />
+    <Compile Include="Services\CorrectScoreServiceImplTests.cs" />
     <Compile Include="Services\EncryptionServiceImplTests.cs" />
     <Compile Include="Services\ForecastServiceImplTests.cs" />
     <Compile Include="Services\CancelledBetServiceImplTests.cs" />
     <Compile Include="Services\LastBetsServiceImplTests.cs" />
     <Compile Include="Services\MemberBetListServiceImplTests.cs" />
+    <Compile Include="Services\RunningBetListByBetTypeServiceImplTests.cs" />
     <Compile Include="Services\RunningBetListServiceImplTests.cs" />
     <Compile Include="Services\ParlayServiceImplTests.cs" />
     <Compile Include="Services\ParlayWinLossByMatchServiceImplTests.cs" />

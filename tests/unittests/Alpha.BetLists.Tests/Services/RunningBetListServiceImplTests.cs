@@ -16,7 +16,7 @@
     [Collection("FanexDataCollection")]
     public class RunningBetListServiceImplTests
     {
-        private readonly RunningBetListService runningBetListService;
+        private readonly RunningBetListServiceImpl runningBetListService;
 
         public RunningBetListServiceImplTests(FanexDataFixture dataFixture)
         {

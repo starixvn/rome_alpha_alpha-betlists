@@ -1,0 +1,56 @@
+﻿namespace Alpha.BetLists.Site.Handlers.BetListByBetType
+{
+    using System.Threading.Tasks;
+    using Fanex.BetList.Core.Builder;
+    using Fanex.BetList.Core.Entities;
+    using MediatR;
+    using Params;
+    using Requests.BetListByBetType;
+    using Services;
+    using SmartPunter.Services;
+    using Utilities.IP;
+    using ViewModels.BetListByBetType;
+
+    public class BetListByBetTypeHandler : BetListBaseHandler, IAsyncRequestHandler<BetListByBetTypeQuery, BetListByBetTypeViewModel>
+    {
+        private readonly ForecastService forecastService;
+        private readonly RunningBetListByBetTypeService runningBetListByBetTypeService;
+
+        public BetListByBetTypeHandler(
+            RunningBetListByBetTypeService runningBetListByBetTypeService,
+            ForecastService forecastService,
+            IBetListHTMLBuilder builder,
+            ITicketHelper ticketHelper,
+            ISmartPunterBetListMonitor monitorService,
+            IPService ipService)
+            : base(builder, ticketHelper, monitorService, ipService)
+        {
+            this.forecastService = forecastService;
+            this.runningBetListByBetTypeService = runningBetListByBetTypeService;
+        }
+
+        public async Task<BetListByBetTypeViewModel> Handle(BetListByBetTypeQuery message)
+        {
+            var param = CreateRunningBetListByBetTypeParam(message);
+
+            var betListData = await runningBetListByBetTypeService.GetBetList(param);
+            var supportScoreMapBettypeIds = forecastService.GetBetTypeIdsSupportScoreMap();
+
+            WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betListData.Tickets);
+
+            return new BetListByBetTypeViewModel(
+                message,
+                betListData,
+                Builder,
+                TicketHelper,
+                supportScoreMapBettypeIds);
+        }
+
+        protected internal static RunningBetListByBetTypeParam CreateRunningBetListByBetTypeParam(BetListByBetTypeQuery message)
+            => new RunningBetListByBetTypeParam(
+                message.ViewerId,
+                message.BetType,
+                message.Language,
+                message.ViewerLevel);
+    }
+}

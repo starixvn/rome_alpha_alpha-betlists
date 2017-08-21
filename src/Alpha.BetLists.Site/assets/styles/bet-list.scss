@@ -177,14 +177,22 @@ a {
 
 .bl-export-excel {
     cursor: pointer;
-    font-size: 19px;
-    float: right;
-    margin-top: 4px;
-    padding-right: 4px;
-
+    text-align: right;
+    position: absolute;
+    top: 4px;
+    right: 2px;
     a {
         color: #1f7244;
     }
+}
+
+.icon-excel:before {
+    font-size: 19px;
+}
+
+.bl_title {
+    margin-bottom: 12px;
+    position: relative;
 }
 
 div.match + div.league, div.league, .no-details {

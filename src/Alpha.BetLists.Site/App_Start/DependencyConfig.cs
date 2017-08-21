@@ -142,7 +142,10 @@
                     new CacheRefServiceImpl().GetProductName),
                 Lifestyle.Singleton);
             container.Register<CancelledBetService, CancelledBetServiceImpl>();
+
             container.Register<ICasinoDetailsService, CasinoDetailsService>(Lifestyle.Singleton);
+            container.Register<CorrectScoreService, CorrectScoreServiceImpl>(Lifestyle.Singleton);
+            container.Register<RunningBetListByBetTypeService, RunningBetListByBetTypeServiceImpl>(Lifestyle.Singleton);
         }
     }
 }

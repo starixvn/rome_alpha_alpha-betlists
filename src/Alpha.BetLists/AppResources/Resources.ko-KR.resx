@@ -312,6 +312,9 @@
   <data name="OtherBetTypes" xml:space="preserve">
     <value>다른 배팅종류</value>
   </data>
+  <data name="lblMixParlay" xml:space="preserve">
+    <value>혼합 조합</value>
+  </data>
   <data name="Page" xml:space="preserve">
     <value>페이지</value>
   </data>

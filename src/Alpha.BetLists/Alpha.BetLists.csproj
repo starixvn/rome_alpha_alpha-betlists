@@ -192,12 +192,14 @@
     <Compile Include="Criteria\DailyStatement\GetAllBetListByDayOldCriteria.cs" />
     <Compile Include="Criteria\CancelledBet\GetCancelledBetCriteria.cs" />
     <Compile Include="Constants\ErrorCodeConstants.cs" />
+    <Compile Include="Criteria\CorrectScore\GetRunningCorrectScoreCriteria.cs" />
     <Compile Include="Criteria\GetBalanceUpDayAndMoveBetsDayCriteria.cs" />
     <Compile Include="Criteria\GetProductsCriteria.cs" />
     <Compile Include="Criteria\GetScoreMapBetTypesCriteria.cs" />
     <Compile Include="Criteria\CasinoDetails\GetCasinoDetailsCriteria.cs" />
     <Compile Include="Criteria\MemberBetList\GetBetListAllByDateCriteria.cs" />
     <Compile Include="Criteria\LastBets\GetLastBetsCriteria.cs" />
+    <Compile Include="Criteria\RunningBetListByBetType\GetBetListRunningByBetTypeCriteria.cs" />
     <Compile Include="Criteria\LastBets\GetRunningOutrightMatchCriteria.cs" />
     <Compile Include="Criteria\LastBets\GetRunningOtherMatchCriteria.cs" />
     <Compile Include="Criteria\RunningBetList\GetBetListRunningByDateCriteria.cs" />
@@ -245,10 +247,12 @@
     <Compile Include="Params\GetProductsByGroupHeadlineParam.cs" />
     <Compile Include="Params\MemberBetListParam.cs" />
     <Compile Include="Params\CancelledBetParam.cs" />
+    <Compile Include="Params\RunningBetListByBetTypeParam.cs" />
     <Compile Include="Params\RunningBetListParam.cs" />
     <Compile Include="Params\LastBets\GetLastBetsParam.cs" />
     <Compile Include="Params\LastBets\CheckCanViewLastBetsParam.cs" />
     <Compile Include="Params\ParlayWinLossByMatchParam.cs" />
+    <Compile Include="Params\CorrectScoreParam.cs" />
     <Compile Include="Params\WinLossByMatchParam.cs" />
     <Compile Include="Params\WinLossParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -259,11 +263,13 @@
     <Compile Include="Services\IPServiceImpl.cs" />
     <Compile Include="Services\CancelledBetService.cs" />
     <Compile Include="Services\MemberBetListService.cs" />
+    <Compile Include="Services\RunningBetListByBetTypeService.cs" />
     <Compile Include="Services\RunningBetListService.cs" />
     <Compile Include="Services\ParlayService.cs" />
     <Compile Include="Services\ParlayWinLossByMatchService.cs" />
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="Services\ReportDateService.cs" />
+    <Compile Include="Services\CorrectScoreService.cs" />
     <Compile Include="Services\WinLossByMatchService.cs" />
     <Compile Include="Services\WinLossService.cs" />
     <Compile Include="Utils\SystemTime.cs" />
@@ -291,6 +297,7 @@
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.3.0.2862\analyzers\SonarAnalyzer.CSharp.dll" />
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.3.0.2862\analyzers\SonarAnalyzer.dll" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.2\build\Fanex.Visual-StyleCop.MSBuild.Targets" Condition="Exists('..\..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.2\build\Fanex.Visual-StyleCop.MSBuild.Targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
