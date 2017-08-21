@@ -1,7 +1,7 @@
-﻿using Alpha.BetLists.AppResources;
-
-namespace Alpha.BetLists.Models.CancelledBet
+﻿namespace Alpha.BetLists.Models.CancelledBet
 {
+    using Alpha.BetLists.AppResources;
+
     public class UserBetCount
     {
         public UserBetCount(int custId, string userName, int betCount)

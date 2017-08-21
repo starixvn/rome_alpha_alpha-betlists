@@ -1,18 +1,13 @@
-﻿using Alpha.BetLists.Models;
-using Alpha.BetLists.Site.Controllers;
-using Alpha.BetLists.Site.Requests.CancelledBet;
-using Alpha.BetLists.Site.ViewModels;
-using MediatR;
-using NSubstitute;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit;
-
-namespace Alpha.BetLists.Site.Tests.Controllers
+﻿namespace Alpha.BetLists.Site.Tests.Controllers
 {
+    using Alpha.BetLists.Models;
+    using Alpha.BetLists.Site.Controllers;
+    using Alpha.BetLists.Site.Requests.CancelledBet;
+    using Alpha.BetLists.Site.ViewModels;
+    using MediatR;
+    using NSubstitute;
+    using Xunit;
+
     [Trait("Category", "CancelledBet")]
     public class CancelledBetControllerTests
     {

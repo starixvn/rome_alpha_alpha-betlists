@@ -183,13 +183,11 @@
     </Compile>
     <Compile Include="Configurations\AppSettings.cs" />
     <Compile Include="Constants\BetTypeIdConstants.cs" />
+    <Compile Include="Criteria\CancelledBet\GetUsersHasCancelledBetCriteria.cs" />
     <Compile Include="Criteria\DailyStatement\GetAllBetListByDayCriteria.cs" />
     <Compile Include="Criteria\DailyStatement\GetAllBetListByDayOldCriteria.cs" />
     <Compile Include="Criteria\CancelledBet\GetCancelledBetCriteria.cs" />
     <Compile Include="Constants\ErrorCodeConstants.cs" />
-    <Compile Include="Criteria\CancelledBet\GetUsersHasCancelledBetByMasterCriteria.cs" />
-    <Compile Include="Criteria\CancelledBet\GetUsersHasCancelledBetByAgentCriteria.cs" />
-    <Compile Include="Criteria\CancelledBet\GetUsersHasCancelledBetBySuperCriteria.cs" />
     <Compile Include="Criteria\GetBalanceUpDayAndMoveBetsDayCriteria.cs" />
     <Compile Include="Criteria\GetProductsCriteria.cs" />
     <Compile Include="Criteria\GetScoreMapBetTypesCriteria.cs" />

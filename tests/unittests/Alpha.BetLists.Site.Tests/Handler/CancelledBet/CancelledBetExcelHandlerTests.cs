@@ -1,19 +1,19 @@
-﻿using Alpha.BetLists.Models;
-using Alpha.BetLists.Models.CancelledBet;
-using Alpha.BetLists.Params;
-using Alpha.BetLists.Services;
-using Alpha.BetLists.Site.Handlers.CancelledBet;
-using Alpha.BetLists.Site.Requests.CancelledBet;
-using Alpha.BetLists.Site.Tests.Fixtures;
-using Alpha.BetLists.Tests.TestData;
-using NSubstitute;
-using ONEbook.SpreadSheets;
-using System;
-using System.Collections.Generic;
-using Xunit;
-
-namespace Alpha.BetLists.Site.Tests.Handler.CancelledBet
+﻿namespace Alpha.BetLists.Site.Tests.Handler.CancelledBet
 {
+    using Alpha.BetLists.Models;
+    using Alpha.BetLists.Models.CancelledBet;
+    using Alpha.BetLists.Params;
+    using Alpha.BetLists.Services;
+    using Alpha.BetLists.Site.Handlers.CancelledBet;
+    using Alpha.BetLists.Site.Requests.CancelledBet;
+    using Alpha.BetLists.Site.Tests.Fixtures;
+    using Alpha.BetLists.Tests.TestData;
+    using NSubstitute;
+    using ONEbook.SpreadSheets;
+    using System;
+    using System.Collections.Generic;
+    using Xunit;
+
     [Trait("Category", "CancelledBet")]
     [Collection("ParlayBetListCollection")]
     public class CancelledBetExcelHandlerTests

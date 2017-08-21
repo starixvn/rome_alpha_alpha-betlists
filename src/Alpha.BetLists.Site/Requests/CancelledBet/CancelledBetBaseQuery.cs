@@ -1,9 +1,9 @@
-﻿using Alpha.BetLists.Models;
-using Alpha.BetLists.Site.ViewModels.CancelledBet;
-using MediatR;
-
-namespace Alpha.BetLists.Site.Requests.CancelledBet
+﻿namespace Alpha.BetLists.Site.Requests.CancelledBet
 {
+    using Alpha.BetLists.Models;
+    using Alpha.BetLists.Site.ViewModels.CancelledBet;
+    using MediatR;
+
     public class CancelledBetBaseQuery : BaseQuery, IRequest<CancelledBetViewModel>
     {
         protected CancelledBetBaseQuery(IUser viewer) : base(viewer)

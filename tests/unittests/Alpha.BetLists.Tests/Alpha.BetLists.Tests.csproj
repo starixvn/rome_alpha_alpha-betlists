@@ -190,11 +190,9 @@
     <Compile Include="Criteria\DailyStatement\GetAllBetListByDayOldCriteriaTests.cs" />
     <Compile Include="Criteria\GetProductsByGroupHeadlineCriteriaTests.cs" />
     <Compile Include="Criteria\CancelledBet\GetCancelledBetCriteriaTests.cs" />
-    <Compile Include="Criteria\CancelledBet\GetUsersHasCancelledBetByAgentCriteriaTests.cs" />
+    <Compile Include="Criteria\CancelledBet\GetUsersHasCancelledBetCriteriaTests.cs" />
     <Compile Include="Constants\RoleId.cs" />
     <Compile Include="Criteria\GetBalanceUpDayAndMoveBetsDayCriteriaTests.cs" />
-    <Compile Include="Criteria\CancelledBet\GetUsersHasCancelledBetByMasterCriteriaTests.cs" />
-    <Compile Include="Criteria\CancelledBet\GetUsersHasCancelledBetBySuperCriteriaTests.cs" />
     <Compile Include="Criteria\GetProductsCriteriaTests.cs" />
     <Compile Include="Criteria\GetScoreMapBetTypesCriteriaTests.cs" />
     <Compile Include="Criteria\LastBets\GetLastBetsCriteriaTests.cs" />

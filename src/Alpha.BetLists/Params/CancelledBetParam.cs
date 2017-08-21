@@ -1,7 +1,7 @@
-﻿using Alpha.BetLists.Models;
-
-namespace Alpha.BetLists.Params
+﻿namespace Alpha.BetLists.Params
 {
+    using Alpha.BetLists.Models;
+
     public class CancelledBetParam
     {
         public CancelledBetParam(

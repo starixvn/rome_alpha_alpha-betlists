@@ -1,15 +1,15 @@
-﻿using Alpha.BetLists.Params;
-using Alpha.BetLists.Services;
-using Alpha.BetLists.Site.Requests.CancelledBet;
-using Alpha.BetLists.Site.ViewModels.CancelledBet;
-using Alpha.Utilities.IP;
-using Fanex.BetList.Core.Builder;
-using Fanex.BetList.Core.Entities;
-using MediatR;
-using System.Threading.Tasks;
-
-namespace Alpha.BetLists.Site.Handlers.CancelledBet
+﻿namespace Alpha.BetLists.Site.Handlers.CancelledBet
 {
+    using Alpha.BetLists.Params;
+    using Alpha.BetLists.Services;
+    using Alpha.BetLists.Site.Requests.CancelledBet;
+    using Alpha.BetLists.Site.ViewModels.CancelledBet;
+    using Alpha.Utilities.IP;
+    using Fanex.BetList.Core.Builder;
+    using Fanex.BetList.Core.Entities;
+    using MediatR;
+    using System.Threading.Tasks;
+
     public class CancelledBetHandler : IAsyncRequestHandler<CancelledBetQuery, CancelledBetViewModel>
     {
         private readonly CancelledBetService service;

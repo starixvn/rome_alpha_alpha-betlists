@@ -1,23 +1,18 @@
-﻿using Alpha.BetLists.Models;
-using Alpha.BetLists.Models.CancelledBet;
-using Alpha.BetLists.Params;
-using Alpha.BetLists.Services;
-using Alpha.BetLists.Site.Handlers.CancelledBet;
-using Alpha.BetLists.Site.Requests.CancelledBet;
-using Alpha.BetLists.Tests.TestData;
-using Alpha.Utilities.IP;
-using Fanex.BetList.Core.Builder;
-using Fanex.BetList.Core.Entities;
-using NSubstitute;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit;
-
-namespace Alpha.BetLists.Site.Tests.Handler.CancelledBet
+﻿namespace Alpha.BetLists.Site.Tests.Handler.CancelledBet
 {
+    using Alpha.BetLists.Models;
+    using Alpha.BetLists.Models.CancelledBet;
+    using Alpha.BetLists.Params;
+    using Alpha.BetLists.Services;
+    using Alpha.BetLists.Site.Handlers.CancelledBet;
+    using Alpha.BetLists.Site.Requests.CancelledBet;
+    using Alpha.BetLists.Tests.TestData;
+    using Alpha.Utilities.IP;
+    using Fanex.BetList.Core.Builder;
+    using Fanex.BetList.Core.Entities;
+    using NSubstitute;
+    using Xunit;
+
     [Trait("Category", "CancelledBet")]
     public class CancelledBetHandlerTests
     {
