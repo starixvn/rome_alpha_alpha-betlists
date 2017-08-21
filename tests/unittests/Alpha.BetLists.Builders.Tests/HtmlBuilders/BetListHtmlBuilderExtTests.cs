@@ -7,7 +7,6 @@
     using Builders.Templates;
     using Fanex.BetList.Core.Entities;
     using Models;
-    using Templates;
     using Xunit;
 
     [Trait("Category", "BaseBetList")]

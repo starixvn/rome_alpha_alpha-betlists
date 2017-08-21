@@ -1,13 +1,13 @@
-﻿using Alpha.BetLists.Site.ViewModels.Components;
-using KellermanSoftware.CompareNetObjects;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
-using Xunit;
-
-namespace Alpha.BetLists.Site.Tests.ViewModels.Components
+﻿namespace Alpha.BetLists.Site.Tests.ViewModels.Components
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web.Mvc;
+    using KellermanSoftware.CompareNetObjects;
+    using Site.ViewModels.Components;
+    using Xunit;
+
     [Trait("Category", "Components")]
     public class DateRangePickerViewModelTests
     {

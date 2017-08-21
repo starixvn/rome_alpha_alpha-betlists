@@ -1,26 +1,25 @@
-﻿using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Threading;
-using Alpha.BetLists.Models;
-using Alpha.BetLists.Params.LastBets;
-using Alpha.BetLists.Services;
-using Alpha.BetLists.Site.Handlers.LastBets;
-using Alpha.BetLists.Site.Requests.LastBets;
-using Alpha.BetLists.Site.Tests.Constants;
-using Alpha.BetLists.Site.Tests.Fixtures;
-using Alpha.BetLists.Site.ViewModels.LastBets;
-using Alpha.BetLists.Tests.TestData;
-using Alpha.SmartPunter.Services;
-using Alpha.Web.Models;
-using Fanex.BetList.Core.Entities;
-using Fanex.Caching;
-using KellermanSoftware.CompareNetObjects;
-using NSubstitute;
-using Xunit;
-
-namespace Alpha.BetLists.Site.Tests.Handler.LastBets
+﻿namespace Alpha.BetLists.Site.Tests.Handler.LastBets
 {
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Linq;
+    using System.Threading;
+    using BetLists.Models;
+    using Constants;
+    using Fanex.BetList.Core.Entities;
+    using Fanex.Caching;
+    using Fixtures;
+    using Handlers.LastBets;
+    using KellermanSoftware.CompareNetObjects;
+    using NSubstitute;
+    using Params.LastBets;
+    using Requests.LastBets;
+    using Services;
+    using Site.ViewModels.LastBets;
+    using SmartPunter.Services;
+    using Web.Models;
+    using Xunit;
+
     [Trait("Category", "LastBets")]
     [Collection("BetListCollection")]
     public class LastBetsHandlerTests

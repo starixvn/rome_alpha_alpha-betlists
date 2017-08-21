@@ -1,15 +1,15 @@
-﻿using System.Collections.Generic;
-using Alpha.BetLists.Models;
-using Alpha.BetLists.Site.Requests.LastBets;
-using Alpha.BetLists.Site.Tests.Fixtures;
-using Alpha.BetLists.Site.ViewModels.LastBets;
-using Fanex.BetList.Core.Entities;
-using KellermanSoftware.CompareNetObjects;
-using NSubstitute;
-using Xunit;
-
-namespace Alpha.BetLists.Site.Tests.ViewModels.LastBets
+﻿namespace Alpha.BetLists.Site.Tests.ViewModels.LastBets
 {
+    using System.Collections.Generic;
+    using BetLists.Models;
+    using Fanex.BetList.Core.Entities;
+    using Fixtures;
+    using KellermanSoftware.CompareNetObjects;
+    using NSubstitute;
+    using Requests.LastBets;
+    using Site.ViewModels.LastBets;
+    using Xunit;
+
     [Trait("Category", "LastBets")]
     [Collection("BetListCollection")]
     public class BetDataViewModelTests

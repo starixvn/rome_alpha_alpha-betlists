@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using Alpha.BetLists.Configurations;
-using Alpha.BetLists.Models;
-using Alpha.Web.Models;
-using MediatR;
-
-namespace Alpha.BetLists.Site.Requests.LastBets
+﻿namespace Alpha.BetLists.Site.Requests.LastBets
 {
+    using System.Collections.Generic;
+    using BetLists.Models;
+    using Configurations;
+    using MediatR;
+    using Web.Models;
+
     public class CheckCanViewLastBetsQuery : IRequest<Result>
     {
         public CheckCanViewLastBetsQuery(IUser viewer)

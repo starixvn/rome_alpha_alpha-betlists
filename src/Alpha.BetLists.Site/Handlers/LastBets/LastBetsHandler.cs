@@ -1,21 +1,21 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using Alpha.BetLists.AppResources;
-using Alpha.BetLists.Constants;
-using Alpha.BetLists.Models;
-using Alpha.BetLists.Params.LastBets;
-using Alpha.BetLists.Services;
-using Alpha.BetLists.Site.Requests.LastBets;
-using Alpha.BetLists.Site.ViewModels.LastBets;
-using Alpha.SmartPunter.Services;
-using Alpha.Utilities.IP;
-using Alpha.Web.Models;
-using Fanex.BetList.Core.Builder;
-using Fanex.BetList.Core.Entities;
-using MediatR;
-
-namespace Alpha.BetLists.Site.Handlers.LastBets
+﻿namespace Alpha.BetLists.Site.Handlers.LastBets
 {
+    using System.Linq;
+    using System.Threading.Tasks;
+    using AppResources;
+    using BetLists.Constants;
+    using BetLists.Models;
+    using Fanex.BetList.Core.Builder;
+    using Fanex.BetList.Core.Entities;
+    using MediatR;
+    using Params.LastBets;
+    using Requests.LastBets;
+    using Services;
+    using SmartPunter.Services;
+    using Utilities.IP;
+    using ViewModels.LastBets;
+    using Web.Models;
+
     public class LastBetsHandler :
         BetListBaseHandler,
         IRequestHandler<LastBetsQuery, LastBetsViewModel>,

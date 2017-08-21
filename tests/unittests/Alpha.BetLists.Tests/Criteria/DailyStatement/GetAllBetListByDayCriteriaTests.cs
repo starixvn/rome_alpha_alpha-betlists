@@ -1,7 +1,7 @@
 ﻿namespace Alpha.BetLists.Tests.Criteria.DailyStatement
 {
-    using BetLists.Criteria.DailyStatement;
     using System;
+    using BetLists.Criteria.DailyStatement;
     using Xunit;
 
     [Trait("Category", "DailyStatement")]

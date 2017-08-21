@@ -1,17 +1,16 @@
-﻿using System;
-using System.Linq;
-using Alpha.BetLists.Criteria.ParlayWinLossByMatch;
-using Alpha.BetLists.Models;
-using Alpha.BetLists.Params;
-using Alpha.BetLists.Services;
-using Alpha.BetLists.Tests.Fixtures;
-using Alpha.BetLists.Tests.TestData;
-using Fanex.BetList.Core.Entities;
-using NSubstitute;
-using Xunit;
-
-namespace Alpha.BetLists.Tests.Services
+﻿namespace Alpha.BetLists.Tests.Services
 {
+    using System;
+    using System.Linq;
+    using BetLists.Criteria.ParlayWinLossByMatch;
+    using BetLists.Models;
+    using BetLists.Params;
+    using BetLists.Services;
+    using Fixtures;
+    using NSubstitute;
+    using TestData;
+    using Xunit;
+
     [Trait("Category", "ParlayWinLossByMatch")]
     [Collection("FanexDataCollection")]
     public class ParlayWinLossByMatchServiceImplTests

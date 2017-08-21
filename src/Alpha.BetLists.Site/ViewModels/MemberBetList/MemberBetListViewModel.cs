@@ -1,5 +1,9 @@
 ﻿namespace Alpha.BetLists.Site.ViewModels.MemberBetList
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web.Mvc;
     using AppResources;
     using BetLists.Models;
     using Components;
@@ -8,10 +12,6 @@
     using Fanex.BetList.Core.Entities;
     using Params;
     using Requests.MemberBetList;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web.Mvc;
     using Utils;
     using WinLoss;
 

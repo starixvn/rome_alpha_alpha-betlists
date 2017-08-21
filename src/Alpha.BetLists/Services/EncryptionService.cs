@@ -1,7 +1,7 @@
-﻿using Sunplus.Agent.Utilities;
-
-namespace Alpha.BetLists.Services
+﻿namespace Alpha.BetLists.Services
 {
+    using Sunplus.Agent.Utilities;
+
     public interface EncryptionService
     {
         string CfsEncode(string codeStr, int numberOfEncodeResult);

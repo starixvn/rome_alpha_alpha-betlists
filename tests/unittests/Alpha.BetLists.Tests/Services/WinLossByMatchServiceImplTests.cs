@@ -1,18 +1,18 @@
-﻿using System;
-using System.Linq;
-using Alpha.BetLists.Constants;
-using Alpha.BetLists.Criteria.WinLossByMatch;
-using Alpha.BetLists.Models;
-using Alpha.BetLists.Params;
-using Alpha.BetLists.Services;
-using Alpha.BetLists.Tests.Fixtures;
-using Alpha.BetLists.Tests.TestData;
-using Fanex.BetList.Core.Entities;
-using NSubstitute;
-using Xunit;
-
-namespace Alpha.BetLists.Tests.Services
+﻿namespace Alpha.BetLists.Tests.Services
 {
+    using System;
+    using System.Linq;
+    using BetLists.Constants;
+    using BetLists.Criteria.WinLossByMatch;
+    using BetLists.Models;
+    using BetLists.Params;
+    using BetLists.Services;
+    using Fanex.BetList.Core.Entities;
+    using Fixtures;
+    using NSubstitute;
+    using TestData;
+    using Xunit;
+
     [Trait("Category", "WinLossByMatch")]
     [Collection("FanexDataCollection")]
     public class WinLossByMatchServiceImplTests

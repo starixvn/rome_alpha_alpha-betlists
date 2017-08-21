@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Configuration;
-using Alpha.BetLists.Configurations;
-using Xunit;
-
-namespace Alpha.BetLists.Tests.Configurations
+﻿namespace Alpha.BetLists.Tests.Configurations
 {
+    using System.Collections.Generic;
+    using System.Collections.Specialized;
+    using System.Configuration;
+    using BetLists.Configurations;
+    using Xunit;
+
     public class AppSettingsTests
     {
         [Fact]

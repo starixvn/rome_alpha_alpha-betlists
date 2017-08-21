@@ -1,9 +1,9 @@
-﻿using Alpha.BetLists.Constants;
-using Fanex.Data;
-using Fanex.Data.Repository;
-
-namespace Alpha.BetLists.Criteria.LastBets
+﻿namespace Alpha.BetLists.Criteria.LastBets
 {
+    using Constants;
+    using Fanex.Data;
+    using Fanex.Data.Repository;
+
     public class GetLastBetsCriteria : CriteriaBase
     {
         public GetLastBetsCriteria(

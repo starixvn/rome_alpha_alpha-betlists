@@ -1,12 +1,12 @@
-﻿using System.Threading.Tasks;
-using System.Web.Mvc;
-using Alpha.BetLists.Constants;
-using Alpha.BetLists.Models;
-using Alpha.BetLists.Site.Requests.LastBets;
-using MediatR;
-
-namespace Alpha.BetLists.Site.Controllers
+﻿namespace Alpha.BetLists.Site.Controllers
 {
+    using System.Threading.Tasks;
+    using System.Web.Mvc;
+    using BetLists.Constants;
+    using BetLists.Models;
+    using MediatR;
+    using Requests.LastBets;
+
     public class LastBetsController : BetListBaseController
     {
         private readonly IUser viewer;

@@ -1,5 +1,6 @@
 ﻿namespace Alpha.BetLists.Site.Handlers.WinLoss
 {
+    using System.Threading.Tasks;
     using AppResources;
     using BetLists.Models;
     using Extensions;
@@ -12,7 +13,6 @@
     using Requests.WinLoss;
     using Services;
     using SmartPunter.Services;
-    using System.Threading.Tasks;
     using Utilities.IP;
     using ViewModels;
     using ViewModels.WinLoss;

@@ -1,5 +1,7 @@
 ﻿namespace Alpha.BetLists.Site.Tests.Handler.DailyStatement
 {
+    using System;
+    using System.Collections.Generic;
     using BetLists.Models;
     using BetLists.Tests.Constants;
     using BetLists.Tests.TestData;
@@ -12,8 +14,6 @@
     using Requests.DailyStatement;
     using Services;
     using Site.ViewModels;
-    using System;
-    using System.Collections.Generic;
     using Xunit;
 
     [Trait("Category", "DailyStatement")]

@@ -1,9 +1,9 @@
 ﻿namespace Alpha.BetLists.Site.Controllers
 {
-    using MediatR;
-    using Requests.RunningBetList;
     using System.Threading.Tasks;
     using System.Web.Mvc;
+    using MediatR;
+    using Requests.RunningBetList;
 
     public class RunningBetListController : BetListBaseController
     {

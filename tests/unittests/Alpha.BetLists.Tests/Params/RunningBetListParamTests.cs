@@ -1,8 +1,8 @@
 ﻿namespace Alpha.BetLists.Tests.Params
 {
-    using BetLists.Params;
     using System;
     using System.Linq;
+    using BetLists.Params;
     using Xunit;
 
     [Trait("Category", "RunningBetList")]

@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using Alpha.BetLists.Models;
-
-namespace Alpha.BetLists.Tests.TestData
+﻿namespace Alpha.BetLists.Tests.TestData
 {
+    using System.Collections.Generic;
+    using BetLists.Models;
+
     public static class UserLevelTestCases
     {
         private static IEnumerable<object[]> uplineUserLevelAndDownlineValueDataSources = new List<object[]>()

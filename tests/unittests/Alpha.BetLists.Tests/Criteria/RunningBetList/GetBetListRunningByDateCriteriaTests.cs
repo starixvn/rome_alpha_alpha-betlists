@@ -1,7 +1,7 @@
 ﻿namespace Alpha.BetLists.Tests.Criteria.RunningBetList
 {
-    using BetLists.Criteria.RunningBetList;
     using System;
+    using BetLists.Criteria.RunningBetList;
     using Xunit;
 
     [Trait("Category", "RunningBetList")]

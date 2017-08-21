@@ -1,9 +1,12 @@
 ﻿namespace Alpha.BetLists.Site.Tests.Handler
 {
-    using AppResources;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web.Hosting;
+    using System.Web.Mvc;
     using BetLists.Models;
     using BetLists.Tests.TestData;
-    using Builders.ExcelBuilders;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.TicketHelper;
     using Fixtures;
@@ -11,14 +14,7 @@
     using KellermanSoftware.CompareNetObjects;
     using NSubstitute;
     using Requests.WinLoss;
-    using Site.ViewModels.Blocks;
     using Site.ViewModels.WinLoss;
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    using System.Web.Hosting;
-    using System.Web.Mvc;
     using Xunit;
 
     [Trait("Category", "BaseBetList")]

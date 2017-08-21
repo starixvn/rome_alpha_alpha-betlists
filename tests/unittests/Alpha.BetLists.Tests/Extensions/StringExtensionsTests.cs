@@ -1,8 +1,8 @@
-﻿using Alpha.BetLists.Extensions;
-using Xunit;
-
-namespace Alpha.BetLists.Tests.Extensions
+﻿namespace Alpha.BetLists.Tests.Extensions
 {
+    using BetLists.Extensions;
+    using Xunit;
+
     public class StringExtensionsTests
     {
         [Fact]

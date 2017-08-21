@@ -1,10 +1,10 @@
 ﻿namespace Alpha.BetLists.Site.ViewModels.Components
 {
-    using AppResources;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
+    using AppResources;
 
     public class DateRangePickerViewModel
     {

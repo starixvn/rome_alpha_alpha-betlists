@@ -1,13 +1,13 @@
-﻿using Alpha.BetLists.Models;
-using Alpha.BetLists.Site.Controllers;
-using Alpha.BetLists.Site.Requests.WinLoss;
-using Alpha.BetLists.Site.ViewModels;
-using MediatR;
-using NSubstitute;
-using Xunit;
-
-namespace Alpha.BetLists.Site.Tests.Controllers
+﻿namespace Alpha.BetLists.Site.Tests.Controllers
 {
+    using BetLists.Models;
+    using MediatR;
+    using NSubstitute;
+    using Requests.WinLoss;
+    using Site.Controllers;
+    using Site.ViewModels;
+    using Xunit;
+
     [Trait("Category", "WinLoss")]
     public class WinLossControllerTests
     {

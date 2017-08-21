@@ -1,13 +1,13 @@
-﻿using Alpha.BetLists.AppResources;
-using Alpha.BetLists.Models;
-using Alpha.BetLists.Site.Requests.WinLossByMatch;
-using Alpha.BetLists.Site.ViewModels.WinLoss;
-using Alpha.RemotingRef;
-using Fanex.BetList.Core.Builder;
-using Fanex.BetList.Core.Entities;
-
-namespace Alpha.BetLists.Site.ViewModels.ParlayWinLossByMatch
+﻿namespace Alpha.BetLists.Site.ViewModels.ParlayWinLossByMatch
 {
+    using Alpha.BetLists.AppResources;
+    using Alpha.BetLists.Models;
+    using Alpha.BetLists.Site.Requests.WinLossByMatch;
+    using Alpha.BetLists.Site.ViewModels.WinLoss;
+    using Alpha.RemotingRef;
+    using Fanex.BetList.Core.Builder;
+    using Fanex.BetList.Core.Entities;
+
     public class ParlayWinLossByMatchViewModel : WinLossViewModel
     {
         public ParlayWinLossByMatchViewModel(

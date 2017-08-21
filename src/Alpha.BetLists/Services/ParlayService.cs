@@ -3,7 +3,6 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using Criteria.Parlay;
-    using Fanex.BetList.Core.Entities;
     using Fanex.Data.Repository;
     using Models;
     using Models.Parlay;

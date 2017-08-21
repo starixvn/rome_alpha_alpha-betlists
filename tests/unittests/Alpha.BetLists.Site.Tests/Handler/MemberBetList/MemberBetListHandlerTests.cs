@@ -1,5 +1,9 @@
 ﻿namespace Alpha.BetLists.Site.Tests.Handler.MemberBetList
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web.Mvc;
     using BetLists.Tests.TestData;
     using Fixtures;
     using Handlers.MemberBetList;
@@ -9,10 +13,6 @@
     using Requests.MemberBetList;
     using Services;
     using Site.ViewModels.MemberBetList;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web.Mvc;
     using Xunit;
 
     [Trait("Category", "MemberBetList")]

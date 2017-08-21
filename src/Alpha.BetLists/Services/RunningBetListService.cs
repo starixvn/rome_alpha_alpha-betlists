@@ -1,13 +1,13 @@
 ﻿namespace Alpha.BetLists.Services
 {
+    using System.Linq;
+    using System.Threading.Tasks;
     using Criteria.RunningBetList;
     using Extensions;
     using Fanex.BetList.Core.Entities;
     using Fanex.Data.Repository;
     using Models;
     using Params;
-    using System.Linq;
-    using System.Threading.Tasks;
 
     public interface RunningBetListService
     {

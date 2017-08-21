@@ -1,10 +1,10 @@
 ﻿namespace Alpha.BetLists.Site.Tests.Request.MemberBetList
 {
+    using System;
     using BetLists.Models;
     using BetLists.Tests.Constants;
     using Fixtures;
     using Requests.MemberBetList;
-    using System;
     using Utils;
     using Xunit;
 

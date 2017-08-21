@@ -1,8 +1,8 @@
-﻿using Alpha.BetLists.Criteria;
-using Xunit;
-
-namespace Alpha.BetLists.Tests.Criteria
+﻿namespace Alpha.BetLists.Tests.Criteria
 {
+    using BetLists.Criteria;
+    using Xunit;
+
     public class GetBalanceUpDayAndMoveBetsDayCriteriaTests
     {
         [Fact]

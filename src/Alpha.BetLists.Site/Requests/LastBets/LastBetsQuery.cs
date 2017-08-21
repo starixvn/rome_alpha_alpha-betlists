@@ -1,9 +1,9 @@
-﻿using Alpha.BetLists.Models;
-using Alpha.BetLists.Site.ViewModels.LastBets;
-using MediatR;
-
-namespace Alpha.BetLists.Site.Requests.LastBets
+﻿namespace Alpha.BetLists.Site.Requests.LastBets
 {
+    using BetLists.Models;
+    using MediatR;
+    using ViewModels.LastBets;
+
     public class LastBetsQuery : BaseQuery, IRequest<LastBetsViewModel>
     {
         public LastBetsQuery(IUser viewer) : base(viewer)

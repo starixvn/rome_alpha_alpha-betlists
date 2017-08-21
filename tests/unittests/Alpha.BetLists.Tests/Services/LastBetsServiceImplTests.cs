@@ -1,21 +1,21 @@
-﻿using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
-using Alpha.BetLists.Configurations;
-using Alpha.BetLists.Criteria.LastBets;
-using Alpha.BetLists.Models;
-using Alpha.BetLists.Params.LastBets;
-using Alpha.BetLists.Services;
-using Alpha.BetLists.Tests.Constants;
-using Alpha.BetLists.Tests.Fixtures;
-using Alpha.BetLists.Tests.TestData;
-using Fanex.Data.Repository;
-using KellermanSoftware.CompareNetObjects;
-using NSubstitute;
-using Xunit;
-
-namespace Alpha.BetLists.Tests.Services
+﻿namespace Alpha.BetLists.Tests.Services
 {
+    using System.Collections.Generic;
+    using System.Collections.Specialized;
+    using System.Linq;
+    using BetLists.Configurations;
+    using BetLists.Criteria.LastBets;
+    using BetLists.Models;
+    using BetLists.Params.LastBets;
+    using BetLists.Services;
+    using Constants;
+    using Fanex.Data.Repository;
+    using Fixtures;
+    using KellermanSoftware.CompareNetObjects;
+    using NSubstitute;
+    using TestData;
+    using Xunit;
+
     [Trait("Category", "LastBets")]
     [Collection("FanexDataCollection")]
     public class LastBetsServiceImplTests

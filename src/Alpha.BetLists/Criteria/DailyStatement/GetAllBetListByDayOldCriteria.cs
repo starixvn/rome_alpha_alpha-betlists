@@ -1,9 +1,9 @@
-﻿using Fanex.Data;
-using Fanex.Data.Repository;
-using System;
-
-namespace Alpha.BetLists.Criteria.DailyStatement
+﻿namespace Alpha.BetLists.Criteria.DailyStatement
 {
+    using System;
+    using Fanex.Data;
+    using Fanex.Data.Repository;
+
     public class GetAllBetListByDayOldCriteria : CriteriaBase
     {
         public GetAllBetListByDayOldCriteria(

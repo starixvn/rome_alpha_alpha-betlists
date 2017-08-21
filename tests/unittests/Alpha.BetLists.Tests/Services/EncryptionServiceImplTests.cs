@@ -1,8 +1,8 @@
-﻿using Alpha.BetLists.Services;
-using Xunit;
-
-namespace Alpha.BetLists.Tests.Services
+﻿namespace Alpha.BetLists.Tests.Services
 {
+    using BetLists.Services;
+    using Xunit;
+
     public class EncryptionServiceImplTests
     {
         [Fact]

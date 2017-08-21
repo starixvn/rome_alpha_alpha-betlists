@@ -1,10 +1,10 @@
-﻿using System;
-using Alpha.BetLists.Criteria.ParlayWinLossByMatch;
-using Alpha.BetLists.Models;
-using Xunit;
-
-namespace Alpha.BetLists.Tests.Criteria.ParlayWinLossByMatch
+﻿namespace Alpha.BetLists.Tests.Criteria.ParlayWinLossByMatch
 {
+    using System;
+    using BetLists.Criteria.ParlayWinLossByMatch;
+    using BetLists.Models;
+    using Xunit;
+
     [Trait("Category", "ParlayWinLossByMatch")]
     public class GetParlayWinLossByMatchCriteriaTests
     {

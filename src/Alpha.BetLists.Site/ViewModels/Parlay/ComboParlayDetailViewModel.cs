@@ -1,14 +1,14 @@
 ﻿namespace Alpha.BetLists.Site.ViewModels.Parlay
 {
     using System.Collections.Generic;
-    using Fanex.BetList.Core.Utils;
     using System.Linq;
+    using System.Web;
+    using System.Web.Mvc;
     using AppResources;
     using BetLists.Models.Parlay;
     using Fanex.BetList.Core.Entities;
-    using System.Web;
+    using Fanex.BetList.Core.Utils;
     using Requests.Parlay;
-    using System.Web.Mvc;
 
     public class ComboParlayDetailViewModel
     {

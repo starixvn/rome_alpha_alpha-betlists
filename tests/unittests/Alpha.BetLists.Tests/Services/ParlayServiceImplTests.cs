@@ -6,7 +6,6 @@
     using BetLists.Models;
     using BetLists.Models.Parlay;
     using BetLists.Services;
-    using Fanex.BetList.Core.Entities;
     using Fixtures;
     using NSubstitute;
     using TestData;

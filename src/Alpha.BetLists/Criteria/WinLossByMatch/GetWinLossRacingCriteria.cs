@@ -1,10 +1,10 @@
-﻿using System;
-using Alpha.BetLists.Models;
-using Fanex.Data;
-using Fanex.Data.Repository;
-
-namespace Alpha.BetLists.Criteria.WinLossByMatch
+﻿namespace Alpha.BetLists.Criteria.WinLossByMatch
 {
+    using System;
+    using Fanex.Data;
+    using Fanex.Data.Repository;
+    using Models;
+
     public class GetWinLossRacingCriteria : CriteriaBase
     {
         public GetWinLossRacingCriteria(

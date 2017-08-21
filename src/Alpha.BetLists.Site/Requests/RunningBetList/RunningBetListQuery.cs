@@ -1,10 +1,10 @@
 ﻿namespace Alpha.BetLists.Site.Requests.RunningBetList
 {
+    using System;
     using BetLists.Models;
     using Constants;
     using Extensions;
     using MediatR;
-    using System;
     using Utils;
     using ViewModels.RunningBetList;
 

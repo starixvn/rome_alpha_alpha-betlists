@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using Alpha.BetLists.Models;
-using Alpha.BetLists.Tests.Constants;
-
-namespace Alpha.BetLists.Tests.TestData
+﻿namespace Alpha.BetLists.Tests.TestData
 {
+    using System.Collections.Generic;
+    using BetLists.Models;
+    using Constants;
+
     public static class LastBetsTestData
     {
         public static readonly IEnumerable<TicketDto> AllTickets = new List<TicketDto>

@@ -1,8 +1,8 @@
 ﻿namespace Alpha.BetLists.Criteria.DailyStatement
 {
+    using System;
     using Fanex.Data;
     using Fanex.Data.Repository;
-    using System;
 
     public class GetAllBetListByDayCriteria : CriteriaBase
     {

@@ -1,10 +1,5 @@
 ﻿namespace Alpha.BetLists.Builders.Tests.Templates
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using Builders.Templates;
     using Xunit;
 

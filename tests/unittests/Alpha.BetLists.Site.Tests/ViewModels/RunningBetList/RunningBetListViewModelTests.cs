@@ -1,18 +1,17 @@
 ﻿namespace Alpha.BetLists.Site.Tests.ViewModels.RunningBetList
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web.Mvc;
     using BetLists.Models;
     using BetLists.Tests.Constants;
     using BetLists.Tests.TestData;
-    using Fanex.BetList.Core.Entities;
     using Fixtures;
     using NSubstitute;
     using Params;
     using Requests.RunningBetList;
     using Site.ViewModels.RunningBetList;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web.Mvc;
     using Utils;
     using Xunit;
 

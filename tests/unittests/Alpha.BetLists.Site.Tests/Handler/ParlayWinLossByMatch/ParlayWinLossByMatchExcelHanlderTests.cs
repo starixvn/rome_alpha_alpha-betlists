@@ -1,5 +1,9 @@
 ﻿namespace Alpha.BetLists.Site.Tests.Handler.ParlayWinLossByMatch
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Threading;
     using Alpha.BetLists.Models;
     using Alpha.BetLists.Params;
     using Alpha.BetLists.Services;
@@ -12,10 +16,6 @@
     using Alpha.RemotingRef;
     using NSubstitute;
     using ONEbook.SpreadSheets;
-    using System;
-    using System.Collections.Generic;
-    using System.Globalization;
-    using System.Threading;
     using Xunit;
 
     [Trait("Category", "ParlayWinLossByMatch")]

@@ -1,21 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Alpha.BetLists.Models;
-using Alpha.BetLists.Params;
-using Alpha.BetLists.Services;
-using Alpha.BetLists.Site.Handlers.ParlayWinLossByMatch;
-using Alpha.BetLists.Site.Requests.WinLossByMatch;
-using Alpha.BetLists.Site.Tests.Fixtures;
-using Alpha.BetLists.Site.ViewModels.ParlayWinLossByMatch;
-using Alpha.BetLists.Tests.TestData;
-using Fanex.BetList.Core.Entities;
-using KellermanSoftware.CompareNetObjects;
-using NSubstitute;
-using Xunit;
-
-namespace Alpha.BetLists.Site.Tests.Handler.ParlayWinLossByMatch
+﻿namespace Alpha.BetLists.Site.Tests.Handler.ParlayWinLossByMatch
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using BetLists.Models;
+    using BetLists.Tests.TestData;
+    using Fanex.BetList.Core.Entities;
+    using Fixtures;
+    using Handlers.ParlayWinLossByMatch;
+    using KellermanSoftware.CompareNetObjects;
+    using NSubstitute;
+    using Params;
+    using Requests.WinLossByMatch;
+    using Services;
+    using Site.ViewModels.ParlayWinLossByMatch;
+    using Xunit;
+
     [Trait("Category", "WinLossByMatch")]
     [Collection("BetListCollection")]
     public class ParlayWinLossByMatchHanlderTests

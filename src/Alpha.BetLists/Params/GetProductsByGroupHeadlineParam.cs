@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace Alpha.BetLists.Params
+﻿namespace Alpha.BetLists.Params
 {
+    using System;
+
     public class GetProductsByGroupHeadlineParam
     {
         public GetProductsByGroupHeadlineParam(int custId, DateTime minDate)
