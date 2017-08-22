@@ -332,4 +332,7 @@
   <data name="FunctionTurnOffError" xml:space="preserve">
     <value>由於目前服務器繁忙所以此功能暫時關閉，有請稍後再試。 不便之處 敬請見諒！</value>
   </data>
+  <data name="LastBets" xml:space="preserve">
+    <value>最後投注</value>
+  </data>
 </root>

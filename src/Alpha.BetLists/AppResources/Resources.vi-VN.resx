@@ -334,4 +334,7 @@
   <data name="Last" xml:space="preserve">
     <value>Cuối cùng</value>
   </data>
+  <data name="LastBets" xml:space="preserve">
+    <value>Cược mới nhất</value>
+  </data>
 </root>

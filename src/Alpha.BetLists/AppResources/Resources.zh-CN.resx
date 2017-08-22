@@ -314,7 +314,7 @@
   <data name="CancelledBet" xml:space="preserve">
     <value>已删除/作废注单</value>
   </data>
-   <data name="LastBetsMonitoring" xml:space="preserve">
+  <data name="LastBetsMonitoring" xml:space="preserve">
     <value>最后投注监测</value>
   </data>
   <data name="AllBetTypes" xml:space="preserve">
@@ -331,5 +331,8 @@
   </data>
   <data name="FunctionTurnOffError" xml:space="preserve">
     <value>由于目前服务器繁忙所以此功能暂时关闭，有请稍后再试。 不便之处 敬请见谅！</value>
+  </data>
+  <data name="LastBets" xml:space="preserve">
+    <value>最后投注</value>
   </data>
 </root>

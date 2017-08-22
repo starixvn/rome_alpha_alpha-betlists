@@ -97,20 +97,20 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All Bet Types.
+        /// </summary>
+        public static string AllBetTypes {
+            get {
+                return ResourceManager.GetString("AllBetTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All Member.
         /// </summary>
         public static string AllMember {
             get {
                 return ResourceManager.GetString("AllMember", resourceCulture);
-            }
-        }
-        
-        /// <summary>
- 	///   Looks up a localized string similar to All Bet Types.
-        /// </summary>
-        public static string AllBetTypes {
-            get {
-                return ResourceManager.GetString("AllBetTypes", resourceCulture);
             }
         }
         
@@ -144,8 +144,6 @@ namespace Alpha.BetLists.AppResources {
         /// <summary>
         ///   Looks up a localized string similar to Bet List (Running).
         /// </summary>
-        ///   Looks up a localized string similar to Bet List (Running).
-        /// </summary>
         public static string BetlistRunning {
             get {
                 return ResourceManager.GetString("BetlistRunning", resourceCulture);
@@ -154,6 +152,7 @@ namespace Alpha.BetLists.AppResources {
         
         /// <summary>
         ///   Looks up a localized string similar to bets.
+        /// </summary>
         public static string Bets {
             get {
                 return ResourceManager.GetString("Bets", resourceCulture);
@@ -296,7 +295,7 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hide filters.
+        ///   Looks up a localized string similar to Hide Filter.
         /// </summary>
         public static string HideFilter {
             get {
