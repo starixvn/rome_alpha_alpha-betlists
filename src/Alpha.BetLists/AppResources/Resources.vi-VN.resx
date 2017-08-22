@@ -337,4 +337,7 @@
   <data name="LastBets" xml:space="preserve">
     <value>Cược mới nhất</value>
   </data>
+  <data name="OtherBetTypes" xml:space="preserve">
+    <value>Loại cược khác</value>
+  </data>
 </root>

@@ -335,4 +335,7 @@
   <data name="LastBets" xml:space="preserve">
     <value>最後投注</value>
   </data>
+  <data name="OtherBetTypes" xml:space="preserve">
+    <value>其他投注項目</value>
+  </data>
 </root>

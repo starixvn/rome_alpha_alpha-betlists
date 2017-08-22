@@ -309,4 +309,7 @@
   <data name="FunctionTurnOffError" xml:space="preserve">
     <value>현재 많은 서버의 이용자로 인하여 일시적으로 이 기능을 사용하실수 없습니다. 잠시 후 다시 시도해 보시기 바랍니다. 서비스 이용에 불편을 드려 죄송합니다.</value>
   </data>
+  <data name="OtherBetTypes" xml:space="preserve">
+    <value>다른 배팅종류</value>
+  </data>
 </root>
