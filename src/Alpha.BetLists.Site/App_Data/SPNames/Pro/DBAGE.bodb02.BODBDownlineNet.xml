@@ -530,7 +530,7 @@
 
     </Setting>
   </Function>
- <Function Name="Last Bets Monitoring">
+  <Function Name="Last Bets Monitoring">
     <Setting Key="Age_Monitor_BetlistSel_Ag_AllBettypes" SpName="Age_Monitor_BetlistSel_Ag_AllBettypes" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="TicketDto"></Mapping>
@@ -616,7 +616,7 @@
     <Setting Key="Age_Monitor_OutrightSel" SpName="Age_Monitor_OutrightSel" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0"></Setting>
   </Function>
   <Function Name="Daily Statement">
-    <Setting Key="Age_BetList_SelByDayAll_Mem" SpName="Age_BetList_SelByDayAll_Mem_UAT2" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
+    <Setting Key="Age_BetList_SelByDayAll_Mem" SpName="Age_BetList_SelByDayAll_Mem" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="TicketDto"></Mapping>

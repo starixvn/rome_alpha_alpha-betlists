@@ -324,7 +324,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Allbet.css" />
     <Content Include="App_Data\SPNames\Internal\DBAGE.bodb02.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Internal\DBAGE.bodb_AGE.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Internal\DBARC.bodb_Archive.BODBDownlineNetView.xml" />

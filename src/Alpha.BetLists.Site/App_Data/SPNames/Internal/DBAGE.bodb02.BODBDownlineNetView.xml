@@ -447,7 +447,7 @@
 
     </Setting>
     <Setting Key="Age_BetList_SelDeleted_UserList_Ag" SpName="Age_BetList_SelDeleted_UserList_Ag" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" >
-            <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto"></Mapping>
+      <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="TicketDto"></Mapping>
       <Mapping DataField="hdp2" ObjectProperty="Handicap2" Class="TicketDto"></Mapping>
@@ -475,7 +475,7 @@
 
     </Setting>
     <Setting Key="Age_BetList_SelDeleted_UserList_MAg" SpName="Age_BetList_SelDeleted_UserList_MAg" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" >
-            <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto"></Mapping>
+      <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="TicketDto"></Mapping>
       <Mapping DataField="hdp2" ObjectProperty="Handicap2" Class="TicketDto"></Mapping>
@@ -503,7 +503,7 @@
 
     </Setting>
     <Setting Key="Age_BetList_SelDeleted_UserList_SAg" SpName="Age_BetList_SelDeleted_UserList_SAg" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" >
-            <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto"></Mapping>
+      <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="TicketDto"></Mapping>
       <Mapping DataField="hdp2" ObjectProperty="Handicap2" Class="TicketDto"></Mapping>
@@ -530,9 +530,9 @@
       <Mapping DataField="spositiontaking" ObjectProperty="SuperPT" Class="TicketData"></Mapping>
     </Setting>
   </Function>
-  
-   <Function Name="Daily Statement">
-    <Setting Key="Age_BetList_SelByDayAll_Mem" SpName="Age_BetList_SelByDayAll_Mem_UAT2" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0">
+
+  <Function Name="Daily Statement">
+    <Setting Key="Age_BetList_SelByDayAll_Mem" SpName="Age_BetList_SelByDayAll_Mem" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0">
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="TicketDto"></Mapping>
