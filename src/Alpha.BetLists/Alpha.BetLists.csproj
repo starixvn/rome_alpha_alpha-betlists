@@ -35,7 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Alpha.SmartPunter, Version=1.0.0.6, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Alpha.SmartPunter.1.0.0.0-WinLossBetList-09\lib\net40\Alpha.SmartPunter.dll</HintPath>
+      <HintPath>..\..\packages\Alpha.SmartPunter.1.0.0.0\lib\net40\Alpha.SmartPunter.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Alpha.Utilities.IP, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -47,11 +47,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.BetTrade, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.Core.2.38.0\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
+      <HintPath>..\..\packages\Fanex.BetList.Core.2.39.1\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.BetList.Core, Version=2.38.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.Core.2.38.0\lib\net40\Fanex.BetList.Core.dll</HintPath>
+    <Reference Include="Fanex.BetList.Core, Version=2.39.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.Core.2.39.1\lib\net40\Fanex.BetList.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.NumberGame, Version=1.0.0.6, Culture=neutral, processorArchitecture=MSIL">
@@ -74,8 +74,8 @@
       <HintPath>..\..\packages\Fanex.Data.Repository.1.0.2\lib\net461\Fanex.Data.Repository.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.Logging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.Logging.1.0.0.0\lib\net40\Fanex.Logging.dll</HintPath>
+    <Reference Include="Fanex.Logging, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Logging.1.0.1-beta2\lib\net461\Fanex.Logging.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.Products, Version=0.0.0.1, Culture=neutral, processorArchitecture=MSIL">
@@ -94,8 +94,8 @@
       <HintPath>..\..\packages\EnterpriseLibrary.Data.5.0.414.0\lib\net40\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EnterpriseLibrary.Logging.5.0.414.0\lib\net40\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EnterpriseLibrary.Logging.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -134,12 +134,12 @@
       <HintPath>..\..\packages\SPSRemoting.1.0.0\lib\net40\SPSRemoting.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sunplus.Agent.Model.Base, Version=3.0.2.6, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Sunplus.Agent.Model.Base.3.0.2.6\lib\net40\Sunplus.Agent.Model.Base.dll</HintPath>
+    <Reference Include="Sunplus.Agent.Model.Base, Version=3.0.2.7, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Sunplus.Agent.Model.Base.3.0.2.7\lib\net40\Sunplus.Agent.Model.Base.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sunplus.Agent.Model.Definitions, Version=3.0.1.10, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Sunplus.Agent.Model.Definitions.3.0.1.10\lib\net40\Sunplus.Agent.Model.Definitions.dll</HintPath>
+    <Reference Include="Sunplus.Agent.Model.Definitions, Version=3.0.1.11, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Sunplus.Agent.Model.Definitions.3.0.1.11\lib\net40\Sunplus.Agent.Model.Definitions.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Sunplus.Agent.Model.IpFormatter, Version=3.0.0.1, Culture=neutral, processorArchitecture=MSIL">
@@ -148,6 +148,10 @@
     </Reference>
     <Reference Include="Sunplus.Core.Common, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Sunplus.Core.Common.1.2.0.0-beta-02\lib\net40\Sunplus.Core.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Sunplus.Agent.Utilities, Version=3.0.0.5, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Sunplus.Agent.Utilities.3.0.0.5\lib\net40\Sunplus.Agent.Utilities.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -174,7 +178,10 @@
     </Compile>
     <Compile Include="Configurations\AppSettings.cs" />
     <Compile Include="Constants\BetTypeIdConstants.cs" />
+    <Compile Include="Criteria\DailyStatement\GetAllBetListByDayCriteria.cs" />
+    <Compile Include="Criteria\DailyStatement\GetAllBetListByDayOldCriteria.cs" />
     <Compile Include="Criteria\CancelledBet\GetCancelledBetCriteria.cs" />
+    <Compile Include="Constants\ErrorCodeConstants.cs" />
     <Compile Include="Criteria\CancelledBet\GetUsersHasCancelledBetByMasterCriteria.cs" />
     <Compile Include="Criteria\CancelledBet\GetUsersHasCancelledBetByAgentCriteria.cs" />
     <Compile Include="Criteria\CancelledBet\GetUsersHasCancelledBetBySuperCriteria.cs" />
@@ -182,6 +189,9 @@
     <Compile Include="Criteria\GetProductsCriteria.cs" />
     <Compile Include="Criteria\GetScoreMapBetTypesCriteria.cs" />
     <Compile Include="Criteria\MemberBetList\GetBetListAllByDateCriteria.cs" />
+    <Compile Include="Criteria\LastBets\GetLastBetsCriteria.cs" />
+    <Compile Include="Criteria\LastBets\GetRunningOutrightMatchCriteria.cs" />
+    <Compile Include="Criteria\LastBets\GetRunningOtherMatchCriteria.cs" />
     <Compile Include="Criteria\RunningBetList\GetBetListRunningByDateCriteria.cs" />
     <Compile Include="Criteria\Parlay\GetParlayBetListCriteria.cs" />
     <Compile Include="Criteria\Parlay\GetComboParlayDetailCriteria.cs" />
@@ -197,6 +207,7 @@
     <Compile Include="Criteria\WinLossByMatch\GetWinLossRacingCriteria.cs" />
     <Compile Include="Criteria\WinLoss\GetBetListWinLossByDateCriteria.cs" />
     <Compile Include="Criteria\WinLoss\GetBetListWinLossByDateOldCriteria.cs" />
+    <Compile Include="Criteria\GetProductsByGroupHeadlineCriteria.cs" />
     <Compile Include="DataAccesses\SmartPunterDataAccess.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
@@ -210,6 +221,7 @@
     <Compile Include="Models\CancelledBet\UserBetCount.cs" />
     <Compile Include="Models\Enumeration.cs" />
     <Compile Include="Models\IUser.cs" />
+    <Compile Include="Models\MatchInfo.cs" />
     <Compile Include="Models\NapUserFunctionPermission.cs" />
     <Compile Include="Models\Parlay\MatchDetail.cs" />
     <Compile Include="Models\Parlay\ComboParlayDetail.cs" />
@@ -218,14 +230,21 @@
     <Compile Include="Models\ScoreMap.cs" />
     <Compile Include="Models\TicketDto.cs" />
     <Compile Include="Models\UserLevel.cs" />
+    <Compile Include="Params\DailyStatementParam.cs" />
+    <Compile Include="Params\GetProductsByGroupHeadlineParam.cs" />
     <Compile Include="Params\MemberBetListParam.cs" />
     <Compile Include="Params\CancelledBetParam.cs" />
     <Compile Include="Params\RunningBetListParam.cs" />
+    <Compile Include="Params\LastBets\GetLastBetsParam.cs" />
+    <Compile Include="Params\LastBets\CheckCanViewLastBetsParam.cs" />
     <Compile Include="Params\ParlayWinLossByMatchParam.cs" />
     <Compile Include="Params\WinLossByMatchParam.cs" />
     <Compile Include="Params\WinLossParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\ForeCastService.cs" />
+    <Compile Include="Services\DailyStatementService.cs" />
+    <Compile Include="Services\ForecastService.cs" />
+    <Compile Include="Services\EncryptionService.cs" />
+    <Compile Include="Services\LastBetsService.cs" />
     <Compile Include="Services\IPServiceImpl.cs" />
     <Compile Include="Services\CancelledBetService.cs" />
     <Compile Include="Services\MemberBetListService.cs" />

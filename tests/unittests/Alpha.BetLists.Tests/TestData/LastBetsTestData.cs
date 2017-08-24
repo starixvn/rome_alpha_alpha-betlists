@@ -1,0 +1,40 @@
+﻿using System.Collections.Generic;
+using Alpha.BetLists.Models;
+using Alpha.BetLists.Tests.Constants;
+
+namespace Alpha.BetLists.Tests.TestData
+{
+    public static class LastBetsTestData
+    {
+        public static readonly IEnumerable<TicketDto> AllTickets = new List<TicketDto>
+        {
+            CreateTicketDto(BetTypeIdConstants.Outright),
+            CreateTicketDto(BetTypeIdConstants.Handicap),
+            CreateTicketDto(BetTypeIdConstants.VirtualHorseRacing_Win),
+            CreateTicketDto(BetTypeIdConstants.HorseRacing_Win, 1000),
+            CreateTicketDto(BetTypeIdConstants.HorseRacing_Win, 1001),
+            CreateTicketDto(BetTypeIdConstants.Handicap, 1002),
+            CreateTicketDto(BetTypeIdConstants.Outright, 1003)
+        };
+
+        public static readonly IEnumerable<MatchInfo> RunningOutrightMatch = new List<MatchInfo>
+        {
+            CreateMatchInfo(matchId: 1000)
+        };
+
+        public static readonly IEnumerable<MatchInfo> RunningOtherMatch = new List<MatchInfo>
+        {
+            CreateMatchInfo(matchId: 1001)
+        };
+
+        private static TicketDto CreateTicketDto(int betType, int matchId = 0)
+                => new TicketDto
+                {
+                    BetTypeId = betType,
+                    MatchId = matchId
+                };
+
+        private static MatchInfo CreateMatchInfo(int matchId)
+            => new MatchInfo(0, string.Empty, matchId, 0, string.Empty, 0, 0, string.Empty, string.Empty);
+    }
+}

@@ -8,6 +8,7 @@ namespace Alpha.BetLists.Tests.Constants
         Justification = "Reviewed. Suppression is OK here.")]
     public static class BetTypeIdConstants
     {
+        public const int Handicap = 1;
         public const int Outright = 10;
 
         public const int HorseRacing_Win = 31;

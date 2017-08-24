@@ -57,7 +57,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Alpha.SmartPunter, Version=1.0.0.6, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Alpha.SmartPunter.1.0.0.0-WinLossBetList-09\lib\net40\Alpha.SmartPunter.dll</HintPath>
+      <HintPath>..\..\packages\Alpha.SmartPunter.1.0.0.0\lib\net40\Alpha.SmartPunter.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Alpha.Utilities.IP, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -72,36 +72,44 @@
       <HintPath>..\..\packages\Dapper.1.50.2\lib\net451\Dapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.BetList.Allbet, Version=1.0.0.8, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.Allbet.1.0.0.8\lib\net40\Fanex.BetList.Allbet.dll</HintPath>
+    <Reference Include="Fanex.BetList.Allbet, Version=1.0.0.9, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.Allbet.1.0.0.9\lib\net40\Fanex.BetList.Allbet.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.BetTrade, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.Core.2.38.0\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
+      <HintPath>..\..\packages\Fanex.BetList.Core.2.39.1\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.BetList.CockFighting, Version=1.0.0.4, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.CockFighting.1.0.0.4\lib\net40\Fanex.BetList.CockFighting.dll</HintPath>
+    <Reference Include="Fanex.BetList.CockFighting, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.CockFighting.1.0.1\lib\net40\Fanex.BetList.CockFighting.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.BetList.ColossusBets, Version=1.0.1.7, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.ColossusBets.1.0.1.7\lib\net40\Fanex.BetList.ColossusBets.dll</HintPath>
+    <Reference Include="Fanex.BetList.ColossusBets, Version=1.0.1.8, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.ColossusBets.1.0.1.8\lib\net40\Fanex.BetList.ColossusBets.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.BetList.Core, Version=2.38.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.Core.2.38.0\lib\net40\Fanex.BetList.Core.dll</HintPath>
+    <Reference Include="Fanex.BetList.Core, Version=2.39.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.Core.2.39.1\lib\net40\Fanex.BetList.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.BetList.GlobalGaming, Version=1.0.0.5, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.GlobalGaming.1.0.0.5\lib\net40\Fanex.BetList.GlobalGaming.dll</HintPath>
+    <Reference Include="Fanex.BetList.GlobalGaming, Version=1.0.0.7, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.GlobalGaming.1.0.0.7\lib\net40\Fanex.BetList.GlobalGaming.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.BetList.GoldDeluxe, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.GoldDeluxe.1.0.5.0\lib\net40\Fanex.BetList.GoldDeluxe.dll</HintPath>
+    <Reference Include="Fanex.BetList.GoldDeluxe, Version=1.0.5.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.GoldDeluxe.1.0.5.1\lib\net40\Fanex.BetList.GoldDeluxe.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.BetList.MetricGaming, Version=1.0.4.4, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.MetricGaming.1.0.4.4\lib\net40\Fanex.BetList.MetricGaming.dll</HintPath>
+    <Reference Include="Fanex.BetList.Keno, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.Keno.1.0.0\lib\net40\Fanex.BetList.Keno.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Fanex.BetList.KenoLottery, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.KenoLottery.1.0.0\lib\net40\Fanex.BetList.KenoLottery.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Fanex.BetList.MetricGaming, Version=1.0.4.5, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.MetricGaming.1.0.4.5\lib\net40\Fanex.BetList.MetricGaming.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.MyanmarOdds, Version=1.0.1.4, Culture=neutral, processorArchitecture=MSIL">
@@ -116,16 +124,16 @@
       <HintPath>..\..\packages\Fanex.BetList.NumberGame.1.0.0.6\lib\net40\Fanex.BetList.NumberGame.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.BetList.RnGCasino, Version=1.0.1.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.RnGCasino.1.0.1.2\lib\net40\Fanex.BetList.RnGCasino.dll</HintPath>
+    <Reference Include="Fanex.BetList.RnGCasino, Version=1.0.1.3, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.RnGCasino.1.0.1.3\lib\net40\Fanex.BetList.RnGCasino.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.VirtualSports, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.VirtualSports.1.1.1.0\lib\net40\Fanex.BetList.VirtualSports.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.BetList.Voidbridge, Version=1.0.0.10, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.Voidbridge.1.0.0.14\lib\net40\Fanex.BetList.Voidbridge.dll</HintPath>
+    <Reference Include="Fanex.BetList.Voidbridge, Version=1.0.0.15, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.Voidbridge.1.0.0.15\lib\net40\Fanex.BetList.Voidbridge.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.Caching, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -249,20 +257,20 @@
       <HintPath>..\..\packages\SPSRemoting.1.0.0\lib\net40\SPSRemoting.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sunplus.Agent.Model.Base, Version=3.0.2.6, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Sunplus.Agent.Model.Base.3.0.2.6\lib\net40\Sunplus.Agent.Model.Base.dll</HintPath>
+    <Reference Include="Sunplus.Agent.Model.Base, Version=3.0.2.7, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Sunplus.Agent.Model.Base.3.0.2.7\lib\net40\Sunplus.Agent.Model.Base.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sunplus.Agent.Model.Definitions, Version=3.0.1.10, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Sunplus.Agent.Model.Definitions.3.0.1.10\lib\net40\Sunplus.Agent.Model.Definitions.dll</HintPath>
+    <Reference Include="Sunplus.Agent.Model.Definitions, Version=3.0.1.11, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Sunplus.Agent.Model.Definitions.3.0.1.11\lib\net40\Sunplus.Agent.Model.Definitions.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Sunplus.Agent.Model.IpFormatter, Version=3.0.0.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Sunplus.Agent.Model.IpFormatter.3.0.0.1\lib\net40\Sunplus.Agent.Model.IpFormatter.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sunplus.Agent.Utilities, Version=3.0.0.5, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Sunplus.Agent.Utilities.3.0.0.5\lib\net40\Sunplus.Agent.Utilities.dll</HintPath>
+    <Reference Include="Sunplus.Agent.Utilities, Version=3.0.0.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Sunplus.Agent.Utilities.3.0.0.4\lib\net40\Sunplus.Agent.Utilities.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Sunplus.Core.Common, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -328,7 +336,9 @@
     <Content Include="App_Data\SPNames\Local\DBCust.IPDB.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Local\DBPOLICY.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Local\DBCust.CustDB.BODBDownlineNet.xml" />
-    <Content Include="App_Data\SPNames\Local\DBAGE.bodb02.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Local\DBAGE.bodb02.BODBDownlineNet.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_Data\SPNames\Local\DBLOG.bodb_CustomerLog.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Local\DBONUSER.ON_USER.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Pro\DBAGE.bodb02.BODBDownlineNet.xml" />
@@ -375,6 +385,14 @@
     <Content Include="assets\bundles\member-betlist\member-betlist.min.js">
       <DependentUpon>member-betlist.js</DependentUpon>
     </Content>
+    <Content Include="assets\bundles\last-bets.css" />
+    <Content Include="assets\bundles\last-bets.js" />
+    <Content Include="assets\bundles\last-bets.min.css">
+      <DependentUpon>last-bets.css</DependentUpon>
+    </Content>
+    <Content Include="assets\bundles\last-bets.min.js">
+      <DependentUpon>last-bets.js</DependentUpon>
+    </Content>
     <Content Include="assets\bundles\running-betlist\running-betlist.js" />
     <Content Include="assets\bundles\running-betlist\running-betlist.min.js">
       <DependentUpon>running-betlist.js</DependentUpon>
@@ -384,6 +402,9 @@
     <Content Include="assets\scripts\tests\app\templates\common-template.html" />
     <Content Include="assets\scripts\tests\app\templates\daterangepicker-template.html" />
     <Content Include="assets\scripts\tests\app\templates\iframe-template.html" />
+    <Content Include="assets\scripts\tests\app\templates\last-bets\not-reset-trans-id-template.html" />
+    <Content Include="assets\scripts\tests\app\templates\last-bets\reset-trans-id-template.html" />
+    <Content Include="assets\scripts\tests\app\templates\last-bets\normal-template.html" />
     <Content Include="assets\scripts\tests\app\templates\member-betlist\member-betlist-template.html" />
     <Content Include="assets\scripts\tests\app\templates\member-betlist\member-betlist-with-hide-filter.html" />
     <Content Include="assets\scripts\tests\app\templates\parlay-template.html" />
@@ -392,6 +413,7 @@
     <Content Include="assets\scripts\tests\app\templates\running-betlist\running-betlist-with-uncheck-getall-template.html" />
     <Content Include="assets\scripts\tests\libs\bootstrap-datetimepicker.js" />
     <Content Include="assets\scripts\tests\libs\bootstrap-modal.js" />
+    <Content Include="assets\scripts\tests\libs\cookie.js" />
     <Content Include="assets\scripts\tests\libs\datepicker.js" />
     <Content Include="assets\scripts\tests\libs\jasmine-jquery.js" />
     <Content Include="assets\scripts\tests\libs\jasmine.js" />
@@ -400,6 +422,7 @@
     <Content Include="assets\scripts\tests\libs\moment.js" />
     <Content Include="assets\scripts\tests\libs\multiselect.js" />
     <Content Include="assets\scripts\tests\libs\nexDatePicker.js" />
+    <Content Include="assets\scripts\tests\libs\shortcut.js" />
     <Content Include="assets\scripts\tests\libs\store.js" />
     <Content Include="assets\scripts\tests\libs\tooltip.js" />
     <Content Include="assets\styles\bet-list.css">
@@ -422,11 +445,18 @@
     </Content>
     <Content Include="assets\styles\images\1F.gif" />
     <Content Include="assets\styles\images\1L.gif" />
+    <Content Include="assets\styles\images\ajax-loader-small.gif" />
     <Content Include="assets\styles\images\ajax-loader.gif" />
     <Content Include="assets\styles\images\firstGoal.gif" />
     <Content Include="assets\styles\images\green-star.gif" />
     <Content Include="assets\styles\images\lastGoal.gif" />
     <Content Include="assets\styles\images\note_title.gif" />
+    <Content Include="assets\styles\last-bets.css">
+      <DependentUpon>last-bets.scss</DependentUpon>
+    </Content>
+    <Content Include="assets\styles\last-bets.min.css">
+      <DependentUpon>last-bets.css</DependentUpon>
+    </Content>
     <Content Include="Global.asax" />
     <Content Include="App_Data\SPNames\Local\DBARC.bodb_Archive.BODBDownlineNet.xml" />
     <Content Include="App_Code\Blocks\Trans.cshtml" />
@@ -466,10 +496,12 @@
     <Content Include="assets\scripts\typings\globals\jasmine-jquery\typings.json" />
     <Content Include="Alpha.BetLists.Site.Debug.ruleset" />
     <Content Include="Alpha.BetLists.Site.ruleset" />
+    <Content Include="assets\styles\last-bets.scss" />
     <Content Include="App_Code\Components\ProductMultiSelection.cshtml" />
     <Content Include="assets\scripts\typings\globals\jquery.blockui\typings.json" />
     <Content Include="App_Code\Components\DateRangePicker.cshtml" />
     <Content Include="assets\styles\filter.scss" />
+    <Content Include="App_Data\ExcelTemplates\DailyStatement\Member.xls" />
     <Content Include="App_Data\ExcelTemplates\CancelledBet\Agent.xls" />
     <Content Include="App_Data\ExcelTemplates\CancelledBet\Master.xls" />
     <Content Include="App_Data\ExcelTemplates\CancelledBet\Super.xls" />
@@ -487,6 +519,9 @@
     <Content Include="Views\RunningBetList\Index.cshtml" />
     <Content Include="Views\CancelledBet\Index.cshtml" />
     <Content Include="Views\MemberBetList\Index.cshtml" />
+    <Content Include="Views\DailyStatement\Index.cshtml" />
+    <Content Include="Views\LastBets\Index.cshtml" />
+    <Content Include="Views\LastBets\BetData.cshtml" />
     <Content Include="Web.backupMNL.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
@@ -578,11 +613,14 @@
     </Content>
     <Content Include="Web.AppSettings.uat.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.AppSettings.uat2.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.uat2.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
@@ -593,7 +631,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Constants\UserSelectedDateRangeOptionConstant.cs" />
     <Compile Include="Controllers\BetListBaseController.cs" />
+    <Compile Include="Controllers\DailyStatementController.cs" />
     <Compile Include="Controllers\MemberBetListController.cs" />
+    <Compile Include="Controllers\LastBetsController.cs" />
     <Compile Include="Controllers\RunningBetListController.cs" />
     <Compile Include="Controllers\CancelledBetController.cs" />
     <Compile Include="Handlers\CancelledBet\CancelledBetExcelHandler.cs" />
@@ -611,7 +651,10 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Handlers\BetListExcelBaseHandler.cs" />
     <Compile Include="Handlers\BetListBaseHandler.cs" />
+    <Compile Include="Handlers\DailyStatement\DailyStatementExcelHandler.cs" />
+    <Compile Include="Handlers\DailyStatement\DailyStatementHandler.cs" />
     <Compile Include="Handlers\MemberBetList\MemberBetListHandler.cs" />
+    <Compile Include="Handlers\LastBets\LastBetsHandler.cs" />
     <Compile Include="Handlers\RunningBetList\RunningBetListHandler.cs" />
     <Compile Include="Handlers\ParlayWinLossByMatch\ParlayWinLossByMatchExcelHanlder.cs" />
     <Compile Include="Handlers\ParlayWinLossByMatch\ParlayWinLossByMatchHandler.cs" />
@@ -628,8 +671,13 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\BaseQuery.cs" />
+    <Compile Include="Requests\DailyStatement\DailyStatementExcelQuery.cs" />
+    <Compile Include="Requests\DailyStatement\DailyStatementQuery.cs" />
     <Compile Include="Requests\MemberBetList\MemberBetListQuery.cs" />
     <Compile Include="Requests\RunningBetList\RunningBetListQuery.cs" />
+    <Compile Include="Requests\LastBets\CheckCanViewLastBetsQuery.cs" />
+    <Compile Include="Requests\LastBets\GetLastBetsQuery.cs" />
+    <Compile Include="Requests\LastBets\LastBetsQuery.cs" />
     <Compile Include="Requests\ParlayWinLossByMatch\ParlayWinLossByMatchExcelQuery.cs" />
     <Compile Include="Requests\ParlayWinLossByMatch\ParlayWinLossByMatchQuery.cs" />
     <Compile Include="Requests\Parlay\ComboParlayDetailExcelQuery.cs" />
@@ -646,9 +694,12 @@
     <Compile Include="ViewModels\Components\DateRangePickerViewModel.cs" />
     <Compile Include="ViewModels\CancelledBet\CancelledBetViewModel.cs" />
     <Compile Include="ViewModels\Components\ProductMultiSelectionViewModel.cs" />
+    <Compile Include="ViewModels\DailyStatement\DailyStatementViewModel.cs" />
     <Compile Include="ViewModels\ExcelFileViewModel.cs" />
     <Compile Include="ViewModels\MemberBetList\MemberBetListViewModel.cs" />
     <Compile Include="ViewModels\RunningBetList\RunningBetListViewModel.cs" />
+    <Compile Include="ViewModels\LastBets\BetDataViewModel.cs" />
+    <Compile Include="ViewModels\LastBets\LastBetsViewModel.cs" />
     <Compile Include="ViewModels\ParlayWinLossByMatch\ParlayWinLossByMatchViewModel.cs" />
     <Compile Include="ViewModels\Parlay\ComboParlayDetailWrapper.cs" />
     <Compile Include="ViewModels\Parlay\ComboParlayDetailViewModel.cs" />
@@ -662,7 +713,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="packages.config" />
-    <Content Include="Web.AppSettings.config" />
+    <Content Include="Web.AppSettings.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -699,6 +752,7 @@
     <TypeScriptCompile Include="assets\scripts\src\betlist\status\result-details\sportsbook-result-details.ts" />
     <TypeScriptCompile Include="assets\scripts\src\components\daterangepicker.ts" />
     <TypeScriptCompile Include="assets\scripts\src\components\productmultiselection.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\last-bets\last-bets.ts" />
     <TypeScriptCompile Include="assets\scripts\src\components\single-selection-dropdown.ts" />
     <TypeScriptCompile Include="assets\scripts\src\member-betlist\member-betlist-init.ts" />
     <TypeScriptCompile Include="assets\scripts\src\member-betlist\member-betlist.ts" />
@@ -713,6 +767,7 @@
     <TypeScriptCompile Include="assets\scripts\tests\app\components\daterangepicker-tests.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\components\productmultiselection-tests.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\components\single-selection-dropdown-tests.ts" />
+    <TypeScriptCompile Include="assets\scripts\tests\app\last-bets\last-bets-tests.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\member-betlist\member-betlist-test.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\running-betlist\running-betlist-test.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\status\ip-details-tests.ts" />
@@ -774,13 +829,15 @@
     <Error Condition="!Exists('..\..\packages\Fanex.Chutzpah.4.3.3\build\Fanex.Chutzpah.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Fanex.Chutzpah.4.3.3\build\Fanex.Chutzpah.targets'))" />
   </Target>
   <PropertyGroup>
-    <PostBuildEvent>cd $(ProjectDir)
-cd ..
-cd ..
-cd build
-BuildTask.Release
+    <PostBuildEvent>
+      cd $(ProjectDir)
+      cd ..
+      cd ..
+      cd build
+      BuildTask.Release
       if not exist "$(WebProjectOutputDir)\bin\Roslyn" md "$(WebProjectOutputDir)\bin\Roslyn"
-      start /MIN xcopy /s /y /R "$(OutDir)roslyn\*.*" "$(WebProjectOutputDir)\bin\Roslyn"</PostBuildEvent>
+      start /MIN xcopy /s /y /R "$(OutDir)roslyn\*.*" "$(WebProjectOutputDir)\bin\Roslyn"
+    </PostBuildEvent>
   </PropertyGroup>
   <Import Project="..\..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.2\build\Fanex.Visual-StyleCop.MSBuild.Targets" Condition="Exists('..\..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.2\build\Fanex.Visual-StyleCop.MSBuild.Targets')" />
   <Import Project="..\..\packages\Fanex.Chutzpah.4.3.3\build\Fanex.Chutzpah.targets" Condition="Exists('..\..\packages\Fanex.Chutzpah.4.3.3\build\Fanex.Chutzpah.targets')" />

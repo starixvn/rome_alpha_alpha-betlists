@@ -21,5 +21,10 @@ namespace Alpha.BetLists.Constants
         public const int VirtualHorseRacing_Win = 1231;
         public const int VirtualHorseRacing_Place = 1232;
         public const int VirtualHorseRacing_WinPlace = 1233;
+
+        public const int AllBetTypes = 0;
+        public const int Handicap = 1;
+        public const int OverUnder = 3;
+        public const int OtherBetTypes = 19001;
     }
 }

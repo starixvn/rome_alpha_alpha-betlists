@@ -9,18 +9,18 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    public interface ForeCastService
+    public interface ForecastService
     {
         IEnumerable<int> GetBetTypeIdsSupportScoreMap();
     }
 
-    public class ForeCastServiceImpl : ForeCastService
+    public class ForecastServiceImpl : ForecastService
     {
         private const int ScoreMapBetTypesCacheTimeInHours = 2;
         private const string ScoreMapBetTypesCacheKey = "Alpha.BetLists.Services.ForeCastServiceImpl.ScoreMapBetTypes";
         private readonly IDynamicRepository dynamicRepository;
 
-        public ForeCastServiceImpl(IDynamicRepository dynamicRepository)
+        public ForecastServiceImpl(IDynamicRepository dynamicRepository)
         {
             this.dynamicRepository = dynamicRepository;
         }

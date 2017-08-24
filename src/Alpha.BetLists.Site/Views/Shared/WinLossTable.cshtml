@@ -79,6 +79,15 @@
     }
 </table>
 
+<div class="comm_note">
+    <div class="title">
+        <span class="star">*</span>@Resources.Note
+    </div>
+    <div class="content">
+        @Resources.CommissionRoundNote
+    </div>
+</div>
+
 @Html.Hidden("betlist-path", HttpContext.Current.Response.ApplyAppPathModifier("~/"))
 @Html.Hidden("old-main-path", Model.OldMainPath)
 @Html.Hidden("results-path", Model.ResultsPath)

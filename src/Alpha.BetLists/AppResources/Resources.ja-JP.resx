@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -178,12 +178,6 @@
   <data name="result" xml:space="preserve">
     <value>結果</value>
   </data>
-  <data name="subTotalWinlost" xml:space="preserve">
-    <value>Subtotal(winlost)</value>
-  </data>
-  <data name="subTotalCom" xml:space="preserve">
-    <value>小計(手数料)</value>
-  </data>
   <data name="total" xml:space="preserve">
     <value>合計</value>
   </data>
@@ -279,9 +273,18 @@
   </data>
   <data name="VoidAndReject" xml:space="preserve">
     <value>無効/キャンセルされたベットリスト(残り3 日
-</value>
+ </value>
   </data>
   <data name="CancelledBet" xml:space="preserve">
     <value>取り消されたベット</value>
+  </data>
+  <data name="Handicap" xml:space="preserve">
+    <value>ハンディキャップ</value>
+  </data>
+  <data name="OverUnder" xml:space="preserve">
+    <value>オーバー・アンダー</value>
+  </data>
+  <data name="Last" xml:space="preserve">
+    <value>最後</value>
   </data>
 </root>

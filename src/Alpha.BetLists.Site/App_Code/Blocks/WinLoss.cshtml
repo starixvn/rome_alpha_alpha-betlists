@@ -7,12 +7,12 @@ var model = new WinLostBlockViewModel(ticket);
 
     <td class="win-loss-block text-right nonbreak">
         <div>
-            <span class="win-loss">@(new HtmlString(model.WinLost))</span>
+            <span class="bl_underdog">@(new HtmlString(model.WinLost))</span>
         </div>
         @if (model.CommVisibility)
         {
             <div>
-                <span class="comm">@(new HtmlString(model.Comm))</span>
+                <span class="bl_underdog">@(new HtmlString(model.Comm))</span>
             </div>
         }
     </td>

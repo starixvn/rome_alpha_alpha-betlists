@@ -44,6 +44,7 @@ namespace Alpha.BetLists.Criteria.WinLossByMatch
 
         public DateTime ToDate { get; }
 
+        [SpParam(SqlParamName = "MoveBetsDay")]
         public DateTime MoveBetsDate { get; }
 
         [SpParam(Ignored = true)]

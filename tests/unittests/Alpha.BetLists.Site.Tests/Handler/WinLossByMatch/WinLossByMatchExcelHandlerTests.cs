@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Threading;
-using Alpha.BetLists.Models;
+﻿using Alpha.BetLists.Models;
 using Alpha.BetLists.Params;
 using Alpha.BetLists.Services;
 using Alpha.BetLists.Site.Handlers.WinLossByMatch;
@@ -10,9 +6,12 @@ using Alpha.BetLists.Site.Requests.WinLossByMatch;
 using Alpha.BetLists.Site.Tests.Constants;
 using Alpha.BetLists.Site.Tests.Fixtures;
 using Alpha.BetLists.Tests.TestData;
-using Fanex.BetList.Core.Entities;
 using NSubstitute;
 using ONEbook.SpreadSheets;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Threading;
 using Xunit;
 
 namespace Alpha.BetLists.Site.Tests.Handler.WinLossByMatch
@@ -25,9 +24,11 @@ namespace Alpha.BetLists.Site.Tests.Handler.WinLossByMatch
         private readonly IUser user;
         private readonly Workbook<TicketDto> workbook;
         private readonly DateTime today;
+        private readonly BetListFixture betlistFixture;
 
         public WinLossByMatchExcelHandlerTests(BetListFixture betlistFixture)
         {
+            this.betlistFixture = betlistFixture;
             var winLossService = Substitute.For<WinLossByMatchService>();
             winLossService.GetBetList(Arg.Any<WinLossByMatchParam>()).Returns(BetListDataTest.BetListData);
 
@@ -36,12 +37,11 @@ namespace Alpha.BetLists.Site.Tests.Handler.WinLossByMatch
             user.LevelId.Returns(UserLevel.Agent.Value);
 
             workbook = Substitute.For<Workbook<TicketDto>>();
-            workbook.UseTemplate(Arg.Any<ONEbook.SpreadSheets.TemplateInfo>()).Returns(workbook);
+            workbook.UseTemplate(Arg.Any<TemplateInfo>()).Returns(workbook);
             workbook.Header(Arg.Any<Func<string, string>>()).Returns(workbook);
             workbook.Title(Arg.Any<string>()).Returns(workbook);
             workbook.Body(Arg.Any<IEnumerable<TicketDto>>(), Arg.Any<Mapper<TicketDto>>()).Returns(workbook);
             workbook.Footer(Arg.Any<TicketDto>(), Arg.Any<Mapper<TicketDto>>()).Returns(workbook);
-            workbook.Sheet(Arg.Any<string>()).Returns(workbook);
 
             winLossHandler = new WinLossByMatchExcelHandler(
                 winLossService,
@@ -102,19 +102,6 @@ namespace Alpha.BetLists.Site.Tests.Handler.WinLossByMatch
             workbook.Received().Header(Arg.Any<Func<string, string>>());
         }
 
-        [Fact]
-        public void HandleExportWinLossByMatchExcelQuery_Always_ExportsCorrectSheetName()
-        {
-            // Arrange
-            var message = CreateWinLossByMatchExcelQuery(custLevelId: 4);
-
-            // Act
-            winLossHandler.Handle(message).GetAwaiter().GetResult();
-
-            // Assert
-            workbook.Received().Sheet(Arg.Is("Bet List"));
-        }
-
         [Theory]
         [InlineData(4)]
         [InlineData(3)]
@@ -150,7 +137,9 @@ namespace Alpha.BetLists.Site.Tests.Handler.WinLossByMatch
                 Race = "5",
                 LiveIndicator = 1,
                 CustName = "CustName",
-                CustLevelId = custLevelId
+                CustLevelId = custLevelId,
+
+                RtfHelper = betlistFixture.RtfHelper
             };
     }
 }

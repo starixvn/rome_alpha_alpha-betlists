@@ -1,8 +1,12 @@
 ﻿namespace Alpha.BetLists.Configurations
 {
     using System;
+    using System.Collections.Generic;
     using System.Collections.Specialized;
     using System.Configuration;
+    using System.Linq;
+    using Extensions;
+    using Fanex.Common;
 
     public static class AppSettings
     {
@@ -25,6 +29,18 @@
         public static string DefaultIpAddress => GetConfigValue("DefaultIpAddress");
 
         public static string LocalIpAddress => GetConfigValue("LocalIpAddress");
+
+        public static bool EnableBetsListMonitoring => Converter.ToBool(GetConfigValue("EnableBetsListMonitoring"));
+
+        public static IEnumerable<int> UsersAlwaysAllowAccessBetsListMonitoring
+        {
+            get
+            {
+                var config = GetConfigValue("UsersAlwaysAllowAccessBetsListMonitoring");
+
+                return config == null ? Enumerable.Empty<int>() : config.SplitByCommaWithNoneEmptyEntries().ToListInt();
+            }
+        }
 
         public static string GetConfigValue(string configName) => AppSettingValues[configName];
 

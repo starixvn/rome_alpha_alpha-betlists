@@ -12,6 +12,11 @@
   {
     "outputFile": "assets/styles/filter.css",
     "inputFile": "assets/styles/filter.scss"
+  },
+
+  {
+    "outputFile": "assets/styles/last-bets.css",
+    "inputFile": "assets/styles/last-bets.scss"
   }
 
 ]

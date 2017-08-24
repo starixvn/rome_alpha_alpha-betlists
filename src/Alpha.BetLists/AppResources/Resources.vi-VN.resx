@@ -180,12 +180,6 @@
   <data name="result" xml:space="preserve">
     <value>Kết quả</value>
   </data>
-  <data name="subTotalWinlost" xml:space="preserve">
-    <value>Tổng phụ (thắng thua)</value>
-  </data>
-  <data name="subTotalCom" xml:space="preserve">
-    <value>Tổng phụ (hoa hồng)</value>
-  </data>
   <data name="total" xml:space="preserve">
     <value>Tổng cộng</value>
   </data>
@@ -324,5 +318,26 @@
   <data name="CancelledBet" xml:space="preserve">
     <value>Cược bị hủy</value>
     <comment>Not found</comment>
+  </data>
+  <data name="LastBetsMonitoring" xml:space="preserve">
+    <value>Quản lý cược gần nhất</value>
+  </data>
+  <data name="AllBetTypes" xml:space="preserve">
+    <value>Tất cả loại cược</value>
+  </data>
+  <data name="Handicap" xml:space="preserve">
+    <value>Cược Chấp</value>
+  </data>
+  <data name="OverUnder" xml:space="preserve">
+    <value>Over/Under </value>
+  </data>
+  <data name="Last" xml:space="preserve">
+    <value>Cuối cùng</value>
+  </data>
+  <data name="LastBets" xml:space="preserve">
+    <value>Cược mới nhất</value>
+  </data>
+  <data name="OtherBetTypes" xml:space="preserve">
+    <value>Loại cược khác</value>
   </data>
 </root>

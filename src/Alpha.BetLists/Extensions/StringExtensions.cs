@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Fanex.Common;
 
     public static class StringExtensions
     {
@@ -22,5 +23,16 @@
 
             return ids;
         }
+
+        public static string[] SplitByCommaWithNoneEmptyEntries(this string value)
+            => value.Split(
+                new[]
+                {
+                    ','
+                },
+                StringSplitOptions.RemoveEmptyEntries);
+
+        public static IEnumerable<int> ToListInt(this string[] value)
+            => value.Select(s => Converter.ToInt(s));
     }
 }

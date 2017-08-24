@@ -1,13 +1,9 @@
 ﻿namespace Alpha.BetLists.Site.Tests.Handler.WinLoss
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using AppResources;
     using BetLists.Models;
     using BetLists.Tests.TestData;
     using Extensions;
-    using Fanex.BetList.Core.Entities;
     using Fixtures;
     using Handlers.WinLoss;
     using KellermanSoftware.CompareNetObjects;
@@ -18,6 +14,9 @@
     using Services;
     using Site.ViewModels;
     using Site.ViewModels.WinLoss;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using Xunit;
 
     [Trait("Category", "WinLossBetList")]
@@ -30,6 +29,7 @@
         private readonly WinLossExcelQuery query;
         private readonly Workbook<TicketDto> workbook;
         private readonly CompareLogic compareLogic;
+        private readonly ProductService productService;
 
         public WinLossExcelHandlerTests(BetListFixture betlistFixture)
         {
@@ -43,6 +43,10 @@
             workbook = Substitute.For<Workbook<TicketDto>>();
             InitWorkbook();
 
+            productService = Substitute.For<ProductService>();
+            productService.FilterProductIdsByCustomer(Arg.Any<int>(), Arg.Any<IEnumerable<int>>())
+                .Returns(callInfo => callInfo.Args()[1]);
+
             winLossExcelHandler = new WinLossExcelHandler(
                 winLossService,
                 this.betlistFixture.HtmlBuilder,
@@ -50,7 +54,8 @@
                 this.betlistFixture.TicketHelper,
                 this.betlistFixture.MoniterService,
                 this.betlistFixture.IpService,
-                workbook);
+                workbook,
+                productService);
 
             winLossExcelHandler.MapPath = (path) => path;
             winLossExcelHandler.IsFileExist = (path) => true;
@@ -67,7 +72,6 @@
             workbook.Title(Arg.Any<string>()).Returns(workbook);
             workbook.Header(Arg.Any<Func<string, string>>()).Returns(workbook);
             workbook.Body(Arg.Any<IEnumerable<TicketDto>>(), Arg.Any<Mapper<TicketDto>>()).Returns(workbook);
-            workbook.Sheet(Arg.Any<string>()).Returns(workbook);
             workbook.Footer(Arg.Any<TicketDto>(), Arg.Any<Mapper<TicketDto>>()).Returns(workbook);
         }
 
@@ -78,6 +82,7 @@
             query.FromDate = DateTime.Today;
             query.ToDate = DateTime.Today;
             query.Language = "en";
+            query.RtfHelper = betlistFixture.RtfHelper;
         }
 
         [Fact]
@@ -151,16 +156,6 @@
 
             // Assert
             workbook.Received().Footer(Arg.Any<TicketDto>(), Arg.Any<Mapper<TicketDto>>());
-        }
-
-        [Fact]
-        public void Handle_Workbook_Sheet()
-        {
-            // Act
-            winLossExcelHandler.Handle(query).GetAwaiter().GetResult();
-
-            // Assert
-            workbook.Received().Sheet(Arg.Is(Resources.BetList));
         }
 
         [Fact]

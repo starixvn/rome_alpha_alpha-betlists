@@ -177,12 +177,6 @@
   <data name="result" xml:space="preserve">
     <value>賽果</value>
   </data>
-  <data name="subTotalWinlost" xml:space="preserve">
-    <value>小計(輸贏)</value>
-  </data>
-  <data name="subTotalCom" xml:space="preserve">
-    <value>小計(佣金)</value>
-  </data>
   <data name="total" xml:space="preserve">
     <value>總和</value>
   </data>
@@ -319,5 +313,29 @@
   </data>
   <data name="CancelledBet" xml:space="preserve">
     <value>已刪除/作廢注單</value>
+  </data>
+  <data name="LastBetsMonitoring" xml:space="preserve">
+    <value>最後投注監測</value>
+  </data>
+  <data name="AllBetTypes" xml:space="preserve">
+    <value>所有投注種類</value>
+  </data>
+  <data name="Handicap" xml:space="preserve">
+    <value>亞洲盤</value>
+  </data>
+  <data name="OverUnder" xml:space="preserve">
+    <value>大小盤</value>
+  </data>
+  <data name="Last" xml:space="preserve">
+    <value>尾頁</value>
+  </data>
+  <data name="FunctionTurnOffError" xml:space="preserve">
+    <value>由於目前服務器繁忙所以此功能暫時關閉，有請稍後再試。 不便之處 敬請見諒！</value>
+  </data>
+  <data name="LastBets" xml:space="preserve">
+    <value>最後投注</value>
+  </data>
+  <data name="OtherBetTypes" xml:space="preserve">
+    <value>其他投注項目</value>
   </data>
 </root>

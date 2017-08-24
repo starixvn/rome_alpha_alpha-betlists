@@ -333,4 +333,37 @@
   <data name="CancelledBet" xml:space="preserve">
     <value>Cancelled Bets</value>
   </data>
+  <data name="LastBetsMonitoring" xml:space="preserve">
+    <value>Last Bets Monitoring</value>
+  </data>
+  <data name="AllBetTypes" xml:space="preserve">
+    <value>All Bet Types</value>
+  </data>
+  <data name="OtherBetTypes" xml:space="preserve">
+    <value>Other Bettypes</value>
+  </data>
+  <data name="Handicap" xml:space="preserve">
+    <value>Handicap</value>
+  </data>
+  <data name="OverUnder" xml:space="preserve">
+    <value>Over/Under</value>
+  </data>
+  <data name="Last" xml:space="preserve">
+    <value>Last</value>
+  </data>
+  <data name="FunctionTurnOffError" xml:space="preserve">
+    <value>Our server is too busy at the moment so this function is turned off temporarily. Please try again later and sorry for the inconvenience.</value>
+  </data>
+  <data name="LastBets" xml:space="preserve">
+    <value>Last Bets</value>
+  </data>
+  <data name="AutoRefresh" xml:space="preserve">
+    <value>Auto refresh</value>
+  </data>
+  <data name="On" xml:space="preserve">
+    <value>On</value>
+  </data>
+  <data name="Off" xml:space="preserve">
+    <value>Off</value>
+  </data>
 </root>

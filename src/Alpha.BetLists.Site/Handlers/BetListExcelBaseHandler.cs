@@ -45,6 +45,30 @@
 
         protected internal RTFHelper RtfHelper { get; set; }
 
+        /// <summary>
+        /// Inititalize RTFHelper for create Font of Workbook for rendering correct format.
+        /// Need to call this method after calling UseTemplate method of ONEBook.SpreadSheet
+        /// </summary>
+        /// <param name="workbook"></param>
+        /// <returns></returns>
+        protected internal static RTFHelper InitRTFHelper(IWorkbook workbook)
+        {
+            var rtfHelper = new RTFHelper
+            {
+                NegFont = workbook.CreateFont(),
+                NormalFont = workbook.CreateFont(),
+                PosFont = workbook.CreateFont(),
+                NegFontCrossed = workbook.CreateFont(),
+                NormalFontCrossed = workbook.CreateFont(),
+                PosFontCrossed = workbook.CreateFont(),
+                RTFRenderer = new RtfTextRender()
+            };
+
+            InitRTFHelperFonts(rtfHelper);
+
+            return rtfHelper;
+        }
+
         protected internal virtual string GetExcelTemplatePath(string templateName, string fileExtension = "xls")
         {
             if (string.IsNullOrWhiteSpace(templateName))
@@ -171,30 +195,6 @@
                 footerData.SubTotalCommission,
                 footerData.Total,
                 RtfHelper);
-
-        /// <summary>
-        /// Inititalize RTFHelper for create Font of Workbook for rendering correct format.
-        /// Need to call this method after calling UseTemplate method of ONEBook.SpreadSheet
-        /// </summary>
-        /// <param name="workbook"></param>
-        /// <returns></returns>
-        protected internal static RTFHelper InitRTFHelper(IWorkbook workbook)
-        {
-            var rtfHelper = new RTFHelper
-            {
-                NegFont = workbook.CreateFont(),
-                NormalFont = workbook.CreateFont(),
-                PosFont = workbook.CreateFont(),
-                NegFontCrossed = workbook.CreateFont(),
-                NormalFontCrossed = workbook.CreateFont(),
-                PosFontCrossed = workbook.CreateFont(),
-                RTFRenderer = new RtfTextRender()
-            };
-
-            InitRTFHelperFonts(rtfHelper);
-
-            return rtfHelper;
-        }
 
         private static void InitRTFHelperFonts(RTFHelper rtfHelper)
         {

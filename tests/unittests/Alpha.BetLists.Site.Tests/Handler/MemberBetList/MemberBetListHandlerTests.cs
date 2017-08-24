@@ -23,7 +23,7 @@
         private readonly MemberBetListHandler memberBetListHandler;
         private readonly MemberBetListService memberBetListService;
         private readonly ProductService productService;
-        private readonly ForeCastService foreCastService;
+        private readonly ForecastService forecastService;
         private readonly MemberBetListQuery query;
         private readonly CompareLogic compareLogic;
 
@@ -37,15 +37,15 @@
             productService = Substitute.For<ProductService>();
             productService.FilterProductIdsByCustomer(Arg.Any<int>(), Arg.Any<IEnumerable<int>>()).Returns(BetListDataTest.ProductIds);
 
-            foreCastService = Substitute.For<ForeCastService>();
-            foreCastService.GetBetTypeIdsSupportScoreMap().Returns(BetListDataTest.BettypeIds);
+            forecastService = Substitute.For<ForecastService>();
+            forecastService.GetBetTypeIdsSupportScoreMap().Returns(BetListDataTest.BettypeIds);
 
             query = new MemberBetListQuery(this.betlistFixture.User);
 
             memberBetListHandler = new MemberBetListHandler(
                 memberBetListService,
                 productService,
-                foreCastService,
+                forecastService,
                 this.betlistFixture.HtmlBuilder,
                 this.betlistFixture.TicketHelper,
                 this.betlistFixture.MoniterService,
@@ -71,7 +71,7 @@
             var validUserSelectedProductIds = Enumerable.Empty<int>();
             productService.FilterProductIdsByCustomer(Arg.Any<int>(), Arg.Any<IEnumerable<int>>()).Returns(validUserSelectedProductIds);
 
-            foreCastService.GetBetTypeIdsSupportScoreMap().Returns(BetListDataTest.BettypeIds);
+            forecastService.GetBetTypeIdsSupportScoreMap().Returns(BetListDataTest.BettypeIds);
 
             var memberBetListParam = new MemberBetListParam(
                 1,

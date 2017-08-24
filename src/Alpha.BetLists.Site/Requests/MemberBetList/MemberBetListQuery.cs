@@ -1,10 +1,9 @@
 ﻿namespace Alpha.BetLists.Site.Requests.MemberBetList
 {
+    using System;
     using BetLists.Models;
-    using Constants;
     using Extensions;
     using MediatR;
-    using System;
     using Utils;
     using ViewModels.MemberBetList;
 

@@ -1,0 +1,67 @@
+﻿@using Alpha.BetLists.Site.ViewModels.LastBets
+@using Alpha.BetLists.Constants
+@model LastBetsViewModel
+@{
+    ViewBag.Title = "Last Bets Monitoring";
+}
+@section Styles {
+    @StaticResources.RenderStyles("~/assets/bundles/last-bets")
+}
+<div class="bl_title">
+    @Resources.LastBets
+</div>
+<ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="tab-report-type @(Model.IsSelectedBetType(BetTypeIdConstants.AllBetTypes) ?"active":string.Empty)">
+        @Html.ActionLink(Resources.AllBetTypes, "Index", "LastBets", new { BetType = BetTypeIdConstants.AllBetTypes, IsAutoRefresh = Model.IsAutoRefresh, PageSize = Model.PageSize }, new { id = "tab-all-bet-types" })
+    </li>
+    <li role="presentation" class="tab-report-type @(Model.IsSelectedBetType(BetTypeIdConstants.Handicap) ?"active":string.Empty)">
+        @Html.ActionLink(Resources.Handicap, "Index", "LastBets", new { BetType = BetTypeIdConstants.Handicap, IsAutoRefresh = Model.IsAutoRefresh, PageSize = Model.PageSize }, new { id = "tab-handicap" })
+    </li>
+    <li role="presentation" class="tab-report-type @(Model.IsSelectedBetType(BetTypeIdConstants.OverUnder) ?"active":string.Empty)">
+        @Html.ActionLink(Resources.OverUnder, "Index", "LastBets", new { BetType = BetTypeIdConstants.OverUnder, IsAutoRefresh = Model.IsAutoRefresh, PageSize = Model.PageSize }, new { id = "tab-over-under" })
+    </li>
+    <li role="presentation" class="tab-report-type @(Model.IsSelectedBetType(BetTypeIdConstants.OtherBetTypes) ?"active":string.Empty)">
+        @Html.ActionLink(Resources.OtherBetTypes, "Index", "LastBets", new { BetType = BetTypeIdConstants.OtherBetTypes, IsAutoRefresh = Model.IsAutoRefresh, PageSize = Model.PageSize }, new { id = "tab-other-bet-types" })
+    </li>
+</ul>
+<div class="page-section">
+    <span>@Resources.Last</span>
+    <ul class="page-size-container">
+        <li id="page-size-10" class="page-size @(Model.IsSelectedPageSize(10) ? "active" : string.Empty)">10</li>
+        <li id="page-size-20" class="page-size @(Model.IsSelectedPageSize(20) ? "active" : string.Empty)">20</li>
+        <li id="page-size-30" class="page-size @(Model.IsSelectedPageSize(30) ? "active" : string.Empty)">30</li>
+    </ul>
+    <div id="btn-turn-off-on" class="btn-turn-off-on">
+        <input type="checkbox" id="chb-switch" @(Model.IsAutoRefresh ? "checked" : string.Empty) />
+        <label id="lbl-switch" class="switch">
+            <span class="slider" data-on="@Resources.On" data-off="@Resources.Off"></span>
+        </label>
+        <span>@Resources.AutoRefresh</span>
+    </div>
+
+    <span id="loading-icon" class="loading-icon"></span>
+</div>
+<div id="msg-error" class="msg msg-error hide">
+    @Resources.FunctionTurnOffError
+</div>
+<div id="bet-list-table-container">
+</div>
+
+<input id="bet-type" type="hidden" value="@Model.BetType" />
+<input id="is-auto-refresh" type="hidden" value="@(Model.IsAutoRefresh ? "true":"false")" />
+<input id="get-bets-url" type="hidden" value="@Url.Action("BetData","LastBets")" />
+<input id="last-trans-id-cache-key" type="hidden" value="@Model.LastTransIdCacheKey" />
+<input id="latest-trans-id-cache-key" type="hidden" value="@Model.LatestTransIdCacheKey" />
+<input id="reset-last-trans-id" type="hidden" value="@Model.ResetLastTransId.ToString()" />
+
+@Html.Hidden("betlist-path", HttpContext.Current.Response.ApplyAppPathModifier("~/"))
+@Html.Hidden("old-main-path", Model.OldMainPath)
+@Html.Hidden("totalbets-forecast-path", Model.TotalBetsForecastPath)
+@Html.Hidden("cust-id", Model.CustId)
+@Html.Hidden("viewer-id", Model.ViewerIdOrViewerAdminId)
+@Html.Hidden("viewer-level-id", Model.ViewerLevelId)
+
+@section Scripts {
+    @StaticResources.AssetScripts.Render("/bundles/site-betlists/last-bets")
+    @StaticResources.RenderScripts("~/assets/bundles/last-bets")
+}

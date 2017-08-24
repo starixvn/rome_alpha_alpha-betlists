@@ -15,7 +15,6 @@ namespace Alpha.BetLists.Site.Handlers.CancelledBet
         private readonly CancelledBetService service;
         private readonly IBetListHTMLBuilder builder;
         private readonly ITicketHelper ticketHelper;
-        protected internal IPService IpService { get; }
 
         public CancelledBetHandler(
             CancelledBetService service,
@@ -29,6 +28,8 @@ namespace Alpha.BetLists.Site.Handlers.CancelledBet
             this.IpService = ipService;
             this.ticketHelper.IsVnIp = ipService.IsVNIP;
         }
+
+        protected internal IPService IpService { get; }
 
         public async Task<CancelledBetViewModel> Handle(CancelledBetQuery message)
         {

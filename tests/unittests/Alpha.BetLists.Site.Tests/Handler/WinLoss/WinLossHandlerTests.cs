@@ -26,6 +26,7 @@
         private readonly WinLossService winLossService;
         private readonly WinLossQuery query;
         private readonly CompareLogic compareLogic;
+        private readonly ProductService productService;
 
         public WinLossHandlerTests(BetListFixture betlistFixture)
         {
@@ -35,12 +36,17 @@
 
             query = new WinLossQuery(this.betlistFixture.User);
 
+            productService = Substitute.For<ProductService>();
+            productService.FilterProductIdsByCustomer(Arg.Any<int>(), Arg.Any<IEnumerable<int>>())
+                .Returns(callInfo => callInfo.Args()[1]);
+
             winLossHandler = new WinLossHandler(
                 winLossService,
                 this.betlistFixture.HtmlBuilder,
                 this.betlistFixture.TicketHelper,
                 this.betlistFixture.MoniterService,
-                this.betlistFixture.IpService);
+                this.betlistFixture.IpService,
+                productService);
 
             compareLogic = new CompareLogic(new ComparisonConfig
             {
@@ -112,7 +118,7 @@
             user.LevelId.Returns(UserLevel.Agent.Value);
 
             // Act
-            var param = WinLossHandler.CreateWinLossParam(query);
+            var param = WinLossHandler.CreateWinLossParam(query, Enumerable.Empty<int>());
 
             // Assert
             Assert.True(param.CustId == query.CustId
