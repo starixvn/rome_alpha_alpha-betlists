@@ -1,6 +1,7 @@
 ﻿namespace Alpha.BetLists.Site.Handlers.BetListByBetType
 {
     using System.Threading.Tasks;
+    using BetLists.Models;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using MediatR;
@@ -33,14 +34,14 @@
         {
             var param = CreateRunningBetListByBetTypeParam(message);
 
-            var betListData = await runningBetListByBetTypeService.GetBetList(param);
+            var tickets = await runningBetListByBetTypeService.GetBetList(param);
             var supportScoreMapBettypeIds = forecastService.GetBetTypeIdsSupportScoreMap();
 
-            WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betListData.Tickets);
+            WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, tickets);
 
             return new BetListByBetTypeViewModel(
                 message,
-                betListData,
+                new BetListData(tickets, null),
                 Builder,
                 TicketHelper,
                 supportScoreMapBettypeIds);

@@ -38,9 +38,9 @@
         public async Task<ExcelFileViewModel> Handle(CorrectScoreExcelQuery message)
         {
             var correctScoreParam = CorrectScoreHandler.CreateCorrectScoreParam(message);
-            var betListData = await correctScoreService.GetBetList(correctScoreParam);
+            var tickets = await correctScoreService.GetBetList(correctScoreParam);
 
-            var viewModel = new CorrectScoreViewModel(message, betListData, Builder, TicketHelper);
+            var viewModel = new CorrectScoreViewModel(message, new BetListData(tickets, null), null, TicketHelper);
 
             workbook = workbook.UseTemplate(GetTemplateInfo(message.ViewerLevel));
             RtfHelper = message.RtfHelper ?? InitRTFHelper((workbook as NpoiWorkbook<TicketDto>).Workbook);
@@ -48,7 +48,7 @@
             var fileContent = workbook
                 .Header(Resources.ResourceManager.GetString)
                 .Title(viewModel.Title)
-                .Body(betListData.Tickets, GetBodyRowMapper(message.ViewerLevel, viewModel))
+                .Body(tickets, GetBodyRowMapper(message.ViewerLevel, viewModel))
                 .ExportToBytes();
 
             return new ExcelFileViewModel(viewModel.Title, fileContent);

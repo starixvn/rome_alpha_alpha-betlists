@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using BetLists.Models;
     using BetLists.Tests.TestData;
     using Fanex.BetList.Core.Entities;
     using Fixtures;
@@ -35,7 +36,7 @@
             forecastService.GetBetTypeIdsSupportScoreMap().Returns(BetListDataTest.BettypeIds);
 
             correctScoreService = Substitute.For<CorrectScoreService>();
-            correctScoreService.GetBetList(Arg.Any<CorrectScoreParam>()).Returns(BetListDataTest.BetListData);
+            correctScoreService.GetBetList(Arg.Any<CorrectScoreParam>()).Returns(BetListDataTest.Tickets);
 
             correctScoreHandler = new CorrectScoreHandler(
                 correctScoreService,
@@ -95,7 +96,7 @@
             // Arrange
             var expectedViewModel = new CorrectScoreViewModel(
                 message,
-                BetListDataTest.BetListData,
+                new BetListData(BetListDataTest.Tickets, null),
                 betlistFixture.HtmlBuilder,
                 betlistFixture.TicketHelper,
                 BetListDataTest.BettypeIds);

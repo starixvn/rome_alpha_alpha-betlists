@@ -2,6 +2,7 @@
 {
     using System.Threading.Tasks;
     using BetListByBetType;
+    using BetLists.Models;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using MediatR;
@@ -34,14 +35,14 @@
         {
             var param = BetListByBetTypeHandler.CreateRunningBetListByBetTypeParam(message);
 
-            var betListData = await runningBetListByBetTypeService.GetBetList(param);
+            var tickets = await runningBetListByBetTypeService.GetBetList(param);
             var supportScoreMapBettypeIds = forecastService.GetBetTypeIdsSupportScoreMap();
 
-            WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betListData.Tickets);
+            WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, tickets);
 
             return new CombinationMixParlayViewModel(
                 message,
-                betListData,
+                new BetListData(tickets, null),
                 Builder,
                 TicketHelper,
                 supportScoreMapBettypeIds);

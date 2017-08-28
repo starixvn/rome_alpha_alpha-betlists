@@ -32,7 +32,7 @@
         {
             this.betListFixture = betListFixture;
             correctScoreService = Substitute.For<CorrectScoreService>();
-            correctScoreService.GetBetList(Arg.Any<CorrectScoreParam>()).Returns(BetListDataTest.BetListData);
+            correctScoreService.GetBetList(Arg.Any<CorrectScoreParam>()).Returns(BetListDataTest.Tickets);
 
             message = new CorrectScoreExcelQuery(betListFixture.User);
             message.RtfHelper = betListFixture.RtfHelper;

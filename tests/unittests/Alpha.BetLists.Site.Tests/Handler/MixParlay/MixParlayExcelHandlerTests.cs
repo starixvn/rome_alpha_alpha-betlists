@@ -30,7 +30,7 @@
         {
             this.betListFixture = betListFixture;
             runningBetListByBetTypeService = Substitute.For<RunningBetListByBetTypeService>();
-            runningBetListByBetTypeService.GetBetList(Arg.Any<RunningBetListByBetTypeParam>()).Returns(BetListDataTest.BetListData);
+            runningBetListByBetTypeService.GetBetList(Arg.Any<RunningBetListByBetTypeParam>()).Returns(BetListDataTest.Tickets);
 
             message = new MixParlayExcelQuery(betListFixture.User);
             message.RtfHelper = betListFixture.RtfHelper;

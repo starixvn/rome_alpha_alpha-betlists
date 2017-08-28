@@ -41,7 +41,7 @@
             message.RtfHelper = betListFixture.RtfHelper;
 
             runningBetListByBetTypeService = Substitute.For<RunningBetListByBetTypeService>();
-            runningBetListByBetTypeService.GetBetList(Arg.Any<RunningBetListByBetTypeParam>()).Returns(BetListDataTest.BetListData);
+            runningBetListByBetTypeService.GetBetList(Arg.Any<RunningBetListByBetTypeParam>()).Returns(BetListDataTest.Tickets);
 
             betListByBetTypeExcelHandler = new BetListByBetTypeExcelHandler(
                 runningBetListByBetTypeService,

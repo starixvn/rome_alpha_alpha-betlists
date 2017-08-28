@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using BetLists.Models;
     using BetLists.Tests.TestData;
     using Fanex.BetList.Core.Entities;
     using Fixtures;
@@ -35,7 +36,7 @@
             forecastService.GetBetTypeIdsSupportScoreMap().Returns(BetListDataTest.BettypeIds);
 
             runningBetListByBetTypeService = Substitute.For<RunningBetListByBetTypeService>();
-            runningBetListByBetTypeService.GetBetList(Arg.Any<RunningBetListByBetTypeParam>()).Returns(BetListDataTest.BetListData);
+            runningBetListByBetTypeService.GetBetList(Arg.Any<RunningBetListByBetTypeParam>()).Returns(BetListDataTest.Tickets);
 
             combinationMixParlayHandler = new CombinationMixParlayHandler(
                 runningBetListByBetTypeService,
@@ -96,7 +97,7 @@
             // Arrange
             var expectedViewModel = new CombinationMixParlayViewModel(
                 message,
-                BetListDataTest.BetListData,
+                new BetListData(BetListDataTest.Tickets, null),
                 betlistFixture.HtmlBuilder,
                 betlistFixture.TicketHelper,
                 BetListDataTest.BettypeIds);

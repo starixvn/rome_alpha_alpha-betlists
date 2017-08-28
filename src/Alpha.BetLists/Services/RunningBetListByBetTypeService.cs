@@ -1,5 +1,6 @@
 ﻿namespace Alpha.BetLists.Services
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using Criteria.RunningBetListByBetType;
     using Fanex.Data.Repository;
@@ -8,7 +9,7 @@
 
     public interface RunningBetListByBetTypeService
     {
-        Task<BetListData> GetBetList(RunningBetListByBetTypeParam param);
+        Task<IEnumerable<TicketDto>> GetBetList(RunningBetListByBetTypeParam param);
     }
 
     public class RunningBetListByBetTypeServiceImpl : RunningBetListByBetTypeService
@@ -20,16 +21,12 @@
             this.dynamicRepository = dynamicRepository;
         }
 
-        public async Task<BetListData> GetBetList(RunningBetListByBetTypeParam param)
-        {
-            var tickets = await dynamicRepository.FetchAsync<TicketDto>(
+        public async Task<IEnumerable<TicketDto>> GetBetList(RunningBetListByBetTypeParam param)
+            => await dynamicRepository.FetchAsync<TicketDto>(
                 new GetBetListRunningByBetTypeCriteria(
                     param.CustId,
                     param.BetType,
                     param.Language,
                     param.CustLevel));
-
-            return new BetListData(tickets, null);
-        }
     }
 }

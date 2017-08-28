@@ -1,6 +1,7 @@
 ﻿namespace Alpha.BetLists.Site.Handlers.CorrectScore
 {
     using System.Threading.Tasks;
+    using BetLists.Models;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using MediatR;
@@ -33,12 +34,12 @@
         {
             var correctScoreParam = CreateCorrectScoreParam(message);
 
-            var betListData = await correctScoreService.GetBetList(correctScoreParam);
+            var tickets = await correctScoreService.GetBetList(correctScoreParam);
             var supportScoreMapBettypeIds = forecastService.GetBetTypeIdsSupportScoreMap();
 
-            WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betListData.Tickets);
+            WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, tickets);
 
-            return new CorrectScoreViewModel(message, betListData, Builder, TicketHelper, supportScoreMapBettypeIds);
+            return new CorrectScoreViewModel(message, new BetListData(tickets, null), Builder, TicketHelper, supportScoreMapBettypeIds);
         }
 
         protected internal static CorrectScoreParam CreateCorrectScoreParam(CorrectScoreQuery message)

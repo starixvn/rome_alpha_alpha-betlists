@@ -1,5 +1,6 @@
 ﻿namespace Alpha.BetLists.Services
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using Criteria.CorrectScore;
     using Fanex.Data.Repository;
@@ -8,7 +9,7 @@
 
     public interface CorrectScoreService
     {
-        Task<BetListData> GetBetList(CorrectScoreParam param);
+        Task<IEnumerable<TicketDto>> GetBetList(CorrectScoreParam param);
     }
 
     public class CorrectScoreServiceImpl : CorrectScoreService
@@ -20,12 +21,11 @@
             this.dynamicRepository = dynamicRepository;
         }
 
-        public async Task<BetListData> GetBetList(CorrectScoreParam param)
-        {
-            var tickets = await dynamicRepository.FetchAsync<TicketDto>(
-                new GetRunningCorrectScoreCriteria(param.CustId, param.Language, param.CustLevel));
-
-            return new BetListData(tickets, null);
-        }
+        public async Task<IEnumerable<TicketDto>> GetBetList(CorrectScoreParam param)
+            => await dynamicRepository.FetchAsync<TicketDto>(
+                new GetRunningCorrectScoreCriteria(
+                    param.CustId,
+                    param.Language,
+                    param.CustLevel));
     }
 }

@@ -37,9 +37,9 @@
         public async Task<ExcelFileViewModel> Handle(BetListByBetTypeExcelQuery message)
         {
             var param = BetListByBetTypeHandler.CreateRunningBetListByBetTypeParam(message);
-            var betListData = await runningBetListByBetTypeService.GetBetList(param);
+            var tickets = await runningBetListByBetTypeService.GetBetList(param);
 
-            var viewModel = new BetListByBetTypeViewModel(message, betListData, Builder, TicketHelper);
+            var viewModel = new BetListByBetTypeViewModel(message, new BetListData(tickets, null), Builder, TicketHelper);
 
             workbook = workbook.UseTemplate(GetTemplateInfo(message.ViewerLevel));
             RtfHelper = message.RtfHelper ?? InitRTFHelper((workbook as NpoiWorkbook<TicketDto>).Workbook);
@@ -47,7 +47,7 @@
             var fileContent = workbook
                 .Header(Resources.ResourceManager.GetString)
                 .Title(viewModel.Title)
-                .Body(betListData.Tickets, GetBodyRowMapper(message.ViewerLevel, viewModel))
+                .Body(tickets, GetBodyRowMapper(message.ViewerLevel, viewModel))
                 .ExportToBytes();
 
             return new ExcelFileViewModel(viewModel.Title, fileContent);

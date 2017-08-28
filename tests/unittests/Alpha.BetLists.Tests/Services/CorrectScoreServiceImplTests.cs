@@ -1,12 +1,10 @@
 ﻿namespace Alpha.BetLists.Tests.Services
 {
-    using System.Collections.Generic;
     using System.Linq;
     using BetLists.Criteria.CorrectScore;
     using BetLists.Models;
     using BetLists.Params;
     using BetLists.Services;
-    using Fanex.BetList.Core.Entities;
     using Fixtures;
     using NSubstitute;
     using TestData;
@@ -34,11 +32,10 @@
             var param = new CorrectScoreParam(1, string.Empty, UserLevel.Agent);
 
             // Act
-            var actualBetListData = correctScoreService.GetBetList(param).GetAwaiter().GetResult();
+            var actualTickets = correctScoreService.GetBetList(param).GetAwaiter().GetResult();
 
             // Assert
-            Assert.True(BetListDataTest.Tickets.SequenceEqual(actualBetListData.Tickets)
-                && actualBetListData.TicketData.SequenceEqual(new List<ITicketData>()));
+            Assert.True(BetListDataTest.Tickets.SequenceEqual(actualTickets));
         }
     }
 }
