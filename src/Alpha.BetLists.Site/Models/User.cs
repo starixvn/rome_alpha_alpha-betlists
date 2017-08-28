@@ -2,6 +2,7 @@
 {
     using BetLists.Models;
     using Sunplus.Agent.Model.Entities;
+    using Sunplus.Agent.Model.Entities.Permission;
 
     public class User : IUser
     {
@@ -31,5 +32,7 @@
         public bool IsAdminCanViewVNIP => userSession.IsAdminCanViewVNIP;
 
         public string LangKey => userSession.LangKey;
+
+        public bool IsShowRacing => UserPermission.IsShowRacing;
     }
 }

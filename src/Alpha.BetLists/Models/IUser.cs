@@ -17,5 +17,7 @@
         bool IsAdminCanViewVNIP { get; }
 
         string LangKey { get; }
+
+        bool IsShowRacing { get; }
     }
 }

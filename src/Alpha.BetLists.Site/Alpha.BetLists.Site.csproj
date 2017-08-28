@@ -758,12 +758,14 @@
     <Content Include="Views\Shared\BetListByBetTypeTable.cshtml" />
     <Content Include="Views\CombinationMixParlay\Index.cshtml" />
     <Content Include="Views\BetListByBetType\Index.cshtml" />
+    <Content Include="Views\BetListByBetTypeAndMatch\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\DependencyConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Constants\UserSelectedDateRangeOptionConstant.cs" />
     <Compile Include="Controllers\BetListBaseController.cs" />
+    <Compile Include="Controllers\BetListByBetTypeAndMatchController.cs" />
     <Compile Include="Controllers\BetListByBetTypeController.cs" />
     <Compile Include="Controllers\DailyStatementController.cs" />
     <Compile Include="Controllers\Lucky3Controller.cs" />
@@ -775,6 +777,8 @@
     <Compile Include="Controllers\MixParlayController.cs" />
     <Compile Include="Controllers\RunningBetListController.cs" />
     <Compile Include="Controllers\CancelledBetController.cs" />
+    <Compile Include="Handlers\BetListByBetTypeAndMatch\BetListByBetTypeAndMatchExcelHandler.cs" />
+    <Compile Include="Handlers\BetListByBetTypeAndMatch\BetListByBetTypeAndMatchHandler.cs" />
     <Compile Include="Handlers\BetListByBetType\BetListByBetTypeExcelBaseHandler.cs" />
     <Compile Include="Handlers\BetListByBetType\BetListByBetTypeExcelHandler.cs" />
     <Compile Include="Handlers\CancelledBet\CancelledBetExcelHandler.cs" />
@@ -788,6 +792,8 @@
     <Compile Include="Handlers\CorrectScore\CorrectScoreHandler.cs" />
     <Compile Include="Handlers\MixParlay\MixParlayExcelHandler.cs" />
     <Compile Include="Handlers\MixParlay\MixParlayHandler.cs" />
+    <Compile Include="Requests\BetListByBetTypeAndMatch\BetListByBetTypeAndMatchExcelQuery.cs" />
+    <Compile Include="Requests\BetListByBetTypeAndMatch\BetListByBetTypeAndMatchQuery.cs" />
     <Compile Include="Requests\CancelledBet\CancelledBetBaseQuery.cs" />
     <Compile Include="Requests\CancelledBet\CancelledBetExcelQuery.cs" />
     <Compile Include="Requests\CancelledBet\CancelledBetQuery.cs" />
@@ -849,6 +855,7 @@
     <Compile Include="Requests\WinLoss\WinLossExcelQuery.cs" />
     <Compile Include="Requests\WinLoss\WinLossQuery.cs" />
     <Compile Include="ViewModels\BetListBaseViewModel.cs" />
+    <Compile Include="ViewModels\BetListByBetTypeAndMatch\BetListByBetTypeAndMatchViewModel.cs" />
     <Compile Include="ViewModels\BetListByBetType\BetListByBetTypeViewModel.cs" />
     <Compile Include="ViewModels\Blocks\Footer.cs" />
     <Compile Include="ViewModels\Blocks\WinLostBlockViewModel.cs" />

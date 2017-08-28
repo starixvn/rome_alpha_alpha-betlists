@@ -1,0 +1,21 @@
+﻿@using Alpha.BetLists.Site.ViewModels.BetListByBetTypeAndMatch
+@model BetListByBetTypeAndMatchViewModel
+@{
+    ViewBag.Title = "Bet List By Bet Type And Match";
+}
+<div class="bl_title">
+    @Model.Title
+    <div class="bl-export-excel">
+        <a id="icon-excel" class="icon icon-excel" title="Excel"
+        href="@Url.Action("Excel", "BetListByBetTypeAndMatch",
+                new
+                {
+                    MatchId = Model.MatchId,
+                    BetType = Model.BetType,
+                    IsLive = Model.IsLive,
+                    BetTeam = Model.BetTeam
+                })">
+        </a>
+    </div>
+</div>
+@Html.Partial("BetListByBetTypeTable", Model)
