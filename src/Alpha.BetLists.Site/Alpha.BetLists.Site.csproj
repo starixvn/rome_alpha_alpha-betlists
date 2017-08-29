@@ -585,6 +585,9 @@
     <Content Include="App_Data\ExcelTemplates\CombinationMixParlay\Agent.xls" />
     <Content Include="App_Data\ExcelTemplates\CombinationMixParlay\Master.xls" />
     <Content Include="App_Data\ExcelTemplates\CombinationMixParlay\Super.xls" />
+    <Content Include="App_Data\ExcelTemplates\BetListByBetTypeAndMatch\Agent.xls" />
+    <Content Include="App_Data\ExcelTemplates\BetListByBetTypeAndMatch\Master.xls" />
+    <Content Include="App_Data\ExcelTemplates\BetListByBetTypeAndMatch\Super.xls" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>

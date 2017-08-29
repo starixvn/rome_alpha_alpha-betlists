@@ -304,6 +304,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Racing.
+        /// </summary>
+        public static string horseRacing {
+            get {
+                return ResourceManager.GetString("horseRacing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Last.
         /// </summary>
         public static string Last {

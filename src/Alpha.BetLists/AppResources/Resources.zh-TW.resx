@@ -341,6 +341,9 @@
   <data name="lblMixParlay" xml:space="preserve">
     <value>混合過關</value>
   </data>
+  <data name="horseRacing" xml:space="preserve">
+    <value>賽馬</value>
+  </data>
   <data name="Page" xml:space="preserve">
     <value>頁</value>
   </data>
