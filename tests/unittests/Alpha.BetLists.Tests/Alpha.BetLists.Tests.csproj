@@ -213,6 +213,8 @@
     <Compile Include="Criteria\SmartPunter\SmartPunterWriteLogNoDataCommandTests.cs" />
     <Compile Include="Criteria\WinLossByDate\GetBetListWinLossByDateOldCriteriaTests.cs" />
     <Compile Include="Criteria\Parlay\GetComboParlayDetailCriteriaTests.cs" />
+    <Compile Include="Criteria\RacingByMatch\GetBetListRacingByMatchCriteriaTests.cs" />
+    <Compile Include="Criteria\RunningBetListByBetTypeAndMatch\GetBetListRunningByBetTypeAndMatchCriteriaTests.cs" />
     <Compile Include="Criteria\RunningBetListByBetType\GetBetListRunningByBetTypeCriteriaTests.cs" />
     <Compile Include="Criteria\Parlay\GetParlayBetListCriteriaTests.cs" />
     <Compile Include="Criteria\RunningBetList\GetBetListRunningByDateCriteriaTests.cs" />
@@ -242,6 +244,8 @@
     <Compile Include="Services\CancelledBetServiceImplTests.cs" />
     <Compile Include="Services\LastBetsServiceImplTests.cs" />
     <Compile Include="Services\MemberBetListServiceImplTests.cs" />
+    <Compile Include="Services\RacingByMatchServiceImplTests.cs" />
+    <Compile Include="Services\RunningBetListByBetTypeAndMatchServiceImplTests.cs" />
     <Compile Include="Services\RunningBetListByBetTypeServiceImplTests.cs" />
     <Compile Include="Services\RunningBetListServiceImplTests.cs" />
     <Compile Include="Services\ParlayServiceImplTests.cs" />

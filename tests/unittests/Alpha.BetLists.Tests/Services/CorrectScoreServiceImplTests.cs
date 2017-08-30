@@ -20,7 +20,7 @@
         {
             dataFixture.DynamicRepository
                 .FetchAsync<TicketDto>(Arg.Any<GetRunningCorrectScoreCriteria>())
-                .Returns(BetListDataTest.BetListDataTuple.Item1);
+                .Returns(BetListDataTest.Tickets);
 
             correctScoreService = new CorrectScoreServiceImpl(dataFixture.DynamicRepository);
         }

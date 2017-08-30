@@ -20,7 +20,7 @@
         {
             dataFixture.DynamicRepository
                 .FetchAsync<TicketDto>(Arg.Any<GetBetListRunningByBetTypeCriteria>())
-                .Returns(BetListDataTest.BetListDataTuple.Item1);
+                .Returns(BetListDataTest.Tickets);
 
             runningBetListByBetTypeService = new RunningBetListByBetTypeServiceImpl(dataFixture.DynamicRepository);
         }

@@ -13,6 +13,7 @@
     using SmartPunter.Services;
     using Utilities.IP;
     using ViewModels;
+    using ViewModels.Blocks;
     using ViewModels.RacingByMatch;
     using static ONEbook.SpreadSheets.Column;
 
@@ -51,6 +52,7 @@
                 .Header(Resources.ResourceManager.GetString)
                 .Title(viewModel.Title)
                 .Body(tickets, GetBodyRowMapper(message.ViewerLevel, viewModel))
+                .Footer(new TicketDto(), GetFooterRowMapper(viewModel.Footer))
                 .ExportToBytes();
 
             return new ExcelFileViewModel(viewModel.Title, fileContent);
@@ -83,6 +85,15 @@
                     .Map(J, ticket => BuildPtCommmission(ticket, ticketData, UserLevel.Master))
                     .Map(K, ticket => BuildPtCommmission(ticket, ticketData, UserLevel.Super));
             }
+
+            return mapper;
+        }
+
+        protected internal override Mapper<TicketDto> GetFooterRowMapper(Footer footer)
+        {
+            var mapper = base.GetFooterRowMapper(footer);
+
+            mapper.Map(G, _ => BuildFooter(footer));
 
             return mapper;
         }

@@ -263,6 +263,7 @@
     <Compile Include="Collection\BetListCollection.cs" />
     <Compile Include="Constants\LanguageCode.cs" />
     <Compile Include="Controllers\CasinoDetailsControllerTests.cs" />
+    <Compile Include="Controllers\BetListByBetTypeAndMatchControllerTests.cs" />
     <Compile Include="Controllers\BetListByBetTypeControllerTests.cs" />
     <Compile Include="Controllers\CombinationMixParlayControllerTests.cs" />
     <Compile Include="Controllers\DailyStatementControllerTests.cs" />
@@ -273,6 +274,7 @@
     <Compile Include="Controllers\MemberBetListControllerTests.cs" />
     <Compile Include="Controllers\ParlayControllerTests.cs" />
     <Compile Include="Controllers\MixParlayControllerTests.cs" />
+    <Compile Include="Controllers\RacingByMatchControllerTests.cs" />
     <Compile Include="Controllers\RunningBetListControllerTests.cs" />
     <Compile Include="Controllers\ParlayWinLossByMatchControllerTests.cs" />
     <Compile Include="Controllers\WinLossControllerTests.cs" />
@@ -281,6 +283,7 @@
     <Compile Include="Fixtures\ParlayServiceFixture.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Handler\BetListBaseHandlerTests.cs" />
+    <Compile Include="Handler\BetListByBetTypeAndMatch\BetListByBetTypeAndMatchHandlerTests.cs" />
     <Compile Include="Handler\BetListByBetType\BetListByBetTypeExcelHandlerTests.cs" />
     <Compile Include="Handler\BetListByBetType\BetListByBetTypeHandlerTests.cs" />
     <Compile Include="Handler\BetListExcelBaseHandlerTests.cs" />

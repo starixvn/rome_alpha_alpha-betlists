@@ -25,7 +25,7 @@
         }
 
         [Fact]
-        public void Index_Always_CallsMediatorSendCorrectScoreQuery()
+        public void Index_Always_CallsMediatorSendBetListByBetTypeQuery()
         {
             // Arrange
             var message = new BetListByBetTypeQuery(user);
@@ -38,7 +38,7 @@
         }
 
         [Fact]
-        public void Excel_Always_CallsMediatorSendCorrectScoreExcelQuery()
+        public void Excel_Always_CallsMediatorSendBetListByBetTypeExcelQuery()
         {
             // Arrange
             var message = new BetListByBetTypeExcelQuery(user);

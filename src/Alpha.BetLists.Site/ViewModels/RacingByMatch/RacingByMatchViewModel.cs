@@ -1,26 +1,46 @@
 ﻿namespace Alpha.BetLists.Site.ViewModels.RacingByMatch
 {
     using System.Collections.Generic;
+    using System.Linq;
     using AppResources;
-    using BetListByBetType;
     using BetLists.Models;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
-    using Requests.BetListByBetType;
+    using Requests.RacingByMatch;
+    using WinLoss;
 
-    public class RacingByMatchViewModel : BetListByBetTypeViewModel
+    public class RacingByMatchViewModel : WinLossViewModel
     {
+        private static readonly string[] ExcludingTicketStatus =
+        {
+            BetStatus.Running,
+            BetStatus.Waiting,
+            BetStatus.Void,
+            BetStatus.Reject
+        };
+
         public RacingByMatchViewModel(
-            BetListByBetTypeQuery query,
+            RacingByMatchQuery query,
             BetListData betListData,
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper,
             IEnumerable<int> supportScoreMapBettypeIds = null)
-            : base(query, betListData, builder, ticketHelper, supportScoreMapBettypeIds)
+            : base(query, betListData, builder, ticketHelper, true, ExcludingTicketStatus)
         {
+            BetType = query.BetType;
+            MatchId = query.MatchId;
             Title = Resources.horseRacing;
+            SupportScoreMapBettypeIds = supportScoreMapBettypeIds;
         }
 
+        public int BetType { get; }
+
         public int MatchId { get; }
+
+        public IEnumerable<int> SupportScoreMapBettypeIds { get; }
+
+        public override bool CanViewScoreMap(ITicket ticket)
+            => SupportScoreMapBettypeIds != null
+            && SupportScoreMapBettypeIds.Contains(ticket.BetTypeId);
     }
 }
