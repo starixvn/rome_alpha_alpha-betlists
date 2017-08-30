@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using AppResources;
     using BetListByBetType;
     using BetLists.Helpers;
     using BetLists.Models;
@@ -24,7 +23,7 @@
             MatchId = query.MatchId;
             IsLive = query.IsLive;
             BetTeam = query.BetTeam;
-            LeagueId = betListData.Tickets.FirstOrDefault().LeagueId;
+            LeagueId = betListData.Tickets.Any() ? betListData.Tickets.FirstOrDefault().LeagueId : 0;
             Title = GetTitle(query.BetType).ToUpperInvariant();
         }
 
@@ -39,8 +38,6 @@
         public string GetTitle(int betType)
             => BetTypeHelper.IsOutRight(betType)
             ? CacheRefFactory.CacheRef.GetBetTypeName(betType)
-            : BetTypeHelper.IsHorseRacing(betType)
-            ? Resources.horseRacing
             : $"{CacheRefFactory.CacheRef.GetLeagueName(LeagueId)} {CacheRefFactory.CacheRef.GetBetTypeName(betType)}";
     }
 }

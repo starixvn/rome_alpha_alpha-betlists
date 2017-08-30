@@ -1,13 +1,13 @@
 ﻿@using Alpha.BetLists.Site.ViewModels.BetListByBetTypeAndMatch
 @model BetListByBetTypeAndMatchViewModel
 @{
-    ViewBag.Title = "Bet List By Bet Type And Match";
+    ViewBag.Title = Model.Title;
 }
 <div class="bl_title">
     @Model.Title
     <div class="bl-export-excel">
         <a id="icon-excel" class="icon icon-excel" title="Excel"
-        href="@Url.Action("Excel", "BetListByBetTypeAndMatch",
+           href="@Url.Action("Excel", "BetListByBetTypeAndMatch",
                 new
                 {
                     MatchId = Model.MatchId,

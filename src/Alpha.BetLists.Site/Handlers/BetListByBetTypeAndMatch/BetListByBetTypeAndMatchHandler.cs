@@ -50,12 +50,11 @@
         protected internal static RunningBetListByBetTypeAndMatchParam CreateRunningBetListByBetTypeAndMatchParam(BetListByBetTypeAndMatchQuery message)
             => new RunningBetListByBetTypeAndMatchParam(
                 message.MatchId,
-                message.ViewerLevelId,
+                message.ViewerId,
                 message.BetType,
                 message.Language,
                 message.IsLive,
                 message.BetTeam,
-                message.IsShowRacing,
                 message.ViewerLevel);
     }
 }

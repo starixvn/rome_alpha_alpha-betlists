@@ -29,10 +29,7 @@
                 var ticket = Model.BetListData.Tickets.ElementAt(i);
                 <tr id="r@(ticket.TransId)">
                     <td class='w-order text-center'>@(i + 1)</td>
-                    @if (Model.ShowMemberName)
-                    {
-                        <td class="text-center">@ticket.UserName</td>
-                    }
+                    <td class="text-center">@ticket.UserName</td>
                     @Trans.Render(Model.Builder, ticket)
                     @Choice.Render(Model.Builder, ticket, Model.TicketHelper, Model.BetListData.TicketData, Model.CanViewScoreMap(ticket))
                     @Odds.Render(Model.Builder, ticket, Model.BetListData.TicketData)

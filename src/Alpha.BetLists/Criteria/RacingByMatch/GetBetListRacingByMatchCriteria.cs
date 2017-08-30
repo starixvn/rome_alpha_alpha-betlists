@@ -1,4 +1,4 @@
-﻿namespace Alpha.BetLists.Criteria.RunningBetListByBetTypeAndMatch
+﻿namespace Alpha.BetLists.Criteria.RacingByMatch
 {
     using Fanex.Data;
     using Fanex.Data.Repository;

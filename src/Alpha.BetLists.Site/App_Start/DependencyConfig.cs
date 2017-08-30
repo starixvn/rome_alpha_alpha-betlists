@@ -147,6 +147,7 @@
             container.Register<CorrectScoreService, CorrectScoreServiceImpl>(Lifestyle.Singleton);
             container.Register<RunningBetListByBetTypeService, RunningBetListByBetTypeServiceImpl>(Lifestyle.Singleton);
             container.Register<RunningBetListByBetTypeAndMatchService, RunningBetListByBetTypeAndMatchServiceImpl>(Lifestyle.Singleton);
+            container.Register<RacingByMatchService, RacingByMatchServiceImpl>(Lifestyle.Singleton);
         }
     }
 }

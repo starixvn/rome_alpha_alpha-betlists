@@ -199,7 +199,7 @@
     <Compile Include="Criteria\CasinoDetails\GetCasinoDetailsCriteria.cs" />
     <Compile Include="Criteria\MemberBetList\GetBetListAllByDateCriteria.cs" />
     <Compile Include="Criteria\LastBets\GetLastBetsCriteria.cs" />
-    <Compile Include="Criteria\RunningBetListByBetTypeAndMatch\GetBetListRacingByMatchCriteria.cs" />
+    <Compile Include="Criteria\RacingByMatch\GetBetListRacingByMatchCriteria.cs" />
     <Compile Include="Criteria\RunningBetListByBetTypeAndMatch\GetBetListRunningByBetTypeAndMatchCriteria.cs" />
     <Compile Include="Criteria\RunningBetListByBetType\GetBetListRunningByBetTypeCriteria.cs" />
     <Compile Include="Criteria\LastBets\GetRunningOutrightMatchCriteria.cs" />
@@ -249,6 +249,7 @@
     <Compile Include="Params\GetProductsByGroupHeadlineParam.cs" />
     <Compile Include="Params\MemberBetListParam.cs" />
     <Compile Include="Params\CancelledBetParam.cs" />
+    <Compile Include="Params\RacingByMatchParam.cs" />
     <Compile Include="Params\RunningBetListByBetTypeAndMatchParam.cs" />
     <Compile Include="Params\RunningBetListByBetTypeParam.cs" />
     <Compile Include="Params\RunningBetListParam.cs" />
@@ -266,6 +267,7 @@
     <Compile Include="Services\IPServiceImpl.cs" />
     <Compile Include="Services\CancelledBetService.cs" />
     <Compile Include="Services\MemberBetListService.cs" />
+    <Compile Include="Services\RacingByMatchService.cs" />
     <Compile Include="Services\RunningBetListByBetTypeAndMatchService.cs" />
     <Compile Include="Services\RunningBetListByBetTypeService.cs" />
     <Compile Include="Services\RunningBetListService.cs" />

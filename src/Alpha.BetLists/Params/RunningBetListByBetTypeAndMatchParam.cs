@@ -11,7 +11,6 @@
             string language,
             int liveIndicator,
             string betTeam,
-            bool isShowRacing,
             UserLevel custLevel)
         {
             MatchId = matchId;
@@ -20,7 +19,6 @@
             Language = language;
             LiveIndicator = liveIndicator;
             BetTeam = betTeam;
-            IsShowRacing = isShowRacing;
             CustLevel = custLevel;
         }
 
@@ -35,8 +33,6 @@
         public int LiveIndicator { get; }
 
         public string BetTeam { get; }
-
-        public bool IsShowRacing { get; }
 
         public UserLevel CustLevel { get; }
     }

@@ -9,7 +9,6 @@
     {
         public BetListByBetTypeAndMatchQuery(IUser viewer) : base(viewer)
         {
-            IsShowRacing = viewer.IsShowRacing;
         }
 
         public int MatchId { get; set; }
@@ -17,7 +16,5 @@
         public int IsLive { get; set; }
 
         public string BetTeam { get; set; }
-
-        public bool IsShowRacing { get; }
     }
 }

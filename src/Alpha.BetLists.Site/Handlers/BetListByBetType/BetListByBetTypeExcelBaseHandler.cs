@@ -26,6 +26,8 @@
 
         protected internal override Mapper<TicketDto> GetBodyRowMapper(UserLevel viewerLevel, BetListBaseViewModel viewModel)
         {
+            var ticketData = viewModel.BetListData.TicketData;
+
             var mapper = new Mapper<TicketDto>()
                 .Map(A, _ => currentRowIndex++)
                 .Map(B, ticket => ticket.UserName)
@@ -35,7 +37,6 @@
                 .Map(F, ticket => BuildStake(ticket))
                 .Map(G, ticket => BuildStatus(ticket, viewModel));
 
-            var ticketData = viewModel.BetListData.TicketData;
             mapper.Map(H, ticket => BuildPtCommmission(ticket, ticketData, UserLevel.Agent));
 
             if (viewerLevel.IsMasterLevel())

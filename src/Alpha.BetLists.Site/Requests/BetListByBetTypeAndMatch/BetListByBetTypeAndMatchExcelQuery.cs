@@ -1,6 +1,4 @@
-﻿
-
-namespace Alpha.BetLists.Site.Requests.BetListByBetTypeAndMatch
+﻿namespace Alpha.BetLists.Site.Requests.BetListByBetTypeAndMatch
 {
     using BetLists.Models;
     using Fanex.BetList.Core.Entities;
