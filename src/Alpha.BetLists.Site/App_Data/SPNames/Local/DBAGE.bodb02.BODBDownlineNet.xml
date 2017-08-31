@@ -644,7 +644,7 @@
     </Setting>
   </Function>
   <Function Name="View Bet List Detail Lucky3">
-    <Setting Key="Acc_BetList_Lucky3_Detail" SpName="Acc_BetList_Lucky3_Detail" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
+    <Setting Key="Acc_BetList_Lucky3_Detail" SpName="Acc_BetList_Lucky3_Detail" DbName="DBACC.bodb02.BODBDownlineNet" Plain="0">
       <Mapping DataField="TransId" ObjectProperty="TransactionId"></Mapping>
       <Mapping DataField="CustId" ObjectProperty="CustomerId"></Mapping>
       <Mapping DataField="TransDesc" ObjectProperty="TransactionDescription"></Mapping>
