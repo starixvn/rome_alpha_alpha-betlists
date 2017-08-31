@@ -24,7 +24,7 @@
         private readonly CombinationMixParlayQuery message;
         private readonly ForecastService forecastService;
         private readonly RunningBetListByBetTypeService runningBetListByBetTypeService;
-        private readonly CombinationMixParlayHandler combinationMixParlayHandler;
+        private readonly CombinationMixParlayHandler handler;
 
         public CombinationMixParlayHandlerTests(BetListFixture betlistFixture)
         {
@@ -38,7 +38,7 @@
             runningBetListByBetTypeService = Substitute.For<RunningBetListByBetTypeService>();
             runningBetListByBetTypeService.GetBetList(Arg.Any<RunningBetListByBetTypeParam>()).Returns(BetListDataTest.Tickets);
 
-            combinationMixParlayHandler = new CombinationMixParlayHandler(
+            handler = new CombinationMixParlayHandler(
                 runningBetListByBetTypeService,
                 forecastService,
                 betlistFixture.HtmlBuilder,
@@ -56,7 +56,7 @@
             message.CustId = custId;
 
             // Act
-            combinationMixParlayHandler.Handle(message).GetAwaiter().GetResult();
+            handler.Handle(message).GetAwaiter().GetResult();
 
             // Assert
             betlistFixture.MoniterService.Received().WriteLog(
@@ -75,7 +75,7 @@
                 message.ViewerLevel);
 
             // Act
-            combinationMixParlayHandler.Handle(message).GetAwaiter().GetResult();
+            handler.Handle(message).GetAwaiter().GetResult();
 
             // Assert
             runningBetListByBetTypeService.Received().GetBetList(Arg.Is<RunningBetListByBetTypeParam>(p => compareLogic.Compare(param, p).AreEqual));
@@ -85,7 +85,7 @@
         public void Handle_Always_CallGetBetTypeIdsSupportScoreMapFromService()
         {
             // Act
-            combinationMixParlayHandler.Handle(message).GetAwaiter().GetResult();
+            handler.Handle(message).GetAwaiter().GetResult();
 
             // Assert
             forecastService.Received().GetBetTypeIdsSupportScoreMap();
@@ -103,7 +103,7 @@
                 BetListDataTest.BettypeIds);
 
             // Act
-            var actualViewModel = combinationMixParlayHandler.Handle(message).GetAwaiter().GetResult();
+            var actualViewModel = handler.Handle(message).GetAwaiter().GetResult();
 
             // Assert
             Assert.True(compareLogic.Compare(expectedViewModel, actualViewModel).AreEqual);

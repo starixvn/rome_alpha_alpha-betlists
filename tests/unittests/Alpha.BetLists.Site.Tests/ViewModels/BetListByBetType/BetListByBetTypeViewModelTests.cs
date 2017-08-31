@@ -31,7 +31,11 @@
             var query = new BetListByBetTypeQuery(betListFixture.User);
 
             // Act
-            var viewModel = new BetListByBetTypeViewModel(query, BetListDataTest.BetListData, betListFixture.HtmlBuilder, betListFixture.TicketHelper);
+            var viewModel = new BetListByBetTypeViewModel(
+                query,
+                new BetListData(BetListDataTest.Tickets, null),
+                betListFixture.HtmlBuilder,
+                betListFixture.TicketHelper);
 
             // Assert
             Assert.True(viewModel.AllowToViewSuperPT);
@@ -47,7 +51,11 @@
             var query = new BetListByBetTypeQuery(betListFixture.User);
 
             // Act
-            var viewModel = new BetListByBetTypeViewModel(query, BetListDataTest.BetListData, betListFixture.HtmlBuilder, betListFixture.TicketHelper);
+            var viewModel = new BetListByBetTypeViewModel(
+                query,
+                new BetListData(BetListDataTest.Tickets, null),
+                betListFixture.HtmlBuilder,
+                betListFixture.TicketHelper);
 
             // Assert
             Assert.True(viewModel.AllowToViewMasterPT);
@@ -63,7 +71,10 @@
             };
 
             var query = new BetListByBetTypeQuery(betListFixture.User);
-            var viewModel = new BetListByBetTypeViewModel(query, BetListDataTest.BetListData, betListFixture.HtmlBuilder, betListFixture.TicketHelper);
+            var viewModel = new BetListByBetTypeViewModel(query,
+                new BetListData(BetListDataTest.Tickets, null),
+                betListFixture.HtmlBuilder,
+                betListFixture.TicketHelper);
 
             // Act
             var actualCanViewScoreMap = viewModel.CanViewScoreMap(ticket);
@@ -83,7 +94,12 @@
 
             var supportScoreMapBettypeIds = new List<int> { 1, 2, 3 };
             var query = new BetListByBetTypeQuery(betListFixture.User);
-            var viewModel = new BetListByBetTypeViewModel(query, BetListDataTest.BetListData, betListFixture.HtmlBuilder, betListFixture.TicketHelper, supportScoreMapBettypeIds);
+            var viewModel = new BetListByBetTypeViewModel(
+                query,
+                new BetListData(BetListDataTest.Tickets, null),
+                betListFixture.HtmlBuilder,
+                betListFixture.TicketHelper,
+                supportScoreMapBettypeIds);
 
             // Act
             var actualCanViewScoreMap = viewModel.CanViewScoreMap(ticket);
@@ -103,7 +119,12 @@
 
             var supportScoreMapBettypeIds = new List<int> { 1, 2, 3 };
             var query = new BetListByBetTypeQuery(betListFixture.User);
-            var viewModel = new BetListByBetTypeViewModel(query, BetListDataTest.BetListData, betListFixture.HtmlBuilder, betListFixture.TicketHelper, supportScoreMapBettypeIds);
+            var viewModel = new BetListByBetTypeViewModel(
+                query,
+                new BetListData(BetListDataTest.Tickets, null),
+                betListFixture.HtmlBuilder,
+                betListFixture.TicketHelper,
+                supportScoreMapBettypeIds);
 
             // Act
             var actualCanViewScoreMap = viewModel.CanViewScoreMap(ticket);

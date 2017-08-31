@@ -43,7 +43,7 @@
             var param = RacingByMatchHandler.CreateRacingByMatchParam(message);
             var tickets = await racingByMatchService.GetBetList(param);
 
-            var viewModel = new RacingByMatchViewModel(message, new BetListData(tickets, null), Builder, TicketHelper);
+            var viewModel = new RacingByMatchViewModel(message, new BetListData(tickets, null), null, TicketHelper);
 
             workbook = workbook.UseTemplate(GetTemplateInfo(message.ViewerLevel));
             RtfHelper = message.RtfHelper ?? InitRTFHelper((workbook as NpoiWorkbook<TicketDto>).Workbook);

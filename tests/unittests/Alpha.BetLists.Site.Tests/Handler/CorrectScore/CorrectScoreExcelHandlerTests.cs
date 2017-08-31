@@ -26,7 +26,7 @@
         private readonly Workbook<TicketDto> workbook;
         private readonly CorrectScoreExcelQuery message;
         private readonly CorrectScoreService correctScoreService;
-        private readonly CorrectScoreExcelHandler correctScoreExcelHandler;
+        private readonly CorrectScoreExcelHandler handler;
 
         public CorrectScoreExcelHandlerTests(BetListFixture betListFixture)
         {
@@ -43,7 +43,7 @@
             workbook.Title(Arg.Any<string>()).Returns(workbook);
             workbook.Body(Arg.Any<IEnumerable<TicketDto>>(), Arg.Any<Mapper<TicketDto>>()).Returns(workbook);
 
-            correctScoreExcelHandler = new CorrectScoreExcelHandler(
+            handler = new CorrectScoreExcelHandler(
                 correctScoreService,
                 betListFixture.HtmlBuilder,
                 betListFixture.ExcelBuilder,
@@ -51,8 +51,8 @@
                 betListFixture.MoniterService,
                 betListFixture.IpService,
                 workbook);
-            correctScoreExcelHandler.MapPath = (path) => path;
-            correctScoreExcelHandler.IsFileExist = (path) => true;
+            handler.MapPath = (path) => path;
+            handler.IsFileExist = (path) => true;
         }
 
         [Fact]
@@ -66,7 +66,7 @@
                 message.ViewerLevel);
 
             // Act
-            correctScoreExcelHandler.Handle(message).GetAwaiter().GetResult();
+            handler.Handle(message).GetAwaiter().GetResult();
 
             // Assert
             correctScoreService.Received().GetBetList(Arg.Is<CorrectScoreParam>(p => compareLogic.Compare(correctScoreParam, p).AreEqual));
@@ -76,7 +76,7 @@
         public void Handle_Always_UsesCorrectTemplateInfo()
         {
             // Act
-            correctScoreExcelHandler.Handle(message).GetAwaiter().GetResult();
+            handler.Handle(message).GetAwaiter().GetResult();
 
             // Assert
             workbook.Received().UseTemplate(Arg.Is<TemplateInfo>(
@@ -95,7 +95,7 @@
             CacheRefFactory.CacheRef = cacheRef;
 
             // Act
-            correctScoreExcelHandler.Handle(message).GetAwaiter().GetResult();
+            handler.Handle(message).GetAwaiter().GetResult();
 
             // Assert
             workbook.Received().Title(Arg.Is("CORRECT SCORE"));
@@ -105,7 +105,7 @@
         public void Handle_Always_ExportsCorrectHeader()
         {
             // Act
-            correctScoreExcelHandler.Handle(message).GetAwaiter().GetResult();
+            handler.Handle(message).GetAwaiter().GetResult();
 
             // Assert
             workbook.Received().Header(Arg.Any<Func<string, string>>());
@@ -123,7 +123,7 @@
             query.RtfHelper = betListFixture.RtfHelper;
 
             // Act
-            correctScoreExcelHandler.Handle(query).GetAwaiter().GetResult();
+            handler.Handle(query).GetAwaiter().GetResult();
 
             // Assert
             workbook.Received().ExportToBytes();
@@ -133,13 +133,13 @@
         public void Handle_Always_ReturnExcelViewModel()
         {
             // Arrange
-            var correctScoreViewModel = new CorrectScoreViewModel(message, BetListDataTest.BetListData, null, betListFixture.TicketHelper);
+            var correctScoreViewModel = new CorrectScoreViewModel(message, new BetListData(BetListDataTest.Tickets, null), null, betListFixture.TicketHelper);
             workbook.ExportToBytes().Returns(BetListDataTest.ExcelFileContent);
             var expectedViewModel = new ExcelFileViewModel(correctScoreViewModel.Title, BetListDataTest.ExcelFileContent);
             var compareLogic = new CompareLogic();
 
             // Act
-            var actualViewModel = correctScoreExcelHandler.Handle(message).GetAwaiter().GetResult();
+            var actualViewModel = handler.Handle(message).GetAwaiter().GetResult();
 
             // Assert
             Assert.True(compareLogic.Compare(actualViewModel, expectedViewModel).AreEqual);

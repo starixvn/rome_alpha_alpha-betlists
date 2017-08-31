@@ -13,7 +13,7 @@
     {
         private readonly IUser user;
         private readonly IMediator mediator;
-        private readonly BetListByBetTypeController betListByBetTypeController;
+        private readonly BetListByBetTypeController controller;
 
         public BetListByBetTypeControllerTests()
         {
@@ -21,7 +21,7 @@
             mediator = Substitute.For<IMediator>();
             user.LevelId.Returns(UserLevel.Agent.Value);
 
-            betListByBetTypeController = new BetListByBetTypeController(mediator);
+            controller = new BetListByBetTypeController(mediator);
         }
 
         [Fact]
@@ -31,7 +31,7 @@
             var message = new BetListByBetTypeQuery(user);
 
             // Act
-            betListByBetTypeController.Index(message).GetAwaiter().GetResult();
+            controller.Index(message).GetAwaiter().GetResult();
 
             // Assert
             mediator.Received().Send(message);
@@ -45,7 +45,7 @@
             mediator.Send<ExcelFileViewModel>(Arg.Any<BetListByBetTypeExcelQuery>()).Returns(new ExcelFileViewModel("Excel File", new byte[0]));
 
             // Act
-            betListByBetTypeController.Excel(message).GetAwaiter().GetResult();
+            controller.Excel(message).GetAwaiter().GetResult();
 
             // Assert
             mediator.Received().Send<ExcelFileViewModel>(Arg.Is(message));

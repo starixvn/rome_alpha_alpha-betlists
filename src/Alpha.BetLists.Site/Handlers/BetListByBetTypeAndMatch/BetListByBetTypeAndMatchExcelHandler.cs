@@ -42,7 +42,7 @@
             var param = BetListByBetTypeAndMatchHandler.CreateRunningBetListByBetTypeAndMatchParam(message);
             var betListData = await runningBetListByBetTypeAndMatchService.GetBetList(param);
 
-            var viewModel = new BetListByBetTypeAndMatchViewModel(message, betListData, Builder, TicketHelper);
+            var viewModel = new BetListByBetTypeAndMatchViewModel(message, betListData, null, TicketHelper);
 
             workbook = workbook.UseTemplate(GetTemplateInfo(message.ViewerLevel));
             RtfHelper = message.RtfHelper ?? InitRTFHelper((workbook as NpoiWorkbook<TicketDto>).Workbook);

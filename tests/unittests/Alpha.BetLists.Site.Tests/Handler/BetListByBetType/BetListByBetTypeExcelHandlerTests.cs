@@ -24,8 +24,8 @@
         private readonly BetListFixture betListFixture;
         private readonly Workbook<TicketDto> workbook;
         private readonly BetListByBetTypeExcelQuery message;
-        private readonly BetListByBetTypeExcelHandler betListByBetTypeExcelHandler;
         private readonly RunningBetListByBetTypeService runningBetListByBetTypeService;
+        private readonly BetListByBetTypeExcelHandler handler;
 
         public BetListByBetTypeExcelHandlerTests(BetListFixture betListFixture)
         {
@@ -43,7 +43,7 @@
             runningBetListByBetTypeService = Substitute.For<RunningBetListByBetTypeService>();
             runningBetListByBetTypeService.GetBetList(Arg.Any<RunningBetListByBetTypeParam>()).Returns(BetListDataTest.Tickets);
 
-            betListByBetTypeExcelHandler = new BetListByBetTypeExcelHandler(
+            handler = new BetListByBetTypeExcelHandler(
                 runningBetListByBetTypeService,
                 betListFixture.HtmlBuilder,
                 betListFixture.ExcelBuilder,
@@ -51,8 +51,8 @@
                 betListFixture.MoniterService,
                 betListFixture.IpService,
                 workbook);
-            betListByBetTypeExcelHandler.MapPath = (path) => path;
-            betListByBetTypeExcelHandler.IsFileExist = (path) => true;
+            handler.MapPath = (path) => path;
+            handler.IsFileExist = (path) => true;
         }
 
         [Fact]
@@ -68,7 +68,7 @@
                 message.ViewerLevel);
 
             // Act
-            betListByBetTypeExcelHandler.Handle(message).GetAwaiter().GetResult();
+            handler.Handle(message).GetAwaiter().GetResult();
 
             // Assert
             runningBetListByBetTypeService.Received().GetBetList(Arg.Is<RunningBetListByBetTypeParam>(p => compareLogic.Compare(param, p).AreEqual));
@@ -78,7 +78,7 @@
         public void Handle_Always_UsesCorrectTemplateInfo()
         {
             // Act
-            betListByBetTypeExcelHandler.Handle(message).GetAwaiter().GetResult();
+            handler.Handle(message).GetAwaiter().GetResult();
 
             // Assert
             workbook.Received().UseTemplate(Arg.Is<TemplateInfo>(
@@ -105,7 +105,7 @@
             var expectedTitle = betTypeName.ToUpperInvariant();
 
             // Act
-            betListByBetTypeExcelHandler.Handle(message).GetAwaiter().GetResult();
+            handler.Handle(message).GetAwaiter().GetResult();
 
             // Assert
             workbook.Received().Title(Arg.Is(expectedTitle));
@@ -115,7 +115,7 @@
         public void Handle_Always_ExportsCorrectHeader()
         {
             // Act
-            betListByBetTypeExcelHandler.Handle(message).GetAwaiter().GetResult();
+            handler.Handle(message).GetAwaiter().GetResult();
 
             // Assert
             workbook.Received().Header(Arg.Any<Func<string, string>>());
@@ -133,7 +133,7 @@
             query.RtfHelper = betListFixture.RtfHelper;
 
             // Act
-            betListByBetTypeExcelHandler.Handle(query).GetAwaiter().GetResult();
+            handler.Handle(query).GetAwaiter().GetResult();
 
             // Assert
             workbook.Received().ExportToBytes();
@@ -143,13 +143,13 @@
         public void Handle_Always_ReturnExcelViewModel()
         {
             // Arrange
-            var betListByBetTypeViewModel = new BetListByBetTypeViewModel(message, BetListDataTest.BetListData, null, betListFixture.TicketHelper);
+            var betListByBetTypeViewModel = new BetListByBetTypeViewModel(message, new BetListData(BetListDataTest.Tickets, null), null, betListFixture.TicketHelper);
             workbook.ExportToBytes().Returns(BetListDataTest.ExcelFileContent);
             var expectedViewModel = new ExcelFileViewModel(betListByBetTypeViewModel.Title, BetListDataTest.ExcelFileContent);
             var compareLogic = new CompareLogic();
 
             // Act
-            var actualViewModel = betListByBetTypeExcelHandler.Handle(message).GetAwaiter().GetResult();
+            var actualViewModel = handler.Handle(message).GetAwaiter().GetResult();
 
             // Assert
             Assert.True(compareLogic.Compare(actualViewModel, expectedViewModel).AreEqual);

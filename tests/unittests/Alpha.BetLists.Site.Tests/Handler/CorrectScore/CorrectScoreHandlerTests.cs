@@ -19,12 +19,12 @@
     [Collection("BetListCollection")]
     public class CorrectScoreHandlerTests
     {
+        private readonly CompareLogic compareLogic;
         private readonly BetListFixture betlistFixture;
         private readonly CorrectScoreQuery message;
         private readonly ForecastService forecastService;
         private readonly CorrectScoreService correctScoreService;
-        private readonly CorrectScoreHandler correctScoreHandler;
-        private readonly CompareLogic compareLogic;
+        private readonly CorrectScoreHandler handler;
 
         public CorrectScoreHandlerTests(BetListFixture betlistFixture)
         {
@@ -38,7 +38,7 @@
             correctScoreService = Substitute.For<CorrectScoreService>();
             correctScoreService.GetBetList(Arg.Any<CorrectScoreParam>()).Returns(BetListDataTest.Tickets);
 
-            correctScoreHandler = new CorrectScoreHandler(
+            handler = new CorrectScoreHandler(
                 correctScoreService,
                 forecastService,
                 betlistFixture.HtmlBuilder,
@@ -56,7 +56,7 @@
             message.CustId = custId;
 
             // Act
-            correctScoreHandler.Handle(message).GetAwaiter().GetResult();
+            handler.Handle(message).GetAwaiter().GetResult();
 
             // Assert
             betlistFixture.MoniterService.Received().WriteLog(
@@ -74,7 +74,7 @@
                 message.ViewerLevel);
 
             // Act
-            correctScoreHandler.Handle(message).GetAwaiter().GetResult();
+            handler.Handle(message).GetAwaiter().GetResult();
 
             // Assert
             correctScoreService.Received().GetBetList(Arg.Is<CorrectScoreParam>(p => compareLogic.Compare(correctScoreParam, p).AreEqual));
@@ -84,7 +84,7 @@
         public void Handle_Always_CallGetBetTypeIdsSupportScoreMapFromService()
         {
             // Act
-            correctScoreHandler.Handle(message).GetAwaiter().GetResult();
+            handler.Handle(message).GetAwaiter().GetResult();
 
             // Assert
             forecastService.Received().GetBetTypeIdsSupportScoreMap();
@@ -102,7 +102,7 @@
                 BetListDataTest.BettypeIds);
 
             // Act
-            var actualViewModel = correctScoreHandler.Handle(message).GetAwaiter().GetResult();
+            var actualViewModel = handler.Handle(message).GetAwaiter().GetResult();
 
             // Assert
             Assert.True(compareLogic.Compare(expectedViewModel, actualViewModel).AreEqual);

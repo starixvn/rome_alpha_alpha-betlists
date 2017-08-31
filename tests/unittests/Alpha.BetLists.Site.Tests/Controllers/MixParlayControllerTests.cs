@@ -14,7 +14,7 @@
     {
         private readonly IUser user;
         private readonly IMediator mediator;
-        private readonly MixParlayController mixParlayController;
+        private readonly MixParlayController controller;
 
         public MixParlayControllerTests()
         {
@@ -22,7 +22,7 @@
             user = Substitute.For<IUser>();
             user.LevelId.Returns(UserLevel.Agent.Value);
 
-            mixParlayController = new MixParlayController(mediator);
+            controller = new MixParlayController(mediator);
         }
 
         [Fact]
@@ -32,7 +32,7 @@
             var message = new MixParlayQuery(user);
 
             // Act
-            mixParlayController.Index(message).GetAwaiter().GetResult();
+            controller.Index(message).GetAwaiter().GetResult();
 
             // Assert
             mediator.Received().Send<MixParlayViewModel>(message);
@@ -46,7 +46,7 @@
             mediator.Send<ExcelFileViewModel>(Arg.Any<MixParlayExcelQuery>()).Returns(new ExcelFileViewModel("Excel File", new byte[0]));
 
             // Act
-            mixParlayController.Excel(message).GetAwaiter().GetResult();
+            controller.Excel(message).GetAwaiter().GetResult();
 
             // Assert
             mediator.Received().Send<ExcelFileViewModel>(Arg.Is(message));

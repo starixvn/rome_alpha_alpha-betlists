@@ -29,7 +29,7 @@
         {
             BetType = query.BetType;
             MatchId = query.MatchId;
-            Title = Resources.horseRacing;
+            Title = Resources.horseRacing.ToUpperInvariant();
             SupportScoreMapBettypeIds = supportScoreMapBettypeIds;
         }
 

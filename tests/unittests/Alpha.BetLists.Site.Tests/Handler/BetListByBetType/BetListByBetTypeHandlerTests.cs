@@ -24,7 +24,7 @@
         private readonly BetListByBetTypeQuery message;
         private readonly ForecastService forecastService;
         private readonly RunningBetListByBetTypeService runningBetListByBetTypeService;
-        private readonly BetListByBetTypeHandler betListByBetTypeHandler;
+        private readonly BetListByBetTypeHandler handler;
 
         public BetListByBetTypeHandlerTests(BetListFixture betlistFixture)
         {
@@ -38,7 +38,7 @@
             runningBetListByBetTypeService = Substitute.For<RunningBetListByBetTypeService>();
             runningBetListByBetTypeService.GetBetList(Arg.Any<RunningBetListByBetTypeParam>()).Returns(BetListDataTest.Tickets);
 
-            betListByBetTypeHandler = new BetListByBetTypeHandler(
+            handler = new BetListByBetTypeHandler(
                 runningBetListByBetTypeService,
                 forecastService,
                 betlistFixture.HtmlBuilder,
@@ -56,7 +56,7 @@
             message.CustId = custId;
 
             // Act
-            betListByBetTypeHandler.Handle(message).GetAwaiter().GetResult();
+            handler.Handle(message).GetAwaiter().GetResult();
 
             // Assert
             betlistFixture.MoniterService.Received().WriteLog(
@@ -76,7 +76,7 @@
                 message.ViewerLevel);
 
             // Act
-            betListByBetTypeHandler.Handle(message).GetAwaiter().GetResult();
+            handler.Handle(message).GetAwaiter().GetResult();
 
             // Assert
             runningBetListByBetTypeService.Received().GetBetList(
@@ -88,7 +88,7 @@
         public void Handle_Always_CallGetBetTypeIdsSupportScoreMapFromService()
         {
             // Act
-            betListByBetTypeHandler.Handle(message).GetAwaiter().GetResult();
+            handler.Handle(message).GetAwaiter().GetResult();
 
             // Assert
             forecastService.Received().GetBetTypeIdsSupportScoreMap();
@@ -106,7 +106,7 @@
                 BetListDataTest.BettypeIds);
 
             // Act
-            var actualViewModel = betListByBetTypeHandler.Handle(message).GetAwaiter().GetResult();
+            var actualViewModel = handler.Handle(message).GetAwaiter().GetResult();
 
             // Assert
             Assert.True(compareLogic.Compare(expectedViewModel, actualViewModel).AreEqual);

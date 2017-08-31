@@ -23,8 +23,8 @@
         private readonly BetListFixture betListFixture;
         private readonly Workbook<TicketDto> workbook;
         private readonly MixParlayExcelQuery message;
-        private readonly MixParlayExcelHandler mixParlayExcelHandler;
         private readonly RunningBetListByBetTypeService runningBetListByBetTypeService;
+        private readonly MixParlayExcelHandler handler;
 
         public MixParlayExcelHandlerTests(BetListFixture betListFixture)
         {
@@ -41,7 +41,7 @@
             workbook.Title(Arg.Any<string>()).Returns(workbook);
             workbook.Body(Arg.Any<IEnumerable<TicketDto>>(), Arg.Any<Mapper<TicketDto>>()).Returns(workbook);
 
-            mixParlayExcelHandler = new MixParlayExcelHandler(
+            handler = new MixParlayExcelHandler(
                 runningBetListByBetTypeService,
                 betListFixture.HtmlBuilder,
                 betListFixture.ExcelBuilder,
@@ -49,8 +49,8 @@
                 betListFixture.MoniterService,
                 betListFixture.IpService,
                 workbook);
-            mixParlayExcelHandler.MapPath = (path) => path;
-            mixParlayExcelHandler.IsFileExist = (path) => true;
+            handler.MapPath = (path) => path;
+            handler.IsFileExist = (path) => true;
         }
 
         [Fact]
@@ -65,7 +65,7 @@
                 message.ViewerLevel);
 
             // Act
-            mixParlayExcelHandler.Handle(message).GetAwaiter().GetResult();
+            handler.Handle(message).GetAwaiter().GetResult();
 
             // Assert
             runningBetListByBetTypeService.Received().GetBetList(Arg.Is<RunningBetListByBetTypeParam>(p => compareLogic.Compare(param, p).AreEqual));
@@ -75,7 +75,7 @@
         public void Handle_Always_UsesCorrectTemplateInfo()
         {
             // Act
-            mixParlayExcelHandler.Handle(message).GetAwaiter().GetResult();
+            handler.Handle(message).GetAwaiter().GetResult();
 
             // Assert
             workbook.Received().UseTemplate(Arg.Is<TemplateInfo>(
@@ -89,7 +89,7 @@
         public void Handle_Always_ExportsCorrectTitle()
         {
             // Act
-            mixParlayExcelHandler.Handle(message).GetAwaiter().GetResult();
+            handler.Handle(message).GetAwaiter().GetResult();
 
             // Assert
             workbook.Received().Title(Arg.Is("MIX PARLAY"));
@@ -99,7 +99,7 @@
         public void Handle_Always_ExportsCorrectHeader()
         {
             // Act
-            mixParlayExcelHandler.Handle(message).GetAwaiter().GetResult();
+            handler.Handle(message).GetAwaiter().GetResult();
 
             // Assert
             workbook.Received().Header(Arg.Any<Func<string, string>>());
@@ -117,7 +117,7 @@
             query.RtfHelper = betListFixture.RtfHelper;
 
             // Act
-            mixParlayExcelHandler.Handle(query).GetAwaiter().GetResult();
+            handler.Handle(query).GetAwaiter().GetResult();
 
             // Assert
             workbook.Received().ExportToBytes();
@@ -127,13 +127,13 @@
         public void Handle_Always_ReturnExcelViewModel()
         {
             // Arrange
-            var mixParlayViewModel = new MixParlayViewModel(message, BetListDataTest.BetListData, null, betListFixture.TicketHelper);
+            var mixParlayViewModel = new MixParlayViewModel(message, new BetListData(BetListDataTest.Tickets, null), null, betListFixture.TicketHelper);
             workbook.ExportToBytes().Returns(BetListDataTest.ExcelFileContent);
             var expectedViewModel = new ExcelFileViewModel(mixParlayViewModel.Title, BetListDataTest.ExcelFileContent);
             var compareLogic = new CompareLogic();
 
             // Act
-            var actualViewModel = mixParlayExcelHandler.Handle(message).GetAwaiter().GetResult();
+            var actualViewModel = handler.Handle(message).GetAwaiter().GetResult();
 
             // Assert
             Assert.True(compareLogic.Compare(actualViewModel, expectedViewModel).AreEqual);

@@ -24,7 +24,7 @@
         private readonly MixParlayQuery message;
         private readonly ForecastService forecastService;
         private readonly RunningBetListByBetTypeService runningBetListByBetTypeService;
-        private readonly MixParlayHandler mixParlayHandler;
+        private readonly MixParlayHandler handler;
 
         public MixParlayHandlerTests(BetListFixture betlistFixture)
         {
@@ -38,7 +38,7 @@
             runningBetListByBetTypeService = Substitute.For<RunningBetListByBetTypeService>();
             runningBetListByBetTypeService.GetBetList(Arg.Any<RunningBetListByBetTypeParam>()).Returns(BetListDataTest.Tickets);
 
-            mixParlayHandler = new MixParlayHandler(
+            handler = new MixParlayHandler(
                 runningBetListByBetTypeService,
                 forecastService,
                 betlistFixture.HtmlBuilder,
@@ -56,7 +56,7 @@
             message.CustId = custId;
 
             // Act
-            mixParlayHandler.Handle(message).GetAwaiter().GetResult();
+            handler.Handle(message).GetAwaiter().GetResult();
 
             // Assert
             betlistFixture.MoniterService.Received().WriteLog(
@@ -75,7 +75,7 @@
                 message.ViewerLevel);
 
             // Act
-            mixParlayHandler.Handle(message).GetAwaiter().GetResult();
+            handler.Handle(message).GetAwaiter().GetResult();
 
             // Assert
             runningBetListByBetTypeService.Received().GetBetList(
@@ -87,7 +87,7 @@
         public void Handle_Always_CallGetBetTypeIdsSupportScoreMapFromService()
         {
             // Act
-            mixParlayHandler.Handle(message).GetAwaiter().GetResult();
+            handler.Handle(message).GetAwaiter().GetResult();
 
             // Assert
             forecastService.Received().GetBetTypeIdsSupportScoreMap();
@@ -105,7 +105,7 @@
                 BetListDataTest.BettypeIds);
 
             // Act
-            var actualViewModel = mixParlayHandler.Handle(message).GetAwaiter().GetResult();
+            var actualViewModel = handler.Handle(message).GetAwaiter().GetResult();
 
             // Assert
             Assert.True(compareLogic.Compare(expectedViewModel, actualViewModel).AreEqual);

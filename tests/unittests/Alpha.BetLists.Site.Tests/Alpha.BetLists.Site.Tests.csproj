@@ -283,6 +283,7 @@
     <Compile Include="Fixtures\ParlayServiceFixture.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Handler\BetListBaseHandlerTests.cs" />
+    <Compile Include="Handler\BetListByBetTypeAndMatch\BetListByBetTypeAndMatchExcelHandlerTests.cs" />
     <Compile Include="Handler\BetListByBetTypeAndMatch\BetListByBetTypeAndMatchHandlerTests.cs" />
     <Compile Include="Handler\BetListByBetType\BetListByBetTypeExcelHandlerTests.cs" />
     <Compile Include="Handler\BetListByBetType\BetListByBetTypeHandlerTests.cs" />
@@ -301,6 +302,8 @@
     <Compile Include="Handler\MemberBetList\MemberBetListHandlerTests.cs" />
     <Compile Include="Handler\MixParlay\MixParlayExcelHandlerTests.cs" />
     <Compile Include="Handler\MixParlay\MixParlayHandlerTests.cs" />
+    <Compile Include="Handler\RacingByMatch\RacingByMatchExcelHandlerTests.cs" />
+    <Compile Include="Handler\RacingByMatch\RacingByMatchHandlerTests.cs" />
     <Compile Include="Handler\RunningBetList\RunningBetListHandlerTests.cs" />
     <Compile Include="Handler\ParlayWinLossByMatch\ParlayWinLossByMatchExcelHanlderTests.cs" />
     <Compile Include="Handler\ParlayWinLossByMatch\ParlayWinLossByMatchHanlderTests.cs" />
@@ -322,6 +325,7 @@
     <Compile Include="Request\RunningBetList\RunningBetListQueryTests.cs" />
     <Compile Include="Request\WinLoss\WinLossQueryTests.cs" />
     <Compile Include="ViewModels\BetListBaseViewModelTests.cs" />
+    <Compile Include="ViewModels\BetListByBetTypeAndMatch\BetListByBetTypeAndMatchViewModelTests.cs" />
     <Compile Include="ViewModels\BetListByBetType\BetListByBetTypeViewModelTests.cs" />
     <Compile Include="ViewModels\Blocks\FooterTests.cs" />
     <Compile Include="ViewModels\Blocks\WinLostBlockViewModelTests.cs" />
@@ -338,6 +342,7 @@
     <Compile Include="ViewModels\Parlay\ComboParlayDetailViewModelTests.cs" />
     <Compile Include="ViewModels\Parlay\ComboParlayDetailWrapperTests.cs" />
     <Compile Include="ViewModels\Parlay\ComboParlayViewModelTests.cs" />
+    <Compile Include="ViewModels\RacingByMatch\RacingByMatchViewModelTests.cs" />
     <Compile Include="ViewModels\RunningBetList\RunningBetListViewModelTests.cs" />
     <Compile Include="ViewModels\WinLoss\WinLossViewModelTests.cs" />
   </ItemGroup>

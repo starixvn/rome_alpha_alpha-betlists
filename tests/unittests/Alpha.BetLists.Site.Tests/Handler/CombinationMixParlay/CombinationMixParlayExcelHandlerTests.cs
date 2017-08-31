@@ -23,8 +23,8 @@
         private readonly BetListFixture betListFixture;
         private readonly Workbook<TicketDto> workbook;
         private readonly CombinationMixParlayExcelQuery message;
-        private readonly CombinationMixParlayExcelHandler combinationMixParlayExcelHandler;
         private readonly RunningBetListByBetTypeService runningBetListByBetTypeService;
+        private readonly CombinationMixParlayExcelHandler handler;
 
         public CombinationMixParlayExcelHandlerTests(BetListFixture betListFixture)
         {
@@ -41,7 +41,7 @@
             workbook.Title(Arg.Any<string>()).Returns(workbook);
             workbook.Body(Arg.Any<IEnumerable<TicketDto>>(), Arg.Any<Mapper<TicketDto>>()).Returns(workbook);
 
-            combinationMixParlayExcelHandler = new CombinationMixParlayExcelHandler(
+            handler = new CombinationMixParlayExcelHandler(
                 runningBetListByBetTypeService,
                 betListFixture.HtmlBuilder,
                 betListFixture.ExcelBuilder,
@@ -49,8 +49,8 @@
                 betListFixture.MoniterService,
                 betListFixture.IpService,
                 workbook);
-            combinationMixParlayExcelHandler.MapPath = (path) => path;
-            combinationMixParlayExcelHandler.IsFileExist = (path) => true;
+            handler.MapPath = (path) => path;
+            handler.IsFileExist = (path) => true;
         }
 
         [Fact]
@@ -65,7 +65,7 @@
                 message.ViewerLevel);
 
             // Act
-            combinationMixParlayExcelHandler.Handle(message).GetAwaiter().GetResult();
+            handler.Handle(message).GetAwaiter().GetResult();
 
             // Assert
             runningBetListByBetTypeService.Received().GetBetList(Arg.Is<RunningBetListByBetTypeParam>(p => compareLogic.Compare(param, p).AreEqual));
@@ -75,7 +75,7 @@
         public void Handle_Always_UsesCorrectTemplateInfo()
         {
             // Act
-            combinationMixParlayExcelHandler.Handle(message).GetAwaiter().GetResult();
+            handler.Handle(message).GetAwaiter().GetResult();
 
             // Assert
             workbook.Received().UseTemplate(Arg.Is<TemplateInfo>(
@@ -89,7 +89,7 @@
         public void Handle_Always_ExportsCorrectTitle()
         {
             // Act
-            combinationMixParlayExcelHandler.Handle(message).GetAwaiter().GetResult();
+            handler.Handle(message).GetAwaiter().GetResult();
 
             // Assert
             workbook.Received().Title(Arg.Is("SYSTEM PARLAY"));
@@ -99,7 +99,7 @@
         public void Handle_Always_ExportsCorrectHeader()
         {
             // Act
-            combinationMixParlayExcelHandler.Handle(message).GetAwaiter().GetResult();
+            handler.Handle(message).GetAwaiter().GetResult();
 
             // Assert
             workbook.Received().Header(Arg.Any<Func<string, string>>());
@@ -117,7 +117,7 @@
             query.RtfHelper = betListFixture.RtfHelper;
 
             // Act
-            combinationMixParlayExcelHandler.Handle(query).GetAwaiter().GetResult();
+            handler.Handle(query).GetAwaiter().GetResult();
 
             // Assert
             workbook.Received().ExportToBytes();
@@ -127,13 +127,13 @@
         public void Handle_Always_ReturnExcelViewModel()
         {
             // Arrange
-            var combinationMixParlayViewModel = new CombinationMixParlayViewModel(message, BetListDataTest.BetListData, null, betListFixture.TicketHelper);
+            var combinationMixParlayViewModel = new CombinationMixParlayViewModel(message, new BetListData(BetListDataTest.Tickets, null), null, betListFixture.TicketHelper);
             workbook.ExportToBytes().Returns(BetListDataTest.ExcelFileContent);
             var expectedViewModel = new ExcelFileViewModel(combinationMixParlayViewModel.Title, BetListDataTest.ExcelFileContent);
             var compareLogic = new CompareLogic();
 
             // Act
-            var actualViewModel = combinationMixParlayExcelHandler.Handle(message).GetAwaiter().GetResult();
+            var actualViewModel = handler.Handle(message).GetAwaiter().GetResult();
 
             // Assert
             Assert.True(compareLogic.Compare(actualViewModel, expectedViewModel).AreEqual);

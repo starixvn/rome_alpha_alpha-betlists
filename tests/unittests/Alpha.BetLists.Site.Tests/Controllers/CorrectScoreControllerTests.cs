@@ -14,7 +14,7 @@
     {
         private readonly IMediator mediator;
         private readonly IUser user;
-        private readonly CorrectScoreController correctScoreController;
+        private readonly CorrectScoreController controller;
 
         public CorrectScoreControllerTests()
         {
@@ -22,7 +22,7 @@
             user = Substitute.For<IUser>();
             user.LevelId.Returns(UserLevel.Agent.Value);
 
-            correctScoreController = new CorrectScoreController(mediator);
+            controller = new CorrectScoreController(mediator);
         }
 
         [Fact]
@@ -32,7 +32,7 @@
             var message = new CorrectScoreQuery(user);
 
             // Act
-            correctScoreController.Index(message).GetAwaiter().GetResult();
+            controller.Index(message).GetAwaiter().GetResult();
 
             // Assert
             mediator.Received().Send<CorrectScoreViewModel>(message);
@@ -46,7 +46,7 @@
             mediator.Send<ExcelFileViewModel>(Arg.Any<CorrectScoreExcelQuery>()).Returns(new ExcelFileViewModel("Excel File", new byte[0]));
 
             // Act
-            correctScoreController.Excel(message).GetAwaiter().GetResult();
+            controller.Excel(message).GetAwaiter().GetResult();
 
             // Assert
             mediator.Received().Send<ExcelFileViewModel>(Arg.Is(message));
