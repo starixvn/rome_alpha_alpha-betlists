@@ -653,7 +653,7 @@
       <Mapping DataField="SComm" ObjectProperty="SuperCommission"></Mapping>
       <Mapping DataField="AComm" ObjectProperty="AgentCommission"></Mapping>
       <Mapping DataField="Comm" ObjectProperty="MasterCommmission"></Mapping>
-      <Mapping DataField="Discount" ObjectProperty="MasterCommmission"></Mapping>
+      <Mapping DataField="Discount" ObjectProperty="MasterDiscount"></Mapping>
     </Setting>
   </Function>
 </Functions>

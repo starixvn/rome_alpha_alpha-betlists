@@ -58,7 +58,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetListDetail.Lucky3, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Fanex.BetListDetail.Lucky3.1.0.0.0-beta10\lib\Fanex.BetListDetail.Lucky3.dll</HintPath>
+      <HintPath>..\..\..\packages\Fanex.BetListDetail.Lucky3.1.0.0.0-beta11\lib\Fanex.BetListDetail.Lucky3.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.Caching, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -130,7 +130,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Sunplus.Agent.Model.Base, Version=3.0.2.7, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Sunplus.Agent.Model.Base.3.0.2.7\lib\net40\Sunplus.Agent.Model.Base.dll</HintPath>
+      <HintPath>..\..\..\packages\Sunplus.Agent.Model.Base.3.0.2.8-lucky3-01\lib\net40\Sunplus.Agent.Model.Base.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Sunplus.Agent.Model.Definitions, Version=3.0.1.11, Culture=neutral, processorArchitecture=MSIL">

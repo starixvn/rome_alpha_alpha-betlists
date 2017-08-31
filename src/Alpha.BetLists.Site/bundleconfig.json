@@ -3,6 +3,7 @@
     "outputFileName": "assets/bundles/default.css",
     "inputFiles": [
       "assets/styles/bet-list.css",
+      "assets/styles/bet-list-detail.css",
       "assets/styles/details-popup.css"
     ]
   },
