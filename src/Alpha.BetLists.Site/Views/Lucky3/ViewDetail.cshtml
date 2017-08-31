@@ -109,7 +109,7 @@
                 else if (ticket.IsLosingCombination)
                 {
                     <tr>
-                        <td colspan="4">@Resources.TotalLost</td>
+                        <td class="align-left" colspan="4">@Resources.TotalLost</td>
                         <td>@Model.FormatMoney(ticket.Stake)</td>
                         <td>@Model.FormatWinLost(ticket.Winlost.Value)</td>
                         @if (Model.IsSuper)
@@ -129,7 +129,7 @@
                 else if (ticket.IsWinningShare)
                 {
                     <tr>
-                        <td colspan="5">@Resources.WinningShare</td>
+                        <td class="align-left" colspan="5">@Resources.WinningShare</td>
                         <td>-</td>
                         @if (Model.IsSuper)
                         {
