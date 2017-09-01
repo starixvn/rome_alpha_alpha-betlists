@@ -20,12 +20,11 @@
             var lucky3DetailParameter = new GetLucky3DetailParameter
             {
                 CustomerId = message.CustId,
-                TransactionId = message.TransactionId
+                TransactionId = message.TransactionId,
+                LevelId = message.ViewerLevelId
             };
 
-            var lucky3Details = lucky3Service.GetBetListDetail(lucky3DetailParameter);
-
-            return new Lucky3DetailViewModel(lucky3Details, message.ViewerLevelId);
+            return lucky3Service.GetBetListDetail(lucky3DetailParameter);
         }
     }
 }

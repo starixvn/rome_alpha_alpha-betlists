@@ -53,28 +53,14 @@ namespace Alpha.BetLists.Site.Tests.Handler.Lucky3
         {
             //// Arrange
             var message = new Lucky3DetailQuery(user);            
+            var viewModel = fixture.Create<Lucky3DetailViewModel>();
+            service.GetBetListDetail(Arg.Any<IGetLucky3DetailParameter>()).Returns(viewModel);
 
             // Act
             var act = handler.Handle(message);
 
             //// Assert
             Assert.IsType(typeof(Lucky3DetailViewModel), act);
-        }
-
-        [Fact]
-        public void Handle_Alway_ReturnCorrectViewModel()
-        {
-            //// Arrange
-            var message = new Lucky3DetailQuery(user);
-            var details = fixture.Create<IEnumerable<Lucky3DetailModel>>();
-            service.GetBetListDetail(Arg.Any<IGetLucky3DetailParameter>()).Returns(details);
-            var expectedViewModel = new Lucky3DetailViewModel(details, message.ViewerLevelId);
-
-            // Act
-            var act = handler.Handle(message);
-
-            //// Assert
-            Assert.True(comparer.Compare(expectedViewModel, act).AreEqual);
-        }
+        }        
     }
 }
