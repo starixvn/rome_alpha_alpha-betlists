@@ -54,3 +54,7 @@ _Chutzpah.coverage.html
 *.test.html
 src/Alpha.Reports.Site/jsUnitTest.xml
 build/BuildTask.Release.log
+tests/unittests/Alpha.BetLists.Site.Tests/Lucky3/Styles/images/lotto_ball.png
+tests/unittests/Alpha.BetLists.Site.Tests/Lucky3/ViewDetail.cshtml
+tests/unittests/Alpha.BetLists.Tests/Lucky3/Styles/images/lotto_ball.png
+tests/unittests/Alpha.BetLists.Tests/Lucky3/ViewDetail.cshtml

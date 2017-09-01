@@ -64,7 +64,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetListDetail.Lucky3, Version=1.0.0.12, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Fanex.BetListDetail.Lucky3.1.0.0.0-beta13\lib\Fanex.BetListDetail.Lucky3.dll</HintPath>
+      <HintPath>..\..\..\packages\Fanex.BetListDetail.Lucky3.1.0.0.0-beta14\lib\Fanex.BetListDetail.Lucky3.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.Caching, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -317,7 +317,6 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="AppReadme\Compare-NET-Objects-Help.chm" />
-    <None Include="Lucky3\ViewDetail.cshtml" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -340,10 +339,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Lucky3\Styles\images\lotto_ball.png" />
-    <Content Include="Lucky3\Styles\index.css" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
