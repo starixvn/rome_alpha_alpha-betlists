@@ -14,10 +14,10 @@
             let width = 900;
             let roleId = Number(this.ViewerLevelId);
             if (roleId >= 3) {
-                width += 93;
+                width += 105;
             }
             if (roleId >= 4) {
-                width += 93;
+                width += 105;
             }
 
             Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'Lucky3/ViewDetail' + params, "Lucky 3 - Detailed Bet List", width, 800);
