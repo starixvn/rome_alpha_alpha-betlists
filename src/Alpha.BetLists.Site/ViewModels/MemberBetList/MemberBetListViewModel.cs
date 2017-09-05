@@ -100,7 +100,7 @@
         }
 
         public override bool CanViewScoreMap(ITicket ticket)
-            => ticket.Status.Equals(BetStatus.Running)
+            => ticket.Status.Equals(BetStatus.Running, StringComparison.OrdinalIgnoreCase)
             && SupportScoreMapBettypeIds.Contains(ticket.BetTypeId);
 
         public string BuildRunningBetListLink(string link)
