@@ -37,18 +37,18 @@
                 .Map(F, ticket => BuildStake(ticket))
                 .Map(G, ticket => BuildStatus(ticket, viewModel));
 
-            mapper.Map(H, ticket => BuildPtCommmission(ticket, ticketData, UserLevel.Agent));
+            mapper.Map(H, ticket => BuildPtCommmission(ticket, ticketData, viewerLevel));
 
             if (viewerLevel.IsMasterLevel())
             {
-                mapper.Map(I, ticket => BuildPtCommmission(ticket, ticketData, UserLevel.Master));
+                mapper.Map(I, ticket => BuildPtCommmission(ticket, ticketData, UserLevel.Agent));
             }
 
             if (viewerLevel.IsSuperLevel())
             {
                 mapper
                     .Map(I, ticket => BuildPtCommmission(ticket, ticketData, UserLevel.Master))
-                    .Map(J, ticket => BuildPtCommmission(ticket, ticketData, UserLevel.Super));
+                    .Map(J, ticket => BuildPtCommmission(ticket, ticketData, UserLevel.Agent));
             }
 
             return mapper;
