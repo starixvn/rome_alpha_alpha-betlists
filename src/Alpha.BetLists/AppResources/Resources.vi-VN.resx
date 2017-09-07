@@ -340,4 +340,10 @@
   <data name="OtherBetTypes" xml:space="preserve">
     <value>Loại cược khác</value>
   </data>
+  <data name="Page" xml:space="preserve">
+    <value>Trang</value>
+  </data>
+  <data name="of" xml:space="preserve">
+    <value>trên</value>
+  </data>
 </root>

@@ -287,4 +287,10 @@
   <data name="Last" xml:space="preserve">
     <value>最後</value>
   </data>
+  <data name="Page" xml:space="preserve">
+    <value>ページ</value>
+  </data>
+  <data name="of" xml:space="preserve">
+    <value>/</value>
+  </data>
 </root>

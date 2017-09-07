@@ -30,7 +30,7 @@
                 + "&sportName=" + sportName;
         }
 
-        private ShowDetailsPopup = (params: string) => Common.PopupDetails.Instance(window.top).Show(Common.AppPath.OldMainAppPath() + 'LiveCasinoBetList/BetDetail/RNGBetDetail' + params, "", 1120);
+        private ShowDetailsPopup = (params: string) => Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'BetDetail/RNGCasino' + params, "", 1120);
     }
 
     export class AllbetTicketDetails extends BaseTicketDetails {

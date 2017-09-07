@@ -410,6 +410,10 @@
     <Content Include="App_Data\SPNames\UAT\DBLOG.bodb_CustomerLog.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\UAT\DBONUSER.ON_USER.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\UAT\DBPOLICY.bodb02.BODBDownlineNet.xml" />
+    <Content Include="assets\bundles\bet-detail\rng-casino.js" />
+    <Content Include="assets\bundles\bet-detail\rng-casino.min.js">
+      <DependentUpon>rng-casino.js</DependentUpon>
+    </Content>
     <Content Include="assets\bundles\cancelled-betlist\cancelled-betlist.js" />
     <Content Include="assets\bundles\cancelled-betlist\cancelled-betlist.min.js">
       <DependentUpon>cancelled-betlist.js</DependentUpon>
@@ -560,6 +564,7 @@
     <Content Include="App_Data\ExcelTemplates\CancelledBet\Super.xls" />
     <Content Include="App_Data\activitytracking.json" />
     <Content Include="assets\styles\bet-details.scss" />
+    <Content Include="App_Code\Components\Pager.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -727,6 +732,7 @@
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
     <Content Include="tsconfig.json" />
+    <Content Include="Views\BetDetail\RNGCasino.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\DependencyConfig.cs" />
@@ -737,10 +743,12 @@
     <Compile Include="Controllers\Lucky3Controller.cs" />
     <Compile Include="Controllers\MemberBetListController.cs" />
     <Compile Include="Controllers\LastBetsController.cs" />
+    <Compile Include="Controllers\BetDetailController.cs" />
     <Compile Include="Controllers\RunningBetListController.cs" />
     <Compile Include="Controllers\CancelledBetController.cs" />
     <Compile Include="Handlers\CancelledBet\CancelledBetExcelHandler.cs" />
     <Compile Include="Handlers\CancelledBet\CancelledBetHandler.cs" />
+    <Compile Include="Handlers\BetDetail\BetDetailHander.cs" />
     <Compile Include="Requests\CancelledBet\CancelledBetBaseQuery.cs" />
     <Compile Include="Requests\CancelledBet\CancelledBetExcelQuery.cs" />
     <Compile Include="Requests\CancelledBet\CancelledBetQuery.cs" />
@@ -779,6 +787,7 @@
     <Compile Include="Requests\Lucky3\Lucky3DetailQuery.cs" />
     <Compile Include="Requests\DailyStatement\DailyStatementQuery.cs" />
     <Compile Include="Requests\MemberBetList\MemberBetListQuery.cs" />
+    <Compile Include="Requests\BetDetail\RNGCasinoQuery.cs" />
     <Compile Include="Requests\RunningBetList\RunningBetListQuery.cs" />
     <Compile Include="Requests\LastBets\CheckCanViewLastBetsQuery.cs" />
     <Compile Include="Requests\LastBets\GetLastBetsQuery.cs" />
@@ -798,10 +807,12 @@
     <Compile Include="ViewModels\Blocks\WinLostBlockViewModel.cs" />
     <Compile Include="ViewModels\Components\DateRangePickerViewModel.cs" />
     <Compile Include="ViewModels\CancelledBet\CancelledBetViewModel.cs" />
+    <Compile Include="ViewModels\Components\PagerViewModel.cs" />
     <Compile Include="ViewModels\Components\ProductMultiSelectionViewModel.cs" />
     <Compile Include="ViewModels\DailyStatement\DailyStatementViewModel.cs" />
     <Compile Include="ViewModels\ExcelFileViewModel.cs" />
     <Compile Include="ViewModels\MemberBetList\MemberBetListViewModel.cs" />
+    <Compile Include="ViewModels\BetDetail\BetDetailViewModel.cs" />
     <Compile Include="ViewModels\RunningBetList\RunningBetListViewModel.cs" />
     <Compile Include="ViewModels\LastBets\BetDataViewModel.cs" />
     <Compile Include="ViewModels\LastBets\LastBetsViewModel.cs" />
@@ -842,6 +853,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="assets\scripts\src\bet-detail\rng-casino.ts" />
     <TypeScriptCompile Include="assets\scripts\src\betlist\choice\score-map.ts" />
     <TypeScriptCompile Include="assets\scripts\src\betlist\choice\ticket-details\numbergame-ticket-details.ts" />
     <TypeScriptCompile Include="assets\scripts\src\betlist\choice\ticket-details\other-ticket-details.ts" />
@@ -858,6 +870,7 @@
     <TypeScriptCompile Include="assets\scripts\src\betlist\status\result-details\base-result-details.ts" />
     <TypeScriptCompile Include="assets\scripts\src\betlist\status\result-details\casino-result-details.ts" />
     <TypeScriptCompile Include="assets\scripts\src\betlist\status\result-details\sportsbook-result-details.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\components\client-pager.ts" />
     <TypeScriptCompile Include="assets\scripts\src\components\daterangepicker.ts" />
     <TypeScriptCompile Include="assets\scripts\src\components\productmultiselection.ts" />
     <TypeScriptCompile Include="assets\scripts\src\last-bets\last-bets.ts" />
@@ -900,6 +913,7 @@
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.3.0.2862\analyzers\SonarAnalyzer.CSharp.dll" />
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.3.0.2862\analyzers\SonarAnalyzer.dll" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -312,4 +312,10 @@
   <data name="OtherBetTypes" xml:space="preserve">
     <value>다른 배팅종류</value>
   </data>
+  <data name="Page" xml:space="preserve">
+    <value>페이지</value>
+  </data>
+  <data name="of" xml:space="preserve">
+    <value>부터</value>
+  </data>
 </root>

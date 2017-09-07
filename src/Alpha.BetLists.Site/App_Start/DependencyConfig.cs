@@ -139,6 +139,8 @@
                     new CacheRefServiceImpl().GetProductName),
                 Lifestyle.Singleton);
             container.Register<CancelledBetService, CancelledBetServiceImpl>();
+
+            container.Register<RNGBetDetailService, RNGBetDetailServiceImpl>(Lifestyle.Singleton);
         }
     }
 }

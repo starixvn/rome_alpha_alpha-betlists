@@ -31,7 +31,7 @@
                 BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowRnGCasinoDetails(refNo, winLossDate, custId, transType);
 
                 // Assert
-                expect(popupDetailsShow).toHaveBeenCalledWith("old-path/LiveCasinoBetList/BetDetail/RNGBetDetail" + params, "", 1120);
+                expect(popupDetailsShow).toHaveBeenCalledWith("betlist-path/BetDetail/RNGCasino" + params, "", 1120);
             });
         });
 
@@ -44,7 +44,7 @@
                 BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowMacauGamesDetails(refNo, winLossDate, custId, transType);
 
                 // Assert
-                expect(popupDetailsShow).toHaveBeenCalledWith("old-path/LiveCasinoBetList/BetDetail/RNGBetDetail" + params, "", 1120);
+                expect(popupDetailsShow).toHaveBeenCalledWith("betlist-path/BetDetail/RNGCasino" + params, "", 1120);
             });
         });
 
@@ -57,7 +57,7 @@
                 BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowFishingWorldDetails(refNo, winLossDate, custId, transType);
 
                 // Assert
-                expect(popupDetailsShow).toHaveBeenCalledWith("old-path/LiveCasinoBetList/BetDetail/RNGBetDetail" + params, "", 1120);
+                expect(popupDetailsShow).toHaveBeenCalledWith("betlist-path/BetDetail/RNGCasino" + params, "", 1120);
             });
         });
     });

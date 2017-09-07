@@ -72,8 +72,14 @@
   {
     "outputFileName": "assets/bundles/last-bets.js",
     "inputFiles": [
-      "assets/scripts/src/last-bets/last-bets.js",
-      "assets/scripts/src/last-bets/bet-list.js"
+      "assets/scripts/src/last-bets/last-bets.js"
+    ]
+  },
+  {
+    "outputFileName": "assets/bundles/bet-detail/rng-casino.js",
+    "inputFiles": [
+      "assets/scripts/src/components/client-pager.js",
+      "assets/scripts/src/bet-detail/rng-casino.js"
     ]
   }
 ]
