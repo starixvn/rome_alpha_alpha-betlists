@@ -21,7 +21,7 @@
             mediator = Substitute.For<IMediator>();
             user.LevelId.Returns(UserLevel.Agent.Value);
 
-            controller = new RacingByMatchController(mediator);
+            controller = new RacingByMatchController(mediator, user);
         }
 
         [Fact]

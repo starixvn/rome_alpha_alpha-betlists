@@ -1,5 +1,6 @@
 ﻿namespace Alpha.BetLists.Site.ViewModels.RacingByMatch
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using AppResources;
@@ -41,6 +42,7 @@
 
         public override bool CanViewScoreMap(ITicket ticket)
             => SupportScoreMapBettypeIds != null
-            && SupportScoreMapBettypeIds.Contains(ticket.BetTypeId);
+            && SupportScoreMapBettypeIds.Contains(ticket.BetTypeId)
+            && ticket.Status.Equals(BetStatus.Running, StringComparison.OrdinalIgnoreCase);
     }
 }

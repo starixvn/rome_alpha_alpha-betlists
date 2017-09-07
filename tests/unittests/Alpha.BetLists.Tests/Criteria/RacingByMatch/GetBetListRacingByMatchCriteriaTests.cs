@@ -15,7 +15,7 @@
         {
             // Arrange
             var custLevel = Enumeration.FromValue<UserLevel>(custLevelId);
-            var criteria = new GetBetListRacingByMatchCriteria(0, 0, 0, string.Empty, true, custLevel);
+            var criteria = new GetBetListRacingByMatchCriteria(0, 0, 0, string.Empty, custLevel);
 
             // Act
             var actualSettingKey = criteria.GetSettingKey();
@@ -31,7 +31,7 @@
         public void IsValid_InvalidCustId_ReturnsFalse(int custId)
         {
             // Arrange
-            var criteria = new GetBetListRacingByMatchCriteria(custId, 1, 0, string.Empty, true, UserLevel.Agent);
+            var criteria = new GetBetListRacingByMatchCriteria(custId, 1, 0, string.Empty, UserLevel.Agent);
 
             // Act
             var actualIsValid = criteria.IsValid();
@@ -47,20 +47,7 @@
         public void IsValid_InvalidBetType_ReturnsFalse(int betType)
         {
             // Arrange
-            var criteria = new GetBetListRacingByMatchCriteria(1, betType, 0, string.Empty, true, UserLevel.Agent);
-
-            // Act
-            var actualIsValid = criteria.IsValid();
-
-            // Assert
-            Assert.False(actualIsValid);
-        }
-
-        [Fact]
-        public void IsValid_IsShowRacingIsFalse_ReturnsFalse()
-        {
-            // Arrange
-            var criteria = new GetBetListRacingByMatchCriteria(1, 1, 0, string.Empty, false, UserLevel.Agent);
+            var criteria = new GetBetListRacingByMatchCriteria(1, betType, 0, string.Empty, UserLevel.Agent);
 
             // Act
             var actualIsValid = criteria.IsValid();
@@ -73,7 +60,7 @@
         public void IsValid_ValidCriteria_ReturnsTrue()
         {
             // Arrange
-            var criteria = new GetBetListRacingByMatchCriteria(1, 1, 0, string.Empty, true, UserLevel.Agent);
+            var criteria = new GetBetListRacingByMatchCriteria(1, 1, 0, string.Empty, UserLevel.Agent);
 
             // Act
             var actualIsValid = criteria.IsValid();

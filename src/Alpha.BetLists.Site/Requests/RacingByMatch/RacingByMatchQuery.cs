@@ -8,13 +8,10 @@
     {
         public RacingByMatchQuery(IUser viewer) : base(viewer)
         {
-            IsShowRacing = viewer.IsShowRacing;
         }
 
         public int BetType { get; set; }
 
         public int MatchId { get; set; }
-
-        public bool IsShowRacing { get; }
     }
 }

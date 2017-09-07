@@ -28,7 +28,6 @@
                     param.BetType,
                     param.MatchId,
                     param.Language,
-                    param.IsShowRacing,
                     param.CustLevel));
     }
 }

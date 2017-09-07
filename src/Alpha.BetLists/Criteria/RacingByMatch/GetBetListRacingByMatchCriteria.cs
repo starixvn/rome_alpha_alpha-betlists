@@ -11,14 +11,12 @@
             int betType,
             int matchId,
             string language,
-            bool isShowRacing,
             UserLevel custLevel)
         {
             CustId = custId;
             BetType = betType;
             MatchId = matchId;
             Language = language;
-            IsShowRacing = isShowRacing;
             CustLevel = custLevel;
         }
 
@@ -31,9 +29,6 @@
         public string Language { get; }
 
         [SpParam(Ignored = true)]
-        public bool IsShowRacing { get; }
-
-        [SpParam(Ignored = true)]
         public UserLevel CustLevel { get; }
 
         public override string GetSettingKey()
@@ -44,8 +39,6 @@
             : "Age_BetList_SelAllByDateHR_Ag";
 
         public override bool IsValid()
-            => CustId > 0
-            && BetType > 0
-            && IsShowRacing;
+            => CustId > 0 && BetType > 0;
     }
 }

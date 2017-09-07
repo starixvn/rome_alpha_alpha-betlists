@@ -29,7 +29,7 @@ namespace Alpha.BetLists.Tests.Services
         public void GetBetList_Always_ReturnsCorrectBetList()
         {
             // Arrange
-            var param = new RacingByMatchParam(1, 1, 1, string.Empty, true, UserLevel.Agent);
+            var param = new RacingByMatchParam(1, 1, 1, string.Empty, UserLevel.Agent);
 
             // Act
             var atualTickets = service.GetBetList(param).GetAwaiter().GetResult();

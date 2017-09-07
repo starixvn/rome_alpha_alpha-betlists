@@ -74,7 +74,6 @@
                 message.BetType,
                 message.MatchId,
                 message.Language,
-                message.IsShowRacing,
                 message.ViewerLevel);
 
             // Act
