@@ -761,7 +761,7 @@
     <Content Include="Views\CasinoDetails\Index.cshtml" />
     <Content Include="Views\CorrectScore\Index.cshtml" />
     <Content Include="Views\MixParlay\Index.cshtml" />
-    <Content Include="Views\Shared\BetListByBetTypeTable.cshtml" />
+    <Content Include="Views\Shared\TableWithoutWinLoss.cshtml" />
     <Content Include="Views\CombinationMixParlay\Index.cshtml" />
     <Content Include="Views\BetListByBetType\Index.cshtml" />
     <Content Include="Views\BetListByBetTypeAndMatch\Index.cshtml" />

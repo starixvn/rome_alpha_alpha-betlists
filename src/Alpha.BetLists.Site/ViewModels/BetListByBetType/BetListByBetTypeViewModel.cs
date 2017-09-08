@@ -15,24 +15,24 @@
             BetListData betListData,
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper,
-            IEnumerable<int> supportScoreMapBettypeIds = null)
+            IEnumerable<int> supportScoreMapBetTypeIds = null)
             : base(query, betListData, builder, ticketHelper, true)
         {
-            SupportScoreMapBettypeIds = supportScoreMapBettypeIds;
+            SupportScoreMapBetTypeIds = supportScoreMapBetTypeIds;
             Title = CacheRefFactory.CacheRef.GetBetTypeName(query.BetType).ToUpperInvariant();
             BetType = query.BetType;
         }
 
         public int BetType { get; }
 
-        public IEnumerable<int> SupportScoreMapBettypeIds { get; }
+        public IEnumerable<int> SupportScoreMapBetTypeIds { get; }
 
         public bool AllowToViewSuperPT => baseQuery.ViewerLevel.IsSuperLevel();
 
         public bool AllowToViewMasterPT => baseQuery.ViewerLevel.IsMasterOrSuperLevel();
 
         public override bool CanViewScoreMap(ITicket ticket)
-            => SupportScoreMapBettypeIds != null
-            && SupportScoreMapBettypeIds.Contains(ticket.BetTypeId);
+            => SupportScoreMapBetTypeIds != null
+            && SupportScoreMapBetTypeIds.Contains(ticket.BetTypeId);
     }
 }

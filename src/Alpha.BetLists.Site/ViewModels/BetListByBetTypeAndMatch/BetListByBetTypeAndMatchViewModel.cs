@@ -17,8 +17,8 @@
             BetListData betListData,
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper,
-            IEnumerable<int> supportScoreMapBettypeIds = null)
-            : base(query, betListData, builder, ticketHelper, supportScoreMapBettypeIds)
+            IEnumerable<int> supportScoreMapBetTypeIds = null)
+            : base(query, betListData, builder, ticketHelper, supportScoreMapBetTypeIds)
         {
             MatchId = query.MatchId;
             IsLive = query.IsLive;
@@ -37,6 +37,8 @@
 
         public string GetTitle(int betType)
             => BetTypeHelper.IsOutRight(betType)
+            ? CacheRefFactory.CacheRef.GetBetTypeName(betType)
+            : LeagueId == 0
             ? CacheRefFactory.CacheRef.GetBetTypeName(betType)
             : $"{CacheRefFactory.CacheRef.GetLeagueName(LeagueId)} {CacheRefFactory.CacheRef.GetBetTypeName(betType)}";
     }
