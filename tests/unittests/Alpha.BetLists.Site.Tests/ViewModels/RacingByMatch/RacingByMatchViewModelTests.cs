@@ -45,7 +45,8 @@
             // Arrange
             var ticket = new TicketDto
             {
-                BetTypeId = 1
+                BetTypeId = 1,
+                Status = "running"
             };
 
             var supportScoreMapBettypeIds = new List<int> { 1, 2, 3 };
@@ -69,7 +70,33 @@
             // Arrange
             var ticket = new TicketDto
             {
-                BetTypeId = 4
+                BetTypeId = 4,
+                Status = "running"
+            };
+
+            var supportScoreMapBettypeIds = new List<int> { 1, 2, 3 };
+            var viewModel = new RacingByMatchViewModel(
+                query,
+                new BetListData(BetListDataTest.Tickets, null),
+                betListFixture.HtmlBuilder,
+                betListFixture.TicketHelper,
+                supportScoreMapBettypeIds);
+
+            // Act
+            var actualCanViewScoreMap = viewModel.CanViewScoreMap(ticket);
+
+            // Assert
+            Assert.False(actualCanViewScoreMap);
+        }
+
+        [Fact]
+        public void CanViewScoreMap_TicketStatusIsNotRunning_ReturnsFalse()
+        {
+            // Arrange
+            var ticket = new TicketDto
+            {
+                BetTypeId = 4,
+                Status = "void"
             };
 
             var supportScoreMapBettypeIds = new List<int> { 1, 2, 3 };
