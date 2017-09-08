@@ -67,20 +67,6 @@
         }
     }
 
-    .icon-excel, .icon-back {
-        cursor: pointer;
-        color: #1f7244;
-        font-size: 19px;
-        vertical-align: middle;
-        height: $height-normal;
-        float: left;
-
-        &:before {
-            position: relative;
-            top: 5px;
-        }
-    }
-
     select.select-multiple {
         height: $height-normal;
         width: 160px;
