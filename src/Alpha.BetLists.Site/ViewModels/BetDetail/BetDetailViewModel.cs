@@ -9,7 +9,7 @@
     public class BetDetailViewModel : BetListBaseViewModel
     {
         public BetDetailViewModel(
-            RNGCasinoQuery query,
+            BetDetailQuery query,
             BetListData betListData,
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper)
@@ -17,12 +17,7 @@
         {
             PageIndex = query.PageIndex;
             PageSize = query.PageSize;
-            Title = !string.IsNullOrEmpty(query.SportName) ? query.SportName : "RNG Casino" + "Details";
         }
-
-        public long RefNo { get; }
-
-        public byte TransType { get; }
 
         public int PageIndex { get; }
 

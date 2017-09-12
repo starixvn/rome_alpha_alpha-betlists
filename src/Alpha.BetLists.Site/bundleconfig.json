@@ -76,10 +76,10 @@
     ]
   },
   {
-    "outputFileName": "assets/bundles/bet-detail/rng-casino.js",
+    "outputFileName": "assets/bundles/bet-detail/bet-detail.js",
     "inputFiles": [
       "assets/scripts/src/components/client-pager.js",
-      "assets/scripts/src/bet-detail/rng-casino.js"
+      "assets/scripts/src/bet-detail/bet-detail.js"
     ]
   }
 ]

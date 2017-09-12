@@ -64,7 +64,20 @@
                 }
 </table>
 @Pager.Render(Model.PagerViewModel)
+@Html.Hidden("betlist-path", HttpContext.Current.Response.ApplyAppPathModifier("~/"))
+@Html.Hidden("old-main-path", Model.OldMainPath)
+@Html.Hidden("results-path", Model.ResultsPath)
+@Html.Hidden("totalbets-forecast-path", Model.TotalBetsForecastPath)
+@Html.Hidden("product-ids", Model.ProductsId)
+@Html.Hidden("betlist-type", Model.BetListType)
+@Html.Hidden("from-date", Model.FromDate)
+@Html.Hidden("to-date", Model.ToDate)
+@Html.Hidden("cust-id", Model.CustId)
+@Html.Hidden("is-historic-report", Model.IsHistoricReport)
+@Html.Hidden("viewer-id", Model.ViewerIdOrViewerAdminId)
+@Html.Hidden("viewer-level-id", Model.ViewerLevelId)
+@Html.Hidden("colossusBets-PopUpDetail-Title", Resources.ColossusBetsPopUpDetailTitle)
 @section Scripts{
     @StaticResources.AssetScripts.Render("/bundles/site-betlists/pagination")
-    @StaticResources.RenderScripts("~/assets/bundles/bet-detail/rng-casino")
+    @StaticResources.RenderScripts("~/assets/bundles/bet-detail/bet-detail")
 }

@@ -140,7 +140,7 @@
                 Lifestyle.Singleton);
             container.Register<CancelledBetService, CancelledBetServiceImpl>();
 
-            container.Register<RNGBetDetailService, RNGBetDetailServiceImpl>(Lifestyle.Singleton);
+            container.Register<BetDetailService, BetDetailServiceImpl>(Lifestyle.Singleton);
         }
     }
 }

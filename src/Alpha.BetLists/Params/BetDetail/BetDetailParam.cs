@@ -1,8 +1,8 @@
-﻿namespace Alpha.BetLists.Params
+﻿namespace Alpha.BetLists.Params.BetDetail
 {
-    public class RNGBetDetailParam
+    public class BetDetailParam
     {
-        public RNGBetDetailParam(
+        public BetDetailParam(
             long refNo,
             int custId,
             byte transType,

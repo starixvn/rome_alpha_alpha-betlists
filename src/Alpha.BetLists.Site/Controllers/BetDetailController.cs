@@ -11,7 +11,10 @@
         {
         }
 
-        public async Task<ActionResult> RNGCasino(RNGCasinoQuery message)
+        public async Task<ActionResult> RNGCasino(RNGCasinoDetailQuery message)
+            => await View(message);
+
+        public async Task<ActionResult> AllBet(AllbetDetailQuery message)
             => await View(message);
     }
 }

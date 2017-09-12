@@ -10,7 +10,10 @@
             refNoMixParlay?: number,
             league?: number,
             isOutright?: boolean,
-            betId?: number): void;
+            betId?: number,
+            betCheck?: string,
+            custId?: number,
+            transDesc?: string): void;
     }
 
     export class SportsbookResultDetails extends BaseResultDetails implements ResultDetails {
@@ -57,7 +60,7 @@
                 + '&wldate=' + winLostDate
                 + '&bettypeid=' + betTypeId
                 + '&matchid=1&isViewResultFromBetList=true';
-            debugger
+
             Common.PopupDetails.Instance(window.top).Show(this.ResultDetailsPath + params, "", 800, 500);
         };
     }

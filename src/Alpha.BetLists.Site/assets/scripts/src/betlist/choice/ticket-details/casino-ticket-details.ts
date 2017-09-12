@@ -56,7 +56,7 @@
             }
 
             Common.PopupDetails.Instance(window.top).Show(
-                Common.AppPath.OldMainAppPath() + 'LiveCasinoBetList/BetDetail/Index?' + params,
+                Common.AppPath.BetListAppPath() + 'BetDetail/Allbet?' + params,
                 'Allbet - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
         }
     }
