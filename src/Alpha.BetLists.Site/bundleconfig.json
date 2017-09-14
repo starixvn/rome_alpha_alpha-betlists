@@ -76,10 +76,10 @@
     ]
   },
   {
-    "outputFileName": "assets/bundles/bet-detail/bet-detail.js",
+    "outputFileName": "assets/bundles/casio-detail/casino-detail.js",
     "inputFiles": [
       "assets/scripts/src/components/client-pager.js",
-      "assets/scripts/src/bet-detail/bet-detail.js"
+      "assets/scripts/src/casino-detail/casino-detail.js"
     ]
   }
 ]

@@ -1,15 +1,15 @@
-﻿namespace Alpha.BetLists.Site.ViewModels.BetDetail
+﻿namespace Alpha.BetLists.Site.ViewModels.CasinoDetail
 {
     using BetLists.Models;
     using Components;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
-    using Requests.BetDetail;
+    using Requests.CasioDetail;
 
-    public class BetDetailViewModel : BetListBaseViewModel
+    public class CasinoDetailViewModel : BetListBaseViewModel
     {
-        public BetDetailViewModel(
-            BetDetailQuery query,
+        public CasinoDetailViewModel(
+            CasioDetailQuery query,
             BetListData betListData,
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper)
@@ -17,6 +17,7 @@
         {
             PageIndex = query.PageIndex;
             PageSize = query.PageSize;
+            Title = (!string.IsNullOrEmpty(query.SportName) ? query.SportName : "RNG Casino") + " Details";
         }
 
         public int PageIndex { get; }

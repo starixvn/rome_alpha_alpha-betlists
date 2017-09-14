@@ -184,7 +184,6 @@
     <Compile Include="Configurations\AppSettings.cs" />
     <Compile Include="Constants\BetTypeIdConstants.cs" />
     <Compile Include="Criteria\CancelledBet\GetUsersHasCancelledBetCriteria.cs" />
-    <Compile Include="Criteria\BetDetail\GetAllbetBetDetailCriteria.cs" />
     <Compile Include="Criteria\DailyStatement\GetAllBetListByDayCriteria.cs" />
     <Compile Include="Criteria\DailyStatement\GetAllBetListByDayOldCriteria.cs" />
     <Compile Include="Criteria\CancelledBet\GetCancelledBetCriteria.cs" />
@@ -192,7 +191,7 @@
     <Compile Include="Criteria\GetBalanceUpDayAndMoveBetsDayCriteria.cs" />
     <Compile Include="Criteria\GetProductsCriteria.cs" />
     <Compile Include="Criteria\GetScoreMapBetTypesCriteria.cs" />
-    <Compile Include="Criteria\BetDetail\GetRNGBetDetailCriteria.cs" />
+    <Compile Include="Criteria\CasinoDetail\GetCasinoDetailCriteria.cs" />
     <Compile Include="Criteria\MemberBetList\GetBetListAllByDateCriteria.cs" />
     <Compile Include="Criteria\LastBets\GetLastBetsCriteria.cs" />
     <Compile Include="Criteria\LastBets\GetRunningOutrightMatchCriteria.cs" />
@@ -237,7 +236,7 @@
     <Compile Include="Models\ScoreMap.cs" />
     <Compile Include="Models\TicketDto.cs" />
     <Compile Include="Models\UserLevel.cs" />
-    <Compile Include="Params\BetDetail\BetDetailParam.cs" />
+    <Compile Include="Params\CasinoDetailParam.cs" />
     <Compile Include="Params\DailyStatementParam.cs" />
     <Compile Include="Params\GetProductsByGroupHeadlineParam.cs" />
     <Compile Include="Params\MemberBetListParam.cs" />
@@ -256,7 +255,7 @@
     <Compile Include="Services\IPServiceImpl.cs" />
     <Compile Include="Services\CancelledBetService.cs" />
     <Compile Include="Services\MemberBetListService.cs" />
-    <Compile Include="Services\BetDetailService.cs" />
+    <Compile Include="Services\CasinoDetailService.cs" />
     <Compile Include="Services\RunningBetListService.cs" />
     <Compile Include="Services\ParlayService.cs" />
     <Compile Include="Services\ParlayWinLossByMatchService.cs" />

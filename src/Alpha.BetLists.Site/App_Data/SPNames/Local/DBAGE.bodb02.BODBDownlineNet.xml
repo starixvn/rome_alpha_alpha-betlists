@@ -657,8 +657,8 @@
     </Setting>
   </Function>
 
-  <Function Name="RNG Casino">
-    <Setting Key="Acc_BetList_RNG_Detail" SpName="Acc_BetList_RNG_Detail" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
+  <Function Name="Casino Details">
+    <Setting Key="Acc_BetList_Detail_6" SpName="Acc_BetList_RNG_Detail" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
       <Mapping DataField="transid" ObjectProperty="TransId" />
       <Mapping DataField="SportType" ObjectProperty="SportTypeId" />
       <Mapping DataField="BetType" ObjectProperty="BetTypeId" />
@@ -686,10 +686,7 @@
       <Mapping DataField="scomm" ObjectProperty="SuperComm" />
       <Mapping DataField="sdiscount" ObjectProperty="SuperDiscount" />
     </Setting>
-  </Function>
-
-  <Function Name="Bet details - AllBet">
-    <Setting Key="Acc_BetList_LC_Detail" SpName="Acc_BetList_LC_Detail" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
+    <Setting Key="Acc_BetList_Detail_21" SpName="Acc_BetList_LC_Detail" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
       <Mapping DataField="transid" ObjectProperty="TransId" />
       <Mapping DataField="SportType" ObjectProperty="SportTypeId" />
       <Mapping DataField="BetType" ObjectProperty="BetTypeId" />

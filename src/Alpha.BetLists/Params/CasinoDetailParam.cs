@@ -1,19 +1,19 @@
-﻿namespace Alpha.BetLists.Criteria.BetDetail
+﻿namespace Alpha.BetLists.Params
 {
-    using Fanex.Data.Repository;
-
-    public class GetAllbetBetDetailCriteria : CriteriaBase
+    public class CasinoDetailParam
     {
-        public GetAllbetBetDetailCriteria(
+        public CasinoDetailParam(
             long refNo,
             int custId,
             byte transType,
+            int productId,
             int pageIndex,
             int pageSize)
         {
             RefNo = refNo;
             CustId = custId;
             TransType = transType;
+            ProductId = productId;
             PageIndex = pageIndex;
             PageSize = pageSize;
         }
@@ -24,16 +24,12 @@
 
         public byte TransType { get; }
 
+        public int ProductId { get; }
+
         public int PageIndex { get; }
 
         public int PageSize { get; }
 
         public int TotalRows { get; set; }
-
-        public override string GetSettingKey()
-            => "Acc_BetList_LC_Detail";
-
-        public override bool IsValid()
-            => RefNo > 0 && CustId > 0;
     }
 }

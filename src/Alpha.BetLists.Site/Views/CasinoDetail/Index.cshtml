@@ -1,5 +1,5 @@
-﻿@using Alpha.BetLists.Site.ViewModels.BetDetail
-@model BetDetailViewModel
+﻿@using Alpha.BetLists.Site.ViewModels.CasinoDetail
+@model CasinoDetailViewModel
 @{
     ViewBag.Title = Model.Title;
 }
@@ -79,5 +79,5 @@
 @Html.Hidden("colossusBets-PopUpDetail-Title", Resources.ColossusBetsPopUpDetailTitle)
 @section Scripts{
     @StaticResources.AssetScripts.Render("/bundles/site-betlists/pagination")
-    @StaticResources.RenderScripts("~/assets/bundles/bet-detail/bet-detail")
+    @StaticResources.RenderScripts("~/assets/bundles/casino-detail/casino-detail")
 }
