@@ -19,7 +19,8 @@
             return "?refNo=" + refNo
                 + "&transType=" + transType
                 + "&custId=" + custId
-                + "&sportName=" + sportName;
+                + "&sportName=" + sportName
+                + "&productId=6";
         };
 
         describe("ShowRnGCasinoDetails()", () => {
@@ -31,7 +32,7 @@
                 BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowRnGCasinoDetails(refNo, winLossDate, custId, transType);
 
                 // Assert
-                expect(popupDetailsShow).toHaveBeenCalledWith("betlist-path/BetDetail/RNGCasino" + params, "", 1120);
+                expect(popupDetailsShow).toHaveBeenCalledWith("betlist-path/CasinoDetail/Index" + params, "", 1120);
             });
         });
 
@@ -44,7 +45,7 @@
                 BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowMacauGamesDetails(refNo, winLossDate, custId, transType);
 
                 // Assert
-                expect(popupDetailsShow).toHaveBeenCalledWith("betlist-path/BetDetail/RNGCasino" + params, "", 1120);
+                expect(popupDetailsShow).toHaveBeenCalledWith("betlist-path/CasinoDetail/Index" + params, "", 1120);
             });
         });
 
@@ -57,7 +58,7 @@
                 BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowFishingWorldDetails(refNo, winLossDate, custId, transType);
 
                 // Assert
-                expect(popupDetailsShow).toHaveBeenCalledWith("betlist-path/BetDetail/RNGCasino" + params, "", 1120);
+                expect(popupDetailsShow).toHaveBeenCalledWith("betlist-path/CasinoDetail/Index" + params, "", 1120);
             });
         });
     });
@@ -70,14 +71,14 @@
                 const winLossDate: Date = new Date();
                 const custId = "1";
                 const transType = "winlost";
-                const params = 'refno=' + refNo + '&custid=' + custId + '&transType=' + transType;
+                const params = 'refno=' + refNo + '&custid=' + custId + '&transType=' + transType + '&sportName=Allbet&productId=21';
 
                 // Act
                 BetList.Choice.TicketDetails.AllbetTicketDetails.Instance.ShowRunningBetsDetails(refNo, winLossDate, custId, transType);
 
                 // Assert
                 expect(popupDetailsShow).toHaveBeenCalledWith(
-                    'betlist-path/BetDetail/Allbet?' + params,
+                    'betlist-path/CasinoDetail/Index?' + params,
                     'Allbet - Detailed Bet list - ' + winLossDate.toString().split(' ')[0], 1047, 800);
             });
         });

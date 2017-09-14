@@ -414,9 +414,9 @@
     <Content Include="assets\bundles\cancelled-betlist\cancelled-betlist.min.js">
       <DependentUpon>cancelled-betlist.js</DependentUpon>
     </Content>
-    <Content Include="assets\bundles\casio-detail\bet-detail.js" />
-    <Content Include="assets\bundles\casio-detail\bet-detail.min.js">
-      <DependentUpon>bet-detail.js</DependentUpon>
+    <Content Include="assets\bundles\casino-detail\casino-detail.js" />
+    <Content Include="assets\bundles\casino-detail\casino-detail.min.js">
+      <DependentUpon>casino-detail.js</DependentUpon>
     </Content>
     <Content Include="assets\bundles\casio-detail\casino-detail.js" />
     <Content Include="assets\bundles\casio-detail\casino-detail.min.js">

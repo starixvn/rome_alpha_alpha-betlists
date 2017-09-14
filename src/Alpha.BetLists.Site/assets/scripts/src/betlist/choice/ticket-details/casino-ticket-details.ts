@@ -46,8 +46,7 @@
             const params = 'refno=' + refNo
                 + '&custid=' + custId
                 + '&transType=' + transType
-                + '&sportName=Allbet'
-                + '&productId=21';
+                + '&sportName=Allbet&productId=21';
 
             let width = 1047;
             let roleId = Number(this.ViewerLevelId);

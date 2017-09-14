@@ -76,7 +76,7 @@
     ]
   },
   {
-    "outputFileName": "assets/bundles/casio-detail/casino-detail.js",
+    "outputFileName": "assets/bundles/casino-detail/casino-detail.js",
     "inputFiles": [
       "assets/scripts/src/components/client-pager.js",
       "assets/scripts/src/casino-detail/casino-detail.js"
