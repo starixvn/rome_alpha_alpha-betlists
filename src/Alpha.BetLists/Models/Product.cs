@@ -15,6 +15,14 @@
             EndOfSupportDate = endOfSupportDate;
         }
 
+        public Product(int id, string name, DateTime? endOfSupportDate, bool isEnable)
+        {
+            Id = id;
+            Name = name;
+            EndOfSupportDate = endOfSupportDate;
+            IsEnable = isEnable;
+        }
+
         public Product(byte id, string name, bool isEnable)
             : this(id, name, null)
         {
