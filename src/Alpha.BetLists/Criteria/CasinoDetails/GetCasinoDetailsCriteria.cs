@@ -1,11 +1,11 @@
-﻿namespace Alpha.BetLists.Criteria.CasinoDetail
+﻿namespace Alpha.BetLists.Criteria.CasinoDetails
 {
     using Fanex.Data;
     using Fanex.Data.Repository;
 
-    public class GetCasinoDetailCriteria : CriteriaBase
+    public class GetCasinoDetailsCriteria : CriteriaBase
     {
-        public GetCasinoDetailCriteria(
+        public GetCasinoDetailsCriteria(
             long refNo,
             int custId,
             byte transType,

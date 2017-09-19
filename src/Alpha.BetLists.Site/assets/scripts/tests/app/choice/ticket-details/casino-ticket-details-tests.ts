@@ -32,7 +32,7 @@
                 BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowRnGCasinoDetails(refNo, winLossDate, custId, transType);
 
                 // Assert
-                expect(popupDetailsShow).toHaveBeenCalledWith("betlist-path/CasinoDetail/Index" + params, "", 1120);
+                expect(popupDetailsShow).toHaveBeenCalledWith("betlist-path/CasinoDetails/Index" + params, "", 1120);
             });
         });
 
@@ -45,7 +45,7 @@
                 BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowMacauGamesDetails(refNo, winLossDate, custId, transType);
 
                 // Assert
-                expect(popupDetailsShow).toHaveBeenCalledWith("betlist-path/CasinoDetail/Index" + params, "", 1120);
+                expect(popupDetailsShow).toHaveBeenCalledWith("betlist-path/CasinoDetails/Index" + params, "", 1120);
             });
         });
 
@@ -58,7 +58,7 @@
                 BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowFishingWorldDetails(refNo, winLossDate, custId, transType);
 
                 // Assert
-                expect(popupDetailsShow).toHaveBeenCalledWith("betlist-path/CasinoDetail/Index" + params, "", 1120);
+                expect(popupDetailsShow).toHaveBeenCalledWith("betlist-path/CasinoDetails/Index" + params, "", 1120);
             });
         });
     });
@@ -78,7 +78,7 @@
 
                 // Assert
                 expect(popupDetailsShow).toHaveBeenCalledWith(
-                    'betlist-path/CasinoDetail/Index?' + params,
+                    'betlist-path/CasinoDetails/Index?' + params,
                     'Allbet - Detailed Bet list - ' + winLossDate.toString().split(' ')[0], 1047, 800);
             });
         });

@@ -50,6 +50,10 @@
       <HintPath>..\..\packages\Fanex.BetDetails.Lucky3.1.0.0.0\lib\Fanex.BetDetails.Lucky3.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Fanex.BetDetails.Casino, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetDetails.Casino.1.0.0.0-beta3\lib\net40\Fanex.BetDetails.Casino.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Fanex.BetList.BetTrade, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.Core.2.39.1\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
       <Private>True</Private>
@@ -191,7 +195,7 @@
     <Compile Include="Criteria\GetBalanceUpDayAndMoveBetsDayCriteria.cs" />
     <Compile Include="Criteria\GetProductsCriteria.cs" />
     <Compile Include="Criteria\GetScoreMapBetTypesCriteria.cs" />
-    <Compile Include="Criteria\CasinoDetail\GetCasinoDetailCriteria.cs" />
+    <Compile Include="Criteria\CasinoDetails\GetCasinoDetailsCriteria.cs" />
     <Compile Include="Criteria\MemberBetList\GetBetListAllByDateCriteria.cs" />
     <Compile Include="Criteria\LastBets\GetLastBetsCriteria.cs" />
     <Compile Include="Criteria\LastBets\GetRunningOutrightMatchCriteria.cs" />
@@ -213,6 +217,7 @@
     <Compile Include="Criteria\WinLoss\GetBetListWinLossByDateCriteria.cs" />
     <Compile Include="Criteria\WinLoss\GetBetListWinLossByDateOldCriteria.cs" />
     <Compile Include="Criteria\GetProductsByGroupHeadlineCriteria.cs" />
+    <Compile Include="DataAccesses\CasinoDetailsDataAccess.cs" />
     <Compile Include="DataAccesses\Lucky3DataAccess.cs" />
     <Compile Include="DataAccesses\SmartPunterDataAccess.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
@@ -236,7 +241,6 @@
     <Compile Include="Models\ScoreMap.cs" />
     <Compile Include="Models\TicketDto.cs" />
     <Compile Include="Models\UserLevel.cs" />
-    <Compile Include="Params\CasinoDetailParam.cs" />
     <Compile Include="Params\DailyStatementParam.cs" />
     <Compile Include="Params\GetProductsByGroupHeadlineParam.cs" />
     <Compile Include="Params\MemberBetListParam.cs" />
@@ -255,7 +259,6 @@
     <Compile Include="Services\IPServiceImpl.cs" />
     <Compile Include="Services\CancelledBetService.cs" />
     <Compile Include="Services\MemberBetListService.cs" />
-    <Compile Include="Services\CasinoDetailService.cs" />
     <Compile Include="Services\RunningBetListService.cs" />
     <Compile Include="Services\ParlayService.cs" />
     <Compile Include="Services\ParlayWinLossByMatchService.cs" />

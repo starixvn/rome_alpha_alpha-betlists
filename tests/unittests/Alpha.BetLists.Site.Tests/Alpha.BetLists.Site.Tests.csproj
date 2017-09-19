@@ -55,6 +55,10 @@
       <HintPath>..\..\..\packages\Fanex.BetDetails.Lucky3.1.0.0.0\lib\Fanex.BetDetails.Lucky3.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Fanex.BetDetails.Casino, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Fanex.BetDetails.Casino.1.0.0.0-beta3\lib\net40\Fanex.BetDetails.Casino.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Fanex.BetList.BetTrade, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Fanex.BetList.Core.2.39.1\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
       <Private>True</Private>
@@ -258,6 +262,7 @@
     <Compile Include="Collection\ParlayBetListCollection.cs" />
     <Compile Include="Collection\BetListCollection.cs" />
     <Compile Include="Constants\LanguageCode.cs" />
+    <Compile Include="Controllers\CasinoDetailsControllerTests.cs" />
     <Compile Include="Controllers\DailyStatementControllerTests.cs" />
     <Compile Include="Controllers\Lucky3ControllerTests.cs" />
     <Compile Include="Controllers\CancelledBetControllerTests.cs" />
@@ -274,6 +279,7 @@
     <Compile Include="Handler\BetListBaseHandlerTests.cs" />
     <Compile Include="Handler\BetListExcelBaseHandlerTests.cs" />
     <Compile Include="Handler\Lucky3\Lucky3HanderTests.cs" />
+    <Compile Include="Handler\CasinoDetails\CasinoDetailsHanderTests.cs" />
     <Compile Include="Handler\DailyStatement\DailyStatementExcelHandlerTests.cs" />
     <Compile Include="Handler\DailyStatement\DailyStatementHandlerTests.cs" />
     <Compile Include="Handler\CancelledBet\CancelledBetExcelHandlerTests.cs" />

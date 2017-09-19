@@ -31,7 +31,7 @@
                 + "&productId=6";
         }
 
-        private ShowDetailsPopup = (params: string) => Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetail/Index' + params, "", 1120);
+        private ShowDetailsPopup = (params: string) => Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, "", 1120);
     }
 
     export class AllbetTicketDetails extends BaseTicketDetails {
@@ -60,7 +60,7 @@
             }
 
             Common.PopupDetails.Instance(window.top).Show(
-                Common.AppPath.BetListAppPath() + 'CasinoDetail/Index?' + params,
+                Common.AppPath.BetListAppPath() + 'CasinoDetails/Index?' + params,
                 'Allbet - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
         }
     }

@@ -96,6 +96,10 @@
       <HintPath>..\..\packages\Fanex.ActivityTracking.Web.1.0.0.1\lib\net40\Fanex.ActivityTracking.Web.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Fanex.BetDetails.Casino, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetDetails.Casino.1.0.0.0-beta3\lib\net40\Fanex.BetDetails.Casino.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Fanex.BetList.BetTrade, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.Core.2.39.1\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
       <Private>True</Private>
@@ -736,7 +740,7 @@
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
     <Content Include="tsconfig.json" />
-    <Content Include="Views\CasinoDetail\Index.cshtml" />
+    <Content Include="Views\CasinoDetails\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\DependencyConfig.cs" />
@@ -747,13 +751,13 @@
     <Compile Include="Controllers\Lucky3Controller.cs" />
     <Compile Include="Controllers\MemberBetListController.cs" />
     <Compile Include="Controllers\LastBetsController.cs" />
-    <Compile Include="Controllers\CasinoDetailController.cs" />
+    <Compile Include="Controllers\CasinoDetailsController.cs" />
     <Compile Include="Controllers\RunningBetListController.cs" />
     <Compile Include="Controllers\CancelledBetController.cs" />
     <Compile Include="Handlers\CancelledBet\CancelledBetExcelHandler.cs" />
     <Compile Include="Handlers\CancelledBet\CancelledBetHandler.cs" />
-    <Compile Include="Handlers\CasinoDetail\CasinoDetailHander.cs" />
-    <Compile Include="Requests\CasinoDetail\CasioDetailQuery.cs" />
+    <Compile Include="Handlers\CasinoDetails\CasinoDetailsHander.cs" />
+    <Compile Include="Requests\CasinoDetails\CasinoDetailsQuery.cs" />
     <Compile Include="Requests\CancelledBet\CancelledBetBaseQuery.cs" />
     <Compile Include="Requests\CancelledBet\CancelledBetExcelQuery.cs" />
     <Compile Include="Requests\CancelledBet\CancelledBetQuery.cs" />
@@ -816,7 +820,6 @@
     <Compile Include="ViewModels\DailyStatement\DailyStatementViewModel.cs" />
     <Compile Include="ViewModels\ExcelFileViewModel.cs" />
     <Compile Include="ViewModels\MemberBetList\MemberBetListViewModel.cs" />
-    <Compile Include="ViewModels\CasinoDetail\CasinoDetailViewModel.cs" />
     <Compile Include="ViewModels\RunningBetList\RunningBetListViewModel.cs" />
     <Compile Include="ViewModels\LastBets\BetDataViewModel.cs" />
     <Compile Include="ViewModels\LastBets\LastBetsViewModel.cs" />

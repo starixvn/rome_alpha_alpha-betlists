@@ -7,6 +7,8 @@
     using BetLists.Models;
     using Controllers;
     using DataAccesses;
+    using Fanex.BetDetails.Casino.DataAccesses;
+    using Fanex.BetDetails.Casino.Services;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Factories;
@@ -97,6 +99,7 @@
             container.Register<IDynamicRepository, DynamicRepository>(Lifestyle.Singleton);
             container.Register<ISmartPunterDataAccess, SmartPunterDataAccess>(Lifestyle.Singleton);            
             container.Register<ILucky3DataAccess, Lucky3DataAccess>(Lifestyle.Singleton);            
+            container.Register<ICasinoDetailsDataAccess, CasinoDetailsDataAccess>(Lifestyle.Singleton);
         }
 
         private static void RegisterServices(Container container)
@@ -139,8 +142,7 @@
                     new CacheRefServiceImpl().GetProductName),
                 Lifestyle.Singleton);
             container.Register<CancelledBetService, CancelledBetServiceImpl>();
-
-            container.Register<CasinoDetailService, CasinoDetailServiceImpl>(Lifestyle.Singleton);
+            container.Register<ICasinoDetailsService, CasinoDetailsService>(Lifestyle.Singleton);
         }
     }
 }

@@ -1,12 +1,12 @@
-﻿namespace Alpha.BetLists.Site.Requests.CasioDetail
+﻿namespace Alpha.BetLists.Site.Requests.CasioDetails
 {
     using BetLists.Models;
+    using Fanex.BetDetails.Casino.ViewModels;
     using MediatR;
-    using ViewModels.CasinoDetail;
 
-    public class CasioDetailQuery : BaseQuery, IRequest<CasinoDetailViewModel>
+    public class CasinoDetailsQuery : BaseQuery, IRequest<CasinoDetailsViewModel>
     {
-        public CasioDetailQuery(IUser viewer) : base(viewer)
+        public CasinoDetailsQuery(IUser viewer) : base(viewer)
         {
             PageIndex = 1;
             PageSize = 100;
