@@ -4,7 +4,7 @@
 
     public class Product
     {
-        public Product(int id, string name) : this(id, name, null)
+        public Product()
         {
         }
 
@@ -13,14 +13,6 @@
             Id = id;
             Name = name;
             EndOfSupportDate = endOfSupportDate;
-        }
-
-        public Product(byte id, string name, DateTime? endOfSupportDate, bool isEnable)
-        {
-            Id = id;
-            Name = name;
-            EndOfSupportDate = endOfSupportDate;
-            IsEnable = isEnable;
         }
 
         public Product(byte id, string name, bool isEnable)
