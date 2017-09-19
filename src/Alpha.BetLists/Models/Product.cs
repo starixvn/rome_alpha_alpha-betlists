@@ -15,7 +15,7 @@
             EndOfSupportDate = endOfSupportDate;
         }
 
-        public Product(int id, string name, DateTime? endOfSupportDate, bool isEnable)
+        public Product(byte id, string name, DateTime? endOfSupportDate, bool isEnable)
         {
             Id = id;
             Name = name;
