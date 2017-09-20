@@ -1,13 +1,13 @@
 ﻿namespace Alpha.BetLists.Site.ViewModels.CancelledBet
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web.Mvc;
     using Alpha.BetLists.AppResources;
     using Alpha.BetLists.Models.CancelledBet;
     using Alpha.BetLists.Site.Requests.CancelledBet;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web.Mvc;
 
     public class CancelledBetViewModel : BetListBaseViewModel
     {

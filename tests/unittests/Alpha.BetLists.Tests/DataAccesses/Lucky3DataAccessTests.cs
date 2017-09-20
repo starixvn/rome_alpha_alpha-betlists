@@ -1,14 +1,14 @@
-﻿using Alpha.BetLists.Criteria.Lucky3;
-using Alpha.BetLists.DataAccesses;
-using Fanex.BetListDetail.Lucky3.Criteria;
-using Fanex.BetListDetail.Lucky3.DataAccesses;
-using Fanex.BetListDetail.Lucky3.Models;
-using Fanex.Data.Repository;
-using NSubstitute;
-using Xunit;
-
-namespace Alpha.BetLists.Tests.DataAccesses
+﻿namespace Alpha.BetLists.Tests.DataAccesses
 {
+    using Alpha.BetLists.Criteria.Lucky3;
+    using Alpha.BetLists.DataAccesses;
+    using Fanex.BetListDetail.Lucky3.Criteria;
+    using Fanex.BetListDetail.Lucky3.DataAccesses;
+    using Fanex.BetListDetail.Lucky3.Models;
+    using Fanex.Data.Repository;
+    using NSubstitute;
+    using Xunit;
+
     public class Lucky3DataAccessTests
     {
         private readonly IDynamicRepository dynamicRepository;

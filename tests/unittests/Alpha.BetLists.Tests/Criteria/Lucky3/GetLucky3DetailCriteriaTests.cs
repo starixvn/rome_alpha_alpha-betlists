@@ -1,15 +1,10 @@
-﻿using Alpha.BetLists.Criteria.Lucky3;
-using Fanex.BetListDetail.Lucky3.Criteria;
-using NSubstitute;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit;
-
-namespace Alpha.BetLists.Tests.Criteria.Lucky3
+﻿namespace Alpha.BetLists.Tests.Criteria.Lucky3
 {
+    using Alpha.BetLists.Criteria.Lucky3;
+    using Fanex.BetListDetail.Lucky3.Criteria;
+    using NSubstitute;
+    using Xunit;
+
     public class GetLucky3DetailCriteriaTests
     {
         private readonly IGetLucky3DetailParameter parameter;

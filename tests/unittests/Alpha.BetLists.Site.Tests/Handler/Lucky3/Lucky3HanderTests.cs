@@ -1,22 +1,16 @@
-﻿using Alpha.BetLists.Models;
-using Alpha.BetLists.Site.Handlers;
-using Alpha.BetLists.Site.Requests.Lucky3;
-using Fanex.BetListDetail.Lucky3.Criteria;
-using Fanex.BetListDetail.Lucky3.Models;
-using Fanex.BetListDetail.Lucky3.Services;
-using Fanex.BetListDetail.Lucky3.ViewModels;
-using KellermanSoftware.CompareNetObjects;
-using NSubstitute;
-using Ploeh.AutoFixture;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit;
-
-namespace Alpha.BetLists.Site.Tests.Handler.Lucky3
+﻿namespace Alpha.BetLists.Site.Tests.Handler.Lucky3
 {
+    using Alpha.BetLists.Models;
+    using Alpha.BetLists.Site.Handlers;
+    using Alpha.BetLists.Site.Requests.Lucky3;
+    using Fanex.BetListDetail.Lucky3.Criteria;
+    using Fanex.BetListDetail.Lucky3.Services;
+    using Fanex.BetListDetail.Lucky3.ViewModels;
+    using KellermanSoftware.CompareNetObjects;
+    using NSubstitute;
+    using Ploeh.AutoFixture;
+    using Xunit;
+
     public class Lucky3HanderTests
     {
         private readonly ILucky3Service service;
@@ -52,7 +46,7 @@ namespace Alpha.BetLists.Site.Tests.Handler.Lucky3
         public void Handle_Alway_ReturnViewModelType()
         {
             //// Arrange
-            var message = new Lucky3DetailQuery(user);            
+            var message = new Lucky3DetailQuery(user);
             var viewModel = fixture.Create<Lucky3DetailViewModel>();
             service.GetBetListDetail(Arg.Any<IGetLucky3DetailParameter>()).Returns(viewModel);
 
@@ -61,6 +55,6 @@ namespace Alpha.BetLists.Site.Tests.Handler.Lucky3
 
             //// Assert
             Assert.IsType(typeof(Lucky3DetailViewModel), act);
-        }        
+        }
     }
 }

@@ -1,9 +1,9 @@
 ﻿namespace Alpha.BetLists.Site.Controllers
 {
-    using Alpha.BetLists.Site.Requests.CancelledBet;
-    using MediatR;
     using System.Threading.Tasks;
     using System.Web.Mvc;
+    using Alpha.BetLists.Site.Requests.CancelledBet;
+    using MediatR;
 
     public class CancelledBetController : BetListBaseController
     {

@@ -1,5 +1,7 @@
 ﻿namespace Alpha.BetLists.Site.Tests.Handler.CancelledBet
 {
+    using System;
+    using System.Collections.Generic;
     using Alpha.BetLists.Models;
     using Alpha.BetLists.Models.CancelledBet;
     using Alpha.BetLists.Params;
@@ -10,8 +12,6 @@
     using Alpha.BetLists.Tests.TestData;
     using NSubstitute;
     using ONEbook.SpreadSheets;
-    using System;
-    using System.Collections.Generic;
     using Xunit;
 
     [Trait("Category", "CancelledBet")]
@@ -119,7 +119,7 @@
             //// Assert
             workbook.Received().Title(Arg.Any<string>());
         }
-        
+
         [Fact]
         public void Handle_Always_CallExportToBytesOfWorkbook()
         {

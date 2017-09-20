@@ -1,9 +1,9 @@
 ﻿namespace Alpha.BetLists.Site.Controllers
 {
-    using MediatR;
-    using Requests.Lucky3;
     using System.Threading.Tasks;
     using System.Web.Mvc;
+    using MediatR;
+    using Requests.Lucky3;
 
     public class Lucky3Controller : BetListBaseController
     {

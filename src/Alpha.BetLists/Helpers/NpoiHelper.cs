@@ -1,13 +1,13 @@
-﻿using NPOI.HSSF.UserModel;
-using NPOI.SS.UserModel;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Web;
-
-namespace Alpha.BetLists.Helpers
+﻿namespace Alpha.BetLists.Helpers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Web;
+    using NPOI.HSSF.UserModel;
+    using NPOI.SS.UserModel;
+
     public static class NpoiHelper
     {
         public static IEnumerable<T> LoadData<T>(string excelFileName, Func<IRow, T> mapping, int sheetIndex = 0)

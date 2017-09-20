@@ -1,5 +1,6 @@
 ﻿namespace Alpha.BetLists.Site.Handlers.CancelledBet
 {
+    using System.Threading.Tasks;
     using Alpha.BetLists.AppResources;
     using Alpha.BetLists.Models;
     using Alpha.BetLists.Params;
@@ -14,7 +15,6 @@
     using MediatR;
     using ONEbook.SpreadSheets;
     using ONEbook.SpreadSheets.NPOI;
-    using System.Threading.Tasks;
     using static ONEbook.SpreadSheets.Column;
 
     public class CancelledBetExcelHandler : BetListExcelBaseHandler, IAsyncRequestHandler<CancelledBetExcelQuery, ExcelFileViewModel>

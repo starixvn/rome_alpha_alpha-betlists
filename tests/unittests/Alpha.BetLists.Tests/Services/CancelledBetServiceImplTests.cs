@@ -1,5 +1,7 @@
 ﻿namespace Alpha.BetLists.Tests.Services
 {
+    using System.Collections.Generic;
+    using System.Linq;
     using Alpha.BetLists.Criteria.CancelledBet;
     using Alpha.BetLists.Models;
     using Alpha.BetLists.Models.CancelledBet;
@@ -9,8 +11,6 @@
     using Alpha.BetLists.Tests.TestData;
     using Fanex.BetList.Core.Entities;
     using NSubstitute;
-    using System.Collections.Generic;
-    using System.Linq;
     using Xunit;
 
     [Trait("Category", "CancelledBet")]

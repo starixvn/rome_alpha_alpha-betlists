@@ -1,5 +1,6 @@
 ﻿namespace Alpha.BetLists.Site.Handlers.CancelledBet
 {
+    using System.Threading.Tasks;
     using Alpha.BetLists.Params;
     using Alpha.BetLists.Services;
     using Alpha.BetLists.Site.Requests.CancelledBet;
@@ -8,7 +9,6 @@
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using MediatR;
-    using System.Threading.Tasks;
 
     public class CancelledBetHandler : IAsyncRequestHandler<CancelledBetQuery, CancelledBetViewModel>
     {

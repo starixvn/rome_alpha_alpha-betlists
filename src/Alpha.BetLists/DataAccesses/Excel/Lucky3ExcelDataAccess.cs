@@ -1,10 +1,10 @@
 ﻿namespace Alpha.BetLists.DataAccesses
 {
+    using System.Collections.Generic;
     using Fanex.BetListDetail.Lucky3.Criteria;
     using Fanex.BetListDetail.Lucky3.DataAccesses;
     using Fanex.BetListDetail.Lucky3.Models;
     using Helpers;
-    using System.Collections.Generic;
 
     public class Lucky3ExcelDataAccess : ILucky3DataAccess
     {
@@ -25,7 +25,7 @@
                     MasterDiscount = (decimal)row.GetCell(8).NumericCellValue,
                     MasterCommission = (decimal)row.GetCell(9).NumericCellValue,
                     AgentDiscount = (decimal)row.GetCell(10).NumericCellValue,
-                    AgentCommission = (decimal)row.GetCell(11).NumericCellValue,                    
+                    AgentCommission = (decimal)row.GetCell(11).NumericCellValue,
                     Status = row.GetCell(12).StringCellValue,
                 });
             return details;

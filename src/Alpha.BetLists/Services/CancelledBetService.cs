@@ -1,14 +1,14 @@
 ﻿namespace Alpha.BetLists.Services
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
     using Alpha.BetLists.Criteria.CancelledBet;
     using Alpha.BetLists.Models;
     using Alpha.BetLists.Models.CancelledBet;
     using Alpha.BetLists.Params;
     using Fanex.BetList.Core.Entities;
     using Fanex.Data.Repository;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
 
     public interface CancelledBetService
     {

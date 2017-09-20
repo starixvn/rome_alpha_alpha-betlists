@@ -1,16 +1,16 @@
-﻿using Alpha.BetLists.Models;
-using Alpha.BetLists.Models.CancelledBet;
-using Alpha.BetLists.Site.Requests.CancelledBet;
-using Alpha.BetLists.Site.Tests.Fixtures;
-using Alpha.BetLists.Site.ViewModels.CancelledBet;
-using Alpha.BetLists.Tests.TestData;
-using NSubstitute;
-using System.Collections.Generic;
-using System.Linq;
-using Xunit;
-
-namespace Alpha.BetLists.Site.Tests.ViewModels.CancelledBet
+﻿namespace Alpha.BetLists.Site.Tests.ViewModels.CancelledBet
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using Alpha.BetLists.Models;
+    using Alpha.BetLists.Models.CancelledBet;
+    using Alpha.BetLists.Site.Requests.CancelledBet;
+    using Alpha.BetLists.Site.Tests.Fixtures;
+    using Alpha.BetLists.Site.ViewModels.CancelledBet;
+    using Alpha.BetLists.Tests.TestData;
+    using NSubstitute;
+    using Xunit;
+
     [Trait("Category", "CancelledBet")]
     [Collection("BetListCollection")]
     public class CancelledBetViewModelTests
