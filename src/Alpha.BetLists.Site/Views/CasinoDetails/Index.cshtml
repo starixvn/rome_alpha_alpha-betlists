@@ -8,7 +8,13 @@
 @section Styles{
     @StaticResources.AssetStyles.Render("/bundles/site-betlists/pagination")
 }
-<form class="form-inline hide" role="form" id="betlist-form"></form>
+<form class="form-inline hide" role="form" id="betlist-form">
+    @Html.Hidden("RefNo", Model.RefNo)
+    @Html.Hidden("CustId", Model.CustId)
+    @Html.Hidden("TransType", Model.TransType)
+    @Html.Hidden("SportName", Model.SportName)
+    @Html.Hidden("ProductId", Model.ProductId)
+</form>
 <table class="tblRpt tblRpt-bordered tblRpt-striped width-100per tablesorter tblRpt-hover tbl-betlist" id="tbl-betlist">
     <thead>
         <tr>

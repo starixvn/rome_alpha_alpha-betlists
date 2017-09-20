@@ -1,14 +1,14 @@
-﻿/// <reference path="../components/client-pager.ts" />
+﻿/// <reference path="../components/pager.ts" />
 
 "use strict";
 
-class RNGCasionView {
+class CasionDetailView {
     $: JQueryStatic;
-    pagerComponent: ClientPagerComponent;
+    pagerComponent: PagerComponent;
 
     constructor(
         $: JQueryStatic,
-        pagerComponent: ClientPagerComponent) {
+        pagerComponent: PagerComponent) {
         this.$ = $;
         this.pagerComponent = pagerComponent;
     }
@@ -20,9 +20,9 @@ class RNGCasionView {
 };
 
 $(function () {
-    const rngCasinoView = new RNGCasionView(
+    const rngCasinoView = new CasionDetailView(
         $,
-        new ClientPagerComponent($));
+        new PagerComponent($));
 
     rngCasinoView.init();
 })

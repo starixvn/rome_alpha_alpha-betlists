@@ -78,7 +78,7 @@
   {
     "outputFileName": "assets/bundles/casino-detail/casino-detail.js",
     "inputFiles": [
-      "assets/scripts/src/components/client-pager.js",
+      "assets/scripts/src/components/pager.js",
       "assets/scripts/src/casino-detail/casino-detail.js"
     ]
   }

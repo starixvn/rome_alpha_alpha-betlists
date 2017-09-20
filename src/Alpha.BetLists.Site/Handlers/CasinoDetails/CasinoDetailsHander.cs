@@ -41,6 +41,7 @@
                 message.SportName,
                 message.ViewerId,
                 message.ViewerLevelId,
+                param,
                 tickets,
                 Builder,
                 TicketHelper);

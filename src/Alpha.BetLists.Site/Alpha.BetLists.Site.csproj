@@ -97,7 +97,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetDetails.Casino, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetDetails.Casino.1.0.0.0-beta3\lib\net40\Fanex.BetDetails.Casino.dll</HintPath>
+      <HintPath>..\..\packages\Fanex.BetDetails.Casino.1.0.0.0-beta6\lib\net40\Fanex.BetDetails.Casino.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.BetTrade, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
@@ -479,6 +479,11 @@
     <Content Include="assets\scripts\tests\libs\moment.js" />
     <Content Include="assets\scripts\tests\libs\multiselect.js" />
     <Content Include="assets\scripts\tests\libs\nexDatePicker.js" />
+    <Content Include="assets\scripts\tests\libs\pagination\jquery.draggable.js" />
+    <Content Include="assets\scripts\tests\libs\pagination\jquery.linkbutton.js" />
+    <Content Include="assets\scripts\tests\libs\pagination\jquery.pagination.js" />
+    <Content Include="assets\scripts\tests\libs\pagination\jquery.parser.js" />
+    <Content Include="assets\scripts\tests\libs\pagination\jquery.resizable.js" />
     <Content Include="assets\scripts\tests\libs\shortcut.js" />
     <Content Include="assets\scripts\tests\libs\store.js" />
     <Content Include="assets\scripts\tests\libs\tooltip.js" />
@@ -939,8 +944,8 @@
     <TypeScriptCompile Include="assets\scripts\src\betlist\status\result-details\base-result-details.ts" />
     <TypeScriptCompile Include="assets\scripts\src\betlist\status\result-details\casino-result-details.ts" />
     <TypeScriptCompile Include="assets\scripts\src\betlist\status\result-details\sportsbook-result-details.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\components\client-pager.ts" />
     <TypeScriptCompile Include="assets\scripts\src\components\daterangepicker.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\components\pager.ts" />
     <TypeScriptCompile Include="assets\scripts\src\components\productmultiselection.ts" />
     <TypeScriptCompile Include="assets\scripts\src\last-bets\last-bets.ts" />
     <TypeScriptCompile Include="assets\scripts\src\components\single-selection-dropdown.ts" />
@@ -948,6 +953,7 @@
     <TypeScriptCompile Include="assets\scripts\src\member-betlist\member-betlist.ts" />
     <TypeScriptCompile Include="assets\scripts\src\running-betlist\running-betlist.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\cancelled-betlist\cancelled-betlist-tests.ts" />
+    <TypeScriptCompile Include="assets\scripts\tests\app\casino-detail\casino-detail-tests.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\choice\ticket-details\score-map-tests.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\choice\ticket-details\base-ticket-details-tests.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\choice\ticket-details\other-ticket-details-tests.ts" />
@@ -955,6 +961,7 @@
     <TypeScriptCompile Include="assets\scripts\tests\app\choice\ticket-details\casino-ticket-details-tests.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\common\popup-details-tests.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\components\daterangepicker-tests.ts" />
+    <TypeScriptCompile Include="assets\scripts\tests\app\components\pager-tests.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\components\productmultiselection-tests.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\components\single-selection-dropdown-tests.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\last-bets\last-bets-tests.ts" />

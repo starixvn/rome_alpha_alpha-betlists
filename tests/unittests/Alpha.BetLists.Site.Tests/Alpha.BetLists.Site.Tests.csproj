@@ -56,7 +56,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetDetails.Casino, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Fanex.BetDetails.Casino.1.0.0.0-beta3\lib\net40\Fanex.BetDetails.Casino.dll</HintPath>
+      <HintPath>..\..\..\packages\Fanex.BetDetails.Casino.1.0.0.0-beta6\lib\net40\Fanex.BetDetails.Casino.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.BetTrade, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
