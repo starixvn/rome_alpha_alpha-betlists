@@ -76,18 +76,6 @@
       <HintPath>..\..\packages\Dapper.1.50.2\lib\net451\Dapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="EasyNetQ, Version=0.53.6.418, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EasyNetQ.0.53.6.418\lib\net45\EasyNetQ.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Fanex.ActivityTracking, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.ActivityTracking.1.0.0.2\lib\net40\Fanex.ActivityTracking.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Fanex.ActivityTracking.Web, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.ActivityTracking.Web.1.0.0.1\lib\net40\Fanex.ActivityTracking.Web.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Fanex.BetList.Allbet, Version=1.0.0.9, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.Allbet.1.0.0.9\lib\net40\Fanex.BetList.Allbet.dll</HintPath>
       <Private>True</Private>
