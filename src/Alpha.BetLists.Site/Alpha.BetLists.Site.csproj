@@ -422,10 +422,6 @@
     <Content Include="assets\bundles\casino-detail\casino-detail.min.js">
       <DependentUpon>casino-detail.js</DependentUpon>
     </Content>
-    <Content Include="assets\bundles\casio-detail\casino-detail.js" />
-    <Content Include="assets\bundles\casio-detail\casino-detail.min.js">
-      <DependentUpon>casino-detail.js</DependentUpon>
-    </Content>
     <Content Include="assets\bundles\default.css" />
     <Content Include="assets\bundles\default.js" />
     <Content Include="assets\bundles\default.min.css">
