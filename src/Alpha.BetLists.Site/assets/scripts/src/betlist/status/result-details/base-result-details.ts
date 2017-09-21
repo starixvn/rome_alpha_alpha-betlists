@@ -14,11 +14,6 @@
                 return this.casinoResult;
             }
 
-            if (betTypeId === 1000 || betTypeId === 1001 || betTypeId === 1002) {
-                this.p2pResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.p2pResult) ? new P2PResultDetails() : this.p2pResult;
-                return this.p2pResult;
-            }
-
             if (betTypeId >= 2501 && betTypeId <= 2699) {
                 this.ng2Result = Common.Utils.IsNullOrUndefinedOrEmpty(this.ng2Result) ? new NG2ResultDetails() : this.ng2Result;
                 return this.ng2Result;

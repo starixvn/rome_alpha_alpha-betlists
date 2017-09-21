@@ -10,16 +10,6 @@
             });
         });
 
-        [1000, 1001, 1002].forEach((betType: number) => {
-            it("CreateInstance_ByBetType -> Return P2PResultDetails Instance", () => {
-                // Act
-                let actualInstance = BetList.Status.ResultDetails.ResultDetailsFactory.CreateInstance(betType);
-
-                // Assert
-                expect(actualInstance).toEqual(jasmine.any(BetList.Status.ResultDetails.P2PResultDetails));
-            });
-        });
-
         for (let betType = 2501; betType <= 2699; betType++) {
             it("CreateInstance_ByBetType -> Return NG2ResultDetails Instance", () => {
                 // Act

@@ -26,30 +26,6 @@
         }
     }
 
-    export class P2PResultDetails extends CasinoResultDetails implements ResultDetails {
-        public ViewResultDetails = (
-            matchId?: number,
-            race?: number,
-            betTypeId?: number,
-            sportTypeId?: number,
-            refNo?: string,
-            userName?: string,
-            winLostDate?: Date,
-            refNoMixParlay?: number,
-            league?: number,
-            isOutright?: boolean,
-            betId?: number) => {
-            const params = '?typegame=p2pgame&ibcrefno=' + refNo
-                + '&bettype=' + betTypeId
-                + '&uname=' + userName
-                + '&custid=' + this.CustId
-                + '&fdate=' + this.FromDate
-                + '&tdate-' + this.ToDate;
-
-            window.location.replace(Common.AppPath.OldMainAppPath() + '_BetList/P2P/TableSession.aspx' + params);
-        }
-    }
-
     export class AllbetResultDetails extends BaseResultDetails implements ResultDetails {
         public ViewResultDetails = (
             matchId?: number,
