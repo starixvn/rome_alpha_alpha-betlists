@@ -76,6 +76,10 @@
       <HintPath>..\..\packages\Dapper.1.50.2\lib\net451\Dapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Fanex.BetDetails.Lucky3, Version=1.0.0.11, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetDetails.Lucky3.1.0.0.0-beta21\lib\Fanex.BetDetails.Lucky3.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Fanex.BetList.Allbet, Version=1.0.0.9, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.Allbet.1.0.0.9\lib\net40\Fanex.BetList.Allbet.dll</HintPath>
       <Private>True</Private>
@@ -154,10 +158,6 @@
     </Reference>
     <Reference Include="Fanex.BetList.Voidbridge, Version=1.0.0.15, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.Voidbridge.1.0.0.15\lib\net40\Fanex.BetList.Voidbridge.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Fanex.BetListDetail.Lucky3, Version=1.0.0.12, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetListDetail.Lucky3.1.0.0.0-beta17\lib\Fanex.BetListDetail.Lucky3.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.Caching, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -467,11 +467,11 @@
     <Content Include="assets\scripts\tests\libs\shortcut.js" />
     <Content Include="assets\scripts\tests\libs\store.js" />
     <Content Include="assets\scripts\tests\libs\tooltip.js" />
-    <Content Include="assets\styles\bet-list-detail.css">
-      <DependentUpon>bet-list-detail.scss</DependentUpon>
+    <Content Include="assets\styles\bet-details.css">
+      <DependentUpon>bet-details.scss</DependentUpon>
     </Content>
-    <Content Include="assets\styles\bet-list-detail.min.css">
-      <DependentUpon>bet-list-detail.css</DependentUpon>
+    <Content Include="assets\styles\bet-details.min.css">
+      <DependentUpon>bet-details.css</DependentUpon>
     </Content>
     <Content Include="assets\styles\bet-list.css">
       <DependentUpon>bet-list.scss</DependentUpon>
@@ -556,7 +556,7 @@
     <Content Include="App_Data\ExcelTemplates\CancelledBet\Master.xls" />
     <Content Include="App_Data\ExcelTemplates\CancelledBet\Super.xls" />
     <Content Include="App_Data\activitytracking.json" />
-    <Content Include="assets\styles\bet-list-detail.scss" />
+    <Content Include="assets\styles\bet-details.scss" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>

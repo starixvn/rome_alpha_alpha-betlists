@@ -1,6 +1,6 @@
 ﻿namespace Alpha.BetLists.Criteria.Lucky3
 {
-    using Fanex.BetListDetail.Lucky3.Criteria;
+    using Fanex.BetDetails.Lucky3.Criteria;
     using Fanex.Data;
     using Fanex.Data.Repository;
 

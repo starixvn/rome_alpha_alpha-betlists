@@ -1,7 +1,7 @@
 ﻿namespace Alpha.BetLists.Site.Requests.Lucky3
 {
     using BetLists.Models;
-    using Fanex.BetListDetail.Lucky3.ViewModels;
+    using Fanex.BetDetails.Lucky3.ViewModels;
     using MediatR;
 
     public class Lucky3DetailQuery : BaseQuery, IRequest<Lucky3DetailViewModel>

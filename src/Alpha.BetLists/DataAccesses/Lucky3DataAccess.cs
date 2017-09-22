@@ -2,9 +2,9 @@
 {
     using System.Collections.Generic;
     using Criteria.Lucky3;
-    using Fanex.BetListDetail.Lucky3.Criteria;
-    using Fanex.BetListDetail.Lucky3.DataAccesses;
-    using Fanex.BetListDetail.Lucky3.Models;
+    using Fanex.BetDetails.Lucky3.Criteria;
+    using Fanex.BetDetails.Lucky3.DataAccesses;
+    using Fanex.BetDetails.Lucky3.Models;
     using Fanex.Data.Repository;
 
     public class Lucky3DataAccess : ILucky3DataAccess

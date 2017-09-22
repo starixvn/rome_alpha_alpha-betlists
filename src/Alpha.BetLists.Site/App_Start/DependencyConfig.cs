@@ -11,8 +11,8 @@
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Factories;
     using Fanex.BetList.Core.TicketHelper;
-    using Fanex.BetListDetail.Lucky3.DataAccesses;
-    using Fanex.BetListDetail.Lucky3.Services;
+    using Fanex.BetDetails.Lucky3.DataAccesses;
+    using Fanex.BetDetails.Lucky3.Services;
     using Fanex.Data.Repository;
     using Handlers.Parlay;
     using Helpers;

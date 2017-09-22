@@ -11,13 +11,13 @@
         public ShowLucky3Details = (transId: string, custId: string) => {
             const params = "?TransactionId=" + transId
                 + "&custId=" + custId;
-            let width = 837;
+            let width = 870;
             let roleId = Number(this.ViewerLevelId());
             if (roleId >= 3) {
-                width += 80;
+                width += 110;
             }
             if (roleId >= 4) {
-                width += 80;
+                width += 110;
             }
 
             Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'Lucky3/ViewDetail' + params, "Lucky 3 - Detailed Bet List", width, 800);

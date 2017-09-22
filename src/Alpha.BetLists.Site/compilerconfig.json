@@ -19,8 +19,8 @@
     "inputFile": "assets/styles/last-bets.scss"
   },
   {
-    "outputFile": "assets/styles/bet-list-detail.css",
-    "inputFile": "assets/styles/bet-list-detail.scss"
+    "outputFile": "assets/styles/bet-details.css",
+    "inputFile": "assets/styles/bet-details.scss"
   }
 
 ]

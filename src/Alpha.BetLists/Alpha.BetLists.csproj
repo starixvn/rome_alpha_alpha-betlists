@@ -46,6 +46,10 @@
       <HintPath>..\..\packages\Dapper.1.50.2\lib\net451\Dapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Fanex.BetDetails.Lucky3, Version=1.0.0.11, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetDetails.Lucky3.1.0.0.0-beta21\lib\Fanex.BetDetails.Lucky3.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Fanex.BetList.BetTrade, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.Core.2.39.1\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
       <Private>True</Private>
@@ -56,10 +60,6 @@
     </Reference>
     <Reference Include="Fanex.BetList.NumberGame, Version=1.0.0.6, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.NumberGame.1.0.0.6\lib\net40\Fanex.BetList.NumberGame.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Fanex.BetListDetail.Lucky3, Version=1.0.0.12, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetListDetail.Lucky3.1.0.0.0-beta17\lib\Fanex.BetListDetail.Lucky3.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.Caching, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">

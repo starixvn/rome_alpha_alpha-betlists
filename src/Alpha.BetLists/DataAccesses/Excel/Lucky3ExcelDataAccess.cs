@@ -1,9 +1,9 @@
 ﻿namespace Alpha.BetLists.DataAccesses
 {
     using System.Collections.Generic;
-    using Fanex.BetListDetail.Lucky3.Criteria;
-    using Fanex.BetListDetail.Lucky3.DataAccesses;
-    using Fanex.BetListDetail.Lucky3.Models;
+    using Fanex.BetDetails.Lucky3.Criteria;
+    using Fanex.BetDetails.Lucky3.DataAccesses;
+    using Fanex.BetDetails.Lucky3.Models;
     using Helpers;
 
     public class Lucky3ExcelDataAccess : ILucky3DataAccess

@@ -1,8 +1,8 @@
 ﻿namespace Alpha.BetLists.Site.Handlers
 {
-    using Fanex.BetListDetail.Lucky3.Criteria;
-    using Fanex.BetListDetail.Lucky3.Services;
-    using Fanex.BetListDetail.Lucky3.ViewModels;
+    using Fanex.BetDetails.Lucky3.Criteria;
+    using Fanex.BetDetails.Lucky3.Services;
+    using Fanex.BetDetails.Lucky3.ViewModels;
     using MediatR;
     using Requests.Lucky3;
 
