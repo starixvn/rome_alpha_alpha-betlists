@@ -1,7 +1,7 @@
 ﻿namespace Alpha.BetLists.Tests.Criteria.Lucky3
 {
     using Alpha.BetLists.Criteria.Lucky3;
-    using Fanex.BetListDetail.Lucky3.Criteria;
+    using Fanex.BetDetails.Lucky3.Criteria;
     using NSubstitute;
     using Xunit;
 

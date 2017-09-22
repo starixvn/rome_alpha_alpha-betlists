@@ -2,9 +2,9 @@
 {
     using Alpha.BetLists.Criteria.Lucky3;
     using Alpha.BetLists.DataAccesses;
-    using Fanex.BetListDetail.Lucky3.Criteria;
-    using Fanex.BetListDetail.Lucky3.DataAccesses;
-    using Fanex.BetListDetail.Lucky3.Models;
+    using Fanex.BetDetails.Lucky3.Criteria;
+    using Fanex.BetDetails.Lucky3.DataAccesses;
+    using Fanex.BetDetails.Lucky3.Models;
     using Fanex.Data.Repository;
     using NSubstitute;
     using Xunit;

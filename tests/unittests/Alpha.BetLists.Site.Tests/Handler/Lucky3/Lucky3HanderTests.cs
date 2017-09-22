@@ -3,9 +3,9 @@
     using Alpha.BetLists.Models;
     using Alpha.BetLists.Site.Handlers;
     using Alpha.BetLists.Site.Requests.Lucky3;
-    using Fanex.BetListDetail.Lucky3.Criteria;
-    using Fanex.BetListDetail.Lucky3.Services;
-    using Fanex.BetListDetail.Lucky3.ViewModels;
+    using Fanex.BetDetails.Lucky3.Criteria;
+    using Fanex.BetDetails.Lucky3.Services;
+    using Fanex.BetDetails.Lucky3.ViewModels;
     using KellermanSoftware.CompareNetObjects;
     using NSubstitute;
     using Ploeh.AutoFixture;
