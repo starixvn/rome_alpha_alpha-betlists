@@ -52,7 +52,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetDetails.Lucky3, Version=1.0.0.11, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Fanex.BetDetails.Lucky3.1.0.0.0-beta21\lib\Fanex.BetDetails.Lucky3.dll</HintPath>
+      <HintPath>..\..\..\packages\Fanex.BetDetails.Lucky3.1.0.0.0\lib\Fanex.BetDetails.Lucky3.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.BetTrade, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
@@ -178,11 +178,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Sunplus.Agent.Model.Base, Version=3.0.2.7, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Sunplus.Agent.Model.Base.3.0.2.8-lucky3-01\lib\net40\Sunplus.Agent.Model.Base.dll</HintPath>
+      <HintPath>..\..\..\packages\Sunplus.Agent.Model.Base.3.0.2.8\lib\net40\Sunplus.Agent.Model.Base.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Sunplus.Agent.Model.Definitions, Version=3.0.1.11, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Sunplus.Agent.Model.Definitions.3.0.1.11\lib\net40\Sunplus.Agent.Model.Definitions.dll</HintPath>
+      <HintPath>..\..\..\packages\Sunplus.Agent.Model.Definitions.3.0.1.12\lib\net40\Sunplus.Agent.Model.Definitions.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Sunplus.Agent.Model.IpFormatter, Version=3.0.0.1, Culture=neutral, processorArchitecture=MSIL">
