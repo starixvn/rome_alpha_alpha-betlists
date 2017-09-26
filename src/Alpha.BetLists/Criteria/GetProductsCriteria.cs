@@ -1,7 +1,7 @@
-﻿using Fanex.Data.Repository;
-
-namespace Alpha.BetLists.Criteria
+﻿namespace Alpha.BetLists.Criteria
 {
+    using Fanex.Data.Repository;
+
     public class GetProductsCriteria : CriteriaBase
     {
         public override string GetSettingKey() => "Age_Rpt_GetProductList";

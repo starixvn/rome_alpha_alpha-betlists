@@ -1,13 +1,13 @@
-﻿using System;
-using Alpha.BetLists.Models;
-using Alpha.BetLists.Site.Requests.WinLoss;
-using Alpha.BetLists.Site.Tests.Fixtures;
-using Alpha.BetLists.Tests.Constants;
-using Alpha.BetLists.Utils;
-using Xunit;
-
-namespace Alpha.BetLists.Site.Tests.Request.WinLoss
+﻿namespace Alpha.BetLists.Site.Tests.Request.WinLoss
 {
+    using System;
+    using BetLists.Models;
+    using BetLists.Tests.Constants;
+    using Fixtures;
+    using Requests.WinLoss;
+    using Utils;
+    using Xunit;
+
     [Trait("Category", "RunningBetList")]
     [Collection("BetListCollection")]
     public class WinLossQueryTests

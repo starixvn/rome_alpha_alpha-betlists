@@ -1,5 +1,7 @@
 ﻿namespace Alpha.BetLists.Tests.Services
 {
+    using System;
+    using System.Linq;
     using BetLists.Criteria.DailyStatement;
     using BetLists.Models;
     using BetLists.Params;
@@ -7,8 +9,6 @@
     using Fanex.BetList.Core.Entities;
     using Fixtures;
     using NSubstitute;
-    using System;
-    using System.Linq;
     using TestData;
     using Xunit;
 

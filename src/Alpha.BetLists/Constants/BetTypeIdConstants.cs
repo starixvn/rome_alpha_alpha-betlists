@@ -1,7 +1,7 @@
-﻿using System.Diagnostics.CodeAnalysis;
-
-namespace Alpha.BetLists.Constants
+﻿namespace Alpha.BetLists.Constants
 {
+    using System.Diagnostics.CodeAnalysis;
+
     [SuppressMessage(
         "StyleCop.CSharp.NamingRules",
         "SA1310:FieldNamesMustNotContainUnderscore",

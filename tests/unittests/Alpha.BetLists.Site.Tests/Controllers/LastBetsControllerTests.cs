@@ -1,17 +1,17 @@
-﻿using System.Globalization;
-using System.Threading;
-using Alpha.BetLists.Models;
-using Alpha.BetLists.Site.Controllers;
-using Alpha.BetLists.Site.Requests.LastBets;
-using Alpha.BetLists.Site.Tests.Constants;
-using Alpha.Web.Models;
-using KellermanSoftware.CompareNetObjects;
-using MediatR;
-using NSubstitute;
-using Xunit;
-
-namespace Alpha.BetLists.Site.Tests.Controllers
+﻿namespace Alpha.BetLists.Site.Tests.Controllers
 {
+    using System.Globalization;
+    using System.Threading;
+    using BetLists.Models;
+    using Constants;
+    using KellermanSoftware.CompareNetObjects;
+    using MediatR;
+    using NSubstitute;
+    using Requests.LastBets;
+    using Site.Controllers;
+    using Web.Models;
+    using Xunit;
+
     [Trait("Category", "LastBets")]
     public class LastBetsControllerTests
     {

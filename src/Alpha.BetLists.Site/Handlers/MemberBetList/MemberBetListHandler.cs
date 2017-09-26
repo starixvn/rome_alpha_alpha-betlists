@@ -1,5 +1,6 @@
 ﻿namespace Alpha.BetLists.Site.Handlers.MemberBetList
 {
+    using System.Threading.Tasks;
     using Extensions;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
@@ -8,7 +9,6 @@
     using Requests.MemberBetList;
     using Services;
     using SmartPunter.Services;
-    using System.Threading.Tasks;
     using Utilities.IP;
     using ViewModels.MemberBetList;
 

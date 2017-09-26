@@ -1,7 +1,7 @@
 ﻿namespace Alpha.BetLists.Tests.Extensions
 {
-    using BetLists.Extensions;
     using System;
+    using BetLists.Extensions;
     using Xunit;
 
     public class DateTimeExtensionsTests

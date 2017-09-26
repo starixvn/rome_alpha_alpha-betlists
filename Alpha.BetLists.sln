@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alpha.BetLists.Site", "src\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alpha.BetLists", "src\Alpha.BetLists\Alpha.BetLists.csproj", "{415FE6C8-C743-47C1-B520-BDBE3B1DA2BF}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{112AA17E-5091-4A71-8599-A5948F0C7A0A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alpha.BetLists.Tests", "tests\unittests\Alpha.BetLists.Tests\Alpha.BetLists.Tests.csproj", "{7C0D171F-2D9D-4986-9148-81C465A3A711}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alpha.BetLists.Site.Tests", "tests\unittests\Alpha.BetLists.Site.Tests\Alpha.BetLists.Site.Tests.csproj", "{FB380412-8A33-4B4B-8497-C1D944A9D20C}"
@@ -22,6 +20,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SonarQube", "SonarQube", "{
 		SonarQube\Alpha-BetListCSharp.ruleset = SonarQube\Alpha-BetListCSharp.ruleset
 		SonarQube\SolutionBinding.sqconfig = SonarQube\SolutionBinding.sqconfig
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{84BB840B-DF42-4155-ADF7-216FD1975F26}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "unittests", "unittests", "{6DA53851-4FB0-43C1-8E41-A4DAD3CCF985}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{F4417210-A05D-4B3F-BAF2-C5AEEB039F2F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,9 +63,13 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{7C0D171F-2D9D-4986-9148-81C465A3A711} = {112AA17E-5091-4A71-8599-A5948F0C7A0A}
-		{FB380412-8A33-4B4B-8497-C1D944A9D20C} = {112AA17E-5091-4A71-8599-A5948F0C7A0A}
-		{40E53E15-ABD2-4DD6-8456-342B3749A55E} = {112AA17E-5091-4A71-8599-A5948F0C7A0A}
+		{69690E23-A8B5-4D96-8EBE-907A9FC1CA3E} = {84BB840B-DF42-4155-ADF7-216FD1975F26}
+		{415FE6C8-C743-47C1-B520-BDBE3B1DA2BF} = {84BB840B-DF42-4155-ADF7-216FD1975F26}
+		{7C0D171F-2D9D-4986-9148-81C465A3A711} = {6DA53851-4FB0-43C1-8E41-A4DAD3CCF985}
+		{FB380412-8A33-4B4B-8497-C1D944A9D20C} = {6DA53851-4FB0-43C1-8E41-A4DAD3CCF985}
+		{C4D18432-0C45-40E3-B851-30DDF6E809EA} = {84BB840B-DF42-4155-ADF7-216FD1975F26}
+		{40E53E15-ABD2-4DD6-8456-342B3749A55E} = {6DA53851-4FB0-43C1-8E41-A4DAD3CCF985}
+		{6DA53851-4FB0-43C1-8E41-A4DAD3CCF985} = {F4417210-A05D-4B3F-BAF2-C5AEEB039F2F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Logging.6.0.1304.0\lib\NET45

@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace Alpha.BetLists.Params.LastBets
+﻿namespace Alpha.BetLists.Params.LastBets
 {
+    using System.Collections.Generic;
+
     public class CheckCanViewLastBetsParam
     {
         public CheckCanViewLastBetsParam(

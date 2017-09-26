@@ -1,11 +1,11 @@
-﻿using System;
-using Alpha.BetLists.Models;
-using Alpha.BetLists.Tests.Constants;
-using Alpha.BetLists.Tests.TestData;
-using Xunit;
-
-namespace Alpha.BetLists.Tests.Models
+﻿namespace Alpha.BetLists.Tests.Models
 {
+    using System;
+    using BetLists.Models;
+    using Constants;
+    using TestData;
+    using Xunit;
+
     public class UserLevelTests
     {
         [Fact]

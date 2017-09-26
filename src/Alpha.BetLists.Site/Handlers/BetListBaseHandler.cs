@@ -1,16 +1,16 @@
 ﻿namespace Alpha.BetLists.Site.Handlers
 {
-    using BetLists.Models;
-    using Fanex.BetList.Core.Builder;
-    using Fanex.BetList.Core.Entities;
-    using Fanex.BetList.Core.TicketHelper;
-    using SmartPunter.Services;
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Web.Hosting;
     using System.Web.Mvc;
+    using BetLists.Models;
+    using Fanex.BetList.Core.Builder;
+    using Fanex.BetList.Core.Entities;
+    using Fanex.BetList.Core.TicketHelper;
+    using SmartPunter.Services;
     using Utilities.IP;
 
     public class BetListBaseHandler

@@ -1,11 +1,11 @@
-﻿using Alpha.BetLists.Constants;
-using Alpha.BetLists.Models;
-using Alpha.BetLists.Site.Requests.LastBets;
-using Fanex.BetList.Core.Builder;
-using Fanex.BetList.Core.Entities;
-
-namespace Alpha.BetLists.Site.ViewModels.LastBets
+﻿namespace Alpha.BetLists.Site.ViewModels.LastBets
 {
+    using BetLists.Constants;
+    using BetLists.Models;
+    using Fanex.BetList.Core.Builder;
+    using Fanex.BetList.Core.Entities;
+    using Requests.LastBets;
+
     public class LastBetsViewModel : BetListBaseViewModel
     {
         public LastBetsViewModel(

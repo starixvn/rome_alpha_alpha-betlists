@@ -1,8 +1,8 @@
-﻿using Alpha.BetLists.Criteria.CancelledBet;
-using Xunit;
-
-namespace Alpha.BetLists.Tests.Criteria.CancelledBet
+﻿namespace Alpha.BetLists.Tests.Criteria.CancelledBet
 {
+    using Alpha.BetLists.Criteria.CancelledBet;
+    using Xunit;
+
     [Trait("Category", "CancelledBet")]
     public class GetCancelledBetCriteriaTests
     {

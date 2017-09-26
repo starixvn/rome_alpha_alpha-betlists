@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Alpha.BetLists.Criteria.WinLossByMatch;
-using Alpha.BetLists.Helpers;
-using Alpha.BetLists.Models;
-using Alpha.BetLists.Params;
-using Fanex.BetList.Core.Entities;
-using Fanex.Data.Repository;
-
-namespace Alpha.BetLists.Services
+﻿namespace Alpha.BetLists.Services
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Criteria.WinLossByMatch;
+    using Fanex.BetList.Core.Entities;
+    using Fanex.Data.Repository;
+    using Helpers;
+    using Models;
+    using Params;
+
     public interface WinLossByMatchService
     {
         Task<BetListData> GetBetList(WinLossByMatchParam param);

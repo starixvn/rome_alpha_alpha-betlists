@@ -1,21 +1,21 @@
-﻿using Alpha.BetLists.Models;
-using Alpha.BetLists.Params;
-using Alpha.BetLists.Services;
-using Alpha.BetLists.Site.Handlers.WinLossByMatch;
-using Alpha.BetLists.Site.Requests.WinLossByMatch;
-using Alpha.BetLists.Site.Tests.Constants;
-using Alpha.BetLists.Site.Tests.Fixtures;
-using Alpha.BetLists.Tests.TestData;
-using NSubstitute;
-using ONEbook.SpreadSheets;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Threading;
-using Xunit;
-
-namespace Alpha.BetLists.Site.Tests.Handler.WinLossByMatch
+﻿namespace Alpha.BetLists.Site.Tests.Handler.WinLossByMatch
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Threading;
+    using BetLists.Models;
+    using BetLists.Tests.TestData;
+    using Constants;
+    using Fixtures;
+    using Handlers.WinLossByMatch;
+    using NSubstitute;
+    using ONEbook.SpreadSheets;
+    using Params;
+    using Requests.WinLossByMatch;
+    using Services;
+    using Xunit;
+
     [Trait("Category", "WinLossByMatch")]
     [Collection("BetListCollection")]
     public class WinLossByMatchExcelHandlerTests

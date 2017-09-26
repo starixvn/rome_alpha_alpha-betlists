@@ -1,13 +1,13 @@
 ﻿namespace Alpha.BetLists.Services
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using Criteria;
     using Extensions;
     using Fanex.Caching;
     using Fanex.Data.Repository;
     using Models;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
 
     public interface ForecastService
     {
@@ -17,7 +17,7 @@
     public class ForecastServiceImpl : ForecastService
     {
         private const int ScoreMapBetTypesCacheTimeInHours = 2;
-        private const string ScoreMapBetTypesCacheKey = "Alpha.BetLists.Services.ForeCastServiceImpl.ScoreMapBetTypes";
+        private const string ScoreMapBetTypesCacheKey = "Alpha.BetLists.Services.ForecastServiceImpl.ScoreMapBetTypes";
         private readonly IDynamicRepository dynamicRepository;
 
         public ForecastServiceImpl(IDynamicRepository dynamicRepository)

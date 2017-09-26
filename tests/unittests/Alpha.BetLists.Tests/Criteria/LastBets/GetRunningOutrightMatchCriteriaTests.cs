@@ -1,9 +1,9 @@
-﻿using Alpha.BetLists.Criteria.LastBets;
-using Alpha.BetLists.Tests.Collections;
-using Xunit;
-
-namespace Alpha.BetLists.Tests.Criteria.LastBets
+﻿namespace Alpha.BetLists.Tests.Criteria.LastBets
 {
+    using BetLists.Criteria.LastBets;
+    using Collections;
+    using Xunit;
+
     [Trait("Category", "LastBets")]
     [Collection("AnyValueCreatorCollection")]
     public class GetRunningOutrightMatchCriteriaTests

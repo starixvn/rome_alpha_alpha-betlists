@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Alpha.BetLists.Criteria.ParlayWinLossByMatch;
-using Alpha.BetLists.Models;
-using Alpha.BetLists.Params;
-using Fanex.Data.Repository;
-
-namespace Alpha.BetLists.Services
+﻿namespace Alpha.BetLists.Services
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using Criteria.ParlayWinLossByMatch;
+    using Fanex.Data.Repository;
+    using Models;
+    using Params;
+
     public interface ParlayWinLossByMatchService
     {
         Task<IEnumerable<TicketDto>> GetBetList(ParlayWinLossByMatchParam param);

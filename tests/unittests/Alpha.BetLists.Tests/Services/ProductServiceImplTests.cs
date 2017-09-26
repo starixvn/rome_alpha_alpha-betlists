@@ -27,9 +27,9 @@
 
         private readonly IEnumerable<Product> allCustomerProductIds = new List<Product>
         {
-            new Product(1, "Product 1"),
-            new Product(2, "Product 2"),
-            new Product(3, "Product 3")
+            new Product(1, "Product 1", null),
+            new Product(2, "Product 2", null),
+            new Product(3, "Product 3", null)
         };
 
         public ProductServiceImplTests(

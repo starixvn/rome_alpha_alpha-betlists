@@ -3,7 +3,6 @@
     using System;
     using BetLists.Models;
     using MediatR;
-    using ViewModels;
     using ViewModels.Parlay;
 
     public class ComboParlayDetailQuery : BaseQuery, IRequest<ComboParlayDetailViewModel>

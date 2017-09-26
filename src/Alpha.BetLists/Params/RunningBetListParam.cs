@@ -1,8 +1,8 @@
 ﻿namespace Alpha.BetLists.Params
 {
-    using Extensions;
     using System;
     using System.Collections.Generic;
+    using Extensions;
 
     public class RunningBetListParam
     {

@@ -1,16 +1,13 @@
 ﻿namespace Alpha.BetLists.Site.Tests.ViewModels
 {
+    using System;
     using AppResources;
     using BetLists.Tests.TestData;
     using Fixtures;
-    using Helpers;
     using NSubstitute;
     using Requests;
     using Requests.WinLoss;
-    using Site.Helpers;
     using Site.ViewModels.WinLoss;
-    using System;
-    using System.Collections.Generic;
     using Xunit;
 
     [Trait("Category", "BaseBetList")]

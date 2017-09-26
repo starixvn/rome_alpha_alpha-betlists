@@ -1,5 +1,9 @@
 ﻿namespace Alpha.BetLists.Site.App_Start
 {
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Reflection;
+    using System.Web.Mvc;
     using BetLists.Models;
     using Controllers;
     using DataAccesses;
@@ -7,6 +11,8 @@
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Factories;
     using Fanex.BetList.Core.TicketHelper;
+    using Fanex.BetDetails.Lucky3.DataAccesses;
+    using Fanex.BetDetails.Lucky3.Services;
     using Fanex.Data.Repository;
     using Handlers.Parlay;
     using Helpers;
@@ -24,10 +30,6 @@
     using Sunplus.Agent.Model.Base;
     using Sunplus.Agent.Model.Entities;
     using Sunplus.Agent.Model.Entities.Permission;
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Reflection;
-    using System.Web.Mvc;
     using Utilities.IP;
 
     public static class DependencyConfig
@@ -94,6 +96,14 @@
         {
             container.Register<IDynamicRepository, DynamicRepository>(Lifestyle.Singleton);
             container.Register<ISmartPunterDataAccess, SmartPunterDataAccess>(Lifestyle.Singleton);
+            if (BetLists.Configurations.AppSettings.EnabledStaticData)
+            {
+                container.Register<ILucky3DataAccess, Lucky3ExcelDataAccess>(Lifestyle.Singleton);
+            }
+            else
+            {
+                container.Register<ILucky3DataAccess, Lucky3DataAccess>(Lifestyle.Singleton);
+            }
         }
 
         private static void RegisterServices(Container container)
@@ -119,6 +129,7 @@
             container.Register<WinLossByMatchService, WinLossByMatchServiceImpl>(Lifestyle.Singleton);
             container.Register<ParlayWinLossByMatchService, ParlayWinLossByMatchServiceImpl>(Lifestyle.Singleton);
             container.Register<RunningBetListService, RunningBetListServiceImpl>(Lifestyle.Singleton);
+            container.Register<ILucky3Service, Lucky3Service>(Lifestyle.Singleton);
 
             container.Register<LastBetsService, LastBetsServiceImpl>(Lifestyle.Singleton);
             container.Register<EncryptionService, EncryptionServiceImpl>(Lifestyle.Singleton);

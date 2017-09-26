@@ -1,9 +1,9 @@
-﻿using Alpha.BetLists.Models;
-using Alpha.BetLists.Site.ViewModels.WinLossByMatch;
-using MediatR;
-
-namespace Alpha.BetLists.Site.Requests.WinLossByMatch
+﻿namespace Alpha.BetLists.Site.Requests.WinLossByMatch
 {
+    using BetLists.Models;
+    using MediatR;
+    using ViewModels.WinLossByMatch;
+
     public class WinLossByMatchQuery : BaseQuery, IRequest<WinLossByMatchViewModel>
     {
         public WinLossByMatchQuery(IUser viewer) : base(viewer)

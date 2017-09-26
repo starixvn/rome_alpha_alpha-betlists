@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Alpha.BetLists.Models;
-using Alpha.BetLists.Site.Requests.LastBets;
-using Fanex.BetList.Core.Builder;
-using Fanex.BetList.Core.Entities;
-
-namespace Alpha.BetLists.Site.ViewModels.LastBets
+﻿namespace Alpha.BetLists.Site.ViewModels.LastBets
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using BetLists.Models;
+    using Fanex.BetList.Core.Builder;
+    using Fanex.BetList.Core.Entities;
+    using Requests.LastBets;
+
     public class BetDataViewModel : BetListBaseViewModel
     {
         public BetDataViewModel(

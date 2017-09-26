@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Alpha.BetLists.Criteria.LastBets;
-using Alpha.BetLists.Helpers;
-using Alpha.BetLists.Models;
-using Alpha.BetLists.Params.LastBets;
-using Fanex.BetList.Core.Entities;
-using Fanex.Caching;
-using Fanex.Data.Repository;
-
-namespace Alpha.BetLists.Services
+﻿namespace Alpha.BetLists.Services
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Criteria.LastBets;
+    using Fanex.BetList.Core.Entities;
+    using Fanex.Caching;
+    using Fanex.Data.Repository;
+    using Helpers;
+    using Models;
+    using Params.LastBets;
+
     public interface LastBetsService
     {
         Task<IEnumerable<TicketDto>> GetLastBets(GetLastBetsParam param);

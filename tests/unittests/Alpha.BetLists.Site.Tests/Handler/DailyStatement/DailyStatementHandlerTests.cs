@@ -1,5 +1,8 @@
 ﻿namespace Alpha.BetLists.Site.Tests.Handler.DailyStatement
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using BetLists.Models;
     using BetLists.Tests.TestData;
     using Fanex.BetList.Core.Entities;
@@ -11,9 +14,6 @@
     using Requests.DailyStatement;
     using Services;
     using Site.ViewModels.DailyStatement;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using Xunit;
 
     [Trait("Category", "DailyStatement")]

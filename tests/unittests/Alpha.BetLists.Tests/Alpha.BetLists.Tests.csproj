@@ -45,6 +45,10 @@
       <HintPath>..\..\..\packages\Dapper.1.50.2\lib\net451\Dapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Fanex.BetDetails.Lucky3, Version=1.0.0.11, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Fanex.BetDetails.Lucky3.1.0.0.0\lib\Fanex.BetDetails.Lucky3.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Fanex.BetList.BetTrade, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Fanex.BetList.Core.2.39.1\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
       <Private>True</Private>
@@ -65,12 +69,12 @@
       <HintPath>..\..\..\packages\Fanex.Common.1.0.404.97\lib\net40\Fanex.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.Data, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Fanex.Data.2.1.0\lib\net461\Fanex.Data.dll</HintPath>
+    <Reference Include="Fanex.Data, Version=2.1.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Fanex.Data.2.1.0.1\lib\net461\Fanex.Data.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.Data.Repository, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Fanex.Data.Repository.1.0.2\lib\net461\Fanex.Data.Repository.dll</HintPath>
+    <Reference Include="Fanex.Data.Repository, Version=1.0.2.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Fanex.Data.Repository.1.0.2.1\lib\net461\Fanex.Data.Repository.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.Products, Version=0.0.0.1, Culture=neutral, processorArchitecture=MSIL">
@@ -126,11 +130,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Sunplus.Agent.Model.Base, Version=3.0.2.7, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Sunplus.Agent.Model.Base.3.0.2.7\lib\net40\Sunplus.Agent.Model.Base.dll</HintPath>
+      <HintPath>..\..\..\packages\Sunplus.Agent.Model.Base.3.0.2.8\lib\net40\Sunplus.Agent.Model.Base.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Sunplus.Agent.Model.Definitions, Version=3.0.1.11, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Sunplus.Agent.Model.Definitions.3.0.1.11\lib\net40\Sunplus.Agent.Model.Definitions.dll</HintPath>
+      <HintPath>..\..\..\packages\Sunplus.Agent.Model.Definitions.3.0.1.12\lib\net40\Sunplus.Agent.Model.Definitions.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Sunplus.Agent.Model.IpFormatter, Version=3.0.0.1, Culture=neutral, processorArchitecture=MSIL">
@@ -181,15 +185,14 @@
     <Compile Include="Configurations\AppSettingsTests.cs" />
     <Compile Include="Constants\BetTypeIdConstants.cs" />
     <Compile Include="Constants\DefaultVariables.cs" />
+    <Compile Include="Criteria\Lucky3\GetLucky3DetailCriteriaTests.cs" />
     <Compile Include="Criteria\DailyStatement\GetAllBetListByDayCriteriaTests.cs" />
     <Compile Include="Criteria\DailyStatement\GetAllBetListByDayOldCriteriaTests.cs" />
     <Compile Include="Criteria\GetProductsByGroupHeadlineCriteriaTests.cs" />
     <Compile Include="Criteria\CancelledBet\GetCancelledBetCriteriaTests.cs" />
-    <Compile Include="Criteria\CancelledBet\GetUsersHasCancelledBetByAgentCriteriaTests.cs" />
+    <Compile Include="Criteria\CancelledBet\GetUsersHasCancelledBetCriteriaTests.cs" />
     <Compile Include="Constants\RoleId.cs" />
     <Compile Include="Criteria\GetBalanceUpDayAndMoveBetsDayCriteriaTests.cs" />
-    <Compile Include="Criteria\CancelledBet\GetUsersHasCancelledBetByMasterCriteriaTests.cs" />
-    <Compile Include="Criteria\CancelledBet\GetUsersHasCancelledBetBySuperCriteriaTests.cs" />
     <Compile Include="Criteria\GetProductsCriteriaTests.cs" />
     <Compile Include="Criteria\GetScoreMapBetTypesCriteriaTests.cs" />
     <Compile Include="Criteria\LastBets\GetLastBetsCriteriaTests.cs" />
@@ -202,6 +205,7 @@
     <Compile Include="Criteria\ParlayWinLossByMatch\GetParlayWinLossByMatchCriteriaTests.cs" />
     <Compile Include="Criteria\WinLossByMatch\GetWinLossOutrightCriteriaTests.cs" />
     <Compile Include="Criteria\WinLossByMatch\GetWinLossRacingCriteriaTests.cs" />
+    <Compile Include="DataAccesses\Lucky3DataAccessTests.cs" />
     <Compile Include="DataAccesses\SmartPunterDataAccessTests.cs" />
     <Compile Include="Extensions\DateTimeExtensionsTests.cs" />
     <Compile Include="Extensions\StringExtensionsTests.cs" />
@@ -249,7 +253,6 @@
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

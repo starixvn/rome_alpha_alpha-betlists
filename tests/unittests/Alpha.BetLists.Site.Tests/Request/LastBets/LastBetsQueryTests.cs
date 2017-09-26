@@ -1,10 +1,10 @@
-﻿using Alpha.BetLists.Models;
-using Alpha.BetLists.Site.Requests.LastBets;
-using NSubstitute;
-using Xunit;
-
-namespace Alpha.BetLists.Site.Tests.Request.LastBets
+﻿namespace Alpha.BetLists.Site.Tests.Request.LastBets
 {
+    using BetLists.Models;
+    using NSubstitute;
+    using Requests.LastBets;
+    using Xunit;
+
     [Trait("Category", "LastBets")]
     public class LastBetsQueryTests
     {

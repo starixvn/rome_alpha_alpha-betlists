@@ -1,9 +1,9 @@
 ﻿namespace Alpha.BetLists.Site.Tests.Helpers
 {
-    using NSubstitute;
-    using Site.Helpers;
     using System;
     using System.Collections.Generic;
+    using NSubstitute;
+    using Site.Helpers;
 
     public static class UrlHelperTestSetUp
     {

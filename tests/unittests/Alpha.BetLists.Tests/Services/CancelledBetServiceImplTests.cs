@@ -1,18 +1,18 @@
-﻿using Alpha.BetLists.Criteria.CancelledBet;
-using Alpha.BetLists.Models;
-using Alpha.BetLists.Models.CancelledBet;
-using Alpha.BetLists.Params;
-using Alpha.BetLists.Services;
-using Alpha.BetLists.Tests.Fixtures;
-using Alpha.BetLists.Tests.TestData;
-using Fanex.BetList.Core.Entities;
-using NSubstitute;
-using System.Collections.Generic;
-using System.Linq;
-using Xunit;
-
-namespace Alpha.BetLists.Tests.Services
+﻿namespace Alpha.BetLists.Tests.Services
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using Alpha.BetLists.Criteria.CancelledBet;
+    using Alpha.BetLists.Models;
+    using Alpha.BetLists.Models.CancelledBet;
+    using Alpha.BetLists.Params;
+    using Alpha.BetLists.Services;
+    using Alpha.BetLists.Tests.Fixtures;
+    using Alpha.BetLists.Tests.TestData;
+    using Fanex.BetList.Core.Entities;
+    using NSubstitute;
+    using Xunit;
+
     [Trait("Category", "CancelledBet")]
     [Collection("FanexDataCollection")]
     public class CancelledBetServiceImplTests
@@ -250,13 +250,7 @@ namespace Alpha.BetLists.Tests.Services
         private void FakeToCallDynamicRepository()
         {
             dataFixture.DynamicRepository
-                .FetchAsync<UserBetCount>(Arg.Any<GetUsersHasCancelledBetBySuperCriteria>())
-                .Returns(userBetCounts);
-            dataFixture.DynamicRepository
-                .FetchAsync<UserBetCount>(Arg.Any<GetUsersHasCancelledBetByMasterCriteria>())
-                .Returns(userBetCounts);
-            dataFixture.DynamicRepository
-                .FetchAsync<UserBetCount>(Arg.Any<GetUsersHasCancelledBetByAgentCriteria>())
+                .FetchAsync<UserBetCount>(Arg.Any<GetUsersHasCancelledBetCriteria>())
                 .Returns(userBetCounts);
             dataFixture.DynamicRepository
                 .FetchMultipleAsync<TicketDto, TicketData>(Arg.Any<GetCancelledBetCriteria>())

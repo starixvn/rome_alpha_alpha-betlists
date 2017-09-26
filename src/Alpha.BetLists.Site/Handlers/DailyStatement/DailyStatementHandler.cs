@@ -1,5 +1,6 @@
 ﻿namespace Alpha.BetLists.Site.Handlers.DailyStatement
 {
+    using System.Threading.Tasks;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using MediatR;
@@ -7,7 +8,6 @@
     using Requests.DailyStatement;
     using Services;
     using SmartPunter.Services;
-    using System.Threading.Tasks;
     using Utilities.IP;
     using ViewModels.DailyStatement;
 

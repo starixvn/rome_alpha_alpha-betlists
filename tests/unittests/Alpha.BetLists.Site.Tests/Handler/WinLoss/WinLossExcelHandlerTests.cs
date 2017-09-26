@@ -1,5 +1,8 @@
 ﻿namespace Alpha.BetLists.Site.Tests.Handler.WinLoss
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using AppResources;
     using BetLists.Models;
     using BetLists.Tests.TestData;
@@ -14,9 +17,6 @@
     using Services;
     using Site.ViewModels;
     using Site.ViewModels.WinLoss;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using Xunit;
 
     [Trait("Category", "WinLossBetList")]

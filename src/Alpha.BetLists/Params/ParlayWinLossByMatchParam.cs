@@ -1,8 +1,8 @@
-﻿using System;
-using Alpha.BetLists.Models;
-
-namespace Alpha.BetLists.Params
+﻿namespace Alpha.BetLists.Params
 {
+    using System;
+    using Models;
+
     public class ParlayWinLossByMatchParam
     {
         public ParlayWinLossByMatchParam(

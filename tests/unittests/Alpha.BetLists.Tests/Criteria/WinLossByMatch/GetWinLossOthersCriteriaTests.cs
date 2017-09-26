@@ -1,9 +1,9 @@
-﻿using Alpha.BetLists.Criteria.WinLossByMatch;
-using Alpha.BetLists.Models;
-using Xunit;
-
-namespace Alpha.BetLists.Tests.Criteria.WinLossByMatch
+﻿namespace Alpha.BetLists.Tests.Criteria.WinLossByMatch
 {
+    using BetLists.Criteria.WinLossByMatch;
+    using BetLists.Models;
+    using Xunit;
+
     [Trait("Category", "WinLossByMatch")]
     public class GetWinLossOthersCriteriaTests
     {

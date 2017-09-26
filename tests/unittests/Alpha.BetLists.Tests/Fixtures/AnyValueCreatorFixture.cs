@@ -1,7 +1,7 @@
-﻿using Ploeh.AutoFixture;
-
-namespace Alpha.BetLists.Tests.Collections
+﻿namespace Alpha.BetLists.Tests.Collections
 {
+    using Ploeh.AutoFixture;
+
     public class AnyValueCreatorFixture
     {
         private readonly Fixture anyValueGenerator;

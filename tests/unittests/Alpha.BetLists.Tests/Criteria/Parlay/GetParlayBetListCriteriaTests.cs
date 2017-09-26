@@ -1,9 +1,9 @@
-﻿using Alpha.BetLists.Criteria.Parlay;
-using Alpha.BetLists.Tests.Collections;
-using Xunit;
-
-namespace Alpha.BetLists.Tests.Criteria.Parlay
+﻿namespace Alpha.BetLists.Tests.Criteria.Parlay
 {
+    using BetLists.Criteria.Parlay;
+    using Collections;
+    using Xunit;
+
     [Trait("Category", "Parlay")]
     [Collection("AnyValueCreatorCollection")]
     public class GetParlayBetListCriteriaTests

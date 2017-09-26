@@ -1,15 +1,15 @@
-﻿using Alpha.BetLists.Criteria.CancelledBet;
-using Alpha.BetLists.Models;
-using Alpha.BetLists.Models.CancelledBet;
-using Alpha.BetLists.Params;
-using Fanex.BetList.Core.Entities;
-using Fanex.Data.Repository;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Alpha.BetLists.Services
+﻿namespace Alpha.BetLists.Services
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Alpha.BetLists.Criteria.CancelledBet;
+    using Alpha.BetLists.Models;
+    using Alpha.BetLists.Models.CancelledBet;
+    using Alpha.BetLists.Params;
+    using Fanex.BetList.Core.Entities;
+    using Fanex.Data.Repository;
+
     public interface CancelledBetService
     {
         Task<CancelledBetModel> GetCancelledBet(CancelledBetParam parameter);
@@ -54,23 +54,9 @@ namespace Alpha.BetLists.Services
             return new GetCancelledBetCriteria(id, userLevel.Value, language);
         }
 
-        private async Task<IEnumerable<UserBetCount>> GetUserHasCancelledBetBySuper(int superId)
+        private async Task<IEnumerable<UserBetCount>> GetUserHasCancelledBet(int custId, UserLevel userLevel)
         {
-            var criteria = new GetUsersHasCancelledBetBySuperCriteria(superId);
-
-            return await dynamicRepository.FetchAsync<UserBetCount>(criteria);
-        }
-
-        private async Task<IEnumerable<UserBetCount>> GetUserHasCancelledBetByMaster(int masterId)
-        {
-            var criteria = new GetUsersHasCancelledBetByMasterCriteria(masterId);
-
-            return await dynamicRepository.FetchAsync<UserBetCount>(criteria);
-        }
-
-        private async Task<IEnumerable<UserBetCount>> GetMembersHasCancelledBetByAgent(int agentId)
-        {
-            var criteria = new GetUsersHasCancelledBetByAgentCriteria(agentId);
+            var criteria = new GetUsersHasCancelledBetCriteria(custId, userLevel);
 
             return await dynamicRepository.FetchAsync<UserBetCount>(criteria);
         }
@@ -102,13 +88,13 @@ namespace Alpha.BetLists.Services
         {
             var filter = new FilterCancelledBetModel();
 
-            filter.Masters = await GetUserHasCancelledBetBySuper(parameter.CurrentUserId);
+            filter.Masters = await GetUserHasCancelledBet(parameter.CurrentUserId, parameter.Level);
             filter.MasterId = parameter.MasterId == 0 && filter.Masters.Any() ? filter.Masters.First().CustId : parameter.MasterId;
 
-            filter.Agents = await GetUserHasCancelledBetByMaster(filter.MasterId);
+            filter.Agents = await GetUserHasCancelledBet(filter.MasterId, parameter.Level);
             filter.AgentId = filter.Agents.Any(i => i.CustId == parameter.AgentId) ? parameter.AgentId : 0;
 
-            filter.Members = parameter.AgentId > 0 ? await GetMembersHasCancelledBetByAgent(filter.AgentId) : filter.Members;
+            filter.Members = parameter.AgentId > 0 ? await GetUserHasCancelledBet(filter.AgentId, parameter.Level) : filter.Members;
             filter.MemberId = filter.Members.Any(i => i.CustId == parameter.MemberId) ? parameter.MemberId : 0;
 
             return filter;
@@ -117,10 +103,10 @@ namespace Alpha.BetLists.Services
         private async Task<FilterCancelledBetModel> GetFilterCancelledBetByMaster(CancelledBetParam parameter)
         {
             var filter = new FilterCancelledBetModel();
-            filter.Agents = await GetUserHasCancelledBetByMaster(parameter.CurrentUserId);
+            filter.Agents = await GetUserHasCancelledBet(parameter.CurrentUserId, parameter.Level);
             filter.AgentId = parameter.AgentId == 0 && filter.Agents.Any() ? filter.Agents.First().CustId : parameter.AgentId;
 
-            filter.Members = await GetMembersHasCancelledBetByAgent(filter.AgentId);
+            filter.Members = await GetUserHasCancelledBet(filter.AgentId, parameter.Level);
             filter.MemberId = filter.Members.Any(i => i.CustId == parameter.MemberId) ? parameter.MemberId : 0;
 
             return filter;
@@ -130,7 +116,7 @@ namespace Alpha.BetLists.Services
         {
             var filter = new FilterCancelledBetModel();
 
-            filter.Members = await GetMembersHasCancelledBetByAgent(parameter.CurrentUserId);
+            filter.Members = await GetUserHasCancelledBet(parameter.CurrentUserId, parameter.Level);
             filter.MemberId = parameter.MemberId == 0 && filter.Members.Any() ? filter.Members.First().CustId : parameter.MemberId;
 
             return filter;

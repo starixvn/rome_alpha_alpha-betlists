@@ -1,7 +1,7 @@
 ﻿namespace Alpha.BetLists.Tests.Criteria.MemberBetList
 {
-    using BetLists.Criteria.MemberBetList;
     using System;
+    using BetLists.Criteria.MemberBetList;
     using Xunit;
 
     [Trait("Category", "MemberBetList")]

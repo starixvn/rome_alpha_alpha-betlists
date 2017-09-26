@@ -1,13 +1,13 @@
-﻿using Alpha.BetLists.Models;
-using Alpha.BetLists.Site.Controllers;
-using Alpha.BetLists.Site.Requests.WinLossByMatch;
-using Alpha.BetLists.Site.ViewModels;
-using MediatR;
-using NSubstitute;
-using Xunit;
-
-namespace Alpha.BetLists.Site.Tests.Controllers
+﻿namespace Alpha.BetLists.Site.Tests.Controllers
 {
+    using BetLists.Models;
+    using MediatR;
+    using NSubstitute;
+    using Requests.WinLossByMatch;
+    using Site.Controllers;
+    using Site.ViewModels;
+    using Xunit;
+
     [Trait("Category", "WinLossByMatch")]
     public class WinLossByMatchControllerTests
     {
@@ -23,7 +23,7 @@ namespace Alpha.BetLists.Site.Tests.Controllers
 
             winLossController = new WinLossByMatchController(mediator);
         }
-
+       
         [Fact]
         public void Index_Always_CallsMediatorSendWinLossByMatchQuery()
         {

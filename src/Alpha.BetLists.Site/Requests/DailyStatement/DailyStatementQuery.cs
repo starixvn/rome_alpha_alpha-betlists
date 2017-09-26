@@ -1,8 +1,8 @@
 ﻿namespace Alpha.BetLists.Site.Requests.DailyStatement
 {
+    using System;
     using BetLists.Models;
     using MediatR;
-    using System;
     using ViewModels.DailyStatement;
 
     public class DailyStatementQuery : BaseQuery, IRequest<DailyStatementViewModel>

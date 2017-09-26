@@ -1,12 +1,7 @@
 ﻿namespace Alpha.BetLists.Site.Tests.ViewModels.Parlay
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using BetLists.Models;
-    using Fanex.BetList.Core.Entities;
     using Fixtures;
     using NSubstitute;
     using Requests.Parlay;

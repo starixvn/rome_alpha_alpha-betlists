@@ -1,15 +1,15 @@
 ﻿namespace Alpha.BetLists.Services
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
     using Criteria.DailyStatement;
     using Extensions;
     using Fanex.BetList.Core.Entities;
     using Fanex.Data.Repository;
     using Models;
     using Params;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
 
     public interface DailyStatementService
     {

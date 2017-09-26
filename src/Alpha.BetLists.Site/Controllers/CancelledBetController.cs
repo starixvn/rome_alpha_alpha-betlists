@@ -1,10 +1,10 @@
-﻿using Alpha.BetLists.Site.Requests.CancelledBet;
-using MediatR;
-using System.Threading.Tasks;
-using System.Web.Mvc;
-
-namespace Alpha.BetLists.Site.Controllers
+﻿namespace Alpha.BetLists.Site.Controllers
 {
+    using System.Threading.Tasks;
+    using System.Web.Mvc;
+    using Alpha.BetLists.Site.Requests.CancelledBet;
+    using MediatR;
+
     public class CancelledBetController : BetListBaseController
     {
         public CancelledBetController(IMediator mediator) : base(mediator)

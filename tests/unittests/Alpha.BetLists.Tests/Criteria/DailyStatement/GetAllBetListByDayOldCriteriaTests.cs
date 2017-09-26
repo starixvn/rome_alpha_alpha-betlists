@@ -1,9 +1,9 @@
-﻿using Alpha.BetLists.Criteria.DailyStatement;
-using System;
-using Xunit;
-
-namespace Alpha.BetLists.Tests.Criteria.DailyStatement
+﻿namespace Alpha.BetLists.Tests.Criteria.DailyStatement
 {
+    using System;
+    using BetLists.Criteria.DailyStatement;
+    using Xunit;
+
     public class GetAllBetListByDayOldCriteriaTests
     {
         [Fact]

@@ -1,7 +1,7 @@
-﻿using Fanex.Data.Repository;
-
-namespace Alpha.BetLists.Criteria.LastBets
+﻿namespace Alpha.BetLists.Criteria.LastBets
 {
+    using Fanex.Data.Repository;
+
     public class GetRunningOtherMatchCriteria : CriteriaBase
     {
         public int MatchId => 0;

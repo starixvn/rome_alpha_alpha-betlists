@@ -1,7 +1,7 @@
-﻿using Fanex.Data.Repository;
-
-namespace Alpha.BetLists.Criteria.CancelledBet
+﻿namespace Alpha.BetLists.Criteria.CancelledBet
 {
+    using Fanex.Data.Repository;
+
     public class GetCancelledBetCriteria : CriteriaBase
     {
         public GetCancelledBetCriteria(int custId, int roleId, string language)

@@ -1,12 +1,12 @@
-﻿using Alpha.BetLists.Models;
-using Alpha.BetLists.Site.Requests.LastBets;
-using Alpha.BetLists.Site.Tests.Fixtures;
-using Alpha.BetLists.Site.ViewModels.LastBets;
-using NSubstitute;
-using Xunit;
-
-namespace Alpha.BetLists.Site.Tests.ViewModels.LastBets
+﻿namespace Alpha.BetLists.Site.Tests.ViewModels.LastBets
 {
+    using BetLists.Models;
+    using Fixtures;
+    using NSubstitute;
+    using Requests.LastBets;
+    using Site.ViewModels.LastBets;
+    using Xunit;
+
     [Trait("Category", "LastBets")]
     [Collection("BetListCollection")]
     public class LastBetsViewModelTests

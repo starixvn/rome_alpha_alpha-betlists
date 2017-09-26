@@ -1,5 +1,6 @@
 ﻿namespace Alpha.BetLists.Site.Tests.ViewModels.DailyStatement
 {
+    using System.Collections.Generic;
     using BetLists.Models;
     using BetLists.Tests.Constants;
     using BetLists.Tests.TestData;
@@ -7,7 +8,6 @@
     using Fixtures;
     using Requests.DailyStatement;
     using Site.ViewModels.DailyStatement;
-    using System.Collections.Generic;
     using Xunit;
 
     [Trait("Category", "DailyStatement")]

@@ -1,10 +1,10 @@
-﻿using System.Threading.Tasks;
-using System.Web.Mvc;
-using Alpha.BetLists.Site.Requests.WinLossByMatch;
-using MediatR;
-
-namespace Alpha.BetLists.Site.Controllers
+﻿namespace Alpha.BetLists.Site.Controllers
 {
+    using System.Threading.Tasks;
+    using System.Web.Mvc;
+    using MediatR;
+    using Requests.WinLossByMatch;
+
     public class ParlayWinLossByMatchController : BetListBaseController
     {
         public ParlayWinLossByMatchController(IMediator mediator) : base(mediator)

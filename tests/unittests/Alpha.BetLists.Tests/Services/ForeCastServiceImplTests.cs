@@ -1,20 +1,20 @@
 ﻿namespace Alpha.BetLists.Tests.Services
 {
+    using System.Collections.Generic;
+    using System.Linq;
     using BetLists.Criteria;
     using BetLists.Extensions;
     using BetLists.Models;
     using BetLists.Services;
     using Fixtures;
     using NSubstitute;
-    using System.Collections.Generic;
-    using System.Linq;
     using Xunit;
 
     [Trait("Category", "BaseFunction")]
     [Collection("FanexLibsCollection")]
     public class ForecastServiceImplTests
     {
-        private const string ScoreMapBetTypesCacheKey = "Alpha.BetLists.Services.ForeCastServiceImpl.ScoreMapBetTypes";
+        private const string ScoreMapBetTypesCacheKey = "Alpha.BetLists.Services.ForecastServiceImpl.ScoreMapBetTypes";
 
         private readonly FanexCacheFixture fanexCacheFixture;
         private readonly FanexDataFixture fanexDataFixture;
