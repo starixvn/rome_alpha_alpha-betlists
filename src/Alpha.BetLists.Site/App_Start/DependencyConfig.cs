@@ -95,15 +95,8 @@
         private static void RegisterDataAccesses(Container container)
         {
             container.Register<IDynamicRepository, DynamicRepository>(Lifestyle.Singleton);
-            container.Register<ISmartPunterDataAccess, SmartPunterDataAccess>(Lifestyle.Singleton);
-            if (BetLists.Configurations.AppSettings.EnabledStaticData)
-            {
-                container.Register<ILucky3DataAccess, Lucky3ExcelDataAccess>(Lifestyle.Singleton);
-            }
-            else
-            {
-                container.Register<ILucky3DataAccess, Lucky3DataAccess>(Lifestyle.Singleton);
-            }
+            container.Register<ISmartPunterDataAccess, SmartPunterDataAccess>(Lifestyle.Singleton);            
+            container.Register<ILucky3DataAccess, Lucky3DataAccess>(Lifestyle.Singleton);            
         }
 
         private static void RegisterServices(Container container)
