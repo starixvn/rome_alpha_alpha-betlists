@@ -43,7 +43,7 @@
                 forecastService,
                 betlistFixture.HtmlBuilder,
                 betlistFixture.TicketHelper,
-                betlistFixture.MoniterService,
+                betlistFixture.MonitorService,
                 betlistFixture.IpService);
         }
 
@@ -59,7 +59,7 @@
             handler.Handle(message).GetAwaiter().GetResult();
 
             // Assert
-            betlistFixture.MoniterService.Received().WriteLog(
+            betlistFixture.MonitorService.Received().WriteLog(
                 Arg.Is<int>(cid => cid == expectedId),
                 Arg.Is<IList<ITicket>>(t => t.SequenceEqual(BetListDataTest.Tickets)));
         }

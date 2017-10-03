@@ -33,7 +33,7 @@
                 casinoDetailsService,
                 betlistFixture.HtmlBuilder,
                 betlistFixture.TicketHelper,
-                betlistFixture.MoniterService,
+                betlistFixture.MonitorService,
                 betlistFixture.IpService);
         }
 

@@ -49,7 +49,7 @@
                 betListFixture.HtmlBuilder,
                 betListFixture.ExcelBuilder,
                 betListFixture.TicketHelper,
-                betListFixture.MoniterService,
+                betListFixture.MonitorService,
                 betListFixture.IpService,
                 workbook);
             handler.MapPath = (path) => path;

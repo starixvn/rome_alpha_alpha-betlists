@@ -1,8 +1,8 @@
-﻿using System;
-using Alpha.BetLists.Models;
-
-namespace Alpha.BetLists.StaticData.Models
+﻿namespace Alpha.BetLists.StaticData.Models
 {
+    using System;
+    using BetLists.Models;
+
     public class StaticUserSession : IUser
     {
         [ThreadStatic]
@@ -29,6 +29,9 @@ namespace Alpha.BetLists.StaticData.Models
         [ThreadStatic]
         private static string langKey;
 
+        [ThreadStatic]
+        private static bool isShowRacing;
+
         public static void SetValues(
             int id,
             string name,
@@ -37,7 +40,8 @@ namespace Alpha.BetLists.StaticData.Models
             int adminId,
             bool isInternal,
             bool isAdminCanViewVNIP,
-            string langKey)
+            string langKey,
+            bool isShowRacing)
         {
             StaticUserSession.id = id;
             StaticUserSession.name = name;
@@ -47,6 +51,7 @@ namespace Alpha.BetLists.StaticData.Models
             StaticUserSession.isInternal = isInternal;
             StaticUserSession.isAdminCanViewVNIP = isAdminCanViewVNIP;
             StaticUserSession.langKey = langKey;
+            StaticUserSession.isShowRacing = isShowRacing;
         }
 
         public int Id => id;
@@ -64,5 +69,7 @@ namespace Alpha.BetLists.StaticData.Models
         public bool IsAdminCanViewVNIP => isAdminCanViewVNIP;
 
         public string LangKey => langKey;
+
+        public bool IsShowRacing => isShowRacing;
     }
 }

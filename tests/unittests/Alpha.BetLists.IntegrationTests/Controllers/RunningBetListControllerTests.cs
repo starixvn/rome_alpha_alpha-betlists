@@ -27,7 +27,7 @@ namespace Alpha.BetLists.IntegrationTests.Controllers
             AppHost.Start(session =>
             {
                 // Arrange
-                StaticUserSession.SetValues(0, string.Empty, "en", 4, 1, false, false, "E");
+                StaticUserSession.SetValues(0, string.Empty, "en", 4, 1, false, false, "E", false);
                 SystemTime.Today = new DateTime(2017, 7, 27);
                 StaticDataMapper.CriteriaMaps["GetBetListRunningByDateCriteria"] = dataFileName;
 
@@ -48,7 +48,7 @@ namespace Alpha.BetLists.IntegrationTests.Controllers
             AppHost.Start(session =>
             {
                 // Arrange
-                StaticUserSession.SetValues(0, string.Empty, "en", 4, 1, false, false, "E");
+                StaticUserSession.SetValues(0, string.Empty, "en", 4, 1, false, false, "E", false);
                 SystemTime.Today = new DateTime(2017, 7, 27);
                 StaticDataMapper.CriteriaMaps["GetBetListRunningByDateCriteria"] = dataFileName;
 

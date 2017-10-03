@@ -12,7 +12,8 @@
 
             object result = new Product(
                 id: row.Get<int>(columnIndex++),
-                name: row.Get<string>(columnIndex));
+                name: row.Get<string>(columnIndex),
+                endOfSupportDate: null);
 
             return (T)result;
         }
