@@ -19,8 +19,7 @@
             return "?refNo=" + refNo
                 + "&transType=" + transType
                 + "&custId=" + custId
-                + "&sportName=" + sportName
-                + "&productId=6";
+                + "&sportName=" + sportName;
         };
 
         describe("ShowRnGCasinoDetails()", () => {
@@ -32,7 +31,7 @@
                 BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowRnGCasinoDetails(refNo, winLossDate, custId, transType);
 
                 // Assert
-                expect(popupDetailsShow).toHaveBeenCalledWith("betlist-path/CasinoDetails/Index" + params, "", 1120);
+                expect(popupDetailsShow).toHaveBeenCalledWith("old-path/LiveCasinoBetList/BetDetail/RNGBetDetail" + params, "", 1120);
             });
         });
 
@@ -45,7 +44,7 @@
                 BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowMacauGamesDetails(refNo, winLossDate, custId, transType);
 
                 // Assert
-                expect(popupDetailsShow).toHaveBeenCalledWith("betlist-path/CasinoDetails/Index" + params, "", 1120);
+                expect(popupDetailsShow).toHaveBeenCalledWith("old-path/LiveCasinoBetList/BetDetail/RNGBetDetail" + params, "", 1120);
             });
         });
 
@@ -58,7 +57,7 @@
                 BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowFishingWorldDetails(refNo, winLossDate, custId, transType);
 
                 // Assert
-                expect(popupDetailsShow).toHaveBeenCalledWith("betlist-path/CasinoDetails/Index" + params, "", 1120);
+                expect(popupDetailsShow).toHaveBeenCalledWith("old-path/LiveCasinoBetList/BetDetail/RNGBetDetail" + params, "", 1120);
             });
         });
     });
@@ -71,14 +70,14 @@
                 const winLossDate: Date = new Date();
                 const custId = "1";
                 const transType = "winlost";
-                const params = 'refno=' + refNo + '&custid=' + custId + '&transType=' + transType + '&sportName=Allbet&productId=21';
+                const params = 'refno=' + refNo + '&custid=' + custId + '&transType=' + transType;
 
                 // Act
                 BetList.Choice.TicketDetails.AllbetTicketDetails.Instance.ShowRunningBetsDetails(refNo, winLossDate, custId, transType);
 
                 // Assert
                 expect(popupDetailsShow).toHaveBeenCalledWith(
-                    'betlist-path/CasinoDetails/Index?' + params,
+                    'old-path/LiveCasinoBetList/BetDetail/Index?' + params,
                     'Allbet - Detailed Bet list - ' + winLossDate.toString().split(' ')[0], 1047, 800);
             });
         });

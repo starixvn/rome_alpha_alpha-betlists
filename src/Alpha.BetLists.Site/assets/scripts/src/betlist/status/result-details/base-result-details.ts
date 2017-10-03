@@ -5,13 +5,16 @@
         private static casinoResult: ResultDetails;
         private static p2pResult: ResultDetails;
         private static ng2Result: ResultDetails;
-        private static allbetResult: ResultDetails;
-        private static rngCasinoResult: ResultDetails;
 
         public static CreateInstance(betTypeId: number): ResultDetails {
             if (betTypeId === 71 || betTypeId === 72) {
                 this.casinoResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.casinoResult) ? new CasinoResultDetails() : this.casinoResult;
                 return this.casinoResult;
+            }
+
+            if (betTypeId === 1000 || betTypeId === 1001 || betTypeId === 1002) {
+                this.p2pResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.p2pResult) ? new P2PResultDetails() : this.p2pResult;
+                return this.p2pResult;
             }
 
             if (betTypeId >= 2501 && betTypeId <= 2699) {
@@ -22,19 +25,6 @@
             if (betTypeId === 9 || betTypeId === 29 || betTypeId === 2799) {
                 this.mixParlayResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.mixParlayResult) ? new MixParlayResultDetails() : this.mixParlayResult;
                 return this.mixParlayResult;
-            }
-
-            if ((betTypeId >= 1011 && betTypeId <= 1020)
-                || (betTypeId >= 2101 && betTypeId <= 2399)
-                || (betTypeId >= 2901 && betTypeId <= 2999)
-                || (betTypeId >= 4001 && betTypeId <= 7999)) {
-                this.rngCasinoResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.rngCasinoResult) ? new RnGCasinoResultDetails : this.rngCasinoResult;
-                return this.rngCasinoResult;
-            }
-
-            if (betTypeId >= 2401 && betTypeId <= 2405) {
-                this.allbetResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.allbetResult) ? new AllbetResultDetails() : this.allbetResult;
-                return this.allbetResult;
             }
 
             this.sportsbookResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sportsbookResult) ? new SportsbookResultDetails : this.sportsbookResult;
@@ -49,7 +39,6 @@
         protected readonly FromDate: string = $('#from-date').val();
         protected readonly ToDate: string = $('#to-date').val();
         protected readonly CustId: string = $('#cust-id').val();
-        protected readonly ViewerLevelId: string = $('#viewer-level-id').val();
         protected readonly IsHistoricReport: boolean = Common.Utils.ParseBoolean($('#is-historic-report').val());
         private static instance: BaseResultDetails;
 
@@ -69,11 +58,8 @@
             refNoMixParlay: number,
             league: number,
             isOutright: boolean,
-            betId: number,
-            betCheck?: string,
-            custId?: number,
-            transDesc?: string) => {
-            ResultDetailsFactory.CreateInstance(betTypeId).ViewResultDetails(matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, betId, betCheck, custId, transDesc)
+            betId: number) => {
+            ResultDetailsFactory.CreateInstance(betTypeId).ViewResultDetails(matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, betId)
         }
     }
 }

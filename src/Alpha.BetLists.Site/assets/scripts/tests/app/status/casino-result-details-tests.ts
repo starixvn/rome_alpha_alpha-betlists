@@ -37,4 +37,24 @@
             expect(locationReplace).toHaveBeenCalledWith('old-path/RnGCasino/HandHistory' + params);
         });
     });
+
+    describe("P2P_", () => {
+        it("ViewResultDetails -> Show Popup With Expected Url", () => {
+            // Arrange
+            const params = '?typegame=p2pgame&ibcrefno=' + refNo
+                + '&bettype=' + betTypeId
+                + '&uname=' + userName
+                + '&custid=' + "1"
+                + '&fdate=' + "05/10/2017"
+                + '&tdate-' + "06/10/2017";
+
+            let locationReplace = spyOn(window.location, "replace");
+
+            // Act
+            new BetList.Status.ResultDetails.P2PResultDetails().ViewResultDetails(matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, betId);
+
+            // Assert
+            expect(locationReplace).toHaveBeenCalledWith('old-path/_BetList/P2P/TableSession.aspx' + params);
+        });
+    });
 });
