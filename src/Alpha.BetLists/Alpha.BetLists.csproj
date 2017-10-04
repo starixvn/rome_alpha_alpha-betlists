@@ -212,7 +212,6 @@
     <Compile Include="Criteria\WinLoss\GetBetListWinLossByDateCriteria.cs" />
     <Compile Include="Criteria\WinLoss\GetBetListWinLossByDateOldCriteria.cs" />
     <Compile Include="Criteria\GetProductsByGroupHeadlineCriteria.cs" />
-    <Compile Include="DataAccesses\Excel\Lucky3ExcelDataAccess.cs" />
     <Compile Include="DataAccesses\Lucky3DataAccess.cs" />
     <Compile Include="DataAccesses\SmartPunterDataAccess.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
@@ -220,7 +219,6 @@
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Helpers\BetTypeHelper.cs" />
-    <Compile Include="Helpers\NpoiHelper.cs" />
     <Compile Include="Models\BalanceUpDayAndMoveBetsDay.cs" />
     <Compile Include="Models\BetListData.cs" />
     <Compile Include="Models\CancelledBet\CancelledBetModel.cs" />
