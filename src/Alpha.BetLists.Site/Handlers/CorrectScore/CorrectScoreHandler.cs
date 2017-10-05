@@ -35,11 +35,11 @@
             var correctScoreParam = CreateCorrectScoreParam(message);
 
             var tickets = await correctScoreService.GetBetList(correctScoreParam);
-            var supportScoreMapBettypeIds = forecastService.GetBetTypeIdsSupportScoreMap();
+            var supportScoreMapBetTypeIds = forecastService.GetBetTypeIdsSupportScoreMap();
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, tickets);
 
-            return new CorrectScoreViewModel(message, new BetListData(tickets, null), Builder, TicketHelper, supportScoreMapBettypeIds);
+            return new CorrectScoreViewModel(message, new BetListData(tickets, null), Builder, TicketHelper, supportScoreMapBetTypeIds);
         }
 
         protected internal static CorrectScoreParam CreateCorrectScoreParam(CorrectScoreQuery message)

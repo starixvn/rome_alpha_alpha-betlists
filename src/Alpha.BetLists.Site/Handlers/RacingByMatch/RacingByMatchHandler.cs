@@ -35,7 +35,7 @@
             var param = CreateRacingByMatchParam(message);
 
             var tickets = await racingByMatchService.GetBetList(param);
-            var supportScoreMapBettypeIds = forecastService.GetBetTypeIdsSupportScoreMap();
+            var supportScoreMapBetTypeIds = forecastService.GetBetTypeIdsSupportScoreMap();
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, tickets);
 
@@ -44,7 +44,7 @@
                 new BetListData(tickets, null),
                 Builder,
                 TicketHelper,
-                supportScoreMapBettypeIds);
+                supportScoreMapBetTypeIds);
         }
 
         protected internal static RacingByMatchParam CreateRacingByMatchParam(RacingByMatchQuery message)

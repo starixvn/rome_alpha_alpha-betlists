@@ -40,7 +40,7 @@
         }
 
         [Fact]
-        public void CanViewScoreMap_SupportScoreMapBettypeIdsContainsBettypeId_ReturnsTrue()
+        public void CanViewScoreMap_SupportScoreMapBetTypeIdsContainsBetTypeId_ReturnsTrue()
         {
             // Arrange
             var ticket = new TicketDto
@@ -49,13 +49,13 @@
                 Status = "running"
             };
 
-            var supportScoreMapBettypeIds = new List<int> { 1, 2, 3 };
+            var supportScoreMapBetTypeIds = new List<int> { 1, 2, 3 };
             var viewModel = new RacingByMatchViewModel(
                 query,
                 new BetListData(BetListDataTest.Tickets, null),
                 betListFixture.HtmlBuilder,
                 betListFixture.TicketHelper,
-                supportScoreMapBettypeIds);
+                supportScoreMapBetTypeIds);
 
             // Act
             var actualCanViewScoreMap = viewModel.CanViewScoreMap(ticket);
@@ -65,7 +65,7 @@
         }
 
         [Fact]
-        public void CanViewScoreMap_SupportScoreMapBettypeIdsNotContainsBettypeId_ReturnsFalse()
+        public void CanViewScoreMap_SupportScoreMapBetTypeIdsNotContainsBetTypeId_ReturnsFalse()
         {
             // Arrange
             var ticket = new TicketDto
@@ -74,13 +74,13 @@
                 Status = "running"
             };
 
-            var supportScoreMapBettypeIds = new List<int> { 1, 2, 3 };
+            var supportScoreMapBetTypeIds = new List<int> { 1, 2, 3 };
             var viewModel = new RacingByMatchViewModel(
                 query,
                 new BetListData(BetListDataTest.Tickets, null),
                 betListFixture.HtmlBuilder,
                 betListFixture.TicketHelper,
-                supportScoreMapBettypeIds);
+                supportScoreMapBetTypeIds);
 
             // Act
             var actualCanViewScoreMap = viewModel.CanViewScoreMap(ticket);
@@ -99,13 +99,13 @@
                 Status = "void"
             };
 
-            var supportScoreMapBettypeIds = new List<int> { 1, 2, 3 };
+            var supportScoreMapBetTypeIds = new List<int> { 1, 2, 3 };
             var viewModel = new RacingByMatchViewModel(
                 query,
                 new BetListData(BetListDataTest.Tickets, null),
                 betListFixture.HtmlBuilder,
                 betListFixture.TicketHelper,
-                supportScoreMapBettypeIds);
+                supportScoreMapBetTypeIds);
 
             // Act
             var actualCanViewScoreMap = viewModel.CanViewScoreMap(ticket);

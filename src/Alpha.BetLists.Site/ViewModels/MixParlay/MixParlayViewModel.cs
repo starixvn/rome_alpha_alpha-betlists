@@ -15,8 +15,8 @@
             BetListData betListData,
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper,
-            IEnumerable<int> supportScoreMapBettypeIds = null)
-            : base(query, betListData, builder, ticketHelper, supportScoreMapBettypeIds)
+            IEnumerable<int> supportScoreMapBetTypeIds = null)
+            : base(query, betListData, builder, ticketHelper, supportScoreMapBetTypeIds)
         {
             Title = Resources.lblMixParlay.ToUpperInvariant();
         }

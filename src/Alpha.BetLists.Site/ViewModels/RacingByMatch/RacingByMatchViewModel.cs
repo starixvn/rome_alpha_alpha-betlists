@@ -25,24 +25,24 @@
             BetListData betListData,
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper,
-            IEnumerable<int> supportScoreMapBettypeIds = null)
+            IEnumerable<int> supportScoreMapBetTypeIds = null)
             : base(query, betListData, builder, ticketHelper, true, ExcludingTicketStatus)
         {
             BetType = query.BetType;
             MatchId = query.MatchId;
             Title = Resources.horseRacing.ToUpperInvariant();
-            SupportScoreMapBettypeIds = supportScoreMapBettypeIds;
+            SupportScoreMapBetTypeIds = supportScoreMapBetTypeIds;
         }
 
         public int BetType { get; }
 
         public int MatchId { get; }
 
-        public IEnumerable<int> SupportScoreMapBettypeIds { get; }
+        public IEnumerable<int> SupportScoreMapBetTypeIds { get; }
 
         public override bool CanViewScoreMap(ITicket ticket)
-            => SupportScoreMapBettypeIds != null
-            && SupportScoreMapBettypeIds.Contains(ticket.BetTypeId)
+            => SupportScoreMapBetTypeIds != null
+            && SupportScoreMapBetTypeIds.Contains(ticket.BetTypeId)
             && ticket.Status.Equals(BetStatus.Running, StringComparison.OrdinalIgnoreCase);
     }
 }

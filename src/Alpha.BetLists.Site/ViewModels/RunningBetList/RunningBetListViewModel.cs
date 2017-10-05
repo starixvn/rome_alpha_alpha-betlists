@@ -25,7 +25,7 @@
             RunningBetListParam param,
             BetListData betListData,
             IEnumerable<SelectListItem> products,
-            IEnumerable<int> supportScoreMapBettypeIds,
+            IEnumerable<int> supportScoreMapBetTypeIds,
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper)
             : base(query, betListData, builder, ticketHelper, false)
@@ -33,7 +33,7 @@
             this.query = query;
 
             Products = products;
-            SupportScoreMapBettypeIds = supportScoreMapBettypeIds;
+            SupportScoreMapBetTypeIds = supportScoreMapBetTypeIds;
 
             Title = $"{Resources.BetlistRunning} - {query.CustName}";
             ProductsId = param.ProductIds.JoinWithComma();
@@ -57,7 +57,7 @@
 
         public bool IsFilterVisible => query.IsFilterVisible;
 
-        public IEnumerable<int> SupportScoreMapBettypeIds { get; }
+        public IEnumerable<int> SupportScoreMapBetTypeIds { get; }
 
         public IEnumerable<SelectListItem> Products { get; }
 
@@ -77,7 +77,7 @@
                 ProductsId,
                 query.Language);
 
-        public override bool CanViewScoreMap(ITicket ticket) => SupportScoreMapBettypeIds.Contains(ticket.BetTypeId);
+        public override bool CanViewScoreMap(ITicket ticket) => SupportScoreMapBetTypeIds.Contains(ticket.BetTypeId);
 
         public string BuildBetListLink(string link)
         {

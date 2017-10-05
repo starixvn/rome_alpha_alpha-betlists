@@ -6,10 +6,13 @@
 
     public class CasinoDetailsQuery : BaseQuery, IRequest<CasinoDetailsViewModel>
     {
+        private const int DefaultPageIndex = 1;
+        private const int DefaultPageSize = 100;
+
         public CasinoDetailsQuery(IUser viewer) : base(viewer)
         {
-            PageIndex = 1;
-            PageSize = 100;
+            PageIndex = DefaultPageIndex;
+            PageSize = DefaultPageSize;
         }
 
         public long RefNo { get; set; }

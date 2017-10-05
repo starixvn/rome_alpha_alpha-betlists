@@ -15,15 +15,15 @@
             BetListData betListData,
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper,
-            IEnumerable<int> supportScoreMapBettypeIds)
+            IEnumerable<int> supportScoreMapBetTypeIds)
             : base(query, betListData, builder, ticketHelper, showMemberName: true)
         {
             LatestTransId = latestTransId;
             TotalColumn = 7;
-            SupportScoreMapBettypeIds = supportScoreMapBettypeIds;
+            SupportScoreMapBetTypeIds = supportScoreMapBetTypeIds;
         }
 
-        public IEnumerable<int> SupportScoreMapBettypeIds { get; }
+        public IEnumerable<int> SupportScoreMapBetTypeIds { get; }
 
         public long LatestTransId { get; }
 
@@ -32,6 +32,6 @@
             ? BetListData.Tickets.ElementAt(BetListData.Total - 1).TransId
             : 0;
 
-        public override bool CanViewScoreMap(ITicket ticket) => SupportScoreMapBettypeIds.Contains(ticket.BetTypeId);
+        public override bool CanViewScoreMap(ITicket ticket) => SupportScoreMapBetTypeIds.Contains(ticket.BetTypeId);
     }
 }

@@ -39,7 +39,7 @@
             MemberBetListParam param,
             BetListData betListData,
             IEnumerable<SelectListItem> products,
-            IEnumerable<int> supportScoreMapBettypeIds,
+            IEnumerable<int> supportScoreMapBetTypeIds,
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper)
             : base(query, betListData, builder, ticketHelper, false, ExcludingTicketStatus)
@@ -47,7 +47,7 @@
             this.query = query;
 
             Products = products;
-            SupportScoreMapBettypeIds = supportScoreMapBettypeIds;
+            SupportScoreMapBetTypeIds = supportScoreMapBetTypeIds;
 
             FromDate = param.FromDate;
             ToDate = param.ToDate;
@@ -63,7 +63,7 @@
 
         public string ViewDataInstructionMessage { get; }
 
-        public IEnumerable<int> SupportScoreMapBettypeIds { get; }
+        public IEnumerable<int> SupportScoreMapBetTypeIds { get; }
 
         public IEnumerable<SelectListItem> Products { get; }
 
@@ -101,7 +101,7 @@
 
         public override bool CanViewScoreMap(ITicket ticket)
             => ticket.Status.Equals(BetStatus.Running, StringComparison.OrdinalIgnoreCase)
-            && SupportScoreMapBettypeIds.Contains(ticket.BetTypeId);
+            && SupportScoreMapBetTypeIds.Contains(ticket.BetTypeId);
 
         public string BuildRunningBetListLink(string link)
         {

@@ -35,7 +35,7 @@
             var param = CreateRunningBetListByBetTypeAndMatchParam(message);
 
             var betListData = await runningBetListByBetTypeAndMatchService.GetBetList(param);
-            var supportScoreMapBettypeIds = forecastService.GetBetTypeIdsSupportScoreMap();
+            var supportScoreMapBetTypeIds = forecastService.GetBetTypeIdsSupportScoreMap();
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betListData.Tickets);
 
@@ -44,7 +44,7 @@
                 betListData,
                 Builder,
                 TicketHelper,
-                supportScoreMapBettypeIds);
+                supportScoreMapBetTypeIds);
         }
 
         protected internal static RunningBetListByBetTypeAndMatchParam CreateRunningBetListByBetTypeAndMatchParam(BetListByBetTypeAndMatchQuery message)

@@ -133,15 +133,15 @@
                 BetTypeId = bettypeId
             };
 
-            var supportScoreMapBettypeIds = new List<int> { 1, 2, 3 };
-            var expectedCanViewScoreMap = supportScoreMapBettypeIds.Contains(bettypeId);
+            var supportScoreMapBetTypeIds = new List<int> { 1, 2, 3 };
+            var expectedCanViewScoreMap = supportScoreMapBetTypeIds.Contains(bettypeId);
 
             var viewModel = new RunningBetListViewModel(
                 query,
                 param,
                 BetListDataTest.BetListData,
                 Enumerable.Empty<SelectListItem>(),
-                supportScoreMapBettypeIds,
+                supportScoreMapBetTypeIds,
                 betlistFixture.HtmlBuilder,
                 betlistFixture.TicketHelper);
 

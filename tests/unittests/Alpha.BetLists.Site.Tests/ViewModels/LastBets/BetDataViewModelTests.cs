@@ -50,8 +50,8 @@
         {
             // Arrange
             var query = new GetLastBetsQuery(user);
-            var supportScoreMapBettypeIds = new List<int> { 1, 2, 3 };
-            var viewModel = new BetDataViewModel(0, query, null, betlistFixture.HtmlBuilder, betlistFixture.TicketHelper, supportScoreMapBettypeIds);
+            var supportScoreMapBetTypeIds = new List<int> { 1, 2, 3 };
+            var viewModel = new BetDataViewModel(0, query, null, betlistFixture.HtmlBuilder, betlistFixture.TicketHelper, supportScoreMapBetTypeIds);
             var ticket = new Ticket
             {
                 BetTypeId = betType

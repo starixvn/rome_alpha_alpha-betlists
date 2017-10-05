@@ -24,11 +24,11 @@
         public UserLevel CustLevel { get; }
 
         public override string GetSettingKey()
-            => CustLevel.IsSuperLevel()
-            ? "Age_TotalBets_Sel430_SAg"
+            => CustLevel.IsAgentLevel()
+            ? "Age_TotalBets_Sel430_Ag"
             : CustLevel.IsMasterLevel()
             ? "Age_TotalBets_Sel430_MAg"
-            : "Age_TotalBets_Sel430_Ag";
+            : "Age_TotalBets_Sel430_SAg";
 
         public override bool IsValid() => CustId > 0;
     }

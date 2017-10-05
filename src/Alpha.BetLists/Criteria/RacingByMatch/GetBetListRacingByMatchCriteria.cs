@@ -32,11 +32,11 @@
         public UserLevel CustLevel { get; }
 
         public override string GetSettingKey()
-            => CustLevel.IsSuperLevel()
-            ? "Age_BetList_SelAllByDateHR_SAg"
+            => CustLevel.IsAgentLevel()
+            ? "Age_BetList_SelAllByDateHR_Ag"
             : CustLevel.IsMasterLevel()
             ? "Age_BetList_SelAllByDateHR_MAg"
-            : "Age_BetList_SelAllByDateHR_Ag";
+            : "Age_BetList_SelAllByDateHR_SAg";
 
         public override bool IsValid()
             => CustId > 0 && BetType > 0;
