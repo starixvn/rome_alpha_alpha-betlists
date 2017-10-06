@@ -263,6 +263,7 @@
     <Compile Include="Controllers\CancelledBetControllerTests.cs" />
     <Compile Include="Controllers\LastBetsControllerTests.cs" />
     <Compile Include="Controllers\MemberBetListControllerTests.cs" />
+    <Compile Include="Controllers\ParlayControllerTests.cs" />
     <Compile Include="Controllers\RunningBetListControllerTests.cs" />
     <Compile Include="Controllers\ParlayWinLossByMatchControllerTests.cs" />
     <Compile Include="Controllers\WinLossControllerTests.cs" />
@@ -289,6 +290,7 @@
     <Compile Include="Handler\WinLossByMatch\WinLossByMatchHandlerTests.cs" />
     <Compile Include="Handler\WinLoss\WinLossExcelHandlerTests.cs" />
     <Compile Include="Handler\WinLoss\WinLossHandlerTests.cs" />
+    <Compile Include="Helpers\QueryEntityModelBinderTests.cs" />
     <Compile Include="Helpers\UrlHelperTests.cs" />
     <Compile Include="Helpers\UrlHelperTestSetUp.cs" />
     <Compile Include="Models\UserTests.cs" />

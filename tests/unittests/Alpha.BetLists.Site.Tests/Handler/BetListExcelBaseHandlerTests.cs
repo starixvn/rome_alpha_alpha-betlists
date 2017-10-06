@@ -7,9 +7,12 @@
     using BetLists.Models;
     using BetLists.Tests.TestData;
     using Builders.ExcelBuilders;
+    using Fanex.BetList.Core.Entities;
+    using Fanex.BetList.Core.Utils;
     using Fixtures;
     using Handlers;
     using KellermanSoftware.CompareNetObjects;
+    using NPOI.SS.UserModel;
     using NSubstitute;
     using Requests.WinLoss;
     using Site.ViewModels.Blocks;
@@ -19,7 +22,7 @@
 
     [Trait("Category", "BaseBetList")]
     [Collection("BetListCollection")]
-    internal class BetListExcelBaseHandlerTests
+    public class BetListExcelBaseHandlerTests
     {
         private readonly BetListFixture betlistFixture;
         private readonly BetListExcelBaseHandler excelBaseHandler;
@@ -91,7 +94,7 @@
             var path = excelBaseHandler.GetExcelTemplatePath("test");
 
             // Assert
-            Assert.Equal("path/~/App_Data/ExcelTemplates/test.xls", path);
+            Assert.Equal("path/~/App_Data/ExcelTemplates/Handlers/test.xls", path);
         }
 
         [Fact]
@@ -101,7 +104,7 @@
             excelBaseHandler.IsFileExist = path => true;
             excelBaseHandler.MapPath = path => path;
             var expectedTemplateInfo = new ONEbook.SpreadSheets.TemplateInfo(
-                $"~/App_Data/ExcelTemplates/{UserLevel.Agent.DisplayName}.xls",
+                $"~/App_Data/ExcelTemplates/Handlers/{UserLevel.Agent.DisplayName}.xls",
                 noInfomationText: Resources.NoInformationIsAvailable,
                 bodyStartIndex: 3,
                 bodyEndIndex: 4,
@@ -317,6 +320,53 @@
 
             // Assert
             Assert.Equal(footerRtf, mapper.Mappings[F].Invoke(BetListDataTest.Ticket));
+        }
+
+        [Fact]
+        public void InitRTFHelper_Always_CallsInitRTFHelperFonts()
+        {
+            // Arrange
+            IWorkbook workbook = Substitute.For<IWorkbook>();
+
+            var rtfHelper = new RTFHelper
+            {
+                NegFont = workbook.CreateFont(),
+                NormalFont = workbook.CreateFont(),
+                PosFont = workbook.CreateFont(),
+                NegFontCrossed = workbook.CreateFont(),
+                NormalFontCrossed = workbook.CreateFont(),
+                PosFontCrossed = workbook.CreateFont(),
+                RTFRenderer = new RtfTextRender(),
+            };
+            rtfHelper.PosFont.Boldweight = (short)FontBoldWeight.Bold;
+            rtfHelper.PosFontCrossed.Boldweight = (short)FontBoldWeight.Bold;
+            rtfHelper.NegFont.Boldweight = (short)FontBoldWeight.Bold;
+            rtfHelper.NegFontCrossed.Boldweight = (short)FontBoldWeight.Bold;
+            rtfHelper.NormalFont.Boldweight = (short)FontBoldWeight.Normal;
+            rtfHelper.NormalFontCrossed.Boldweight = (short)FontBoldWeight.Normal;
+            rtfHelper.NegFont.FontName = "Tahoma";
+            rtfHelper.NegFontCrossed.FontName = "Tahoma";
+            rtfHelper.NormalFont.FontName = "Tahoma";
+            rtfHelper.NormalFontCrossed.FontName = "Tahoma";
+            rtfHelper.PosFont.FontName = "Tahoma";
+            rtfHelper.PosFontCrossed.FontName = "Tahoma";
+            rtfHelper.NegFont.FontHeightInPoints = 9;
+            rtfHelper.NegFontCrossed.FontHeightInPoints = 9;
+            rtfHelper.NormalFont.FontHeightInPoints = 9;
+            rtfHelper.NormalFontCrossed.FontHeightInPoints = 9;
+            rtfHelper.PosFont.FontHeightInPoints = 9;
+            rtfHelper.PosFontCrossed.FontHeightInPoints = 9;
+            rtfHelper.NormalFontCrossed.IsStrikeout = true;
+            rtfHelper.PosFontCrossed.IsStrikeout = true;
+            rtfHelper.NegFontCrossed.IsStrikeout = true;
+            rtfHelper.NegFont.Color = (short)FontColor.Red;
+            rtfHelper.NegFontCrossed.Color = (short)FontColor.Red;
+
+            // Act
+            var actualRTFHelper = BetListExcelBaseHandler.InitRTFHelper(workbook);
+
+            // Assert
+            Assert.True(compareLogic.Compare(rtfHelper, actualRTFHelper).AreEqual);
         }
     }
 }
