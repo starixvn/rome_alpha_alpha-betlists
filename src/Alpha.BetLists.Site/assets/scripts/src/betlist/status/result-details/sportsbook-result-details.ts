@@ -10,7 +10,10 @@
             refNoMixParlay?: number,
             league?: number,
             isOutright?: boolean,
-            betId?: number): void;
+            betId?: number,
+            betCheck?: string,
+            custId?: number,
+            transDesc?: string): void;
     }
 
     export class SportsbookResultDetails extends BaseResultDetails implements ResultDetails {
