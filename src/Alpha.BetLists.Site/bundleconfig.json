@@ -72,8 +72,14 @@
   {
     "outputFileName": "assets/bundles/last-bets.js",
     "inputFiles": [
-      "assets/scripts/src/last-bets/last-bets.js",
-      "assets/scripts/src/last-bets/bet-list.js"
+      "assets/scripts/src/last-bets/last-bets.js"
+    ]
+  },
+  {
+    "outputFileName": "assets/bundles/casino-detail/casino-detail.js",
+    "inputFiles": [
+      "assets/scripts/src/components/pager.js",
+      "assets/scripts/src/casino-detail/casino-detail.js"
     ]
   }
 ]

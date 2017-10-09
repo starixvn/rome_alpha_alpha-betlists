@@ -61,7 +61,7 @@
             var param = new GetLastBetsParam(message.BetType, message.CustId, message.TransId, message.PageSize);
             var tickets = await lastBetsService.GetLastBets(param);
             var betListData = new BetListData(tickets, null);
-            var supportScoreMapBettypeIds = forecastService.GetBetTypeIdsSupportScoreMap();
+            var supportScoreMapBetTypeIds = forecastService.GetBetTypeIdsSupportScoreMap();
 
             var previousLatestTransId = isManualLoad ? 0 : message.LatestTransId;
 
@@ -74,7 +74,7 @@
 
             var latestTransId = newTickets.Any() ? newTickets.First().TransId : message.LatestTransId;
 
-            return new BetDataViewModel(latestTransId, message, betListData, builder, ticketHelper, supportScoreMapBettypeIds);
+            return new BetDataViewModel(latestTransId, message, betListData, builder, ticketHelper, supportScoreMapBetTypeIds);
         }
 
         public Result Handle(CheckCanViewLastBetsQuery message)

@@ -5,6 +5,7 @@
     ViewBag.Title = "Last Bets Monitoring";
 }
 @section Styles {
+    @StaticResources.AssetStyles.Render($"/bundles/common/common-{Model.ViewerLevel.DisplayName.ToLower()}")
     @StaticResources.RenderStyles("~/assets/bundles/last-bets")
 }
 <div class="bl_title">

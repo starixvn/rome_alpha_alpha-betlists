@@ -26,5 +26,9 @@
         public const int Handicap = 1;
         public const int OverUnder = 3;
         public const int OtherBetTypes = 19001;
+
+        public const int CorrectScore = 4;
+        public const int MixParlay = 9;
+        public const int CombinationMixParlay = 29;
     }
 }

@@ -128,24 +128,24 @@
         [InlineData(BetStatus.Refund, 1)]
         [InlineData(BetStatus.Running, 4)]
         [InlineData(BetStatus.Waiting, 4)]
-        public void CanViewScoreMap_Always_ReturnsCorrectValue(string ticketStatus, int bettypeId)
+        public void CanViewScoreMap_Always_ReturnsCorrectValue(string ticketStatus, int betTypeId)
         {
             // Arrange
             var ticket = new TicketDto
             {
-                BetTypeId = bettypeId,
+                BetTypeId = betTypeId,
                 Status = ticketStatus
             };
 
-            var supportScoreMapBettypeIds = new List<int> { 1, 2, 3 };
-            var expectedCanViewScoreMap = ticketStatus.Equals(BetStatus.Running) && supportScoreMapBettypeIds.Contains(bettypeId);
+            var supportScoreMapBetTypeIds = new List<int> { 1, 2, 3 };
+            var expectedCanViewScoreMap = ticketStatus.Equals(BetStatus.Running) && supportScoreMapBetTypeIds.Contains(betTypeId);
 
             var viewModel = new MemberBetListViewModel(
                 query,
                 param,
                 BetListDataTest.BetListData,
                 Enumerable.Empty<SelectListItem>(),
-                supportScoreMapBettypeIds,
+                supportScoreMapBetTypeIds,
                 betlistFixture.HtmlBuilder,
                 betlistFixture.TicketHelper);
 

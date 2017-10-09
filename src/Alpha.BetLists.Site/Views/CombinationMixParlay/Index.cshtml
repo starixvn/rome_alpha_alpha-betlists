@@ -1,0 +1,28 @@
+﻿@using Alpha.BetLists.Site.ViewModels.CombinationMixParlay
+@model CombinationMixParlayViewModel
+@{
+    ViewBag.Title = "System Parlay";
+}
+@section Styles{
+    @StaticResources.AssetStyles.Render($"/bundles/common/common-{Model.ViewerLevel.DisplayName.ToLower()}")
+}
+<div class="bl_title">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation">
+            <a href="@Url.Action("Index","MixParlay")" aria-controls="home" role="tab" data-toggle="tab">@Resources.lblMixParlay</a>
+        </li>
+        <li role="presentation" class="active">
+            <a href="@Url.Action("Index","CombinationMixParlay")" aria-controls="home" role="tab" data-toggle="tab">@Resources.lblSystemParlay</a>
+        </li>
+    </ul>
+    <div class="bl-export-excel">
+        <a id="icon-excel" class="icon icon-excel" title="@Resources.ExportToExcel"
+           href="@Url.Action("Excel", "CombinationMixParlay")">
+        </a>
+    </div>
+</div>
+<div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="@ViewContext.RouteData.Values["controller"].ToString().ToLower()">
+        @Html.Partial("TableWithoutWinLoss", Model)
+    </div>
+</div>

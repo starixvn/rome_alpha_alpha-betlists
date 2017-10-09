@@ -1,0 +1,14 @@
+﻿@using Alpha.BetLists.Site.ViewModels.CorrectScore
+@model CorrectScoreViewModel
+@{
+    ViewBag.Title = "Correct Score";
+}
+<div class="bl_title">
+    @Model.Title
+    <div class="bl-export-excel">
+        <a id="icon-excel" class="icon icon-excel" title="@Resources.ExportToExcel"
+           href="@Url.Action("Excel", "CorrectScore")">
+        </a>
+    </div>
+</div>
+@Html.Partial("TableWithoutWinLoss", Model)

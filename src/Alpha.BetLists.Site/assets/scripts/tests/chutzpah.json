@@ -29,6 +29,12 @@
     { "Path": "libs/store.js" },
     { "Path": "libs/shortcut.js" },
 
+    { "Path": "libs/pagination/jquery.draggable.js" },
+    { "Path": "libs/pagination/jquery.resizable.js" },
+    { "Path": "libs/pagination/jquery.parser.js" },
+    { "Path": "libs/pagination/jquery.linkbutton.js" },
+    { "Path": "libs/pagination/jquery.pagination.js" },
+
     { "Path": "../src/common/app-path.ts" },
     { "Path": "../src/common/popup-details.ts" },
     { "Path": "../src/common/utils.ts" },
@@ -45,6 +51,7 @@
     { "Path": "../src/betlist/status/ip-details.ts" },
 
     { "Path": "../src/components/daterangepicker.ts" },
+    { "Path": "../src/components/pager.ts" },
     { "Path": "../src/components/productmultiselection.ts" },
     { "Path": "../src/components/single-selection-dropdown.ts" },
 
@@ -53,7 +60,8 @@
     { "Path": "../src/cancelled-betlist/cancelled-betlist-constants.ts" },
     { "Path": "../src/cancelled-betlist/cancelled-betlist.ts" },
 
-    { "Path": "../src/last-bets/last-bets.ts" }
+    { "Path": "../src/last-bets/last-bets.ts" },
+    { "Path": "../src/casino-detail/casino-detail.ts" }
   ],
   "Tests": [
     {
@@ -86,6 +94,10 @@
     },
     {
       "Path": "app/last-bets",
+      "Excludes": [ "**.js.map" ]
+    },
+    {
+      "Path": "app/casino-detail",
       "Excludes": [ "**.js.map" ]
     }
   ]

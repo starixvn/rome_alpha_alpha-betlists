@@ -32,7 +32,7 @@
         private readonly BetListFixture betlistFixture;
         private readonly EncryptionService encryptionService;
         private readonly ForecastService forecastService;
-        private readonly IEnumerable<int> supportScoreMapBettypeIds;
+        private readonly IEnumerable<int> supportScoreMapBetTypeIds;
         private readonly ISmartPunterBetListMonitor monitorService;
         private readonly IEnumerable<TicketDto> tickets;
 
@@ -52,8 +52,8 @@
             encryptionService.CfsEncode(Arg.Any<string>(), Arg.Any<int>()).Returns("EncodedString");
 
             forecastService = Substitute.For<ForecastService>();
-            supportScoreMapBettypeIds = new List<int> { 1 };
-            forecastService.GetBetTypeIdsSupportScoreMap().Returns(supportScoreMapBettypeIds);
+            supportScoreMapBetTypeIds = new List<int> { 1 };
+            forecastService.GetBetTypeIdsSupportScoreMap().Returns(supportScoreMapBetTypeIds);
 
             monitorService = Substitute.For<ISmartPunterBetListMonitor>();
 
@@ -105,7 +105,7 @@
                 betListData,
                 betlistFixture.HtmlBuilder,
                 betlistFixture.TicketHelper,
-                supportScoreMapBettypeIds);
+                supportScoreMapBetTypeIds);
 
             // Act
             var actualViewModel = handler.Handle(message).GetAwaiter().GetResult();

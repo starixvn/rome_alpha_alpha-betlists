@@ -76,6 +76,10 @@
       <HintPath>..\..\packages\Dapper.1.50.2\lib\net451\Dapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Fanex.BetDetails.Casino, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetDetails.Casino.1.0.0.0\lib\net40\Fanex.BetDetails.Casino.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Fanex.BetDetails.Lucky3, Version=1.0.0.11, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetDetails.Lucky3.1.0.0.0\lib\Fanex.BetDetails.Lucky3.dll</HintPath>
       <Private>True</Private>
@@ -365,7 +369,7 @@
     <Content Include="App_Data\activitytracking.napinternal2.json">
       <DependentUpon>activitytracking.json</DependentUpon>
     </Content>
-	<Content Include="App_Data\activitytracking.napinternal3.json">
+    <Content Include="App_Data\activitytracking.napinternal3.json">
       <DependentUpon>activitytracking.json</DependentUpon>
     </Content>
     <Content Include="App_Data\activitytracking.uat.json">
@@ -413,6 +417,10 @@
     <Content Include="assets\bundles\cancelled-betlist\cancelled-betlist.js" />
     <Content Include="assets\bundles\cancelled-betlist\cancelled-betlist.min.js">
       <DependentUpon>cancelled-betlist.js</DependentUpon>
+    </Content>
+    <Content Include="assets\bundles\casino-detail\casino-detail.js" />
+    <Content Include="assets\bundles\casino-detail\casino-detail.min.js">
+      <DependentUpon>casino-detail.js</DependentUpon>
     </Content>
     <Content Include="assets\bundles\default.css" />
     <Content Include="assets\bundles\default.js" />
@@ -467,6 +475,11 @@
     <Content Include="assets\scripts\tests\libs\moment.js" />
     <Content Include="assets\scripts\tests\libs\multiselect.js" />
     <Content Include="assets\scripts\tests\libs\nexDatePicker.js" />
+    <Content Include="assets\scripts\tests\libs\pagination\jquery.draggable.js" />
+    <Content Include="assets\scripts\tests\libs\pagination\jquery.linkbutton.js" />
+    <Content Include="assets\scripts\tests\libs\pagination\jquery.pagination.js" />
+    <Content Include="assets\scripts\tests\libs\pagination\jquery.parser.js" />
+    <Content Include="assets\scripts\tests\libs\pagination\jquery.resizable.js" />
     <Content Include="assets\scripts\tests\libs\shortcut.js" />
     <Content Include="assets\scripts\tests\libs\store.js" />
     <Content Include="assets\scripts\tests\libs\tooltip.js" />
@@ -560,6 +573,25 @@
     <Content Include="App_Data\ExcelTemplates\CancelledBet\Super.xls" />
     <Content Include="App_Data\activitytracking.json" />
     <Content Include="assets\styles\bet-details.scss" />
+    <Content Include="App_Data\ExcelTemplates\BetListByBetType\Agent.xls" />
+    <Content Include="App_Data\ExcelTemplates\BetListByBetType\Master.xls" />
+    <Content Include="App_Data\ExcelTemplates\BetListByBetType\Super.xls" />
+    <Content Include="App_Data\ExcelTemplates\CorrectScore\Agent.xls" />
+    <Content Include="App_Data\ExcelTemplates\CorrectScore\Master.xls" />
+    <Content Include="App_Data\ExcelTemplates\CorrectScore\Super.xls" />
+    <Content Include="App_Data\ExcelTemplates\MixParlay\Agent.xls" />
+    <Content Include="App_Data\ExcelTemplates\MixParlay\Master.xls" />
+    <Content Include="App_Data\ExcelTemplates\MixParlay\Super.xls" />
+    <Content Include="App_Data\ExcelTemplates\CombinationMixParlay\Agent.xls" />
+    <Content Include="App_Data\ExcelTemplates\CombinationMixParlay\Master.xls" />
+    <Content Include="App_Data\ExcelTemplates\CombinationMixParlay\Super.xls" />
+    <Content Include="App_Data\ExcelTemplates\BetListByBetTypeAndMatch\Agent.xls" />
+    <Content Include="App_Data\ExcelTemplates\BetListByBetTypeAndMatch\Master.xls" />
+    <Content Include="App_Data\ExcelTemplates\BetListByBetTypeAndMatch\Super.xls" />
+    <Content Include="App_Data\ExcelTemplates\RacingByMatch\Agent.xls" />
+    <Content Include="App_Data\ExcelTemplates\RacingByMatch\Master.xls" />
+    <Content Include="App_Data\ExcelTemplates\RacingByMatch\Super.xls" />
+    <Content Include="App_Code\Components\Pager.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -584,7 +616,7 @@
     <Content Include="Web.backupMNL2.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
-	<Content Include="Web.backupMNL3.config">
+    <Content Include="Web.backupMNL3.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
     <Content Include="Web.backupMNLExNap.config">
@@ -593,7 +625,7 @@
     <Content Include="Web.backupMNLExNap2.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
-	<Content Include="Web.backupMNLExNap3.config">
+    <Content Include="Web.backupMNLExNap3.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
     <Content Include="Web.backupMNLNap.config">
@@ -602,7 +634,7 @@
     <Content Include="Web.backupMNLNap2.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
-	<Content Include="Web.backupMNLNap3.config">
+    <Content Include="Web.backupMNLNap3.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
     <Content Include="Web.napexternal.config">
@@ -611,7 +643,7 @@
     <Content Include="Web.napexternal2.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
-	<Content Include="Web.napexternal3.config">
+    <Content Include="Web.napexternal3.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
     <Content Include="Web.napinternal.config">
@@ -620,7 +652,7 @@
     <Content Include="Web.napinternal2.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
-	<Content Include="Web.napinternal3.config">
+    <Content Include="Web.napinternal3.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
     <Content Include="Web.pro.config">
@@ -629,7 +661,7 @@
     <Content Include="Web.pro2.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
-	<Content Include="Web.pro3.config">
+    <Content Include="Web.pro3.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
     <Content Include="Web.sit.config">
@@ -638,7 +670,7 @@
     <Content Include="Web.sit2.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
-	<Content Include="Web.sit3.config">
+    <Content Include="Web.sit3.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
     <Content Include="Web.uat.config">
@@ -650,7 +682,7 @@
     <Content Include="Web.AppSettings.backupMNL2.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
-	<Content Include="Web.AppSettings.backupMNL3.config">
+    <Content Include="Web.AppSettings.backupMNL3.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
     <Content Include="Web.AppSettings.backupMNLExNap.config">
@@ -659,7 +691,7 @@
     <Content Include="Web.AppSettings.backupMNLExNap2.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
-	<Content Include="Web.AppSettings.backupMNLExNap3.config">
+    <Content Include="Web.AppSettings.backupMNLExNap3.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
     <Content Include="Web.AppSettings.backupMNLNap.config">
@@ -668,7 +700,7 @@
     <Content Include="Web.AppSettings.backupMNLNap2.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
-	<Content Include="Web.AppSettings.backupMNLNap3.config">
+    <Content Include="Web.AppSettings.backupMNLNap3.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
     <Content Include="Web.AppSettings.napexternal.config">
@@ -677,7 +709,7 @@
     <Content Include="Web.AppSettings.napexternal2.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
-	<Content Include="Web.AppSettings.napexternal3.config">
+    <Content Include="Web.AppSettings.napexternal3.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
     <Content Include="Web.AppSettings.napinternal.config">
@@ -686,7 +718,7 @@
     <Content Include="Web.AppSettings.napinternal2.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
-	<Content Include="Web.AppSettings.napinternal3.config">
+    <Content Include="Web.AppSettings.napinternal3.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
     <Content Include="Web.AppSettings.pro.config">
@@ -695,7 +727,7 @@
     <Content Include="Web.AppSettings.pro2.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
-	<Content Include="Web.AppSettings.pro3.config">
+    <Content Include="Web.AppSettings.pro3.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
     <Content Include="Web.AppSettings.sit.config">
@@ -704,7 +736,7 @@
     <Content Include="Web.AppSettings.sit2.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
-	<Content Include="Web.AppSettings.sit3.config">
+    <Content Include="Web.AppSettings.sit3.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
     <Content Include="Web.AppSettings.uat.config">
@@ -714,7 +746,7 @@
     <Content Include="Web.AppSettings.uat2.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
-	<Content Include="Web.AppSettings.uat3.config">
+    <Content Include="Web.AppSettings.uat3.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
     <Content Include="Web.config">
@@ -723,24 +755,56 @@
     <Content Include="Web.uat2.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
-	<Content Include="Web.uat3.config">
+    <Content Include="Web.uat3.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
     <Content Include="tsconfig.json" />
+    <Content Include="Views\CasinoDetails\Index.cshtml" />
+    <Content Include="Views\CorrectScore\Index.cshtml" />
+    <Content Include="Views\MixParlay\Index.cshtml" />
+    <Content Include="Views\Shared\TableWithoutWinLoss.cshtml" />
+    <Content Include="Views\CombinationMixParlay\Index.cshtml" />
+    <Content Include="Views\BetListByBetType\Index.cshtml" />
+    <Content Include="Views\BetListByBetTypeAndMatch\Index.cshtml" />
+    <Content Include="Views\RacingByMatch\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\DependencyConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Constants\UserSelectedDateRangeOptionConstant.cs" />
     <Compile Include="Controllers\BetListBaseController.cs" />
+    <Compile Include="Controllers\BetListByBetTypeAndMatchController.cs" />
+    <Compile Include="Controllers\BetListByBetTypeController.cs" />
     <Compile Include="Controllers\DailyStatementController.cs" />
     <Compile Include="Controllers\Lucky3Controller.cs" />
+    <Compile Include="Controllers\CombinationMixParlayController.cs" />
+    <Compile Include="Controllers\CorrectScoreController.cs" />
     <Compile Include="Controllers\MemberBetListController.cs" />
     <Compile Include="Controllers\LastBetsController.cs" />
+    <Compile Include="Controllers\CasinoDetailsController.cs" />
+    <Compile Include="Controllers\MixParlayController.cs" />
+    <Compile Include="Controllers\RacingByMatchController.cs" />
     <Compile Include="Controllers\RunningBetListController.cs" />
     <Compile Include="Controllers\CancelledBetController.cs" />
+    <Compile Include="Handlers\BetListByBetTypeAndMatch\BetListByBetTypeAndMatchExcelHandler.cs" />
+    <Compile Include="Handlers\BetListByBetTypeAndMatch\BetListByBetTypeAndMatchHandler.cs" />
+    <Compile Include="Handlers\BetListByBetType\BetListByBetTypeExcelBaseHandler.cs" />
+    <Compile Include="Handlers\BetListByBetType\BetListByBetTypeExcelHandler.cs" />
     <Compile Include="Handlers\CancelledBet\CancelledBetExcelHandler.cs" />
     <Compile Include="Handlers\CancelledBet\CancelledBetHandler.cs" />
+    <Compile Include="Handlers\CasinoDetails\CasinoDetailsHander.cs" />
+    <Compile Include="Requests\CasinoDetails\CasinoDetailsQuery.cs" />
+    <Compile Include="Handlers\BetListByBetType\BetListByBetTypeHandler.cs" />
+    <Compile Include="Handlers\CombinationMixParlay\CombinationMixParlayExcelHandler.cs" />
+    <Compile Include="Handlers\CombinationMixParlay\CombinationMixParlayHandler.cs" />
+    <Compile Include="Handlers\CorrectScore\CorrectScoreExcelHandler.cs" />
+    <Compile Include="Handlers\CorrectScore\CorrectScoreHandler.cs" />
+    <Compile Include="Handlers\MixParlay\MixParlayExcelHandler.cs" />
+    <Compile Include="Handlers\MixParlay\MixParlayHandler.cs" />
+    <Compile Include="Handlers\RacingByMatch\RacingByMatchExcelHandler.cs" />
+    <Compile Include="Handlers\RacingByMatch\RacingByMatchHandler.cs" />
+    <Compile Include="Requests\BetListByBetTypeAndMatch\BetListByBetTypeAndMatchExcelQuery.cs" />
+    <Compile Include="Requests\BetListByBetTypeAndMatch\BetListByBetTypeAndMatchQuery.cs" />
     <Compile Include="Requests\CancelledBet\CancelledBetBaseQuery.cs" />
     <Compile Include="Requests\CancelledBet\CancelledBetExcelQuery.cs" />
     <Compile Include="Requests\CancelledBet\CancelledBetQuery.cs" />
@@ -775,10 +839,20 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\BaseQuery.cs" />
+    <Compile Include="Requests\BetListByBetType\BetListByBetTypeExcelQuery.cs" />
+    <Compile Include="Requests\BetListByBetType\BetListByBetTypeQuery.cs" />
     <Compile Include="Requests\DailyStatement\DailyStatementExcelQuery.cs" />
     <Compile Include="Requests\Lucky3\Lucky3DetailQuery.cs" />
     <Compile Include="Requests\DailyStatement\DailyStatementQuery.cs" />
+    <Compile Include="Requests\CombinationMixParlay\CombinationMixParlayExcelQuery.cs" />
+    <Compile Include="Requests\CombinationMixParlay\CombinationMixParlayQuery.cs" />
+    <Compile Include="Requests\CorrectScore\CorrectScoreExcelQuery.cs" />
+    <Compile Include="Requests\CorrectScore\CorrectScoreQuery.cs" />
     <Compile Include="Requests\MemberBetList\MemberBetListQuery.cs" />
+    <Compile Include="Requests\MixParlay\MixParlayExcelQuery.cs" />
+    <Compile Include="Requests\MixParlay\MixParlayQuery.cs" />
+    <Compile Include="Requests\RacingByMatch\RacingByMatchExcelQuery.cs" />
+    <Compile Include="Requests\RacingByMatch\RacingByMatchQuery.cs" />
     <Compile Include="Requests\RunningBetList\RunningBetListQuery.cs" />
     <Compile Include="Requests\LastBets\CheckCanViewLastBetsQuery.cs" />
     <Compile Include="Requests\LastBets\GetLastBetsQuery.cs" />
@@ -794,14 +868,20 @@
     <Compile Include="Requests\WinLoss\WinLossExcelQuery.cs" />
     <Compile Include="Requests\WinLoss\WinLossQuery.cs" />
     <Compile Include="ViewModels\BetListBaseViewModel.cs" />
+    <Compile Include="ViewModels\BetListByBetTypeAndMatch\BetListByBetTypeAndMatchViewModel.cs" />
+    <Compile Include="ViewModels\BetListByBetType\BetListByBetTypeViewModel.cs" />
     <Compile Include="ViewModels\Blocks\Footer.cs" />
     <Compile Include="ViewModels\Blocks\WinLostBlockViewModel.cs" />
+    <Compile Include="ViewModels\CombinationMixParlay\CombinationMixParlayViewModel.cs" />
     <Compile Include="ViewModels\Components\DateRangePickerViewModel.cs" />
     <Compile Include="ViewModels\CancelledBet\CancelledBetViewModel.cs" />
     <Compile Include="ViewModels\Components\ProductMultiSelectionViewModel.cs" />
     <Compile Include="ViewModels\DailyStatement\DailyStatementViewModel.cs" />
+    <Compile Include="ViewModels\CorrectScore\CorrectScoreViewModel.cs" />
     <Compile Include="ViewModels\ExcelFileViewModel.cs" />
     <Compile Include="ViewModels\MemberBetList\MemberBetListViewModel.cs" />
+    <Compile Include="ViewModels\MixParlay\MixParlayViewModel.cs" />
+    <Compile Include="ViewModels\RacingByMatch\RacingByMatchViewModel.cs" />
     <Compile Include="ViewModels\RunningBetList\RunningBetListViewModel.cs" />
     <Compile Include="ViewModels\LastBets\BetDataViewModel.cs" />
     <Compile Include="ViewModels\LastBets\LastBetsViewModel.cs" />
@@ -842,6 +922,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="assets\scripts\src\casino-detail\casino-detail.ts" />
     <TypeScriptCompile Include="assets\scripts\src\betlist\choice\score-map.ts" />
     <TypeScriptCompile Include="assets\scripts\src\betlist\choice\ticket-details\numbergame-ticket-details.ts" />
     <TypeScriptCompile Include="assets\scripts\src\betlist\choice\ticket-details\other-ticket-details.ts" />
@@ -859,6 +940,7 @@
     <TypeScriptCompile Include="assets\scripts\src\betlist\status\result-details\casino-result-details.ts" />
     <TypeScriptCompile Include="assets\scripts\src\betlist\status\result-details\sportsbook-result-details.ts" />
     <TypeScriptCompile Include="assets\scripts\src\components\daterangepicker.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\components\pager.ts" />
     <TypeScriptCompile Include="assets\scripts\src\components\productmultiselection.ts" />
     <TypeScriptCompile Include="assets\scripts\src\last-bets\last-bets.ts" />
     <TypeScriptCompile Include="assets\scripts\src\components\single-selection-dropdown.ts" />
@@ -866,6 +948,7 @@
     <TypeScriptCompile Include="assets\scripts\src\member-betlist\member-betlist.ts" />
     <TypeScriptCompile Include="assets\scripts\src\running-betlist\running-betlist.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\cancelled-betlist\cancelled-betlist-tests.ts" />
+    <TypeScriptCompile Include="assets\scripts\tests\app\casino-detail\casino-detail-tests.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\choice\ticket-details\score-map-tests.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\choice\ticket-details\base-ticket-details-tests.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\choice\ticket-details\other-ticket-details-tests.ts" />
@@ -873,6 +956,7 @@
     <TypeScriptCompile Include="assets\scripts\tests\app\choice\ticket-details\casino-ticket-details-tests.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\common\popup-details-tests.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\components\daterangepicker-tests.ts" />
+    <TypeScriptCompile Include="assets\scripts\tests\app\components\pager-tests.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\components\productmultiselection-tests.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\components\single-selection-dropdown-tests.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\last-bets\last-bets-tests.ts" />
@@ -900,6 +984,7 @@
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.3.0.2862\analyzers\SonarAnalyzer.CSharp.dll" />
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.3.0.2862\analyzers\SonarAnalyzer.dll" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
