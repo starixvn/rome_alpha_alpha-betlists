@@ -26,8 +26,6 @@
 
         public static string TotalBetsForecastAppPath => GetConfigValue("ExTotalBetsForecastAppPath") ?? "ex-totalbetsforecast";
 
-        public static bool EnabledStaticData => GetConfigValue("EnabledStaticData") == "1";
-        
         public static string DefaultIpAddress => GetConfigValue("DefaultIpAddress");
 
         public static string LocalIpAddress => GetConfigValue("LocalIpAddress");
