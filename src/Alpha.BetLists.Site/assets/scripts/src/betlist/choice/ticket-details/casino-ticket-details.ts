@@ -27,10 +27,11 @@
             return "?refNo=" + refNo
                 + "&transType=" + transType
                 + "&custId=" + custId
-                + "&sportName=" + sportName;
+                + "&sportName=" + sportName
+                + "&productId=6";
         }
 
-        private ShowDetailsPopup = (params: string) => Common.PopupDetails.Instance(window.top).Show(Common.AppPath.OldMainAppPath() + 'LiveCasinoBetList/BetDetail/RNGBetDetail' + params, "", 1120);
+        private ShowDetailsPopup = (params: string) => Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, "", 1120);
     }
 
     export class AllbetTicketDetails extends BaseTicketDetails {
@@ -42,7 +43,10 @@
         }
 
         public ShowRunningBetsDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
-            const params = 'refno=' + refNo + '&custid=' + custId + '&transType=' + transType;
+            const params = '?refno=' + refNo
+                + '&custid=' + custId
+                + '&transType=' + transType
+                + '&sportName=Allbet&productId=21';
 
             let width = 1047;
             let roleId = Number(this.ViewerLevelId);
@@ -56,7 +60,7 @@
             }
 
             Common.PopupDetails.Instance(window.top).Show(
-                Common.AppPath.OldMainAppPath() + 'LiveCasinoBetList/BetDetail/Index?' + params,
+                Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params,
                 'Allbet - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
         }
     }
