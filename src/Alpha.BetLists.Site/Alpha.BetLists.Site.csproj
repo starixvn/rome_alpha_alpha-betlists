@@ -76,6 +76,10 @@
       <HintPath>..\..\packages\Dapper.1.50.2\lib\net451\Dapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Fanex.BetDetails.Casino, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetDetails.Casino.1.0.0.0\lib\net40\Fanex.BetDetails.Casino.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Fanex.BetDetails.Lucky3, Version=1.0.0.11, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetDetails.Lucky3.1.0.0.0\lib\Fanex.BetDetails.Lucky3.dll</HintPath>
       <Private>True</Private>
@@ -94,10 +98,6 @@
     </Reference>
     <Reference Include="Fanex.ActivityTracking.Web, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.ActivityTracking.Web.1.0.0.1\lib\net40\Fanex.ActivityTracking.Web.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Fanex.BetDetails.Casino, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetDetails.Casino.1.0.0.0-beta6\lib\net40\Fanex.BetDetails.Casino.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.BetTrade, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
@@ -573,7 +573,6 @@
     <Content Include="App_Data\ExcelTemplates\CancelledBet\Super.xls" />
     <Content Include="App_Data\activitytracking.json" />
     <Content Include="assets\styles\bet-details.scss" />
-    <Content Include="App_Code\Components\Pager.cshtml" />
     <Content Include="App_Data\ExcelTemplates\BetListByBetType\Agent.xls" />
     <Content Include="App_Data\ExcelTemplates\BetListByBetType\Master.xls" />
     <Content Include="App_Data\ExcelTemplates\BetListByBetType\Super.xls" />
@@ -592,6 +591,7 @@
     <Content Include="App_Data\ExcelTemplates\RacingByMatch\Agent.xls" />
     <Content Include="App_Data\ExcelTemplates\RacingByMatch\Master.xls" />
     <Content Include="App_Data\ExcelTemplates\RacingByMatch\Super.xls" />
+    <Content Include="App_Code\Components\Pager.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
