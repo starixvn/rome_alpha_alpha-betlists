@@ -3,8 +3,9 @@
     using BetLists.Models;
     using MediatR;
     using NSubstitute;
-    using Requests.CasioDetails;
+    using Requests.CasinoDetails;
     using Site.Controllers;
+    using Site.ViewModels;
     using Xunit;
 
     [Trait("Category", "CasinoDetails")]
@@ -24,7 +25,7 @@
         }
 
         [Fact]
-        public void Index_Always_CallsMediatorSendDailyStatementQuery()
+        public void Index_Always_CallsMediatorSendCasinoDetailsQuery()
         {
             // Arrange
             var message = new CasinoDetailsQuery(user);
@@ -34,6 +35,21 @@
 
             // Assert
             mediator.Received().Send(message);
+        }
+
+        [Fact]
+        public void Excel_Always_CallsMediatorSendCasinoDetailsExcelQuery()
+        {
+            // Arrange
+            var message = new CasinoDetailsExcelQuery(user);
+            mediator.Send<ExcelFileViewModel>(Arg.Any<CasinoDetailsExcelQuery>())
+                .Returns(new ExcelFileViewModel("Excel File", new byte[0]));
+
+            // Act
+            controller.Excel(message).GetAwaiter().GetResult();
+
+            // Assert
+            mediator.Received().Send<ExcelFileViewModel>(message);
         }
     }
 }

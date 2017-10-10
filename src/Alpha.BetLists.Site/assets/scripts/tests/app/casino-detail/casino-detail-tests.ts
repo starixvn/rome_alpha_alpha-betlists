@@ -16,7 +16,7 @@
         });
         it("_Calls pagerComponent.render with small page size list", () => {
             // assert
-            expect(pagerComponent.pageList).toEqual([50, 100, 150, 200]);
+            expect(pagerComponent.pageList).toEqual([100, 200, 300, 500, 1000]);
             expect(pagerComponent.render).toHaveBeenCalled();
         });
     });

@@ -1,4 +1,4 @@
-﻿namespace Alpha.BetLists.Site.Requests.CasioDetails
+﻿namespace Alpha.BetLists.Site.Requests.CasinoDetails
 {
     using BetLists.Models;
     using Fanex.BetDetails.Casino.ViewModels;
@@ -7,7 +7,7 @@
     public class CasinoDetailsQuery : BaseQuery, IRequest<CasinoDetailsViewModel>
     {
         private const int DefaultPageIndex = 1;
-        private const int DefaultPageSize = 100;
+        private const int DefaultPageSize = 500;
 
         public CasinoDetailsQuery(IUser viewer) : base(viewer)
         {

@@ -8,6 +8,18 @@
 @section Styles{
     @StaticResources.AssetStyles.Render("/bundles/site-betlists/pagination")
 }
+<div class="bl_title">
+    <div class="bl-export-excel">
+        <a id="icon-excel" class="icon icon-excel" title="@Resources.ExportToExcel"
+           href="@Url.Action("Excel", "CasinoDetails",
+                new { RefNo = Model.RefNo,
+                    CustId=Model.CustId,
+                    TransType = Model.TransType,
+                    SportName=Model.SportName,
+                    ProductId=Model.ProductId})">
+        </a>
+    </div>
+</div>
 <form class="form-inline hide" role="form" id="betlist-form">
     @Html.Hidden("RefNo", Model.RefNo)
     @Html.Hidden("CustId", Model.CustId)

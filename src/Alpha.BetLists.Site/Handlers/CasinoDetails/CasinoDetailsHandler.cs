@@ -6,15 +6,15 @@
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using MediatR;
-    using Requests.CasioDetails;
+    using Requests.CasinoDetails;
     using SmartPunter.Services;
     using Utilities.IP;
 
-    public class CasinoDetailsHander : BetListBaseHandler, IRequestHandler<CasinoDetailsQuery, CasinoDetailsViewModel>
+    public class CasinoDetailsHandler : BetListBaseHandler, IRequestHandler<CasinoDetailsQuery, CasinoDetailsViewModel>
     {
         private readonly ICasinoDetailsService casinoDetailsService;
 
-        public CasinoDetailsHander(
+        public CasinoDetailsHandler(
             ICasinoDetailsService casinoDetailsService,
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper,
@@ -27,17 +27,11 @@
 
         public CasinoDetailsViewModel Handle(CasinoDetailsQuery message)
         {
-            var param = new CasinoDetailsParam(
-                message.RefNo,
-                message.CustId,
-                message.TransType,
-                message.ProductId,
-                message.PageIndex,
-                message.PageSize);
+            var param = CreateCasinoDetailsParam(message);
 
             var tickets = casinoDetailsService.GetCasinoDetails(param);
 
-            var viewModel = new CasinoDetailsViewModel(
+            return new CasinoDetailsViewModel(
                 message.SportName,
                 message.ViewerId,
                 message.ViewerLevelId,
@@ -45,8 +39,15 @@
                 tickets,
                 Builder,
                 TicketHelper);
-
-            return viewModel;
         }
+
+        protected internal static CasinoDetailsParam CreateCasinoDetailsParam(CasinoDetailsQuery message)
+            => new CasinoDetailsParam(
+                message.RefNo,
+                message.CustId,
+                message.TransType,
+                message.ProductId,
+                message.PageIndex,
+                message.PageSize);
     }
 }

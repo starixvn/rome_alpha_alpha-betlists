@@ -610,6 +610,9 @@
     <Content Include="App_Data\ExcelTemplates\RacingByMatch\Master.xls" />
     <Content Include="App_Data\ExcelTemplates\RacingByMatch\Super.xls" />
     <Content Include="App_Code\Components\Pager.cshtml" />
+    <Content Include="App_Data\ExcelTemplates\CasinoDetails\Agent.xls" />
+    <Content Include="App_Data\ExcelTemplates\CasinoDetails\Master.xls" />
+    <Content Include="App_Data\ExcelTemplates\CasinoDetails\Super.xls" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -813,7 +816,9 @@
     <Compile Include="Handlers\BetListByBetType\BetListByBetTypeExcelHandler.cs" />
     <Compile Include="Handlers\CancelledBet\CancelledBetExcelHandler.cs" />
     <Compile Include="Handlers\CancelledBet\CancelledBetHandler.cs" />
-    <Compile Include="Handlers\CasinoDetails\CasinoDetailsHander.cs" />
+    <Compile Include="Handlers\CasinoDetails\CasinoDetailsExcelHandler.cs" />
+    <Compile Include="Handlers\CasinoDetails\CasinoDetailsHandler.cs" />
+    <Compile Include="Requests\CasinoDetails\CasinoDetailsExcelQuery.cs" />
     <Compile Include="Requests\CasinoDetails\CasinoDetailsQuery.cs" />
     <Compile Include="Handlers\BetListByBetType\BetListByBetTypeHandler.cs" />
     <Compile Include="Handlers\CombinationMixParlay\CombinationMixParlayExcelHandler.cs" />

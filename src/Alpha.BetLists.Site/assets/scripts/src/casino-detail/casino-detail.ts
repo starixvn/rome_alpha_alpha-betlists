@@ -5,6 +5,7 @@
 class CasionDetailView {
     $: JQueryStatic;
     pagerComponent: PagerComponent;
+    pageList: number[] = [100, 200, 300, 500, 1000];
 
     constructor(
         $: JQueryStatic,
@@ -14,7 +15,7 @@ class CasionDetailView {
     }
 
     init = () => {
-        this.pagerComponent.pageList = this.pagerComponent.smallPageList;
+        this.pagerComponent.pageList = this.pageList;
         this.pagerComponent.render();
     };
 };

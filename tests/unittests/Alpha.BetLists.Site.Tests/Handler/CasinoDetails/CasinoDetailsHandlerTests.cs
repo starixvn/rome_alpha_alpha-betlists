@@ -11,25 +11,25 @@
     using Handlers.CasinoDetails;
     using KellermanSoftware.CompareNetObjects;
     using NSubstitute;
-    using Requests.CasioDetails;
+    using Requests.CasinoDetails;
     using Xunit;
 
     [Trait("Category", "CasinoDetails")]
     [Collection("BetListCollection")]
-    public class CasinoDetailsHanderTests
+    public class CasinoDetailsHandlerTests
     {
         private readonly BetListFixture betlistFixture;
         private readonly IUser user;
         private readonly ICasinoDetailsService casinoDetailsService;
-        private readonly CasinoDetailsHander handler;
+        private readonly CasinoDetailsHandler handler;
 
-        public CasinoDetailsHanderTests(BetListFixture betlistFixture)
+        public CasinoDetailsHandlerTests(BetListFixture betlistFixture)
         {
             this.betlistFixture = betlistFixture;
             user = betlistFixture.User;
 
             casinoDetailsService = Substitute.For<ICasinoDetailsService>();
-            handler = new CasinoDetailsHander(
+            handler = new CasinoDetailsHandler(
                 casinoDetailsService,
                 betlistFixture.HtmlBuilder,
                 betlistFixture.TicketHelper,

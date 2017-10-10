@@ -288,8 +288,9 @@
     <Compile Include="Handler\BetListByBetType\BetListByBetTypeExcelHandlerTests.cs" />
     <Compile Include="Handler\BetListByBetType\BetListByBetTypeHandlerTests.cs" />
     <Compile Include="Handler\BetListExcelBaseHandlerTests.cs" />
+    <Compile Include="Handler\CasinoDetails\CasinoDetailsHandlerExcelTests.cs" />
     <Compile Include="Handler\Lucky3\Lucky3HanderTests.cs" />
-    <Compile Include="Handler\CasinoDetails\CasinoDetailsHanderTests.cs" />
+    <Compile Include="Handler\CasinoDetails\CasinoDetailsHandlerTests.cs" />
     <Compile Include="Handler\CombinationMixParlay\CombinationMixParlayExcelHandlerTests.cs" />
     <Compile Include="Handler\CombinationMixParlay\CombinationMixParlayHandlerTests.cs" />
     <Compile Include="Handler\DailyStatement\DailyStatementExcelHandlerTests.cs" />

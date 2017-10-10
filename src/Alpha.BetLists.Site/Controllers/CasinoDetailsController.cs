@@ -3,7 +3,7 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using MediatR;
-    using Requests.CasioDetails;
+    using Requests.CasinoDetails;
 
     public class CasinoDetailsController : BetListBaseController
     {
@@ -13,5 +13,8 @@
 
         public async Task<ActionResult> Index(CasinoDetailsQuery message)
             => await View(message);
+
+        public async Task<FileContentResult> Excel(CasinoDetailsExcelQuery message)
+            => await ExcelView(message);
     }
 }
