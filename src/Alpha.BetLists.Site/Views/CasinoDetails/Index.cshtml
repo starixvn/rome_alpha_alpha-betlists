@@ -8,7 +8,7 @@
 @section Styles{
     @StaticResources.AssetStyles.Render("/bundles/site-betlists/pagination")
 }
-<div class="bl_title">
+<div class="bl_title no-border-bottom">
     <div class="bl-export-excel">
         <a id="icon-excel" class="icon icon-excel" title="@Resources.ExportToExcel"
            href="@Url.Action("Excel", "CasinoDetails",
@@ -27,7 +27,7 @@
     @Html.Hidden("SportName", Model.SportName)
     @Html.Hidden("ProductId", Model.ProductId)
 </form>
-<table class="tblRpt tblRpt-bordered tblRpt-striped width-100per tablesorter tblRpt-hover tbl-betlist" id="tbl-betlist">
+<table class="tblRpt tblRpt-bordered tblRpt-striped width-100per tablesorter tblRpt-hover tbl-betlist combined-fixed-pagination-bottom" id="tbl-betlist">
     <thead>
         <tr>
             <th class="col-number">#</th>

@@ -92,6 +92,10 @@ a {
     a {
         color: #045ace;
     }
+
+    &.no-border-bottom {
+        border-bottom: none;
+    }
 }
 
 .line {
