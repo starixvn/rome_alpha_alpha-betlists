@@ -3,20 +3,16 @@
         private static sportsbookResult: ResultDetails;
         private static mixParlayResult: ResultDetails;
         private static casinoResult: ResultDetails;
-        private static p2pResult: ResultDetails;
         private static ng2Result: ResultDetails;
         private static allbetResult: ResultDetails;
         private static rngCasinoResult: ResultDetails;
+        private static fishingWorldResult: ResultDetails;
+        private static macauGamesResult: ResultDetails;
 
         public static CreateInstance(betTypeId: number): ResultDetails {
             if (betTypeId === 71 || betTypeId === 72) {
                 this.casinoResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.casinoResult) ? new CasinoResultDetails() : this.casinoResult;
                 return this.casinoResult;
-            }
-
-            if (betTypeId === 1000 || betTypeId === 1001 || betTypeId === 1002) {
-                this.p2pResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.p2pResult) ? new P2PResultDetails() : this.p2pResult;
-                return this.p2pResult;
             }
 
             if (betTypeId >= 2501 && betTypeId <= 2699) {
@@ -29,12 +25,19 @@
                 return this.mixParlayResult;
             }
 
-            if ((betTypeId >= 1011 && betTypeId <= 1020)
-                || (betTypeId >= 2101 && betTypeId <= 2399)
-                || (betTypeId >= 2901 && betTypeId <= 2999)
-                || (betTypeId >= 4001 && betTypeId <= 7999)) {
+            if (betTypeId >= 1011 && betTypeId <= 1020) {
+                this.fishingWorldResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.fishingWorldResult) ? new FishingWorldResultDetails() : this.fishingWorldResult;
+                return this.fishingWorldResult;
+            }
+
+            if ((betTypeId >= 2101 && betTypeId <= 2399) || (betTypeId >= 2901 && betTypeId <= 2999)) {
                 this.rngCasinoResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.rngCasinoResult) ? new RnGCasinoResultDetails : this.rngCasinoResult;
                 return this.rngCasinoResult;
+            }
+
+            if (betTypeId >= 4001 && betTypeId <= 7999) {
+                this.macauGamesResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.macauGamesResult) ? new MacauGamesResultDetails() : this.macauGamesResult;
+                return this.macauGamesResult;
             }
 
             if (betTypeId >= 2401 && betTypeId <= 2405) {
