@@ -52,7 +52,7 @@
     {
         <tbody>
             @{
-                var i = 1;
+                var i = Model.PagerViewModel.PageSize * (Model.PagerViewModel.PageIndex - 1) + 1;
                 var ticketData = new List<ITicketData>();
                 foreach (var ticket in Model.DetailData.Tickets)
                 {
