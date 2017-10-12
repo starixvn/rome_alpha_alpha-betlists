@@ -79,6 +79,10 @@ a {
     }
 }
 
+.space-fixed-title {
+    padding: 20px 0;
+}
+
 .bl_title {
     color: #9d1c1c;
     font-weight: bold;
@@ -95,6 +99,15 @@ a {
 
     &.no-border-bottom {
         border-bottom: none;
+    }
+
+    &.fixed-top {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        margin-bottom: 0;
     }
 }
 
