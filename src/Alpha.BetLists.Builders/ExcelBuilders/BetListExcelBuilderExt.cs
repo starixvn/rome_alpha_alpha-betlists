@@ -1,4 +1,4 @@
-namespace Alpha.BetLists.Builders.ExcelBuilders
+﻿namespace Alpha.BetLists.Builders.ExcelBuilders
 {
     using System.Collections.Generic;
     using AppResources;
@@ -63,8 +63,8 @@ namespace Alpha.BetLists.Builders.ExcelBuilders
 
             RenderPtPercent(rtfNumber, rtfHelper, ticket, positionTakingComm);
             RenderPtValue(rtfNumber, positionTakingComm);
-            RenderCommPercent(rtfNumber, positionTakingComm);
-            RenderCommValue(rtfNumber, positionTakingComm);
+            RenderCommPercent(rtfHelper, positionTakingComm);
+            RenderCommValue(rtfHelper, positionTakingComm);
 
             var rtfText = rtfHelper.RTFRenderer.Render();
             rtfHelper.RTFRenderer.Clear();
@@ -94,19 +94,19 @@ namespace Alpha.BetLists.Builders.ExcelBuilders
             }
         }
 
-        private static void RenderCommPercent(RTFNumber rtfNumber, PTComm positionTakingComm)
+        private static void RenderCommPercent(RTFHelper rtfHelper, PTComm positionTakingComm)
         {
             if (!string.IsNullOrEmpty(positionTakingComm.CommissionPercent) && positionTakingComm.VisibileCommisionPercent)
             {
-                rtfNumber.Render(positionTakingComm.CommissionPercent + "\n");
+                rtfHelper.RTFRenderer.AddText(positionTakingComm.CommissionPercent + "\n");
             }
         }
 
-        private static void RenderCommValue(RTFNumber rtfNumber, PTComm positionTakingComm)
+        private static void RenderCommValue(RTFHelper rtfHelper, PTComm positionTakingComm)
         {
             if (!string.IsNullOrEmpty(positionTakingComm.Commission) && positionTakingComm.VisibleCommision)
             {
-                rtfNumber.Render(positionTakingComm.Commission + "\n");
+                rtfHelper.RTFRenderer.AddText(positionTakingComm.Commission + "\n");
             }
         }
 
