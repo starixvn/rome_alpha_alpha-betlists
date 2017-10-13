@@ -63,7 +63,7 @@
             betId?: number,
             betCheck?: string) => {
             var params = '?refno=' + refNo + '&roleId=' + this.ViewerLevelId;
-            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.OldMainAppPath() + 'RNGCasinoBetList/GetHandHistory' + params, "", 835, 675);
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'HandHistory/RNGCasino' + params, "", 835, 675);
         }
     }
 
@@ -83,8 +83,8 @@
             betCheck?: string) => {
             var params = '?custId=' + this.CustId +
                 '&roleId=' + this.ViewerLevelId +
-                '&gameplayid=' + refNo;
-            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.OldMainAppPath() + 'RNGCasinoBetList/GetVoidbridgeResult' + params, "", 835, 675);
+                '&refNo=' + refNo;
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'HandHistory/MacauGames' + params, "", 835, 675);
         }
     }
 
@@ -104,8 +104,8 @@
             betCheck?: string) => {
             var params = '?custId=' + this.CustId +
                 '&roleId=' + this.ViewerLevelId +
-                '&gameplayid=' + refNo;
-            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.OldMainAppPath() + 'RNGCasinoBetList/GetFishingWorldResult' + params, "", 835, 675);
+                '&refNo=' + refNo;
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'HandHistory/FishingWorld' + params, "", 835, 675);
         }
     }
 }

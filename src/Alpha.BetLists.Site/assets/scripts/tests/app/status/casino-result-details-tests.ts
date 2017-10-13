@@ -70,7 +70,7 @@
             new BetList.Status.ResultDetails.RnGCasinoResultDetails().ViewResultDetails(matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, betId);
 
             // Assert
-            expect(popupDetailsShow).toHaveBeenCalledWith("old-path/RNGCasinoBetList/GetHandHistory" + params, "", 835, 675);
+            expect(popupDetailsShow).toHaveBeenCalledWith("result-path/HandHistory/RNGCasino" + params, "", 835, 675);
         });
     });
 
@@ -79,13 +79,13 @@
             // Arrange
             var params = '?custId=1' +
                 '&roleId=456' +
-                '&gameplayid=' + refNo;
+                '&refNo=' + refNo;
 
             // Act
             new BetList.Status.ResultDetails.MacauGamesResultDetails().ViewResultDetails(matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, betId);
 
             // Assert
-            expect(popupDetailsShow).toHaveBeenCalledWith("old-path/RNGCasinoBetList/GetVoidbridgeResult" + params, "", 835, 675);
+            expect(popupDetailsShow).toHaveBeenCalledWith("result-path/HandHistory/MacauGames" + params, "", 835, 675);
         });
     });
 
@@ -94,13 +94,13 @@
             // Arrange
             var params = '?custId=1' +
                 '&roleId=456' +
-                '&gameplayid=' + refNo;
+                '&refNo=' + refNo;
 
             // Act
             new BetList.Status.ResultDetails.FishingWorldResultDetails().ViewResultDetails(matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, betId);
 
             // Assert
-            expect(popupDetailsShow).toHaveBeenCalledWith("old-path/RNGCasinoBetList/GetFishingWorldResult" + params, "", 835, 675);
+            expect(popupDetailsShow).toHaveBeenCalledWith("result-path/HandHistory/FishingWorld" + params, "", 835, 675);
         });
     });
 });
