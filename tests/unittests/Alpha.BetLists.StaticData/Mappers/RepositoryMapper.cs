@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using Alpha.BetLists.Criteria;
-using Alpha.BetLists.Criteria.MemberBetList;
-using Alpha.BetLists.Criteria.RunningBetList;
-using Alpha.BetLists.StaticData.DataAccesses;
-using Alpha.StaticData.Mappers;
-
-namespace Alpha.BetLists.StaticData.Mappers
+﻿namespace Alpha.BetLists.StaticData.Mappers
 {
+    using System;
+    using System.Collections.Generic;
+    using Alpha.StaticData.Mappers;
+    using Criteria;
+    using Criteria.MemberBetList;
+    using Criteria.RunningBetList;
+    using DataAccesses;
+
     public class RepositoryMapper : IRepositoryMapper
     {
         public IDictionary<string, Type> Maps

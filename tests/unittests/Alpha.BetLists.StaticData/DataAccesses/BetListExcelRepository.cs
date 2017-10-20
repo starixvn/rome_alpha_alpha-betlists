@@ -1,18 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
-using Alpha.BetLists.Models;
-using Alpha.BetLists.StaticData.Mappers;
-using Alpha.StaticData.NPOIExtensions;
-using Alpha.StaticData.Repositories;
-using Fanex.BetList.Core.Entities;
-using Fanex.Data.Repository;
-using NPOI.SS.UserModel;
-
-namespace Alpha.BetLists.StaticData.DataAccesses
+﻿namespace Alpha.BetLists.StaticData.DataAccesses
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Web;
+    using Alpha.StaticData.NPOIExtensions;
+    using Alpha.StaticData.Repositories;
+    using BetLists.Models;
+    using Fanex.BetList.Core.Entities;
+    using Fanex.Data.Repository;
+    using Mappers;
+    using NPOI.SS.UserModel;
+
     public class BetListExcelRepository : ExcelRepository
     {
         public override void InitMapper()

@@ -1,9 +1,9 @@
-﻿using Alpha.BetLists.IntegrationTests.Fixtures;
-using MvcIntegrationTestFramework.Hosting;
-using Xunit;
-
-namespace Alpha.BetLists.IntegrationTests.Controllers
+﻿namespace Alpha.BetLists.IntegrationTests.Controllers
 {
+    using Fixtures;
+    using MvcIntegrationTestFramework.Hosting;
+    using Xunit;
+
     [Collection("BetListAppHostCollection")]
     public class BaseBetListsIntegrationTest
     {

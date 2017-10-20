@@ -1,14 +1,14 @@
-﻿using System;
-using Alpha.BetLists.IntegrationTests.Fixtures;
-using Alpha.BetLists.StaticData.Mappers;
-using Alpha.BetLists.StaticData.Models;
-using Alpha.BetLists.Utils;
-using Alpha.IntegrationTests.Extensions;
-using Alpha.IntegrationTests.Helpers;
-using Xunit;
-
-namespace Alpha.BetLists.IntegrationTests.Controllers
+﻿namespace Alpha.BetLists.IntegrationTests.Controllers
 {
+    using System;
+    using Alpha.IntegrationTests.Extensions;
+    using Alpha.IntegrationTests.Helpers;
+    using Fixtures;
+    using StaticData.Mappers;
+    using StaticData.Models;
+    using Utils;
+    using Xunit;
+
     [Trait("Integration", "MemberBetList")]
     public class MemberBetListControllerTests : BaseBetListsIntegrationTest
     {

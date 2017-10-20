@@ -1,11 +1,11 @@
-﻿using System;
-using Alpha.BetLists.Models;
-using Alpha.StaticData.Npoi;
-using NPOI.SS.UserModel;
-using static Alpha.BetLists.StaticData.ColumnIndexes.TicketTemplateColumnIndex;
-
-namespace Alpha.BetLists.StaticData.Mappers
+﻿namespace Alpha.BetLists.StaticData.Mappers
 {
+    using System;
+    using Alpha.StaticData.Npoi;
+    using BetLists.Models;
+    using NPOI.SS.UserModel;
+    using static ColumnIndexes.TicketTemplateColumnIndex;
+
     public static class TicketDtoMapper
     {
         public static TicketDto Map(IRow row)

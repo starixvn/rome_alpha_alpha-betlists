@@ -1,8 +1,8 @@
-﻿using Alpha.BetLists.IntegrationTests.Fixtures;
-using Xunit;
-
-namespace Alpha.BetLists.IntegrationTests.Collections
+﻿namespace Alpha.BetLists.IntegrationTests.Collections
 {
+    using Fixtures;
+    using Xunit;
+
     [CollectionDefinition("BetListAppHostCollection")]
     public class BetListAppHostCollection : ICollectionFixture<BetListAppHostFixture>
     {

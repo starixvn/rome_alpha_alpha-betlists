@@ -1,10 +1,10 @@
-﻿using Alpha.StaticData.Npoi;
-using Fanex.BetList.Core.Entities;
-using NPOI.SS.UserModel;
-using static Alpha.BetLists.StaticData.ColumnIndexes.TicketDataTemplateColumnIndex;
-
-namespace Alpha.BetLists.StaticData.Mappers
+﻿namespace Alpha.BetLists.StaticData.Mappers
 {
+    using Alpha.StaticData.Npoi;
+    using Fanex.BetList.Core.Entities;
+    using NPOI.SS.UserModel;
+    using static ColumnIndexes.TicketDataTemplateColumnIndex;
+
     public static class TicketDataMapper
     {
         public static ITicketData Map(IRow row)
