@@ -1,31 +1,4 @@
 ﻿namespace BetList.Status.ResultDetails {
-    export class CasinoResultDetails extends BaseResultDetails implements ResultDetails {
-        public ViewResultDetails = (
-            matchId?: number,
-            race?: number,
-            betTypeId?: number,
-            sportTypeId?: number,
-            refNo?: string,
-            userName?: string,
-            winLostDate?: Date,
-            refNoMixParlay?: number,
-            league?: number,
-            isOutright?: boolean,
-            betId?: number) => {
-            const params = '?typegame=casinogame&ibcrefno=' + refNo
-                + '&bettype=Casino'
-                + '&uname=' + userName
-                + '&type=' + this.BetListType
-                + '&custId=' + this.CustId
-                + '&productIds=' + this.ProductIds
-                + '&fdate=' + this.FromDate
-                + '&tdate=' + this.ToDate
-                + '&isHistoryReport=' + (this.IsHistoricReport ? 1 : 0);
-
-            window.location.replace(Common.AppPath.OldMainAppPath() + 'RnGCasino/HandHistory' + params);
-        }
-    }
-
     export class AllbetResultDetails extends BaseResultDetails implements ResultDetails {
         public ViewResultDetails = (
             matchId?: number,

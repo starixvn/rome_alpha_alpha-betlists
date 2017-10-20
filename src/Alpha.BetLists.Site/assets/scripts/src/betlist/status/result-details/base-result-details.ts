@@ -10,11 +10,6 @@
         private static macauGamesResult: ResultDetails;
 
         public static CreateInstance(betTypeId: number): ResultDetails {
-            if (betTypeId === 71 || betTypeId === 72) {
-                this.casinoResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.casinoResult) ? new CasinoResultDetails() : this.casinoResult;
-                return this.casinoResult;
-            }
-
             if (betTypeId >= 2501 && betTypeId <= 2699) {
                 this.ng2Result = Common.Utils.IsNullOrUndefinedOrEmpty(this.ng2Result) ? new NG2ResultDetails() : this.ng2Result;
                 return this.ng2Result;
