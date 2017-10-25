@@ -350,4 +350,7 @@
   <data name="of" xml:space="preserve">
     <value>之第</value>
   </data>
+  <data name="parlay" xml:space="preserve">
+    <value>过关</value>
+  </data>
 </root>

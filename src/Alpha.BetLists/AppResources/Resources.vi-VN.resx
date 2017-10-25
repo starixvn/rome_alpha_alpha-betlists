@@ -349,4 +349,7 @@
   <data name="of" xml:space="preserve">
     <value>trên</value>
   </data>
+  <data name="parlay" xml:space="preserve">
+    <value>Cá cược tổng hợp</value>
+  </data>
 </root>

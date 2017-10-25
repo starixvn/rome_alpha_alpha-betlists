@@ -305,7 +305,7 @@
   </data>
   <data name="WinLossRoundNote" xml:space="preserve">
     <value>Win Loss is rounded for reference only. Therefore, Sub Total amount may be different from the sum of Win Loss when it sums all the actual Win Loss amounts.</value>
-    </data>
+  </data>
   <data name="Bets" xml:space="preserve">
     <value>bets</value>
   </data>
@@ -380,5 +380,8 @@
   </data>
   <data name="of" xml:space="preserve">
     <value>of</value>
+  </data>
+  <data name="parlay" xml:space="preserve">
+    <value>Parlay</value>
   </data>
 </root>

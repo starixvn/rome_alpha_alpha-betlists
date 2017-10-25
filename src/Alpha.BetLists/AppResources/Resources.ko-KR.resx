@@ -324,4 +324,7 @@
   <data name="of" xml:space="preserve">
     <value>부터</value>
   </data>
+  <data name="parlay" xml:space="preserve">
+    <value>팔레이</value>
+  </data>
 </root>

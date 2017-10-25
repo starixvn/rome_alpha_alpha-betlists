@@ -351,4 +351,7 @@
   <data name="of" xml:space="preserve">
     <value>ของ</value>
   </data>
+  <data name="parlay" xml:space="preserve">
+    <value>บอลชุด</value>
+  </data>
 </root>

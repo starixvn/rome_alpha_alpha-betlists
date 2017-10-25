@@ -801,7 +801,6 @@
     </None>
     <Content Include="Views\CasinoDetails\Index.cshtml" />
     <Content Include="Views\CorrectScore\Index.cshtml" />
-    <Content Include="Views\MixParlay\Index.cshtml" />
     <Content Include="Views\Shared\TableWithoutWinLoss.cshtml" />
     <Content Include="Views\CombinationMixParlay\Index.cshtml" />
     <Content Include="Views\BetListByBetType\Index.cshtml" />
@@ -822,7 +821,6 @@
     <Compile Include="Controllers\MemberBetListController.cs" />
     <Compile Include="Controllers\LastBetsController.cs" />
     <Compile Include="Controllers\CasinoDetailsController.cs" />
-    <Compile Include="Controllers\MixParlayController.cs" />
     <Compile Include="Controllers\RacingByMatchController.cs" />
     <Compile Include="Controllers\RunningBetListController.cs" />
     <Compile Include="Controllers\CancelledBetController.cs" />
@@ -841,8 +839,6 @@
     <Compile Include="Handlers\CombinationMixParlay\CombinationMixParlayHandler.cs" />
     <Compile Include="Handlers\CorrectScore\CorrectScoreExcelHandler.cs" />
     <Compile Include="Handlers\CorrectScore\CorrectScoreHandler.cs" />
-    <Compile Include="Handlers\MixParlay\MixParlayExcelHandler.cs" />
-    <Compile Include="Handlers\MixParlay\MixParlayHandler.cs" />
     <Compile Include="Handlers\RacingByMatch\RacingByMatchExcelHandler.cs" />
     <Compile Include="Handlers\RacingByMatch\RacingByMatchHandler.cs" />
     <Compile Include="Requests\BetListByBetTypeAndMatch\BetListByBetTypeAndMatchExcelQuery.cs" />
@@ -891,8 +887,6 @@
     <Compile Include="Requests\CorrectScore\CorrectScoreExcelQuery.cs" />
     <Compile Include="Requests\CorrectScore\CorrectScoreQuery.cs" />
     <Compile Include="Requests\MemberBetList\MemberBetListQuery.cs" />
-    <Compile Include="Requests\MixParlay\MixParlayExcelQuery.cs" />
-    <Compile Include="Requests\MixParlay\MixParlayQuery.cs" />
     <Compile Include="Requests\RacingByMatch\RacingByMatchExcelQuery.cs" />
     <Compile Include="Requests\RacingByMatch\RacingByMatchQuery.cs" />
     <Compile Include="Requests\RunningBetList\RunningBetListQuery.cs" />
@@ -922,7 +916,6 @@
     <Compile Include="ViewModels\CorrectScore\CorrectScoreViewModel.cs" />
     <Compile Include="ViewModels\ExcelFileViewModel.cs" />
     <Compile Include="ViewModels\MemberBetList\MemberBetListViewModel.cs" />
-    <Compile Include="ViewModels\MixParlay\MixParlayViewModel.cs" />
     <Compile Include="ViewModels\RacingByMatch\RacingByMatchViewModel.cs" />
     <Compile Include="ViewModels\RunningBetList\RunningBetListViewModel.cs" />
     <Compile Include="ViewModels\LastBets\BetDataViewModel.cs" />

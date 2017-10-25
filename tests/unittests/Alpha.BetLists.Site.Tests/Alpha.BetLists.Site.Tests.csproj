@@ -273,7 +273,6 @@
     <Compile Include="Controllers\CorrectScoreControllerTests.cs" />
     <Compile Include="Controllers\MemberBetListControllerTests.cs" />
     <Compile Include="Controllers\ParlayControllerTests.cs" />
-    <Compile Include="Controllers\MixParlayControllerTests.cs" />
     <Compile Include="Controllers\RacingByMatchControllerTests.cs" />
     <Compile Include="Controllers\RunningBetListControllerTests.cs" />
     <Compile Include="Controllers\ParlayWinLossByMatchControllerTests.cs" />
@@ -301,8 +300,6 @@
     <Compile Include="Handler\CorrectScore\CorrectScoreExcelHandlerTests.cs" />
     <Compile Include="Handler\CorrectScore\CorrectScoreHandlerTests.cs" />
     <Compile Include="Handler\MemberBetList\MemberBetListHandlerTests.cs" />
-    <Compile Include="Handler\MixParlay\MixParlayExcelHandlerTests.cs" />
-    <Compile Include="Handler\MixParlay\MixParlayHandlerTests.cs" />
     <Compile Include="Handler\RacingByMatch\RacingByMatchExcelHandlerTests.cs" />
     <Compile Include="Handler\RacingByMatch\RacingByMatchHandlerTests.cs" />
     <Compile Include="Handler\RunningBetList\RunningBetListHandlerTests.cs" />
@@ -339,7 +336,6 @@
     <Compile Include="ViewModels\LastBets\BetDataViewModelTests.cs" />
     <Compile Include="ViewModels\LastBets\LastBetsViewModelTests.cs" />
     <Compile Include="ViewModels\MemberBetList\MemberBetListViewModelTests.cs" />
-    <Compile Include="ViewModels\MixParlay\MixParlayViewModelTests.cs" />
     <Compile Include="ViewModels\Parlay\ComboParlayDetailViewModelTests.cs" />
     <Compile Include="ViewModels\Parlay\ComboParlayDetailWrapperTests.cs" />
     <Compile Include="ViewModels\Parlay\ComboParlayViewModelTests.cs" />

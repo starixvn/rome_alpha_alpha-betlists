@@ -565,6 +565,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Parlay.
+        /// </summary>
+        public static string parlay {
+            get {
+                return ResourceManager.GetString("parlay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Place.
         /// </summary>
         public static string place {

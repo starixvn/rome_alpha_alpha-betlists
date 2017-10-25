@@ -18,7 +18,7 @@
             IEnumerable<int> supportScoreMapBetTypeIds = null)
             : base(query, betListData, builder, ticketHelper, supportScoreMapBetTypeIds)
         {
-            Title = Resources.lblSystemParlay.ToUpperInvariant();
+            Title = Resources.parlay.ToUpperInvariant();
         }
     }
 }
