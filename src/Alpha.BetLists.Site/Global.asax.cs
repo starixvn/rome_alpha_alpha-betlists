@@ -1,6 +1,7 @@
 ﻿namespace Alpha.BetLists.Site
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics;
     using System.Reflection;
     using System.Web.Mvc;
@@ -15,6 +16,7 @@
     using Fanex.Logging.Extensions.Web;
     using Helpers;
     using ONEbook.UM.Filters;
+    using Sunplus.Agent.Model.Entities;
     using Web;
     using Web.Helpers;
 
@@ -65,7 +67,16 @@
             }
 
             Exception ex = Server.GetLastError();
-            ExceptionHandler.Handle(ex);
+            var currentCustomer = UserSession.Current;
+
+            ExceptionHandler.Handle(ex,
+                new Dictionary<string, object>
+                {
+                    ["CustId"] = currentCustomer?.CustId,
+                    ["CustName"] = currentCustomer?.UserName,
+                    ["SubAccountName"] = currentCustomer?.SubUserName,
+                    ["AdminName"] = currentCustomer?.AdminName
+                });
         }
 
         private static string GetBuildVersion()
