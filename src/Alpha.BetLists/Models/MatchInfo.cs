@@ -2,8 +2,12 @@
 {
     public class MatchInfo
     {
+        public MatchInfo()
+        {
+        }
+
         public MatchInfo(
-            byte sportType,
+            int sportType,
             string status,
             int matchId,
             int leagueId,
@@ -17,7 +21,7 @@
         }
 
         public MatchInfo(
-            byte sportType,
+            int sportType,
             string status,
             int matchId,
             int leagueId,
