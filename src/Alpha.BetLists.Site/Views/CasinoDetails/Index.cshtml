@@ -28,67 +28,71 @@
     @Html.Hidden("SportName", Model.SportName)
     @Html.Hidden("ProductId", Model.ProductId)
 </form>
-<table class="tblRpt tblRpt-bordered tblRpt-striped width-100per tablesorter tblRpt-hover tbl-betlist combined-fixed-pagination-bottom" id="tbl-betlist">
-    <thead>
-        <tr>
-            <th class="col-number">#</th>
-            <th class="col-transtime">@Resources.transtime</th>
-            <th>@Resources.choice</th>
-            <th class="col-odds">@Resources.odds</th>
-            <th class="col-stake">@Resources.stake</th>
-            <th class="col-winloss">@Resources.lblWinLoss</th>
-            <th class="col-status">@Resources.status</th>
-            @if (Model.AllowToViewSuperPT)
+<div id="table-container">
+    <table class="tblRpt tblRpt-bordered alternative-row-table width-100per tablesorter tblRpt-hover tbl-betlist" id="tbl-betlist">
+        <thead>
+            <tr>
+                <th class="col-number">#</th>
+                <th class="col-transtime">@Resources.transtime</th>
+                <th>@Resources.choice</th>
+                <th class="col-odds">@Resources.odds</th>
+                <th class="col-stake">@Resources.stake</th>
+                <th class="col-winloss">@Resources.lblWinLoss</th>
+                <th class="col-status">@Resources.status</th>
+                @if (Model.AllowToViewSuperPT)
             {
-                <th class="col-pt">@Resources.superPT/ @Resources.lblComm</th>
-            }
-            @if (Model.AllowToViewMasterPT)
+                    <th class="col-pt">@Resources.superPT/ @Resources.lblComm</th>
+                }
+                @if (Model.AllowToViewMasterPT)
             {
-                <th class="col-pt">@Resources.masterPT/ @Resources.lblComm</th>
-            }
-            <th class="col-pt">@Resources.agentPT/ @Resources.lblComm</th>
-        </tr>
-    </thead>
-    @if (Model.DetailData.Tickets.Any())
-    {
-        <tbody>
-            @{
-                var i = Model.StartNo;
-                var ticketData = new List<ITicketData>();
-                foreach (var ticket in Model.DetailData.Tickets)
-                {
-                    <tr id="r@(ticket.TransId)">
-                        <td class='w-order text-center'>@i</td>
-                        @Trans.Render(Model.Builder, ticket)
-                        @Choice.Render(Model.Builder, ticket, Model.TicketHelper, ticketData, false)
-                        @Odds.Render(Model.Builder, ticket, ticketData)
-                        @Stake.Render(Model.Builder, ticket)
-                        @WinLoss.Render(ticket)
-                        @Status.Render(Model.Builder, ticket, Model.TicketHelper, ticketData, !string.IsNullOrEmpty(ticket.IP))
-                        @if (Model.AllowToViewSuperPT)
-                        {
-                            @PositionTaking.Render(ticket, ticketData, UserLevel.Super)
-                        }
-                        @if (Model.AllowToViewMasterPT)
-                        {
-                            @PositionTaking.Render(ticket, ticketData, UserLevel.Master)
-                        }
-                        @PositionTaking.Render(ticket, ticketData, UserLevel.Agent)
-                    </tr>
-                    i++;
+                    <th class="col-pt">@Resources.masterPT/ @Resources.lblComm</th>
                 }
-            }
-        </tbody>
-                }
-                else
-                {
-                    <tbody>
-                        <tr>
-                            <td colspan="@Model.TotalColumn" class="text-center">@Resources.NoInformationIsAvailable</td>
+                <th class="col-pt">@Resources.agentPT/ @Resources.lblComm</th>
+            </tr>
+        </thead>
+        @if (Model.DetailData.Tickets.Any())
+        {
+            <tbody>
+                @{
+                    var i = Model.StartNo;
+                    var isEvenRow = false;
+                    var ticketData = new List<ITicketData>();
+                    foreach (var ticket in Model.DetailData.Tickets)
+                    {
+                        <tr id="r@(ticket.TransId)" class="@(isEvenRow?"even-row":string.Empty)">
+                            <td class='w-order text-center'>@i</td>
+                            @Trans.Render(Model.Builder, ticket)
+                            @Choice.Render(Model.Builder, ticket, Model.TicketHelper, ticketData, false)
+                            @Odds.Render(Model.Builder, ticket, ticketData)
+                            @Stake.Render(Model.Builder, ticket)
+                            @WinLoss.Render(ticket)
+                            @Status.Render(Model.Builder, ticket, Model.TicketHelper, ticketData, !string.IsNullOrEmpty(ticket.IP))
+                            @if (Model.AllowToViewSuperPT)
+                            {
+                                @PositionTaking.Render(ticket, ticketData, UserLevel.Super)
+                            }
+                            @if (Model.AllowToViewMasterPT)
+                            {
+                                @PositionTaking.Render(ticket, ticketData, UserLevel.Master)
+                            }
+                            @PositionTaking.Render(ticket, ticketData, UserLevel.Agent)
                         </tr>
-                    </tbody>
+                        isEvenRow = !isEvenRow;
+                        i++;
+                    }
                 }
-</table>
+            </tbody>
+                    }
+                    else
+                    {
+                        <tbody>
+                            <tr>
+                                <td colspan="@Model.TotalColumn" class="text-center">@Resources.NoInformationIsAvailable</td>
+                            </tr>
+                        </tbody>
+                    }
+    </table>
+</div>
 @Pager.Render(Model.PagerViewModel)
 @Html.Hidden("betlist-path", HttpContext.Current.Response.ApplyAppPathModifier("~/"))
 @Html.Hidden("old-main-path", MicroSites.OldMainUrl("~/"))

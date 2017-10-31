@@ -4,6 +4,7 @@
 
 class CasionDetailView {
     $: JQueryStatic;
+    $tblContainer: JQuery;
     pagerComponent: PagerComponent;
     pageList: number[] = [100, 200, 300, 500, 1000];
 
@@ -15,6 +16,10 @@ class CasionDetailView {
     }
 
     init = () => {
+        var maxHeight = window.top.window.innerHeight - 260;
+        this.$tblContainer = this.$("#table-container");
+        this.$tblContainer.css({ 'max-height': maxHeight, overflow: 'auto' });
+
         this.pagerComponent.pageList = this.pageList;
         this.pagerComponent.render();
     };
