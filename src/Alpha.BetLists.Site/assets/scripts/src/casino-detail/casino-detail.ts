@@ -16,12 +16,19 @@ class CasionDetailView {
     }
 
     init = () => {
-        var maxHeight = window.top.window.innerHeight;
-        this.$tblContainer = this.$("#table-container");
-        this.$tblContainer.css({ 'max-height': maxHeight, overflow: 'auto' });
+        if (this.isiOS()) {
+            var maxHeight = window.top.window.innerHeight - 260;
+            this.$tblContainer = this.$("#table-container");
+            this.$tblContainer.css({ 'max-height': maxHeight, overflow: 'auto' });
+        }
 
         this.pagerComponent.pageList = this.pageList;
         this.pagerComponent.render();
+    };
+
+    isiOS = () => {
+        var isiOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+        return isiOS;
     };
 };
 
