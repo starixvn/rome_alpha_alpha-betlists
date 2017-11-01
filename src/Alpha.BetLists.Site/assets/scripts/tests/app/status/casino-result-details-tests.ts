@@ -41,14 +41,15 @@
     describe("RnGCasino_", () => {
         it("ViewResultDetails -> Show Popup With Expected Url", () => {
             // Arrange
-            var params = '?refno=' + refNo
-                + '&roleId=456';
+            var params = '?gameId=' + refNo
+                + '&roleId=456'
+                + '&productId=6';
 
             // Act
             new BetList.Status.ResultDetails.RnGCasinoResultDetails().ViewResultDetails(matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, betId);
 
             // Assert
-            expect(popupDetailsShow).toHaveBeenCalledWith("result-path/HandHistory/RNGCasino" + params, "", 835, 675);
+            expect(popupDetailsShow).toHaveBeenCalledWith("result-path/ThirdParty/Index" + params, "", 835, 675);
         });
     });
 
@@ -57,13 +58,14 @@
             // Arrange
             var params = '?custId=1' +
                 '&roleId=456' +
-                '&refNo=' + refNo;
+                '&gameId=' + refNo +
+                '&productId=22';
 
             // Act
             new BetList.Status.ResultDetails.MacauGamesResultDetails().ViewResultDetails(matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, betId);
 
             // Assert
-            expect(popupDetailsShow).toHaveBeenCalledWith("result-path/HandHistory/MacauGames" + params, "", 835, 675);
+            expect(popupDetailsShow).toHaveBeenCalledWith("result-path/ThirdParty/Index" + params, "", 835, 675);
         });
     });
 
@@ -72,13 +74,14 @@
             // Arrange
             var params = '?custId=1' +
                 '&roleId=456' +
-                '&refNo=' + refNo;
+                '&gameId=' + betCheck +
+                '&productId=24';
 
             // Act
-            new BetList.Status.ResultDetails.FishingWorldResultDetails().ViewResultDetails(matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, betId);
+            new BetList.Status.ResultDetails.FishingWorldResultDetails().ViewResultDetails(matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, betId, betCheck);
 
             // Assert
-            expect(popupDetailsShow).toHaveBeenCalledWith("result-path/HandHistory/FishingWorld" + params, "", 835, 675);
+            expect(popupDetailsShow).toHaveBeenCalledWith("result-path/ThirdParty/Index" + params, "", 835, 675);
         });
     });
 });

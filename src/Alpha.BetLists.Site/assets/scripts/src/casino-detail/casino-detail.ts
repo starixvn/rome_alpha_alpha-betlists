@@ -16,7 +16,7 @@ class CasionDetailView {
     }
 
     init = () => {
-        var maxHeight = window.top.window.innerHeight - 260;
+        var maxHeight = window.top.window.innerHeight;
         this.$tblContainer = this.$("#table-container");
         this.$tblContainer.css({ 'max-height': maxHeight, overflow: 'auto' });
 

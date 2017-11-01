@@ -35,8 +35,8 @@
             isOutright?: boolean,
             betId?: number,
             betCheck?: string) => {
-            var params = '?refno=' + refNo + '&roleId=' + this.ViewerLevelId;
-            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'HandHistory/RNGCasino' + params, "", 835, 675);
+            var params = '?gameId=' + refNo + '&roleId=' + this.ViewerLevelId + '&productId=6';
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/Index' + params, "", 835, 675);
         }
     }
 
@@ -56,8 +56,9 @@
             betCheck?: string) => {
             var params = '?custId=' + this.CustId +
                 '&roleId=' + this.ViewerLevelId +
-                '&refNo=' + refNo;
-            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'HandHistory/MacauGames' + params, "", 835, 675);
+                '&gameId=' + refNo +
+                '&productId=22';
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/Index' + params, "", 835, 675);
         }
     }
 
@@ -77,8 +78,9 @@
             betCheck?: string) => {
             var params = '?custId=' + this.CustId +
                 '&roleId=' + this.ViewerLevelId +
-                '&refNo=' + refNo;
-            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'HandHistory/FishingWorld' + params, "", 835, 675);
+                '&gameId=' + betCheck +
+                '&productId=24';
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/Index' + params, "", 835, 675);
         }
     }
 }
