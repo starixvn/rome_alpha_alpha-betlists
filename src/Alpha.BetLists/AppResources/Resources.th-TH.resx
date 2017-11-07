@@ -354,4 +354,13 @@
   <data name="parlay" xml:space="preserve">
     <value>บอลชุด</value>
   </data>
+  <data name="agentptcomm" xml:space="preserve">
+    <value>ตัวแทนแบ่งสู้/ คอมมิชชั่น</value>
+  </data>
+  <data name="masterptcomm" xml:space="preserve">
+    <value>ตัวแทนหลักแบ่งสู้/ คอมมิชชั่น</value>
+  </data>
+  <data name="superptcomm" xml:space="preserve">
+    <value>สูงสุดแบ่งสู้/ คอมมิชชั่น</value>
+  </data>
 </root>

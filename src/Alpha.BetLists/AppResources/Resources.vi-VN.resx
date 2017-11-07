@@ -352,4 +352,13 @@
   <data name="parlay" xml:space="preserve">
     <value>Cá cược tổng hợp</value>
   </data>
+  <data name="agentptcomm" xml:space="preserve">
+    <value>PT của Agent/ Hoa hồng</value>
+  </data>
+  <data name="masterptcomm" xml:space="preserve">
+    <value>PT của Master/ Hoa hồng</value>
+  </data>
+  <data name="superptcomm" xml:space="preserve">
+    <value>PT của Super/ Hoa hồng</value>
+  </data>
 </root>
