@@ -300,12 +300,12 @@
     <value>ミックスパーレー</value>
   </data>
   <data name="agentptcomm" xml:space="preserve">
-    <value>エージェントPT/ 手数料</value>
+    <value>Agent PT/ 手数料</value>
   </data>
   <data name="masterptcomm" xml:space="preserve">
-    <value>マスターPT/ 手数料</value>
+    <value>Master PT/ 手数料</value>
   </data>
   <data name="superptcomm" xml:space="preserve">
-    <value>SuperPT/ 手数料</value>
+    <value>Super PT/ 手数料</value>
   </data>
 </root>

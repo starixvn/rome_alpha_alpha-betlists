@@ -360,6 +360,6 @@
     <value>总代理占成数/ 佣金</value>
   </data>
   <data name="superptcomm" xml:space="preserve">
-    <value>超级占成数/ 佣金</value>
+    <value>超级总代理占成数/ 佣金</value>
   </data>
 </root>

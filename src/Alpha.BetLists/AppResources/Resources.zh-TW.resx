@@ -354,12 +354,12 @@
     <value>过关</value>
   </data>
   <data name="agentptcomm" xml:space="preserve">
-    <value>代理佔成數/ 佣金</value>
+    <value>代理占成数/ 佣金</value>
   </data>
   <data name="masterptcomm" xml:space="preserve">
-    <value>總代理佔成數/ 佣金</value>
+    <value>总代理占成数/ 佣金</value>
   </data>
   <data name="superptcomm" xml:space="preserve">
-    <value>超級佔成數/ 佣金</value>
+    <value>超级总代理占成数/ 佣金</value>
   </data>
 </root>

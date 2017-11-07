@@ -328,12 +328,12 @@
     <value>팔레이</value>
   </data>
   <data name="agentptcomm" xml:space="preserve">
-    <value>에이전트거래조건/ 수수료</value>
+    <value>에이전트 PT/ 수수료</value>
   </data>
   <data name="masterptcomm" xml:space="preserve">
-    <value>마스터거래조건/ 수수료</value>
+    <value>마스터 PT/ 수수료</value>
   </data>
   <data name="superptcomm" xml:space="preserve">
-    <value>슈퍼거래조건/ 수수료</value>
+    <value>슈퍼 PT/ 수수료</value>
   </data>
 </root>

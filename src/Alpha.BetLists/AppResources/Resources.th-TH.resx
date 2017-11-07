@@ -355,12 +355,12 @@
     <value>บอลชุด</value>
   </data>
   <data name="agentptcomm" xml:space="preserve">
-    <value>ตัวแทนแบ่งสู้/ คอมมิชชั่น</value>
+    <value>ค่าแบ่งสู้ของเอเย่น/ คอมมิชชั่น</value>
   </data>
   <data name="masterptcomm" xml:space="preserve">
-    <value>ตัวแทนหลักแบ่งสู้/ คอมมิชชั่น</value>
+    <value>ค่าแบ่งสู้ของมาสเตอร์/ คอมมิชชั่น</value>
   </data>
   <data name="superptcomm" xml:space="preserve">
-    <value>สูงสุดแบ่งสู้/ คอมมิชชั่น</value>
+    <value>ค่าแบ่งสู้ของซุปเปอร์/ คอมมิชชั่น</value>
   </data>
 </root>
