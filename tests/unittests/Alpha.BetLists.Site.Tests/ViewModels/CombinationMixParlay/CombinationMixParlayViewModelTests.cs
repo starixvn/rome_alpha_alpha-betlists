@@ -31,7 +31,7 @@
                 betListFixture.TicketHelper);
 
             // Assert
-            Assert.Equal("SYSTEM PARLAY", viewModel.Title);
+            Assert.Equal("PARLAY", viewModel.Title);
         }
     }
 }

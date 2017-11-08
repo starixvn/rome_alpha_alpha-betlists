@@ -351,4 +351,16 @@
   <data name="of" xml:space="preserve">
     <value>ของ</value>
   </data>
+  <data name="parlay" xml:space="preserve">
+    <value>บอลชุด</value>
+  </data>
+  <data name="agentptcomm" xml:space="preserve">
+    <value>ค่าแบ่งสู้ของเอเย่น/ คอมมิชชั่น</value>
+  </data>
+  <data name="masterptcomm" xml:space="preserve">
+    <value>ค่าแบ่งสู้ของมาสเตอร์/ คอมมิชชั่น</value>
+  </data>
+  <data name="superptcomm" xml:space="preserve">
+    <value>ค่าแบ่งสู้ของซุปเปอร์/ คอมมิชชั่น</value>
+  </data>
 </root>

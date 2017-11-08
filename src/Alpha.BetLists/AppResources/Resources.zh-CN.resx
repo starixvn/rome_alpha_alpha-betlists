@@ -350,4 +350,16 @@
   <data name="of" xml:space="preserve">
     <value>之第</value>
   </data>
+  <data name="parlay" xml:space="preserve">
+    <value>过关</value>
+  </data>
+  <data name="agentptcomm" xml:space="preserve">
+    <value>代理占成数/ 佣金</value>
+  </data>
+  <data name="masterptcomm" xml:space="preserve">
+    <value>总代理占成数/ 佣金</value>
+  </data>
+  <data name="superptcomm" xml:space="preserve">
+    <value>超级总代理占成数/ 佣金</value>
+  </data>
 </root>

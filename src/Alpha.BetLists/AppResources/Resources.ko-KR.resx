@@ -324,4 +324,16 @@
   <data name="of" xml:space="preserve">
     <value>부터</value>
   </data>
+  <data name="parlay" xml:space="preserve">
+    <value>팔레이</value>
+  </data>
+  <data name="agentptcomm" xml:space="preserve">
+    <value>에이전트 PT/ 수수료</value>
+  </data>
+  <data name="masterptcomm" xml:space="preserve">
+    <value>마스터 PT/ 수수료</value>
+  </data>
+  <data name="superptcomm" xml:space="preserve">
+    <value>슈퍼 PT/ 수수료</value>
+  </data>
 </root>

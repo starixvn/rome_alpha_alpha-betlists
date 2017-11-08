@@ -48,7 +48,7 @@
                 forecastService,
                 this.betlistFixture.HtmlBuilder,
                 this.betlistFixture.TicketHelper,
-                this.betlistFixture.MoniterService,
+                this.betlistFixture.MonitorService,
                 this.betlistFixture.IpService);
 
             compareLogic = new CompareLogic(new ComparisonConfig

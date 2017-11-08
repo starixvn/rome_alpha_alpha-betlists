@@ -50,7 +50,7 @@
                 betlistFixture.HtmlBuilder,
                 betlistFixture.ExcelBuilder,
                 betlistFixture.TicketHelper,
-                betlistFixture.MoniterService,
+                betlistFixture.MonitorService,
                 betlistFixture.IpService,
                 workbook);
             winLossByMatchExcelHandler.MapPath = (path) => path;
@@ -58,7 +58,7 @@
 
             winLossHandler = new ParlayWinLossByMatchExcelHanlder(
                 parlayWinLossByMatchService,
-                betlistFixture.MoniterService,
+                betlistFixture.MonitorService,
                 betlistFixture.HtmlBuilder,
                 betlistFixture.ExcelBuilder,
                 betlistFixture.TicketHelper,

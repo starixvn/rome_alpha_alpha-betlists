@@ -1,7 +1,7 @@
 ﻿using Alpha.BetLists.Criteria.CasinoDetails;
 using Xunit;
 
-namespace Alpha.BetLists.Tests.Criteria.CasioDetails
+namespace Alpha.BetLists.Tests.Criteria.CasinoDetails
 {
     [Trait("Category", "CasinoDetails")]
     public class GetCasinoDetailsCriteriaTests

@@ -5,6 +5,7 @@
     using System.Reflection;
     using System.Web.Mvc;
     using BetLists.Models;
+    using Configurations;
     using Controllers;
     using DataAccesses;
     using Fanex.BetDetails.Casino.DataAccesses;
@@ -29,6 +30,7 @@
     using SimpleInjector.Integration.Web.Mvc;
     using SmartPunter.DataAccesses;
     using SmartPunter.Services;
+    using StaticData.Models;
     using Sunplus.Agent.Model.Base;
     using Sunplus.Agent.Model.Entities;
     using Sunplus.Agent.Model.Entities.Permission;
@@ -96,7 +98,15 @@
 
         private static void RegisterDataAccesses(Container container)
         {
-            container.Register<IDynamicRepository, DynamicRepository>(Lifestyle.Singleton);
+            if (AppSettings.EnabledStaticData)
+            {
+                StaticData.AppStart.DependencyRegister.Register(container);
+            }
+            else
+            {
+                container.Register<IDynamicRepository, DynamicRepository>(Lifestyle.Singleton);
+            }
+
             container.Register<ISmartPunterDataAccess, SmartPunterDataAccess>(Lifestyle.Singleton);            
             container.Register<ILucky3DataAccess, Lucky3DataAccess>(Lifestyle.Singleton);            
             container.Register<ICasinoDetailsDataAccess, CasinoDetailsDataAccess>(Lifestyle.Singleton);
@@ -106,7 +116,6 @@
         {
             container.RegisterSingleton<IUserSession, UserSessionExt>();
 #pragma warning restore CS0618 // Type or member is obsolete
-            container.RegisterSingleton<IUser, User>();
             container.Register<WinLossService, WinLossServiceImpl>(Lifestyle.Singleton);
             container.Register<ReportDateService, ReportDateServiceImpl>(Lifestyle.Singleton);
             container.Register<ParlayService, ParlayServiceImpl>(Lifestyle.Singleton);
@@ -148,6 +157,14 @@
             container.Register<RunningBetListByBetTypeService, RunningBetListByBetTypeServiceImpl>(Lifestyle.Singleton);
             container.Register<RunningBetListByBetTypeAndMatchService, RunningBetListByBetTypeAndMatchServiceImpl>(Lifestyle.Singleton);
             container.Register<RacingByMatchService, RacingByMatchServiceImpl>(Lifestyle.Singleton);
+            if (AppSettings.IsIntegrationTest)
+            {
+                container.RegisterSingleton<IUser, StaticUserSession>();
+            }
+            else
+            {
+                container.RegisterSingleton<IUser, User>();
+            }
         }
     }
 }

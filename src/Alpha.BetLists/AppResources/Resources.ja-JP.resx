@@ -296,4 +296,16 @@
   <data name="of" xml:space="preserve">
     <value>/</value>
   </data>
+  <data name="parlay" xml:space="preserve">
+    <value>ミックスパーレー</value>
+  </data>
+  <data name="agentptcomm" xml:space="preserve">
+    <value>Agent PT/ 手数料</value>
+  </data>
+  <data name="masterptcomm" xml:space="preserve">
+    <value>Master PT/ 手数料</value>
+  </data>
+  <data name="superptcomm" xml:space="preserve">
+    <value>Super PT/ 手数料</value>
+  </data>
 </root>

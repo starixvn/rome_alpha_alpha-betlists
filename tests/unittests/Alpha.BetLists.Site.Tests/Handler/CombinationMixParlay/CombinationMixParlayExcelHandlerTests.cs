@@ -46,7 +46,7 @@
                 betListFixture.HtmlBuilder,
                 betListFixture.ExcelBuilder,
                 betListFixture.TicketHelper,
-                betListFixture.MoniterService,
+                betListFixture.MonitorService,
                 betListFixture.IpService,
                 workbook);
             handler.MapPath = (path) => path;
@@ -92,7 +92,7 @@
             handler.Handle(message).GetAwaiter().GetResult();
 
             // Assert
-            workbook.Received().Title(Arg.Is("SYSTEM PARLAY"));
+            workbook.Received().Title(Arg.Is("PARLAY"));
         }
 
         [Fact]

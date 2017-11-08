@@ -26,6 +26,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TypeScriptToolsVersion>2.1</TypeScriptToolsVersion>
+    <WebGreaseLibPath>..\..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -68,16 +69,20 @@
       <HintPath>..\..\packages\Alpha.Utilities.IP.1.0.0.0\lib\net40\Alpha.Utilities.IP.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Alpha.Web, Version=1.0.0.7, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Alpha.Web.1.0.0.7\lib\net40\Alpha.Web.dll</HintPath>
+    <Reference Include="Alpha.Web, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Alpha.Web.1.0.1.0\lib\net40\Alpha.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Dapper, Version=1.50.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Dapper.1.50.2\lib\net451\Dapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.BetDetails.Casino, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetDetails.Casino.1.0.0.0\lib\net40\Fanex.BetDetails.Casino.dll</HintPath>
+    <Reference Include="Fanex.BetDetails.Casino, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetDetails.Casino.1.0.0.1\lib\net40\Fanex.BetDetails.Casino.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetDetails.Lucky3, Version=1.0.0.11, Culture=neutral, processorArchitecture=MSIL">
@@ -101,7 +106,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.BetTrade, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.Core.2.41.0\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
+      <HintPath>..\..\packages\Fanex.BetList.Core.2.43.0\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.CockFighting, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -112,8 +117,8 @@
       <HintPath>..\..\packages\Fanex.BetList.ColossusBets.1.0.1.8\lib\net40\Fanex.BetList.ColossusBets.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.BetList.Core, Version=2.41.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.Core.2.41.0\lib\net40\Fanex.BetList.Core.dll</HintPath>
+    <Reference Include="Fanex.BetList.Core, Version=2.43.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.Core.2.43.0\lib\net40\Fanex.BetList.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.GlobalGaming, Version=1.0.0.7, Culture=neutral, processorArchitecture=MSIL">
@@ -180,6 +185,10 @@
       <HintPath>..\..\packages\Fanex.Data.2.1.0.1\lib\net461\Fanex.Data.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Fanex.Data.CrossCutting.WrappingException, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Data.CrossCutting.WrappingException.1.0.0.3\lib\net461\Fanex.Data.CrossCutting.WrappingException.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Fanex.Data.OldConnectionStringProvider, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Data.OldConnectionStringProvider.1.0.1\lib\net461\Fanex.Data.OldConnectionStringProvider.dll</HintPath>
       <Private>True</Private>
@@ -188,8 +197,20 @@
       <HintPath>..\..\packages\Fanex.Data.Repository.1.0.2.1\lib\net461\Fanex.Data.Repository.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.Logging, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.Logging.1.0.1-beta2\lib\net461\Fanex.Logging.dll</HintPath>
+    <Reference Include="Fanex.Logging, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Logging.1.0.4\lib\net40\Fanex.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Fanex.Logging.Extensions, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Logging.Extensions.1.0.5\lib\net40\Fanex.Logging.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Fanex.Logging.Extensions.Database, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Logging.Extensions.Database.1.0.3\lib\net40\Fanex.Logging.Extensions.Database.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Fanex.Logging.Extensions.Web, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Logging.Extensions.Web.1.0.5\lib\net40\Fanex.Logging.Extensions.Web.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.Products, Version=0.0.0.1, Culture=neutral, processorArchitecture=MSIL">
@@ -209,16 +230,16 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EnterpriseLibrary.Common.5.0.414.0\lib\net40\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EnterpriseLibrary.Data.5.0.414.0\lib\net40\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EnterpriseLibrary.Logging.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EnterpriseLibrary.Logging.5.0.414.0\lib\net40\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -324,6 +345,10 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -333,6 +358,10 @@
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="TplCore, Version=1.0.4854.17253, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\TplCore.1.0.4854.17254\lib\net40\TplCore.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
@@ -573,6 +602,11 @@
     <Content Include="App_Data\ExcelTemplates\CancelledBet\Super.xls" />
     <Content Include="App_Data\activitytracking.json" />
     <Content Include="assets\styles\bet-details.scss" />
+    <Content Include="App_Data\ExcelData\Products.xls" />
+    <Content Include="App_Data\ExcelData\RunningBetlist.xls" />
+    <Content Include="App_Data\ExcelData\ScoreMaps.xls" />
+    <Content Include="App_Data\ExcelData\MemberBetlist.xls" />
+    <Content Include="App_Data\ExcelData\EmptyData.xls" />
     <Content Include="App_Data\ExcelTemplates\BetListByBetType\Agent.xls" />
     <Content Include="App_Data\ExcelTemplates\BetListByBetType\Master.xls" />
     <Content Include="App_Data\ExcelTemplates\BetListByBetType\Super.xls" />
@@ -592,6 +626,9 @@
     <Content Include="App_Data\ExcelTemplates\RacingByMatch\Master.xls" />
     <Content Include="App_Data\ExcelTemplates\RacingByMatch\Super.xls" />
     <Content Include="App_Code\Components\Pager.cshtml" />
+    <Content Include="App_Data\ExcelTemplates\CasinoDetails\Agent.xls" />
+    <Content Include="App_Data\ExcelTemplates\CasinoDetails\Master.xls" />
+    <Content Include="App_Data\ExcelTemplates\CasinoDetails\Super.xls" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -759,9 +796,11 @@
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
     <Content Include="tsconfig.json" />
+    <None Include="Web.AppSettings.auto.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </None>
     <Content Include="Views\CasinoDetails\Index.cshtml" />
     <Content Include="Views\CorrectScore\Index.cshtml" />
-    <Content Include="Views\MixParlay\Index.cshtml" />
     <Content Include="Views\Shared\TableWithoutWinLoss.cshtml" />
     <Content Include="Views\CombinationMixParlay\Index.cshtml" />
     <Content Include="Views\BetListByBetType\Index.cshtml" />
@@ -782,7 +821,6 @@
     <Compile Include="Controllers\MemberBetListController.cs" />
     <Compile Include="Controllers\LastBetsController.cs" />
     <Compile Include="Controllers\CasinoDetailsController.cs" />
-    <Compile Include="Controllers\MixParlayController.cs" />
     <Compile Include="Controllers\RacingByMatchController.cs" />
     <Compile Include="Controllers\RunningBetListController.cs" />
     <Compile Include="Controllers\CancelledBetController.cs" />
@@ -792,15 +830,15 @@
     <Compile Include="Handlers\BetListByBetType\BetListByBetTypeExcelHandler.cs" />
     <Compile Include="Handlers\CancelledBet\CancelledBetExcelHandler.cs" />
     <Compile Include="Handlers\CancelledBet\CancelledBetHandler.cs" />
-    <Compile Include="Handlers\CasinoDetails\CasinoDetailsHander.cs" />
+    <Compile Include="Handlers\CasinoDetails\CasinoDetailsExcelHandler.cs" />
+    <Compile Include="Handlers\CasinoDetails\CasinoDetailsHandler.cs" />
+    <Compile Include="Requests\CasinoDetails\CasinoDetailsExcelQuery.cs" />
     <Compile Include="Requests\CasinoDetails\CasinoDetailsQuery.cs" />
     <Compile Include="Handlers\BetListByBetType\BetListByBetTypeHandler.cs" />
     <Compile Include="Handlers\CombinationMixParlay\CombinationMixParlayExcelHandler.cs" />
     <Compile Include="Handlers\CombinationMixParlay\CombinationMixParlayHandler.cs" />
     <Compile Include="Handlers\CorrectScore\CorrectScoreExcelHandler.cs" />
     <Compile Include="Handlers\CorrectScore\CorrectScoreHandler.cs" />
-    <Compile Include="Handlers\MixParlay\MixParlayExcelHandler.cs" />
-    <Compile Include="Handlers\MixParlay\MixParlayHandler.cs" />
     <Compile Include="Handlers\RacingByMatch\RacingByMatchExcelHandler.cs" />
     <Compile Include="Handlers\RacingByMatch\RacingByMatchHandler.cs" />
     <Compile Include="Requests\BetListByBetTypeAndMatch\BetListByBetTypeAndMatchExcelQuery.cs" />
@@ -849,8 +887,6 @@
     <Compile Include="Requests\CorrectScore\CorrectScoreExcelQuery.cs" />
     <Compile Include="Requests\CorrectScore\CorrectScoreQuery.cs" />
     <Compile Include="Requests\MemberBetList\MemberBetListQuery.cs" />
-    <Compile Include="Requests\MixParlay\MixParlayExcelQuery.cs" />
-    <Compile Include="Requests\MixParlay\MixParlayQuery.cs" />
     <Compile Include="Requests\RacingByMatch\RacingByMatchExcelQuery.cs" />
     <Compile Include="Requests\RacingByMatch\RacingByMatchQuery.cs" />
     <Compile Include="Requests\RunningBetList\RunningBetListQuery.cs" />
@@ -880,7 +916,6 @@
     <Compile Include="ViewModels\CorrectScore\CorrectScoreViewModel.cs" />
     <Compile Include="ViewModels\ExcelFileViewModel.cs" />
     <Compile Include="ViewModels\MemberBetList\MemberBetListViewModel.cs" />
-    <Compile Include="ViewModels\MixParlay\MixParlayViewModel.cs" />
     <Compile Include="ViewModels\RacingByMatch\RacingByMatchViewModel.cs" />
     <Compile Include="ViewModels\RunningBetList\RunningBetListViewModel.cs" />
     <Compile Include="ViewModels\LastBets\BetDataViewModel.cs" />
@@ -912,6 +947,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\tests\unittests\Alpha.BetLists.StaticData\Alpha.BetLists.StaticData.csproj">
+      <Project>{ad46527d-6231-4087-a84c-6ff70189ef78}</Project>
+      <Name>Alpha.BetLists.StaticData</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Alpha.BetLists.Builders\Alpha.BetLists.Builders.csproj">
       <Project>{c4d18432-0c45-40e3-b851-30ddf6e809ea}</Project>
       <Name>Alpha.BetLists.Builders</Name>

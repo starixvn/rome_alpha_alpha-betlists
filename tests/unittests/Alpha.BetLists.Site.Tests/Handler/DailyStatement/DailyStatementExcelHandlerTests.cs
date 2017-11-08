@@ -47,7 +47,7 @@
                 betlistFixture.HtmlBuilder,
                 betlistFixture.ExcelBuilder,
                 betlistFixture.TicketHelper,
-                betlistFixture.MoniterService,
+                betlistFixture.MonitorService,
                 betlistFixture.IpService,
                 workbook)
             {
