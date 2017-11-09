@@ -32,6 +32,9 @@
         [ThreadStatic]
         private static bool isShowRacing;
 
+        [ThreadStatic]
+        private static bool isShowBullfighting;
+
         public static void SetValues(
             int id,
             string name,
@@ -41,7 +44,8 @@
             bool isInternal,
             bool isAdminCanViewVNIP,
             string langKey,
-            bool isShowRacing)
+            bool isShowRacing,
+            bool isShowBullfighting)
         {
             StaticUserSession.id = id;
             StaticUserSession.name = name;
@@ -52,6 +56,7 @@
             StaticUserSession.isAdminCanViewVNIP = isAdminCanViewVNIP;
             StaticUserSession.langKey = langKey;
             StaticUserSession.isShowRacing = isShowRacing;
+            StaticUserSession.isShowBullfighting = isShowBullfighting;
         }
 
         public int Id => id;
@@ -71,5 +76,7 @@
         public string LangKey => langKey;
 
         public bool IsShowRacing => isShowRacing;
+
+        public bool IsShowBullfighting => isShowBullfighting;
     }
 }

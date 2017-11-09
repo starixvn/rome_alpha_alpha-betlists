@@ -633,6 +633,9 @@
     <Content Include="App_Data\ExcelTemplates\CasinoDetails\Agent.xls" />
     <Content Include="App_Data\ExcelTemplates\CasinoDetails\Master.xls" />
     <Content Include="App_Data\ExcelTemplates\CasinoDetails\Super.xls" />
+    <Content Include="App_Data\ExcelTemplates\BullfightingByMatch\Agent.xls" />
+    <Content Include="App_Data\ExcelTemplates\BullfightingByMatch\Master.xls" />
+    <Content Include="App_Data\ExcelTemplates\BullfightingByMatch\Super.xls" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -800,6 +803,7 @@
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
     <Content Include="tsconfig.json" />
+    <Content Include="Views\BullfightingByMatch\Index.cshtml" />
     <None Include="Web.AppSettings.auto.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </None>
@@ -818,6 +822,7 @@
     <Compile Include="Controllers\BetListBaseController.cs" />
     <Compile Include="Controllers\BetListByBetTypeAndMatchController.cs" />
     <Compile Include="Controllers\BetListByBetTypeController.cs" />
+    <Compile Include="Controllers\CancelledBetController.cs" />
     <Compile Include="Controllers\DailyStatementController.cs" />
     <Compile Include="Controllers\Lucky3Controller.cs" />
     <Compile Include="Controllers\CombinationMixParlayController.cs" />
@@ -825,9 +830,9 @@
     <Compile Include="Controllers\MemberBetListController.cs" />
     <Compile Include="Controllers\LastBetsController.cs" />
     <Compile Include="Controllers\CasinoDetailsController.cs" />
+    <Compile Include="Controllers\BullfightingByMatchController.cs" />
     <Compile Include="Controllers\RacingByMatchController.cs" />
     <Compile Include="Controllers\RunningBetListController.cs" />
-    <Compile Include="Controllers\CancelledBetController.cs" />
     <Compile Include="Handlers\BetListByBetTypeAndMatch\BetListByBetTypeAndMatchExcelHandler.cs" />
     <Compile Include="Handlers\BetListByBetTypeAndMatch\BetListByBetTypeAndMatchHandler.cs" />
     <Compile Include="Handlers\BetListByBetType\BetListByBetTypeExcelBaseHandler.cs" />
@@ -836,6 +841,8 @@
     <Compile Include="Handlers\CancelledBet\CancelledBetHandler.cs" />
     <Compile Include="Handlers\CasinoDetails\CasinoDetailsExcelHandler.cs" />
     <Compile Include="Handlers\CasinoDetails\CasinoDetailsHandler.cs" />
+    <Compile Include="Handlers\BullfightingByMatch\BullfightingByMatchExcelHandler.cs" />
+    <Compile Include="Handlers\BullfightingByMatch\BullfightingByMatchHandler.cs" />
     <Compile Include="Requests\CasinoDetails\CasinoDetailsExcelQuery.cs" />
     <Compile Include="Requests\CasinoDetails\CasinoDetailsQuery.cs" />
     <Compile Include="Handlers\BetListByBetType\BetListByBetTypeHandler.cs" />
@@ -891,6 +898,8 @@
     <Compile Include="Requests\CorrectScore\CorrectScoreExcelQuery.cs" />
     <Compile Include="Requests\CorrectScore\CorrectScoreQuery.cs" />
     <Compile Include="Requests\MemberBetList\MemberBetListQuery.cs" />
+    <Compile Include="Requests\BullfightingByMatch\BullfightingByMatchExcelQuery.cs" />
+    <Compile Include="Requests\BullfightingByMatch\BullfightingByMatchQuery.cs" />
     <Compile Include="Requests\RacingByMatch\RacingByMatchExcelQuery.cs" />
     <Compile Include="Requests\RacingByMatch\RacingByMatchQuery.cs" />
     <Compile Include="Requests\RunningBetList\RunningBetListQuery.cs" />
@@ -920,6 +929,7 @@
     <Compile Include="ViewModels\CorrectScore\CorrectScoreViewModel.cs" />
     <Compile Include="ViewModels\ExcelFileViewModel.cs" />
     <Compile Include="ViewModels\MemberBetList\MemberBetListViewModel.cs" />
+    <Compile Include="ViewModels\BullfightingByMatch\BullfightingByMatchViewModel.cs" />
     <Compile Include="ViewModels\RacingByMatch\RacingByMatchViewModel.cs" />
     <Compile Include="ViewModels\RunningBetList\RunningBetListViewModel.cs" />
     <Compile Include="ViewModels\LastBets\BetDataViewModel.cs" />

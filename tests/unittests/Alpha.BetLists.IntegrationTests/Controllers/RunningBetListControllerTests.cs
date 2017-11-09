@@ -27,7 +27,7 @@
             AppHost.Start(session =>
             {
                 // Arrange
-                StaticUserSession.SetValues(0, string.Empty, "en", 4, 1, false, false, "E", false);
+                StaticUserSession.SetValues(0, string.Empty, "en", 4, 1, false, false, "E", false, false);
                 SystemTime.Today = new DateTime(2017, 7, 27);
                 StaticDataMapper.CriteriaMaps["GetBetListRunningByDateCriteria"] = dataFileName;
 
@@ -48,7 +48,7 @@
             AppHost.Start(session =>
             {
                 // Arrange
-                StaticUserSession.SetValues(0, string.Empty, "en", 4, 1, false, false, "E", false);
+                StaticUserSession.SetValues(0, string.Empty, "en", 4, 1, false, false, "E", false, false);
                 SystemTime.Today = new DateTime(2017, 7, 27);
                 StaticDataMapper.CriteriaMaps["GetBetListRunningByDateCriteria"] = dataFileName;
 
