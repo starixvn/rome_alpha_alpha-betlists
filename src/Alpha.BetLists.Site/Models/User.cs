@@ -36,6 +36,6 @@
 
         public bool IsShowRacing => UserPermission.IsShowRacing;
 
-        public bool IsShowBullfighting => UserPermission.HasPermissionOnProduct(ProductIdConstants.Bullfighting);
+        public bool HasPermissionOnProduct(int productId) => UserPermission.HasPermissionOnProduct(productId);
     }
 }

@@ -33,7 +33,7 @@
         private static bool isShowRacing;
 
         [ThreadStatic]
-        private static bool isShowBullfighting;
+        private static Func<int, bool> hasPermissionOnProduct;
 
         public static void SetValues(
             int id,
@@ -45,7 +45,7 @@
             bool isAdminCanViewVNIP,
             string langKey,
             bool isShowRacing,
-            bool isShowBullfighting)
+            Func<int, bool> hasPermissionOnProduct)
         {
             StaticUserSession.id = id;
             StaticUserSession.name = name;
@@ -56,7 +56,7 @@
             StaticUserSession.isAdminCanViewVNIP = isAdminCanViewVNIP;
             StaticUserSession.langKey = langKey;
             StaticUserSession.isShowRacing = isShowRacing;
-            StaticUserSession.isShowBullfighting = isShowBullfighting;
+            StaticUserSession.hasPermissionOnProduct = hasPermissionOnProduct;
         }
 
         public int Id => id;
@@ -77,6 +77,6 @@
 
         public bool IsShowRacing => isShowRacing;
 
-        public bool IsShowBullfighting => isShowBullfighting;
+        public bool HasPermissionOnProduct(int productId) => hasPermissionOnProduct(productId);
     }
 }

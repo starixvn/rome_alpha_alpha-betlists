@@ -1,4 +1,4 @@
-﻿namespace Alpha.BetLists.Site.Handlers.RacingByMatch
+﻿namespace Alpha.BetLists.Site.Handlers.BullfightingByMatch
 {
     using System.Threading.Tasks;
     using BetLists.Models;
@@ -12,38 +12,38 @@
     using Utilities.IP;
     using ViewModels.BullfightingByMatch;
 
-    public class BullfightingByMatchHandler : BetListBaseHandler, IAsyncRequestHandler<BullfightingByMatchQuery, BullfightingByMatchViewModel>
+    public class BullfightingByMatchHandler : IAsyncRequestHandler<BullfightingByMatchQuery, BullfightingByMatchViewModel>
     {        
         private readonly BullfightingByMatchService service;
+        private readonly IBetListHTMLBuilder builder;
+        private readonly ITicketHelper ticketHelper;        
 
         public BullfightingByMatchHandler(
             BullfightingByMatchService service,            
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper,
-            ISmartPunterBetListMonitor monitorService,
             IPService ipService)
-            : base(builder, ticketHelper, monitorService, ipService)
-        {            
+        {
             this.service = service;
-        }
+            this.builder = builder;
+            this.ticketHelper = ticketHelper;            
+            this.ticketHelper.IsVnIp = ipService.IsVNIP;
+        }       
 
         public async Task<BullfightingByMatchViewModel> Handle(BullfightingByMatchQuery message)
         {
-            var param = CreateRacingByMatchParam(message);
-
-            var tickets = await service.GetBetList(param);            
-
-            WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, tickets);
+            var param = CreateParam(message);
+            var tickets = await service.GetBetList(param);
 
             return new BullfightingByMatchViewModel(
                 message,
                 new BetListData(tickets, null),
-                Builder,
-                TicketHelper);
+                builder,
+                ticketHelper);
         }
 
-        protected internal static BullfightingByMatchParam CreateRacingByMatchParam(BullfightingByMatchQuery message)
-            => new BullfightingByMatchParam(
+        protected internal static BullfightingByMatchParam CreateParam(BullfightingByMatchQuery message)
+            => new BullfightingByMatchParam(                
                 message.ViewerId,                
                 message.MatchId,
                 message.ViewerLevel);

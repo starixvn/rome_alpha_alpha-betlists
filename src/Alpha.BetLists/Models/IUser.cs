@@ -19,7 +19,7 @@
         string LangKey { get; }
 
         bool IsShowRacing { get; }
-
-        bool IsShowBullfighting { get; }
+        
+        bool HasPermissionOnProduct(int productId);
     }
 }

@@ -8,6 +8,7 @@
     using StaticData.Models;
     using Utils;
     using Xunit;
+    using System.Linq;
 
     [Trait("Integration", "MemberBetList")]
     public class MemberBetListControllerTests : BaseBetListsIntegrationTest
@@ -27,7 +28,8 @@
             AppHost.Start(session =>
             {
                 // Arrange
-                StaticUserSession.SetValues(0, string.Empty, "en", 4, 1, false, false, "E", false, false);
+                Func<int, bool> hasPermissionOnProduct = s => false;
+                StaticUserSession.SetValues(0, string.Empty, "en", 4, 1, false, false, "E", false, hasPermissionOnProduct);
                 SystemTime.Today = new DateTime(2017, 7, 27);
                 StaticDataMapper.CriteriaMaps["GetBetListAllByDateCriteria"] = dataFileName;
 

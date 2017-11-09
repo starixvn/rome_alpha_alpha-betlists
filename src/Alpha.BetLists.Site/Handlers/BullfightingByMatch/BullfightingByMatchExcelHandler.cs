@@ -1,4 +1,4 @@
-﻿namespace Alpha.BetLists.Site.Handlers.RacingByMatch
+﻿namespace Alpha.BetLists.Site.Handlers.BullfightingByMatch
 {
     using System.Threading.Tasks;
     using AppResources;
@@ -40,7 +40,7 @@
 
         public async Task<ExcelFileViewModel> Handle(BullfightingByMatchExcelQuery message)
         {
-            var param = BullfightingByMatchHandler.CreateRacingByMatchParam(message);
+            var param = BullfightingByMatchHandler.CreateParam(message);
             var tickets = await service.GetBetList(param);
 
             var viewModel = new BullfightingByMatchViewModel(message, new BetListData(tickets, null), null, TicketHelper);

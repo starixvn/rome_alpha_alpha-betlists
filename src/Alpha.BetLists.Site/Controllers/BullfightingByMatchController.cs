@@ -2,6 +2,7 @@
 {
     using System.Threading.Tasks;
     using System.Web.Mvc;
+    using BetLists.Constants;
     using BetLists.Models;
     using MediatR;
     using Requests.BullfightingByMatch;
@@ -10,7 +11,7 @@
     {
         private readonly IUser viewer;
 
-        public BullfightingByMatchController(IMediator mediator, IUser viewer) 
+        public BullfightingByMatchController(IMediator mediator, IUser viewer)
             : base(mediator)
         {
             this.viewer = viewer;
@@ -26,7 +27,7 @@
         {
             base.OnAuthorization(filterContext);
 
-            if(!viewer.IsShowBullfighting)
+            if (!viewer.HasPermissionOnProduct(ProductIdConstants.Bullfighting))
             {
                 UnAuthentication(filterContext);
             }

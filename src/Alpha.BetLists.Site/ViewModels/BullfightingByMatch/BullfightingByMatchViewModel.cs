@@ -31,8 +31,6 @@
             Title = Resources.Bullfighting.ToUpperInvariant();
         }        
 
-        public int MatchId { get; }
-
-        public override bool CanViewScoreMap(ITicket ticket) => false;
+        public int MatchId { get; }        
     }
 }
