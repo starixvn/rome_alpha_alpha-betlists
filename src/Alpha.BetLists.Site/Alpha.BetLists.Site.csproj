@@ -551,7 +551,6 @@
     <Content Include="assets\styles\last-bets.min.css">
       <DependentUpon>last-bets.css</DependentUpon>
     </Content>
-    <Content Include="Content\lucky3.css" />
     <Content Include="Global.asax" />
     <Content Include="App_Data\SPNames\Local\DBARC.bodb_Archive.BODBDownlineNet.xml" />
     <Content Include="App_Code\Blocks\Trans.cshtml" />
