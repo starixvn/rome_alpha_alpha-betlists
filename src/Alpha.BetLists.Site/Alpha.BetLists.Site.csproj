@@ -137,8 +137,8 @@
       <HintPath>..\..\packages\Fanex.BetList.KenoLottery.1.0.0\lib\net40\Fanex.BetList.KenoLottery.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.BetList.Lucky3, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.Lucky3.1.0.0\lib\net40\Fanex.BetList.Lucky3.dll</HintPath>
+    <Reference Include="Fanex.BetList.Lucky3, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.Lucky3.1.1.0\lib\net40\Fanex.BetList.Lucky3.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.MetricGaming, Version=1.0.4.5, Culture=neutral, processorArchitecture=MSIL">
@@ -551,6 +551,7 @@
     <Content Include="assets\styles\last-bets.min.css">
       <DependentUpon>last-bets.css</DependentUpon>
     </Content>
+    <Content Include="Content\lucky3.css" />
     <Content Include="Global.asax" />
     <Content Include="App_Data\SPNames\Local\DBARC.bodb_Archive.BODBDownlineNet.xml" />
     <Content Include="App_Code\Blocks\Trans.cshtml" />
