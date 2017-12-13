@@ -18,6 +18,7 @@
     using ONEbook.UM.Filters;
     using Sunplus.Agent.Model.Entities;
     using Web;
+    using Web.Filters;
     using Web.Helpers;
 
     public class MvcApplication : System.Web.HttpApplication
@@ -48,6 +49,7 @@
             {
                 GlobalFilters.Filters.Add(new CheckUMFilter());
                 GlobalFilters.Filters.Add(new CheckBelongingFilter());
+                GlobalFilters.Filters.Add(new NoCacheFilter());
             }
 
             ModelBinders.Binders.DefaultBinder = new QueryEntityModelBinder();
