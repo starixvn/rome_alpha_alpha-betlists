@@ -7,11 +7,17 @@
         private static allbetResult: ResultDetails;
         private static rngCasinoResult: ResultDetails;
         private static fishingWorldResult: ResultDetails;
+        private static bullfightingResult: ResultDetails;
         private static macauGamesResult: ResultDetails;
         private static fastMarketsResult: ResultDetails;
         private static ppResult: ResultDetails;
 
         public static CreateInstance(betTypeId: number): ResultDetails {
+            if (betTypeId === 1004) {
+                this.bullfightingResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.bullfightingResult) ? new BullfightingResultDetails() : this.bullfightingResult;
+                return this.bullfightingResult;
+            }
+
             if (betTypeId >= 2501 && betTypeId <= 2699) {
                 this.ng2Result = Common.Utils.IsNullOrUndefinedOrEmpty(this.ng2Result) ? new NG2ResultDetails() : this.ng2Result;
                 return this.ng2Result;

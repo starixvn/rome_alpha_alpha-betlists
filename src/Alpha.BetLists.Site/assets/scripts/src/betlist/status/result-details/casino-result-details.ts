@@ -105,4 +105,23 @@
             Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/Index' + params, "", 835, 675);
         }
     }
+    
+    export class BullfightingResultDetails extends BaseResultDetails implements ResultDetails {
+        public ViewResultDetails = (
+            matchId?: number,
+            race?: number,
+            betTypeId?: number,
+            sportTypeId?: number,
+            refNo?: string,
+            userName?: string,
+            winLostDate?: Date,
+            refNoMixParlay?: number,
+            league?: number,
+            isOutright?: boolean,
+            betId?: number,
+            betCheck?: string) => {
+            var params = '?custId=' + this.CustId + '&roleId=' + this.ViewerLevelId + '&gameId=' + refNo + '&productId=30';
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/Popup' + params, "", 835, 675);
+        }
+    }
 }
