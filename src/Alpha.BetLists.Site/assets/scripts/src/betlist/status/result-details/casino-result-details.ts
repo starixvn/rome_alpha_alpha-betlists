@@ -36,7 +36,7 @@
             betId?: number,
             betCheck?: string) => {
             var params = '?gameId=' + refNo + '&roleId=' + this.ViewerLevelId + '&productId=6';
-            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/Index' + params, "", 835, 675);
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/Detail' + params, "", 835, 675);
         }
     }
 
@@ -58,7 +58,7 @@
                 '&roleId=' + this.ViewerLevelId +
                 '&gameId=' + refNo +
                 '&productId=22';
-            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/Index' + params, "", 835, 675);
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/Detail' + params, "", 835, 675);
         }
     }
 
@@ -80,7 +80,7 @@
                 '&roleId=' + this.ViewerLevelId +
                 '&gameId=' + betCheck +
                 '&productId=24';
-            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/Index' + params, "", 835, 675);
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/Detail' + params, "", 835, 675);
         }
     }
 
@@ -102,7 +102,7 @@
                 '&roleId=' + this.ViewerLevelId +
                 '&gameId=' + betCheck +
                 '&productId=32';
-            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/Index' + params, "", 835, 675);
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/Detail' + params, "", 835, 675);
         }
     }
     
@@ -121,7 +121,7 @@
             betId?: number,
             betCheck?: string) => {
             var params = '?custId=' + this.CustId + '&roleId=' + this.ViewerLevelId + '&gameId=' + refNo + '&productId=30';
-            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/Popup' + params, "", 835, 675);
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/Detail' + params, "", 835, 675);
         }
     }
 }
