@@ -322,12 +322,12 @@
       <HintPath>..\..\packages\SPSRemoting.1.0.0\lib\net40\SPSRemoting.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sunplus.Agent.Model.Base, Version=3.0.3.3, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Sunplus.Agent.Model.Base.3.0.3.3\lib\net40\Sunplus.Agent.Model.Base.dll</HintPath>
+    <Reference Include="Sunplus.Agent.Model.Base, Version=3.0.3.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Sunplus.Agent.Model.Base.3.0.3.4-HideInactiveProduct-06\lib\net40\Sunplus.Agent.Model.Base.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sunplus.Agent.Model.Definitions, Version=3.0.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Sunplus.Agent.Model.Definitions.3.0.2.0\lib\net40\Sunplus.Agent.Model.Definitions.dll</HintPath>
+    <Reference Include="Sunplus.Agent.Model.Definitions, Version=3.0.2.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Sunplus.Agent.Model.Definitions.3.0.2.1-HideInactiveProduct-03\lib\net40\Sunplus.Agent.Model.Definitions.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Sunplus.Agent.Model.IpFormatter, Version=3.0.0.1, Culture=neutral, processorArchitecture=MSIL">
@@ -630,9 +630,6 @@
     <Content Include="App_Data\ExcelTemplates\BetListByBetTypeAndMatch\Agent.xls" />
     <Content Include="App_Data\ExcelTemplates\BetListByBetTypeAndMatch\Master.xls" />
     <Content Include="App_Data\ExcelTemplates\BetListByBetTypeAndMatch\Super.xls" />
-    <Content Include="App_Data\ExcelTemplates\RacingByMatch\Agent.xls" />
-    <Content Include="App_Data\ExcelTemplates\RacingByMatch\Master.xls" />
-    <Content Include="App_Data\ExcelTemplates\RacingByMatch\Super.xls" />
     <Content Include="App_Code\Components\Pager.cshtml" />
     <Content Include="App_Data\ExcelTemplates\CasinoDetails\Agent.xls" />
     <Content Include="App_Data\ExcelTemplates\CasinoDetails\Master.xls" />
@@ -817,7 +814,6 @@
     <Content Include="Views\CombinationMixParlay\Index.cshtml" />
     <Content Include="Views\BetListByBetType\Index.cshtml" />
     <Content Include="Views\BetListByBetTypeAndMatch\Index.cshtml" />
-    <Content Include="Views\RacingByMatch\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\DependencyConfig.cs" />
@@ -835,7 +831,6 @@
     <Compile Include="Controllers\LastBetsController.cs" />
     <Compile Include="Controllers\CasinoDetailsController.cs" />
     <Compile Include="Controllers\BullfightingByMatchController.cs" />
-    <Compile Include="Controllers\RacingByMatchController.cs" />
     <Compile Include="Controllers\RunningBetListController.cs" />
     <Compile Include="Handlers\BetListByBetTypeAndMatch\BetListByBetTypeAndMatchExcelHandler.cs" />
     <Compile Include="Handlers\BetListByBetTypeAndMatch\BetListByBetTypeAndMatchHandler.cs" />
@@ -854,8 +849,6 @@
     <Compile Include="Handlers\CombinationMixParlay\CombinationMixParlayHandler.cs" />
     <Compile Include="Handlers\CorrectScore\CorrectScoreExcelHandler.cs" />
     <Compile Include="Handlers\CorrectScore\CorrectScoreHandler.cs" />
-    <Compile Include="Handlers\RacingByMatch\RacingByMatchExcelHandler.cs" />
-    <Compile Include="Handlers\RacingByMatch\RacingByMatchHandler.cs" />
     <Compile Include="Requests\BetListByBetTypeAndMatch\BetListByBetTypeAndMatchExcelQuery.cs" />
     <Compile Include="Requests\BetListByBetTypeAndMatch\BetListByBetTypeAndMatchQuery.cs" />
     <Compile Include="Requests\CancelledBet\CancelledBetBaseQuery.cs" />
@@ -904,8 +897,6 @@
     <Compile Include="Requests\MemberBetList\MemberBetListQuery.cs" />
     <Compile Include="Requests\BullfightingByMatch\BullfightingByMatchExcelQuery.cs" />
     <Compile Include="Requests\BullfightingByMatch\BullfightingByMatchQuery.cs" />
-    <Compile Include="Requests\RacingByMatch\RacingByMatchExcelQuery.cs" />
-    <Compile Include="Requests\RacingByMatch\RacingByMatchQuery.cs" />
     <Compile Include="Requests\RunningBetList\RunningBetListQuery.cs" />
     <Compile Include="Requests\LastBets\CheckCanViewLastBetsQuery.cs" />
     <Compile Include="Requests\LastBets\GetLastBetsQuery.cs" />
@@ -934,7 +925,6 @@
     <Compile Include="ViewModels\ExcelFileViewModel.cs" />
     <Compile Include="ViewModels\MemberBetList\MemberBetListViewModel.cs" />
     <Compile Include="ViewModels\BullfightingByMatch\BullfightingByMatchViewModel.cs" />
-    <Compile Include="ViewModels\RacingByMatch\RacingByMatchViewModel.cs" />
     <Compile Include="ViewModels\RunningBetList\RunningBetListViewModel.cs" />
     <Compile Include="ViewModels\LastBets\BetDataViewModel.cs" />
     <Compile Include="ViewModels\LastBets\LastBetsViewModel.cs" />

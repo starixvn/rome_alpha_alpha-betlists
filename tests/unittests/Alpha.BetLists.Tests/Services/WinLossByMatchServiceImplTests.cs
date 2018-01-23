@@ -53,13 +53,7 @@
                 BetListDataTest.TicketData.SequenceEqual(actualBetListData.TicketData));
         }
 
-        [Theory]
-        [InlineData(BetTypeIdConstants.HorseRacing_Win)]
-        [InlineData(BetTypeIdConstants.HorseRacing_Place)]
-        [InlineData(BetTypeIdConstants.HorseRacing_WinPlace)]
-        [InlineData(BetTypeIdConstants.HorseRacingTote_Win)]
-        [InlineData(BetTypeIdConstants.HorseRacingTote_Place)]
-        [InlineData(BetTypeIdConstants.HorseRacingTote_WinPlace)]
+        [Theory]       
         [InlineData(BetTypeIdConstants.VirtualHorseRacing_Win)]
         [InlineData(BetTypeIdConstants.VirtualHorseRacing_Place)]
         [InlineData(BetTypeIdConstants.VirtualHorseRacing_WinPlace)]

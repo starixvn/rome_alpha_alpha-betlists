@@ -11,8 +11,6 @@
             CreateTicketDto(BetTypeIdConstants.Outright),
             CreateTicketDto(BetTypeIdConstants.Handicap),
             CreateTicketDto(BetTypeIdConstants.VirtualHorseRacing_Win),
-            CreateTicketDto(BetTypeIdConstants.HorseRacing_Win, 1000),
-            CreateTicketDto(BetTypeIdConstants.HorseRacing_Win, 1001),
             CreateTicketDto(BetTypeIdConstants.Handicap, 1002),
             CreateTicketDto(BetTypeIdConstants.Outright, 1003)
         };

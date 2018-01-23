@@ -34,8 +34,6 @@
 
         public string LangKey => userSession.LangKey;
 
-        public bool IsShowRacing => UserPermission.IsShowRacing;
-
         public bool HasPermissionOnProduct(int productId) => UserPermission.HasPermissionOnProduct(productId);
     }
 }

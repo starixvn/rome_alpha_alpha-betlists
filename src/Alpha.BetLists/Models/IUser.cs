@@ -18,8 +18,6 @@
 
         string LangKey { get; }
 
-        bool IsShowRacing { get; }
-        
         bool HasPermissionOnProduct(int productId);
     }
 }

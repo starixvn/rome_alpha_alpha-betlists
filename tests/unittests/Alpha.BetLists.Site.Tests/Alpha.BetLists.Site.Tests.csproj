@@ -185,12 +185,12 @@
       <HintPath>..\..\..\packages\SPSRemoting.1.0.0\lib\net40\SPSRemoting.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sunplus.Agent.Model.Base, Version=3.0.3.3, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Sunplus.Agent.Model.Base.3.0.3.3\lib\net40\Sunplus.Agent.Model.Base.dll</HintPath>
+    <Reference Include="Sunplus.Agent.Model.Base, Version=3.0.3.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Sunplus.Agent.Model.Base.3.0.3.4-HideInactiveProduct-06\lib\net40\Sunplus.Agent.Model.Base.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sunplus.Agent.Model.Definitions, Version=3.0.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Sunplus.Agent.Model.Definitions.3.0.2.0\lib\net40\Sunplus.Agent.Model.Definitions.dll</HintPath>
+    <Reference Include="Sunplus.Agent.Model.Definitions, Version=3.0.2.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Sunplus.Agent.Model.Definitions.3.0.2.1-HideInactiveProduct-03\lib\net40\Sunplus.Agent.Model.Definitions.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Sunplus.Agent.Model.IpFormatter, Version=3.0.0.1, Culture=neutral, processorArchitecture=MSIL">
@@ -266,23 +266,22 @@
     <Compile Include="Collection\ParlayBetListCollection.cs" />
     <Compile Include="Collection\BetListCollection.cs" />
     <Compile Include="Constants\LanguageCode.cs" />
-    <Compile Include="Controllers\CasinoDetailsControllerTests.cs" />
     <Compile Include="Controllers\BetListByBetTypeAndMatchControllerTests.cs" />
     <Compile Include="Controllers\BetListByBetTypeControllerTests.cs" />
-    <Compile Include="Controllers\CombinationMixParlayControllerTests.cs" />
-    <Compile Include="Controllers\DailyStatementControllerTests.cs" />
-    <Compile Include="Controllers\Lucky3ControllerTests.cs" />
+    <Compile Include="Controllers\BullfightingByMatchControllerTests.cs" />
     <Compile Include="Controllers\CancelledBetControllerTests.cs" />
-    <Compile Include="Controllers\LastBetsControllerTests.cs" />
+    <Compile Include="Controllers\CasinoDetailsControllerTests.cs" />
+    <Compile Include="Controllers\CombinationMixParlayControllerTests.cs" />
     <Compile Include="Controllers\CorrectScoreControllerTests.cs" />
+    <Compile Include="Controllers\DailyStatementControllerTests.cs" />
+    <Compile Include="Controllers\LastBetsControllerTests.cs" />
+    <Compile Include="Controllers\Lucky3ControllerTests.cs" />
     <Compile Include="Controllers\MemberBetListControllerTests.cs" />
     <Compile Include="Controllers\ParlayControllerTests.cs" />
-    <Compile Include="Controllers\BullfightingByMatchControllerTests.cs" />
-    <Compile Include="Controllers\RacingByMatchControllerTests.cs" />
-    <Compile Include="Controllers\RunningBetListControllerTests.cs" />
     <Compile Include="Controllers\ParlayWinLossByMatchControllerTests.cs" />
-    <Compile Include="Controllers\WinLossControllerTests.cs" />
+    <Compile Include="Controllers\RunningBetListControllerTests.cs" />
     <Compile Include="Controllers\WinLossByMatchControllerTests.cs" />
+    <Compile Include="Controllers\WinLossControllerTests.cs" />
     <Compile Include="Fixtures\BetListFixture.cs" />
     <Compile Include="Fixtures\ParlayServiceFixture.cs" />
     <Compile Include="GlobalSuppressions.cs" />
@@ -307,8 +306,6 @@
     <Compile Include="Handler\MemberBetList\MemberBetListHandlerTests.cs" />
     <Compile Include="Handler\BullfightingByMatch\BullfightingByMatchExcelHandlerTests.cs" />
     <Compile Include="Handler\BullfightingByMatch\BullfightingByMatchHandlerTests.cs" />
-    <Compile Include="Handler\RacingByMatch\RacingByMatchExcelHandlerTests.cs" />
-    <Compile Include="Handler\RacingByMatch\RacingByMatchHandlerTests.cs" />
     <Compile Include="Handler\RunningBetList\RunningBetListHandlerTests.cs" />
     <Compile Include="Handler\ParlayWinLossByMatch\ParlayWinLossByMatchExcelHanlderTests.cs" />
     <Compile Include="Handler\ParlayWinLossByMatch\ParlayWinLossByMatchHanlderTests.cs" />
@@ -346,7 +343,6 @@
     <Compile Include="ViewModels\Parlay\ComboParlayDetailViewModelTests.cs" />
     <Compile Include="ViewModels\Parlay\ComboParlayDetailWrapperTests.cs" />
     <Compile Include="ViewModels\Parlay\ComboParlayViewModelTests.cs" />
-    <Compile Include="ViewModels\RacingByMatch\RacingByMatchViewModelTests.cs" />
     <Compile Include="ViewModels\RunningBetList\RunningBetListViewModelTests.cs" />
     <Compile Include="ViewModels\WinLoss\WinLossViewModelTests.cs" />
   </ItemGroup>
