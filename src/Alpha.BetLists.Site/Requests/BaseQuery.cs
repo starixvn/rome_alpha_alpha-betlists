@@ -17,6 +17,7 @@
             ViewerIdOrViewerAdminId = viewer.IsInternal ? viewer.AdminId : viewer.Id;
             DisplayVNIP = viewer.IsAdminCanViewVNIP;
             Language = viewer.Language;
+            IsEnabledJackpot = viewer.IsEnabledJackpot;
         }
 
         public int CustId { get; set; }
@@ -44,5 +45,7 @@
         public string Type { get; set; }
 
         public bool IsHistoricReport { get; set; }
+
+        public bool IsEnabledJackpot { get; set; }
     }
 }

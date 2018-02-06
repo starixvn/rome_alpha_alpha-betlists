@@ -1,6 +1,7 @@
 ﻿namespace Alpha.BetLists.StaticData.Models
 {
     using System;
+    using System.Collections.Generic;
     using BetLists.Models;
 
     public class StaticUserSession : IUser
@@ -77,6 +78,10 @@
 
         public bool IsShowRacing => isShowRacing;
 
+        public bool IsEnabledJackpot => false;
+
         public bool HasPermissionOnProduct(int productId) => hasPermissionOnProduct(productId);
+
+        public IList<int> GetEnableProductsForGame(string gameName) => new List<int>();
     }
 }

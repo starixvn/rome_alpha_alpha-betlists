@@ -25,5 +25,7 @@
         public bool AllowToViewMasterPT => baseQuery.ViewerLevel.IsMasterOrSuperLevel();
 
         public Footer Footer { get; }
+
+        public virtual bool CanViewContributionAmountRoundNote() => baseQuery.IsEnabledJackpot;
     }
 }

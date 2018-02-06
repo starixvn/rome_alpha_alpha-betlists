@@ -384,4 +384,7 @@
   <data name="Bullfighting" xml:space="preserve">
     <value>Bullfighting</value>
   </data>
+  <data name="ContributionAmountRoundNote" xml:space="preserve">
+    <value>Contribution amount on Jackpot games is rounded to 4 decimal places.</value>
+  </data>
 </root>

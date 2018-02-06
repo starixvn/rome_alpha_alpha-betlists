@@ -223,6 +223,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Contribution amount on Jackpot games is rounded to 4 decimal places..
+        /// </summary>
+        public static string ContributionAmountRoundNote {
+            get {
+                return ResourceManager.GetString("ContributionAmountRoundNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Daily Statement.
         /// </summary>
         public static string DailyStatement {

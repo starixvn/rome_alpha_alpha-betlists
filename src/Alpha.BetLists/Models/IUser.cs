@@ -1,4 +1,6 @@
-﻿namespace Alpha.BetLists.Models
+﻿using System.Collections.Generic;
+
+namespace Alpha.BetLists.Models
 {
     public interface IUser
     {
@@ -17,6 +19,11 @@
         bool IsAdminCanViewVNIP { get; }
 
         string LangKey { get; }
+
+
+        bool IsEnabledJackpot { get; }
+
+        IList<int> GetEnableProductsForGame(string gameName);
 
         bool HasPermissionOnProduct(int productId);
     }

@@ -1,6 +1,5 @@
 ﻿namespace Alpha.BetLists.Site.ViewModels.BullfightingByMatch
 {
-    using System.Collections.Generic;
     using AppResources;
     using BetListByBetType;
     using BetLists.Models;
@@ -23,5 +22,7 @@
         }
 
         public int MatchId { get; }
+
+        public override bool CanViewContributionAmountRoundNote() => false;
     }
 }

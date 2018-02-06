@@ -1,19 +1,20 @@
 ﻿namespace Alpha.BetLists.Site.Models
 {
-    using BetLists.Constants;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web;
     using BetLists.Models;
     using Sunplus.Agent.Model.Entities;
     using Sunplus.Agent.Model.Entities.Permission;
 
     public class User : IUser
     {
-#pragma warning disable CS0618 // Type or member is obsolete
-        private readonly IUserSession userSession;
-#pragma warning restore CS0618 // Type or member is obsolete
+        private const string Jackpot = "Jackpot";
+        private const string GameEnableSessionKey = "_GameEnable_";
 
-#pragma warning disable CS0618 // Type or member is obsolete
+        private readonly IUserSession userSession;
+
         public User(IUserSession userSession)
-#pragma warning restore CS0618 // Type or member is obsolete
         {
             this.userSession = userSession;
         }
@@ -34,6 +35,11 @@
 
         public string LangKey => userSession.LangKey;
 
+        public bool IsEnabledJackpot => GetEnableProductsForGame(Jackpot).Any();
+
         public bool HasPermissionOnProduct(int productId) => UserPermission.HasPermissionOnProduct(productId);
+
+        public IList<int> GetEnableProductsForGame(string gameName)
+            => (IList<int>)HttpContext.Current.Session[HttpContext.Current.Session.SessionID + GameEnableSessionKey + gameName];
     }
 }
