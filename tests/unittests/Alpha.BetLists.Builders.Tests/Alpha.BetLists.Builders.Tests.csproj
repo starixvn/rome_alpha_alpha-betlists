@@ -128,6 +128,7 @@
     <Compile Include="ExcelBuilders\BetListExcelBuilderExtTests.cs" />
     <Compile Include="HtmlBuilders\BetListHtmlBuilderExtTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PTComm\PTComm2198Tests.cs" />
     <Compile Include="PTComm\PTComm33Tests.cs" />
     <Compile Include="PTComm\PTComm71Tests.cs" />
     <Compile Include="PTComm\PTComm501Tests.cs" />

@@ -102,6 +102,7 @@
     <Compile Include="ExcelBuilders\BetListExcelBuilderExt.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="HtmlBuilders\BetListHtmlBuilderExt.cs" />
+    <Compile Include="PTComm\PTComm2198.cs" />
     <Compile Include="PTComm\PTComm33.cs" />
     <Compile Include="PTComm\PTComm71.cs" />
     <Compile Include="PTComm\PTComm501.cs" />

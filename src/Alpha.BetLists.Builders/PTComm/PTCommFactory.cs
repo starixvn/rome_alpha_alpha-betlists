@@ -28,6 +28,11 @@
                 return new PTComm71(ticket, userLevel).InitPtCommData();
             }
 
+            if (ticket.BetTypeId == 2198 || ticket.BetTypeId == 2398 || ticket.BetTypeId == 2998)
+            {
+                return new PTComm2198(ticket, userLevel).InitPtCommData();
+            }
+
             return new PTComm(ticket, userLevel).InitPtCommData();
         }
     }
