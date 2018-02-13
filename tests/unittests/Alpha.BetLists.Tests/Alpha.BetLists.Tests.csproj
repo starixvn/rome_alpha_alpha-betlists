@@ -197,6 +197,7 @@
     <Compile Include="Configurations\AppSettingsTests.cs" />
     <Compile Include="Constants\BetTypeIdConstants.cs" />
     <Compile Include="Constants\DefaultVariables.cs" />
+    <Compile Include="Criteria\JackpotDetails\GetJackpotDetailsCriteriaTests.cs" />
     <Compile Include="Criteria\Lucky3\GetLucky3DetailCriteriaTests.cs" />
     <Compile Include="Criteria\CasioDetails\GetCasinoDetailsCriteriaTests.cs" />
     <Compile Include="Criteria\DailyStatement\GetAllBetListByDayCriteriaTests.cs" />
@@ -250,6 +251,7 @@
     <Compile Include="Services\EncryptionServiceImplTests.cs" />
     <Compile Include="Services\ForecastServiceImplTests.cs" />
     <Compile Include="Services\CancelledBetServiceImplTests.cs" />
+    <Compile Include="Services\JackpotDetailsServiceImplTests.cs" />
     <Compile Include="Services\LastBetsServiceImplTests.cs" />
     <Compile Include="Services\MemberBetListServiceImplTests.cs" />
     <Compile Include="Services\BullfightingByMatchServiceImplTests.cs" />

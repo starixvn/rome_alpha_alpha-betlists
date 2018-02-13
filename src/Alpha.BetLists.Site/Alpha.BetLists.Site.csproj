@@ -412,6 +412,7 @@
     <Content Include="App_Data\activitytracking.uat.json">
       <DependentUpon>activitytracking.json</DependentUpon>
     </Content>
+    <Content Include="App_Data\SPNames\Internal\DBACC.bodb02.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Internal\DBAGE.bodb02.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Internal\DBAGE.bodb_AGE.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Internal\DBARC.bodb_Archive.BODBDownlineNetView.xml" />
@@ -420,6 +421,7 @@
     <Content Include="App_Data\SPNames\Internal\DBLOG.bodb_CustomerLog.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Internal\DBONUSER.ON_USER.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Internal\DBPOLICY.bodb02.BODBDownlineNetView.xml" />
+    <Content Include="App_Data\SPNames\Local\DBACC.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Local\DBAGE.bodb_AGE.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Local\DBCust.IPDB.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Local\DBPOLICY.bodb02.BODBDownlineNet.xml" />
@@ -427,6 +429,7 @@
     <Content Include="App_Data\SPNames\Local\DBAGE.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Local\DBLOG.bodb_CustomerLog.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Local\DBONUSER.ON_USER.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Pro\DBACC.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Pro\DBAGE.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Pro\DBAGE.bodb_AGE.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Pro\DBARC.bodb_Archive.BODBDownlineNet.xml" />
@@ -435,6 +438,7 @@
     <Content Include="App_Data\SPNames\Pro\DBLOG.bodb_CustomerLog.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Pro\DBONUSER.ON_USER.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Pro\DBPOLICY.bodb02.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\SIT\DBACC.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DBAGE.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DBAGE.bodb_AGE.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DBARC.bodb_Archive.BODBDownlineNet.xml" />
@@ -443,6 +447,7 @@
     <Content Include="App_Data\SPNames\SIT\DBLOG.bodb_CustomerLog.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DBONUSER.ON_USER.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DBPOLICY.bodb02.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\UAT\DBACC.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\UAT\DBAGE.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\UAT\DBAGE.bodb_AGE.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\UAT\DBARC.bodb_Archive.BODBDownlineNet.xml" />
@@ -805,6 +810,7 @@
     </Content>
     <Content Include="tsconfig.json" />
     <Content Include="Views\BullfightingByMatch\Index.cshtml" />
+    <Content Include="Views\JackpotDetails\Index.cshtml" />
     <None Include="Web.AppSettings.auto.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </None>
@@ -824,6 +830,7 @@
     <Compile Include="Controllers\BetListByBetTypeController.cs" />
     <Compile Include="Controllers\CancelledBetController.cs" />
     <Compile Include="Controllers\DailyStatementController.cs" />
+    <Compile Include="Controllers\JackpotDetailsController.cs" />
     <Compile Include="Controllers\Lucky3Controller.cs" />
     <Compile Include="Controllers\CombinationMixParlayController.cs" />
     <Compile Include="Controllers\CorrectScoreController.cs" />
@@ -842,6 +849,7 @@
     <Compile Include="Handlers\CasinoDetails\CasinoDetailsHandler.cs" />
     <Compile Include="Handlers\BullfightingByMatch\BullfightingByMatchExcelHandler.cs" />
     <Compile Include="Handlers\BullfightingByMatch\BullfightingByMatchHandler.cs" />
+    <Compile Include="Handlers\JackpotDetails\JackpotDetailsHandler.cs" />
     <Compile Include="Requests\CasinoDetails\CasinoDetailsExcelQuery.cs" />
     <Compile Include="Requests\CasinoDetails\CasinoDetailsQuery.cs" />
     <Compile Include="Handlers\BetListByBetType\BetListByBetTypeHandler.cs" />
@@ -888,6 +896,7 @@
     <Compile Include="Requests\BetListByBetType\BetListByBetTypeExcelQuery.cs" />
     <Compile Include="Requests\BetListByBetType\BetListByBetTypeQuery.cs" />
     <Compile Include="Requests\DailyStatement\DailyStatementExcelQuery.cs" />
+    <Compile Include="Requests\JackpotDetails\JackpotDetailsQuery.cs" />
     <Compile Include="Requests\Lucky3\Lucky3DetailQuery.cs" />
     <Compile Include="Requests\DailyStatement\DailyStatementQuery.cs" />
     <Compile Include="Requests\CombinationMixParlay\CombinationMixParlayExcelQuery.cs" />
@@ -923,6 +932,7 @@
     <Compile Include="ViewModels\DailyStatement\DailyStatementViewModel.cs" />
     <Compile Include="ViewModels\CorrectScore\CorrectScoreViewModel.cs" />
     <Compile Include="ViewModels\ExcelFileViewModel.cs" />
+    <Compile Include="ViewModels\JackpotDetails\JackpotDetailsViewModel.cs" />
     <Compile Include="ViewModels\MemberBetList\MemberBetListViewModel.cs" />
     <Compile Include="ViewModels\BullfightingByMatch\BullfightingByMatchViewModel.cs" />
     <Compile Include="ViewModels\RunningBetList\RunningBetListViewModel.cs" />

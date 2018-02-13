@@ -10,12 +10,12 @@
     using DataAccesses;
     using Fanex.BetDetails.Casino.DataAccesses;
     using Fanex.BetDetails.Casino.Services;
+    using Fanex.BetDetails.Lucky3.DataAccesses;
+    using Fanex.BetDetails.Lucky3.Services;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Factories;
     using Fanex.BetList.Core.TicketHelper;
-    using Fanex.BetDetails.Lucky3.DataAccesses;
-    using Fanex.BetDetails.Lucky3.Services;
     using Fanex.Data.Repository;
     using Handlers.Parlay;
     using Helpers;
@@ -107,27 +107,24 @@
                 container.Register<IDynamicRepository, DynamicRepository>(Lifestyle.Singleton);
             }
 
-            container.Register<ISmartPunterDataAccess, SmartPunterDataAccess>(Lifestyle.Singleton);            
-            container.Register<ILucky3DataAccess, Lucky3DataAccess>(Lifestyle.Singleton);            
+            container.Register<ISmartPunterDataAccess, SmartPunterDataAccess>(Lifestyle.Singleton);
+            container.Register<ILucky3DataAccess, Lucky3DataAccess>(Lifestyle.Singleton);
             container.Register<ICasinoDetailsDataAccess, CasinoDetailsDataAccess>(Lifestyle.Singleton);
         }
 
         private static void RegisterServices(Container container)
         {
             container.RegisterSingleton<IUserSession, UserSessionExt>();
-#pragma warning restore CS0618 // Type or member is obsolete
             container.Register<WinLossService, WinLossServiceImpl>(Lifestyle.Singleton);
             container.Register<ReportDateService, ReportDateServiceImpl>(Lifestyle.Singleton);
             container.Register<ParlayService, ParlayServiceImpl>(Lifestyle.Singleton);
             container.Register<ISmartPunterService, SmartPunterService>(Lifestyle.Singleton);
-#pragma warning disable CS0618 // Type or member is obsolete
             container.Register(
                 () => SmartPunterBetListMonitor.CreateInstance(
                     container.GetInstance<IUserSession>(),
                     container.GetInstance<ISmartPunterService>(),
                     IPHelper.CustomerIP),
                 Lifestyle.Singleton);
-#pragma warning restore CS0618 // Type or member is obsolete
 
             container.Register<IPService, Services.IPServiceImpl>(Lifestyle.Singleton);
 
@@ -157,6 +154,8 @@
             container.Register<RunningBetListByBetTypeService, RunningBetListByBetTypeServiceImpl>(Lifestyle.Singleton);
             container.Register<RunningBetListByBetTypeAndMatchService, RunningBetListByBetTypeAndMatchServiceImpl>(Lifestyle.Singleton);
             container.Register<BullfightingByMatchService, BullfightingByMatchServiceImpl>(Lifestyle.Singleton);
+            container.Register<JackpotDetailsService, JackpotDetailsServiceImpl>(Lifestyle.Singleton);
+
             if (AppSettings.IsIntegrationTest)
             {
                 container.RegisterSingleton<IUser, StaticUserSession>();

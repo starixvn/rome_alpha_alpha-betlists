@@ -274,6 +274,7 @@
     <Compile Include="Controllers\CombinationMixParlayControllerTests.cs" />
     <Compile Include="Controllers\CorrectScoreControllerTests.cs" />
     <Compile Include="Controllers\DailyStatementControllerTests.cs" />
+    <Compile Include="Controllers\JackpotDetailsControllerTests.cs" />
     <Compile Include="Controllers\LastBetsControllerTests.cs" />
     <Compile Include="Controllers\Lucky3ControllerTests.cs" />
     <Compile Include="Controllers\MemberBetListControllerTests.cs" />
@@ -292,6 +293,7 @@
     <Compile Include="Handler\BetListByBetType\BetListByBetTypeHandlerTests.cs" />
     <Compile Include="Handler\BetListExcelBaseHandlerTests.cs" />
     <Compile Include="Handler\CasinoDetails\CasinoDetailsHandlerExcelTests.cs" />
+    <Compile Include="Handler\JackpotDetails\JackpotDetailsHandlerTests.cs" />
     <Compile Include="Handler\Lucky3\Lucky3HanderTests.cs" />
     <Compile Include="Handler\CasinoDetails\CasinoDetailsHandlerTests.cs" />
     <Compile Include="Handler\CombinationMixParlay\CombinationMixParlayExcelHandlerTests.cs" />
