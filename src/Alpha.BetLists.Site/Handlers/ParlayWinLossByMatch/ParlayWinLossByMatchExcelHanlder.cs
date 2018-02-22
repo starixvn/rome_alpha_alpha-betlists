@@ -54,8 +54,6 @@
 
             var viewModel = new ParlayWinLossByMatchViewModel(message, new BetListData(tickets, null), null, TicketHelper);
 
-            winLossByMatchExcelHandler.SetCurrentRowIndex(rowIndex: 1);
-
             workbook = workbook.UseTemplate(winLossByMatchExcelHandler.GetTemplateInfo(message.CustLevel));
             winLossByMatchExcelHandler.RtfHelper = message.RtfHelper ?? InitRTFHelper((workbook as NpoiWorkbook<TicketDto>).Workbook);
 

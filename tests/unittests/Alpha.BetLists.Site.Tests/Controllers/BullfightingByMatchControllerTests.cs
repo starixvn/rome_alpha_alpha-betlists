@@ -6,6 +6,7 @@
     using Requests.BullfightingByMatch;
     using Site.Controllers;
     using Site.ViewModels;
+    using Site.ViewModels.BullfightingByMatch;
     using Xunit;
 
     [Trait("Category", "BullfightingByMatch")]
@@ -34,7 +35,7 @@
             controller.Index(message).GetAwaiter().GetResult();
 
             // Assert
-            mediator.Received().Send(message);
+            mediator.Received().Send<BullfightingByMatchViewModel>(message);
         }
 
         [Fact]

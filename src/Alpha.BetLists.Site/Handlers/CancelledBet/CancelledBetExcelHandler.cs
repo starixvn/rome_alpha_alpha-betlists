@@ -57,7 +57,7 @@
 
         protected internal override Mapper<TicketDto> GetBodyRowMapper(UserLevel viewerLevel, BetListBaseViewModel viewModel)
         {
-            return GetTicketDtoRowMapperIncludeUsername(viewModel);
+            return GetTicketDtoRowMapperIncludeUsername(viewModel, showWinLoss: false);
         }
     }
 }

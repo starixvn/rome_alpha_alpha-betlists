@@ -6,6 +6,7 @@
     using BetLists.Models;
     using MediatR;
     using Requests.BullfightingByMatch;
+    using ViewModels.BullfightingByMatch;
 
     public class BullfightingByMatchController : BetListBaseController
     {
@@ -18,7 +19,7 @@
         }
 
         public async Task<ActionResult> Index(BullfightingByMatchQuery message)
-            => await View(message);
+            => await View<BullfightingByMatchViewModel>(message);
 
         public async Task<FileContentResult> Excel(BullfightingByMatchExcelQuery message)
             => await ExcelView(message);

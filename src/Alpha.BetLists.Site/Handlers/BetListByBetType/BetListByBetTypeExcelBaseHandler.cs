@@ -25,7 +25,7 @@
         {
             var ticketData = viewModel.BetListData.TicketData;
 
-            var mapper = GetTicketDtoRowMapperIncludeUsername(viewModel);
+            var mapper = GetTicketDtoRowMapperIncludeUsername(viewModel, showWinLoss: false);
 
             mapper.Map(H, ticket => BuildPtCommmission(ticket, ticketData, viewerLevel));
 
@@ -34,12 +34,7 @@
                 mapper.Map(I, ticket => BuildPtCommmission(ticket, ticketData, UserLevel.Agent));
             }
 
-            if (viewerLevel.IsSuperLevel())
-            {
-                mapper
-                    .Map(I, ticket => BuildPtCommmission(ticket, ticketData, UserLevel.Master))
-                    .Map(J, ticket => BuildPtCommmission(ticket, ticketData, UserLevel.Agent));
-            }
+            AddPtCommissionForSuper(mapper, viewerLevel, ticketData);
 
             return mapper;
         }
