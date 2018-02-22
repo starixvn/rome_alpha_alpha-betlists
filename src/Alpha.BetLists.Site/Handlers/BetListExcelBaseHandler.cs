@@ -119,14 +119,7 @@
         {
             var ticketData = viewModel.BetListData.TicketData;
 
-            var mapper = new Mapper<TicketDto>()
-                .Map(A, _ => currentRowIndex++)
-                .Map(B, ticket => BuildTrans(ticket))
-                .Map(C, ticket => BuildChoice(ticket, viewModel))
-                .Map(D, ticket => BuildOdds(ticket, viewModel))
-                .Map(E, ticket => BuildStake(ticket))
-                .Map(F, ticket => BuildWinLoss(ticket))
-                .Map(G, ticket => BuildStatus(ticket, viewModel));
+            var mapper = GetTicketDtoRowMapperExcludeUsername(viewModel);
 
             mapper.Map(H, ticket => BuildPtCommmission(ticket, ticketData, viewerLevel));
 
@@ -141,6 +134,34 @@
                     .Map(I, ticket => BuildPtCommmission(ticket, ticketData, UserLevel.Master))
                     .Map(J, ticket => BuildPtCommmission(ticket, ticketData, UserLevel.Agent));
             }
+
+            return mapper;
+        }
+
+        protected Mapper<TicketDto> GetTicketDtoRowMapperIncludeUsername(BetListBaseViewModel viewModel)
+        {
+            var mapper = new Mapper<TicketDto>()
+                .Map(A, _ => currentRowIndex++)
+                .Map(B, ticket => ticket.UserName)
+                .Map(C, ticket => BuildTrans(ticket))
+                .Map(D, ticket => BuildChoice(ticket, viewModel))
+                .Map(E, ticket => BuildOdds(ticket, viewModel))
+                .Map(F, ticket => BuildStake(ticket))
+                .Map(G, ticket => BuildStatus(ticket, viewModel));
+
+            return mapper;
+        }
+
+        protected Mapper<TicketDto> GetTicketDtoRowMapperExcludeUsername(BetListBaseViewModel viewModel)
+        {
+            var mapper = new Mapper<TicketDto>()
+                .Map(A, _ => currentRowIndex++)
+                .Map(B, ticket => BuildTrans(ticket))
+                .Map(C, ticket => BuildChoice(ticket, viewModel))
+                .Map(D, ticket => BuildOdds(ticket, viewModel))
+                .Map(E, ticket => BuildStake(ticket))
+                .Map(F, ticket => BuildWinLoss(ticket))
+                .Map(G, ticket => BuildStatus(ticket, viewModel));
 
             return mapper;
         }

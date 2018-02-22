@@ -15,13 +15,11 @@
     using MediatR;
     using ONEbook.SpreadSheets;
     using ONEbook.SpreadSheets.NPOI;
-    using static ONEbook.SpreadSheets.Column;
 
     public class CancelledBetExcelHandler : BetListExcelBaseHandler, IAsyncRequestHandler<CancelledBetExcelQuery, ExcelFileViewModel>
     {
         private readonly CancelledBetService service;
         private Workbook<TicketDto> workbook;
-        private int currentRowIndex;
 
         public CancelledBetExcelHandler(
             CancelledBetService service,
@@ -34,7 +32,6 @@
         {
             this.service = service;
             this.workbook = workbook;
-            currentRowIndex = 1;
         }
 
         public async Task<ExcelFileViewModel> Handle(CancelledBetExcelQuery message)
@@ -60,16 +57,7 @@
 
         protected internal override Mapper<TicketDto> GetBodyRowMapper(UserLevel viewerLevel, BetListBaseViewModel viewModel)
         {
-            var mapper = new Mapper<TicketDto>()
-                .Map(A, _ => currentRowIndex++)
-                .Map(B, ticket => ticket.UserName)
-                .Map(C, ticket => BuildTrans(ticket))
-                .Map(D, ticket => BuildChoice(ticket, viewModel))
-                .Map(E, ticket => BuildOdds(ticket, viewModel))
-                .Map(F, ticket => BuildStake(ticket))
-                .Map(G, ticket => BuildStatus(ticket, viewModel));
-
-            return mapper;
+            return GetTicketDtoRowMapperIncludeUsername(viewModel);
         }
     }
 }
