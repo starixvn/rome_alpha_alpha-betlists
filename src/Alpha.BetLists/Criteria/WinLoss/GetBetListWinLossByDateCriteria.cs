@@ -44,6 +44,7 @@
         public override bool IsValid() =>
             CustId > 0
             && !string.IsNullOrWhiteSpace(ProductIds)
-            && ToDate >= FromDate;
+            && ToDate >= FromDate
+            && FromDate > DateTime.MinValue;
     }
 }

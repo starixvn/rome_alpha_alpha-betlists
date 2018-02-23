@@ -50,6 +50,7 @@
 
         public override bool IsValid() =>
             CustId > 0
-            && ToDate >= FromDate;
+            && ToDate >= FromDate
+            && FromDate > DateTime.MinValue;
     }
 }
