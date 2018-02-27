@@ -601,6 +601,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Progressive Jackpot Won Details.
+        /// </summary>
+        public static string ProgressiveJackpotWonDetails {
+            get {
+                return ResourceManager.GetString("ProgressiveJackpotWonDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Refund.
         /// </summary>
         public static string refund {

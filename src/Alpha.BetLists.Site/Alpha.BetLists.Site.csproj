@@ -110,7 +110,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.BetTrade, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.Core.2.56.0\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
+      <HintPath>..\..\packages\Fanex.BetList.Core.2.53.0-beta\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.Bullfighting, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -125,8 +125,8 @@
       <HintPath>..\..\packages\Fanex.BetList.ColossusBets.1.0.1.8\lib\net40\Fanex.BetList.ColossusBets.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.BetList.Core, Version=2.56.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.Core.2.56.0\lib\net40\Fanex.BetList.Core.dll</HintPath>
+    <Reference Include="Fanex.BetList.Core, Version=2.53.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.Core.2.53.0-beta\lib\net40\Fanex.BetList.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.GlobalGaming, Version=1.0.0.7, Culture=neutral, processorArchitecture=MSIL">
@@ -166,7 +166,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.RnGCasino, Version=1.0.1.5, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.RnGCasino.1.0.1.5-beta2\lib\net40\Fanex.BetList.RnGCasino.dll</HintPath>
+      <HintPath>..\..\packages\Fanex.BetList.RnGCasino.1.0.1.5-beta3\lib\net40\Fanex.BetList.RnGCasino.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.VirtualSports, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
@@ -642,6 +642,9 @@
     <Content Include="App_Data\ExcelTemplates\BullfightingByMatch\Agent.xls" />
     <Content Include="App_Data\ExcelTemplates\BullfightingByMatch\Master.xls" />
     <Content Include="App_Data\ExcelTemplates\BullfightingByMatch\Super.xls" />
+    <Content Include="App_Data\ExcelTemplates\JackpotDetails\Super.xls" />
+    <Content Include="App_Data\ExcelTemplates\JackpotDetails\Agent.xls" />
+    <Content Include="App_Data\ExcelTemplates\JackpotDetails\Master.xls" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -849,6 +852,7 @@
     <Compile Include="Handlers\CasinoDetails\CasinoDetailsHandler.cs" />
     <Compile Include="Handlers\BullfightingByMatch\BullfightingByMatchExcelHandler.cs" />
     <Compile Include="Handlers\BullfightingByMatch\BullfightingByMatchHandler.cs" />
+    <Compile Include="Handlers\JackpotDetails\JackpotDetailsExcelHandler.cs" />
     <Compile Include="Handlers\JackpotDetails\JackpotDetailsHandler.cs" />
     <Compile Include="Requests\CasinoDetails\CasinoDetailsExcelQuery.cs" />
     <Compile Include="Requests\CasinoDetails\CasinoDetailsQuery.cs" />
@@ -896,6 +900,7 @@
     <Compile Include="Requests\BetListByBetType\BetListByBetTypeExcelQuery.cs" />
     <Compile Include="Requests\BetListByBetType\BetListByBetTypeQuery.cs" />
     <Compile Include="Requests\DailyStatement\DailyStatementExcelQuery.cs" />
+    <Compile Include="Requests\JackpotDetails\JackpotDetailsExcelQuery.cs" />
     <Compile Include="Requests\JackpotDetails\JackpotDetailsQuery.cs" />
     <Compile Include="Requests\Lucky3\Lucky3DetailQuery.cs" />
     <Compile Include="Requests\DailyStatement\DailyStatementQuery.cs" />

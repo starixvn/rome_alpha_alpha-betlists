@@ -14,5 +14,8 @@
 
         public async Task<ActionResult> Index(JackpotDetailsQuery message)
             => await View(message);
+
+        public async Task<FileContentResult> Excel(JackpotDetailsExcelQuery message)
+            => await ExcelView(message);
     }
 }

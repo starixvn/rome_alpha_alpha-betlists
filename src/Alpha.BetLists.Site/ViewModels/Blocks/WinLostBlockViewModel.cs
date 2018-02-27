@@ -21,11 +21,19 @@
         {
             var isIMBCMatch = ticket.SuperDiscount < 0 || ticket.MasterDiscount < 0 || ticket.AgentDiscount < 0;
 
-            return ticket.BetTypeId != 501 || !isIMBCMatch;
+            return (ticket.BetTypeId != 501 && !IsJackpotContribution(ticket)) || !isIMBCMatch;
         }
 
         private void SetData(ITicket ticket)
         {
+            if (IsJackpotContribution(ticket))
+            {
+                WinLost = "-";
+                Comm = string.Empty;
+
+                return;
+            }
+
             var status = ticket.Status.ToLowerInvariant();
 
             switch (status)
@@ -52,5 +60,8 @@
                     break;
             }
         }
+
+        private static bool IsJackpotContribution(ITicket ticket)
+            => ticket.BetTypeId == 2198 || ticket.BetTypeId == 2398 || ticket.BetTypeId == 2998;
     }
 }

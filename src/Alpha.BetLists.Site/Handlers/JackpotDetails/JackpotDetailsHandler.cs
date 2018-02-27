@@ -29,11 +29,13 @@
 
         public async Task<JackpotDetailsViewModel> Handle(JackpotDetailsQuery message)
         {
-            var param = new JackpotDetailsParam(message.TransId, message.CustId, message.BetType);
-
+            var param = CreateJackpotDetailsParam(message);
             var tickets = await jackpotDetailsService.GetJackpotDetails(param);
 
             return new JackpotDetailsViewModel(message, new BetListData(tickets, null), Builder, TicketHelper);
         }
+
+        protected internal static JackpotDetailsParam CreateJackpotDetailsParam(JackpotDetailsQuery message)
+            => new JackpotDetailsParam(message.TransId, message.CustId, message.BetType);
     }
 }

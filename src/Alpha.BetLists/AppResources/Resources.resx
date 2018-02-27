@@ -387,4 +387,7 @@
   <data name="ContributionAmountRoundNote" xml:space="preserve">
     <value>Contribution amount on Jackpot games is rounded to 4 decimal places.</value>
   </data>
+  <data name="ProgressiveJackpotWonDetails" xml:space="preserve">
+    <value>Progressive Jackpot Won Details</value>
+  </data>
 </root>

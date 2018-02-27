@@ -4,6 +4,19 @@
 @{
     ViewBag.Title = "Progressive Jackpot Won Details";
 }
+<div class="bl_title no-border-bottom">
+    <div class="bl-export-excel">
+        <a id="icon-excel" class="icon icon-excel" title="@Resources.ExportToExcel"
+           href="@Url.Action("Excel", "JackpotDetails",
+                new
+                {
+                    TransId = Model.TransId,
+                    CustId = Model.CustId,
+                    BetType = Model.BetType
+                })">
+        </a>
+    </div>
+</div>
 <table class="tblRpt tblRpt-bordered tblRpt-striped width-100per tablesorter tblRpt-hover tbl-betlist">
     <thead>
         <tr>
