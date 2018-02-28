@@ -14,13 +14,11 @@
     using Utilities.IP;
     using ViewModels;
     using ViewModels.DailyStatement;
-    using static ONEbook.SpreadSheets.Column;
 
     public class DailyStatementExcelHandler : BetListExcelBaseHandler, IAsyncRequestHandler<DailyStatementExcelQuery, ExcelFileViewModel>
     {
         private readonly DailyStatementService dailyStatementService;
         private Workbook<TicketDto> workbook;
-        private int currentRowIndex = 1;
 
         public DailyStatementExcelHandler(
             DailyStatementService dailyStatementService,
@@ -58,16 +56,7 @@
 
         protected internal override Mapper<TicketDto> GetBodyRowMapper(UserLevel viewerLevel, BetListBaseViewModel viewModel)
         {
-            var mapper = new Mapper<TicketDto>()
-                .Map(A, _ => currentRowIndex++)
-                .Map(B, ticket => BuildTrans(ticket))
-                .Map(C, ticket => BuildChoice(ticket, viewModel))
-                .Map(D, ticket => BuildOdds(ticket, viewModel))
-                .Map(E, ticket => BuildStake(ticket))
-                .Map(F, ticket => BuildWinLoss(ticket))
-                .Map(G, ticket => BuildStatus(ticket, viewModel));
-
-            return mapper;
+            return GetTicketDtoRowMapperExcludeUsername(viewModel);
         }
     }
 }

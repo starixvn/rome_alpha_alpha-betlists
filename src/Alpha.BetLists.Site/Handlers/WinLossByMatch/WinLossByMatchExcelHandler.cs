@@ -21,7 +21,6 @@
     {
         private readonly WinLossByMatchService winLossByMatchService;
         private Workbook<TicketDto> workbook;
-        private int currentRowIndex;
 
         public WinLossByMatchExcelHandler(
             WinLossByMatchService winLossByMatchService,
@@ -44,8 +43,6 @@
 
             var viewModel = new WinLossByMatchViewModel(message, betlistData, null, TicketHelper);
 
-            currentRowIndex = 1;
-
             workbook = workbook.UseTemplate(GetTemplateInfo(message.CustLevel));
             RtfHelper = message.RtfHelper ?? InitRTFHelper((workbook as NpoiWorkbook<TicketDto>).Workbook);
 
@@ -59,26 +56,13 @@
             return new ExcelFileViewModel(viewModel.Title, fileContent);
         }
 
-        public void SetCurrentRowIndex(int rowIndex)
-        {
-            currentRowIndex = rowIndex;
-        }
-
         protected internal override string ExcelTemplatePath(UserLevel viewerLevel)
             => GetExcelTemplatePath(viewerLevel.DisplayName);
 
         protected internal override Mapper<TicketDto> GetBodyRowMapper(UserLevel viewerLevel, BetListBaseViewModel viewModel)
         {
             var ticketData = viewModel.BetListData.TicketData;
-            var mapper = new Mapper<TicketDto>()
-                .Map(A, _ => currentRowIndex++)
-                .Map(B, ticket => ticket.UserName)
-                .Map(C, ticket => BuildTrans(ticket))
-                .Map(D, ticket => BuildChoice(ticket, viewModel))
-                .Map(E, ticket => BuildOdds(ticket, viewModel))
-                .Map(F, ticket => BuildStake(ticket))
-                .Map(G, ticket => BuildWinLoss(ticket))
-                .Map(H, ticket => BuildStatus(ticket, viewModel));
+            var mapper = GetTicketDtoRowMapperIncludeUsername(viewModel, showWinLoss: true);
 
             mapper.Map(I, ticket => BuildPtCommmission(ticket, ticketData, viewerLevel));
 

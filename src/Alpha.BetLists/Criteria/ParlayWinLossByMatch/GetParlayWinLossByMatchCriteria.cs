@@ -51,6 +51,7 @@
         public override bool IsValid()
             => CustId > 0
             && BetType > 0
-            && ToDate >= FromDate;
+            && ToDate >= FromDate
+            && FromDate > DateTime.MinValue;
     }
 }

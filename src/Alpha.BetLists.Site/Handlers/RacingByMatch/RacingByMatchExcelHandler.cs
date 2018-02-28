@@ -19,7 +19,6 @@
 
     public class RacingByMatchExcelHandler : BetListExcelBaseHandler, IAsyncRequestHandler<RacingByMatchExcelQuery, ExcelFileViewModel>
     {
-        private int currentRowIndex;
         private Workbook<TicketDto> workbook;
         private readonly RacingByMatchService racingByMatchService;
 
@@ -33,7 +32,6 @@
             Workbook<TicketDto> workbook)
             : base(builder, excelBuilder, ticketHelper, monitorService, ipService)
         {
-            currentRowIndex = 1;
             this.workbook = workbook;
             this.racingByMatchService = racingByMatchService;
         }
@@ -62,15 +60,7 @@
         {
             var ticketData = viewModel.BetListData.TicketData;
 
-            var mapper = new Mapper<TicketDto>()
-                .Map(A, _ => currentRowIndex++)
-                .Map(B, ticket => ticket.UserName)
-                .Map(C, ticket => BuildTrans(ticket))
-                .Map(D, ticket => BuildChoice(ticket, viewModel))
-                .Map(E, ticket => BuildOdds(ticket, viewModel))
-                .Map(F, ticket => BuildStake(ticket))
-                .Map(G, ticket => BuildWinLoss(ticket))
-                .Map(H, ticket => BuildStatus(ticket, viewModel));
+            var mapper = GetTicketDtoRowMapperIncludeUsername(viewModel, showWinLoss: true);
 
             mapper.Map(I, ticket => BuildPtCommmission(ticket, ticketData, viewerLevel));
 

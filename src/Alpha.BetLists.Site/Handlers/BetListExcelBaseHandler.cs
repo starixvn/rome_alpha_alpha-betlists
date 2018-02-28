@@ -119,6 +119,45 @@
         {
             var ticketData = viewModel.BetListData.TicketData;
 
+            var mapper = GetTicketDtoRowMapperExcludeUsername(viewModel);
+
+            mapper.Map(H, ticket => BuildPtCommmission(ticket, ticketData, viewerLevel));
+
+            if (viewerLevel.IsMasterLevel())
+            {
+                mapper.Map(I, ticket => BuildPtCommmission(ticket, ticketData, UserLevel.Agent));
+            }
+
+            AddPtCommissionForSuper(mapper, viewerLevel, ticketData);
+
+            return mapper;
+        }
+
+        protected Mapper<TicketDto> GetTicketDtoRowMapperIncludeUsername(BetListBaseViewModel viewModel, bool showWinLoss)
+        {
+            var mapper = new Mapper<TicketDto>()
+                .Map(A, _ => currentRowIndex++)
+                .Map(B, ticket => ticket.UserName)
+                .Map(C, ticket => BuildTrans(ticket))
+                .Map(D, ticket => BuildChoice(ticket, viewModel))
+                .Map(E, ticket => BuildOdds(ticket, viewModel))
+                .Map(F, ticket => BuildStake(ticket));
+
+            if (showWinLoss)
+            {
+                mapper
+                    .Map(G, ticket => BuildWinLoss(ticket))
+                    .Map(H, ticket => BuildStatus(ticket, viewModel));
+                return mapper;
+            }
+
+
+            mapper.Map(G, ticket => BuildStatus(ticket, viewModel));
+            return mapper;
+        }
+
+        protected Mapper<TicketDto> GetTicketDtoRowMapperExcludeUsername(BetListBaseViewModel viewModel)
+        {
             var mapper = new Mapper<TicketDto>()
                 .Map(A, _ => currentRowIndex++)
                 .Map(B, ticket => BuildTrans(ticket))
@@ -128,21 +167,17 @@
                 .Map(F, ticket => BuildWinLoss(ticket))
                 .Map(G, ticket => BuildStatus(ticket, viewModel));
 
-            mapper.Map(H, ticket => BuildPtCommmission(ticket, ticketData, viewerLevel));
+            return mapper;
+        }
 
-            if (viewerLevel.IsMasterLevel())
-            {
-                mapper.Map(I, ticket => BuildPtCommmission(ticket, ticketData, UserLevel.Agent));
-            }
-
+        protected void AddPtCommissionForSuper(Mapper<TicketDto> mapper, UserLevel viewerLevel, List<ITicketData> ticketData)
+        {
             if (viewerLevel.IsSuperLevel())
             {
                 mapper
                     .Map(I, ticket => BuildPtCommmission(ticket, ticketData, UserLevel.Master))
                     .Map(J, ticket => BuildPtCommmission(ticket, ticketData, UserLevel.Agent));
             }
-
-            return mapper;
         }
 
         protected internal virtual Mapper<TicketDto> GetFooterRowMapper(Footer footer)

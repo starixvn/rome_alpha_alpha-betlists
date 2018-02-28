@@ -36,8 +36,9 @@
         public override string GetSettingKey() => "Age_BetList_SelWinLossByDate_Mem_Old";
 
         public override bool IsValid() =>
-           CustId > 0
-           && !string.IsNullOrWhiteSpace(ProductIds)
-           && ToDate >= FromDate;
+            CustId > 0
+            && !string.IsNullOrWhiteSpace(ProductIds)
+            && ToDate >= FromDate
+            && FromDate > DateTime.MinValue;
     }
 }
