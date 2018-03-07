@@ -1,5 +1,6 @@
 ﻿namespace Alpha.BetLists.Site.ViewModels.Blocks
 {
+    using BetLists.Helpers;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Utils;
 
@@ -21,12 +22,12 @@
         {
             var isIMBCMatch = ticket.SuperDiscount < 0 || ticket.MasterDiscount < 0 || ticket.AgentDiscount < 0;
 
-            return (ticket.BetTypeId != 501 && !IsJackpotContribution(ticket)) || !isIMBCMatch;
+            return (ticket.BetTypeId != 501 && !BetTypeHelper.IsJackpotContribution(ticket.BetTypeId)) || !isIMBCMatch;
         }
 
         private void SetData(ITicket ticket)
         {
-            if (IsJackpotContribution(ticket))
+            if (BetTypeHelper.IsJackpotContribution(ticket.BetTypeId))
             {
                 WinLost = "-";
                 Comm = string.Empty;
@@ -60,8 +61,5 @@
                     break;
             }
         }
-
-        private static bool IsJackpotContribution(ITicket ticket)
-            => ticket.BetTypeId == 2198 || ticket.BetTypeId == 2398 || ticket.BetTypeId == 2998;
     }
 }
