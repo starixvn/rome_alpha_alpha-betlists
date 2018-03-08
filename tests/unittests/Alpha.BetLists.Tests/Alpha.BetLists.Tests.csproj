@@ -197,7 +197,8 @@
     <Compile Include="Configurations\AppSettingsTests.cs" />
     <Compile Include="Constants\BetTypeIdConstants.cs" />
     <Compile Include="Constants\DefaultVariables.cs" />
-    <Compile Include="Criteria\JackpotDetails\GetJackpotDetailsCriteriaTests.cs" />
+    <Compile Include="Criteria\ProgressiveJackpot\GetEnableJackpotProductCriteriaTest.cs" />
+    <Compile Include="Criteria\ProgressiveJackpot\GetJackpotDetailsCriteriaTests.cs" />
     <Compile Include="Criteria\Lucky3\GetLucky3DetailCriteriaTests.cs" />
     <Compile Include="Criteria\CasioDetails\GetCasinoDetailsCriteriaTests.cs" />
     <Compile Include="Criteria\DailyStatement\GetAllBetListByDayCriteriaTests.cs" />
@@ -233,6 +234,7 @@
     <Compile Include="Criteria\WinLossByMatch\GetWinLossRacingCriteriaTests.cs" />
     <Compile Include="DataAccesses\Lucky3DataAccessTests.cs" />
     <Compile Include="DataAccesses\CasinoDetailsDataAccessTests.cs" />
+    <Compile Include="DataAccesses\ProductDataAccessImplTests.cs" />
     <Compile Include="DataAccesses\SmartPunterDataAccessTests.cs" />
     <Compile Include="Extensions\DateTimeExtensionsTests.cs" />
     <Compile Include="Extensions\StringExtensionsTests.cs" />

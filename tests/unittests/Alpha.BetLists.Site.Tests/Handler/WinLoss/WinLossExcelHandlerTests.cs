@@ -172,7 +172,7 @@
         public void Handle_Always_ReturnExcelViewModel()
         {
             // Arrange
-            var winLossViewModel = new WinLossViewModel(query, BetListDataTest.BetListData, null, betlistFixture.TicketHelper);
+            var winLossViewModel = new WinLossViewModel(query, BetListDataTest.BetListData, null, betlistFixture.TicketHelper, false);
             workbook.ExportToBytes().Returns(BetListDataTest.ExcelFileContent);
             var expectedViewModel = new ExcelFileViewModel(winLossViewModel.Title, BetListDataTest.ExcelFileContent);
 

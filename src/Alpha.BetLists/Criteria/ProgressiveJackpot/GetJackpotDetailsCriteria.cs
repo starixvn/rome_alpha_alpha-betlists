@@ -1,4 +1,4 @@
-﻿namespace Alpha.BetLists.Criteria.JackpotDetails
+﻿namespace Alpha.BetLists.Criteria.ProgressiveJackpot
 {
     using Fanex.Data.Repository;
 

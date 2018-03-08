@@ -95,5 +95,22 @@
             // Assert
             Assert.Equal(expectedUsersAlwaysAllowAccessBetsListMonitoring, actualUsersAlwaysAllowAccessBetsListMonitoring);
         }
+
+        [Theory]
+        [InlineData("1", true)]
+        [InlineData("0", false)]
+        [InlineData("", false)]
+        public void LocalTest_Always_ReturnsCorrectConfig(string value, bool expectedSetting)
+        {
+            // Arrange
+            AppSettings.AppSettingValues = new NameValueCollection();
+            AppSettings.AppSettingValues.Add("LocalTest", value);
+
+            // Act
+            var localTest = AppSettings.LocalTest;
+
+            // Assert
+            Assert.Equal(expectedSetting, localTest);
+        }
     }
 }

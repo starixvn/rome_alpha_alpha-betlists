@@ -110,6 +110,7 @@
             container.Register<ISmartPunterDataAccess, SmartPunterDataAccess>(Lifestyle.Singleton);
             container.Register<ILucky3DataAccess, Lucky3DataAccess>(Lifestyle.Singleton);
             container.Register<ICasinoDetailsDataAccess, CasinoDetailsDataAccess>(Lifestyle.Singleton);
+            container.Register<ProductDataAccess, ProductDataAccessImpl>(Lifestyle.Singleton);
         }
 
         private static void RegisterServices(Container container)
@@ -144,6 +145,7 @@
             container.Register<ProductService>(
                 () => new ProductServiceImpl(
                     container.GetInstance<IDynamicRepository>(),
+                    container.GetInstance<ProductDataAccess>(),
                     UserPermission.HasPermissionOnProduct,
                     new CacheRefServiceImpl().GetProductName),
                 Lifestyle.Singleton);

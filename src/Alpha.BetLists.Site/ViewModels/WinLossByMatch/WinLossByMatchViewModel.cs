@@ -13,7 +13,7 @@
             BetListData betListData,
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper)
-            : base(query, betListData, builder, ticketHelper, showMemberName: true)
+            : base(query, betListData, builder, ticketHelper, query.IsEnabledJackpot, showMemberName: true)
         {
             BetType = query.BetType;
             LeagueId = query.LeagueId;

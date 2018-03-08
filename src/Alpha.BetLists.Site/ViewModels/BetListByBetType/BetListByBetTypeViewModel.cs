@@ -34,7 +34,5 @@
         public override bool CanViewScoreMap(ITicket ticket)
             => SupportScoreMapBetTypeIds != null
             && SupportScoreMapBetTypeIds.Contains(ticket.BetTypeId);
-
-        public override bool CanViewContributionAmountRoundNote() => false;
     }
 }

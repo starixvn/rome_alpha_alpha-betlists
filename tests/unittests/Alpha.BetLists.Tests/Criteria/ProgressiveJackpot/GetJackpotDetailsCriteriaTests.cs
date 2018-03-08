@@ -1,6 +1,6 @@
-﻿namespace Alpha.BetLists.Tests.Criteria.JackpotDetails
+﻿namespace Alpha.BetLists.Tests.Criteria.ProgressiveJackpot
 {
-    using BetLists.Criteria.JackpotDetails;
+    using BetLists.Criteria.ProgressiveJackpot;
     using Xunit;
 
     [Trait("Category", "JackpotDetails")]

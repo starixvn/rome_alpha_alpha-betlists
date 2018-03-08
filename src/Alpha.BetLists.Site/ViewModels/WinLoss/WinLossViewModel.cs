@@ -13,19 +13,21 @@
             BetListData betListData,
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper,
+            bool showContributionAmountRoundNote,
             bool showMemberName = false,
             string[] excludingTicketStatus = null)
             : base(query, betListData, builder, ticketHelper, showMemberName)
         {
             Footer = new Footer(betListData, baseQuery.ViewerLevel, showMemberName, excludingTicketStatus);
+            ShowContributionAmountRoundNote = showContributionAmountRoundNote;
         }
 
         public bool AllowToViewSuperPT => baseQuery.ViewerLevel.IsSuperLevel();
 
         public bool AllowToViewMasterPT => baseQuery.ViewerLevel.IsMasterOrSuperLevel();
 
-        public Footer Footer { get; }
+        public bool ShowContributionAmountRoundNote { get; }
 
-        public virtual bool CanViewContributionAmountRoundNote() => baseQuery.IsEnabledJackpot;
+        public Footer Footer { get; }
     }
 }

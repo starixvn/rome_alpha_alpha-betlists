@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Alpha.BetLists.Models
+﻿namespace Alpha.BetLists.Models
 {
     public interface IUser
     {
@@ -22,8 +20,6 @@ namespace Alpha.BetLists.Models
 
 
         bool IsEnabledJackpot { get; }
-
-        IList<int> GetEnableProductsForGame(string gameName);
 
         bool HasPermissionOnProduct(int productId);
     }

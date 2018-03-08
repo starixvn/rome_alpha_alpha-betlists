@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using Criteria.JackpotDetails;
+    using Criteria.ProgressiveJackpot;
     using Fanex.Data.Repository;
     using Models;
     using Params;

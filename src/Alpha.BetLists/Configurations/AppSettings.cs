@@ -32,6 +32,8 @@
 
         public static bool EnableBetsListMonitoring => Converter.ToBool(GetConfigValue("EnableBetsListMonitoring"));
 
+        public static bool LocalTest => GetConfigValue("LocalTest") == "1";
+
         public static IEnumerable<int> UsersAlwaysAllowAccessBetsListMonitoring
         {
             get

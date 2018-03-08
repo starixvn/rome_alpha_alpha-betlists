@@ -1,7 +1,7 @@
 ﻿namespace Alpha.BetLists.Tests.Services
 {
     using System.Linq;
-    using BetLists.Criteria.JackpotDetails;
+    using BetLists.Criteria.ProgressiveJackpot;
     using BetLists.Models;
     using BetLists.Params;
     using BetLists.Services;

@@ -202,7 +202,8 @@
     <Compile Include="Criteria\GetProductsCriteria.cs" />
     <Compile Include="Criteria\GetScoreMapBetTypesCriteria.cs" />
     <Compile Include="Criteria\CasinoDetails\GetCasinoDetailsCriteria.cs" />
-    <Compile Include="Criteria\JackpotDetails\GetJackpotDetailsCriteria.cs" />
+    <Compile Include="Criteria\ProgressiveJackpot\GetEnableJackpotProductCriteria.cs" />
+    <Compile Include="Criteria\ProgressiveJackpot\GetJackpotDetailsCriteria.cs" />
     <Compile Include="Criteria\MemberBetList\GetBetListAllByDateCriteria.cs" />
     <Compile Include="Criteria\LastBets\GetLastBetsCriteria.cs" />
     <Compile Include="Criteria\BullfightingByMatch\GetBetListBullfightingByMatchCriteria.cs" />
@@ -229,6 +230,7 @@
     <Compile Include="Criteria\GetProductsByGroupHeadlineCriteria.cs" />
     <Compile Include="DataAccesses\CasinoDetailsDataAccess.cs" />
     <Compile Include="DataAccesses\Lucky3DataAccess.cs" />
+    <Compile Include="DataAccesses\ProductDataAccess.cs" />
     <Compile Include="DataAccesses\SmartPunterDataAccess.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />

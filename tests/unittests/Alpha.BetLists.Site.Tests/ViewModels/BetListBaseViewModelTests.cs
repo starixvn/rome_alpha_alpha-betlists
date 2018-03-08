@@ -242,7 +242,7 @@
             query = new WinLossQuery(betListFixture.User);
 
             // Act
-            var viewModel = new WinLossViewModel(query, BetListDataTest.BetListData, betListFixture.HtmlBuilder, betListFixture.TicketHelper, true);
+            var viewModel = new WinLossViewModel(query, BetListDataTest.BetListData, betListFixture.HtmlBuilder, betListFixture.TicketHelper, false, true);
 
             // Assert
             Assert.Equal(expectedTotalColumn + 1, viewModel.TotalColumn);
@@ -252,7 +252,7 @@
         public void ShowMemberName_WhenNotHaveParamValue_GetDefaultValue()
         {
             // Act
-            var viewModel = new WinLossViewModel(query, BetListDataTest.BetListData, betListFixture.HtmlBuilder, betListFixture.TicketHelper);
+            var viewModel = new WinLossViewModel(query, BetListDataTest.BetListData, betListFixture.HtmlBuilder, betListFixture.TicketHelper, false, false);
 
             // Assert
             Assert.Equal(false, viewModel.ShowMemberName);
@@ -262,7 +262,7 @@
         public void ShowMemberName_WhenHaveParamValue_SetInCtor()
         {
             // Act
-            var viewModel = new WinLossViewModel(query, BetListDataTest.BetListData, betListFixture.HtmlBuilder, betListFixture.TicketHelper, true);
+            var viewModel = new WinLossViewModel(query, BetListDataTest.BetListData, betListFixture.HtmlBuilder, betListFixture.TicketHelper, false, true);
 
             // Assert
             Assert.Equal(true, viewModel.ShowMemberName);
