@@ -94,12 +94,12 @@
 
         public bool IsEnabledJackpot(int custId)
         {
-            var productIds = GetEnabledProductIdsForCustomer(custId);
+            var productIds = GetEnabledJackpotProductIdsForCustomer(custId);
 
             return productIds.Any();
         }
 
-        private IEnumerable<int> GetEnabledProductIdsForCustomer(int custId)
+        private IEnumerable<int> GetEnabledJackpotProductIdsForCustomer(int custId)
             => productDataAccess.GetEnabledProductIdsForCustomer(new GetEnableJackpotProductCriteria(custId, AppSettings.LocalTest));
 
         private static bool IsRemainSupportProductForGroupHeadline(Product product, DateTime minReportDate)

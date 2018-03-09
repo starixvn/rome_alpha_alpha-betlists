@@ -35,11 +35,11 @@
 
         public string LangKey => userSession.LangKey;
 
-        public bool IsEnabledJackpot => GetEnableProductsForGame(Jackpot).Any();
+        public bool IsEnabledJackpot => GetEnableProductsByGameName(Jackpot).Any();
 
         public bool HasPermissionOnProduct(int productId) => UserPermission.HasPermissionOnProduct(productId);
 
-        internal virtual IList<int> GetEnableProductsForGame(string gameName)
+        internal virtual IList<int> GetEnableProductsByGameName(string gameName)
             => (IList<int>)HttpContext.Current.Session[HttpContext.Current.Session.SessionID + GameEnableSessionKey + gameName];
     }
 }

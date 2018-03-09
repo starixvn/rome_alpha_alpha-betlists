@@ -16,7 +16,7 @@
         {
         }
 
-        internal override IList<int> GetEnableProductsForGame(string gameName)
+        internal override IList<int> GetEnableProductsByGameName(string gameName)
         => EnableProductsForGames[gameName];
     }
 }
