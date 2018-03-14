@@ -16,7 +16,7 @@
         {
             // Arrange
             var custLevel = Enumeration.FromValue<UserLevel>(custLevelId);
-            var criteria = new GetWinLossRacingCriteria(0, 0, 0, string.Empty, string.Empty, DateTime.Today, DateTime.Today, DateTime.Today, custLevel);
+            var criteria = new GetWinLossRacingCriteria(0, 0, string.Empty, DateTime.Today, DateTime.Today, DateTime.Today, custLevel);
 
             // Act
             var actualSettingKey = criteria.GetSettingKey();
@@ -32,7 +32,7 @@
         public void IsValid_InvalidCustId_ReturnsFalse(int custId)
         {
             // Arrange
-            var criteria = new GetWinLossRacingCriteria(custId, 0, 0, string.Empty, string.Empty, DateTime.Today, DateTime.Today, DateTime.Today, UserLevel.Agent);
+            var criteria = new GetWinLossRacingCriteria(custId, 0, string.Empty, DateTime.Today, DateTime.Today, DateTime.Today, UserLevel.Agent);
 
             // Act
             var actualIsValid = criteria.IsValid();
@@ -45,7 +45,7 @@
         public void IsValid_InvalidDateRange_ReturnsFalse()
         {
             // Arrange
-            var criteria = new GetWinLossRacingCriteria(1, 0, 0, string.Empty, string.Empty, DateTime.Today, DateTime.Today.AddDays(-1), DateTime.Today, UserLevel.Agent);
+            var criteria = new GetWinLossRacingCriteria(1, 0, string.Empty, DateTime.Today, DateTime.Today.AddDays(-1), DateTime.Today, UserLevel.Agent);
 
             // Act
             var actualIsValid = criteria.IsValid();
@@ -60,7 +60,7 @@
         public void IsValid_ValidCriteria_ReturnsTrue(int custId)
         {
             // Arrange
-            var criteria = new GetWinLossRacingCriteria(custId, 0, 0, string.Empty, string.Empty, DateTime.Today, DateTime.Today, DateTime.Today, UserLevel.Agent);
+            var criteria = new GetWinLossRacingCriteria(custId, 0, string.Empty, DateTime.Today, DateTime.Today, DateTime.Today, UserLevel.Agent);
 
             // Act
             var actualIsValid = criteria.IsValid();
