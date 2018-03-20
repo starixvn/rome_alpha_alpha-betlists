@@ -44,8 +44,8 @@
             InitWorkbook();
 
             productService = Substitute.For<ProductService>();
-            productService.FilterProductIdsByCustomer(Arg.Any<int>(), Arg.Any<IEnumerable<int>>())
-                .Returns(callInfo => callInfo.Args()[1]);
+            productService.FilterProductIdsByCustomer(Arg.Any<int>(), Arg.Any<DateTime>(), Arg.Any<IEnumerable<int>>())
+                .Returns(callInfo => callInfo.Args()[2]);
 
             winLossExcelHandler = new WinLossExcelHandler(
                 winLossService,
