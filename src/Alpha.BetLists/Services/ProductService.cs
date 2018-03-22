@@ -11,9 +11,9 @@
 
     public interface ProductService
     {
-        IEnumerable<Product> GetProductsForCustomer(int custId);
+        IEnumerable<Product> GetProductsForCustomer(int custId, DateTime minReportDate);
 
-        IEnumerable<int> FilterProductIdsByCustomer(int custId, IEnumerable<int> productIds);
+        IEnumerable<int> FilterProductIdsByCustomer(int custId, DateTime minReportDate, IEnumerable<int> productIds);
 
         IEnumerable<int> FilterProductIdsByGroupHeadline(IEnumerable<int> productIds, GetProductsByGroupHeadlineParam param);
     }
@@ -36,7 +36,7 @@
             this.getProductName = getProductName;
         }
 
-        public IEnumerable<Product> GetProductsForCustomer(int custId)
+        public IEnumerable<Product> GetProductsForCustomer(int custId, DateTime minReportDate)
         {
             if (custId <= 0)
             {
@@ -48,15 +48,20 @@
                 $"Alpha.Reports.Services.Impl.ProductsForCustomer-{custId}",
                 () => GetProductsForReport()
                         .Where(product => canViewProduct(product.Id))
-                        .Select(product => new Product(product.Id, product.Name, null, getProductName)),
+                        .Select(product => new Product(product.Id, product.Name, product.EndOfSupportDate, getProductName)),
                 new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(CustProductsCacheTimeInMinutes)));
+
+            if (custProducts != null)
+            {
+                custProducts = custProducts.Where(product => IsRemainSupportProduct(product, minReportDate));
+            }
 
             return custProducts;
         }
 
-        public IEnumerable<int> FilterProductIdsByCustomer(int custId, IEnumerable<int> productIds)
+        public IEnumerable<int> FilterProductIdsByCustomer(int custId, DateTime minReportDate, IEnumerable<int> productIds)
         {
-            var customerProductIds = GetProductsForCustomer(custId).Select(product => product.Id);
+            var customerProductIds = GetProductsForCustomer(custId, minReportDate).Select(product => product.Id);
 
             var productIdList = productIds == null || !productIds.Any()
                 ? customerProductIds
@@ -68,7 +73,7 @@
         public IEnumerable<Product> GetProductsByGroupHeadline(GetProductsByGroupHeadlineParam param)
         {
             var data = dynamicRepository.Fetch<Product>(new GetProductsByGroupHeadlineCriteria(param.CustId))
-                .Where(product => IsRemainSupportProduct(product, param.MinDate))
+                .Where(product => IsRemainSupportProductForGroupHeadline(product, param.MinDate))
                 .Select(product => new Product(product.Id, product.Name, product.IsEnable, getProductName));
 
             return data;
@@ -79,9 +84,13 @@
             .Select(product => product.Id)
             .Where(id => productIds == null || !productIds.Any() || productIds.Contains(id));
 
-        private static bool IsRemainSupportProduct(Product product, DateTime minReportDate)
+        private static bool IsRemainSupportProductForGroupHeadline(Product product, DateTime minReportDate)
             => product.IsEnable
             && (!product.EndOfSupportDate.HasValue || minReportDate <= product.EndOfSupportDate.Value);
+
+        private static bool IsRemainSupportProduct(Product product, DateTime minReportDate)
+           => !product.EndOfSupportDate.HasValue
+           || minReportDate <= product.EndOfSupportDate.Value;
 
         private IEnumerable<Product> GetProductsForReport()
         {
