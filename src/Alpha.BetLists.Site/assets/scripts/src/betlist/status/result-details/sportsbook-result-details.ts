@@ -64,4 +64,33 @@
             Common.PopupDetails.Instance(window.top).Show(this.ResultDetailsPath + params, "", 800, 500);
         };
     }
+
+    export class FastMarketsResultDetails extends BaseResultDetails implements ResultDetails {
+        public ViewResultDetails = (
+            matchId: number,
+            race: number,
+            betTypeId: number,
+            sportTypeId: number,
+            refNo: string,
+            userName: string,
+            winLostDate: Date,
+            refNoMixParlay: number,
+            league: number,
+            isOutright: boolean,
+            betId: number,
+            hdp2?: string) => {
+            const params = '?matchid=' + matchId
+                + '&bettypeid=' + betTypeId
+                + '&race=' + race
+                + '&sportId=' + sportTypeId
+                + '&leagueId=' + league
+                + '&isOutright=' + isOutright
+                + '&refnum=' + refNo
+                + '&betid=' + betId
+                + '&isViewResultFromBetList=true'
+                + '&hdp2=' + hdp2;
+
+            Common.PopupDetails.Instance(window.top).Show(this.ResultDetailsPath + params, "", 730, 250);
+        }
+    }
 }

@@ -8,6 +8,7 @@
         private static rngCasinoResult: ResultDetails;
         private static fishingWorldResult: ResultDetails;
         private static macauGamesResult: ResultDetails;
+        private static fastMarketsResult: ResultDetails;
 
         public static CreateInstance(betTypeId: number): ResultDetails {
             if (betTypeId >= 2501 && betTypeId <= 2699) {
@@ -38,6 +39,11 @@
             if (betTypeId >= 2401 && betTypeId <= 2405) {
                 this.allbetResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.allbetResult) ? new AllbetResultDetails() : this.allbetResult;
                 return this.allbetResult;
+            }
+
+            if (221 <= betTypeId && betTypeId <= 227) {
+                this.fastMarketsResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.fastMarketsResult) ? new FastMarketsResultDetails() : this.fastMarketsResult;
+                return this.fastMarketsResult;
             }
 
             this.sportsbookResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sportsbookResult) ? new SportsbookResultDetails : this.sportsbookResult;
