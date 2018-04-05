@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Web;
+    using BetLists.Constants;
     using BetLists.Models;
     using Sunplus.Agent.Model.Entities;
     using Sunplus.Agent.Model.Entities.Permission;
@@ -35,7 +36,17 @@
 
         public string LangKey => userSession.LangKey;
 
-        public bool IsEnabledJackpot => GetEnableProductsByGameName(Jackpot).Any();
+        public bool IsEnabledJackpot
+        {
+            get
+            {
+                var products = GetEnableProductsByGameName(Jackpot);
+
+                return products.Count == 1 && products.Contains(ProductIdConstants.RNGCasino)
+                    ? userSession.IsCasinoSync
+                    : products.Any();
+            }
+        }
 
         public bool HasPermissionOnProduct(int productId) => UserPermission.HasPermissionOnProduct(productId);
 

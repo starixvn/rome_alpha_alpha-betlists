@@ -124,6 +124,7 @@
         {
             // Arrange
             var userSession = Substitute.For<IUserSession>();
+            userSession.IsCasinoSync = true;
             var user = new UserForTest(userSession);
 
             // Act
