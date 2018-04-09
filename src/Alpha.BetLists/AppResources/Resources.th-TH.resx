@@ -360,4 +360,7 @@
   <data name="superptcomm" xml:space="preserve">
     <value>ค่าแบ่งสู้ของซุปเปอร์/ คอมมิชชั่น</value>
   </data>
+  <data name="ContributionAmountRoundNote" xml:space="preserve">
+    <value>ยอดกองทุนสมทบจะถูกปัดเศษทศนิยมเป็น 4 ตำแหน่ง</value>
+  </data>
 </root>

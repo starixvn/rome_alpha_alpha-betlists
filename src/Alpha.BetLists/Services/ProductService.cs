@@ -99,9 +99,6 @@
             return productIds.Any();
         }
 
-        private IEnumerable<int> GetEnabledJackpotProductIdsForCustomer(int custId)
-            => productDataAccess.GetEnabledProductIdsForCustomer(new GetEnableJackpotProductCriteria(custId, AppSettings.LocalTest));
-
         private static bool IsRemainSupportProductForGroupHeadline(Product product, DateTime minReportDate)
             => product.IsEnable
             && (!product.EndOfSupportDate.HasValue || minReportDate <= product.EndOfSupportDate.Value);
@@ -120,5 +117,8 @@
 
             return products;
         }
+
+        private IEnumerable<int> GetEnabledJackpotProductIdsForCustomer(int custId)
+           => productDataAccess.GetEnabledProductIdsForCustomer(new GetEnableJackpotProductCriteria(custId, AppSettings.LocalTest));
     }
 }

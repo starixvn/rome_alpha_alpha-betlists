@@ -18,7 +18,6 @@
 
         string LangKey { get; }
 
-
         bool IsEnabledJackpot { get; }
 
         bool HasPermissionOnProduct(int productId);
