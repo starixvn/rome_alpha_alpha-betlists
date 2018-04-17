@@ -50,7 +50,7 @@
             });
         };
 
-        for (let betType = 4001; betType <= 7999; betType++) {
+        for (let betType = 4001; betType <= 4100; betType++) {
             it("CreateInstance_ByBetType -> Return MacauGamesResultDetails Instance", () => {
                 // Act
                 let actualInstance = BetList.Status.ResultDetails.ResultDetailsFactory.CreateInstance(betType);
@@ -67,6 +67,26 @@
 
                 // Assert
                 expect(actualInstance).toEqual(jasmine.any(BetList.Status.ResultDetails.AllbetResultDetails));
+            });
+        };
+
+        for (let betType = 221; betType <= 227; betType++) {
+            it("CreateInstance_ByBetType -> Return FastMarketsResultDetails Instance", () => {
+                // Act
+                let actualInstance = BetList.Status.ResultDetails.ResultDetailsFactory.CreateInstance(betType);
+
+                // Assert
+                expect(actualInstance).toEqual(jasmine.any(BetList.Status.ResultDetails.FastMarketsResultDetails));
+            });
+        };
+
+        for (let betType = 4101; betType <= 4300; betType++) {
+            it("CreateInstance_ByBetType -> Return PPResultDetails Instance", () => {
+                // Act
+                let actualInstance = BetList.Status.ResultDetails.ResultDetailsFactory.CreateInstance(betType);
+
+                // Assert
+                expect(actualInstance).toEqual(jasmine.any(BetList.Status.ResultDetails.PPResultDetails));
             });
         };
 
