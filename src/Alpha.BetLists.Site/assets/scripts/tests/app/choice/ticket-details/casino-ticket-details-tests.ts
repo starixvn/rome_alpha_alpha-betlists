@@ -61,6 +61,19 @@
                 expect(popupDetailsShow).toHaveBeenCalledWith("betlist-path/CasinoDetails/Index" + params, "", 1120);
             });
         });
+
+        describe("ShowPPDetails()", () => {
+            it("Should Call Show Popup Details With Expected Url", () => {
+                // Arrange
+                const params = createDetailPopupParam("PP");
+
+                // Act
+                BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowPPDetails(refNo, winLossDate, custId, transType);
+
+                // Assert
+                expect(popupDetailsShow).toHaveBeenCalledWith("betlist-path/CasinoDetails/Index" + params, "", 1120);
+            });
+        });
     });
 
     describe("Allbet_", () => {
@@ -112,6 +125,16 @@
 
                 // Assert
                 expect(showGlobalGaming).toBe(showDetailsFunc);
+            });
+        });
+
+        describe("showPPDetails", () => {
+            it("Should Be Assigned Show Details PP Function", () => {
+                // Arrange
+                const showDetailsFunc = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowPPDetails;
+
+                // Assert
+                expect(showPPDetails).toBe(showDetailsFunc);
             });
         });
 

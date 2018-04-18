@@ -90,11 +90,11 @@
             // Arrange
             var params = '?custId=1' +
                 '&roleId=456' +
-                '&gameId=' + refNo +
+                '&gameId=' + betCheck +
                 '&productId=32';
 
             // Act
-            new BetList.Status.ResultDetails.PPResultDetails().ViewResultDetails(matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, betId);
+            new BetList.Status.ResultDetails.PPResultDetails().ViewResultDetails(matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, betId, betCheck);
 
             // Assert
             expect(popupDetailsShow).toHaveBeenCalledWith("result-path/ThirdParty/Index" + params, "", 835, 675);

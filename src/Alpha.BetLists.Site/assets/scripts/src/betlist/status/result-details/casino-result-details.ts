@@ -100,7 +100,7 @@
             betCheck?: string) => {
             var params = '?custId=' + this.CustId +
                 '&roleId=' + this.ViewerLevelId +
-                '&gameId=' + refNo +
+                '&gameId=' + betCheck +
                 '&productId=32';
             Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/Index' + params, "", 835, 675);
         }
