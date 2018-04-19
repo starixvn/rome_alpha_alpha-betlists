@@ -3,7 +3,10 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Configurations;
     using Criteria;
+    using Criteria.ProgressiveJackpot;
+    using DataAccesses;
     using Fanex.Caching;
     using Fanex.Data.Repository;
     using Models;
@@ -16,6 +19,8 @@
         IEnumerable<int> FilterProductIdsByCustomer(int custId, DateTime minReportDate, IEnumerable<int> productIds);
 
         IEnumerable<int> FilterProductIdsByGroupHeadline(IEnumerable<int> productIds, GetProductsByGroupHeadlineParam param);
+
+        bool IsEnabledJackpot(int custId);
     }
 
     public class ProductServiceImpl : ProductService
@@ -25,13 +30,16 @@
         private readonly Func<int, bool> canViewProduct;
         private readonly Func<int, string> getProductName;
         private readonly IDynamicRepository dynamicRepository;
+        private readonly ProductDataAccess productDataAccess;
 
         public ProductServiceImpl(
             IDynamicRepository dynamicRepository,
+            ProductDataAccess productDataAccess,
             Func<int, bool> canViewProduct,
             Func<int, string> getProductName)
         {
             this.dynamicRepository = dynamicRepository;
+            this.productDataAccess = productDataAccess;
             this.canViewProduct = canViewProduct;
             this.getProductName = getProductName;
         }
@@ -84,6 +92,13 @@
             .Select(product => product.Id)
             .Where(id => productIds == null || !productIds.Any() || productIds.Contains(id));
 
+        public bool IsEnabledJackpot(int custId)
+        {
+            var productIds = GetEnabledJackpotProductIdsForCustomer(custId);
+
+            return productIds.Any();
+        }
+
         private static bool IsRemainSupportProductForGroupHeadline(Product product, DateTime minReportDate)
             => product.IsEnable
             && (!product.EndOfSupportDate.HasValue || minReportDate <= product.EndOfSupportDate.Value);
@@ -102,5 +117,8 @@
 
             return products;
         }
+
+        private IEnumerable<int> GetEnabledJackpotProductIdsForCustomer(int custId)
+           => productDataAccess.GetEnabledProductIdsForCustomer(new GetEnableJackpotProductCriteria(custId, AppSettings.LocalTest));
     }
 }

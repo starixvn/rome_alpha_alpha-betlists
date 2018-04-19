@@ -101,7 +101,8 @@
                 query,
                 BetListDataTest.BetListData,
                 betlistFixture.HtmlBuilder,
-                betlistFixture.TicketHelper);
+                betlistFixture.TicketHelper,
+                false);
 
             // Act
             var viewModel = winLossHandler.Handle(query).GetAwaiter().GetResult();

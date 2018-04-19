@@ -57,6 +57,23 @@
         }
 
         [Theory]
+        [InlineData(2198)]
+        [InlineData(2398)]
+        [InlineData(2998)]
+        public void WinLostAndComm_BetTypeIsJackpotContribution_ShowValue(int betType)
+        {
+            // Arrange
+            var ticket = BetListDataTest.Ticket;
+            ticket.BetTypeId = betType;
+
+            // Act
+            var viewModel = new WinLostBlockViewModel(ticket);
+
+            // Assert
+            Assert.True(viewModel.WinLost.Equals("-") && viewModel.Comm.Equals(string.Empty));
+        }
+
+        [Theory]
         [InlineData(BetStatus.Won)]
         [InlineData(BetStatus.Lose)]
         [InlineData(BetStatus.Draw)]
@@ -176,6 +193,26 @@
             ticket.MasterDiscount = 1;
             ticket.AgentDiscount = 1;
             ticket.BetTypeId = 501;
+
+            // Act
+            var viewModel = new WinLostBlockViewModel(ticket);
+
+            // Assert
+            Assert.True(viewModel.CommVisibility);
+        }
+
+        [Theory]
+        [InlineData(2198)]
+        [InlineData(2398)]
+        [InlineData(2998)]
+        public void CommVisibility_BetTypeIdIsJackpotContribution_IsNotIMBCMatch_ShowValue(int betType)
+        {
+            // Arrange
+            var ticket = BetListDataTest.Ticket;
+            ticket.SuperDiscount = 1;
+            ticket.MasterDiscount = 1;
+            ticket.AgentDiscount = 1;
+            ticket.BetTypeId = betType;
 
             // Act
             var viewModel = new WinLostBlockViewModel(ticket);

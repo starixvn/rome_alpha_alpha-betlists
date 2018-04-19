@@ -19,6 +19,9 @@
         [InlineData(71, typeof(PTComm71))]
         [InlineData(73, typeof(PTComm71))]
         [InlineData(1, typeof(PTComm))]
+        [InlineData(2198, typeof(PTComm2198))]
+        [InlineData(2398, typeof(PTComm2198))]
+        [InlineData(2998, typeof(PTComm2198))]
         public void CreateInstance_ByBetType_ReturnPTComm(int betTypeId, Type expectedType)
         {
             // Arrange

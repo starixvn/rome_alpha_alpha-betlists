@@ -63,6 +63,10 @@
     </div>
     <div class="content">
         @Resources.CommissionRoundNote
+        @if (Model.ShowContributionAmountRoundNote)
+        {
+            <br>@Resources.ContributionAmountRoundNote
+        }
     </div>
 </div>
 @Html.Hidden("betlist-path", HttpContext.Current.Response.ApplyAppPathModifier("~/"))

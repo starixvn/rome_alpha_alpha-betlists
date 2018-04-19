@@ -64,16 +64,35 @@
                 'Allbet - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
         }
     }
+
+    export class JackpotTicketDetails extends BaseTicketDetails {
+        private static instance: JackpotTicketDetails;
+
+        public static get Instance() {
+            this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new JackpotTicketDetails() : this.instance;
+            return this.instance;
+        }
+
+        public ShowJackpotWonDetails = (jackpotTransId: string, custId: string, betType: string) => {
+            const params = '?transid=' + jackpotTransId
+                + '&custid=' + custId
+                + '&bettype=' + betType;
+
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'JackpotDetails/Index' + params, "", 1120);
+        }
+    }
 }
 
 let showRnGCasinoDetails: Function;
 let showVoidBridgeDetails: Function;
 let showGlobalGaming: Function;
-let showTodayRunningBetsDetails: Function // Allbet details
+let showTodayRunningBetsDetails: Function; // Allbet details
+let showProgressiveJackpotWonDetails: Function;
 
 $(document).ready(() => {
     showRnGCasinoDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowRnGCasinoDetails;
     showVoidBridgeDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowMacauGamesDetails;
     showGlobalGaming = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowFishingWorldDetails;
     showTodayRunningBetsDetails = BetList.Choice.TicketDetails.AllbetTicketDetails.Instance.ShowRunningBetsDetails;
+    showProgressiveJackpotWonDetails = BetList.Choice.TicketDetails.JackpotTicketDetails.Instance.ShowJackpotWonDetails;
 })

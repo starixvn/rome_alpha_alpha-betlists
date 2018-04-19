@@ -48,7 +48,7 @@
             var winLossParam = WinLossHandler.CreateWinLossParam(message, validUserSelectedProductIds);
             var betlistData = await winLossService.GetBetList(winLossParam);
 
-            var winLossViewModel = new WinLossViewModel(message, betlistData, null, TicketHelper);
+            var winLossViewModel = new WinLossViewModel(message, betlistData, null, TicketHelper, false);
 
             workbook = workbook.UseTemplate(GetTemplateInfo(message.ViewerLevel));
             RtfHelper = message.RtfHelper ?? InitRTFHelper((workbook as NpoiWorkbook<TicketDto>).Workbook);

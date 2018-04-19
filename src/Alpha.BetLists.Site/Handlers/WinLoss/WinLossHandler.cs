@@ -37,12 +37,16 @@
                 ? productService.FilterProductIdsByGroupHeadline(message.ProductIds.ToListInt(), new GetProductsByGroupHeadlineParam(message.ViewerId, message.MinDate))
                 : productService.FilterProductIdsByCustomer(message.CustId, message.MinDate, message.ProductIds.ToListInt());
 
+            var showContributionAmountRoundNote = message.IsGroupHeadline
+                ? productService.IsEnabledJackpot(message.CustId)
+                : message.IsEnabledJackpot;
+
             var winLossParam = CreateWinLossParam(message, validUserSelectedProductIds);
             var betlistData = await winLossService.GetBetList(winLossParam);
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
-            return new WinLossViewModel(message, betlistData, Builder, TicketHelper);
+            return new WinLossViewModel(message, betlistData, Builder, TicketHelper, showContributionAmountRoundNote);
         }
 
         protected internal static WinLossParam CreateWinLossParam(WinLossQuery message, IEnumerable<int> productIds)

@@ -30,7 +30,7 @@
             var query = new WinLossQuery(betListFixture.User);
 
             // Act
-            var viewModel = new WinLossViewModel(query, BetListDataTest.BetListData, betListFixture.HtmlBuilder, betListFixture.TicketHelper);
+            var viewModel = new WinLossViewModel(query, BetListDataTest.BetListData, betListFixture.HtmlBuilder, betListFixture.TicketHelper, false);
 
             // Assert
             Assert.True(viewModel.AllowToViewSuperPT);
@@ -46,7 +46,7 @@
             var query = new WinLossQuery(betListFixture.User);
 
             // Act
-            var viewModel = new WinLossViewModel(query, BetListDataTest.BetListData, betListFixture.HtmlBuilder, betListFixture.TicketHelper);
+            var viewModel = new WinLossViewModel(query, BetListDataTest.BetListData, betListFixture.HtmlBuilder, betListFixture.TicketHelper, false);
 
             // Assert
             Assert.True(viewModel.AllowToViewMasterPT);
@@ -60,7 +60,7 @@
             var expectedFooter = new Footer(BetListDataTest.BetListData, query.ViewerLevel, false);
 
             // Act
-            var viewModel = new WinLossViewModel(query, BetListDataTest.BetListData, betListFixture.HtmlBuilder, betListFixture.TicketHelper);
+            var viewModel = new WinLossViewModel(query, BetListDataTest.BetListData, betListFixture.HtmlBuilder, betListFixture.TicketHelper, false);
 
             // Assert
             Assert.True(comparer.Compare(expectedFooter, viewModel.Footer).AreEqual);

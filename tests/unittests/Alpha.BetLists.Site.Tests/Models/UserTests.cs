@@ -8,15 +8,11 @@
     [Trait("Category", "BaseBetList")]
     public class UserTests
     {
-#pragma warning disable CS0618 // Type or member is obsolete
         private readonly IUserSession userSession;
-#pragma warning restore CS0618 // Type or member is obsolete
 
         public UserTests()
         {
-#pragma warning disable CS0618 // Type or member is obsolete
             userSession = Substitute.For<IUserSession>();
-#pragma warning restore CS0618 // Type or member is obsolete
         }
 
         [Fact]
@@ -121,6 +117,21 @@
 
             // Assert
             Assert.Equal("en", user.LangKey);
+        }
+
+        [Fact]
+        public void IsEnabledJackpot_JackpotEnabled_ReturnTrue()
+        {
+            // Arrange
+            var userSession = Substitute.For<IUserSession>();
+            userSession.IsCasinoSync = true;
+            var user = new UserForTest(userSession);
+
+            // Act
+            var value = user.IsEnabledJackpot;
+
+            // Assert
+            Assert.True(value);
         }
     }
 }

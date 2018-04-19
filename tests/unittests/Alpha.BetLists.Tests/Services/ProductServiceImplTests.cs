@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using BetLists.Criteria;
+    using BetLists.DataAccesses;
     using BetLists.Models;
     using BetLists.Params;
     using BetLists.Services;
@@ -22,6 +23,7 @@
         private readonly FanexCacheFixture fanexCacheFixture;
         private readonly FanexDataFixture fanexDataFixture;
         private readonly ProductServiceImpl productService;
+        private readonly ProductDataAccess productDataAccess;
         private readonly CompareLogic compareLogic;
         private readonly Func<int, string> getProductName;
 
@@ -53,8 +55,9 @@
            };
 
             fanexDataFixture.DynamicRepository.Fetch<Product>(Arg.Any<GetProductsByGroupHeadlineCriteria>()).Returns(data);
+            productDataAccess = Substitute.For<ProductDataAccess>();
 
-            productService = new ProductServiceImpl(fanexDataFixture.DynamicRepository, canViewProduct, getProductName);
+            productService = new ProductServiceImpl(fanexDataFixture.DynamicRepository, productDataAccess, canViewProduct, getProductName);
 
             compareLogic = new CompareLogic();
         }

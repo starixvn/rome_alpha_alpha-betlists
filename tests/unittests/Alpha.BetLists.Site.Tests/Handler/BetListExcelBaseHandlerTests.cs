@@ -42,7 +42,7 @@
                 this.betlistFixture.IpService);
 
             query = new WinLossQuery(betlistFixture.User);
-            viewModel = new WinLossViewModel(query, BetListDataTest.BetListData, betlistFixture.HtmlBuilder, betlistFixture.TicketHelper);
+            viewModel = new WinLossViewModel(query, BetListDataTest.BetListData, betlistFixture.HtmlBuilder, betlistFixture.TicketHelper, false);
 
             compareLogic = new CompareLogic();
         }

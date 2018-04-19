@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using Fanex.BetList.Core.Entities;
+    using Helpers;
     using Models;
 
     public static class PTCommFactory
@@ -26,6 +27,11 @@
             if (ticket.BetTypeId == 71 || ticket.BetTypeId == 73)
             {
                 return new PTComm71(ticket, userLevel).InitPtCommData();
+            }
+
+            if (BetTypeHelper.IsJackpotContribution(ticket.BetTypeId))
+            {
+                return new PTComm2198(ticket, userLevel).InitPtCommData();
             }
 
             return new PTComm(ticket, userLevel).InitPtCommData();

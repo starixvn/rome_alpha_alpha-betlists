@@ -22,5 +22,9 @@
         public const int CorrectScore = 4;
         public const int MixParlay = 9;
         public const int CombinationMixParlay = 29;
+
+        public const int JackpotContribution = 2198;
+        public const int JackpotContribution_Mobile = 2398;
+        public const int JackpotContribution_Tablet = 2998;
     }
 }

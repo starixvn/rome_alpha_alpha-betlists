@@ -77,6 +77,8 @@
 
         public bool IsShowRacing => isShowRacing;
 
+        public bool IsEnabledJackpot => false;
+
         public bool HasPermissionOnProduct(int productId) => hasPermissionOnProduct(productId);
     }
 }

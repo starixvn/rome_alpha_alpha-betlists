@@ -47,6 +47,8 @@
 
         public Footer Footer { get; }
 
+        public bool ShowContributionAmountRoundNote => query.IsEnabledJackpot;
+
         public override bool CanViewScoreMap(ITicket ticket)
             => string.Equals(ticket.Status, BetStatus.Running, StringComparison.OrdinalIgnoreCase)
             && SupportScoreMapBetTypeIds != null

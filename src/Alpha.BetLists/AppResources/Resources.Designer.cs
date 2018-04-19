@@ -223,6 +223,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The contribution amount will be rounded to 4 decimal places..
+        /// </summary>
+        public static string ContributionAmountRoundNote {
+            get {
+                return ResourceManager.GetString("ContributionAmountRoundNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Daily Statement.
         /// </summary>
         public static string DailyStatement {
@@ -309,15 +318,6 @@ namespace Alpha.BetLists.AppResources {
         public static string HideFilter {
             get {
                 return ResourceManager.GetString("HideFilter", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Racing.
-        /// </summary>
-        public static string horseRacing {
-            get {
-                return ResourceManager.GetString("horseRacing", resourceCulture);
             }
         }
         
@@ -588,6 +588,15 @@ namespace Alpha.BetLists.AppResources {
         public static string place {
             get {
                 return ResourceManager.GetString("place", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Progressive Jackpot Won Details.
+        /// </summary>
+        public static string ProgressiveJackpotWonDetails {
+            get {
+                return ResourceManager.GetString("ProgressiveJackpotWonDetails", resourceCulture);
             }
         }
         

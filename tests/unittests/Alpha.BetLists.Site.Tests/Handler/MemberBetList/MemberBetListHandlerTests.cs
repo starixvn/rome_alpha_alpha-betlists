@@ -40,8 +40,6 @@
             forecastService = Substitute.For<ForecastService>();
             forecastService.GetBetTypeIdsSupportScoreMap().Returns(BetListDataTest.BettypeIds);
 
-            query = new MemberBetListQuery(this.betlistFixture.User);
-
             memberBetListHandler = new MemberBetListHandler(
                 memberBetListService,
                 productService,
@@ -61,6 +59,7 @@
         public void Handle_AnyProductIds_ReturnCorrectViewModel()
         {
             // Arrange
+            var query = new MemberBetListQuery(betlistFixture.User);
             query.CustId = 1;
             query.ProductIds = "1";
             query.FromDate = DateTime.Today;
@@ -95,6 +94,28 @@
 
             // Assert
             Assert.True(compareLogic.Compare(actualMemberBetListViewModel, expectedMemberBetListViewModel).AreEqual);
+        }
+
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void Handle_IsEnabledJackpot_ShowContributionAmountRoundNoteReturnsCorrectValue(bool isEnabledJackpot)
+        {
+            // Arrange
+            var query = new MemberBetListQuery(betlistFixture.User);
+            query.IsEnabledJackpot = isEnabledJackpot;
+            query.CustId = 1;
+            query.ProductIds = "1";
+            query.FromDate = DateTime.Today;
+            query.ToDate = DateTime.Today;
+            query.Language = "en";
+            query.CustName = "custName";
+
+            // Act
+            var viewModel = memberBetListHandler.Handle(query).GetAwaiter().GetResult();
+
+            // Assert
+            Assert.Equal(isEnabledJackpot, viewModel.ShowContributionAmountRoundNote);
         }
     }
 }

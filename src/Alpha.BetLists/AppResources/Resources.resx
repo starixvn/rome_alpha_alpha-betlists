@@ -384,4 +384,10 @@
   <data name="Bullfighting" xml:space="preserve">
     <value>Bullfighting</value>
   </data>
+  <data name="ContributionAmountRoundNote" xml:space="preserve">
+    <value>The contribution amount will be rounded to 4 decimal places.</value>
+  </data>
+  <data name="ProgressiveJackpotWonDetails" xml:space="preserve">
+    <value>Progressive Jackpot Won Details</value>
+  </data>
 </root>
