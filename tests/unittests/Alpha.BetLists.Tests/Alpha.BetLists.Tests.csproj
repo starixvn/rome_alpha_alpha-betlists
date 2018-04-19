@@ -62,11 +62,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.BetTrade, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Fanex.BetList.Core.2.60.0-beta\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
+      <HintPath>..\..\..\packages\Fanex.BetList.Core.2.60.0\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.Core, Version=2.60.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Fanex.BetList.Core.2.60.0-beta\lib\net40\Fanex.BetList.Core.dll</HintPath>
+      <HintPath>..\..\..\packages\Fanex.BetList.Core.2.60.0\lib\net40\Fanex.BetList.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.NumberGame, Version=1.0.0.6, Culture=neutral, processorArchitecture=MSIL">
@@ -90,7 +90,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.Products, Version=0.0.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Fanex.Products.1.0.0.1-BetradarVS001\lib\net40\Fanex.Products.dll</HintPath>
+      <HintPath>..\..\..\packages\Fanex.Products.1.0.0.1\lib\net40\Fanex.Products.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="IBCFile, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -154,7 +154,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Sunplus.Core.Common, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Sunplus.Core.Common.1.2.0.0-beta-02\lib\net40\Sunplus.Core.Common.dll</HintPath>
+      <HintPath>..\..\..\packages\Sunplus.Core.Common.1.2.0.0\lib\net40\Sunplus.Core.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
