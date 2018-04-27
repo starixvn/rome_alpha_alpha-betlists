@@ -76,7 +76,7 @@
             // Arrange
             var query = CreateWinLossByMatchQuery();
 
-            var expectedParam = new ParlayWinLossByMatchParam(1, 2, "en", DateTime.Today, DateTime.Today, UserLevel.Super);
+            var expectedParam = new ParlayWinLossByMatchParam(1, 2, "en", DateTime.Today, DateTime.Today, DateTime.MinValue, UserLevel.Super);
 
             // Act
             winLossHandler.Handle(query).GetAwaiter().GetResult();
@@ -109,7 +109,7 @@
             // Arrange
             user.LevelId.Returns(UserLevel.Agent.Value);
             var query = CreateWinLossByMatchQuery();
-            var expectedParam = new ParlayWinLossByMatchParam(1, 2, "en", DateTime.Today, DateTime.Today, UserLevel.Super);
+            var expectedParam = new ParlayWinLossByMatchParam(1, 2, "en", DateTime.Today, DateTime.Today, DateTime.MinValue, UserLevel.Super);
 
             // Act
             var actualParam = ParlayWinLossByMatchHandler.CreateWinLossParam(query);

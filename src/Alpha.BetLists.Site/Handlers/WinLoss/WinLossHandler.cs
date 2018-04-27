@@ -53,8 +53,9 @@
             => new WinLossParam(
                message.CustId,
                productIds,
-               message.FromDate,
+               message.FromDate,               
                message.ToDate,
+               message.LimitedDateToShowInfo,
                message.Language);
     }
 }

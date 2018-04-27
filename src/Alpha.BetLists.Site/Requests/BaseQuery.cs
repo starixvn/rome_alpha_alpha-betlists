@@ -18,6 +18,8 @@
             DisplayVNIP = viewer.IsAdminCanViewVNIP;
             Language = viewer.Language;
             IsEnabledJackpot = viewer.IsEnabledJackpot;
+
+            LimitedDateToShowInfo = viewer.LimitedDateToShowInfo;
         }
 
         public int CustId { get; set; }
@@ -47,5 +49,7 @@
         public bool IsHistoricReport { get; set; }
 
         public bool IsEnabledJackpot { get; set; }
+
+        public DateTime LimitedDateToShowInfo { get; set; }
     }
 }

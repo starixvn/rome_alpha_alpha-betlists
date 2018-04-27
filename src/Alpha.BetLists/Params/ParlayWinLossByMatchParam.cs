@@ -11,6 +11,7 @@
             string language,
             DateTime fromDate,
             DateTime toDate,
+            DateTime limtedDate,
             UserLevel custLevel)
         {
             CustId = custId;
@@ -19,6 +20,7 @@
             FromDate = fromDate;
             ToDate = toDate;
             CustLevel = custLevel;
+            LimitedDate = limtedDate;
         }
 
         public int CustId { get; }
@@ -32,5 +34,7 @@
         public DateTime ToDate { get; }
 
         public UserLevel CustLevel { get; }
+
+        public DateTime LimitedDate { get; }
     }
 }

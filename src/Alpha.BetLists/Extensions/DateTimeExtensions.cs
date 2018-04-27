@@ -22,5 +22,8 @@
 
         public static DateTime ToEndOfDay(this DateTime dateTime)
             => new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, 23, 59, 59);
+
+        public static DateTime GetLaterDate(this DateTime fromDate, DateTime limitedDate)
+            => fromDate < limitedDate ? limitedDate : fromDate;
     }
 }

@@ -42,6 +42,7 @@
                 validUserSelectedProductIds,
                 message.FromDate,
                 message.ToDate,
+                message.LimitedDateToShowInfo,
                 message.GetAll,
                 message.Language,
                 message.CustName);

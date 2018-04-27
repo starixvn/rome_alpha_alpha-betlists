@@ -17,21 +17,23 @@
     public class RunningBetListServiceImplTests
     {
         private readonly RunningBetListServiceImpl runningBetListService;
+        private readonly FanexDataFixture dataFixture;
 
         public RunningBetListServiceImplTests(FanexDataFixture dataFixture)
         {
-            dataFixture.DynamicRepository
+            this.dataFixture = dataFixture;
+            this.dataFixture.DynamicRepository
                 .FetchMultipleAsync<TicketDto, TicketData>(Arg.Any<GetBetListRunningByDateCriteria>())
                 .Returns(BetListDataTest.BetListDataTuple);
 
-            runningBetListService = new RunningBetListServiceImpl(dataFixture.DynamicRepository);
+            runningBetListService = new RunningBetListServiceImpl(this.dataFixture.DynamicRepository);
         }
 
         [Fact]
         public void GetBetList_Always_ReturnCorrectBetList()
         {
             // Arrange
-            var param = new RunningBetListParam(1, Enumerable.Empty<int>(), DateTime.Now, DateTime.Now, true, string.Empty, string.Empty);
+            var param = new RunningBetListParam(1, Enumerable.Empty<int>(), DateTime.Now, DateTime.Now, DateTime.MinValue, true, string.Empty, string.Empty);
 
             // Act
             var actualBetListData = runningBetListService.GetBetList(param).GetAwaiter().GetResult();
@@ -39,6 +41,20 @@
             // Assert
             Assert.True(BetListDataTest.Tickets.SequenceEqual(actualBetListData.Tickets) &&
                 BetListDataTest.TicketData.SequenceEqual(actualBetListData.TicketData));
+        }
+
+        [Fact]
+        public void GetBetList_UserIsInLimitedDateRange_UseLimitedDate()
+        {
+            // Arrange
+            var limitedDate = DateTime.Today.AddDays(1);
+            var param = new RunningBetListParam(1, Enumerable.Empty<int>(), DateTime.Now, DateTime.Now, limitedDate, true, string.Empty, string.Empty);
+
+            // Act
+            var actualBetListData = runningBetListService.GetBetList(param).GetAwaiter().GetResult();
+
+            // Assert
+            dataFixture.DynamicRepository.Received().FetchMultipleAsync<TicketDto, TicketData>(Arg.Is<GetBetListRunningByDateCriteria>(i => i.FromDate == limitedDate));
         }
     }
 }

@@ -84,6 +84,7 @@
             query.GetAll = true;
             query.FromDate = DateTime.Today;
             query.ToDate = DateTime.Today;
+            query.LimitedDateToShowInfo = DateTime.MinValue;
             query.Language = "en";
             query.CustName = "custName";
 
@@ -97,6 +98,7 @@
                 validUserSelectedProductIds,
                 query.FromDate,
                 query.ToDate,
+                query.LimitedDateToShowInfo,
                 query.GetAll,
                 query.Language,
                 query.CustName);
