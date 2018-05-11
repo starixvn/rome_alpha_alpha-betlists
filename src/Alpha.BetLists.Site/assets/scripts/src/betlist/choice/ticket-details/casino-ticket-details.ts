@@ -23,6 +23,11 @@
             this.ShowDetailsPopup(params);
         }
 
+        public ShowPPDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
+            const params = this.CreatePopupDetailsParam(refNo, winlossDate, custId, transType, "PP");
+            this.ShowDetailsPopup(params);
+        }
+
         private CreatePopupDetailsParam = (refNo: string, winlossDate: Date, custId: string, transType: string, sportName: string = "RNG Casino"): string => {
             return "?refNo=" + refNo
                 + "&transType=" + transType
@@ -86,6 +91,7 @@
 let showRnGCasinoDetails: Function;
 let showVoidBridgeDetails: Function;
 let showGlobalGaming: Function;
+let showPPDetails: Function;
 let showTodayRunningBetsDetails: Function; // Allbet details
 let showProgressiveJackpotWonDetails: Function;
 
@@ -93,6 +99,7 @@ $(document).ready(() => {
     showRnGCasinoDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowRnGCasinoDetails;
     showVoidBridgeDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowMacauGamesDetails;
     showGlobalGaming = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowFishingWorldDetails;
+    showPPDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowPPDetails;
     showTodayRunningBetsDetails = BetList.Choice.TicketDetails.AllbetTicketDetails.Instance.ShowRunningBetsDetails;
     showProgressiveJackpotWonDetails = BetList.Choice.TicketDetails.JackpotTicketDetails.Instance.ShowJackpotWonDetails;
 })
