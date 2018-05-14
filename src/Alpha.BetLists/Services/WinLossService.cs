@@ -34,7 +34,7 @@
             var balanceUpDate = reportDateService.GetBalanceUpDay();
             var previousBalanceUpDate = balanceUpDate.AddDays(-1);
             Tuple<IEnumerable<TicketDto>, IEnumerable<TicketData>> betListDataTuple;
-            var fromDate = param.FromDate.GetLaterDate(param.LimitedDate);
+            var fromDate = param.FromDate.GetGreaterDate(param.LimitedDate);
 
             if (fromDate.IsBefore(balanceUpDate))
             {

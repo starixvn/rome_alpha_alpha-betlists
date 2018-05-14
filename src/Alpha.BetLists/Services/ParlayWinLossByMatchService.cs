@@ -32,7 +32,7 @@
                 param.CustId,
                 param.BetType,
                 param.Language,
-                param.FromDate.GetLaterDate(param.LimitedDate),
+                param.FromDate.GetGreaterDate(param.LimitedDate),
                 param.ToDate,
                 reportDateService.GetMoveBetsDay(),
                 param.CustLevel);

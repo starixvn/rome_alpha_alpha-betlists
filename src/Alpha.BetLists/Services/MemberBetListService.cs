@@ -28,7 +28,7 @@
             var criteria = new GetBetListAllByDateCriteria(
                     param.CustId,
                     param.ProductIds.JoinWithComma(),
-                    param.FromDate.GetLaterDate(param.LimitedDate),
+                    param.FromDate.GetGreaterDate(param.LimitedDate),
                     param.ToDate,
                     param.Language,
                     param.UserName);
