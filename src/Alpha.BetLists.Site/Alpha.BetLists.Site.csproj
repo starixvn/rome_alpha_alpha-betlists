@@ -677,6 +677,9 @@
     <Content Include="Web.backupMNL3.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
+	<Content Include="Web.backupMNL4.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </Content>
     <Content Include="Web.backupMNLExNap.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
@@ -684,6 +687,9 @@
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
     <Content Include="Web.backupMNLExNap3.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </Content>
+	<Content Include="Web.backupMNLExNap4.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
     <Content Include="Web.backupMNLNap.config">
@@ -695,6 +701,9 @@
     <Content Include="Web.backupMNLNap3.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
+	<Content Include="Web.backupMNLNap4.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </Content>
     <Content Include="Web.napexternal.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
@@ -702,6 +711,9 @@
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
     <Content Include="Web.napexternal3.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </Content>
+	<Content Include="Web.napexternal4.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
     <Content Include="Web.napinternal.config">
@@ -713,6 +725,9 @@
     <Content Include="Web.napinternal3.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
+	<Content Include="Web.napinternal4.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </Content>
     <Content Include="Web.pro.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
@@ -722,6 +737,9 @@
     <Content Include="Web.pro3.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
+	<Content Include="Web.pro4.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </Content>
     <Content Include="Web.sit.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
@@ -729,6 +747,9 @@
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
     <Content Include="Web.sit3.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </Content>
+	<Content Include="Web.sit4.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
     <Content Include="Web.uat.config">
@@ -743,6 +764,9 @@
     <Content Include="Web.AppSettings.backupMNL3.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
+	<Content Include="Web.AppSettings.backupMNL4.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
     <Content Include="Web.AppSettings.backupMNLExNap.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
@@ -750,6 +774,9 @@
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
     <Content Include="Web.AppSettings.backupMNLExNap3.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
+	<Content Include="Web.AppSettings.backupMNLExNap4.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
     <Content Include="Web.AppSettings.backupMNLNap.config">
@@ -761,6 +788,9 @@
     <Content Include="Web.AppSettings.backupMNLNap3.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
+	<Content Include="Web.AppSettings.backupMNLNap4.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
     <Content Include="Web.AppSettings.napexternal.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
@@ -768,6 +798,9 @@
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
     <Content Include="Web.AppSettings.napexternal3.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
+	<Content Include="Web.AppSettings.napexternal4.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
     <Content Include="Web.AppSettings.napinternal.config">
@@ -779,6 +812,9 @@
     <Content Include="Web.AppSettings.napinternal3.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
+	<Content Include="Web.AppSettings.napinternal4.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
     <Content Include="Web.AppSettings.pro.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
@@ -788,6 +824,9 @@
     <Content Include="Web.AppSettings.pro3.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
+	<Content Include="Web.AppSettings.pro4.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
     <Content Include="Web.AppSettings.sit.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
@@ -795,6 +834,9 @@
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
     <Content Include="Web.AppSettings.sit3.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
+	<Content Include="Web.AppSettings.sit4.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
     <Content Include="Web.AppSettings.uat.config">
@@ -807,6 +849,9 @@
     <Content Include="Web.AppSettings.uat3.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
+	<Content Include="Web.AppSettings.uat4.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -814,6 +859,9 @@
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
     <Content Include="Web.uat3.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </Content>
+	<Content Include="Web.uat4.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
     <Content Include="tsconfig.json" />
