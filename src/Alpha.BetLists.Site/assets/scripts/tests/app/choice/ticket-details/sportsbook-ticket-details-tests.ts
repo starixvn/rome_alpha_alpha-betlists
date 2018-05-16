@@ -48,15 +48,17 @@
             const custId = "1";
             const transId = "2";
             const betId = "3";
+            const betTeam = "1";
             const params = '?refno=' + refNo
                 + '&winlostdate=' + winLossDate
                 + '&transid=' + transId
                 + '&betid=' + betId
-                + '&custid=' + custId;
+                + '&custid=' + custId
+                + '&betteam=' + betTeam;
 
             // Act
             BetList.Choice.TicketDetails.ParlayTicketDetails.Instance
-                .ShowComboParlayDetails(refNo, winLossDate, transId, betId, custId);
+                .ShowComboParlayDetails(refNo, winLossDate, transId, betId, custId, betTeam);
 
             // Assert
             expect(popupDetailsShow).toHaveBeenCalledWith('betlist-path/Parlay/ComboParlayDetail' + params, "", 800, 438);

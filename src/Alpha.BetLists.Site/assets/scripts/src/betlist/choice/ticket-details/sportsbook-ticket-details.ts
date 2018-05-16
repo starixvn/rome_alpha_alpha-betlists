@@ -29,12 +29,13 @@
             return this.instance;
         }
 
-        public ShowComboParlayDetails = (refNo: string, winlostDate: Date, transId: string, betId: string, custId: string) => {
+        public ShowComboParlayDetails = (refNo: string, winlostDate: Date, transId: string, betId: string, custId: string, betTeam: string) => {
             const params = '?refno=' + refNo
                 + '&winlostdate=' + winlostDate
                 + '&transid=' + transId
                 + '&betid=' + betId
-                + '&custid=' + custId;
+                + '&custid=' + custId
+                + '&betteam=' + betTeam;
 
             Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'Parlay/ComboParlayDetail' + params, "", 800, 438);
         }

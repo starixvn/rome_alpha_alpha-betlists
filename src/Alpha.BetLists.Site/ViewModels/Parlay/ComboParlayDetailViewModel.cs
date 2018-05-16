@@ -20,7 +20,11 @@
         {
             IsDataTooHuge = comboParlayDetailData.ComboParlayDetails.Count() > 5000;
             Query = query;
-            Title = Resources.lblSystemParlay;
+
+            Title = query.BetTeam == "1"
+                ? Resources.lblMixParlay
+                : Resources.lblSystemParlay;
+
             var allowInitializingData = isExportingExcel || !IsDataTooHuge;
 
             if (allowInitializingData)
