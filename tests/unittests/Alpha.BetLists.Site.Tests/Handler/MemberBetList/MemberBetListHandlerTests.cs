@@ -24,7 +24,6 @@
         private readonly MemberBetListService memberBetListService;
         private readonly ProductService productService;
         private readonly ForecastService forecastService;
-        private readonly MemberBetListQuery query;
         private readonly CompareLogic compareLogic;
 
         public MemberBetListHandlerTests(BetListFixture betlistFixture)
@@ -64,6 +63,7 @@
             query.ProductIds = "1";
             query.FromDate = DateTime.Today;
             query.ToDate = DateTime.Today;
+            query.LimitedDateToShowInfo = DateTime.MinValue;
             query.Language = "en";
             query.CustName = "custName";
 
@@ -77,6 +77,7 @@
                 validUserSelectedProductIds,
                 query.FromDate,
                 query.ToDate,
+                query.LimitedDateToShowInfo,
                 query.Language,
                 query.CustName);
 

@@ -41,6 +41,7 @@
                 Enumerable.Empty<int>(),
                 query.FromDate,
                 query.ToDate,
+                query.LimitedDateToShowInfo,
                 query.GetAll,
                 query.Language,
                 query.CustName);

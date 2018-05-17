@@ -1,4 +1,6 @@
-﻿namespace Alpha.BetLists.Models
+﻿using System;
+
+namespace Alpha.BetLists.Models
 {
     public interface IUser
     {
@@ -21,5 +23,7 @@
         bool IsEnabledJackpot { get; }
 
         bool HasPermissionOnProduct(int productId);
+
+        DateTime LimitedDateToShowInfo { get; }
     }
 }

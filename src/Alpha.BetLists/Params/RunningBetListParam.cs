@@ -11,6 +11,7 @@
             IEnumerable<int> productIds,
             DateTime fromDate,
             DateTime toDate,
+            DateTime limitedDate,
             bool getAll,
             string language,
             string userName)
@@ -24,6 +25,7 @@
             Language = language;
             UserName = userName;
             ProductIds = productIds;
+            LimitedDate = limitedDate;
         }
 
         public int CustId { get; }
@@ -39,5 +41,7 @@
         public string UserName { get; }
 
         public IEnumerable<int> ProductIds { get; }
+
+        public DateTime LimitedDate { get; }
     }
 }

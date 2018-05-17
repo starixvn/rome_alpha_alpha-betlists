@@ -48,6 +48,7 @@
                 BetListDataTest.ProductIds,
                 DateTime.Today.AddDays(1),
                 DateTime.Today.AddDays(2),
+                DateTime.MinValue,
                 "en");
 
             // Act
@@ -67,6 +68,7 @@
                 BetListDataTest.ProductIds,
                 DateTime.Today.AddDays(1),
                 DateTime.Today.AddDays(2),
+                DateTime.MinValue,
                 "en");
 
             // Act
@@ -85,6 +87,70 @@
         }
 
         [Fact]
+        public void GetBetList_UserIsInLimitedDateRange_UseLimitedDate()
+        {
+            // Arrange
+            var limiteDate = DateTime.Today.AddDays(2);
+            var param = new WinLossParam(
+                0,
+                BetListDataTest.ProductIds,
+                DateTime.Today.AddDays(1),
+                DateTime.Today.AddDays(2),
+                limiteDate,
+                "en");
+
+            // Act
+            winLossService.GetBetList(param).GetAwaiter().GetResult();
+
+            // Assert
+            dataFixture.DynamicRepository
+                .Received()
+                .FetchMultipleAsync<TicketDto, TicketData>(Arg.Is<GetBetListWinLossByDateCriteria>(c => c.FromDate == param.LimitedDate));
+        }
+
+        [Fact]
+        public void GetBetList_FromToIsBeforeBUD_UserIsInLimitedDate_UseLimitedDate()
+        {
+            // Arrange
+            var limitedDate = DateTime.Today.AddDays(-2);
+            var param = new WinLossParam(
+                0,
+                BetListDataTest.ProductIds,
+                DateTime.Today.AddDays(-3),
+                DateTime.Today.AddDays(-2),
+                limitedDate,
+                "en");
+
+            // Act
+            winLossService.GetBetList(param).GetAwaiter().GetResult();
+
+            // Assert
+            dataFixture.DynamicRepository.Received()
+                .FetchMultipleAsync<TicketDto, TicketData>(Arg.Is<GetBetListWinLossByDateOldCriteria>(i => i.FromDate == limitedDate));
+        }
+
+        [Fact]
+        public void GetBetList_FromIsBefore_ToIsAfterBUD_UserIsInLimitedDate_UseLimitedDate()
+        {
+            // Arrange
+            var limitedDate = DateTime.Today.AddDays(-2);
+            var param = new WinLossParam(
+                0,
+                BetListDataTest.ProductIds,
+                DateTime.Today.AddDays(-3),
+                DateTime.Today.AddDays(2),
+                limitedDate,
+                "en");
+
+            // Act
+            winLossService.GetBetList(param).GetAwaiter().GetResult();
+
+            // Assert
+            dataFixture.DynamicRepository.Received()
+                .FetchMultipleAsync<TicketDto, TicketData>(Arg.Is<GetBetListWinLossByDateOldCriteria>(i => i.FromDate == limitedDate));
+        }
+
+        [Fact]
         public void GetBetList_FromDateIsBeforeBUDay_ToDateIsBeforePreviousBUDay_ReturnBetListWinLossByDateOld()
         {
             var param = new WinLossParam(
@@ -92,6 +158,7 @@
                 BetListDataTest.ProductIds,
                 DateTime.Today.AddDays(-3),
                 DateTime.Today.AddDays(-2),
+                DateTime.MinValue,
                 "en");
 
             // Act
@@ -111,6 +178,7 @@
                 BetListDataTest.ProductIds,
                 DateTime.Today.AddDays(-3),
                 DateTime.Today.AddDays(-2),
+                DateTime.MinValue,
                 "en");
 
             // Act
@@ -135,6 +203,7 @@
                 BetListDataTest.ProductIds,
                 DateTime.Today.AddDays(-3),
                 DateTime.Today.AddDays(2),
+                DateTime.MinValue,
                 "en");
 
             // Act
@@ -154,6 +223,7 @@
                 BetListDataTest.ProductIds,
                 DateTime.Today.AddDays(-3),
                 DateTime.Today.AddDays(2),
+                DateTime.MinValue,
                 "en");
 
             // Act

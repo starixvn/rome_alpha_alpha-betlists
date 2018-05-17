@@ -84,4 +84,20 @@
             expect(popupDetailsShow).toHaveBeenCalledWith("result-path/ThirdParty/Index" + params, "", 835, 675);
         });
     });
+
+    describe("PP_", () => {
+        it("ViewResultDetails -> Show Popup With Expected Url", () => {
+            // Arrange
+            var params = '?custId=1' +
+                '&roleId=456' +
+                '&gameId=' + betCheck +
+                '&productId=32';
+
+            // Act
+            new BetList.Status.ResultDetails.PPResultDetails().ViewResultDetails(matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, betId, betCheck);
+
+            // Assert
+            expect(popupDetailsShow).toHaveBeenCalledWith("result-path/ThirdParty/Index" + params, "", 835, 675);
+        });
+    });
 });

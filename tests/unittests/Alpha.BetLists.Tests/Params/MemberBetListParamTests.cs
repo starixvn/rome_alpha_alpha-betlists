@@ -13,7 +13,7 @@
         {
             // Arrange
             var fromDate = new DateTime(2017, 5, 25);
-            var param = new MemberBetListParam(1, Enumerable.Empty<int>(), fromDate, DateTime.MinValue, string.Empty, string.Empty);
+            var param = new MemberBetListParam(1, Enumerable.Empty<int>(), fromDate, DateTime.MinValue, DateTime.MinValue, string.Empty, string.Empty);
             var expectedFromDate = new DateTime(2017, 5, 25, 0, 0, 0);
 
             // Act
@@ -28,7 +28,7 @@
         {
             // Arrange
             var toDate = new DateTime(2017, 5, 25);
-            var param = new MemberBetListParam(1, Enumerable.Empty<int>(), DateTime.MinValue, toDate, string.Empty, string.Empty);
+            var param = new MemberBetListParam(1, Enumerable.Empty<int>(), DateTime.MinValue, toDate, DateTime.MinValue, string.Empty, string.Empty);
             var expectedToDate = new DateTime(2017, 5, 25, 23, 59, 59);
 
             // Act

@@ -35,6 +35,9 @@
         [ThreadStatic]
         private static Func<int, bool> hasPermissionOnProduct;
 
+        [ThreadStatic]
+        private static DateTime limitedDate;
+
         public static void SetValues(
             int id,
             string name,
@@ -45,7 +48,8 @@
             bool isAdminCanViewVNIP,
             string langKey,
             bool isShowRacing,
-            Func<int, bool> hasPermissionOnProduct)
+            Func<int, bool> hasPermissionOnProduct,
+            DateTime limitDate)
         {
             StaticUserSession.id = id;
             StaticUserSession.name = name;
@@ -57,6 +61,7 @@
             StaticUserSession.langKey = langKey;
             StaticUserSession.isShowRacing = isShowRacing;
             StaticUserSession.hasPermissionOnProduct = hasPermissionOnProduct;
+            StaticUserSession.limitedDate = limitDate;
         }
 
         public int Id => id;
@@ -80,5 +85,7 @@
         public bool IsEnabledJackpot => false;
 
         public bool HasPermissionOnProduct(int productId) => hasPermissionOnProduct(productId);
+
+        public DateTime LimitedDateToShowInfo => limitedDate;
     }
 }

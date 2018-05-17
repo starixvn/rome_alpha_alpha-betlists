@@ -2,6 +2,7 @@
 {
     using System.Threading.Tasks;
     using BetLists.Models;
+    using Extensions;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using MediatR;
@@ -42,9 +43,10 @@
           => new ParlayWinLossByMatchParam(
               message.CustId,
               message.BetType,
-              message.Language,
+              message.Language,              
               message.FromDate,
               message.ToDate,
+              message.LimitedDateToShowInfo,
               message.CustLevel);
     }
 }

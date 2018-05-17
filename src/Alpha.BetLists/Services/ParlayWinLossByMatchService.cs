@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using Criteria.ParlayWinLossByMatch;
+    using Extensions;
     using Fanex.Data.Repository;
     using Models;
     using Params;
@@ -31,7 +32,7 @@
                 param.CustId,
                 param.BetType,
                 param.Language,
-                param.FromDate,
+                param.FromDate.GetGreaterDate(param.LimitedDate),
                 param.ToDate,
                 reportDateService.GetMoveBetsDay(),
                 param.CustLevel);
