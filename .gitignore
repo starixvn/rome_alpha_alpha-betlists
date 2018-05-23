@@ -58,3 +58,8 @@ tests/unittests/Alpha.BetLists.Site.Tests/Lucky3/Styles/images/lotto_ball.png
 tests/unittests/Alpha.BetLists.Site.Tests/Lucky3/ViewDetail.cshtml
 tests/unittests/Alpha.BetLists.Tests/Lucky3/Styles/images/lotto_ball.png
 tests/unittests/Alpha.BetLists.Tests/Lucky3/ViewDetail.cshtml
+/.vs/Alpha.BetLists/v15/Server/sqlite3/db.lock
+/.vs/Alpha.BetLists/v15/Server/sqlite3/storage.ide
+/.vs/Alpha.BetLists/v15/Server/sqlite3/storage.ide-shm
+/.vs/Alpha.BetLists/v15/Server/sqlite3/storage.ide-wal
+/.vs/Alpha.BetLists/DesignTimeBuild/.dtbcache
