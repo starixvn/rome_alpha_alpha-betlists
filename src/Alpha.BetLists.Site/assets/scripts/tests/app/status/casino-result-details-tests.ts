@@ -49,7 +49,7 @@
             new BetList.Status.ResultDetails.RnGCasinoResultDetails().ViewResultDetails(matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, betId);
 
             // Assert
-            expect(popupDetailsShow).toHaveBeenCalledWith("result-path/ThirdParty/Index" + params, "", 835, 675);
+            expect(popupDetailsShow).toHaveBeenCalledWith("result-path/ThirdParty/Detail" + params, "", 835, 675);
         });
     });
 
@@ -65,7 +65,7 @@
             new BetList.Status.ResultDetails.MacauGamesResultDetails().ViewResultDetails(matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, betId);
 
             // Assert
-            expect(popupDetailsShow).toHaveBeenCalledWith("result-path/ThirdParty/Index" + params, "", 835, 675);
+            expect(popupDetailsShow).toHaveBeenCalledWith("result-path/ThirdParty/Detail" + params, "", 835, 675);
         });
     });
 
@@ -81,7 +81,7 @@
             new BetList.Status.ResultDetails.FishingWorldResultDetails().ViewResultDetails(matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, betId, betCheck);
 
             // Assert
-            expect(popupDetailsShow).toHaveBeenCalledWith("result-path/ThirdParty/Index" + params, "", 835, 675);
+            expect(popupDetailsShow).toHaveBeenCalledWith("result-path/ThirdParty/Detail" + params, "", 835, 675);
         });
     });
 
@@ -97,7 +97,7 @@
             new BetList.Status.ResultDetails.PPResultDetails().ViewResultDetails(matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, betId, betCheck);
 
             // Assert
-            expect(popupDetailsShow).toHaveBeenCalledWith("result-path/ThirdParty/Index" + params, "", 835, 675);
+            expect(popupDetailsShow).toHaveBeenCalledWith("result-path/ThirdParty/Detail" + params, "", 835, 675);
         });
     });
 });
