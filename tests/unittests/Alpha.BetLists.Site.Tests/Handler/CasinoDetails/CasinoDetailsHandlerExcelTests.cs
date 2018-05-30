@@ -9,7 +9,6 @@
     using Fanex.BetDetails.Casino.Models;
     using Fanex.BetDetails.Casino.Params;
     using Fanex.BetDetails.Casino.Services;
-    using Fanex.BetDetails.Casino.ViewModels;
     using Fanex.BetList.Core.Entities;
     using Fixtures;
     using Handlers.CasinoDetails;
@@ -18,6 +17,7 @@
     using ONEbook.SpreadSheets;
     using Requests.CasinoDetails;
     using Site.ViewModels;
+    using Site.ViewModels.CasinoDetails;
     using Xunit;
     using static ONEbook.SpreadSheets.Column;
 
@@ -82,13 +82,12 @@
             // Arrange
             var param = CasinoDetailsHandler.CreateCasinoDetailsParam(message);
             var casinoDetailsViewModel = new CasinoDetailsViewModel(
-                message.SportName,
-                message.ViewerId,
-                message.ViewerLevelId,
+                message,
                 param,
                 detailData,
                 betlistFixture.HtmlBuilder,
                 betlistFixture.TicketHelper);
+
             workbook.ExportToBytes().Returns(BetListDataTest.ExcelFileContent);
             var expectedViewModel = new ExcelFileViewModel(casinoDetailsViewModel.Title, BetListDataTest.ExcelFileContent);
 
@@ -105,13 +104,12 @@
             // Arrange
             var param = CasinoDetailsHandler.CreateCasinoDetailsParam(message);
             var casinoDetailsViewModel = new CasinoDetailsViewModel(
-                message.SportName,
-                message.ViewerId,
-                message.ViewerLevelId,
+                message,
                 param,
                 detailData,
                 betlistFixture.HtmlBuilder,
                 betlistFixture.TicketHelper);
+
             workbook.ExportToBytes().Returns(BetListDataTest.ExcelFileContent);
             var expectedViewModel = new ExcelFileViewModel(casinoDetailsViewModel.Title, BetListDataTest.ExcelFileContent);
 
@@ -179,7 +177,7 @@
                .Returns(BetListDataTest.ChoiceRtf);
 
             // Act
-            var mapper = casinoDetailsExcelHandler.GetBodyRowMapper(UserLevel.Agent);
+            var mapper = casinoDetailsExcelHandler.GetBodyRowMapper(UserLevel.Agent, message.DisplayVNIP);
 
             // Assert
             Assert.Equal(BetListDataTest.ChoiceRtf.FirstOrDefault(), mapper.Mappings[C].Invoke(ticket));
@@ -195,7 +193,7 @@
                    .Returns(BetListDataTest.OddsRtf);
 
             // Act
-            var mapper = casinoDetailsExcelHandler.GetBodyRowMapper(UserLevel.Agent);
+            var mapper = casinoDetailsExcelHandler.GetBodyRowMapper(UserLevel.Agent, message.DisplayVNIP);
 
             // Assert
             Assert.Equal(BetListDataTest.OddsRtf, mapper.Mappings[D].Invoke(ticket));
@@ -208,11 +206,11 @@
             var ticket = BetListDataTest.Ticket;
 
             betlistFixture.ExcelBuilder.CreateStatusBuilder(ticket.BetTypeId)
-                 .RenderRTF(ticket, betlistFixture.TicketHelper, null, true, betlistFixture.RtfHelper)
+                 .RenderRTF(ticket, betlistFixture.TicketHelper, null, message.DisplayVNIP, betlistFixture.RtfHelper)
                  .Returns(BetListDataTest.StatusRtf);
 
             // Act
-            var mapper = casinoDetailsExcelHandler.GetBodyRowMapper(UserLevel.Agent);
+            var mapper = casinoDetailsExcelHandler.GetBodyRowMapper(UserLevel.Agent, message.DisplayVNIP);
 
             // Assert
             Assert.Equal(BetListDataTest.StatusRtf, mapper.Mappings[G].Invoke(ticket));
@@ -226,7 +224,7 @@
             var positionTakingCommRtf = BetListExcelBuilderExt.BuildPtCommmission(ticket, null, UserLevel.Agent, betlistFixture.RtfHelper);
 
             // Act
-            var mapper = casinoDetailsExcelHandler.GetBodyRowMapper(UserLevel.Agent);
+            var mapper = casinoDetailsExcelHandler.GetBodyRowMapper(UserLevel.Agent, message.DisplayVNIP);
 
             // Assert
             Assert.Equal(positionTakingCommRtf, mapper.Mappings[H].Invoke(ticket));
@@ -243,7 +241,7 @@
                 = BetListExcelBuilderExt.BuildPtCommmission(ticket, null, UserLevel.Agent, betlistFixture.RtfHelper);
 
             // Act
-            var mapper = casinoDetailsExcelHandler.GetBodyRowMapper(UserLevel.Master);
+            var mapper = casinoDetailsExcelHandler.GetBodyRowMapper(UserLevel.Master, message.DisplayVNIP);
 
             // Assert
             Assert.True(mapper.Mappings[H].Invoke(ticket).Equals(positionTakingCommMasterRtf)
@@ -263,7 +261,7 @@
                 = BetListExcelBuilderExt.BuildPtCommmission(ticket, null, UserLevel.Agent, betlistFixture.RtfHelper);
 
             // Act
-            var mapper = casinoDetailsExcelHandler.GetBodyRowMapper(UserLevel.Super);
+            var mapper = casinoDetailsExcelHandler.GetBodyRowMapper(UserLevel.Super, message.DisplayVNIP);
 
             // Assert
             Assert.True(mapper.Mappings[H].Invoke(ticket).Equals(positionTakingCommSuperRtf)

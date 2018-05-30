@@ -209,7 +209,7 @@
         public virtual IRichTextString BuildStatus(ITicket ticket, BetListBaseViewModel viewModel)
             => ExcelBuilder
                 .CreateStatusBuilder(ticket.BetTypeId)
-                .RenderRTF(ticket, TicketHelper, viewModel.BetListData.TicketData, true, RtfHelper);
+                .RenderRTF(ticket, TicketHelper, viewModel.BetListData.TicketData, viewModel.DisplayVNIP, RtfHelper);
 
         protected virtual IRichTextString BuildWinLoss(ITicket ticket)
         {

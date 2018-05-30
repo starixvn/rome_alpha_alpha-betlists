@@ -188,7 +188,7 @@
             var ticket = BetListDataTest.Ticket;
 
             betlistFixture.ExcelBuilder.CreateStatusBuilder(ticket.BetTypeId)
-                 .RenderRTF(ticket, betlistFixture.TicketHelper, viewModel.BetListData.TicketData, true, betlistFixture.RtfHelper)
+                 .RenderRTF(ticket, betlistFixture.TicketHelper, viewModel.BetListData.TicketData, query.DisplayVNIP, betlistFixture.RtfHelper)
                  .Returns(BetListDataTest.StatusRtf);
 
             // Act
