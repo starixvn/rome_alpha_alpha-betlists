@@ -29,6 +29,7 @@
             user = betListFixture.User;
             ticketHelper = betListFixture.TicketHelper;
             query = new ComboParlayDetailQuery(user);
+            query.BetTeam = "0";
             comparer = new CompareLogic();
         }
 
@@ -98,10 +99,25 @@
         }
 
         [Fact]
-        public void Title_Always_SetInCtor()
+        public void Title_BetTeamIsNOTEqualOne_TitleIsSystemParlay()
         {
             // Arrange
+            query.BetTeam = "0";
             var expectedTitle = Resources.lblSystemParlay;
+
+            // Act
+            var viewModel = new ComboParlayDetailViewModel(query, BetListDataTest.ComboParlayDetailData, ticketHelper);
+
+            // Assert
+            Assert.Equal(expectedTitle, viewModel.Title);
+        }
+
+        [Fact]
+        public void Title_BetTeamIsEqualOne_TitleIsMixParlay()
+        {
+            // Arrange
+            query.BetTeam = "1";
+            var expectedTitle = Resources.lblMixParlay;
 
             // Act
             var viewModel = new ComboParlayDetailViewModel(query, BetListDataTest.ComboParlayDetailData, ticketHelper);

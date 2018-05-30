@@ -18,5 +18,7 @@
         public long TransId { get; set; }
 
         public int BetId { get; set; }
+
+        public string BetTeam { get; set; }
     }
 }
