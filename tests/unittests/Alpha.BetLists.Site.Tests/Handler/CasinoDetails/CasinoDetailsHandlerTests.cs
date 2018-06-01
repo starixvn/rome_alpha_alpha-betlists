@@ -5,13 +5,13 @@
     using Fanex.BetDetails.Casino.Models;
     using Fanex.BetDetails.Casino.Params;
     using Fanex.BetDetails.Casino.Services;
-    using Fanex.BetDetails.Casino.ViewModels;
     using Fanex.BetList.Core.Entities;
     using Fixtures;
     using Handlers.CasinoDetails;
     using KellermanSoftware.CompareNetObjects;
     using NSubstitute;
     using Requests.CasinoDetails;
+    using Site.ViewModels.CasinoDetails;
     using Xunit;
 
     [Trait("Category", "CasinoDetails")]
@@ -75,9 +75,7 @@
             casinoDetailsService.GetCasinoDetails(Arg.Any<CasinoDetailsParam>()).Returns(pagedData);
 
             var expectedViewModel = new CasinoDetailsViewModel(
-                message.SportName,
-                message.ViewerId,
-                message.ViewerLevelId,
+                message,
                 param,
                 pagedData,
                 betlistFixture.HtmlBuilder,

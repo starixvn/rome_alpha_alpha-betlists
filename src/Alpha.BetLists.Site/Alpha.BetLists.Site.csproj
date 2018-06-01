@@ -89,8 +89,8 @@
     <Reference Include="Fanex.ActivityTracking.Web, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.ActivityTracking.Web.1.0.0.2\lib\net40\Fanex.ActivityTracking.Web.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.BetDetails.Casino, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetDetails.Casino.1.0.0.1\lib\net40\Fanex.BetDetails.Casino.dll</HintPath>
+    <Reference Include="Fanex.BetDetails.Casino, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetDetails.Casino.1.0.0.2-beta\lib\net40\Fanex.BetDetails.Casino.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetDetails.Lucky3, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
@@ -984,6 +984,7 @@
     <Compile Include="ViewModels\BetListByBetType\BetListByBetTypeViewModel.cs" />
     <Compile Include="ViewModels\Blocks\Footer.cs" />
     <Compile Include="ViewModels\Blocks\WinLostBlockViewModel.cs" />
+    <Compile Include="ViewModels\CasinoDetails\CasinoDetailsViewModel.cs" />
     <Compile Include="ViewModels\CombinationMixParlay\CombinationMixParlayViewModel.cs" />
     <Compile Include="ViewModels\Components\DateRangePickerViewModel.cs" />
     <Compile Include="ViewModels\CancelledBet\CancelledBetViewModel.cs" />
