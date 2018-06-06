@@ -1,8 +1,8 @@
 ﻿namespace Alpha.BetLists.Site.Requests.CasinoDetails
 {
     using BetLists.Models;
-    using Fanex.BetDetails.Casino.ViewModels;
     using MediatR;
+    using ViewModels.CasinoDetails;
 
     public class CasinoDetailsQuery : BaseQuery, IRequest<CasinoDetailsViewModel>
     {

@@ -1,6 +1,6 @@
 ﻿@using Fanex.BetList.Core.Entities
-@using Fanex.BetDetails.Casino.ViewModels
 @using Alpha.BetLists.Configurations
+@using Alpha.BetLists.Site.ViewModels.CasinoDetails
 @model CasinoDetailsViewModel
 @{
     ViewBag.Title = Model.Title;
@@ -51,7 +51,7 @@
             </tr>
         </thead>
         @if (Model.DetailData.Tickets.Any())
-        {
+            {
             <tbody>
                 @{
                     var i = Model.StartNo;
@@ -66,7 +66,7 @@
                             @Odds.Render(Model.Builder, ticket, ticketData)
                             @Stake.Render(Model.Builder, ticket)
                             @WinLoss.Render(ticket)
-                            @Status.Render(Model.Builder, ticket, Model.TicketHelper, ticketData, !string.IsNullOrEmpty(ticket.IP))
+                            @Status.Render(Model.Builder, ticket, Model.TicketHelper, ticketData, Model.DisplayVNIP)
                             @if (Model.AllowToViewSuperPT)
                             {
                                 @PositionTaking.Render(ticket, ticketData, UserLevel.Super)
