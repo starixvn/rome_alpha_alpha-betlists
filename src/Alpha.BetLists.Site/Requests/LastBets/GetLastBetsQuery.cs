@@ -1,6 +1,7 @@
 ﻿namespace Alpha.BetLists.Site.Requests.LastBets
 {
     using BetLists.Models;
+    using Configurations;
     using MediatR;
     using ViewModels.LastBets;
 
@@ -19,5 +20,7 @@
         public bool IsAutoLoad { get; set; }
 
         public long LatestTransId { get; set; }
+
+        public int RunningMatchCacheTime { get; } = AppSettings.RunningMatchCacheTime;
     }
 }

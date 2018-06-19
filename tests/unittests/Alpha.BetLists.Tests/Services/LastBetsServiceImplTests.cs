@@ -54,7 +54,7 @@
         public void GetLastBets_Always_ReturnsCorrectData()
         {
             // Arrange
-            var param = new GetLastBetsParam(0, 1, 0, 10);
+            var param = new GetLastBetsParam(0, 1, 0, 10, 10);
             var expectedTickets = new List<TicketDto>
             {
                 CreateTicketDto(BetTypeIdConstants.Outright, 0, null, null, null),

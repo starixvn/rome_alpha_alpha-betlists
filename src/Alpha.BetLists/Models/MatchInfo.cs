@@ -16,7 +16,7 @@
             int awayId,
             string race,
             string showTime)
-            : this(sportType, status, matchId, leagueId, matchCode, homeId, awayId, race, showTime, false)
+            : this(sportType, status, matchId, leagueId, matchCode, homeId, awayId, race, showTime, false, string.Empty)
         {
         }
 
@@ -30,7 +30,8 @@
             int awayId,
             string race,
             string showTime,
-            bool isNeutral)
+            bool isNeutral,
+            string betStatus)
         {
             SportType = sportType;
             Status = status;
@@ -42,6 +43,7 @@
             Race = race;
             ShowTime = showTime;
             IsNeutral = isNeutral;
+            BetStatus = betStatus;
         }
 
         public int MatchId { get; }
@@ -63,5 +65,7 @@
         public string Status { get; }
 
         public bool IsNeutral { get; }
+
+        public string BetStatus { get; }
     }
 }

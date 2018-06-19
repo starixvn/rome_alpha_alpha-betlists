@@ -202,6 +202,7 @@
     <Compile Include="Criteria\GetProductsCriteria.cs" />
     <Compile Include="Criteria\GetScoreMapBetTypesCriteria.cs" />
     <Compile Include="Criteria\CasinoDetails\GetCasinoDetailsCriteria.cs" />
+    <Compile Include="Criteria\LastBets\GetMatchInfoByIdCriteria.cs" />
     <Compile Include="Criteria\ProgressiveJackpot\GetEnableJackpotProductCriteria.cs" />
     <Compile Include="Criteria\ProgressiveJackpot\GetJackpotDetailsCriteria.cs" />
     <Compile Include="Criteria\MemberBetList\GetBetListAllByDateCriteria.cs" />
