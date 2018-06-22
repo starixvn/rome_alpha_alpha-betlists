@@ -63,6 +63,8 @@
             || param.IsEnableLastBetsMonitoring
             || param.UsersAlwaysAllowAccessBetsListMonitoring.Contains(param.CustId);
 
+        private static bool IsDummyMatch(int matchId) => matchId <= 999;
+
         private static void AssignMatchInfoToTicket(Ticket ticket, MatchInfo matchInfo)
         {
             if (matchInfo == null)
@@ -84,7 +86,7 @@
         {
             var matchInfo = matches.FirstOrDefault(match => match.MatchId == matchId);
 
-            if (matchInfo == null)
+            if (matchInfo == null && !IsDummyMatch(matchId))
             {
                 matchInfo = dynamicRepository.Fetch<MatchInfo>(new GetMatchInfoByIdCriteria(matchId)).FirstOrDefault();
 
