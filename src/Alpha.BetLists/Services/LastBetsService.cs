@@ -45,13 +45,10 @@
 
                 foreach (var ticket in tickets)
                 {
-                    if (BetTypeHelper.IsNotParlay(ticket.BetTypeId))
-                    {
-                        var matches = BetTypeHelper.IsOutRight(ticket.BetTypeId) ? outrightMatches : otherMatches;
-                        var matchInfo = GetMatchInfo(ticket.MatchId, matches);
+                    var matches = BetTypeHelper.IsOutRight(ticket.BetTypeId) ? outrightMatches : otherMatches;
+                    var matchInfo = GetMatchInfo(ticket.MatchId, matches, cacheTime);
 
-                        AssignMatchInfoToTicket(ticket, matchInfo);
-                    }
+                    AssignMatchInfoToTicket(ticket, matchInfo);
                 }
             }
 
@@ -82,17 +79,23 @@
             ticket.IsNeutral = matchInfo.IsNeutral;
         }
 
-        private MatchInfo GetMatchInfo(int matchId, List<MatchInfo> matches)
+        private MatchInfo GetMatchInfo(int matchId, List<MatchInfo> matches, int cacheTime)
         {
-            var matchInfo = matches.FirstOrDefault(match => match.MatchId == matchId);
+            var cachedKey = $"{RunningMatchesCacheKey}_{matchId}";
+            var matchInfo = matches.FirstOrDefault(match => match.MatchId == matchId)
+                ?? ConfiguredCacheService.Get<MatchInfo>(cachedKey);
 
             if (matchInfo == null && !IsDummyMatch(matchId))
             {
-                matchInfo = dynamicRepository.Fetch<MatchInfo>(new GetMatchInfoByIdCriteria(matchId)).FirstOrDefault();
+                matchInfo = dynamicRepository.Fetch<MatchInfo>(new GetMatchInfoByIdCriteria(matchId))
+                    .FirstOrDefault();
 
                 if (matchInfo != null)
                 {
-                    matches.Add(matchInfo);
+                    ConfiguredCacheService.Set(
+                        cachedKey,
+                        matchInfo,
+                        new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(cacheTime)));
                 }
             }
 

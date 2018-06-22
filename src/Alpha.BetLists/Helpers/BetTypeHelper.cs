@@ -24,9 +24,5 @@
         public static bool IsHorseRacing(int betType) => HorseRacingBetType.Contains(betType);
 
         public static bool IsJackpotContribution(int betType) => JackpotContributionBetType.Contains(betType);
-
-        public static bool IsParlay(int betType) => betType == BetTypeIdConstants.MixParlay || betType == BetTypeIdConstants.CombinationMixParlay;
-
-        public static bool IsNotParlay(int betType) => !IsParlay(betType);
     }
 }
