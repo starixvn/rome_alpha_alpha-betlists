@@ -37,16 +37,22 @@
             var tickets = await dynamicRepository.FetchAsync<TicketDto>(
                 new GetLastBetsCriteria(param.BetType, param.CustId, param.TransId, param.PageSize));
 
-            var cacheTime = param.RunningMatchCacheTime;
-            var outrightMatches = GetRunningOutrightMatches(cacheTime);
-            var otherMatches = GetRunningOtherMatches(cacheTime);
-
-            foreach (var ticket in tickets)
+            if (tickets.Any())
             {
-                var matches = BetTypeHelper.IsOutRight(ticket.BetTypeId) ? outrightMatches : otherMatches;
-                var matchInfo = GetMatchInfo(ticket, matches, cacheTime);
+                var cacheTime = param.RunningMatchCacheTime;
+                var outrightMatches = await GetRunningOutrightMatches(cacheTime);
+                var otherMatches = await GetRunningOtherMatches(cacheTime);
 
-                AssignMatchInfoToTicket(ticket, matchInfo);
+                foreach (var ticket in tickets)
+                {
+                    if (BetTypeHelper.IsNotParlay(ticket.BetTypeId))
+                    {
+                        var matches = BetTypeHelper.IsOutRight(ticket.BetTypeId) ? outrightMatches : otherMatches;
+                        var matchInfo = GetMatchInfo(ticket.MatchId, matches);
+
+                        AssignMatchInfoToTicket(ticket, matchInfo);
+                    }
+                }
             }
 
             return tickets;
@@ -56,9 +62,6 @@
             => param.IsInternal
             || param.IsEnableLastBetsMonitoring
             || param.UsersAlwaysAllowAccessBetsListMonitoring.Contains(param.CustId);
-
-        private static MatchInfo FilterMatch(int matchId, IEnumerable<MatchInfo> matches) =>
-            matches?.FirstOrDefault(match => match.MatchId == matchId);
 
         private static void AssignMatchInfoToTicket(Ticket ticket, MatchInfo matchInfo)
         {
@@ -77,45 +80,42 @@
             ticket.IsNeutral = matchInfo.IsNeutral;
         }
 
-        private MatchInfo GetMatchInfo(Ticket ticket, IEnumerable<MatchInfo> matches, int cacheTime)
+        private MatchInfo GetMatchInfo(int matchId, List<MatchInfo> matches)
         {
-            var matchId = ticket.MatchId;
-            var cachedKey = $"{RunningMatchesCacheKey}_{matchId}";
-            var matchInfo = FilterMatch(matchId, matches) ?? ConfiguredCacheService.Get<MatchInfo>(cachedKey);
+            var matchInfo = matches.FirstOrDefault(match => match.MatchId == matchId);
 
-            if (matchInfo != null)
+            if (matchInfo == null)
             {
-                return matchInfo;
-            }
+                matchInfo = dynamicRepository.Fetch<MatchInfo>(new GetMatchInfoByIdCriteria(matchId)).FirstOrDefault();
 
-            matchInfo = dynamicRepository.Fetch<MatchInfo>(new GetMatchInfoByIdCriteria(matchId)).FirstOrDefault();
-            if (matchInfo != null)
-            {
-                ConfiguredCacheService.Set(cachedKey, matchInfo, new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(cacheTime)));
+                if (matchInfo != null)
+                {
+                    matches.Add(matchInfo);
+                }
             }
 
             return matchInfo;
         }
 
-        private IEnumerable<MatchInfo> GetRunningOutrightMatches(int cacheTime)
+        private async Task<List<MatchInfo>> GetRunningOutrightMatches(int cacheTime)
         {
             var cacheKey = RunningOutrightMatchesCacheKey;
 
-            var matches = ConfiguredCacheService.GetOrSet(
+            var matches = await ConfiguredCacheService.GetOrSetAsync(
                 cacheKey,
-                () => dynamicRepository.Fetch<MatchInfo>(new GetRunningOutrightMatchCriteria()),
+                () => dynamicRepository.Fetch<MatchInfo>(new GetRunningOutrightMatchCriteria()).ToList(),
                 new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(cacheTime)));
 
             return matches;
         }
 
-        private IEnumerable<MatchInfo> GetRunningOtherMatches(int cacheTime)
+        private async Task<List<MatchInfo>> GetRunningOtherMatches(int cacheTime)
         {
             var cacheKey = RunningOtherMatchesCacheKey;
 
-            var matches = ConfiguredCacheService.GetOrSet(
+            var matches = await ConfiguredCacheService.GetOrSetAsync(
                 cacheKey,
-                () => dynamicRepository.Fetch<MatchInfo>(new GetRunningOtherMatchCriteria()),
+                () => dynamicRepository.Fetch<MatchInfo>(new GetRunningOtherMatchCriteria()).ToList(),
                 new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(cacheTime)));
 
             return matches;
