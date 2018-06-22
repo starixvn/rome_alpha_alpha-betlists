@@ -612,8 +612,8 @@
       <Mapping DataField="betstatus" ObjectProperty="EventStatus" Class="TicketDto"></Mapping>
     </Setting>
 
-    <Setting Key="Age_Monitor_MatchSelByID" SpName="Age_Monitor_MatchSelByID" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0"></Setting>
-    <Setting Key="Age_Monitor_MatchSel" SpName="Age_Monitor_MatchSel" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0"></Setting>
+    <Setting Key="Age_Monitor_MatchSelByID" SpName="Age_Monitor_MatchSelByID" DbName="DB042.bodb02.BODBDownlineNet" Plain="0"></Setting>
+    <Setting Key="Age_Monitor_MatchSel" SpName="Age_Monitor_MatchSel" DbName="DB042.bodb02.BODBDownlineNet" Plain="0"></Setting>
     <Setting Key="Age_Monitor_OutrightSel" SpName="Age_Monitor_OutrightSel" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0"></Setting>
   </Function>
   <Function Name="Daily Statement">
