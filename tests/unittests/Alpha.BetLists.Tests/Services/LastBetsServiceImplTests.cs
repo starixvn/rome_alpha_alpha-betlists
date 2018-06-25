@@ -3,13 +3,14 @@
     using System.Collections.Generic;
     using System.Collections.Specialized;
     using System.Linq;
+    using System.Threading.Tasks;
     using BetLists.Configurations;
     using BetLists.Criteria.LastBets;
     using BetLists.Models;
     using BetLists.Params.LastBets;
     using BetLists.Services;
     using Constants;
-    using Fanex.Data.Repository;
+    using Fanex.Caching;
     using Fixtures;
     using KellermanSoftware.CompareNetObjects;
     using NSubstitute;
@@ -21,7 +22,6 @@
     public class LastBetsServiceImplTests
     {
         private readonly LastBetsServiceImpl lastBetsService;
-        private readonly IDynamicRepository dynamicRepository;
         private readonly CompareLogic compareLogic;
 
         public LastBetsServiceImplTests(FanexDataFixture dataFixture)
@@ -46,8 +46,59 @@
 
             lastBetsService = new LastBetsServiceImpl(dataFixture.DynamicRepository);
 
-            dynamicRepository = dataFixture.DynamicRepository;
             compareLogic = new CompareLogic();
+        }
+
+        [Fact]
+        public void CanViewLastBets_IsInternal_ReturnsTrue()
+        {
+            // Arrange
+            var param = new CheckCanViewLastBetsParam(0, true, false, Enumerable.Empty<int>());
+
+            // Act
+            var actualCanViewLastBets = lastBetsService.CanViewLastBets(param);
+
+            // Assert
+            Assert.True(actualCanViewLastBets);
+        }
+
+        [Fact]
+        public void CanViewLastBets_NotInternalAndEnableConfig_ReturnTrue()
+        {
+            // Arrange
+            var param = new CheckCanViewLastBetsParam(0, false, true, Enumerable.Empty<int>());
+
+            // Act
+            var actualCanViewLastBets = lastBetsService.CanViewLastBets(param);
+
+            // Assert
+            Assert.True(actualCanViewLastBets);
+        }
+
+        [Fact]
+        public void CanViewLastBets_CustIdInAlwaysAllowAccessList_ReturnTrue()
+        {
+            // Arrange
+            var param = new CheckCanViewLastBetsParam(2, false, false, new List<int> { 1, 2, 3 });
+
+            // Act
+            var actualCanViewLastBets = lastBetsService.CanViewLastBets(param);
+
+            // Assert
+            Assert.True(actualCanViewLastBets);
+        }
+
+        [Fact]
+        public void CanViewLastBets_CustIdNotInAlwaysAllowAccessList_ReturnFalse()
+        {
+            // Arrange
+            var param = new CheckCanViewLastBetsParam(4, false, false, new List<int> { 1, 2, 3 });
+
+            // Act
+            var actualCanViewLastBets = lastBetsService.CanViewLastBets(param);
+
+            // Assert
+            Assert.False(actualCanViewLastBets);
         }
 
         [Fact]
@@ -69,58 +120,6 @@
 
             // Assert
             Assert.True(compareLogic.Compare(expectedTickets, actualTickets).AreEqual);
-        }
-
-        [Fact]
-        public void CanViewLastBets_IsInternal_ReturnsTrue()
-        {
-            // Arrange
-            var param = new CheckCanViewLastBetsParam(0, true, false, Enumerable.Empty<int>());
-
-            // Act
-            var actualCanViewLastBets = lastBetsService.CanViewLastBets(param);
-
-            // Assert
-            Assert.True(actualCanViewLastBets);
-        }
-
-        [Fact]
-        public void IsEnableLastBetsMonitoring_NotInternalAndEnableConfig_ReturnTrue()
-        {
-            // Arrange
-            var param = new CheckCanViewLastBetsParam(0, false, true, Enumerable.Empty<int>());
-
-            // Act
-            var actualCanViewLastBets = lastBetsService.CanViewLastBets(param);
-
-            // Assert
-            Assert.True(actualCanViewLastBets);
-        }
-
-        [Fact]
-        public void IsEnableLastBetsMonitoring_CustIdInAlwaysAllowAccessList_ReturnTrue()
-        {
-            // Arrange
-            var param = new CheckCanViewLastBetsParam(2, false, false, new List<int> { 1, 2, 3 });
-
-            // Act
-            var actualCanViewLastBets = lastBetsService.CanViewLastBets(param);
-
-            // Assert
-            Assert.True(actualCanViewLastBets);
-        }
-
-        [Fact]
-        public void IsEnableLastBetsMonitoring_CustIdNotInAlwaysAllowAccessList_ReturnFalse()
-        {
-            // Arrange
-            var param = new CheckCanViewLastBetsParam(4, false, false, new List<int> { 1, 2, 3 });
-
-            // Act
-            var actualCanViewLastBets = lastBetsService.CanViewLastBets(param);
-
-            // Assert
-            Assert.False(actualCanViewLastBets);
         }
 
         private TicketDto CreateTicketDto(
