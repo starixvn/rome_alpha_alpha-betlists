@@ -3,14 +3,11 @@
     using System.Collections.Generic;
     using System.Collections.Specialized;
     using System.Linq;
-    using System.Threading.Tasks;
     using BetLists.Configurations;
     using BetLists.Criteria.LastBets;
     using BetLists.Models;
     using BetLists.Params.LastBets;
     using BetLists.Services;
-    using Constants;
-    using Fanex.Caching;
     using Fixtures;
     using KellermanSoftware.CompareNetObjects;
     using NSubstitute;
@@ -99,27 +96,6 @@
 
             // Assert
             Assert.False(actualCanViewLastBets);
-        }
-
-        [Fact]
-        public void GetLastBets_Always_ReturnsCorrectData()
-        {
-            // Arrange
-            var param = new GetLastBetsParam(0, 1, 0, 10, 10);
-            var expectedTickets = new List<TicketDto>
-            {
-                CreateTicketDto(BetTypeIdConstants.Outright, 0, null, null, null),
-                CreateTicketDto(BetTypeIdConstants.Handicap, 0, null, null, null),
-                CreateTicketDto(BetTypeIdConstants.VirtualHorseRacing_Win, 0, null, null, null),
-                CreateTicketDto(BetTypeIdConstants.Handicap, 1002, null, null, null),
-                CreateTicketDto(BetTypeIdConstants.Outright, 1003, null, null, null)
-            };
-
-            // Act
-            var actualTickets = lastBetsService.GetLastBets(param).GetAwaiter().GetResult();
-
-            // Assert
-            Assert.True(compareLogic.Compare(expectedTickets, actualTickets).AreEqual);
         }
 
         private TicketDto CreateTicketDto(
