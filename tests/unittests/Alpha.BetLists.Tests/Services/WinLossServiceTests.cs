@@ -244,7 +244,7 @@
                 .FetchMultipleAsync<TicketDto, TicketData>(Arg.Is<GetBetListWinLossByDateCriteria>(c =>
                     c.CustId == param.CustId
                     && c.ProductIds == param.ProductIds.JoinWithComma()
-                    && c.FromDate == reportDateService.GetBalanceUpDay().AddDays(-1)
+                    && c.FromDate == reportDateService.GetBalanceUpDay()
                     && c.ToDate == param.ToDate
                     && c.MoveBetsDate == reportDateService.GetMoveBetsDay()
                     && c.Language == param.Language));

@@ -38,13 +38,13 @@
 
             if (fromDate.IsBefore(balanceUpDate))
             {
-                if (param.ToDate.IsBefore(previousBalanceUpDate))
+                if (param.ToDate.IsBeforeOrEqual(previousBalanceUpDate))
                 {
                     betListDataTuple = await GetBetListBeforeBalanceUpDay(param, fromDate: fromDate, toDate: param.ToDate);
                 }
                 else
                 {
-                    betListDataTuple = await GetBetList(param, fromDate: previousBalanceUpDate);
+                    betListDataTuple = await GetBetList(param, fromDate: balanceUpDate);
                     var oldBetListDataTuple = await GetBetListBeforeBalanceUpDay(param, fromDate: fromDate, toDate: previousBalanceUpDate);
 
                     return new BetListData(

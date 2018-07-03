@@ -11,6 +11,11 @@
             return dateTime < otherDateTime;
         }
 
+        public static bool IsBeforeOrEqual(this DateTime dateTime, DateTime otherDateTime)
+        {
+            return dateTime <= otherDateTime;
+        }
+
         public static string ToShortDateWithSlash(this DateTime dateTime)
             => dateTime.ToString(ShortDateWithSlash);
 
