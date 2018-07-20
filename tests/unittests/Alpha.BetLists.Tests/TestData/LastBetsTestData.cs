@@ -1,5 +1,6 @@
 ﻿namespace Alpha.BetLists.Tests.TestData
 {
+    using System;
     using System.Collections.Generic;
     using BetLists.Models;
     using Constants;
@@ -15,12 +16,14 @@
             CreateTicketDto(BetTypeIdConstants.Outright, 1003)
         };
 
-        public static readonly IEnumerable<MatchInfo> RunningOutrightMatch = new List<MatchInfo>
+        [ThreadStatic]
+        public static readonly List<MatchInfo> RunningOutrightMatch = new List<MatchInfo>
         {
             CreateMatchInfo(matchId: 1000)
         };
 
-        public static readonly IEnumerable<MatchInfo> RunningOtherMatch = new List<MatchInfo>
+        [ThreadStatic]
+        public static readonly List<MatchInfo> RunningOtherMatch = new List<MatchInfo>
         {
             CreateMatchInfo(matchId: 1001)
         };

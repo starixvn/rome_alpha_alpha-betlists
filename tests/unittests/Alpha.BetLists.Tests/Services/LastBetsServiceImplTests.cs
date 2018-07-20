@@ -8,8 +8,6 @@
     using BetLists.Models;
     using BetLists.Params.LastBets;
     using BetLists.Services;
-    using Constants;
-    using Fanex.Data.Repository;
     using Fixtures;
     using KellermanSoftware.CompareNetObjects;
     using NSubstitute;
@@ -21,7 +19,6 @@
     public class LastBetsServiceImplTests
     {
         private readonly LastBetsServiceImpl lastBetsService;
-        private readonly IDynamicRepository dynamicRepository;
         private readonly CompareLogic compareLogic;
 
         public LastBetsServiceImplTests(FanexDataFixture dataFixture)
@@ -46,29 +43,7 @@
 
             lastBetsService = new LastBetsServiceImpl(dataFixture.DynamicRepository);
 
-            dynamicRepository = dataFixture.DynamicRepository;
             compareLogic = new CompareLogic();
-        }
-
-        [Fact]
-        public void GetLastBets_Always_ReturnsCorrectData()
-        {
-            // Arrange
-            var param = new GetLastBetsParam(0, 1, 0, 10);
-            var expectedTickets = new List<TicketDto>
-            {
-                CreateTicketDto(BetTypeIdConstants.Outright, 0, null, null, null),
-                CreateTicketDto(BetTypeIdConstants.Handicap, 0, null, null, null),
-                CreateTicketDto(BetTypeIdConstants.VirtualHorseRacing_Win, 0, null, null, null),
-                CreateTicketDto(BetTypeIdConstants.Handicap, 1002, null, null, null),
-                CreateTicketDto(BetTypeIdConstants.Outright, 1003, null, null, null)
-            };
-
-            // Act
-            var actualTickets = lastBetsService.GetLastBets(param).GetAwaiter().GetResult();
-
-            // Assert
-            Assert.True(compareLogic.Compare(expectedTickets, actualTickets).AreEqual);
         }
 
         [Fact]
@@ -85,7 +60,7 @@
         }
 
         [Fact]
-        public void IsEnableLastBetsMonitoring_NotInternalAndEnableConfig_ReturnTrue()
+        public void CanViewLastBets_NotInternalAndEnableConfig_ReturnTrue()
         {
             // Arrange
             var param = new CheckCanViewLastBetsParam(0, false, true, Enumerable.Empty<int>());
@@ -98,7 +73,7 @@
         }
 
         [Fact]
-        public void IsEnableLastBetsMonitoring_CustIdInAlwaysAllowAccessList_ReturnTrue()
+        public void CanViewLastBets_CustIdInAlwaysAllowAccessList_ReturnTrue()
         {
             // Arrange
             var param = new CheckCanViewLastBetsParam(2, false, false, new List<int> { 1, 2, 3 });
@@ -111,7 +86,7 @@
         }
 
         [Fact]
-        public void IsEnableLastBetsMonitoring_CustIdNotInAlwaysAllowAccessList_ReturnFalse()
+        public void CanViewLastBets_CustIdNotInAlwaysAllowAccessList_ReturnFalse()
         {
             // Arrange
             var param = new CheckCanViewLastBetsParam(4, false, false, new List<int> { 1, 2, 3 });

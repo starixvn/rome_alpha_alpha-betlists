@@ -197,6 +197,7 @@
     <Compile Include="Configurations\AppSettingsTests.cs" />
     <Compile Include="Constants\BetTypeIdConstants.cs" />
     <Compile Include="Constants\DefaultVariables.cs" />
+    <Compile Include="Criteria\LastBets\GetMatchInfoByIdCriteriaTests.cs" />
     <Compile Include="Criteria\ProgressiveJackpot\GetEnableJackpotProductCriteriaTest.cs" />
     <Compile Include="Criteria\ProgressiveJackpot\GetJackpotDetailsCriteriaTests.cs" />
     <Compile Include="Criteria\Lucky3\GetLucky3DetailCriteriaTests.cs" />

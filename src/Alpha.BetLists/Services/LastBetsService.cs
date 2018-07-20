@@ -21,6 +21,7 @@
 
     public class LastBetsServiceImpl : LastBetsService
     {
+        private const string RunningMatchesCacheKey = "Alpha.Reports.Services.Impl.LastBetsServiceImpl.RunningMatchesCacheKey";
         private const string RunningOutrightMatchesCacheKey = "Alpha.Reports.Services.Impl.LastBetsServiceImpl.RunningOutrightMatchesCacheKey";
         private const string RunningOtherMatchesCacheKey = "Alpha.Reports.Services.Impl.LastBetsServiceImpl.RunningOtherMatchesCacheKey";
 
@@ -36,12 +37,19 @@
             var tickets = await dynamicRepository.FetchAsync<TicketDto>(
                 new GetLastBetsCriteria(param.BetType, param.CustId, param.TransId, param.PageSize));
 
-            foreach (var ticket in tickets)
+            if (tickets.Any())
             {
-                var matches = GetRunningMatches(ticket.BetTypeId, getNewData: false);
-                var matchInfo = GetMatchInfo(ticket, matches);
+                var cacheTime = param.RunningMatchCacheTime;
+                var outrightMatches = await GetRunningOutrightMatches(cacheTime);
+                var otherMatches = await GetRunningOtherMatches(cacheTime);
 
-                AssignMatchInfoToTicket(ticket, matchInfo);
+                foreach (var ticket in tickets)
+                {
+                    var matches = BetTypeHelper.IsOutRight(ticket.BetTypeId) ? outrightMatches : otherMatches;
+                    var matchInfo = GetMatchInfo(ticket.MatchId, matches, cacheTime);
+
+                    AssignMatchInfoToTicket(ticket, matchInfo);
+                }
             }
 
             return tickets;
@@ -53,11 +61,6 @@
             || param.UsersAlwaysAllowAccessBetsListMonitoring.Contains(param.CustId);
 
         private static bool IsDummyMatch(int matchId) => matchId <= 999;
-
-        private static MatchInfo FilterMatch(int matchId, IEnumerable<MatchInfo> matches) =>
-            matches != null
-            ? matches.FirstOrDefault(match => match.MatchId == matchId)
-            : null;
 
         private static void AssignMatchInfoToTicket(Ticket ticket, MatchInfo matchInfo)
         {
@@ -74,66 +77,54 @@
             ticket.Race = matchInfo.Race;
             ticket.ShowTime = matchInfo.ShowTime;
             ticket.IsNeutral = matchInfo.IsNeutral;
+            ticket.EventStatus = matchInfo.BetStatus;
         }
 
-        private IEnumerable<MatchInfo> GetRunningMatches(int betType, bool getNewData)
+        private MatchInfo GetMatchInfo(int matchId, List<MatchInfo> matches, int cacheTime)
         {
-            var isOutright = BetTypeHelper.IsOutRight(betType);
-
-            var matches = isOutright
-                ? GetRunningOutrightMatches(getNewData)
-                : GetRunningOtherMatches(getNewData);
-
-            return matches;
-        }
-
-        private IEnumerable<MatchInfo> GetRunningOutrightMatches(bool getNewData)
-        {
-            var cacheKey = RunningOutrightMatchesCacheKey;
-
-            if (getNewData)
-            {
-                ConfiguredCacheService.Remove(cacheKey);
-            }
-
-            var matches = ConfiguredCacheService.GetOrSet(
-                cacheKey,
-                () => dynamicRepository.Fetch<MatchInfo>(new GetRunningOutrightMatchCriteria()),
-                new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(15)));
-
-            return matches;
-        }
-
-        private IEnumerable<MatchInfo> GetRunningOtherMatches(bool getNewData)
-        {
-            var cacheKey = RunningOtherMatchesCacheKey;
-
-            if (getNewData)
-            {
-                ConfiguredCacheService.Remove(cacheKey);
-            }
-
-            var matches = ConfiguredCacheService.GetOrSet(
-                cacheKey,
-                () => dynamicRepository.Fetch<MatchInfo>(new GetRunningOtherMatchCriteria()),
-                new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(15)));
-
-            return matches;
-        }
-
-        private MatchInfo GetMatchInfo(Ticket ticket, IEnumerable<MatchInfo> matches)
-        {
-            var matchId = ticket.MatchId;
-
-            var matchInfo = FilterMatch(matchId, matches);
+            var cachedKey = $"{RunningMatchesCacheKey}_{matchId}";
+            var matchInfo = matches.FirstOrDefault(match => match.MatchId == matchId)
+                ?? ConfiguredCacheService.Get<MatchInfo>(cachedKey);
 
             if (matchInfo == null && !IsDummyMatch(matchId))
             {
-                var updatedMatches = GetRunningMatches(ticket.BetTypeId, getNewData: true);
-                matchInfo = FilterMatch(matchId, updatedMatches);
+                matchInfo = dynamicRepository.Fetch<MatchInfo>(new GetMatchInfoByIdCriteria(matchId))
+                    .FirstOrDefault();
+
+                if (matchInfo != null)
+                {
+                    ConfiguredCacheService.Set(
+                        cachedKey,
+                        matchInfo,
+                        new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(cacheTime)));
+                }
             }
 
             return matchInfo;
+        }
+
+        private async Task<List<MatchInfo>> GetRunningOutrightMatches(int cacheTime)
+        {
+            var cacheKey = RunningOutrightMatchesCacheKey;
+
+            var matches = await ConfiguredCacheService.GetOrSetAsync(
+                cacheKey,
+                () => dynamicRepository.Fetch<MatchInfo>(new GetRunningOutrightMatchCriteria()).ToList(),
+                new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(cacheTime)));
+
+            return matches;
+        }
+
+        private async Task<List<MatchInfo>> GetRunningOtherMatches(int cacheTime)
+        {
+            var cacheKey = RunningOtherMatchesCacheKey;
+
+            var matches = await ConfiguredCacheService.GetOrSetAsync(
+                cacheKey,
+                () => dynamicRepository.Fetch<MatchInfo>(new GetRunningOtherMatchCriteria()).ToList(),
+                new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(cacheTime)));
+
+            return matches;
         }
     }
 }
