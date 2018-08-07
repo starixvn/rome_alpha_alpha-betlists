@@ -1,19 +1,29 @@
 ﻿namespace Alpha.BetLists.Site.Requests.CancelledBet
 {
+    using System;
     using Alpha.BetLists.Models;
     using Alpha.BetLists.Site.ViewModels.CancelledBet;
+    using Extensions;
     using MediatR;
+    using Utils;
 
     public class CancelledBetBaseQuery : BaseQuery, IRequest<CancelledBetViewModel>
     {
         protected CancelledBetBaseQuery(IUser viewer) : base(viewer)
         {
+            MinDate = SystemTime.Today.AddMonths(-3).FirstDayOfMonth();
+            FromDate = FromDate == DateTime.MinValue ? DateTime.Now : FromDate;
+            ToDate = ToDate == DateTime.MinValue ? DateTime.Now : ToDate;            
         }
 
-        public int MasterId { get; set; }
+        public string StatusIds { get; set; }
 
-        public int AgentId { get; set; }
+        public DateTime MinDate { get; }
 
-        public int MemberId { get; set; }
+        public int UserSelectedDateRangeOption { get; set; }
+
+        public int PageIndex { get; set; }
+
+        public int PageSize { get; set; }
     }
 }

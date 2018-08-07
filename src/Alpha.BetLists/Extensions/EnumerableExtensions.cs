@@ -5,5 +5,7 @@
     public static class EnumerableExtensions
     {
         public static string JoinWithComma<T>(this IEnumerable<T> source) => string.Join(",", source);
+
+        public static string JoinWithSlash<T>(this IEnumerable<T> source) => string.Join("/", source);
     }
 }

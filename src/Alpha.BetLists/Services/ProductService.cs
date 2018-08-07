@@ -7,6 +7,7 @@
     using Criteria;
     using Criteria.ProgressiveJackpot;
     using DataAccesses;
+    using Extensions;
     using Fanex.Caching;
     using Fanex.Data.Repository;
     using Models;
@@ -19,6 +20,10 @@
         IEnumerable<int> FilterProductIdsByCustomer(int custId, DateTime minReportDate, IEnumerable<int> productIds);
 
         IEnumerable<int> FilterProductIdsByGroupHeadline(IEnumerable<int> productIds, GetProductsByGroupHeadlineParam param);
+
+        string ConcatProductNames(string productIds);
+
+        IEnumerable<string> GetProductNames(IEnumerable<int> productIds);
 
         bool IsEnabledJackpot(int custId);
     }
@@ -98,6 +103,17 @@
 
             return productIds.Any();
         }
+
+        public IEnumerable<string> GetProductNames(IEnumerable<int> productIds)
+        {
+            foreach (var productId in productIds)
+            {
+                yield return getProductName(productId);
+            }
+        }
+
+        public string ConcatProductNames(string productIds)
+            => string.Join(", ", GetProductNames(productIds.ToListInt()));
 
         private static bool IsRemainSupportProductForGroupHeadline(Product product, DateTime minReportDate)
             => product.IsEnable

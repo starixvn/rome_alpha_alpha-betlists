@@ -309,7 +309,7 @@
     <value>導出到Excel</value>
   </data>
   <data name="VoidAndReject" xml:space="preserve">
-    <value>作廢/已刪除注單(3天紀錄)</value>
+    <value>作廢/已刪除/退還 注單</value>
   </data>
   <data name="CancelledBet" xml:space="preserve">
     <value>已刪除/作廢注單</value>

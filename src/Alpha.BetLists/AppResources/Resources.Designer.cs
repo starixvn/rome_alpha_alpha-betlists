@@ -124,6 +124,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All Status.
+        /// </summary>
+        public static string AllStatus {
+            get {
+                return ResourceManager.GetString("AllStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Auto refresh.
         /// </summary>
         public static string AutoRefresh {
@@ -817,7 +826,7 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Void/Rejected Bet List (Last 3 days).
+        ///   Looks up a localized string similar to Voided/Rejected/Refunded bet list.
         /// </summary>
         public static string VoidAndReject {
             get {

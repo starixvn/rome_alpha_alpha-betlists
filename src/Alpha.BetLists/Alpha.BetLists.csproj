@@ -225,9 +225,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Configurations\AppSettings.cs" />
+    <Compile Include="Constants\DefaultVariables.cs" />
+    <Compile Include="Constants\TicketStatusIdConstants.cs" />
     <Compile Include="Constants\ProductIdConstants.cs" />
     <Compile Include="Constants\BetTypeIdConstants.cs" />
-    <Compile Include="Criteria\CancelledBet\GetUsersHasCancelledBetCriteria.cs" />
     <Compile Include="Criteria\DailyStatement\GetAllBetListByDayCriteria.cs" />
     <Compile Include="Criteria\DailyStatement\GetAllBetListByDayOldCriteria.cs" />
     <Compile Include="Criteria\CancelledBet\GetCancelledBetCriteria.cs" />
@@ -276,18 +277,17 @@
     <Compile Include="Helpers\CacheRefServiceHelper.cs" />
     <Compile Include="Models\BalanceUpDayAndMoveBetsDay.cs" />
     <Compile Include="Models\BetListData.cs" />
-    <Compile Include="Models\CancelledBet\CancelledBetModel.cs" />
-    <Compile Include="Models\CancelledBet\FilterCancelledBetModel.cs" />
-    <Compile Include="Models\CancelledBet\UserBetCount.cs" />
     <Compile Include="Models\Enumeration.cs" />
     <Compile Include="Models\IUser.cs" />
     <Compile Include="Models\MatchInfo.cs" />
     <Compile Include="Models\NapUserFunctionPermission.cs" />
+    <Compile Include="Models\PagedReportData.cs" />
     <Compile Include="Models\Parlay\MatchDetail.cs" />
     <Compile Include="Models\Parlay\ComboParlayDetail.cs" />
     <Compile Include="Models\Parlay\ComboParlayDetailData.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ScoreMap.cs" />
+    <Compile Include="Models\StatusModel.cs" />
     <Compile Include="Models\TicketDto.cs" />
     <Compile Include="Models\UserLevel.cs" />
     <Compile Include="Params\DailyStatementParam.cs" />

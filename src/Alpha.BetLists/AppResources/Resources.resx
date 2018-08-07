@@ -328,7 +328,7 @@
     <value>Export to Excel</value>
   </data>
   <data name="VoidAndReject" xml:space="preserve">
-    <value>Void/Rejected Bet List (Last 3 days)</value>
+    <value>Voided/Rejected/Refunded bet list</value>
   </data>
   <data name="CancelledBet" xml:space="preserve">
     <value>Cancelled Bets</value>
@@ -389,5 +389,8 @@
   </data>
   <data name="ProgressiveJackpotWonDetails" xml:space="preserve">
     <value>Progressive Jackpot Won Details</value>
+  </data>
+  <data name="AllStatus" xml:space="preserve">
+    <value>All Status</value>
   </data>
 </root>

@@ -37,9 +37,12 @@
   {
     "outputFileName": "assets/bundles/cancelled-betlist/cancelled-betlist.js",
     "inputFiles": [
-      "assets/scripts/src/cancelled-betlist/cancelled-betlist-constants.js",
       "assets/scripts/src/cancelled-betlist/cancelled-betlist.js",
-      "assets/scripts/src/components/single-selection-dropdown.js"
+      "assets/scripts/src/cancelled-betlist/cancelled-betlist-constants.js",
+        "assets/scripts/src/components/daterangepicker.js",
+      "assets/scripts/src/components/productmultiselection.js",
+      "assets/scripts/src/components/statusmultiselection.js",
+      "assets/scripts/src/components/pager.js"
     ]
   },
   {

@@ -285,9 +285,6 @@
   <data name="ExportToExcel" xml:space="preserve">
     <value>엘셀로 내보내기</value>
   </data>
-  <data name="VoidAndReject" xml:space="preserve">
-    <value>무효/거부된 배팅 목록(최근 3일간)</value>
-  </data>
   <data name="CancelledBet" xml:space="preserve">
     <value>취소된 배팅</value>
   </data>

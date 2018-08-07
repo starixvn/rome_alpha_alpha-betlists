@@ -1,76 +1,107 @@
 ﻿namespace Alpha.BetLists.Site.ViewModels.CancelledBet
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
     using Alpha.BetLists.AppResources;
-    using Alpha.BetLists.Models.CancelledBet;
     using Alpha.BetLists.Site.Requests.CancelledBet;
+    using BetLists.Constants;
+    using BetLists.Models;
+    using Components;
+    using Extensions;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
+    using Params;
 
     public class CancelledBetViewModel : BetListBaseViewModel
-    {
+    {       
+        public static readonly IEnumerable<string> RangeOptions = new List<string>
+        {
+            DateRangePickerViewModel.TodayOptionValue,
+            DateRangePickerViewModel.YesterdayOptionValue,
+            DateRangePickerViewModel.ThisWeekOptionValue,
+            DateRangePickerViewModel.LastWeekOptionValue,
+            DateRangePickerViewModel.SpecificDateOptionValue
+        };
+
         public CancelledBetViewModel(
             CancelledBetBaseQuery query,
-            CancelledBetModel cancelledBet,
+            CancelledBetParam param,
+            PagedReportData<BetListData> reportData,
+            IEnumerable<SelectListItem> products,
             IBetListHTMLBuilder builder,
-            ITicketHelper ticketHelper) : base(query, cancelledBet.BetListData, builder, ticketHelper, true)
+            ITicketHelper ticketHelper) : base(query, reportData.DataSource.FirstOrDefault(), builder, ticketHelper, true)
         {
-            Filter = cancelledBet.Filter;
-            Query = query;
+            Products = products;
+            ProductsId = param.ProductIds.JoinWithComma();
+            ReportData = reportData;
+            Language = query.Language;
+            MinDate = query.MinDate;
+            UserSelectedDateRangeOption = query.UserSelectedDateRangeOption;
+            StatusIds = string.IsNullOrEmpty(query.StatusIds) ?
+                $"{TicketStatusIdConstants.Void},{TicketStatusIdConstants.Refund},{TicketStatusIdConstants.Reject}" :
+                query.StatusIds;
+
             Title = Resources.VoidAndReject;
+            ViewDataInstructionMessage = string.Format(Resources.CanOnlyViewDataAfterTimeHistoryReport, MinDate.ToShortDateWithSlash());
         }
 
-        public CancelledBetBaseQuery Query { get; }
+        public PagerViewModel PagerViewModel =>
+            new PagerViewModel(ReportData.PageIndex, ReportData.PageSize, ReportData.TotalRecords);
 
-        private FilterCancelledBetModel Filter { get; }
+        public string ViewDataInstructionMessage { get; }
 
-        public bool IsShowMasterList => ViewerLevel.IsSuperLevel() && Filter.Masters.Any();
+        public string StatusIds { get; }
 
-        public bool IsShowAgentList => ViewerLevel.IsMasterOrSuperLevel() && Filter.Agents.Any();
+        public DateRangePickerViewModel DateRangePickerViewModel
+            => new DateRangePickerViewModel(
+                MinDate,
+                DateTime.MaxValue,
+                FromDate,
+                ToDate,
+                UserSelectedDateRangeOption,
+                true,
+                RangeOptions);
 
-        public bool IsShowMemberList => !(ViewerLevel.IsSuperLevel() && Filter.AgentId == 0) && Filter.Members.Any();
+        public ProductMultiSelectionViewModel ProductMultiSelectionViewModel
+           => new ProductMultiSelectionViewModel(Products, ProductsId, Language);
 
-        public bool IsShowFilterIcon => IsShowMasterList || IsShowAgentList || IsShowMemberList;
-
-        public IEnumerable<SelectListItem> MasterList => BuildUserBetCount(Filter.Masters, Query.MasterId);
-
-        public IEnumerable<SelectListItem> AgentList
+        public StatusMultiSelectionViewModel StatusMultiSelectionViewModel
         {
             get
             {
-                var list = BuildUserBetCount(Filter.Agents, Query.AgentId).ToList();
-                if (!ViewerLevel.IsMasterLevel())
+                var statuses = new List<StatusModel>
                 {
-                    list.Insert(0, new SelectListItem { Text = Resources.AllAgent, Value = "0" });
-                }
+                    new StatusModel(TicketStatusIdConstants.Void, Resources.voided),
+                    new StatusModel(TicketStatusIdConstants.Reject, Resources.reject),
+                    new StatusModel(TicketStatusIdConstants.Refund, Resources.refund)
+                };
 
-                return list;
+                var statusListItem = statuses.Select(s =>
+                 {
+                     var item = new SelectListItem
+                     {
+                         Text = s.Name,
+                         Value = s.Id.ToString(),
+                         Selected = StatusIds.Contains(s.Id.ToString())
+                     };
+
+                     return item;
+                 });
+
+                return new StatusMultiSelectionViewModel(statusListItem, StatusIds, Language);
             }
         }
 
-        public IEnumerable<SelectListItem> MemberList
-        {
-            get
-            {
-                var list = BuildUserBetCount(Filter.Members, Query.MemberId).ToList();
+        private IEnumerable<SelectListItem> Products { get; }
 
-                if (!ViewerLevel.IsAgentLevel())
-                {
-                    list.Insert(0, new SelectListItem { Text = Resources.AllMember, Value = "0" });
-                }
+        private string Language { get; }
 
-                return list;
-            }
-        }
+        private int UserSelectedDateRangeOption { get; }
 
-        private static IEnumerable<SelectListItem> BuildUserBetCount(IEnumerable<UserBetCount> users, int selectedId)
-            => users.Select(user => new SelectListItem
-            {
-                Text = user.ToString(),
-                Value = user.CustId.ToString(),
-                Selected = user.CustId == selectedId
-            });
+        private DateTime MinDate { get; }
+
+        private PagedReportData<BetListData> ReportData { get; }
     }
 }

@@ -313,7 +313,7 @@
     <value>Xuất sang Excel</value>
   </data>
   <data name="VoidAndReject" xml:space="preserve">
-    <value>Danh sách đặt cược bị Hủy/ Từ Chối (cách đây 3 ngày )</value>
+    <value>Danh sách cược bị hủy/từ chối/hoàn tiền</value>
   </data>
   <data name="CancelledBet" xml:space="preserve">
     <value>Cược bị hủy</value>

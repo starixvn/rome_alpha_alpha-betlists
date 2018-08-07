@@ -271,10 +271,6 @@
   <data name="ExportToExcel" xml:space="preserve">
     <value>輸出をExcelに</value>
   </data>
-  <data name="VoidAndReject" xml:space="preserve">
-    <value>無効/キャンセルされたベットリスト(残り3 日
- </value>
-  </data>
   <data name="CancelledBet" xml:space="preserve">
     <value>取り消されたベット</value>
   </data>

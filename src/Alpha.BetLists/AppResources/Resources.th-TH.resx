@@ -310,7 +310,7 @@
     <value>ส่งออกไปที่โปรแกรมเอกเซล</value>
   </data>
   <data name="VoidAndReject" xml:space="preserve">
-    <value>ยกเลิกรายการการวางเดิมพัน3 วันก่อน</value>
+    <value>โมฆะ / ปฏิเสธ / คืนเงิน / ตั๋วเดิมพัน</value>
   </data>
   <data name="CancelledBet" xml:space="preserve">
     <value>ยกเลิกการวางเดิมพัน</value>
