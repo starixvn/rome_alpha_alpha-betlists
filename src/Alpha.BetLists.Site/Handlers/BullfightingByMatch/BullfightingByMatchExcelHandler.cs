@@ -14,6 +14,7 @@
     using Utilities.IP;
     using ViewModels;
     using ViewModels.BullfightingByMatch;
+    using static ONEbook.SpreadSheets.Column;
 
     public class BullfightingByMatchExcelHandler : BetListExcelBaseHandler, IAsyncRequestHandler<BullfightingByMatchExcelQuery, ExcelFileViewModel>
     {
@@ -51,6 +52,24 @@
                 .ExportToBytes();
 
             return new ExcelFileViewModel(viewModel.Title, fileContent);
+        }
+
+        protected internal override Mapper<TicketDto> GetBodyRowMapper(UserLevel viewerLevel, BetListBaseViewModel viewModel)
+        {
+            var ticketData = viewModel.BetListData.TicketData;
+
+            var mapper = GetTicketDtoRowMapperIncludeUsername(viewModel, false);
+
+            mapper.Map(H, ticket => BuildPtCommmission(ticket, ticketData, viewerLevel));
+
+            if (viewerLevel.IsMasterLevel())
+            {
+                mapper.Map(I, ticket => BuildPtCommmission(ticket, ticketData, UserLevel.Agent));
+            }
+
+            AddPtCommissionForSuper(mapper, viewerLevel, ticketData);
+
+            return mapper;
         }
     }
 }
