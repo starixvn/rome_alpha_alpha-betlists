@@ -869,7 +869,7 @@
   </Function>
 
   <Function Name="Bullfighting">
-    <Setting Key="Age_BetList_TotalBets_BF_Ag" SpName="Age_BetList_TotalBets_BF_Ag" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0">
+    <Setting Key="Age_BetList_TotalBets_BF_Ag" SpName="Age_BetList_TotalBets_BF_Ag" DbName="DB042.bodb02.BODBDownlineNetView" Plain="0">
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="TicketDto"></Mapping>
@@ -895,7 +895,7 @@
       <Mapping DataField="mpositiontaking" ObjectProperty="MasterPT" Class="TicketData"></Mapping>
       <Mapping DataField="spositiontaking" ObjectProperty="SuperPT" Class="TicketData"></Mapping>
     </Setting>
-    <Setting Key="Age_BetList_TotalBets_BF_MAg" SpName="Age_BetList_TotalBets_BF_MAg" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0">
+    <Setting Key="Age_BetList_TotalBets_BF_MAg" SpName="Age_BetList_TotalBets_BF_MAg" DbName="DB042.bodb02.BODBDownlineNetView" Plain="0">
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="TicketDto"></Mapping>
@@ -921,7 +921,7 @@
       <Mapping DataField="mpositiontaking" ObjectProperty="MasterPT" Class="TicketData"></Mapping>
       <Mapping DataField="spositiontaking" ObjectProperty="SuperPT" Class="TicketData"></Mapping>
     </Setting>
-    <Setting Key="Age_BetList_TotalBets_BF_SAg" SpName="Age_BetList_TotalBets_BF_SAg" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0">
+    <Setting Key="Age_BetList_TotalBets_BF_SAg" SpName="Age_BetList_TotalBets_BF_SAg" DbName="DB042.bodb02.BODBDownlineNetView" Plain="0">
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="TicketDto"></Mapping>
