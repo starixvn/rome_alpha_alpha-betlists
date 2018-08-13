@@ -13,7 +13,8 @@
     using Alpha.BetLists.Site.Tests.Constants;
     using Alpha.BetLists.Site.Tests.Fixtures;
     using Alpha.BetLists.Tests.TestData;
-    using Alpha.RemotingRef;
+    using BetLists.Helpers;
+    using Fanex.RemotingRef;
     using NSubstitute;
     using ONEbook.SpreadSheets;
     using Xunit;
@@ -66,9 +67,9 @@
                 workbook,
                 winLossByMatchExcelHandler);
 
-            var cacheRef = Substitute.For<CacheRefService>();
-            cacheRef.GetBetTypeName(Arg.Any<object>()).Returns(callInfo => $"Bet Type {callInfo.Args()[0]}");
-            CacheRefFactory.CacheRef = cacheRef;
+            var cacheRef = Substitute.For<IRemotingRefService>();
+            cacheRef.GetBetTypeName(Arg.Any<string>(), Arg.Any<string>()).Returns("abc");
+            CacheRefServiceHelper.Instance = cacheRef;
 
             Thread.CurrentThread.CurrentCulture = new CultureInfo(LanguageCode.English);
             Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
@@ -96,6 +97,10 @@
         public void HandleExportWinLossByMatchExcelQuery_Always_ExportsCorrectTitle()
         {
             // Arrange
+            var cacheRef = Substitute.For<IRemotingRefService>();
+            cacheRef.GetBetTypeName("9", Arg.Any<string>()).Returns("Bet Type 9");
+            CacheRefServiceHelper.Instance = cacheRef;
+
             var message = CreateWinLossByMatchExcelQuery(custLevelId: 4);
 
             // Act
@@ -108,7 +113,6 @@
         [Fact]
         public void HandleExportWinLossByMatchExcelQuery_Always_ExportsCorrectHeader()
         {
-            // Arrange
             var message = CreateWinLossByMatchExcelQuery(custLevelId: 4);
 
             // Act

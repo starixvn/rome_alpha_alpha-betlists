@@ -2,8 +2,10 @@
 {
     using System;
     using System.Collections.Generic;
+    using BetLists.Helpers;
     using BetLists.Models;
     using BetLists.Tests.TestData;
+    using Fanex.RemotingRef;
     using Fixtures;
     using Handlers.CombinationMixParlay;
     using KellermanSoftware.CompareNetObjects;
@@ -112,6 +114,10 @@
         public void Handle_Always_ExportsExcelToBytes(byte custRoleId)
         {
             // Arrange
+            var cacheRef = Substitute.For<IRemotingRefService>();
+            cacheRef.GetBetTypeName(Arg.Any<string>(), Arg.Any<string>()).Returns("abc");
+            CacheRefServiceHelper.Instance = cacheRef;
+
             betListFixture.User.LevelId.Returns(custRoleId);
             var query = new CombinationMixParlayExcelQuery(betListFixture.User);
             query.RtfHelper = betListFixture.RtfHelper;

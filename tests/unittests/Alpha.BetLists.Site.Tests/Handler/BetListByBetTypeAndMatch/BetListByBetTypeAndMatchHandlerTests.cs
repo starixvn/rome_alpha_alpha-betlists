@@ -2,8 +2,10 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using BetLists.Helpers;
     using BetLists.Tests.TestData;
     using Fanex.BetList.Core.Entities;
+    using Fanex.RemotingRef;
     using Fixtures;
     using Handlers.BetListByBetTypeAndMatch;
     using KellermanSoftware.CompareNetObjects;
@@ -46,6 +48,10 @@
                 betlistFixture.TicketHelper,
                 betlistFixture.MonitorService,
                 betlistFixture.IpService);
+
+            var cacheRef = Substitute.For<IRemotingRefService>();
+            cacheRef.GetBetTypeName(Arg.Any<string>(), Arg.Any<string>()).Returns("abc");
+            CacheRefServiceHelper.Instance = cacheRef;
         }
 
         [Theory]

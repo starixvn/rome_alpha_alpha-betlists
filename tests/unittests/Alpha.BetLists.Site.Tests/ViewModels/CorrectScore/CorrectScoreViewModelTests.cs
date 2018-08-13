@@ -1,10 +1,11 @@
 ﻿namespace Alpha.BetLists.Site.Tests.ViewModels.CorrectScore
 {
     using BetLists.Constants;
+    using BetLists.Helpers;
     using BetLists.Tests.TestData;
+    using Fanex.RemotingRef;
     using Fixtures;
     using NSubstitute;
-    using RemotingRef;
     using Requests.CorrectScore;
     using Site.ViewModels.CorrectScore;
     using Xunit;
@@ -24,9 +25,9 @@
         public void Constructor_Always_ReturnsCorrectTitle()
         {
             // Arrange
-            var cacheRef = Substitute.For<CacheRefService>();
-            cacheRef.GetBetTypeName(Arg.Is(BetTypeIdConstants.CorrectScore)).Returns("Correct Score");
-            CacheRefFactory.CacheRef = cacheRef;
+            var cacheRef = Substitute.For<IRemotingRefService>();
+            cacheRef.GetBetTypeName(BetTypeIdConstants.CorrectScore.ToString(), Arg.Any<string>()).Returns("Correct Score");
+            CacheRefServiceHelper.Instance = cacheRef;
 
             var message = new CorrectScoreQuery(betListFixture.User);
 

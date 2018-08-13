@@ -7,7 +7,6 @@
     using BetLists.Models;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
-    using RemotingRef;
     using Requests.BetListByBetTypeAndMatch;
 
     public class BetListByBetTypeAndMatchViewModel : BetListByBetTypeViewModel
@@ -37,9 +36,9 @@
 
         public string GetTitle(int betType)
             => BetTypeHelper.IsOutRight(betType)
-            ? CacheRefFactory.CacheRef.GetBetTypeName(betType)
+            ? CacheRefServiceHelper.GetBetTypeName(betType)
             : LeagueId == 0
-            ? CacheRefFactory.CacheRef.GetBetTypeName(betType)
-            : $"{CacheRefFactory.CacheRef.GetLeagueName(LeagueId)} {CacheRefFactory.CacheRef.GetBetTypeName(betType)}";
+            ? CacheRefServiceHelper.GetBetTypeName(betType)
+            : $"{CacheRefServiceHelper.GetLeagueName(LeagueId)} {CacheRefServiceHelper.GetBetTypeName(betType)}";
     }
 }

@@ -4,7 +4,7 @@
     using Alpha.BetLists.Models;
     using Alpha.BetLists.Site.Requests.WinLossByMatch;
     using Alpha.BetLists.Site.ViewModels.WinLoss;
-    using Alpha.RemotingRef;
+    using BetLists.Helpers;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
 
@@ -20,7 +20,7 @@
             BetType = query.BetType;
             CustLevelId = query.CustLevelId;
             Title = HasDateParam(query)
-                ? $"{CacheRefFactory.CacheRef.GetBetTypeName(BetType)} {query.FromDate.ToShortDateString()} --> {query.ToDate.ToShortDateString()}"
+                ? $"{CacheRefServiceHelper.GetBetTypeName(BetType)} {query.FromDate.ToShortDateString()} --> {query.ToDate.ToShortDateString()}"
                 : Resources.memberBetList;
         }
 

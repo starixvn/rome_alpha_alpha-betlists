@@ -2,10 +2,10 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using BetLists.Helpers;
     using BetLists.Models;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
-    using RemotingRef;
     using Requests.BetListByBetType;
 
     public class BetListByBetTypeViewModel : BetListBaseViewModel
@@ -19,7 +19,7 @@
             : base(query, betListData, builder, ticketHelper, true)
         {
             SupportScoreMapBetTypeIds = supportScoreMapBetTypeIds;
-            Title = CacheRefFactory.CacheRef.GetBetTypeName(query.BetType).ToUpperInvariant();
+            Title = CacheRefServiceHelper.GetBetTypeName(query.BetType).ToUpperInvariant();
             BetType = query.BetType;
         }
 

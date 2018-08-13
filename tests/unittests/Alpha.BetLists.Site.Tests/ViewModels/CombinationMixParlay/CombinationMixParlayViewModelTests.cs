@@ -1,7 +1,11 @@
 ﻿namespace Alpha.BetLists.Site.Tests.ViewModels.CombinationMixParlay
 {
+    using BetLists.Constants;
+    using BetLists.Helpers;
     using BetLists.Tests.TestData;
+    using Fanex.RemotingRef;
     using Fixtures;
+    using NSubstitute;
     using Requests.CombinationMixParlay;
     using Site.ViewModels.CombinationMixParlay;
     using Xunit;
@@ -21,6 +25,10 @@
         public void Constructor_Always_ReturnsCorrectTitle()
         {
             // Arrange
+            var cacheRef = Substitute.For<IRemotingRefService>();
+            cacheRef.GetBetTypeName(BetTypeIdConstants.CombinationMixParlay.ToString(), Arg.Any<string>()).Returns("Correct Score");
+            CacheRefServiceHelper.Instance = cacheRef;
+
             var message = new CombinationMixParlayQuery(betListFixture.User);
 
             // Act

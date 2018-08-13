@@ -9,7 +9,6 @@
     using BetLists.Models;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
-    using Fanex.BetList.Core.TicketHelper;
     using SmartPunter.Services;
     using Utilities.IP;
 
@@ -28,6 +27,7 @@
             MonitorService = monitorService;
             IpService = ipService;
             TicketHelper.IsVnIp = IpService.IsVNIP;
+            GetOddsTypeName = ticketHelper.GetOddsTypeNameById;
         }
 
         protected internal IBetListHTMLBuilder Builder { get; }
@@ -38,7 +38,7 @@
 
         protected internal IPService IpService { get; }
 
-        protected internal GetCachePropertyById GetOddsTypeName { get; set; } = CacheRef.GetOddsTypeName;
+        protected internal GetCachePropertyById GetOddsTypeName { get; }
 
         internal Func<string, bool> IsFileExist { get; set; } = File.Exists;
 

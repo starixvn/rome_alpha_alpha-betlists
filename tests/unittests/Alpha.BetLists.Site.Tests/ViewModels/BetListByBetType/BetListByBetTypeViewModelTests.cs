@@ -1,8 +1,10 @@
 ﻿namespace Alpha.BetLists.Site.Tests.ViewModels.BetListByBetType
 {
     using System.Collections.Generic;
+    using BetLists.Helpers;
     using BetLists.Models;
     using BetLists.Tests.TestData;
+    using Fanex.RemotingRef;
     using Fixtures;
     using KellermanSoftware.CompareNetObjects;
     using NSubstitute;
@@ -21,6 +23,10 @@
         {
             this.betListFixture = betListFixture;
             compareLogic = new CompareLogic();
+
+            var cacheRef = Substitute.For<IRemotingRefService>();
+            cacheRef.GetBetTypeName(Arg.Any<string>(), Arg.Any<string>()).Returns("abc");
+            CacheRefServiceHelper.Instance = cacheRef;
         }
 
         [Fact]

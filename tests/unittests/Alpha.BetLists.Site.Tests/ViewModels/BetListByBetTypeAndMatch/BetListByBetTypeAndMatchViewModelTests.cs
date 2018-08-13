@@ -1,9 +1,10 @@
 ﻿namespace Alpha.BetLists.Site.Tests.ViewModels.BetListByBetTypeAndMatch
 {
+    using BetLists.Helpers;
     using BetLists.Tests.TestData;
+    using Fanex.RemotingRef;
     using Fixtures;
     using NSubstitute;
-    using RemotingRef;
     using Requests.BetListByBetTypeAndMatch;
     using Site.ViewModels.BetListByBetTypeAndMatch;
     using Xunit;
@@ -25,9 +26,9 @@
         public void Constructor_BetTypeIsOutright_ReturnsOutrightTitle()
         {
             // Arrange
-            var cacheRef = Substitute.For<CacheRefService>();
-            cacheRef.GetBetTypeName(Arg.Is(10)).Returns("Outright");
-            CacheRefFactory.CacheRef = cacheRef;
+            var cacheRef = Substitute.For<IRemotingRefService>();
+            cacheRef.GetBetTypeName("10", Arg.Any<string>()).Returns("Outright");
+            CacheRefServiceHelper.Instance = cacheRef;
 
             query.BetType = 10;
             var viewModel = new BetListByBetTypeAndMatchViewModel(
@@ -47,10 +48,10 @@
         public void Constructor_BetTypeIsNotOutright_ReturnsCorrectTitle()
         {
             // Arrange
-            var cacheRef = Substitute.For<CacheRefService>();
-            cacheRef.GetBetTypeName(Arg.Is(1)).Returns("Handicap");
-            cacheRef.GetLeagueName(Arg.Any<int>()).Returns("LeaugeName");
-            CacheRefFactory.CacheRef = cacheRef;
+            var cacheRef = Substitute.For<IRemotingRefService>();
+            cacheRef.GetBetTypeName("1", Arg.Any<string>()).Returns("Handicap");
+            cacheRef.GetLeagueName(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<string>()).Returns("LeaugeName");
+            CacheRefServiceHelper.Instance = cacheRef;
 
             query.BetType = 1;
             var viewModel = new BetListByBetTypeAndMatchViewModel(

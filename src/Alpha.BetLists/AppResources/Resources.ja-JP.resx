@@ -185,10 +185,10 @@
     <value>メンバーベットリスト</value>
   </data>
   <data name="running" xml:space="preserve">
-    <value>진행중</value>
+    <value>進行中</value>
   </data>
   <data name="reject" xml:space="preserve">
-    <value>거부</value>
+    <value>拒否</value>
   </data>
   <data name="refund" xml:space="preserve">
     <value>払い戻し</value>

@@ -4,9 +4,11 @@
     using System.Collections.Generic;
     using System.Globalization;
     using System.Threading;
+    using BetLists.Helpers;
     using BetLists.Models;
     using BetLists.Tests.TestData;
     using Constants;
+    using Fanex.RemotingRef;
     using Fixtures;
     using Handlers.BullfightingByMatch;
     using KellermanSoftware.CompareNetObjects;
@@ -59,6 +61,10 @@
 
             Thread.CurrentThread.CurrentCulture = new CultureInfo(LanguageCode.English);
             Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
+
+            var cacheRef = Substitute.For<IRemotingRefService>();
+            cacheRef.GetBetTypeName(Arg.Any<string>(), Arg.Any<string>()).Returns("abc");
+            CacheRefServiceHelper.Instance = cacheRef;
         }
 
         [Fact]

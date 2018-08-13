@@ -8,7 +8,6 @@
     using StaticData.Models;
     using Utils;
     using Xunit;
-    using System.Linq;
 
     [Trait("Integration", "MemberBetList")]
     public class MemberBetListControllerTests : BaseBetListsIntegrationTest
