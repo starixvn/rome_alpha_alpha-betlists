@@ -3,15 +3,16 @@
     using System;
     using System.Collections.Generic;
     using BetLists.Constants;
+    using BetLists.Helpers;
     using BetLists.Models;
     using BetLists.Tests.TestData;
+    using Fanex.RemotingRef;
     using Fixtures;
     using Handlers.CorrectScore;
     using KellermanSoftware.CompareNetObjects;
     using NSubstitute;
     using ONEbook.SpreadSheets;
     using Params;
-    using RemotingRef;
     using Requests.CorrectScore;
     using Services;
     using Site.ViewModels;
@@ -53,6 +54,10 @@
                 workbook);
             handler.MapPath = (path) => path;
             handler.IsFileExist = (path) => true;
+
+            var cacheRef = Substitute.For<IRemotingRefService>();
+            cacheRef.GetBetTypeName(Arg.Any<string>(), Arg.Any<string>()).Returns("abc");
+            CacheRefServiceHelper.Instance = cacheRef;
         }
 
         [Fact]
@@ -90,9 +95,9 @@
         public void Handle_Always_ExportsCorrectTitle()
         {
             // Arrange
-            var cacheRef = Substitute.For<CacheRefService>();
-            cacheRef.GetBetTypeName(Arg.Is(BetTypeIdConstants.CorrectScore)).Returns("Correct Score");
-            CacheRefFactory.CacheRef = cacheRef;
+            var cacheRef = Substitute.For<IRemotingRefService>();
+            cacheRef.GetBetTypeName(BetTypeIdConstants.CorrectScore.ToString(), Arg.Any<string>()).Returns("Correct Score");
+            CacheRefServiceHelper.Instance = cacheRef;
 
             // Act
             handler.Handle(message).GetAwaiter().GetResult();

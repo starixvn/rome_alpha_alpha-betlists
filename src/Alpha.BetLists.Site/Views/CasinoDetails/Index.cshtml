@@ -63,7 +63,7 @@
                             <td class='w-order text-center'>@i</td>
                             @Trans.Render(Model.Builder, ticket)
                             @Choice.Render(Model.Builder, ticket, Model.TicketHelper, ticketData, false)
-                            @Odds.Render(Model.Builder, ticket, ticketData)
+                            @Odds.Render(Model.Builder, ticket, ticketData, Model.TicketHelper.GetOddsTypeNameById)
                             @Stake.Render(Model.Builder, ticket)
                             @WinLoss.Render(ticket)
                             @Status.Render(Model.Builder, ticket, Model.TicketHelper, ticketData, Model.DisplayVNIP)

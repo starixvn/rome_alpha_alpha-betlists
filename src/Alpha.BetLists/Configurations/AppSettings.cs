@@ -50,6 +50,8 @@
 
         public static int RunningMatchCacheTime => Converter.ToInt(GetConfigValue("RunningMatchCacheTime"));
 
+        public static string RemoteRefURL => GetConfigValue("RemoteRefURL");
+
         public static string GetConfigValue(string configName) => AppSettingValues[configName];
 
         public static void Verify()

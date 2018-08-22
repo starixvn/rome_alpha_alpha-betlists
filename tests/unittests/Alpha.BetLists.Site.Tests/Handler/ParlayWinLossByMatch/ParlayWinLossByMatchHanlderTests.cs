@@ -3,9 +3,11 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using BetLists.Helpers;
     using BetLists.Models;
     using BetLists.Tests.TestData;
     using Fanex.BetList.Core.Entities;
+    using Fanex.RemotingRef;
     using Fixtures;
     using Handlers.ParlayWinLossByMatch;
     using KellermanSoftware.CompareNetObjects;
@@ -74,6 +76,10 @@
         public void Handle_Always_CallGetBetListFromService()
         {
             // Arrange
+            var cacheRef = Substitute.For<IRemotingRefService>();
+            cacheRef.GetBetTypeName(Arg.Any<string>(), Arg.Any<string>()).Returns("abc");
+            CacheRefServiceHelper.Instance = cacheRef;
+
             var query = CreateWinLossByMatchQuery();
 
             var expectedParam = new ParlayWinLossByMatchParam(1, 2, "en", DateTime.Today, DateTime.Today, DateTime.MinValue, UserLevel.Super);
@@ -89,6 +95,10 @@
         public void Hanlde_Always_ReturnWinLossByMatchViewModel()
         {
             // Arrange
+            var cacheRef = Substitute.For<IRemotingRefService>();
+            cacheRef.GetBetTypeName(Arg.Any<string>(), Arg.Any<string>()).Returns("abc");
+            CacheRefServiceHelper.Instance = cacheRef;
+
             var query = CreateWinLossByMatchQuery();
             var expectedViewModel = new ParlayWinLossByMatchViewModel(
                 query,

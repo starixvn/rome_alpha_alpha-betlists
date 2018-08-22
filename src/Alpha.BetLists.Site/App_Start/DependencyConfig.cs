@@ -4,6 +4,7 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
     using System.Web.Mvc;
+    using BetLists.Helpers;
     using BetLists.Models;
     using Configurations;
     using Controllers;
@@ -15,15 +16,16 @@
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Factories;
+    using Fanex.BetList.Core.RemotingRef;
     using Fanex.BetList.Core.TicketHelper;
     using Fanex.Data.Repository;
+    using Fanex.RemotingRef;
     using Handlers.Parlay;
     using Helpers;
     using MediatR;
     using Models;
     using ONEbook.SpreadSheets;
     using ONEbook.SpreadSheets.NPOI;
-    using RemotingRef;
     using Services;
     using SimpleInjector;
     using SimpleInjector.Integration.Web;
@@ -140,14 +142,15 @@
             container.Register<MemberBetListService, MemberBetListServiceImpl>(Lifestyle.Singleton);
             container.Register<DailyStatementService, DailyStatementServiceImpl>(Lifestyle.Singleton);
 
-            container.RegisterSingleton<CacheRefService, CacheRefServiceImpl>();
+            container.RegisterSingleton<ICacheRef, CacheRef>();
+            container.RegisterSingleton<IRemotingRefService, RemotingRefService>();
             container.Register<ForecastService, ForecastServiceImpl>(Lifestyle.Singleton);
             container.Register<ProductService>(
                 () => new ProductServiceImpl(
                     container.GetInstance<IDynamicRepository>(),
                     container.GetInstance<ProductDataAccess>(),
                     UserPermission.HasPermissionOnProduct,
-                    new CacheRefServiceImpl().GetProductName),
+                    CacheRefServiceHelper.GetProductName),
                 Lifestyle.Singleton);
             container.Register<CancelledBetService, CancelledBetServiceImpl>();
 

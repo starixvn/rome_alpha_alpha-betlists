@@ -78,12 +78,12 @@
             Assert.Equal(baseHandler.IpService, betlistFixture.IpService);
         }
 
-        [Fact]
-        public void GetOddsTypeName_Always_ReturnDefaultValue()
-        {
-            // Act & Assert
-            Assert.Equal(CacheRef.GetOddsTypeName, baseHandler.GetOddsTypeName);
-        }
+        //[Fact]
+        //public void GetOddsTypeName_Always_ReturnDefaultValue()
+        //{
+        //    // Act & Assert
+        //    Assert.Equal(CacheRef.GetOddsTypeName, baseHandler.GetOddsTypeName);
+        //}
 
         [Fact]
         public void MapPath_WhenMapPathIsNotNull_ReturnMapPathValue()
