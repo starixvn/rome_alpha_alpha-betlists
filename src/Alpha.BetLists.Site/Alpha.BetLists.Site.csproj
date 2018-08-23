@@ -58,8 +58,8 @@
       <HintPath>..\..\packages\Alpha.Auth.3.0.1.9\lib\net40\Alpha.Auth.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Alpha.SmartPunter, Version=1.0.0.6, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Alpha.SmartPunter.1.0.0.0\lib\net40\Alpha.SmartPunter.dll</HintPath>
+    <Reference Include="Alpha.SmartPunter, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Alpha.SmartPunter.1.0.0.1-RemotingRef02\lib\net461\Alpha.SmartPunter.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Alpha.SubAccount, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -228,8 +228,8 @@
     <Reference Include="Fanex.Logging.Extensions.Web, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Logging.Extensions.Web.1.0.6\lib\net40\Fanex.Logging.Extensions.Web.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.Products, Version=1.0.0.4, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.Products.1.0.0.4\lib\net40\Fanex.Products.dll</HintPath>
+    <Reference Include="Fanex.Products, Version=1.0.0.5, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Products.1.0.0.5-RemotingRef01\lib\net461\Fanex.Products.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.RemotingRef, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
@@ -313,10 +313,6 @@
       <HintPath>..\..\packages\RabbitMQ.Client.3.5.7\lib\net40\RabbitMQ.Client.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="RemotingRef, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\RemotingRef.2.0.0.17\lib\net40\RemotingRef.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\RestSharp.105.2.3\lib\net46\RestSharp.dll</HintPath>
       <Private>True</Private>
@@ -337,16 +333,16 @@
       <HintPath>..\..\packages\SPSRemoting.1.0.0\lib\net40\SPSRemoting.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sunplus.Agent.Model.Base, Version=3.0.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Sunplus.Agent.Model.Base.3.0.4\lib\net40\Sunplus.Agent.Model.Base.dll</HintPath>
+    <Reference Include="Sunplus.Agent.Model.Base, Version=3.0.4.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Sunplus.Agent.Model.Base.3.0.4.1-RemotingRef01\lib\net461\Sunplus.Agent.Model.Base.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Sunplus.Agent.Model.Definitions, Version=3.0.2.3, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Sunplus.Agent.Model.Definitions.3.0.2.3\lib\net40\Sunplus.Agent.Model.Definitions.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sunplus.Agent.Model.IpFormatter, Version=3.0.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Sunplus.Agent.Model.IpFormatter.3.0.0.1\lib\net40\Sunplus.Agent.Model.IpFormatter.dll</HintPath>
+    <Reference Include="Sunplus.Agent.Model.IpFormatter, Version=3.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Sunplus.Agent.Model.IpFormatter.3.0.0.2-RemotingRef02\lib\net461\Sunplus.Agent.Model.IpFormatter.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Sunplus.Agent.Utilities, Version=3.0.0.5, Culture=neutral, processorArchitecture=MSIL">
