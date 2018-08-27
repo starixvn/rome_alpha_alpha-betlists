@@ -362,4 +362,7 @@
   <data name="ContributionAmountRoundNote" xml:space="preserve">
     <value>贡献金额将会以四个小数点净值。</value>
   </data>
+  <data name="AllStatus" xml:space="preserve">
+    <value>所有状态</value>
+  </data>
 </root>

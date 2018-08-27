@@ -124,7 +124,7 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to All Status.
+        ///   Looks up a localized string similar to All Statuses.
         /// </summary>
         public static string AllStatus {
             get {

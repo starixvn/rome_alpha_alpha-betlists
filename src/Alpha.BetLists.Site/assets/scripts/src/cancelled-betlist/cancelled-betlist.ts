@@ -30,7 +30,7 @@ class CancelledBetListView {
         this.cacheElements();
         this.registerEvents();
 
-        this.dateRangePickerComponent.render(new DateRangePickerOption("daterange-picker", "report-form"));
+        this.dateRangePickerComponent.render(new DateRangePickerOption("daterange-picker", "betlist-form"));
         this.productMultiSelectionComponent.render(
             new ProductMultiSelectionOption("dropdown-product", true, "product-ids"));
         this.statusMultiSelectionComponent.render(
