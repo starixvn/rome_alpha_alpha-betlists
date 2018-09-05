@@ -40,7 +40,7 @@
                 message.CustId, 
                 message.FromDate, 
                 message.ToDate, 
-                reportDateService.GetMoveBetsDay(), 
+                reportDateService.GetBalanceUpDay(), 
                 message.ViewerLevelId, 
                 validUserSelectedProductIds, 
                 message.StatusIds, 

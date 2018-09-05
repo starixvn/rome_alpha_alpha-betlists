@@ -5,13 +5,14 @@
     using Alpha.BetLists.Site.ViewModels.CancelledBet;
     using Extensions;
     using MediatR;
+    using Services;
     using Utils;
 
     public class CancelledBetBaseQuery : BaseQuery, IRequest<CancelledBetViewModel>
     {
         protected CancelledBetBaseQuery(IUser viewer) : base(viewer)
         {
-            MinDate = SystemTime.Today.AddMonths(-3).FirstDayOfMonth();
+            MinDate = ReportDateServiceImpl.Instance.GetBalanceUpDay();
             FromDate = FromDate == DateTime.MinValue ? DateTime.Now : FromDate;
             ToDate = ToDate == DateTime.MinValue ? DateTime.Now : ToDate;            
         }

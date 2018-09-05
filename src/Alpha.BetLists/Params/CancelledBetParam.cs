@@ -10,7 +10,7 @@
             int currentUserId,
             DateTime fromDate,
             DateTime toDate,
-            DateTime moveBetsDay,
+            DateTime balanceUpDate,
             byte roleId,
             IEnumerable<int> productIds,
             string statusIds,
@@ -24,7 +24,7 @@
             FromDate = fromDate;
             ToDate = toDate;
             StatusIds = statusIds;
-            MoveBetsDay = moveBetsDay;
+            BalanceUpDate = balanceUpDate;
             RoleId = roleId;
             PageIndex = pageIndex == 0 ? DefaultVariables.PageIndex : pageIndex;
             PageSize = 10;
@@ -38,7 +38,7 @@
 
         public DateTime ToDate { get; }
 
-        public DateTime MoveBetsDay { get; }
+        public DateTime BalanceUpDate { get; }
 
         public IEnumerable<int> ProductIds { get; }
 
