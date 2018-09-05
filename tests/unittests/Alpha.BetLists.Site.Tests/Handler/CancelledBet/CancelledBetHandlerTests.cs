@@ -2,12 +2,15 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using Alpha.BetLists.Models;
     using Alpha.BetLists.Params;
     using Alpha.BetLists.Services;
     using Alpha.BetLists.Site.Handlers.CancelledBet;
     using Alpha.BetLists.Site.Requests.CancelledBet;
     using Alpha.Utilities.IP;
+    using BetLists.Tests.TestData;
+    using Constants;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using NSubstitute;
@@ -40,23 +43,27 @@
             user = Substitute.For<IUser>();
             user.LevelId.Returns(UserLevel.Agent.Value);
             handler = new CancelledBetHandler(service, productService, reportDateService, builder, ticketHelper, monitorService, ipService);
+
+            ReportDateServiceImpl.Instance = reportDateService;
+            reportDateService.GetBalanceUpDay().Returns(DefaultVariablesTest.BalanceUpDate);
         }
 
         [Fact]
         public void Handle_Always_Call3Service()
         {
-            //// Arrange
-            var productIds = new List<int> { 1, 2, 3 };
+            //// Arrange            
             var query = new CancelledBetQuery(user);
-            productService.GetProductsHaveSupportCancelledBet(Arg.Any<int>(), Arg.Any<DateTime>()).Returns(productIds);
+            var products = BetListDataTest.Products;
+            productService.GetProductsHaveSupportCancelledBet(Arg.Any<int>(), Arg.Any<DateTime>()).Returns(products);
+            productService.FilterProductIdsByCustomer(Arg.Any<int>(), Arg.Any<DateTime>(), Arg.Any<IEnumerable<int>>()).Returns(products.Select(i => i.Id));
 
             //// Act
             var act = handler.Handle(query);
 
             //// Assert
             productService.Received().GetProductsHaveSupportCancelledBet(Arg.Any<int>(), Arg.Any<DateTime>());
-            productService.Received().GetProductsForCustomer(Arg.Any<int>(), Arg.Any<DateTime>());
-            service.Received().GetCancelledBet(Arg.Is<CancelledBetParam>(i => i.ProductIds == productIds));
+            productService.Received().FilterProductIdsByCustomer(Arg.Any<int>(), Arg.Any<DateTime>(), Arg.Any<IEnumerable<int>>());
+            service.Received().GetCancelledBet(Arg.Any<CancelledBetParam>());
         }
 
     }

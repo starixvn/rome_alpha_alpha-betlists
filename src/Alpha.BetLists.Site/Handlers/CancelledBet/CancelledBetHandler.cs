@@ -34,8 +34,8 @@
 
         public async Task<CancelledBetViewModel> Handle(CancelledBetQuery message)
         {
-            var validUserSelectedProductIds = productService.GetProductsHaveSupportCancelledBet(message.CustId, message.MinDate);
-            var products = productService.GetProductsForCustomer(message.CustId, message.MinDate);
+            var validUserSelectedProductIds = productService.FilterProductIdsByCustomer(message.CustId, message.MinDate, message.ProductIds.ToListInt());
+            var products = productService.GetProductsHaveSupportCancelledBet(message.CustId, message.MinDate);
             var parameter = new CancelledBetParam(
                 message.CustId, 
                 message.FromDate, 

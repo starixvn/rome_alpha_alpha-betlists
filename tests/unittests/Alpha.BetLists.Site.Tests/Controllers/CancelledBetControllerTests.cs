@@ -4,8 +4,10 @@
     using Alpha.BetLists.Site.Controllers;
     using Alpha.BetLists.Site.Requests.CancelledBet;
     using Alpha.BetLists.Site.ViewModels;
+    using Constants;
     using MediatR;
     using NSubstitute;
+    using Services;
     using Xunit;
 
     [Trait("Category", "CancelledBet")]
@@ -22,6 +24,10 @@
             user.LevelId.Returns(UserLevel.Agent.Value);
 
             cancelledBetController = new CancelledBetController(mediator);
+
+            var reportDateService = Substitute.For<ReportDateService>();
+            ReportDateServiceImpl.Instance = reportDateService;
+            reportDateService.GetBalanceUpDay().Returns(DefaultVariablesTest.BalanceUpDate);
         }
 
         [Fact]

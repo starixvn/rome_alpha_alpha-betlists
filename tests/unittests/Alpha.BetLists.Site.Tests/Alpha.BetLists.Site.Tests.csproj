@@ -296,6 +296,7 @@
   <ItemGroup>
     <Compile Include="Collection\ParlayBetListCollection.cs" />
     <Compile Include="Collection\BetListCollection.cs" />
+    <Compile Include="Constants\DefaultVariablesTest.cs" />
     <Compile Include="Constants\LanguageCode.cs" />
     <Compile Include="Controllers\BetListByBetTypeAndMatchControllerTests.cs" />
     <Compile Include="Controllers\BetListByBetTypeControllerTests.cs" />

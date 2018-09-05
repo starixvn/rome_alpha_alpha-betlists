@@ -11,7 +11,10 @@
     using Alpha.BetLists.Site.Tests.Fixtures;
     using Alpha.BetLists.Site.ViewModels.CancelledBet;
     using Alpha.BetLists.Tests.TestData;
+    using Constants;
+    using NSubstitute;
     using Ploeh.AutoFixture;
+    using Services;
     using Xunit;
 
     [Trait("Category", "CancelledBetViewModel")]
@@ -32,6 +35,10 @@
             query = new CancelledBetQuery(user);
 
             reportData = new PagedReportData<BetListData>(new List<BetListData> { BetListDataTest.BetListData }, 1, 50, 50);
+
+            var reportDateService = Substitute.For<ReportDateService>();
+            ReportDateServiceImpl.Instance = reportDateService;
+            reportDateService.GetBalanceUpDay().Returns(DefaultVariablesTest.BalanceUpDate);
         }
 
         [Fact]

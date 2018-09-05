@@ -8,6 +8,7 @@
     using Alpha.BetLists.Site.Requests.CancelledBet;
     using Alpha.BetLists.Site.Tests.Fixtures;
     using BetLists.Tests.TestData;
+    using Constants;
     using Handlers.CancelledBet;
     using NSubstitute;
     using ONEbook.SpreadSheets;
@@ -54,6 +55,9 @@
                 workbook);
 
             handler.IsFileExist = path => true;
+
+            ReportDateServiceImpl.Instance = reportDateService;
+            reportDateService.GetBalanceUpDay().Returns(DefaultVariablesTest.BalanceUpDate);
         }
 
         [Fact]

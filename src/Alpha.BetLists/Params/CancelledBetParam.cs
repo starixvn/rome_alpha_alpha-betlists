@@ -27,7 +27,7 @@
             BalanceUpDate = balanceUpDate;
             RoleId = roleId;
             PageIndex = pageIndex == 0 ? DefaultVariables.PageIndex : pageIndex;
-            PageSize = 10;
+            PageSize = pageSize == 0 ? DefaultVariables.PageSize : pageSize;
         }
 
         public int CustId { get; }
