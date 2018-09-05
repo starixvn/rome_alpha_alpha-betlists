@@ -48,13 +48,13 @@
             //// Arrange
             var productIds = new List<int> { 1, 2, 3 };
             var query = new CancelledBetQuery(user);
-            productService.FilterProductIdsByCustomer(Arg.Any<int>(), Arg.Any<DateTime>(), Arg.Any<IEnumerable<int>>()).Returns(productIds);
+            productService.GetProductsHaveSupportCancelledBet(Arg.Any<int>(), Arg.Any<DateTime>()).Returns(productIds);
 
             //// Act
             var act = handler.Handle(query);
 
             //// Assert
-            productService.Received().FilterProductIdsByCustomer(Arg.Any<int>(), Arg.Any<DateTime>(), Arg.Any<IEnumerable<int>>());
+            productService.Received().GetProductsHaveSupportCancelledBet(Arg.Any<int>(), Arg.Any<DateTime>());
             productService.Received().GetProductsForCustomer(Arg.Any<int>(), Arg.Any<DateTime>());
             service.Received().GetCancelledBet(Arg.Is<CancelledBetParam>(i => i.ProductIds == productIds));
         }

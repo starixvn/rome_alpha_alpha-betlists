@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using Configurations;
+    using Constants;
     using Criteria;
     using Criteria.ProgressiveJackpot;
     using DataAccesses;
@@ -26,6 +27,8 @@
         IEnumerable<string> GetProductNames(IEnumerable<int> productIds);
 
         bool IsEnabledJackpot(int custId);
+
+        IEnumerable<int> GetProductsHaveSupportCancelledBet(int custId, DateTime minReportDate);
     }
 
     public class ProductServiceImpl : ProductService
@@ -81,6 +84,28 @@
                 : customerProductIds.Where(product => productIds.Contains(product));
 
             return productIdList;
+        }
+
+        public IEnumerable<int> GetProductsHaveSupportCancelledBet(int custId, DateTime minReportDate)
+        {
+            var supportedProducts = new List<int>
+            {
+                ProductIdConstants.Sportsbook,
+                ProductIdConstants.NumberGame,
+                ProductIdConstants.VirtualSports,
+                ProductIdConstants.VirtualSports2,
+                ProductIdConstants.Keno,
+                ProductIdConstants.GoldDeluxe,
+                ProductIdConstants.ColossusBets,
+                ProductIdConstants.NG2,
+                ProductIdConstants.Lucky3,
+                ProductIdConstants.Lottery,
+                ProductIdConstants.Bullfighting
+            };
+
+            var products = GetProductsForCustomer(custId, minReportDate).Select(i => i.Id);
+
+            return products.Where(i => supportedProducts.Contains(i));
         }
 
         public IEnumerable<Product> GetProductsByGroupHeadline(GetProductsByGroupHeadlineParam param)
