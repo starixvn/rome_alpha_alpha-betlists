@@ -1,5 +1,8 @@
 ﻿namespace Alpha.BetLists.Site.Handlers.CancelledBet
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using Alpha.BetLists.Params;
     using Alpha.BetLists.Services;
@@ -34,7 +37,7 @@
 
         public async Task<CancelledBetViewModel> Handle(CancelledBetQuery message)
         {
-            var validUserSelectedProductIds = productService.FilterProductIdsByCustomer(message.CustId, message.MinDate, message.ProductIds.ToListInt());
+            var validUserSelectedProductIds = GetValidProducts(message.CustId, message.MinDate, message.ProductIds.ToListInt());
             var products = productService.GetProductsHaveSupportCancelledBet(message.CustId, message.MinDate);
             var parameter = new CancelledBetParam(
                 message.CustId, 
@@ -56,6 +59,18 @@
                 BuildProductSelectListItems(parameter.ProductIds, products),
                 Builder,
                 TicketHelper);
+        }
+
+        private IEnumerable<int> GetValidProducts(int custId, DateTime minDate, IEnumerable<int> productIds)
+        {
+            var allProducts = productService.GetProductsHaveSupportCancelledBet(custId, minDate)
+                .Select(i=>i.Id);
+
+            var validProducts = productIds == null || !productIds.Any()
+                ? allProducts
+                : allProducts.Where(product => productIds.Contains(product));
+
+            return validProducts;
         }
     }
 }

@@ -94,8 +94,8 @@
             var statuses = new List<StatusModel>
                 {
                     new StatusModel(TicketStatusIdConstants.Void, Resources.voided),
-                    new StatusModel(TicketStatusIdConstants.Reject, Resources.reject),
-                    new StatusModel(TicketStatusIdConstants.Refund, Resources.refund)
+                    new StatusModel(TicketStatusIdConstants.Reject, Resources.rejected),
+                    new StatusModel(TicketStatusIdConstants.Refund, Resources.refunded)
                 };
 
             var status = statuses.Where(i => viewModel.StatusIds.Contains(i.Id.ToString())).Select(i => i.Name).JoinWithSlash();

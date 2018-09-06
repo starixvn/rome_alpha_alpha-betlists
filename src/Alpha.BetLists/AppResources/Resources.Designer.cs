@@ -619,11 +619,29 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Refunded.
+        /// </summary>
+        public static string refunded {
+            get {
+                return ResourceManager.GetString("refunded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reject.
         /// </summary>
         public static string reject {
             get {
                 return ResourceManager.GetString("reject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rejected.
+        /// </summary>
+        public static string rejected {
+            get {
+                return ResourceManager.GetString("rejected", resourceCulture);
             }
         }
         
@@ -826,6 +844,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Void.
+        /// </summary>
+        public static string Void {
+            get {
+                return ResourceManager.GetString("Void", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Voided/Rejected/Refunded bet list.
         /// </summary>
         public static string VoidAndReject {
@@ -835,7 +862,7 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Void.
+        ///   Looks up a localized string similar to Voided.
         /// </summary>
         public static string voided {
             get {

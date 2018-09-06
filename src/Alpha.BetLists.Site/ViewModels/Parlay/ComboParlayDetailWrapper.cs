@@ -17,7 +17,7 @@
             { BetStatus.Lose, Resources.lose },
             { BetStatus.Draw, Resources.draw },
             { BetStatus.Waiting, Resources.waiting },
-            { BetStatus.Void, Resources.voided },
+            { BetStatus.Void, Resources.Void },
             { BetStatus.Refund, Resources.refund }
         };
 

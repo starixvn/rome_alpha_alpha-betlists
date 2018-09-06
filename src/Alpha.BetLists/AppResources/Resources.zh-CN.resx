@@ -365,4 +365,13 @@
   <data name="AllStatus" xml:space="preserve">
     <value>所有状态</value>
   </data>
+  <data name="Void" xml:space="preserve">
+    <value>作废</value>
+  </data>
+  <data name="rejected" xml:space="preserve">
+    <value>已删除</value>
+  </data>
+  <data name="refunded" xml:space="preserve">
+    <value>退还</value>
+  </data>
 </root>

@@ -214,7 +214,7 @@
     <value>Waiting</value>
   </data>
   <data name="voided" xml:space="preserve">
-    <value>Void</value>
+    <value>Voided</value>
   </data>
   <data name="losingtickets" xml:space="preserve">
     <value>Total of losing tickets</value>
@@ -392,5 +392,14 @@
   </data>
   <data name="AllStatus" xml:space="preserve">
     <value>All Statuses</value>
+  </data>
+  <data name="Void" xml:space="preserve">
+    <value>Void</value>
+  </data>
+  <data name="rejected" xml:space="preserve">
+    <value>Rejected</value>
+  </data>
+  <data name="refunded" xml:space="preserve">
+    <value>Refunded</value>
   </data>
 </root>

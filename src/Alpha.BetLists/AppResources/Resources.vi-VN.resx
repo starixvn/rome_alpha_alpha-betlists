@@ -361,4 +361,10 @@
   <data name="superptcomm" xml:space="preserve">
     <value>PT của Super/ Hoa hồng</value>
   </data>
+  <data name="Void" xml:space="preserve">
+    <value>Hủy bỏ</value>
+  </data>
+  <data name="rejected" xml:space="preserve">
+    <value>Từ chối</value>
+  </data>
 </root>

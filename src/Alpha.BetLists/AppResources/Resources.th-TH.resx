@@ -366,4 +366,13 @@
   <data name="AllStatus" xml:space="preserve">
     <value>สถานะทั้งหมด</value>
   </data>
+  <data name="Void" xml:space="preserve">
+    <value>โมฆะ</value>
+  </data>
+  <data name="rejected" xml:space="preserve">
+    <value>ปฏิเสธ</value>
+  </data>
+  <data name="refunded" xml:space="preserve">
+    <value>คืนเงิน</value>
+  </data>
 </root>

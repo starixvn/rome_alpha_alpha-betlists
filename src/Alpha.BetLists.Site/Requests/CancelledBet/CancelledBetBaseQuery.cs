@@ -3,10 +3,10 @@
     using System;
     using Alpha.BetLists.Models;
     using Alpha.BetLists.Site.ViewModels.CancelledBet;
+    using BetLists.Constants;
     using Extensions;
     using MediatR;
     using Services;
-    using Utils;
 
     public class CancelledBetBaseQuery : BaseQuery, IRequest<CancelledBetViewModel>
     {
@@ -14,7 +14,8 @@
         {
             MinDate = ReportDateServiceImpl.Instance.GetBalanceUpDay();
             FromDate = FromDate == DateTime.MinValue ? DateTime.Now : FromDate;
-            ToDate = ToDate == DateTime.MinValue ? DateTime.Now : ToDate;            
+            ToDate = ToDate == DateTime.MinValue ? DateTime.Now : ToDate;
+            StatusIds = string.IsNullOrEmpty(StatusIds) ? TicketStatusIdConstants.All.JoinWithComma() : StatusIds;
         }
 
         public string StatusIds { get; set; }
