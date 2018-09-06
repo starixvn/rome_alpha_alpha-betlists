@@ -36,7 +36,7 @@
             transDesc?: string) => {
             const params = '?custId=' + custId + '&gameTypeId=' + betTypeId + '&transId3rd=' + betCheck;
 
-            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'pokergames/Index' + params, "", 950, 600);
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'pokergames/Index' + params, "", 999, 500);
         }
     }
 }

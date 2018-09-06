@@ -58,11 +58,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.BetTrade, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Fanex.BetList.Core.2.68.0-beta2\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
+      <HintPath>..\..\..\packages\Fanex.BetList.Core.2.68.0\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.Core, Version=2.68.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Fanex.BetList.Core.2.68.0-beta2\lib\net40\Fanex.BetList.Core.dll</HintPath>
+      <HintPath>..\..\..\packages\Fanex.BetList.Core.2.68.0\lib\net40\Fanex.BetList.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.NumberGame, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -85,8 +85,8 @@
       <HintPath>..\..\..\packages\Fanex.Data.Repository.1.0.2.1\lib\net461\Fanex.Data.Repository.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.Products, Version=0.0.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Fanex.Products.1.0.0.2\lib\net40\Fanex.Products.dll</HintPath>
+    <Reference Include="Fanex.Products, Version=1.0.0.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Fanex.Products.1.0.0.4\lib\net40\Fanex.Products.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="IBCFile, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -137,8 +137,8 @@
       <HintPath>..\..\..\packages\SPSRemoting.1.0.0\lib\net40\SPSRemoting.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sunplus.Agent.Model.Base, Version=3.0.3.8, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Sunplus.Agent.Model.Base.3.0.3.8\lib\net40\Sunplus.Agent.Model.Base.dll</HintPath>
+    <Reference Include="Sunplus.Agent.Model.Base, Version=3.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Sunplus.Agent.Model.Base.3.0.4\lib\net40\Sunplus.Agent.Model.Base.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Sunplus.Agent.Model.Definitions, Version=3.0.2.3, Culture=neutral, processorArchitecture=MSIL">
