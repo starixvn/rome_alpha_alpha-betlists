@@ -98,7 +98,6 @@
                 ProductIdConstants.GoldDeluxe,
                 ProductIdConstants.ColossusBets,
                 ProductIdConstants.NG2,
-                ProductIdConstants.Lucky3,
                 ProductIdConstants.Lottery,
                 ProductIdConstants.Bullfighting
             };
