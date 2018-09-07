@@ -37,16 +37,16 @@
 
         public async Task<CancelledBetViewModel> Handle(CancelledBetQuery message)
         {
-            var validUserSelectedProductIds = GetValidProducts(message.CustId, message.MinDate, message.ProductIds.ToListInt());
-            var products = productService.GetProductsHaveSupportCancelledBet(message.CustId, message.MinDate);
+            var validUserSelectedProductIds = productService.GetProductsHaveSupportCancelledBet(message.CustId, message.MinDate, message.ProductIds.ToListInt());
+            var allProducts = productService.GetProductsHaveSupportCancelledBet(message.CustId, message.MinDate);
             var parameter = new CancelledBetParam(
-                message.CustId, 
-                message.FromDate, 
-                message.ToDate, 
-                reportDateService.GetBalanceUpDay(), 
-                message.ViewerLevelId, 
-                validUserSelectedProductIds, 
-                message.StatusIds, 
+                message.CustId,
+                message.FromDate,
+                message.ToDate,
+                reportDateService.GetBalanceUpDay(),
+                message.ViewerLevelId,
+                validUserSelectedProductIds.Select(i => i.Id),
+                message.StatusIds,
                 message.Language,
                 message.PageSize,
                 message.PageIndex);
@@ -56,21 +56,9 @@
                 message,
                 parameter,
                 cancelledBet,
-                BuildProductSelectListItems(parameter.ProductIds, products),
+                BuildProductSelectListItems(parameter.ProductIds, allProducts),
                 Builder,
                 TicketHelper);
-        }
-
-        private IEnumerable<int> GetValidProducts(int custId, DateTime minDate, IEnumerable<int> productIds)
-        {
-            var allProducts = productService.GetProductsHaveSupportCancelledBet(custId, minDate)
-                .Select(i=>i.Id);
-
-            var validProducts = productIds == null || !productIds.Any()
-                ? allProducts
-                : allProducts.Where(product => productIds.Contains(product));
-
-            return validProducts;
         }
     }
 }

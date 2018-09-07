@@ -123,9 +123,6 @@
   <data name="place" xml:space="preserve">
     <value>Place</value>
   </data>
-  <data name="BetList" xml:space="preserve">
-    <value>ベットリスト</value>
-  </data>
   <data name="NoInformationIsAvailable" xml:space="preserve">
     <value>情報がありません</value>
   </data>
@@ -303,5 +300,8 @@
   </data>
   <data name="superptcomm" xml:space="preserve">
     <value>Super PT/ 手数料</value>
+  </data>
+  <data name="BetListHistory" xml:space="preserve">
+    <value>ベットリスト</value>
   </data>
 </root>

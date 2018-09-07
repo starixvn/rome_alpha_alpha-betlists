@@ -402,4 +402,7 @@
   <data name="refunded" xml:space="preserve">
     <value>Refunded</value>
   </data>
+  <data name="BetListHistory" xml:space="preserve">
+    <value>Bet List</value>
+  </data>
 </root>

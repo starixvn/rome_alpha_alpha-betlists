@@ -367,4 +367,7 @@
   <data name="rejected" xml:space="preserve">
     <value>Từ chối</value>
   </data>
+  <data name="BetListHistory" xml:space="preserve">
+    <value>Danh sách cược</value>
+  </data>
 </root>

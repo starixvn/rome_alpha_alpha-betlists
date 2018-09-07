@@ -124,7 +124,7 @@
     <value>位置</value>
   </data>
   <data name="BetList" xml:space="preserve">
-    <value>投注历史</value>
+    <value>注单</value>
   </data>
   <data name="NoInformationIsAvailable" xml:space="preserve">
     <value>没资料显示</value>
@@ -373,5 +373,8 @@
   </data>
   <data name="refunded" xml:space="preserve">
     <value>退还</value>
+  </data>
+  <data name="BetListHistory" xml:space="preserve">
+    <value>投注历史</value>
   </data>
 </root>

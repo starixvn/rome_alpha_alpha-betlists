@@ -55,14 +55,12 @@
             var query = new CancelledBetQuery(user);
             var products = BetListDataTest.Products;
             productService.GetProductsHaveSupportCancelledBet(Arg.Any<int>(), Arg.Any<DateTime>()).Returns(products);
-            productService.FilterProductIdsByCustomer(Arg.Any<int>(), Arg.Any<DateTime>(), Arg.Any<IEnumerable<int>>()).Returns(products.Select(i => i.Id));
 
             //// Act
             var act = handler.Handle(query);
 
             //// Assert
             productService.Received().GetProductsHaveSupportCancelledBet(Arg.Any<int>(), Arg.Any<DateTime>());
-            productService.Received().FilterProductIdsByCustomer(Arg.Any<int>(), Arg.Any<DateTime>(), Arg.Any<IEnumerable<int>>());
             service.Received().GetCancelledBet(Arg.Any<CancelledBetParam>());
         }
 

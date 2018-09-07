@@ -28,7 +28,7 @@
 
         bool IsEnabledJackpot(int custId);
 
-        IEnumerable<Product> GetProductsHaveSupportCancelledBet(int custId, DateTime minReportDate);
+        IEnumerable<Product> GetProductsHaveSupportCancelledBet(int custId, DateTime minReportDate, IEnumerable<int> productIds = null);
     }
 
     public class ProductServiceImpl : ProductService
@@ -86,7 +86,7 @@
             return productIdList;
         }
 
-        public IEnumerable<Product> GetProductsHaveSupportCancelledBet(int custId, DateTime minReportDate)
+        public IEnumerable<Product> GetProductsHaveSupportCancelledBet(int custId, DateTime minReportDate, IEnumerable<int> productIds = null)
         {
             var supportedProducts = new List<int>
             {
@@ -103,9 +103,13 @@
                 ProductIdConstants.Bullfighting
             };
 
-            var products = GetProductsForCustomer(custId, minReportDate);
+            var allProducts = GetProductsForCustomer(custId, minReportDate).Where(i => supportedProducts.Contains(i.Id));
 
-            return products.Where(i => supportedProducts.Contains(i.Id));
+            var validProducts = productIds == null || !productIds.Any()
+                ? allProducts
+                : allProducts.Where(product => productIds.Contains(product.Id));
+
+            return validProducts;
         }
 
         public IEnumerable<Product> GetProductsByGroupHeadline(GetProductsByGroupHeadlineParam param)

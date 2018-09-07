@@ -124,7 +124,7 @@
     <value>วาง</value>
   </data>
   <data name="BetList" xml:space="preserve">
-    <value>รายการวางเดิมพันที่เล่นไปแล้ว</value>
+    <value>ตั๋วเดิมพัน</value>
   </data>
   <data name="NoInformationIsAvailable" xml:space="preserve">
     <value>ไม่มีข้อมูล</value>
@@ -310,7 +310,7 @@
     <value>ส่งออกไปที่โปรแกรมเอกเซล</value>
   </data>
   <data name="VoidAndReject" xml:space="preserve">
-    <value>โมฆะ / ปฏิเสธ / คืนเงิน / ตั๋วเดิมพัน</value>
+    <value>โมฆะ / ปฏิเสธ / คืนเงินตั๋วเดิมพัน</value>
   </data>
   <data name="CancelledBet" xml:space="preserve">
     <value>ยกเลิกการวางเดิมพัน</value>
@@ -374,5 +374,8 @@
   </data>
   <data name="refunded" xml:space="preserve">
     <value>คืนเงิน</value>
+  </data>
+  <data name="BetListHistory" xml:space="preserve">
+    <value>รายการวางเดิมพันที่เล่นไปแล้ว</value>
   </data>
 </root>
