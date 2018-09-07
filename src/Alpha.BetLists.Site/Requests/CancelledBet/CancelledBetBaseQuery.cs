@@ -13,8 +13,8 @@
         protected CancelledBetBaseQuery(IUser viewer) : base(viewer)
         {
             MinDate = ReportDateServiceImpl.Instance.GetBalanceUpDay();
-            FromDate = FromDate == DateTime.MinValue ? DateTime.Now : FromDate;
-            ToDate = ToDate == DateTime.MinValue ? DateTime.Now : ToDate;
+            FromDate = FromDate == DateTime.MinValue ? DateTime.Today : FromDate;
+            ToDate = ToDate == DateTime.MinValue ? DateTime.Today : ToDate;
             StatusIds = string.IsNullOrEmpty(StatusIds) ? TicketStatusIdConstants.All.JoinWithComma() : StatusIds;
         }
 
