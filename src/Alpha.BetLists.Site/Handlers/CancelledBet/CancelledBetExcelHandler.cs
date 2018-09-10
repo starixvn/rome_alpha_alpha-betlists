@@ -53,7 +53,7 @@
                 query.CustId,
                 query.FromDate,
                 query.ToDate,
-                reportDateService.GetBalanceUpDay(),
+                reportDateService.GetMoveBetsDay(),
                 query.ViewerLevelId,
                 validUserSelectedProductIds,
                 query.StatusIds,

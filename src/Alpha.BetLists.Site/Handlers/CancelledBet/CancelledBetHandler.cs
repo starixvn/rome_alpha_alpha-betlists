@@ -43,7 +43,7 @@
                 message.CustId,
                 message.FromDate,
                 message.ToDate,
-                reportDateService.GetBalanceUpDay(),
+                reportDateService.GetMoveBetsDay(),
                 message.ViewerLevelId,
                 validUserSelectedProductIds.Select(i => i.Id),
                 message.StatusIds,

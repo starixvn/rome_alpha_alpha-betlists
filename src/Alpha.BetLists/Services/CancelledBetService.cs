@@ -30,7 +30,7 @@
                 parameter.CustId,
                 parameter.FromDate,
                 parameter.ToDate,
-                parameter.BalanceUpDate,
+                parameter.MoveBetsDay,
                 parameter.RoleId,
                 parameter.ProductIds.JoinWithComma(),
                 parameter.StatusIds,
