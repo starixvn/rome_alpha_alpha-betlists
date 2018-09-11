@@ -25,7 +25,8 @@
 
 </div>
 
-<form class="form-inline filter cancelled-bet" role="form" id="betlist-form">
+<form class="form-inline filter cancelled-bet @(Model.IsFilterVisible ? string.Empty : "hide")" role="form" id="betlist-form">
+    @Html.Hidden("IsFilterVisible", Model.IsFilterVisible ? "true" : "false")
     @ProductMultiSelection.Render(Model.ProductMultiSelectionViewModel)
     
     @StatusMultiSelection.Render(Model.StatusMultiSelectionViewModel)

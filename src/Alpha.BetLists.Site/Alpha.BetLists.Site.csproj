@@ -1048,6 +1048,7 @@
     <TypeScriptCompile Include="assets\scripts\src\cancelled-betlist\cancelled-betlist.ts" />
     <TypeScriptCompile Include="assets\scripts\src\common\app-path.ts" />
     <TypeScriptCompile Include="assets\scripts\src\common\popup-details.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\common\core.ts" />
     <TypeScriptCompile Include="assets\scripts\src\common\utils.ts" />
     <TypeScriptCompile Include="assets\scripts\src\betlist\status\ip-details.ts" />
     <TypeScriptCompile Include="assets\scripts\src\betlist\choice\ticket-details\base-ticket-details.ts" />

@@ -14,6 +14,7 @@
       "assets/scripts/src/common/popup-details.js",
       "assets/scripts/src/common/utils.js",
       "assets/scripts/src/common/app-path.js",
+      "assets/scripts/src/common/core.js",
       "assets/scripts/src/betlist/status/result-details/base-result-details.js",
       "assets/scripts/src/betlist/status/result-details/sportsbook-result-details.js",
       "assets/scripts/src/betlist/status/result-details/casino-result-details.js",

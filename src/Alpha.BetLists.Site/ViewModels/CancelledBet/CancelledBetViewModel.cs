@@ -45,7 +45,10 @@
 
             Title = Resources.VoidAndReject;
             ViewDataInstructionMessage = string.Format(Resources.CanOnlyViewDataAfterTimeHistoryReport, MinDate.ToShortDateWithSlash());
+            IsFilterVisible = query.IsFilterVisible;
         }
+
+        public bool IsFilterVisible { get; }
 
         public PagerViewModel PagerViewModel =>
             new PagerViewModel(ReportData.PageIndex, ReportData.PageSize, ReportData.TotalRecords);

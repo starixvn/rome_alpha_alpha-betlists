@@ -8,6 +8,7 @@ class CancelledBetListView {
     $pageTitle: JQuery;
     $buttonProduct: JQuery;
     $buttonStatus: JQuery;
+    $isFilterVisible: JQuery;
     dateRangePickerComponent: DateRangePickerComponent;
     productMultiSelectionComponent: ProductMultiSelectionComponent;
     statusMultiSelectionComponent: StatusMultiSelectionComponent;
@@ -68,6 +69,9 @@ class CancelledBetListView {
 
             return;
         }
+
+        var isFilterVisible = !this.$betlistForm.is(":hidden");
+        this.$isFilterVisible.val(String(alphaReports.screenSmallThan768() ? false : isFilterVisible));
     }
 
     onExportExcel = () => {
@@ -92,6 +96,7 @@ class CancelledBetListView {
         this.$betlistForm = this.$("#betlist-form");
         this.$pageTitle = this.$(".bl_title");
         this.$exportExcelForm = this.$("#export-excel-form");
+        this.$isFilterVisible = this.$("#IsFilterVisible");
     };
 }
 
