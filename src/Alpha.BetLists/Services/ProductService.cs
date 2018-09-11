@@ -99,7 +99,8 @@
                 ProductIdConstants.ColossusBets,
                 ProductIdConstants.NG2,
                 ProductIdConstants.Lottery,
-                ProductIdConstants.Bullfighting
+                ProductIdConstants.Bullfighting,
+                ProductIdConstants.PokerGames
             };
 
             var allProducts = GetProductsForCustomer(custId, minReportDate).Where(i => supportedProducts.Contains(i.Id));

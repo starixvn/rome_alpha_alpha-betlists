@@ -14,5 +14,6 @@
         public const int Lottery = 28;
         public const int VirtualSports2 = 27;
         public const int Bullfighting = 30;
+        public const int PokerGames = 33;
     }
 }
