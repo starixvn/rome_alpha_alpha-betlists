@@ -395,7 +395,7 @@
     </Setting>
   </Function>
   <Function Name="Cancelleb BetList">
-    <Setting Key="Age_BetList_SelDeleted" SpName="Age_BetList_SelDeleted" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
+    <Setting Key="Age_BetList_SelDeleted" SpName="Age_BetList_SelDeleted_UAT1" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="TicketDto"></Mapping>

@@ -76,7 +76,7 @@
             {
                 var statuses = new List<StatusModel>
                 {
-                    new StatusModel(TicketStatusIdConstants.Void, Resources.voided),
+                    new StatusModel(TicketStatusIdConstants.Void, Resources.Void),
                     new StatusModel(TicketStatusIdConstants.Reject, Resources.reject),
                     new StatusModel(TicketStatusIdConstants.Refund, Resources.refund)
                 };
