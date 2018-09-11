@@ -370,4 +370,10 @@
   <data name="BetListHistory" xml:space="preserve">
     <value>Danh sách cược</value>
   </data>
+  <data name="AllStatus" xml:space="preserve">
+    <value>Tất cả trạng thái</value>
+  </data>
+  <data name="refunded" xml:space="preserve">
+    <value>Hoàn tiền</value>
+  </data>
 </root>
