@@ -22,6 +22,7 @@
             DateRangePickerViewModel.YesterdayOptionValue,
             DateRangePickerViewModel.ThisWeekOptionValue,
             DateRangePickerViewModel.LastWeekOptionValue,
+            DateRangePickerViewModel.ThisMonthOptionValue,
             DateRangePickerViewModel.SpecificDateOptionValue
         };
 

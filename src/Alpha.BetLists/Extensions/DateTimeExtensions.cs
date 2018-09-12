@@ -5,6 +5,7 @@
     public static class DateTimeExtensions
     {
         private const string ShortDateWithSlash = "MM/dd/yyyy";
+        private const string ShortDate = "MMddyyyy";
 
         public static bool IsBefore(this DateTime dateTime, DateTime otherDateTime)
         {
@@ -18,6 +19,9 @@
 
         public static string ToShortDateWithSlash(this DateTime dateTime)
             => dateTime.ToString(ShortDateWithSlash);
+
+        public static string ToShortDate(this DateTime dateTime)
+                    => dateTime.ToString(ShortDate);
 
         public static DateTime FirstDayOfMonth(this DateTime dateTime)
             => new DateTime(dateTime.Year, dateTime.Month, 1);

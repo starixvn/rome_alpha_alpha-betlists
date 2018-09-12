@@ -378,4 +378,7 @@
   <data name="BetListHistory" xml:space="preserve">
     <value>รายการวางเดิมพันที่เล่นไปแล้ว</value>
   </data>
+  <data name="selectStatuses" xml:space="preserve">
+    <value>กรุณาเลือกสถานะ</value>
+  </data>
 </root>
