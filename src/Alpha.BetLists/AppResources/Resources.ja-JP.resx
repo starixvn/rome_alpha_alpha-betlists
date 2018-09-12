@@ -202,9 +202,6 @@
   <data name="waiting" xml:space="preserve">
     <value>待機</value>
   </data>
-  <data name="voided" xml:space="preserve">
-    <value>Void</value>
-  </data>
   <data name="losingtickets" xml:space="preserve">
     <value>Total of losing tickets</value>
   </data>

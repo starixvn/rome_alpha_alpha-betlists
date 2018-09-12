@@ -201,9 +201,6 @@
   <data name="waiting" xml:space="preserve">
     <value>대기</value>
   </data>
-  <data name="voided" xml:space="preserve">
-    <value>무효</value>
-  </data>
   <data name="losingtickets" xml:space="preserve">
     <value>총 잃은 티켓</value>
   </data>

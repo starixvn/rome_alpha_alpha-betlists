@@ -77,7 +77,7 @@
                 .Title(GetExcelTitle(viewModel))
                 .Body(cancelledBet.DataSource.FirstOrDefault().Tickets, GetBodyRowMapper(query.ViewerLevel, viewModel))
                 .ExportToBytes();
-            var fileName = $"Cancelled Bets-{query.CustName}-{viewModel.FromDate.ToShortDate()}-{viewModel.ToDate.ToShortDate()}";
+            var fileName = $"{Resources.CancelledBet}-{query.CustName}-{viewModel.FromDate.ToShortDate()}-{viewModel.ToDate.ToShortDate()}";
 
             return new ExcelFileViewModel(fileName, fileContent);
         }

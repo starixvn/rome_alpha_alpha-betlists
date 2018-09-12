@@ -15,7 +15,7 @@
     using Params;
 
     public class CancelledBetViewModel : BetListBaseViewModel
-    {       
+    {
         public static readonly IEnumerable<string> RangeOptions = new List<string>
         {
             DateRangePickerViewModel.TodayOptionValue,
@@ -97,6 +97,9 @@
                 return new StatusMultiSelectionViewModel(statusListItem, StatusIds, Language);
             }
         }
+
+        public int BuildNo(int no)
+            => no + 1 + ((ReportData.PageIndex - 1) * ReportData.PageSize);
 
         private IEnumerable<SelectListItem> Products { get; }
 
