@@ -376,4 +376,7 @@
   <data name="refunded" xml:space="preserve">
     <value>Hoàn tiền</value>
   </data>
+  <data name="selectStatuses" xml:space="preserve">
+    <value>Chọn trạng thái</value>
+  </data>
 </root>
