@@ -691,6 +691,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select Statuses.
+        /// </summary>
+        public static string selectStatuses {
+            get {
+                return ResourceManager.GetString("selectStatuses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show Filter.
         /// </summary>
         public static string ShowFilter {

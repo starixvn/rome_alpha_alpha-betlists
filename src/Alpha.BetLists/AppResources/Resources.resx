@@ -405,4 +405,7 @@
   <data name="BetListHistory" xml:space="preserve">
     <value>Bet List</value>
   </data>
+  <data name="selectStatuses" xml:space="preserve">
+    <value>Select Statuses</value>
+  </data>
 </root>
