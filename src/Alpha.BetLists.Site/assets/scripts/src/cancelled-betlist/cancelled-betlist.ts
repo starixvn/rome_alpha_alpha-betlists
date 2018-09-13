@@ -46,8 +46,13 @@ class CancelledBetListView {
         this.$(this.$constants.betListFilterId).on("click", this.onClickIconFilter);
         this.$("#icon-excel").on("click", this.onExportExcel);
         this.$betlistForm.submit(this.onSubmitReport);
+        this.$("#submit-BetList-Form").on("click", this.resetPaging);
     }
-    
+
+    resetPaging = () => {        
+        this.$("#PageIndex").val(1);
+    };
+
     onSubmitReport = (e: any) => {
         let this$ = this.$;
         this$.blockUI();
