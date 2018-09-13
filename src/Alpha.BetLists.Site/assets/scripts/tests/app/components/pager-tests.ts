@@ -44,7 +44,7 @@
         it("_Total Records Not Less Than Min Page Size => Returns true", () => {
             // arrange
             pagerComponent.totalRecords = 100;
-            pagerComponent.pageList = [10, 20, 30, 50];
+            pagerComponent.pageList = [10, 20, 30, 50];            
 
             // act
             var actualIsShow = pagerComponent.isShow();

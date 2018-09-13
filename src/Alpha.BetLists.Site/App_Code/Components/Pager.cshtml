@@ -1,11 +1,10 @@
-﻿@using Fanex.BetDetails.Casino.App_GlobalResources
-@using Fanex.BetDetails.Casino.ViewModels
+﻿@using Alpha.BetLists.AppResources
+@using Alpha.BetLists.Site.ViewModels.Components
 @helper Render(PagerViewModel model)
 {
 if (model.TotalRecords > 0)
 {
         <div id="betlist-pager"
-             class="fixed-pagination-bottom"
              data-labelpage="@Resources.Page"
              data-labelof="@Resources.of"
              data-labeldisplayitems="@Resources.Pager_DisplayItems"

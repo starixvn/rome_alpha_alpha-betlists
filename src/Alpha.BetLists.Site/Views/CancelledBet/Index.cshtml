@@ -3,6 +3,7 @@
 @model CancelledBetViewModel
 
 @section Styles{
+@StaticResources.AssetStyles.Render("/bundles/site-betlists/pagination")
     @StaticResources.AssetStyles.Render("/bundles/site-betlists/filter")
     @StaticResources.RenderStyles("~/assets/bundles/filter")
 }
@@ -13,69 +14,33 @@
 
 <div class="bl_title">
     @Model.Title
-    @if (Model.IsShowFilterIcon)
-    {
-        <div  class="list-icon" id="betlist-filter">
-            <ul>
-                <li class="showfilter-element"><span class="icon-arrow-up-drop-circle icon-filter" title="@Resources.HideFilter"></span></li>
-                <li class="hidefilter-element"><span class="icon-arrow-down-drop-circle icon-filter" title="@Resources.ShowFilter"></span></li>
-            </ul>
-        </div>
-    }   
+
+    <div class="list-icon" id="betlist-filter">
+        <ul>
+            <li class="showfilter-element"><span class="icon-arrow-up-drop-circle icon-filter" title="@Resources.HideFilter"></span></li>
+            <li class="hidefilter-element"><span class="icon-arrow-down-drop-circle icon-filter" title="@Resources.ShowFilter"></span></li>
+        </ul>
+    </div>
+
 
 </div>
 
-<form class="form-inline filter @(Model.IsShowFilterIcon ? string.Empty : "hide") cancelled-bet" role="form" id="betlist-form">    
-    @if (Model.IsShowMasterList)
-    {
-        <div class="form-group">
-            <label>@Resources.Master</label>
-            <select class="dropdown-users" id="dropdown-masters" name="masterId">
-                @foreach (var master in Model.MasterList)
-                {
-                    <option value="@master.Value" @(master.Selected ? " selected=\"selected\"" : string.Empty)> @master.Text</option>
-                }
-            </select>
-        </div>
-    }
-    @if (Model.IsShowAgentList)
-    {
-        <div class="form-group">
-            <label>@Resources.Agent</label>
-            <select class="dropdown-users" id="dropdown-agents" name="agentId">
-                @foreach (var agent in Model.AgentList)
-                {
-                    <option value="@agent.Value" @(agent.Selected ? " selected=\"selected\"" : string.Empty)> @agent.Text</option>
-                }
-            </select>
-        </div>
-    }
-    @if (Model.IsShowMemberList)
-    {
-        <div class="form-group">
-            <label>@Resources.member</label>
-            <select class="dropdown-users" id="dropdown-members" name="memberId">
-                @foreach (var member in Model.MemberList)
-                {
-                    <option value="@member.Value" @(member.Selected ? " selected=\"selected\"" : string.Empty)> @member.Text</option>
-                }
-            </select>
-        </div>
-    }
+<form class="form-inline filter cancelled-bet @(Model.IsFilterVisible ? string.Empty : "hide")" role="form" id="betlist-form">
+    @Html.Hidden("IsFilterVisible", Model.IsFilterVisible ? "true" : "false")
+    @ProductMultiSelection.Render(Model.ProductMultiSelectionViewModel)
+    
+    @StatusMultiSelection.Render(Model.StatusMultiSelectionViewModel)
+
+    @DateRangePicker.Render(Model.DateRangePickerViewModel)    
 
     <div class="form-group">
-        <a id="icon-excel" class="icon icon-excel" title="Excel"
-           href="@Url.Action("Excel", "CancelledBet",
-                new
-                {
-                    MasterId = Model.Query.MasterId,
-                    AgentId= Model.Query.AgentId,
-                    MemberId = Model.Query.MemberId
-                })">
-        </a>
+        <span id="icon-excel" class="icon-excel" title="@Resources.ExportToExcel"></span>
+    </div>
+
+    <div class="note">
+        <span class="star">*</span>@Model.ViewDataInstructionMessage
     </div>
 </form>
-
 
 <table class="tblRpt tblRpt-bordered tblRpt-striped width-100per tablesorter tblRpt-hover tbl-betlist">
     <thead>
@@ -97,7 +62,7 @@
                 var ticket = Model.BetListData.Tickets.ElementAt(i);
 
                 <tr id="r@(ticket.TransId)">
-                    <td class='w-order text-center'>@(i + 1)</td>
+                    <td class='w-order text-center'>@Model.BuildNo(i)</td>
                     <td class="text-center">@ticket.UserName</td>
                     @Trans.Render(Model.Builder, ticket)
                     @Choice.Render(Model.Builder, ticket, Model.TicketHelper, Model.BetListData.TicketData, false)
@@ -113,6 +78,18 @@
         @Common.NoInfomation.Render(Model.TotalColumn)
     }
 </table>
+
+@Pager.Render(Model.PagerViewModel)
+
+<form class="form-inline hide" role="form" id="export-excel-form"
+      action="@Url.Action("Excel", "CancelledBet")">
+    @Html.Hidden("CustId", Model.CustId)
+    @Html.Hidden("FromDate", Model.FromDate)
+    @Html.Hidden("ToDate", Model.ToDate)
+    @Html.Hidden("ProductIds", Model.ProductsId)
+    @Html.Hidden("StatusIds", Model.StatusIds)    
+</form>
+
 @Html.Hidden("betlist-path", HttpContext.Current.Response.ApplyAppPathModifier("~/"))
 @Html.Hidden("old-main-path", Model.OldMainPath)
 @Html.Hidden("results-path", Model.ResultsPath)
@@ -120,4 +97,5 @@
 @section Scripts{
     @StaticResources.AssetScripts.Render("/bundles/site-betlists/filter")
     @StaticResources.RenderScripts("~/assets/bundles/cancelled-betlist/cancelled-betlist")
+@StaticResources.AssetScripts.Render("/bundles/site-betlists/pagination")
 }

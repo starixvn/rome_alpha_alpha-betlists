@@ -1,0 +1,22 @@
+﻿@using Alpha.BetLists.AppResources;
+@using Alpha.BetLists.Site.ViewModels.Components;
+
+@helper Render(StatusMultiSelectionViewModel model)
+{
+    <div class="form-group">
+        <select id="dropdown-status"
+                data-has-any-status="@model.StatusListItem.Any()"
+                data-label-select-status="@Resources.selectStatuses"
+                data-label-selected="@Resources.Selected"
+                data-label-all-status="@Resources.AllStatus"
+                data-label-there-is-no-status="@Resources.ThereIsNoProduct"
+                data-language="@model.Language"
+                multiple="multiple" class="select-multiple">
+            @foreach (var product in model.StatusListItem)
+            {
+                <option value="@product.Value" @(product.Selected ? " selected=\"selected\"" : string.Empty)>@product.Text</option>
+            }
+        </select>
+        <input type="hidden" name="StatusIds" id="status-ids" value="@model.SelectedStatusIds" />
+    </div>    
+}

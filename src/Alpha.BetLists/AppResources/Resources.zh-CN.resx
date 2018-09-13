@@ -124,7 +124,7 @@
     <value>位置</value>
   </data>
   <data name="BetList" xml:space="preserve">
-    <value>投注历史</value>
+    <value>注单</value>
   </data>
   <data name="NoInformationIsAvailable" xml:space="preserve">
     <value>没资料显示</value>
@@ -309,7 +309,7 @@
     <value>导出到Excel</value>
   </data>
   <data name="VoidAndReject" xml:space="preserve">
-    <value>作废/已删除注单(3天纪录)</value>
+    <value>作废/已删除/退还 注单</value>
   </data>
   <data name="CancelledBet" xml:space="preserve">
     <value>已删除/作废注单</value>
@@ -361,5 +361,23 @@
   </data>
   <data name="ContributionAmountRoundNote" xml:space="preserve">
     <value>贡献金额将会以四个小数点净值。</value>
+  </data>
+  <data name="AllStatus" xml:space="preserve">
+    <value>所有状态</value>
+  </data>
+  <data name="Void" xml:space="preserve">
+    <value>作废</value>
+  </data>
+  <data name="rejected" xml:space="preserve">
+    <value>已删除</value>
+  </data>
+  <data name="refunded" xml:space="preserve">
+    <value>退还</value>
+  </data>
+  <data name="BetListHistory" xml:space="preserve">
+    <value>投注历史</value>
+  </data>
+  <data name="selectStatuses" xml:space="preserve">
+    <value>选择状态</value>
   </data>
 </root>

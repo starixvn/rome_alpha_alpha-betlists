@@ -2,16 +2,17 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using Alpha.BetLists.Models;
-    using Alpha.BetLists.Models.CancelledBet;
-    using Alpha.BetLists.Params;
     using Alpha.BetLists.Services;
-    using Alpha.BetLists.Site.Handlers.CancelledBet;
     using Alpha.BetLists.Site.Requests.CancelledBet;
     using Alpha.BetLists.Site.Tests.Fixtures;
-    using Alpha.BetLists.Tests.TestData;
+    using BetLists.Tests.TestData;
+    using Constants;
+    using Handlers.CancelledBet;
     using NSubstitute;
     using ONEbook.SpreadSheets;
+    using Params;
     using Xunit;
 
     [Trait("Category", "CancelledBet")]
@@ -21,13 +22,17 @@
         private readonly BetListFixture betListFixture;
         private readonly Workbook<TicketDto> workbook;
         private readonly CancelledBetService service;
+        private readonly ProductService productService;
         private readonly CancelledBetExcelHandler handler;
         private readonly CancelledBetExcelQuery query;
+        private readonly ReportDateService reportDateService;
 
         public CancelledBetExcelHandlerTests(BetListFixture betListFixture)
         {
             this.betListFixture = betListFixture;
             service = Substitute.For<CancelledBetService>();
+            productService = Substitute.For<ProductService>();
+            reportDateService = Substitute.For<ReportDateService>();
             query = new CancelledBetExcelQuery(betListFixture.User);
             query.RtfHelper = this.betListFixture.RtfHelper;
 
@@ -40,6 +45,8 @@
 
             handler = new CancelledBetExcelHandler(
                 service,
+                productService,
+                reportDateService,
                 betListFixture.MonitorService,
                 betListFixture.HtmlBuilder,
                 betListFixture.ExcelBuilder,
@@ -48,42 +55,41 @@
                 workbook);
 
             handler.IsFileExist = path => true;
-        }
 
-        [Fact]
-        public void ExcelTemplatePath_UserIsAgent_ReturnCorrectExcelPath()
-        {
-            //// Arrange
-            var expectedPath = "App_Data/ExcelTemplates/CancelledBet/Agent.xls";
-            handler.MapPath = path => expectedPath;
-
-            //// Act
-            var act = handler.ExcelTemplatePath(UserLevel.Agent);
-
-            //// Assert
-            Assert.Equal(expectedPath, act);
+            ReportDateServiceImpl.Instance = reportDateService;
+            reportDateService.GetBalanceUpDay().Returns(DefaultVariablesTest.BalanceUpDate);
         }
 
         [Fact]
         public void Handle_Always_CallGetCancelledBetFromService()
         {
             //// Arrange
-            var model = new CancelledBetModel(new FilterCancelledBetModel(), BetListDataTest.BetListData);
-            service.GetCancelledBet(Arg.Any<CancelledBetParam>()).Returns(model);
+            var productIds = new List<int> { 1, 2, 3, 4, 5, 6 };
+            var betlistData = new PagedReportData<BetListData>(new List<BetListData> { BetListDataTest.BetListData }, 1, 50, 100);
+            service.GetCancelledBet(Arg.Any<CancelledBetParam>()).Returns(betlistData);
+            productService.FilterProductIdsByCustomer(Arg.Any<int>(), Arg.Any<DateTime>(), Arg.Any<IEnumerable<int>>()).Returns(productIds);
+            productService.GetProductsForCustomer(Arg.Any<int>(), Arg.Any<DateTime>()).Returns(Enumerable.Empty<Product>());
+            reportDateService.GetMoveBetsDay().Returns(DateTime.Now);
 
             //// Act
             handler.Handle(query).GetAwaiter().GetResult();
 
             //// Assert
             service.Received().GetCancelledBet(Arg.Any<CancelledBetParam>());
+            productService.Received().FilterProductIdsByCustomer(Arg.Any<int>(), Arg.Any<DateTime>(), Arg.Any<IEnumerable<int>>());
+            productService.Received().GetProductsForCustomer(Arg.Any<int>(), Arg.Any<DateTime>());
         }
 
         [Fact]
         public void Handle_Always_CallUseTemplate()
         {
             //// Arrange
-            var model = new CancelledBetModel(new FilterCancelledBetModel(), BetListDataTest.BetListData);
-            service.GetCancelledBet(Arg.Any<CancelledBetParam>()).Returns(model);
+            var productIds = new List<int> { 1, 2, 3, 4, 5, 6 };
+            var betlistData = new PagedReportData<BetListData>(new List<BetListData> { BetListDataTest.BetListData }, 1, 50, 100);
+            service.GetCancelledBet(Arg.Any<CancelledBetParam>()).Returns(betlistData);
+            productService.FilterProductIdsByCustomer(Arg.Any<int>(), Arg.Any<DateTime>(), productIds).Returns(productIds);
+            productService.GetProductsForCustomer(Arg.Any<int>(), Arg.Any<DateTime>()).Returns(Enumerable.Empty<Product>());
+            reportDateService.GetMoveBetsDay().Returns(DateTime.Now);
 
             //// Act
             handler.Handle(query).GetAwaiter().GetResult();
@@ -96,8 +102,11 @@
         public void Handle_Always_CallHeaderOfWorkbook()
         {
             //// Arrange
-            var model = new CancelledBetModel(new FilterCancelledBetModel(), BetListDataTest.BetListData);
-            service.GetCancelledBet(Arg.Any<CancelledBetParam>()).Returns(model);
+            var productIds = new List<int> { 1, 2, 3, 4, 5, 6 };
+            var betlistData = new PagedReportData<BetListData>(new List<BetListData> { BetListDataTest.BetListData }, 1, 50, 100);
+            service.GetCancelledBet(Arg.Any<CancelledBetParam>()).Returns(betlistData);
+            productService.FilterProductIdsByCustomer(Arg.Any<int>(), Arg.Any<DateTime>(), productIds).Returns(productIds);
+            productService.GetProductsForCustomer(Arg.Any<int>(), Arg.Any<DateTime>()).Returns(Enumerable.Empty<Product>());
 
             //// Act
             handler.Handle(query).GetAwaiter().GetResult();
@@ -110,8 +119,12 @@
         public void Handle_Always_CallTitleOfWorkbook()
         {
             //// Arrange
-            var model = new CancelledBetModel(new FilterCancelledBetModel(), BetListDataTest.BetListData);
-            service.GetCancelledBet(Arg.Any<CancelledBetParam>()).Returns(model);
+            var productIds = new List<int> { 1, 2, 3, 4, 5, 6 };
+            var betlistData = new PagedReportData<BetListData>(new List<BetListData> { BetListDataTest.BetListData }, 1, 50, 100);
+            service.GetCancelledBet(Arg.Any<CancelledBetParam>()).Returns(betlistData);
+            productService.FilterProductIdsByCustomer(Arg.Any<int>(), Arg.Any<DateTime>(), productIds).Returns(productIds);
+            productService.GetProductsForCustomer(Arg.Any<int>(), Arg.Any<DateTime>()).Returns(Enumerable.Empty<Product>());
+            reportDateService.GetMoveBetsDay().Returns(DateTime.Now);
 
             //// Act
             handler.Handle(query).GetAwaiter().GetResult();
@@ -124,8 +137,12 @@
         public void Handle_Always_CallExportToBytesOfWorkbook()
         {
             //// Arrange
-            var model = new CancelledBetModel(new FilterCancelledBetModel(), BetListDataTest.BetListData);
-            service.GetCancelledBet(Arg.Any<CancelledBetParam>()).Returns(model);
+            var productIds = new List<int> { 1, 2, 3, 4, 5, 6 };
+            var betlistData = new PagedReportData<BetListData>(new List<BetListData> { BetListDataTest.BetListData }, 1, 50, 100);
+            service.GetCancelledBet(Arg.Any<CancelledBetParam>()).Returns(betlistData);
+            productService.FilterProductIdsByCustomer(Arg.Any<int>(), Arg.Any<DateTime>(), productIds).Returns(productIds);
+            productService.GetProductsForCustomer(Arg.Any<int>(), Arg.Any<DateTime>()).Returns(Enumerable.Empty<Product>());
+            reportDateService.GetMoveBetsDay().Returns(DateTime.Now);
 
             //// Act
             handler.Handle(query).GetAwaiter().GetResult();

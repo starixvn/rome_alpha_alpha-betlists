@@ -47,7 +47,7 @@
             DisplayVNIP = baseQuery.DisplayVNIP;
             Title = GetTitle(query).ToUpperInvariant();
             TotalColumn = TotalColumnByViewLevelId[ViewerLevel] + (showMemberName ? 1 : 0);
-            ShowMemberName = showMemberName;
+            ShowMemberName = showMemberName;            
         }
 
         public string CustName { get; protected set; }

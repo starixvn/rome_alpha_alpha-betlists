@@ -21,5 +21,8 @@
         }
 
         public bool DisplayVNIP { get; }
+
+        public PagerViewModel PagingViewModel =>
+           new PagerViewModel(PagerViewModel.PageIndex, PagerViewModel.PageSize, PagerViewModel.TotalRecords);
     }
 }

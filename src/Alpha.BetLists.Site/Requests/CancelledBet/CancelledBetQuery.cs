@@ -8,6 +8,6 @@
     {
         public CancelledBetQuery(IUser viewer) : base(viewer)
         {
-        }
+        }        
     }
 }

@@ -4,9 +4,11 @@
     using System.Collections.Generic;
     using System.Linq;
     using Configurations;
+    using Constants;
     using Criteria;
     using Criteria.ProgressiveJackpot;
     using DataAccesses;
+    using Extensions;
     using Fanex.Caching;
     using Fanex.Data.Repository;
     using Models;
@@ -20,7 +22,13 @@
 
         IEnumerable<int> FilterProductIdsByGroupHeadline(IEnumerable<int> productIds, GetProductsByGroupHeadlineParam param);
 
+        string ConcatProductNames(string productIds);
+
+        IEnumerable<string> GetProductNames(IEnumerable<int> productIds);
+
         bool IsEnabledJackpot(int custId);
+
+        IEnumerable<Product> GetProductsHaveSupportCancelledBet(int custId, DateTime minReportDate, IEnumerable<int> productIds = null);
     }
 
     public class ProductServiceImpl : ProductService
@@ -78,6 +86,32 @@
             return productIdList;
         }
 
+        public IEnumerable<Product> GetProductsHaveSupportCancelledBet(int custId, DateTime minReportDate, IEnumerable<int> productIds = null)
+        {
+            var supportedProducts = new List<int>
+            {
+                ProductIdConstants.Sportsbook,
+                ProductIdConstants.NumberGame,
+                ProductIdConstants.VirtualSports,
+                ProductIdConstants.VirtualSports2,
+                ProductIdConstants.Keno,
+                ProductIdConstants.GoldDeluxe,
+                ProductIdConstants.ColossusBets,
+                ProductIdConstants.NG2,
+                ProductIdConstants.Lottery,
+                ProductIdConstants.Bullfighting,
+                ProductIdConstants.PokerGames
+            };
+
+            var allProducts = GetProductsForCustomer(custId, minReportDate).Where(i => supportedProducts.Contains(i.Id));
+
+            var validProducts = productIds == null || !productIds.Any()
+                ? allProducts
+                : allProducts.Where(product => productIds.Contains(product.Id));
+
+            return validProducts;
+        }
+
         public IEnumerable<Product> GetProductsByGroupHeadline(GetProductsByGroupHeadlineParam param)
         {
             var data = dynamicRepository.Fetch<Product>(new GetProductsByGroupHeadlineCriteria(param.CustId))
@@ -98,6 +132,17 @@
 
             return productIds.Any();
         }
+
+        public IEnumerable<string> GetProductNames(IEnumerable<int> productIds)
+        {
+            foreach (var productId in productIds)
+            {
+                yield return getProductName(productId);
+            }
+        }
+
+        public string ConcatProductNames(string productIds)
+            => string.Join(", ", GetProductNames(productIds.ToListInt()));
 
         private static bool IsRemainSupportProductForGroupHeadline(Product product, DateTime minReportDate)
             => product.IsEnable

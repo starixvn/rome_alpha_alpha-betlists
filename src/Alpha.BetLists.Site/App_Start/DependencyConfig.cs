@@ -64,6 +64,8 @@
             container.Verify();
 
             DependencyResolver.SetResolver(new SimpleInjectorDependencyResolver(container));
+
+            RegisterStaticInstances(container);
         }
 
         private static void RegisterMediator(Container container)
@@ -169,6 +171,11 @@
             {
                 container.RegisterSingleton<IUser, User>();
             }
+        }
+
+        private static void RegisterStaticInstances(Container container)
+        {
+            ReportDateServiceImpl.Instance = container.GetInstance<ReportDateService>();
         }
     }
 }

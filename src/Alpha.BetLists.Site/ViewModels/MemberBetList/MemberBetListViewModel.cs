@@ -54,7 +54,7 @@
             CustId = param.CustId;
             CustName = param.UserName;
 
-            Title = $"{Resources.BetList} - {query.CustName}";
+            Title = $"{Resources.BetListHistory} - {query.CustName}";
             ProductsId = param.ProductIds.JoinWithComma();
             ViewDataInstructionMessage = string.Format(
                 Resources.CanOnlyViewDataAfterTimeHistoryReport,

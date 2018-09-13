@@ -54,6 +54,7 @@ class DateRangePickerComponent {
             },
             onQuickChooseChange: (selectValue: number) => {
                 if (this.isCompleteInitDateRangePicker && selectValue !== this.quickChooseType.specificDates) {
+                    this.$("#PageIndex").val(1);
                     this.$betlistForm.submit();
                 }
             }

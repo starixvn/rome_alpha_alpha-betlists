@@ -1,16 +1,21 @@
-﻿namespace Alpha.BetLists.Tests.Criteria.CancelledBet
-{
-    using Alpha.BetLists.Criteria.CancelledBet;
-    using Xunit;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Alpha.BetLists.Criteria.CancelledBet;
+using Xunit;
 
-    [Trait("Category", "CancelledBet")]
+namespace Alpha.BetLists.Tests.Criteria.CancelledBet
+{
+    [Trait("Category", "GetCancelledBetCriteria")]
     public class GetCancelledBetCriteriaTests
     {
         [Fact]
-        public void IsValid_ValidProperties_ReturnTrue()
+        public void IsValid_ValidParameter_ReturnTrue()
         {
             //// Arrange
-            var criteria = new GetCancelledBetCriteria(263, 2, "en");
+            var criteria = new GetCancelledBetCriteria(1, DateTime.Now.AddDays(-1), DateTime.Now, DateTime.Now, 2, "1,2,3,4,5,6", "1,2,3", 50, 1);
 
             //// Act
             var act = criteria.IsValid();
@@ -20,10 +25,10 @@
         }
 
         [Fact]
-        public void IsValid_InValidProperties_ReturnFalse()
+        public void IsValid_InvalidParameter_ReturnFalse()
         {
             //// Arrange
-            var criteria = new GetCancelledBetCriteria(-263, 2, "en");
+            var criteria = new GetCancelledBetCriteria(0, DateTime.Now, DateTime.Now, DateTime.Now, 2, "", "", 50, 1);
 
             //// Act
             var act = criteria.IsValid();
@@ -33,17 +38,16 @@
         }
 
         [Fact]
-        public void GetSettingKey_Always_ReturnCorrectKey()
+        public void GetSettingKey_Always_Constant()
         {
             //// Arrange
-            var criteria = new GetCancelledBetCriteria(263, 3, "en");
-            var expectedKey = "Age_BetList_SelDeleted";
+            var criteria = new GetCancelledBetCriteria(0, DateTime.Now, DateTime.Now, DateTime.Now, 2, "", "", 50, 1);
 
             //// Act
             var act = criteria.GetSettingKey();
 
             //// Assert
-            Assert.Equal(expectedKey, act);
+            Assert.Equal("Age_BetList_SelDeleted", act);
         }
     }
 }

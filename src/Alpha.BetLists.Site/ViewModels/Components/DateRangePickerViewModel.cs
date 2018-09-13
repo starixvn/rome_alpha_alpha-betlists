@@ -10,9 +10,9 @@
     {
         public const string TodayOptionValue = "0";
         public const string YesterdayOptionValue = "1";
-        private const string ThisWeekOptionValue = "2";
-        private const string LastWeekOptionValue = "3";
-        private const string ThisMonthOptionValue = "4";
+        public const string ThisWeekOptionValue = "2";
+        public const string LastWeekOptionValue = "3";
+        public const string ThisMonthOptionValue = "4";
         private const string LastMonthOptionValue = "5";
         private const string SinceLastMonthOptionValue = "6";
         public const string SpecificDateOptionValue = "7";

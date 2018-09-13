@@ -214,7 +214,7 @@
     <value>Waiting</value>
   </data>
   <data name="voided" xml:space="preserve">
-    <value>Void</value>
+    <value>Voided</value>
   </data>
   <data name="losingtickets" xml:space="preserve">
     <value>Total of losing tickets</value>
@@ -328,7 +328,7 @@
     <value>Export to Excel</value>
   </data>
   <data name="VoidAndReject" xml:space="preserve">
-    <value>Void/Rejected Bet List (Last 3 days)</value>
+    <value>Voided/Rejected/Refunded bet list</value>
   </data>
   <data name="CancelledBet" xml:space="preserve">
     <value>Cancelled Bets</value>
@@ -389,5 +389,23 @@
   </data>
   <data name="ProgressiveJackpotWonDetails" xml:space="preserve">
     <value>Progressive Jackpot Won Details</value>
+  </data>
+  <data name="AllStatus" xml:space="preserve">
+    <value>All Statuses</value>
+  </data>
+  <data name="Void" xml:space="preserve">
+    <value>Void</value>
+  </data>
+  <data name="rejected" xml:space="preserve">
+    <value>Rejected</value>
+  </data>
+  <data name="refunded" xml:space="preserve">
+    <value>Refunded</value>
+  </data>
+  <data name="BetListHistory" xml:space="preserve">
+    <value>Bet List</value>
+  </data>
+  <data name="selectStatuses" xml:space="preserve">
+    <value>Select Statuses</value>
   </data>
 </root>

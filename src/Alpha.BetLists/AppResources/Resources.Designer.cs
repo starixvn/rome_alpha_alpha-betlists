@@ -124,6 +124,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All Statuses.
+        /// </summary>
+        public static string AllStatus {
+            get {
+                return ResourceManager.GetString("AllStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Auto refresh.
         /// </summary>
         public static string AutoRefresh {
@@ -138,6 +147,15 @@ namespace Alpha.BetLists.AppResources {
         public static string BetList {
             get {
                 return ResourceManager.GetString("BetList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bet List.
+        /// </summary>
+        public static string BetListHistory {
+            get {
+                return ResourceManager.GetString("BetListHistory", resourceCulture);
             }
         }
         
@@ -610,11 +628,29 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Refunded.
+        /// </summary>
+        public static string refunded {
+            get {
+                return ResourceManager.GetString("refunded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reject.
         /// </summary>
         public static string reject {
             get {
                 return ResourceManager.GetString("reject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rejected.
+        /// </summary>
+        public static string rejected {
+            get {
+                return ResourceManager.GetString("rejected", resourceCulture);
             }
         }
         
@@ -651,6 +687,15 @@ namespace Alpha.BetLists.AppResources {
         public static string SelectProducts {
             get {
                 return ResourceManager.GetString("SelectProducts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Statuses.
+        /// </summary>
+        public static string selectStatuses {
+            get {
+                return ResourceManager.GetString("selectStatuses", resourceCulture);
             }
         }
         
@@ -817,7 +862,16 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Void/Rejected Bet List (Last 3 days).
+        ///   Looks up a localized string similar to Void.
+        /// </summary>
+        public static string Void {
+            get {
+                return ResourceManager.GetString("Void", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Voided/Rejected/Refunded bet list.
         /// </summary>
         public static string VoidAndReject {
             get {
@@ -826,7 +880,7 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Void.
+        ///   Looks up a localized string similar to Voided.
         /// </summary>
         public static string voided {
             get {

@@ -53,6 +53,7 @@
     { "Path": "../src/components/daterangepicker.ts" },
     { "Path": "../src/components/pager.ts" },
     { "Path": "../src/components/productmultiselection.ts" },
+    { "Path": "../src/components/statusmultiselection.ts" },
     { "Path": "../src/components/single-selection-dropdown.ts" },
 
     { "Path": "../src/member-betlist/member-betlist.ts" },
@@ -88,10 +89,7 @@
       "Path": "app/running-betlist",
       "Excludes": [ "**.js.map" ]
     },
-    {
-      "Path": "app/cancelled-betlist",
-      "Excludes": [ "**.js.map" ]
-    },
+    
     {
       "Path": "app/last-bets",
       "Excludes": [ "**.js.map" ]

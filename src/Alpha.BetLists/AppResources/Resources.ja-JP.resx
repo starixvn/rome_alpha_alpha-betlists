@@ -123,9 +123,6 @@
   <data name="place" xml:space="preserve">
     <value>Place</value>
   </data>
-  <data name="BetList" xml:space="preserve">
-    <value>ベットリスト</value>
-  </data>
   <data name="NoInformationIsAvailable" xml:space="preserve">
     <value>情報がありません</value>
   </data>
@@ -205,9 +202,6 @@
   <data name="waiting" xml:space="preserve">
     <value>待機</value>
   </data>
-  <data name="voided" xml:space="preserve">
-    <value>Void</value>
-  </data>
   <data name="losingtickets" xml:space="preserve">
     <value>Total of losing tickets</value>
   </data>
@@ -271,10 +265,6 @@
   <data name="ExportToExcel" xml:space="preserve">
     <value>輸出をExcelに</value>
   </data>
-  <data name="VoidAndReject" xml:space="preserve">
-    <value>無効/キャンセルされたベットリスト(残り3 日
- </value>
-  </data>
   <data name="CancelledBet" xml:space="preserve">
     <value>取り消されたベット</value>
   </data>
@@ -307,5 +297,8 @@
   </data>
   <data name="superptcomm" xml:space="preserve">
     <value>Super PT/ 手数料</value>
+  </data>
+  <data name="BetListHistory" xml:space="preserve">
+    <value>ベットリスト</value>
   </data>
 </root>
