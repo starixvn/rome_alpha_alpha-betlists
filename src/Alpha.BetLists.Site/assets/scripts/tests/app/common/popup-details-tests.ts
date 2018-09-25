@@ -22,7 +22,7 @@
 
         it("Calls openMultiple", () => {
             // Assert
-            expect(topWindow.popupManager.openMultiple).toHaveBeenCalledWith("3423423432432", "Title", 1120, 80);
+            expect(topWindow.popupManager.openMultiple).toHaveBeenCalledWith("3423423432432", "Title", 1120, 80, undefined, undefined, undefined, undefined, undefined, undefined, undefined);
         });
     });
 });

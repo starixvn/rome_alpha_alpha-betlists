@@ -10,8 +10,8 @@
             return this.instance;
         }
 
-        public Show = (url: string, title?: string, width?: number, height?: number) => {
-            this.topWindow.popupManager.openMultiple(url, title, width, height);
+        public Show = (url: string, title?: string, width?: number, height?: number, options?: any) => {
+            this.topWindow.popupManager.openMultiple(url, title, width, height, undefined, undefined, undefined, undefined, undefined, undefined, options);
         }
     }
 }
