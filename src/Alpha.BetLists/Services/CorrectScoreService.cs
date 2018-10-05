@@ -25,7 +25,6 @@
             => await dynamicRepository.FetchAsync<TicketDto>(
                 new GetRunningCorrectScoreCriteria(
                     param.CustId,
-                    param.Language,
                     param.CustLevel));
     }
 }

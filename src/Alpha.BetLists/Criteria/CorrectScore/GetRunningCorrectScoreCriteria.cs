@@ -8,17 +8,13 @@
     {
         public GetRunningCorrectScoreCriteria(
             int custId,
-            string language,
             UserLevel custLevel)
         {
             CustId = custId;
-            Language = language;
             CustLevel = custLevel;
         }
 
         public int CustId { get; }
-
-        public string Language { get; }
 
         [SpParam(Ignored = true)]
         public UserLevel CustLevel { get; }

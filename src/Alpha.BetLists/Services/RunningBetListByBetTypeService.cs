@@ -26,7 +26,6 @@
                 new GetBetListRunningByBetTypeCriteria(
                     param.CustId,
                     param.BetType,
-                    param.Language,
                     param.CustLevel));
     }
 }

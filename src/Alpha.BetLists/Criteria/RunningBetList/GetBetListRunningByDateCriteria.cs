@@ -11,14 +11,12 @@
             DateTime fromDate,
             DateTime toDate,
             bool getAll,
-            string language,
             string userName)
         {
             CustId = custId;
             FromDate = fromDate;
             ToDate = toDate;
             GetAll = getAll;
-            Language = language;
             UserName = userName;
             ProductIds = productIds;
         }
@@ -30,8 +28,6 @@
         public DateTime ToDate { get; }
 
         public bool GetAll { get; }
-
-        public string Language { get; }
 
         public string UserName { get; }
 

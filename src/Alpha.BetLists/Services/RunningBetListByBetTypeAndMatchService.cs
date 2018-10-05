@@ -29,7 +29,6 @@
                     param.MatchId,
                     param.CustId,
                     param.BetType,
-                    param.Language,
                     param.LiveIndicator,
                     param.BetTeam,
                     param.CustLevel));
