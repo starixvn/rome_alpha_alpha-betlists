@@ -14,7 +14,7 @@
         {
             criteria = new GetParlayBetListCriteria(
                 transId: anyValueCreator.Create<long>(),
-                language: anyValueCreator.Create<string>());
+                custId: anyValueCreator.Create<int>());
         }
 
         [Fact]

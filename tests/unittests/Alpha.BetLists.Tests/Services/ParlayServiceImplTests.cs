@@ -34,11 +34,11 @@
         {
             // Arrange
             dataFixture.DynamicRepository
-                .FetchAsync<TicketDto>(Arg.Is<GetParlayBetListCriteria>(c => c.TransId == 123 && c.Language == "en"))
+                .FetchAsync<TicketDto>(Arg.Is<GetParlayBetListCriteria>(c => c.TransId == 123 && c.CustId == 1))
                 .Returns(BetListDataTest.Tickets);
 
             // Act
-            var actualTickets = parlayService.GetParlayBetList(123, "en").GetAwaiter().GetResult();
+            var actualTickets = parlayService.GetParlayBetList(123, 1).GetAwaiter().GetResult();
 
             // Assert
             Assert.Equal(BetListDataTest.Tickets, actualTickets);
