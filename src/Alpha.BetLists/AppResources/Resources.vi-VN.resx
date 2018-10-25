@@ -379,4 +379,7 @@
   <data name="selectStatuses" xml:space="preserve">
     <value>Chọn trạng thái</value>
   </data>
+  <data name="ContributionAmountRoundNote" xml:space="preserve">
+    <value>Tiền tích lũy sẽ được làm tròn đến 4 số lẻ.</value>
+  </data>
 </root>
