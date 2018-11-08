@@ -17,11 +17,10 @@
             : base(query, betListData, builder, ticketHelper)
         {
             TicketHelper.IsShowOddsWithChoice = true;
-            ComboParlayOfferNames = TicketHelper.GetCombinationMPOfferNameList(
-                query.BetTeam,
-                query.BetCheck,
-                query.Handicap1,
-                query.Handicap2);
+            HideOfferNameUnitStakes = string.IsNullOrEmpty(query.BetCheck);
+            ComboParlayOfferNames = string.IsNullOrEmpty(query.BetCheck) ?
+                new List<string>() :
+                TicketHelper.GetCombinationMPOfferNameList(query.BetTeam, query.BetCheck, query.Handicap1, query.Handicap2);
             ComboParlaySingleTickets = BetListData.Tickets
                 .Where(t => t.Stake > 0)
                 .OrderBy(t => t.MatchId)
@@ -36,12 +35,19 @@
 
         private List<TicketDto> ComboParlaySingleTickets { get; }
 
+        private bool HideOfferNameUnitStakes { get; }
+
         public bool HasValidData
-            => ComboParlayOfferNames.Count <= ComboParlaySingleTickets.Count && ComboParlaySingleTickets.Any();
+            => ComboParlaySingleTickets.Any() &&
+            (HideOfferNameUnitStakes || ComboParlayOfferNames.Count <= ComboParlaySingleTickets.Count);
 
         private IDictionary<string, string> GetUnitStakeByOfferName(ComboParlayQuery query)
         {
             var offerNameUnitStakes = new Dictionary<string, string>();
+            if (HideOfferNameUnitStakes)
+            {
+                return offerNameUnitStakes;
+            }
 
             var isSystemParlay = query.Handicap1 == 0;
 

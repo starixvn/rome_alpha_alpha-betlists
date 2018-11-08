@@ -6,18 +6,18 @@
     {
         public GetParlayBetListCriteria(
             long transId,
-            string language)
+            int custId)
         {
             TransId = transId;
-            Language = language;
+            CustId = custId;
         }
 
         public long TransId { get; }
 
-        public string Language { get; }
+        public int CustId { get; }
 
         public override string GetSettingKey() => "Age_BetList_SelParlayDetail";
 
-        public override bool IsValid() => TransId > 0;
+        public override bool IsValid() => TransId > 0 && CustId > 0;
     }
 }

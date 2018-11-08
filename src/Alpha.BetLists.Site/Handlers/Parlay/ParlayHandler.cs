@@ -31,14 +31,14 @@
 
         public async Task<MixParlayViewModel> Handle(MixParlayQuery message)
         {
-            var tickets = await parlayService.GetParlayBetList(message.TransId, message.Language);
+            var tickets = await parlayService.GetParlayBetList(message.TransId, message.CustId);
 
             return new MixParlayViewModel(message, new BetListData(tickets, null), Builder, TicketHelper);
         }
 
         public async Task<ComboParlayViewModel> Handle(ComboParlayQuery message)
         {
-            var tickets = await parlayService.GetParlayBetList(message.TransId, message.Language);
+            var tickets = await parlayService.GetParlayBetList(message.TransId, message.CustId);
 
             return new ComboParlayViewModel(message, new BetListData(tickets, null), Builder, TicketHelper);
         }

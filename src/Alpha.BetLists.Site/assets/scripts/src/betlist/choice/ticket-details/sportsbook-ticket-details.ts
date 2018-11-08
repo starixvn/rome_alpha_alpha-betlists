@@ -40,14 +40,14 @@
             Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'Parlay/ComboParlayDetail' + params, "", 800, 438);
         }
 
-        public ShowMixParlayTickets = (transId: string) => {
-            const params = '?transid=' + transId;
+        public ShowMixParlayTickets = (transId: string, refNo: string, custId: number) => {
+            const params = '?transid=' + transId + '&custId=' + custId;
             const url = Common.AppPath.BetListAppPath() + 'Parlay/MixParlay' + params;
             this.showComboMixParlayTickets(transId, '', url);
         }
 
-        public ShowComboParlayOldTickets = (transId: string, transIndex: string) => {
-            const params = '?transid=' + transId;
+        public ShowComboParlayOldTickets = (transId: string, transIndex: string, refNo: string, custId: string) => {
+            const params = '?transid=' + transId + '&custId=' + custId;
             const url = Common.AppPath.BetListAppPath() + 'Parlay/ComboParlay' + params;
             this.showComboMixParlayTickets(transId, transIndex, url);
         }
@@ -59,12 +59,14 @@
             handicap1: string,
             handicap2: string,
             betCheck: string,
-            betTeam: string) => {
+            betTeam: string,
+            custId: string) => {
             const params = '?transid=' + transId
                 + '&handicap1=' + handicap1
                 + '&handicap2=' + handicap2
                 + '&betcheck=' + betCheck
-                + '&betteam=' + betTeam;
+                + '&betteam=' + betTeam
+                + '&custId=' + custId;
 
             const url = Common.AppPath.BetListAppPath() + 'Parlay/ComboParlay' + params;
             this.showComboMixParlayTickets(transId, transIndex, url);
@@ -85,7 +87,9 @@
                     },
                     success: (responseHtml) => {
                         ticketsContent.html(responseHtml);
-                        comboOfferName.hide();
+                        if (ticketsContent.find(".offer-name-list").length) {
+                            comboOfferName.hide();
+                        }
                     },
                 }
 
@@ -98,7 +102,9 @@
                 }
                 else {
                     ticketsContent.show();
-                    comboOfferName.hide();
+                    if (ticketsContent.find(".offer-name-list").length) {
+                        comboOfferName.hide();
+                    }
                 }
             }
         }

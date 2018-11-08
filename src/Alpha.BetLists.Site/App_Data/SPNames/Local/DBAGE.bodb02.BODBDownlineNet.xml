@@ -446,7 +446,7 @@
 
     </Setting>
   </Function>
-  
+
   <Function Name="Last Bets Monitoring">
     <Setting Key="Age_Monitor_BetlistSel_Ag_AllBettypes" SpName="Age_Monitor_BetlistSel_Ag_AllBettypes" DbName="DB042.bodb02.BODBDownlineNet" Plain="0">
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto"></Mapping>

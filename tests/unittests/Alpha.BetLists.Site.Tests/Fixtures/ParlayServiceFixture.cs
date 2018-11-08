@@ -9,7 +9,7 @@
         public ParlayServiceFixture()
         {
             ParlayService = Substitute.For<ParlayService>();
-            ParlayService.GetParlayBetList(Arg.Any<long>(), Arg.Any<string>()).Returns(BetListDataTest.Tickets);
+            ParlayService.GetParlayBetList(Arg.Any<long>(), Arg.Any<int>()).Returns(BetListDataTest.Tickets);
             ParlayService.GetComboParlayDetail(
                 Arg.Any<long>(),
                 Arg.Any<long>(),

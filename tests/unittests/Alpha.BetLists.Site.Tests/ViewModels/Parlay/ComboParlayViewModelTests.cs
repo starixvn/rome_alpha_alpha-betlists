@@ -41,6 +41,7 @@
         {
             // Arrange
             query.Handicap1 = 1;
+            query.BetCheck = "BetCheck";
             betListFixture
                 .TicketHelper
                 .GetCombinationMPOfferNameList(query.BetTeam, query.BetCheck, query.Handicap1, query.Handicap2)
@@ -67,11 +68,12 @@
                 .TicketHelper
                 .GetCombinationMPOfferNameList(query.BetTeam, query.BetCheck, query.Handicap1, query.Handicap2)
                 .Returns(ComboParlayOfferNames);
-            var expectedUnitStakeOfferNames = new Dictionary<string, string>
-            {
-                { "Double", "UUS 10" },
-                { "Treble", "UUS 10" }
-            };
+            betListFixture
+                .TicketHelper
+                .GetCombinationMPOfferName(query.BetTeam)
+                .Returns("Treble");
+
+            var expectedUnitStakeOfferNames = new Dictionary<string, string>();
 
             // Act
             var viewModel = new ComboParlayViewModel(query, ComboParlayData, betListFixture.HtmlBuilder, betListFixture.TicketHelper);

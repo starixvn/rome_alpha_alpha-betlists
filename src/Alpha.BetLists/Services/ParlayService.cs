@@ -9,7 +9,7 @@
 
     public interface ParlayService
     {
-        Task<IEnumerable<TicketDto>> GetParlayBetList(long transId, string language);
+        Task<IEnumerable<TicketDto>> GetParlayBetList(long transId, int custId);
 
         Task<ComboParlayDetailData> GetComboParlayDetail(long transId, long refNo, long betId, int custId, string language);
     }
@@ -27,9 +27,9 @@
             this.dynamicRepository = dynamicRepository;
         }
 
-        public async Task<IEnumerable<TicketDto>> GetParlayBetList(long transId, string language)
+        public async Task<IEnumerable<TicketDto>> GetParlayBetList(long transId, int custId)
         {
-            var tickets = await dynamicRepository.FetchAsync<TicketDto>(new GetParlayBetListCriteria(transId, language));
+            var tickets = await dynamicRepository.FetchAsync<TicketDto>(new GetParlayBetListCriteria(transId, custId));
 
             return tickets;
         }

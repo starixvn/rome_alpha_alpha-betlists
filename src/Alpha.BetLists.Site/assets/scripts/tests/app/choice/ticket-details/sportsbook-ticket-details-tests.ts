@@ -68,7 +68,8 @@
             // Arrange
             const ticketsContent = $("#divEvent_" + transId + transIndex);
             const comboOfferName = $('#combinationOfferName_' + transId + transIndex);
-            const url = "betlist-path/Parlay/ComboParlay" + "?transid=" + transId;
+            const custId = "1";
+            const url = "betlist-path/Parlay/ComboParlay" + "?transid=" + transId + "&custId=1";
             ticketsContent.html('');
 
             spyOn($, 'ajax').and.callFake((options) => {
@@ -82,11 +83,11 @@
             });
 
             // Act
-            BetList.Choice.TicketDetails.ParlayTicketDetails.Instance.ShowComboParlayOldTickets(transId, transIndex);
+            BetList.Choice.TicketDetails.ParlayTicketDetails.Instance.ShowComboParlayOldTickets(transId, transIndex, '', custId);
 
             // Assert
             expect(ticketsContent).toHaveHtml('responseHtml');
-            expect(comboOfferName).toBeHidden();
+            expect(comboOfferName).not.toBeHidden();
         });
 
         it("ShowComboParlayNewTickets_TicketsContentHtmlIsNotEmptyAndVisible -> Not Call Ajax Get Content", () => {
@@ -95,9 +96,10 @@
             const comboOfferName = $('#combinationOfferName_' + transId + transIndex);
             ticketsContent.html('12342343');
             ticketsContent.show();
+            const custId = "1";
 
             // Act
-            BetList.Choice.TicketDetails.ParlayTicketDetails.Instance.ShowComboParlayOldTickets(transId, transIndex);
+            BetList.Choice.TicketDetails.ParlayTicketDetails.Instance.ShowComboParlayOldTickets(transId, transIndex, '', custId);
 
             // Assert
             expect(ticketsContent).toHaveHtml('12342343');
@@ -111,20 +113,21 @@
             const comboOfferName = $('#combinationOfferName_' + transId + transIndex);
             ticketsContent.html('12342343');
             ticketsContent.hide();
+            const custId = "1";
 
             // Act
-            BetList.Choice.TicketDetails.ParlayTicketDetails.Instance.ShowComboParlayOldTickets(transId, transIndex);
+            BetList.Choice.TicketDetails.ParlayTicketDetails.Instance.ShowComboParlayOldTickets(transId, transIndex, '', custId);
 
             // Assert
             expect(ticketsContent).toHaveHtml('12342343');
             expect(ticketsContent).toBeVisible();
-            expect(comboOfferName).toBeHidden();
+            expect(comboOfferName).not.toBeHidden();
         });
 
         it("ShowMixParlayTickets_Always -> Ajax Send Correct Url", () => {
             // Arrange
             const ticketsContent = $("#divEvent_" + transId);
-            const url = "betlist-path/Parlay/MixParlay" + "?transid=" + transId;
+            const url = "betlist-path/Parlay/MixParlay" + "?transid=" + transId + "&custId=1";
             ticketsContent.html('');
 
             // CallBack Assert
@@ -134,7 +137,7 @@
             });
 
             // Act
-            BetList.Choice.TicketDetails.ParlayTicketDetails.Instance.ShowMixParlayTickets(transId);
+            BetList.Choice.TicketDetails.ParlayTicketDetails.Instance.ShowMixParlayTickets(transId, "2", 1);
 
             // Assert
             expect(ticketsContent).toHaveHtml('responseHtml');
@@ -147,11 +150,13 @@
             const handicap2 = "3";
             const betCheck = "4";
             const betTeam = "5";
+            const custId = "1";
             const params = '?transid=' + transId
                 + '&handicap1=' + handicap1
                 + '&handicap2=' + handicap2
                 + '&betcheck=' + betCheck
-                + '&betteam=' + betTeam;
+                + '&betteam=' + betTeam
+                + '&custId=1';
 
             const ticketsContent = $("#divEvent_" + transId + transIndex);
             const url = "betlist-path/Parlay/ComboParlay" + params;
@@ -165,7 +170,7 @@
 
             // Act
             BetList.Choice.TicketDetails.ParlayTicketDetails.Instance
-                .ShowComboParlayNewTickets(transId, transIndex, refNo, handicap1, handicap2, betCheck, betTeam);
+                .ShowComboParlayNewTickets(transId, transIndex, refNo, handicap1, handicap2, betCheck, betTeam, custId);
 
             // Assert
             expect(ticketsContent).toHaveHtml('responseHtml');

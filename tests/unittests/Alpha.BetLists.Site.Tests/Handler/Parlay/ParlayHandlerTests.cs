@@ -49,7 +49,7 @@
             // Assert
             parlayServiceFixture.ParlayService.Received().GetParlayBetList(
                 Arg.Is<long>(t => t == query.TransId),
-                Arg.Is<string>(l => l == query.Language));
+                Arg.Is<int>(l => l == query.ViewerId));
         }
 
         [Fact]
@@ -82,7 +82,7 @@
             // Assert
             parlayServiceFixture.ParlayService.Received().GetParlayBetList(
                 Arg.Is<long>(t => t == query.TransId),
-                Arg.Is<string>(l => l == query.Language));
+                Arg.Is<int>(l => l == query.ViewerId));
         }
 
         [Fact]
