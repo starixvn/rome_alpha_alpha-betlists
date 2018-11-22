@@ -10,7 +10,6 @@
             int matchId,
             int custId,
             int betType,
-            string language,
             int liveIndicator,
             string betTeam,
             UserLevel custLevel)
@@ -18,7 +17,6 @@
             MatchId = matchId;
             CustId = custId;
             BetType = betType;
-            Language = language;
             LiveIndicator = liveIndicator;
             BetTeam = betTeam;
             CustLevel = custLevel;
@@ -29,8 +27,6 @@
         public int CustId { get; }
 
         public int BetType { get; }
-
-        public string Language { get; }
 
         public int LiveIndicator { get; }
 

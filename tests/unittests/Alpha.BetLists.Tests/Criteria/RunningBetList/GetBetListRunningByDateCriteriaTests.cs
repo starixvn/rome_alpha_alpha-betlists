@@ -11,7 +11,7 @@
         public void GetSettingKey_Always_ReturnsValidSettingKey()
         {
             // Arrange
-            var criteria = new GetBetListRunningByDateCriteria(0, string.Empty, DateTime.Today, DateTime.Today, true, string.Empty, string.Empty);
+            var criteria = new GetBetListRunningByDateCriteria(0, string.Empty, DateTime.Today, DateTime.Today, true, string.Empty);
             var expectedSettingKey = "Age_BetList_SelRunningByDate_Mem";
 
             // Act
@@ -28,7 +28,7 @@
         public void IsValid_InvalidCustId_ReturnsFalse(int custId)
         {
             // Arrange
-            var criteria = new GetBetListRunningByDateCriteria(custId, string.Empty, DateTime.Today, DateTime.Today, true, string.Empty, string.Empty);
+            var criteria = new GetBetListRunningByDateCriteria(custId, string.Empty, DateTime.Today, DateTime.Today, true, string.Empty);
 
             // Act
             var actualIsValid = criteria.IsValid();
@@ -45,7 +45,7 @@
         public void IsValid_ProductIdsIsNullOrWhiteSpace_ReturnsFalse(string productIds)
         {
             // Arrange
-            var criteria = new GetBetListRunningByDateCriteria(1, productIds, DateTime.Today, DateTime.Today, true, string.Empty, string.Empty);
+            var criteria = new GetBetListRunningByDateCriteria(1, productIds, DateTime.Today, DateTime.Today, true, string.Empty);
 
             // Act
             var actualIsValid = criteria.IsValid();
@@ -59,7 +59,7 @@
         {
             // Arrange
             var productIds = "1,2";
-            var criteria = new GetBetListRunningByDateCriteria(1, productIds, DateTime.Today, DateTime.Today.AddDays(-1), true, string.Empty, string.Empty);
+            var criteria = new GetBetListRunningByDateCriteria(1, productIds, DateTime.Today, DateTime.Today.AddDays(-1), true, string.Empty);
 
             // Act
             var actualIsValid = criteria.IsValid();
@@ -73,7 +73,7 @@
         {
             // Arrange
             var productIds = "1,2";
-            var criteria = new GetBetListRunningByDateCriteria(1, productIds, DateTime.Today, DateTime.Today, true, string.Empty, string.Empty);
+            var criteria = new GetBetListRunningByDateCriteria(1, productIds, DateTime.Today, DateTime.Today, true, string.Empty);
 
             // Act
             var actualIsValid = criteria.IsValid();

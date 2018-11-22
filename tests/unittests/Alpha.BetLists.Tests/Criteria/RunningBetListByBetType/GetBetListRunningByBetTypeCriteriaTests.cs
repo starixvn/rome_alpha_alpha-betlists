@@ -15,7 +15,7 @@
         {
             // Arrange
             var custLevel = Enumeration.FromValue<UserLevel>(custLevelId);
-            var criteria = new GetBetListRunningByBetTypeCriteria(0, 0, string.Empty, custLevel);
+            var criteria = new GetBetListRunningByBetTypeCriteria(0, 0, custLevel);
 
             // Act
             var actualSettingKey = criteria.GetSettingKey();
@@ -31,7 +31,7 @@
         public void IsValid_InvalidCustId_ReturnsFalse(int custId)
         {
             // Arrange
-            var criteria = new GetBetListRunningByBetTypeCriteria(custId, 1, string.Empty, UserLevel.Agent);
+            var criteria = new GetBetListRunningByBetTypeCriteria(custId, 1, UserLevel.Agent);
 
             // Act
             var actualIsValid = criteria.IsValid();
@@ -47,7 +47,7 @@
         public void IsValid_InvalidBetType_ReturnsFalse(int betType)
         {
             // Arrange
-            var criteria = new GetBetListRunningByBetTypeCriteria(1, betType, string.Empty, UserLevel.Agent);
+            var criteria = new GetBetListRunningByBetTypeCriteria(1, betType, UserLevel.Agent);
 
             // Act
             var actualIsValid = criteria.IsValid();
@@ -60,7 +60,7 @@
         public void IsValid_ValidCriteria_ReturnsTrue()
         {
             // Arrange
-            var criteria = new GetBetListRunningByBetTypeCriteria(1, 1, string.Empty, UserLevel.Agent);
+            var criteria = new GetBetListRunningByBetTypeCriteria(1, 1, UserLevel.Agent);
 
             // Act
             var actualIsValid = criteria.IsValid();

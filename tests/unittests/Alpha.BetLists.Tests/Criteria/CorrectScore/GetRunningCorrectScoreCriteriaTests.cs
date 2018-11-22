@@ -16,7 +16,7 @@
         {
             // Arrange
             var custLevel = Enumeration.FromValue<UserLevel>(custLevelId);
-            var criteria = new GetRunningCorrectScoreCriteria(0, string.Empty, custLevel);
+            var criteria = new GetRunningCorrectScoreCriteria(0, custLevel);
 
             // Act
             var actualSettingKey = criteria.GetSettingKey();
@@ -32,7 +32,7 @@
         public void IsValid_InvalidCustId_ReturnsFalse(int custId)
         {
             // Arrange
-            var criteria = new GetRunningCorrectScoreCriteria(custId, string.Empty, UserLevel.Agent);
+            var criteria = new GetRunningCorrectScoreCriteria(custId, UserLevel.Agent);
 
             // Act
             var actualIsValid = criteria.IsValid();
@@ -46,7 +46,7 @@
         public void IsValid_ValidCriteria_ReturnsTrue()
         {
             // Arrange
-            var criteria = new GetRunningCorrectScoreCriteria(1, string.Empty, UserLevel.Agent);
+            var criteria = new GetRunningCorrectScoreCriteria(1, UserLevel.Agent);
 
             // Act
             var actualIsValid = criteria.IsValid();

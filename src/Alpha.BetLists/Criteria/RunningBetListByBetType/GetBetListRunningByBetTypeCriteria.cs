@@ -9,20 +9,16 @@
         public GetBetListRunningByBetTypeCriteria(
             int custId,
             int betType,
-            string language,
             UserLevel custLevel)
         {
             CustId = custId;
             BetType = betType;
-            Language = language;
             CustLevel = custLevel;
         }
 
         public int CustId { get; }
 
         public int BetType { get; }
-
-        public string Language { get; }
 
         [SpParam(Ignored = true)]
         public UserLevel CustLevel { get; }

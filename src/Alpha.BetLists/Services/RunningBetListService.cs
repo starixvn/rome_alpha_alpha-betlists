@@ -31,7 +31,6 @@
                     param.FromDate.GetGreaterDate(param.LimitedDate),
                     param.ToDate,
                     param.GetAll,
-                    param.Language,
                     param.UserName);
 
             var betListDataTuple = await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);

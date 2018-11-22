@@ -78,6 +78,7 @@
             ticket.ShowTime = matchInfo.ShowTime;
             ticket.IsNeutral = matchInfo.IsNeutral;
             ticket.EventStatus = matchInfo.BetStatus;
+            ticket.SettlementStatus = matchInfo.SettlementStatus;
         }
 
         private MatchInfo GetMatchInfo(int matchId, List<MatchInfo> matches, int cacheTime)
