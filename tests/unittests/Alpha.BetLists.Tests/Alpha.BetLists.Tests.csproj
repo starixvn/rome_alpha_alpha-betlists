@@ -261,7 +261,7 @@
     <Compile Include="TestData\LastBetsTestData.cs" />
     <Compile Include="TestData\UserLevelTestCases.cs" />
     <Compile Include="TestData\BetListDataTest.cs" />
-    <Compile Include="Criteria\WinLossByMatch\GetWinLossOthersCriteriaTests.cs" />
+    <Compile Include="Criteria\WinLossByMatch\GetWinLossByMatchCriteriaTests.cs" />
     <Compile Include="TestData\UserLevelTest.cs" />
     <Compile Include="Utils\SystemTimeTests.cs" />
   </ItemGroup>

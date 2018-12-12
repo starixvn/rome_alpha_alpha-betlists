@@ -4,25 +4,23 @@
     using Fanex.Data.Repository;
     using Models;
 
-    public class GetWinLossOthersCriteria : CriteriaBase
+    public class GetWinLossByMatchCriteria : CriteriaBase
     {
-        public GetWinLossOthersCriteria(
+        public GetWinLossByMatchCriteria(
              int custId,
              int matchId,
              int betType,
-             string language,
              string custName,
-             bool liveIndicator,
+             bool liveIndicator,             
              UserLevel custLevel)
         {
             CustId = custId;
             MatchId = matchId;
             BetType = betType;
 
-            Language = language;
             CustName = custName;
             LiveIndicator = liveIndicator;
-            CustLevel = custLevel;
+            RoleId = custLevel.Value;
         }
 
         public int CustId { get; }
@@ -31,22 +29,14 @@
 
         public int BetType { get; }
 
-        public string Language { get; }
-
         [SpParam(SqlParamName = "Username")]
         public string CustName { get; }
 
         public bool LiveIndicator { get; }
 
-        [SpParam(Ignored = true)]
-        public UserLevel CustLevel { get; }
+        public int RoleId { get; }
 
-        public override string GetSettingKey() =>
-            CustLevel.IsSuperLevel()
-            ? "Age_BetList_SelWinlossByBettypeMatch_SAg"
-            : CustLevel.IsMasterLevel()
-            ? "Age_BetList_SelWinlossByBettypeMatch_MAg"
-            : "Age_BetList_SelWinlossByBettypeMatch_Ag";
+        public override string GetSettingKey() => "Age_BetList_SelWinlossByBettypeMatch";          
 
         public override bool IsValid() => CustId > 0;
     }
