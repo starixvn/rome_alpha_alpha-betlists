@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
+    using System.Linq;
     using System.Reflection;
     using System.Web.Mvc;
     using System.Web.Routing;
@@ -75,6 +76,12 @@
 
             Exception ex = Server.GetLastError();
             var currentCustomer = UserSession.Current;
+
+            if (ex is FormatException &&
+                Request.Params.AllKeys.Any(key => Auth.Configurations.AuthorizationSection.Instance.CustIdQueryStringParamNames.Any(cf => string.Equals(key, cf, StringComparison.OrdinalIgnoreCase))))
+            {
+                return;
+            }
 
             ExceptionHandler.Handle(ex,
                 new Dictionary<string, object>
