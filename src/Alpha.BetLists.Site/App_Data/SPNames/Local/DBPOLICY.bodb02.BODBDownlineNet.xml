@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Functions SiteId="105" SiteName="Bet Lists">
   <Function Name="NAP Permissions">
-    <Setting Key="Acc_Con_FileNameSelByCustID" SpName="Acc_Con_FileNameSelByCustID" DbName="DBCUST.NAP_UserControl.BODBDownlineNet" Plain="0">
+    <Setting Key="Acc_Con_FileNameSelByCustID" SpName="Acc_Con_FileNameSelByCustID" DbName="DBPOL.NAP_UserControl.BODBDownlineNet" Plain="0">
       <Mapping DataField="actual_policy" ObjectProperty="ActualPolicy"></Mapping>
     </Setting>
     <Setting Key="Acc_CustomerIsInternalAdmin" SpName="Acc_CustomerIsInternalAdmin" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
