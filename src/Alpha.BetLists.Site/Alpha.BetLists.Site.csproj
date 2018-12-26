@@ -106,7 +106,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.BetTrade, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.Core.2.74.0-beta1\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
+      <HintPath>..\..\packages\Fanex.BetList.Core.2.74.0\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.Bullfighting, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -122,7 +122,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.Core, Version=2.74.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.Core.2.74.0-beta1\lib\net40\Fanex.BetList.Core.dll</HintPath>
+      <HintPath>..\..\packages\Fanex.BetList.Core.2.74.0\lib\net40\Fanex.BetList.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.Core.RemotingRef, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -166,7 +166,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.NumberGame, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.NumberGame.1.2.0-beta4\lib\net40\Fanex.BetList.NumberGame.dll</HintPath>
+      <HintPath>..\..\packages\Fanex.BetList.NumberGame.1.2.0\lib\net40\Fanex.BetList.NumberGame.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.PokerGames, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
