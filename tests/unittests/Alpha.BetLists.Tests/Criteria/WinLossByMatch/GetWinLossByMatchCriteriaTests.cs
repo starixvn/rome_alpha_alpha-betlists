@@ -5,16 +5,14 @@
     using Xunit;
 
     [Trait("Category", "WinLossByMatch")]
-    public class GetWinLossOthersCriteriaTests
+    public class GetWinLossByMatchCriteriaTests
     {
-        [Theory]
-        [InlineData(4, "Age_BetList_SelWinlossByBettypeMatch_SAg")]
-        [InlineData(3, "Age_BetList_SelWinlossByBettypeMatch_MAg")]
-        [InlineData(2, "Age_BetList_SelWinlossByBettypeMatch_Ag")]
-        public void GetSettingKey_Always_ReturnsCorrectSettingKey(byte custLevelId, string expectedSettingKey)
+        [Fact]
+        public void GetSettingKey_Always_ReturnsCorrectSettingKey()
         {
             // Arrange
-            var criteria = new GetWinLossOthersCriteria(0, 0, 0, string.Empty, string.Empty, false, Enumeration.FromValue<UserLevel>(custLevelId));
+            var expectedSettingKey = "Age_BetList_SelWinlossByBettypeMatch";
+            var criteria = new GetWinLossByMatchCriteria(0, 0, 0, string.Empty, false, UserLevel.Super);
 
             // Act
             var actualSettingKey = criteria.GetSettingKey();
@@ -32,7 +30,7 @@
         public void IsValid_Always_ReturnsCorrectIsValid(int custId, bool expectedIsValid)
         {
             // Arrange
-            var criteria = new GetWinLossOthersCriteria(custId, 0, 0, string.Empty, string.Empty, false, UserLevel.Agent);
+            var criteria = new GetWinLossByMatchCriteria(custId, 0, 0, string.Empty, false, UserLevel.Agent);
 
             // Act
             var actualIsValid = criteria.IsValid();

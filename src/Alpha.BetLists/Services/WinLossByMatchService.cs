@@ -73,11 +73,10 @@
 
         private async Task<Tuple<IEnumerable<TicketDto>, IEnumerable<TicketData>>> GetWinlossOthers(WinLossByMatchParam param)
             => await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(
-                new GetWinLossOthersCriteria(
+                new GetWinLossByMatchCriteria(
                     param.CustId,
                     param.MatchId,
                     param.BetType,
-                    param.Language,
                     param.CustName,
                     param.LiveIndicator,
                     param.CustLevel));

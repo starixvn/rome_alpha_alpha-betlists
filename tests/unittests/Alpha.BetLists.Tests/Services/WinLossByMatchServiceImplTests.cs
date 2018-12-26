@@ -30,7 +30,7 @@
                 .Returns(BetListDataTest.BetListDataTuple);
 
             dataFixture.DynamicRepository
-                .FetchMultipleAsync<TicketDto, TicketData>(Arg.Any<GetWinLossOthersCriteria>())
+                .FetchMultipleAsync<TicketDto, TicketData>(Arg.Any<GetWinLossByMatchCriteria>())
                 .Returns(BetListDataTest.BetListDataTuple);
 
             var reportDateService = Substitute.For<ReportDateService>();
