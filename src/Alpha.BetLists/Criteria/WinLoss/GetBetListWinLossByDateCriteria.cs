@@ -12,14 +12,12 @@
             DateTime fromDate,
             DateTime toDate,
             DateTime moveBetsDate,
-            string language,
             bool showProgressiveBonus = false)
         {
             CustId = custId;
             FromDate = fromDate;
             ToDate = toDate;
             MoveBetsDate = moveBetsDate;
-            Language = language;
             ProductIds = productIds;
             ShowProgressiveBonus = showProgressiveBonus;
         }
@@ -32,8 +30,6 @@
 
         [SpParam(SqlParamName = "movebetsday")]
         public DateTime MoveBetsDate { get; }
-
-        public string Language { get; }
 
         public string ProductIds { get; }
 

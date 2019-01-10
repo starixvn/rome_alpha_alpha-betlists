@@ -87,8 +87,7 @@
                     c =>
                     c.CustId == param.CustId
                     && c.WinLossDate == param.WinLossDate
-                    && c.TransType == param.TransType
-                    && c.Language == param.Language));
+                    && c.TransType == param.TransType));
         }
 
         [Fact]
@@ -121,8 +120,7 @@
                     c =>
                     c.CustId == param.CustId
                     && c.WinLossDate == param.WinLossDate
-                    && c.TransType == param.TransType
-                    && c.Language == param.Language));
+                    && c.TransType == param.TransType));
         }
 
         [Fact]

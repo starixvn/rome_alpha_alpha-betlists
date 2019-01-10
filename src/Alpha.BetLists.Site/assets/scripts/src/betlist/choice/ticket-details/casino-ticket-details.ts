@@ -17,7 +17,10 @@
             const params = this.CreatePopupDetailsParam(refNo, winlossDate, custId, transType, "Macau Games");
             this.ShowDetailsPopup(params);
         }
-
+        public showVideoPokerGameDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
+            const params = this.CreatePopupDetailsParam(refNo, winlossDate, custId, transType, "Video Poker");
+            this.ShowDetailsPopup(params);
+        }        
         public ShowFishingWorldDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
             const params = this.CreatePopupDetailsParam(refNo, winlossDate, custId, transType, "Fishing World");
             this.ShowDetailsPopup(params);
@@ -94,10 +97,12 @@ let showGlobalGaming: Function;
 let showPPDetails: Function;
 let showTodayRunningBetsDetails: Function; // Allbet details
 let showProgressiveJackpotWonDetails: Function;
+let showVideoPokerGameDetails: Function;
 
 $(document).ready(() => {
     showRnGCasinoDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowRnGCasinoDetails;
     showVoidBridgeDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowMacauGamesDetails;
+    showVideoPokerGameDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.showVideoPokerGameDetails;    
     showGlobalGaming = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowFishingWorldDetails;
     showPPDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowPPDetails;
     showTodayRunningBetsDetails = BetList.Choice.TicketDetails.AllbetTicketDetails.Instance.ShowRunningBetsDetails;

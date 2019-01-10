@@ -82,8 +82,7 @@
                     && c.ProductIds == param.ProductIds.JoinWithComma()
                     && c.FromDate == param.FromDate
                     && c.ToDate == param.ToDate
-                    && c.MoveBetsDate == reportDateService.GetMoveBetsDay()
-                    && c.Language == param.Language));
+                    && c.MoveBetsDate == reportDateService.GetMoveBetsDay()));
         }
 
         [Fact]
@@ -246,8 +245,7 @@
                     && c.ProductIds == param.ProductIds.JoinWithComma()
                     && c.FromDate == reportDateService.GetBalanceUpDay()
                     && c.ToDate == param.ToDate
-                    && c.MoveBetsDate == reportDateService.GetMoveBetsDay()
-                    && c.Language == param.Language));
+                    && c.MoveBetsDate == reportDateService.GetMoveBetsDay()));
         }
     }
 }

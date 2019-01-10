@@ -46,8 +46,7 @@
                         param.CustId,
                         param.WinLossDate,
                         reportDateService.GetMoveBetsDay(),
-                        param.TransType,
-                        param.Language));
+                        param.TransType));
 
             return new BetListData(betListDataTuple.Item1, betListDataTuple.Item2.ToList<ITicketData>());
         }
