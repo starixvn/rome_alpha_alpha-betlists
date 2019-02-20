@@ -19,6 +19,44 @@
 
             Common.PopupDetails.Instance(window.top).Show(Common.AppPath.OldMainAppPath() + 'ColossusBets/BetDetails?' + params, title, 1120, 800);
         }
+
+        public ShowSingleMatchParlayDetail = (transId: string, custId: string, status: string, transIndex: string) => {
+            const params = "&TransactionId=" + transId
+                + "&CustomerId=" + custId
+                + "&Status=" + status;
+
+            const url = Common.AppPath.BetListAppPath() + 'BetBuilder/ViewDetail?' + params;
+            this.showSingleMatchParlyTickets(transId, url, transIndex);
+        }
+
+        private showSingleMatchParlyTickets = (transId: string, url: string, transIndex: string) => {
+            const ticketsContent: JQuery = $('#divEvent_' + transId + transIndex);
+
+            if (ticketsContent.html() === '') {
+                const getSingleMatchParlaySetting: JQueryAjaxSettings = {
+                    method: 'GET',
+                    url: url,
+                    beforeSend: () => {
+                        const blockIconContent = '<span class="block-icon-small"></span>';
+                        ticketsContent.html(blockIconContent);
+                        ticketsContent.show();
+                    },
+                    success: (responseHtml) => {
+                        ticketsContent.html(responseHtml);                        
+                    },
+                }
+
+                $.ajax(getSingleMatchParlaySetting);
+            }
+            else {
+                if (ticketsContent.is(':visible')) {
+                    ticketsContent.hide();
+                }
+                else {
+                    ticketsContent.show();                    
+                }
+            }
+        }
     }
 
     export class ParlayTicketDetails extends BaseTicketDetails {
@@ -107,7 +145,7 @@
                     }
                 }
             }
-        }
+        }        
     }
 }
 
@@ -116,6 +154,7 @@ let showCombMPDetail: Function;
 let showCombMP: Function;
 let showNewCombMP: Function;
 let showColossusBetsDetails: Function
+let showSingleMatchParlayDetail: Function
 
 $(document).ready(() => {
     showMP = BetList.Choice.TicketDetails.ParlayTicketDetails.Instance.ShowMixParlayTickets;
@@ -123,4 +162,5 @@ $(document).ready(() => {
     showCombMP = BetList.Choice.TicketDetails.ParlayTicketDetails.Instance.ShowComboParlayOldTickets;
     showNewCombMP = BetList.Choice.TicketDetails.ParlayTicketDetails.Instance.ShowComboParlayNewTickets;
     showColossusBetsDetails = BetList.Choice.TicketDetails.SportsbookTicketDetails.Instance.ShowColossusBetsDetails;
+    showSingleMatchParlayDetail = BetList.Choice.TicketDetails.SportsbookTicketDetails.Instance.ShowSingleMatchParlayDetail;
 })
