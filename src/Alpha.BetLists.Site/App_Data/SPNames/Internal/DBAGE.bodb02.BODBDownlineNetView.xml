@@ -53,7 +53,7 @@
   </Function>
 
   <Function Name="Mix Parlay">
-    <Setting Key="Age_BetList_SelParlayDetail" SpName="Age_BetList_SelParlayDetail" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0">
+    <Setting Key="Age_BetList_SelParlayDetail" SpName="Age_BetList_SelParlayDetail" DbName="DBACC.bodb02.BODBDownlineNetView" Plain="0">
       <Mapping DataField="BetType" ObjectProperty="BetTypeId"></Mapping>
       <Mapping DataField="SportType" ObjectProperty="SportTypeId"></Mapping>
       <Mapping DataField="Hdp1" ObjectProperty="Handicap1"></Mapping>
