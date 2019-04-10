@@ -93,16 +93,16 @@
       <HintPath>..\..\packages\Fanex.BetDetails.Lucky3.1.0.0.1\lib\Fanex.BetDetails.Lucky3.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.BetList.Allbet, Version=1.0.0.9, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.Allbet.1.0.0.9\lib\net40\Fanex.BetList.Allbet.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="EasyNetQ, Version=0.53.6.418, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EasyNetQ.0.53.6.418\lib\net45\EasyNetQ.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.ActivityTracking, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.ActivityTracking.1.0.0.2\lib\net40\Fanex.ActivityTracking.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Fanex.BetList.Allbet, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.Allbet.1.1.0\lib\net40\Fanex.BetList.Allbet.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.BetTrade, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">

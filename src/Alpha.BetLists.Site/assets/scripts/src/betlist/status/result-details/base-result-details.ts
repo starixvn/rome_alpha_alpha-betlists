@@ -44,7 +44,7 @@
                 return this.macauGamesResult;
             }
 
-            if (betTypeId >= 2401 && betTypeId <= 2405) {
+            if (betTypeId >= 2401 && betTypeId <= 2499) {
                 this.allbetResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.allbetResult) ? new AllbetResultDetails() : this.allbetResult;
                 return this.allbetResult;
             }
