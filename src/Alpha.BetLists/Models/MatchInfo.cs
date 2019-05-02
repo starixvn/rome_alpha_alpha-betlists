@@ -1,4 +1,6 @@
-﻿namespace Alpha.BetLists.Models
+﻿using System;
+
+namespace Alpha.BetLists.Models
 {
     public class MatchInfo
     {
@@ -16,8 +18,9 @@
             int awayId,
             string race,
             string showTime,
-            byte settlementStatus)
-            : this(sportType, status, matchId, leagueId, matchCode, homeId, awayId, race, showTime, false, string.Empty, settlementStatus)
+            byte settlementStatus,
+            DateTime eventDate)
+            : this(sportType, status, matchId, leagueId, matchCode, homeId, awayId, race, showTime, false, string.Empty, settlementStatus, eventDate)
         {
         }
 
@@ -33,7 +36,8 @@
             string showTime,
             bool isNeutral,
             string betStatus,
-            byte settlementStatus)
+            byte settlementStatus,
+            DateTime eventDate)
         {
             SportType = sportType;
             Status = status;
@@ -47,6 +51,7 @@
             IsNeutral = isNeutral;
             BetStatus = betStatus;
             SettlementStatus = settlementStatus;
+            EventDate = eventDate;
         }
 
         public int MatchId { get; }
@@ -72,5 +77,7 @@
         public string BetStatus { get; }
 
         public byte SettlementStatus { get; }
+
+        public DateTime EventDate { get; }
     }
 }
