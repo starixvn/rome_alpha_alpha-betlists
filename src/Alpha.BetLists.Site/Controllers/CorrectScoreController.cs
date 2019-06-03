@@ -2,9 +2,9 @@
 {
     using System.Threading.Tasks;
     using System.Web.Mvc;
+    using Alpha.BetLists.Site.ViewModels.CorrectScore;
     using MediatR;
     using Requests.CorrectScore;
-    using ViewModels.CorrectScore;
 
     public class CorrectScoreController : BetListBaseController
     {
