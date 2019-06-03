@@ -10,9 +10,9 @@
     {
         private readonly IBetBuilderService betBuilderService;
 
-        public BetBuilderHandler(IBetBuilderService lucky3Service)
+        public BetBuilderHandler(IBetBuilderService service)
         {
-            this.betBuilderService = lucky3Service;
+            this.betBuilderService = service;
         }
 
         public BetBuilderDetailViewModel Handle(BetBuilderDetailQuery message)
