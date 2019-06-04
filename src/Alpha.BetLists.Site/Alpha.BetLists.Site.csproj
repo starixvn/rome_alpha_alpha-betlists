@@ -85,6 +85,9 @@
     <Reference Include="Fanex.ActivityTracking.Web, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.ActivityTracking.Web.1.0.0.2\lib\net40\Fanex.ActivityTracking.Web.dll</HintPath>
     </Reference>
+    <Reference Include="Fanex.BetDetails.BetBuilder, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetDetails.BetBuilder.1.0.0.1\lib\net461\Fanex.BetDetails.BetBuilder.dll</HintPath>
+    </Reference>
     <Reference Include="Fanex.BetDetails.Casino, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetDetails.Casino.1.0.0.3\lib\net461\Fanex.BetDetails.Casino.dll</HintPath>
       <Private>True</Private>
@@ -106,7 +109,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.BetTrade, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.Core.2.85.0\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
+      <HintPath>..\..\packages\Fanex.BetList.Core.2.86.0\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.Bullfighting, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.Bullfighting.1.2.0\lib\net40\Fanex.BetList.Bullfighting.dll</HintPath>
@@ -120,8 +123,8 @@
       <HintPath>..\..\packages\Fanex.BetList.ColossusBets.1.0.1.8\lib\net40\Fanex.BetList.ColossusBets.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.BetList.Core, Version=2.85.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.Core.2.85.0\lib\net40\Fanex.BetList.Core.dll</HintPath>
+    <Reference Include="Fanex.BetList.Core, Version=2.86.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.Core.2.86.0\lib\net40\Fanex.BetList.Core.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.Core.RemotingRef, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.Core.RemotingRef.1.0.0\lib\net461\Fanex.BetList.Core.RemotingRef.dll</HintPath>
@@ -234,9 +237,8 @@
       <HintPath>..\..\packages\Fanex.Products.1.0.0.5\lib\net461\Fanex.Products.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.RemotingRef, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.RemotingRef.1.3.0\lib\net461\Fanex.RemotingRef.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Fanex.RemotingRef, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.RemotingRef.1.4.0\lib\net461\Fanex.RemotingRef.dll</HintPath>
     </Reference>
     <Reference Include="IBCFile, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.File.1.0.0\lib\net40\IBCFile.dll</HintPath>
@@ -246,9 +248,8 @@
       <HintPath>..\..\packages\MediatR.3.0.1\lib\net45\MediatR.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MessagePack, Version=1.7.3.4, Culture=neutral, PublicKeyToken=b4a0369545f0a1be, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\MessagePack.1.7.3.4\lib\net45\MessagePack.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="MessagePack, Version=1.7.3.7, Culture=neutral, PublicKeyToken=b4a0369545f0a1be, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MessagePack.1.7.3.7\lib\net45\MessagePack.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
@@ -863,6 +864,7 @@
     <Content Include="tsconfig.json" />
     <Content Include="Views\BullfightingByMatch\Index.cshtml" />
     <Content Include="Views\JackpotDetails\Index.cshtml" />
+    <Content Include="Views\BetBuilder\ViewDetail.cshtml" />
     <None Include="Web.AppSettings.auto.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </None>
@@ -884,6 +886,7 @@
     <Compile Include="Controllers\CancelledBetController.cs" />
     <Compile Include="Controllers\DailyStatementController.cs" />
     <Compile Include="Controllers\JackpotDetailsController.cs" />
+    <Compile Include="Controllers\BetBuilderController.cs" />
     <Compile Include="Controllers\Lucky3Controller.cs" />
     <Compile Include="Controllers\CombinationMixParlayController.cs" />
     <Compile Include="Controllers\CorrectScoreController.cs" />
@@ -904,6 +907,8 @@
     <Compile Include="Handlers\BullfightingByMatch\BullfightingByMatchHandler.cs" />
     <Compile Include="Handlers\JackpotDetails\JackpotDetailsExcelHandler.cs" />
     <Compile Include="Handlers\JackpotDetails\JackpotDetailsHandler.cs" />
+    <Compile Include="Handlers\BetBuilder\BetBuilderHandler.cs" />
+    <Compile Include="Requests\BetBuilder\BetBuilderDetailQuery.cs" />
     <Compile Include="Requests\CasinoDetails\CasinoDetailsExcelQuery.cs" />
     <Compile Include="Requests\CasinoDetails\CasinoDetailsQuery.cs" />
     <Compile Include="Handlers\BetListByBetType\BetListByBetTypeHandler.cs" />
@@ -1101,6 +1106,7 @@
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\SonarAnalyzer.CSharp.dll" />
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\SonarAnalyzer.dll" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

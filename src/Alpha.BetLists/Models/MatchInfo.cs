@@ -2,6 +2,8 @@
 
 namespace Alpha.BetLists.Models
 {
+    using System;
+
     public class MatchInfo
     {
         public MatchInfo()

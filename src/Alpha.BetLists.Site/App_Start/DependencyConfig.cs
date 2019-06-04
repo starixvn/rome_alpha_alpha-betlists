@@ -9,6 +9,8 @@
     using Configurations;
     using Controllers;
     using DataAccesses;
+    using Fanex.BetDetails.BetBuilder.DataAccesses;
+    using Fanex.BetDetails.BetBuilder.Services;
     using Fanex.BetDetails.Casino.DataAccesses;
     using Fanex.BetDetails.Casino.Services;
     using Fanex.BetDetails.Lucky3.DataAccesses;
@@ -113,6 +115,7 @@
 
             container.Register<ISmartPunterDataAccess, SmartPunterDataAccess>(Lifestyle.Singleton);
             container.Register<ILucky3DataAccess, Lucky3DataAccess>(Lifestyle.Singleton);
+            container.Register<IBetBuilderDataAccess, BetBuilderDataAccess>(Lifestyle.Singleton);
             container.Register<ICasinoDetailsDataAccess, CasinoDetailsDataAccess>(Lifestyle.Singleton);
             container.Register<ProductDataAccess, ProductDataAccessImpl>(Lifestyle.Singleton);
         }
@@ -137,6 +140,7 @@
             container.Register<ParlayWinLossByMatchService, ParlayWinLossByMatchServiceImpl>(Lifestyle.Singleton);
             container.Register<RunningBetListService, RunningBetListServiceImpl>(Lifestyle.Singleton);
             container.Register<ILucky3Service, Lucky3Service>(Lifestyle.Singleton);
+            container.Register<IBetBuilderService, BetBuilderService>(Lifestyle.Singleton);
 
             container.Register<LastBetsService, LastBetsServiceImpl>(Lifestyle.Singleton);
             container.Register<EncryptionService, EncryptionServiceImpl>(Lifestyle.Singleton);

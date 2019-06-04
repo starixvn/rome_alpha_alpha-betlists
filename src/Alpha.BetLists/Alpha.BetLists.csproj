@@ -50,6 +50,9 @@
       <HintPath>..\..\packages\Dapper.1.50.2\lib\net451\Dapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Fanex.BetDetails.BetBuilder, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetDetails.BetBuilder.1.0.0.1\lib\net461\Fanex.BetDetails.BetBuilder.dll</HintPath>
+    </Reference>
     <Reference Include="Fanex.BetDetails.Casino, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetDetails.Casino.1.0.0.3\lib\net461\Fanex.BetDetails.Casino.dll</HintPath>
       <Private>True</Private>
@@ -59,10 +62,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.BetTrade, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.Core.2.85.0\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
+      <HintPath>..\..\packages\Fanex.BetList.Core.2.86.0\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.BetList.Core, Version=2.85.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.Core.2.85.0\lib\net40\Fanex.BetList.Core.dll</HintPath>
+    <Reference Include="Fanex.BetList.Core, Version=2.86.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.Core.2.86.0\lib\net40\Fanex.BetList.Core.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.NumberGame, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.NumberGame.1.2.0\lib\net40\Fanex.BetList.NumberGame.dll</HintPath>
@@ -92,17 +95,15 @@
       <HintPath>..\..\packages\Fanex.Products.1.0.0.5\lib\net461\Fanex.Products.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.RemotingRef, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.RemotingRef.1.3.0\lib\net461\Fanex.RemotingRef.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Fanex.RemotingRef, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.RemotingRef.1.4.0\lib\net461\Fanex.RemotingRef.dll</HintPath>
     </Reference>
     <Reference Include="IBCFile, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.File.1.0.0\lib\net40\IBCFile.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MessagePack, Version=1.7.3.4, Culture=neutral, PublicKeyToken=b4a0369545f0a1be, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\MessagePack.1.7.3.4\lib\net45\MessagePack.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="MessagePack, Version=1.7.3.7, Culture=neutral, PublicKeyToken=b4a0369545f0a1be, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MessagePack.1.7.3.7\lib\net45\MessagePack.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EnterpriseLibrary.Common.5.0.414.0\lib\net40\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
@@ -223,6 +224,7 @@
     <Compile Include="Constants\TicketStatusIdConstants.cs" />
     <Compile Include="Constants\ProductIdConstants.cs" />
     <Compile Include="Constants\BetTypeIdConstants.cs" />
+    <Compile Include="Criteria\BetBuilder\GetBetBuilderDetailCriteria.cs" />
     <Compile Include="Criteria\DailyStatement\GetAllBetListByDayCriteria.cs" />
     <Compile Include="Criteria\DailyStatement\GetAllBetListByDayOldCriteria.cs" />
     <Compile Include="Criteria\CancelledBet\GetCancelledBetCriteria.cs" />
@@ -260,6 +262,7 @@
     <Compile Include="Criteria\WinLoss\GetBetListWinLossByDateOldCriteria.cs" />
     <Compile Include="Criteria\GetProductsByGroupHeadlineCriteria.cs" />
     <Compile Include="DataAccesses\CasinoDetailsDataAccess.cs" />
+    <Compile Include="DataAccesses\BetBuilderDataAccess.cs" />
     <Compile Include="DataAccesses\Lucky3DataAccess.cs" />
     <Compile Include="DataAccesses\ProductDataAccess.cs" />
     <Compile Include="DataAccesses\SmartPunterDataAccess.cs" />
