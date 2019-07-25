@@ -59,7 +59,7 @@
                 return this.ppResult;
             }
 
-            if (1401 <= betTypeId && betTypeId <= 1499) {
+            if ((1401 <= betTypeId && betTypeId <= 1499) || betTypeId >= 1901 && betTypeId <= 1999) {
                 this.pokerGamesResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.pokerGamesResult) ? new PokerGamesResultDetails() : this.pokerGamesResult;
                 return this.pokerGamesResult;
             }

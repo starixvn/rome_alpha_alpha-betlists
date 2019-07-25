@@ -10,13 +10,11 @@
             string productIds,
             DateTime fromDate,
             DateTime toDate,
-            string language,
             string userName)
         {
             CustId = custId;
             FromDate = fromDate;
             ToDate = toDate;
-            Language = language;
             UserName = userName;
             ProductIds = productIds;
         }
@@ -26,8 +24,6 @@
         public DateTime FromDate { get; }
 
         public DateTime ToDate { get; }
-
-        public string Language { get; }
 
         public string UserName { get; }
 

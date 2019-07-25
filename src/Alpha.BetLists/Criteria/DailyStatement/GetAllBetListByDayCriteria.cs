@@ -10,14 +10,12 @@
             int custId,
             DateTime winLossDate,
             DateTime moveBetsDate,
-            int transType,
-            string language)
+            int transType)
         {
             CustId = custId;
             WinLossDate = winLossDate;
             MoveBetsDate = moveBetsDate;
             TransType = transType;
-            Language = language;
         }
 
         public int CustId { get; }
@@ -29,8 +27,6 @@
         public DateTime MoveBetsDate { get; }
 
         public int TransType { get; }
-
-        public string Language { get; }
 
         public override string GetSettingKey() => "Age_BetList_SelByDayAll_Mem";
 

@@ -67,8 +67,7 @@
                             param.ProductIds.JoinWithComma(),
                             fromDate,
                             param.ToDate,
-                            reportDateService.GetMoveBetsDay(),
-                            param.Language));
+                            reportDateService.GetMoveBetsDay()));
 
         private async Task<Tuple<IEnumerable<TicketDto>, IEnumerable<TicketData>>> GetBetListBeforeBalanceUpDay(WinLossParam param, DateTime fromDate, DateTime toDate)
             => await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(
