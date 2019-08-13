@@ -37,7 +37,6 @@
                 parameter.PageSize,
                 parameter.PageIndex);
             var betListDataTuple = await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
-
             return new PagedReportData<BetListData>(
                 new List<BetListData>
                 {
