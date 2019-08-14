@@ -17,7 +17,8 @@
             BetStatus.Running,
             BetStatus.Waiting,
             BetStatus.Void,
-            BetStatus.Reject
+            BetStatus.Reject,
+            BetStatus.Pending
         };
 
         private readonly DailyStatementQuery query;

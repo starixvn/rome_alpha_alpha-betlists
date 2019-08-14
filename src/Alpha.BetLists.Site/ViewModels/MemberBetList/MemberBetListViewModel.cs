@@ -22,7 +22,8 @@
             BetStatus.Running,
             BetStatus.Waiting,
             BetStatus.Void,
-            BetStatus.Reject
+            BetStatus.Reject,
+            BetStatus.Pending
         };
 
         public static readonly IEnumerable<string> RangeOptions = new List<string>
