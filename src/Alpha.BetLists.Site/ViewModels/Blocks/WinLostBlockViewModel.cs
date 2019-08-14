@@ -41,6 +41,7 @@
             {
                 case BetStatus.Running:
                 case BetStatus.Waiting:
+                case BetStatus.Pending:
                     WinLost = "-";
                     Comm = string.Empty;
                     break;
