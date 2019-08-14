@@ -4,6 +4,7 @@
     using System.Linq;
     using AppResources;
     using BetLists.Models.Parlay;
+    using Fanex.BetList.Core.App_GlobalResources;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Utils;
 
@@ -18,7 +19,8 @@
             { BetStatus.Draw, Resources.draw },
             { BetStatus.Waiting, Resources.waiting },
             { BetStatus.Void, Resources.Void },
-            { BetStatus.Refund, Resources.refund }
+            { BetStatus.Refund, Resources.refund },
+            { BetStatus.Pending, CoreBetList.pending }
         };
 
         public ComboParlayDetailWrapper(
