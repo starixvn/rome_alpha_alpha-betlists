@@ -226,7 +226,7 @@
     <value>การเดิมพันที่ยังไม่สิ้นสุด</value>
   </data>
   <data name="BetlistRunning" xml:space="preserve">
-    <value>รายการการเดิมพัน ( ที่กำลังแข่ง )</value>
+    <value>รายการการเดิมพัน ( ยอมรับการวางเดิมพันแล้ว )</value>
   </data>
   <data name="Today" xml:space="preserve">
     <value>วันนี้</value>
@@ -290,7 +290,7 @@
   </data>
   <data name="WinLossRoundNote" xml:space="preserve">
     <value>ยอดได้เสียปัดเศษใช้เป็นข้อมูลอ้างอิงเท่านั้น ดังนั้น ผลรวมยอดได้เสียทั้งหมดที่เกิดขึ้นจริงอาจจะแตกจากจำนวนยอดปัดเศษ</value>
-    </data>
+  </data>
   <data name="Bets" xml:space="preserve">
     <value>bets</value>
   </data>

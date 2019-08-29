@@ -208,7 +208,7 @@
     <value>Đang Chờ</value>
   </data>
   <data name="voided" xml:space="preserve">
-    <value>Hủy bỏ</value>
+    <value>Hủy</value>
   </data>
   <data name="losingtickets" xml:space="preserve">
     <value>Tổng các Cược bị thua</value>
@@ -362,7 +362,7 @@
     <value>PT của Super/ Hoa hồng</value>
   </data>
   <data name="Void" xml:space="preserve">
-    <value>Hủy bỏ</value>
+    <value>Hủy</value>
   </data>
   <data name="rejected" xml:space="preserve">
     <value>Từ chối</value>
