@@ -187,7 +187,7 @@
     <value>進行中</value>
   </data>
   <data name="reject" xml:space="preserve">
-    <value>取消</value>
+    <value>已取消</value>
   </data>
   <data name="refund" xml:space="preserve">
     <value>退款</value>
@@ -309,7 +309,7 @@
     <value>導出到Excel</value>
   </data>
   <data name="VoidAndReject" xml:space="preserve">
-    <value>作廢/已刪除/退還 注單</value>
+    <value>作廢/已取消/退還 注單</value>
   </data>
   <data name="CancelledBet" xml:space="preserve">
     <value>已刪除/作廢注單</value>
@@ -369,7 +369,7 @@
     <value>作廢</value>
   </data>
   <data name="rejected" xml:space="preserve">
-    <value>已刪除</value>
+    <value>已取消</value>
   </data>
   <data name="refunded" xml:space="preserve">
     <value>退還</value>

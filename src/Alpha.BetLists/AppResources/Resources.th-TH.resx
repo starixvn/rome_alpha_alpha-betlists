@@ -184,7 +184,7 @@
     <value>รายการการวางเดิมพันของสมาชิก</value>
   </data>
   <data name="running" xml:space="preserve">
-    <value>กำลังแข่งขัน</value>
+    <value>ยอมรับการวางเดิมพันแล้ว</value>
   </data>
   <data name="reject" xml:space="preserve">
     <value>ปฏิเสธ</value>
@@ -202,7 +202,7 @@
     <value>เสมอ</value>
   </data>
   <data name="waiting" xml:space="preserve">
-    <value>รอ</value>
+    <value>กำลังรอ</value>
   </data>
   <data name="voided" xml:space="preserve">
     <value>โมฆะ</value>
@@ -226,7 +226,7 @@
     <value>การเดิมพันที่ยังไม่สิ้นสุด</value>
   </data>
   <data name="BetlistRunning" xml:space="preserve">
-    <value>รายการการเดิมพัน ( ที่กำลังแข่ง )</value>
+    <value>รายการการเดิมพัน ( ยอมรับการวางเดิมพันแล้ว )</value>
   </data>
   <data name="Today" xml:space="preserve">
     <value>วันนี้</value>
@@ -290,7 +290,7 @@
   </data>
   <data name="WinLossRoundNote" xml:space="preserve">
     <value>ยอดได้เสียปัดเศษใช้เป็นข้อมูลอ้างอิงเท่านั้น ดังนั้น ผลรวมยอดได้เสียทั้งหมดที่เกิดขึ้นจริงอาจจะแตกจากจำนวนยอดปัดเศษ</value>
-    </data>
+  </data>
   <data name="Bets" xml:space="preserve">
     <value>bets</value>
   </data>
