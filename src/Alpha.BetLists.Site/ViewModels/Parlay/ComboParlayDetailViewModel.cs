@@ -12,6 +12,17 @@
 
     public class ComboParlayDetailViewModel
     {
+        private readonly Dictionary<string, int> statusOrder = new Dictionary<string, int>
+        {
+            { string.Empty, 0 },
+            { BetStatus.Won, 1 },
+            { BetStatus.Lose, 2 },
+            { BetStatus.Draw, 3 },
+            { BetStatus.Void, 4 },
+            { BetStatus.Reject, 5 },
+            { BetStatus.Refund, 6 }
+        };
+
         public ComboParlayDetailViewModel(
             ComboParlayDetailQuery query,
             ComboParlayDetailData comboParlayDetailData,
@@ -30,6 +41,7 @@
             if (allowInitializingData)
             {
                 ComboParlayDetailWrappers = new List<ComboParlayDetailWrapper>(comboParlayDetailData.ComboParlayDetails
+                        .OrderBy(i => statusOrder[i.Status.ToLower()])
                         .Select(d => new ComboParlayDetailWrapper(d, comboParlayDetailData.MatchDetails, ticketHelper)));
                 ComboParlayDetailWrapperGroups = ComboParlayDetailWrappers.GroupBy(w => w.WinLostDate);
 
