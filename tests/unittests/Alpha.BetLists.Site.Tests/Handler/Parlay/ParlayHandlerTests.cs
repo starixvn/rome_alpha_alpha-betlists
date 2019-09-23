@@ -29,7 +29,8 @@
                 betListFixture.HtmlBuilder,
                 betListFixture.TicketHelper,
                 betListFixture.MonitorService,
-                betListFixture.IpService);
+                betListFixture.IpService,
+                betListFixture.BrowserHelper);
 
             comparer = new CompareLogic(new ComparisonConfig
             {
@@ -129,7 +130,8 @@
             var expectedViewModel = new ComboParlayDetailViewModel(
                 query,
                 BetListDataTest.ComboParlayDetailData,
-                betListFixture.TicketHelper);
+                betListFixture.TicketHelper,
+                false);
 
             // Act
             var actualViewModel = parlayHandler.Handle(query).GetAwaiter().GetResult();

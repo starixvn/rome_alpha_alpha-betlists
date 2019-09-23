@@ -815,6 +815,7 @@
     <Content Include="Views\BullfightingByMatch\Index.cshtml" />
     <Content Include="Views\JackpotDetails\Index.cshtml" />
     <Content Include="Views\BetBuilder\ViewDetail.cshtml" />
+    <Content Include="Views\Parlay\ComboParlayDetailMobile.cshtml" />
     <None Include="Web.AppSettings.auto.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </None>
@@ -858,6 +859,7 @@
     <Compile Include="Handlers\JackpotDetails\JackpotDetailsExcelHandler.cs" />
     <Compile Include="Handlers\JackpotDetails\JackpotDetailsHandler.cs" />
     <Compile Include="Handlers\BetBuilder\BetBuilderHandler.cs" />
+    <Compile Include="Helpers\BrowserHelper.cs" />
     <Compile Include="Requests\BetBuilder\BetBuilderDetailQuery.cs" />
     <Compile Include="Requests\CasinoDetails\CasinoDetailsExcelQuery.cs" />
     <Compile Include="Requests\CasinoDetails\CasinoDetailsQuery.cs" />

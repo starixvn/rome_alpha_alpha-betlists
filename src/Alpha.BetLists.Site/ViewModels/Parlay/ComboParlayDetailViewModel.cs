@@ -27,6 +27,7 @@
             ComboParlayDetailQuery query,
             ComboParlayDetailData comboParlayDetailData,
             ITicketHelper ticketHelper,
+            bool isMobile,
             bool isExportingExcel = false)
         {
             IsDataTooHuge = comboParlayDetailData.ComboParlayDetails.Count() > 5000;
@@ -41,7 +42,7 @@
             if (allowInitializingData)
             {
                 ComboParlayDetailWrappers = new List<ComboParlayDetailWrapper>(comboParlayDetailData.ComboParlayDetails
-                        .OrderBy(i => statusOrder[i.Status.ToLower()])
+                        .OrderBy(i => statusOrder[i.Status.ToLowerInvariant()])
                         .Select(d => new ComboParlayDetailWrapper(d, comboParlayDetailData.MatchDetails, ticketHelper)));
                 ComboParlayDetailWrapperGroups = ComboParlayDetailWrappers.GroupBy(w => w.WinLostDate).OrderBy(i => i.Key);
 
@@ -49,7 +50,11 @@
                 TotalWinLost = ConvertByBetType.Winloss(comboParlayDetailData.ComboParlayDetails.Sum(d => d.WinLost + d.PlayerComm));
                 IsRunningTicket = !comboParlayDetailData.ComboParlayDetails.Any();
             }
+
+            IsMobile = isMobile;
         }
+
+        public bool IsMobile { get; }
 
         public ComboParlayDetailQuery Query { get; }
 

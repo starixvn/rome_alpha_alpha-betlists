@@ -1,5 +1,6 @@
 ﻿namespace Alpha.BetLists.Site.Tests.Fixtures
 {
+    using Alpha.BetLists.Site.Helpers;
     using BetLists.Models;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
@@ -13,6 +14,7 @@
     {
         public BetListFixture()
         {
+            BrowserHelper = Substitute.For<BrowserHelper>();
             HtmlBuilder = Substitute.For<IBetListHTMLBuilder>();
             ExcelBuilder = Substitute.For<IBetListExcelBuilder>();
             TicketHelper = Substitute.For<ITicketHelper>();
@@ -37,6 +39,8 @@
         public RTFHelper RtfHelper { get; internal set; }
 
         public ISmartPunterBetListMonitor MonitorService { get; }
+
+        public BrowserHelper BrowserHelper { get; }
 
         public IPService IpService { get; }
 
