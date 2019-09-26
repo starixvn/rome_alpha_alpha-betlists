@@ -12,10 +12,22 @@
 
     public class ComboParlayDetailViewModel
     {
+        private readonly Dictionary<string, int> statusOrder = new Dictionary<string, int>
+        {
+            { string.Empty, 0 },
+            { BetStatus.Won, 1 },
+            { BetStatus.Lose, 2 },
+            { BetStatus.Draw, 3 },
+            { BetStatus.Void, 4 },
+            { BetStatus.Reject, 5 },
+            { BetStatus.Refund, 6 }
+        };
+
         public ComboParlayDetailViewModel(
             ComboParlayDetailQuery query,
             ComboParlayDetailData comboParlayDetailData,
             ITicketHelper ticketHelper,
+            bool isMobile,
             bool isExportingExcel = false)
         {
             IsDataTooHuge = comboParlayDetailData.ComboParlayDetails.Count() > 5000;
@@ -30,14 +42,19 @@
             if (allowInitializingData)
             {
                 ComboParlayDetailWrappers = new List<ComboParlayDetailWrapper>(comboParlayDetailData.ComboParlayDetails
+                        .OrderBy(i => statusOrder[i.Status.ToLowerInvariant()])
                         .Select(d => new ComboParlayDetailWrapper(d, comboParlayDetailData.MatchDetails, ticketHelper)));
-                ComboParlayDetailWrapperGroups = ComboParlayDetailWrappers.GroupBy(w => w.WinLostDate);
+                ComboParlayDetailWrapperGroups = ComboParlayDetailWrappers.GroupBy(w => w.WinLostDate).OrderBy(i => i.Key);
 
                 OutStanding = ConvertByBetType.Stake(comboParlayDetailData.Outstanding);
                 TotalWinLost = ConvertByBetType.Winloss(comboParlayDetailData.ComboParlayDetails.Sum(d => d.WinLost + d.PlayerComm));
                 IsRunningTicket = !comboParlayDetailData.ComboParlayDetails.Any();
             }
+
+            IsMobile = isMobile;
         }
+
+        public bool IsMobile { get; }
 
         public ComboParlayDetailQuery Query { get; }
 

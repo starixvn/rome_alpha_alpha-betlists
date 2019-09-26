@@ -1,6 +1,7 @@
 ﻿namespace Alpha.BetLists.Site.Handlers.Parlay
 {
     using System.Threading.Tasks;
+    using Alpha.BetLists.Site.Helpers;
     using BetLists.Models;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
@@ -17,16 +18,19 @@
         IAsyncRequestHandler<ComboParlayDetailQuery, ComboParlayDetailViewModel>
     {
         private readonly ParlayService parlayService;
+        private readonly BrowserHelper browserHelper;
 
         public ParlayHandler(
             ParlayService parlayService,
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper,
             ISmartPunterBetListMonitor monitorService,
-            IPService ipService)
+            IPService ipService,
+            BrowserHelper browserHelper)
             : base(builder, ticketHelper, monitorService, ipService)
         {
             this.parlayService = parlayService;
+            this.browserHelper = browserHelper;
         }
 
         public async Task<MixParlayViewModel> Handle(MixParlayQuery message)
@@ -52,7 +56,7 @@
                           message.CustId,
                           message.Language);
 
-            return new ComboParlayDetailViewModel(message, comboParlayDetailData, TicketHelper, isExportingExcel: false);
+            return new ComboParlayDetailViewModel(message, comboParlayDetailData, TicketHelper, browserHelper.IsMobile(false), isExportingExcel: false);
         }
     }
 }

@@ -37,7 +37,7 @@
         public void Query_Always_SetInCtor()
         {
             // Act
-            var viewModel = new ComboParlayDetailViewModel(query, BetListDataTest.ComboParlayDetailData, ticketHelper);
+            var viewModel = new ComboParlayDetailViewModel(query, BetListDataTest.ComboParlayDetailData, ticketHelper, false);
 
             // Assert
             Assert.Equal(query, viewModel.Query);
@@ -51,7 +51,7 @@
                     .Select(d => new ComboParlayDetailWrapper(d, BetListDataTest.MatchDetails, ticketHelper)));
 
             // Act
-            var viewModel = new ComboParlayDetailViewModel(query, BetListDataTest.ComboParlayDetailData, ticketHelper);
+            var viewModel = new ComboParlayDetailViewModel(query, BetListDataTest.ComboParlayDetailData, ticketHelper, false);
 
             // Assert
             Assert.True(comparer.Compare(comboParlayDetailWrappers, viewModel.ComboParlayDetailWrappers).AreEqual);
@@ -66,7 +66,7 @@
             var comboParlayDetailWrapperGroups = comboParlayDetailWrappers.GroupBy(w => w.WinLostDate);
 
             // Act
-            var viewModel = new ComboParlayDetailViewModel(query, BetListDataTest.ComboParlayDetailData, ticketHelper);
+            var viewModel = new ComboParlayDetailViewModel(query, BetListDataTest.ComboParlayDetailData, ticketHelper, false);
 
             // Assert
             Assert.True(comparer.Compare(comboParlayDetailWrapperGroups, viewModel.ComboParlayDetailWrapperGroups).AreEqual);
@@ -79,7 +79,7 @@
             var expectedTotalWinLost = ConvertByBetType.Winloss(BetListDataTest.ComboParlayDetails.Sum(d => d.WinLost + d.PlayerComm));
 
             // Act
-            var viewModel = new ComboParlayDetailViewModel(query, BetListDataTest.ComboParlayDetailData, ticketHelper);
+            var viewModel = new ComboParlayDetailViewModel(query, BetListDataTest.ComboParlayDetailData, ticketHelper, false);
 
             // Assert
             Assert.Equal(expectedTotalWinLost, viewModel.TotalWinLost);
@@ -92,7 +92,7 @@
             var expectedOutStanding = ConvertByBetType.Stake(BetListDataTest.ComboParlayDetailData.Outstanding);
 
             // Act
-            var viewModel = new ComboParlayDetailViewModel(query, BetListDataTest.ComboParlayDetailData, ticketHelper);
+            var viewModel = new ComboParlayDetailViewModel(query, BetListDataTest.ComboParlayDetailData, ticketHelper, false);
 
             // Assert
             Assert.Equal(expectedOutStanding, viewModel.OutStanding);
@@ -106,7 +106,7 @@
             var expectedTitle = Resources.lblSystemParlay;
 
             // Act
-            var viewModel = new ComboParlayDetailViewModel(query, BetListDataTest.ComboParlayDetailData, ticketHelper);
+            var viewModel = new ComboParlayDetailViewModel(query, BetListDataTest.ComboParlayDetailData, ticketHelper, false);
 
             // Assert
             Assert.Equal(expectedTitle, viewModel.Title);
@@ -120,7 +120,7 @@
             var expectedTitle = Resources.lblMixParlay;
 
             // Act
-            var viewModel = new ComboParlayDetailViewModel(query, BetListDataTest.ComboParlayDetailData, ticketHelper);
+            var viewModel = new ComboParlayDetailViewModel(query, BetListDataTest.ComboParlayDetailData, ticketHelper, false);
 
             // Assert
             Assert.Equal(expectedTitle, viewModel.Title);
@@ -134,7 +134,7 @@
             var compoParlayDetailData = new ComboParlayDetailData(comboParlayDetails, BetListDataTest.MatchDetails, 10);
 
             // Act
-            var viewModel = new ComboParlayDetailViewModel(query, compoParlayDetailData, ticketHelper);
+            var viewModel = new ComboParlayDetailViewModel(query, compoParlayDetailData, ticketHelper, false);
 
             // Assert
             Assert.True(viewModel.IsDataTooHuge);
@@ -148,7 +148,7 @@
             var compoParlayDetailData = new ComboParlayDetailData(comboParlayDetails, BetListDataTest.MatchDetails, 10);
 
             // Act
-            var viewModel = new ComboParlayDetailViewModel(query, compoParlayDetailData, ticketHelper);
+            var viewModel = new ComboParlayDetailViewModel(query, compoParlayDetailData, ticketHelper, false);
 
             // Assert
             Assert.False(viewModel.IsDataTooHuge);
@@ -158,7 +158,7 @@
         public void SubTotalWinLost_Always_CalculateFromGroup()
         {
             // Arrange
-            var viewModel = new ComboParlayDetailViewModel(query, BetListDataTest.ComboParlayDetailData, ticketHelper);
+            var viewModel = new ComboParlayDetailViewModel(query, BetListDataTest.ComboParlayDetailData, ticketHelper, false);
             var expectedSubtotalWinLost
                 = ConvertByBetType.Winloss(viewModel.ComboParlayDetailWrappers.Sum(item => item.ComboParlayDetail.WinLost + item.ComboParlayDetail.PlayerComm));
 
@@ -174,7 +174,7 @@
         {
             // Arrange
             var comboParlayDetailsData = new ComboParlayDetailData(new List<ComboParlayDetail>(), new List<MatchDetail>(), 0);
-            var viewModel = new ComboParlayDetailViewModel(query, comboParlayDetailsData, ticketHelper);
+            var viewModel = new ComboParlayDetailViewModel(query, comboParlayDetailsData, ticketHelper, false);
 
             // Act
             var isRunningTicket = viewModel.IsRunningTicket;
@@ -190,7 +190,7 @@
             var comboParlayDetailsData = BetListDataTest.ComboParlayDetailData;
 
             // Act
-            var viewModel = new ComboParlayDetailViewModel(query, comboParlayDetailsData, ticketHelper);
+            var viewModel = new ComboParlayDetailViewModel(query, comboParlayDetailsData, ticketHelper, false);
 
             // Assert
             Assert.True(
@@ -206,7 +206,7 @@
             var comboParlayDetailsData = new ComboParlayDetailData(BetListDataTest.ComboParlayDetailsHuge, BetListDataTest.MatchDetails, 10);
 
             // Act
-            var viewModel = new ComboParlayDetailViewModel(query, comboParlayDetailsData, ticketHelper, isExportingExcel: true);
+            var viewModel = new ComboParlayDetailViewModel(query, comboParlayDetailsData, ticketHelper, false, isExportingExcel: true);
 
             // Assert
             Assert.True(

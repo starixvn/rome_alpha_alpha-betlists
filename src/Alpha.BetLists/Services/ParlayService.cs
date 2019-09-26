@@ -42,8 +42,7 @@
                     betId,
                     custId,
                     reportDateService.GetBalanceUpDay(),
-                    reportDateService.GetMoveBetsDay(),
-                    language);
+                    reportDateService.GetMoveBetsDay());
 
             var comboParlayDetailTuple = await dynamicRepository.FetchMultipleAsync<ComboParlayDetail, MatchDetail>(criteria);
 

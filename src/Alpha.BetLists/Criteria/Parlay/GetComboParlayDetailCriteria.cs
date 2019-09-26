@@ -11,11 +11,9 @@
             long betId,
             int custId,
             DateTime balanceUpDate,
-            DateTime moveBetDate,
-            string language)
+            DateTime moveBetDate)
         {
             TransId = transId;
-            Language = language;
             RefNo = refNo;
             BetId = betId;
             CustId = custId;
@@ -34,8 +32,6 @@
         public DateTime BalanceUpDay { get; }
 
         public DateTime MoveBetDay { get; }
-
-        public string Language { get; }
 
         public decimal Outstanding { get; set; }
 

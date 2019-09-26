@@ -35,7 +35,8 @@
             var comboParlayDetails = new ComboParlayDetailViewModel(
                 query,
                 BetListDataTest.ComboParlayDetailData,
-                betListFixture.TicketHelper);
+                betListFixture.TicketHelper,
+                false);
 
             // Act
             workbook.SetData(comboParlayDetails);

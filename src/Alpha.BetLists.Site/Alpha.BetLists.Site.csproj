@@ -545,6 +545,10 @@
     <Content Include="assets\bundles\last-bets.min.js">
       <DependentUpon>last-bets.js</DependentUpon>
     </Content>
+    <Content Include="assets\bundles\parlay-detail.css" />
+    <Content Include="assets\bundles\parlay-detail.min.css">
+      <DependentUpon>parlay-detail.css</DependentUpon>
+    </Content>
     <Content Include="assets\bundles\running-betlist\running-betlist.js" />
     <Content Include="assets\bundles\running-betlist\running-betlist.min.js">
       <DependentUpon>running-betlist.js</DependentUpon>
@@ -620,6 +624,12 @@
     </Content>
     <Content Include="assets\styles\last-bets.min.css">
       <DependentUpon>last-bets.css</DependentUpon>
+    </Content>
+    <Content Include="assets\styles\parlay-detail.css">
+      <DependentUpon>parlay-detail.scss</DependentUpon>
+    </Content>
+    <Content Include="assets\styles\parlay-detail.min.css">
+      <DependentUpon>parlay-detail.css</DependentUpon>
     </Content>
     <Content Include="Global.asax" />
     <Content Include="App_Data\SPNames\Local\DBARC.bodb_Archive.BODBDownlineNet.xml">
@@ -705,6 +715,7 @@
     <Content Include="App_Data\ExcelTemplates\JackpotDetails\Agent.xls" />
     <Content Include="App_Data\ExcelTemplates\JackpotDetails\Master.xls" />
     <Content Include="App_Code\Components\StatusMultiSelection.cshtml" />
+    <Content Include="assets\styles\parlay-detail.scss" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -804,6 +815,7 @@
     <Content Include="Views\BullfightingByMatch\Index.cshtml" />
     <Content Include="Views\JackpotDetails\Index.cshtml" />
     <Content Include="Views\BetBuilder\ViewDetail.cshtml" />
+    <Content Include="Views\Parlay\ComboParlayDetailMobile.cshtml" />
     <None Include="Web.AppSettings.auto.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </None>
@@ -847,6 +859,7 @@
     <Compile Include="Handlers\JackpotDetails\JackpotDetailsExcelHandler.cs" />
     <Compile Include="Handlers\JackpotDetails\JackpotDetailsHandler.cs" />
     <Compile Include="Handlers\BetBuilder\BetBuilderHandler.cs" />
+    <Compile Include="Helpers\BrowserHelper.cs" />
     <Compile Include="Requests\BetBuilder\BetBuilderDetailQuery.cs" />
     <Compile Include="Requests\CasinoDetails\CasinoDetailsExcelQuery.cs" />
     <Compile Include="Requests\CasinoDetails\CasinoDetailsQuery.cs" />

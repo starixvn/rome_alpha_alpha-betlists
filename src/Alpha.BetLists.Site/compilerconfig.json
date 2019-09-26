@@ -21,6 +21,9 @@
   {
     "outputFile": "assets/styles/bet-details.css",
     "inputFile": "assets/styles/bet-details.scss"
-  }
-
+  },
+  {
+    "outputFile": "assets/styles/parlay-detail.css",
+    "inputFile": "assets/styles/parlay-detail.scss"
+  } 
 ]

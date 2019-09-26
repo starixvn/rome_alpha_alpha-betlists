@@ -96,6 +96,7 @@
                 query,
                 BetListDataTest.ComboParlayDetailData,
                 betListFixture.TicketHelper,
+                false,
                 isExportingExcel: true);
 
             // Act
@@ -114,6 +115,7 @@
                 query,
                 BetListDataTest.ComboParlayDetailData,
                 betListFixture.TicketHelper,
+                false,
                 isExportingExcel: true);
             var details = viewModel.ComboParlayDetailWrappers;
 
@@ -206,7 +208,8 @@
             var viewModel = new ComboParlayDetailViewModel(
                 query,
                 BetListDataTest.ComboParlayDetailData,
-                betListFixture.TicketHelper);
+                betListFixture.TicketHelper,
+                false);
 
             // Act
             parlayExcelHandler.Handle(query).GetAwaiter().GetResult();
@@ -222,7 +225,8 @@
             var viewModel = new ComboParlayDetailViewModel(
                 query,
                 BetListDataTest.ComboParlayDetailData,
-                betListFixture.TicketHelper);
+                betListFixture.TicketHelper,
+                false);
 
             // Act
             parlayExcelHandler.Handle(query).GetAwaiter().GetResult();
@@ -258,7 +262,8 @@
             var viewModel = new ComboParlayDetailViewModel(
                 query,
                 BetListDataTest.ComboParlayDetailData,
-                betListFixture.TicketHelper);
+                betListFixture.TicketHelper,
+                false);
             var expectedViewModel = new ExcelFileViewModel("SystemParlay_Details", BetListDataTest.ExcelFileContent);
 
             // Act

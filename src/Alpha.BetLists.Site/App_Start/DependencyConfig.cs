@@ -122,6 +122,7 @@
 
         private static void RegisterServices(Container container)
         {
+            container.Register<BrowserHelper, BrowserHelperImpl>(Lifestyle.Singleton);
             container.RegisterSingleton<IUserSession, UserSessionExt>();
             container.Register<WinLossService, WinLossServiceImpl>(Lifestyle.Singleton);
             container.Register<ReportDateService, ReportDateServiceImpl>(Lifestyle.Singleton);

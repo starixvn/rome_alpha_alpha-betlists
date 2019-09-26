@@ -19,8 +19,7 @@
                 betId: anyValueCreator.Create<long>(),
                 custId: anyValueCreator.Create<int>(),
                 balanceUpDate: anyValueCreator.Create<DateTime>(),
-                moveBetDate: anyValueCreator.Create<DateTime>(),
-                language: anyValueCreator.Create<string>());
+                moveBetDate: anyValueCreator.Create<DateTime>());
         }
 
         [Fact]

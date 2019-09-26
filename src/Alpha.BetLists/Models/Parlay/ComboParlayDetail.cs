@@ -4,6 +4,11 @@
 
     public class ComboParlayDetail
     {
+        public ComboParlayDetail()
+        {
+
+        }
+
         public ComboParlayDetail(
             DateTime winlostDate,
             long transId,

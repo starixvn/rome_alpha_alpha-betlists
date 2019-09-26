@@ -54,8 +54,7 @@
                 && c.BetId == 1
                 && c.CustId == 1
                 && c.BalanceUpDay == reportDateService.GetBalanceUpDay()
-                && c.MoveBetDay == reportDateService.GetMoveBetsDay()
-                && c.Language == "en")).Returns(BetListDataTest.ComboParlayDetailTuple);
+                && c.MoveBetDay == reportDateService.GetMoveBetsDay())).Returns(BetListDataTest.ComboParlayDetailTuple);
 
             // Act
             var actualData = parlayService.GetComboParlayDetail(123, 0, 1, 1, "en").GetAwaiter().GetResult();
