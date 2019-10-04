@@ -57,10 +57,6 @@
       <HintPath>..\..\packages\Fanex.BetDetails.Casino.1.0.0.3\lib\net461\Fanex.BetDetails.Casino.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.BetDetails.Lucky3, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetDetails.Lucky3.1.0.0.1\lib\Fanex.BetDetails.Lucky3.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Fanex.BetList.BetTrade, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.Core.2.95.0\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
     </Reference>
@@ -149,12 +145,12 @@
       <HintPath>..\..\packages\SPSRemoting.1.0.0\lib\net40\SPSRemoting.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sunplus.Agent.Model.Base, Version=3.0.4.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Sunplus.Agent.Model.Base.3.0.4.1\lib\net461\Sunplus.Agent.Model.Base.dll</HintPath>
+    <Reference Include="Sunplus.Agent.Model.Base, Version=3.0.4.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Sunplus.Agent.Model.Base.3.0.4.4-removeInactiveProducts02\lib\net461\Sunplus.Agent.Model.Base.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sunplus.Agent.Model.Definitions, Version=3.0.2.3, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Sunplus.Agent.Model.Definitions.3.0.2.3\lib\net40\Sunplus.Agent.Model.Definitions.dll</HintPath>
+    <Reference Include="Sunplus.Agent.Model.Definitions, Version=3.0.2.8, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Sunplus.Agent.Model.Definitions.3.0.2.8-removeInactiveProducts02\lib\net40\Sunplus.Agent.Model.Definitions.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Sunplus.Agent.Model.IpFormatter, Version=3.0.0.2, Culture=neutral, processorArchitecture=MSIL">
@@ -239,7 +235,6 @@
     <Compile Include="Criteria\ProgressiveJackpot\GetJackpotDetailsCriteria.cs" />
     <Compile Include="Criteria\MemberBetList\GetBetListAllByDateCriteria.cs" />
     <Compile Include="Criteria\LastBets\GetLastBetsCriteria.cs" />
-    <Compile Include="Criteria\BullfightingByMatch\GetBetListBullfightingByMatchCriteria.cs" />
     <Compile Include="Criteria\RunningBetListByBetTypeAndMatch\GetBetListRunningByBetTypeAndMatchCriteria.cs" />
     <Compile Include="Criteria\RunningBetListByBetType\GetBetListRunningByBetTypeCriteria.cs" />
     <Compile Include="Criteria\LastBets\GetRunningOutrightMatchCriteria.cs" />
@@ -247,7 +242,6 @@
     <Compile Include="Criteria\RunningBetList\GetBetListRunningByDateCriteria.cs" />
     <Compile Include="Criteria\Parlay\GetParlayBetListCriteria.cs" />
     <Compile Include="Criteria\Parlay\GetComboParlayDetailCriteria.cs" />
-    <Compile Include="Criteria\Lucky3\GetLucky3DetailCriteria.cs" />
     <Compile Include="Criteria\SmartPunter\SmartPunterSMACheckerWriteLogCriteria.cs" />
     <Compile Include="Criteria\SmartPunter\SmartPunterWriteLogNoDataCriteria.cs" />
     <Compile Include="Criteria\SmartPunter\SmartPunterWriteLogCriteria.cs" />
@@ -263,7 +257,6 @@
     <Compile Include="Criteria\GetProductsByGroupHeadlineCriteria.cs" />
     <Compile Include="DataAccesses\CasinoDetailsDataAccess.cs" />
     <Compile Include="DataAccesses\BetBuilderDataAccess.cs" />
-    <Compile Include="DataAccesses\Lucky3DataAccess.cs" />
     <Compile Include="DataAccesses\ProductDataAccess.cs" />
     <Compile Include="DataAccesses\SmartPunterDataAccess.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
@@ -292,7 +285,6 @@
     <Compile Include="Params\JackpotDetailsParam.cs" />
     <Compile Include="Params\MemberBetListParam.cs" />
     <Compile Include="Params\CancelledBetParam.cs" />
-    <Compile Include="Params\BullfightingByMatchParam.cs" />
     <Compile Include="Params\RunningBetListByBetTypeAndMatchParam.cs" />
     <Compile Include="Params\RunningBetListByBetTypeParam.cs" />
     <Compile Include="Params\RunningBetListParam.cs" />
@@ -311,7 +303,6 @@
     <Compile Include="Services\IPServiceImpl.cs" />
     <Compile Include="Services\CancelledBetService.cs" />
     <Compile Include="Services\MemberBetListService.cs" />
-    <Compile Include="Services\BullfightingByMatchService.cs" />
     <Compile Include="Services\RunningBetListByBetTypeAndMatchService.cs" />
     <Compile Include="Services\RunningBetListByBetTypeService.cs" />
     <Compile Include="Services\RunningBetListService.cs" />
