@@ -127,7 +127,7 @@
             var detail = new ComboParlayDetail(DateTime.Today, 1, 100, 1, "running", 10, 10, 10, 10);
             var matchDetails = new List<MatchDetail>
             {
-                new MatchDetail(100, 1, 2)
+                new MatchDetail(100, 1, 2, false)
             };
 
             ticketHelper.GetTeamNameById(1).Returns("HomeTeamName");

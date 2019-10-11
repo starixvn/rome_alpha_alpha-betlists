@@ -184,23 +184,6 @@
             Assert.Equal(ConvertByBetType.Comm(ticket.PlayerComm), viewModel.Comm);
         }
 
-        [Fact]
-        public void CommVisibility_BetTypeIdIs501_IsNotIMBCMatch_ShowValue()
-        {
-            // Arrange
-            var ticket = BetListDataTest.Ticket;
-            ticket.SuperDiscount = 1;
-            ticket.MasterDiscount = 1;
-            ticket.AgentDiscount = 1;
-            ticket.BetTypeId = 501;
-
-            // Act
-            var viewModel = new WinLostBlockViewModel(ticket);
-
-            // Assert
-            Assert.True(!viewModel.CommVisibility);
-        }
-
         [Theory]
         [InlineData(2198)]
         [InlineData(2398)]
@@ -219,20 +202,6 @@
 
             // Assert
             Assert.True(!viewModel.CommVisibility);
-        }
-
-        [Fact]
-        public void CommVisibility_BetTypeIdIsNot501_ShowTrue()
-        {
-            // Arrange
-            var ticket = BetListDataTest.Ticket;
-            ticket.BetTypeId = 1;
-
-            // Act
-            var viewModel = new WinLostBlockViewModel(ticket);
-
-            // Assert
-            Assert.True(viewModel.CommVisibility);
         }
     }
 }
