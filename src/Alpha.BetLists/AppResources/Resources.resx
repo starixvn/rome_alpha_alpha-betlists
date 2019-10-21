@@ -300,9 +300,6 @@
   <data name="ShowFilter" xml:space="preserve">
     <value>Show Filter</value>
   </data>
-  <data name="ColossusBetsPopUpDetailTitle" xml:space="preserve">
-    <value>Ticket details of</value>
-  </data>
   <data name="WinLossRoundNote" xml:space="preserve">
     <value>Win Loss is rounded for reference only. Therefore, Sub Total amount may be different from the sum of Win Loss when it sums all the actual Win Loss amounts.</value>
   </data>

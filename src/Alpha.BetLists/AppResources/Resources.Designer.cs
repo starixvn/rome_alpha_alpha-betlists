@@ -19,7 +19,7 @@ namespace Alpha.BetLists.AppResources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -210,15 +210,6 @@ namespace Alpha.BetLists.AppResources {
         public static string choice {
             get {
                 return ResourceManager.GetString("choice", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Ticket details of.
-        /// </summary>
-        public static string ColossusBetsPopUpDetailTitle {
-            get {
-                return ResourceManager.GetString("ColossusBetsPopUpDetailTitle", resourceCulture);
             }
         }
         

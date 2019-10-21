@@ -25,14 +25,4 @@
             expect(actualValue).toBe('456');
         })
     });
-
-    describe("ColossusBetsPopUpDetailTitle", () => {
-        it("Should Get ColossusBetsPopUpDetailTitle Element Value", () => {
-            // Act
-            let actualValue = BaseTicketDetails.ColossusBetsPopUpDetailTitle();
-
-            // Assert
-            expect(actualValue).toBe('Ticket details of');
-        })
-    })
 })

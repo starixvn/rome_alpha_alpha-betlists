@@ -8,31 +8,6 @@
         popupDetailsShow = spyOn(PopupDetails, "Show").and.callFake(() => { });
     });
 
-    describe("Sportsbook_", () => {
-        it("ShowColossusBetsDetails -> Show Popup Details", () => {
-            // Arrange
-            const refNo = "111";
-            const winLossDate: Date = new Date();
-            const custId = "1";
-            const transId = "2";
-            const eventId = "3";
-            const params = "Refno=" + refNo
-                + "&WinLossDate=" + winLossDate
-                + "&TransId=" + transId
-                + "&CustId=" + custId
-                + "&EventId=" + eventId
-                + "&RoleId=" + 456
-                + "&AccId=" + 123;
-
-            // Act
-            BetList.Choice.TicketDetails.SportsbookTicketDetails.Instance
-                .ShowColossusBetsDetails(refNo, winLossDate, transId, custId, eventId);
-
-            // Assert
-            expect(popupDetailsShow).toHaveBeenCalledWith('old-path/ColossusBets/BetDetails?' + params, "Ticket details of 111", 1120, 800);
-        });
-    })
-
     describe("Parlay_", () => {
         const transId = "12";
         const transIndex = "34";
@@ -208,14 +183,6 @@
 
             // Assert
             expect(showNewCombMP).toBe(showDetailsFunc);
-        })
-
-        it("showColossusBetsDetails -> Assign Correct Show Details Function", () => {
-            // Arrange
-            const showDetailsFunc = BetList.Choice.TicketDetails.SportsbookTicketDetails.Instance.ShowColossusBetsDetails;
-
-            // Assert
-            expect(showColossusBetsDetails).toBe(showDetailsFunc);
         })
     })
 });
