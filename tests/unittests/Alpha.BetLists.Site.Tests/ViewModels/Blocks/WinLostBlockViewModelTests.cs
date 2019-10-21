@@ -222,23 +222,6 @@
         }
 
         [Fact]
-        public void CommVisibility_BetTypeIdIs501_IsIMBCMatch_ShowValue()
-        {
-            // Arrange
-            var ticket = BetListDataTest.Ticket;
-            ticket.SuperDiscount = -1;
-            ticket.MasterDiscount = 1;
-            ticket.AgentDiscount = 1;
-            ticket.BetTypeId = 501;
-
-            // Act
-            var viewModel = new WinLostBlockViewModel(ticket);
-
-            // Assert
-            Assert.False(viewModel.CommVisibility);
-        }
-
-        [Fact]
         public void CommVisibility_BetTypeIdIsNot501_ShowTrue()
         {
             // Arrange
