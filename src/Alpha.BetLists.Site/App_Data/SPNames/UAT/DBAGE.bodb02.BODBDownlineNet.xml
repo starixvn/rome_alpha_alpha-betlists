@@ -505,20 +505,6 @@
       <Mapping DataField="spositiontaking" ObjectProperty="SuperPT" Class="TicketData"></Mapping>
     </Setting>
   </Function>
-  <Function Name="View Bet List Detail Lucky3">
-    <Setting Key="Acc_BetList_Lucky3_Detail" SpName="Acc_BetList_Lucky3_Detail" DbName="DBACC.bodb02.BODBDownlineNet" Plain="0">
-      <Mapping DataField="TransId" ObjectProperty="TransactionId"></Mapping>
-      <Mapping DataField="CustId" ObjectProperty="CustomerId"></Mapping>
-      <Mapping DataField="TransDesc" ObjectProperty="TransactionDescription"></Mapping>
-      <Mapping DataField="sDiscount" ObjectProperty="SuperDiscount"></Mapping>
-      <Mapping DataField="aDiscount" ObjectProperty="MasterDiscount"></Mapping>
-      <Mapping DataField="Discount" ObjectProperty="AgentDiscount"></Mapping>
-      <Mapping DataField="SComm" ObjectProperty="SuperCommission"></Mapping>
-      <Mapping DataField="AComm" ObjectProperty="MasterCommission"></Mapping>
-      <Mapping DataField="Comm" ObjectProperty="AgentCommission"></Mapping>
-    </Setting>
-  </Function>
-
   <Function Name="Casino Details">
     <Setting Key="Acc_BetList_Detail_6" SpName="Acc_BetList_RNG_Detail" DbName="DBACC.bodb02.BODBDownlineNet" Plain="0">
       <Mapping DataField="transid" ObjectProperty="TransId" />

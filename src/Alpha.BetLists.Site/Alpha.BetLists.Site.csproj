@@ -567,12 +567,6 @@
     <Content Include="assets\scripts\tests\libs\shortcut.js" />
     <Content Include="assets\scripts\tests\libs\store.js" />
     <Content Include="assets\scripts\tests\libs\tooltip.js" />
-    <Content Include="assets\styles\bet-details.css">
-      <DependentUpon>bet-details.scss</DependentUpon>
-    </Content>
-    <Content Include="assets\styles\bet-details.min.css">
-      <DependentUpon>bet-details.css</DependentUpon>
-    </Content>
     <Content Include="assets\styles\bet-list.css">
       <DependentUpon>bet-list.scss</DependentUpon>
     </Content>
@@ -664,7 +658,6 @@
     <Content Include="App_Data\ExcelTemplates\CancelledBet\Master.xls" />
     <Content Include="App_Data\ExcelTemplates\CancelledBet\Super.xls" />
     <Content Include="App_Data\activitytracking.json" />
-    <Content Include="assets\styles\bet-details.scss" />
     <Content Include="App_Data\ExcelData\Products.xls" />
     <Content Include="App_Data\ExcelData\RunningBetlist.xls" />
     <Content Include="App_Data\ExcelData\ScoreMaps.xls" />
@@ -966,7 +959,6 @@
   <ItemGroup>
     <TypeScriptCompile Include="assets\scripts\src\casino-detail\casino-detail.ts" />
     <TypeScriptCompile Include="assets\scripts\src\betlist\choice\score-map.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\betlist\choice\ticket-details\numbergame-ticket-details.ts" />
     <TypeScriptCompile Include="assets\scripts\src\betlist\choice\ticket-details\other-ticket-details.ts" />
     <TypeScriptCompile Include="assets\scripts\src\betlist\status\result-details\other-result-details.ts" />
     <TypeScriptCompile Include="assets\scripts\src\cancelled-betlist\cancelled-betlist-constants.ts" />

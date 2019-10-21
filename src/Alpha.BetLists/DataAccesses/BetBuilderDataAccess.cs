@@ -1,7 +1,7 @@
 ﻿namespace Alpha.BetLists.DataAccesses
 {
     using System.Collections.Generic;
-    using Criteria.Lucky3;
+    using Criteria.BetBuilder;
     using Fanex.BetDetails.BetBuilder.Criteria;
     using Fanex.BetDetails.BetBuilder.DataAccesses;
     using Fanex.BetDetails.BetBuilder.Model;
