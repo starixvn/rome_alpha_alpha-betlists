@@ -35,11 +35,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Fanex.BetList.BetTrade, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Fanex.BetList.Core.2.98.0-beta2\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
+      <HintPath>..\..\..\packages\Fanex.BetList.Core.2.98.0-beta3\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.Core, Version=2.98.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Fanex.BetList.Core.2.98.0-beta2\lib\net40\Fanex.BetList.Core.dll</HintPath>
+      <HintPath>..\..\..\packages\Fanex.BetList.Core.2.98.0-beta3\lib\net40\Fanex.BetList.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.NumberGame, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
