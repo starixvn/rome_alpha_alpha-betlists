@@ -10,6 +10,7 @@
         private static macauGamesResult: ResultDetails;
         private static fastMarketsResult: ResultDetails;
         private static ppResult: ResultDetails;
+        private static spadegamingResult: ResultDetails;
         private static pokerGamesResult: ResultDetails;
 
         public static CreateInstance(betTypeId: number): ResultDetails {
@@ -51,6 +52,11 @@
             if (betTypeId >= 4101 && betTypeId <= 4300) {
                 this.ppResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.ppResult) ? new PPResultDetails() : this.ppResult;
                 return this.ppResult;
+            }
+
+            if (betTypeId >= 4301 && betTypeId <= 4326) {
+                this.spadegamingResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.spadegamingResult) ? new SpadegamingResultDetails() : this.spadegamingResult;
+                return this.spadegamingResult;
             }
 
             if (betTypeId >= 1901 && betTypeId <= 1999) {
