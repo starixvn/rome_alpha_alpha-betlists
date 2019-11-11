@@ -55,15 +55,15 @@
       <HintPath>..\..\..\packages\Fanex.BetDetails.BetBuilder.1.0.0.1\lib\net461\Fanex.BetDetails.BetBuilder.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetDetails.Casino, Version=1.0.0.5, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Fanex.BetDetails.Casino.1.0.0.4-removeInactiveProducts01\lib\net461\Fanex.BetDetails.Casino.dll</HintPath>
+      <HintPath>..\..\..\packages\Fanex.BetDetails.Casino.1.0.0.4\lib\net461\Fanex.BetDetails.Casino.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.BetTrade, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Fanex.BetList.Core.2.97.0-beta3\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
+      <HintPath>..\..\..\packages\Fanex.BetList.Core.2.97.0\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.Core, Version=2.97.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Fanex.BetList.Core.2.97.0-beta3\lib\net40\Fanex.BetList.Core.dll</HintPath>
+      <HintPath>..\..\..\packages\Fanex.BetList.Core.2.97.0\lib\net40\Fanex.BetList.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.NumberGame, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -183,11 +183,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Sunplus.Agent.Model.Base, Version=3.0.4.4, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Sunplus.Agent.Model.Base.3.0.4.4-removeInactiveProducts02\lib\net461\Sunplus.Agent.Model.Base.dll</HintPath>
+      <HintPath>..\..\..\packages\Sunplus.Agent.Model.Base.3.0.4.4\lib\net461\Sunplus.Agent.Model.Base.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Sunplus.Agent.Model.Definitions, Version=3.0.2.8, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Sunplus.Agent.Model.Definitions.3.0.2.8-removeInactiveProducts02\lib\net40\Sunplus.Agent.Model.Definitions.dll</HintPath>
+      <HintPath>..\..\..\packages\Sunplus.Agent.Model.Definitions.3.0.2.8\lib\net40\Sunplus.Agent.Model.Definitions.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Sunplus.Agent.Model.IpFormatter, Version=3.0.0.2, Culture=neutral, processorArchitecture=MSIL">
