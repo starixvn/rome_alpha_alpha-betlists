@@ -7,19 +7,6 @@
             return this.instance;
         }
 
-        public ShowColossusBetsDetails = (refNo: string, winlossDate: Date, transId: string, custId: string, eventId: string) => {
-            const params = "Refno=" + refNo
-                + "&WinLossDate=" + winlossDate
-                + "&TransId=" + transId
-                + "&CustId=" + custId
-                + "&EventId=" + eventId
-                + "&RoleId=" + this.ViewerLevelId()
-                + "&AccId=" + this.ViewerId();
-            let title = this.ColossusBetsPopUpDetailTitle() + " " + refNo;
-
-            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.OldMainAppPath() + 'ColossusBets/BetDetails?' + params, title, 1120, 800);
-        }
-
         public ShowSingleMatchParlayDetail = (transId: string, custId: string, status: string, transIndex: string) => {
             const params = "&TransactionId=" + transId
                 + "&CustomerId=" + custId
@@ -153,7 +140,6 @@ let showMP: Function;
 let showCombMPDetail: Function;
 let showCombMP: Function;
 let showNewCombMP: Function;
-let showColossusBetsDetails: Function
 let showSingleMatchParlayDetail: Function
 
 $(document).ready(() => {
@@ -161,6 +147,5 @@ $(document).ready(() => {
     showCombMPDetail = BetList.Choice.TicketDetails.ParlayTicketDetails.Instance.ShowComboParlayDetails;
     showCombMP = BetList.Choice.TicketDetails.ParlayTicketDetails.Instance.ShowComboParlayOldTickets;
     showNewCombMP = BetList.Choice.TicketDetails.ParlayTicketDetails.Instance.ShowComboParlayNewTickets;
-    showColossusBetsDetails = BetList.Choice.TicketDetails.SportsbookTicketDetails.Instance.ShowColossusBetsDetails;
     showSingleMatchParlayDetail = BetList.Choice.TicketDetails.SportsbookTicketDetails.Instance.ShowSingleMatchParlayDetail;
 })

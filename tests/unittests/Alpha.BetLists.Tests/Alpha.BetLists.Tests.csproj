@@ -52,19 +52,17 @@
     <Reference Include="Fanex.BetDetails.BetBuilder, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Fanex.BetDetails.BetBuilder.1.0.0.1\lib\net461\Fanex.BetDetails.BetBuilder.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.BetDetails.Casino, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Fanex.BetDetails.Casino.1.0.0.3\lib\net461\Fanex.BetDetails.Casino.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Fanex.BetDetails.Lucky3, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Fanex.BetDetails.Lucky3.1.0.0.1\lib\Fanex.BetDetails.Lucky3.dll</HintPath>
+    <Reference Include="Fanex.BetDetails.Casino, Version=1.0.0.5, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Fanex.BetDetails.Casino.1.0.0.4\lib\net461\Fanex.BetDetails.Casino.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.BetTrade, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Fanex.BetList.Core.2.95.0\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
+      <HintPath>..\..\..\packages\Fanex.BetList.Core.2.97.0\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.BetList.Core, Version=2.95.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Fanex.BetList.Core.2.95.0\lib\net40\Fanex.BetList.Core.dll</HintPath>
+    <Reference Include="Fanex.BetList.Core, Version=2.97.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Fanex.BetList.Core.2.97.0\lib\net40\Fanex.BetList.Core.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.NumberGame, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Fanex.BetList.NumberGame.1.2.0\lib\net40\Fanex.BetList.NumberGame.dll</HintPath>
@@ -140,12 +138,12 @@
       <HintPath>..\..\..\packages\SPSRemoting.1.0.0\lib\net40\SPSRemoting.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sunplus.Agent.Model.Base, Version=3.0.4.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Sunplus.Agent.Model.Base.3.0.4.1\lib\net461\Sunplus.Agent.Model.Base.dll</HintPath>
+    <Reference Include="Sunplus.Agent.Model.Base, Version=3.0.4.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Sunplus.Agent.Model.Base.3.0.4.4\lib\net461\Sunplus.Agent.Model.Base.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sunplus.Agent.Model.Definitions, Version=3.0.2.3, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Sunplus.Agent.Model.Definitions.3.0.2.3\lib\net40\Sunplus.Agent.Model.Definitions.dll</HintPath>
+    <Reference Include="Sunplus.Agent.Model.Definitions, Version=3.0.2.8, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Sunplus.Agent.Model.Definitions.3.0.2.8\lib\net40\Sunplus.Agent.Model.Definitions.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Sunplus.Agent.Model.IpFormatter, Version=3.0.0.2, Culture=neutral, processorArchitecture=MSIL">
@@ -227,7 +225,6 @@
     <Compile Include="Criteria\LastBets\GetMatchInfoByIdCriteriaTests.cs" />
     <Compile Include="Criteria\ProgressiveJackpot\GetEnableJackpotProductCriteriaTest.cs" />
     <Compile Include="Criteria\ProgressiveJackpot\GetJackpotDetailsCriteriaTests.cs" />
-    <Compile Include="Criteria\Lucky3\GetLucky3DetailCriteriaTests.cs" />
     <Compile Include="Criteria\CasioDetails\GetCasinoDetailsCriteriaTests.cs" />
     <Compile Include="Criteria\DailyStatement\GetAllBetListByDayCriteriaTests.cs" />
     <Compile Include="Criteria\DailyStatement\GetAllBetListByDayOldCriteriaTests.cs" />
@@ -241,7 +238,6 @@
     <Compile Include="Criteria\LastBets\GetRunningOtherMatchCriteriaTests.cs" />
     <Compile Include="Criteria\LastBets\GetRunningOutrightMatchCriteriaTests.cs" />
     <Compile Include="Criteria\MemberBetList\GetBetListAllByDateCriteriaTests.cs" />
-    <Compile Include="Criteria\BullfightingByMatch\GetBetListBullfightingByMatchCriteriaTests.cs" />
     <Compile Include="Criteria\SmartPunter\InternalAdminCheckerCommandTests.cs" />
     <Compile Include="Criteria\SmartPunter\NAPUserPermissionCriteriaTests.cs" />
     <Compile Include="Criteria\SmartPunter\SmartPunterSMACheckerCommandTests.cs" />
@@ -258,7 +254,6 @@
     <Compile Include="Criteria\WinLossByDate\GetBetListWinLossByDateCriteriaTests.cs" />
     <Compile Include="Criteria\WinLossByMatch\GetWinLossOutrightCriteriaTests.cs" />
     <Compile Include="Criteria\WinLossByMatch\GetWinLossRacingCriteriaTests.cs" />
-    <Compile Include="DataAccesses\Lucky3DataAccessTests.cs" />
     <Compile Include="DataAccesses\CasinoDetailsDataAccessTests.cs" />
     <Compile Include="DataAccesses\ProductDataAccessImplTests.cs" />
     <Compile Include="DataAccesses\SmartPunterDataAccessTests.cs" />
@@ -282,7 +277,6 @@
     <Compile Include="Services\JackpotDetailsServiceImplTests.cs" />
     <Compile Include="Services\LastBetsServiceImplTests.cs" />
     <Compile Include="Services\MemberBetListServiceImplTests.cs" />
-    <Compile Include="Services\BullfightingByMatchServiceImplTests.cs" />
     <Compile Include="Services\RunningBetListByBetTypeAndMatchServiceImplTests.cs" />
     <Compile Include="Services\RunningBetListByBetTypeServiceImplTests.cs" />
     <Compile Include="Services\RunningBetListServiceImplTests.cs" />

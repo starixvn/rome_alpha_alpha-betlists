@@ -50,16 +50,17 @@
     <CodeAnalysisRuleSet>Alpha.BetLists.Site.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Alpha.ActivityTracking, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Alpha.ActivityTracking.1.0.0.0\lib\net40\Alpha.ActivityTracking.dll</HintPath>
+    <Reference Include="Alpha.ActivityTracking, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Alpha.ActivityTracking.1.0.0.1\lib\net461\Alpha.ActivityTracking.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Alpha.Auth, Version=3.0.2.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Alpha.Auth.3.0.2.2\lib\net461\Alpha.Auth.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Alpha.Logging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Alpha.Logging.1.0.0-LogIntegrate-09\lib\net461\Alpha.Logging.dll</HintPath>
+    <Reference Include="Alpha.Logging, Version=1.0.1.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Alpha.Logging.1.0.1.1\lib\net461\Alpha.Logging.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Alpha.SmartPunter, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Alpha.SmartPunter.1.0.0.1\lib\net461\Alpha.SmartPunter.dll</HintPath>
@@ -88,44 +89,36 @@
     <Reference Include="EasyNetQ, Version=2.3.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EasyNetQ.2.3.3\lib\net451\EasyNetQ.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.ActivityTracking.Web, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.ActivityTracking.Web.1.0.0.2\lib\net40\Fanex.ActivityTracking.Web.dll</HintPath>
+    <Reference Include="Fanex.ActivityTracking, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.ActivityTracking.1.0.0.3\lib\net40\Fanex.ActivityTracking.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Fanex.ActivityTracking.Web, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.ActivityTracking.Web.1.0.0.3\lib\net40\Fanex.ActivityTracking.Web.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetDetails.BetBuilder, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetDetails.BetBuilder.1.0.0.1\lib\net461\Fanex.BetDetails.BetBuilder.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.BetDetails.Casino, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetDetails.Casino.1.0.0.3\lib\net461\Fanex.BetDetails.Casino.dll</HintPath>
+    <Reference Include="Fanex.BetDetails.Casino, Version=1.0.0.5, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetDetails.Casino.1.0.0.4\lib\net461\Fanex.BetDetails.Casino.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.BetDetails.Lucky3, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetDetails.Lucky3.1.0.0.1\lib\Fanex.BetDetails.Lucky3.dll</HintPath>
+    <Reference Include="Fanex.BetList.Allbet, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.Allbet.1.3.0\lib\net40\Fanex.BetList.Allbet.dll</HintPath>
       <Private>True</Private>
-    </Reference>
-    <Reference Include="Fanex.ActivityTracking, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.ActivityTracking.1.0.0.2\lib\net40\Fanex.ActivityTracking.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Fanex.BetList.Allbet, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.Allbet.1.2.0\lib\net40\Fanex.BetList.Allbet.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.BetTrade, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.Core.2.95.0\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
-    </Reference>
-    <Reference Include="Fanex.BetList.Bullfighting, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.Bullfighting.1.2.0\lib\net40\Fanex.BetList.Bullfighting.dll</HintPath>
+      <HintPath>..\..\packages\Fanex.BetList.Core.2.97.0\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.BetList.CockFighting, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.CockFighting.1.0.1\lib\net40\Fanex.BetList.CockFighting.dll</HintPath>
+    <Reference Include="Fanex.BetList.CardClub, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.CardClub.1.0.0\lib\net40\Fanex.BetList.CardClub.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.BetList.ColossusBets, Version=1.0.1.8, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.ColossusBets.1.0.1.8\lib\net40\Fanex.BetList.ColossusBets.dll</HintPath>
+    <Reference Include="Fanex.BetList.Core, Version=2.97.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.Core.2.97.0\lib\net40\Fanex.BetList.Core.dll</HintPath>
       <Private>True</Private>
-    </Reference>
-    <Reference Include="Fanex.BetList.Core, Version=2.95.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.Core.2.95.0\lib\net40\Fanex.BetList.Core.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.Core.RemotingRef, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.Core.RemotingRef.1.1.0\lib\net461\Fanex.BetList.Core.RemotingRef.dll</HintPath>
@@ -138,8 +131,8 @@
       <HintPath>..\..\packages\Fanex.BetList.GlobalGaming.1.0.0.7\lib\net40\Fanex.BetList.GlobalGaming.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.BetList.GoldDeluxe, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.GoldDeluxe.1.1.0\lib\net40\Fanex.BetList.GoldDeluxe.dll</HintPath>
+    <Reference Include="Fanex.BetList.GoldDeluxe, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.GoldDeluxe.1.2.0\lib\net40\Fanex.BetList.GoldDeluxe.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.Keno, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -149,16 +142,9 @@
       <HintPath>..\..\packages\Fanex.BetList.KenoLottery.1.2.0\lib\net40\Fanex.BetList.KenoLottery.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.BetList.Lucky3, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.Lucky3.1.1.0\lib\net40\Fanex.BetList.Lucky3.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Fanex.BetList.MetricGaming, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.MetricGaming.1.1.0\lib\net40\Fanex.BetList.MetricGaming.dll</HintPath>
       <Private>True</Private>
-    </Reference>
-    <Reference Include="Fanex.BetList.MyanmarOdds, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.MyanmarOdds.1.1.0\lib\net40\Fanex.BetList.MyanmarOdds.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.NG2, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.NG2.1.0.4\lib\net40\Fanex.BetList.NG2.dll</HintPath>
@@ -167,9 +153,6 @@
     <Reference Include="Fanex.BetList.NumberGame, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.NumberGame.1.2.0\lib\net40\Fanex.BetList.NumberGame.dll</HintPath>
       <Private>True</Private>
-    </Reference>
-    <Reference Include="Fanex.BetList.PokerGames, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.PokerGames.1.1.2.0\lib\net40\Fanex.BetList.PokerGames.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.PP, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.PP.1.1.0\lib\net40\Fanex.BetList.PP.dll</HintPath>
@@ -341,12 +324,12 @@
       <HintPath>..\..\packages\SPSRemoting.1.0.0\lib\net40\SPSRemoting.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sunplus.Agent.Model.Base, Version=3.0.4.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Sunplus.Agent.Model.Base.3.0.4.1\lib\net461\Sunplus.Agent.Model.Base.dll</HintPath>
+    <Reference Include="Sunplus.Agent.Model.Base, Version=3.0.4.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Sunplus.Agent.Model.Base.3.0.4.4\lib\net461\Sunplus.Agent.Model.Base.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sunplus.Agent.Model.Definitions, Version=3.0.2.3, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Sunplus.Agent.Model.Definitions.3.0.2.3\lib\net40\Sunplus.Agent.Model.Definitions.dll</HintPath>
+    <Reference Include="Sunplus.Agent.Model.Definitions, Version=3.0.2.8, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Sunplus.Agent.Model.Definitions.3.0.2.8\lib\net40\Sunplus.Agent.Model.Definitions.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Sunplus.Agent.Model.IpFormatter, Version=3.0.0.2, Culture=neutral, processorArchitecture=MSIL">
@@ -585,12 +568,6 @@
     <Content Include="assets\scripts\tests\libs\shortcut.js" />
     <Content Include="assets\scripts\tests\libs\store.js" />
     <Content Include="assets\scripts\tests\libs\tooltip.js" />
-    <Content Include="assets\styles\bet-details.css">
-      <DependentUpon>bet-details.scss</DependentUpon>
-    </Content>
-    <Content Include="assets\styles\bet-details.min.css">
-      <DependentUpon>bet-details.css</DependentUpon>
-    </Content>
     <Content Include="assets\styles\bet-list.css">
       <DependentUpon>bet-list.scss</DependentUpon>
     </Content>
@@ -682,7 +659,6 @@
     <Content Include="App_Data\ExcelTemplates\CancelledBet\Master.xls" />
     <Content Include="App_Data\ExcelTemplates\CancelledBet\Super.xls" />
     <Content Include="App_Data\activitytracking.json" />
-    <Content Include="assets\styles\bet-details.scss" />
     <Content Include="App_Data\ExcelData\Products.xls" />
     <Content Include="App_Data\ExcelData\RunningBetlist.xls" />
     <Content Include="App_Data\ExcelData\ScoreMaps.xls" />
@@ -727,7 +703,6 @@
     <Content Include="Views\Shared\WinLossTable.cshtml" />
     <Content Include="Views\ParlayWinLossByMatch\Index.cshtml" />
     <Content Include="Views\RunningBetList\Index.cshtml" />
-    <Content Include="Views\Lucky3\ViewDetail.cshtml" />
     <Content Include="Views\CancelledBet\Index.cshtml" />
     <Content Include="Views\MemberBetList\Index.cshtml" />
     <Content Include="Views\DailyStatement\Index.cshtml" />
@@ -811,7 +786,6 @@
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
     <Content Include="tsconfig.json" />
-    <Content Include="Views\BullfightingByMatch\Index.cshtml" />
     <Content Include="Views\JackpotDetails\Index.cshtml" />
     <Content Include="Views\BetBuilder\ViewDetail.cshtml" />
     <Content Include="Views\Parlay\ComboParlayDetailMobile.cshtml" />
@@ -837,13 +811,11 @@
     <Compile Include="Controllers\DailyStatementController.cs" />
     <Compile Include="Controllers\JackpotDetailsController.cs" />
     <Compile Include="Controllers\BetBuilderController.cs" />
-    <Compile Include="Controllers\Lucky3Controller.cs" />
     <Compile Include="Controllers\CombinationMixParlayController.cs" />
     <Compile Include="Controllers\CorrectScoreController.cs" />
     <Compile Include="Controllers\MemberBetListController.cs" />
     <Compile Include="Controllers\LastBetsController.cs" />
     <Compile Include="Controllers\CasinoDetailsController.cs" />
-    <Compile Include="Controllers\BullfightingByMatchController.cs" />
     <Compile Include="Controllers\RunningBetListController.cs" />
     <Compile Include="Handlers\BetListByBetTypeAndMatch\BetListByBetTypeAndMatchExcelHandler.cs" />
     <Compile Include="Handlers\BetListByBetTypeAndMatch\BetListByBetTypeAndMatchHandler.cs" />
@@ -853,8 +825,6 @@
     <Compile Include="Handlers\CancelledBet\CancelledBetHandler.cs" />
     <Compile Include="Handlers\CasinoDetails\CasinoDetailsExcelHandler.cs" />
     <Compile Include="Handlers\CasinoDetails\CasinoDetailsHandler.cs" />
-    <Compile Include="Handlers\BullfightingByMatch\BullfightingByMatchExcelHandler.cs" />
-    <Compile Include="Handlers\BullfightingByMatch\BullfightingByMatchHandler.cs" />
     <Compile Include="Handlers\JackpotDetails\JackpotDetailsExcelHandler.cs" />
     <Compile Include="Handlers\JackpotDetails\JackpotDetailsHandler.cs" />
     <Compile Include="Handlers\BetBuilder\BetBuilderHandler.cs" />
@@ -883,7 +853,6 @@
     <Compile Include="Handlers\BetListExcelBaseHandler.cs" />
     <Compile Include="Handlers\BetListBaseHandler.cs" />
     <Compile Include="Handlers\DailyStatement\DailyStatementExcelHandler.cs" />
-    <Compile Include="Handlers\Lucky3\Lucky3Handler.cs" />
     <Compile Include="Handlers\DailyStatement\DailyStatementHandler.cs" />
     <Compile Include="Handlers\MemberBetList\MemberBetListHandler.cs" />
     <Compile Include="Handlers\LastBets\LastBetsHandler.cs" />
@@ -908,15 +877,12 @@
     <Compile Include="Requests\DailyStatement\DailyStatementExcelQuery.cs" />
     <Compile Include="Requests\JackpotDetails\JackpotDetailsExcelQuery.cs" />
     <Compile Include="Requests\JackpotDetails\JackpotDetailsQuery.cs" />
-    <Compile Include="Requests\Lucky3\Lucky3DetailQuery.cs" />
     <Compile Include="Requests\DailyStatement\DailyStatementQuery.cs" />
     <Compile Include="Requests\CombinationMixParlay\CombinationMixParlayExcelQuery.cs" />
     <Compile Include="Requests\CombinationMixParlay\CombinationMixParlayQuery.cs" />
     <Compile Include="Requests\CorrectScore\CorrectScoreExcelQuery.cs" />
     <Compile Include="Requests\CorrectScore\CorrectScoreQuery.cs" />
     <Compile Include="Requests\MemberBetList\MemberBetListQuery.cs" />
-    <Compile Include="Requests\BullfightingByMatch\BullfightingByMatchExcelQuery.cs" />
-    <Compile Include="Requests\BullfightingByMatch\BullfightingByMatchQuery.cs" />
     <Compile Include="Requests\RunningBetList\RunningBetListQuery.cs" />
     <Compile Include="Requests\LastBets\CheckCanViewLastBetsQuery.cs" />
     <Compile Include="Requests\LastBets\GetLastBetsQuery.cs" />
@@ -948,7 +914,6 @@
     <Compile Include="ViewModels\ExcelFileViewModel.cs" />
     <Compile Include="ViewModels\JackpotDetails\JackpotDetailsViewModel.cs" />
     <Compile Include="ViewModels\MemberBetList\MemberBetListViewModel.cs" />
-    <Compile Include="ViewModels\BullfightingByMatch\BullfightingByMatchViewModel.cs" />
     <Compile Include="ViewModels\RunningBetList\RunningBetListViewModel.cs" />
     <Compile Include="ViewModels\LastBets\BetDataViewModel.cs" />
     <Compile Include="ViewModels\LastBets\LastBetsViewModel.cs" />
@@ -995,7 +960,6 @@
   <ItemGroup>
     <TypeScriptCompile Include="assets\scripts\src\casino-detail\casino-detail.ts" />
     <TypeScriptCompile Include="assets\scripts\src\betlist\choice\score-map.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\betlist\choice\ticket-details\numbergame-ticket-details.ts" />
     <TypeScriptCompile Include="assets\scripts\src\betlist\choice\ticket-details\other-ticket-details.ts" />
     <TypeScriptCompile Include="assets\scripts\src\betlist\status\result-details\other-result-details.ts" />
     <TypeScriptCompile Include="assets\scripts\src\cancelled-betlist\cancelled-betlist-constants.ts" />

@@ -96,10 +96,8 @@
                 ProductIdConstants.VirtualSports2,
                 ProductIdConstants.Keno,
                 ProductIdConstants.GoldDeluxe,
-                ProductIdConstants.ColossusBets,
                 ProductIdConstants.NG2,
-                ProductIdConstants.Lottery,
-                ProductIdConstants.Bullfighting
+                ProductIdConstants.Lottery
             };
 
             var allProducts = GetProductsForCustomer(custId, minReportDate).Where(i => supportedProducts.Contains(i.Id));

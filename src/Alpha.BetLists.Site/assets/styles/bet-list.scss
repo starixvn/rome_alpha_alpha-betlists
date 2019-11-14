@@ -426,10 +426,6 @@ div.ticket-list div.void > div.match, div.ticket-list div.void div.firstGoal, di
     color: #484848;
 }
 
-.colossus-bets-details {
-    display: none;
-}
-
 .allbet-bet-id {
     color: #bbb;
 }
@@ -484,35 +480,6 @@ div.ticket-list div.void > div.match, div.ticket-list div.void div.firstGoal, di
     .detail, .ng2-detail, .result {
         display: none;
     }
-}
-.lucky3 {
-    color: #b50000;
-    font-weight: bold !important;
-}
-
-.lucky3 .handicap {
-    display: block;
-}
-
-.lucky3 .num-of-bets {
-    color: #606060;
-}
-
-.bullfighting-match {
-    color: #000;
-    line-height: 15px;
-}
-
-.bullfighting-match .banker{
-    color: #B50000;
-}
-
-.bullfighting-match .player{
-    color: #01122B;
-}
-
-.bullfighting-arena .arena-code, .bullfighting-arena .match-no {
-    font-weight: bold;
 }
 
 .betbuilder{
