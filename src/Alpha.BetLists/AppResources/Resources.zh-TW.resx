@@ -380,4 +380,7 @@
   <data name="selectStatuses" xml:space="preserve">
     <value>選擇狀態</value>
   </data>
+  <data name="Neutral" xml:space="preserve">
+    <value>(中)</value>
+  </data>
 </root>

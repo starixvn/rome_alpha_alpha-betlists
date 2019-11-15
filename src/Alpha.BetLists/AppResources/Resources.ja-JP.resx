@@ -301,4 +301,7 @@
   <data name="BetListHistory" xml:space="preserve">
     <value>ベットリスト</value>
   </data>
+  <data name="Neutral" xml:space="preserve">
+    <value>(中)</value>
+  </data>
 </root>

@@ -466,6 +466,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to (N).
+        /// </summary>
+        public static string Neutral {
+            get {
+                return ResourceManager.GetString("Neutral", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No information is available.
         /// </summary>
         public static string NoInformationIsAvailable {
