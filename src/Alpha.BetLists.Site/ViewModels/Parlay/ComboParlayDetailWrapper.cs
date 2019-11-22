@@ -32,7 +32,7 @@
             MatchDetails = matchDetails;
             Odds = GetOdds();
             string statusResource;
-            Status = statusToResources.TryGetValue(ComboParlayDetail.Status.ToLowerInvariant(), out statusResource) ? statusResource : string.Empty;
+            Status = statusToResources.TryGetValue(ComboParlayDetail.Status?.ToLowerInvariant() ?? string.Empty, out statusResource) ? statusResource : string.Empty;
             Events = GetEvents(ticketHelper);
             WinLostDate = Formatter.ShortDateFormat(comboParlayDetail.WinLostDate);
             WinLost = ConvertByBetType.Winloss(comboParlayDetail.WinLost);

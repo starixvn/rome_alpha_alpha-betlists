@@ -198,7 +198,7 @@
             var viewModel = new WinLostBlockViewModel(ticket);
 
             // Assert
-            Assert.True(viewModel.CommVisibility);
+            Assert.True(!viewModel.CommVisibility);
         }
 
         [Theory]
@@ -218,7 +218,7 @@
             var viewModel = new WinLostBlockViewModel(ticket);
 
             // Assert
-            Assert.True(viewModel.CommVisibility);
+            Assert.True(!viewModel.CommVisibility);
         }
 
         [Fact]

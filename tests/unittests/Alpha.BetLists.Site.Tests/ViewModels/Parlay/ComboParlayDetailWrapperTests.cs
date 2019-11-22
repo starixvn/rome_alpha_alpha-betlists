@@ -150,10 +150,7 @@
         {
             // Arrange
             var detail = new ComboParlayDetail(DateTime.Today, 1, 100, 1, "lose", 10, 10, 10, 10);
-            var expectedEvents = new List<string>
-            {
-                Resources.losingtickets
-            };
+            var expectedEvents = new List<string>();
 
             // Act
             var viewModel = new ComboParlayDetailWrapper(detail, BetListDataTest.MatchDetails, ticketHelper);
@@ -181,7 +178,7 @@
         {
             // Arrange
             var detail = new ComboParlayDetail(DateTime.Today, 1, 100, 1, "lose", 0, 10, 10, 10);
-            var expectedOdds = "-";
+            var expectedOdds = "0.0000";
 
             // Act
             var viewModel = new ComboParlayDetailWrapper(detail, BetListDataTest.MatchDetails, ticketHelper);

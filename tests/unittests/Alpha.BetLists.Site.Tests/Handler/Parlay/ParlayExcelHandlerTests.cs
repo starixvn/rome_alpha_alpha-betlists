@@ -104,7 +104,7 @@
 
             // Assert
             workbook.Received()
-                .SetData(Arg.Is<ComboParlayDetailViewModel>(v => comparer.Compare(v, expectedViewModel).AreEqual));
+                .SetData(Arg.Is<ComboParlayDetailViewModel>(v => comparer.Compare(v.ComboParlayDetailWrappers, expectedViewModel.ComboParlayDetailWrappers).AreEqual));
         }
 
         [Fact]
