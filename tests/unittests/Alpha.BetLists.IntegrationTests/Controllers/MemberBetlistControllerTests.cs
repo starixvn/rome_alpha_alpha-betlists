@@ -7,9 +7,9 @@
     using StaticData.Mappers;
     using StaticData.Models;
     using Utils;
-    using Xunit;
+    //using Xunit;
 
-    [Trait("Integration", "MemberBetList")]
+    //[Trait("Integration", "MemberBetList")]
     public class MemberBetListControllerTests : BaseBetListsIntegrationTest
     {
         public MemberBetListControllerTests(BetListAppHostFixture appHostFixture)
@@ -17,9 +17,9 @@
         {
         }
 
-        [Theory]
-        [InlineData("EmptyData", "empty-data")]
-        [InlineData("MemberBetList", "exist-data")]
+        //[Theory]
+        //[InlineData("EmptyData", "empty-data")]
+        //[InlineData("MemberBetList", "exist-data")]
         public void Index_Always_ReturnsCorrectView(string dataFileName, string expectedResultFileName)
         {
             var expectedResult = FileHelper.Load($"ExpectedResults\\MemberBetList\\{expectedResultFileName}.html");

@@ -7,9 +7,9 @@
     using StaticData.Mappers;
     using StaticData.Models;
     using Utils;
-    using Xunit;
+    //using Xunit;
 
-    [Trait("Integration", "RunningBetList")]
+    //[Trait("Integration", "RunningBetList")]
     public class RunningBetListControllerTests : BaseBetListsIntegrationTest
     {
         public RunningBetListControllerTests(BetListAppHostFixture appHostFixture)
@@ -17,9 +17,9 @@
         {
         }
 
-        [Theory]
-        [InlineData("EmptyData", "getall-empty-data")]
-        [InlineData("RunningBetList", "getall-exist-data")]
+        //[Theory]
+        //[InlineData("EmptyData", "getall-empty-data")]
+        //[InlineData("RunningBetList", "getall-exist-data")]
         public void Index_GetAllIsTrue_ReturnsCorrectView(string dataFileName, string expectedResultFileName)
         {
             var expectedResult = FileHelper.Load($"ExpectedResults\\RunningBetList\\{expectedResultFileName}.html");
@@ -40,9 +40,9 @@
             });
         }
 
-        [Theory]
-        [InlineData("EmptyData", "support-daterange-empty-data")]
-        [InlineData("RunningBetList", "support-daterange-exist-data")]
+        //[Theory]
+        //[InlineData("EmptyData", "support-daterange-empty-data")]
+        //[InlineData("RunningBetList", "support-daterange-exist-data")]
         public void Index_SupportDateRange_ReturnsCorrectView(string dataFileName, string expectedResultFileName)
         {
             var expectedResult = FileHelper.Load($"ExpectedResults\\RunningBetList\\{expectedResultFileName}.html");

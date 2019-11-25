@@ -134,13 +134,27 @@
     <Compile Include="AppStart\DependencyRegister.cs" />
     <Compile Include="ColumnIndexes\TicketDataTemplateColumnIndex.cs" />
     <Compile Include="Mappers\DataModelMapper.cs" />
-    <Compile Include="Mappers\StaticDataMapper.cs" />
-    <Compile Include="Mappers\RepositoryMapper.cs" />
-    <Compile Include="Mappers\TicketDataMapper.cs" />
-    <Compile Include="Mappers\TicketDtoMapper.cs" />
-    <Compile Include="DataAccesses\BetListExcelRepository.cs" />
-    <Compile Include="DataAccesses\ForcastExcelRepository.cs" />
-    <Compile Include="DataAccesses\ProductExcelRepository.cs" />
+    <Compile Include="Mappers\StaticDataMapper.cs">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
+    <Compile Include="Mappers\RepositoryMapper.cs">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
+    <Compile Include="Mappers\TicketDataMapper.cs">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
+    <Compile Include="Mappers\TicketDtoMapper.cs">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
+    <Compile Include="DataAccesses\BetListExcelRepository.cs">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
+    <Compile Include="DataAccesses\ForcastExcelRepository.cs">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
+    <Compile Include="DataAccesses\ProductExcelRepository.cs">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Models\StaticUserSession.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -158,9 +172,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Analyzer Include="..\..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\Google.Protobuf.dll" />
-    <Analyzer Include="..\..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\SonarAnalyzer.CSharp.dll" />
-    <Analyzer Include="..\..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\SonarAnalyzer.dll" />
+    <Analyzer Include="..\..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\Google.Protobuf.dll" />
+    <Analyzer Include="..\..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\SonarAnalyzer.CSharp.dll" />
+    <Analyzer Include="..\..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\SonarAnalyzer.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

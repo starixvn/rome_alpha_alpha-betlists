@@ -63,7 +63,7 @@
             // Arrange
             var comboParlayDetailWrappers = new List<ComboParlayDetailWrapper>(BetListDataTest.ComboParlayDetails
                     .Select(d => new ComboParlayDetailWrapper(d, BetListDataTest.MatchDetails, ticketHelper)));
-            var comboParlayDetailWrapperGroups = comboParlayDetailWrappers.GroupBy(w => w.WinLostDate);
+            var comboParlayDetailWrapperGroups = comboParlayDetailWrappers.GroupBy(w => w.WinLostDate).OrderBy(i => i.Key);
 
             // Act
             var viewModel = new ComboParlayDetailViewModel(query, BetListDataTest.ComboParlayDetailData, ticketHelper, false);
