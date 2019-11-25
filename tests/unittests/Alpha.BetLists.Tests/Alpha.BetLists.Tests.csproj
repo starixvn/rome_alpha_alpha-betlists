@@ -221,6 +221,7 @@
     <Compile Include="Configurations\AppSettingsTests.cs" />
     <Compile Include="Constants\BetTypeIdConstants.cs" />
     <Compile Include="Constants\DefaultVariables.cs" />
+    <Compile Include="Criteria\BetBuilder\GetBetBuilderDetailCriteriaTests.cs" />
     <Compile Include="Criteria\CancelledBet\GetCancelledBetCriteriaTests.cs" />
     <Compile Include="Criteria\LastBets\GetMatchInfoByIdCriteriaTests.cs" />
     <Compile Include="Criteria\ProgressiveJackpot\GetEnableJackpotProductCriteriaTest.cs" />
@@ -254,6 +255,7 @@
     <Compile Include="Criteria\WinLossByDate\GetBetListWinLossByDateCriteriaTests.cs" />
     <Compile Include="Criteria\WinLossByMatch\GetWinLossOutrightCriteriaTests.cs" />
     <Compile Include="Criteria\WinLossByMatch\GetWinLossRacingCriteriaTests.cs" />
+    <Compile Include="DataAccesses\BetBuilderDataAccessTests.cs" />
     <Compile Include="DataAccesses\CasinoDetailsDataAccessTests.cs" />
     <Compile Include="DataAccesses\ProductDataAccessImplTests.cs" />
     <Compile Include="DataAccesses\SmartPunterDataAccessTests.cs" />
@@ -274,6 +276,7 @@
     <Compile Include="Services\CorrectScoreServiceImplTests.cs" />
     <Compile Include="Services\EncryptionServiceImplTests.cs" />
     <Compile Include="Services\ForecastServiceImplTests.cs" />
+    <Compile Include="Services\IPServiceImplTests.cs" />
     <Compile Include="Services\JackpotDetailsServiceImplTests.cs" />
     <Compile Include="Services\LastBetsServiceImplTests.cs" />
     <Compile Include="Services\MemberBetListServiceImplTests.cs" />
