@@ -25,6 +25,7 @@
 
         public int TransType { get; }
 
+        [SpParam(Ignored = true)]
         public string Language { get; }
 
         public override string GetSettingKey() => "Age_BetList_SelByDayAll_Mem_WH";

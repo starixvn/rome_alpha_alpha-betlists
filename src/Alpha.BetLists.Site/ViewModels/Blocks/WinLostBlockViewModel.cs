@@ -20,7 +20,7 @@
 
         private static bool DisplayComm(ITicket ticket)
         {
-            return (ticket.BetTypeId != 501 && !BetTypeHelper.IsJackpotContribution(ticket.BetTypeId));
+            return !BetTypeHelper.IsJackpotContribution(ticket.BetTypeId);
         }
 
         private void SetData(ITicket ticket)

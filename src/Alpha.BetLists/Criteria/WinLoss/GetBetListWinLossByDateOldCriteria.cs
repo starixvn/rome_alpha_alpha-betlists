@@ -1,6 +1,7 @@
 ﻿namespace Alpha.BetLists.Criteria.WinLossByDate
 {
     using System;
+    using Fanex.Data;
     using Fanex.Data.Repository;
 
     public class GetBetListWinLossByDateOldCriteria : CriteriaBase
@@ -27,6 +28,7 @@
 
         public DateTime ToDate { get; }
 
+        [SpParam(Ignored = true)]
         public string Language { get; }
 
         public string ProductIds { get; }

@@ -381,4 +381,7 @@
   <data name="selectStatuses" xml:space="preserve">
     <value>กรุณาเลือกสถานะ</value>
   </data>
+  <data name="Neutral" xml:space="preserve">
+    <value>(แข่งสนามกลาง)</value>
+  </data>
 </root>

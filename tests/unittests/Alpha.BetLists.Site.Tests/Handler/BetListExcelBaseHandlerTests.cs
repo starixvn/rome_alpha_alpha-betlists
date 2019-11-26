@@ -218,26 +218,6 @@
         }
 
         [Fact]
-        public void GetBodyRowMapper_WinLoss_HideComm_MapBuildWinLoss()
-        {
-            // Arrange
-            var ticket = BetListDataTest.Ticket;
-            ticket.BetTypeId = 501;
-            ticket.SuperDiscount = -1;
-            var winLossBlockViewModel = new WinLostBlockViewModel(ticket);
-            var winLossRtf = BetListExcelBuilderExt.BuildWinLoss(
-                winLossBlockViewModel.WinLost,
-                string.Empty,
-                betlistFixture.RtfHelper);
-
-            // Act
-            var mapper = excelBaseHandler.GetBodyRowMapper(UserLevel.Agent, viewModel);
-
-            // Assert
-            Assert.Equal(winLossRtf, mapper.Mappings[F].Invoke(ticket));
-        }
-
-        [Fact]
         public void GetBodyRowMapper_PTComm_AgentLevel_MapBuildPTComm()
         {
             // Arrange

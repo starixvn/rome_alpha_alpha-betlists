@@ -327,4 +327,7 @@
   <data name="BetListHistory" xml:space="preserve">
     <value>배팅 리스트</value>
   </data>
+  <data name="Neutral" xml:space="preserve">
+    <value>(중립)</value>
+  </data>
 </root>
