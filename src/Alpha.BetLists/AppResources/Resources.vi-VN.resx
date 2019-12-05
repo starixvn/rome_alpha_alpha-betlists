@@ -341,7 +341,7 @@
     <value>Loại cược khác</value>
   </data>
   <data name="lblMixParlay" xml:space="preserve">
-    <value>Cá cược tổng hợp</value>
+    <value>Cược tổng hợp</value>
   </data>
   <data name="Page" xml:space="preserve">
     <value>Trang</value>
@@ -350,7 +350,7 @@
     <value>trên</value>
   </data>
   <data name="parlay" xml:space="preserve">
-    <value>Cá cược tổng hợp</value>
+    <value>Cược tổng hợp</value>
   </data>
   <data name="agentptcomm" xml:space="preserve">
     <value>PT của Agent/ Hoa hồng</value>
