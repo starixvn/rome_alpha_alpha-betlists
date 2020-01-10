@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Functions SiteId="105" SiteName="Bet Lists">
+  <Function Name="Smart Punter">
+    <Setting Key="Age_CustomerSelCheckSmartPunterSMA" SpName="Age_CustomerSelCheckSmartPunterSMA" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_CustomerSelCheckListSmartPunter" SpName="Age_CustomerSelCheckListSmartPunter" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
+  </Function>
+  <Function Name="Progressive Jackpot">
+    <Setting Key="Acc_GameEnableJackpotSel" SpName="Acc_GameEnableJackpotSel" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
+  </Function>
+</Functions>
