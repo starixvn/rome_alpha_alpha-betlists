@@ -838,8 +838,12 @@
     <Content Include="Views\BetListByBetTypeAndMatch\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\DependencyConfig.cs" />
-    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\DependencyConfig.cs">
+		<SonarQubeExclude>true</SonarQubeExclude>
+	</Compile>
+    <Compile Include="App_Start\RouteConfig.cs">
+		<SonarQubeExclude>true</SonarQubeExclude>
+	</Compile>
     <Compile Include="Constants\SessionKey.cs" />
     <Compile Include="Constants\UserSelectedDateRangeOptionConstant.cs" />
     <Compile Include="Controllers\BetListBaseController.cs" />
@@ -866,7 +870,9 @@
     <Compile Include="Handlers\JackpotDetails\JackpotDetailsExcelHandler.cs" />
     <Compile Include="Handlers\JackpotDetails\JackpotDetailsHandler.cs" />
     <Compile Include="Handlers\BetBuilder\BetBuilderHandler.cs" />
-    <Compile Include="Helpers\BrowserHelper.cs" />
+    <Compile Include="Helpers\BrowserHelper.cs">
+		<SonarQubeExclude>true</SonarQubeExclude>
+	</Compile>
     <Compile Include="Requests\BetBuilder\BetBuilderDetailQuery.cs" />
     <Compile Include="Requests\CasinoDetails\CasinoDetailsExcelQuery.cs" />
     <Compile Include="Requests\CasinoDetails\CasinoDetailsQuery.cs" />
@@ -897,14 +903,18 @@
     <Compile Include="Handlers\RunningBetList\RunningBetListHandler.cs" />
     <Compile Include="Handlers\ParlayWinLossByMatch\ParlayWinLossByMatchExcelHanlder.cs" />
     <Compile Include="Handlers\ParlayWinLossByMatch\ParlayWinLossByMatchHandler.cs" />
-    <Compile Include="Handlers\Parlay\ComboParlayDetailWorkbook.cs" />
+    <Compile Include="Handlers\Parlay\ComboParlayDetailWorkbook.cs">
+		<SonarQubeExclude>true</SonarQubeExclude>
+	</Compile>
     <Compile Include="Handlers\Parlay\ParlayExcelHandler.cs" />
     <Compile Include="Handlers\Parlay\ParlayHandler.cs" />
     <Compile Include="Handlers\WinLossByMatch\WinLossByMatchExcelHandler.cs" />
     <Compile Include="Handlers\WinLossByMatch\WinLossByMatchHandler.cs" />
     <Compile Include="Handlers\WinLoss\WinLossExcelHandler.cs" />
     <Compile Include="Handlers\WinLoss\WinLossHandler.cs" />
-    <Compile Include="Helpers\IPHelper.cs" />
+    <Compile Include="Helpers\IPHelper.cs">
+		<SonarQubeExclude>true</SonarQubeExclude>
+	</Compile>
     <Compile Include="Helpers\QueryEntityModelBinder.cs" />
     <Compile Include="Helpers\UrlHelper.cs" />
     <Compile Include="Models\User.cs" />
@@ -942,11 +952,17 @@
     <Compile Include="ViewModels\Blocks\WinLostBlockViewModel.cs" />
     <Compile Include="ViewModels\CasinoDetails\CasinoDetailsViewModel.cs" />
     <Compile Include="ViewModels\CombinationMixParlay\CombinationMixParlayViewModel.cs" />
-    <Compile Include="ViewModels\Components\PagerViewModel.cs" />
+    <Compile Include="ViewModels\Components\PagerViewModel.cs">
+		<SonarQubeExclude>true</SonarQubeExclude>
+	</Compile>
     <Compile Include="ViewModels\Components\StatusMultiSelectionViewModel.cs" />
-    <Compile Include="ViewModels\Components\DateRangePickerViewModel.cs" />
+    <Compile Include="ViewModels\Components\DateRangePickerViewModel.cs">
+		<SonarQubeExclude>true</SonarQubeExclude>
+	</Compile>
     <Compile Include="ViewModels\CancelledBet\CancelledBetViewModel.cs" />
-    <Compile Include="ViewModels\Components\ProductMultiSelectionViewModel.cs" />
+    <Compile Include="ViewModels\Components\ProductMultiSelectionViewModel.cs">
+		<SonarQubeExclude>true</SonarQubeExclude>
+	</Compile>
     <Compile Include="ViewModels\DailyStatement\DailyStatementViewModel.cs" />
     <Compile Include="ViewModels\CorrectScore\CorrectScoreViewModel.cs" />
     <Compile Include="ViewModels\ExcelFileViewModel.cs" />
