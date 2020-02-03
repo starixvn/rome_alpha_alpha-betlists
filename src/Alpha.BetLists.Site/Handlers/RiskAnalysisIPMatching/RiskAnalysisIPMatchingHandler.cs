@@ -37,7 +37,7 @@
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
-            return new WinLossViewModel(message, betlistData, Builder, TicketHelper, true);
+            return new WinLossViewModel(message, betlistData, Builder, TicketHelper, true, true);
         }
 
         protected internal RiskAnalysisIPMatchingParam CreateWinLossParam(RiskAnalysisIPMatchingQuery message)

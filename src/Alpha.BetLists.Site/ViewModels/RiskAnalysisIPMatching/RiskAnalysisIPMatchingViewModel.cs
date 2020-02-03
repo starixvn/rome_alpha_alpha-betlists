@@ -1,121 +1,33 @@
-﻿namespace Alpha.BetLists.Site.ViewModels.MemberBetList
+﻿namespace Alpha.BetLists.Site.ViewModels.WinLoss
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web.Mvc;
-    using AppResources;
     using BetLists.Models;
-    using Components;
-    using Extensions;
+    using Blocks;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
-    using Params;
-    using Requests.MemberBetList;
-    using Utils;
-    using WinLoss;
+    using Requests;
 
-    public class RiskAnalysisIPMatchingViewModel : WinLossViewModel
+    public class RiskAnalysisIPMatchingViewModel : BetListBaseViewModel
     {
-        private static readonly string[] ExcludingTicketStatus =
-        {
-            BetStatus.Running,
-            BetStatus.Waiting,
-            BetStatus.Void,
-            BetStatus.Reject,
-            BetStatus.Pending
-        };
-
-        public static readonly IEnumerable<string> RangeOptions = new List<string>
-        {
-            DateRangePickerViewModel.TodayOptionValue,
-            DateRangePickerViewModel.YesterdayOptionValue,
-            DateRangePickerViewModel.SpecificDateOptionValue
-        };
-
-        private readonly MemberBetListQuery query;
-
         public RiskAnalysisIPMatchingViewModel(
-            MemberBetListQuery query,
-            MemberBetListParam param,
+            BaseQuery query,
             BetListData betListData,
-            IEnumerable<SelectListItem> products,
-            IEnumerable<int> supportScoreMapBetTypeIds,
             IBetListHTMLBuilder builder,
-            ITicketHelper ticketHelper)
-            : base(query, betListData, builder, ticketHelper, query.IsEnabledJackpot, false, ExcludingTicketStatus)
+            ITicketHelper ticketHelper,
+            bool showContributionAmountRoundNote,
+            bool showMemberName = false,
+            string[] excludingTicketStatus = null)
+            : base(query, betListData, builder, ticketHelper, showMemberName)
         {
-            this.query = query;
-
-            Products = products;
-            SupportScoreMapBetTypeIds = supportScoreMapBetTypeIds;
-
-            FromDate = param.FromDate;
-            ToDate = param.ToDate;
-            CustId = param.CustId;
-            CustName = param.UserName;
-
-            Title = $"{Resources.BetListHistory} - {query.CustName}";
-            ProductsId = param.ProductIds.JoinWithComma();
-            ViewDataInstructionMessage = string.Format(
-                Resources.CanOnlyViewDataAfterTimeHistoryReport,
-                query.MinDate.ToShortDateWithSlash());
+            Footer = new Footer(betListData, baseQuery.ViewerLevel, showMemberName, excludingTicketStatus);
+            ShowContributionAmountRoundNote = showContributionAmountRoundNote;
         }
 
-        public string ViewDataInstructionMessage { get; }
+        public bool AllowToViewSuperPT => baseQuery.ViewerLevel.IsSuperLevel();
 
-        public IEnumerable<int> SupportScoreMapBetTypeIds { get; }
+        public bool AllowToViewMasterPT => baseQuery.ViewerLevel.IsMasterOrSuperLevel();
 
-        public IEnumerable<SelectListItem> Products { get; }
+        public bool ShowContributionAmountRoundNote { get; }
 
-        public bool IsFilterVisible => query.IsFilterVisible;
-
-        public DateRangePickerViewModel DateRangePickerViewModel
-            => new DateRangePickerViewModel(
-                query.MinDate,
-                DateTime.MaxValue,
-                FromDate,
-                ToDate,
-                query.UserSelectedDateRangeOption,
-                true,
-                RangeOptions);
-
-        public ProductMultiSelectionViewModel ProductMultiSelectionViewModel
-            => new ProductMultiSelectionViewModel(
-                Products,
-                ProductsId,
-                query.Language);
-
-        public static string GetDailyStatementLink(int custId, string custName, string productIds)
-        {
-            var url = Helpers.UrlHelper.MapReportsPath("~/Statement/MemberStatement");
-            var routeValues = new Dictionary<string, object>
-            {
-                ["CustId"] = custId,
-                ["CustName"] = custName,
-                ["CustLevelId"] = 1,
-                ["ProductIds"] = productIds
-            };
-
-            return Helpers.UrlHelper.AddQueryStringParamsFunc(url, routeValues);
-        }
-
-        public override bool CanViewScoreMap(ITicket ticket)
-            => ticket.Status.Equals(BetStatus.Running, StringComparison.OrdinalIgnoreCase)
-            && SupportScoreMapBetTypeIds.Contains(ticket.BetTypeId);
-
-        public string BuildRunningBetListLink(string link)
-        {
-            var routeValues = new Dictionary<string, object>
-            {
-                ["CustId"] = CustId,
-                ["CustName"] = CustName,
-                ["FromDate"] = SystemTime.Today.AddDays(-7).ToShortDateWithSlash(),
-                ["ToDate"] = SystemTime.Today.ToShortDateWithSlash(),
-                ["ProductIds"] = ProductsId
-            };
-
-            return Helpers.UrlHelper.AddQueryStringParamsFunc(link, routeValues);
-        }
+        public Footer Footer { get; }
     }
 }
