@@ -1,0 +1,18 @@
+﻿namespace Alpha.BetLists.Site.Requests.RiskAnalysisIPMatching
+{
+    using BetLists.Models;
+    using MediatR;
+    using System;
+    using ViewModels.WinLoss;
+
+    public class RiskAnalysisIPMatchingQuery : BaseQuery, IRequest<WinLossViewModel>
+    {
+        public RiskAnalysisIPMatchingQuery(IUser viewer) : base(viewer)
+        {
+        }
+
+        public DateTime Date { get; set; } = new DateTime(2020, 1, 16);
+
+        public string IP { get; set; } = "127.0.0.1";
+    }
+}

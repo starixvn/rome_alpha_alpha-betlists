@@ -162,6 +162,7 @@
             container.Register<RunningBetListByBetTypeService, RunningBetListByBetTypeServiceImpl>(Lifestyle.Singleton);
             container.Register<RunningBetListByBetTypeAndMatchService, RunningBetListByBetTypeAndMatchServiceImpl>(Lifestyle.Singleton);
             container.Register<JackpotDetailsService, JackpotDetailsServiceImpl>(Lifestyle.Singleton);
+            container.Register<RiskAnalysisIPMatchingService, RiskAnalysisIPMatchingServiceImpl> (Lifestyle.Singleton);
 
             if (AppSettings.IsIntegrationTest)
             {

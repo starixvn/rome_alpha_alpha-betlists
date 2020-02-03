@@ -1,0 +1,22 @@
+﻿@using Alpha.BetLists.Site.ViewModels.WinLoss
+
+@model WinLossViewModel
+
+@{
+    ViewBag.Title = "IP Matching List";
+}
+
+<div class="bl_title">
+    @Model.Title
+    <div class="bl-export-excel">
+        <a id="icon-excel" class="icon icon-excel" title="@Resources.ExportToExcel"
+           href="@Url.Action("Excel", "WinLoss",
+                new { CustName = Model.CustName,
+                    CustId = Model.CustId,
+                    ProductIds = Model.ProductsId,
+                    FromDate = Model.FromDate,
+                    ToDate = Model.ToDate })">
+        </a>
+    </div>
+</div>
+@Html.Partial("WinLossTable", Model)
