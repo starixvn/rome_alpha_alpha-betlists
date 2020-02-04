@@ -1,0 +1,79 @@
+﻿namespace Alpha.BetLists.Site.Handlers.RiskAnalysisIPMatching
+{
+    using Alpha.BetLists.Site.Requests.RiskAnalysisIPMatching;
+    using Alpha.BetLists.Site.ViewModels.RiskAnalysisIPMatching;
+    using AppResources;
+    using BetLists.Models;
+    using Fanex.BetList.Core.Builder;
+    using Fanex.BetList.Core.Entities;
+    using MediatR;
+    using ONEbook.SpreadSheets;
+    using ONEbook.SpreadSheets.NPOI;
+    using Services;
+    using SmartPunter.Services;
+    using System.Threading.Tasks;
+    using Utilities.IP;
+    using ViewModels;
+    using static ONEbook.SpreadSheets.Column;
+
+    public class RiskAnalysisIPMatchingExcelHandler : BetListExcelBaseHandler, IAsyncRequestHandler<RiskAnalysisIPMatchingExcelQuery, ExcelFileViewModel>
+    {
+        private readonly RiskAnalysisIPMatchingService riskAnalysisIPMatchingService;
+        private int currentRowIndex = 1;
+
+        private Workbook<TicketDto> workbook;
+
+        public RiskAnalysisIPMatchingExcelHandler(
+            RiskAnalysisIPMatchingService riskAnalysisIPMatchingService,
+            IBetListHTMLBuilder builder,
+            IBetListExcelBuilder excelBuilder,
+            ITicketHelper ticketHelper,
+            ISmartPunterBetListMonitor monitorService,
+            IPService ipService,
+            Workbook<TicketDto> workbook)
+            : base(builder, excelBuilder, ticketHelper, monitorService, ipService)
+        {
+            this.workbook = workbook;
+            this.riskAnalysisIPMatchingService = riskAnalysisIPMatchingService;
+        }
+
+        public async Task<ExcelFileViewModel> Handle(RiskAnalysisIPMatchingExcelQuery message)
+        {
+            var param = RiskAnalysisIPMatchingHandler.CreateRiskAnalysisIPMatchingParam(message);
+            var betlistData = await riskAnalysisIPMatchingService.GetBetList(param);
+
+            var viewModel = new RiskAnalysisIPMatchingViewModel(message, betlistData, Builder, TicketHelper, true, message.Date, message.IP);
+
+            workbook = workbook.UseTemplate(GetTemplateInfo(message.ViewerLevel));
+            RtfHelper = message.RtfHelper ?? InitRTFHelper((workbook as NpoiWorkbook<TicketDto>).Workbook);
+
+            var fileContent = workbook
+                    .Header(Resources.ResourceManager.GetString)
+                    .Title(viewModel.Title)
+                    .Body(betlistData.Tickets, GetBodyRowMapper(message.ViewerLevel, viewModel))
+                    .Footer(new TicketDto(), GetFooterRowMapper(viewModel.Footer))
+                    .ExportToBytes();
+
+            return new ExcelFileViewModel(viewModel.Title, fileContent);
+        }
+
+        protected internal override Mapper<TicketDto> GetBodyRowMapper(UserLevel viewerLevel, BetListBaseViewModel viewModel)
+        {
+            var ticketData = viewModel.BetListData.TicketData;
+            var mapper = new Mapper<TicketDto>()
+                .Map(A, _ => currentRowIndex++)
+                .Map(B, ticket => ticket.UserName)
+                .Map(C, ticket => BuildTrans(ticket))
+                .Map(D, ticket => BuildChoice(ticket, viewModel))
+                .Map(E, ticket => BuildOdds(ticket, viewModel))
+                .Map(F, ticket => BuildStake(ticket))
+                .Map(G, ticket => BuildWinLoss(ticket))
+                .Map(H, ticket => BuildStatus(ticket, viewModel))
+                .Map(I, ticket => BuildPtCommmission(ticket, ticketData, viewerLevel))
+                .Map(J, ticket => BuildPtCommmission(ticket, ticketData, UserLevel.Master))
+                .Map(K, ticket => BuildPtCommmission(ticket, ticketData, UserLevel.Agent));
+
+            return mapper;
+        }
+    }
+}

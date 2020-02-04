@@ -680,6 +680,7 @@
     <Content Include="App_Code\Components\StatusMultiSelection.cshtml" />
     <Content Include="assets\styles\parlay-detail.scss" />
     <Content Include="App_Code\Blocks\LastBetsStatus.cshtml" />
+    <Content Include="App_Data\ExcelTemplates\RiskAnalysisIPMatching\Super.xls" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -820,6 +821,7 @@
     <Compile Include="Handlers\JackpotDetails\JackpotDetailsHandler.cs" />
     <Compile Include="Handlers\BetBuilder\BetBuilderHandler.cs" />
     <Compile Include="Handlers\RiskAnalysisIPMatching\RiskAnalysisIPMatchingHandler.cs" />
+    <Compile Include="Handlers\RiskAnalysisIPMatching\RiskAnalysisIPMatchingExcelHandler.cs" />
     <Compile Include="Helpers\BrowserHelper.cs" />
     <Compile Include="Requests\BetBuilder\BetBuilderDetailQuery.cs" />
     <Compile Include="Requests\CasinoDetails\CasinoDetailsExcelQuery.cs" />
@@ -876,6 +878,7 @@
     <Compile Include="Requests\CorrectScore\CorrectScoreQuery.cs" />
     <Compile Include="Requests\MemberBetList\MemberBetListQuery.cs" />
     <Compile Include="Requests\RiskAnalysisIPMatching\RiskAnalysisIPMatchingQuery.cs" />
+    <Compile Include="Requests\RiskAnalysisIPMatching\RiskAnalysisIPMatchingExcelQuery.cs" />
     <Compile Include="Requests\RunningBetList\RunningBetListQuery.cs" />
     <Compile Include="Requests\LastBets\CheckCanViewLastBetsQuery.cs" />
     <Compile Include="Requests\LastBets\GetLastBetsQuery.cs" />

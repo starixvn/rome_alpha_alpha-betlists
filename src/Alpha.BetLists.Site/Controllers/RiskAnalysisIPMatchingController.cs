@@ -13,5 +13,8 @@
 
         public async Task<ActionResult> Index(RiskAnalysisIPMatchingQuery message)
             => await View(message);
+
+        public async Task<FileContentResult> Excel(RiskAnalysisIPMatchingExcelQuery message)
+          => await ExcelView(message);
     }
 }

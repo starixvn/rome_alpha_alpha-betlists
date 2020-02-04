@@ -1,12 +1,13 @@
-﻿namespace Alpha.BetLists.Site.ViewModels.WinLoss
+﻿namespace Alpha.BetLists.Site.ViewModels.RiskAnalysisIPMatching
 {
+    using Alpha.BetLists.Site.ViewModels.WinLoss;
     using BetLists.Models;
-    using Blocks;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Requests;
+    using System;
 
-    public class RiskAnalysisIPMatchingViewModel : BetListBaseViewModel
+    public class RiskAnalysisIPMatchingViewModel : WinLossViewModel
     {
         public RiskAnalysisIPMatchingViewModel(
             BaseQuery query,
@@ -14,20 +15,17 @@
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper,
             bool showContributionAmountRoundNote,
-            bool showMemberName = false,
-            string[] excludingTicketStatus = null)
-            : base(query, betListData, builder, ticketHelper, showMemberName)
+            DateTime date,
+            string ip)
+            : base(query, betListData, builder, ticketHelper, showContributionAmountRoundNote, true)
         {
-            Footer = new Footer(betListData, baseQuery.ViewerLevel, showMemberName, excludingTicketStatus);
-            ShowContributionAmountRoundNote = showContributionAmountRoundNote;
+            Date = date;
+            IP = ip;
+            Title = "RiskAnalysisIPMatching";
         }
 
-        public bool AllowToViewSuperPT => baseQuery.ViewerLevel.IsSuperLevel();
+        public DateTime Date { get; }
 
-        public bool AllowToViewMasterPT => baseQuery.ViewerLevel.IsMasterOrSuperLevel();
-
-        public bool ShowContributionAmountRoundNote { get; }
-
-        public Footer Footer { get; }
+        public string IP { get; }
     }
 }

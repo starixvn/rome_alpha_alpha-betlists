@@ -1,6 +1,7 @@
-﻿namespace Alpha.BetLists.Site.Handlers.WinLoss
+﻿namespace Alpha.BetLists.Site.Handlers.RiskAnalysisIPMatching
 {
     using Alpha.BetLists.Site.Requests.RiskAnalysisIPMatching;
+    using Alpha.BetLists.Site.ViewModels.RiskAnalysisIPMatching;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using MediatR;
@@ -10,9 +11,8 @@
     using System;
     using System.Threading.Tasks;
     using Utilities.IP;
-    using ViewModels.WinLoss;
 
-    public class RiskAnalysisIPMatchingHandler : BetListBaseHandler, IAsyncRequestHandler<RiskAnalysisIPMatchingQuery, WinLossViewModel>
+    public class RiskAnalysisIPMatchingHandler : BetListBaseHandler, IAsyncRequestHandler<RiskAnalysisIPMatchingQuery, RiskAnalysisIPMatchingViewModel>
     {
         private readonly RiskAnalysisIPMatchingService riskAnalysisIPMatchingService;
         private readonly ReportDateService reportDateService;
@@ -30,20 +30,20 @@
             this.reportDateService = reportDateService;
         }
 
-        public async Task<WinLossViewModel> Handle(RiskAnalysisIPMatchingQuery message)
+        public async Task<RiskAnalysisIPMatchingViewModel> Handle(RiskAnalysisIPMatchingQuery message)
         {
-            var param = CreateWinLossParam(message);
+            var param = CreateRiskAnalysisIPMatchingParam(message);
             var betlistData = await riskAnalysisIPMatchingService.GetBetList(param);
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
-            return new WinLossViewModel(message, betlistData, Builder, TicketHelper, true, true);
+            return new RiskAnalysisIPMatchingViewModel(message, betlistData, Builder, TicketHelper, true, message.Date, message.IP);
         }
 
-        protected internal RiskAnalysisIPMatchingParam CreateWinLossParam(RiskAnalysisIPMatchingQuery message)
+        protected internal static RiskAnalysisIPMatchingParam CreateRiskAnalysisIPMatchingParam(RiskAnalysisIPMatchingQuery message)
             => new RiskAnalysisIPMatchingParam(
                836949, //message.CustId,
-               message.Date,
+               new DateTime(2020, 1, 16),//message.Date,
                new DateTime(2020, 1, 14),//reportDateService.GetMoveBetsDay(),
                message.IP);
     }

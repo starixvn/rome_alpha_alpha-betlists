@@ -1,6 +1,6 @@
-﻿@using Alpha.BetLists.Site.ViewModels.WinLoss
+﻿@using Alpha.BetLists.Site.ViewModels.RiskAnalysisIPMatching
 
-@model WinLossViewModel
+@model RiskAnalysisIPMatchingViewModel
 
 @{
     ViewBag.Title = "IP Matching List";
@@ -10,12 +10,7 @@
     @Model.Title
     <div class="bl-export-excel">
         <a id="icon-excel" class="icon icon-excel" title="@Resources.ExportToExcel"
-           href="@Url.Action("Excel", "WinLoss",
-                new { CustName = Model.CustName,
-                    CustId = Model.CustId,
-                    ProductIds = Model.ProductsId,
-                    FromDate = Model.FromDate,
-                    ToDate = Model.ToDate })">
+           href="@Url.Action("Excel", "RiskAnalysisIPMatching", new { Date = Model.Date, IP = Model.IP})">
         </a>
     </div>
 </div>
