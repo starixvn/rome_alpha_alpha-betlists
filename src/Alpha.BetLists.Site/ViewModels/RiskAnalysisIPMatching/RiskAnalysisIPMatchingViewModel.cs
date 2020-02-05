@@ -21,7 +21,7 @@
         {
             Date = date;
             IP = ip;
-            Title = "RiskAnalysisIPMatching";
+            Title = String.Format(AppResources.Resources.IPMatchingTitle, date.ToShortDateString(), IP);
         }
 
         public DateTime Date { get; }

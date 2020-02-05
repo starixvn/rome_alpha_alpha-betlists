@@ -133,24 +133,6 @@
             return mapper;
         }
 
-        protected internal virtual Mapper<TicketDto> GetBodyRowMapperIncludeUsername(UserLevel viewerLevel, BetListBaseViewModel viewModel, bool showWinLoss)
-        {
-            var ticketData = viewModel.BetListData.TicketData;
-
-            var mapper = GetTicketDtoRowMapperIncludeUsername(viewModel, showWinLoss);
-
-            mapper.Map(I, ticket => BuildPtCommmission(ticket, ticketData, viewerLevel));
-
-            if (viewerLevel.IsMasterLevel())
-            {
-                mapper.Map(J, ticket => BuildPtCommmission(ticket, ticketData, UserLevel.Agent));
-            }
-
-            AddPtCommissionForSuper(mapper, viewerLevel, ticketData);
-
-            return mapper;
-        }
-
         protected Mapper<TicketDto> GetTicketDtoRowMapperIncludeUsername(BetListBaseViewModel viewModel, bool showWinLoss)
         {
             var mapper = new Mapper<TicketDto>()

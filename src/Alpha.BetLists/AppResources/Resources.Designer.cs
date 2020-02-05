@@ -322,6 +322,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Member Bet List {0} - IP Matching: {1}.
+        /// </summary>
+        public static string IPMatchingTitle {
+            get {
+                return ResourceManager.GetString("IPMatchingTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Last.
         /// </summary>
         public static string Last {

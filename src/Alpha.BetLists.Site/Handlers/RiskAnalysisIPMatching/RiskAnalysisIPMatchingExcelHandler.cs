@@ -1,6 +1,8 @@
 ﻿namespace Alpha.BetLists.Site.Handlers.RiskAnalysisIPMatching
 {
+    using Alpha.BetLists.Builders.ExcelBuilders;
     using Alpha.BetLists.Site.Requests.RiskAnalysisIPMatching;
+    using Alpha.BetLists.Site.ViewModels.Blocks;
     using Alpha.BetLists.Site.ViewModels.RiskAnalysisIPMatching;
     using AppResources;
     using BetLists.Models;
@@ -72,6 +74,15 @@
                 .Map(I, ticket => BuildPtCommmission(ticket, ticketData, viewerLevel))
                 .Map(J, ticket => BuildPtCommmission(ticket, ticketData, UserLevel.Master))
                 .Map(K, ticket => BuildPtCommmission(ticket, ticketData, UserLevel.Agent));
+
+            return mapper;
+        }
+
+        protected internal override Mapper<TicketDto> GetFooterRowMapper(Footer footer)
+        {
+            var mapper = new Mapper<TicketDto>()
+                .Map(A, _ => BetListExcelBuilderExt.BuildFooterHeader(RtfHelper))
+                .Map(G, _ => BuildFooter(footer));
 
             return mapper;
         }
