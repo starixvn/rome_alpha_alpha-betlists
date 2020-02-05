@@ -14,10 +14,9 @@
             BetListData betListData,
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper,
-            bool showContributionAmountRoundNote,
             DateTime date,
             string ip)
-            : base(query, betListData, builder, ticketHelper, showContributionAmountRoundNote, true)
+            : base(query, betListData, builder, ticketHelper, false, true)
         {
             Date = date;
             IP = ip;

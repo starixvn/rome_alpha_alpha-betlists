@@ -37,7 +37,7 @@
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
-            return new RiskAnalysisIPMatchingViewModel(message, betlistData, Builder, TicketHelper, true, message.Date, message.IP);
+            return new RiskAnalysisIPMatchingViewModel(message, betlistData, Builder, TicketHelper, message.Date, message.IP);
         }
 
         protected internal static RiskAnalysisIPMatchingParam CreateRiskAnalysisIPMatchingParam(RiskAnalysisIPMatchingQuery message)
