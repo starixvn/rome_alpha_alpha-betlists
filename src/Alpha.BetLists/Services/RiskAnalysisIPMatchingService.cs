@@ -31,8 +31,10 @@
                     param.MoveBetsDay);
 
             var betListDataTuple = await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
-
-            return new BetListData(betListDataTuple.Item1, betListDataTuple.Item2.ToList<ITicketData>());
+            
+            return new BetListData(
+                betListDataTuple.Item1.OrderByDescending(ticket => ticket.TransDate), 
+                betListDataTuple.Item2.ToList<ITicketData>());
         }
     }
 }

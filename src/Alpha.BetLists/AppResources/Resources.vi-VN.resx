@@ -397,4 +397,7 @@
   <data name="AutoRefresh" xml:space="preserve">
     <value>Tự động tải</value>
   </data>
+  <data name="IPMatchingTitle" xml:space="preserve">
+    <value>Member Bet List {0} - IP Matching: {1}</value>
+  </data>
 </root>
