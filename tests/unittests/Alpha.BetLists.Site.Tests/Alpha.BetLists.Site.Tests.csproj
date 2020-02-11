@@ -297,6 +297,7 @@
     <Compile Include="Controllers\DailyStatementControllerTests.cs" />
     <Compile Include="Controllers\JackpotDetailsControllerTests.cs" />
     <Compile Include="Controllers\LastBetsControllerTests.cs" />
+    <Compile Include="Controllers\RiskAnalysisIPMatchingControllerTests.cs" />
     <Compile Include="Controllers\MemberBetListControllerTests.cs" />
     <Compile Include="Controllers\ParlayControllerTests.cs" />
     <Compile Include="Controllers\ParlayWinLossByMatchControllerTests.cs" />
