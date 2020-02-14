@@ -327,6 +327,7 @@
     <Compile Include="Handler\CorrectScore\CorrectScoreExcelHandlerTests.cs" />
     <Compile Include="Handler\CorrectScore\CorrectScoreHandlerTests.cs" />
     <Compile Include="Handler\MemberBetList\MemberBetListHandlerTests.cs" />
+    <Compile Include="Handler\RiskAnalysisIPMatching\RiskAnalysisIPMatchingHandlerTests.cs" />
     <Compile Include="Handler\RunningBetList\RunningBetListHandlerTests.cs" />
     <Compile Include="Handler\ParlayWinLossByMatch\ParlayWinLossByMatchExcelHanlderTests.cs" />
     <Compile Include="Handler\ParlayWinLossByMatch\ParlayWinLossByMatchHanlderTests.cs" />

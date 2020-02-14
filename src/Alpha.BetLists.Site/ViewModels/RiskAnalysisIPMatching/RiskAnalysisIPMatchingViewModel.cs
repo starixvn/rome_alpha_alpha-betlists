@@ -1,26 +1,24 @@
 ﻿namespace Alpha.BetLists.Site.ViewModels.RiskAnalysisIPMatching
 {
+    using Alpha.BetLists.Site.Requests.RiskAnalysisIPMatching;
     using Alpha.BetLists.Site.ViewModels.WinLoss;
     using BetLists.Models;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
-    using Requests;
     using System;
 
     public class RiskAnalysisIPMatchingViewModel : WinLossViewModel
     {
         public RiskAnalysisIPMatchingViewModel(
-            BaseQuery query,
+            RiskAnalysisIPMatchingQuery query,
             BetListData betListData,
             IBetListHTMLBuilder builder,
-            ITicketHelper ticketHelper,
-            DateTime date,
-            string ip)
+            ITicketHelper ticketHelper)
             : base(query, betListData, builder, ticketHelper, false, true)
         {
-            Date = date;
-            IP = ip;
-            Title = String.Format(AppResources.Resources.IPMatchingTitle, date.ToShortDateString(), IP);
+            Date = query.Date;
+            IP = query.IP;
+            Title = String.Format(AppResources.Resources.IPMatchingTitle, query.Date.ToShortDateString(), IP);
         }
 
         public DateTime Date { get; }

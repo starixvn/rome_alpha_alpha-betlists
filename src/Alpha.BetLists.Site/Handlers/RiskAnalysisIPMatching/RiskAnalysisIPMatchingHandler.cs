@@ -39,9 +39,7 @@
 
             var betlistData = await riskAnalysisIPMatchingService.GetBetList(param);
 
-            WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
-
-            return new RiskAnalysisIPMatchingViewModel(message, betlistData, Builder, TicketHelper, message.Date, message.IP);
+            return new RiskAnalysisIPMatchingViewModel(message, betlistData, Builder, TicketHelper);
         }
     }
 }

@@ -53,7 +53,7 @@
 
             var betlistData = await riskAnalysisIPMatchingService.GetBetList(param);
 
-            var viewModel = new RiskAnalysisIPMatchingViewModel(message, betlistData, Builder, TicketHelper, message.Date, message.IP);
+            var viewModel = new RiskAnalysisIPMatchingViewModel(message, betlistData, Builder, TicketHelper);
 
             workbook = workbook.UseTemplate(GetTemplateInfo(message.ViewerLevel));
             RtfHelper = message.RtfHelper ?? InitRTFHelper((workbook as NpoiWorkbook<TicketDto>).Workbook);
