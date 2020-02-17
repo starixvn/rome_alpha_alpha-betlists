@@ -683,6 +683,7 @@
     <Content Include="App_Data\ExcelTemplates\JackpotDetails\Master.xls" />
     <Content Include="App_Code\Components\StatusMultiSelection.cshtml" />
     <Content Include="assets\styles\parlay-detail.scss" />
+    <Content Include="App_Code\Blocks\LastBetsStatus.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
