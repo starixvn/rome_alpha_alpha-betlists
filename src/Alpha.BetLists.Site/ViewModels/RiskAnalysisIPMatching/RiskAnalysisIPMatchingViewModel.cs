@@ -9,12 +9,14 @@
 
     public class RiskAnalysisIPMatchingViewModel : WinLossViewModel
     {
+        private static readonly string[] excludingTicketStatus = { "running", "waiting" };
+
         public RiskAnalysisIPMatchingViewModel(
             RiskAnalysisIPMatchingQuery query,
             BetListData betListData,
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper)
-            : base(query, betListData, builder, ticketHelper, false, true)
+            : base(query, betListData, builder, ticketHelper, false, true, excludingTicketStatus)
         {
             Date = query.Date;
             IP = query.IP;
