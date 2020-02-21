@@ -2,6 +2,8 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Web.Mvc;
+    using Alpha.BetLists.Services;
     using BetLists.Models;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
@@ -9,18 +11,24 @@
 
     public class BetDataViewModel : BetListBaseViewModel
     {
+        private readonly LastBetsService lastBetsService;
+        private readonly GetLastBetsQuery query;
+
         public BetDataViewModel(
             long latestTransId,
             GetLastBetsQuery query,
             BetListData betListData,
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper,
-            IEnumerable<int> supportScoreMapBetTypeIds)
+            IEnumerable<int> supportScoreMapBetTypeIds,
+            LastBetsService lastBetsService)
             : base(query, betListData, builder, ticketHelper, showMemberName: true)
         {
             LatestTransId = latestTransId;
             TotalColumn = 7;
             SupportScoreMapBetTypeIds = supportScoreMapBetTypeIds;
+            this.lastBetsService = lastBetsService ?? DependencyResolver.Current.GetService<LastBetsService>();
+            this.query = query;
         }
 
         public IEnumerable<int> SupportScoreMapBetTypeIds { get; }
@@ -32,6 +40,12 @@
             ? BetListData.Tickets.ElementAt(BetListData.Total - 1).TransId
             : 0;
 
-        public override bool CanViewScoreMap(ITicket ticket) => SupportScoreMapBetTypeIds.Contains(ticket.BetTypeId);
+        public override bool CanViewScoreMap(ITicket ticket)
+        {
+            var status = lastBetsService.GetMatchInfoById(ticket.MatchId, query.RunningMatchCacheTime)?.Status;
+            return !string.IsNullOrWhiteSpace(status)
+                && !status.Equals("completed", System.StringComparison.OrdinalIgnoreCase)
+                && SupportScoreMapBetTypeIds.Contains(ticket.BetTypeId);
+        }
     }
 }

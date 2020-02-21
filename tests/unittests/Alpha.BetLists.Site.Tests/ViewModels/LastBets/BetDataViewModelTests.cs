@@ -1,6 +1,7 @@
 ﻿namespace Alpha.BetLists.Site.Tests.ViewModels.LastBets
 {
     using System.Collections.Generic;
+    using Alpha.BetLists.Services;
     using BetLists.Models;
     using Fanex.BetList.Core.Entities;
     using Fixtures;
@@ -34,7 +35,7 @@
             // Arrange
             var expectedValue = 7;
             var query = new GetLastBetsQuery(user);
-            var viewModel = new BetDataViewModel(0, query, null, betlistFixture.HtmlBuilder, betlistFixture.TicketHelper, null);
+            var viewModel = new BetDataViewModel(0, query, null, betlistFixture.HtmlBuilder, betlistFixture.TicketHelper, null, betlistFixture.LastBetsService);
 
             // Act
             var actualValue = viewModel.TotalColumn;
@@ -45,13 +46,13 @@
 
         [Theory]
         [InlineData(4, false)]
-        [InlineData(2, true)]
+        [InlineData(2, false)]
         public void CanViewScoreMap_Always_ReturnsCorrectValue(int betType, bool expectedValue)
         {
             // Arrange
             var query = new GetLastBetsQuery(user);
             var supportScoreMapBetTypeIds = new List<int> { 1, 2, 3 };
-            var viewModel = new BetDataViewModel(0, query, null, betlistFixture.HtmlBuilder, betlistFixture.TicketHelper, supportScoreMapBetTypeIds);
+            var viewModel = new BetDataViewModel(0, query, null, betlistFixture.HtmlBuilder, betlistFixture.TicketHelper, supportScoreMapBetTypeIds, betlistFixture.LastBetsService);
             var ticket = new Ticket
             {
                 BetTypeId = betType
@@ -70,7 +71,7 @@
             // Arrange
             var query = new GetLastBetsQuery(user);
             var betListData = new BetListData(null, null);
-            var viewModel = new BetDataViewModel(0, query, betListData, betlistFixture.HtmlBuilder, betlistFixture.TicketHelper, null);
+            var viewModel = new BetDataViewModel(0, query, betListData, betlistFixture.HtmlBuilder, betlistFixture.TicketHelper, null, betlistFixture.LastBetsService);
             var expectedLastTransId = 0;
 
             // Act
@@ -94,7 +95,7 @@
             };
 
             var betListData = new BetListData(tickets, null);
-            var viewModel = new BetDataViewModel(0, query, betListData, betlistFixture.HtmlBuilder, betlistFixture.TicketHelper, null);
+            var viewModel = new BetDataViewModel(0, query, betListData, betlistFixture.HtmlBuilder, betlistFixture.TicketHelper, null, betlistFixture.LastBetsService);
             var expectedLastTransId = 1;
 
             // Act
