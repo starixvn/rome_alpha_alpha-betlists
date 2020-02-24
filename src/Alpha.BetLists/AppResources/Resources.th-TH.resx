@@ -385,6 +385,6 @@
     <value>(แข่งสนามกลาง)</value>
   </data>
   <data name="IPMatchingTitle" xml:space="preserve">
-    <value>Member Bet List {0} - IP Matching: {1}</value>
+    <value>รายการเดิมพันของสมาชิก ณ {0} - เลขไอพี {1}</value>
   </data>
 </root>

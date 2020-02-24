@@ -398,6 +398,6 @@
     <value>Tự động tải</value>
   </data>
   <data name="IPMatchingTitle" xml:space="preserve">
-    <value>Member Bet List {0} - IP Matching: {1}</value>
+    <value>Danh sách cược {0} - Trùng IP {1}</value>
   </data>
 </root>

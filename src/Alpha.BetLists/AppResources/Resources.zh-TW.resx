@@ -385,6 +385,6 @@
     <value>(中)</value>
   </data>
   <data name="IPMatchingTitle" xml:space="preserve">
-    <value>Member Bet List {0} - IP Matching: {1}</value>
+    <value>會員投注歷史 {0} – IP核對：{1}</value>
   </data>
 </root>
