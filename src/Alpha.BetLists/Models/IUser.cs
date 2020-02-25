@@ -22,6 +22,8 @@ namespace Alpha.BetLists.Models
 
         bool IsEnabledJackpot { get; }
 
+        bool ViewReport { get; }
+
         bool HasPermissionOnProduct(int productId);
 
         DateTime LimitedDateToShowInfo { get; }

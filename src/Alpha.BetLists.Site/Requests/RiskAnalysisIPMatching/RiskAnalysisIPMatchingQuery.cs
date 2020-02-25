@@ -4,7 +4,6 @@
     using BetLists.Models;
     using MediatR;
     using System;
-    using ViewModels.WinLoss;
 
     public class RiskAnalysisIPMatchingQuery : BaseQuery, IRequest<RiskAnalysisIPMatchingViewModel>
     {
@@ -16,6 +15,9 @@
 
         public string IP { get; set; }
 
-        public override bool IsValid() => ViewerLevel.IsSuperLevel();
+        public override bool IsValid() 
+            => ViewerLevel.IsSuperLevel() 
+            && ViewReport 
+            && DisplayVNIP;
     }
 }

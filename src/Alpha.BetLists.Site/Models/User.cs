@@ -36,6 +36,8 @@
 
         public string LangKey => userSession.LangKey;
 
+        public bool ViewReport => userSession.SubPageAccess.ViewReports;
+
         public bool IsEnabledJackpot
         {
             get
