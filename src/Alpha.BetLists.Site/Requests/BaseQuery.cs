@@ -51,5 +51,7 @@
         public bool IsEnabledJackpot { get; set; }
 
         public DateTime LimitedDateToShowInfo { get; set; }
+
+        public virtual bool IsValid() => true;
     }
 }
