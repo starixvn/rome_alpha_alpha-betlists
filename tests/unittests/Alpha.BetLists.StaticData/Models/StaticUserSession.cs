@@ -84,6 +84,8 @@
 
         public bool IsEnabledJackpot => false;
 
+        public bool ViewReport => true;
+
         public bool HasPermissionOnProduct(int productId) => hasPermissionOnProduct(productId);
 
         public DateTime LimitedDateToShowInfo => limitedDate;
