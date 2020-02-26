@@ -6,12 +6,19 @@
     ViewBag.Title = "IP Matching List";
 }
 
-<div class="bl_title">
-    @Model.Title
-    <div class="bl-export-excel">
-        <a id="icon-excel" class="icon icon-excel" title="@Resources.ExportToExcel"
-           href="@Url.Action("Excel", "RiskAnalysisIPMatching", new { Date = Model.Date, IP = Model.IP})">
-        </a>
+@if (Model != null)
+{
+    <div class="bl_title">
+        @Model.Title
+        <div class="bl-export-excel">
+            <a id="icon-excel" class="icon icon-excel" title="@Resources.ExportToExcel"
+               href="@Url.Action("Excel", "RiskAnalysisIPMatching", new { Date = Model.Date, IP = Model.IP })">
+            </a>
+        </div>
     </div>
-</div>
-@Html.Partial("WinLossTable", Model)
+    @Html.Partial("WinLossTable", Model)
+}
+else
+{
+    @Html.Partial("InvalidBetList")
+}

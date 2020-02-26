@@ -1,7 +1,6 @@
 ﻿namespace Alpha.BetLists.Site.Handlers.RiskAnalysisIPMatching
 {
     using Alpha.BetLists.Builders.ExcelBuilders;
-    using Alpha.BetLists.Params;
     using Alpha.BetLists.Site.Requests.RiskAnalysisIPMatching;
     using Alpha.BetLists.Site.ViewModels.Blocks;
     using Alpha.BetLists.Site.ViewModels.RiskAnalysisIPMatching;
@@ -12,7 +11,6 @@
     using MediatR;
     using ONEbook.SpreadSheets;
     using ONEbook.SpreadSheets.NPOI;
-    using Services;
     using SmartPunter.Services;
     using System.Threading.Tasks;
     using Utilities.IP;
@@ -21,51 +19,48 @@
 
     public class RiskAnalysisIPMatchingExcelHandler : BetListExcelBaseHandler, IAsyncRequestHandler<RiskAnalysisIPMatchingExcelQuery, ExcelFileViewModel>
     {
-        private readonly RiskAnalysisIPMatchingService riskAnalysisIPMatchingService;
-        private readonly ReportDateService reportDateService;
+        private readonly RiskAnalysisIPMatchingHelper riskAnalysisIPMatchingHelper;
+
         private int currentRowIndex = 1;
 
         private Workbook<TicketDto> workbook;
 
         public RiskAnalysisIPMatchingExcelHandler(
-            RiskAnalysisIPMatchingService riskAnalysisIPMatchingService,
-            ReportDateService reportDateService,
             IBetListHTMLBuilder builder,
             IBetListExcelBuilder excelBuilder,
             ITicketHelper ticketHelper,
             ISmartPunterBetListMonitor monitorService,
             IPService ipService,
+            RiskAnalysisIPMatchingHelper riskAnalysisIPMatchingHelper,
             Workbook<TicketDto> workbook)
             : base(builder, excelBuilder, ticketHelper, monitorService, ipService)
         {
             this.workbook = workbook;
-            this.riskAnalysisIPMatchingService = riskAnalysisIPMatchingService;
-            this.reportDateService = reportDateService;
+            this.riskAnalysisIPMatchingHelper = riskAnalysisIPMatchingHelper;
         }
 
         public async Task<ExcelFileViewModel> Handle(RiskAnalysisIPMatchingExcelQuery message)
         {
-            var param = new RiskAnalysisIPMatchingParam(
-               message.CustId,
-               message.Date,
-               reportDateService.GetMoveBetsDay(),
-               message.IP);
+            var betlistData = await riskAnalysisIPMatchingHelper.BuildRiskAnalysisIPMatchingViewModel(message);
 
-            var betlistData = await riskAnalysisIPMatchingService.GetBetList(param);
+            if (betlistData != null)
+            {
+                var viewModel = new RiskAnalysisIPMatchingViewModel(message, betlistData, Builder, TicketHelper);
 
-            var viewModel = new RiskAnalysisIPMatchingViewModel(message, betlistData, Builder, TicketHelper);
+                workbook = workbook.UseTemplate(GetTemplateInfo(message.ViewerLevel));
+                RtfHelper = message.RtfHelper ?? InitRTFHelper((workbook as NpoiWorkbook<TicketDto>).Workbook);
 
-            workbook = workbook.UseTemplate(GetTemplateInfo(message.ViewerLevel));
-            RtfHelper = message.RtfHelper ?? InitRTFHelper((workbook as NpoiWorkbook<TicketDto>).Workbook);
+                var fileContent = workbook
+                        .Header(Resources.ResourceManager.GetString)
+                        .Title(viewModel.Title)
+                        .Body(betlistData.Tickets, GetBodyRowMapper(message.ViewerLevel, viewModel))
+                        .Footer(new TicketDto(), GetFooterRowMapper(viewModel.Footer))
+                        .ExportToBytes();
 
-            var fileContent = workbook
-                    .Header(Resources.ResourceManager.GetString)
-                    .Title(viewModel.Title)
-                    .Body(betlistData.Tickets, GetBodyRowMapper(message.ViewerLevel, viewModel))
-                    .Footer(new TicketDto(), GetFooterRowMapper(viewModel.Footer))
-                    .ExportToBytes();
+                return new ExcelFileViewModel(viewModel.Title, fileContent);
+            }
 
-            return new ExcelFileViewModel(viewModel.Title, fileContent);
+            return null;
         }
 
         protected internal override Mapper<TicketDto> GetBodyRowMapper(UserLevel viewerLevel, BetListBaseViewModel viewModel)

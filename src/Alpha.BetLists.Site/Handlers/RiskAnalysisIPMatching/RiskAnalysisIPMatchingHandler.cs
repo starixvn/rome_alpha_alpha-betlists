@@ -5,16 +5,16 @@
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using MediatR;
-    using Params;
     using Services;
     using SmartPunter.Services;
     using System.Threading.Tasks;
     using Utilities.IP;
 
-    public class RiskAnalysisIPMatchingHandler : BetListBaseHandler, IAsyncRequestHandler<RiskAnalysisIPMatchingQuery, RiskAnalysisIPMatchingViewModel>
+    public class RiskAnalysisIPMatchingHandler :
+        BetListBaseHandler, 
+        IAsyncRequestHandler<RiskAnalysisIPMatchingQuery, RiskAnalysisIPMatchingViewModel>
     {
-        private readonly RiskAnalysisIPMatchingService riskAnalysisIPMatchingService;
-        private readonly ReportDateService reportDateService;
+        private readonly RiskAnalysisIPMatchingHelper riskAnalysisIPMatchingHelper;
 
         public RiskAnalysisIPMatchingHandler(
             RiskAnalysisIPMatchingService riskAnalysisIPMatchingService,
@@ -22,24 +22,17 @@
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper,
             ISmartPunterBetListMonitor monitorService,
-            IPService ipService)
+            IPService ipService,
+            RiskAnalysisIPMatchingHelper riskAnalysisIPMatchingHelper)
             : base(builder, ticketHelper, monitorService, ipService)
         {
-            this.riskAnalysisIPMatchingService = riskAnalysisIPMatchingService;
-            this.reportDateService = reportDateService;
+            this.riskAnalysisIPMatchingHelper = riskAnalysisIPMatchingHelper;
         }
 
         public async Task<RiskAnalysisIPMatchingViewModel> Handle(RiskAnalysisIPMatchingQuery message)
         {
-            var param = new RiskAnalysisIPMatchingParam(
-               message.CustId,
-               message.Date,
-               reportDateService.GetMoveBetsDay(),
-               message.IP);
-
-            var betlistData = await riskAnalysisIPMatchingService.GetBetList(param);
-
-            return new RiskAnalysisIPMatchingViewModel(message, betlistData, Builder, TicketHelper);
+            var betlistData = await riskAnalysisIPMatchingHelper.BuildRiskAnalysisIPMatchingViewModel(message);
+            return betlistData == null ? null : new RiskAnalysisIPMatchingViewModel(message, betlistData, Builder, TicketHelper);
         }
     }
 }

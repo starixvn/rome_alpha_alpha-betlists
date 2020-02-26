@@ -9,12 +9,13 @@
     {
         public RiskAnalysisIPMatchingQuery(IUser viewer) : base(viewer)
         {
+            IsSuperLevel = ViewerLevel.IsSuperLevel();
         }
 
         public DateTime Date { get; set; }
 
         public string IP { get; set; }
 
-        public override bool IsValid() => ViewerLevel.IsSuperLevel();
+        public bool IsSuperLevel { get; }
     }
 }

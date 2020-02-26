@@ -18,7 +18,6 @@
             DisplayVNIP = viewer.IsAdminCanViewVNIP;
             Language = viewer.Language;
             IsEnabledJackpot = viewer.IsEnabledJackpot;
-            ViewReport = viewer.ViewReport;
 
             LimitedDateToShowInfo = viewer.LimitedDateToShowInfo;
         }
@@ -54,7 +53,5 @@
         public DateTime LimitedDateToShowInfo { get; set; }
 
         public bool ViewReport { get; }
-
-        public virtual bool IsValid() => true;
     }
 }

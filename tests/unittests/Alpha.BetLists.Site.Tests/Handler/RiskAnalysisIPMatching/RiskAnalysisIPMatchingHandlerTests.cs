@@ -21,6 +21,7 @@
         private readonly RiskAnalysisIPMatchingHandler handler;
         private readonly RiskAnalysisIPMatchingService service;
         private readonly ReportDateService reportDateService;
+        private readonly RiskAnalysisIPMatchingHelper riskAnalysisIPMatchingHelper;
         private readonly CompareLogic compareLogic;
 
         public RiskAnalysisIPMatchingHandlerTests(BetListFixture betlistFixture)
@@ -28,10 +29,12 @@
             this.betlistFixture = betlistFixture;
 
             service = Substitute.For<RiskAnalysisIPMatchingService>();
-            service.GetBetList(Arg.Any<RiskAnalysisIPMatchingParam>()).Returns(BetListDataTest.BetListData);
-
             reportDateService = Substitute.For<ReportDateService>();
-            reportDateService.GetMoveBetsDay().Returns(new DateTime(2020, 1, 1));
+
+            riskAnalysisIPMatchingHelper = Substitute.For<RiskAnalysisIPMatchingHelper>();
+            riskAnalysisIPMatchingHelper
+                .BuildRiskAnalysisIPMatchingViewModel(Arg.Any<RiskAnalysisIPMatchingQuery>())
+                .Returns(BetListDataTest.BetListData);
 
             handler = new RiskAnalysisIPMatchingHandler(
                 service,
@@ -39,7 +42,8 @@
                 this.betlistFixture.HtmlBuilder,
                 this.betlistFixture.TicketHelper,
                 this.betlistFixture.MonitorService,
-                this.betlistFixture.IpService);
+                this.betlistFixture.IpService,
+                riskAnalysisIPMatchingHelper);
 
             compareLogic = new CompareLogic(new ComparisonConfig
             {

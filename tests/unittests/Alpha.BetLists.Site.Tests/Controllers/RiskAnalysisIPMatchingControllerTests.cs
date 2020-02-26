@@ -19,7 +19,6 @@
             mediator = Substitute.For<IMediator>();
             user = Substitute.For<IUser>();
             user.LevelId.Returns(UserLevel.Super.Value);
-            user.ViewReport.Returns(true);
 
             controller = new RiskAnalysisIPMatchingController(mediator);
         }
