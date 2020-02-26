@@ -15,6 +15,6 @@
 
         public string IP { get; set; }
 
-        public override bool IsValid() => ViewerLevel.IsSuperLevel() && ViewReport;
+        public override bool IsValid() => ViewerLevel.IsSuperLevel();
     }
 }
