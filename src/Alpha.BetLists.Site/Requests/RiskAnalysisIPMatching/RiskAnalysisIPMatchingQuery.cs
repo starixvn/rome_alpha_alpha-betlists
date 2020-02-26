@@ -15,9 +15,6 @@
 
         public string IP { get; set; }
 
-        public override bool IsValid() 
-            => ViewerLevel.IsSuperLevel() 
-            && ViewReport 
-            && DisplayVNIP;
+        public override bool IsValid() => ViewerLevel.IsSuperLevel() && ViewReport;
     }
 }
