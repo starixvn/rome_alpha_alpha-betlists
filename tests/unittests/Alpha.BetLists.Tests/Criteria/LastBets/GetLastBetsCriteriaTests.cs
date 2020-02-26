@@ -16,10 +16,10 @@
         }
 
         [Theory]
-        [InlineData(0, "Age_Monitor_BetlistSel_Ag_AllBettypes")]
-        [InlineData(1, "Age_Monitor_BetlistSel_Ag_HDP")]
-        [InlineData(3, "Age_Monitor_BetlistSel_Ag_OU")]
-        [InlineData(19001, "Age_Monitor_BetlistSel_Ag_OtherBettypes")]
+        [InlineData(0, "Ost_LastBets_All")]
+        [InlineData(1, "Ost_LastBets_HDP")]
+        [InlineData(3, "Ost_LastBets_OU")]
+        [InlineData(19001, "Ost_LastBets_Other")]
         public void GetSettingKey_Always_ReturnsCorrectSettingKey(
             int betType,
             string expectedSettingKey)

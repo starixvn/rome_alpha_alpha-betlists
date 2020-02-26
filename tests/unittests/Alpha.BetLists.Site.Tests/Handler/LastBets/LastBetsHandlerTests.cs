@@ -105,7 +105,8 @@
                 betListData,
                 betlistFixture.HtmlBuilder,
                 betlistFixture.TicketHelper,
-                supportScoreMapBetTypeIds);
+                supportScoreMapBetTypeIds,
+                betlistFixture.LastBetsService);
 
             // Act
             var actualViewModel = handler.Handle(message).GetAwaiter().GetResult();

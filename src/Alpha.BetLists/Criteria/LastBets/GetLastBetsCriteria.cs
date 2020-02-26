@@ -33,13 +33,13 @@
             switch (BetType)
             {
                 case BetTypeIdConstants.AllBetTypes:
-                    return "Age_Monitor_BetlistSel_Ag_AllBettypes";
+                    return "Ost_LastBets_All";
                 case BetTypeIdConstants.Handicap:
-                    return "Age_Monitor_BetlistSel_Ag_HDP";
+                    return "Ost_LastBets_HDP";
                 case BetTypeIdConstants.OverUnder:
-                    return "Age_Monitor_BetlistSel_Ag_OU";
+                    return "Ost_LastBets_OU";
                 default:
-                    return "Age_Monitor_BetlistSel_Ag_OtherBettypes";
+                    return "Ost_LastBets_Other";
             }
         }
 
