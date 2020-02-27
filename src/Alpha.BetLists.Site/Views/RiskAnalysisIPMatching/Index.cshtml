@@ -1,0 +1,24 @@
+﻿@using Alpha.BetLists.Site.ViewModels.RiskAnalysisIPMatching
+
+@model RiskAnalysisIPMatchingViewModel
+
+@{
+    ViewBag.Title = "IP Matching List";
+}
+
+@if (Model != null)
+{
+    <div class="bl_title">
+        @Model.Title
+        <div class="bl-export-excel">
+            <a id="icon-excel" class="icon icon-excel" title="@Resources.ExportToExcel"
+               href="@Url.Action("Excel", "RiskAnalysisIPMatching", new { Date = Model.Date, IP = Model.IP })">
+            </a>
+        </div>
+    </div>
+    @Html.Partial("WinLossTable", Model)
+}
+else
+{
+    @Html.Partial("InvalidBetList")
+}

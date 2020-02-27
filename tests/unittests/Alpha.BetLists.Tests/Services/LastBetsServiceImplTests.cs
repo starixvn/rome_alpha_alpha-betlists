@@ -97,20 +97,5 @@
             // Assert
             Assert.False(actualCanViewLastBets);
         }
-
-        private TicketDto CreateTicketDto(
-            int betType,
-            int matchId,
-            string race,
-            string matchCode,
-            string showTime)
-            => new TicketDto
-            {
-                BetTypeId = betType,
-                MatchId = matchId,
-                Race = race,
-                MatchCode = matchCode,
-                ShowTime = showTime
-            };
     }
 }

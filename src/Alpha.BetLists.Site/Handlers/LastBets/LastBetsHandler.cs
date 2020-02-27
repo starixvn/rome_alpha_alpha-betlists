@@ -74,7 +74,7 @@
 
             var latestTransId = newTickets.Any() ? newTickets.First().TransId : message.LatestTransId;
 
-            return new BetDataViewModel(latestTransId, message, betListData, builder, ticketHelper, supportScoreMapBetTypeIds);
+            return new BetDataViewModel(latestTransId, message, betListData, builder, ticketHelper, supportScoreMapBetTypeIds, lastBetsService);
         }
 
         public Result Handle(CheckCanViewLastBetsQuery message)

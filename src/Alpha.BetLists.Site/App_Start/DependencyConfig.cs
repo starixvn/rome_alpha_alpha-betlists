@@ -4,6 +4,7 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
     using System.Web.Mvc;
+    using Alpha.BetLists.Site.Handlers.RiskAnalysisIPMatching;
     using BetLists.Helpers;
     using BetLists.Models;
     using Configurations;
@@ -162,7 +163,9 @@
             container.Register<RunningBetListByBetTypeService, RunningBetListByBetTypeServiceImpl>(Lifestyle.Singleton);
             container.Register<RunningBetListByBetTypeAndMatchService, RunningBetListByBetTypeAndMatchServiceImpl>(Lifestyle.Singleton);
             container.Register<JackpotDetailsService, JackpotDetailsServiceImpl>(Lifestyle.Singleton);
-
+            container.Register<RiskAnalysisIPMatchingService, RiskAnalysisIPMatchingServiceImpl> (Lifestyle.Singleton);
+            container.Register<RiskAnalysisIPMatchingHelper, RiskAnalysisIPMatchingHelperImpl>(Lifestyle.Singleton);
+            
             if (AppSettings.IsIntegrationTest)
             {
                 container.RegisterSingleton<IUser, StaticUserSession>();

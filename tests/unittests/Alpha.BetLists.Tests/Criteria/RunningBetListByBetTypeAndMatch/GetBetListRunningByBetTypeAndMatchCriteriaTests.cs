@@ -8,9 +8,9 @@
     public class GetBetListRunningByBetTypeAndMatchCriteriaTests
     {
         [Theory]
-        [InlineData(4, "Age_BetList_SelRunningByBettypeMatch_SAg")]
-        [InlineData(3, "Age_BetList_SelRunningByBettypeMatch_MAg")]
-        [InlineData(2, "Age_BetList_SelRunningByBettypeMatch_Ag")]
+        [InlineData(4, "Ost_BetList_TotalBet")]
+        [InlineData(3, "Ost_BetList_TotalBet")]
+        [InlineData(2, "Ost_BetList_TotalBet")]
         public void GetSettingKey_Always_ReturnsCorrectSettingKey(byte custLevelId, string expectedSettingKey)
         {
             // Arrange

@@ -289,7 +289,8 @@
     <value>显示筛选</value>
   </data>
   <data name="WinLossRoundNote" xml:space="preserve">
-    <value>输赢的进位值仅供参考。因此，所有输赢相加的总计有可能和小计有差数。</value></data>
+    <value>输赢的进位值仅供参考。因此，所有输赢相加的总计有可能和小计有差数。</value>
+  </data>
   <data name="Bets" xml:space="preserve">
     <value>bets</value>
   </data>
@@ -382,5 +383,8 @@
   </data>
   <data name="Neutral" xml:space="preserve">
     <value>(中)</value>
+  </data>
+  <data name="IPMatchingTitle" xml:space="preserve">
+    <value>会员投注历史 {0} – IP核对：{1}</value>
   </data>
 </root>

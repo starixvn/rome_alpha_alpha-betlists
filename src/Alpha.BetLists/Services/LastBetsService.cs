@@ -17,6 +17,8 @@
         Task<IEnumerable<TicketDto>> GetLastBets(GetLastBetsParam param);
 
         bool CanViewLastBets(CheckCanViewLastBetsParam param);
+
+        MatchInfo GetMatchInfoById(int matchId, int cacheTime);
     }
 
     public class LastBetsServiceImpl : LastBetsService
@@ -24,6 +26,7 @@
         private const string RunningMatchesCacheKey = "Alpha.Reports.Services.Impl.LastBetsServiceImpl.RunningMatchesCacheKey";
         private const string RunningOutrightMatchesCacheKey = "Alpha.Reports.Services.Impl.LastBetsServiceImpl.RunningOutrightMatchesCacheKey";
         private const string RunningOtherMatchesCacheKey = "Alpha.Reports.Services.Impl.LastBetsServiceImpl.RunningOtherMatchesCacheKey";
+        private const string CheckRunningMatchByIdCacheKey = "Alpha.Reports.Services.Impl.LastBetsServiceImpl.CheckRunningMatchByIdCacheKey";
 
         private readonly IDynamicRepository dynamicRepository;
 
@@ -127,6 +130,27 @@
                 new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(cacheTime)));
 
             return matches;
+        }
+
+        public MatchInfo GetMatchInfoById(int matchId, int cacheTime)
+        {
+            var cachedKey = $"{CheckRunningMatchByIdCacheKey}_{matchId}";
+            var matchInfo = ConfiguredCacheService.Get<MatchInfo>(cachedKey);
+
+            if (matchInfo == null && !IsDummyMatch(matchId))
+            {
+                matchInfo = dynamicRepository.Fetch<MatchInfo>(new GetMatchInfoByIdCriteria(matchId)).FirstOrDefault();
+
+                if (matchInfo != null)
+                {
+                    ConfiguredCacheService.Set(
+                        cachedKey,
+                        matchInfo,
+                        new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(cacheTime)));
+                }
+            }
+
+            return matchInfo;
         }
     }
 }

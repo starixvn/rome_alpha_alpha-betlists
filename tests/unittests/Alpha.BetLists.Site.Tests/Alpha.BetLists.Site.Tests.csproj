@@ -288,6 +288,7 @@
     <Compile Include="Collection\BetListCollection.cs" />
     <Compile Include="Constants\DefaultVariablesTest.cs" />
     <Compile Include="Constants\LanguageCode.cs" />
+    <Compile Include="Controllers\BetBuilderControllerTests.cs" />
     <Compile Include="Controllers\BetListByBetTypeAndMatchControllerTests.cs" />
     <Compile Include="Controllers\BetListByBetTypeControllerTests.cs" />
     <Compile Include="Controllers\CancelledBetControllerTests.cs" />
@@ -297,6 +298,7 @@
     <Compile Include="Controllers\DailyStatementControllerTests.cs" />
     <Compile Include="Controllers\JackpotDetailsControllerTests.cs" />
     <Compile Include="Controllers\LastBetsControllerTests.cs" />
+    <Compile Include="Controllers\RiskAnalysisIPMatchingControllerTests.cs" />
     <Compile Include="Controllers\MemberBetListControllerTests.cs" />
     <Compile Include="Controllers\ParlayControllerTests.cs" />
     <Compile Include="Controllers\ParlayWinLossByMatchControllerTests.cs" />
@@ -306,6 +308,7 @@
     <Compile Include="Fixtures\BetListFixture.cs" />
     <Compile Include="Fixtures\ParlayServiceFixture.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Handler\BetBuilder\BetBuilderHandlerTests.cs" />
     <Compile Include="Handler\BetListBaseHandlerTests.cs" />
     <Compile Include="Handler\BetListByBetTypeAndMatch\BetListByBetTypeAndMatchExcelHandlerTests.cs" />
     <Compile Include="Handler\BetListByBetTypeAndMatch\BetListByBetTypeAndMatchHandlerTests.cs" />
@@ -326,6 +329,7 @@
     <Compile Include="Handler\CorrectScore\CorrectScoreExcelHandlerTests.cs" />
     <Compile Include="Handler\CorrectScore\CorrectScoreHandlerTests.cs" />
     <Compile Include="Handler\MemberBetList\MemberBetListHandlerTests.cs" />
+    <Compile Include="Handler\RiskAnalysisIPMatching\RiskAnalysisIPMatchingHandlerTests.cs" />
     <Compile Include="Handler\RunningBetList\RunningBetListHandlerTests.cs" />
     <Compile Include="Handler\ParlayWinLossByMatch\ParlayWinLossByMatchExcelHanlderTests.cs" />
     <Compile Include="Handler\ParlayWinLossByMatch\ParlayWinLossByMatchHanlderTests.cs" />

@@ -1,5 +1,6 @@
 ﻿namespace Alpha.BetLists.Site.Tests.Fixtures
 {
+    using Alpha.BetLists.Services;
     using Alpha.BetLists.Site.Helpers;
     using BetLists.Models;
     using Fanex.BetList.Core.Builder;
@@ -28,6 +29,8 @@
             User.Id.Returns(10);
             User.Name.Returns("Name");
             User.Language.Returns("en-US");
+
+            LastBetsService = Substitute.For<LastBetsService>();
         }
 
         public IBetListHTMLBuilder HtmlBuilder { get; }
@@ -45,6 +48,8 @@
         public IPService IpService { get; }
 
         public IUser User { get; }
+
+        public LastBetsService LastBetsService { get; }
 
         private RTFHelper CreateRtfHelper()
         {

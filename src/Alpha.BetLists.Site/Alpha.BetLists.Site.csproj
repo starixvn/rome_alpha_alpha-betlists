@@ -437,6 +437,15 @@
     <Content Include="App_Data\activitytracking.uat.json">
       <DependentUpon>activitytracking.json</DependentUpon>
     </Content>
+    <Content Include="App_Data\SPNames\Internal.BK\DBACC.bodb02.BODBDownlineNetView.xml" />
+    <Content Include="App_Data\SPNames\Internal.BK\DBAGE.bodb02.BODBDownlineNetView.xml" />
+    <Content Include="App_Data\SPNames\Internal.BK\DBAGE.bodb_AGE.BODBDownlineNetView.xml" />
+    <Content Include="App_Data\SPNames\Internal.BK\DBARC.bodb_Archive.BODBDownlineNetView.xml" />
+    <Content Include="App_Data\SPNames\Internal.BK\DBCUST.CustDB.BODBDownlineNetView.xml" />
+    <Content Include="App_Data\SPNames\Internal.BK\DBCust.IPDB.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Internal.BK\DBLOG.bodb_CustomerLog.BODBDownlineNetView.xml" />
+    <Content Include="App_Data\SPNames\Internal.BK\DBONUSER.ON_USER.BODBDownlineNetView.xml" />
+    <Content Include="App_Data\SPNames\Internal.BK\DBPOLICY.bodb02.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Internal\DBACC.bodb02.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Internal\DBAGE.bodb02.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Internal\DBAGE.bodb_AGE.BODBDownlineNetView.xml" />
@@ -446,16 +455,40 @@
     <Content Include="App_Data\SPNames\Internal\DBLOG.bodb_CustomerLog.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Internal\DBONUSER.ON_USER.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Internal\DBPOLICY.bodb02.BODBDownlineNetView.xml" />
+    <Content Include="App_Data\SPNames\Local.BK\DBACC.bodb02.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Local.BK\DBAGE.bodb02.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Local.BK\DBAGE.bodb_AGE.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Local.BK\DBARC.bodb_Archive.BODBDownlineNet.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Data\SPNames\Local.BK\DBCUST.CustDB.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Local.BK\DBCust.IPDB.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Local.BK\DBLOG.bodb_CustomerLog.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Local.BK\DBONUSER.ON_USER.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Local.BK\DBPOLICY.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Local\DBACC.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Local\DBAGE.bodb_AGE.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Local\DBCust.IPDB.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Local\DBPOLICY.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Local\DBCust.CustDB.BODBDownlineNet.xml" />
-    <Content Include="App_Data\SPNames\Local\DBAGE.bodb02.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Local\DBAGE.bodb02.BODBDownlineNet.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_Data\SPNames\Local\DBLOG.bodb_CustomerLog.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Local\DBONUSER.ON_USER.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Pro.BK\DBACC.bodb02.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Pro.BK\DBAGE.bodb02.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Pro.BK\DBAGE.bodb_AGE.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Pro.BK\DBARC.bodb_Archive.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Pro.BK\DBCUST.CustDB.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Pro.BK\DBCust.IPDB.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Pro.BK\DBLOG.bodb_CustomerLog.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Pro.BK\DBONUSER.ON_USER.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Pro.BK\DBPOLICY.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Pro\DBACC.bodb02.BODBDownlineNet.xml" />
-    <Content Include="App_Data\SPNames\Pro\DBAGE.bodb02.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Pro\DBAGE.bodb02.BODBDownlineNet.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_Data\SPNames\Pro\DBAGE.bodb_AGE.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Pro\DBARC.bodb_Archive.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Pro\DBCUST.CustDB.BODBDownlineNet.xml" />
@@ -463,6 +496,17 @@
     <Content Include="App_Data\SPNames\Pro\DBLOG.bodb_CustomerLog.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Pro\DBONUSER.ON_USER.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Pro\DBPOLICY.bodb02.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\SIT.BK\DBACC.bodb02.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\SIT.BK\DBAGE.bodb02.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\SIT.BK\DBAGE.bodb_AGE.BODBDownlineNet.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Data\SPNames\SIT.BK\DBARC.bodb_Archive.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\SIT.BK\DBCUST.CustDB.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\SIT.BK\DBCust.IPDB.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\SIT.BK\DBLOG.bodb_CustomerLog.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\SIT.BK\DBONUSER.ON_USER.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\SIT.BK\DBPOLICY.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DBACC.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DBAGE.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DBAGE.bodb_AGE.BODBDownlineNet.xml">
@@ -474,8 +518,19 @@
     <Content Include="App_Data\SPNames\SIT\DBLOG.bodb_CustomerLog.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DBONUSER.ON_USER.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DBPOLICY.bodb02.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\UAT.BK\DBACC.bodb02.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\UAT.BK\DBAGE.bodb02.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\UAT.BK\DBAGE.bodb_AGE.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\UAT.BK\DBARC.bodb_Archive.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\UAT.BK\DBCUST.CustDB.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\UAT.BK\DBCust.IPDB.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\UAT.BK\DBLOG.bodb_CustomerLog.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\UAT.BK\DBONUSER.ON_USER.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\UAT.BK\DBPOLICY.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\UAT\DBACC.bodb02.BODBDownlineNet.xml" />
-    <Content Include="App_Data\SPNames\UAT\DBAGE.bodb02.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\UAT\DBAGE.bodb02.BODBDownlineNet.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_Data\SPNames\UAT\DBAGE.bodb_AGE.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\UAT\DBARC.bodb_Archive.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\UAT\DBCUST.CustDB.BODBDownlineNet.xml" />
@@ -680,6 +735,7 @@
     <Content Include="App_Code\Components\StatusMultiSelection.cshtml" />
     <Content Include="assets\styles\parlay-detail.scss" />
     <Content Include="App_Code\Blocks\LastBetsStatus.cshtml" />
+    <Content Include="App_Data\ExcelTemplates\RiskAnalysisIPMatching\Super.xls" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -778,6 +834,7 @@
     <Content Include="Views\JackpotDetails\Index.cshtml" />
     <Content Include="Views\BetBuilder\ViewDetail.cshtml" />
     <Content Include="Views\Parlay\ComboParlayDetailMobile.cshtml" />
+    <Content Include="Views\RiskAnalysisIPMatching\Index.cshtml" />
     <None Include="Web.AppSettings.auto.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </None>
@@ -789,8 +846,12 @@
     <Content Include="Views\BetListByBetTypeAndMatch\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\DependencyConfig.cs" />
-    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\DependencyConfig.cs">
+		<SonarQubeExclude>true</SonarQubeExclude>
+	</Compile>
+    <Compile Include="App_Start\RouteConfig.cs">
+		<SonarQubeExclude>true</SonarQubeExclude>
+	</Compile>
     <Compile Include="Constants\SessionKey.cs" />
     <Compile Include="Constants\UserSelectedDateRangeOptionConstant.cs" />
     <Compile Include="Controllers\BetListBaseController.cs" />
@@ -802,6 +863,7 @@
     <Compile Include="Controllers\BetBuilderController.cs" />
     <Compile Include="Controllers\CombinationMixParlayController.cs" />
     <Compile Include="Controllers\CorrectScoreController.cs" />
+    <Compile Include="Controllers\RiskAnalysisIPMatchingController.cs" />
     <Compile Include="Controllers\MemberBetListController.cs" />
     <Compile Include="Controllers\LastBetsController.cs" />
     <Compile Include="Controllers\CasinoDetailsController.cs" />
@@ -817,7 +879,12 @@
     <Compile Include="Handlers\JackpotDetails\JackpotDetailsExcelHandler.cs" />
     <Compile Include="Handlers\JackpotDetails\JackpotDetailsHandler.cs" />
     <Compile Include="Handlers\BetBuilder\BetBuilderHandler.cs" />
-    <Compile Include="Helpers\BrowserHelper.cs" />
+    <Compile Include="Handlers\RiskAnalysisIPMatching\RiskAnalysisIPMatchingHelper.cs" />
+    <Compile Include="Handlers\RiskAnalysisIPMatching\RiskAnalysisIPMatchingHandler.cs" />
+    <Compile Include="Handlers\RiskAnalysisIPMatching\RiskAnalysisIPMatchingExcelHandler.cs" />
+    <Compile Include="Helpers\BrowserHelper.cs">
+		<SonarQubeExclude>true</SonarQubeExclude>
+	</Compile>
     <Compile Include="Requests\BetBuilder\BetBuilderDetailQuery.cs" />
     <Compile Include="Requests\CasinoDetails\CasinoDetailsExcelQuery.cs" />
     <Compile Include="Requests\CasinoDetails\CasinoDetailsQuery.cs" />
@@ -848,14 +915,18 @@
     <Compile Include="Handlers\RunningBetList\RunningBetListHandler.cs" />
     <Compile Include="Handlers\ParlayWinLossByMatch\ParlayWinLossByMatchExcelHanlder.cs" />
     <Compile Include="Handlers\ParlayWinLossByMatch\ParlayWinLossByMatchHandler.cs" />
-    <Compile Include="Handlers\Parlay\ComboParlayDetailWorkbook.cs" />
+    <Compile Include="Handlers\Parlay\ComboParlayDetailWorkbook.cs">
+		<SonarQubeExclude>true</SonarQubeExclude>
+	</Compile>
     <Compile Include="Handlers\Parlay\ParlayExcelHandler.cs" />
     <Compile Include="Handlers\Parlay\ParlayHandler.cs" />
     <Compile Include="Handlers\WinLossByMatch\WinLossByMatchExcelHandler.cs" />
     <Compile Include="Handlers\WinLossByMatch\WinLossByMatchHandler.cs" />
     <Compile Include="Handlers\WinLoss\WinLossExcelHandler.cs" />
     <Compile Include="Handlers\WinLoss\WinLossHandler.cs" />
-    <Compile Include="Helpers\IPHelper.cs" />
+    <Compile Include="Helpers\IPHelper.cs">
+		<SonarQubeExclude>true</SonarQubeExclude>
+	</Compile>
     <Compile Include="Helpers\QueryEntityModelBinder.cs" />
     <Compile Include="Helpers\UrlHelper.cs" />
     <Compile Include="Models\User.cs" />
@@ -872,6 +943,8 @@
     <Compile Include="Requests\CorrectScore\CorrectScoreExcelQuery.cs" />
     <Compile Include="Requests\CorrectScore\CorrectScoreQuery.cs" />
     <Compile Include="Requests\MemberBetList\MemberBetListQuery.cs" />
+    <Compile Include="Requests\RiskAnalysisIPMatching\RiskAnalysisIPMatchingQuery.cs" />
+    <Compile Include="Requests\RiskAnalysisIPMatching\RiskAnalysisIPMatchingExcelQuery.cs" />
     <Compile Include="Requests\RunningBetList\RunningBetListQuery.cs" />
     <Compile Include="Requests\LastBets\CheckCanViewLastBetsQuery.cs" />
     <Compile Include="Requests\LastBets\GetLastBetsQuery.cs" />
@@ -893,16 +966,23 @@
     <Compile Include="ViewModels\Blocks\WinLostBlockViewModel.cs" />
     <Compile Include="ViewModels\CasinoDetails\CasinoDetailsViewModel.cs" />
     <Compile Include="ViewModels\CombinationMixParlay\CombinationMixParlayViewModel.cs" />
-    <Compile Include="ViewModels\Components\PagerViewModel.cs" />
+    <Compile Include="ViewModels\Components\PagerViewModel.cs">
+		<SonarQubeExclude>true</SonarQubeExclude>
+	</Compile>
     <Compile Include="ViewModels\Components\StatusMultiSelectionViewModel.cs" />
-    <Compile Include="ViewModels\Components\DateRangePickerViewModel.cs" />
+    <Compile Include="ViewModels\Components\DateRangePickerViewModel.cs">
+		<SonarQubeExclude>true</SonarQubeExclude>
+	</Compile>
     <Compile Include="ViewModels\CancelledBet\CancelledBetViewModel.cs" />
-    <Compile Include="ViewModels\Components\ProductMultiSelectionViewModel.cs" />
+    <Compile Include="ViewModels\Components\ProductMultiSelectionViewModel.cs">
+		<SonarQubeExclude>true</SonarQubeExclude>
+	</Compile>
     <Compile Include="ViewModels\DailyStatement\DailyStatementViewModel.cs" />
     <Compile Include="ViewModels\CorrectScore\CorrectScoreViewModel.cs" />
     <Compile Include="ViewModels\ExcelFileViewModel.cs" />
     <Compile Include="ViewModels\JackpotDetails\JackpotDetailsViewModel.cs" />
     <Compile Include="ViewModels\MemberBetList\MemberBetListViewModel.cs" />
+    <Compile Include="ViewModels\RiskAnalysisIPMatching\RiskAnalysisIPMatchingViewModel.cs" />
     <Compile Include="ViewModels\RunningBetList\RunningBetListViewModel.cs" />
     <Compile Include="ViewModels\LastBets\BetDataViewModel.cs" />
     <Compile Include="ViewModels\LastBets\LastBetsViewModel.cs" />

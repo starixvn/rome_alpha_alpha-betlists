@@ -391,7 +391,7 @@
   </Function>
   
   <Function Name="Last Bets Monitoring">
-    <Setting Key="Age_Monitor_BetlistSel_Ag_AllBettypes" SpName="Age_Monitor_BetlistSel_Ag_AllBettypes" DbName="DB042.bodb02.BODBDownlineNetView" Plain="0">
+    <Setting Key="Ost_LastBets_All" SpName="Ost_LastBets_All" DbName="DBOST.bodb_ost.BODBDownlineNetView" Plain="0">
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="TicketDto"></Mapping>
@@ -411,7 +411,7 @@
       <Mapping DataField="liveindicator" ObjectProperty="IsLive" Class="TicketDto"></Mapping>
       <Mapping DataField="betstatus" ObjectProperty="EventStatus" Class="TicketDto"></Mapping>
     </Setting>
-    <Setting Key="Age_Monitor_BetlistSel_Ag_HDP" SpName="Age_Monitor_BetlistSel_Ag_HDP" DbName="DB042.bodb02.BODBDownlineNetView" Plain="0">
+    <Setting Key="Ost_LastBets_HDP" SpName="Ost_LastBets_HDP" DbName="DBOST.bodb_ost.BODBDownlineNetView" Plain="0">
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="TicketDto"></Mapping>
@@ -431,7 +431,7 @@
       <Mapping DataField="liveindicator" ObjectProperty="IsLive" Class="TicketDto"></Mapping>
       <Mapping DataField="betstatus" ObjectProperty="EventStatus" Class="TicketDto"></Mapping>
     </Setting>
-    <Setting Key="Age_Monitor_BetlistSel_Ag_OU" SpName="Age_Monitor_BetlistSel_Ag_OU" DbName="DB042.bodb02.BODBDownlineNetView" Plain="0">
+    <Setting Key="Ost_LastBets_OU" SpName="Ost_LastBets_OU" DbName="DBOST.bodb_ost.BODBDownlineNetView" Plain="0">
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="TicketDto"></Mapping>
@@ -451,7 +451,7 @@
       <Mapping DataField="liveindicator" ObjectProperty="IsLive" Class="TicketDto"></Mapping>
       <Mapping DataField="betstatus" ObjectProperty="EventStatus" Class="TicketDto"></Mapping>
     </Setting>
-    <Setting Key="Age_Monitor_BetlistSel_Ag_OtherBettypes" SpName="Age_Monitor_BetlistSel_Ag_OtherBettypes" DbName="DB042.bodb02.BODBDownlineNetView" Plain="0">
+    <Setting Key="Ost_LastBets_Other" SpName="Ost_LastBets_Other" DbName="DBOST.bodb_ost.BODBDownlineNetView" Plain="0">
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="TicketDto"></Mapping>
@@ -658,7 +658,7 @@
   </Function>
 
   <Function Name="Running BetList By BetType And Match">
-    <Setting Key="Age_BetList_SelRunningByBettypeMatch_Ag" SpName="Age_BetList_SelRunningByBettypeMatch_Ag" DbName="DB042.bodb02.BODBDownlineNetView" Plain="0">
+    <Setting Key="Ost_BetList_TotalBet" SpName="Ost_BetList_TotalBet" DbName="DBOST.bodb_ost.BODBDownlineNetView" Plain="0">
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="TicketDto"></Mapping>
@@ -685,7 +685,10 @@
       <Mapping DataField="mpositiontaking" ObjectProperty="MasterPT" Class="TicketData"></Mapping>
       <Mapping DataField="spositiontaking" ObjectProperty="SuperPT" Class="TicketData"></Mapping>
     </Setting>
-    <Setting Key="Age_BetList_SelRunningByBettypeMatch_MAg" SpName="Age_BetList_SelRunningByBettypeMatch_MAg" DbName="DB042.bodb02.BODBDownlineNetView" Plain="0">
+  </Function>
+
+  <Function Name="IP Matching BetList">
+    <Setting Key="Age_BetList_IPMatching" SpName="Age_BetList_IPMatching" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0">
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="TicketDto"></Mapping>
