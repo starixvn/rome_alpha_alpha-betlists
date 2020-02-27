@@ -11,7 +11,8 @@
         public void GetSettingKey_Always_ReturnsValidSettingKey()
         {
             // Arrange
-            var criteria = new GetRiskAnalysisIPMatchingCriteria(0, "192.1.1.1", new DateTime(2020, 02, 14), new DateTime(2020, 02, 16));
+            var moveBetsDay = new DateTime(2020, 02, 16);
+            var criteria = new GetRiskAnalysisIPMatchingCriteria(0, "192.1.1.1", new DateTime(2020, 02, 14), moveBetsDay);
             var expectedSettingKey = "Age_BetList_IPMatching";
 
             // Act
@@ -19,6 +20,7 @@
 
             // Assert
             Assert.Equal(expectedSettingKey, actualSettingKey);
+            Assert.Equal(moveBetsDay, criteria.MoveBetsDay);
         }
 
         [Theory]

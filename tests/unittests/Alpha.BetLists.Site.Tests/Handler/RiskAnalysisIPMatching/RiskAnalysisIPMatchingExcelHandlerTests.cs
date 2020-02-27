@@ -3,7 +3,6 @@
     using Alpha.BetLists.Site.Handlers.RiskAnalysisIPMatching;
     using Alpha.BetLists.Site.Requests.RiskAnalysisIPMatching;
     using Alpha.BetLists.Site.ViewModels.RiskAnalysisIPMatching;
-    using AppResources;
     using BetLists.Models;
     using BetLists.Tests.TestData;
     using Fixtures;
@@ -90,41 +89,6 @@
         }
 
         [Fact]
-        public void Handle_Workbook_UseTemplate()
-        {
-            // Act
-            riskAnalysisIPMatchingExcelHandler.Handle(query).GetAwaiter().GetResult();
-
-            // Assert
-            workbook.Received().UseTemplate(Arg.Is<TemplateInfo>(
-                t => t.TemplatePath == $"~/App_Data/ExcelTemplates/RiskAnalysisIPMatching/Super.xls"
-                && t.NoInfomationText == Resources.NoInformationIsAvailable));
-        }
-
-        [Fact]
-        public void Handle_Workbook_Header()
-        {
-            // Act
-            riskAnalysisIPMatchingExcelHandler.Handle(query).GetAwaiter().GetResult();
-
-            // Assert
-            workbook.Received().Header(Arg.Is<Func<string, string>>(f => f == Resources.ResourceManager.GetString));
-        }
-
-        [Fact]
-        public void Handle_Workbook_Title()
-        {
-            // Arrange
-            var title = "Member Bet List 2/28/2020 - IP Matching: 192.168.1.2";
-
-            // Act
-            riskAnalysisIPMatchingExcelHandler.Handle(query).GetAwaiter().GetResult();
-
-            // Assert
-            workbook.Received().Title(Arg.Is(title));
-        }
-
-        [Fact]
         public void Handle_Workbook_Body()
         {
             // Act
@@ -176,8 +140,8 @@
             // Arrange
             riskAnalysisIPMatchingHelper.BuildRiskAnalysisIPMatchingViewModel(Arg.Any<RiskAnalysisIPMatchingQuery>()).Returns(viewModelData);
 
-              // Act
-              var actualViewModel = riskAnalysisIPMatchingExcelHandler.Handle(query).GetAwaiter().GetResult();
+            // Act
+            var actualViewModel = riskAnalysisIPMatchingExcelHandler.Handle(query).GetAwaiter().GetResult();
 
             // Assert
             Assert.Null(actualViewModel);

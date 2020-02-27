@@ -16,7 +16,7 @@
         {
             // Arrange
             var custLevel = Enumeration.FromValue<UserLevel>(custLevelId);
-            var criteria = new GetParlayWinLossByMatchCriteria(0, 0, string.Empty, DateTime.Now, DateTime.Now, DateTime.Now, custLevel);
+            var criteria = new GetParlayWinLossByMatchCriteria(0, 0, "En", DateTime.Now, DateTime.Now, DateTime.Now, custLevel);
 
             // Act
             var actualSettingKey = criteria.GetSettingKey();

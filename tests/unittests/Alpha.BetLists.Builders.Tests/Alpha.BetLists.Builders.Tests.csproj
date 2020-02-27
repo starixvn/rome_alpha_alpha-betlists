@@ -81,8 +81,8 @@
       <HintPath>..\..\..\packages\NPOI.2.2.1\lib\net40\NPOI.OpenXmlFormats.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NSubstitute, Version=2.0.3.0, Culture=neutral, PublicKeyToken=92dd2e9066daa5ca, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\NSubstitute.2.0.3\lib\net45\NSubstitute.dll</HintPath>
+    <Reference Include="NSubstitute, Version=4.2.0.0, Culture=neutral, PublicKeyToken=92dd2e9066daa5ca, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\NSubstitute.4.2.1\lib\net46\NSubstitute.dll</HintPath>
     </Reference>
     <Reference Include="SPSRemoting, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\SPSRemoting.1.0.0\lib\net40\SPSRemoting.dll</HintPath>

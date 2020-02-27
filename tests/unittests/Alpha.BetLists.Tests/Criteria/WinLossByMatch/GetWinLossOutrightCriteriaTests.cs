@@ -16,13 +16,16 @@
         {
             // Arrange
             var custLevel = Enumeration.FromValue<UserLevel>(custLevelId);
-            var criteria = new GetWinLossOutrightCriteria(0, 0, string.Empty, DateTime.Today, DateTime.Today, DateTime.Today, custLevel);
+            var criteria = new GetWinLossOutrightCriteria(0, 0, "En", DateTime.Today, DateTime.Today, DateTime.Today, custLevel);
 
             // Act
             var actualSettingKey = criteria.GetSettingKey();
 
             // Assert
             Assert.Equal(expectedSettingKey, actualSettingKey);
+            Assert.Equal(0, criteria.LeagueId);
+            Assert.Equal("En", criteria.Language);
+            Assert.Equal(DateTime.Today, criteria.MoveBetsDate);
         }
 
         [Theory]
