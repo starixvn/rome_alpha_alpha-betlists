@@ -159,6 +159,9 @@
     <Reference Include="Fanex.BetList.Spadegaming, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.Spadegaming.1.0.0\lib\net40\Fanex.BetList.Spadegaming.dll</HintPath>
     </Reference>
+    <Reference Include="Fanex.BetList.VirtualGames, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.VirtualGames.1.0.0\lib\net40\Fanex.BetList.VirtualGames.dll</HintPath>
+    </Reference>
     <Reference Include="Fanex.BetList.VirtualSports, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.VirtualSports.1.5.0\lib\net40\Fanex.BetList.VirtualSports.dll</HintPath>
     </Reference>
@@ -847,11 +850,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\DependencyConfig.cs">
-		<SonarQubeExclude>true</SonarQubeExclude>
-	</Compile>
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
     <Compile Include="App_Start\RouteConfig.cs">
-		<SonarQubeExclude>true</SonarQubeExclude>
-	</Compile>
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
     <Compile Include="Constants\SessionKey.cs" />
     <Compile Include="Constants\UserSelectedDateRangeOptionConstant.cs" />
     <Compile Include="Controllers\BetListBaseController.cs" />
@@ -883,8 +886,8 @@
     <Compile Include="Handlers\RiskAnalysisIPMatching\RiskAnalysisIPMatchingHandler.cs" />
     <Compile Include="Handlers\RiskAnalysisIPMatching\RiskAnalysisIPMatchingExcelHandler.cs" />
     <Compile Include="Helpers\BrowserHelper.cs">
-		<SonarQubeExclude>true</SonarQubeExclude>
-	</Compile>
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
     <Compile Include="Requests\BetBuilder\BetBuilderDetailQuery.cs" />
     <Compile Include="Requests\CasinoDetails\CasinoDetailsExcelQuery.cs" />
     <Compile Include="Requests\CasinoDetails\CasinoDetailsQuery.cs" />
@@ -916,8 +919,8 @@
     <Compile Include="Handlers\ParlayWinLossByMatch\ParlayWinLossByMatchExcelHanlder.cs" />
     <Compile Include="Handlers\ParlayWinLossByMatch\ParlayWinLossByMatchHandler.cs" />
     <Compile Include="Handlers\Parlay\ComboParlayDetailWorkbook.cs">
-		<SonarQubeExclude>true</SonarQubeExclude>
-	</Compile>
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
     <Compile Include="Handlers\Parlay\ParlayExcelHandler.cs" />
     <Compile Include="Handlers\Parlay\ParlayHandler.cs" />
     <Compile Include="Handlers\WinLossByMatch\WinLossByMatchExcelHandler.cs" />
@@ -925,8 +928,8 @@
     <Compile Include="Handlers\WinLoss\WinLossExcelHandler.cs" />
     <Compile Include="Handlers\WinLoss\WinLossHandler.cs" />
     <Compile Include="Helpers\IPHelper.cs">
-		<SonarQubeExclude>true</SonarQubeExclude>
-	</Compile>
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
     <Compile Include="Helpers\QueryEntityModelBinder.cs" />
     <Compile Include="Helpers\UrlHelper.cs" />
     <Compile Include="Models\User.cs" />
@@ -967,16 +970,16 @@
     <Compile Include="ViewModels\CasinoDetails\CasinoDetailsViewModel.cs" />
     <Compile Include="ViewModels\CombinationMixParlay\CombinationMixParlayViewModel.cs" />
     <Compile Include="ViewModels\Components\PagerViewModel.cs">
-		<SonarQubeExclude>true</SonarQubeExclude>
-	</Compile>
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
     <Compile Include="ViewModels\Components\StatusMultiSelectionViewModel.cs" />
     <Compile Include="ViewModels\Components\DateRangePickerViewModel.cs">
-		<SonarQubeExclude>true</SonarQubeExclude>
-	</Compile>
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
     <Compile Include="ViewModels\CancelledBet\CancelledBetViewModel.cs" />
     <Compile Include="ViewModels\Components\ProductMultiSelectionViewModel.cs">
-		<SonarQubeExclude>true</SonarQubeExclude>
-	</Compile>
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
     <Compile Include="ViewModels\DailyStatement\DailyStatementViewModel.cs" />
     <Compile Include="ViewModels\CorrectScore\CorrectScoreViewModel.cs" />
     <Compile Include="ViewModels\ExcelFileViewModel.cs" />

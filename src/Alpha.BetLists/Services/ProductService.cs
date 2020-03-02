@@ -97,7 +97,8 @@
                 ProductIdConstants.Keno,
                 ProductIdConstants.GoldDeluxe,
                 ProductIdConstants.NG2,
-                ProductIdConstants.Lottery
+                ProductIdConstants.Lottery,
+                ProductIdConstants.VirtualGames
             };
 
             var allProducts = GetProductsForCustomer(custId, minReportDate).Where(i => supportedProducts.Contains(i.Id));
