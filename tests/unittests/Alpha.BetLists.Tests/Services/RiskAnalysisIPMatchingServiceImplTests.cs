@@ -39,8 +39,8 @@
             var actualBetListData = service.GetBetList(param).GetAwaiter().GetResult();
 
             // Assert
-            Assert.True(BetListDataTest.Tickets.SequenceEqual(actualBetListData.Tickets) &&
-                BetListDataTest.TicketData.SequenceEqual(actualBetListData.TicketData));
+            Assert.True(BetListDataTest.TicketData.SequenceEqual(actualBetListData.TicketData) &&
+                BetListDataTest.Tickets.OrderByDescending(ticket => ticket.TransDate).SequenceEqual(actualBetListData.Tickets));
         }
     }
 }

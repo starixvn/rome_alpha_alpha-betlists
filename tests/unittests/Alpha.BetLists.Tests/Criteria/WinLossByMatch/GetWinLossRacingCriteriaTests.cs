@@ -23,6 +23,9 @@
 
             // Assert
             Assert.Equal(expectedSettingKey, actualSettingKey);
+            Assert.Equal(0, criteria.BetType);
+            Assert.Equal("", criteria.Race);
+            Assert.Equal(DateTime.Today, criteria.MoveBetsDate);
         }
 
         [Theory]

@@ -22,6 +22,10 @@
 
             // Assert
             Assert.Equal(expectedSettingKey, actualSettingKey);
+            Assert.Equal(custLevelId, criteria.RoleId);
+            Assert.Equal(0, criteria.BetType);
+            Assert.Equal("", criteria.BetTeam);
+            Assert.Equal(1, criteria.LiveIndicator);
         }
 
         [Theory]

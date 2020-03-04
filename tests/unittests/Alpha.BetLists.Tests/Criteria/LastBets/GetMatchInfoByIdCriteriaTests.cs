@@ -19,7 +19,7 @@
         public void GetSettingKey_Always_ReturnsCorrectSettingKey()
         {
             // Arrange
-            var criteria = new GetMatchInfoByIdCriteria(anyValueCreator.Create<int>());
+            var criteria = new GetMatchInfoByIdCriteria(5);
             var expectedSettingKey = "Age_Monitor_MatchSelByID";
 
             // Act
@@ -27,6 +27,7 @@
 
             // Assert
             Assert.Equal(expectedSettingKey, actualSettingKey);
+            Assert.Equal(5, criteria.MatchId);
         }
 
         [Fact]

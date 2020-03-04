@@ -12,13 +12,18 @@
         {
             // Arrange
             var expectedSettingKey = "Age_BetList_SelWinlossByBettypeMatch";
-            var criteria = new GetWinLossByMatchCriteria(0, 0, 0, string.Empty, false, UserLevel.Super);
+            var criteria = new GetWinLossByMatchCriteria(0, 0, 0, "User Test", false, UserLevel.Super);
 
             // Act
             var actualSettingKey = criteria.GetSettingKey();
 
             // Assert
             Assert.Equal(expectedSettingKey, actualSettingKey);
+            Assert.Equal(0, criteria.CustId);
+            Assert.Equal(0, criteria.MatchId);
+            Assert.Equal(0, criteria.MatchId);
+            Assert.Equal("User Test", criteria.CustName);
+            Assert.False(criteria.LiveIndicator);
         }
 
         [Theory]

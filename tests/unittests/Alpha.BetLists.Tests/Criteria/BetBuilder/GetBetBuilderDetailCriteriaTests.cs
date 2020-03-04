@@ -33,6 +33,8 @@
 
             // Assert
             Assert.Equal("Acc_BetList_BetBuilder_Detail", act);
+            Assert.Equal(param.CustomerId, criteria.CustId);
+            Assert.Equal(param.TransactionId, criteria.TransId);
         }
     }
 }
