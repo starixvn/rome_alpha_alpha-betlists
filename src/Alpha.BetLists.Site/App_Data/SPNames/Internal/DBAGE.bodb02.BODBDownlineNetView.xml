@@ -561,6 +561,7 @@
       <Mapping DataField="spositiontaking" ObjectProperty="SuperPositionTaking" />
       <Mapping DataField="scomm" ObjectProperty="SuperComm" />
       <Mapping DataField="sdiscount" ObjectProperty="SuperDiscount" />
+      <Mapping DataField="BetTeam" ObjectProperty="BetTeam" />
     </Setting>
   </Function>
   <Function Name="Correct Score">
