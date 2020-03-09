@@ -658,7 +658,7 @@
   </Function>
 
   <Function Name="Running BetList By BetType And Match">
-    <Setting Key="Ost_BetList_TotalBet" SpName="Ost_BetList_TotalBet" DbName="DBOST.bodb_ost.BODBDownlineNetView" Plain="0">
+    <Setting Key="Ost_BetList_TotalBet" SpName="Ost_BetList_TotalBet" DbName="DBOST.bodb_ost.BODBDownlineNet" Plain="0">
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="TicketDto"></Mapping>
