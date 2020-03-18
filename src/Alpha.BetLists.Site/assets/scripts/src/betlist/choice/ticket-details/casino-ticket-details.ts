@@ -18,7 +18,7 @@
             this.ShowDetailsPopup(params);
         }
         public showVideoPokerGameDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
-            const params = this.CreatePopupDetailsParam(refNo, winlossDate, custId, transType, "Video Poker");
+            const params = this.CreatePopupDetailsParam(refNo, winlossDate, custId, transType, "Card Club");
             this.ShowDetailsPopup(params);
         }        
         public ShowFishingWorldDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
