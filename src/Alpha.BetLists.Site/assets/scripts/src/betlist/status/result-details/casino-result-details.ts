@@ -128,4 +128,22 @@
         }
     }
 
+    export class VirtualGamesResultDetails extends BaseResultDetails implements ResultDetails {
+        public ViewResultDetails = (
+            matchId?: number,
+            race?: number,
+            betTypeId?: number,
+            sportTypeId?: number,
+            refNo?: string,
+            userName?: string,
+            winLostDate?: Date,
+            refNoMixParlay?: number,
+            league?: number,
+            isOutright?: boolean,
+            betId?: number,
+            betCheck?: string) => {
+            var params = '?gameId=' + refNo;
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'VirtualGames/Detail' + params, "", 835, 675);
+        }
+    }
 }

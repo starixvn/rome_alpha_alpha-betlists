@@ -12,6 +12,7 @@
         private static ppResult: ResultDetails;
         private static spadegamingResult: ResultDetails;
         private static pokerGamesResult: ResultDetails;
+        private static virtualGamesResult: ResultDetails;
 
         public static CreateInstance(betTypeId: number): ResultDetails {
             if (betTypeId >= 2501 && betTypeId <= 2699) {
@@ -62,6 +63,11 @@
             if (betTypeId >= 1901 && betTypeId <= 1999) {
                 this.pokerGamesResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.pokerGamesResult) ? new PokerGamesResultDetails() : this.pokerGamesResult;
                 return this.pokerGamesResult;
+            }
+
+            if (betTypeId >= 4601 && betTypeId <= 4900) {
+                this.virtualGamesResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.virtualGamesResult) ? new VirtualGamesResultDetails() : this.virtualGamesResult;
+                return this.virtualGamesResult;
             }
 
             this.sportsbookResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sportsbookResult) ? new SportsbookResultDetails : this.sportsbookResult;
