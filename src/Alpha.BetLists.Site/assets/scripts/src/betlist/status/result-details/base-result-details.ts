@@ -57,7 +57,7 @@
                 return this.ppResult;
             }
 
-            if (betTypeId >= 4301 && betTypeId <= 4326) {
+            if (betTypeId >= 4301 && betTypeId <= 4600) {
                 this.spadegamingResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.spadegamingResult) ? new SpadegamingResultDetails() : this.spadegamingResult;
                 return this.spadegamingResult;
             }
