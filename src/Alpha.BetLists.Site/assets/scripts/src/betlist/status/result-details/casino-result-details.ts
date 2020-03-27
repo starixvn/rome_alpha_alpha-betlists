@@ -17,7 +17,7 @@
             transDesc?: string) => {
             const params = '?transDesc=' + transDesc + '&betCheck=' + betCheck + '&bettypeId=' + betTypeId + '&sportId=' + sportTypeId;
 
-            Common.PopupDetails.Instance(window.top).Show(this.ResultDetailsPath + params, "", 835, 800);
+            Common.PopupDetails.Instance(window.top).Show(this.ResultDetailsPath + params, "", 835, 500);
         }
     }
 
