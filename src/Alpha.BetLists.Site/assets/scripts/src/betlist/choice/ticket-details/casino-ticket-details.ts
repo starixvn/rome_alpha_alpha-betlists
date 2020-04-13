@@ -220,7 +220,7 @@
 
             Common.PopupDetails.Instance(window.top).Show(
                 Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params,
-                'BBin - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                'BBIN - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
         }
     }
 }
