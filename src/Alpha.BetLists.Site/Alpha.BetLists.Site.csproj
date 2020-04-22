@@ -128,6 +128,9 @@
       <HintPath>..\..\packages\Fanex.BetList.GoldDeluxe.1.2.0\lib\net40\Fanex.BetList.GoldDeluxe.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Fanex.BetList.GTCasino, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.GTCasino.1.0.0-beta02\lib\net40\Fanex.BetList.GTCasino.dll</HintPath>
+    </Reference>
     <Reference Include="Fanex.BetList.Keno, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.Keno.1.2.0\lib\net40\Fanex.BetList.Keno.dll</HintPath>
     </Reference>
@@ -675,6 +678,7 @@
     <Content Include="App_Code\Blocks\WinLoss.cshtml" />
     <Content Include="App_Code\Blocks\Status.cshtml" />
     <Content Include="App_Code\Blocks\PositionTaking.cshtml" />
+    <Content Include="GTCasino.css" />
     <Content Include="Views\Shared\InvalidBetList.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
