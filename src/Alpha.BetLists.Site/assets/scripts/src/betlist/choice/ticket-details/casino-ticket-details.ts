@@ -25,7 +25,7 @@
         public showVideoPokerGameDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
             const params = this.CreatePopupDetailsParam(refNo, winlossDate, custId, transType, "Card Club");
             this.ShowDetailsPopup(params);
-        }        
+        }
         public ShowFishingWorldDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
             const params = this.CreatePopupDetailsParam(refNo, winlossDate, custId, transType, "Fishing World");
             this.ShowDetailsPopup(params);
@@ -161,6 +161,37 @@
                 'SA Gaming - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
         }
     }
+
+    export class GTCasinoTicketDetails extends BaseTicketDetails {
+        private static instance: GTCasinoTicketDetails;
+
+        public static get Instance() {
+            this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new GTCasinoTicketDetails() : this.instance;
+            return this.instance;
+        }
+
+        public ShowGTCasinoBetDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
+            const params = '?refno=' + refNo
+                + '&custid=' + custId
+                + '&transType=' + transType
+                + '&sportName=GTCasino&productId=46';
+
+            let width = 1047;
+            let roleId = Number(this.ViewerLevelId);
+
+            if (roleId <= 3) {
+                width -= 105;
+            }
+
+            if (roleId <= 2) {
+                width -= 105;
+            }
+
+            Common.PopupDetails.Instance(window.top).Show(
+                Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params,
+                'GT Casino - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+        }
+    }
 }
 
 let showRnGCasinoDetails: Function;
@@ -170,6 +201,7 @@ let showPPDetails: Function;
 let showTodayRunningBetsDetails: Function; // Allbet details
 let showSexyGamingBetDetails: Function;
 let showSAGamingDetails: Function;
+let showGTCasinoBetsDetails: Function;
 let showProgressiveJackpotWonDetails: Function;
 let showVideoPokerGameDetails: Function;
 let showSGDetails: Function;
@@ -178,7 +210,7 @@ let showSabaClubDetails: Function;
 $(document).ready(() => {
     showRnGCasinoDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowRnGCasinoDetails;
     showVoidBridgeDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowMacauGamesDetails;
-    showVideoPokerGameDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.showVideoPokerGameDetails;    
+    showVideoPokerGameDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.showVideoPokerGameDetails;
     showGlobalGaming = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowFishingWorldDetails;
     showPPDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowPPDetails;
     showTodayRunningBetsDetails = BetList.Choice.TicketDetails.AllbetTicketDetails.Instance.ShowRunningBetsDetails;
@@ -187,4 +219,5 @@ $(document).ready(() => {
     showSexyGamingBetDetails = BetList.Choice.TicketDetails.SexyGamingTicketDetails.Instance.ShowSexyGamingBetDetails;
     showSabaClubDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowSabaClubDetails;
     showSAGamingDetails = BetList.Choice.TicketDetails.SAGamingTicketDetails.Instance.ShowSAGamingBetDetails;
+    showGTCasinoBetsDetails = BetList.Choice.TicketDetails.GTCasinoTicketDetails.Instance.ShowGTCasinoBetDetails;
 })
