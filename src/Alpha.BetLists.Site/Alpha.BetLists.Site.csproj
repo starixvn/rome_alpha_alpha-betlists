@@ -678,7 +678,6 @@
     <Content Include="App_Code\Blocks\WinLoss.cshtml" />
     <Content Include="App_Code\Blocks\Status.cshtml" />
     <Content Include="App_Code\Blocks\PositionTaking.cshtml" />
-    <Content Include="GTCasino.css" />
     <Content Include="Views\Shared\InvalidBetList.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />

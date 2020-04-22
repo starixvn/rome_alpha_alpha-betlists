@@ -122,7 +122,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="GTCasino.css" />
     <Content Include="Templates\PTRacing.htm" />
     <Content Include="Templates\PTComm.htm" />
   </ItemGroup>
