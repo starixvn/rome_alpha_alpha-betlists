@@ -1,21 +1,20 @@
 ﻿namespace Alpha.BetLists.Site.ViewModels.Components
 {
     using System.Collections.Generic;
-    using System.Web.Mvc;
 
     public class ProductMultiSelectionViewModel
     {
         public ProductMultiSelectionViewModel(
-            IEnumerable<SelectListItem> products,
+            IEnumerable<GroupProductViewModel> groupProducts,
             string productIds,
             string language)
         {
-            Products = products;
+            GroupProducts = groupProducts;
             ProductIds = productIds;
             Language = language;
         }
 
-        public IEnumerable<SelectListItem> Products { get; }
+        public IEnumerable<GroupProductViewModel> GroupProducts { get; }
 
         public string Language { get; }
 

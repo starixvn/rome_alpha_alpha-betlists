@@ -43,8 +43,12 @@ class ProductMultiSelectionComponent {
             includeSelectAllOption: hasAnyProduct,
             onChange: this.onChange,
             onSelectAll: this.onChange,
-            language: this.$dropdownProduct.data("language")
+            language: this.$dropdownProduct.data("language"),
+            enableCollapsibleOptGroups: true,
+            optionClass: this.optionClass
         });
+
+        this.$dropdownProduct.next().find(".multiselect-container li").removeClass("hidden");
 
         this.$multiSelectButton = this.$dropdownProduct.parent().find(".multiselect.btn");
 
@@ -59,6 +63,12 @@ class ProductMultiSelectionComponent {
             this.options.onChange();
         }
     };
+
+    optionClass = (element: HTMLElement) => {
+        if (this.$(element).data("isnested") === 1) {
+            return "multiselect-nested-item";
+        }
+    }
 
     validate = () => {
         if (this.options.validateBeforeSubmit

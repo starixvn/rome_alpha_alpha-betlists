@@ -200,7 +200,9 @@
                     includeSelectAllOption: true,
                     onChange: productMultiSelectionComponent.onChange,
                     onSelectAll: productMultiSelectionComponent.onChange,
-                    language: "en"
+                    language: "en",
+                    enableCollapsibleOptGroups: true,
+                    optionClass: productMultiSelectionComponent.optionClass
                 });
             });
 
@@ -243,7 +245,9 @@
                     includeSelectAllOption: false,
                     onChange: productMultiSelectionComponent.onChange,
                     onSelectAll: productMultiSelectionComponent.onChange,
-                    language: "en"
+                    language: "en",
+                    enableCollapsibleOptGroups: true,
+                    optionClass: productMultiSelectionComponent.optionClass
                 });
             });
             it("_Cache element;", () => {

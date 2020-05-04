@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Web.Mvc;
     using AppResources;
     using BetLists.Models;
     using Components;
@@ -39,7 +38,7 @@
             MemberBetListQuery query,
             MemberBetListParam param,
             BetListData betListData,
-            IEnumerable<SelectListItem> products,
+            IEnumerable<GroupProductViewModel> groupProducts,
             IEnumerable<int> supportScoreMapBetTypeIds,
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper)
@@ -47,7 +46,7 @@
         {
             this.query = query;
 
-            Products = products;
+            GroupProducts = groupProducts;
             SupportScoreMapBetTypeIds = supportScoreMapBetTypeIds;
 
             FromDate = param.FromDate;
@@ -66,7 +65,7 @@
 
         public IEnumerable<int> SupportScoreMapBetTypeIds { get; }
 
-        public IEnumerable<SelectListItem> Products { get; }
+        public IEnumerable<GroupProductViewModel> GroupProducts { get; }
 
         public bool IsFilterVisible => query.IsFilterVisible;
 
@@ -82,7 +81,7 @@
 
         public ProductMultiSelectionViewModel ProductMultiSelectionViewModel
             => new ProductMultiSelectionViewModel(
-                Products,
+                GroupProducts,
                 ProductsId,
                 query.Language);
 

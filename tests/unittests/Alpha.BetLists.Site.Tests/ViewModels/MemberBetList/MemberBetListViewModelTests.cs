@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Web.Mvc;
+    using Alpha.BetLists.Site.ViewModels.Components;
     using BetLists.Models;
     using BetLists.Tests.Constants;
     using BetLists.Tests.TestData;
@@ -57,7 +57,7 @@
                 query,
                 param,
                 BetListDataTest.BetListData,
-                Enumerable.Empty<SelectListItem>(),
+                Enumerable.Empty<GroupProductViewModel>(),
                 Enumerable.Empty<int>(),
                 betlistFixture.HtmlBuilder,
                 betlistFixture.TicketHelper);
@@ -79,7 +79,7 @@
                 query,
                 param,
                 BetListDataTest.BetListData,
-                Enumerable.Empty<SelectListItem>(),
+                Enumerable.Empty<GroupProductViewModel>(),
                 Enumerable.Empty<int>(),
                 betlistFixture.HtmlBuilder,
                 betlistFixture.TicketHelper);
@@ -104,7 +104,7 @@
                 query,
                 param,
                 BetListDataTest.BetListData,
-                Enumerable.Empty<SelectListItem>(),
+                Enumerable.Empty<GroupProductViewModel>(),
                 Enumerable.Empty<int>(),
                 betlistFixture.HtmlBuilder,
                 betlistFixture.TicketHelper);
@@ -145,7 +145,7 @@
                 query,
                 param,
                 BetListDataTest.BetListData,
-                Enumerable.Empty<SelectListItem>(),
+                Enumerable.Empty<GroupProductViewModel>(),
                 supportScoreMapBetTypeIds,
                 betlistFixture.HtmlBuilder,
                 betlistFixture.TicketHelper);
@@ -195,7 +195,7 @@
                  query,
                  param,
                  new BetListData(tickets, null),
-                 Enumerable.Empty<SelectListItem>(),
+                 Enumerable.Empty<GroupProductViewModel>(),
                  new List<int> { },
                  betlistFixture.HtmlBuilder,
                  betlistFixture.TicketHelper);

@@ -5,11 +5,11 @@
   </Function>
 
   <Function Name="Products">
-    <Setting Key="Age_Rpt_GetProductList" SpName="Age_Rpt_GetProductList" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
+    <Setting Key="Age_Rpt_GetProductList" SpName="Age_Rpt_GetProductList_xtest" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
       <Mapping DataField="ProductID" ObjectProperty="id" />
       <Mapping DataField="ProductName" ObjectProperty="name" />
     </Setting>
-    <Setting Key="Age_Rpt_ConsolidatedGroupProductSel" SpName="Age_Rpt_ConsolidatedGroupProductSel" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
+    <Setting Key="Age_Rpt_ConsolidatedGroupProductSel" SpName="Age_Rpt_ConsolidatedGroupProductSel_xtest" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
       <Mapping DataField="IsShow" ObjectProperty="IsEnable" />
       <Mapping DataField="ProductName" ObjectProperty="Name" />
       <Mapping DataField="ProductId" ObjectProperty="Id" />

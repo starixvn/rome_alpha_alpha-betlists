@@ -5,10 +5,10 @@
     using System.Linq;
     using System.Web.Hosting;
     using System.Web.Mvc;
+    using Alpha.BetLists.Site.ViewModels.Components;
     using BetLists.Models;
     using BetLists.Tests.TestData;
     using Fanex.BetList.Core.Entities;
-    using Fanex.BetList.Core.TicketHelper;
     using Fixtures;
     using Handlers;
     using KellermanSoftware.CompareNetObjects;
@@ -129,7 +129,7 @@
         {
             // Arrange
             IEnumerable<Product> products = null;
-            var expectedSelectListItems = Enumerable.Empty<SelectListItem>();
+            var expectedSelectListItems = Enumerable.Empty<GroupProductViewModel>();
 
             // Act
             var actualSelectListItems = baseHandler.BuildProductSelectListItems(Enumerable.Empty<int>(), products);
@@ -144,7 +144,7 @@
             // Arrange
             var products = Enumerable.Empty<Product>();
             var userSelectedProductIds = Enumerable.Empty<int>();
-            var expectedSelectListItems = Enumerable.Empty<SelectListItem>();
+            var expectedSelectListItems = Enumerable.Empty<GroupProductViewModel>();
 
             // Act
             var actualSelectListItems = baseHandler.BuildProductSelectListItems(userSelectedProductIds, products);
@@ -161,9 +161,9 @@
 
             IEnumerable<Product> products = new List<Product>
             {
-                new Product(1, "Product 1", null, getProductDisplayName),
-                new Product(2, "Product 2", null, getProductDisplayName),
-                new Product(3, "Product 3", null, getProductDisplayName)
+                new Product(1, "Product 1", null, getProductDisplayName, 0, 0),
+                new Product(2, "Product 2", null, getProductDisplayName, 0, 0),
+                new Product(3, "Product 3", null, getProductDisplayName, 0, 0)
             };
 
             var userSelectedProductIds = new List<int> { 1, 3 };
@@ -193,7 +193,7 @@
             var actualSelectListItems = baseHandler.BuildProductSelectListItems(userSelectedProductIds, products).ToList();
 
             // Assert
-            Assert.True(compareLogic.Compare(expectedSelectListItems, actualSelectListItems).AreEqual);
+            Assert.True(compareLogic.Compare(expectedSelectListItems, actualSelectListItems[0].Products.ToList()).AreEqual);
         }
     }
 }

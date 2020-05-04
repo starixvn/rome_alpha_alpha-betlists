@@ -30,11 +30,11 @@
             CancelledBetBaseQuery query,
             CancelledBetParam param,
             PagedReportData<BetListData> reportData,
-            IEnumerable<SelectListItem> products,
+            IEnumerable<GroupProductViewModel> groupProducts,
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper) : base(query, reportData.DataSource.FirstOrDefault(), builder, ticketHelper, true)
         {
-            Products = products;
+            GroupProducts = groupProducts;
             ProductsId = param.ProductIds.JoinWithComma();
             ReportData = reportData;
             Language = query.Language;
@@ -69,7 +69,7 @@
                 RangeOptions);
 
         public ProductMultiSelectionViewModel ProductMultiSelectionViewModel
-           => new ProductMultiSelectionViewModel(Products, ProductsId, Language);
+           => new ProductMultiSelectionViewModel(GroupProducts, ProductsId, Language);
 
         public StatusMultiSelectionViewModel StatusMultiSelectionViewModel
         {
@@ -101,7 +101,7 @@
         public int BuildNo(int no)
             => no + 1 + ((ReportData.PageIndex - 1) * ReportData.PageSize);
 
-        private IEnumerable<SelectListItem> Products { get; }
+        private IEnumerable<GroupProductViewModel> GroupProducts { get; }
 
         private string Language { get; }
 
