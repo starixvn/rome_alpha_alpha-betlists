@@ -13,7 +13,9 @@
             object result = new Product(
                 id: row.Get<int>(columnIndex++),
                 name: row.Get<string>(columnIndex),
-                endOfSupportDate: null);
+                endOfSupportDate: null,
+                type: 0,
+                orderNo: 0);
 
             return (T)result;
         }

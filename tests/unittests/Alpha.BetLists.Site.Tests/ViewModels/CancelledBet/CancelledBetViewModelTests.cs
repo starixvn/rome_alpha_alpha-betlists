@@ -3,13 +3,13 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Web.Mvc;
     using Alpha.BetLists.Constants;
     using Alpha.BetLists.Models;
     using Alpha.BetLists.Params;
     using Alpha.BetLists.Site.Requests.CancelledBet;
     using Alpha.BetLists.Site.Tests.Fixtures;
     using Alpha.BetLists.Site.ViewModels.CancelledBet;
+    using Alpha.BetLists.Site.ViewModels.Components;
     using Alpha.BetLists.Tests.TestData;
     using Constants;
     using NSubstitute;
@@ -45,7 +45,7 @@
         public void StatusMultiSelectionViewModel_SelectAllStatus_Return3Items()
         {
             //// Arrange
-            var productSelectItem = fixture.CreateMany<SelectListItem>();
+            var productSelectItem = fixture.CreateMany<GroupProductViewModel>();
             param = new CancelledBetParam(user.Id, DateTime.Now, DateTime.Now, DateTime.Now, user.LevelId, BetListDataTest.ProductIds, "101,102,103", user.Language, 50, 1);
             var viewModel = new CancelledBetViewModel(query, param, reportData, productSelectItem, betlistFixture.HtmlBuilder, betlistFixture.TicketHelper);
 
@@ -61,7 +61,7 @@
         public void StatusMultiSelectionViewModel_NoSelectStatus_Return3Items()
         {
             //// Arrange
-            var productSelectItem = fixture.CreateMany<SelectListItem>();
+            var productSelectItem = fixture.CreateMany<GroupProductViewModel>();
             param = new CancelledBetParam(user.Id, DateTime.Now, DateTime.Now, DateTime.Now, user.LevelId, BetListDataTest.ProductIds, "", user.Language, 50, 1);
             var viewModel = new CancelledBetViewModel(query, param, reportData, productSelectItem, betlistFixture.HtmlBuilder, betlistFixture.TicketHelper);
 
@@ -78,7 +78,7 @@
         {
             //// Arrange
             var voidSelected = $"{TicketStatusIdConstants.Void}";
-            var productSelectItem = fixture.CreateMany<SelectListItem>();
+            var productSelectItem = fixture.CreateMany<GroupProductViewModel>();
             param = new CancelledBetParam(user.Id, DateTime.Now, DateTime.Now, DateTime.Now, user.LevelId, BetListDataTest.ProductIds, voidSelected, user.Language, 50, 1);
             var viewModel = new CancelledBetViewModel(query, param, reportData, productSelectItem, betlistFixture.HtmlBuilder, betlistFixture.TicketHelper);
 

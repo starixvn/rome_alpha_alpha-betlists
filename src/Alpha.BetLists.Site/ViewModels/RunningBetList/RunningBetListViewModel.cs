@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Web.Mvc;
     using AppResources;
     using BetLists.Models;
     using Components;
@@ -24,7 +23,7 @@
             RunningBetListQuery query,
             RunningBetListParam param,
             BetListData betListData,
-            IEnumerable<SelectListItem> products,
+            IEnumerable<GroupProductViewModel> groupProducts,
             IEnumerable<int> supportScoreMapBetTypeIds,
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper)
@@ -32,7 +31,7 @@
         {
             this.query = query;
 
-            Products = products;
+            GroupProducts = groupProducts;
             SupportScoreMapBetTypeIds = supportScoreMapBetTypeIds;
 
             Title = $"{Resources.BetlistRunning} - {query.CustName}";
@@ -59,7 +58,7 @@
 
         public IEnumerable<int> SupportScoreMapBetTypeIds { get; }
 
-        public IEnumerable<SelectListItem> Products { get; }
+        public IEnumerable<GroupProductViewModel> GroupProducts { get; }
 
         public DateRangePickerViewModel DateRangePickerViewModel =>
             new DateRangePickerViewModel(
@@ -73,7 +72,7 @@
 
         public ProductMultiSelectionViewModel ProductMultiSelectionViewModel =>
             new ProductMultiSelectionViewModel(
-                Products,
+                GroupProducts,
                 ProductsId,
                 query.Language);
 

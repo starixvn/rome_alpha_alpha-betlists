@@ -64,7 +64,7 @@
                 $"Alpha.Reports.Services.Impl.ProductsForCustomer-{custId}",
                 () => GetProductsForReport()
                         .Where(product => canViewProduct(product.Id))
-                        .Select(product => new Product(product.Id, product.Name, product.EndOfSupportDate, getProductName)),
+                        .Select(product => new Product(product.Id, product.Name, product.EndOfSupportDate, getProductName, product.Type, product.OrderNo)),
                 new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(CustProductsCacheTimeInMinutes)));
 
             if (custProducts != null)
@@ -115,7 +115,7 @@
         {
             var data = dynamicRepository.Fetch<Product>(new GetProductsByGroupHeadlineCriteria(param.CustId))
                 .Where(product => IsRemainSupportProductForGroupHeadline(product, param.MinDate))
-                .Select(product => new Product(product.Id, product.Name, product.IsEnable, getProductName));
+                .Select(product => new Product(product.Id, product.Name, product.IsEnable, getProductName, product.Type, product.OrderNo));
 
             return data;
         }

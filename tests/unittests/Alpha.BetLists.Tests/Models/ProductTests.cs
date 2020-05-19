@@ -10,7 +10,7 @@
         {
             // Arrange
             var productDisplayName = "productDisplayName";
-            var product = new Product(0, productDisplayName, null, null);
+            var product = new Product(0, productDisplayName, null, null, 0, 0);
 
             // Act
             var actual = product.DisplayName;
@@ -25,7 +25,7 @@
             // Arrange
             var productDisplayName = "productDisplayName";
             var productId = 0;
-            var product = new Product(productId, string.Empty, null, (id) => productDisplayName);
+            var product = new Product(productId, string.Empty, null, (id) => productDisplayName, 0, 0);
 
             // Act
             var actual = product.DisplayName;

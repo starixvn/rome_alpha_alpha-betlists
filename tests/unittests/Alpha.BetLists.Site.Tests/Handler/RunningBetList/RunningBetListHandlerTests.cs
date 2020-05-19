@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Web.Mvc;
+    using Alpha.BetLists.Site.ViewModels.Components;
     using BetLists.Tests.TestData;
     using Fanex.BetList.Core.Entities;
     using Fixtures;
@@ -107,7 +107,7 @@
                 query,
                 runningBetListParam,
                 BetListDataTest.BetListData,
-                Enumerable.Empty<SelectListItem>(),
+                Enumerable.Empty<GroupProductViewModel>(),
                 BetListDataTest.BettypeIds,
                 betlistFixture.HtmlBuilder,
                 betlistFixture.TicketHelper);

@@ -6,6 +6,7 @@
     using System.Linq;
     using System.Web.Hosting;
     using System.Web.Mvc;
+    using Alpha.BetLists.Site.ViewModels.Components;
     using BetLists.Models;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
@@ -51,27 +52,20 @@
         protected internal void WriteLog(int custId, IEnumerable<TicketDto> tickets)
              => MonitorService.WriteLog(custId, tickets.ToList<ITicket>());
 
-        protected internal IEnumerable<SelectListItem> BuildProductSelectListItems(
+        protected internal IEnumerable<GroupProductViewModel> BuildProductSelectListItems(
             IEnumerable<int> userSelectedProductIds,
             IEnumerable<Product> products)
-        {
-            if (products == null
-                || !products.Any())
-            {
-                return Enumerable.Empty<SelectListItem>();
-            }
-
-            return products.Select(product =>
-            {
-                var productSelectListItem = new SelectListItem
-                {
-                    Text = product.DisplayName,
-                    Value = product.Id.ToString(),
-                    Selected = userSelectedProductIds.Contains(product.Id)
-                };
-
-                return productSelectListItem;
-            });
-        }
+            => products?.Any() == true
+                ? products
+                    .GroupBy(product => new { product.Type, product.TypeName })
+                    .Select(grp => new GroupProductViewModel(
+                        new SelectListGroup { Name = grp.Key.TypeName },
+                        grp.Select(product => new SelectListItem
+                        {
+                            Text = product.DisplayName,
+                            Value = product.Id.ToString(),
+                            Selected = userSelectedProductIds.Contains(product.Id)
+                        })))
+                : Enumerable.Empty<GroupProductViewModel>();
     }
 }

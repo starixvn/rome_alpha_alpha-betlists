@@ -29,9 +29,9 @@
 
         private readonly IEnumerable<Product> allCustomerProductIds = new List<Product>
         {
-            new Product(1, "Product 1", null),
-            new Product(2, "Product 2", null),
-            new Product(3, "Product 3", null)
+            new Product(1, "Product 1", null, 0, 0),
+            new Product(2, "Product 2", null, 0, 0),
+            new Product(3, "Product 3", null, 0, 0)
         };
 
         public ProductServiceImplTests(
@@ -145,9 +145,9 @@
             var param = new GetProductsByGroupHeadlineParam(custId: 0, minDate: DateTime.MinValue);
             var expectedProducts = new List<Product>
             {
-                new Product(1, null, true, getProductName),
-                new Product(2, null, true, getProductName),
-                new Product(5, null, true, getProductName)
+                new Product(1, null, true, getProductName, 0, 0),
+                new Product(2, null, true, getProductName, 0, 0),
+                new Product(5, null, true, getProductName, 0, 0)
             };
 
             // Act
