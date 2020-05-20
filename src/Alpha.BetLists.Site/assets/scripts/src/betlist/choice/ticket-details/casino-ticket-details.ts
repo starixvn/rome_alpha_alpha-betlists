@@ -174,7 +174,7 @@
             const params = '?refno=' + refNo
                 + '&custid=' + custId
                 + '&transType=' + transType
-                + '&sportName=GTCasino&productId=46';
+                + '&sportName=IBCBetLiveCasino&productId=46';
 
             let width = 1047;
             let roleId = Number(this.ViewerLevelId);
@@ -189,10 +189,10 @@
 
             Common.PopupDetails.Instance(window.top).Show(
                 Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params,
-                'GT Casino - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                'IBCBet Live Casino - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
         }
     }
-    
+
     export class BBinTicketDetails extends BaseTicketDetails {
         private static instance: BBinTicketDetails;
 
@@ -252,5 +252,5 @@ $(document).ready(() => {
     showSabaClubDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowSabaClubDetails;
     showSAGamingDetails = BetList.Choice.TicketDetails.SAGamingTicketDetails.Instance.ShowSAGamingBetDetails;
     showGTCasinoBetsDetails = BetList.Choice.TicketDetails.GTCasinoTicketDetails.Instance.ShowGTCasinoBetDetails;
-    showBBINBetDetails  = BetList.Choice.TicketDetails.BBinTicketDetails.Instance.ShowBBinBetDetails;
+    showBBINBetDetails = BetList.Choice.TicketDetails.BBinTicketDetails.Instance.ShowBBinBetDetails;
 })
