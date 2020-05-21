@@ -45,6 +45,9 @@
     <Reference Include="Fanex.BetList.Core, Version=2.110.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Fanex.BetList.Core.2.110.3\lib\net40\Fanex.BetList.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Fanex.BetList.GTCasino, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Fanex.BetList.GTCasino.1.0.0\lib\net40\Fanex.BetList.GTCasino.dll</HintPath>
+    </Reference>
     <Reference Include="Fanex.BetList.NumberGame, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Fanex.BetList.NumberGame.1.2.0\lib\net40\Fanex.BetList.NumberGame.dll</HintPath>
       <Private>True</Private>
@@ -172,6 +175,9 @@
     <Analyzer Include="..\..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\Google.Protobuf.dll" />
     <Analyzer Include="..\..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\SonarAnalyzer.CSharp.dll" />
     <Analyzer Include="..\..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\SonarAnalyzer.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="GTCasino.css" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
