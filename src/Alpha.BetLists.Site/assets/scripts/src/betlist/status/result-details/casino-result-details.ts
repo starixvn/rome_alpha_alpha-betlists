@@ -161,7 +161,25 @@
             isOutright?: boolean,
             betId?: number,
             betCheck?: string) => {
-            var params = '?gameId=' + refNo + '&roleId=' + this.ViewerLevelId + '&productId=50';
+            var params = '?gameId=' + betCheck + '&roleId=' + this.ViewerLevelId + '&productId=50';
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/Detail' + params, "", 835, 675);
+        }
+    }
+    export class IONCasinoResultDetails extends BaseResultDetails implements ResultDetails {
+        public ViewResultDetails = (
+            matchId?: number,
+            race?: number,
+            betTypeId?: number,
+            sportTypeId?: number,
+            refNo?: string,
+            userName?: string,
+            winLostDate?: Date,
+            refNoMixParlay?: number,
+            league?: number,
+            isOutright?: boolean,
+            betId?: number,
+            betCheck?: string) => {
+            var params = '?gameId=' + betCheck + '&roleId=' + this.ViewerLevelId + '&productId=52';
             Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/Detail' + params, "", 835, 675);
         }
     }
