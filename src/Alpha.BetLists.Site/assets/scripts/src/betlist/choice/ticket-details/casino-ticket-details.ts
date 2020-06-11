@@ -267,7 +267,7 @@
             const params = '?refno=' + refNo
                 + '&custid=' + custId
                 + '&transType=' + transType
-                + '&sportName=ION&productId=50';
+                + '&sportName=RNG War&productId=50';
 
             let width = 1047;
             let roleId = Number(this.ViewerLevelId);
