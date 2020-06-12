@@ -13,6 +13,8 @@
         private static spadegamingResult: ResultDetails;
         private static pokerGamesResult: ResultDetails;
         private static virtualGamesResult: ResultDetails;
+        private static RNGWarResult: ResultDetails;
+        private static IONCasinoResult: ResultDetails;
 
         public static CreateInstance(betTypeId: number): ResultDetails {
             if (betTypeId >= 2501 && betTypeId <= 2699) {
@@ -74,6 +76,14 @@
                 return this.virtualGamesResult;
             }
 
+            if (betTypeId == 5500) {
+                this.RNGWarResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.RNGWarResult) ? new RNGWarCasinoResultDetails() : this.RNGWarResult;
+                return this.RNGWarResult;
+            }
+            if (betTypeId >= 5601 && betTypeId <= 5699) {
+                this.IONCasinoResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.IONCasinoResult) ? new IONCasinoResultDetails() : this.IONCasinoResult;
+                return this.IONCasinoResult;
+            }
             this.sportsbookResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sportsbookResult) ? new SportsbookResultDetails : this.sportsbookResult;
             return this.sportsbookResult;
         }
