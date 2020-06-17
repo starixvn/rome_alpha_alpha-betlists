@@ -55,8 +55,8 @@
     <Reference Include="Fanex.BetList.SabaClub, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Fanex.BetList.SabaClub.1.0.0\lib\net40\Fanex.BetList.SabaClub.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.BetList.SAGaming, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Fanex.BetList.SAGaming.1.0.0.1\lib\net40\Fanex.BetList.SAGaming.dll</HintPath>
+    <Reference Include="Fanex.BetList.SAGaming, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Fanex.BetList.SAGaming.1.0.0.2\lib\net40\Fanex.BetList.SAGaming.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.Caching, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Fanex.Caching.2.1.0\lib\net461\Fanex.Caching.dll</HintPath>
@@ -175,9 +175,6 @@
     <Analyzer Include="..\..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\Google.Protobuf.dll" />
     <Analyzer Include="..\..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\SonarAnalyzer.CSharp.dll" />
     <Analyzer Include="..\..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\SonarAnalyzer.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="GTCasino.css" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
