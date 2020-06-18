@@ -496,14 +496,6 @@ div.ticket-list div.void > div.match, div.ticket-list div.void div.firstGoal, di
     font-weight: normal;
 }
 
-.sagaming-bet-id {
-    color: #bbb;
-}
-
-.sagaming-bet-type-name {
-    color: #696969;
-}
-
 .sexygaming-bet-id {
     color: #bbb;
 }
@@ -532,4 +524,9 @@ div.ticket-list div.void > div.match, div.ticket-list div.void div.firstGoal, di
 
 .leagueName > .bet-type-name {
     color: #696969;
+}
+
+.bet-id {
+    color: #bbb;
+    font-weight: 600;
 }

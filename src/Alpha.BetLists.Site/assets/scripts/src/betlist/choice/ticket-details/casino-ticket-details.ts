@@ -143,9 +143,9 @@
             const params = '?refno=' + refNo
                 + '&custid=' + custId
                 + '&transType=' + transType
-                + '&sportName=SexyGaming&productId=45';
+                + '&sportName=SA Gaming&productId=39';
 
-            let width = 1047;
+            let width = 1147;
             let roleId = Number(this.ViewerLevelId);
 
             if (roleId <= 3) {
