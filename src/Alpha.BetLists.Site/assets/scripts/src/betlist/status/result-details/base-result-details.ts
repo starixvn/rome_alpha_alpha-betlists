@@ -2,7 +2,6 @@
     export class ResultDetailsFactory {
         private static sportsbookResult: ResultDetails;
         private static mixParlayResult: ResultDetails;
-        private static casinoResult: ResultDetails;
         private static ng2Result: ResultDetails;
         private static allbetResult: ResultDetails;
         private static rngCasinoResult: ResultDetails;
@@ -15,6 +14,7 @@
         private static virtualGamesResult: ResultDetails;
         private static RNGWarResult: ResultDetails;
         private static IONCasinoResult: ResultDetails;
+        private static SabaClubResult: ResultDetails;
 
         public static CreateInstance(betTypeId: number): ResultDetails {
             if (betTypeId >= 2501 && betTypeId <= 2699) {
@@ -30,6 +30,11 @@
             if (betTypeId >= 1011 && betTypeId <= 1020) {
                 this.fishingWorldResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.fishingWorldResult) ? new FishingWorldResultDetails() : this.fishingWorldResult;
                 return this.fishingWorldResult;
+            }
+
+            if (betTypeId >= 1611 && betTypeId <= 1699) {
+                this.SabaClubResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.SabaClubResult) ? new SabaClubResultDetails() : this.SabaClubResult;
+                return this.SabaClubResult;
             }
 
             if ((betTypeId >= 2101 && betTypeId <= 2399) || (betTypeId >= 2901 && betTypeId <= 2999)) {

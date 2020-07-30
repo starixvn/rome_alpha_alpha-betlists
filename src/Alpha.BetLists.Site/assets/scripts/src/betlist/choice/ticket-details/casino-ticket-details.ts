@@ -14,7 +14,7 @@
         }
 
         public ShowSabaClubDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
-            const params = this.CreatePopupDetailsParam(refNo, winlossDate, custId, transType, "Sabaclub");
+            const params = this.CreatePopupDetailsParam(refNo, winlossDate, custId, transType, "Saba.club");
             this.ShowDetailsPopup(params);
         }
 
