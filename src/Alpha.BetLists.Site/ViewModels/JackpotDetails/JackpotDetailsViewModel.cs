@@ -1,5 +1,6 @@
 ﻿namespace Alpha.BetLists.Site.ViewModels.JackpotDetails
 {
+    using Alpha.BetLists.Constants;
     using AppResources;
     using BetLists.Models;
     using Fanex.BetList.Core.Builder;
@@ -18,12 +19,16 @@
             : base(query, betListData, builder, ticketHelper, false)
         {
             this.query = query;
-            Title = Resources.ProgressiveJackpotWonDetails;
+            Title = ProductIdConstants.Pragmatic == query.ProductId ?
+                Resources.PPJackpotWonDetails :
+                Resources.ProgressiveJackpotWonDetails;
         }
 
         public long TransId => query.TransId;
 
         public int BetType => query.BetType;
+
+        public int ProductId => query.ProductId;
 
         public bool AllowToViewSuperPT => baseQuery.ViewerLevel.IsSuperLevel();
 

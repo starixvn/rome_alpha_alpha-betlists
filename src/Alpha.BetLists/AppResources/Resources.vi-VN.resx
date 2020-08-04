@@ -400,4 +400,7 @@
   <data name="IPMatchingTitle" xml:space="preserve">
     <value>Danh sách cược {0} - Trùng IP {1}</value>
   </data>
+  <data name="PPJackpotWonDetails" xml:space="preserve">
+    <value>Chi tiết cược thắng PP Jackpot</value>
+  </data>
 </root>

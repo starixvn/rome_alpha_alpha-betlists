@@ -408,4 +408,7 @@
   <data name="IPMatchingTitle" xml:space="preserve">
     <value>Member Bet List {0} - IP Matching: {1}</value>
   </data>
+  <data name="PPJackpotWonDetails" xml:space="preserve">
+    <value>PP Jackpot Won Details</value>
+  </data>
 </root>

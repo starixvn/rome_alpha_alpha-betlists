@@ -14,5 +14,6 @@
         public const int VirtualSports2 = 27;
         public const int VirtualGames = 38;
         public const int TableGames = 40;
+        public const int Pragmatic = 32;
     }
 }

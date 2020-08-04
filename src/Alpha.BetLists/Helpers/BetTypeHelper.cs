@@ -9,7 +9,8 @@
         {
             BetTypeIdConstants.JackpotContribution,
             BetTypeIdConstants.JackpotContribution_Mobile,
-            BetTypeIdConstants.JackpotContribution_Tablet
+            BetTypeIdConstants.JackpotContribution_Tablet,
+            BetTypeIdConstants.PPJackpotContribution
         };
 
         private static readonly int[] HorseRacingBetType =

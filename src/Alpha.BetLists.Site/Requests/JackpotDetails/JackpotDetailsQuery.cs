@@ -14,5 +14,7 @@
         public long TransId { get; set; }
 
         public int BetType { get; set; }
+
+        public int ProductId { get; set; }
     }
 }

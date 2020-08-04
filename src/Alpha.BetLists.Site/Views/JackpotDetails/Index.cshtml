@@ -2,7 +2,7 @@
 @using Alpha.BetLists.Configurations
 @model JackpotDetailsViewModel
 @{
-    ViewBag.Title = "Progressive Jackpot Won Details";
+    ViewBag.Title = Model.Title;
 }
 <div class="bl_title no-border-bottom">
     <div class="bl-export-excel">
@@ -12,7 +12,8 @@
                 {
                     TransId = Model.TransId,
                     CustId = Model.CustId,
-                    BetType = Model.BetType
+                    BetType = Model.BetType,
+                    ProductId = Model.ProductId
                 })">
         </a>
     </div>

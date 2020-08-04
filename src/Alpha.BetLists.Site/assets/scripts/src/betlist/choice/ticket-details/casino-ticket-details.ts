@@ -94,7 +94,26 @@
         public ShowJackpotWonDetails = (jackpotTransId: string, custId: string, betType: string) => {
             const params = '?transid=' + jackpotTransId
                 + '&custid=' + custId
-                + '&bettype=' + betType;
+                + '&bettype=' + betType
+                + '&productId=' + 6;
+
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'JackpotDetails/Index' + params, "", 1120);
+        }
+    }
+
+    export class PPJackpotTicketDetails extends BaseTicketDetails {
+        private static instance: PPJackpotTicketDetails;
+
+        public static get Instance() {
+            this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new PPJackpotTicketDetails() : this.instance;
+            return this.instance;
+        }
+
+        public ShowJackpotWonDetails = (jackpotTransId: string, custId: string, betType: string) => {
+            const params = '?transid=' + jackpotTransId
+                + '&custid=' + custId
+                + '&bettype=' + betType
+                + '&productId=' + 32;
 
             Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'JackpotDetails/Index' + params, "", 1120);
         }
@@ -296,6 +315,7 @@ let showSexyGamingBetDetails: Function;
 let showSAGamingDetails: Function;
 let showGTCasinoBetsDetails: Function;
 let showProgressiveJackpotWonDetails: Function;
+let showPPJackpotWonDetails: Function;
 let showVideoPokerGameDetails: Function;
 let showSGDetails: Function;
 let showSabaClubDetails: Function;
@@ -311,6 +331,7 @@ $(document).ready(() => {
     showPPDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowPPDetails;
     showTodayRunningBetsDetails = BetList.Choice.TicketDetails.AllbetTicketDetails.Instance.ShowRunningBetsDetails;
     showProgressiveJackpotWonDetails = BetList.Choice.TicketDetails.JackpotTicketDetails.Instance.ShowJackpotWonDetails;
+    showPPJackpotWonDetails = BetList.Choice.TicketDetails.PPJackpotTicketDetails.Instance.ShowJackpotWonDetails;
     showSGDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.showSGDetails;
     showSexyGamingBetDetails = BetList.Choice.TicketDetails.SexyGamingTicketDetails.Instance.ShowSexyGamingBetDetails;
     showSabaClubDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowSabaClubDetails;

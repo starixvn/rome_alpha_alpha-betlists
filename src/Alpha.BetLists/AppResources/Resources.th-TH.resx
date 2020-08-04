@@ -387,4 +387,7 @@
   <data name="IPMatchingTitle" xml:space="preserve">
     <value>รายการเดิมพันของสมาชิก ณ {0} - เลขไอพี {1}</value>
   </data>
+  <data name="PPJackpotWonDetails" xml:space="preserve">
+    <value>PP รายละเอียดรางวัลแจ็คพอต</value>
+  </data>
 </root>
