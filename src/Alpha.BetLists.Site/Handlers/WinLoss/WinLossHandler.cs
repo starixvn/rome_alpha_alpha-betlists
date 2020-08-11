@@ -35,7 +35,7 @@
         {
             var validUserSelectedProductIds = message.IsGroupHeadline
                 ? productService.FilterProductIdsByGroupHeadline(message.ProductIds.ToListInt(), new GetProductsByGroupHeadlineParam(message.ViewerId, message.MinDate))
-                : productService.FilterProductIdsByCustomer(message.CustId, message.MinDate, message.ProductIds.ToListInt());
+                : productService.FilterProductIdsByCustomer(message.CustId, message.Site, message.MinDate, message.ProductIds.ToListInt());
 
             var showContributionAmountRoundNote = message.IsGroupHeadline
                 ? productService.IsEnabledJackpot(message.CustId)

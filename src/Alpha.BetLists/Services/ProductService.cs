@@ -16,9 +16,9 @@
 
     public interface ProductService
     {
-        IEnumerable<Product> GetProductsForCustomer(int custId, DateTime minReportDate);
+        IEnumerable<Product> GetProductsForCustomer(int custId, string site, DateTime minReportDate);
 
-        IEnumerable<int> FilterProductIdsByCustomer(int custId, DateTime minReportDate, IEnumerable<int> productIds);
+        IEnumerable<int> FilterProductIdsByCustomer(int custId, string site, DateTime minReportDate, IEnumerable<int> productIds);
 
         IEnumerable<int> FilterProductIdsByGroupHeadline(IEnumerable<int> productIds, GetProductsByGroupHeadlineParam param);
 
@@ -28,7 +28,9 @@
 
         bool IsEnabledJackpot(int custId);
 
-        IEnumerable<Product> GetProductsHaveSupportCancelledBet(int custId, DateTime minReportDate, IEnumerable<int> productIds = null);
+        IEnumerable<Product> GetProductsHaveSupportCancelledBet(int custId, string site, DateTime minReportDate, IEnumerable<int> productIds = null);
+
+        bool CanViewBySite(string site, int productId);
     }
 
     public class ProductServiceImpl : ProductService
@@ -52,7 +54,7 @@
             this.getProductName = getProductName;
         }
 
-        public IEnumerable<Product> GetProductsForCustomer(int custId, DateTime minReportDate)
+        public IEnumerable<Product> GetProductsForCustomer(int custId, string site, DateTime minReportDate)
         {
             if (custId <= 0)
             {
@@ -63,7 +65,7 @@
                 .GetOrSet(
                 $"Alpha.Reports.Services.Impl.ProductsForCustomer-{custId}",
                 () => GetProductsForReport()
-                        .Where(product => canViewProduct(product.Id))
+                        .Where(product => canViewProduct(product.Id) || CanViewBySite(site, product.Id))
                         .Select(product => new Product(product.Id, product.Name, product.EndOfSupportDate, getProductName, product.Type, product.OrderNo)),
                 new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(CustProductsCacheTimeInMinutes)));
 
@@ -75,9 +77,9 @@
             return custProducts;
         }
 
-        public IEnumerable<int> FilterProductIdsByCustomer(int custId, DateTime minReportDate, IEnumerable<int> productIds)
+        public IEnumerable<int> FilterProductIdsByCustomer(int custId, string site, DateTime minReportDate, IEnumerable<int> productIds)
         {
-            var customerProductIds = GetProductsForCustomer(custId, minReportDate).Select(product => product.Id);
+            var customerProductIds = GetProductsForCustomer(custId, site, minReportDate).Select(product => product.Id);
 
             var productIdList = productIds == null || !productIds.Any()
                 ? customerProductIds
@@ -86,7 +88,7 @@
             return productIdList;
         }
 
-        public IEnumerable<Product> GetProductsHaveSupportCancelledBet(int custId, DateTime minReportDate, IEnumerable<int> productIds = null)
+        public IEnumerable<Product> GetProductsHaveSupportCancelledBet(int custId, string site, DateTime minReportDate, IEnumerable<int> productIds = null)
         {
             var supportedProducts = new List<int>
             {
@@ -102,7 +104,7 @@
                 ProductIdConstants.VirtualGames
             };
 
-            var allProducts = GetProductsForCustomer(custId, minReportDate).Where(i => supportedProducts.Contains(i.Id));
+            var allProducts = GetProductsForCustomer(custId, site, minReportDate).Where(i => supportedProducts.Contains(i.Id));
 
             var validProducts = productIds == null || !productIds.Any()
                 ? allProducts
@@ -142,6 +144,17 @@
 
         public string ConcatProductNames(string productIds)
             => string.Join(", ", GetProductNames(productIds.ToListInt()));
+
+        public bool CanViewBySite(string site, int productId)
+        {
+            var products = ConfiguredCacheService
+                .GetOrSet(
+                $"Alpha.Reports.Services.Impl.ProductsBySite-{site}",
+                () => dynamicRepository.Fetch<ProductBySiteModel>(new GetOfferedProductsBySiteCriteria { Site = site }),
+                new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(CustProductsCacheTimeInMinutes)));
+
+            return products.Any(i => i.ProductId == productId);
+        }
 
         private static bool IsRemainSupportProductForGroupHeadline(Product product, DateTime minReportDate)
             => product.IsEnable

@@ -9,6 +9,7 @@
         {
             // Default data, if query string had data, then get from query string.
             CustId = viewer.Id;
+            Site = viewer.Site;
             CustName = viewer.Name;
 
             ViewerId = viewer.Id;
@@ -23,6 +24,8 @@
         }
 
         public int CustId { get; set; }
+
+        public string Site { get; set; }
 
         public string CustName { get; set; }
 
