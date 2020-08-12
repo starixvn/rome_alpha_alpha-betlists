@@ -610,6 +610,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to PP Jackpot Won Details.
+        /// </summary>
+        public static string PPJackpotWonDetails {
+            get {
+                return ResourceManager.GetString("PPJackpotWonDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Progressive Jackpot Won Details.
         /// </summary>
         public static string ProgressiveJackpotWonDetails {

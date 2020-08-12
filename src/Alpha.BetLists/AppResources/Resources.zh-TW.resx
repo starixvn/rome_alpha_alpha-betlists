@@ -387,4 +387,7 @@
   <data name="IPMatchingTitle" xml:space="preserve">
     <value>會員投注歷史 {0} – IP核對：{1}</value>
   </data>
+  <data name="PPJackpotWonDetails" xml:space="preserve">
+    <value>PP 積包贏利詳情</value>
+  </data>
 </root>
