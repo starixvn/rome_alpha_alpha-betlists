@@ -8,6 +8,8 @@ namespace Alpha.BetLists.Models
 
         string Site { get; }
 
+        int CurrencyId { get; }
+
         string Name { get; }
 
         string Language { get; }

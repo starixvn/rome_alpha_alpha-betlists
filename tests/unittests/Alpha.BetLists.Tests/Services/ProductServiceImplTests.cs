@@ -73,7 +73,7 @@
             var expectedProductIds = Enumerable.Empty<int>();
 
             // Act
-            var actualProductIds = productService.FilterProductIdsByCustomer(custId, string.Empty, DateTime.Now, productIds);
+            var actualProductIds = productService.FilterProductIdsByCustomer(custId, string.Empty, 1, DateTime.Now, productIds);
 
             // Assert
             Assert.Equal(expectedProductIds, actualProductIds);
@@ -94,7 +94,7 @@
             fanexDataFixture.DynamicRepository.Fetch<Product>(Arg.Any<GetProductsCriteria>()).Returns(allCustomerProductIds);
 
             // Act
-            var actualProductIds = productService.FilterProductIdsByCustomer(custId, string.Empty, DateTime.Now, productIds);
+            var actualProductIds = productService.FilterProductIdsByCustomer(custId, string.Empty, 1, DateTime.Now, productIds);
 
             // Assert
             Assert.Equal(expectedProductIds, actualProductIds);
@@ -111,7 +111,7 @@
             var expectedProductIds = Enumerable.Empty<int>();
 
             // Act
-            var actualProductIds = productService.FilterProductIdsByCustomer(custId, string.Empty, DateTime.Now, productIds);
+            var actualProductIds = productService.FilterProductIdsByCustomer(custId, string.Empty, 1, DateTime.Now, productIds);
 
             // Assert
             Assert.Equal(expectedProductIds, actualProductIds);
@@ -132,7 +132,7 @@
             fanexDataFixture.DynamicRepository.Fetch<Product>(Arg.Any<GetProductsCriteria>()).Returns(allCustomerProductIds);
 
             // Act
-            var actualProductIds = productService.FilterProductIdsByCustomer(custId, string.Empty, DateTime.Now, productIds);
+            var actualProductIds = productService.FilterProductIdsByCustomer(custId, string.Empty, 1, DateTime.Now, productIds);
 
             // Assert
             Assert.Equal(expectedProductIds, actualProductIds);
@@ -211,7 +211,7 @@
             fanexDataFixture.DynamicRepository.Fetch<ProductBySiteModel>(Arg.Any<GetOfferedProductsBySiteCriteria>()).Returns(products);
 
             // Act
-            var act = productService.CanViewBySite(site, 21);
+            var act = productService.CanViewBySite(site, 1, 21);
 
             // Assert
             Assert.False(act);
@@ -229,7 +229,7 @@
             fanexDataFixture.DynamicRepository.Fetch<ProductBySiteModel>(Arg.Any<GetOfferedProductsBySiteCriteria>()).Returns(products);
 
             // Act
-            var act = productService.CanViewBySite(site, 23);
+            var act = productService.CanViewBySite(site, 1, 23);
 
             // Assert
             Assert.True(act);

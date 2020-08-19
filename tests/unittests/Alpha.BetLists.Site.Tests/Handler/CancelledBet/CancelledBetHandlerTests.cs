@@ -54,13 +54,13 @@
             //// Arrange            
             var query = new CancelledBetQuery(user);
             var products = BetListDataTest.Products;
-            productService.GetProductsHaveSupportCancelledBet(Arg.Any<int>(), Arg.Any<string>(), Arg.Any<DateTime>()).Returns(products);
+            productService.GetProductsHaveSupportCancelledBet(Arg.Any<int>(), Arg.Any<string>(), Arg.Any<int>(), Arg.Any<DateTime>()).Returns(products);
 
             //// Act
             var act = handler.Handle(query);
 
             //// Assert
-            productService.Received().GetProductsHaveSupportCancelledBet(Arg.Any<int>(), Arg.Any<string>(), Arg.Any<DateTime>());
+            productService.Received().GetProductsHaveSupportCancelledBet(Arg.Any<int>(), Arg.Any<string>(), Arg.Any<int>(), Arg.Any<DateTime>());
             service.Received().GetCancelledBet(Arg.Any<CancelledBetParam>());
         }
 

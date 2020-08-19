@@ -43,7 +43,7 @@
         {
             var validUserSelectedProductIds = message.IsGroupHeadline
                 ? productService.FilterProductIdsByGroupHeadline(message.ProductIds.ToListInt(), new GetProductsByGroupHeadlineParam(message.CustId, message.MinDate))
-                : productService.FilterProductIdsByCustomer(message.CustId, message.Site, message.MinDate, message.ProductIds.ToListInt());
+                : productService.FilterProductIdsByCustomer(message.CustId, message.Site, message.CurrencyId, message.MinDate, message.ProductIds.ToListInt());
 
             var winLossParam = WinLossHandler.CreateWinLossParam(message, validUserSelectedProductIds);
             var betlistData = await winLossService.GetBetList(winLossParam);
