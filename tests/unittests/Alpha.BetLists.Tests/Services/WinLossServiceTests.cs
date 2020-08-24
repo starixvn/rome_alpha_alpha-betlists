@@ -49,7 +49,8 @@
                 DateTime.Today.AddDays(1),
                 DateTime.Today.AddDays(2),
                 DateTime.MinValue,
-                "en");
+                "en",
+                BetListDataTest.ProductDetailsXML);
 
             // Act
             var actualBetListData = winLossService.GetBetList(param).GetAwaiter().GetResult();
@@ -69,7 +70,8 @@
                 DateTime.Today.AddDays(1),
                 DateTime.Today.AddDays(2),
                 DateTime.MinValue,
-                "en");
+                "en",
+                BetListDataTest.ProductDetailsXML);
 
             // Act
             winLossService.GetBetList(param).GetAwaiter().GetResult();
@@ -96,7 +98,8 @@
                 DateTime.Today.AddDays(1),
                 DateTime.Today.AddDays(2),
                 limiteDate,
-                "en");
+                "en",
+                BetListDataTest.ProductDetailsXML);
 
             // Act
             winLossService.GetBetList(param).GetAwaiter().GetResult();
@@ -118,7 +121,8 @@
                 DateTime.Today.AddDays(-3),
                 DateTime.Today.AddDays(-2),
                 limitedDate,
-                "en");
+                "en",
+                BetListDataTest.ProductDetailsXML);
 
             // Act
             winLossService.GetBetList(param).GetAwaiter().GetResult();
@@ -139,7 +143,8 @@
                 DateTime.Today.AddDays(-3),
                 DateTime.Today.AddDays(2),
                 limitedDate,
-                "en");
+                "en",
+                BetListDataTest.ProductDetailsXML);
 
             // Act
             winLossService.GetBetList(param).GetAwaiter().GetResult();
@@ -158,7 +163,8 @@
                 DateTime.Today.AddDays(-3),
                 DateTime.Today.AddDays(-2),
                 DateTime.MinValue,
-                "en");
+                "en",
+                BetListDataTest.ProductDetailsXML);
 
             // Act
             var actualBetListData = winLossService.GetBetList(param).GetAwaiter().GetResult();
@@ -178,7 +184,8 @@
                 DateTime.Today.AddDays(-3),
                 DateTime.Today.AddDays(-2),
                 DateTime.MinValue,
-                "en");
+                "en",
+                BetListDataTest.ProductDetailsXML);
 
             // Act
             winLossService.GetBetList(param).GetAwaiter().GetResult();
@@ -203,7 +210,8 @@
                 DateTime.Today.AddDays(-3),
                 DateTime.Today.AddDays(2),
                 DateTime.MinValue,
-                "en");
+                "en",
+                BetListDataTest.ProductDetailsXML);
 
             // Act
             var actualBetListData = winLossService.GetBetList(param).GetAwaiter().GetResult();
@@ -223,7 +231,8 @@
                 DateTime.Today.AddDays(-3),
                 DateTime.Today.AddDays(2),
                 DateTime.MinValue,
-                "en");
+                "en",
+                BetListDataTest.ProductDetailsXML);
 
             // Act
             winLossService.GetBetList(param).GetAwaiter().GetResult();

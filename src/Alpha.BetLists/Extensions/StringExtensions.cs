@@ -34,5 +34,25 @@
 
         public static IEnumerable<int> ToListInt(this string[] value)
             => value.Select(s => Converter.ToInt(s));
+
+        public static IDictionary<int, bool> ToIntDictionary(this string delimitedString)
+        {
+            IDictionary<int, bool> results = new Dictionary<int, bool>();
+
+            if (!string.IsNullOrWhiteSpace(delimitedString))
+            {
+                delimitedString
+                    .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                    .ToList()
+                    .ForEach(text => {
+                        if (int.TryParse(text, out var number))
+                        {
+                            results[number] = true;
+                        }
+                    });
+            }
+
+            return results;
+        }
     }
 }

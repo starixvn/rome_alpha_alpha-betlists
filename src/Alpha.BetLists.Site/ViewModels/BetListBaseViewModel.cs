@@ -38,6 +38,7 @@
             Builder = builder;
             TicketHelper = ticketHelper;
             ProductsId = baseQuery.ProductIds;
+            ResourceIds = baseQuery.ResourceIds;
             BetListType = baseQuery.Type;
             CustId = baseQuery.CustId;
             IsHistoricReport = baseQuery.IsHistoricReport;
@@ -67,6 +68,8 @@
         public bool DisplayVNIP { get; }
 
         public string ProductsId { get; protected set; }
+
+        public string ResourceIds { get; protected set; }
 
         public string BetListType { get; protected set; }
 

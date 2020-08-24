@@ -238,6 +238,7 @@
     <Compile Include="Criteria\GetBalanceUpDayAndMoveBetsDayCriteria.cs" />
     <Compile Include="Criteria\GetOfferedProductsBySiteCriteria.cs" />
     <Compile Include="Criteria\GetProductsCriteria.cs" />
+    <Compile Include="Criteria\GetProductsDetailCriteria.cs" />
     <Compile Include="Criteria\GetScoreMapBetTypesCriteria.cs" />
     <Compile Include="Criteria\CasinoDetails\GetCasinoDetailsCriteria.cs" />
     <Compile Include="Criteria\LastBets\GetMatchInfoByIdCriteria.cs" />
@@ -288,6 +289,7 @@
     <Compile Include="Models\Parlay\ComboParlayDetailData.cs" />
     <Compile Include="Models\ProductBySiteModel.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductDetail.cs" />
     <Compile Include="Models\ScoreMap.cs" />
     <Compile Include="Models\StatusModel.cs" />
     <Compile Include="Models\TicketDto.cs" />
@@ -315,6 +317,7 @@
     <Compile Include="Services\LastBetsService.cs" />
     <Compile Include="Services\IPServiceImpl.cs" />
     <Compile Include="Services\CancelledBetService.cs" />
+    <Compile Include="Services\ProductDetailService.cs" />
     <Compile Include="Services\RiskAnalysisIPMatchingService.cs" />
     <Compile Include="Services\MemberBetListService.cs" />
     <Compile Include="Services\RunningBetListByBetTypeAndMatchService.cs" />

@@ -65,6 +65,7 @@
                         new GetBetListWinLossByDateCriteria(
                             param.CustId,
                             param.ProductIds.JoinWithComma(),
+                            param.ProductDetailsXML,
                             fromDate,
                             param.ToDate,
                             reportDateService.GetMoveBetsDay()));
@@ -74,6 +75,7 @@
                         new GetBetListWinLossByDateOldCriteria(
                             param.CustId,
                             param.ProductIds.JoinWithComma(),
+                            param.ProductDetailsXML,
                             fromDate,
                             toDate,
                             param.Language));

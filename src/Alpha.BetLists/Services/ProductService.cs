@@ -1,5 +1,8 @@
 ﻿namespace Alpha.BetLists.Services
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using Configurations;
     using Constants;
     using Criteria;
@@ -10,9 +13,6 @@
     using Fanex.Data.Repository;
     using Models;
     using Params;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
 
     public interface ProductService
     {

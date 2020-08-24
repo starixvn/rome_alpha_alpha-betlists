@@ -52,6 +52,9 @@
 
         public static string RemoteRefURL => GetConfigValue("RemoteRefURL");
 
+        public static bool IsOfferJackpotProductDetails
+            => "1" == GetConfigValue("IsOfferJackpotProductDetails");
+
         public static string GetConfigValue(string configName) => AppSettingValues[configName];
 
         public static void Verify()

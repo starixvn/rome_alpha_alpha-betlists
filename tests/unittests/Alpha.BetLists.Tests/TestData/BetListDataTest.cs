@@ -26,6 +26,9 @@
 
         public static readonly IEnumerable<Product> Products = fixture.CreateMany<Product>();
 
+        public const string ProductDetailsXML
+            = "<ROOT><ProductDetail ProductId = \"42\" Sporttype = \"200\" Bettype = \"0\"/><ProductDetail ProductId = \"42\" Sporttype = \"150\" Bettype = \"0\"/></ROOT>";
+
         public static readonly IEnumerable<int> BettypeIds = fixture.CreateMany<int>();
 
         public static readonly Tuple<IEnumerable<TicketDto>, IEnumerable<TicketData>> BetListDataTuple

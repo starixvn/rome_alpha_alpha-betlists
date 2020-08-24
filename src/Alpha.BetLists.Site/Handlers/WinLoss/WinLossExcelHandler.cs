@@ -21,6 +21,7 @@
     {
         private readonly WinLossService winLossService;
         private readonly ProductService productService;
+        private readonly ProductDetailService productDetailService;
         private Workbook<TicketDto> workbook;
 
         public WinLossExcelHandler(
@@ -31,12 +32,14 @@
             ISmartPunterBetListMonitor monitorService,
             IPService ipService,
             Workbook<TicketDto> workbook,
-            ProductService productService)
+            ProductService productService,
+            ProductDetailService productDetailService)
             : base(builder, excelBuilder, ticketHelper, monitorService, ipService)
         {
             this.workbook = workbook;
             this.winLossService = winLossService;
             this.productService = productService;
+            this.productDetailService = productDetailService;
         }
 
         public async Task<ExcelFileViewModel> Handle(WinLossExcelQuery message)
@@ -44,8 +47,10 @@
             var validUserSelectedProductIds = message.IsGroupHeadline
                 ? productService.FilterProductIdsByGroupHeadline(message.ProductIds.ToListInt(), new GetProductsByGroupHeadlineParam(message.CustId, message.MinDate))
                 : productService.FilterProductIdsByCustomer(message.CustId, message.Site, message.CurrencyId, message.MinDate, message.ProductIds.ToListInt());
+            validUserSelectedProductIds = await productDetailService.RemoveProductIdsAsync(validUserSelectedProductIds, message.ResourceIds);
+            var productDetailsXML = await productDetailService.BuildProductDetailsXMLAsync(validUserSelectedProductIds, message.ResourceIds);
 
-            var winLossParam = WinLossHandler.CreateWinLossParam(message, validUserSelectedProductIds);
+            var winLossParam = WinLossHandler.CreateWinLossParam(message, validUserSelectedProductIds, productDetailsXML);
             var betlistData = await winLossService.GetBetList(winLossParam);
 
             var winLossViewModel = new WinLossViewModel(message, betlistData, null, TicketHelper, false);

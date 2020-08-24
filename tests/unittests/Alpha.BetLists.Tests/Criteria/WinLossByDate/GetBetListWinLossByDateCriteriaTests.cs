@@ -11,7 +11,7 @@
         public void GetSettingKey_Always_ReturnsValidSettingKey()
         {
             // Arrange
-            var criteria = new GetBetListWinLossByDateCriteria(0, string.Empty, DateTime.Today, DateTime.Today, DateTime.Today);
+            var criteria = new GetBetListWinLossByDateCriteria(0, string.Empty, string.Empty, DateTime.Today, DateTime.Today, DateTime.Today);
             var expectedSettingKey = "Age_BetList_SelWinLossByDate_Mem";
 
             // Act
@@ -28,7 +28,7 @@
         public void IsValid_InvalidCustId_ReturnsFalse(int custId)
         {
             // Arrange
-            var criteria = new GetBetListWinLossByDateCriteria(0, string.Empty, DateTime.Today, DateTime.Today, DateTime.Today);
+            var criteria = new GetBetListWinLossByDateCriteria(0, string.Empty, string.Empty, DateTime.Today, DateTime.Today, DateTime.Today);
 
             // Act
             var actualIsValid = criteria.IsValid();
@@ -45,7 +45,7 @@
         public void IsValid_ProductIdsIsNullOrWhiteSpace_ReturnsFalse(string productIds)
         {
             // Arrange
-            var criteria = new GetBetListWinLossByDateCriteria(1, productIds, DateTime.Today, DateTime.Today, DateTime.Today);
+            var criteria = new GetBetListWinLossByDateCriteria(1, productIds, string.Empty, DateTime.Today, DateTime.Today, DateTime.Today);
 
             // Act
             var actualIsValid = criteria.IsValid();
@@ -59,7 +59,7 @@
         {
             // Arrange
             var productIds = "1,2";
-            var criteria = new GetBetListWinLossByDateCriteria(1, productIds, DateTime.Today, DateTime.Today.AddDays(-1), DateTime.Today);
+            var criteria = new GetBetListWinLossByDateCriteria(1, productIds, string.Empty, DateTime.Today, DateTime.Today.AddDays(-1), DateTime.Today);
 
             // Act
             var actualIsValid = criteria.IsValid();
@@ -73,7 +73,7 @@
         {
             // Arrange
             var productIds = "1,2";
-            var criteria = new GetBetListWinLossByDateCriteria(1, productIds, DateTime.Today, DateTime.Today, DateTime.Today);
+            var criteria = new GetBetListWinLossByDateCriteria(1, productIds, string.Empty, DateTime.Today, DateTime.Today, DateTime.Today);
 
             // Act
             var actualIsValid = criteria.IsValid();
