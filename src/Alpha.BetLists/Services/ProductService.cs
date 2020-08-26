@@ -30,7 +30,7 @@
 
         IEnumerable<Product> GetProductsHaveSupportCancelledBet(int custId, string site, int currencyId, DateTime minReportDate, IEnumerable<int> productIds = null);
 
-        bool CanViewBySite(string site, int currencyId, int productId);
+        bool CanViewBySite(int custId, string site, int currencyId, int productId);
     }
 
     public class ProductServiceImpl : ProductService
@@ -65,7 +65,7 @@
                 .GetOrSet(
                 $"Alpha.Reports.Services.Impl.ProductsForCustomer-{custId}",
                 () => GetProductsForReport()
-                        .Where(product => canViewProduct(product.Id) || CanViewBySite(site, currencyId, product.Id))
+                        .Where(product => canViewProduct(product.Id) || CanViewBySite(custId, site, currencyId, product.Id))
                         .Select(product => new Product(product.Id, product.Name, product.EndOfSupportDate, getProductName, product.Type, product.OrderNo)),
                 new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(CustProductsCacheTimeInMinutes)));
 
@@ -145,12 +145,12 @@
         public string ConcatProductNames(string productIds)
             => string.Join(", ", GetProductNames(productIds.ToListInt()));
 
-        public bool CanViewBySite(string site, int currencyId, int productId)
+        public bool CanViewBySite(int custId, string site, int currencyId, int productId)
         {
             var products = ConfiguredCacheService
                 .GetOrSet(
-                $"Alpha.Reports.Services.Impl.ProductsBySite-{site}",
-                () => dynamicRepository.Fetch<ProductBySiteModel>(new GetOfferedProductsBySiteCriteria { Site = site, CurrencyId = currencyId }),
+                $"Alpha.Reports.Services.Impl.ProductsBySite-{custId}-{site}",
+                () => dynamicRepository.Fetch<ProductBySiteModel>(new GetOfferedProductsBySiteCriteria(custId, site, currencyId)),
                 new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(CustProductsCacheTimeInMinutes)));
 
             return products.Any(i => i.ProductId == productId);

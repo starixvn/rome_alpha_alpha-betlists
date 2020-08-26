@@ -211,7 +211,7 @@
             fanexDataFixture.DynamicRepository.Fetch<ProductBySiteModel>(Arg.Any<GetOfferedProductsBySiteCriteria>()).Returns(products);
 
             // Act
-            var act = productService.CanViewBySite(site, 1, 21);
+            var act = productService.CanViewBySite(1, site, 1, 21);
 
             // Assert
             Assert.False(act);
@@ -229,7 +229,7 @@
             fanexDataFixture.DynamicRepository.Fetch<ProductBySiteModel>(Arg.Any<GetOfferedProductsBySiteCriteria>()).Returns(products);
 
             // Act
-            var act = productService.CanViewBySite(site, 1, 23);
+            var act = productService.CanViewBySite(1, site, 1, 23);
 
             // Assert
             Assert.True(act);

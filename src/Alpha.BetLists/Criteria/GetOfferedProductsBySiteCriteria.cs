@@ -5,13 +5,22 @@
 
     public class GetOfferedProductsBySiteCriteria : CriteriaBase
     {
-        public string Site { get; set; }
+        public GetOfferedProductsBySiteCriteria(int custId, string site, int currencyId)
+        {
+            CustId = custId;
+            Site = site;
+            CurrencyId = currencyId;
+        }
+
+        public int CustId { get; }
+
+        public string Site { get; }
 
         [SpParam(SqlParamName = "Currency")]
-        public int CurrencyId { get; set; }
+        public int CurrencyId { get; }
 
         public override string GetSettingKey() => "Acc_CustSetting_CheckPGSoftEnable";
 
-        public override bool IsValid() => !string.IsNullOrEmpty(Site) && CurrencyId > 0;
+        public override bool IsValid() => !string.IsNullOrEmpty(Site) && CurrencyId > 0 && CustId > 0;
     }
 }

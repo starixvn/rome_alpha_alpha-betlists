@@ -9,7 +9,7 @@
         public void GetSettingKey_Always_ReturnsValidSettingKey()
         {
             // Arrange
-            var getProductsCriteria = new GetOfferedProductsBySiteCriteria();
+            var getProductsCriteria = new GetOfferedProductsBySiteCriteria(1, string.Empty, 1);
             var expectedSettingKey = "Acc_CustSetting_CheckPGSoftEnable";
 
             // Act
@@ -23,7 +23,7 @@
         public void IsValid_EmptySIte_ReturnsFalse()
         {
             // Arrange
-            var getProductsCriteria = new GetOfferedProductsBySiteCriteria();
+            var getProductsCriteria = new GetOfferedProductsBySiteCriteria(1, string.Empty, 1);
 
             // Act
             var actualIsValid = getProductsCriteria.IsValid();
@@ -36,7 +36,7 @@
         public void IsValid_SiteHasValue_ReturnsTrue()
         {
             // Arrange
-            var getProductsCriteria = new GetOfferedProductsBySiteCriteria { Site = "IBCIndo", CurrencyId = 1 };
+            var getProductsCriteria = new GetOfferedProductsBySiteCriteria(1, "IBCIndo", 1);
 
             // Act
             var actualIsValid = getProductsCriteria.IsValid();
