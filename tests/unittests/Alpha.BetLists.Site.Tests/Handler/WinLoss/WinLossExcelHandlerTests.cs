@@ -44,8 +44,8 @@
             InitWorkbook();
 
             productService = Substitute.For<ProductService>();
-            productService.FilterProductIdsByCustomer(Arg.Any<int>(), Arg.Any<DateTime>(), Arg.Any<IEnumerable<int>>())
-                .Returns(callInfo => callInfo.Args()[2]);
+            productService.FilterProductIdsByCustomer(Arg.Any<int>(), Arg.Any<string>(), Arg.Any<int>(), Arg.Any<DateTime>(), Arg.Any<IEnumerable<int>>())
+                .Returns(callInfo => callInfo.Args()[4]);
 
             winLossExcelHandler = new WinLossExcelHandler(
                 winLossService,
@@ -82,6 +82,7 @@
             query.FromDate = DateTime.Today;
             query.ToDate = DateTime.Today;
             query.Language = "en";
+            query.CurrencyId = 1;
             query.RtfHelper = betlistFixture.RtfHelper;
         }
 

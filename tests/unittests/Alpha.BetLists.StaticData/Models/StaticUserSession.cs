@@ -12,6 +12,12 @@
         private static string name;
 
         [ThreadStatic]
+        private static string site;
+
+        [ThreadStatic]
+        private static int currencyId;
+
+        [ThreadStatic]
         private static string language;
 
         [ThreadStatic]
@@ -41,6 +47,8 @@
         public static void SetValues(
             int id,
             string name,
+            string site,
+            int currencyId,
             string language,
             byte levelId,
             int adminId,
@@ -52,6 +60,8 @@
             DateTime limitDate)
         {
             StaticUserSession.id = id;
+            StaticUserSession.site = site;
+            StaticUserSession.currencyId = currencyId;
             StaticUserSession.name = name;
             StaticUserSession.language = language;
             StaticUserSession.levelId = levelId;
@@ -65,6 +75,10 @@
         }
 
         public int Id => id;
+
+        public string Site => site;
+
+        public int CurrencyId => currencyId;
 
         public string Name => name;
 

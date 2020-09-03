@@ -6,6 +6,10 @@ namespace Alpha.BetLists.Models
     {
         int Id { get; }
 
+        string Site { get; }
+
+        int CurrencyId { get; }
+
         string Name { get; }
 
         string Language { get; }

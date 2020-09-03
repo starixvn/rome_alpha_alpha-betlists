@@ -237,6 +237,7 @@
     <Compile Include="Constants\ErrorCodeConstants.cs" />
     <Compile Include="Criteria\CorrectScore\GetRunningCorrectScoreCriteria.cs" />
     <Compile Include="Criteria\GetBalanceUpDayAndMoveBetsDayCriteria.cs" />
+    <Compile Include="Criteria\GetOfferedProductsBySiteCriteria.cs" />
     <Compile Include="Criteria\GetProductsCriteria.cs" />
     <Compile Include="Criteria\GetScoreMapBetTypesCriteria.cs" />
     <Compile Include="Criteria\CasinoDetails\GetCasinoDetailsCriteria.cs" />
@@ -286,6 +287,7 @@
     <Compile Include="Models\Parlay\MatchDetail.cs" />
     <Compile Include="Models\Parlay\ComboParlayDetail.cs" />
     <Compile Include="Models\Parlay\ComboParlayDetailData.cs" />
+    <Compile Include="Models\ProductBySiteModel.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ScoreMap.cs" />
     <Compile Include="Models\StatusModel.cs" />

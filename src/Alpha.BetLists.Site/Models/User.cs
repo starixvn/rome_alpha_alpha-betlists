@@ -22,6 +22,10 @@
 
         public int Id => userSession.CustId;
 
+        public string Site => userSession.Site;
+
+        public int CurrencyId => userSession.CurrencyId;
+
         public string Name => userSession.UserName;
 
         public string Language => userSession.Language;

@@ -28,7 +28,7 @@
             {
                 // Arrange
                 Func<int, bool> hasPermissionOnProduct = s => false;
-                StaticUserSession.SetValues(0, string.Empty, "en", 4, 1, false, false, "E", false, hasPermissionOnProduct, DateTime.MinValue);
+                StaticUserSession.SetValues(0, string.Empty, string.Empty, 1, "en", 4, 1, false, false, "E", false, hasPermissionOnProduct, DateTime.MinValue);
                 SystemTime.Today = new DateTime(2017, 7, 27);
                 StaticDataMapper.CriteriaMaps["GetBetListAllByDateCriteria"] = dataFileName;
 
