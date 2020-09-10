@@ -151,7 +151,7 @@
 
             Common.PopupDetails.Instance(window.top).Show(
                 Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params,
-                'Sexy Gaming - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                'AE Casino - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
         }
     }
 
