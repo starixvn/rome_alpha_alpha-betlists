@@ -17,6 +17,7 @@
         private static SabaClubResult: ResultDetails;
         private static PGSoftCasinoResult: ResultDetails;
         private static JokerResult: ResultDetails;
+        private static WMResult: ResultDetails;
 
         public static CreateInstance(betTypeId: number): ResultDetails {
             if (betTypeId >= 2501 && betTypeId <= 2699) {
@@ -53,6 +54,7 @@
                 (betTypeId >= 3001 && betTypeId <= 3099) ||
                 (betTypeId >= 3101 && betTypeId <= 3199) ||
                 (betTypeId >= 3201 && betTypeId <= 3299) ||
+                (betTypeId >= 3401 && betTypeId <= 3499) ||
                 betTypeId == 3300) { // BBin
                 this.allbetResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.allbetResult) ? new AllbetResultDetails() : this.allbetResult;
                 return this.allbetResult;

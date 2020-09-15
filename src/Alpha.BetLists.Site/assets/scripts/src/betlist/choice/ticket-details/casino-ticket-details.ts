@@ -312,6 +312,37 @@
                 'RNG War - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
         }
     }
+
+    export class WMTicketDetails extends BaseTicketDetails {
+        private static instance: WMTicketDetails;
+
+        public static get Instance() {
+            this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new WMTicketDetails() : this.instance;
+            return this.instance;
+        }
+
+        public ShowWMBetDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
+            const params = '?refno=' + refNo
+                + '&custid=' + custId
+                + '&transType=' + transType
+                + '&sportName=WM&productId=51';
+
+            let width = 1147;
+            let roleId = Number(this.ViewerLevelId);
+
+            if (roleId <= 3) {
+                width -= 105;
+            }
+
+            if (roleId <= 2) {
+                width -= 105;
+            }
+
+            Common.PopupDetails.Instance(window.top).Show(
+                Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params,
+                'WM - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+        }
+    }
 }
 
 let showRnGCasinoDetails: Function;
@@ -332,6 +363,7 @@ let showBBINBetDetails: Function;
 let showRNGWARBetDetails: Function;
 let showIONCasinoBetDetails: Function;
 let showJokerBetDetails: Function;
+let showWMBetDetails: Function;
 
 $(document).ready(() => {
     showRnGCasinoDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowRnGCasinoDetails;
@@ -352,4 +384,5 @@ $(document).ready(() => {
     showBBINBetDetails = BetList.Choice.TicketDetails.BBinTicketDetails.Instance.ShowBBinBetDetails;
     showRNGWARBetDetails = BetList.Choice.TicketDetails.RNGWarTicketDetails.Instance.ShowRNGWarBetDetails;
     showJokerBetDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowJokerDetails;
+    showWMBetDetails = BetList.Choice.TicketDetails.WMTicketDetails.Instance.ShowWMBetDetails;
 })
