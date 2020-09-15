@@ -30,7 +30,10 @@
             const params = this.CreatePopupDetailsParam(refNo, winlossDate, custId, transType, "Fishing World");
             this.ShowDetailsPopup(params);
         }
-
+        public ShowJokerDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
+            const params = this.CreatePopupDetailsParam(refNo, winlossDate, custId, transType, "Joker");
+            this.ShowDetailsPopup(params);
+        }
         public ShowPPDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
             const params = this.CreatePopupDetailsParam(refNo, winlossDate, custId, transType, "PP");
             this.ShowDetailsPopup(params);
@@ -328,6 +331,7 @@ let showSabaClubDetails: Function;
 let showBBINBetDetails: Function;
 let showRNGWARBetDetails: Function;
 let showIONCasinoBetDetails: Function;
+let showJokerBetDetails: Function;
 
 $(document).ready(() => {
     showRnGCasinoDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowRnGCasinoDetails;
@@ -347,4 +351,5 @@ $(document).ready(() => {
     showIONCasinoBetDetails = BetList.Choice.TicketDetails.IONTicketDetails.Instance.ShowIONBetDetails;
     showBBINBetDetails = BetList.Choice.TicketDetails.BBinTicketDetails.Instance.ShowBBinBetDetails;
     showRNGWARBetDetails = BetList.Choice.TicketDetails.RNGWarTicketDetails.Instance.ShowRNGWarBetDetails;
+    showJokerBetDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowJokerDetails;
 })

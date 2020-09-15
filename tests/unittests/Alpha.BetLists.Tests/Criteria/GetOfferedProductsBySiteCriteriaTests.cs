@@ -10,7 +10,7 @@
         {
             // Arrange
             var getProductsCriteria = new GetOfferedProductsBySiteCriteria(1, string.Empty, 1);
-            var expectedSettingKey = "Acc_CustSetting_CheckPGSoftEnable";
+            var expectedSettingKey = "Acc_CustSetting_CheckMacauEnable";
 
             // Act
             var actualSettingKey = getProductsCriteria.GetSettingKey();
