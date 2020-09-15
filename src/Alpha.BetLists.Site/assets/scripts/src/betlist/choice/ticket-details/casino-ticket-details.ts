@@ -136,7 +136,7 @@
             const params = '?refno=' + refNo
                 + '&custid=' + custId
                 + '&transType=' + transType
-                + '&sportName=SexyGaming&productId=45';
+                + '&sportName=AE Casino&productId=45';
 
             let width = 1047;
             let roleId = Number(this.ViewerLevelId);
