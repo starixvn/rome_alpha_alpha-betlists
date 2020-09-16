@@ -1,9 +1,5 @@
 ﻿namespace Alpha.BetLists.Site.App_Start
 {
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Reflection;
-    using System.Web.Mvc;
     using Alpha.BetLists.Site.Handlers.RiskAnalysisIPMatching;
     using BetLists.Helpers;
     using BetLists.Models;
@@ -19,6 +15,7 @@
     using Fanex.BetList.Core.Factories;
     using Fanex.BetList.Core.RemotingRef;
     using Fanex.BetList.Core.TicketHelper;
+    using Fanex.Caching;
     using Fanex.Data.Repository;
     using Fanex.RemotingRef;
     using Handlers.Parlay;
@@ -37,6 +34,10 @@
     using Sunplus.Agent.Model.Base;
     using Sunplus.Agent.Model.Entities;
     using Sunplus.Agent.Model.Entities.Permission;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Reflection;
+    using System.Web.Mvc;
     using Utilities.IP;
 
     public static class DependencyConfig
@@ -148,10 +149,12 @@
 
             container.RegisterSingleton<ICacheRef, CacheRef>();
             container.RegisterSingleton<IRemotingRefService, RemotingRefService>();
+            container.RegisterSingleton<ICacheService>(new CacheService());
             container.Register<ForecastService, ForecastServiceImpl>(Lifestyle.Singleton);
             container.Register<ProductService>(
                 () => new ProductServiceImpl(
                     container.GetInstance<IDynamicRepository>(),
+                    container.GetInstance<ICacheService>(),
                     container.GetInstance<ProductDataAccess>(),
                     UserPermission.HasPermissionOnProduct,
                     CacheRefServiceHelper.GetProductName),

@@ -4,7 +4,7 @@
     using Xunit;
 
     [CollectionDefinition("FanexLibsCollection")]
-    public class FanexLibsCollection : ICollectionFixture<FanexCacheFixture>, ICollectionFixture<FanexDataFixture>
+    public class FanexLibsCollection : ICollectionFixture<FanexDataFixture>
     {
     }
 }

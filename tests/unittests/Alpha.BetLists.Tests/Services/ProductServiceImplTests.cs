@@ -1,17 +1,18 @@
 ﻿namespace Alpha.BetLists.Tests.Services
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using BetLists.Criteria;
     using BetLists.DataAccesses;
     using BetLists.Models;
     using BetLists.Params;
     using BetLists.Services;
     using Constants;
+    using Fanex.Caching;
     using Fixtures;
     using KellermanSoftware.CompareNetObjects;
     using NSubstitute;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using Xunit;
 
     [Trait("Category", "BaseFunction")]
@@ -20,7 +21,6 @@
     {
         private const string ProductCacheKey = "Alpha.BetLists.Services.Impl.ProductsForCustomer";
 
-        private readonly FanexCacheFixture fanexCacheFixture;
         private readonly FanexDataFixture fanexDataFixture;
         private readonly ProductServiceImpl productService;
         private readonly ProductDataAccess productDataAccess;
@@ -35,10 +35,8 @@
         };
 
         public ProductServiceImplTests(
-            FanexCacheFixture fanexCacheFixture,
             FanexDataFixture fanexDataFixture)
         {
-            this.fanexCacheFixture = fanexCacheFixture;
             this.fanexDataFixture = fanexDataFixture;
 
             Func<int, bool> canViewProduct = (productId) => true;
@@ -57,7 +55,7 @@
             fanexDataFixture.DynamicRepository.Fetch<Product>(Arg.Any<GetProductsByGroupHeadlineCriteria>()).Returns(data);
             productDataAccess = Substitute.For<ProductDataAccess>();
 
-            productService = new ProductServiceImpl(fanexDataFixture.DynamicRepository, productDataAccess, canViewProduct, getProductName);
+            productService = new ProductServiceImpl(fanexDataFixture.DynamicRepository, fanexDataFixture.CacheService, productDataAccess, canViewProduct, getProductName);
 
             compareLogic = new CompareLogic();
         }
@@ -89,7 +87,7 @@
             var expectedProductIds = allCustomerProductIds.Select(product => product.Id);
 
             IEnumerable<Product> cachedProducts;
-            fanexCacheFixture.CacheStorage.TryGet($"{ProductCacheKey}-{custId}", out cachedProducts).Returns(false);
+            fanexDataFixture.CacheService.TryGet($"{ProductCacheKey}-{custId}", out cachedProducts).Returns(false);
 
             fanexDataFixture.DynamicRepository.Fetch<Product>(Arg.Any<GetProductsCriteria>()).Returns(allCustomerProductIds);
 
@@ -127,7 +125,7 @@
             var expectedProductIds = allCustomerProductIds.Select(product => product.Id);
 
             IEnumerable<Product> cachedProducts;
-            fanexCacheFixture.CacheStorage.TryGet($"{ProductCacheKey}-{custId}", out cachedProducts).Returns(false);
+            fanexDataFixture.CacheService.TryGet($"{ProductCacheKey}-{custId}", out cachedProducts).Returns(false);
 
             fanexDataFixture.DynamicRepository.Fetch<Product>(Arg.Any<GetProductsCriteria>()).Returns(allCustomerProductIds);
 
@@ -209,7 +207,7 @@
             var site = "IBCINdo";
             var products = new List<ProductBySiteModel>() { new ProductBySiteModel(22), new ProductBySiteModel(23) };
             IEnumerable<ProductBySiteModel> cachedProducts;
-            fanexCacheFixture.CacheStorage.TryGet($"Alpha.Reports.Services.Impl.ProductsBySite-{site}", out cachedProducts).Returns(false);
+            fanexDataFixture.CacheService.TryGet($"Alpha.Reports.Services.Impl.ProductsBySite-{site}", out cachedProducts).Returns(false);
 
             fanexDataFixture.DynamicRepository.Fetch<ProductBySiteModel>(Arg.Any<GetOfferedProductsBySiteCriteria>()).Returns(products);
 
@@ -227,7 +225,7 @@
             var site = "IBCINdo";
             var products = new List<ProductBySiteModel>() { new ProductBySiteModel(22), new ProductBySiteModel(23) };
             IEnumerable<ProductBySiteModel> cachedProducts;
-            fanexCacheFixture.CacheStorage.TryGet($"Alpha.Reports.Services.Impl.ProductsBySite-{site}", out cachedProducts).Returns(false);
+            fanexDataFixture.CacheService.TryGet($"Alpha.Reports.Services.Impl.ProductsBySite-{site}", out cachedProducts).Returns(false);
 
             fanexDataFixture.DynamicRepository.Fetch<ProductBySiteModel>(Arg.Any<GetOfferedProductsBySiteCriteria>()).Returns(products);
 

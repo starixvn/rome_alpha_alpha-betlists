@@ -50,9 +50,8 @@
     <Reference Include="Fanex.BetList.SAGaming, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.SAGaming.1.0.0.4\lib\net40\Fanex.BetList.SAGaming.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.Caching, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.Caching.2.1.0\lib\net461\Fanex.Caching.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Fanex.Caching, Version=2.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Caching.2.2.1\lib\net461\Fanex.Caching.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.Common, Version=1.0.404.97, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Common.1.0.404.97\lib\net40\Fanex.Common.dll</HintPath>
@@ -89,6 +88,9 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />

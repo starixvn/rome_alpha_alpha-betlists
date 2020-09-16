@@ -1,8 +1,5 @@
 ﻿namespace Alpha.BetLists.Tests.Services
 {
-    using System.Collections.Generic;
-    using System.Collections.Specialized;
-    using System.Linq;
     using BetLists.Configurations;
     using BetLists.Criteria.LastBets;
     using BetLists.Models;
@@ -11,6 +8,9 @@
     using Fixtures;
     using KellermanSoftware.CompareNetObjects;
     using NSubstitute;
+    using System.Collections.Generic;
+    using System.Collections.Specialized;
+    using System.Linq;
     using TestData;
     using Xunit;
 
@@ -41,7 +41,7 @@
                 .Fetch<MatchInfo>(Arg.Any<GetRunningOtherMatchCriteria>())
                 .Returns(LastBetsTestData.RunningOtherMatch);
 
-            lastBetsService = new LastBetsServiceImpl(dataFixture.DynamicRepository);
+            lastBetsService = new LastBetsServiceImpl(dataFixture.DynamicRepository, dataFixture.CacheService);
 
             compareLogic = new CompareLogic();
         }

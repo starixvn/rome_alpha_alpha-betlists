@@ -1,13 +1,14 @@
 ﻿namespace Alpha.BetLists.Tests.Services
 {
-    using System.Collections.Generic;
-    using System.Linq;
     using BetLists.Criteria;
     using BetLists.Extensions;
     using BetLists.Models;
     using BetLists.Services;
+    using Fanex.Caching;
     using Fixtures;
     using NSubstitute;
+    using System.Collections.Generic;
+    using System.Linq;
     using Xunit;
 
     [Trait("Category", "BaseFunction")]
@@ -16,7 +17,6 @@
     {
         private const string ScoreMapBetTypesCacheKey = "Alpha.BetLists.Services.ForecastServiceImpl.ScoreMapBetTypes";
 
-        private readonly FanexCacheFixture fanexCacheFixture;
         private readonly FanexDataFixture fanexDataFixture;
         private readonly ForecastService forecastService;
 
@@ -29,13 +29,11 @@
         };
 
         public ForecastServiceImplTests(
-            FanexCacheFixture fanexCacheFixture,
             FanexDataFixture fanexDataFixture)
         {
-            this.fanexCacheFixture = fanexCacheFixture;
             this.fanexDataFixture = fanexDataFixture;
 
-            forecastService = new ForecastServiceImpl(fanexDataFixture.DynamicRepository);
+            forecastService = new ForecastServiceImpl(fanexDataFixture.DynamicRepository, fanexDataFixture.CacheService);
         }
 
         [Fact]
@@ -45,7 +43,7 @@
             var expectedBettypeIds = scoreMaps.Select(s => s.FirstId.ToListInt()).SelectMany(x => x).Distinct().ToList();
 
             IEnumerable<ScoreMap> cachedScoreMaps;
-            fanexCacheFixture.CacheStorage.TryGet($"{ScoreMapBetTypesCacheKey}", out cachedScoreMaps).Returns(false);
+            fanexDataFixture.CacheService.TryGet($"{ScoreMapBetTypesCacheKey}", out cachedScoreMaps).Returns(false);
 
             fanexDataFixture.DynamicRepository.Fetch<ScoreMap>(Arg.Any<GetScoreMapBetTypesCriteria>()).Returns(scoreMaps);
 

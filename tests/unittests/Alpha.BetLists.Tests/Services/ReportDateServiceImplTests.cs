@@ -1,6 +1,5 @@
 ﻿namespace Alpha.BetLists.Tests.Services
 {
-    using System;
     using BetLists.Criteria;
     using BetLists.Models;
     using BetLists.Services;
@@ -8,6 +7,7 @@
     using Fanex.Data.Repository;
     using Fixtures;
     using NSubstitute;
+    using System;
     using Xunit;
 
     [Trait("Category", "BaseFunction")]
@@ -15,16 +15,13 @@
     public class ReportDateServiceImplTests
     {
         private const string BalanceUpDayAndMoveBetsDayCacheKey = "Alpha.Reports.BalanceUpDayAndMoveBetsDay";
-        private readonly FanexCacheFixture cacheFixture;
         private readonly FanexDataFixture dataFixture;
         private readonly ReportDateService reportDateService;
         private BalanceUpDayAndMoveBetsDay dataInCache;
         private BalanceUpDayAndMoveBetsDay dataInDatabase;
 
-        public ReportDateServiceImplTests(FanexCacheFixture cacheFixture, FanexDataFixture dataFixture)
+        public ReportDateServiceImplTests(FanexDataFixture dataFixture)
         {
-            this.cacheFixture = cacheFixture;
-
             // Init cache data
             dataInCache = new BalanceUpDayAndMoveBetsDay(new DateTime(2012, 1, 1), new DateTime(2012, 1, 1));
             dataInDatabase = new BalanceUpDayAndMoveBetsDay(new DateTime(2015, 2, 2), new DateTime(2015, 2, 2));
@@ -32,7 +29,7 @@
             dataFixture.DynamicRepository.Get<BalanceUpDayAndMoveBetsDay>(Arg.Any<CriteriaBase>()).Returns(dataInDatabase);
             this.dataFixture = dataFixture;
 
-            reportDateService = new ReportDateServiceImpl(this.dataFixture.DynamicRepository);
+            reportDateService = new ReportDateServiceImpl(this.dataFixture.DynamicRepository, this.dataFixture.CacheService);
         }
 
         [Fact]
@@ -40,7 +37,7 @@
         {
             // Arrange
             BalanceUpDayAndMoveBetsDay expectedData;
-            cacheFixture.CacheStorage.TryGet(BalanceUpDayAndMoveBetsDayCacheKey, out expectedData).Returns(x =>
+            dataFixture.CacheService.TryGet(BalanceUpDayAndMoveBetsDayCacheKey, out expectedData).Returns(x =>
             {
                 x[1] = dataInCache;
                 return dataInCache != null;
@@ -83,7 +80,7 @@
             var balanceUpDayAndMoveBetsDay = reportDateService.GetBalanceUpDayAndMoveBetsDay();
 
             // Assert
-            cacheFixture.CacheStorage.Received().Set(
+            dataFixture.CacheService.Received().Set(
                 Arg.Is(BalanceUpDayAndMoveBetsDayCacheKey),
                 Arg.Is<BalanceUpDayAndMoveBetsDay>(data => data.BalanceUpDay == dataInDatabase.BalanceUpDay),
                 Arg.Any<CacheItemOptions>());
