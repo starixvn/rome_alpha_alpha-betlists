@@ -11,7 +11,8 @@
             DateTime fromDate,
             DateTime toDate,
             DateTime limitedDate,
-            string language)
+            string language,
+            string productDetailsXML)
         {
             CustId = custId;
             FromDate = fromDate;
@@ -19,6 +20,7 @@
             Language = language;
             ProductIds = productIds;
             LimitedDate = limitedDate;
+            ProductDetailsXML = productDetailsXML;
         }
 
         public int CustId { get; }
@@ -32,5 +34,7 @@
         public IEnumerable<int> ProductIds { get; }
 
         public DateTime LimitedDate { get; }
+
+        public string ProductDetailsXML { get; }
     }
 }

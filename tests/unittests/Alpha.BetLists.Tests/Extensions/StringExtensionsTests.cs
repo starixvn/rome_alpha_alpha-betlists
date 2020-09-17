@@ -32,5 +32,30 @@
             // Assert
             Assert.Equal(expectedValue, actualValue);
         }
+
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        [InlineData("      ")]
+        public void ToIntDictionary_NullOrWhiteSpace_ReturnsEmptyDictionary(string value)
+        {
+            // Arrange & Act
+            var actualValue = value.ToIntDictionary();
+
+            // Assert
+            Assert.Equal(0, actualValue.Count);
+        }
+
+        [Theory]
+        [InlineData("1,2,3,4,5")]
+        [InlineData("1,2,3,4,5,1,2,3,4,5")]
+        public void ToIntDictionary_ValidInputParam_ReturnsCorrectDictionary(string value)
+        {
+            // Arrange & Act
+            var actualValue = value.ToIntDictionary();
+
+            // Assert
+            Assert.True(actualValue.Count > 0);
+        }
     }
 }

@@ -233,6 +233,7 @@
     <Compile Include="Criteria\BetBuilder\GetBetBuilderDetailCriteriaTests.cs" />
     <Compile Include="Criteria\CancelledBet\GetCancelledBetCriteriaTests.cs" />
     <Compile Include="Criteria\GetOfferedProductsBySiteCriteriaTests.cs" />
+    <Compile Include="Criteria\GetProductsDetailCriteriaTests.cs" />
     <Compile Include="Criteria\LastBets\GetMatchInfoByIdCriteriaTests.cs" />
     <Compile Include="Criteria\ProgressiveJackpot\GetEnableJackpotProductCriteriaTest.cs" />
     <Compile Include="Criteria\ProgressiveJackpot\GetJackpotDetailsCriteriaTests.cs" />
@@ -290,6 +291,7 @@
     <Compile Include="Services\IPServiceImplTests.cs" />
     <Compile Include="Services\JackpotDetailsServiceImplTests.cs" />
     <Compile Include="Services\LastBetsServiceImplTests.cs" />
+    <Compile Include="Services\ProductDetailServiceImplTests.cs" />
     <Compile Include="Services\RiskAnalysisIPMatchingServiceImplTests.cs" />
     <Compile Include="Services\MemberBetListServiceImplTests.cs" />
     <Compile Include="Services\RunningBetListByBetTypeAndMatchServiceImplTests.cs" />

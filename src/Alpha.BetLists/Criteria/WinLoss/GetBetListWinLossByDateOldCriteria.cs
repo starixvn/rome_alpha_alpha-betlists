@@ -9,6 +9,7 @@
         public GetBetListWinLossByDateOldCriteria(
             int custId,
             string productIds,
+            string productDetails,
             DateTime fromDate,
             DateTime toDate,
             string language,
@@ -19,6 +20,7 @@
             ToDate = toDate;
             Language = language;
             ProductIds = productIds;
+            ProductDetails = productDetails;
             ShowProgressiveBonus = showProgressiveBonus;
         }
 
@@ -32,6 +34,8 @@
         public string Language { get; }
 
         public string ProductIds { get; }
+
+        public string ProductDetails { get; }
 
         public bool ShowProgressiveBonus { get; }
 

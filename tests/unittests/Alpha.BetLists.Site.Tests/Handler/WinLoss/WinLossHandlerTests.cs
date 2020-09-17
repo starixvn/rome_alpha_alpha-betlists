@@ -27,6 +27,7 @@
         private readonly WinLossQuery query;
         private readonly CompareLogic compareLogic;
         private readonly ProductService productService;
+        private readonly ProductDetailService productDetailService;
 
         public WinLossHandlerTests(BetListFixture betlistFixture)
         {
@@ -40,13 +41,20 @@
             productService.FilterProductIdsByCustomer(Arg.Any<int>(), Arg.Any<string>(), Arg.Any<int>(), Arg.Any<DateTime>(), Arg.Any<IEnumerable<int>>())
                 .Returns(callInfo => callInfo.Args()[4]);
 
+            productDetailService = Substitute.For<ProductDetailService>();
+            productDetailService.BuildProductDetailsXMLAsync(Arg.Any<IEnumerable<int>>(), Arg.Any<string>())
+                .Returns(BetListDataTest.ProductDetailsXML);
+            productDetailService.RemoveProductIdsAsync(Arg.Any<IEnumerable<int>>(), Arg.Any<string>())
+                .Returns(new List<int> { 1 });
+
             winLossHandler = new WinLossHandler(
                 winLossService,
                 this.betlistFixture.HtmlBuilder,
                 this.betlistFixture.TicketHelper,
                 this.betlistFixture.MonitorService,
                 this.betlistFixture.IpService,
-                productService);
+                productService,
+                productDetailService);
 
             compareLogic = new CompareLogic(new ComparisonConfig
             {
@@ -119,14 +127,15 @@
             user.LevelId.Returns(UserLevel.Agent.Value);
 
             // Act
-            var param = WinLossHandler.CreateWinLossParam(query, Enumerable.Empty<int>());
+            var param = WinLossHandler.CreateWinLossParam(query, Enumerable.Empty<int>(), string.Empty);
 
             // Assert
             Assert.True(param.CustId == query.CustId
                 && param.ProductIds.SequenceEqual(query.ProductIds.ToListInt())
                 && param.FromDate == query.FromDate
                 && param.ToDate == query.ToDate
-                && param.Language == query.Language);
+                && param.Language == query.Language
+                && param.ProductDetailsXML == string.Empty);
         }
     }
 }

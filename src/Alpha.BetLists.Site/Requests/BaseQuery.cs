@@ -38,6 +38,8 @@
 
         public string ProductIds { get; set; }
 
+        public string ResourceIds { get; set; }
+
         public string Language { get; set; }
 
         public int ViewerId { get; }

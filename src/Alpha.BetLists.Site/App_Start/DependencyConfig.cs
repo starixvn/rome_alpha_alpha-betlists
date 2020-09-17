@@ -156,6 +156,7 @@
                     UserPermission.HasPermissionOnProduct,
                     CacheRefServiceHelper.GetProductName),
                 Lifestyle.Singleton);
+            container.RegisterSingleton<ProductDetailService, ProductDetailServiceImpl>();
             container.Register<CancelledBetService, CancelledBetServiceImpl>();
 
             container.Register<ICasinoDetailsService, CasinoDetailsService>(Lifestyle.Singleton);

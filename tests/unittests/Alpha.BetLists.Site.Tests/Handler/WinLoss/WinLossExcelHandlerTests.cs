@@ -30,6 +30,7 @@
         private readonly Workbook<TicketDto> workbook;
         private readonly CompareLogic compareLogic;
         private readonly ProductService productService;
+        private readonly ProductDetailService productDetailService;
 
         public WinLossExcelHandlerTests(BetListFixture betlistFixture)
         {
@@ -47,6 +48,12 @@
             productService.FilterProductIdsByCustomer(Arg.Any<int>(), Arg.Any<string>(), Arg.Any<int>(), Arg.Any<DateTime>(), Arg.Any<IEnumerable<int>>())
                 .Returns(callInfo => callInfo.Args()[4]);
 
+            productDetailService= Substitute.For<ProductDetailService>();
+            productDetailService.BuildProductDetailsXMLAsync(Arg.Any<IEnumerable<int>>(), Arg.Any<string>())
+                .Returns(BetListDataTest.ProductDetailsXML);
+            productDetailService.RemoveProductIdsAsync(Arg.Any<IEnumerable<int>>(), Arg.Any<string>())
+                .Returns(new List<int> { 1 });
+
             winLossExcelHandler = new WinLossExcelHandler(
                 winLossService,
                 this.betlistFixture.HtmlBuilder,
@@ -55,7 +62,8 @@
                 this.betlistFixture.MonitorService,
                 this.betlistFixture.IpService,
                 workbook,
-                productService);
+                productService,
+                productDetailService);
 
             winLossExcelHandler.MapPath = (path) => path;
             winLossExcelHandler.IsFileExist = (path) => true;

@@ -17,6 +17,7 @@
     {
         private readonly WinLossService winLossService;
         private readonly ProductService productService;
+        private readonly ProductDetailService productDetailService;
 
         public WinLossHandler(
             WinLossService winLossService,
@@ -24,11 +25,13 @@
             ITicketHelper ticketHelper,
             ISmartPunterBetListMonitor monitorService,
             IPService ipService,
-            ProductService productService)
+            ProductService productService,
+            ProductDetailService productDetailService)
             : base(builder, ticketHelper, monitorService, ipService)
         {
             this.winLossService = winLossService;
             this.productService = productService;
+            this.productDetailService = productDetailService;
         }
 
         public async Task<WinLossViewModel> Handle(WinLossQuery message)
@@ -36,12 +39,14 @@
             var validUserSelectedProductIds = message.IsGroupHeadline
                 ? productService.FilterProductIdsByGroupHeadline(message.ProductIds.ToListInt(), new GetProductsByGroupHeadlineParam(message.ViewerId, message.MinDate))
                 : productService.FilterProductIdsByCustomer(message.CustId, message.Site, message.CurrencyId, message.MinDate, message.ProductIds.ToListInt());
+            validUserSelectedProductIds = await productDetailService.RemoveProductIdsAsync(validUserSelectedProductIds, message.ResourceIds);
+            var productDetailsXML = await productDetailService.BuildProductDetailsXMLAsync(validUserSelectedProductIds, message.ResourceIds);
 
             var showContributionAmountRoundNote = message.IsGroupHeadline
                 ? productService.IsEnabledJackpot(message.CustId)
                 : message.IsEnabledJackpot;
 
-            var winLossParam = CreateWinLossParam(message, validUserSelectedProductIds);
+            var winLossParam = CreateWinLossParam(message, validUserSelectedProductIds, productDetailsXML);
             var betlistData = await winLossService.GetBetList(winLossParam);
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
@@ -49,13 +54,14 @@
             return new WinLossViewModel(message, betlistData, Builder, TicketHelper, showContributionAmountRoundNote);
         }
 
-        protected internal static WinLossParam CreateWinLossParam(WinLossQuery message, IEnumerable<int> productIds)
+        protected internal static WinLossParam CreateWinLossParam(WinLossQuery message, IEnumerable<int> productIds, string productDetailsXML)
             => new WinLossParam(
                message.CustId,
                productIds,
                message.FromDate,               
                message.ToDate,
                message.LimitedDateToShowInfo,
-               message.Language);
+               message.Language,
+               productDetailsXML);
     }
 }
