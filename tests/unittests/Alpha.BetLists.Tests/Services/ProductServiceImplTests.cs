@@ -85,10 +85,11 @@
             // Arrange
             IEnumerable<int> productIds = null;
             var expectedProductIds = allCustomerProductIds.Select(product => product.Id);
-
-            IEnumerable<Product> cachedProducts;
-            fanexDataFixture.CacheService.TryGet($"{ProductCacheKey}-{custId}", out cachedProducts).Returns(false);
-
+            fanexDataFixture.CacheService.GetOrSet(Arg.Any<string>(), Arg.Any<Func<IEnumerable<Product>>>(), Arg.Any<CacheItemOptions>()).Returns(x =>
+            {
+                var func = x.ArgAt<Func<IEnumerable<Product>>>(1);
+                return func();
+            });
             fanexDataFixture.DynamicRepository.Fetch<Product>(Arg.Any<GetProductsCriteria>()).Returns(allCustomerProductIds);
 
             // Act
@@ -123,10 +124,11 @@
             // Arrange
             var productIds = Enumerable.Empty<int>();
             var expectedProductIds = allCustomerProductIds.Select(product => product.Id);
-
-            IEnumerable<Product> cachedProducts;
-            fanexDataFixture.CacheService.TryGet($"{ProductCacheKey}-{custId}", out cachedProducts).Returns(false);
-
+            fanexDataFixture.CacheService.GetOrSet(Arg.Any<string>(), Arg.Any<Func<IEnumerable<Product>>>(), Arg.Any<CacheItemOptions>()).Returns(x =>
+            {
+                var func = x.ArgAt<Func<IEnumerable<Product>>>(1);
+                return func();
+            });
             fanexDataFixture.DynamicRepository.Fetch<Product>(Arg.Any<GetProductsCriteria>()).Returns(allCustomerProductIds);
 
             // Act
@@ -224,9 +226,11 @@
             // Arrange
             var site = "IBCINdo";
             var products = new List<ProductBySiteModel>() { new ProductBySiteModel(22), new ProductBySiteModel(23) };
-            IEnumerable<ProductBySiteModel> cachedProducts;
-            fanexDataFixture.CacheService.TryGet($"Alpha.Reports.Services.Impl.ProductsBySite-{site}", out cachedProducts).Returns(false);
-
+            fanexDataFixture.CacheService.GetOrSet(Arg.Any<string>(), Arg.Any<Func<IEnumerable<ProductBySiteModel>>>(), Arg.Any<CacheItemOptions>()).Returns(x =>
+            {
+                var func = x.ArgAt<Func<IEnumerable<ProductBySiteModel>>>(1);
+                return func();
+            });
             fanexDataFixture.DynamicRepository.Fetch<ProductBySiteModel>(Arg.Any<GetOfferedProductsBySiteCriteria>()).Returns(products);
 
             // Act

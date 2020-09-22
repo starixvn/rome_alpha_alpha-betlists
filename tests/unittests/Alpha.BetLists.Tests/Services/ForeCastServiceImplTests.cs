@@ -7,6 +7,7 @@
     using Fanex.Caching;
     using Fixtures;
     using NSubstitute;
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Xunit;
@@ -41,10 +42,11 @@
         {
             // Arrange
             var expectedBettypeIds = scoreMaps.Select(s => s.FirstId.ToListInt()).SelectMany(x => x).Distinct().ToList();
-
-            IEnumerable<ScoreMap> cachedScoreMaps;
-            fanexDataFixture.CacheService.TryGet($"{ScoreMapBetTypesCacheKey}", out cachedScoreMaps).Returns(false);
-
+            fanexDataFixture.CacheService.GetOrSet(Arg.Any<string>(), Arg.Any<Func<IEnumerable<ScoreMap>>>(), Arg.Any<CacheItemOptions>()).Returns(x =>
+            {
+                var func = x.ArgAt<Func<IEnumerable<ScoreMap>>>(1);
+                return func();
+            });
             fanexDataFixture.DynamicRepository.Fetch<ScoreMap>(Arg.Any<GetScoreMapBetTypesCriteria>()).Returns(scoreMaps);
 
             // Act

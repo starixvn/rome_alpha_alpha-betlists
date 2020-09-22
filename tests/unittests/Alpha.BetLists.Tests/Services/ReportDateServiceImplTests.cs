@@ -36,12 +36,7 @@
         public void GetBalanceUpDayAndMoveBetsDay_CacheHasData_ReturnFromCache()
         {
             // Arrange
-            BalanceUpDayAndMoveBetsDay expectedData;
-            dataFixture.CacheService.TryGet(BalanceUpDayAndMoveBetsDayCacheKey, out expectedData).Returns(x =>
-            {
-                x[1] = dataInCache;
-                return dataInCache != null;
-            });
+            dataFixture.CacheService.GetOrSet(Arg.Any<string>(), Arg.Any<Func<BalanceUpDayAndMoveBetsDay>>(), Arg.Any<CacheItemOptions>()).Returns(dataInCache);
 
             // Act
             var balanceUpDayAndMoveBetsDay = reportDateService.GetBalanceUpDayAndMoveBetsDay();
@@ -53,6 +48,9 @@
         [Fact]
         public void GetBalanceUpDayAndMoveBetsDay_CacheHasNoData_ReturnFromDatabase()
         {
+            // Arrange
+            dataFixture.CacheService.GetOrSet(Arg.Any<string>(), Arg.Any<Func<BalanceUpDayAndMoveBetsDay>>(), Arg.Any<CacheItemOptions>()).Returns(dataInDatabase);
+
             // Act
             var balanceUpDayAndMoveBetsDay = reportDateService.GetBalanceUpDayAndMoveBetsDay();
 
@@ -63,8 +61,15 @@
         [Fact]
         public void GetBalanceUpDayAndMoveBetsDay_CacheHasNoData_CallDynamicRepository()
         {
+            // Arrange
+            dataFixture.CacheService.GetOrSet(Arg.Any<string>(), Arg.Any<Func<BalanceUpDayAndMoveBetsDay>>(), Arg.Any<CacheItemOptions>()).Returns(x =>
+            {
+                var func = x.ArgAt<Func<BalanceUpDayAndMoveBetsDay>>(1);
+                return func();
+            });
+
             // Act
-            var balanceUpDayAndMoveBetsDay = reportDateService.GetBalanceUpDayAndMoveBetsDay();
+            reportDateService.GetBalanceUpDayAndMoveBetsDay();
 
             // Assert
             dataFixture.DynamicRepository.Received().Get<BalanceUpDayAndMoveBetsDay>(Arg.Any<GetBalanceUpDayAndMoveBetsDayCriteria>());
@@ -73,22 +78,26 @@
         [Fact]
         public void GetBalanceUpDayAndMoveBetsDay_CacheHasNoData_SetDataToCache()
         {
-            // Arrange
-            dataInCache = null;
-
             // Act
-            var balanceUpDayAndMoveBetsDay = reportDateService.GetBalanceUpDayAndMoveBetsDay();
+            reportDateService.GetBalanceUpDayAndMoveBetsDay();
 
             // Assert
-            dataFixture.CacheService.Received().Set(
+            dataFixture.CacheService.Received().GetOrSet(
                 Arg.Is(BalanceUpDayAndMoveBetsDayCacheKey),
-                Arg.Is<BalanceUpDayAndMoveBetsDay>(data => data.BalanceUpDay == dataInDatabase.BalanceUpDay),
+                Arg.Any<Func<BalanceUpDayAndMoveBetsDay>>(),
                 Arg.Any<CacheItemOptions>());
         }
 
         [Fact]
         public void GetBalanceUpDay_Always_ReturnData()
         {
+            // Arrange
+            dataFixture.CacheService.GetOrSet(Arg.Any<string>(), Arg.Any<Func<BalanceUpDayAndMoveBetsDay>>(), Arg.Any<CacheItemOptions>()).Returns(x =>
+            {
+                var func = x.ArgAt<Func<BalanceUpDayAndMoveBetsDay>>(1);
+                return func();
+            });
+
             // Act
             var balanceUpDay = reportDateService.GetBalanceUpDay();
 
@@ -99,6 +108,13 @@
         [Fact]
         public void GetMoveBetsDay_Always_ReturnData()
         {
+            // Arrange
+            dataFixture.CacheService.GetOrSet(Arg.Any<string>(), Arg.Any<Func<BalanceUpDayAndMoveBetsDay>>(), Arg.Any<CacheItemOptions>()).Returns(x =>
+            {
+                var func = x.ArgAt<Func<BalanceUpDayAndMoveBetsDay>>(1);
+                return func();
+            });
+
             // Act
             var moveBetsDay = reportDateService.GetMoveBetsDay();
 
