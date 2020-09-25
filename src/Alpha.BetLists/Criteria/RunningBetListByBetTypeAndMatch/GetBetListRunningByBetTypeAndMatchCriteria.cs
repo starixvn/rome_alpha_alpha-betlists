@@ -34,12 +34,13 @@
 
         [SpParam(Ignored = true)]
         public UserLevel CustLevel { get; }
-
-        public int RoleId 
-            => CustLevel.IsSuperLevel() ? 4 : CustLevel.IsMasterLevel() ? 3 : 2;
-
+        
         public override string GetSettingKey()
-            => "Ost_BetList_TotalBet";
+           => CustLevel.IsAgentLevel()
+            ? "Age_BetList_SelRunningByBettypeMatch_Ag"
+            : CustLevel.IsMasterLevel()
+            ? "Age_BetList_SelRunningByBettypeMatch_MAg"
+            : "Age_BetList_SelRunningByBettypeMatch_SAg";
 
         public override bool IsValid() => CustId > 0 && BetType > 0;
     }
