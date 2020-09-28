@@ -2,6 +2,7 @@
 {
     using Alpha.Logging;
     using Alpha.NetThrottling.Mvc;
+    using Alpha.NetThrottling.Utils;
     using App_Start;
     using Auth.Filters;
     using Configurations;
@@ -19,6 +20,7 @@
     using System.Diagnostics;
     using System.Linq;
     using System.Reflection;
+    using System.Web;
     using System.Web.Mvc;
     using System.Web.Routing;
     using Web;
@@ -76,8 +78,13 @@
             }
 
             Exception ex = Server.GetLastError();
-            var currentCustomer = UserSession.Current;
+            HttpException httpException = ex as HttpException;
+            if (httpException != null && httpException.GetHttpCode() == HttpStatusCodes.TooManyRequests)
+            {
+                return;
+            }
 
+            var currentCustomer = UserSession.Current;
             if (ex is FormatException &&
                 Request.Params.AllKeys.Any(key => Auth.Configurations.AuthorizationSection.Instance.CustIdQueryStringParamNames.Any(cf => string.Equals(key, cf, StringComparison.OrdinalIgnoreCase))))
             {
