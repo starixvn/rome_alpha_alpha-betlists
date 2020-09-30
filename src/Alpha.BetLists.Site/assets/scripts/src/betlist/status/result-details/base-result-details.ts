@@ -16,6 +16,7 @@
         private static IONCasinoResult: ResultDetails;
         private static SabaClubResult: ResultDetails;
         private static PGSoftCasinoResult: ResultDetails;
+        private static JokerResult: ResultDetails;
 
         public static CreateInstance(betTypeId: number): ResultDetails {
             if (betTypeId >= 2501 && betTypeId <= 2699) {
@@ -95,6 +96,12 @@
                 this.PGSoftCasinoResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.PGSoftCasinoResult) ? new PGSoftCasinoResultDetails() : this.PGSoftCasinoResult;
                 return this.PGSoftCasinoResult;
             }
+
+            if (betTypeId >= 6401 && betTypeId <= 6700) {
+                this.JokerResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.JokerResult) ? new JokerResultDetails() : this.JokerResult;
+                return this.JokerResult;
+            }
+
             this.sportsbookResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sportsbookResult) ? new SportsbookResultDetails : this.sportsbookResult;
             return this.sportsbookResult;
         }
