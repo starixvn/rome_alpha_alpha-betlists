@@ -224,11 +224,14 @@
             league?: number,
             isOutright?: boolean,
             betId?: number,
-            betCheck?: string) => {
+            betCheck?: string,
+            custId?: number,
+            transDesc?: string) => {
             var params = '?custId=' + this.CustId +
                 '&roleId=' + this.ViewerLevelId +
-                '&gameId=' + betCheck +
-                '&productId=55';
+                '&gameId=' + transDesc +
+                '&gameCode=' + betCheck +
+                '&productId=55'
             Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/Detail' + params, "", 835, 675);
         }
     }
