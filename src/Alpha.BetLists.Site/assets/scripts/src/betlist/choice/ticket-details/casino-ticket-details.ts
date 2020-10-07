@@ -23,7 +23,7 @@
             this.ShowDetailsPopup(params);
         }
         public showVideoPokerGameDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
-            const params = this.CreatePopupDetailsParam(refNo, winlossDate, custId, transType, "Card Club");
+            const params = this.CreatePopupDetailsParam(refNo, winlossDate, custId, transType, "Arcadia Gaming");
             this.ShowDetailsPopup(params);
         }
         public ShowFishingWorldDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
