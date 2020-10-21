@@ -19,6 +19,7 @@
     using SmartPunter.Services;
     using Web.Models;
     using Xunit;
+    using UserLevel = BetLists.Models.UserLevel;
 
     [Trait("Category", "LastBets")]
     [Collection("BetListCollection")]
