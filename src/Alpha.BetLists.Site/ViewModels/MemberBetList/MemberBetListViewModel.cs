@@ -42,7 +42,7 @@
             IEnumerable<int> supportScoreMapBetTypeIds,
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper)
-            : base(query, betListData, builder, ticketHelper, query.IsEnabledJackpot, false, ExcludingTicketStatus)
+            : base(query, betListData, builder, ticketHelper, query.IsEnabledJackpot, false, false, ExcludingTicketStatus)
         {
             this.query = query;
 
