@@ -45,7 +45,7 @@
         public async Task<ExcelFileViewModel> Handle(WinLossExcelQuery message)
         {
             var validUserSelectedProductIds = message.IsGroupHeadline
-                ? productService.FilterProductIdsByGroupHeadline(message.ProductIds.ToListInt(), new GetProductsByGroupHeadlineParam(message.CustId, message.MinDate))
+                ? productService.FilterProductIdsByGroupHeadline(message.ProductIds.ToListInt(), new GetProductsByGroupHeadlineParam(message.ViewerId, message.MinDate))
                 : productService.FilterProductIdsByCustomer(message.CustId, message.Site, message.CurrencyId, message.MinDate, message.ProductIds.ToListInt());
             validUserSelectedProductIds = await productDetailService.RemoveProductIdsAsync(validUserSelectedProductIds, message.ResourceIds);
             var productDetailsXML = await productDetailService.BuildProductDetailsXMLAsync(validUserSelectedProductIds, message.ResourceIds);
