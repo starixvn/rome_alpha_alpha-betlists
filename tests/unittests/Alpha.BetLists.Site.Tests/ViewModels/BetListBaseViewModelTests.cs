@@ -245,7 +245,7 @@
             var viewModel = new WinLossViewModel(query, BetListDataTest.BetListData, betListFixture.HtmlBuilder, betListFixture.TicketHelper, false, true);
 
             // Assert
-            Assert.Equal(expectedTotalColumn + 1, viewModel.TotalColumn);
+            Assert.Equal(expectedTotalColumn, viewModel.TotalColumn);
         }
 
         [Fact]
@@ -255,7 +255,7 @@
             var viewModel = new WinLossViewModel(query, BetListDataTest.BetListData, betListFixture.HtmlBuilder, betListFixture.TicketHelper, false, false);
 
             // Assert
-            Assert.Equal(false, viewModel.ShowMemberName);
+            Assert.False(viewModel.ShowMemberName);
         }
 
         [Fact]
@@ -265,7 +265,7 @@
             var viewModel = new WinLossViewModel(query, BetListDataTest.BetListData, betListFixture.HtmlBuilder, betListFixture.TicketHelper, false, true);
 
             // Assert
-            Assert.Equal(true, viewModel.ShowMemberName);
+            Assert.False(viewModel.ShowMemberName);
         }
     }
 }
