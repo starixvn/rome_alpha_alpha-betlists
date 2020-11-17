@@ -1,9 +1,12 @@
 ﻿namespace Alpha.BetLists.Site.Tests.Request.RunningBetList
 {
     using System;
+    using Alpha.BetLists.Services;
+    using Alpha.BetLists.Site.Tests.Constants;
     using BetLists.Models;
     using BetLists.Tests.Constants;
     using Fixtures;
+    using NSubstitute;
     using Requests.RunningBetList;
     using Utils;
     using Xunit;
@@ -19,14 +22,17 @@
             user = betlistFixture.User;
 
             SystemTime.Today = DefaultVariables.CurrentDate;
+            var reportDateService = Substitute.For<ReportDateService>();
+            ReportDateServiceImpl.Instance = reportDateService;
+            reportDateService.GetMoveBetsDay().Returns(DefaultVariablesTest.MoveBetDate);
         }
 
         [Fact]
-        public void MinDate_Always_ReturnsFirstDayOfThreeMonthsAgo()
+        public void MinDate_Always_ReturnsMoveBetDate()
         {
             // Arrange
             var query = new RunningBetListQuery(user);
-            var expectedMinDate = new DateTime(2017, 2, 1);
+            var expectedMinDate = DefaultVariablesTest.MoveBetDate.AddDays(1);
 
             // Act
             var actualMinDate = query.MinDate;

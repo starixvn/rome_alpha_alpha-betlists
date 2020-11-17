@@ -1,6 +1,7 @@
 ﻿namespace Alpha.BetLists.Site.Requests.RunningBetList
 {
     using System;
+    using Alpha.BetLists.Services;
     using BetLists.Models;
     using Constants;
     using Extensions;
@@ -12,7 +13,7 @@
     {
         public RunningBetListQuery(IUser viewer) : base(viewer)
         {
-            MinDate = SystemTime.Today.AddMonths(-3).FirstDayOfMonth();
+            MinDate = ReportDateServiceImpl.Instance.GetMoveBetsDay().AddDays(1);
             FromDate = SystemTime.Today.AddDays(-7);
             ToDate = SystemTime.Today;
         }

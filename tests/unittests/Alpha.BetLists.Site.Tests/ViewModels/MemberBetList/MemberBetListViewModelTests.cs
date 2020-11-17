@@ -3,6 +3,8 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Alpha.BetLists.Services;
+    using Alpha.BetLists.Site.Tests.Constants;
     using Alpha.BetLists.Site.ViewModels.Components;
     using BetLists.Models;
     using BetLists.Tests.Constants;
@@ -47,6 +49,10 @@
                 query.LimitedDateToShowInfo,
                 query.Language,
                 query.CustName);
+
+            var reportDateService = Substitute.For<ReportDateService>();
+            ReportDateServiceImpl.Instance = reportDateService;
+            reportDateService.GetMoveBetsDay().Returns(DefaultVariablesTest.MoveBetDate);
         }
 
         [Fact]
@@ -84,7 +90,7 @@
                 betlistFixture.HtmlBuilder,
                 betlistFixture.TicketHelper);
 
-            var expectedMessage = "You can view the report data from 02/01/2017.";
+            var expectedMessage = "You can only view the report data with settled time from 11/29/2016.";
 
             // Act
             var actualMessage = viewModel.ViewDataInstructionMessage;

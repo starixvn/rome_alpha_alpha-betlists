@@ -274,7 +274,7 @@
     <value>没有产品</value>
   </data>
   <data name="CanOnlyViewDataAfterTimeHistoryReport" xml:space="preserve">
-    <value>您可查看报表数据从 {0}.</value>
+    <value>只能查看结算日{0}后的报表数据。</value>
   </data>
   <data name="DailyStatement" xml:space="preserve">
     <value>每日账目</value>
@@ -389,5 +389,8 @@
   </data>
   <data name="PPJackpotWonDetails" xml:space="preserve">
     <value>PP 积包赢利详情</value>
+  </data>
+  <data name="NoteCancelledBetPage" xml:space="preserve">
+    <value>您可查看报表数据从 {0}.</value>
   </data>
 </root>

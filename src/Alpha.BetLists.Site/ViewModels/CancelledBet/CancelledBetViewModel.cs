@@ -45,7 +45,7 @@
                 query.StatusIds;
 
             Title = Resources.VoidAndReject;
-            ViewDataInstructionMessage = string.Format(Resources.CanOnlyViewDataAfterTimeHistoryReport, MinDate.ToShortDateWithSlash());
+            ViewDataInstructionMessage = string.Format(Resources.NoteCancelledBetPage, MinDate.ToShortDateWithSlash());
             IsFilterVisible = query.IsFilterVisible;
         }
 

@@ -1,6 +1,7 @@
 ﻿namespace Alpha.BetLists.Site.Requests.MemberBetList
 {
     using System;
+    using Alpha.BetLists.Services;
     using BetLists.Models;
     using Extensions;
     using MediatR;
@@ -11,7 +12,7 @@
     {
         public MemberBetListQuery(IUser viewer) : base(viewer)
         {
-            MinDate = SystemTime.Today.AddMonths(-3).FirstDayOfMonth();
+            MinDate = ReportDateServiceImpl.Instance.GetMoveBetsDay().AddDays(1);
             FromDate = SystemTime.Today;
             ToDate = SystemTime.Today;
         }
