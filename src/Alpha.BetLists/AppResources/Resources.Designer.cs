@@ -187,7 +187,7 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You can view the report data from {0}..
+        ///   Looks up a localized string similar to You can only view the report data with settled time from {0}.
         /// </summary>
         public static string CanOnlyViewDataAfterTimeHistoryReport {
             get {
@@ -498,6 +498,15 @@ namespace Alpha.BetLists.AppResources {
         public static string Note {
             get {
                 return ResourceManager.GetString("Note", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can view the report data from {0}..
+        /// </summary>
+        public static string NoteCancelledBetPage {
+            get {
+                return ResourceManager.GetString("NoteCancelledBetPage", resourceCulture);
             }
         }
         

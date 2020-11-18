@@ -1,5 +1,7 @@
 ﻿namespace Alpha.BetLists.Site.Tests.Controllers
 {
+    using Alpha.BetLists.Services;
+    using Alpha.BetLists.Site.Tests.Constants;
     using BetLists.Models;
     using MediatR;
     using NSubstitute;
@@ -21,6 +23,9 @@
             user.LevelId.Returns(UserLevel.Agent.Value);
 
             runningBetListController = new RunningBetListController(mediator);
+            var reportDateService = Substitute.For<ReportDateService>();
+            ReportDateServiceImpl.Instance = reportDateService;
+            reportDateService.GetMoveBetsDay().Returns(DefaultVariablesTest.MoveBetDate);
         }
 
         [Fact]

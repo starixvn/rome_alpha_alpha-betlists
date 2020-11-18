@@ -286,7 +286,7 @@
     <value>There is no product.</value>
   </data>
   <data name="CanOnlyViewDataAfterTimeHistoryReport" xml:space="preserve">
-    <value>You can view the report data from {0}.</value>
+    <value>You can only view the report data with settled time from {0}.</value>
   </data>
   <data name="DailyStatement" xml:space="preserve">
     <value>Daily Statement</value>
@@ -410,5 +410,8 @@
   </data>
   <data name="PPJackpotWonDetails" xml:space="preserve">
     <value>PP Jackpot Won Details</value>
+  </data>
+  <data name="NoteCancelledBetPage" xml:space="preserve">
+    <value>You can view the report data from {0}.</value>
   </data>
 </root>

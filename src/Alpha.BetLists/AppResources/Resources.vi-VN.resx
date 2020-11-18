@@ -277,7 +277,7 @@
     <value>Không có sản phẩm nào</value>
   </data>
   <data name="CanOnlyViewDataAfterTimeHistoryReport" xml:space="preserve">
-    <value>Bạn có thể tra cứu dữ liệu báo cáo từ ngày {0}.</value>
+    <value>Bạn chỉ có thể xem báo cáo có dữ liệu được kết toán từ {0}</value>
   </data>
   <data name="DailyStatement" xml:space="preserve">
     <value>Thông báo hằng ngày</value>
@@ -402,5 +402,8 @@
   </data>
   <data name="PPJackpotWonDetails" xml:space="preserve">
     <value>Chi tiết cược thắng PP Jackpot</value>
+  </data>
+  <data name="NoteCancelledBetPage" xml:space="preserve">
+    <value>Bạn có thể tra cứu dữ liệu báo cáo từ ngày {0}.</value>
   </data>
 </root>
