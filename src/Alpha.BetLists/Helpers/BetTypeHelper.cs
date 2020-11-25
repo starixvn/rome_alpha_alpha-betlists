@@ -22,6 +22,9 @@
 
         public static bool IsOutRight(int betType) => betType == BetTypeIdConstants.Outright;
 
+        public static bool IsLeapGaming(int betType)
+            => BetTypeIdConstants.LeapGamingMix <= betType && betType <= BetTypeIdConstants.LeapGamingMax;
+
         public static bool IsHorseRacing(int betType) => HorseRacingBetType.Contains(betType);
 
         public static bool IsJackpotContribution(int betType) => JackpotContributionBetType.Contains(betType);

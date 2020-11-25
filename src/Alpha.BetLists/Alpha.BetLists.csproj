@@ -262,6 +262,7 @@
     <Compile Include="Criteria\SmartPunter\InternalAdminCheckerCriteria.cs" />
     <Compile Include="Criteria\ParlayWinLossByMatch\GetParlayWinLossByMatchCriteria.cs" />
     <Compile Include="Criteria\WinLossByMatch\GetWinLossByMatchCriteria.cs" />
+    <Compile Include="Criteria\WinLossByMatch\GetWinLossLeapGamingCriteria.cs" />
     <Compile Include="Criteria\WinLossByMatch\GetWinLossOutrightCriteria.cs" />
     <Compile Include="Criteria\WinLossByMatch\GetWinLossRacingCriteria.cs" />
     <Compile Include="Criteria\WinLoss\GetBetListWinLossByDateCriteria.cs" />

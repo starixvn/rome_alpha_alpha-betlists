@@ -17,7 +17,7 @@
         private static SabaClubResult: ResultDetails;
         private static PGSoftCasinoResult: ResultDetails;
         private static JokerResult: ResultDetails;
-        private static WMResult: ResultDetails;
+        private static LeapGamingResult: ResultDetails;
         private static GDGResult: ResultDetails;
 
         public static CreateInstance(betTypeId: number): ResultDetails {
@@ -84,6 +84,11 @@
             if (betTypeId >= 4601 && betTypeId <= 4900) {
                 this.virtualGamesResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.virtualGamesResult) ? new VirtualGamesResultDetails() : this.virtualGamesResult;
                 return this.virtualGamesResult;
+            }
+
+            if (betTypeId >= 5301 && betTypeId <= 5399) {
+                this.LeapGamingResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.LeapGamingResult) ? new LeapGamingResultDetails() : this.LeapGamingResult;
+                return this.LeapGamingResult;
             }
 
             if (betTypeId == 5500) {
