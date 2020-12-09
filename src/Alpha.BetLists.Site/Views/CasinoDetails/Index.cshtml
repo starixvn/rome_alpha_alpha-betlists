@@ -64,7 +64,7 @@
                             @Trans.Render(Model.Builder, ticket)
                             @Choice.Render(Model.Builder, ticket, Model.TicketHelper, ticketData, false)
                             @Odds.Render(Model.Builder, ticket, ticketData, Model.TicketHelper.GetOddsTypeNameById)
-                            @Stake.Render(Model.Builder, ticket)
+                            @Stake.Render(Model.Builder, ticket, Model.TicketHelper)
                             @WinLoss.Render(ticket)
                             @Status.Render(Model.Builder, ticket, Model.TicketHelper, ticketData, Model.DisplayVNIP)
                             @if (Model.AllowToViewSuperPT)
