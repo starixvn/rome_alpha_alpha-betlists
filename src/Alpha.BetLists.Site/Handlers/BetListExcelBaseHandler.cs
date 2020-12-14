@@ -204,7 +204,7 @@
                 .RenderRTF(ticket, viewModel.BetListData.TicketData, GetOddsTypeName, RtfHelper);
 
         public virtual IRichTextString BuildStake(ITicket ticket)
-            => ExcelBuilder.CreateStakeBuilder(ticket.BetTypeId).RenderRTF(ticket, RtfHelper);
+            => ExcelBuilder.CreateStakeBuilder(ticket.BetTypeId).RenderRTF(ticket, TicketHelper, RtfHelper);
 
         public virtual IRichTextString BuildStatus(ITicket ticket, BetListBaseViewModel viewModel)
             => ExcelBuilder

@@ -171,7 +171,7 @@
             // Arrange
             var ticket = BetListDataTest.Ticket;
             betlistFixture.ExcelBuilder.CreateStakeBuilder(ticket.BetTypeId)
-                    .RenderRTF(ticket, betlistFixture.RtfHelper)
+                    .RenderRTF(ticket, betlistFixture.TicketHelper, betlistFixture.RtfHelper)
                     .Returns(BetListDataTest.StakeRtf);
 
             // Act
