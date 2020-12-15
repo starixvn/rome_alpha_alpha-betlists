@@ -19,6 +19,7 @@
         private static JokerResult: ResultDetails;
         private static LeapGamingResult: ResultDetails;
         private static GDGResult: ResultDetails;
+        private static BGResult: ResultDetails;
 
         public static CreateInstance(betTypeId: number): ResultDetails {
             if (betTypeId >= 2501 && betTypeId <= 2699) {
@@ -98,6 +99,11 @@
             if (betTypeId >= 5601 && betTypeId <= 5699) {
                 this.IONCasinoResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.IONCasinoResult) ? new IONCasinoResultDetails() : this.IONCasinoResult;
                 return this.IONCasinoResult;
+            }
+
+            if (betTypeId >= 3501 && betTypeId <= 3599) {
+                this.BGResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.BGResult) ? new BGResultDetails() : this.BGResult;
+                return this.BGResult;
             }
             if (betTypeId >= 5701 && betTypeId <= 5799) {
                 this.GDGResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.GDGResult) ? new GDGResultDetails() : this.GDGResult;

@@ -498,3 +498,8 @@ div.ticket-list div.void > div.match, div.ticket-list div.void div.firstGoal, di
     color: #bbb;
     font-weight: 600;
 }
+
+.underdog > .bet-id, .favorite > .bet-id {
+    color: #bbb;
+    display: block;
+}

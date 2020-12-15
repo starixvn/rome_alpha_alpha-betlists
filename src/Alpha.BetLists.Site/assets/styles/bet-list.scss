@@ -522,6 +522,11 @@ div.ticket-list div.void > div.match, div.ticket-list div.void div.firstGoal, di
     color: #bbb;
 }
 
+.underdog > .bet-id, .favorite > .bet-id {
+    color: #bbb;
+    display: block;
+}
+
 .leagueName > .bet-type-name {
     color: #696969;
 }
