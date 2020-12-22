@@ -41,9 +41,9 @@
             {
                 betListDataTuple = await GetWinlossRacing(param);
             }
-            else if (BetTypeHelper.IsLeapGaming(param.BetType))
+            else if (BetTypeHelper.IsLeapGaming(param.BetType) || BetTypeHelper.IsHappy5LinkedGames(param.BetType))
             {
-                betListDataTuple = await GetWinlossLeapGaming(param);
+                betListDataTuple = await GetWinlossByBettype(param);
             }
             else
             {
@@ -85,9 +85,9 @@
                     param.LiveIndicator,
                     param.CustLevel));
 
-        private async Task<Tuple<IEnumerable<TicketDto>, IEnumerable<TicketData>>> GetWinlossLeapGaming(WinLossByMatchParam param)
+        private async Task<Tuple<IEnumerable<TicketDto>, IEnumerable<TicketData>>> GetWinlossByBettype(WinLossByMatchParam param)
             => await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(
-                new GetWinLossLeapGamingCriteria(
+                new GetWinLossByBetTypeCriteria(
                     param.CustId,
                     param.FromDate,
                     param.ToDate,

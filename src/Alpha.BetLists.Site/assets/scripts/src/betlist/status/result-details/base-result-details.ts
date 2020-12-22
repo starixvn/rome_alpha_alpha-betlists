@@ -19,6 +19,7 @@
         private static JokerResult: ResultDetails;
         private static LeapGamingResult: ResultDetails;
         private static GDGResult: ResultDetails;
+        private static linkedGamesResult: ResultDetails;
 
         public static CreateInstance(betTypeId: number): ResultDetails {
             if (betTypeId >= 2501 && betTypeId <= 2699) {
@@ -111,6 +112,11 @@
             if (betTypeId >= 6401 && betTypeId <= 6700) {
                 this.JokerResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.JokerResult) ? new JokerResultDetails() : this.JokerResult;
                 return this.JokerResult;
+            }
+
+            if (betTypeId >= 3601 && betTypeId <= 3610) {
+                this.linkedGamesResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.linkedGamesResult) ? new Happy5LinkedGamesResultDetails() : this.linkedGamesResult;
+                return this.linkedGamesResult;
             }
 
             this.sportsbookResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sportsbookResult) ? new SportsbookResultDetails : this.sportsbookResult;
