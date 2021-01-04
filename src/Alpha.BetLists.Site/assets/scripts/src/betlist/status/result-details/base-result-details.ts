@@ -20,6 +20,7 @@
         private static LeapGamingResult: ResultDetails;
         private static GDGResult: ResultDetails;
         private static BGResult: ResultDetails;
+        private static maxGameResult: ResultDetails;
         private static linkedGamesResult: ResultDetails;
 
         public static CreateInstance(betTypeId: number): ResultDetails {
@@ -124,7 +125,10 @@
                 this.linkedGamesResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.linkedGamesResult) ? new Happy5LinkedGamesResultDetails() : this.linkedGamesResult;
                 return this.linkedGamesResult;
             }
-
+	    if (betTypeId >= 5401 && betTypeId <= 5499) {
+                this.maxGameResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.maxGameResult) ? new MaxGameResultDetails() : this.maxGameResult;
+                return this.maxGameResult;
+            }
             this.sportsbookResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sportsbookResult) ? new SportsbookResultDetails : this.sportsbookResult;
             return this.sportsbookResult;
         }
