@@ -5,9 +5,9 @@
     using Fanex.Data.Repository;
     using Models;
 
-    public class GetWinLossLeapGamingCriteria : CriteriaBase
+    public class GetWinLossByBetTypeCriteria : CriteriaBase
     {
-        public GetWinLossLeapGamingCriteria(
+        public GetWinLossByBetTypeCriteria(
             int custId,
             DateTime fromDate,
             DateTime toDate,

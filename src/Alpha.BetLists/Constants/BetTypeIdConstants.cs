@@ -28,7 +28,10 @@
         public const int JackpotContribution_Tablet = 2998;
         public const int PPJackpotContribution = 4297;
 
-        public const int LeapGamingMix = 5301;
+        public const int LeapGamingMin = 5301;
         public const int LeapGamingMax = 5399;
+
+        public const int Happy5LinkedGamesMin = 3601;
+        public const int Happy5LinkedGamesMax = 3610;
     }
 }
