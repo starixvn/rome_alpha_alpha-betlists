@@ -302,12 +302,12 @@
             isOutright?: boolean,
             betId?: number,
             betCheck?: string) => {
-            var params = '?custId=' + this.CustId +
+            var params = '?custId=' + betId +
                 '&TransId3rd=' + refNo +
                 '&BetTypeId=' + betTypeId +
                 '&SportTypeId=' + sportTypeId;
 
-            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'Happy5LinkedGames/Index' + params, "", 835, 675);
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'LinkedGames/Index' + params, "", 835, 675);
         }
     }
     
