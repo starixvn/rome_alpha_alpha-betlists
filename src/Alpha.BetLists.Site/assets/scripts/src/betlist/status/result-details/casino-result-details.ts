@@ -271,7 +271,7 @@
             userName?: string,
             winLostDate?: Date,
             refNoMixParlay?: number,
-            league?: number,
+            siteId?: number,
             isOutright?: boolean,
             betId?: number,
             gameId3rd?: string,
@@ -281,6 +281,7 @@
                 '&roleId=' + this.ViewerLevelId +
                 '&gameId=' + transId3rd +
                 '&gameCode=' + gameId3rd +
+                '&siteId=' + siteId +
                 '&productId=59';
 
             Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/Detail' + params, "", 835, 675);
