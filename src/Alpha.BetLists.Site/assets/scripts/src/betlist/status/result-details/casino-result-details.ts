@@ -255,7 +255,7 @@
             var params = '?custId=' + this.CustId +
                 '&roleId=' + this.ViewerLevelId +
                 '&gameId=' + transDesc +
-                '&gameCode=' + betCheck +                
+                '&gameCode=' + betCheck +
                 '&productId=56';
             Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/Detail' + params, "", 835, 675);
         }
@@ -283,6 +283,55 @@
                 '&gameCode=' + gameId3rd +
                 '&siteId=' + siteId +
                 '&productId=59';
+
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/Detail' + params, "", 835, 675);
+        }
+    }
+
+    export class Happy5LinkedGamesResultDetails extends BaseResultDetails implements ResultDetails {
+        public ViewResultDetails = (
+            matchId?: number,
+            race?: number,
+            betTypeId?: number,
+            sportTypeId?: number,
+            refNo?: string,
+            userName?: string,
+            winLostDate?: Date,
+            refNoMixParlay?: number,
+            league?: number,
+            isOutright?: boolean,
+            betId?: number,
+            betCheck?: string) => {
+            var params = '?custId=' + betId +
+                '&TransId3rd=' + refNo +
+                '&BetTypeId=' + betTypeId +
+                '&SportTypeId=' + sportTypeId;
+
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'LinkedGames/Index' + params, "", 835, 675);
+        }
+    }
+    
+   export class BGResultDetails extends BaseResultDetails implements ResultDetails {
+        public ViewResultDetails = (
+            matchId?: number,
+            race?: number,
+            betTypeId?: number,
+            sportTypeId?: number,
+            refNo?: string,
+            userName?: string,
+            winLostDate?: Date,
+            refNoMixParlay?: number,
+            currencyId?: number,
+            isOutright?: boolean,
+            betId?: number,
+            siteId?: string,
+            custId?: number,
+            transId3rd?: string) => {
+            var params = '?custId=' + this.CustId +
+                '&gameId=' + transId3rd +
+                '&gameCode=' + currencyId +
+                '&siteId=' + siteId +
+                '&productId=57';
 
             Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/Detail' + params, "", 835, 675);
         }
