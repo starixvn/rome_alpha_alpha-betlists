@@ -55,6 +55,15 @@
         public static bool IsOfferJackpotProductDetails
             => "1" == GetConfigValue("IsOfferJackpotProductDetails");
 
+        public static byte SettingStatus
+        {
+            get
+            {
+                byte.TryParse(ConfigurationManager.AppSettings["SettingStatus"], out byte settingStatus);
+                return settingStatus;
+            }
+        }
+
         public static string GetConfigValue(string configName) => AppSettingValues[configName];
 
         public static void Verify()
