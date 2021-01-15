@@ -265,6 +265,7 @@
     <Compile Include="Criteria\RunningBetList\GetBetListRunningByDateCriteriaTests.cs" />
     <Compile Include="Criteria\ParlayWinLossByMatch\GetParlayWinLossByMatchCriteriaTests.cs" />
     <Compile Include="Criteria\WinLossByDate\GetBetListWinLossByDateCriteriaTests.cs" />
+    <Compile Include="Criteria\WinLossByMatch\GetWinLossLeapGamingCriteriaTests.cs" />
     <Compile Include="Criteria\WinLossByMatch\GetWinLossOutrightCriteriaTests.cs" />
     <Compile Include="Criteria\WinLossByMatch\GetWinLossRacingCriteriaTests.cs" />
     <Compile Include="DataAccesses\BetBuilderDataAccessTests.cs" />

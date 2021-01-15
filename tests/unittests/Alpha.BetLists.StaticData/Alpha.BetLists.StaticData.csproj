@@ -132,9 +132,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppStart\DependencyRegister.cs" />
+    <Compile Include="AppStart\DependencyRegister.cs" >
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
     <Compile Include="ColumnIndexes\TicketDataTemplateColumnIndex.cs" />
-    <Compile Include="Mappers\DataModelMapper.cs" />
+    <Compile Include="Mappers\DataModelMapper.cs" >
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
     <Compile Include="Mappers\StaticDataMapper.cs">
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
@@ -157,7 +161,9 @@
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="Models\StaticUserSession.cs" />
+    <Compile Include="Models\StaticUserSession.cs" >
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ColumnIndexes\TicketTemplateColumnIndex.cs" />
   </ItemGroup>

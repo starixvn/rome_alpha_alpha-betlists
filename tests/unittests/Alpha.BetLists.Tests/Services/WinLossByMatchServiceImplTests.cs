@@ -33,6 +33,10 @@
                 .FetchMultipleAsync<TicketDto, TicketData>(Arg.Any<GetWinLossByMatchCriteria>())
                 .Returns(BetListDataTest.BetListDataTuple);
 
+            dataFixture.DynamicRepository
+                .FetchMultipleAsync<TicketDto, TicketData>(Arg.Any<GetWinLossByBetTypeCriteria>())
+                .Returns(BetListDataTest.BetListDataTuple);
+
             var reportDateService = Substitute.For<ReportDateService>();
             reportDateService.GetMoveBetsDay().Returns(DateTime.Today);
 
@@ -89,6 +93,34 @@
             // Assert
             Assert.True(BetListDataTest.Tickets.SequenceEqual(actualBetListData.Tickets) &&
                 BetListDataTest.TicketData.SequenceEqual(actualBetListData.TicketData));
+        }
+
+        [Fact]
+        public void GetBetList_LeapGaming_ReturnLeapGamingBetList()
+        {
+            // Arrange
+            var param = CreateWinLossByMatchParam(5301);
+
+            // Act
+            var actualBetListData = winLossService.GetBetList(param).GetAwaiter().GetResult();
+
+            // Assert
+            Assert.True(BetListDataTest.Tickets.SequenceEqual(actualBetListData.Tickets) &&
+               BetListDataTest.TicketData.SequenceEqual(actualBetListData.TicketData));
+        }
+
+        [Fact]
+        public void GetBetList_Happy5LinkedGame_ReturnHappy5LinkedGameList()
+        {
+            // Arrange
+            var param = CreateWinLossByMatchParam(3601);
+
+            // Act
+            var actualBetListData = winLossService.GetBetList(param).GetAwaiter().GetResult();
+
+            // Assert
+            Assert.True(BetListDataTest.Tickets.SequenceEqual(actualBetListData.Tickets) &&
+               BetListDataTest.TicketData.SequenceEqual(actualBetListData.TicketData));
         }
 
         private WinLossByMatchParam CreateWinLossByMatchParam(int betType)
