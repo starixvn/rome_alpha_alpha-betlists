@@ -49,6 +49,11 @@
             this.ShowDetailsPopup(params);
         }
 
+        public ShowMaxGameDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
+            const params = this.CreatePopupDetailsParam(refNo, winlossDate, custId, transType, "MaxGame");
+            this.ShowDetailsPopup(params);
+        }
+
         private CreatePopupDetailsParam = (refNo: string, winlossDate: Date, custId: string, transType: string, sportName: string = "RNG Casino"): string => {
             return "?refNo=" + refNo
                 + "&transType=" + transType
@@ -428,6 +433,7 @@ let showJokerBetDetails: Function;
 let showWMBetDetails: Function;
 let showGDGBetDetails: Function;
 let showBGBetDetails: Function;
+let showMaxGameBetDetails: Function;
 
 $(document).ready(() => {
     showRnGCasinoDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowRnGCasinoDetails;
@@ -451,4 +457,5 @@ $(document).ready(() => {
     showWMBetDetails = BetList.Choice.TicketDetails.WMTicketDetails.Instance.ShowWMBetDetails;
     showGDGBetDetails = BetList.Choice.TicketDetails.GDGTicketDetails.Instance.ShowGDGBetDetails;
     showBGBetDetails = BetList.Choice.TicketDetails.BGTicketDetails.Instance.ShowBGBetDetails;
+    showMaxGameBetDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowMaxGameDetails;
 })

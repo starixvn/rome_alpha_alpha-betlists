@@ -1,5 +1,6 @@
 ﻿namespace Alpha.BetLists.Criteria
 {
+    using Alpha.BetLists.Configurations;
     using Fanex.Data;
     using Fanex.Data.Repository;
 
@@ -10,7 +11,10 @@
             CustId = custId;
             Site = site;
             CurrencyId = currencyId;
+            SettingStatus = AppSettings.SettingStatus;
         }
+
+        public byte SettingStatus { get; }
 
         public int CustId { get; }
 
