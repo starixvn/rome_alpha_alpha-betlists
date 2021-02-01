@@ -1,5 +1,6 @@
 ﻿namespace Alpha.BetLists.Criteria.WinLossByMatch
 {
+    using System;
     using Fanex.Data;
     using Fanex.Data.Repository;
     using Models;
@@ -8,12 +9,18 @@
     {
         public GetWinLossByMatchCriteria(
              int custId,
+             DateTime fromDate,
+             DateTime toDate,
+             DateTime moveBetsDay,
              int matchId,
              int betType,
              string custName,
-             bool liveIndicator,             
+             bool liveIndicator,
              UserLevel custLevel)
         {
+            FromDate = fromDate;
+            ToDate = toDate;
+            MoveBetsDay = moveBetsDay;
             CustId = custId;
             MatchId = matchId;
             BetType = betType;
@@ -36,8 +43,14 @@
 
         public int RoleId { get; }
 
-        public override string GetSettingKey() => "Age_BetList_SelWinlossByBettypeMatch";          
+        public DateTime FromDate { get; }
 
-        public override bool IsValid() => CustId > 0;
+        public DateTime ToDate { get; }
+
+        public DateTime MoveBetsDay { get; }
+
+        public override string GetSettingKey() => "Age_BetList_SelWinlossByBettypeMatch";
+
+        public override bool IsValid() => CustId > 0 && FromDate <= ToDate && DateTime.MinValue < FromDate;
     }
 }

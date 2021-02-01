@@ -1,5 +1,6 @@
 ﻿namespace Alpha.BetLists.Tests.Criteria.WinLossByMatch
 {
+    using System;
     using BetLists.Criteria.WinLossByMatch;
     using BetLists.Models;
     using Xunit;
@@ -12,7 +13,7 @@
         {
             // Arrange
             var expectedSettingKey = "Age_BetList_SelWinlossByBettypeMatch";
-            var criteria = new GetWinLossByMatchCriteria(0, 0, 0, "User Test", false, UserLevel.Super);
+            var criteria = new GetWinLossByMatchCriteria(0, DateTime.Now.AddDays(-1), DateTime.Now, DateTime.Now, 0, 0, "User Test", false, UserLevel.Super);
 
             // Act
             var actualSettingKey = criteria.GetSettingKey();
@@ -35,7 +36,7 @@
         public void IsValid_Always_ReturnsCorrectIsValid(int custId, bool expectedIsValid)
         {
             // Arrange
-            var criteria = new GetWinLossByMatchCriteria(custId, 0, 0, string.Empty, false, UserLevel.Agent);
+            var criteria = new GetWinLossByMatchCriteria(custId, DateTime.Now.AddDays(-1), DateTime.Now, DateTime.Now, 0, 0, string.Empty, false, UserLevel.Agent);
 
             // Act
             var actualIsValid = criteria.IsValid();
