@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Alpha.BetLists.Configurations;
     using BetLists.Constants;
     using BetLists.Models;
     using Constants;
@@ -55,6 +56,9 @@
         public bool HasPermissionOnProduct(int productId) => UserPermission.HasPermissionOnProduct(productId);
 
         public DateTime LimitedDateToShowInfo => userSession.GetProperty<DateTime>(SessionKey.CustomerDatelimit);
+
+        public bool IsEnableSabaPromotion 
+            => AppSettings.OfferSabaPromotionSites.Any(site => site == "*" || site.Equals(userSession.Site, StringComparison.OrdinalIgnoreCase));
 
         internal virtual IList<int> GetEnableProductsByGameName(string gameName)
             => userSession.GetProperty<IList<int>>(SessionKey.GameEnable + gameName);

@@ -4,7 +4,6 @@
     using Alpha.BetLists.Services;
     using BetLists.Models;
     using Constants;
-    using Extensions;
     using MediatR;
     using Utils;
     using ViewModels.RunningBetList;
