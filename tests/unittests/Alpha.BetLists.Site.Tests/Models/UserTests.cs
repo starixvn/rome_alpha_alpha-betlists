@@ -1,5 +1,7 @@
 ﻿namespace Alpha.BetLists.Site.Tests.Models
 {
+    using System.Collections.Specialized;
+    using Alpha.BetLists.Configurations;
     using NSubstitute;
     using Site.Models;
     using Sunplus.Agent.Model.Entities;
@@ -132,6 +134,56 @@
 
             // Assert
             Assert.True(value);
+        }
+
+        [Fact]
+        public void IsEnableSabaPromotion_OfferedAllSite_ReturnTrue()
+        {
+            // Arrange
+            AppSettings.AppSettingValues = new NameValueCollection();
+            AppSettings.AppSettingValues.Add("EnableProduct-37:Sites", "*");
+            var userSession = Substitute.For<IUserSession>();            
+            var user = new UserForTest(userSession);
+
+            // Act
+            var value = user.IsEnableSabaPromotion;
+
+            // Assert
+            Assert.True(value);
+        }
+
+        [Fact]
+        public void IsEnableSabaPromotion_OfferedABCSite_ReturnTrue()
+        {
+            // Arrange
+            AppSettings.AppSettingValues = new NameValueCollection();
+            AppSettings.AppSettingValues.Add("EnableProduct-37:Sites", "abc");
+            var userSession = Substitute.For<IUserSession>();
+            userSession.Site.Returns("abc");
+            var user = new UserForTest(userSession);
+
+            // Act
+            var value = user.IsEnableSabaPromotion;
+
+            // Assert
+            Assert.True(value);
+        }
+
+        [Fact]
+        public void IsEnableSabaPromotion_NonOfferedABCSite_ReturnFalse()
+        {
+            // Arrange
+            AppSettings.AppSettingValues = new NameValueCollection();
+            AppSettings.AppSettingValues.Add("EnableProduct-37:Sites", "abcd");
+            var userSession = Substitute.For<IUserSession>();
+            userSession.Site.Returns("abc");
+            var user = new UserForTest(userSession);
+
+            // Act
+            var value = user.IsEnableSabaPromotion;
+
+            // Assert
+            Assert.False(value);
         }
     }
 }

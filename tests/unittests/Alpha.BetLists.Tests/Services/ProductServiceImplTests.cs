@@ -237,5 +237,30 @@
             // Assert
             Assert.True(act);
         }
+
+        [Fact]
+        public void GetProductsForCustomer_EnableSabaPromotion_ReturnSabaProtionProduct()
+        {
+            // Arrange
+
+            // Act
+            var act = productService.GetProductsForCustomer(1, string.Empty, 1, DateTime.MinValue, isEnableSabaPromotion: true);
+
+            // Assert
+            Assert.Equal(37, act.First().Id);
+        }
+
+        [Fact]
+        public void GetProductsByGroupHeadline_EnableSabaPromotion_ReturnSabaProtionProduct()
+        {
+            // Arrange
+            var param = new GetProductsByGroupHeadlineParam(1, DateTime.MinValue);
+
+            // Act
+            var act = productService.GetProductsByGroupHeadline(param, isEnableSabaPromotion: true);
+
+            // Assert
+            Assert.Equal(37, act.First().Id);
+        }
     }
 }
