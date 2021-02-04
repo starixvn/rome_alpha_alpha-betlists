@@ -38,7 +38,7 @@
             query = new WinLossQuery(this.betlistFixture.User);
 
             productService = Substitute.For<ProductService>();
-            productService.FilterProductIdsByCustomer(Arg.Any<int>(), Arg.Any<string>(), Arg.Any<int>(), Arg.Any<DateTime>(), Arg.Any<IEnumerable<int>>())
+            productService.FilterProductIdsByCustomer(Arg.Any<int>(), Arg.Any<string>(), Arg.Any<int>(), Arg.Any<DateTime>(), Arg.Any<IEnumerable<int>>(), false)
                 .Returns(callInfo => callInfo.Args()[4]);
 
             productDetailService = Substitute.For<ProductDetailService>();

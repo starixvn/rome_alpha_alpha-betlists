@@ -11,6 +11,6 @@
         {
         }
 
-        public RTFHelper? RtfHelper { get; set; }        
+        public RTFHelper? RtfHelper { get; set; }
     }
 }

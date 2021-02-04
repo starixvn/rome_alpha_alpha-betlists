@@ -101,5 +101,7 @@
         public bool HasPermissionOnProduct(int productId) => hasPermissionOnProduct(productId);
 
         public DateTime LimitedDateToShowInfo => limitedDate;
+
+        public bool IsEnableSabaPromotion => false;
     }
 }

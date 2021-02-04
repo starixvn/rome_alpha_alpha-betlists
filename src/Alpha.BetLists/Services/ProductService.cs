@@ -16,11 +16,11 @@
 
     public interface ProductService
     {
-        IEnumerable<Product> GetProductsForCustomer(int custId, string site, int currencyId, DateTime minReportDate);
+        IEnumerable<Product> GetProductsForCustomer(int custId, string site, int currencyId, DateTime minReportDate, bool isEnableSabaPromotion);
 
-        IEnumerable<int> FilterProductIdsByCustomer(int custId, string site, int currencyId, DateTime minReportDate, IEnumerable<int> productIds);
+        IEnumerable<int> FilterProductIdsByCustomer(int custId, string site, int currencyId, DateTime minReportDate, IEnumerable<int> productIds, bool isEnableSabaPromotion);
 
-        IEnumerable<int> FilterProductIdsByGroupHeadline(IEnumerable<int> productIds, GetProductsByGroupHeadlineParam param);
+        IEnumerable<int> FilterProductIdsByGroupHeadline(IEnumerable<int> productIds, GetProductsByGroupHeadlineParam param, bool isEnableSabaPromotion);
 
         string ConcatProductNames(string productIds);
 
@@ -28,7 +28,12 @@
 
         bool IsEnabledJackpot(int custId);
 
-        IEnumerable<Product> GetProductsHaveSupportCancelledBet(int custId, string site, int currencyId, DateTime minReportDate, IEnumerable<int> productIds = null);
+        IEnumerable<Product> GetProductsHaveSupportCancelledBet(int custId, 
+            string site, 
+            int currencyId, 
+            DateTime minReportDate, 
+            IEnumerable<int> productIds = null, 
+            bool isEnableSabaPromotion = false);
 
         bool CanViewBySite(int custId, string site, int currencyId, int productId);
     }
@@ -41,6 +46,7 @@
         private readonly Func<int, string> getProductName;
         private readonly IDynamicRepository dynamicRepository;
         private readonly ProductDataAccess productDataAccess;
+        private const int SabaPromotionProductId = 37;
 
         public ProductServiceImpl(
             IDynamicRepository dynamicRepository,
@@ -54,7 +60,7 @@
             this.getProductName = getProductName;
         }
 
-        public IEnumerable<Product> GetProductsForCustomer(int custId, string site, int currencyId, DateTime minReportDate)
+        public IEnumerable<Product> GetProductsForCustomer(int custId, string site, int currencyId, DateTime minReportDate, bool isEnableSabaPromotion)
         {
             if (custId <= 0)
             {
@@ -74,12 +80,19 @@
                 custProducts = custProducts.Where(product => IsRemainSupportProduct(product, minReportDate));
             }
 
+            if (isEnableSabaPromotion)
+            {
+                var sabaProduct = new Product(SabaPromotionProductId, null, true, getProductName, 0, 0);
+                var sabaProducts = new List<Product> { sabaProduct };
+                custProducts = sabaProducts.Concat(custProducts);
+            }
+
             return custProducts;
         }
 
-        public IEnumerable<int> FilterProductIdsByCustomer(int custId, string site, int currencyId, DateTime minReportDate, IEnumerable<int> productIds)
+        public IEnumerable<int> FilterProductIdsByCustomer(int custId, string site, int currencyId, DateTime minReportDate, IEnumerable<int> productIds, bool isEnableSabaPromotion)
         {
-            var customerProductIds = GetProductsForCustomer(custId, site, currencyId, minReportDate).Select(product => product.Id);
+            var customerProductIds = GetProductsForCustomer(custId, site, currencyId, minReportDate, isEnableSabaPromotion).Select(product => product.Id);
 
             var productIdList = productIds == null || !productIds.Any()
                 ? customerProductIds
@@ -88,7 +101,12 @@
             return productIdList;
         }
 
-        public IEnumerable<Product> GetProductsHaveSupportCancelledBet(int custId, string site, int currencyId, DateTime minReportDate, IEnumerable<int> productIds = null)
+        public IEnumerable<Product> GetProductsHaveSupportCancelledBet(int custId, 
+            string site, 
+            int currencyId, 
+            DateTime minReportDate, 
+            IEnumerable<int> productIds = null, 
+            bool isEnableSabaPromotion = false)
         {
             var supportedProducts = new List<int>
             {
@@ -104,7 +122,7 @@
                 ProductIdConstants.VirtualGames
             };
 
-            var allProducts = GetProductsForCustomer(custId, site, currencyId, minReportDate).Where(i => supportedProducts.Contains(i.Id));
+            var allProducts = GetProductsForCustomer(custId, site, currencyId, minReportDate, isEnableSabaPromotion).Where(i => supportedProducts.Contains(i.Id));
 
             var validProducts = productIds == null || !productIds.Any()
                 ? allProducts
@@ -113,17 +131,24 @@
             return validProducts;
         }
 
-        public IEnumerable<Product> GetProductsByGroupHeadline(GetProductsByGroupHeadlineParam param)
+        public IEnumerable<Product> GetProductsByGroupHeadline(GetProductsByGroupHeadlineParam param, bool isEnableSabaPromotion)
         {
             var data = dynamicRepository.Fetch<Product>(new GetProductsByGroupHeadlineCriteria(param.CustId))
                 .Where(product => IsRemainSupportProductForGroupHeadline(product, param.MinDate))
                 .Select(product => new Product(product.Id, product.Name, product.IsEnable, getProductName, product.Type, product.OrderNo));
 
+            if (isEnableSabaPromotion)
+            {
+                var sabaProduct = new Product(SabaPromotionProductId, null, true, getProductName, 0, 0);
+                var sabaProducts = new List<Product> { sabaProduct };
+                data = sabaProducts.Concat(data);
+            }
+
             return data;
         }
 
-        public IEnumerable<int> FilterProductIdsByGroupHeadline(IEnumerable<int> productIds, GetProductsByGroupHeadlineParam param)
-            => GetProductsByGroupHeadline(param)
+        public IEnumerable<int> FilterProductIdsByGroupHeadline(IEnumerable<int> productIds, GetProductsByGroupHeadlineParam param, bool isEnableSabaPromotion)
+            => GetProductsByGroupHeadline(param, isEnableSabaPromotion)
             .Select(product => product.Id)
             .Where(id => productIds == null || !productIds.Any() || productIds.Contains(id));
 

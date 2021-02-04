@@ -55,6 +55,12 @@
         public static bool IsOfferJackpotProductDetails
             => "1" == GetConfigValue("IsOfferJackpotProductDetails");
 
+        public static IEnumerable<string> OfferSabaPromotionSites
+            => GetConfigValue("EnableProduct-37:Sites")?.Split(new[] { ",", ";" }, StringSplitOptions.RemoveEmptyEntries);
+
+        public static IEnumerable<string> OfferSabaPromotionHeadlineSites
+            => GetConfigValue("EnableProduct-37:HLSites")?.Split(new[] { ",", ";" }, StringSplitOptions.RemoveEmptyEntries);
+
         public static byte SettingStatus
         {
             get

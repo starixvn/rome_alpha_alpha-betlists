@@ -22,6 +22,7 @@
             IsEnabledJackpot = viewer.IsEnabledJackpot;
 
             LimitedDateToShowInfo = viewer.LimitedDateToShowInfo;
+            IsEnableSabaPromotion = viewer.IsEnableSabaPromotion;
         }
 
         public int CustId { get; set; }
@@ -59,5 +60,7 @@
         public bool IsEnabledJackpot { get; set; }
 
         public DateTime LimitedDateToShowInfo { get; set; }
+
+        public bool IsEnableSabaPromotion { get; }
     }
 }

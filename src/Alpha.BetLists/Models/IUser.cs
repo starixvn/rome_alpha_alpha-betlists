@@ -29,5 +29,7 @@ namespace Alpha.BetLists.Models
         bool HasPermissionOnProduct(int productId);
 
         DateTime LimitedDateToShowInfo { get; }
+
+        bool IsEnableSabaPromotion { get; }
     }
 }
