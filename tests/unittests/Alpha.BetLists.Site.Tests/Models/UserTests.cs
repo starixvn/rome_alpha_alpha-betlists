@@ -175,6 +175,7 @@
             // Arrange
             AppSettings.AppSettingValues = new NameValueCollection();
             AppSettings.AppSettingValues.Add("EnableProduct-37:Sites", "abcd");
+            AppSettings.AppSettingValues.Add("EnableProduct-37:HLSites", "def");
             var userSession = Substitute.For<IUserSession>();
             userSession.Site.Returns("abc");
             var user = new UserForTest(userSession);
