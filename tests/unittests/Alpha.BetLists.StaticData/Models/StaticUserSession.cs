@@ -103,5 +103,7 @@
         public DateTime LimitedDateToShowInfo => limitedDate;
 
         public bool IsEnableSabaPromotion => false;
+
+        public bool IsEnableSabaPromotionForHeadline => false;
     }
 }

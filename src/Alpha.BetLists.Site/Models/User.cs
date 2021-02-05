@@ -57,13 +57,12 @@
 
         public DateTime LimitedDateToShowInfo => userSession.GetProperty<DateTime>(SessionKey.CustomerDatelimit);
 
-        public bool IsEnableSabaPromotion 
-            => AppSettings.OfferSabaPromotionSites.Any(site => site == "*" || site.Equals(userSession.Site, StringComparison.OrdinalIgnoreCase))
-            || IsEnableSabaPromotionForHeadline;
+        public bool IsEnableSabaPromotion
+            => AppSettings.OfferSabaPromotionSites.Any(site => site == "*" || site.Equals(userSession.Site, StringComparison.OrdinalIgnoreCase));
 
-        private bool IsEnableSabaPromotionForHeadline
+        public bool IsEnableSabaPromotionForHeadline
             => AppSettings.OfferSabaPromotionHeadlineSites.Any(site => site == "*" || site.Equals(userSession.Site, StringComparison.OrdinalIgnoreCase))
-            && userSession.IsShowConsolidatedReport;
+            || IsEnableSabaPromotion;
 
         internal virtual IList<int> GetEnableProductsByGameName(string gameName)
             => userSession.GetProperty<IList<int>>(SessionKey.GameEnable + gameName);
