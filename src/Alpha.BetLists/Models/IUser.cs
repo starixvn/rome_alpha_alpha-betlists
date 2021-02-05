@@ -31,5 +31,7 @@ namespace Alpha.BetLists.Models
         DateTime LimitedDateToShowInfo { get; }
 
         bool IsEnableSabaPromotion { get; }
+
+        bool IsEnableSabaPromotionForHeadline { get; }
     }
 }

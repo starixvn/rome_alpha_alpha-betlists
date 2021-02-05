@@ -23,6 +23,7 @@
 
             LimitedDateToShowInfo = viewer.LimitedDateToShowInfo;
             IsEnableSabaPromotion = viewer.IsEnableSabaPromotion;
+            IsEnableSabaPromotionForHeadline = viewer.IsEnableSabaPromotionForHeadline;
         }
 
         public int CustId { get; set; }
@@ -62,5 +63,8 @@
         public DateTime LimitedDateToShowInfo { get; set; }
 
         public bool IsEnableSabaPromotion { get; }
+
+        public bool IsEnableSabaPromotionForHeadline { get; }
+
     }
 }
