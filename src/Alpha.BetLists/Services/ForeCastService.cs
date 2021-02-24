@@ -1,13 +1,13 @@
 ﻿namespace Alpha.BetLists.Services
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using Criteria;
     using Extensions;
     using Fanex.Caching;
     using Fanex.Data.Repository;
     using Models;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
 
     public interface ForecastService
     {
@@ -19,10 +19,12 @@
         private const int ScoreMapBetTypesCacheTimeInHours = 2;
         private const string ScoreMapBetTypesCacheKey = "Alpha.BetLists.Services.ForecastServiceImpl.ScoreMapBetTypes";
         private readonly IDynamicRepository dynamicRepository;
+        private readonly ICacheService cacheService;
 
-        public ForecastServiceImpl(IDynamicRepository dynamicRepository)
+        public ForecastServiceImpl(IDynamicRepository dynamicRepository, ICacheService cacheService)
         {
             this.dynamicRepository = dynamicRepository;
+            this.cacheService = cacheService;
         }
 
         public IEnumerable<int> GetBetTypeIdsSupportScoreMap()
@@ -35,7 +37,7 @@
 
         private IEnumerable<ScoreMap> GetScoreMaps()
         {
-            var scoreMaps = ConfiguredCacheService
+            var scoreMaps = cacheService
                 .GetOrSet(
                 ScoreMapBetTypesCacheKey,
                 () => dynamicRepository.Fetch<ScoreMap>(new GetScoreMapBetTypesCriteria()),

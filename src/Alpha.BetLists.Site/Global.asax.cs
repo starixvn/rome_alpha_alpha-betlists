@@ -1,13 +1,8 @@
 ﻿namespace Alpha.BetLists.Site
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Linq;
-    using System.Reflection;
-    using System.Web.Mvc;
-    using System.Web.Routing;
     using Alpha.Logging;
+    using Alpha.NetThrottling.Mvc;
+    using Alpha.NetThrottling.Utils;
     using App_Start;
     using Auth.Filters;
     using Configurations;
@@ -20,6 +15,14 @@
     using Helpers;
     using ONEbook.UM.Filters;
     using Sunplus.Agent.Model.Entities;
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Linq;
+    using System.Reflection;
+    using System.Web;
+    using System.Web.Mvc;
+    using System.Web.Routing;
     using Web;
     using Web.Filters;
     using Web.Helpers;
@@ -51,6 +54,7 @@
             LoggingConfig.Init(getDbExceptionInfo: DatabaseInfoGetters.GetDbExceptionInfo);
             if (!AppSettings.IsIntegrationTest)
             {
+                GlobalFilters.Filters.Add(new NetThrottlingFilterAttribute());
                 GlobalFilters.Filters.Add(new CheckUMFilter());
                 GlobalFilters.Filters.Add(new CheckBelongingFilter());
                 GlobalFilters.Filters.Add(new NoCacheFilter());
@@ -74,8 +78,13 @@
             }
 
             Exception ex = Server.GetLastError();
-            var currentCustomer = UserSession.Current;
+            HttpException httpException = ex as HttpException;
+            if (httpException != null && httpException.GetHttpCode() == HttpStatusCodes.TooManyRequests)
+            {
+                return;
+            }
 
+            var currentCustomer = UserSession.Current;
             if (ex is FormatException &&
                 Request.Params.AllKeys.Any(key => Auth.Configurations.AuthorizationSection.Instance.CustIdQueryStringParamNames.Any(cf => string.Equals(key, cf, StringComparison.OrdinalIgnoreCase))))
             {

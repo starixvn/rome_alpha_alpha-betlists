@@ -11,6 +11,7 @@
     using Site.Controllers;
     using Web.Models;
     using Xunit;
+    using UserLevel = BetLists.Models.UserLevel;
 
     [Trait("Category", "LastBets")]
     public class LastBetsControllerTests

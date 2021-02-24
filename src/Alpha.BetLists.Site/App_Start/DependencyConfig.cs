@@ -1,10 +1,10 @@
 ﻿namespace Alpha.BetLists.Site.App_Start
 {
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Reflection;
-    using System.Web.Mvc;
     using Alpha.BetLists.Site.Handlers.RiskAnalysisIPMatching;
+    using Alpha.NetThrottling;
+    using Alpha.NetThrottling.Models;
+    using Alpha.NetThrottling.Resolvers;
+    using Alpha.NetThrottling.Utils;
     using BetLists.Helpers;
     using BetLists.Models;
     using Configurations;
@@ -19,6 +19,7 @@
     using Fanex.BetList.Core.Factories;
     using Fanex.BetList.Core.RemotingRef;
     using Fanex.BetList.Core.TicketHelper;
+    using Fanex.Caching;
     using Fanex.Data.Repository;
     using Fanex.RemotingRef;
     using Handlers.Parlay;
@@ -37,6 +38,10 @@
     using Sunplus.Agent.Model.Base;
     using Sunplus.Agent.Model.Entities;
     using Sunplus.Agent.Model.Entities.Permission;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Reflection;
+    using System.Web.Mvc;
     using Utilities.IP;
 
     public static class DependencyConfig
@@ -55,6 +60,8 @@
             RegisterServices(container);
 
             RegisterBetListCore(container);
+
+            RegisterNetThrottling(container);
 
             // This is an extension method from the integration package.
             container.RegisterMvcControllers(Assembly.GetExecutingAssembly());
@@ -148,10 +155,12 @@
 
             container.RegisterSingleton<ICacheRef, CacheRef>();
             container.RegisterSingleton<IRemotingRefService, RemotingRefService>();
+            container.RegisterSingleton<ICacheService>(new CacheService());
             container.Register<ForecastService, ForecastServiceImpl>(Lifestyle.Singleton);
             container.Register<ProductService>(
                 () => new ProductServiceImpl(
                     container.GetInstance<IDynamicRepository>(),
+                    container.GetInstance<ICacheService>(),
                     container.GetInstance<ProductDataAccess>(),
                     UserPermission.HasPermissionOnProduct,
                     CacheRefServiceHelper.GetProductName),
@@ -180,6 +189,16 @@
         private static void RegisterStaticInstances(Container container)
         {
             ReportDateServiceImpl.Instance = container.GetInstance<ReportDateService>();
+        }
+
+        private static void RegisterNetThrottling(Container container)
+        {
+            container.Register<INetThrottler, NetThrottler>(Lifestyle.Scoped);
+            container.Register<IThrottleSetting, ThrottleSetting>(Lifestyle.Scoped);
+            container.Register<IClock, Clock>(Lifestyle.Scoped);
+            container.Register<ILogger, Logger>(Lifestyle.Scoped);
+            container.Register<ICacheServiceFactory, CacheServiceFactory>(Lifestyle.Scoped);
+            container.Register<IResolver, BaseResolver>(Lifestyle.Scoped);
         }
     }
 }

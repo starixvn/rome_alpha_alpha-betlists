@@ -29,10 +29,12 @@
         private const string CheckRunningMatchByIdCacheKey = "Alpha.Reports.Services.Impl.LastBetsServiceImpl.CheckRunningMatchByIdCacheKey";
 
         private readonly IDynamicRepository dynamicRepository;
+        private readonly ICacheService cacheService;
 
-        public LastBetsServiceImpl(IDynamicRepository dynamicRepository)
+        public LastBetsServiceImpl(IDynamicRepository dynamicRepository, ICacheService cacheService)
         {
             this.dynamicRepository = dynamicRepository;
+            this.cacheService = cacheService;
         }
 
         public async Task<IEnumerable<TicketDto>> GetLastBets(GetLastBetsParam param)
@@ -89,7 +91,7 @@
         {
             var cachedKey = $"{RunningMatchesCacheKey}_{matchId}";
             var matchInfo = matches.FirstOrDefault(match => match.MatchId == matchId)
-                ?? ConfiguredCacheService.Get<MatchInfo>(cachedKey);
+                ?? cacheService.Get<MatchInfo>(cachedKey);
 
             if (matchInfo == null && !IsDummyMatch(matchId))
             {
@@ -98,7 +100,7 @@
 
                 if (matchInfo != null)
                 {
-                    ConfiguredCacheService.Set(
+                    cacheService.Set(
                         cachedKey,
                         matchInfo,
                         new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(cacheTime)));
@@ -112,7 +114,7 @@
         {
             var cacheKey = RunningOutrightMatchesCacheKey;
 
-            var matches = await ConfiguredCacheService.GetOrSetAsync(
+            var matches = await cacheService.GetOrSetAsync(
                 cacheKey,
                 () => dynamicRepository.Fetch<MatchInfo>(new GetRunningOutrightMatchCriteria()).ToList(),
                 new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(cacheTime)));
@@ -124,7 +126,7 @@
         {
             var cacheKey = RunningOtherMatchesCacheKey;
 
-            var matches = await ConfiguredCacheService.GetOrSetAsync(
+            var matches = await cacheService.GetOrSetAsync(
                 cacheKey,
                 () => dynamicRepository.Fetch<MatchInfo>(new GetRunningOtherMatchCriteria()).ToList(),
                 new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(cacheTime)));
@@ -135,7 +137,7 @@
         public MatchInfo GetMatchInfoById(int matchId, int cacheTime)
         {
             var cachedKey = $"{CheckRunningMatchByIdCacheKey}_{matchId}";
-            var matchInfo = ConfiguredCacheService.Get<MatchInfo>(cachedKey);
+            var matchInfo = cacheService.Get<MatchInfo>(cachedKey);
 
             if (matchInfo == null && !IsDummyMatch(matchId))
             {
@@ -143,7 +145,7 @@
 
                 if (matchInfo != null)
                 {
-                    ConfiguredCacheService.Set(
+                    cacheService.Set(
                         cachedKey,
                         matchInfo,
                         new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(cacheTime)));
