@@ -15,5 +15,6 @@
         public const int VirtualGames = 38;
         public const int TableGames = 40;
         public const int Pragmatic = 32;
+        public const int SportsLottery = 63;
     }
 }
