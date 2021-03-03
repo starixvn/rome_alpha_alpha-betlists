@@ -30,5 +30,8 @@
 
         protected async Task<FileContentResult> ExcelView(IRequest<ExcelFileViewModel> message)
             => GetExcelContent(await mediator.Send(message));
+
+        protected async Task<ActionResult> View<TResponse>(IRequest<TResponse> message, string viewName)
+            => View(viewName, await mediator.Send(message));
     }
 }
