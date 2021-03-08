@@ -2,6 +2,7 @@
 {
     using System.Threading.Tasks;
     using System.Web.Mvc;
+    using Alpha.NetThrottling.Mvc;
     using BetLists.Constants;
     using BetLists.Models;
     using MediatR;
@@ -16,11 +17,13 @@
             this.viewer = viewer;
         }
 
+        [DisableNetThrottling]
         public async Task<ActionResult> Index(LastBetsQuery query) => await View(query);
 
+        [DisableNetThrottling]
         public async Task<ActionResult> BetData(GetLastBetsQuery message)
         {
-            var canViewLastBets = mediator.Send(new CheckCanViewLastBetsQuery(viewer)).GetAwaiter().GetResult();
+            var canViewLastBets = await mediator.Send(new CheckCanViewLastBetsQuery(viewer));
 
             if (canViewLastBets.ErrCode != ErrorCodeConstants.None)
             {
