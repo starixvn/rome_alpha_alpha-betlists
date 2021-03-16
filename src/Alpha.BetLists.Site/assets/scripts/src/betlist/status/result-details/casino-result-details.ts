@@ -328,10 +328,10 @@
             custId?: number,
             transDesc?: string) => {
             var params = '?custId=' + this.CustId +
-                '&gameId=' + transDesc +
+                '&transId3rd=' + transDesc +
                 '&productId=63';
 
-            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/Detail' + params, "", 835, 675);
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/SportsLotteryResult' + params, "", 835, 675);
         }
     }
    export class BGResultDetails extends BaseResultDetails implements ResultDetails {
