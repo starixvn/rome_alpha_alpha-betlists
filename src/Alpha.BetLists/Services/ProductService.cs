@@ -122,7 +122,8 @@
                 ProductIdConstants.NG2,
                 ProductIdConstants.Lottery,
                 ProductIdConstants.TableGames,
-                ProductIdConstants.VirtualGames
+                ProductIdConstants.VirtualGames,
+                ProductIdConstants.SportsLottery
             };
 
             var allProducts = GetProductsForCustomer(custId, site, currencyId, minReportDate, isEnableSabaPromotion).Where(i => supportedProducts.Contains(i.Id));

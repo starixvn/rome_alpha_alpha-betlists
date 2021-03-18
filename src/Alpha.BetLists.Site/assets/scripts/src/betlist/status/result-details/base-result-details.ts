@@ -22,6 +22,7 @@
         private static BGResult: ResultDetails;
         private static maxGameResult: ResultDetails;
         private static linkedGamesResult: ResultDetails;
+        private static sportsLotteryResult: ResultDetails;
 
         public static CreateInstance(betTypeId: number): ResultDetails {
             if (betTypeId >= 2501 && betTypeId <= 2699) {
@@ -124,6 +125,11 @@
             if (betTypeId >= 3601 && betTypeId <= 3610) {
                 this.linkedGamesResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.linkedGamesResult) ? new Happy5LinkedGamesResultDetails() : this.linkedGamesResult;
                 return this.linkedGamesResult;
+            }
+
+            if (betTypeId >= 3611 && betTypeId <= 3620) {
+                this.sportsLotteryResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sportsLotteryResult) ? new SportsLotteryResultDetails() : this.sportsLotteryResult;
+                return this.sportsLotteryResult;
             }
 	    if (betTypeId >= 5401 && betTypeId <= 5499) {
                 this.maxGameResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.maxGameResult) ? new MaxGameResultDetails() : this.maxGameResult;

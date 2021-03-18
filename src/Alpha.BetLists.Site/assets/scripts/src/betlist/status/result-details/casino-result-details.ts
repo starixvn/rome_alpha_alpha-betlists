@@ -310,7 +310,30 @@
             Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'LinkedGames/Index' + params, "", 835, 675);
         }
     }
-    
+
+    export class SportsLotteryResultDetails extends BaseResultDetails implements ResultDetails {
+        public ViewResultDetails = (
+            matchId?: number,
+            race?: number,
+            betTypeId?: number,
+            sportTypeId?: number,
+            refNo?: string,
+            userName?: string,
+            winLostDate?: Date,
+            refNoMixParlay?: number,
+            league?: number,
+            isOutright?: boolean,
+            betId?: number,
+            betCheck?: string,
+            custId?: number,
+            transDesc?: string) => {
+            var params = '?custId=' + this.CustId +
+                '&transId3rd=' + transDesc +
+                '&productId=63';
+
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/SportsLotteryResult' + params, "", 835, 675);
+        }
+    }
    export class BGResultDetails extends BaseResultDetails implements ResultDetails {
         public ViewResultDetails = (
             matchId?: number,
