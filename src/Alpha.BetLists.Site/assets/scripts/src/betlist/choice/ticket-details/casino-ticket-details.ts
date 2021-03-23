@@ -423,7 +423,7 @@
             const params = '?refno=' + refNo
                 + '&custid=' + custId
                 + '&transType=' + transType
-                + '&sportName=PPLiveCasino&productId=65';
+                + '&sportName=PP Live Casino&productId=65';
 
             let width = 1147;
             let roleId = Number(this.ViewerLevelId);
