@@ -79,6 +79,9 @@
             => await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(
                 new GetWinLossByMatchCriteria(
                     param.CustId,
+                    param.FromDate,
+                    param.ToDate,
+                    reportDateService.GetMoveBetsDay(),
                     param.MatchId,
                     param.BetType,
                     param.CustName,
