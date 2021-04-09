@@ -384,5 +384,29 @@
                 '&productId=60';
             Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/MaxGameResult' + params, "", 835, 675);
         }
-    }    
+    }  
+
+    export class PPLiveCasinoResultDetails extends BaseResultDetails implements ResultDetails {
+        public ViewResultDetails = (
+            matchId?: number,
+            race?: number,
+            betTypeId?: number,
+            sportTypeId?: number,
+            refNo?: string,
+            userName?: string,
+            winLostDate?: Date,
+            refNoMixParlay?: number,
+            league?: number,
+            isOutright?: boolean,
+            betId?: number,
+            betCheck?: string,
+            custId?: number,
+            transDesc?: string) => {
+            var params = '?custId=' + this.CustId +
+                '&GameId3rd=' + transDesc +
+                '&BetType=' + betTypeId +
+                '&productId=65  ';
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/PPLiveCasinoResult' + params, "", 835, 675);
+        }
+    }
 }
