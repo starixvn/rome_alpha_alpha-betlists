@@ -23,7 +23,8 @@
         private static maxGameResult: ResultDetails;
         private static linkedGamesResult: ResultDetails;
         private static sportsLotteryResult: ResultDetails;
-
+        private static ppLiveCasinoResult: ResultDetails;
+        
         public static CreateInstance(betTypeId: number): ResultDetails {
             if (betTypeId >= 2501 && betTypeId <= 2699) {
                 this.ng2Result = Common.Utils.IsNullOrUndefinedOrEmpty(this.ng2Result) ? new NG2ResultDetails() : this.ng2Result;
@@ -131,10 +132,16 @@
                 this.sportsLotteryResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sportsLotteryResult) ? new SportsLotteryResultDetails() : this.sportsLotteryResult;
                 return this.sportsLotteryResult;
             }
-	    if (betTypeId >= 5401 && betTypeId <= 5499) {
+	        if (betTypeId >= 5401 && betTypeId <= 5499) {
                 this.maxGameResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.maxGameResult) ? new MaxGameResultDetails() : this.maxGameResult;
                 return this.maxGameResult;
             }
+
+            if (betTypeId >= 3701 && betTypeId <= 3799) {
+                this.ppLiveCasinoResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.ppLiveCasinoResult) ? new PPLiveCasinoResultDetails() : this.ppLiveCasinoResult;
+                return this.ppLiveCasinoResult;
+            }
+
             this.sportsbookResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sportsbookResult) ? new SportsbookResultDetails : this.sportsbookResult;
             return this.sportsbookResult;
         }

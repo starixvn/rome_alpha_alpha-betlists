@@ -225,7 +225,7 @@
         }
     }
 
-        export class IONTicketDetails extends BaseTicketDetails {
+    export class IONTicketDetails extends BaseTicketDetails {
         private static instance: IONTicketDetails;
 
         public static get Instance() {
@@ -255,7 +255,7 @@
                 'ION - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
         }
     }
-    
+
     export class BBinTicketDetails extends BaseTicketDetails {
         private static instance: BBinTicketDetails;
 
@@ -379,8 +379,8 @@
                 'GDG - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
         }
     }
-    
-        export class BGTicketDetails extends BaseTicketDetails {
+
+    export class BGTicketDetails extends BaseTicketDetails {
         private static instance: BGTicketDetails;
 
         public static get Instance() {
@@ -410,6 +410,37 @@
                 'BG - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
         }
     }
+
+    export class PPLiveCasinoTicketDetails extends BaseTicketDetails {
+        private static instance: PPLiveCasinoTicketDetails;
+
+        public static get Instance() {
+            this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new PPLiveCasinoTicketDetails() : this.instance;
+            return this.instance;
+        }
+
+        public ShowPragmaticLiveCasinoBetsDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
+            const params = '?refno=' + refNo
+                + '&custid=' + custId
+                + '&transType=' + transType
+                + '&sportName=PP Live Casino&productId=65';
+
+            let width = 1147;
+            let roleId = Number(this.ViewerLevelId);
+
+            if (roleId <= 3) {
+                width -= 105;
+            }
+
+            if (roleId <= 2) {
+                width -= 105;
+            }
+
+            Common.PopupDetails.Instance(window.top).Show(
+                Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params,
+                'PP Live Casino - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+        }
+    }
 }
 
 let showRnGCasinoDetails: Function;
@@ -434,6 +465,7 @@ let showWMBetDetails: Function;
 let showGDGBetDetails: Function;
 let showBGBetDetails: Function;
 let showMaxGameBetDetails: Function;
+let showPragmaticLiveCasinoBetsDetails: Function;
 
 $(document).ready(() => {
     showRnGCasinoDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowRnGCasinoDetails;
@@ -458,4 +490,5 @@ $(document).ready(() => {
     showGDGBetDetails = BetList.Choice.TicketDetails.GDGTicketDetails.Instance.ShowGDGBetDetails;
     showBGBetDetails = BetList.Choice.TicketDetails.BGTicketDetails.Instance.ShowBGBetDetails;
     showMaxGameBetDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowMaxGameDetails;
+    showPragmaticLiveCasinoBetsDetails = BetList.Choice.TicketDetails.PPLiveCasinoTicketDetails.Instance.ShowPragmaticLiveCasinoBetsDetails;
 })
