@@ -25,7 +25,7 @@
         private static sportsLotteryResult: ResultDetails;
         private static ppLiveCasinoResult: ResultDetails;
         private static habaneroResult: ResultDetails;
-        
+
         public static CreateInstance(betTypeId: number): ResultDetails {
             if (betTypeId >= 2501 && betTypeId <= 2699) {
                 this.ng2Result = Common.Utils.IsNullOrUndefinedOrEmpty(this.ng2Result) ? new NG2ResultDetails() : this.ng2Result;
@@ -59,7 +59,7 @@
 
             if ((betTypeId >= 2401 && betTypeId <= 2499) ||
                 (betTypeId >= 3001 && betTypeId <= 3099) ||
-                (betTypeId >= 3101 && betTypeId <= 3199) ||
+                (betTypeId >= 3101 && betTypeId <= 3149) ||
                 (betTypeId >= 3201 && betTypeId <= 3299) ||
                 (betTypeId >= 3401 && betTypeId <= 3499) ||
                 betTypeId == 3300) { // BBin
@@ -133,7 +133,7 @@
                 this.sportsLotteryResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sportsLotteryResult) ? new SportsLotteryResultDetails() : this.sportsLotteryResult;
                 return this.sportsLotteryResult;
             }
-	        if (betTypeId >= 5401 && betTypeId <= 5499) {
+            if (betTypeId >= 5401 && betTypeId <= 5499) {
                 this.maxGameResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.maxGameResult) ? new MaxGameResultDetails() : this.maxGameResult;
                 return this.maxGameResult;
             }
