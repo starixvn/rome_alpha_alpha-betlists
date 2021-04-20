@@ -409,4 +409,30 @@
             Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/PPLiveCasinoResult' + params, "", 835, 675);
         }
     }
+
+    export class HabaneroResultDetails extends BaseResultDetails implements ResultDetails {
+        public ViewResultDetails = (
+            matchId?: number,
+            race?: number,
+            betTypeId?: number,
+            sportTypeId?: number,
+            refNo?: string,
+            userName?: string,
+            winLostDate?: Date,
+            refNoMixParlay?: number,
+            siteId?: number,
+            isOutright?: boolean,
+            betId?: number,
+            gameId3rd?: string,
+            custId?: number,
+            transId3rd?: string) => {
+            var params = '?custId=' + this.CustId +
+                '&GameId=' + transId3rd +
+                '&GameCode=' + gameId3rd +
+                '&siteId=' + betId +
+                '&productId=61';
+
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/HabaneroResult' + params, "", 835, 675);
+        }
+    }
 }
