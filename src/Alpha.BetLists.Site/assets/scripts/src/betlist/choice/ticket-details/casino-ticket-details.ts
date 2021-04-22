@@ -149,7 +149,7 @@
             const params = '?refno=' + refNo
                 + '&custid=' + custId
                 + '&transType=' + transType
-                + '&sportName=AE Casino&productId=45';
+                + '&sportName=AE Sexy&productId=45';
 
             let width = 1047;
             let roleId = Number(this.ViewerLevelId);
@@ -164,7 +164,7 @@
 
             Common.PopupDetails.Instance(window.top).Show(
                 Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params,
-                'AE Casino - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                'AE Sexy - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
         }
     }
 
