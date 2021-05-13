@@ -27,6 +27,7 @@
         private static habaneroResult: ResultDetails;
         private static cgResult: ResultDetails;
         private static VGamingResult: ResultDetails;
+        private static advantPlayResult: ResultDetails;
 
         public static CreateInstance(betTypeId: number): ResultDetails {
             if (betTypeId >= 2501 && betTypeId <= 2699) {
@@ -161,6 +162,11 @@
                 return this.VGamingResult;
             }
 
+            if (betTypeId >= 7701 && betTypeId <= 7799) {
+                this.advantPlayResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.advantPlayResult) ? new AdvantPlayResultDetails() : this.advantPlayResult;
+                return this.advantPlayResult;
+            }
+            
             this.sportsbookResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sportsbookResult) ? new SportsbookResultDetails : this.sportsbookResult;
             return this.sportsbookResult;
         }
