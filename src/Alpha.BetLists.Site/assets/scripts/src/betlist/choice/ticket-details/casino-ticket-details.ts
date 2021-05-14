@@ -74,6 +74,11 @@
             this.ShowDetailsPopup(params);
         }
 
+        public ShowAdvantPlayMiniBetDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
+            const params = this.CreatePopupDetailsParam(refNo, winlossDate, custId, transType, "AdvantPlayMini");
+            this.ShowDetailsPopup(params);
+        }
+
         private CreatePopupDetailsParam = (refNo: string, winlossDate: Date, custId: string, transType: string, sportName: string = "RNG Casino"): string => {
             return "?refNo=" + refNo
                 + "&transType=" + transType
@@ -490,6 +495,7 @@ let showPragmaticLiveCasinoBetsDetails: Function;
 let showHabaneroBetDetails: Function;
 let showCGBetDetails: Function;
 let showAdvantPlayBetDetails: Function;
+let showAdvantPlayMiniBetDetails: Function;
 
 $(document).ready(() => {
     showRnGCasinoDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowRnGCasinoDetails;
@@ -519,4 +525,5 @@ $(document).ready(() => {
     showHabaneroBetDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowHabaneroDetails;
     showCGBetDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowCGDetails;
     showAdvantPlayBetDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowAdvantPlayBetDetails;
+    showAdvantPlayMiniBetDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowAdvantPlayMiniBetDetails;
 })
