@@ -26,6 +26,7 @@
         private static ppLiveCasinoResult: ResultDetails;
         private static habaneroResult: ResultDetails;
         private static cgResult: ResultDetails;
+        private static VGamingResult: ResultDetails;
 
         public static CreateInstance(betTypeId: number): ResultDetails {
             if (betTypeId >= 2501 && betTypeId <= 2699) {
@@ -153,6 +154,11 @@
             if (betTypeId >= 7001 && betTypeId <= 7300) {
                 this.habaneroResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.habaneroResult) ? new HabaneroResultDetails() : this.habaneroResult;
                 return this.habaneroResult;
+            }
+
+            if (betTypeId >= 3802 && betTypeId <= 3899) {
+                this.VGamingResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.VGamingResult) ? new VGamingResultDetails() : this.VGamingResult;
+                return this.VGamingResult;
             }
 
             this.sportsbookResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sportsbookResult) ? new SportsbookResultDetails : this.sportsbookResult;
