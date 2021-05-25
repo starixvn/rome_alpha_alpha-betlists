@@ -13,7 +13,9 @@
             DateTime fromDate,
             DateTime toDate,
             DateTime moveBetsDate,
-            bool showProgressiveBonus = false)
+            bool showProgressiveBonus = false,
+            int maxTotalRow = 10000,
+            bool isExportExcel = false)
         {
             CustId = custId;
             FromDate = fromDate;
@@ -22,6 +24,10 @@
             ProductIds = productIds;
             ProductDetails = productDetails;
             ShowProgressiveBonus = showProgressiveBonus;
+            ErrCode = 0;
+            ErrMsg = string.Empty;
+            MaxTotalRow = maxTotalRow;
+            IsExportExcel = isExportExcel;
         }
 
         public int CustId { get; }
@@ -38,6 +44,14 @@
         public string ProductDetails { get; }
 
         public bool ShowProgressiveBonus { get; }
+
+        public int MaxTotalRow { get; set; }
+
+        public int ErrCode { get; set; }
+
+        public string ErrMsg { get; set; }
+
+        public bool IsExportExcel { get; }
 
         public override string GetSettingKey() => "Age_BetList_SelWinLossByDate_Mem";
 

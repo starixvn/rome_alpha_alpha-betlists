@@ -47,15 +47,15 @@
                 ? productService.IsEnabledJackpot(message.CustId)
                 : message.IsEnabledJackpot;
 
-            var winLossParam = CreateWinLossParam(message, validUserSelectedProductIds, productDetailsXML);
+            var winLossParam = CreateWinLossParam(message, validUserSelectedProductIds, productDetailsXML, message.MaxTotalRow, message.MaxTotalRowConfig);
             var betlistData = await winLossService.GetBetList(winLossParam);
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
-            return new WinLossViewModel(message, betlistData, Builder, TicketHelper, showContributionAmountRoundNote, message.IsGroupHeadline);
+            return new WinLossViewModel(message, betlistData, Builder, TicketHelper, showContributionAmountRoundNote, message.IsGroupHeadline, betlistOutputParams: betlistData.BetlistOutputParams);
         }
 
-        protected internal static WinLossParam CreateWinLossParam(WinLossQuery message, IEnumerable<int> productIds, string productDetailsXML)
+        protected internal static WinLossParam CreateWinLossParam(WinLossQuery message, IEnumerable<int> productIds, string productDetailsXML, int maxTotalRow = 10000, int maxTotalRowConfig = 10000)
             => new WinLossParam(
                message.CustId,
                productIds,
@@ -63,6 +63,8 @@
                message.ToDate,
                message.LimitedDateToShowInfo,
                message.Language,
-               productDetailsXML);
+               productDetailsXML,
+               maxTotalRow,
+               maxTotalRowConfig);
     }
 }

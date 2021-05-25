@@ -5,6 +5,7 @@
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Requests;
+    using System;
 
     public class WinLossViewModel : BetListBaseViewModel
     {
@@ -16,12 +17,14 @@
             bool showContributionAmountRoundNote,
             bool isGroupHeadline = false,
             bool showMemberName = false,
-            string[] excludingTicketStatus = null)
+            string[] excludingTicketStatus = null,
+            BetlistOutputParams betlistOutputParams = null)
             : base(query, betListData, builder, ticketHelper, showMemberName)
         {
             Footer = new Footer(betListData, baseQuery.ViewerLevel, showMemberName, excludingTicketStatus);
             ShowContributionAmountRoundNote = showContributionAmountRoundNote;
             IsGroupHeadline = isGroupHeadline;
+            BetlistOutputParams = betlistOutputParams ?? new BetlistOutputParams();
         }
 
         public bool AllowToViewSuperPT => baseQuery.ViewerLevel.IsSuperLevel();
@@ -33,5 +36,7 @@
         public bool IsGroupHeadline { get; }
 
         public Footer Footer { get; }
+
+        public BetlistOutputParams BetlistOutputParams { get; }
     }
 }

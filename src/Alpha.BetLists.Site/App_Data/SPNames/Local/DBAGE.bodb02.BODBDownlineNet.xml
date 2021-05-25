@@ -8,7 +8,7 @@
       <Mapping DataField="ProductID" ObjectProperty="id" />
       <Mapping DataField="ProductName" ObjectProperty="name" />
     </Setting>
-    <Setting Key="Age_Rpt_ConsolidatedGroupProductSel" SpName="Age_Rpt_ConsolidatedGroupProductSel_xtest" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
+    <Setting Key="Age_Rpt_ConsolidatedGroupProductSel" SpName="Age_Rpt_ConsolidatedGroupProductSel" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
       <Mapping DataField="IsShow" ObjectProperty="IsEnable" />
       <Mapping DataField="ProductName" ObjectProperty="Name" />
       <Mapping DataField="ProductId" ObjectProperty="Id" />
@@ -21,7 +21,7 @@
     <Setting Key="Age_CustomerStatusSel" SpName="Age_CustomerStatusSel" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
   </Function>
   <Function Name="Win Loss">
-    <Setting Key="Age_BetList_SelWinLossByDate_Mem" SpName="Age_BetList_SelWinLossByDate_Mem_xpre" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
+    <Setting Key="Age_BetList_SelWinLossByDate_Mem" SpName="Age_BetList_SelWinLossByDate_Mem" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="TicketDto"></Mapping>
@@ -336,7 +336,7 @@
     </Setting>
   </Function>
   <Function Name="Member BetList">
-    <Setting Key="Age_BetList_SelAllByDate_Mem" SpName="Age_BetList_SelAllByDate_Mem_xpre" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
+    <Setting Key="Age_BetList_SelAllByDate_Mem" SpName="Age_BetList_SelAllByDate_Mem" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="TicketDto"></Mapping>
@@ -477,7 +477,7 @@
     <Setting Key="Age_Monitor_OutrightSel" SpName="Age_Monitor_OutrightSel" DbName="DBBOF.bodb02.BODBDownlineNet" Plain="0"></Setting>
   </Function>
   <Function Name="Daily Statement">
-    <Setting Key="Age_BetList_SelByDayAll_Mem" SpName="Age_BetList_SelByDayAll_Mem_xpre" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
+    <Setting Key="Age_BetList_SelByDayAll_Mem" SpName="Age_BetList_SelByDayAll_Mem" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="TicketDto"></Mapping>
@@ -505,7 +505,7 @@
     </Setting>
   </Function>
   <Function Name="Casino Details">
-    <Setting Key="Acc_BetList_Detail_6" SpName="Acc_BetList_RNG_Detail_xpre" DbName="DBACC.bodb02.BODBDownlineNet" Plain="0">
+    <Setting Key="Acc_BetList_Detail_6" SpName="Acc_BetList_RNG_Detail" DbName="DBACC.bodb02.BODBDownlineNet" Plain="0">
       <Mapping DataField="transid" ObjectProperty="TransId" />
       <Mapping DataField="SportType" ObjectProperty="SportTypeId" />
       <Mapping DataField="BetType" ObjectProperty="BetTypeId" />
@@ -678,7 +678,7 @@
       <Mapping DataField="sdiscount" ObjectProperty="SuperDiscount" />
       <Mapping DataField="BetTeam" ObjectProperty="BetTeam" />
     </Setting>
-    <Setting Key="Acc_BetList_Detail_50" SpName="Acc_BetList_RNG_Detail_xpre" DbName="DBACC.bodb02.BODBDownlineNet" Plain="0">
+    <Setting Key="Acc_BetList_Detail_50" SpName="Acc_BetList_RNG_Detail" DbName="DBACC.bodb02.BODBDownlineNet" Plain="0">
       <Mapping DataField="transid" ObjectProperty="TransId" />
       <Mapping DataField="SportType" ObjectProperty="SportTypeId" />
       <Mapping DataField="BetType" ObjectProperty="BetTypeId" />
@@ -764,7 +764,7 @@
       <Mapping DataField="sdiscount" ObjectProperty="SuperDiscount" />
       <Mapping DataField="BetTeam" ObjectProperty="BetTeam" />
     </Setting>
-    <Setting Key="Acc_BetList_Detail_56" SpName="Acc_BetList_RNG_Detail_xpre" DbName="DBACC.bodb02.BODBDownlineNet" Plain="0">
+    <Setting Key="Acc_BetList_Detail_56" SpName="Acc_BetList_RNG_Detail" DbName="DBACC.bodb02.BODBDownlineNet" Plain="0">
       <Mapping DataField="transid" ObjectProperty="TransId" />
       <Mapping DataField="SportType" ObjectProperty="SportTypeId" />
       <Mapping DataField="BetType" ObjectProperty="BetTypeId" />

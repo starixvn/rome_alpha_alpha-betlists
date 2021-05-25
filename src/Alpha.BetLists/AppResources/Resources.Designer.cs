@@ -187,7 +187,7 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You can only view the report data with settled time from {0}.
+        ///   Looks up a localized string similar to You can only view the report data with settled time from {0}..
         /// </summary>
         public static string CanOnlyViewDataAfterTimeHistoryReport {
             get {
@@ -264,6 +264,24 @@ namespace Alpha.BetLists.AppResources {
         public static string events {
             get {
                 return ResourceManager.GetString("events", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The system can only export up to {0} tickets. Please select a shorter date range..
+        /// </summary>
+        public static string ExceededMaxTotalRowExportExcelFunc {
+            get {
+                return ResourceManager.GetString("ExceededMaxTotalRowExportExcelFunc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your report contains {0} tickets but the page can only show up to {1}. Please select a shorter date range or use the export feature..
+        /// </summary>
+        public static string ExceededMaxTotalRowWithExcelFunc {
+            get {
+                return ResourceManager.GetString("ExceededMaxTotalRowWithExcelFunc", resourceCulture);
             }
         }
         
