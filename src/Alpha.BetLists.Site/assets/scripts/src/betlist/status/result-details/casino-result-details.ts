@@ -489,4 +489,57 @@
             Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/VGamingResult' + params, "", 835, 675);
         }
     }
+    
+    
+    export class AdvantPlayResultDetails extends BaseResultDetails implements ResultDetails {
+        public ViewResultDetails = (
+            matchId?: number,
+            race?: number,
+            betTypeId?: number,
+            sportTypeId?: number,
+            refNo?: string,
+            userName?: string,
+            winLostDate?: Date,
+            refNoMixParlay?: number,
+            siteId?: number,
+            isOutright?: boolean,
+            betId?: number,
+            gameId3rd?: string,
+            custId?: number,
+            transId3rd?: string) => {
+            var params = '?custId=' + this.CustId +
+                '&GameId=' + transId3rd +
+                '&GameCode=' + gameId3rd +
+                '&siteId=' + betId +
+                '&productId=67';
+
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/AdvantPlayResult' + params, "", 835, 675);
+        }
+    }
+
+    export class AdvantPlayMiniResultDetails extends BaseResultDetails implements ResultDetails {
+        public ViewResultDetails = (
+            matchId?: number,
+            race?: number,
+            betTypeId?: number,
+            sportTypeId?: number,
+            refNo?: string,
+            userName?: string,
+            winLostDate?: Date,
+            refNoMixParlay?: number,
+            siteId?: number,
+            isOutright?: boolean,
+            betId?: number,
+            gameId3rd?: string,
+            custId?: number,
+            transId3rd?: string) => {
+            var params = '?custId=' + this.CustId +
+                '&GameId=' + transId3rd +
+                '&GameCode=' + gameId3rd +
+                '&siteId=' + betId +
+                '&productId=68';
+
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/AdvantPlayMiniResult' + params, "", 835, 675);
+        }
+    }
 }
