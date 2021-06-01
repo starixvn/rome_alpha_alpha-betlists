@@ -78,8 +78,9 @@
                             }
                             else
                             {
-                                var ticketDto = oldBetListDataTuple.Item1.Take(param.MaxTotalRowConfig - totalTickets);
-                                var ticketData = oldBetListDataTuple.Item2.Take(param.MaxTotalRowConfig - totalTickets);
+                                var remainingTickets = param.MaxTotalRowConfig - bettrans14Tickets;
+                                var ticketDto = oldBetListDataTuple.Item1.Take(remainingTickets);
+                                var ticketData = oldBetListDataTuple.Item2.Take(remainingTickets);
                                 oldBetListDataTuple = new Tuple<IEnumerable<TicketDto>, IEnumerable<TicketData>, BetlistOutputParams>(
                                     ticketDto, 
                                     ticketData, 
