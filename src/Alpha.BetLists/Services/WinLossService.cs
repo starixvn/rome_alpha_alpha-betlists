@@ -21,13 +21,16 @@
     {
         private readonly ReportDateService reportDateService;
         private readonly IDynamicRepository dynamicRepository;
+        private readonly PartialUMService partialUMService;
 
         public WinLossServiceImpl(
             ReportDateService reportDateService,
-            IDynamicRepository dynamicRepository)
+            IDynamicRepository dynamicRepository,
+            PartialUMService partialUMService)
         {
             this.reportDateService = reportDateService;
             this.dynamicRepository = dynamicRepository;
+            this.partialUMService = partialUMService;
         }
 
         public async Task<BetListData> GetBetList(WinLossParam param)

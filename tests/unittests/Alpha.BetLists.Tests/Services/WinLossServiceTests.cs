@@ -36,7 +36,7 @@
                 .FetchMultipleAsync<TicketDto, TicketData>(Arg.Any<GetBetListWinLossByDateOldCriteria>())
                 .Returns(BetListDataTest.OldBetListDataTuple);
 
-            winLossService = new WinLossServiceImpl(reportDateService, this.dataFixture.DynamicRepository);
+            winLossService = new WinLossServiceImpl(reportDateService, this.dataFixture.DynamicRepository, dataFixture.PartialUMService);
         }
 
         [Fact]

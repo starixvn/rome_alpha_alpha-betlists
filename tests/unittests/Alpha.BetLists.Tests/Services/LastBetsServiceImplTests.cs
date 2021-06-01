@@ -41,7 +41,7 @@
                 .Fetch<MatchInfo>(Arg.Any<GetRunningOtherMatchCriteria>())
                 .Returns(LastBetsTestData.RunningOtherMatch);
 
-            lastBetsService = new LastBetsServiceImpl(dataFixture.DynamicRepository, dataFixture.CacheService);
+            lastBetsService = new LastBetsServiceImpl(dataFixture.DynamicRepository, dataFixture.CacheService, dataFixture.PartialUMService);
 
             compareLogic = new CompareLogic();
         }

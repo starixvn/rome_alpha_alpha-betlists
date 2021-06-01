@@ -1,10 +1,10 @@
 ﻿namespace Alpha.BetLists.Site.Controllers
 {
-    using MediatR;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using System.Web.SessionState;
+    using MediatR;
     using ViewModels;
     using Web;
 

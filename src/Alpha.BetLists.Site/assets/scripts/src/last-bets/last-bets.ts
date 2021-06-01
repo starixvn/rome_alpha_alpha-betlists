@@ -145,6 +145,16 @@ namespace BetList {
                 return;
             }
 
+            if (request.status === 500 && request.responseText) {
+                const jsonData = JSON.parse(request.responseText);
+                if (jsonData.UMFrom && jsonData.UMTo) {
+                    location.href = top["alpha"].urls.mainRootPath
+                        + "PartialUM/Index?umfrom=" + jsonData.UMFrom
+                        + "&umto=" + jsonData.UMTo;
+                    return;
+                }
+            }
+
             this.showError();
         };
 

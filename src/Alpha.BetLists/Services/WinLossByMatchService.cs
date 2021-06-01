@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using Alpha.Web.Helpers;
     using Criteria.WinLossByMatch;
     using Fanex.BetList.Core.Entities;
     using Fanex.Data.Repository;
@@ -20,13 +21,16 @@
     {
         private readonly ReportDateService reportDateService;
         private readonly IDynamicRepository dynamicRepository;
+        private readonly PartialUMService partialUMService;
 
         public WinLossByMatchServiceImpl(
             ReportDateService reportDateService,
-            IDynamicRepository dynamicRepository)
+            IDynamicRepository dynamicRepository,
+            PartialUMService partialUMService)
         {
             this.reportDateService = reportDateService;
             this.dynamicRepository = dynamicRepository;
+            this.partialUMService = partialUMService;
         }
 
         public async Task<BetListData> GetBetList(WinLossByMatchParam param)
@@ -54,48 +58,68 @@
         }
 
         private async Task<Tuple<IEnumerable<TicketDto>, IEnumerable<TicketData>>> GetWinlossOutright(WinLossByMatchParam param)
-            => await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(
-                new GetWinLossOutrightCriteria(
-                    param.CustId,
-                    param.LeagueId,
-                    param.Language,
-                    param.FromDate,
-                    param.ToDate,
-                    reportDateService.GetMoveBetsDay(),
-                    param.CustLevel));
+        {
+            var criteria = new GetWinLossOutrightCriteria(
+                param.CustId,
+                param.LeagueId,
+                param.Language,
+                param.FromDate,
+                param.ToDate,
+                reportDateService.GetMoveBetsDay(),
+                param.CustLevel);
+
+            partialUMService.CheckPartialUM(criteria.GetSettingKey());
+
+            return await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
+        }
 
         private async Task<Tuple<IEnumerable<TicketDto>, IEnumerable<TicketData>>> GetWinlossRacing(WinLossByMatchParam param)
-            => await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(
-                new GetWinLossRacingCriteria(
-                    param.CustId,
-                    param.BetType,
-                    param.Race,
-                    param.FromDate,
-                    param.ToDate,
-                    reportDateService.GetMoveBetsDay(),
-                    param.CustLevel));
+        {
+            var criteria = new GetWinLossRacingCriteria(
+                param.CustId,
+                param.BetType,
+                param.Race,
+                param.FromDate,
+                param.ToDate,
+                reportDateService.GetMoveBetsDay(),
+                param.CustLevel);
+
+            partialUMService.CheckPartialUM(criteria.GetSettingKey());
+
+            return await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
+        }
 
         private async Task<Tuple<IEnumerable<TicketDto>, IEnumerable<TicketData>>> GetWinlossOthers(WinLossByMatchParam param)
-            => await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(
-                new GetWinLossByMatchCriteria(
-                    param.CustId,
-                    param.FromDate,
-                    param.ToDate,
-                    reportDateService.GetMoveBetsDay(),
-                    param.MatchId,
-                    param.BetType,
-                    param.CustName,
-                    param.LiveIndicator,
-                    param.CustLevel));
+        {
+            var criteria = new GetWinLossByMatchCriteria(
+                param.CustId,
+                param.FromDate,
+                param.ToDate,
+                reportDateService.GetMoveBetsDay(),
+                param.MatchId,
+                param.BetType,
+                param.CustName,
+                param.LiveIndicator,
+                param.CustLevel);
+
+            partialUMService.CheckPartialUM(criteria.GetSettingKey());
+
+            return await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
+        }
 
         private async Task<Tuple<IEnumerable<TicketDto>, IEnumerable<TicketData>>> GetWinlossByBettype(WinLossByMatchParam param)
-            => await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(
-                new GetWinLossByBetTypeCriteria(
-                    param.CustId,
-                    param.FromDate,
-                    param.ToDate,
-                    reportDateService.GetMoveBetsDay(),
-                    param.CustLevel,
-                    param.BetType));
+        {
+            var criteria = new GetWinLossByBetTypeCriteria(
+                param.CustId,
+                param.FromDate,
+                param.ToDate,
+                reportDateService.GetMoveBetsDay(),
+                param.CustLevel,
+                param.BetType);
+
+            partialUMService.CheckPartialUM(criteria.GetSettingKey());
+
+            return await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
+        }
     }
 }

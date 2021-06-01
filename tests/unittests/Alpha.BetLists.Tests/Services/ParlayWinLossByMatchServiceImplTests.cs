@@ -28,7 +28,7 @@
             var reportDateService = Substitute.For<ReportDateService>();
             reportDateService.GetMoveBetsDay().Returns(DateTime.Today);
 
-            winLossService = new ParlayWinLossByMatchServiceImpl(reportDateService, this.dataFixture.DynamicRepository);
+            winLossService = new ParlayWinLossByMatchServiceImpl(reportDateService, this.dataFixture.DynamicRepository, dataFixture.PartialUMService);
         }
 
         [Fact]
