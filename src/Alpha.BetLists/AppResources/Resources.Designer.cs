@@ -277,7 +277,7 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your report contains {0} tickets but the page can only show up to {1}. Please select a shorter date range or use the export feature..
+        ///   Looks up a localized string similar to Your report contains {0} tickets but the page can only show up to {1}. Please select a shorter date range or export to Excel.
         /// </summary>
         public static string ExceededMaxTotalRowWithExcelFunc {
             get {

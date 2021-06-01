@@ -393,4 +393,10 @@
   <data name="NoteCancelledBetPage" xml:space="preserve">
     <value>ท่านสามารถดูรายงานข้อมูลได้จาก {0}.</value>
   </data>
+  <data name="ExceededMaxTotalRowWithExcelFunc" xml:space="preserve">
+    <value>รายงานของคุณมีตั๋วเดิมพัน {0} รายการ แต่การแสดงผลจำกัดสูงสุดที่ {1}  กรุณาลดช่วงวันที่ลง หรือเลือกส่งข้อมูลไปยัง Excel</value>
+  </data>
+  <data name="ExceededMaxTotalRowExportExcelFunc" xml:space="preserve">
+    <value>ระบบจำกัดการส่งข้อมูลออกได้สูงสุดที่ {0} รายการ  กรุณาลดช่วงวันที่ลง</value>
+  </data>
 </root>

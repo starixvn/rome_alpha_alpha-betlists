@@ -415,7 +415,7 @@
     <value>You can view the report data from {0}.</value>
   </data>
   <data name="ExceededMaxTotalRowWithExcelFunc" xml:space="preserve">
-    <value>Your report contains {0} tickets but the page can only show up to {1}. Please select a shorter date range or use the export feature.</value>
+    <value>Your report contains {0} tickets but the page can only show up to {1}. Please select a shorter date range or export to Excel</value>
   </data>
   <data name="ExceededMaxTotalRowExportExcelFunc" xml:space="preserve">
     <value>The system can only export up to {0} tickets. Please select a shorter date range.</value>

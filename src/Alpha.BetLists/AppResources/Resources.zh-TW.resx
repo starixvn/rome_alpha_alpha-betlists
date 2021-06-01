@@ -393,4 +393,10 @@
   <data name="NoteCancelledBetPage" xml:space="preserve">
     <value>您可查看報表數據從 {0}. </value>
   </data>
+  <data name="ExceededMaxTotalRowWithExcelFunc" xml:space="preserve">
+    <value>您的報表含有{0}張票，但目前頁面只支援最多{1}筆資料。請選取更短的日期區間或直接輸出成Excel報表查看。</value>
+  </data>
+  <data name="ExceededMaxTotalRowExportExcelFunc" xml:space="preserve">
+    <value>系統只能輸出最多{0}張票。請選擇更短的日期區間以利輸出。</value>
+  </data>
 </root>
