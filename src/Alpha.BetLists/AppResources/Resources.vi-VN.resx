@@ -406,4 +406,10 @@
   <data name="NoteCancelledBetPage" xml:space="preserve">
     <value>Bạn có thể tra cứu dữ liệu báo cáo từ ngày {0}.</value>
   </data>
+  <data name="ExceededMaxTotalRowWithExcelFunc" xml:space="preserve">
+    <value>Báo cáo của bạn chứa {0} vé cược, nhưng hệ thống chỉ hiển thị được tối đa {1}. Vui lòng chọn lại phạm vi ngày ngắn hơn hoặc xuất dữ liệu sang Excel.</value>
+  </data>
+  <data name="ExceededMaxTotalRowExportExcelFunc" xml:space="preserve">
+    <value>Hệ thống chỉ xuất dữ liệu được tối đa {0} vé cược. Vui lòng chọn lại phạm vi ngày ngắn hơn.</value>
+  </data>
 </root>

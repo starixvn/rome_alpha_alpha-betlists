@@ -1,5 +1,6 @@
 ﻿namespace Alpha.BetLists.Site.Handlers.WinLoss
 {
+    using System;
     using System.Threading.Tasks;
     using AppResources;
     using BetLists.Models;
@@ -51,17 +52,18 @@
             validUserSelectedProductIds = await productDetailService.RemoveProductIdsAsync(validUserSelectedProductIds, message.ResourceIds);
             var productDetailsXML = await productDetailService.BuildProductDetailsXMLAsync(validUserSelectedProductIds, message.ResourceIds);
 
-            var winLossParam = WinLossHandler.CreateWinLossParam(message, validUserSelectedProductIds, productDetailsXML);
+            var winLossParam = WinLossHandler.CreateWinLossParam(message, validUserSelectedProductIds, productDetailsXML, message.MaxTotalRowExportExcel, message.MaxTotalRowExportExcelConfig);
+            winLossParam.IsExcel = true;
             var betlistData = await winLossService.GetBetList(winLossParam);
 
-            var winLossViewModel = new WinLossViewModel(message, betlistData, null, TicketHelper, false);
-
+            var winLossViewModel = new WinLossViewModel(message, betlistData, null, TicketHelper, false, betlistOutputParams: betlistData.BetlistOutputParams);
             workbook = workbook.UseTemplate(GetTemplateInfo(message.ViewerLevel));
             RtfHelper = message.RtfHelper ?? InitRTFHelper((workbook as NpoiWorkbook<TicketDto>).Workbook);
 
             var fileContent = workbook
                     .Header(Resources.ResourceManager.GetString)
-                    .Title(winLossViewModel.Title)
+                    .Title(string.IsNullOrWhiteSpace(winLossViewModel.BetlistOutputParams.ErrMsg) ?
+                        winLossViewModel.Title : $"{winLossViewModel.BetlistOutputParams.ErrMsg}{Environment.NewLine}{winLossViewModel.Title}")
                     .Body(betlistData.Tickets, GetBodyRowMapper(message.ViewerLevel, winLossViewModel))
                     .Footer(new TicketDto(), GetFooterRowMapper(winLossViewModel.Footer))
                     .ExportToBytes();
