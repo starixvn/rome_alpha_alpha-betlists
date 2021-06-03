@@ -48,44 +48,40 @@
                     betListDataTuple = await GetBetList(param, fromDate: balanceUpDate);
                     var bettrans14Tickets = betListDataTuple.Item3.ErrCode != 0 ?
                         betListDataTuple.Item3.MaxTotalRow : betListDataTuple.Item1.Count();
-                    var errFormat = param.IsExcel ? 
-                        string.Format(Resources.ExceededMaxTotalRowExportExcelFunc, param.MaxTotalRowConfig) : 
-                        string.Format(Resources.ExceededMaxTotalRowWithExcelFunc, bettrans14Tickets, param.MaxTotalRowConfig);
 
-                    var oldBetListDataTuple =
-                        new Tuple<IEnumerable<TicketDto>, IEnumerable<TicketData>, BetlistOutputParams>(
-                            Enumerable.Empty<TicketDto>(),
-                            Enumerable.Empty<TicketData>(),
-                            new BetlistOutputParams(100, errFormat, param.MaxTotalRowConfig));
+                    Tuple<IEnumerable<TicketDto>, IEnumerable<TicketData>, BetlistOutputParams> oldBetListDataTuple;
 
-                    if (betListDataTuple.Item3.ErrCode == 0 && bettrans14Tickets <= param.MaxTotalRowConfig)
+                    if (bettrans14Tickets <= param.MaxTotalRowConfig)
                     {
                         param.MaxTotalRow = (param.MaxTotalRow - bettrans14Tickets) + 1;
-                        oldBetListDataTuple = await GetBetListBeforeBalanceUpDay(param, fromDate: fromDate, toDate: previousBalanceUpDate);
-                        var totalTickets = (oldBetListDataTuple.Item3.ErrCode != 0 ? 
-                            oldBetListDataTuple.Item3.MaxTotalRow : oldBetListDataTuple.Item1.Count()) + bettrans14Tickets;
+                    }
+                        
+                    oldBetListDataTuple = await GetBetListBeforeBalanceUpDay(param, fromDate: fromDate, toDate: previousBalanceUpDate);
+                    var totalTickets = (oldBetListDataTuple.Item3.ErrCode != 0 ? 
+                        oldBetListDataTuple.Item3.MaxTotalRow : oldBetListDataTuple.Item1.Count()) + bettrans14Tickets;
 
-                        if (totalTickets > param.MaxTotalRowConfig)
+                    if (totalTickets > param.MaxTotalRowConfig)
+                    {
+                        if (!param.IsExcel)
                         {
-                            if (!param.IsExcel)
-                            {
-                                betListDataTuple = oldBetListDataTuple = new Tuple<IEnumerable<TicketDto>, IEnumerable<TicketData>, BetlistOutputParams>(
-                                    Enumerable.Empty<TicketDto>(),
-                                    Enumerable.Empty<TicketData>(),
-                                    new BetlistOutputParams(100, 
-                                        string.Format(Resources.ExceededMaxTotalRowWithExcelFunc, totalTickets, param.MaxTotalRowConfig), 
-                                        param.MaxTotalRowConfig));
-                            }
-                            else
-                            {
-                                var remainingTickets = param.MaxTotalRowConfig - bettrans14Tickets;
-                                var ticketDto = oldBetListDataTuple.Item1.Take(remainingTickets);
-                                var ticketData = oldBetListDataTuple.Item2.Take(remainingTickets);
-                                oldBetListDataTuple = new Tuple<IEnumerable<TicketDto>, IEnumerable<TicketData>, BetlistOutputParams>(
-                                    ticketDto, 
-                                    ticketData, 
-                                    oldBetListDataTuple.Item3);
-                            }
+                            betListDataTuple = oldBetListDataTuple = new Tuple<IEnumerable<TicketDto>, IEnumerable<TicketData>, BetlistOutputParams>(
+                                Enumerable.Empty<TicketDto>(),
+                                Enumerable.Empty<TicketData>(),
+                                new BetlistOutputParams(100,
+                                    string.Format(Resources.ExceededMaxTotalRowWithExcelFunc, totalTickets, param.MaxTotalRowConfig),
+                                    param.MaxTotalRowConfig));
+                        }
+                        else
+                        {
+                            var remainingTickets = param.MaxTotalRowConfig - bettrans14Tickets;
+                            var ticketDto = oldBetListDataTuple.Item1.Take(remainingTickets);
+                            var ticketData = oldBetListDataTuple.Item2.Take(remainingTickets);
+                            oldBetListDataTuple = new Tuple<IEnumerable<TicketDto>, IEnumerable<TicketData>, BetlistOutputParams>(
+                                ticketDto,
+                                ticketData,
+                                new BetlistOutputParams(100,
+                                    string.Format(Resources.ExceededMaxTotalRowExportExcelFunc, param.MaxTotalRowConfig),
+                                    param.MaxTotalRowConfig));
                         }
                     }
 

@@ -87,7 +87,7 @@
 
         public UserLevel ViewerLevel { get; protected set; }
 
-        public string Title { get; set; }
+        public string Title { get; protected set; }
 
         public int TotalColumn { get; protected set; }
 

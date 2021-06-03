@@ -10,14 +10,15 @@
 
     public class WinLossQuery : BaseQuery, IRequest<WinLossViewModel>
     {
-        private const int DefaultMaxTotalRow = 10000;
+        private const int DefaultMaxTotalRowView = 10000;
+        private const int DefaultMaxTotalRowExportExcel = 50000;
 
         public WinLossQuery(IUser viewer) : base(viewer)
         {
             MaxTotalRowConfig = MaxTotalRow = string.IsNullOrWhiteSpace(AppSettings.GetConfigValue("Betlist:MaxTotalRowView")) ? 
-                DefaultMaxTotalRow : int.Parse(AppSettings.GetConfigValue("Betlist:MaxTotalRowView"));
+                DefaultMaxTotalRowView : int.Parse(AppSettings.GetConfigValue("Betlist:MaxTotalRowView"));
             MaxTotalRowExportExcelConfig = MaxTotalRowExportExcel = string.IsNullOrWhiteSpace(AppSettings.GetConfigValue("Betlist:MaxTotalRowExportExcel")) ?
-                DefaultMaxTotalRow : int.Parse(AppSettings.GetConfigValue("Betlist:MaxTotalRowExportExcel"));
+                DefaultMaxTotalRowExportExcel : int.Parse(AppSettings.GetConfigValue("Betlist:MaxTotalRowExportExcel"));
         }
 
         public bool IsGroupHeadline { get; set; }
