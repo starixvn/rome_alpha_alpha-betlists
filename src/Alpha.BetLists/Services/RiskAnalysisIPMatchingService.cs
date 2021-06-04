@@ -1,12 +1,13 @@
 ﻿namespace Alpha.BetLists.Services
 {
+    using System.Linq;
+    using System.Threading.Tasks;
     using Alpha.BetLists.Criteria.RiskAnalysisIPMatching;
+    using Alpha.Web.Helpers;
     using Fanex.BetList.Core.Entities;
     using Fanex.Data.Repository;
     using Models;
     using Params;
-    using System.Linq;
-    using System.Threading.Tasks;
 
     public interface RiskAnalysisIPMatchingService
     {
@@ -16,10 +17,14 @@
     public class RiskAnalysisIPMatchingServiceImpl : RiskAnalysisIPMatchingService
     {
         private readonly IDynamicRepository dynamicRepository;
+        private readonly PartialUMService partialUMService;
 
-        public RiskAnalysisIPMatchingServiceImpl(IDynamicRepository dynamicRepository)
+        public RiskAnalysisIPMatchingServiceImpl(
+            IDynamicRepository dynamicRepository,
+            PartialUMService partialUMService)
         {
             this.dynamicRepository = dynamicRepository;
+            this.partialUMService = partialUMService;
         }
 
         public async Task<BetListData> GetBetList(RiskAnalysisIPMatchingParam param)
@@ -29,6 +34,8 @@
                     param.IP,
                     param.Date,
                     param.MoveBetsDay);
+
+            partialUMService.CheckPartialUM(criteria.GetSettingKey());
 
             var betListDataTuple = await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
             
