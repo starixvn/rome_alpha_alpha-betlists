@@ -7,6 +7,7 @@
     using Alpha.BetLists.Services;
     using Alpha.BetLists.Tests.Fixtures;
     using Alpha.BetLists.Tests.TestData;
+    using Alpha.Web.Helpers;
     using BetLists.Params;
     using Fanex.BetList.Core.Entities;
     using NSubstitute;
@@ -24,7 +25,7 @@
             dataFixture.DynamicRepository
                 .FetchMultipleAsync<TicketDto, TicketData>(Arg.Any<GetCancelledBetCriteria>()).Returns(BetListDataTest.BetListDataTuple);
 
-            service = new CancelledBetServiceImpl(dataFixture.DynamicRepository);
+            service = new CancelledBetServiceImpl(dataFixture.DynamicRepository, dataFixture.PartialUMService);
             this.dataFixture = dataFixture;
         }
 

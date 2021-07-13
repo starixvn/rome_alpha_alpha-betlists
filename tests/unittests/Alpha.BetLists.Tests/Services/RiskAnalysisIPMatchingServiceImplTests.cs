@@ -1,5 +1,7 @@
 ﻿namespace Alpha.BetLists.Tests.Services
 {
+    using System;
+    using System.Linq;
     using Alpha.BetLists.Criteria.RiskAnalysisIPMatching;
     using BetLists.Models;
     using BetLists.Params;
@@ -7,8 +9,6 @@
     using Fanex.BetList.Core.Entities;
     using Fixtures;
     using NSubstitute;
-    using System;
-    using System.Linq;
     using TestData;
     using Xunit;
 
@@ -26,7 +26,7 @@
                 .FetchMultipleAsync<TicketDto, TicketData>(Arg.Any<GetRiskAnalysisIPMatchingCriteria>())
                 .Returns(BetListDataTest.BetListDataTuple);
 
-            service = new RiskAnalysisIPMatchingServiceImpl(this.dataFixture.DynamicRepository);
+            service = new RiskAnalysisIPMatchingServiceImpl(this.dataFixture.DynamicRepository, this.dataFixture.PartialUMService);
         }
 
         [Fact]

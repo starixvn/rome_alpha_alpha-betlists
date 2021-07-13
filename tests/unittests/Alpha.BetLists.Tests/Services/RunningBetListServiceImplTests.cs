@@ -26,7 +26,7 @@
                 .FetchMultipleAsync<TicketDto, TicketData>(Arg.Any<GetBetListRunningByDateCriteria>())
                 .Returns(BetListDataTest.BetListDataTuple);
 
-            runningBetListService = new RunningBetListServiceImpl(this.dataFixture.DynamicRepository);
+            runningBetListService = new RunningBetListServiceImpl(this.dataFixture.DynamicRepository, dataFixture.PartialUMService);
         }
 
         [Fact]

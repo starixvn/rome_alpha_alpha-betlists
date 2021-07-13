@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Alpha.BetLists.AppResources;
+    using Alpha.Web.Helpers;
     using Criteria.WinLossByDate;
     using Extensions;
     using Fanex.BetList.Core.Entities;
@@ -21,13 +22,16 @@
     {
         private readonly ReportDateService reportDateService;
         private readonly IDynamicRepository dynamicRepository;
+        private readonly PartialUMService partialUMService;
 
         public WinLossServiceImpl(
             ReportDateService reportDateService,
-            IDynamicRepository dynamicRepository)
+            IDynamicRepository dynamicRepository,
+            PartialUMService partialUMService)
         {
             this.reportDateService = reportDateService;
             this.dynamicRepository = dynamicRepository;
+            this.partialUMService = partialUMService;
         }
 
         public async Task<BetListData> GetBetList(WinLossParam param)
@@ -110,6 +114,9 @@
                             reportDateService.GetMoveBetsDay(),
                             maxTotalRow: param.MaxTotalRow,
                             isExportExcel: param.IsExcel);
+
+            partialUMService.CheckPartialUM(criteria.GetSettingKey());
+
             var result = await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
             var errFormat = param.IsExcel ? 
                 string.Format(Resources.ExceededMaxTotalRowExportExcelFunc, param.MaxTotalRowConfig) : 
@@ -133,6 +140,9 @@
                             param.Language,
                             maxTotalRow: param.MaxTotalRow,
                             isExportExcel: param.IsExcel);
+
+            partialUMService.CheckPartialUM(criteria.GetSettingKey());
+
             var result = await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
             var errFormat = param.IsExcel ?
                 string.Format(Resources.ExceededMaxTotalRowExportExcelFunc, param.MaxTotalRowConfig) :

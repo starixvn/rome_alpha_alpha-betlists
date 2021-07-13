@@ -2,6 +2,7 @@
 {
     using System.Linq;
     using System.Threading.Tasks;
+    using Alpha.Web.Helpers;
     using Criteria.MemberBetList;
     using Extensions;
     using Fanex.BetList.Core.Entities;
@@ -17,10 +18,14 @@
     public class MemberBetListServiceImpl : MemberBetListService
     {
         private readonly IDynamicRepository dynamicRepository;
+        private readonly PartialUMService partialUMService;
 
-        public MemberBetListServiceImpl(IDynamicRepository dynamicRepository)
+        public MemberBetListServiceImpl(
+            IDynamicRepository dynamicRepository,
+            PartialUMService partialUMService)
         {
             this.dynamicRepository = dynamicRepository;
+            this.partialUMService = partialUMService;
         }
 
         public async Task<BetListData> GetBetList(MemberBetListParam param)
@@ -31,6 +36,8 @@
                     param.FromDate.GetGreaterDate(param.LimitedDate),
                     param.ToDate,
                     param.UserName);
+
+            partialUMService.CheckPartialUM(criteria.GetSettingKey());
 
             var betListDataTuple = await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
 

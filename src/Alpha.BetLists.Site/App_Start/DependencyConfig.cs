@@ -1,10 +1,16 @@
 ﻿namespace Alpha.BetLists.Site.App_Start
 {
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Reflection;
+    using System.Web.Mvc;
     using Alpha.BetLists.Site.Handlers.RiskAnalysisIPMatching;
     using Alpha.NetThrottling;
     using Alpha.NetThrottling.Models;
     using Alpha.NetThrottling.Resolvers;
     using Alpha.NetThrottling.Utils;
+    using Alpha.Web.Helpers;
+    using Alpha.Web.Helpers.Impl;
     using BetLists.Helpers;
     using BetLists.Models;
     using Configurations;
@@ -38,10 +44,6 @@
     using Sunplus.Agent.Model.Base;
     using Sunplus.Agent.Model.Entities;
     using Sunplus.Agent.Model.Entities.Permission;
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Reflection;
-    using System.Web.Mvc;
     using Utilities.IP;
 
     public static class DependencyConfig
@@ -127,7 +129,7 @@
 
         private static void RegisterServices(Container container)
         {
-            container.Register<BrowserHelper, BrowserHelperImpl>(Lifestyle.Singleton);
+            container.Register<Helpers.BrowserHelper, Helpers.BrowserHelperImpl>(Lifestyle.Singleton);
             container.RegisterSingleton<IUserSession, UserSessionExt>();
             container.Register<WinLossService, WinLossServiceImpl>(Lifestyle.Singleton);
             container.Register<ReportDateService, ReportDateServiceImpl>(Lifestyle.Singleton);
@@ -184,6 +186,8 @@
             {
                 container.RegisterSingleton<IUser, User>();
             }
+
+            container.RegisterSingleton<PartialUMService, PartialUMServiceImpl>();
         }
 
         private static void RegisterStaticInstances(Container container)

@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using Alpha.Web.Helpers;
     using Criteria.ParlayWinLossByMatch;
     using Extensions;
     using Fanex.Data.Repository;
@@ -17,13 +18,16 @@
     {
         private readonly ReportDateService reportDateService;
         private readonly IDynamicRepository dynamicRepository;
+        private readonly PartialUMService partialUMService;
 
         public ParlayWinLossByMatchServiceImpl(
             ReportDateService reportDateService,
-            IDynamicRepository dynamicRepository)
+            IDynamicRepository dynamicRepository,
+            PartialUMService partialUMService)
         {
             this.reportDateService = reportDateService;
             this.dynamicRepository = dynamicRepository;
+            this.partialUMService = partialUMService;
         }
 
         public async Task<IEnumerable<TicketDto>> GetBetList(ParlayWinLossByMatchParam param)
@@ -36,6 +40,8 @@
                 param.ToDate,
                 reportDateService.GetMoveBetsDay(),
                 param.CustLevel);
+
+            partialUMService.CheckPartialUM(criteria.GetSettingKey());
 
             var tickets = await dynamicRepository.FetchAsync<TicketDto>(criteria);
 

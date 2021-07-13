@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using Alpha.Web.Helpers;
     using Criteria.LastBets;
     using Fanex.BetList.Core.Entities;
     using Fanex.Caching;
@@ -30,17 +31,25 @@
 
         private readonly IDynamicRepository dynamicRepository;
         private readonly ICacheService cacheService;
+        private readonly PartialUMService partialUMService;
 
-        public LastBetsServiceImpl(IDynamicRepository dynamicRepository, ICacheService cacheService)
+        public LastBetsServiceImpl(
+            IDynamicRepository dynamicRepository,
+            ICacheService cacheService,
+            PartialUMService partialUMService)
         {
             this.dynamicRepository = dynamicRepository;
             this.cacheService = cacheService;
+            this.partialUMService = partialUMService;
         }
 
         public async Task<IEnumerable<TicketDto>> GetLastBets(GetLastBetsParam param)
         {
-            var tickets = await dynamicRepository.FetchAsync<TicketDto>(
-                new GetLastBetsCriteria(param.BetType, param.CustId, param.TransId, param.PageSize));
+            var criteria = new GetLastBetsCriteria(param.BetType, param.CustId, param.TransId, param.PageSize);
+
+            partialUMService.CheckPartialUM(criteria.GetSettingKey());
+
+            var tickets = await dynamicRepository.FetchAsync<TicketDto>(criteria);
 
             if (tickets.Any())
             {

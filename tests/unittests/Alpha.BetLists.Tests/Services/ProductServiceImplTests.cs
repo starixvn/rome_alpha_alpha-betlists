@@ -1,5 +1,8 @@
 ﻿namespace Alpha.BetLists.Tests.Services
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using BetLists.Criteria;
     using BetLists.DataAccesses;
     using BetLists.Models;
@@ -10,9 +13,6 @@
     using Fixtures;
     using KellermanSoftware.CompareNetObjects;
     using NSubstitute;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using Xunit;
 
     [Trait("Category", "BaseFunction")]
