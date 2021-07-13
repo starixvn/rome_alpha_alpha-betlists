@@ -43,7 +43,7 @@
                 .ToList()
                 .ForEach(group =>
                 {
-                    if (group.Key == ProductIdConstants.Pragmatic)
+                    if (ProductIdConstants.ProductListHasProductDetail.Any(i => i == group.Key))
                     {
                         validProductDetails.AddRange(
                             AppSettings.IsOfferJackpotProductDetails ? group.Where(p => resourceIdsHash.ContainsKey(p.ResourceId)) : group);
@@ -84,7 +84,7 @@
                 .ToList()
                 .ForEach(group =>
                 {
-                    if (group.Key == ProductIdConstants.Pragmatic && AppSettings.IsOfferJackpotProductDetails)
+                    if (IsSupportProductDetail(group.Key))
                     {
                         var intersectResourceIds = group.Select(p => p.ResourceId).Intersect(userSelectedResourceIds.ToListInt());
 
@@ -97,5 +97,9 @@
 
             return removedProductIds;
         }
+
+        private static bool IsSupportProductDetail(int productId)
+            => ProductIdConstants.ProductListHasProductDetail.Any(i => i == productId)
+            && AppSettings.IsOfferJackpotProductDetails;
     }
 }
