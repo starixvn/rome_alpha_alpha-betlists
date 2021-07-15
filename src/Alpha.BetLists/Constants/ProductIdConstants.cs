@@ -1,4 +1,6 @@
-﻿namespace Alpha.BetLists.Constants
+﻿using System.Collections.Generic;
+
+namespace Alpha.BetLists.Constants
 {
     public static class ProductIdConstants
     {
@@ -14,7 +16,14 @@
         public const int VirtualSports2 = 27;
         public const int VirtualGames = 38;
         public const int TableGames = 40;
+        public const int SexyGaming = 45;
         public const int Pragmatic = 32;
         public const int SportsLottery = 63;
+
+        public static readonly List<int> ProductListHasProductDetail = new List<int>
+        {
+            ProductIdConstants.Pragmatic,
+            ProductIdConstants.SexyGaming
+        };
     }
 }
