@@ -4,9 +4,9 @@
     ViewBag.Title = "System Parlay";
 }
 @section Styles{
-    @StaticResources.AssetStyles.Render($"/bundles/common/common-{Model.ViewerLevel.DisplayName.ToLower()}")
+    @StaticResources.AssetStyles.Render($"/bundles/common/common-{Model.ViewerLevel.DisplayName.ToLower()}{ViewData["DarkModeName"]}")
 }
-<div class="bl_title">
+<div class="bl_title title-@ViewData["TitleLevel"]">
     @Model.Title
     <div class="bl-export-excel">
         <a id="icon-excel" class="icon icon-excel" title="@Resources.ExportToExcel"

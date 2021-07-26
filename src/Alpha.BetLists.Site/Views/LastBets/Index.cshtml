@@ -3,12 +3,13 @@
 @model LastBetsViewModel
 @{
     ViewBag.Title = "Last Bets Monitoring";
+    var darkModeName = ViewData["DarkModeName"];
 }
 @section Styles {
-    @StaticResources.AssetStyles.Render($"/bundles/common/common-{Model.ViewerLevel.DisplayName.ToLower()}")
-    @StaticResources.RenderStyles("~/assets/bundles/last-bets")
+    @StaticResources.AssetStyles.Render($"/bundles/common/common-{Model.ViewerLevel.DisplayName.ToLower()}{darkModeName}")
+    @StaticResources.RenderStyles($"~/assets/bundles/last-bets{darkModeName}")
 }
-<div class="bl_title">
+<div class="bl_title title-@ViewData["TitleLevel"]">
     @Resources.LastBets
 </div>
 <ul class="nav nav-tabs" role="tablist">
