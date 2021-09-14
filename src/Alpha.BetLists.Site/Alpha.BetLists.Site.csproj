@@ -543,9 +543,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="App_Data\activitytracking.local.json">
       <DependentUpon>activitytracking.json</DependentUpon>
     </Content>
