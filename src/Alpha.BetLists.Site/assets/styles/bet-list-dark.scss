@@ -121,11 +121,15 @@ a {
 
 .bl_underdog, .underdog {
     font-weight: bold !important;
+
+    font {
+        color: #E54748 !important;
+    }
 }
 
 .bl_favorite, .favorite {
     font-weight: bold !important;
-    color: $text-red-color-light;
+    color: #E54748;
 }
 
 .bl_num, .handicap .odds {
@@ -149,7 +153,7 @@ a {
 }
 
 .bl_btype, .bettype {
-    color: #3873E9;
+    color: #3266CF;
     font-weight: 600;
 }
 
@@ -168,10 +172,12 @@ a {
     font-weight: normal;
     line-height: 15px;
 }
-
+.bl_event-date, .event-date{
+    color: #D0D0D0;
+}
 .bl_footertotal {
     font-weight: bold;
-    background-color: #27261B;
+    background-color: #27261B!important;
     line-height: 20px;
 
     &.outstanding {
@@ -187,6 +193,9 @@ a {
     .value {
         float: left;
         width: 80px;
+    }
+    font{
+        color: #E54748
     }
 }
 
@@ -260,7 +269,7 @@ div.match + div.league, div.league, .no-details {
 }
 
 .pt-winloss font {
-    color: #FF4F50 !important;
+    color: #E54748 !important;
 }
 
 .link {
@@ -276,12 +285,12 @@ div.match + div.league, div.league, .no-details {
 
 .result {
     cursor: pointer;
-    color: #5685FF;
+    color: #4D78E5;
 }
 
 .iplink {
     cursor: pointer;
-    color: $link-color;
+    color: #41A4FF;
     font-size: 11px;
 
     &:hover {
@@ -452,7 +461,7 @@ div.ticket-list div.void > div.match, div.ticket-list div.void div.firstGoal, di
         padding-right: 4px;
         line-height: 18px;
         font-weight: bold;
-        color: $note-color;
+        color: #EDEDED;
 
         .star {
             color: #ff0101;
