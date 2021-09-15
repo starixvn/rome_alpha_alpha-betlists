@@ -119,17 +119,26 @@ a {
     text-align: left;
 }
 
-.bl_underdog, .underdog {
+.underdog {
     font-weight: bold !important;
 
     font {
         color: #E54748 !important;
     }
 }
-
+.win-loss-block {
+    .bl_underdog {
+        font {
+            color: #E54748 !important;
+        }
+    }
+}
+.bl_underdog {
+    font-weight: bold !important;
+}
 .bl_favorite, .favorite {
     font-weight: bold !important;
-    color: #E54748;
+    color: #DA3F40;
 }
 
 .bl_num, .handicap .odds {
@@ -153,7 +162,7 @@ a {
 }
 
 .bl_btype, .bettype {
-    color: #3266CF;
+    color: #508BFF;
     font-weight: 600;
 }
 
@@ -171,9 +180,6 @@ a {
     color: $text-color;
     font-weight: normal;
     line-height: 15px;
-}
-.bl_event-date, .event-date{
-    color: #D0D0D0;
 }
 .bl_footertotal {
     font-weight: bold;
@@ -329,12 +335,15 @@ div.match + div.league, div.league, .no-details {
     }
 
     .detail-link {
-        color: #CB7B00;
+        color: #B26C00;
     }
 }
 
 .combinationLink {
     line-height: 20px;
+    a{
+        color: #4BC0E5;
+    }
 }
 
 .offer-name-list {
