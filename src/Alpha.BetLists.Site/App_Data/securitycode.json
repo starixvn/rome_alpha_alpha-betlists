@@ -1,0 +1,21 @@
+{
+  "isActive": true,
+  "paths": [],
+  "betListsPaths": [
+    "CancelledBet",
+    "CasinoDetails",
+    "CorrectScore",
+    "DailyStatement",
+    "JackpotDetails",
+    "LastBets",
+    "RiskAnalysisIPMatching",
+    "Parlay",
+    "WinLoss",
+    "BetList"
+  ],
+  "statementPaths": [],
+  "sites": [],
+  "verifyingOtpPath": "Otp/VerifyOtp",
+  "verifyingSecurityCodePath": "SecurityCode/VerifySecurityCode",
+  "resetSecurityCodePath": "SecurityCode/resetSecurityCodePath"
+}
