@@ -101,7 +101,7 @@
                 return this.LeapGamingResult;
             }
 
-            if (betTypeId == 5500) {
+            if (betTypeId >= 5500 && betTypeId <= 5599) {
                 this.RNGWarResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.RNGWarResult) ? new RNGWarCasinoResultDetails() : this.RNGWarResult;
                 return this.RNGWarResult;
             }
