@@ -135,13 +135,10 @@ a {
 }
 .bl_underdog {
     font-weight: bold !important;
-    font {
-        color: #E54748;
-    }
 }
 .bl_favorite, .favorite {
     font-weight: bold !important;
-    color: #DA3F40;
+    color: #E54748;
 }
 
 .bl_num, .handicap .odds {
@@ -164,11 +161,14 @@ a {
     font-weight: bold;
 }
 
-.bl_btype, .bettype {
+.bettype {
     color: #508BFF;
     font-weight: 600;
 }
-
+.bl_btype {
+    color: #3783E9;
+    font-weight: 600;
+}
 .bl_time, .time {
     font-size: 10pt;
     font-weight: normal;

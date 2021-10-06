@@ -107,7 +107,7 @@ a {
     text-align: left;
 }
 
-.bl_underdog, .underdog {
+.underdog {
     color: #01122B;
     font-weight: bold !important;
 
@@ -115,7 +115,11 @@ a {
         color: #E54748;
     }
 }
+.bl_underdog {
+    color: #01122B;
+    font-weight: bold !important;
 
+}
 .bl_favorite, .favorite {
     font-weight: bold !important;
     color: $text-red-color-light;
