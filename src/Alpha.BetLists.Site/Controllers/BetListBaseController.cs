@@ -23,10 +23,7 @@
             => File(viewModel.Content, viewModel.ContentType, viewModel.Name);
 
         protected async Task<ActionResult> View<TResponse>(IRequest<TResponse> message)
-        {
-            AssignDarkModeViewData();
-            return View(await mediator.Send(message));
-        }
+            => View(await mediator.Send(message));
 
         protected async Task<ActionResult> PartialView<TResponse>(IRequest<TResponse> message)
             => PartialView(await mediator.Send(message));
@@ -35,9 +32,6 @@
             => GetExcelContent(await mediator.Send(message));
 
         protected async Task<ActionResult> View<TResponse>(IRequest<TResponse> message, string viewName)
-        {
-            AssignDarkModeViewData();
-            return View(viewName, await mediator.Send(message));
-        }
+            => View(viewName, await mediator.Send(message));
     }
 }

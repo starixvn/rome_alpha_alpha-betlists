@@ -6,10 +6,10 @@
 }
 
 @section Styles{
-    @StaticResources.AssetStyles.Render($"/bundles/site-betlists/filter{ViewData["DarkModeName"]}")
+    @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-betlists/filter")
     @StaticResources.RenderStyles("~/assets/bundles/filter")
 }
-<div class="bl_title title-@ViewData["TitleLevel"]">
+<div class="bl_title">
     @Model.Title
     <div class="list-icon">
         <ul>
