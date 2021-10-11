@@ -374,10 +374,11 @@ div.match + div.league, div.league, .no-details {
         }
 
         content: '\e92d';
-        color: $link-color;
+        color: #3783E9;
     }
+
     &:hover {
-        &:before{
+        &:before {
             color: $link-hover-color;
         }
     }
