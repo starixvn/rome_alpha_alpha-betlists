@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+    using Alpha.BetLists.AppResources;
     using BetLists.Criteria.WinLossByDate;
     using BetLists.Extensions;
     using BetLists.Models;
@@ -255,6 +256,70 @@
                     && c.FromDate == reportDateService.GetBalanceUpDay()
                     && c.ToDate == param.ToDate
                     && c.MoveBetsDate == reportDateService.GetMoveBetsDay()));
+        }
+
+        [Fact]
+        public void GetBetList_TotalTicketMoreThanMaxRowOnWeb_ReturnExceededMessage()
+        {
+            // Arrange
+            var param = new WinLossParam(
+                0,
+                BetListDataTest.ProductIds,
+                DateTime.Today.AddDays(-3),
+                DateTime.Today.AddDays(2),
+                DateTime.MinValue,
+                "en",
+                BetListDataTest.ProductDetailsXML);
+            param.IsExcel = false;
+            dataFixture.DynamicRepository
+                .FetchMultipleAsync<TicketDto, TicketData>(Arg.Any<GetBetListWinLossByDateOldCriteria>())
+                .Returns(x =>
+                {
+                    ((GetBetListWinLossByDateOldCriteria)x[0]).ErrCode = 1;
+                    ((GetBetListWinLossByDateOldCriteria)x[0]).MaxTotalRow = 10001;
+                    return BetListDataTest.BetListDataTuple;
+                });
+            var exceedMessage = string.Format(Resources.ExceededMaxTotalRowWithExcelFunc, 10004, param.MaxTotalRowConfig);
+
+            // Act
+            var act = winLossService.GetBetList(param).GetAwaiter().GetResult();
+
+            // Assert
+            Assert.False(act.Tickets.Any());
+            Assert.False(act.TicketData.Any());
+            Assert.Equal(100, act.BetlistOutputParams.ErrCode);
+            Assert.Equal(exceedMessage, act.BetlistOutputParams.ErrMsg);
+        }
+
+        [Fact]
+        public void GetBetList_TotalTicketMoreThanMaxRowOnExcel_ReturnExceededMessage()
+        {
+            // Arrange
+            var param = new WinLossParam(
+                0,
+                BetListDataTest.ProductIds,
+                DateTime.Today.AddDays(-3),
+                DateTime.Today.AddDays(2),
+                DateTime.MinValue,
+                "en",
+                BetListDataTest.ProductDetailsXML);
+            param.IsExcel = true;
+            dataFixture.DynamicRepository
+                .FetchMultipleAsync<TicketDto, TicketData>(Arg.Any<GetBetListWinLossByDateOldCriteria>())
+                .Returns(x =>
+                {
+                    ((GetBetListWinLossByDateOldCriteria)x[0]).ErrCode = 1;
+                    ((GetBetListWinLossByDateOldCriteria)x[0]).MaxTotalRow = 10001;
+                    return BetListDataTest.BetListDataTuple;
+                });
+            var exceedMessage = string.Format(Resources.ExceededMaxTotalRowExportExcelFunc, param.MaxTotalRowConfig);
+
+            // Act
+            var act = winLossService.GetBetList(param).GetAwaiter().GetResult();
+
+            // Assert
+            Assert.Equal(100, act.BetlistOutputParams.ErrCode);
+            Assert.Equal(exceedMessage, act.BetlistOutputParams.ErrMsg);
         }
     }
 }
