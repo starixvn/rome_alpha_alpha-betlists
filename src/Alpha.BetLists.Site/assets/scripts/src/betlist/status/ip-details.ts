@@ -12,7 +12,7 @@
                 Common.AppPath.OldMainAppPath() + '_IPInfo/IpInfo.aspx?ip=' + ip,
                 'IP Details',
                 400,
-                300);
+                400);
         }
     }
 }
