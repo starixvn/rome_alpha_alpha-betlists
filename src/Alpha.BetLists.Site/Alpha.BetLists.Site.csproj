@@ -114,29 +114,29 @@
     <Reference Include="Fanex.BetList.AdvantPlayMini, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.AdvantPlayMini.1.0.1.1\lib\net40\Fanex.BetList.AdvantPlayMini.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.BetList.Allbet, Version=1.4.0.5, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.Allbet.1.4.0.5\lib\net40\Fanex.BetList.Allbet.dll</HintPath>
+    <Reference Include="Fanex.BetList.Allbet, Version=1.4.0.7, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.Allbet.1.4.0.7-darkmode-01\lib\net40\Fanex.BetList.Allbet.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.BetList.BBIN, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.BBIN.1.0.0.3\lib\net40\Fanex.BetList.BBIN.dll</HintPath>
+    <Reference Include="Fanex.BetList.BBIN, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.BBIN.1.0.0.2-darkmode-01\lib\net40\Fanex.BetList.BBIN.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.BetTrade, Version=1.3.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.Core.2.111.3\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
+      <HintPath>..\..\packages\Fanex.BetList.Core.2.111.1.4-darkmode-01\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.BetList.BG, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.BG.1.0.0.3\lib\net40\Fanex.BetList.BG.dll</HintPath>
+    <Reference Include="Fanex.BetList.BG, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.BG.1.0.0.2-darkmode-01\lib\net40\Fanex.BetList.BG.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.Bitcoin, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.Bitcoin.1.0.0\lib\net40\Fanex.BetList.Bitcoin.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.BetList.CardClub, Version=1.0.4.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.CardClub.1.0.4.2\lib\net40\Fanex.BetList.CardClub.dll</HintPath>
+    <Reference Include="Fanex.BetList.CardClub, Version=1.0.4.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.CardClub.1.0.4.1-darkmode-01\lib\net40\Fanex.BetList.CardClub.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.CG, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.CG.1.0.0.1\lib\net40\Fanex.BetList.CG.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.BetList.Core, Version=2.111.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.Core.2.111.3\lib\net40\Fanex.BetList.Core.dll</HintPath>
+    <Reference Include="Fanex.BetList.Core, Version=2.111.1.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.Core.2.111.1.4-darkmode-01\lib\net40\Fanex.BetList.Core.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.Core.RemotingRef, Version=1.1.0.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.Core.RemotingRef.1.1.0.1\lib\net461\Fanex.BetList.Core.RemotingRef.dll</HintPath>
@@ -144,24 +144,23 @@
     <Reference Include="Fanex.BetList.ESports, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.ESports.1.0.1\lib\net40\Fanex.BetList.ESports.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.BetList.GDG, Version=1.0.1.3, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.GDG.1.0.1.3\lib\net40\Fanex.BetList.GDG.dll</HintPath>
+    <Reference Include="Fanex.BetList.GDG, Version=1.0.1.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.GDG.1.0.1.2-darkmode-01\lib\net40\Fanex.BetList.GDG.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.BetList.GlobalGaming, Version=1.0.0.7, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.GlobalGaming.1.0.0.7\lib\net40\Fanex.BetList.GlobalGaming.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Fanex.BetList.GlobalGaming, Version=1.0.0.9, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.GlobalGaming.1.0.0.9-darkmode-01\lib\net40\Fanex.BetList.GlobalGaming.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.GoldDeluxe, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.GoldDeluxe.1.3.0\lib\net40\Fanex.BetList.GoldDeluxe.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.BetList.GTCasino, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.GTCasino.1.0.0\lib\net40\Fanex.BetList.GTCasino.dll</HintPath>
+    <Reference Include="Fanex.BetList.GTCasino, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.GTCasino.1.0.0.2-darkmode-01\lib\net40\Fanex.BetList.GTCasino.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.Habanero, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.Habanero.1.0.0.1\lib\net40\Fanex.BetList.Habanero.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.BetList.IONCasino, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.IONCasino.1.0.0.3\lib\net40\Fanex.BetList.IONCasino.dll</HintPath>
+    <Reference Include="Fanex.BetList.IONCasino, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.IONCasino.1.0.0.2-darkmode-01\lib\net40\Fanex.BetList.IONCasino.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.Joker, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.Joker.1.0.0.2\lib\net40\Fanex.BetList.Joker.dll</HintPath>
@@ -186,32 +185,32 @@
       <HintPath>..\..\packages\Fanex.BetList.NG2.1.0.4\lib\net40\Fanex.BetList.NG2.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.BetList.NumberGame, Version=1.7.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.NumberGame.1.7.0\lib\net40\Fanex.BetList.NumberGame.dll</HintPath>
+    <Reference Include="Fanex.BetList.NumberGame, Version=1.6.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.NumberGame.1.6.0.1-darkmode-01\lib\net40\Fanex.BetList.NumberGame.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.PGSoft, Version=1.0.1.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.PGSoft.1.0.1.2\lib\net40\Fanex.BetList.PGSoft.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.BetList.PP, Version=1.4.0.4, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.PP.1.4.0.4\lib\net40\Fanex.BetList.PP.dll</HintPath>
+    <Reference Include="Fanex.BetList.PP, Version=1.4.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.PP.1.4.0.2-darkmode-01\lib\net40\Fanex.BetList.PP.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.BetList.PragmaticLiveCasino, Version=1.0.0.4, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.PragmaticLiveCasino.1.0.0.4\lib\net40\Fanex.BetList.PragmaticLiveCasino.dll</HintPath>
+    <Reference Include="Fanex.BetList.PragmaticLiveCasino, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.PragmaticLiveCasino.1.0.0.3-darkmode-01\lib\net40\Fanex.BetList.PragmaticLiveCasino.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.BetList.RnGCasino, Version=1.1.0.3, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.RnGCasino.1.1.0.3\lib\net40\Fanex.BetList.RnGCasino.dll</HintPath>
+    <Reference Include="Fanex.BetList.RnGCasino, Version=1.1.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.RnGCasino.1.1.0.2-darkmode-01\lib\net40\Fanex.BetList.RnGCasino.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.BetList.RNGWar, Version=1.0.0.5, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.RNGWar.1.0.0.5\lib\net40\Fanex.BetList.RNGWar.dll</HintPath>
+    <Reference Include="Fanex.BetList.RNGWar, Version=1.0.0.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.RNGWar.1.0.0.4-darkmode-01\lib\net40\Fanex.BetList.RNGWar.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.BetList.SabaClub, Version=1.0.1.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.SabaClub.1.0.1.2\lib\net40\Fanex.BetList.SabaClub.dll</HintPath>
+    <Reference Include="Fanex.BetList.SabaClub, Version=1.0.0.9, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.SabaClub.1.0.0.9-darkmode-01\lib\net40\Fanex.BetList.SabaClub.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.BetList.SAGaming, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.SAGaming.1.0.0.4\lib\net40\Fanex.BetList.SAGaming.dll</HintPath>
+    <Reference Include="Fanex.BetList.SAGaming, Version=1.0.0.6, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.SAGaming.1.0.0.6-darkmode-01\lib\net40\Fanex.BetList.SAGaming.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.BetList.SexyGaming, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.SexyGaming.1.0.0.3\lib\net40\Fanex.BetList.SexyGaming.dll</HintPath>
+    <Reference Include="Fanex.BetList.SexyGaming, Version=1.0.0.5, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.SexyGaming.1.0.0.5-darkmode-01\lib\net40\Fanex.BetList.SexyGaming.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.Spadegaming, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.Spadegaming.1.0.0.3\lib\net40\Fanex.BetList.Spadegaming.dll</HintPath>
@@ -222,8 +221,8 @@
     <Reference Include="Fanex.BetList.TableGames, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.TableGames.1.1.0\lib\net40\Fanex.BetList.TableGames.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.BetList.VGaming, Version=1.0.0.4, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.VGaming.1.0.0.4\lib\net40\Fanex.BetList.VGaming.dll</HintPath>
+    <Reference Include="Fanex.BetList.VGaming, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.VGaming.1.0.0.3-darkmode-01\lib\net40\Fanex.BetList.VGaming.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.VirtualGames, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.VirtualGames.1.0.0.1\lib\net40\Fanex.BetList.VirtualGames.dll</HintPath>
@@ -231,11 +230,11 @@
     <Reference Include="Fanex.BetList.VirtualSports, Version=1.7.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.VirtualSports.1.7.0\lib\net40\Fanex.BetList.VirtualSports.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.BetList.Voidbridge, Version=1.2.0.3, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.Voidbridge.1.2.0.3\lib\net40\Fanex.BetList.Voidbridge.dll</HintPath>
+    <Reference Include="Fanex.BetList.Voidbridge, Version=1.2.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.Voidbridge.1.2.0.2-darkmode-01\lib\net40\Fanex.BetList.Voidbridge.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.BetList.WM, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.WM.1.0.0.2\lib\net40\Fanex.BetList.WM.dll</HintPath>
+    <Reference Include="Fanex.BetList.WM, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.WM.1.0.0.3-darkmode-01\lib\net40\Fanex.BetList.WM.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.Caching, Version=2.2.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Caching.2.2.1\lib\net461\Fanex.Caching.dll</HintPath>
@@ -546,6 +545,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Allbet.css" />
     <AdditionalFiles Include="..\..\SonarQube\alpha-betlist\CSharp\SonarLint.xml">
       <Link>SonarLint.xml</Link>
     </AdditionalFiles>
@@ -755,6 +755,7 @@
     <Content Include="assets\styles\parlay-detail.min.css">
       <DependentUpon>parlay-detail.css</DependentUpon>
     </Content>
+    <Content Include="bbin.css" />
     <Content Include="Global.asax" />
     <Content Include="App_Data\SPNames\Local\DBARC.bodb_Archive.BODBDownlineNet.xml">
       <SubType>Designer</SubType>
@@ -766,6 +767,9 @@
     <Content Include="App_Code\Blocks\WinLoss.cshtml" />
     <Content Include="App_Code\Blocks\Status.cshtml" />
     <Content Include="App_Code\Blocks\PositionTaking.cshtml" />
+    <Content Include="GTCasino.css" />
+    <Content Include="SAGaming.css" />
+    <Content Include="SexyGaming.css" />
     <Content Include="Views\Shared\InvalidBetList.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
