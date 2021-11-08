@@ -132,11 +132,7 @@ a {
         }
     }
 }
-div.league {
-    color: #EDEDED;
-    line-height: 15px;
-    margin-top: 1px;
-}
+
 .bl_underdog {
     font-weight: bold !important;
 }
@@ -154,7 +150,7 @@ div.league {
 }
 
 .bl_lname, div.match + div.league, .no-details {
-    color: #EDEDED;
+    color: #b7b7b7;
     line-height: 15px;
     margin-top: 1px;
 }
@@ -533,8 +529,8 @@ div.ticket-list div.void > div.match, div.ticket-list div.void div.firstGoal, di
     color: #bbb;
 }
 
-.sexygaming-bet-type-name {
-    color: #cacaca;
+.sexygaming-bet-type-name, .sexygaming-game-id {
+    color: #ededed;
 }
 
 .gtcasino-bet-id {
@@ -558,9 +554,6 @@ div.ticket-list div.void > div.match, div.ticket-list div.void div.firstGoal, di
 .underdog > .bet-id, .favorite > .bet-id {
     color: #bbb;
     display: block;
-}
-.leagueName{
-    color: #b7b7b7;
 }
 
 .leagueName > .bet-type-name {
