@@ -132,6 +132,11 @@ a {
         }
     }
 }
+div.league {
+    color: #EDEDED;
+    line-height: 15px;
+    margin-top: 1px;
+}
 .bl_underdog {
     font-weight: bold !important;
 }
@@ -140,13 +145,16 @@ a {
     color: #E54748;
 }
 
+.match{
+    color: #EDEDED;
+}
 .bl_num, .handicap .odds {
     color: #5685FF;
     font-size: 8pt;
 }
 
-.bl_lname, div.match + div.league, div.league, .no-details {
-    color: #b7b7b7;
+.bl_lname, div.match + div.league, .no-details {
+    color: #EDEDED;
     line-height: 15px;
     margin-top: 1px;
 }
@@ -269,7 +277,7 @@ div.match + div.league, div.league, .no-details {
 }
 
 .colorHandicap, .handicap {
-    color: #bbb;
+    color: #bcbcbc;
 }
 
 .handicap.custom {
@@ -432,7 +440,7 @@ div.ticket-list div.void > div.match, div.ticket-list div.void div.firstGoal, di
 }
 
 .gamegroupname {
-    color: #008000;
+    color: #00cc00;
 }
 
 .unit-stake {
@@ -456,7 +464,7 @@ div.ticket-list div.void > div.match, div.ticket-list div.void div.firstGoal, di
 }
 
 .allbet-bet-type-name {
-    color: #cacaca;
+    color: #ededed;
 }
 
 .comm_note {
@@ -537,7 +545,7 @@ div.ticket-list div.void > div.match, div.ticket-list div.void div.firstGoal, di
     color: #696969;
 }
 .bbin-bet-id {
-    color: #bbb;
+    color: #b7b7b7;
 }
 
 .bbin-bet-type-name {
@@ -550,6 +558,9 @@ div.ticket-list div.void > div.match, div.ticket-list div.void div.firstGoal, di
 .underdog > .bet-id, .favorite > .bet-id {
     color: #bbb;
     display: block;
+}
+.leagueName{
+    color: #b7b7b7;
 }
 
 .leagueName > .bet-type-name {
