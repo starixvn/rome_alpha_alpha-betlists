@@ -1,4 +1,5 @@
-﻿using Alpha.BetLists.Criteria.CasinoDetails;
+﻿using System;
+using Alpha.BetLists.Criteria.CasinoDetails;
 using Xunit;
 
 namespace Alpha.BetLists.Tests.Criteria.CasinoDetails
@@ -12,7 +13,7 @@ namespace Alpha.BetLists.Tests.Criteria.CasinoDetails
         public void GetSettingKey_ProductIdIsSupported_ReturnsCorrectKey(int productId)
         {
             // Arrange
-            var criteria = new GetCasinoDetailsCriteria(1, 1, 1, productId, 1, 100);
+            var criteria = new GetCasinoDetailsCriteria(1, 1, 1, productId, 1, 100, DateTime.Today, DateTime.Today);
             var expectedSettingKey = "Acc_BetList_Detail_" + productId;
 
             // Act
@@ -29,7 +30,7 @@ namespace Alpha.BetLists.Tests.Criteria.CasinoDetails
         public void IsValid_InvalidRefNo_ReturnsFalse(int refNo)
         {
             // Arrange
-            var criteria = new GetCasinoDetailsCriteria(refNo, 1, 1, 6, 1, 100);
+            var criteria = new GetCasinoDetailsCriteria(refNo, 1, 1, 6, 1, 100, DateTime.Today, DateTime.Today);
 
             // Act
             var actualIsValid = criteria.IsValid();
@@ -45,7 +46,7 @@ namespace Alpha.BetLists.Tests.Criteria.CasinoDetails
         public void IsValid_InvalidCustId_ReturnsFalse(int custId)
         {
             // Arrange
-            var criteria = new GetCasinoDetailsCriteria(1, custId, 1, 6, 1, 100);
+            var criteria = new GetCasinoDetailsCriteria(1, custId, 1, 6, 1, 100, DateTime.Today, DateTime.Today);
 
             // Act
             var actualIsValid = criteria.IsValid();
@@ -61,7 +62,7 @@ namespace Alpha.BetLists.Tests.Criteria.CasinoDetails
         public void IsValid_InvalidProductId_ReturnsFalse(int productId)
         {
             // Arrange
-            var criteria = new GetCasinoDetailsCriteria(1, 1, 1, productId, 1, 100);
+            var criteria = new GetCasinoDetailsCriteria(1, 1, 1, productId, 1, 100, DateTime.Today, DateTime.Today);
 
             // Act
             var actualIsValid = criteria.IsValid();
@@ -74,7 +75,7 @@ namespace Alpha.BetLists.Tests.Criteria.CasinoDetails
         public void IsValid_ValidCriteria_ReturnsTrue()
         {
             // Arrange
-            var criteria = new GetCasinoDetailsCriteria(1, 1, 1, 6, 1, 100);
+            var criteria = new GetCasinoDetailsCriteria(1, 1, 1, 6, 1, 100, DateTime.Today, DateTime.Today);
 
             // Act
             var actualIsValid = criteria.IsValid();

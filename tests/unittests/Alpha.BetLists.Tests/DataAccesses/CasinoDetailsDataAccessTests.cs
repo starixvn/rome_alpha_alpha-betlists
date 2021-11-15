@@ -1,5 +1,6 @@
 ﻿namespace Alpha.BetLists.Tests.DataAccesses
 {
+    using System;
     using BetLists.Criteria.CasinoDetails;
     using BetLists.DataAccesses;
     using BetLists.Models;
@@ -22,7 +23,7 @@
         public CasinoDetailsDataAccessTests(FanexDataFixture dataFixture)
         {
             this.dataFixture = dataFixture;
-            dataAccess = new CasinoDetailsDataAccess(dataFixture.DynamicRepository);
+            dataAccess = new CasinoDetailsDataAccess(dataFixture.DynamicRepository, dataFixture.ReportDateService);
         }
 
         [Fact]
@@ -57,7 +58,9 @@
                 param.TransType,
                 param.ProductId,
                 param.PageIndex,
-                param.PageSize);
+                param.PageSize,
+                DateTime.Today, 
+                DateTime.Today);
 
             dataFixture.DynamicRepository
                 .Fetch<TicketDto>(Arg.Any<GetCasinoDetailsCriteria>())
