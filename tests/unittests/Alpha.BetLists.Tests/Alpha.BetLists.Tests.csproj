@@ -319,7 +319,6 @@
     <Compile Include="Services\CorrectScoreServiceImplTests.cs" />
     <Compile Include="Services\EncryptionServiceImplTests.cs" />
     <Compile Include="Services\ForecastServiceImplTests.cs" />
-    <Compile Include="Services\IPServiceImplTests.cs" />
     <Compile Include="Services\JackpotDetailsServiceImplTests.cs" />
     <Compile Include="Services\LastBetsServiceImplTests.cs" />
     <Compile Include="Services\ProductDetailServiceImplTests.cs" />
