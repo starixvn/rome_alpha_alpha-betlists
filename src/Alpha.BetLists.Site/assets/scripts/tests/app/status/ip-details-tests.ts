@@ -17,7 +17,7 @@
             BetList.Status.IpDetails.Instance.ShowIpInfo(ip);
 
             // Assert
-            expect(popUpDetailsShow).toHaveBeenCalledWith(expectedUrl, "IP Details", 400, 300);
+            expect(popUpDetailsShow).toHaveBeenCalledWith(expectedUrl, "IP Details", 400, 400);
         })
     });
 });
