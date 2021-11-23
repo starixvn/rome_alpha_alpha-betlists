@@ -1,5 +1,6 @@
 ﻿namespace Alpha.BetLists.Tests.Criteria.ProgressiveJackpot
 {
+    using System;
     using BetLists.Criteria.ProgressiveJackpot;
     using Xunit;
 
@@ -10,7 +11,7 @@
         public void GetSettingKey_Always_ReturnsCorrectKey()
         {
             // Arrange
-            var criteria = new GetJackpotDetailsCriteria(0, 0, 0);
+            var criteria = new GetJackpotDetailsCriteria(0, 0, 0, DateTime.Today, DateTime.Today);
             var expectedSettingKey = "Acc_BetList_Jackpot_Detail";
 
             // Act
@@ -27,7 +28,7 @@
         public void IsValid_InvalidTransId_ReturnsFalse(long transId)
         {
             // Arrange
-            var criteria = new GetJackpotDetailsCriteria(transId, 1, 1);
+            var criteria = new GetJackpotDetailsCriteria(transId, 1, 1, DateTime.Today, DateTime.Today);
 
             // Act
             var isValid = criteria.IsValid();
@@ -43,7 +44,7 @@
         public void IsValid_InvalidCustId_ReturnsFalse(int custId)
         {
             // Arrange
-            var criteria = new GetJackpotDetailsCriteria(1, custId, 1);
+            var criteria = new GetJackpotDetailsCriteria(1, custId, 1, DateTime.Today, DateTime.Today);
 
             // Act
             var isValid = criteria.IsValid();
@@ -59,7 +60,7 @@
         public void IsValid_InvalidBetType_ReturnsFalse(int betType)
         {
             // Arrange
-            var criteria = new GetJackpotDetailsCriteria(1, 1, betType);
+            var criteria = new GetJackpotDetailsCriteria(1, 1, betType, DateTime.Today, DateTime.Today);
 
             // Act
             var isValid = criteria.IsValid();
@@ -72,7 +73,7 @@
         public void IsValid_ValidCriteria_ReturnsTrue()
         {
             // Arrange
-            var criteria = new GetJackpotDetailsCriteria(1, 1, 1);
+            var criteria = new GetJackpotDetailsCriteria(1, 1, 1, DateTime.Today, DateTime.Today);
 
             // Act
             var isValid = criteria.IsValid();

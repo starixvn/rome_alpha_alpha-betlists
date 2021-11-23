@@ -1,5 +1,6 @@
 ﻿namespace Alpha.BetLists.Criteria.CasinoDetails
 {
+    using System;
     using Fanex.Data;
     using Fanex.Data.Repository;
 
@@ -11,7 +12,9 @@
             byte transType,
             int productId,
             int pageIndex,
-            int pageSize)
+            int pageSize,
+            DateTime moveBetsDate,
+            DateTime balanceUpDate)
         {
             RefNo = refNo;
             CustId = custId;
@@ -19,6 +22,8 @@
             ProductId = productId;
             PageIndex = pageIndex;
             PageSize = pageSize;
+            MoveBetsDate = moveBetsDate;
+            BalanceUpDate = balanceUpDate;
         }
 
         public long RefNo { get; }
@@ -35,6 +40,12 @@
         public int PageSize { get; }
 
         public int TotalRows { get; set; }
+
+        [SpParam(SqlParamName = "movebetsday")]
+        public DateTime MoveBetsDate { get; }
+
+        [SpParam(SqlParamName = "BalanceUpDay")]
+        public DateTime BalanceUpDate { get; }
 
         public override string GetSettingKey()
             => "Acc_BetList_Detail_" + ProductId;
