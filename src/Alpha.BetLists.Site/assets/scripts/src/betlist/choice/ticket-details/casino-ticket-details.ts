@@ -324,7 +324,7 @@
             const params = '?refno=' + refNo
                 + '&custid=' + custId
                 + '&transType=' + transType
-                + '&sportName=RNG War&productId=50';
+                + '&sportName=Funky Games&productId=50';
 
             let width = 1047;
             let roleId = Number(this.ViewerLevelId);
@@ -339,7 +339,7 @@
 
             Common.PopupDetails.Instance(window.top).Show(
                 Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params,
-                'RNG War - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                'Funky Games - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
         }
     }
 
