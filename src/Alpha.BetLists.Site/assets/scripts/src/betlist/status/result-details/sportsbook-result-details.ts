@@ -13,7 +13,8 @@
             betId?: number,
             betCheck?: string,
             custId?: number,
-            transDesc?: string): void;
+            transDesc?: string,
+            siteId?: string): void;
     }
 
     export class SportsbookResultDetails extends BaseResultDetails implements ResultDetails {

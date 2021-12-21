@@ -4,6 +4,7 @@
         private static mixParlayResult: ResultDetails;
         private static ng2Result: ResultDetails;
         private static allbetResult: ResultDetails;
+        private static bbinResult: ResultDetails;
         private static rngCasinoResult: ResultDetails;
         private static fishingWorldResult: ResultDetails;
         private static macauGamesResult: ResultDetails;
@@ -65,10 +66,14 @@
                 (betTypeId >= 3001 && betTypeId <= 3099) ||
                 (betTypeId >= 3101 && betTypeId <= 3149) ||
                 (betTypeId >= 3201 && betTypeId <= 3299) ||
-                (betTypeId >= 3401 && betTypeId <= 3499) ||
-                betTypeId == 3300) { // BBin
+                (betTypeId >= 3401 && betTypeId <= 3499)) {
                 this.allbetResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.allbetResult) ? new AllbetResultDetails() : this.allbetResult;
                 return this.allbetResult;
+            }
+
+            if (betTypeId == 3300) {
+                this.bbinResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.bbinResult) ? new BBINResultDetails() : this.bbinResult;
+                return this.bbinResult;
             }
 
             if (221 <= betTypeId && betTypeId <= 227) {
@@ -208,8 +213,9 @@
             betId: number,
             betCheck?: string,
             custId?: number,
-            transDesc?: string) => {
-            ResultDetailsFactory.CreateInstance(betTypeId).ViewResultDetails(matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, betId, betCheck, custId, transDesc)
+            transDesc?: string,
+            siteId?: string) => {
+            ResultDetailsFactory.CreateInstance(betTypeId).ViewResultDetails(matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, betId, betCheck, custId, transDesc, siteId)
         }
     }
 }
