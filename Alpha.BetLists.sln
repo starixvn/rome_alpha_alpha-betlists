@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1585
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alpha.BetLists.Site", "src\Alpha.BetLists.Site\Alpha.BetLists.Site.csproj", "{69690E23-A8B5-4D96-8EBE-907A9FC1CA3E}"
 EndProject
@@ -19,6 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SonarQube", "SonarQube", "{
 	ProjectSection(SolutionItems) = preProject
 		SonarQube\Alpha-BetListCSharp.ruleset = SonarQube\Alpha-BetListCSharp.ruleset
 		SonarQube\SolutionBinding.sqconfig = SonarQube\SolutionBinding.sqconfig
+		SonarQube\alpha-betlist\CSharp\SonarLint.xml = SonarQube\alpha-betlist\CSharp\SonarLint.xml
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alpha.BetLists.StaticData", "tests\unittests\Alpha.BetLists.StaticData\Alpha.BetLists.StaticData.csproj", "{AD46527D-6231-4087-A84C-6FF70189EF78}"
@@ -89,5 +90,6 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Logging.6.0.1304.0\lib\NET45
+		SolutionGuid = {EDFCC31A-82A7-4E54-AA79-F1A839E9870F}
 	EndGlobalSection
 EndGlobal
