@@ -110,10 +110,10 @@
             let viewResultDetailsSpy = spyOn(instance, "ViewResultDetails");
 
             // Act
-            BetList.Status.ResultDetails.BaseResultDetails.Instance.ViewResultDetails(1, 1, betType, 1, "1", "user", date, 1, 1, false, 1, "1", 1, "transDesc");
+            BetList.Status.ResultDetails.BaseResultDetails.Instance.ViewResultDetails(1, 1, betType, 1, "1", "user", date, 1, 1, false, 1, "1", 1, "transDesc", "siteId");
 
             // Assert
-            expect(viewResultDetailsSpy).toHaveBeenCalledWith(1, 1, betType, 1, "1", "user", date, 1, 1, false, 1, "1", 1, "transDesc");
+            expect(viewResultDetailsSpy).toHaveBeenCalledWith(1, 1, betType, 1, "1", "user", date, 1, 1, false, 1, "1", 1, "transDesc", "siteId");
         });
     });
 
