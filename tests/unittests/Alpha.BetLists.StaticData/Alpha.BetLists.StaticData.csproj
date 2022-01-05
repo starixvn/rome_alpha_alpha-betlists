@@ -48,8 +48,8 @@
     <Reference Include="Fanex.BetList.Core, Version=2.111.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Fanex.BetList.Core.2.111.2\lib\net40\Fanex.BetList.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.BetList.SabaClub, Version=1.0.0.6, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Fanex.BetList.SabaClub.1.0.0.6\lib\net40\Fanex.BetList.SabaClub.dll</HintPath>
+    <Reference Include="Fanex.BetList.SabaClub, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Fanex.BetList.SabaClub.1.0.1-CasinoHoldemPoker-01\lib\net40\Fanex.BetList.SabaClub.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.Caching, Version=2.2.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Fanex.Caching.2.2.1\lib\net461\Fanex.Caching.dll</HintPath>
