@@ -138,6 +138,10 @@ a {
     font-weight: bold;
 }
 
+.status .cashout {
+    font-weight: normal;
+}
+
 .bl_btype, .bettype {
     color: #003399;
     font-weight: 600;
@@ -274,6 +278,7 @@ div.match + div.league, div.league, .no-details {
     width: 85px;
     word-break: break-word;
     white-space: normal;
+    margin: auto;
 }
 
 .detail {
