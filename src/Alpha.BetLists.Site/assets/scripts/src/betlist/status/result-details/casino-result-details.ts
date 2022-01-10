@@ -33,10 +33,18 @@
             refNoMixParlay?: number,
             league?: number,
             isOutright?: boolean,
-            betId?: number,
-            betCheck?: string) => {
-            var params = '?gameId=' + refNo + '&roleId=' + this.ViewerLevelId + '&productId=6';
-            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/Detail' + params, "", 835, 675);
+            currencyId?: number,
+            gameId3rd?: string,
+            custId?: number,
+            transId3rd?: string,
+            siteId?: string) => {
+            var params = '?custId=' + custId +
+                '&transId3rd=' + transId3rd +
+                '&gameId3rd=' + gameId3rd +
+                '&currencyId=' + currencyId +
+                '&siteId=' + siteId +
+                '&productId=6';
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/RngCasinoResult' + params, "", 835, 675);
         }
     }
 
@@ -52,13 +60,18 @@
             refNoMixParlay?: number,
             league?: number,
             isOutright?: boolean,
-            betId?: number,
-            betCheck?: string) => {
-            var params = '?custId=' + this.CustId +
-                '&roleId=' + this.ViewerLevelId +
-                '&gameId=' + refNo +
+            currencyId?: number,
+            gameId3rd?: string,
+            custId?: number,
+            transId3rd?: string,
+            siteId?: string) => {
+            var params = '?custId=' + custId +
+                '&transId3rd=' + transId3rd +
+                '&gameId3rd=' + gameId3rd +
+                '&currencyId=' + currencyId +
+                '&siteId=' + siteId +
                 '&productId=22';
-            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/Detail' + params, "", 835, 675);
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/MacauGamesResult' + params, "", 835, 675);
         }
     }
 
@@ -96,13 +109,18 @@
             refNoMixParlay?: number,
             league?: number,
             isOutright?: boolean,
-            betId?: number,
-            betCheck?: string) => {
-            var params = '?custId=' + this.CustId +
-                '&roleId=' + this.ViewerLevelId +
-                '&gameId=' + betCheck +
+            currencyId?: number,
+            gameId3rd?: string,
+            custId?: number,
+            transId3rd?: string,
+            siteId?: string) => {
+            var params = '?custId=' + custId +
+                '&transId3rd=' + transId3rd +
+                '&gameId3rd=' + gameId3rd +
+                '&currencyId=' + currencyId +
+                '&siteId=' + siteId +
                 '&productId=32';
-            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/Detail' + params, "", 835, 675);
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/PPResult' + params, "", 835, 675);
         }
     }
 
@@ -118,13 +136,18 @@
             refNoMixParlay?: number,
             league?: number,
             isOutright?: boolean,
-            betId?: number,
-            betCheck?: string) => {
-            var params = '?custId=' + this.CustId +
-                '&roleId=' + this.ViewerLevelId +
-                '&gameId=' + betCheck +
+            currencyId?: number,
+            gameId3rd?: string,
+            custId?: number,
+            transId3rd?: string,
+            siteId?: string) => {
+            var params = '?custId=' + custId +
+                '&transId3rd=' + transId3rd +
+                '&gameId3rd=' + gameId3rd +
+                '&currencyId=' + currencyId +
+                '&siteId=' + siteId +
                 '&productId=36';
-            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/Detail' + params, "", 835, 675);
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/SpadegamingResult' + params, "", 835, 675);
         }
     }
 
@@ -159,10 +182,18 @@
             refNoMixParlay?: number,
             league?: number,
             isOutright?: boolean,
-            betId?: number,
-            betCheck?: string) => {
-            var params = '?gameId=' + betCheck + '&roleId=' + this.ViewerLevelId + '&productId=50';
-            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/Detail' + params, "", 835, 675);
+            currencyId?: number,
+            gameId3rd?: string,
+            custId?: number,
+            transId3rd?: string,
+            siteId?: string) => {
+            var params = '?custId=' + custId +
+                '&transId3rd=' + transId3rd +
+                '&gameId3rd=' + gameId3rd +
+                '&currencyId=' + currencyId +
+                '&siteId=' + siteId +
+                '&productId=50';
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/RNGWarResult' + params, "", 835, 675);
         }
     }
     export class IONCasinoResultDetails extends BaseResultDetails implements ResultDetails {
@@ -177,10 +208,18 @@
             refNoMixParlay?: number,
             league?: number,
             isOutright?: boolean,
-            betId?: number,
-            betCheck?: string) => {
-            var params = '?gameId=' + betCheck + '&roleId=' + this.ViewerLevelId + '&productId=52';
-            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/Detail' + params, "", 835, 675);
+            currencyId?: number,
+            gameId3rd?: string,
+            custId?: number,
+            transId3rd?: string,
+            siteId?: string) => {
+            var params = '?custId=' + custId +
+                '&transId3rd=' + transId3rd +
+                '&gameId3rd=' + gameId3rd +
+                '&currencyId=' + currencyId +
+                '&siteId=' + siteId +
+                '&productId=52';
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/IONCasinoResult' + params, "", 835, 675);
         }
     }
 
@@ -223,16 +262,18 @@
             refNoMixParlay?: number,
             league?: number,
             isOutright?: boolean,
-            betId?: number,
-            betCheck?: string,
+            currencyId?: number,
+            gameId3rd?: string,
             custId?: number,
-            transDesc?: string) => {
-            var params = '?custId=' + this.CustId +
-                '&roleId=' + this.ViewerLevelId +
-                '&gameId=' + transDesc +
-                '&gameCode=' + betCheck +
+            transId3rd?: string,
+            siteId?: string) => {
+            var params = '?custId=' + custId +
+                '&transId3rd=' + transId3rd +
+                '&gameId3rd=' + gameId3rd +
+                '&currencyId=' + currencyId +
+                '&siteId=' + siteId +
                 '&productId=55'
-            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/Detail' + params, "", 835, 675);
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/PGSoftResult' + params, "", 835, 675);
         }
     }
 
@@ -248,16 +289,18 @@
             refNoMixParlay?: number,
             league?: number,
             isOutright?: boolean,
-            betId?: number,
-            betCheck?: string,
+            currencyId?: number,
+            gameId3rd?: string,
             custId?: number,
-            transDesc?: string) => {
-            var params = '?custId=' + this.CustId +
-                '&roleId=' + this.ViewerLevelId +
-                '&gameId=' + transDesc +
-                '&gameCode=' + betCheck +
+            transId3rd?: string,
+            siteId?: string) => {
+            var params = '?custId=' + custId +
+                '&transId3rd=' + transId3rd +
+                '&gameId3rd=' + gameId3rd +
+                '&currencyId=' + currencyId +
+                '&siteId=' + siteId +
                 '&productId=56';
-            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/Detail' + params, "", 835, 675);
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/JokerResult' + params, "", 835, 675);
         }
     }
 
@@ -271,20 +314,21 @@
             userName?: string,
             winLostDate?: Date,
             refNoMixParlay?: number,
-            siteId?: number,
+            league?: number,
             isOutright?: boolean,
-            betId?: number,
+            currencyId?: number,
             gameId3rd?: string,
             custId?: number,
-            transId3rd?: string) => {
-            var params = '?custId=' + this.CustId +
-                '&roleId=' + this.ViewerLevelId +
-                '&gameId=' + transId3rd +
-                '&gameCode=' + gameId3rd +
+            transId3rd?: string,
+            siteId?: string) => {
+            var params = '?custId=' + custId +
+                '&transId3rd=' + transId3rd +
+                '&gameId3rd=' + gameId3rd +
+                '&currencyId=' + currencyId +
                 '&siteId=' + siteId +
                 '&productId=59';
 
-            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/Detail' + params, "", 835, 675);
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/GDGResult' + params, "", 835, 675);
         }
     }
 
@@ -300,14 +344,21 @@
             refNoMixParlay?: number,
             league?: number,
             isOutright?: boolean,
-            betId?: number,
-            betCheck?: string) => {
-            var params = '?custId=' + betId +
-                '&TransId3rd=' + refNo +
+            currencyId?: number,
+            gameId3rd?: string,
+            custId?: number,
+            transId3rd?: string,
+            siteId?: string) => {
+            var params = '?custId=' + custId +
+                '&transId3rd=' + refNo +
+                '&gameId3rd=' + gameId3rd +
+                '&currencyId=' + currencyId +
+                '&siteId=' + siteId +
+                '&productId=3' +
                 '&BetTypeId=' + betTypeId +
                 '&SportTypeId=' + sportTypeId;
 
-            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'LinkedGames/Index' + params, "", 835, 675);
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/LinkedGamesResult' + params, "", 835, 675);
         }
     }
 
@@ -323,15 +374,19 @@
             refNoMixParlay?: number,
             league?: number,
             isOutright?: boolean,
-            betId?: number,
-            betCheck?: string,
+            currencyId?: number,
+            gameId3rd?: string,
             custId?: number,
-            transDesc?: string) => {
-            var params = '?custId=' + this.CustId +
-                '&transId3rd=' + transDesc +
+            transId3rd?: string,
+            siteId?: string) => {
+            var params = '?custId=' + custId +
+                '&transId3rd=' + transId3rd +
+                '&gameId3rd=' + gameId3rd +
+                '&currencyId=' + currencyId +
+                '&siteId=' + siteId +
                 '&productId=63';
 
-            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/SportsLotteryResult' + params, "", 835, 675);
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/SportsLotteryDetailResult' + params, "", 835, 675);
         }
     }
    export class BGResultDetails extends BaseResultDetails implements ResultDetails {
@@ -344,19 +399,21 @@
             userName?: string,
             winLostDate?: Date,
             refNoMixParlay?: number,
-            currencyId?: number,
+            league?: number,
             isOutright?: boolean,
-            betId?: number,
-            siteId?: string,
+            currencyId?: number,
+            gameId3rd?: string,
             custId?: number,
-            transId3rd?: string) => {
-            var params = '?custId=' + this.CustId +
-                '&gameId=' + transId3rd +
-                '&gameCode=' + currencyId +
+            transId3rd?: string,
+            siteId?: string) => {
+            var params = '?custId=' + custId +
+                '&transId3rd=' + transId3rd +
+                '&gameId3rd=' + gameId3rd +
+                '&currencyId=' + currencyId +
                 '&siteId=' + siteId +
                 '&productId=57';
 
-            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/Detail' + params, "", 835, 675);
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/BGResult' + params, "", 835, 675);
         }
     }
 
@@ -372,15 +429,18 @@
             refNoMixParlay?: number,
             league?: number,
             isOutright?: boolean,
-            betId?: number,
-            betCheck?: string,
+            currencyId?: number,
+            gameId3rd?: string,
             custId?: number,
-            transDesc?: string) => {
-            var params = '?custId=' + this.CustId +
-                '&TransId3rd=' + transDesc +
+            transId3rd?: string,
+            siteId?: string) => {
+            var params = '?custId=' + custId +
+                '&transId3rd=' + transId3rd +
+                '&gameId3rd=' + gameId3rd +
+                '&currencyId=' + currencyId +
+                '&siteId=' + siteId +
                 '&BetType=' + betTypeId +
-                '&EndTime=' + betCheck +
-                '&SiteId=' + betId +
+                '&endtime=' + winLostDate +
                 '&productId=60';
             Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/MaxGameResult' + params, "", 835, 675);
         }
@@ -398,14 +458,18 @@
             refNoMixParlay?: number,
             league?: number,
             isOutright?: boolean,
-            betId?: number,
-            betCheck?: string,
+            currencyId?: number,
+            gameId3rd?: string,
             custId?: number,
-            transDesc?: string) => {
-            var params = '?custId=' + this.CustId +
-                '&GameId3rd=' + transDesc +
+            transId3rd?: string,
+            siteId?: string) => {
+            var params = '?custId=' + custId +
+                '&transId3rd=' + transId3rd +
+                '&gameId3rd=' + gameId3rd +
+                '&currencyId=' + currencyId +
+                '&siteId=' + siteId +
                 '&BetType=' + betTypeId +
-                '&productId=65  ';
+                '&productId=65';
             Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/PPLiveCasinoResult' + params, "", 835, 675);
         }
     }
@@ -420,16 +484,18 @@
             userName?: string,
             winLostDate?: Date,
             refNoMixParlay?: number,
-            siteId?: number,
+            league?: number,
             isOutright?: boolean,
-            betId?: number,
+            currencyId?: number,
             gameId3rd?: string,
             custId?: number,
-            transId3rd?: string) => {
-            var params = '?custId=' + this.CustId +
-                '&GameId=' + transId3rd +
-                '&GameCode=' + gameId3rd +
-                '&siteId=' + betId +
+            transId3rd?: string,
+            siteId?: string) => {
+            var params = '?custId=' + custId +
+                '&transId3rd=' + transId3rd +
+                '&gameId3rd=' + gameId3rd +
+                '&currencyId=' + currencyId +
+                '&siteId=' + siteId +
                 '&productId=61';
 
             Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/HabaneroResult' + params, "", 835, 675);
@@ -446,16 +512,18 @@
             userName?: string,
             winLostDate?: Date,
             refNoMixParlay?: number,
-            siteId?: number,
+            league?: number,
             isOutright?: boolean,
-            betId?: number,
+            currencyId?: number,
             gameId3rd?: string,
             custId?: number,
-            transId3rd?: string) => {
-            var params = '?custId=' + this.CustId +
-                '&GameId=' + transId3rd +
-                '&GameCode=' + gameId3rd +
-                '&siteId=' + betId +
+            transId3rd?: string,
+            siteId?: string) => {
+            var params = '?custId=' + custId +
+                '&transId3rd=' + transId3rd +
+                '&gameId3rd=' + gameId3rd +
+                '&currencyId=' + currencyId +
+                '&siteId=' + siteId +
                 '&productId=62';
 
             Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/CGResult' + params, "", 835, 675);
@@ -501,16 +569,18 @@
             userName?: string,
             winLostDate?: Date,
             refNoMixParlay?: number,
-            siteId?: number,
+            league?: number,
             isOutright?: boolean,
-            betId?: number,
+            currencyId?: number,
             gameId3rd?: string,
             custId?: number,
-            transId3rd?: string) => {
-            var params = '?custId=' + this.CustId +
-                '&GameId=' + transId3rd +
-                '&GameCode=' + gameId3rd +
-                '&siteId=' + betId +
+            transId3rd?: string,
+            siteId?: string) => {
+            var params = '?custId=' + custId +
+                '&transId3rd=' + transId3rd +
+                '&gameId3rd=' + gameId3rd +
+                '&currencyId=' + currencyId +
+                '&siteId=' + siteId +
                 '&productId=67';
 
             Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/AdvantPlayResult' + params, "", 835, 675);
@@ -527,16 +597,18 @@
             userName?: string,
             winLostDate?: Date,
             refNoMixParlay?: number,
-            siteId?: number,
+            league?: number,
             isOutright?: boolean,
-            betId?: number,
+            currencyId?: number,
             gameId3rd?: string,
             custId?: number,
-            transId3rd?: string) => {
-            var params = '?custId=' + this.CustId +
-                '&GameId=' + transId3rd +
-                '&GameCode=' + gameId3rd +
-                '&siteId=' + betId +
+            transId3rd?: string,
+            siteId?: string) => {
+            var params = '?custId=' + custId +
+                '&transId3rd=' + transId3rd +
+                '&gameId3rd=' + gameId3rd +
+                '&currencyId=' + currencyId +
+                '&siteId=' + siteId +
                 '&productId=68';
 
             Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/AdvantPlayMiniResult' + params, "", 835, 675);
@@ -560,7 +632,7 @@
             custId?: number,
             transId3rd?: string,
             siteId?: string) => {
-            var params = '?custId=' + this.CustId +
+            var params = '?custId=' + custId +
                 '&transId3rd=' + transId3rd +
                 '&gameId3rd=' + gameId3rd +
                 '&currencyId=' + currencyId +
@@ -568,6 +640,35 @@
                 '&productId=47';
 
             Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/BBINResult' + params, "", 835, 900);
+        }
+    }
+
+    export class PokerGamesResultDetails extends BaseResultDetails implements ResultDetails {
+        public ViewResultDetails = (
+            matchId?: number,
+            race?: number,
+            betTypeId?: number,
+            sportTypeId?: number,
+            refNo?: string,
+            userName?: string,
+            winLostDate?: Date,
+            refNoMixParlay?: number,
+            league?: number,
+            isOutright?: boolean,
+            currencyId?: number,
+            gameId3rd?: string,
+            custId?: number,
+            transId3rd?: string,
+            siteId?: string) => {
+            var params = '?custId=' + custId +
+                '&transId3rd=' + transId3rd +
+                '&gameId3rd=' + gameId3rd +
+                '&currencyId=' + currencyId +
+                '&siteId=' + siteId +
+                '&BetType=' + betTypeId +
+                '&productId=34';
+
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/CardClubResult' + params, "", 1099, 500, { resizable: true });
         }
     }
 }
