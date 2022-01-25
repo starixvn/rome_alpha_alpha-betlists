@@ -27,6 +27,7 @@
         public const int JackpotContribution_Mobile = 2398;
         public const int JackpotContribution_Tablet = 2998;
         public const int PPJackpotContribution = 4297;
+        public const int SGJackpotContribution = 4599;
 
         public const int LeapGamingMin = 5301;
         public const int LeapGamingMax = 5399;

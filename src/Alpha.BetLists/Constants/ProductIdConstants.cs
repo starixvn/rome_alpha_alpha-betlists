@@ -20,11 +20,13 @@ namespace Alpha.BetLists.Constants
         public const int Pragmatic = 32;
         public const int SportsLottery = 63;
         public const int Bitcoin = 69;
+        public const int SpadeGaming = 36;
 
         public static readonly List<int> ProductListHasProductDetail = new List<int>
         {
             ProductIdConstants.Pragmatic,
-            ProductIdConstants.SexyGaming
+            ProductIdConstants.SexyGaming,
+            ProductIdConstants.SpadeGaming
         };
     }
 }
