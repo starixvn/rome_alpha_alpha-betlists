@@ -41,15 +41,18 @@
     describe("RnGCasino_", () => {
         it("ViewResultDetails -> Show Popup With Expected Url", () => {
             // Arrange
-            var params = '?gameId=' + refNo
-                + '&roleId=456'
-                + '&productId=6';
+            var params = '?custId=1' +
+                '&transId3rd=1' +
+                '&gameId3rd=betCheck' +
+                '&currencyId=1' +
+                '&siteId=1' +
+                '&productId=6';
 
             // Act
-            new BetList.Status.ResultDetails.RnGCasinoResultDetails().ViewResultDetails(matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, betId);
+            new BetList.Status.ResultDetails.RnGCasinoResultDetails().ViewResultDetails(matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, betId, betCheck, 1, "1", "1");
 
             // Assert
-            expect(popupDetailsShow).toHaveBeenCalledWith("result-path/ThirdParty/Detail" + params, "", 835, 675);
+            expect(popupDetailsShow).toHaveBeenCalledWith("result-path/ThirdParty/RngCasinoResult" + params, "", 835, 675);
         });
     });
 
@@ -57,15 +60,17 @@
         it("ViewResultDetails -> Show Popup With Expected Url", () => {
             // Arrange
             var params = '?custId=1' +
-                '&roleId=456' +
-                '&gameId=' + refNo +
+                '&transId3rd=1' +
+                '&gameId3rd=betCheck' +
+                '&currencyId=1' +
+                '&siteId=1' +
                 '&productId=22';
 
             // Act
-            new BetList.Status.ResultDetails.MacauGamesResultDetails().ViewResultDetails(matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, betId);
+            new BetList.Status.ResultDetails.MacauGamesResultDetails().ViewResultDetails(matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, betId, betCheck, 1, "1", "1");
 
             // Assert
-            expect(popupDetailsShow).toHaveBeenCalledWith("result-path/ThirdParty/Detail" + params, "", 835, 675);
+            expect(popupDetailsShow).toHaveBeenCalledWith("result-path/ThirdParty/MacauGamesResult" + params, "", 835, 675);
         });
     });
 
@@ -89,15 +94,17 @@
         it("ViewResultDetails -> Show Popup With Expected Url", () => {
             // Arrange
             var params = '?custId=1' +
-                '&roleId=456' +
-                '&gameId=' + betCheck +
+                '&transId3rd=1' +
+                '&gameId3rd=betCheck' +
+                '&currencyId=1' +
+                '&siteId=1' +
                 '&productId=32';
 
             // Act
-            new BetList.Status.ResultDetails.PPResultDetails().ViewResultDetails(matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, betId, betCheck);
+            new BetList.Status.ResultDetails.PPResultDetails().ViewResultDetails(matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, betId, betCheck, 1, "1", "1");
 
             // Assert
-            expect(popupDetailsShow).toHaveBeenCalledWith("result-path/ThirdParty/Detail" + params, "", 835, 675);
+            expect(popupDetailsShow).toHaveBeenCalledWith("result-path/ThirdParty/PPResult" + params, "", 835, 675);
         });
     });
 });
