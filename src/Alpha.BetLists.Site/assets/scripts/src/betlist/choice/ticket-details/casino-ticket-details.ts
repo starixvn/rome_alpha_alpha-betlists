@@ -478,6 +478,7 @@ let showSAGamingDetails: Function;
 let showGTCasinoBetsDetails: Function;
 let showProgressiveJackpotWonDetails: Function;
 let showPPJackpotWonDetails: Function;
+let showSGJackpotWonDetails: Function;
 let showVideoPokerGameDetails: Function;
 let showSGDetails: Function;
 let showPGSoftDetails: Function;
@@ -506,6 +507,7 @@ $(document).ready(() => {
     showTodayRunningBetsDetails = BetList.Choice.TicketDetails.AllbetTicketDetails.Instance.ShowRunningBetsDetails;
     showProgressiveJackpotWonDetails = BetList.Choice.TicketDetails.JackpotTicketDetails.Instance.ShowJackpotWonDetails;
     showPPJackpotWonDetails = BetList.Choice.TicketDetails.PPJackpotTicketDetails.Instance.ShowJackpotWonDetails;
+    showSGJackpotWonDetails = BetList.Choice.TicketDetails.PPJackpotTicketDetails.Instance.ShowJackpotWonDetails;
     showSGDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.showSGDetails;
     showPGSoftDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.showPGSoftDetails;
     showSexyGamingBetDetails = BetList.Choice.TicketDetails.SexyGamingTicketDetails.Instance.ShowSexyGamingBetDetails;
