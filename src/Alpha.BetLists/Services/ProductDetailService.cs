@@ -43,10 +43,9 @@
                 .ToList()
                 .ForEach(group =>
                 {
-                    if (ProductIdConstants.ProductListHasProductDetail.Any(i => i == group.Key))
+                    if (IsSupportProductDetail(group.Key))
                     {
-                        validProductDetails.AddRange(
-                            AppSettings.IsOfferJackpotProductDetails ? group.Where(p => resourceIdsHash.ContainsKey(p.ResourceId)) : group);
+                        validProductDetails.AddRange(group.Where(p => resourceIdsHash.ContainsKey(p.ResourceId)));
                     }
                 });
 
@@ -64,11 +63,22 @@
         private static string BuildProductDetailsXML(IEnumerable<ProductDetail> productDetails)
         {
             var xml = new StringBuilder("<ROOT>");
-            productDetails.ToList().ForEach(product => xml.AppendFormat(
-                "<ProductDetail ProductId=\"{0}\" Sporttype=\"{1}\" Bettype=\"{2}\"/>",
-                product.ProductId,
-                product.SportType,
-                product.BetType));
+            foreach (var product in productDetails)
+            {
+                foreach (var leagueId in product.LeagueGroupIds)
+                {
+                    foreach (var typeId in product.TicketTypeIds)
+                    {
+                        xml.AppendFormat(
+                            "<ProductDetail ProductId=\"{0}\" Sporttype=\"{1}\" Bettype=\"{2}\" LeagueGroupID=\"{3}\" TicketType=\"{4}\"/>",
+                            product.ProductId,
+                            product.SportType,
+                            product.BetType,
+                            leagueId,
+                            typeId);
+                    }
+                }
+            }
             xml.Append("</ROOT>");
 
             return xml.ToString();
@@ -99,7 +109,6 @@
         }
 
         private static bool IsSupportProductDetail(int productId)
-            => ProductIdConstants.ProductListHasProductDetail.Any(i => i == productId)
-            && AppSettings.IsOfferJackpotProductDetails;
+            => AppSettings.ProductOfferProductDetail.Any(i => i == productId);
     }
 }
