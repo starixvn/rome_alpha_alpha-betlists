@@ -4,7 +4,7 @@
     ViewBag.Title = "System Parlay";
 }
 @section Styles{
-    @StaticResources.AssetStyles.Render($"/bundles/common/common-{Model.ViewerLevel.DisplayName.ToLower()}")
+    @StaticResources.AssetStyles.RenderWithDarkMode($"/bundles/common/common-{Model.ViewerLevel.DisplayName.ToLower()}")
 }
 <div class="bl_title">
     @Model.Title

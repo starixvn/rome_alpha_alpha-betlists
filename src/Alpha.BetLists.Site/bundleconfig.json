@@ -90,5 +90,26 @@
     "inputFiles": [
       "assets/styles/parlay-detail.css"
     ]
+  },
+  /************************** Dark Mode ************************/
+  {
+    "outputFileName": "assets/bundles/default-dark.css",
+    "inputFiles": [
+      "assets/styles/bet-list-dark.css",
+      "assets/styles/details-popup.css"
+    ]
+  },
+  {
+    "outputFileName": "assets/bundles/last-bets-dark.css",
+    "inputFiles": [
+      "assets/styles/last-bets-dark.css"
+    ]
+  },
+
+  {
+    "outputFileName": "assets/bundles/parlay-detail-dark.css",
+    "inputFiles": [
+      "assets/styles/parlay-detail-dark.css"
+    ]
   }
 ]

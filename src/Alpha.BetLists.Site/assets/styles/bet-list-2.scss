@@ -107,11 +107,19 @@ a {
     text-align: left;
 }
 
-.bl_underdog, .underdog {
+.underdog {
     color: #01122B;
     font-weight: bold !important;
-}
 
+    font {
+        color: #E54748;
+    }
+}
+.bl_underdog {
+    color: #01122B;
+    font-weight: bold !important;
+
+}
 .bl_favorite, .favorite {
     font-weight: bold !important;
     color: $text-red-color-light;
@@ -510,4 +518,16 @@ div.ticket-list div.void > div.match, div.ticket-list div.void div.firstGoal, di
 .underdog > .bet-id, .favorite > .bet-id {
     color: #bbb;
     display: block;
+}
+
+.number-game-odds {
+    color: #555555;
+}
+
+.minus-value {
+    color: #B50000;
+}
+
+.minus-number {
+    color: #ff0000;
 }

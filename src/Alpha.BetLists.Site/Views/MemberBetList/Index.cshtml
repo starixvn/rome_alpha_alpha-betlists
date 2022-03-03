@@ -6,12 +6,11 @@
 }
 
 @section Styles{
-    @StaticResources.AssetStyles.Render("/bundles/site-betlists/filter")
+    @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-betlists/filter")
     @StaticResources.RenderStyles("~/assets/bundles/filter")
 }
 <div class="bl_title">
     @Model.Title
-
     <div class="list-icon">
         <ul>
             <li class="showfilter-element"><span class="icon-arrow-up-drop-circle icon-filter" title="@Resources.HideFilter"></span></li>

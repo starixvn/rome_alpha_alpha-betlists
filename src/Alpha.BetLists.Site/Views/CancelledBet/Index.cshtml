@@ -2,36 +2,33 @@
 
 @model CancelledBetViewModel
 
-@section Styles{
-@StaticResources.AssetStyles.Render("/bundles/site-betlists/pagination")
-    @StaticResources.AssetStyles.Render("/bundles/site-betlists/filter")
-    @StaticResources.RenderStyles("~/assets/bundles/filter")
-}
-
 @{
     ViewBag.Title = "Cancelled Bet List";
 }
 
+@section Styles{
+    @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-betlists/pagination")
+    @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-betlists/filter")
+    @StaticResources.RenderStyles("~/assets/bundles/filter")
+}
+
 <div class="bl_title">
     @Model.Title
-
     <div class="list-icon" id="betlist-filter">
         <ul>
             <li class="showfilter-element"><span class="icon-arrow-up-drop-circle icon-filter" title="@Resources.HideFilter"></span></li>
             <li class="hidefilter-element"><span class="icon-arrow-down-drop-circle icon-filter" title="@Resources.ShowFilter"></span></li>
         </ul>
     </div>
-
-
 </div>
 
 <form class="form-inline filter cancelled-bet @(Model.IsFilterVisible ? string.Empty : "hide")" role="form" id="betlist-form">
     @Html.Hidden("IsFilterVisible", Model.IsFilterVisible ? "true" : "false")
     @ProductMultiSelection.Render(Model.ProductMultiSelectionViewModel)
-    
+
     @StatusMultiSelection.Render(Model.StatusMultiSelectionViewModel)
 
-    @DateRangePicker.Render(Model.DateRangePickerViewModel)    
+    @DateRangePicker.Render(Model.DateRangePickerViewModel)
 
     <div class="form-group">
         <span id="icon-excel" class="icon-excel" title="@Resources.ExportToExcel"></span>
@@ -87,7 +84,7 @@
     @Html.Hidden("FromDate", Model.FromDate)
     @Html.Hidden("ToDate", Model.ToDate)
     @Html.Hidden("ProductIds", Model.ProductsId)
-    @Html.Hidden("StatusIds", Model.StatusIds)    
+    @Html.Hidden("StatusIds", Model.StatusIds)
 </form>
 
 @Html.Hidden("betlist-path", HttpContext.Current.Response.ApplyAppPathModifier("~/"))
@@ -97,5 +94,5 @@
 @section Scripts{
     @StaticResources.AssetScripts.Render("/bundles/site-betlists/filter")
     @StaticResources.RenderScripts("~/assets/bundles/cancelled-betlist/cancelled-betlist")
-@StaticResources.AssetScripts.Render("/bundles/site-betlists/pagination")
+    @StaticResources.AssetScripts.Render("/bundles/site-betlists/pagination")
 }

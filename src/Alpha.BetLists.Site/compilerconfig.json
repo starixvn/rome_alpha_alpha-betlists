@@ -3,17 +3,14 @@
     "outputFile": "assets/styles/bet-list.css",
     "inputFile": "assets/styles/bet-list.scss"
   },
-
   {
     "outputFile": "assets/styles/details-popup.css",
     "inputFile": "assets/styles/details-popup.scss"
   },
-
   {
     "outputFile": "assets/styles/filter.css",
     "inputFile": "assets/styles/filter.scss"
   },
-
   {
     "outputFile": "assets/styles/last-bets.css",
     "inputFile": "assets/styles/last-bets.scss"
@@ -21,5 +18,17 @@
   {
     "outputFile": "assets/styles/parlay-detail.css",
     "inputFile": "assets/styles/parlay-detail.scss"
-  } 
+  },
+  {
+    "outputFile": "assets/styles/bet-list-dark.css",
+    "inputFile": "assets/styles/bet-list-dark.scss"
+  },
+  {
+    "outputFile": "assets/styles/last-bets-dark.css",
+    "inputFile": "assets/styles/last-bets-dark.scss"
+  },
+  {
+    "outputFile": "assets/styles/parlay-detail-dark.css",
+    "inputFile": "assets/styles/parlay-detail-dark.scss"
+  }
 ]
