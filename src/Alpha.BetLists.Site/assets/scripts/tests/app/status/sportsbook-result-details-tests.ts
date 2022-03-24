@@ -10,6 +10,7 @@
     const league: number = 3;
     const isOutright: boolean = true;
     const betId: number = 1;
+    const transdesc: string = "transdesc";
     const PopupDetails = Common.PopupDetails.Instance(window.top);
     let popupDetailsShow: jasmine.Spy;
 
@@ -30,10 +31,11 @@
                 + '&isOutright=' + isOutright
                 + '&refnum=' + refNo
                 + '&betid=' + betId
+                + '&transdesc='+ transdesc
                 + '&isViewResultFromBetList=true';
 
             // Act
-            new BetList.Status.ResultDetails.SportsbookResultDetails().ViewResultDetails(matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, betId);
+            new BetList.Status.ResultDetails.SportsbookResultDetails().ViewResultDetails(matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, betId, transdesc);
 
             // Assert
             expect(popupDetailsShow).toHaveBeenCalledWith("result-path/Normal/ResultDetails" + params, "", 730, 250);

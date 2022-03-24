@@ -29,7 +29,8 @@
             refNoMixParlay?: number,
             league?: number,
             isOutright?: boolean,
-            betId?: number) => {
+            betId?: number,
+            transdesc?: string) => {
             const params = '?matchid=' + matchId
                 + '&bettypeid=' + betTypeId
                 + '&race=' + race
@@ -38,6 +39,7 @@
                 + '&isOutright=' + isOutright
                 + '&refnum=' + refNo
                 + '&betid=' + betId
+                + '&transdesc=' + transdesc
                 + '&isViewResultFromBetList=true';
 
             Common.PopupDetails.Instance(window.top).Show(this.ResultDetailsPath + params, "", 730, 250);
