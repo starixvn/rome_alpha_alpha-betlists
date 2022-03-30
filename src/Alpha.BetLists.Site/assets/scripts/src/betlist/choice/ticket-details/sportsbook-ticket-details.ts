@@ -134,6 +134,23 @@
             }
         }        
     }
+
+    export class CashOutHistoryDetails extends BaseTicketDetails {
+        private static instance: CashOutHistoryDetails;
+
+        public static get Instance(): CashOutHistoryDetails {
+            this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new CashOutHistoryDetails() : this.instance;
+            return this.instance;
+        }
+
+        public ViewNewCashOutHistory = (transId: string, custId: string, winlostDate: Date) => {
+            const params = '?transid=' + transId
+                + '&winlostdate=' + winlostDate
+                + '&custid=' + custId;
+
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CashOutHistory/Index' + params, "", 600, 438);
+        }
+    }
 }
 
 let showMP: Function;
@@ -141,11 +158,12 @@ let showCombMPDetail: Function;
 let showCombMP: Function;
 let showNewCombMP: Function;
 let showSingleMatchParlayDetail: Function
-
+let ViewNewCashOutHistory: Function
 $(document).ready(() => {
     showMP = BetList.Choice.TicketDetails.ParlayTicketDetails.Instance.ShowMixParlayTickets;
     showCombMPDetail = BetList.Choice.TicketDetails.ParlayTicketDetails.Instance.ShowComboParlayDetails;
     showCombMP = BetList.Choice.TicketDetails.ParlayTicketDetails.Instance.ShowComboParlayOldTickets;
     showNewCombMP = BetList.Choice.TicketDetails.ParlayTicketDetails.Instance.ShowComboParlayNewTickets;
     showSingleMatchParlayDetail = BetList.Choice.TicketDetails.SportsbookTicketDetails.Instance.ShowSingleMatchParlayDetail;
+    ViewNewCashOutHistory = BetList.Choice.TicketDetails.CashOutHistoryDetails.Instance.ViewNewCashOutHistory;
 })

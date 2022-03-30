@@ -399,4 +399,28 @@
   <data name="ExceededMaxTotalRowExportExcelFunc" xml:space="preserve">
     <value>系統只能輸出最多{0}張票。請選擇更短的日期區間以利輸出。</value>
   </data>
+  <data name="CashOutHistoryTitle" xml:space="preserve">
+    <value>即時兌現歷史記錄</value>
+  </data>
+  <data name="CashOutAmount" xml:space="preserve">
+    <value>即時兌現金額</value>
+  </data>
+  <data name="CashOutCancelled" xml:space="preserve">
+    <value>取消即時兌現</value>
+  </data>
+  <data name="CashOutRecovered" xml:space="preserve">
+    <value>恢復即時兌現</value>
+  </data>
+  <data name="DateTime" xml:space="preserve">
+    <value>日期/時間</value>
+  </data>
+  <data name="NetworkLatency" xml:space="preserve">
+    <value>由於網絡延遲，無法使用信息，請稍等幾分鐘後再次嘗試。</value>
+  </data>
+  <data name="Activity" xml:space="preserve">
+    <value>活動</value>
+  </data>
+  <data name="CashOut" xml:space="preserve">
+    <value>即時兌現</value>
+  </data>
 </root>

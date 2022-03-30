@@ -412,4 +412,25 @@
   <data name="ExceededMaxTotalRowExportExcelFunc" xml:space="preserve">
     <value>Hệ thống chỉ xuất dữ liệu được tối đa {0} vé cược. Vui lòng chọn lại phạm vi ngày ngắn hơn.</value>
   </data>
+  <data name="CashOutHistoryTitle" xml:space="preserve">
+    <value>Lịch Sử Bán Vé Cược</value>
+  </data>
+  <data name="CashOutAmount" xml:space="preserve">
+    <value>Số Tiền Bán Vé Cược</value>
+  </data>
+  <data name="Activity" xml:space="preserve">
+    <value>Hoạt động</value>
+  </data>
+  <data name="DateTime" xml:space="preserve">
+    <value>Ngày/Thời Gian</value>
+  </data>
+  <data name="CashOutRecovered" xml:space="preserve">
+    <value>Đã Phục Hồi Bán Vé Cược</value>
+  </data>
+  <data name="CashOutCancelled" xml:space="preserve">
+    <value>Đã Hủy Bán Vé Cược</value>
+  </data>
+  <data name="NetworkLatency" xml:space="preserve">
+    <value>Không có thông tin do kết nối mạng không ổn định. Vui lòng thử lại sau vài phút.</value>
+  </data>
 </root>

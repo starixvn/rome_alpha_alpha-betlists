@@ -399,4 +399,28 @@
   <data name="ExceededMaxTotalRowExportExcelFunc" xml:space="preserve">
     <value>ระบบจำกัดการส่งข้อมูลออกได้สูงสุดที่ {0} รายการ  กรุณาลดช่วงวันที่ลง</value>
   </data>
+  <data name="CashOutHistoryTitle" xml:space="preserve">
+    <value>ประวัติการแลกเงินสด</value>
+  </data>
+  <data name="CashOutAmount" xml:space="preserve">
+    <value>จำนวนที่แลกเงินสด</value>
+  </data>
+  <data name="CashOutCancelled" xml:space="preserve">
+    <value>แลกเงินสดถูกยกเลิก</value>
+  </data>
+  <data name="CashOutRecovered" xml:space="preserve">
+    <value>แลกเงินสดถูกดำเนินการแล้ว</value>
+  </data>
+  <data name="DateTime" xml:space="preserve">
+    <value>วัน/เวลา</value>
+  </data>
+  <data name="NetworkLatency" xml:space="preserve">
+    <value>ข้อมูลไม่พร้อมใช้งานเนื่องจากความล่าช้าของเครือข่าย โปรดรอสักครู่และลองอีกครั้ง</value>
+  </data>
+  <data name="Activity" xml:space="preserve">
+    <value>กิจกรรม</value>
+  </data>
+  <data name="CashOut" xml:space="preserve">
+    <value>เงินสด</value>
+  </data>
 </root>

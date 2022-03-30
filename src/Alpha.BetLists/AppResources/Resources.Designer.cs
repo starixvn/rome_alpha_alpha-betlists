@@ -61,6 +61,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Activity.
+        /// </summary>
+        public static string Activity {
+            get {
+                return ResourceManager.GetString("Activity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Agent.
         /// </summary>
         public static string Agent {
@@ -196,6 +205,51 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cash Out.
+        /// </summary>
+        public static string CashOut {
+            get {
+                return ResourceManager.GetString("CashOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cash Out Amount.
+        /// </summary>
+        public static string CashOutAmount {
+            get {
+                return ResourceManager.GetString("CashOutAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cash Out Cancelled.
+        /// </summary>
+        public static string CashOutCancelled {
+            get {
+                return ResourceManager.GetString("CashOutCancelled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cash Out History.
+        /// </summary>
+        public static string CashOutHistoryTitle {
+            get {
+                return ResourceManager.GetString("CashOutHistoryTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cash Out Recovered.
+        /// </summary>
+        public static string CashOutRecovered {
+            get {
+                return ResourceManager.GetString("CashOutRecovered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Choice.
         /// </summary>
         public static string choice {
@@ -246,6 +300,15 @@ namespace Alpha.BetLists.AppResources {
         public static string date {
             get {
                 return ResourceManager.GetString("date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date/Time.
+        /// </summary>
+        public static string DateTime {
+            get {
+                return ResourceManager.GetString("DateTime", resourceCulture);
             }
         }
         
@@ -489,6 +552,15 @@ namespace Alpha.BetLists.AppResources {
         public static string memberBetList {
             get {
                 return ResourceManager.GetString("memberBetList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Information is not available due to network latency. Please wait a few minutes and try again..
+        /// </summary>
+        public static string NetworkLatency {
+            get {
+                return ResourceManager.GetString("NetworkLatency", resourceCulture);
             }
         }
         
