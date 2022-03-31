@@ -671,4 +671,32 @@
             Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/CardClubResult' + params, "", 1099, 500, { resizable: true });
         }
     }
+
+    export class FGGResultDetails extends BaseResultDetails implements ResultDetails {
+        public ViewResultDetails = (
+            matchId?: number,
+            race?: number,
+            betTypeId?: number,
+            sportTypeId?: number,
+            refNo?: string,
+            userName?: string,
+            winLostDate?: Date,
+            refNoMixParlay?: number,
+            league?: number,
+            isOutright?: boolean,
+            currencyId?: number,
+            gameId3rd?: string,
+            custId?: number,
+            transId3rd?: string,
+            siteId?: string) => {
+            var params = '?custId=' + custId +
+                '&transId3rd=' + transId3rd +
+                '&gameId3rd=' + gameId3rd +
+                '&currencyId=' + currencyId +
+                '&siteId=' + siteId +
+                '&endtime=' + winLostDate +
+                '&productId=70';
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/FGGResult' + params, "", 835, 675);
+        }
+    }  
 }

@@ -30,6 +30,7 @@
         private static VGamingResult: ResultDetails;
         private static advantPlayResult: ResultDetails;
         private static advantPlayMiniResult: ResultDetails;
+        private static fggResult: ResultDetails;
 
         public static CreateInstance(betTypeId: number): ResultDetails {
             if (betTypeId >= 2501 && betTypeId <= 2699) {
@@ -178,7 +179,12 @@
                 this.advantPlayMiniResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.advantPlayMiniResult) ? new AdvantPlayMiniResultDetails() : this.advantPlayResult;
                 return this.advantPlayMiniResult;
             }
-            
+
+            if (betTypeId >= 8201 && betTypeId <= 8299) {
+                this.fggResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.fggResult) ? new FGGResultDetails() : this.fggResult;
+                return this.fggResult;
+            }
+
             this.sportsbookResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sportsbookResult) ? new SportsbookResultDetails : this.sportsbookResult;
             return this.sportsbookResult;
         }
