@@ -60,6 +60,16 @@
             });
         };
 
+        for (let betType = 5800; betType <= 5999; betType++) {
+            it("CreateInstance_ByBetType -> Return MacauGamesResultDetails Instance", () => {
+                // Act
+                let actualInstance = BetList.Status.ResultDetails.ResultDetailsFactory.CreateInstance(betType);
+
+                // Assert
+                expect(actualInstance).toEqual(jasmine.any(BetList.Status.ResultDetails.MacauGamesResultDetails));
+            });
+        };
+
         for (let betType = 2401; betType <= 2405; betType++) {
             it("CreateInstance_ByBetType -> Return AllbetResultDetails Instance", () => {
                 // Act
