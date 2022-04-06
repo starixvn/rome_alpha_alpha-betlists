@@ -9,7 +9,7 @@
     });
 
     describe("Casino_", () => {
-        const defaultSportName = "RNG Casino";
+        const defaultSportName = "Saba Casino";
         const refNo = "111";
         const winLossDate: Date = new Date();
         const custId = "1";
@@ -26,7 +26,7 @@
         describe("ShowRnGCasinoDetails()", () => {
             it("Should Call Show Popup Details With Expected Url", () => {
                 // Arrange
-                const params = createDetailPopupParam("RNG Casino");
+                const params = createDetailPopupParam("Saba Casino");
 
                 // Act
                 BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowRnGCasinoDetails(refNo, winLossDate, custId, transType);
@@ -99,7 +99,7 @@
 
     describe("GlobalDetailsFunction_", () => {
         describe("showRnGCasinoDetails", () => {
-            it("Should Be Assigned Show Details RnG Casino Function", () => {
+            it("Should Be Assigned Show Details Saba Casino Function", () => {
                 // Arrange
                 const showDetailsFunc = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowRnGCasinoDetails;
 
