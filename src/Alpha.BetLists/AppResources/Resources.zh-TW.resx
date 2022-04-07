@@ -423,4 +423,7 @@
   <data name="CashOut" xml:space="preserve">
     <value>即時兌現</value>
   </data>
+  <data name="TicketDetails" xml:space="preserve">
+    <value>Ticket Details</value>
+  </data>
 </root>

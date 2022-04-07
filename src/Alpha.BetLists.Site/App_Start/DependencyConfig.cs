@@ -179,6 +179,8 @@
             container.Register<RiskAnalysisIPMatchingHelper, RiskAnalysisIPMatchingHelperImpl>(Lifestyle.Singleton);
             container.Register<CashOutHistoryService, CashOutHistoryServiceImpl>(Lifestyle.Singleton);
 
+            container.Register<MoveStatementHistoryService, MoveStatementHistoryServiceImpl>(Lifestyle.Singleton);
+            
             if (AppSettings.IsIntegrationTest)
             {
                 container.RegisterSingleton<IUser, StaticUserSession>();

@@ -433,4 +433,7 @@
   <data name="NetworkLatency" xml:space="preserve">
     <value>Không có thông tin do kết nối mạng không ổn định. Vui lòng thử lại sau vài phút.</value>
   </data>
+  <data name="TicketDetails" xml:space="preserve">
+    <value>Ticket Details</value>
+  </data>
 </root>

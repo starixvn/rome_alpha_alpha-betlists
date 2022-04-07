@@ -2,6 +2,7 @@
   "isActive": true,
   "paths": [],
   "betListsPaths": [
+    "MoveStatementHistory",
     "CancelledBet",
     "CasinoDetails",
     "CorrectScore",
