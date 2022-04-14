@@ -14,6 +14,8 @@
     {
         private static IFixture fixture = new Fixture();
 
+        public static readonly CashOutHistoryModel CashOutHistory = fixture.Create<CashOutHistoryModel>();
+
         public static readonly IEnumerable<TicketDto> Tickets = fixture.CreateMany<TicketDto>();
 
         public static readonly IEnumerable<TicketDto> OldTickets = fixture.CreateMany<TicketDto>();

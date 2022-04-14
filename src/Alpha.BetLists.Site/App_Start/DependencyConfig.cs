@@ -177,7 +177,8 @@
             container.Register<JackpotDetailsService, JackpotDetailsServiceImpl>(Lifestyle.Singleton);
             container.Register<RiskAnalysisIPMatchingService, RiskAnalysisIPMatchingServiceImpl> (Lifestyle.Singleton);
             container.Register<RiskAnalysisIPMatchingHelper, RiskAnalysisIPMatchingHelperImpl>(Lifestyle.Singleton);
-            
+            container.Register<CashOutHistoryService, CashOutHistoryServiceImpl>(Lifestyle.Singleton);
+
             if (AppSettings.IsIntegrationTest)
             {
                 container.RegisterSingleton<IUser, StaticUserSession>();
