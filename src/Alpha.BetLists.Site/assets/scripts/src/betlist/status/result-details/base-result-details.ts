@@ -58,7 +58,7 @@
                 return this.rngCasinoResult;
             }
 
-            if (betTypeId >= 4001 && betTypeId <= 4100) {
+            if (betTypeId >= 4001 && betTypeId <= 4100 || betTypeId >= 5800 && betTypeId <= 5999) {
                 this.macauGamesResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.macauGamesResult) ? new MacauGamesResultDetails() : this.macauGamesResult;
                 return this.macauGamesResult;
             }
