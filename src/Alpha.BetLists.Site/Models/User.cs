@@ -47,8 +47,8 @@
             {
                 var products = GetEnableProductsByGameName(Jackpot);
 
-                return products.Count == 1 && products.Contains(ProductIdConstants.RNGCasino)
-                    ? userSession.IsCasinoSync
+                return products.Count == 1 && products.Contains(ProductIdConstants.Casino)
+                    ? userSession.GetSyncedProduct(ProductIdConstants.Casino)
                     : products.Any();
             }
         }

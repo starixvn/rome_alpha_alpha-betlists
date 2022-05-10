@@ -79,7 +79,7 @@
             this.ShowDetailsPopup(params);
         }
 
-        private CreatePopupDetailsParam = (refNo: string, winlossDate: Date, custId: string, transType: string, sportName: string = "RNG Casino"): string => {
+        private CreatePopupDetailsParam = (refNo: string, winlossDate: Date, custId: string, transType: string, sportName: string = "Saba Casino"): string => {
             return "?refNo=" + refNo
                 + "&transType=" + transType
                 + "&custId=" + custId
