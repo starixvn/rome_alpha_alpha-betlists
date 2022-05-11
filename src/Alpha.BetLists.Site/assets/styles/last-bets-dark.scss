@@ -15,16 +15,16 @@
     display: inline;
     padding: 3px 4px 2px;
     cursor: pointer;
-    background: #eff5fc;
-    color: #1254fb;
-    border: 1px solid #84aaf8;
-    font-size: 11px;
+    background: #868686;
+    border-radius: 3px;
+    color: #171717;
+    font-size: 12px;
     margin-right: 3px;
     letter-spacing: 0.05px;
+    font-weight: bold;
 
     &.active, &:hover {
-        font-weight: bold;
-        background: #cce4fc;
+        background: #EDEDED;
         letter-spacing: 0;
     }
 }
