@@ -163,10 +163,18 @@
             refNoMixParlay?: number,
             league?: number,
             isOutright?: boolean,
-            betId?: number,
-            betCheck?: string) => {
-            var params = '?gameId=' + refNo;
-            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'VirtualGames/Detail' + params, "", 835, 675);
+            currencyId?: number,
+            gameId3rd?: string,
+            custId?: number,
+            transId3rd?: string,
+            siteId?: string) => {
+            var params = '?custId=' + custId +
+                '&transId3rd=' + transId3rd +
+                '&gameId3rd=' + gameId3rd +
+                '&currencyId=' + currencyId +
+                '&siteId=' + siteId +
+                '&productId=38';
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/VirtualGamesResult' + params, "", 835, 675);
         }
     }
 
