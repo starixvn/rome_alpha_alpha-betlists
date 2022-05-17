@@ -10,8 +10,10 @@
     @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-betlists/default")
     @StaticResources.RenderStylesWithDarkMode("~/assets/bundles/default")
     @RenderSection("Styles", required: false)
+    @Alpha.Web.Helpers.GoogleAnalyticHepler.GtagScript()
 </head>
 <body>
+    @Alpha.Web.Helpers.GoogleAnalyticHepler.GtagNoScript()
     @RenderBody()
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/ajaxSetup")
@@ -20,6 +22,5 @@
     @Html.Partial("DetailsPopup")
     @RenderSection("Scripts", required: false)
 
-    @Alpha.Web.Helpers.GoogleAnalyticHepler.Render()
 </body>
 </html>
