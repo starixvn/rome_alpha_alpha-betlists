@@ -4,9 +4,7 @@
     using Alpha.BetLists.Models;
     using Alpha.BetLists.Params;
     using Alpha.Web.Helpers;
-    using Fanex.BetList.Core.Entities;
     using Fanex.Data.Repository;
-    using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
@@ -28,7 +26,7 @@
 
         public async Task<IEnumerable<TicketDto>> GetBetList(MoveStatementHistoryParam param)
         {
-            var criteria = new MoveStatementHistoryCriteria(param.CustId, param.TransId);
+            var criteria = new GetBetListMoveStatementHistoryCriteria(param.CustId, param.TransId);
 
             partialUMService.CheckPartialUM(criteria.GetSettingKey());
 

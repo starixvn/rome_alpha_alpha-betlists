@@ -271,6 +271,7 @@
     <Compile Include="Criteria\GetCashOutHistoryCriteria.cs" />
     <Compile Include="Criteria\GetProductsDetailCriteriaTests.cs" />
     <Compile Include="Criteria\LastBets\GetMatchInfoByIdCriteriaTests.cs" />
+    <Compile Include="Criteria\MoveStatementHistory\GetBetListMoveStatementHistoryCriteriaTests.cs" />
     <Compile Include="Criteria\ProgressiveJackpot\GetEnableJackpotProductCriteriaTest.cs" />
     <Compile Include="Criteria\ProgressiveJackpot\GetJackpotDetailsCriteriaTests.cs" />
     <Compile Include="Criteria\CasioDetails\GetCasinoDetailsCriteriaTests.cs" />
@@ -329,6 +330,7 @@
     <Compile Include="Services\CashOutHistoryServiceTests.cs" />
     <Compile Include="Services\JackpotDetailsServiceImplTests.cs" />
     <Compile Include="Services\LastBetsServiceImplTests.cs" />
+    <Compile Include="Services\MoveStatementHistoryServiceImplTests.cs" />
     <Compile Include="Services\ProductDetailServiceImplTests.cs" />
     <Compile Include="Services\RiskAnalysisIPMatchingServiceImplTests.cs" />
     <Compile Include="Services\MemberBetListServiceImplTests.cs" />

@@ -2,9 +2,9 @@
 {
     using Fanex.Data.Repository;
 
-    public class MoveStatementHistoryCriteria : CriteriaBase
+    public class GetBetListMoveStatementHistoryCriteria : CriteriaBase
     {
-        public MoveStatementHistoryCriteria(int custId, long transId)
+        public GetBetListMoveStatementHistoryCriteria(int custId, long transId)
         {
             CustId = custId;
             TransId = transId;
