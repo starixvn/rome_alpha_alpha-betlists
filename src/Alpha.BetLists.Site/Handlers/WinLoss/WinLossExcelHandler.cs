@@ -50,7 +50,7 @@
                 ? productService.FilterProductIdsByGroupHeadline(message.ProductIds.ToListInt(), productByHLParam, message.IsEnableSabaPromotionForHeadline)
                 : productService.FilterProductIdsByCustomer(message.CustId, message.Site, message.CurrencyId, message.MinDate, message.ProductIds.ToListInt(), message.IsEnableSabaPromotion);
             validUserSelectedProductIds = await productDetailService.RemoveProductIdsAsync(validUserSelectedProductIds, message.ResourceIds);
-            var productDetailsXML = await productDetailService.BuildProductDetailsXMLAsync(validUserSelectedProductIds, message.ResourceIds);
+            var productDetailsXML = await productDetailService.BuildProductDetailsXMLAsync(validUserSelectedProductIds, message.ResourceIds, message.Is789Y);
 
             var winLossParam = WinLossHandler.CreateWinLossParam(message, validUserSelectedProductIds, productDetailsXML, message.MaxTotalRowExportExcel, message.MaxTotalRowExportExcelConfig);
             winLossParam.IsExcel = true;

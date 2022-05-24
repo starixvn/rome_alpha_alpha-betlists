@@ -66,5 +66,7 @@
 
         public bool IsEnableSabaPromotionForHeadline { get; }
 
+        public bool Is789Y => Site.Equals("789Y", StringComparison.CurrentCultureIgnoreCase);
+
     }
 }

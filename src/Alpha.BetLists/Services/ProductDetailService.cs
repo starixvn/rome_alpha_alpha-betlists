@@ -15,7 +15,7 @@
 
     public interface ProductDetailService
     {
-        Task<string> BuildProductDetailsXMLAsync(IEnumerable<int> validProductIds, string userSelectedResourceIds);
+        Task<string> BuildProductDetailsXMLAsync(IEnumerable<int> validProductIds, string userSelectedResourceIds, bool is789y = false);
 
         Task<IEnumerable<int>> RemoveProductIdsAsync(IEnumerable<int> productIds, string userSelectedResourceIds);
     }
@@ -32,7 +32,7 @@
             this.dynamicRepository = dynamicRepository;
         }
 
-        public async Task<string> BuildProductDetailsXMLAsync(IEnumerable<int> validProductIds, string userSelectedResourceIds)
+        public async Task<string> BuildProductDetailsXMLAsync(IEnumerable<int> validProductIds, string userSelectedResourceIds, bool is789y = false)
         {
             var validProductDetails = new List<ProductDetail>();
             var resourceIdsHash = userSelectedResourceIds.ToIntDictionary();
@@ -43,8 +43,17 @@
                 .ToList()
                 .ForEach(group =>
                 {
-                    if (IsSupportProductDetail(group.Key))
+                    if (is789y)
                     {
+                        var productids = new List<int> { ProductIdConstants.Allbet, ProductIdConstants.SexyGaming, ProductIdConstants.Pragmatic, ProductIdConstants.SpadeGaming };
+                        if (productids.Any(i => i == group.Key))
+                        {
+                            validProductDetails.AddRange(group.Select(i => i));
+                        }
+                    }
+
+                    if (IsSupportProductDetail(group.Key))
+                    {   
                         validProductDetails.AddRange(group.Where(p => resourceIdsHash.ContainsKey(p.ResourceId)));
                     }
                 });

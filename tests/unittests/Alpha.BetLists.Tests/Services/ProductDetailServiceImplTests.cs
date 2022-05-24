@@ -28,10 +28,45 @@
                 .Returns(new List<ProductDetail>
                 {
                     new ProductDetail(1, ProductIdConstants.Pragmatic, 200, 0, "0", "0"),
-                    new ProductDetail(2, ProductIdConstants.Pragmatic, 150, 0, "0", "0"),
+                    new ProductDetail(2, ProductIdConstants.Pragmatic, 200, 0, "0", "0"),
                     new ProductDetail(3, ProductIdConstants.Sportsbook, 200, 0, "0", "0"),
-                    new ProductDetail(4, ProductIdConstants.Sportsbook, 150, 0, "0", "0")
+                    new ProductDetail(4, ProductIdConstants.Sportsbook, 200, 0, "0", "0"),
+                    new ProductDetail(5, ProductIdConstants.Allbet, 200, 0, "0", "0"),
+                    new ProductDetail(6, ProductIdConstants.SexyGaming, 200, 0, "0", "0"),
+                    new ProductDetail(7, ProductIdConstants.SpadeGaming, 200, 0, "0", "0"),
                 });
+        }
+
+        [Fact]
+        public async Task BuildProductDetailsXML_789y_AddChecked3rdProductDetail()
+        {
+            // Arrange
+            IEnumerable<int> validProductIds = new List<int> {
+                ProductIdConstants.Sportsbook,
+                ProductIdConstants.Pragmatic,
+                ProductIdConstants.Allbet,
+                ProductIdConstants.SpadeGaming,
+                ProductIdConstants.SexyGaming
+            };
+            var userSelectedResourceIds = "3,4";
+
+            AppSettings.AppSettingValues = new NameValueCollection();
+            AppSettings.AppSettingValues.Add("ProductOfferProductDetail", "1");
+
+            var expected = $"<ROOT><ProductDetail ProductId=\"{ProductIdConstants.Pragmatic}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupID=\"0\" TicketType=\"0\"/>"
+                + $"<ProductDetail ProductId=\"{ProductIdConstants.Pragmatic}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupID=\"0\" TicketType=\"0\"/>"
+                + $"<ProductDetail ProductId=\"{ProductIdConstants.Sportsbook}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupID=\"0\" TicketType=\"0\"/>"
+                + $"<ProductDetail ProductId=\"{ProductIdConstants.Sportsbook}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupID=\"0\" TicketType=\"0\"/>"
+                + $"<ProductDetail ProductId=\"{ProductIdConstants.Allbet}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupID=\"0\" TicketType=\"0\"/>"
+                + $"<ProductDetail ProductId=\"{ProductIdConstants.SexyGaming}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupID=\"0\" TicketType=\"0\"/>"
+                + $"<ProductDetail ProductId=\"{ProductIdConstants.SpadeGaming}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupID=\"0\" TicketType=\"0\"/></ROOT>";
+
+            // Act
+            var actualResult = await productDetailService.BuildProductDetailsXMLAsync(validProductIds, userSelectedResourceIds, is789y: true);
+
+            // Assert
+            
+            Assert.Equal(expected, actualResult);
         }
 
         [Fact]
@@ -45,12 +80,12 @@
             AppSettings.AppSettingValues.Add("ProductOfferProductDetail", "1");
 
             // Act
-            var actualResult = await productDetailService.BuildProductDetailsXMLAsync(validProductIds, userSelectedResourceIds);
+            var actualResult = await productDetailService.BuildProductDetailsXMLAsync(validProductIds, userSelectedResourceIds, false);
 
             // Assert
             Assert.Equal(
                 $"<ROOT><ProductDetail ProductId=\"{ProductIdConstants.Sportsbook}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupID=\"0\" TicketType=\"0\"/>"
-                + $"<ProductDetail ProductId=\"{ProductIdConstants.Sportsbook}\" Sporttype=\"150\" Bettype=\"0\" LeagueGroupID=\"0\" TicketType=\"0\"/></ROOT>",
+                + $"<ProductDetail ProductId=\"{ProductIdConstants.Sportsbook}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupID=\"0\" TicketType=\"0\"/></ROOT>",
                 actualResult);
         }
 
@@ -65,14 +100,14 @@
             AppSettings.AppSettingValues.Add("ProductOfferProductDetail", "1,32");
 
             // Act
-            var actualResult = await productDetailService.BuildProductDetailsXMLAsync(validProductIds, userSelectedResourceIds);
+            var actualResult = await productDetailService.BuildProductDetailsXMLAsync(validProductIds, userSelectedResourceIds, false);
 
             // Assert
             Assert.Equal(
                 $"<ROOT><ProductDetail ProductId=\"{ProductIdConstants.Pragmatic}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupID=\"0\" TicketType=\"0\"/>"
-                + $"<ProductDetail ProductId=\"{ProductIdConstants.Pragmatic}\" Sporttype=\"150\" Bettype=\"0\" LeagueGroupID=\"0\" TicketType=\"0\"/>"
+                + $"<ProductDetail ProductId=\"{ProductIdConstants.Pragmatic}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupID=\"0\" TicketType=\"0\"/>"
                 + $"<ProductDetail ProductId=\"{ProductIdConstants.Sportsbook}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupID=\"0\" TicketType=\"0\"/>"
-                + $"<ProductDetail ProductId=\"{ProductIdConstants.Sportsbook}\" Sporttype=\"150\" Bettype=\"0\" LeagueGroupID=\"0\" TicketType=\"0\"/></ROOT>",
+                + $"<ProductDetail ProductId=\"{ProductIdConstants.Sportsbook}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupID=\"0\" TicketType=\"0\"/></ROOT>",
                 actualResult);
         }
 
@@ -85,14 +120,6 @@
 
             AppSettings.AppSettingValues = new NameValueCollection();
             AppSettings.AppSettingValues.Add("ProductOfferProductDetail", "1,32");
-
-            dynamicRepository
-                .FetchAsync<ProductDetail>(Arg.Any<GetProductsDetailCriteria>())
-                .Returns(new List<ProductDetail>
-                {
-                    new ProductDetail(1, ProductIdConstants.Pragmatic, 200, 0, "0", "0"),
-                    new ProductDetail(2, ProductIdConstants.Pragmatic, 150, 0, "0", "0")
-                });
 
             // Act
             var actualResult = await productDetailService.RemoveProductIdsAsync(productIds, userSelectedResourceIds);

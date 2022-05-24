@@ -49,7 +49,7 @@
                 .Returns(callInfo => callInfo.Args()[4]);
 
             productDetailService= Substitute.For<ProductDetailService>();
-            productDetailService.BuildProductDetailsXMLAsync(Arg.Any<IEnumerable<int>>(), Arg.Any<string>())
+            productDetailService.BuildProductDetailsXMLAsync(Arg.Any<IEnumerable<int>>(), Arg.Any<string>(), false)
                 .Returns(BetListDataTest.ProductDetailsXML);
             productDetailService.RemoveProductIdsAsync(Arg.Any<IEnumerable<int>>(), Arg.Any<string>())
                 .Returns(new List<int> { 1 });
