@@ -22,85 +22,92 @@
         {
             dynamicRepository = Substitute.For<IDynamicRepository>();
             productDetailService = new ProductDetailServiceImpl(dynamicRepository);
-        }
-
-        [Fact]
-        public async Task BuildProductDetailsXML_IsOfferJackpotProductDetailsHasProductId_ReturnsCorrectXML()
-        {
-            // Arrange
-            IEnumerable<int> validProductIds = new List<int> { 1, ProductIdConstants.Pragmatic };
-            var userSelectedResourceIds = "1,2";
-
-            AppSettings.AppSettingValues = new NameValueCollection();
-            AppSettings.AppSettingValues.Add("IsOfferJackpotProductDetails", "1");
 
             dynamicRepository
                 .FetchAsync<ProductDetail>(Arg.Any<GetProductsDetailCriteria>())
                 .Returns(new List<ProductDetail>
                 {
-                    new ProductDetail(1, ProductIdConstants.Pragmatic, 200, 0),
-                    new ProductDetail(2, ProductIdConstants.Pragmatic, 150, 0)
+                    new ProductDetail(1, ProductIdConstants.Pragmatic, 200, 0, "0", "0"),
+                    new ProductDetail(2, ProductIdConstants.Pragmatic, 200, 0, "0", "0"),
+                    new ProductDetail(3, ProductIdConstants.Sportsbook, 200, 0, "0", "0"),
+                    new ProductDetail(4, ProductIdConstants.Sportsbook, 200, 0, "0", "0"),
+                    new ProductDetail(5, ProductIdConstants.Allbet, 200, 0, "0", "0"),
+                    new ProductDetail(6, ProductIdConstants.SexyGaming, 200, 0, "0", "0"),
+                    new ProductDetail(7, ProductIdConstants.SpadeGaming, 200, 0, "0", "0"),
                 });
+        }
+
+        [Fact]
+        public async Task BuildProductDetailsXML_789y_AddChecked3rdProductDetail()
+        {
+            // Arrange
+            IEnumerable<int> validProductIds = new List<int> {
+                ProductIdConstants.Sportsbook,
+                ProductIdConstants.Pragmatic,
+                ProductIdConstants.Allbet,
+                ProductIdConstants.SpadeGaming,
+                ProductIdConstants.SexyGaming
+            };
+            var userSelectedResourceIds = "3,4";
+
+            AppSettings.AppSettingValues = new NameValueCollection();
+            AppSettings.AppSettingValues.Add("ProductOfferProductDetail", "1");
+
+            var expected = $"<ROOT><ProductDetail ProductId=\"{ProductIdConstants.Pragmatic}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupID=\"0\" TicketType=\"0\"/>"
+                + $"<ProductDetail ProductId=\"{ProductIdConstants.Pragmatic}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupID=\"0\" TicketType=\"0\"/>"
+                + $"<ProductDetail ProductId=\"{ProductIdConstants.Sportsbook}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupID=\"0\" TicketType=\"0\"/>"
+                + $"<ProductDetail ProductId=\"{ProductIdConstants.Sportsbook}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupID=\"0\" TicketType=\"0\"/>"
+                + $"<ProductDetail ProductId=\"{ProductIdConstants.Allbet}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupID=\"0\" TicketType=\"0\"/>"
+                + $"<ProductDetail ProductId=\"{ProductIdConstants.SexyGaming}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupID=\"0\" TicketType=\"0\"/>"
+                + $"<ProductDetail ProductId=\"{ProductIdConstants.SpadeGaming}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupID=\"0\" TicketType=\"0\"/></ROOT>";
 
             // Act
-            var actualResult = await productDetailService.BuildProductDetailsXMLAsync(validProductIds, userSelectedResourceIds);
+            var actualResult = await productDetailService.BuildProductDetailsXMLAsync(validProductIds, userSelectedResourceIds, is789y: true);
+
+            // Assert
+            
+            Assert.Equal(expected, actualResult);
+        }
+
+        [Fact]
+        public async Task BuildProductDetailsXML_OfferSB_ReturnsSBOnlyXML()
+        {
+            // Arrange
+            IEnumerable<int> validProductIds = new List<int> { 1, ProductIdConstants.Pragmatic };
+            var userSelectedResourceIds = "3,4";
+
+            AppSettings.AppSettingValues = new NameValueCollection();
+            AppSettings.AppSettingValues.Add("ProductOfferProductDetail", "1");
+
+            // Act
+            var actualResult = await productDetailService.BuildProductDetailsXMLAsync(validProductIds, userSelectedResourceIds, false);
 
             // Assert
             Assert.Equal(
-                $"<ROOT><ProductDetail ProductId=\"{ProductIdConstants.Pragmatic}\" Sporttype=\"200\" Bettype=\"0\"/>"
-                + $"<ProductDetail ProductId=\"{ProductIdConstants.Pragmatic}\" Sporttype=\"150\" Bettype=\"0\"/></ROOT>",
+                $"<ROOT><ProductDetail ProductId=\"{ProductIdConstants.Sportsbook}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupID=\"0\" TicketType=\"0\"/>"
+                + $"<ProductDetail ProductId=\"{ProductIdConstants.Sportsbook}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupID=\"0\" TicketType=\"0\"/></ROOT>",
                 actualResult);
         }
 
         [Fact]
-        public async Task BuildProductDetailsXML_IsOfferJackpotProductDetailsProductIdIsEmpty_ReturnsEmptyXML()
-        {
-            // Arrange
-            IEnumerable<int> validProductIds = new List<int>();
-            var userSelectedResourceIds = "1,2";
-
-            AppSettings.AppSettingValues = new NameValueCollection();
-            AppSettings.AppSettingValues.Add("SiteGroup", "789y");
-
-            dynamicRepository
-                .FetchAsync<ProductDetail>(Arg.Any<GetProductsDetailCriteria>())
-                .Returns(new List<ProductDetail>
-                {
-                    new ProductDetail(1, 42, 200, 0),
-                    new ProductDetail(1, 42, 150, 0)
-                });
-
-            // Act
-            var actualResult = await productDetailService.BuildProductDetailsXMLAsync(validProductIds, userSelectedResourceIds);
-
-            // Assert
-            Assert.Empty(actualResult);
-        }
-
-        [Fact]
-        public async Task BuildProductDetailsXML_IsNotOfferJackpotProductDetailsHasProductId_ReturnsAllProductDetailsXML()
+        public async Task BuildProductDetailsXML_OfferAll_ReturnsSBAndPramaticProductDetailsXML()
         {
             // Arrange
             IEnumerable<int> validProductIds = new List<int> { 1, ProductIdConstants.Pragmatic };
-            var userSelectedResourceIds = string.Empty;
+            var userSelectedResourceIds = "1,2,3,4";
 
             AppSettings.AppSettingValues = new NameValueCollection();
-
-            dynamicRepository
-                .FetchAsync<ProductDetail>(Arg.Any<GetProductsDetailCriteria>())
-                .Returns(new List<ProductDetail>
-                {
-                    new ProductDetail(1, ProductIdConstants.Pragmatic, 200, 0),
-                    new ProductDetail(2, ProductIdConstants.Pragmatic, 150, 0)
-                });
+            AppSettings.AppSettingValues.Add("ProductOfferProductDetail", "1,32");
 
             // Act
-            var actualResult = await productDetailService.BuildProductDetailsXMLAsync(validProductIds, userSelectedResourceIds);
+            var actualResult = await productDetailService.BuildProductDetailsXMLAsync(validProductIds, userSelectedResourceIds, false);
 
             // Assert
             Assert.Equal(
-                $"<ROOT><ProductDetail ProductId=\"{ProductIdConstants.Pragmatic}\" Sporttype=\"200\" Bettype=\"0\"/>"
-                + $"<ProductDetail ProductId=\"{ProductIdConstants.Pragmatic}\" Sporttype=\"150\" Bettype=\"0\"/></ROOT>",
+                $"<ROOT><ProductDetail ProductId=\"{ProductIdConstants.Pragmatic}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupID=\"0\" TicketType=\"0\"/>"
+                + $"<ProductDetail ProductId=\"{ProductIdConstants.Pragmatic}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupID=\"0\" TicketType=\"0\"/>"
+                + $"<ProductDetail ProductId=\"{ProductIdConstants.Sportsbook}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupID=\"0\" TicketType=\"0\"/>"
+                + $"<ProductDetail ProductId=\"{ProductIdConstants.Sportsbook}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupID=\"0\" TicketType=\"0\"/></ROOT>",
                 actualResult);
         }
 
@@ -109,18 +116,10 @@
         {
             // Arrange
             IEnumerable<int> productIds = new List<int> { 1, ProductIdConstants.Pragmatic };
-            var userSelectedResourceIds = "1,2";
+            var userSelectedResourceIds = "1,2,3,4";
 
             AppSettings.AppSettingValues = new NameValueCollection();
-            AppSettings.AppSettingValues.Add("IsOfferJackpotProductDetails", "1");
-
-            dynamicRepository
-                .FetchAsync<ProductDetail>(Arg.Any<GetProductsDetailCriteria>())
-                .Returns(new List<ProductDetail>
-                {
-                    new ProductDetail(1, ProductIdConstants.Pragmatic, 200, 0),
-                    new ProductDetail(2, ProductIdConstants.Pragmatic, 150, 0)
-                });
+            AppSettings.AppSettingValues.Add("ProductOfferProductDetail", "1,32");
 
             // Act
             var actualResult = await productDetailService.RemoveProductIdsAsync(productIds, userSelectedResourceIds);
@@ -134,43 +133,27 @@
         {
             // Arrange
             IEnumerable<int> productIds = new List<int> { 1, ProductIdConstants.Pragmatic };
-            var userSelectedResourceIds = string.Empty;
+            var userSelectedResourceIds = "1";
 
             AppSettings.AppSettingValues = new NameValueCollection();
-            AppSettings.AppSettingValues.Add("IsOfferJackpotProductDetails", "1");
-
-            dynamicRepository
-                .FetchAsync<ProductDetail>(Arg.Any<GetProductsDetailCriteria>())
-                .Returns(new List<ProductDetail>
-                {
-                    new ProductDetail(1, ProductIdConstants.Pragmatic, 200, 0),
-                    new ProductDetail(2, ProductIdConstants.Pragmatic, 150, 0)
-                });
+            AppSettings.AppSettingValues.Add("ProductOfferProductDetail", "1,32");
 
             // Act
             var actualResult = await productDetailService.RemoveProductIdsAsync(productIds, userSelectedResourceIds);
 
             // Assert
-            Assert.True(string.Join(",", actualResult) == "1");
+            Assert.True(string.Join(",", actualResult) == "32");
         }
 
         [Fact]
-        public async Task RemoveProductIdsAsync_IsNotOfferJackpotProductDetails_ReturnsProductIds()
+        public async Task RemoveProductIdsAsync_NotHaveProductDetail_ReturnsProductIds()
         {
             // Arrange
             IEnumerable<int> productIds = new List<int> { 1, ProductIdConstants.Pragmatic };
             var userSelectedResourceIds = string.Empty;
 
             AppSettings.AppSettingValues = new NameValueCollection();
-            AppSettings.AppSettingValues.Add("IsOfferJackpotProductDetails", "0");
-
-            dynamicRepository
-                .FetchAsync<ProductDetail>(Arg.Any<GetProductsDetailCriteria>())
-                .Returns(new List<ProductDetail>
-                {
-                    new ProductDetail(1, ProductIdConstants.Pragmatic, 200, 0),
-                    new ProductDetail(2, ProductIdConstants.Pragmatic, 150, 0)
-                });
+            AppSettings.AppSettingValues.Add("ProductOfferProductDetail", "");
 
             // Act
             var actualResult = await productDetailService.RemoveProductIdsAsync(productIds, userSelectedResourceIds);

@@ -15,7 +15,7 @@
 
     public interface ProductDetailService
     {
-        Task<string> BuildProductDetailsXMLAsync(IEnumerable<int> validProductIds, string userSelectedResourceIds);
+        Task<string> BuildProductDetailsXMLAsync(IEnumerable<int> validProductIds, string userSelectedResourceIds, bool is789y = false);
 
         Task<IEnumerable<int>> RemoveProductIdsAsync(IEnumerable<int> productIds, string userSelectedResourceIds);
     }
@@ -32,7 +32,7 @@
             this.dynamicRepository = dynamicRepository;
         }
 
-        public async Task<string> BuildProductDetailsXMLAsync(IEnumerable<int> validProductIds, string userSelectedResourceIds)
+        public async Task<string> BuildProductDetailsXMLAsync(IEnumerable<int> validProductIds, string userSelectedResourceIds, bool is789y = false)
         {
             var validProductDetails = new List<ProductDetail>();
             var resourceIdsHash = userSelectedResourceIds.ToIntDictionary();
@@ -43,10 +43,18 @@
                 .ToList()
                 .ForEach(group =>
                 {
-                    if (ProductIdConstants.ProductListHasProductDetail.Any(i => i == group.Key))
+                    if (is789y)
                     {
-                        validProductDetails.AddRange(
-                            AppSettings.IsOfferJackpotProductDetails ? group.Where(p => resourceIdsHash.ContainsKey(p.ResourceId)) : group);
+                        var productids = new List<int> { ProductIdConstants.Allbet, ProductIdConstants.SexyGaming, ProductIdConstants.Pragmatic, ProductIdConstants.SpadeGaming };
+                        if (productids.Any(i => i == group.Key))
+                        {
+                            validProductDetails.AddRange(group.Select(i => i));
+                        }
+                    }
+
+                    if (IsSupportProductDetail(group.Key))
+                    {   
+                        validProductDetails.AddRange(group.Where(p => resourceIdsHash.ContainsKey(p.ResourceId)));
                     }
                 });
 
@@ -64,11 +72,22 @@
         private static string BuildProductDetailsXML(IEnumerable<ProductDetail> productDetails)
         {
             var xml = new StringBuilder("<ROOT>");
-            productDetails.ToList().ForEach(product => xml.AppendFormat(
-                "<ProductDetail ProductId=\"{0}\" Sporttype=\"{1}\" Bettype=\"{2}\"/>",
-                product.ProductId,
-                product.SportType,
-                product.BetType));
+            foreach (var product in productDetails)
+            {
+                foreach (var leagueId in product.LeagueGroupIds)
+                {
+                    foreach (var typeId in product.TicketTypeIds)
+                    {
+                        xml.AppendFormat(
+                            "<ProductDetail ProductId=\"{0}\" Sporttype=\"{1}\" Bettype=\"{2}\" LeagueGroupID=\"{3}\" TicketType=\"{4}\"/>",
+                            product.ProductId,
+                            product.SportType,
+                            product.BetType,
+                            leagueId,
+                            typeId);
+                    }
+                }
+            }
             xml.Append("</ROOT>");
 
             return xml.ToString();
@@ -99,7 +118,6 @@
         }
 
         private static bool IsSupportProductDetail(int productId)
-            => ProductIdConstants.ProductListHasProductDetail.Any(i => i == productId)
-            && AppSettings.IsOfferJackpotProductDetails;
+            => AppSettings.ProductOfferProductDetail.Any(i => i == productId);
     }
 }

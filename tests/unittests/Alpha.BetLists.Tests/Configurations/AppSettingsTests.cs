@@ -112,24 +112,5 @@
             // Assert
             Assert.Equal(expectedSetting, localTest);
         }
-
-        [Theory]
-        [InlineData(null, false)]
-        [InlineData("", false)]
-        [InlineData("0", false)]
-        [InlineData("0123", false)]
-        [InlineData("1", true)]
-        public void IsOfferJackpotProductDetails_Always_ReturnsCorrectConfig(string value, bool expectedSetting)
-        {
-            // Arrange
-            AppSettings.AppSettingValues = new NameValueCollection();
-            AppSettings.AppSettingValues.Add("IsOfferJackpotProductDetails", value);
-
-            // Act
-            var localTest = AppSettings.IsOfferJackpotProductDetails;
-
-            // Assert
-            Assert.Equal(expectedSetting, localTest);
-        }
     }
 }
