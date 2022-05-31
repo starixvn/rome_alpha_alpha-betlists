@@ -948,6 +948,7 @@
     <Content Include="Views\Parlay\ComboParlayDetailMobile.cshtml" />
     <Content Include="Views\RiskAnalysisIPMatching\Index.cshtml" />
     <Content Include="Views\CashOutHistory\Index.cshtml" />
+    <Content Include="Views\MoveStatementHistory\Index.cshtml" />
     <None Include="Web.AppSettings.auto.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </None>
@@ -977,6 +978,7 @@
     <Compile Include="Controllers\BetBuilderController.cs" />
     <Compile Include="Controllers\CombinationMixParlayController.cs" />
     <Compile Include="Controllers\CorrectScoreController.cs" />
+    <Compile Include="Controllers\MoveStatementHistoryController.cs" />
     <Compile Include="Controllers\RiskAnalysisIPMatchingController.cs" />
     <Compile Include="Controllers\MemberBetListController.cs" />
     <Compile Include="Controllers\LastBetsController.cs" />
@@ -994,6 +996,7 @@
     <Compile Include="Handlers\JackpotDetails\JackpotDetailsExcelHandler.cs" />
     <Compile Include="Handlers\JackpotDetails\JackpotDetailsHandler.cs" />
     <Compile Include="Handlers\BetBuilder\BetBuilderHandler.cs" />
+    <Compile Include="Handlers\MoveStatementHistory\MoveStatementHistoryHandler.cs" />
     <Compile Include="Handlers\RiskAnalysisIPMatching\RiskAnalysisIPMatchingHelper.cs" />
     <Compile Include="Handlers\RiskAnalysisIPMatching\RiskAnalysisIPMatchingHandler.cs" />
     <Compile Include="Handlers\RiskAnalysisIPMatching\RiskAnalysisIPMatchingExcelHandler.cs" />
@@ -1059,6 +1062,7 @@
     <Compile Include="Requests\CorrectScore\CorrectScoreExcelQuery.cs" />
     <Compile Include="Requests\CorrectScore\CorrectScoreQuery.cs" />
     <Compile Include="Requests\MemberBetList\MemberBetListQuery.cs" />
+    <Compile Include="Requests\MoveStatementHistory\MoveStatementHistoryQuery.cs" />
     <Compile Include="Requests\RiskAnalysisIPMatching\RiskAnalysisIPMatchingQuery.cs" />
     <Compile Include="Requests\RiskAnalysisIPMatching\RiskAnalysisIPMatchingExcelQuery.cs" />
     <Compile Include="Requests\RunningBetList\RunningBetListQuery.cs" />
@@ -1100,6 +1104,7 @@
     <Compile Include="ViewModels\ExcelFileViewModel.cs" />
     <Compile Include="ViewModels\JackpotDetails\JackpotDetailsViewModel.cs" />
     <Compile Include="ViewModels\MemberBetList\MemberBetListViewModel.cs" />
+    <Compile Include="ViewModels\MoveStatementHistory\MoveStatementHistoryViewModel.cs" />
     <Compile Include="ViewModels\RiskAnalysisIPMatching\RiskAnalysisIPMatchingViewModel.cs" />
     <Compile Include="ViewModels\RunningBetList\RunningBetListViewModel.cs" />
     <Compile Include="ViewModels\LastBets\BetDataViewModel.cs" />

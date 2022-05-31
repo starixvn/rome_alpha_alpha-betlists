@@ -338,6 +338,7 @@
     <Compile Include="Controllers\DailyStatementControllerTests.cs" />
     <Compile Include="Controllers\JackpotDetailsControllerTests.cs" />
     <Compile Include="Controllers\LastBetsControllerTests.cs" />
+    <Compile Include="Controllers\MoveStatementHistoryControllerTests.cs" />
     <Compile Include="Controllers\RiskAnalysisIPMatchingControllerTests.cs" />
     <Compile Include="Controllers\MemberBetListControllerTests.cs" />
     <Compile Include="Controllers\ParlayControllerTests.cs" />
@@ -369,6 +370,7 @@
     <Compile Include="Handler\CorrectScore\CorrectScoreExcelHandlerTests.cs" />
     <Compile Include="Handler\CorrectScore\CorrectScoreHandlerTests.cs" />
     <Compile Include="Handler\MemberBetList\MemberBetListHandlerTests.cs" />
+    <Compile Include="Handler\MoveStatementHistory\MoveStatementHistoryHandlerTests.cs" />
     <Compile Include="Handler\RiskAnalysisIPMatching\RiskAnalysisIPMatchingHandlerTests.cs" />
     <Compile Include="Handler\RiskAnalysisIPMatching\RiskAnalysisIPMatchingHelperTests.cs" />
     <Compile Include="Handler\RiskAnalysisIPMatching\RiskAnalysisIPMatchingExcelHandlerTests.cs" />
@@ -407,6 +409,7 @@
     <Compile Include="ViewModels\LastBets\BetDataViewModelTests.cs" />
     <Compile Include="ViewModels\LastBets\LastBetsViewModelTests.cs" />
     <Compile Include="ViewModels\MemberBetList\MemberBetListViewModelTests.cs" />
+    <Compile Include="ViewModels\MoveStatementHistory\MoveStatementHistoryViewModelTests.cs" />
     <Compile Include="ViewModels\Parlay\ComboParlayDetailViewModelTests.cs" />
     <Compile Include="ViewModels\Parlay\ComboParlayDetailWrapperTests.cs" />
     <Compile Include="ViewModels\Parlay\ComboParlayViewModelTests.cs" />
@@ -451,6 +454,7 @@
     <Content Include="GTCasino.css" />
     <Content Include="SAGaming.css" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -273,6 +273,7 @@
     <Compile Include="Criteria\GetScoreMapBetTypesCriteria.cs" />
     <Compile Include="Criteria\CasinoDetails\GetCasinoDetailsCriteria.cs" />
     <Compile Include="Criteria\LastBets\GetMatchInfoByIdCriteria.cs" />
+    <Compile Include="Criteria\MoveStatementHistory\GetBetListMoveStatementHistoryCriteria.cs" />
     <Compile Include="Criteria\ProgressiveJackpot\GetEnableJackpotProductCriteria.cs" />
     <Compile Include="Criteria\ProgressiveJackpot\GetJackpotDetailsCriteria.cs" />
     <Compile Include="Criteria\MemberBetList\GetBetListAllByDateCriteria.cs" />
@@ -334,6 +335,7 @@
     <Compile Include="Params\DailyStatementParam.cs" />
     <Compile Include="Params\GetProductsByGroupHeadlineParam.cs" />
     <Compile Include="Params\JackpotDetailsParam.cs" />
+    <Compile Include="Params\MoveStatementHistoryParam.cs" />
     <Compile Include="Params\RiskAnalysisIPMatchingParam.cs" />
     <Compile Include="Params\MemberBetListParam.cs" />
     <Compile Include="Params\CancelledBetParam.cs" />
@@ -354,6 +356,7 @@
     <Compile Include="Services\JackpotDetailsService.cs" />
     <Compile Include="Services\LastBetsService.cs" />
     <Compile Include="Services\CancelledBetService.cs" />
+    <Compile Include="Services\MoveStatementHistoryService.cs" />
     <Compile Include="Services\ProductDetailService.cs" />
     <Compile Include="Services\RiskAnalysisIPMatchingService.cs" />
     <Compile Include="Services\MemberBetListService.cs" />

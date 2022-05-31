@@ -423,4 +423,7 @@
   <data name="CashOut" xml:space="preserve">
     <value>เงินสด</value>
   </data>
+  <data name="TicketDetails" xml:space="preserve">
+    <value>รายละเอียดตั๋วเดิมพัน</value>
+  </data>
 </root>

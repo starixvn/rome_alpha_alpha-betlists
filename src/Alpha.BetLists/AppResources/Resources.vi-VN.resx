@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -432,5 +432,8 @@
   </data>
   <data name="NetworkLatency" xml:space="preserve">
     <value>Không có thông tin do kết nối mạng không ổn định. Vui lòng thử lại sau vài phút.</value>
+  </data>
+  <data name="TicketDetails" xml:space="preserve">
+    <value>Chi tiết vé cược</value>
   </data>
 </root>
