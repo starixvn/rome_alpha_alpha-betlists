@@ -59,7 +59,7 @@
             return $"{path}?{queryString}";
         }
 
-        internal static string ReportDomain => ConfigurationManager.AppSettings["Report:Domain"];
+        internal static string ReportDomain => ConfigurationManager.AppSettings["Report:Domain"] ?? string.Empty;
 
         internal static string ReportDomainUrl => ReportDomain.IndexOf("{0}") != -1 ?
             string.Format(ReportDomain, HttpContext.Current.Request.Headers["Host"]) : ReportDomain;
