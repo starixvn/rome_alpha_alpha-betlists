@@ -67,6 +67,6 @@
         internal static string MainDomain => UserSession.Current.GetProperty<string>("MainDomain");
 
         internal static bool IsStandaloneReport
-            => !string.IsNullOrWhiteSpace(MainDomain);
+            => !string.IsNullOrWhiteSpace(MainDomain) && !string.IsNullOrWhiteSpace(ReportDomain);
     }
 }
