@@ -6,7 +6,7 @@
     using Alpha.BetLists.Criteria.CancelledBet;
     using Alpha.BetLists.Models;
     using Alpha.BetLists.Params;
-    using Alpha.Web.Helpers;
+    using Alpha.PartialUM.Services;
     using Extensions;
     using Fanex.BetList.Core.Entities;
     using Fanex.Data.Repository;
@@ -19,11 +19,11 @@
     public class CancelledBetServiceImpl : CancelledBetService
     {
         private readonly IDynamicRepository dynamicRepository;
-        private readonly PartialUMService partialUMService;
+        private readonly IPartialUMService partialUMService;
 
         public CancelledBetServiceImpl(
             IDynamicRepository dynamicRepository,
-            PartialUMService partialUMService)
+            IPartialUMService partialUMService)
         {
             this.dynamicRepository = dynamicRepository;
             this.partialUMService = partialUMService;
@@ -42,7 +42,7 @@
                 parameter.PageSize,
                 parameter.PageIndex);
 
-            partialUMService.CheckPartialUM(criteria.GetSettingKey());
+            partialUMService.ThrowIfUM(criteria.GetSettingKey());
 
             var betListDataTuple = await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
 

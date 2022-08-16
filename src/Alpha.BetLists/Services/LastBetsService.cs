@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using Alpha.Web.Helpers;
+    using Alpha.PartialUM.Services;
     using Criteria.LastBets;
     using Fanex.BetList.Core.Entities;
     using Fanex.Caching;
@@ -31,12 +31,12 @@
 
         private readonly IDynamicRepository dynamicRepository;
         private readonly ICacheService cacheService;
-        private readonly PartialUMService partialUMService;
+        private readonly IPartialUMService partialUMService;
 
         public LastBetsServiceImpl(
             IDynamicRepository dynamicRepository,
             ICacheService cacheService,
-            PartialUMService partialUMService)
+            IPartialUMService partialUMService)
         {
             this.dynamicRepository = dynamicRepository;
             this.cacheService = cacheService;
@@ -47,7 +47,7 @@
         {
             var criteria = new GetLastBetsCriteria(param.BetType, param.CustId, param.TransId, param.PageSize);
 
-            partialUMService.CheckPartialUM(criteria.GetSettingKey());
+            partialUMService.ThrowIfUM(criteria.GetSettingKey());
 
             var tickets = await dynamicRepository.FetchAsync<TicketDto>(criteria);
 

@@ -1,12 +1,12 @@
 ﻿namespace Alpha.BetLists.Services
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
     using Alpha.BetLists.Criteria.MoveStatementHistory;
     using Alpha.BetLists.Models;
     using Alpha.BetLists.Params;
-    using Alpha.Web.Helpers;
+    using Alpha.PartialUM.Services;
     using Fanex.Data.Repository;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
 
     public interface MoveStatementHistoryService
     {
@@ -16,9 +16,9 @@
     public class MoveStatementHistoryServiceImpl : MoveStatementHistoryService
     {
         private readonly IDynamicRepository dynamicRepository;
-        private readonly PartialUMService partialUMService;
+        private readonly IPartialUMService partialUMService;
 
-        public MoveStatementHistoryServiceImpl(IDynamicRepository dynamicRepository, PartialUMService partialUMService)
+        public MoveStatementHistoryServiceImpl(IDynamicRepository dynamicRepository, IPartialUMService partialUMService)
         {
             this.dynamicRepository = dynamicRepository;
             this.partialUMService = partialUMService;
@@ -28,7 +28,7 @@
         {
             var criteria = new GetBetListMoveStatementHistoryCriteria(param.CustId, param.TransId);
 
-            partialUMService.CheckPartialUM(criteria.GetSettingKey());
+            partialUMService.ThrowIfUM(criteria.GetSettingKey());
 
             return await dynamicRepository.FetchAsync<TicketDto>(criteria);
         }

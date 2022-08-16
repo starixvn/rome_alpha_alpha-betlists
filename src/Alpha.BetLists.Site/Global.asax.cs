@@ -11,6 +11,7 @@
     using Alpha.Logging;
     using Alpha.NetThrottling.Mvc;
     using Alpha.NetThrottling.Utils;
+    using Alpha.PartialUM.Filters;
     using App_Start;
     using Auth.Filters;
     using Configurations;

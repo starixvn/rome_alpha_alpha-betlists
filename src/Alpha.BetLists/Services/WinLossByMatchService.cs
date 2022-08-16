@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using Alpha.Web.Helpers;
+    using Alpha.PartialUM.Services;
     using Criteria.WinLossByMatch;
     using Fanex.BetList.Core.Entities;
     using Fanex.Data.Repository;
@@ -21,12 +21,12 @@
     {
         private readonly ReportDateService reportDateService;
         private readonly IDynamicRepository dynamicRepository;
-        private readonly PartialUMService partialUMService;
+        private readonly IPartialUMService partialUMService;
 
         public WinLossByMatchServiceImpl(
             ReportDateService reportDateService,
             IDynamicRepository dynamicRepository,
-            PartialUMService partialUMService)
+            IPartialUMService partialUMService)
         {
             this.reportDateService = reportDateService;
             this.dynamicRepository = dynamicRepository;
@@ -68,7 +68,7 @@
                 reportDateService.GetMoveBetsDay(),
                 param.CustLevel);
 
-            partialUMService.CheckPartialUM(criteria.GetSettingKey());
+            partialUMService.ThrowIfUM(criteria.GetSettingKey());
 
             return await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
         }
@@ -84,7 +84,7 @@
                 reportDateService.GetMoveBetsDay(),
                 param.CustLevel);
 
-            partialUMService.CheckPartialUM(criteria.GetSettingKey());
+            partialUMService.ThrowIfUM(criteria.GetSettingKey());
 
             return await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
         }
@@ -102,7 +102,7 @@
                 param.LiveIndicator,
                 param.CustLevel);
 
-            partialUMService.CheckPartialUM(criteria.GetSettingKey());
+            partialUMService.ThrowIfUM(criteria.GetSettingKey());
 
             return await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
         }
@@ -117,7 +117,7 @@
                 param.CustLevel,
                 param.BetType);
 
-            partialUMService.CheckPartialUM(criteria.GetSettingKey());
+            partialUMService.ThrowIfUM(criteria.GetSettingKey());
 
             return await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
         }

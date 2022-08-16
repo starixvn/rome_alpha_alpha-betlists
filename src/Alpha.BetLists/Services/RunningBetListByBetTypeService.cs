@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using Alpha.Web.Helpers;
+    using Alpha.PartialUM.Services;
     using Criteria.RunningBetListByBetType;
     using Fanex.Data.Repository;
     using Models;
@@ -16,11 +16,11 @@
     public class RunningBetListByBetTypeServiceImpl : RunningBetListByBetTypeService
     {
         private readonly IDynamicRepository dynamicRepository;
-        private readonly PartialUMService partialUMService;
+        private readonly IPartialUMService partialUMService;
 
         public RunningBetListByBetTypeServiceImpl(
             IDynamicRepository dynamicRepository,
-            PartialUMService partialUMService)
+            IPartialUMService partialUMService)
         {
             this.dynamicRepository = dynamicRepository;
             this.partialUMService = partialUMService;
@@ -30,7 +30,7 @@
         {
             var criteria = new GetBetListRunningByBetTypeCriteria(param.CustId, param.BetType, param.CustLevel);
 
-            partialUMService.CheckPartialUM(criteria.GetSettingKey());
+            partialUMService.ThrowIfUM(criteria.GetSettingKey());
 
             return await dynamicRepository.FetchAsync<TicketDto>(criteria);
         }

@@ -2,7 +2,7 @@
 {
     using System.Linq;
     using System.Threading.Tasks;
-    using Alpha.Web.Helpers;
+    using Alpha.PartialUM.Services;
     using Criteria.RunningBetList;
     using Extensions;
     using Fanex.BetList.Core.Entities;
@@ -18,11 +18,11 @@
     public class RunningBetListServiceImpl : RunningBetListService
     {
         private readonly IDynamicRepository dynamicRepository;
-        private readonly PartialUMService partialUMService;
+        private readonly IPartialUMService partialUMService;
 
         public RunningBetListServiceImpl(
             IDynamicRepository dynamicRepository,
-            PartialUMService partialUMService)
+            IPartialUMService partialUMService)
         {
             this.dynamicRepository = dynamicRepository;
             this.partialUMService = partialUMService;
@@ -38,7 +38,7 @@
                     param.GetAll,
                     param.UserName);
 
-            partialUMService.CheckPartialUM(criteria.GetSettingKey());
+            partialUMService.ThrowIfUM(criteria.GetSettingKey());
 
             var betListDataTuple = await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
 

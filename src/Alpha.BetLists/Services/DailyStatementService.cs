@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using Alpha.Web.Helpers;
+    using Alpha.PartialUM.Services;
     using Criteria.DailyStatement;
     using Extensions;
     using Fanex.BetList.Core.Entities;
@@ -21,12 +21,12 @@
     {
         private readonly ReportDateService reportDateService;
         private readonly IDynamicRepository dynamicRepository;
-        private readonly PartialUMService partialUMService;
+        private readonly IPartialUMService partialUMService;
 
         public DailyStatementServiceImpl(
             ReportDateService reportDateService,
             IDynamicRepository dynamicRepository,
-            PartialUMService partialUMService)
+            IPartialUMService partialUMService)
         {
             this.reportDateService = reportDateService;
             this.dynamicRepository = dynamicRepository;
@@ -53,7 +53,7 @@
                 param.TransType,
                 param.Language);
 
-            partialUMService.CheckPartialUM(criteria.GetSettingKey());
+            partialUMService.ThrowIfUM(criteria.GetSettingKey());
 
             return await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
         }
@@ -66,7 +66,7 @@
                 reportDateService.GetMoveBetsDay(),
                 param.TransType);
 
-            partialUMService.CheckPartialUM(criteria.GetSettingKey());
+            partialUMService.ThrowIfUM(criteria.GetSettingKey());
 
             return await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
         }

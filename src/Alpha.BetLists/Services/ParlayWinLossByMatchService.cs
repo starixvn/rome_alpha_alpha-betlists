@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using Alpha.Web.Helpers;
+    using Alpha.PartialUM.Services;
     using Criteria.ParlayWinLossByMatch;
     using Extensions;
     using Fanex.Data.Repository;
@@ -18,12 +18,12 @@
     {
         private readonly ReportDateService reportDateService;
         private readonly IDynamicRepository dynamicRepository;
-        private readonly PartialUMService partialUMService;
+        private readonly IPartialUMService partialUMService;
 
         public ParlayWinLossByMatchServiceImpl(
             ReportDateService reportDateService,
             IDynamicRepository dynamicRepository,
-            PartialUMService partialUMService)
+            IPartialUMService partialUMService)
         {
             this.reportDateService = reportDateService;
             this.dynamicRepository = dynamicRepository;
@@ -41,7 +41,7 @@
                 reportDateService.GetMoveBetsDay(),
                 param.CustLevel);
 
-            partialUMService.CheckPartialUM(criteria.GetSettingKey());
+            partialUMService.ThrowIfUM(criteria.GetSettingKey());
 
             var tickets = await dynamicRepository.FetchAsync<TicketDto>(criteria);
 
