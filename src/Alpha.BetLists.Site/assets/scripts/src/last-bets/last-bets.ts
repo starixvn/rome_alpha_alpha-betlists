@@ -120,7 +120,7 @@ namespace BetList {
                 BetType: this.betType,
                 PageSize: this.pageSize,
                 IsAutoLoad: isAutoLoad,
-                TransId: lastTransId ? lastTransId - 1 : 0,
+                TransId: lastTransId ? (lastTransId - 1).toString() : "0",
                 LatestTransId: latestTransId
             };
 
@@ -173,13 +173,13 @@ namespace BetList {
 
             this.$betListTableContainer.html(responseHtml);
 
-            let lastTransId = parseInt(this.$betListTableContainer.find("#last-trans-id").val(), 0);
+            let lastTransId = this.$betListTableContainer.find("#last-trans-id").val();
 
             if (lastTransId > 0) {
                 this.localStorage.set(this.lastTransIdCacheKey, lastTransId);
             }
 
-            let latestTransId = parseInt(this.$betListTableContainer.find("#latest-trans-id").val(), 0);
+            let latestTransId = this.$betListTableContainer.find("#latest-trans-id").val();
             this.localStorage.set(this.latestTransIdCacheKey, latestTransId);
 
             if (this.convertAttributeToBool(this.$isAutoRefresh.val())) {
