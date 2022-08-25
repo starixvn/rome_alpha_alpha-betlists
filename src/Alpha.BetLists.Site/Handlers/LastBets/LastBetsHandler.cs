@@ -58,7 +58,7 @@
         {
             var isManualLoad = !message.IsAutoLoad;
 
-            var param = new GetLastBetsParam(message.BetType, message.CustId, message.TransId, message.PageSize, message.RunningMatchCacheTime);
+            var param = new GetLastBetsParam(message.BetType, message.CustId, message.TransId == 0 ? 0 : message.TransId - 1, message.PageSize, message.RunningMatchCacheTime);
             var tickets = await lastBetsService.GetLastBets(param);
             var betListData = new BetListData(tickets, null);
             var supportScoreMapBetTypeIds = forecastService.GetBetTypeIdsSupportScoreMap();
