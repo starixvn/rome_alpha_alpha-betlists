@@ -120,7 +120,7 @@ namespace BetList {
                 BetType: this.betType,
                 PageSize: this.pageSize,
                 IsAutoLoad: isAutoLoad,
-                TransId: lastTransId ? (lastTransId - 1).toString() : "0",
+                TransId: lastTransId ? lastTransId : "0",
                 LatestTransId: latestTransId
             };
 
