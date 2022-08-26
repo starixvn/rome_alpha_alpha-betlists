@@ -59,11 +59,11 @@
       <HintPath>..\..\packages\Alpha.Logging.1.0.1.1\lib\net461\Alpha.Logging.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Alpha.NetThrottling, Version=1.0.18.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Alpha.NetThrottling.1.0.18\lib\net461\Alpha.NetThrottling.dll</HintPath>
+    <Reference Include="Alpha.NetThrottling, Version=1.1.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Alpha.NetThrottling.1.1.0.1\lib\net461\Alpha.NetThrottling.dll</HintPath>
     </Reference>
-    <Reference Include="Alpha.NetThrottling.Mvc, Version=1.0.12.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Alpha.NetThrottling.Mvc.1.0.14\lib\net461\Alpha.NetThrottling.Mvc.dll</HintPath>
+    <Reference Include="Alpha.NetThrottling.Mvc, Version=1.0.15.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Alpha.NetThrottling.Mvc.1.0.15\lib\net461\Alpha.NetThrottling.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="Alpha.PartialUM, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Alpha.PartialUM.1.0.0\lib\net461\Alpha.PartialUM.dll</HintPath>
@@ -929,6 +929,7 @@
     <Content Include="App_Data\ProductSection.uat.config" />
     <Content Include="App_Data\ProductSection.uat_2.config" />
     <Content Include="App_Data\ProductSection.uat_3.config" />
+    <Content Include="WhoAmI.aspx" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -957,6 +958,9 @@
     </Content>
     <Content Include="Web.backupMNLNap2.config">
       <DependentUpon>Web.local.config</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionStrings.local.config">
+      <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
     </Content>
     <Content Include="Web.napinternal.config">
       <DependentUpon>Web.local.config</DependentUpon>
@@ -1031,17 +1035,21 @@
     <Content Include="Views\RiskAnalysisIPMatching\Index.cshtml" />
     <Content Include="Views\CashOutHistory\Index.cshtml" />
     <Content Include="Views\MoveStatementHistory\Index.cshtml" />
-    <None Include="Web.AppSettings.auto.config">
+    <Content Include="PartialUMConfigs\PartialUMSection.config" />
+    <Content Include="Web.AppSettings.auto.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
-    </None>
+    </Content>
     <Content Include="Views\CasinoDetails\Index.cshtml" />
     <Content Include="Views\CorrectScore\Index.cshtml" />
     <Content Include="Views\Shared\TableWithoutWinLoss.cshtml" />
     <Content Include="Views\CombinationMixParlay\Index.cshtml" />
     <Content Include="Views\BetListByBetType\Index.cshtml" />
     <Content Include="Views\BetListByBetTypeAndMatch\Index.cshtml" />
-    <None Include="Web.ConnectionStrings.config" />
-    <None Include="Web.ConnectionStrings.local.config" />
+    <Content Include="Web.ConnectionStrings.config" />
+    <Content Include="Web.AppSettings.local.config">
+      <SubType>Designer</SubType>
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\DependencyConfig.cs">
@@ -1222,13 +1230,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\tests\unittests\Alpha.BetLists.StaticData\Alpha.BetLists.StaticData.csproj">
-      <Project>{ad46527d-6231-4087-a84c-6ff70189ef78}</Project>
-      <Name>Alpha.BetLists.StaticData</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Alpha.BetLists.Builders\Alpha.BetLists.Builders.csproj">
       <Project>{c4d18432-0c45-40e3-b851-30ddf6e809ea}</Project>
       <Name>Alpha.BetLists.Builders</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Alpha.BetLists.StaticData\Alpha.BetLists.StaticData.csproj">
+      <Project>{ad46527d-6231-4087-a84c-6ff70189ef78}</Project>
+      <Name>Alpha.BetLists.StaticData</Name>
     </ProjectReference>
     <ProjectReference Include="..\Alpha.BetLists\Alpha.BetLists.csproj">
       <Project>{415fe6c8-c743-47c1-b520-bdbe3b1da2bf}</Project>

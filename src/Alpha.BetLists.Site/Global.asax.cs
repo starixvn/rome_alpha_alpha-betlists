@@ -62,7 +62,7 @@
             LoggingConfig.Init(getDbExceptionInfo: DatabaseInfoGetters.GetDbExceptionInfo);
             if (!AppSettings.IsIntegrationTest)
             {
-                GlobalFilters.Filters.Add(new NetThrottlingFilterAttribute());
+                GlobalFilters.Filters.Add(new NetThrottlingFilterAttribute(false));
 
                 var umConfig = new UMClientConfiguration().Initialize();
                 UMClientManager

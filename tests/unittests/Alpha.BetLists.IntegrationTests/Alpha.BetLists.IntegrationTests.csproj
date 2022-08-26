@@ -267,13 +267,13 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Alpha.BetLists.StaticData\Alpha.BetLists.StaticData.csproj">
+      <Project>{ad46527d-6231-4087-a84c-6ff70189ef78}</Project>
+      <Name>Alpha.BetLists.StaticData</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\src\Alpha.BetLists\Alpha.BetLists.csproj">
       <Project>{415fe6c8-c743-47c1-b520-bdbe3b1da2bf}</Project>
       <Name>Alpha.BetLists</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Alpha.BetLists.StaticData\Alpha.BetLists.StaticData.csproj">
-      <Project>{ad46527d-6231-4087-a84c-6ff70189ef78}</Project>
-      <Name>Alpha.BetLists.StaticData</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

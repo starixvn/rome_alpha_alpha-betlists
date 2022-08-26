@@ -7,7 +7,7 @@ ARG REDMINE_IDS
 
 SHELL ["cmd", "/S", "/C"]
 
-WORKDIR /build
+WORKDIR /app
 
 # Copy files *.sln, *.csproj, packages.config to restore nuget packages
 COPY *.sln .
@@ -19,6 +19,9 @@ COPY src\Alpha.BetLists\packages.config src\Alpha.BetLists\
 
 COPY src\Alpha.BetLists.Builders\*.csproj src\Alpha.BetLists.Builders\
 COPY src\Alpha.BetLists.Builders\packages.config src\Alpha.BetLists.Builders\
+
+COPY src\Alpha.BetLists.StaticData\*.csproj src\Alpha.BetLists.StaticData\
+COPY src\Alpha.BetLists.StaticData\packages.config src\Alpha.BetLists.StaticData\
 
 RUN nuget.exe restore Alpha.BetLists.sln
 
