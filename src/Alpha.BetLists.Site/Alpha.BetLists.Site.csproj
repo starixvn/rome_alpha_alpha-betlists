@@ -621,6 +621,17 @@
     <Content Include="App_Data\activitytracking.uat.json">
       <DependentUpon>activitytracking.json</DependentUpon>
     </Content>
+    <Content Include="App_Data\SPNames\Docker\DBACC.bodb02.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Docker\DBAGE.bodb02.BODBDownlineNet.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Data\SPNames\Docker\DBAGE.bodb_AGE.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Docker\DBARC.bodb_Archive.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Docker\DBCUST.CustDB.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Docker\DBCust.IPDB.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Docker\DBLOG.bodb_CustomerLog.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Docker\DBONUSER.ON_USER.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Docker\DBPOLICY.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Internal\DBACC.bodb02.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Internal\DBAGE.bodb02.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Internal\DBAGE.bodb_AGE.BODBDownlineNetView.xml" />
@@ -908,6 +919,16 @@
     <Content Include="assets\styles\bet-list-dark.scss" />
     <Content Include="assets\styles\last-bets-dark.scss" />
     <Content Include="assets\styles\parlay-detail-dark.scss" />
+    <Content Include="App_Data\ProductSection.config" />
+    <Content Include="App_Data\ProductSection.local.config" />
+    <Content Include="App_Data\ProductSection.local_2.config" />
+    <Content Include="App_Data\ProductSection.local_3.config" />
+    <Content Include="App_Data\ProductSection.prod.config" />
+    <Content Include="App_Data\ProductSection.prod_2.config" />
+    <Content Include="App_Data\ProductSection.prod_3.config" />
+    <Content Include="App_Data\ProductSection.uat.config" />
+    <Content Include="App_Data\ProductSection.uat_2.config" />
+    <Content Include="App_Data\ProductSection.uat_3.config" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -1019,6 +1040,8 @@
     <Content Include="Views\CombinationMixParlay\Index.cshtml" />
     <Content Include="Views\BetListByBetType\Index.cshtml" />
     <Content Include="Views\BetListByBetTypeAndMatch\Index.cshtml" />
+    <None Include="Web.ConnectionStrings.config" />
+    <None Include="Web.ConnectionStrings.local.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\DependencyConfig.cs">
@@ -1314,14 +1337,7 @@
   </Target>
   <PropertyGroup>
     <PostBuildEvent>
-      cd $(ProjectDir)
-      cd ..
-      cd ..
-      cd build
-      assets.build
-      if not exist "$(WebProjectOutputDir)\bin\Roslyn" md "$(WebProjectOutputDir)\bin\Roslyn"
-      start /MIN xcopy /s /y /R "$(OutDir)roslyn\*.*" "$(WebProjectOutputDir)\bin\Roslyn"
-</PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <Import Project="..\..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.2\build\Fanex.Visual-StyleCop.MSBuild.Targets" Condition="Exists('..\..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.2\build\Fanex.Visual-StyleCop.MSBuild.Targets')" />
   <Import Project="..\..\packages\Fanex.Chutzpah.4.3.3\build\Fanex.Chutzpah.targets" Condition="Exists('..\..\packages\Fanex.Chutzpah.4.3.3\build\Fanex.Chutzpah.targets')" />
