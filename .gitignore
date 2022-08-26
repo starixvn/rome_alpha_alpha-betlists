@@ -40,12 +40,6 @@ _CodeCoverageReport
 .vs/config/applicationhost.config
 /OpenCover/*
 
-*.min.js
-bundles
-*.css
-*.js.map
-*/**/assets/scripts/**/*.js
-*/**/bundles/**/*.js
 *.ncrunchproject
 *.ncrunchsolution
 
