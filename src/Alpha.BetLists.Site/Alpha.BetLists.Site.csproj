@@ -927,17 +927,50 @@
     <Content Include="assets\styles\parlay-detail-dark.scss" />
     <Content Include="App_Data\ProductSection.config" />
     <Content Include="App_Data\ProductSection.local.config" />
-    <Content Include="App_Data\ProductSection.local_2.config" />
-    <Content Include="App_Data\ProductSection.local_3.config" />
-    <Content Include="App_Data\ProductSection.prod.config" />
-    <Content Include="App_Data\ProductSection.prod_2.config" />
-    <Content Include="App_Data\ProductSection.prod_3.config" />
+    <Content Include="App_Data\ProductSection.local2.config" />
+    <Content Include="App_Data\ProductSection.pro.config" />
+    <Content Include="App_Data\ProductSection.pro2.config" />
     <Content Include="App_Data\ProductSection.uat.config" />
-    <Content Include="App_Data\ProductSection.uat_2.config" />
-    <Content Include="App_Data\ProductSection.uat_3.config" />
     <Content Include="WhoAmI.aspx" />
     <Content Include="bundleconfig2.json" />
     <Content Include="compilerconfig2.json" />
+    <Content Include="App_Data\activitytracking.backupMNL.json">
+      <DependentUpon>activitytracking.json</DependentUpon>
+    </Content>
+    <Content Include="App_Data\activitytracking.backupMNL2.json">
+      <DependentUpon>activitytracking.json</DependentUpon>
+    </Content>
+    <Content Include="App_Data\activitytracking.backupMNLNap.json">
+      <DependentUpon>activitytracking.json</DependentUpon>
+    </Content>
+    <Content Include="App_Data\activitytracking.backupMNLNap2.json">
+      <DependentUpon>activitytracking.json</DependentUpon>
+    </Content>
+    <Content Include="App_Data\activitytracking.local2.json">
+      <DependentUpon>activitytracking.json</DependentUpon>
+    </Content>
+    <Content Include="App_Data\activitytracking.pro.json">
+      <DependentUpon>activitytracking.json</DependentUpon>
+    </Content>
+    <Content Include="App_Data\activitytracking.pro2.json">
+      <DependentUpon>activitytracking.json</DependentUpon>
+    </Content>
+    <Content Include="App_Data\activitytracking.sit.json">
+      <DependentUpon>activitytracking.json</DependentUpon>
+    </Content>
+    <Content Include="App_Data\activitytracking.sit2.json">
+      <DependentUpon>activitytracking.json</DependentUpon>
+    </Content>
+    <Content Include="App_Data\activitytracking.uat2.json">
+      <DependentUpon>activitytracking.json</DependentUpon>
+    </Content>
+    <Content Include="App_Data\ProductSection.backupMNL.config" />
+    <Content Include="App_Data\ProductSection.backupMNL2.config" />
+    <Content Include="App_Data\ProductSection.backupMNLNap.config" />
+    <Content Include="App_Data\ProductSection.backupMNLNap2.config" />
+    <Content Include="App_Data\ProductSection.napinternal.config" />
+    <Content Include="App_Data\ProductSection.napinternal2.config" />
+    <Content Include="App_Data\ProductSection.uat2.config" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -1057,6 +1090,15 @@
     <Content Include="Web.AppSettings.local.config">
       <SubType>Designer</SubType>
       <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.local2.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.local2.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionStrings.local2.config">
+      <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
     </Content>
   </ItemGroup>
   <ItemGroup>
