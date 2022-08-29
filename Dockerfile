@@ -67,6 +67,21 @@ RUN echo "%TRANSFORM_CONFIG%" `
 	&& xcopy "App_Data\activitytracking.%TRANSFORM_CONFIG%.json" "App_Data\activitytracking.json" /Y `
 	&& xcopy "App_Data\ProductSection.%TRANSFORM_CONFIG%.config" "App_Data\ProductSection.config" /Y
 
+RUN FOR %P IN ( `
+		LOCAL2, `
+		SIT2, `
+		UAT2, `
+		PRO2, `
+		backupMNLNap2, `
+		backupMNL2, `
+		napinternal2 `
+    ) `
+    DO ( `
+        if "%P" == "%TRANSFORM_CONFIG%"; `
+		echo "Copying files..." && xcopy "assets/styles/bet-list-2.css" "assets/styles/bet-list.css" /Y `
+		&& xcopy "assets/styles/bet-list-2.min.css" "assets/styles/bet-list.min.css" /Y `
+    )
+
 FROM hub.nexdev.net/base/dotnet/framework/aspnet:4.7.2-windowsservercore-ltsc2019 AS base
 
 WORKDIR C:\inetpub\wwwroot

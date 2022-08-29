@@ -1,5 +1,0 @@
-#!/bin/sh
-
-# cmd "/C assets.build.cmd"
-
-cmd "/C build.cmd"

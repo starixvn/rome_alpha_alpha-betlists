@@ -769,6 +769,12 @@
     <Content Include="assets\scripts\tests\libs\shortcut.js" />
     <Content Include="assets\scripts\tests\libs\store.js" />
     <Content Include="assets\scripts\tests\libs\tooltip.js" />
+    <Content Include="assets\styles\bet-list-2.css">
+      <DependentUpon>bet-list-2.scss</DependentUpon>
+    </Content>
+    <Content Include="assets\styles\bet-list-2.min.css">
+      <DependentUpon>bet-list-2.css</DependentUpon>
+    </Content>
     <Content Include="assets\styles\bet-list-dark.css">
       <DependentUpon>bet-list-dark.scss</DependentUpon>
     </Content>
@@ -930,6 +936,8 @@
     <Content Include="App_Data\ProductSection.uat_2.config" />
     <Content Include="App_Data\ProductSection.uat_3.config" />
     <Content Include="WhoAmI.aspx" />
+    <Content Include="bundleconfig2.json" />
+    <Content Include="compilerconfig2.json" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>

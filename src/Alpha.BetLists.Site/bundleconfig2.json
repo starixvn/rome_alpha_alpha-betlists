@@ -1,0 +1,9 @@
+﻿[
+  {
+    "outputFileName": "assets/bundles/default2.css",
+    "inputFiles": [
+      "assets/styles/bet-list-2.css",
+      "assets/styles/details-popup.css"
+    ]
+  }
+]
