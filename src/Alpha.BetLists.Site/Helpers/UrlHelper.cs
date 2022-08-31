@@ -45,7 +45,11 @@
         }
 
         internal static string MapReportsDomain(string appPath)
-            => IsStandaloneReport ? $"{ReportDomainUrl}{appPath?.Replace("~", string.Empty)}" : MicroSites.ReportsUrl(appPath);
+        {
+            var cookieless = HttpContext.Current.Session.IsCookieless ? $"/(S({HttpContext.Current.Session.SessionID}))" : string.Empty;
+
+            return IsStandaloneReport ? $"{ReportDomainUrl}{cookieless}{appPath?.Replace("~", string.Empty)}" : MicroSites.ReportsUrl(appPath);
+        }
 
         internal static string AddQueryStringParams(string path, IDictionary<string, object> routeValues)
         {
@@ -61,8 +65,21 @@
 
         internal static string ReportDomain => ConfigurationManager.AppSettings["Report:Domain"] ?? string.Empty;
 
-        internal static string ReportDomainUrl => ReportDomain.IndexOf("{0}") != -1 ?
-            string.Format(ReportDomain, HttpContext.Current.Request.Headers["Host"]) : ReportDomain;
+        internal static string ReportDomainUrl
+        {
+            get
+            {
+                var mainDomain = HttpContext.Current.Request.Headers["Host"];
+                if (HttpContext.Current.Session.IsCookieless)
+                {
+                    var subDomain = mainDomain.Split('.').ElementAt(0);
+                    mainDomain = mainDomain.Replace($"{subDomain}.", string.Empty);
+                }
+
+                return ReportDomain.IndexOf("{0}") != -1 ?
+                    string.Format(ReportDomain, mainDomain) : ReportDomain;
+            }
+        }
 
         internal static string MainDomain => UserSession.Current.GetProperty<string>("MainDomain");
 

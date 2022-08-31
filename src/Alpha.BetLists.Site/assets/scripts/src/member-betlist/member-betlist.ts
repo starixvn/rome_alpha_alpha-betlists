@@ -18,6 +18,7 @@ class MemberBetListView {
     dateRangePickerComponent: DateRangePickerComponent;
     productMultiSelectionComponent: ProductMultiSelectionComponent;
     betlistTypeComponent: SingleSelectionDropdownComponent;
+    topWindow: any;
 
     constructor(
         $: JQueryStatic,
@@ -31,6 +32,7 @@ class MemberBetListView {
         this.productMultiSelectionComponent = productMultiSelectionComponent;
         this.betlistTypeComponent = betlistTypeComponent;
         this.windowLocation = windowLocation;
+        this.topWindow = top;
     }
 
     init = () => {
@@ -60,6 +62,10 @@ class MemberBetListView {
 
     changeBetlistType = () => {
         var url = this.betlistTypeComponent.$dropdown.find("option:selected").data("url");
+        if (url.indexOf(this.topWindow.menuBar.domElements.reportDomain) !== -1 && url.indexOf('(S(') !== -1) {
+            url = url.replace(this.topWindow.menuBar.domElements.sessionId, this.topWindow.menuBar.domElements.reportSessionId);
+        }
+
         this.windowLocation.href = url;
     };
 
