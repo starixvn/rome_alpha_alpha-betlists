@@ -731,7 +731,7 @@
                 '&siteId=' + siteId +
                 '&BetType=' + betTypeId +
                 '&productId=72';
-            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/SEALResult' + params, "", 835, 950);
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/SEALResult' + params, "", 835, 675);
         }
     }
 }
