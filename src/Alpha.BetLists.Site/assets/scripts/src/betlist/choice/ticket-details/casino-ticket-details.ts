@@ -510,7 +510,7 @@
             const params = '?refno=' + refNo
                 + '&custid=' + custId
                 + '&transType=' + transType
-                + '&sportName=Seal Entertainment&productId=72';
+                + '&sportName=SEAL Entertainment&productId=72';
 
             let width = 1147;
             let roleId = Number(this.ViewerLevelId);
@@ -525,7 +525,7 @@
 
             Common.PopupDetails.Instance(window.top).Show(
                 Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params,
-                'Seal Entertainment - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                'SEAL Entertainment - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
         }
     }
 }
