@@ -192,6 +192,7 @@
             }
 
             container.Register<IPartialUMService, PartialUMService>(Lifestyle.Singleton);
+            container.RegisterSingleton<AutoFollowBetService, AutoFollowBetServiceImpl>();
         }
 
         private static void RegisterStaticInstances(Container container)

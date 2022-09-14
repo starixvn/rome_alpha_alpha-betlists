@@ -105,5 +105,7 @@
         public bool IsEnableSabaPromotion => false;
 
         public bool IsEnableSabaPromotionForHeadline => false;
+
+        public bool AutoFollowBetIsDummyAgent => false;
     }
 }

@@ -21,6 +21,7 @@
             TicketHelper = Substitute.For<ITicketHelper>();
             MonitorService = Substitute.For<ISmartPunterBetListMonitor>();
             IpService = Substitute.For<IPService>();
+            AutoFollowBetService = Substitute.For<AutoFollowBetService>();
             ExcelBuilder.RTFHelper.Returns(CreateRtfHelper());
             RtfHelper = ExcelBuilder.RTFHelper;
 
@@ -46,6 +47,8 @@
         public BrowserHelper BrowserHelper { get; }
 
         public IPService IpService { get; }
+
+        public AutoFollowBetService AutoFollowBetService { get; }
 
         public IUser User { get; }
 
