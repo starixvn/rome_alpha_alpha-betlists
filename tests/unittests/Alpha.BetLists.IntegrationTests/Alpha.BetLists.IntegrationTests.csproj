@@ -51,7 +51,7 @@
       <HintPath>..\..\..\packages\Fanex.BetList.SabaClub.1.0.1.5\lib\net40\Fanex.BetList.SabaClub.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.SealEntertainment, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Fanex.BetList.SealEntertainment.1.0.0-seal-01\lib\net40\Fanex.BetList.SealEntertainment.dll</HintPath>
+      <HintPath>..\..\..\packages\Fanex.BetList.SealEntertainment.1.0.0\lib\net40\Fanex.BetList.SealEntertainment.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
