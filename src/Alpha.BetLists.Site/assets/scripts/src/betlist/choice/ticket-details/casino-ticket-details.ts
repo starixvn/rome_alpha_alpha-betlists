@@ -543,7 +543,7 @@
                 + '&transType=' + transType
                 + '&sportName=MG-RNG&productId=73';
 
-            let width = 1147;
+            let width = 1207;
             let roleId = Number(this.ViewerLevelId);
 
             if (roleId <= 3) {
