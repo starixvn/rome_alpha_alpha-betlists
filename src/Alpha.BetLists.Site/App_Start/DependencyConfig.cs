@@ -9,8 +9,8 @@
     using Alpha.NetThrottling.Models;
     using Alpha.NetThrottling.Resolvers;
     using Alpha.NetThrottling.Utils;
-    using Alpha.Web.Helpers;
-    using Alpha.Web.Helpers.Impl;
+    using Alpha.PartialUM.DataAccess;
+    using Alpha.PartialUM.Services;
     using BetLists.Helpers;
     using BetLists.Models;
     using Configurations;
@@ -125,6 +125,7 @@
             container.Register<IBetBuilderDataAccess, BetBuilderDataAccess>(Lifestyle.Singleton);
             container.Register<ICasinoDetailsDataAccess, CasinoDetailsDataAccess>(Lifestyle.Singleton);
             container.Register<ProductDataAccess, ProductDataAccessImpl>(Lifestyle.Singleton);
+            container.Register<IPartialUMDataAccess, PartialUMDataAccess>(Lifestyle.Singleton);
         }
 
         private static void RegisterServices(Container container)
@@ -190,7 +191,7 @@
                 container.RegisterSingleton<IUser, User>();
             }
 
-            container.RegisterSingleton<PartialUMService, PartialUMServiceImpl>();
+            container.Register<IPartialUMService, PartialUMService>(Lifestyle.Singleton);
         }
 
         private static void RegisterStaticInstances(Container container)

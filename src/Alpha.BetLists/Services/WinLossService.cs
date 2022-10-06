@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Alpha.BetLists.AppResources;
-    using Alpha.Web.Helpers;
+    using Alpha.PartialUM.Services;
     using Criteria.WinLossByDate;
     using Extensions;
     using Fanex.BetList.Core.Entities;
@@ -22,12 +22,12 @@
     {
         private readonly ReportDateService reportDateService;
         private readonly IDynamicRepository dynamicRepository;
-        private readonly PartialUMService partialUMService;
+        private readonly IPartialUMService partialUMService;
 
         public WinLossServiceImpl(
             ReportDateService reportDateService,
             IDynamicRepository dynamicRepository,
-            PartialUMService partialUMService)
+            IPartialUMService partialUMService)
         {
             this.reportDateService = reportDateService;
             this.dynamicRepository = dynamicRepository;
@@ -115,7 +115,7 @@
                             maxTotalRow: param.MaxTotalRow,
                             isExportExcel: param.IsExcel);
 
-            partialUMService.CheckPartialUM(criteria.GetSettingKey());
+            partialUMService.ThrowIfUM(criteria.GetSettingKey());
 
             var result = await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
             var errFormat = param.IsExcel ? 
@@ -141,7 +141,7 @@
                             maxTotalRow: param.MaxTotalRow,
                             isExportExcel: param.IsExcel);
 
-            partialUMService.CheckPartialUM(criteria.GetSettingKey());
+            partialUMService.ThrowIfUM(criteria.GetSettingKey());
 
             var result = await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
             var errFormat = param.IsExcel ?
