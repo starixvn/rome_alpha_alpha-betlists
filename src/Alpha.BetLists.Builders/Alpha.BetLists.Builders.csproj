@@ -42,7 +42,7 @@
       <HintPath>..\..\packages\Fanex.BetList.GTCasino.1.0.0.2\lib\net40\Fanex.BetList.GTCasino.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.MGRNGCasino, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.MGRNGCasino.1.0.0-Microgaming-02\lib\net40\Fanex.BetList.MGRNGCasino.dll</HintPath>
+      <HintPath>..\..\packages\Fanex.BetList.MGRNGCasino.1.0.0\lib\net40\Fanex.BetList.MGRNGCasino.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.NumberGame, Version=1.7.0.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.NumberGame.1.7.0.2\lib\net40\Fanex.BetList.NumberGame.dll</HintPath>
