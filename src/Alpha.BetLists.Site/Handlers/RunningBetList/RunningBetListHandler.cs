@@ -17,6 +17,7 @@
         private readonly RunningBetListService runningBetListService;
         private readonly ProductService productService;
         private readonly ForecastService forecastService;
+        private readonly AutoFollowBetService autoFollowBetService;
 
         public RunningBetListHandler(
             RunningBetListService runningBetListService,
@@ -25,16 +26,23 @@
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper,
             ISmartPunterBetListMonitor monitorService,
-            IPService ipService)
+            IPService ipService,
+            AutoFollowBetService autoFollowBetService)
             : base(builder, ticketHelper, monitorService, ipService)
         {
             this.runningBetListService = runningBetListService;
             this.productService = productService;
             this.forecastService = forecastService;
+            this.autoFollowBetService = autoFollowBetService;
         }
 
         public async Task<RunningBetListViewModel> Handle(RunningBetListQuery message)
         {
+            if (message.AutoFollowBetIsDummyAgent)
+            {
+                message.CustId = await autoFollowBetService.GetRealCustId(message.ViewerId, message.CustId);
+            }
+
             var validUserSelectedProductIds = productService.FilterProductIdsByCustomer(message.CustId, 
                 message.Site, message.CurrencyId, message.MinDate, message.ProductIds.ToListInt(), message.IsEnableSabaPromotion);
 

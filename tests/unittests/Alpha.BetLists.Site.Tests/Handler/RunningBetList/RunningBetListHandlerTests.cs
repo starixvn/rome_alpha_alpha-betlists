@@ -50,7 +50,8 @@
                 this.betlistFixture.HtmlBuilder,
                 this.betlistFixture.TicketHelper,
                 this.betlistFixture.MonitorService,
-                this.betlistFixture.IpService);
+                this.betlistFixture.IpService,
+                this.betlistFixture.AutoFollowBetService);
 
             compareLogic = new CompareLogic(new ComparisonConfig
             {

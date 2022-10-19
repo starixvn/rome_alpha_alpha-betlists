@@ -64,6 +64,8 @@
             => AppSettings.OfferSabaPromotionHeadlineSites.Any(site => site == "*" || site.Equals(userSession.Site, StringComparison.OrdinalIgnoreCase))
             || IsEnableSabaPromotion;
 
+        public bool AutoFollowBetIsDummyAgent => userSession.AutoFollowBetIsDummyAgent;
+
         internal virtual IList<int> GetEnableProductsByGameName(string gameName)
             => userSession.GetProperty<IList<int>>(SessionKey.GameEnable + gameName);
     }

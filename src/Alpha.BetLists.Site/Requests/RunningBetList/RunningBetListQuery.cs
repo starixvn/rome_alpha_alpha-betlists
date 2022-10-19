@@ -15,6 +15,7 @@
             MinDate = ReportDateServiceImpl.Instance.GetMoveBetsDay().AddDays(1);
             FromDate = SystemTime.Today.AddDays(-7);
             ToDate = SystemTime.Today;
+            AutoFollowBetIsDummyAgent = viewer.AutoFollowBetIsDummyAgent;
         }
 
         public bool GetAll { get; set; }
@@ -24,5 +25,7 @@
         public int UserSelectedDateRangeOption { get; set; } = UserSelectedDateRangeOptionConstant.SpecificDates;
 
         public DateTime MinDate { get; }
+
+        public bool AutoFollowBetIsDummyAgent { get; }
     }
 }

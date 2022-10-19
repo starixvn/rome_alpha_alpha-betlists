@@ -33,5 +33,7 @@ namespace Alpha.BetLists.Models
         bool IsEnableSabaPromotion { get; }
 
         bool IsEnableSabaPromotionForHeadline { get; }
+
+        bool AutoFollowBetIsDummyAgent { get; }
     }
 }
