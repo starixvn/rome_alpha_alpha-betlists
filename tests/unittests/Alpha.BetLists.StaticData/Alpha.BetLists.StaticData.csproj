@@ -48,8 +48,8 @@
     <Reference Include="Fanex.BetList.Core, Version=2.111.4.7, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Fanex.BetList.Core.2.111.4.7\lib\net40\Fanex.BetList.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.BetList.MGRNGCasino, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Fanex.BetList.MGRNGCasino.1.0.0\lib\net40\Fanex.BetList.MGRNGCasino.dll</HintPath>
+    <Reference Include="Fanex.BetList.MGRNGCasino, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Fanex.BetList.MGRNGCasino.1.0.0.1\lib\net40\Fanex.BetList.MGRNGCasino.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.SabaClub, Version=1.0.1.5, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Fanex.BetList.SabaClub.1.0.1.5\lib\net40\Fanex.BetList.SabaClub.dll</HintPath>
