@@ -488,6 +488,43 @@ var BetList;
                 return FGGResultDetails;
             }(ResultDetails.BaseResultDetails));
             ResultDetails.FGGResultDetails = FGGResultDetails;
+            var SEALResultDetails = /** @class */ (function (_super) {
+                __extends(SEALResultDetails, _super);
+                function SEALResultDetails() {
+                    var _this = _super !== null && _super.apply(this, arguments) || this;
+                    _this.ViewResultDetails = function (matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, currencyId, gameId3rd, custId, transId3rd, siteId) {
+                        var params = '?custId=' + custId +
+                            '&transId3rd=' + transId3rd +
+                            '&currencyId=' + currencyId +
+                            '&siteId=' + siteId +
+                            '&BetType=' + betTypeId +
+                            '&productId=72';
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/SEALResult' + params, "", 835, 675);
+                    };
+                    return _this;
+                }
+                return SEALResultDetails;
+            }(ResultDetails.BaseResultDetails));
+            ResultDetails.SEALResultDetails = SEALResultDetails;
+            var MGResultDetails = /** @class */ (function (_super) {
+                __extends(MGResultDetails, _super);
+                function MGResultDetails() {
+                    var _this = _super !== null && _super.apply(this, arguments) || this;
+                    _this.ViewResultDetails = function (matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, currencyId, gameId3rd, custId, transId3rd, siteId) {
+                        var params = '?custId=' + custId +
+                            '&transId3rd=' + transId3rd +
+                            '&gameId3rd=' + gameId3rd +
+                            '&currencyId=' + currencyId +
+                            '&siteId=' + siteId +
+                            '&BetType=' + betTypeId +
+                            '&productId=73';
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/MGResult' + params, "", 835, 675);
+                    };
+                    return _this;
+                }
+                return MGResultDetails;
+            }(ResultDetails.BaseResultDetails));
+            ResultDetails.MGResultDetails = MGResultDetails;
         })(ResultDetails = Status.ResultDetails || (Status.ResultDetails = {}));
     })(Status = BetList.Status || (BetList.Status = {}));
 })(BetList || (BetList = {}));
