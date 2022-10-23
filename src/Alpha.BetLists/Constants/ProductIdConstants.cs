@@ -22,5 +22,6 @@ namespace Alpha.BetLists.Constants
         public const int Bitcoin = 69;
         public const int SpadeGaming = 36;
         public const int Allbet = 21;
+        public const int MgRng = 73;
     }
 }

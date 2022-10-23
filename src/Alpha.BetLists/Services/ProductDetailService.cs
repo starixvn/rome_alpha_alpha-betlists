@@ -45,7 +45,15 @@
                 {
                     if (is789y)
                     {
-                        var productids = new List<int> { ProductIdConstants.Allbet, ProductIdConstants.SexyGaming, ProductIdConstants.Pragmatic, ProductIdConstants.SpadeGaming };
+                        var productids = new List<int>
+                        {
+                            ProductIdConstants.Allbet,
+                            ProductIdConstants.SexyGaming,
+                            ProductIdConstants.Pragmatic,
+                            ProductIdConstants.SpadeGaming,
+                            ProductIdConstants.MgRng
+                        };
+
                         if (productids.Any(i => i == group.Key))
                         {
                             validProductDetails.AddRange(group.Select(i => i));
