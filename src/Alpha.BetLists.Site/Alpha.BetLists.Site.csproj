@@ -273,6 +273,9 @@
     <Reference Include="Fanex.Common, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Common.1.1.0.1\lib\net40\Fanex.Common.dll</HintPath>
     </Reference>
+    <Reference Include="Fanex.Cryptography.Aes, Version=1.0.0.5, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Cryptography.Aes.1.0.0.5\lib\net461\Fanex.Cryptography.Aes.dll</HintPath>
+    </Reference>
     <Reference Include="Fanex.CustomerSetting.Module.KenoStatus, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.CustomerSetting.Module.KenoStatus.1.0.0.2\lib\net40\Fanex.CustomerSetting.Module.KenoStatus.dll</HintPath>
       <Private>True</Private>
@@ -1110,6 +1113,7 @@
     </Compile>
     <Compile Include="Constants\SessionKey.cs" />
     <Compile Include="Constants\UserSelectedDateRangeOptionConstant.cs" />
+    <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\BetListBaseController.cs" />
     <Compile Include="Controllers\BetListByBetTypeAndMatchController.cs" />
     <Compile Include="Controllers\BetListByBetTypeController.cs" />

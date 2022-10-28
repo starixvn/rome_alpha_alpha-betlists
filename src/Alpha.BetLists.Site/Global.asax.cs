@@ -76,11 +76,11 @@
                 GlobalFilters.Filters.Add(new CheckUMFilterAttribute(
                     new MaintenanceService(UMClientManager.RestClient, UMClientManager.CacheService, UMClientManager.UMClientConfigs, UMClientManager.HttpContext), null));
 
-                GlobalFilters.Filters.Add(new CheckBelongingFilter());
+                GlobalFilters.Filters.Add(new CheckBelongingFilter(!AppSettings.IsStandaloneReport));
                 GlobalFilters.Filters.Add(new NoCacheFilter());
-                GlobalFilters.Filters.Add(new AfterLoginFlowFilter());
+                GlobalFilters.Filters.Add(new AfterLoginFlowFilter(!AppSettings.IsStandaloneReport));
                 GlobalFilters.Filters.Add(new PartialUMExceptionFilter(true));
-                GlobalFilters.Filters.Add(new ProtectedModeFilter());
+                GlobalFilters.Filters.Add(new ProtectedModeFilter(!AppSettings.IsStandaloneReport));
             }
 
             ModelBinders.Binders.DefaultBinder = new QueryEntityModelBinder();

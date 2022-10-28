@@ -5,6 +5,7 @@
     using System.Collections.Specialized;
     using System.Configuration;
     using System.Linq;
+    using System.Web;
     using Extensions;
     using Fanex.Common;
 
@@ -83,6 +84,23 @@
                 return settingStatus;
             }
         }
+
+        public static string BetlistRouting
+        {
+            get
+            {
+                var currentAppPath = HttpRuntime.AppDomainAppVirtualPath;
+                return currentAppPath.Equals("/", StringComparison.OrdinalIgnoreCase) && !HttpContext.Current.Session.IsCookieless ?
+                    "site-betlists/" : string.Empty;
+            }
+        }
+
+        public static bool IsStandaloneReport => GetConfigValue("IsStandaloneReport") == "1";
+
+        public static bool IsMBCSite => !string.IsNullOrWhiteSpace(GetConfigValue("SiteGroup"))
+            && !GetConfigValue("SiteGroup").Equals("789y", StringComparison.OrdinalIgnoreCase);
+
+        public static bool DisabledVietnamese => IsMBCSite;
 
         public static string GetConfigValue(string configName) => AppSettingValues[configName];
 
