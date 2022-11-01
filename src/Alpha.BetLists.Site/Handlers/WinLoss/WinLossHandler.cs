@@ -39,7 +39,7 @@
             var productByHLParam = new GetProductsByGroupHeadlineParam(message.ViewerId, message.MinDate);
             var validUserSelectedProductIds = message.IsGroupHeadline
                 ? productService.FilterProductIdsByGroupHeadline(message.ProductIds.ToListInt(), productByHLParam, message.IsEnableSabaPromotionForHeadline)
-                : productService.FilterProductIdsByCustomer(message.CustId, message.Site, message.CurrencyId, message.MinDate, message.ProductIds.ToListInt(), message.IsEnableSabaPromotion);
+                : productService.FilterProductIdsByCustomer(message.ViewerId, message.Site, message.CurrencyId, message.MinDate, message.ProductIds.ToListInt(), message.IsEnableSabaPromotion);
             validUserSelectedProductIds = await productDetailService.RemoveProductIdsAsync(validUserSelectedProductIds, message.ResourceIds);
             var productDetailsXML = await productDetailService.BuildProductDetailsXMLAsync(validUserSelectedProductIds, message.ResourceIds, message.Is789Y);
 
