@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Alpha.BetLists.Criteria.ProgressiveJackpot;
     using BetLists.Criteria;
     using BetLists.DataAccesses;
     using BetLists.Models;
@@ -23,7 +24,6 @@
 
         private readonly FanexDataFixture fanexDataFixture;
         private readonly ProductServiceImpl productService;
-        private readonly ProductDataAccess productDataAccess;
         private readonly CompareLogic compareLogic;
         private readonly Func<int, string> getProductName;
 
@@ -53,11 +53,14 @@
            };
 
             fanexDataFixture.DynamicRepository.Fetch<Product>(Arg.Any<GetProductsByGroupHeadlineCriteria>()).Returns(data);
-            productDataAccess = Substitute.For<ProductDataAccess>();
-
-            productService = new ProductServiceImpl(fanexDataFixture.DynamicRepository, fanexDataFixture.CacheService, productDataAccess, canViewProduct, getProductName);
-
+            productService = new ProductServiceImpl(fanexDataFixture.DynamicRepository, fanexDataFixture.CacheService, canViewProduct, getProductName);
             compareLogic = new CompareLogic();
+
+            var bySite = new List<JackpotOfferedBySite> { new JackpotOfferedBySite(1, "site1"), new JackpotOfferedBySite(2, "site2") };
+            var byCurrency = new List<JackpotOfferedByCurrency> { new JackpotOfferedByCurrency(1, 21), new JackpotOfferedByCurrency(2, 20) };
+            var dataJackpot = new Tuple<IEnumerable<JackpotOfferedBySite>, IEnumerable<JackpotOfferedByCurrency>>(bySite, byCurrency);
+            fanexDataFixture.DynamicRepository.FetchMultiple<JackpotOfferedBySite, JackpotOfferedByCurrency>(Arg.Any<GetEnableJackpotProductCriteria>())
+            .Returns(dataJackpot);
         }
 
         [Theory]
@@ -165,7 +168,7 @@
             var expectedProductIds = new List<int> { 1, 2, 5 };
 
             // Act
-            var actualProductIds = productService.FilterProductIdsByGroupHeadline(productIds, 
+            var actualProductIds = productService.FilterProductIdsByGroupHeadline(productIds,
                 new GetProductsByGroupHeadlineParam(0, DefaultVariables.CurrentDate), false);
 
             // Assert
@@ -180,7 +183,7 @@
             var expectedProductIds = new List<int> { 1, 2, 5 };
 
             // Act
-            var actualProductIds = productService.FilterProductIdsByGroupHeadline(productIds, 
+            var actualProductIds = productService.FilterProductIdsByGroupHeadline(productIds,
                 new GetProductsByGroupHeadlineParam(0, DefaultVariables.CurrentDate), false);
 
             // Assert
@@ -195,7 +198,7 @@
             var expectedProductIds = new List<int> { 1, 5 };
 
             // Act
-            var actualProductIds = productService.FilterProductIdsByGroupHeadline(productIds, 
+            var actualProductIds = productService.FilterProductIdsByGroupHeadline(productIds,
                 new GetProductsByGroupHeadlineParam(0, DefaultVariables.CurrentDate), false);
 
             // Assert
@@ -263,6 +266,77 @@
 
             // Assert
             Assert.Equal(37, act.First().Id);
+        }
+
+        [Fact]
+        public void IsEnabledJackpot_DontSupportJackpot_ReturnFalse()
+        {
+            // Arrange
+            fanexDataFixture.CacheService.GetOrSet(Arg.Any<string>(), Arg.Any<Func<Tuple<IEnumerable<JackpotOfferedBySite>, IEnumerable<JackpotOfferedByCurrency>>>>(), Arg.Any<CacheItemOptions>())
+             .Returns(x =>
+             {
+                 var func = x.ArgAt<Func<Tuple<IEnumerable<JackpotOfferedBySite>, IEnumerable<JackpotOfferedByCurrency>>>>(1);
+                 return func();
+             });
+
+            // Act
+            var act = productService.IsEnabledJackpot("nosite", 0);
+
+            // Assert
+            Assert.False(act);
+        }
+        [Fact]
+        public void IsEnabledJackpot_SupportJackpotBySite_ReturnFalse()
+        {
+            // Arrange
+            fanexDataFixture.CacheService.GetOrSet(Arg.Any<string>(), Arg.Any<Func<Tuple<IEnumerable<JackpotOfferedBySite>, IEnumerable<JackpotOfferedByCurrency>>>>(), Arg.Any<CacheItemOptions>())
+            .Returns(x =>
+            {
+                var func = x.ArgAt<Func<Tuple<IEnumerable<JackpotOfferedBySite>, IEnumerable<JackpotOfferedByCurrency>>>>(1);
+                return func();
+            });
+
+            // Act
+            var act = productService.IsEnabledJackpot("site1", 0);
+
+            // Assert
+            Assert.False(act);
+        }
+
+        [Fact]
+        public void IsEnabledJackpot_SupportJackpotByCurrency_ReturnFalse()
+        {
+            // Arrange
+            fanexDataFixture.CacheService.GetOrSet(Arg.Any<string>(), Arg.Any<Func<Tuple<IEnumerable<JackpotOfferedBySite>, IEnumerable<JackpotOfferedByCurrency>>>>(), Arg.Any<CacheItemOptions>())
+                .Returns(x =>
+            {
+                var func = x.ArgAt<Func<Tuple<IEnumerable<JackpotOfferedBySite>, IEnumerable<JackpotOfferedByCurrency>>>>(1);
+                return func();
+            });
+
+            // Act
+            var act = productService.IsEnabledJackpot("nosite", 20);
+
+            // Assert
+            Assert.False(act);
+        }
+
+        [Fact]
+        public void IsEnabledJackpot_SupportJackpotByCurrencyAndSite_ReturnTrue()
+        {
+            // Arrange
+            fanexDataFixture.CacheService.GetOrSet(Arg.Any<string>(), Arg.Any<Func<Tuple<IEnumerable<JackpotOfferedBySite>, IEnumerable<JackpotOfferedByCurrency>>>>(), Arg.Any<CacheItemOptions>())
+                .Returns(x =>
+                {
+                    var func = x.ArgAt<Func<Tuple<IEnumerable<JackpotOfferedBySite>, IEnumerable<JackpotOfferedByCurrency>>>>(1);
+                    return func();
+                });
+
+            // Act
+            var act = productService.IsEnabledJackpot("site1", 21);
+
+            // Assert
+            Assert.True(act);
         }
     }
 }

@@ -124,7 +124,6 @@
             container.Register<ISmartPunterDataAccess, SmartPunterDataAccess>(Lifestyle.Singleton);
             container.Register<IBetBuilderDataAccess, BetBuilderDataAccess>(Lifestyle.Singleton);
             container.Register<ICasinoDetailsDataAccess, CasinoDetailsDataAccess>(Lifestyle.Singleton);
-            container.Register<ProductDataAccess, ProductDataAccessImpl>(Lifestyle.Singleton);
             container.Register<IPartialUMDataAccess, PartialUMDataAccess>(Lifestyle.Singleton);
         }
 
@@ -164,7 +163,6 @@
                 () => new ProductServiceImpl(
                     container.GetInstance<IDynamicRepository>(),
                     container.GetInstance<ICacheService>(),
-                    container.GetInstance<ProductDataAccess>(),
                     UserPermission.HasPermissionOnProduct,
                     CacheRefServiceHelper.GetProductName),
                 Lifestyle.Singleton);

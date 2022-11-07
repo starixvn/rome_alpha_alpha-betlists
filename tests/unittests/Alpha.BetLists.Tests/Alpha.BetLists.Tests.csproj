@@ -316,7 +316,6 @@
     <Compile Include="Criteria\WinLossByMatch\GetWinLossRacingCriteriaTests.cs" />
     <Compile Include="DataAccesses\BetBuilderDataAccessTests.cs" />
     <Compile Include="DataAccesses\CasinoDetailsDataAccessTests.cs" />
-    <Compile Include="DataAccesses\ProductDataAccessImplTests.cs" />
     <Compile Include="DataAccesses\SmartPunterDataAccessTests.cs" />
     <Compile Include="Extensions\DateTimeExtensionsTests.cs" />
     <Compile Include="Extensions\StringExtensionsTests.cs" />
