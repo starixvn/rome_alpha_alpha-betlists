@@ -35,7 +35,7 @@
 
         public async Task<MemberBetListViewModel> Handle(MemberBetListQuery message)
         {
-            var validUserSelectedProductIds = productService.FilterProductIdsByCustomer(message.CustId, 
+            var validUserSelectedProductIds = productService.FilterProductIdsByCustomer(message.ViewerId, 
                 message.Site, message.CurrencyId, message.MinDate, message.ProductIds.ToListInt(), message.IsEnableSabaPromotion);
 
             var memberBetListParam = new MemberBetListParam(
@@ -48,7 +48,7 @@
                 message.CustName);
 
             var betlistData = await memberBetListService.GetBetList(memberBetListParam);
-            var products = productService.GetProductsForCustomer(message.CustId, message.Site, message.CurrencyId, message.MinDate, message.IsEnableSabaPromotion);
+            var products = productService.GetProductsForCustomer(message.ViewerId, message.Site, message.CurrencyId, message.MinDate, message.IsEnableSabaPromotion);
             var supportScoreMapBetTypeIds = forecastService.GetBetTypeIdsSupportScoreMap();
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);

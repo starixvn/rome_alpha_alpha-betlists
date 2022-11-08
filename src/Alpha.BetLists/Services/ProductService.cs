@@ -16,9 +16,9 @@
 
     public interface ProductService
     {
-        IEnumerable<Product> GetProductsForCustomer(int custId, string site, int currencyId, DateTime minReportDate, bool isEnableSabaPromotion);
+        IEnumerable<Product> GetProductsForCustomer(int viewerId, string site, int currencyId, DateTime minReportDate, bool isEnableSabaPromotion);
 
-        IEnumerable<int> FilterProductIdsByCustomer(int custId, string site, int currencyId, DateTime minReportDate, IEnumerable<int> productIds, bool isEnableSabaPromotion);
+        IEnumerable<int> FilterProductIdsByCustomer(int viewerId, string site, int currencyId, DateTime minReportDate, IEnumerable<int> productIds, bool isEnableSabaPromotion);
 
         IEnumerable<int> FilterProductIdsByGroupHeadline(IEnumerable<int> productIds, GetProductsByGroupHeadlineParam param, bool isEnableSabaPromotion);
 
@@ -28,14 +28,14 @@
 
         bool IsEnabledJackpot(int custId);
 
-        IEnumerable<Product> GetProductsHaveSupportCancelledBet(int custId, 
+        IEnumerable<Product> GetProductsHaveSupportCancelledBet(int viewerId, 
             string site, 
             int currencyId, 
             DateTime minReportDate, 
             IEnumerable<int> productIds = null, 
             bool isEnableSabaPromotion = false);
 
-        bool CanViewBySite(int custId, string site, int currencyId, int productId);
+        bool CanViewBySite(int viewerId, string site, int currencyId, int productId);
     }
 
     public class ProductServiceImpl : ProductService
@@ -63,18 +63,18 @@
             this.getProductName = getProductName;
         }
 
-        public IEnumerable<Product> GetProductsForCustomer(int custId, string site, int currencyId, DateTime minReportDate, bool isEnableSabaPromotion)
+        public IEnumerable<Product> GetProductsForCustomer(int viewerId, string site, int currencyId, DateTime minReportDate, bool isEnableSabaPromotion)
         {
-            if (custId <= 0)
+            if (viewerId <= 0)
             {
                 return Enumerable.Empty<Product>();
             }
 
             var custProducts = cacheService
                 .GetOrSet(
-                $"Alpha.Reports.Services.Impl.ProductsForCustomer-{custId}",
+                $"Alpha.Reports.Services.Impl.ProductsForCustomer-{viewerId}",
                 () => GetProductsForReport()
-                        .Where(product => canViewProduct(product.Id) || CanViewBySite(custId, site, currencyId, product.Id))
+                        .Where(product => canViewProduct(product.Id) || CanViewBySite(viewerId, site, currencyId, product.Id))
                         .Select(product => new Product(product.Id, product.Name, product.EndOfSupportDate, getProductName, product.Type, product.OrderNo)),
                 new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(CustProductsCacheTimeInMinutes)));
 
@@ -93,9 +93,9 @@
             return custProducts;
         }
 
-        public IEnumerable<int> FilterProductIdsByCustomer(int custId, string site, int currencyId, DateTime minReportDate, IEnumerable<int> productIds, bool isEnableSabaPromotion)
+        public IEnumerable<int> FilterProductIdsByCustomer(int viewerId, string site, int currencyId, DateTime minReportDate, IEnumerable<int> productIds, bool isEnableSabaPromotion)
         {
-            var customerProductIds = GetProductsForCustomer(custId, site, currencyId, minReportDate, isEnableSabaPromotion).Select(product => product.Id);
+            var customerProductIds = GetProductsForCustomer(viewerId, site, currencyId, minReportDate, isEnableSabaPromotion).Select(product => product.Id);
 
             var productIdList = productIds == null || !productIds.Any()
                 ? customerProductIds
@@ -104,7 +104,7 @@
             return productIdList;
         }
 
-        public IEnumerable<Product> GetProductsHaveSupportCancelledBet(int custId, 
+        public IEnumerable<Product> GetProductsHaveSupportCancelledBet(int viewerId, 
             string site, 
             int currencyId, 
             DateTime minReportDate, 
@@ -127,7 +127,7 @@
                 ProductIdConstants.Bitcoin
             };
 
-            var allProducts = GetProductsForCustomer(custId, site, currencyId, minReportDate, isEnableSabaPromotion).Where(i => supportedProducts.Contains(i.Id));
+            var allProducts = GetProductsForCustomer(viewerId, site, currencyId, minReportDate, isEnableSabaPromotion).Where(i => supportedProducts.Contains(i.Id));
 
             var validProducts = productIds == null || !productIds.Any()
                 ? allProducts
@@ -175,12 +175,12 @@
         public string ConcatProductNames(string productIds)
             => string.Join(", ", GetProductNames(productIds.ToListInt()));
 
-        public bool CanViewBySite(int custId, string site, int currencyId, int productId)
+        public bool CanViewBySite(int viewerId, string site, int currencyId, int productId)
         {
             var products = cacheService
                 .GetOrSet(
-                $"Alpha.Reports.Services.Impl.ProductsBySite-{custId}-{site}",
-                () => dynamicRepository.Fetch<ProductBySiteModel>(new GetOfferedProductsBySiteCriteria(custId, site, currencyId)),
+                $"Alpha.Reports.Services.Impl.ProductsBySite-{viewerId}",
+                () => dynamicRepository.Fetch<ProductBySiteModel>(new GetOfferedProductsBySiteCriteria(viewerId, site, currencyId)),
                 new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(CustProductsCacheTimeInMinutes)));
 
             return products.Any(i => i.ProductId == productId);

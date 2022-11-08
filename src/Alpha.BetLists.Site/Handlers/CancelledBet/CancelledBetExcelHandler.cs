@@ -47,9 +47,9 @@
 
         public async Task<ExcelFileViewModel> Handle(CancelledBetExcelQuery query)
         {
-            var validUserSelectedProductIds = productService.FilterProductIdsByCustomer(query.CustId, 
+            var validUserSelectedProductIds = productService.FilterProductIdsByCustomer(query.ViewerId, 
                 query.Site, query.CurrencyId, query.MinDate, query.ProductIds.ToListInt(), query.IsEnableSabaPromotion);
-            var products = productService.GetProductsForCustomer(query.CustId, query.Site, query.CurrencyId, query.MinDate, query.IsEnableSabaPromotion);
+            var products = productService.GetProductsForCustomer(query.ViewerId, query.Site, query.CurrencyId, query.MinDate, query.IsEnableSabaPromotion);
             var parameter = new CancelledBetParam(
                 query.CustId,
                 query.FromDate,
