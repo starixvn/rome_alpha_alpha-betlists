@@ -7,7 +7,7 @@
 
 @section Styles{
     @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-betlists/filter")
-    @StaticResources.RenderStyles("~/assets/bundles/filter")
+    @StaticResources.RenderStyles($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}assets/bundles/filter")
 }
 <div class="bl_title">
     @Model.Title
@@ -43,5 +43,5 @@
 
 @section Scripts{
     @StaticResources.AssetScripts.Render("/bundles/site-betlists/filter")
-    @StaticResources.RenderScripts("~/assets/bundles/member-betlist/member-betlist")
+    @StaticResources.RenderScripts($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}assets/bundles/member-betlist/member-betlist")
 }

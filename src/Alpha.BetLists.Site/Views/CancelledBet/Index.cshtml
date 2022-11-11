@@ -9,7 +9,7 @@
 @section Styles{
     @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-betlists/pagination")
     @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-betlists/filter")
-    @StaticResources.RenderStyles("~/assets/bundles/filter")
+    @StaticResources.RenderStyles($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}assets/bundles/filter")
 }
 
 <div class="bl_title">
@@ -93,6 +93,6 @@
 @Html.Hidden("totalbets-forecast-path", Model.TotalBetsForecastPath)
 @section Scripts{
     @StaticResources.AssetScripts.Render("/bundles/site-betlists/filter")
-    @StaticResources.RenderScripts("~/assets/bundles/cancelled-betlist/cancelled-betlist")
+    @StaticResources.RenderScripts($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}assets/bundles/cancelled-betlist/cancelled-betlist")
     @StaticResources.AssetScripts.Render("/bundles/site-betlists/pagination")
 }

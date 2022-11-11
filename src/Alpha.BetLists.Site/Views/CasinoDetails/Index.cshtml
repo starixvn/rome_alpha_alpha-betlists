@@ -103,5 +103,5 @@
 @Html.Hidden("viewer-level-id", Model.ViewerLevelId)
 @section Scripts{
     @StaticResources.AssetScripts.Render("/bundles/site-betlists/pagination")
-    @StaticResources.RenderScripts("~/assets/bundles/casino-detail/casino-detail")
+    @StaticResources.RenderScripts($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}assets/bundles/casino-detail/casino-detail")
 }
