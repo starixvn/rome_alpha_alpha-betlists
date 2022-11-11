@@ -79,7 +79,7 @@
 @Pager.Render(Model.PagerViewModel)
 
 <form class="form-inline hide" role="form" id="export-excel-form"
-      action="@Url.Action("Excel", "CancelledBet")">
+      action="@Url.Action("Excel", $"{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}CancelledBet")">
     @Html.Hidden("CustId", Model.CustId)
     @Html.Hidden("FromDate", Model.FromDate)
     @Html.Hidden("ToDate", Model.ToDate)

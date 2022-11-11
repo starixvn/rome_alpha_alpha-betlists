@@ -27,7 +27,7 @@
     <div class="form-group">
         <select id="dropdown-betlist-type">
             <option value="1" data-url="@MemberBetListViewModel.GetDailyStatementLink(Model.CustId, Model.CustName,Model.ProductsId)">@Resources.DailyStatement</option>
-            <option value="2" data-url="@Model.BuildBetListLink(Url.Action("Index","MemberBetList"))">@Resources.BetList</option>
+            <option value="2" data-url="@Model.BuildBetListLink(Url.Action("Index", $"{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}MemberBetList"))">@Resources.BetList</option>
             <option value="3" selected="selected">@Resources.BetlistRunning</option>
         </select>
     </div>

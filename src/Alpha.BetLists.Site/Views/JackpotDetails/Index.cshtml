@@ -7,7 +7,7 @@
 <div class="bl_title no-border-bottom">
     <div class="bl-export-excel">
         <a id="icon-excel" class="icon icon-excel" title="@Resources.ExportToExcel"
-           href="@Url.Action("Excel", "JackpotDetails",
+           href="@Url.Action("Excel", $"{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}JackpotDetails",
                 new
                 {
                     TransId = Model.TransId,

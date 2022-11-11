@@ -7,7 +7,7 @@
     @Model.Title
     <div class="bl-export-excel">
         <a id="icon-excel" class="icon icon-excel" title="@Resources.ExportToExcel"
-           href="@Url.Action($"{Model.FuncName}Excel", "BetListByBetType", new { BetType=Model.BetType })">
+           href="@Url.Action($"{Model.FuncName}Excel", $"{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}BetListByBetType", new { BetType=Model.BetType })">
         </a>
     </div>
 </div>

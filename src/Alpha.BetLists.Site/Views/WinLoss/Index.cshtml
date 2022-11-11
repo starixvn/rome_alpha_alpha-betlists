@@ -13,7 +13,7 @@
     @Model.Title
     <div class="bl-export-excel">
         <a id="icon-excel" class="icon icon-excel" title="@Resources.ExportToExcel"
-           href="@Url.Action("Excel", "WinLoss",
+           href="@Url.Action("Excel", $"{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}WinLoss",
                 new { CustName = Model.CustName,
                     CustId = Model.CustId,
                     ProductIds = Model.ProductsId,
