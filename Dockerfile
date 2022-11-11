@@ -82,6 +82,15 @@ RUN FOR %P IN ( `
 		&& xcopy "assets/styles/bet-list-2.min.css" "assets/styles/bet-list.min.css" /Y `
     )
 
+# Transform config
+RUN echo "%TRANSFORM_CONFIG%" `
+    && xcopy "Web.%TRANSFORM_CONFIG%.config" "Web.config" /Y `
+    && xcopy "Web.ConnectionStrings.%TRANSFORM_CONFIG%.config" "Web.ConnectionStrings.config" /Y `
+	&& xcopy "Web.AppSettings.%TRANSFORM_CONFIG%.config" "Web.AppSettings.config" /Y `
+	&& xcopy "App_Data\activitytracking.%TRANSFORM_CONFIG%.json" "App_Data\activitytracking.json" /Y `
+	&& xcopy "App_Data\securitycode.%TRANSFORM_CONFIG%.json" "App_Data\securitycode.json" /Y `
+	&& xcopy "App_Data\ProductSection.%TRANSFORM_CONFIG%.config" "App_Data\ProductSection.config" /Y
+
 FROM hub.nexdev.net/base/dotnet/framework/aspnet:4.7.2-windowsservercore-ltsc2019 AS base
 
 WORKDIR C:\inetpub\wwwroot
