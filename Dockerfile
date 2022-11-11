@@ -60,12 +60,12 @@ RUN `
         && xcopy C:\sp-result.xml "%P" /Y
 
 # Transform config
-RUN echo "%TRANSFORM_CONFIG%" `
-    && xcopy "Web.%TRANSFORM_CONFIG%.config" "Web.config" /Y `
-    && xcopy "Web.ConnectionStrings.%TRANSFORM_CONFIG%.config" "Web.ConnectionStrings.config" /Y `
-	&& xcopy "Web.AppSettings.%TRANSFORM_CONFIG%.config" "Web.AppSettings.config" /Y `
-	&& xcopy "App_Data\activitytracking.%TRANSFORM_CONFIG%.json" "App_Data\activitytracking.json" /Y `
-	&& xcopy "App_Data\ProductSection.%TRANSFORM_CONFIG%.config" "App_Data\ProductSection.config" /Y
+#RUN echo "%TRANSFORM_CONFIG%" `
+    #&& xcopy "Web.%TRANSFORM_CONFIG%.config" "Web.config" /Y `
+    #&& xcopy "Web.ConnectionStrings.%TRANSFORM_CONFIG%.config" "Web.ConnectionStrings.config" /Y `
+	#&& xcopy "Web.AppSettings.%TRANSFORM_CONFIG%.config" "Web.AppSettings.config" /Y `
+	#&& xcopy "App_Data\activitytracking.%TRANSFORM_CONFIG%.json" "App_Data\activitytracking.json" /Y `
+	#&& xcopy "App_Data\ProductSection.%TRANSFORM_CONFIG%.config" "App_Data\ProductSection.config" /Y
 
 RUN FOR %P IN ( `
 		LOCAL2, `
