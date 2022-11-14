@@ -54,18 +54,19 @@ RUN `
 		App_Data\SPNames\Docker\DBCust.IPDB.BODBDownlineNet.xml, `
 		App_Data\SPNames\Docker\DBLOG.bodb_CustomerLog.BODBDownlineNet.xml, `
 		App_Data\SPNames\Docker\DBONUSER.ON_USER.BODBDownlineNet.xml, `
-		App_Data\SPNames\Docker\DBPOLICY.bodb02.BODBDownlineNet.xml `
+		App_Data\SPNames\Docker\DBPOLICY.bodb02.BODBDownlineNet.xml, `
+		App_Data\SPNames\Internal\DBACC.bodb02.BODBDownlineNetView.xml, `
+		App_Data\SPNames\Internal\DBAGE.bodb_AGE.BODBDownlineNetView.xml, `
+		App_Data\SPNames\Internal\DBAGE.bodb02.BODBDownlineNetView.xml, `
+		App_Data\SPNames\Internal\DBARC.bodb_Archive.BODBDownlineNetView.xml, `
+		App_Data\SPNames\Internal\DBCust.CustDB.BODBDownlineNetView.xml, `
+		App_Data\SPNames\Internal\DBCust.IPDB.BODBDownlineNet.xml, `
+		App_Data\SPNames\Internal\DBLOG.bodb_CustomerLog.BODBDownlineNetView.xml, `
+		App_Data\SPNames\Internal\DBONUSER.ON_USER.BODBDownlineNetView.xml, `
+		App_Data\SPNames\Internal\DBPOLICY.bodb02.BODBDownlineNetView.xml `
     ) `
     DO curl --fail -o C:\sp-result.xml --form file=@"%P" --form "redmineIds=%REDMINE_IDS%" -X POST %ROCKETOR_API% `
         && xcopy C:\sp-result.xml "%P" /Y
-
-# Transform config
-#RUN echo "%TRANSFORM_CONFIG%" `
-    #&& xcopy "Web.%TRANSFORM_CONFIG%.config" "Web.config" /Y `
-    #&& xcopy "Web.ConnectionStrings.%TRANSFORM_CONFIG%.config" "Web.ConnectionStrings.config" /Y `
-	#&& xcopy "Web.AppSettings.%TRANSFORM_CONFIG%.config" "Web.AppSettings.config" /Y `
-	#&& xcopy "App_Data\activitytracking.%TRANSFORM_CONFIG%.json" "App_Data\activitytracking.json" /Y `
-	#&& xcopy "App_Data\ProductSection.%TRANSFORM_CONFIG%.config" "App_Data\ProductSection.config" /Y
 
 RUN FOR %P IN ( `
 		LOCAL2, `

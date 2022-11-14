@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
@@ -24,18 +23,8 @@ namespace Alpha.BetLists.Site.Controllers
     [SessionState(SessionStateBehavior.Required), AllowProtectedMode, AllowAnonymous]
     public class AuthController : Controller
     {
-        private const string English = "en-US";
-        private const string ChineseTraditional = "zh-TW";
-        private const string ChineseSimplified = "zh-CN";
-        private const string Japanese = "ja-JP";
-        private const string Thai = "th-TH";
-        private const string Korean = "ko-KR";
-        private const string Vietnamese = "vi-VN";
-        private const string Default = English;
         private const string SecretKey = "!@#$";
         private const string OK = "OK";
-        private const string Failed = "Failed";
-        private const string NotSupported = "Not supported";
         private const int LoginTimeoutSeconds = 10;
 
         // GET: Auth
@@ -85,7 +74,6 @@ namespace Alpha.BetLists.Site.Controllers
                     && session.UserName.Equals(parameters[0], StringComparison.OrdinalIgnoreCase))
                 {
                     SetRealtimeValues(parameters, session);
-                    UpdateReportRoutingRealtime(parameters, session);
 
                     return RedirectToSpecificUrl();
                 }
@@ -102,120 +90,6 @@ namespace Alpha.BetLists.Site.Controllers
 
             return RedirectToSpecificUrl();
         }
-
-        // GET: SecurityCode
-        [HttpGet]
-        public ActionResult SecurityCode()
-        {
-            if (!IsValidReferrer()
-                || !IsLoggedIn())
-            {
-                return Json(Failed, JsonRequestBehavior.AllowGet);
-            }
-
-            SecurityCodeSessionManager.SecurityCodeSession.IsAlreadyInputSecurityCode = true;
-
-            return Json(OK, JsonRequestBehavior.AllowGet);
-        }
-
-        // GET: SecurityCodeBetlist
-        [HttpGet]
-        public ActionResult SecurityCodeBetlist(bool s)
-        {
-            if (!IsValidReferrer()
-                || !IsLoggedIn())
-            {
-                return Json(Failed, JsonRequestBehavior.AllowGet);
-            }
-
-            UserSession.Current.SetProperty(SessionKey.ISENABLEDSECURITYCODEINBETLISTS, s);
-
-            return Json(OK, JsonRequestBehavior.AllowGet);
-        }
-
-        // GET: SecurityCodeStatement
-        [HttpGet]
-        public ActionResult SecurityCodeStatement(bool s)
-        {
-            if (!IsValidReferrer()
-                || !IsLoggedIn())
-            {
-                return Json(Failed, JsonRequestBehavior.AllowGet);
-            }
-
-            UserSession.Current.SetProperty(SessionKey.ISENABLEDSECURITYCODEINSTATEMENT, s);
-
-            return Json(OK, JsonRequestBehavior.AllowGet);
-        }
-
-        // GET: Otp
-        [HttpGet]
-        public ActionResult Otp()
-        {
-            if (!IsValidReferrer()
-                || !IsLoggedIn())
-            {
-                return Json(Failed, JsonRequestBehavior.AllowGet);
-            }
-
-            SecurityCodeSessionManager.SecurityCodeSession.IsEnabledOtp = true;
-            SecurityCodeSessionManager.SecurityCodeSession.IsAlreadyInputSecurityCode = true;
-
-            return Json(OK, JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpGet]
-        public ActionResult ChangeTheme(bool isDarkMode)
-        {
-            if (!IsValidReferrer()
-                || !IsLoggedIn())
-            {
-                return Json(Failed, JsonRequestBehavior.AllowGet);
-            }
-
-            UserSession.Current.DarkModeName = isDarkMode ? "-dark" : string.Empty;
-
-            return Json(OK, JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpGet]
-        public ActionResult ChangeLang(string langCode)
-        {
-            if (!IsValidReferrer()
-                || !IsLoggedIn())
-            {
-                return Json(Failed, JsonRequestBehavior.AllowGet);
-            }
-
-            var userSession = UserSession.Current;
-
-            if (string.IsNullOrWhiteSpace(langCode) ||
-                !CodeKeys.ContainsKey(langCode))
-            {
-                return Json(NotSupported, JsonRequestBehavior.AllowGet);
-            }
-
-            if (AppSettings.DisabledVietnamese && langCode == Vietnamese)
-            {
-                langCode = Default;
-            }
-
-            userSession.Language = langCode;
-            userSession.LangKey = CodeKeys[langCode];
-
-            return Json(OK, JsonRequestBehavior.AllowGet);
-        }
-
-        private static readonly IDictionary<string, string> CodeKeys = new Dictionary<string, string>
-        {
-            [English] = "E",
-            [ChineseTraditional] = "CT",
-            [ChineseSimplified] = "CS",
-            [Japanese] = "J",
-            [Thai] = "TH",
-            [Korean] = "KO",
-            [Vietnamese] = "VI"
-        };
 
         private bool IsValidReferrer()
         {
@@ -316,17 +190,6 @@ namespace Alpha.BetLists.Site.Controllers
             userSession.SetProperty(SessionKey.BetlistDomainSessionKey, sessions[36]);
 
             SetRealtimeValues(parameters, userSession);
-            UpdateReportRoutingRealtime(parameters, userSession);
-        }
-
-        private static void UpdateReportRoutingRealtime(string[] parameters, IUserSession session)
-        {
-            var sessions = parameters[1].Split(';');
-            var routing = sessions[25];
-            if (!string.Equals(routing, session.GetProperty<string>(SessionKey.BetlistRouting) ?? string.Empty, StringComparison.OrdinalIgnoreCase))
-            {
-                session.SetProperty(SessionKey.BetlistRouting, routing);
-            }
         }
 
         private static void SetOutputValuesToSession(string[] parameters, IUserSession session)
