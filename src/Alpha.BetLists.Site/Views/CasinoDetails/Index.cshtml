@@ -94,7 +94,7 @@
     </table>
 </div>
 @Pager.Render(Model.PagingViewModel)
-@Html.Hidden("betlist-path", HttpContext.Current.Response.ApplyAppPathModifier("~/"))
+@Html.Hidden("betlist-path", Response.ApplyAppPathModifier($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}"))
 @Html.Hidden("old-main-path", MicroSites.OldMainUrl("~/"))
 @Html.Hidden("results-path", AppPathHelper.GetAppPath(AppSettings.ResultAppPath, "~"))
 @Html.Hidden("site-main-path", AppPathHelper.GetAppPath(AppSettings.MainAppPath, "~"))

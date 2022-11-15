@@ -55,7 +55,7 @@
 <input id="latest-trans-id-cache-key" type="hidden" value="@Model.LatestTransIdCacheKey" />
 <input id="reset-last-trans-id" type="hidden" value="@Model.ResetLastTransId.ToString()" />
 
-@Html.Hidden("betlist-path", HttpContext.Current.Response.ApplyAppPathModifier("~/"))
+@Html.Hidden("betlist-path", Response.ApplyAppPathModifier($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}"))
 @Html.Hidden("old-main-path", Model.OldMainPath)
 @Html.Hidden("totalbets-forecast-path", Model.TotalBetsForecastPath)
 @Html.Hidden("cust-id", Model.CustId)

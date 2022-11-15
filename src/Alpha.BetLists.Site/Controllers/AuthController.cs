@@ -132,6 +132,7 @@ namespace Alpha.BetLists.Site.Controllers
             userSession.SetProperty(SessionKey.ISNICKNAMELOGINONLY, true);
 
             Session["ONEbook.UM.ByPassUM"] = sessions[33];
+            userSession.SetProperty(SessionKey.ReportSessionID, sessions[39]);
         }
 
         private void SetUserSessionsAndAuth(string[] parameters, IUserSession userSession)
@@ -187,7 +188,7 @@ namespace Alpha.BetLists.Site.Controllers
             userSession.SetProperty(SessionKey.AUTOFOLLOWBETISDUMMYAGENT, Convert.ToBoolean(sessions[34]));
             userSession.SetProperty(SessionKey.MainSessionID, sessions[35]);
 
-            userSession.SetProperty(SessionKey.BetlistDomainSessionKey, sessions[36]);
+            userSession.SetProperty(SessionKey.ReportDomainSessionKey, sessions[38]);
 
             SetRealtimeValues(parameters, userSession);
         }

@@ -70,7 +70,7 @@
         @Common.NoInfomation.Render(Model.TotalColumn)
     }
 </table>
-@Html.Hidden("betlist-path", HttpContext.Current.Response.ApplyAppPathModifier("~/"))
+@Html.Hidden("betlist-path", Response.ApplyAppPathModifier($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}"))
 @Html.Hidden("old-main-path", Model.OldMainPath)
 @Html.Hidden("results-path", Model.ResultsPath)
 @Html.Hidden("totalbets-forecast-path", Model.TotalBetsForecastPath)

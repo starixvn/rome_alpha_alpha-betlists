@@ -1,9 +1,9 @@
 ﻿namespace Alpha.BetLists.Site.Helpers
 {
+    using Alpha.BetLists.Site.Constants;
     using Sunplus.Agent.Model.Entities;
     using System;
     using System.Collections.Generic;
-    using System.Configuration;
     using System.Linq;
     using System.Web;
     using Web.Helpers;
@@ -46,9 +46,11 @@
 
         internal static string MapReportsDomain(string appPath)
         {
-            var cookieless = HttpContext.Current.Session.IsCookieless ? $"/(S({HttpContext.Current.Session.SessionID}))" : string.Empty;
+            var cookieless = HttpContext.Current.Session.IsCookieless ?
+                $"/(S({UserSession.Current.GetProperty<string>(SessionKey.ReportSessionID)}))" :
+                string.Empty;
 
-            return IsStandaloneReport ? $"{ReportDomainUrl}{cookieless}{appPath?.Replace("~", string.Empty)}" : MicroSites.ReportsUrl(appPath);
+            return IsStandaloneReport ? $"{ReportDomain}{cookieless}{appPath?.Replace("~", string.Empty)}" : MicroSites.ReportsUrl(appPath);
         }
 
         internal static string AddQueryStringParams(string path, IDictionary<string, object> routeValues)
@@ -63,23 +65,7 @@
             return $"{path}?{queryString}";
         }
 
-        internal static string ReportDomain => ConfigurationManager.AppSettings["Report:Domain"] ?? string.Empty;
-
-        internal static string ReportDomainUrl
-        {
-            get
-            {
-                var mainDomain = HttpContext.Current.Request.Headers["Host"];
-                if (HttpContext.Current.Session.IsCookieless)
-                {
-                    var subDomain = mainDomain.Split('.').ElementAt(0);
-                    mainDomain = mainDomain.Replace($"{subDomain}.", string.Empty);
-                }
-
-                return ReportDomain.IndexOf("{0}") != -1 ?
-                    string.Format(ReportDomain, mainDomain) : ReportDomain;
-            }
-        }
+        internal static string ReportDomain => UserSession.Current.GetProperty<string>(SessionKey.ReportDomainSessionKey) ?? string.Empty;
 
         internal static string MainDomain => UserSession.Current.GetProperty<string>("MainDomain");
 
