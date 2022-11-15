@@ -44,7 +44,7 @@
             var productDetailsXML = await productDetailService.BuildProductDetailsXMLAsync(validUserSelectedProductIds, message.ResourceIds, message.Is789Y);
 
             var showContributionAmountRoundNote = message.IsGroupHeadline
-                ? productService.IsEnabledJackpot(message.CustId)
+                ? productService.IsEnabledJackpot(message.Site, message.CurrencyId)
                 : message.IsEnabledJackpot;
 
             var winLossParam = CreateWinLossParam(message, validUserSelectedProductIds, productDetailsXML, message.MaxTotalRow, message.MaxTotalRowConfig);

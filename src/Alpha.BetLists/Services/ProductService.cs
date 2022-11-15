@@ -26,13 +26,13 @@
 
         IEnumerable<string> GetProductNames(IEnumerable<int> productIds);
 
-        bool IsEnabledJackpot(int custId);
+        bool IsEnabledJackpot(string site, int currencyId);
 
         IEnumerable<Product> GetProductsHaveSupportCancelledBet(int viewerId, 
-            string site, 
-            int currencyId, 
-            DateTime minReportDate, 
-            IEnumerable<int> productIds = null, 
+            string site,
+            int currencyId,
+            DateTime minReportDate,
+            IEnumerable<int> productIds = null,
             bool isEnableSabaPromotion = false);
 
         bool CanViewBySite(int viewerId, string site, int currencyId, int productId);
@@ -41,24 +41,22 @@
     public class ProductServiceImpl : ProductService
     {
         private const int CustProductsCacheTimeInMinutes = 5;
+        private const int CacheDayforJackpot = 7;
         private const string ProductsCacheKey = "Alpha.BetLists.Services.Impl.ProductServiceImpl.Products";
         private readonly Func<int, bool> canViewProduct;
         private readonly Func<int, string> getProductName;
         private readonly IDynamicRepository dynamicRepository;
         private readonly ICacheService cacheService;
-        private readonly ProductDataAccess productDataAccess;
         private const int SabaPromotionProductId = 37;
 
         public ProductServiceImpl(
             IDynamicRepository dynamicRepository,
             ICacheService cacheService,
-            ProductDataAccess productDataAccess,
             Func<int, bool> canViewProduct,
             Func<int, string> getProductName)
         {
             this.dynamicRepository = dynamicRepository;
             this.cacheService = cacheService;
-            this.productDataAccess = productDataAccess;
             this.canViewProduct = canViewProduct;
             this.getProductName = getProductName;
         }
@@ -105,10 +103,10 @@
         }
 
         public IEnumerable<Product> GetProductsHaveSupportCancelledBet(int viewerId, 
-            string site, 
-            int currencyId, 
-            DateTime minReportDate, 
-            IEnumerable<int> productIds = null, 
+            string site,
+            int currencyId,
+            DateTime minReportDate,
+            IEnumerable<int> productIds = null,
             bool isEnableSabaPromotion = false)
         {
             var supportedProducts = new List<int>
@@ -157,11 +155,15 @@
             .Select(product => product.Id)
             .Where(id => productIds == null || !productIds.Any() || productIds.Contains(id));
 
-        public bool IsEnabledJackpot(int custId)
+        public bool IsEnabledJackpot(string site, int currencyId)
         {
-            var productIds = GetEnabledJackpotProductIdsForCustomer(custId);
+            var offeredJackpot = GetEnabledJackpotProductIdsForCustomer();
+            var productIdBySite = offeredJackpot.Item1.Where(i => i.Site.Equals(site, StringComparison.CurrentCultureIgnoreCase));
+            var productIdByCurrency = offeredJackpot.Item2
+                .Where(i => i.Currency == currencyId
+                        && productIdBySite.Any(s => s.Product == i.Product));
 
-            return productIds.Any();
+            return productIdByCurrency.Any();
         }
 
         public IEnumerable<string> GetProductNames(IEnumerable<int> productIds)
@@ -205,7 +207,10 @@
             return products;
         }
 
-        private IEnumerable<int> GetEnabledJackpotProductIdsForCustomer(int custId)
-           => productDataAccess.GetEnabledProductIdsForCustomer(new GetEnableJackpotProductCriteria(custId, AppSettings.LocalTest));
+        private Tuple<IEnumerable<JackpotOfferedBySite>, IEnumerable<JackpotOfferedByCurrency>> GetEnabledJackpotProductIdsForCustomer()
+            => cacheService.GetOrSet(
+                "Alpha.BetLists.Services.Impl.ProductServiceImpl.OfferedJackpot",
+                () => dynamicRepository.FetchMultiple<JackpotOfferedBySite, JackpotOfferedByCurrency>(new GetEnableJackpotProductCriteria()),
+            new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromDays(CacheDayforJackpot)));
     }
 }

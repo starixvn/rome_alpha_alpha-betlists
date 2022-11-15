@@ -10,8 +10,8 @@
         public void GetSettingKey_Always_ReturnsCorrectKey()
         {
             // Arrange
-            var criteria = new GetEnableJackpotProductCriteria(0, false);
-            var expectedSettingKey = "Acc_GameEnableJackpotSel";
+            var criteria = new GetEnableJackpotProductCriteria();
+            var expectedSettingKey = "Acc_GameLaunchSel";
 
             // Act
             var actualSettingKey = criteria.GetSettingKey();
@@ -19,28 +19,12 @@
             // Assert
             Assert.Equal(expectedSettingKey, actualSettingKey);
         }
-
-        [Theory]
-        [InlineData(0)]
-        [InlineData(-1)]
-        [InlineData(int.MinValue)]
-        public void IsValid_InvalidCustId_ReturnsFalse(int custId)
-        {
-            // Arrange
-            var criteria = new GetEnableJackpotProductCriteria(custId, false);
-
-            // Act
-            var isValid = criteria.IsValid();
-
-            // Assert
-            Assert.False(isValid);
-        }
-
+        
         [Fact]
-        public void IsValid_ValidCriteria_ReturnsTrue()
+        public void IsValid_Always_ReturnsTrue()
         {
             // Arrange
-            var criteria = new GetEnableJackpotProductCriteria(1, false);
+            var criteria = new GetEnableJackpotProductCriteria();
 
             // Act
             var isValid = criteria.IsValid();
