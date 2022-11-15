@@ -915,18 +915,6 @@
     <Content Include="WhoAmI.aspx" />
     <Content Include="bundleconfig2.json" />
     <Content Include="compilerconfig2.json" />
-    <Content Include="App_Data\activitytracking.backupMNL.json">
-      <DependentUpon>activitytracking.json</DependentUpon>
-    </Content>
-    <Content Include="App_Data\activitytracking.backupMNL2.json">
-      <DependentUpon>activitytracking.json</DependentUpon>
-    </Content>
-    <Content Include="App_Data\activitytracking.backupMNLNap.json">
-      <DependentUpon>activitytracking.json</DependentUpon>
-    </Content>
-    <Content Include="App_Data\activitytracking.backupMNLNap2.json">
-      <DependentUpon>activitytracking.json</DependentUpon>
-    </Content>
     <Content Include="App_Data\activitytracking.local2.json">
       <DependentUpon>activitytracking.json</DependentUpon>
     </Content>
@@ -945,10 +933,6 @@
     <Content Include="App_Data\activitytracking.uat2.json">
       <DependentUpon>activitytracking.json</DependentUpon>
     </Content>
-    <Content Include="App_Data\ProductSection.backupMNL.config" />
-    <Content Include="App_Data\ProductSection.backupMNL2.config" />
-    <Content Include="App_Data\ProductSection.backupMNLNap.config" />
-    <Content Include="App_Data\ProductSection.backupMNLNap2.config" />
     <Content Include="App_Data\ProductSection.napinternal.config" />
     <Content Include="App_Data\ProductSection.napinternal2.config" />
     <Content Include="App_Data\ProductSection.uat2.config" />
@@ -975,18 +959,6 @@
     <Content Include="Views\DailyStatement\Index.cshtml" />
     <Content Include="Views\LastBets\Index.cshtml" />
     <Content Include="Views\LastBets\BetData.cshtml" />
-    <Content Include="Web.backupMNL.config">
-      <DependentUpon>Web.local.config</DependentUpon>
-    </Content>
-    <Content Include="Web.backupMNL2.config">
-      <DependentUpon>Web.local.config</DependentUpon>
-    </Content>
-    <Content Include="Web.backupMNLNap.config">
-      <DependentUpon>Web.local.config</DependentUpon>
-    </Content>
-    <Content Include="Web.backupMNLNap2.config">
-      <DependentUpon>Web.local.config</DependentUpon>
-    </Content>
     <Content Include="Web.ConnectionStrings.local.config">
       <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
     </Content>
@@ -1012,18 +984,6 @@
     <Content Include="Web.uat.config">
       <DependentUpon>Web.local.config</DependentUpon>
       <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Web.AppSettings.backupMNL.config">
-      <DependentUpon>Web.AppSettings.config</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.backupMNL2.config">
-      <DependentUpon>Web.AppSettings.config</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.backupMNLNap.config">
-      <DependentUpon>Web.AppSettings.config</DependentUpon>
-    </Content>
-    <Content Include="Web.AppSettings.backupMNLNap2.config">
-      <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
     <Content Include="Web.AppSettings.napinternal.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
@@ -1064,9 +1024,6 @@
     <Content Include="Views\CashOutHistory\Index.cshtml" />
     <Content Include="Views\MoveStatementHistory\Index.cshtml" />
     <Content Include="PartialUMConfigs\PartialUMSection.config" />
-    <Content Include="Web.AppSettings.auto.config">
-      <DependentUpon>Web.AppSettings.config</DependentUpon>
-    </Content>
     <Content Include="Views\CasinoDetails\Index.cshtml" />
     <Content Include="Views\CorrectScore\Index.cshtml" />
     <Content Include="Views\Shared\TableWithoutWinLoss.cshtml" />
