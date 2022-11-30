@@ -18,7 +18,7 @@
     using Fanex.BetList.Core.Entities;
     using MediatR;
     using ONEbook.SpreadSheets;
-    using ONEbook.SpreadSheets.NPOI;
+    using ONEbook.SpreadSheets.BetListNPOI;
 
     public class CancelledBetExcelHandler : BetListExcelBaseHandler, IAsyncRequestHandler<CancelledBetExcelQuery, ExcelFileViewModel>
     {

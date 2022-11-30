@@ -5,7 +5,7 @@
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Utils;
     using Models;
-    using NPOI.SS.UserModel;
+    using BetListNPOI.SS.UserModel;
     using PTComm;
 
     public static class BetListExcelBuilderExt

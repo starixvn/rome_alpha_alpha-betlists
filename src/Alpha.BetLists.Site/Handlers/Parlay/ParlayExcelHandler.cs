@@ -9,7 +9,7 @@
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Utils;
     using MediatR;
-    using NPOI.SS.UserModel;
+    using BetListNPOI.SS.UserModel;
     using ONEbook.SpreadSheets;
     using Requests.Parlay;
     using Services;

@@ -7,7 +7,7 @@
     using Fanex.BetList.Core.Entities;
     using MediatR;
     using ONEbook.SpreadSheets;
-    using ONEbook.SpreadSheets.NPOI;
+    using ONEbook.SpreadSheets.BetListNPOI;
     using Requests.JackpotDetails;
     using Services;
     using SmartPunter.Services;
