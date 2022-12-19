@@ -111,5 +111,17 @@
     "inputFiles": [
       "assets/styles/parlay-detail-dark.css"
     ]
+  },
+  {
+    "outputFileName": "assets/bundles/error/error.css",
+    "inputFiles": [
+      "assets/styles/error/error.css"
+    ]
+  },
+  {
+    "outputFileName": "assets/bundles/error/error-dark.css",
+    "inputFiles": [
+      "assets/styles/error/error-dark.css"
+    ]
   }
 ]

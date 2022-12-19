@@ -665,6 +665,8 @@
     <Content Include="App_Data\SPNames\SIT\DBLOG.bodb_CustomerLog.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DBONUSER.ON_USER.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DBPOLICY.bodb02.BODBDownlineNet.xml" />
+    <Content Include="App_Themes\error2-dark.png" />
+    <Content Include="App_Themes\error2.png" />
     <Content Include="assets\bundles\cancelled-betlist\cancelled-betlist.js" />
     <Content Include="assets\bundles\cancelled-betlist\cancelled-betlist.min.js">
       <DependentUpon>cancelled-betlist.js</DependentUpon>
@@ -774,6 +776,12 @@
     <Content Include="assets\styles\details-popup.min.css">
       <DependentUpon>details-popup.css</DependentUpon>
     </Content>
+    <Content Include="assets\styles\error\error-dark.css" />
+    <Content Include="assets\styles\error\error-dark.min.css" />
+    <Content Include="assets\styles\error\error.css" />
+    <Content Include="assets\styles\error\error.min.css" />
+    <Content Include="assets\styles\error\images\error-bg-dark.png" />
+    <Content Include="assets\styles\error\images\error-bg.png" />
     <Content Include="assets\styles\filter.css">
       <DependentUpon>filter.scss</DependentUpon>
     </Content>
@@ -813,6 +821,7 @@
     <Content Include="assets\styles\parlay-detail.min.css">
       <DependentUpon>parlay-detail.css</DependentUpon>
     </Content>
+    <Content Include="ex-main\Error.aspx" />
     <Content Include="Global.asax" />
     <Content Include="App_Data\SPNames\Local\DBARC.bodb_Archive.BODBDownlineNet.xml">
       <SubType>Designer</SubType>
@@ -942,6 +951,8 @@
     <Content Include="App_Data\securitycode.pro.json" />
     <Content Include="App_Data\securitycode.uat2.json" />
     <Content Include="App_Data\securitycode.pro2.json" />
+    <Content Include="assets\styles\error\error-dark.scss" />
+    <Content Include="assets\styles\error\error.scss" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -1062,8 +1073,14 @@
     <Content Include="Web.ConnectionStrings.uat2.config">
       <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
     </Content>
+    <Content Include="Views\Error\Blocked.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_GlobalResources\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\DependencyConfig.cs">
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
@@ -1079,6 +1096,7 @@
     <Compile Include="Controllers\CancelledBetController.cs" />
     <Compile Include="Controllers\DailyStatementController.cs" />
     <Compile Include="Controllers\CashOutHistoryController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\JackpotDetailsController.cs" />
     <Compile Include="Controllers\BetBuilderController.cs" />
     <Compile Include="Controllers\CombinationMixParlayController.cs" />
@@ -1089,6 +1107,10 @@
     <Compile Include="Controllers\LastBetsController.cs" />
     <Compile Include="Controllers\CasinoDetailsController.cs" />
     <Compile Include="Controllers\RunningBetListController.cs" />
+    <Content Include="ex-main\Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Compile Include="Handlers\BetListByBetTypeAndMatch\BetListByBetTypeAndMatchExcelHandler.cs" />
     <Compile Include="Handlers\BetListByBetTypeAndMatch\BetListByBetTypeAndMatchHandler.cs" />
     <Compile Include="Handlers\BetListByBetType\BetListByBetTypeExcelBaseHandler.cs" />
@@ -1320,6 +1342,49 @@
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.8.22.0.31243\analyzers\SonarAnalyzer.CFG.dll" />
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.8.22.0.31243\analyzers\SonarAnalyzer.CSharp.dll" />
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.8.22.0.31243\analyzers\SonarAnalyzer.dll" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="App_GlobalResources\Resources.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\Resources.ja-JP.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Resources.ja-JP.designer.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\Resources.ko-KR.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Resources.ko-KR.designer.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\Resources.th-TH.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Resources.th-TH.designer.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\Resources.vi-VN.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Resources.vi-VN.designer.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\Resources.zh-CN.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Resources.zh-CN.designer.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\Resources.zh-TW.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Resources.zh-TW.designer.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

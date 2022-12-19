@@ -30,5 +30,13 @@
   {
     "outputFile": "assets/styles/parlay-detail-dark.css",
     "inputFile": "assets/styles/parlay-detail-dark.scss"
+  },
+  {
+    "outputFile": "assets/styles/error/error.css",
+    "inputFile": "assets/styles/error/error.scss"
+  },
+  {
+    "outputFile": "assets/styles/error/error-dark.css",
+    "inputFile": "assets/styles/error/error-dark.scss"
   }
 ]
