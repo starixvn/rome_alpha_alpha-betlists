@@ -10,7 +10,7 @@
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Utils;
-    using NPOI.SS.UserModel;
+    using BetListNPOI.SS.UserModel;
     using ONEbook.SpreadSheets;
     using SmartPunter.Services;
     using Utilities.IP;

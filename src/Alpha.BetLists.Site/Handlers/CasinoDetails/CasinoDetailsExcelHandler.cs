@@ -8,9 +8,9 @@
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using MediatR;
-    using NPOI.SS.UserModel;
+    using BetListNPOI.SS.UserModel;
     using ONEbook.SpreadSheets;
-    using ONEbook.SpreadSheets.NPOI;
+    using ONEbook.SpreadSheets.BetListNPOI;
     using Requests.CasinoDetails;
     using SmartPunter.Services;
     using Utilities.IP;
