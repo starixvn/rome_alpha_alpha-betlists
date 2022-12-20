@@ -38,16 +38,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BetListNPOI, Version=2.6.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\BetListNPOI.2.6.0-beta-02\lib\netstandard2.0\BetListNPOI.dll</HintPath>
+      <HintPath>..\..\..\packages\BetListNPOI.2.6.0\lib\netstandard2.0\BetListNPOI.dll</HintPath>
     </Reference>
     <Reference Include="BetListNPOI.OOXML, Version=2.6.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\BetListNPOI.2.6.0-beta-02\lib\netstandard2.0\BetListNPOI.OOXML.dll</HintPath>
+      <HintPath>..\..\..\packages\BetListNPOI.2.6.0\lib\netstandard2.0\BetListNPOI.OOXML.dll</HintPath>
     </Reference>
     <Reference Include="BetListNPOI.OpenXml4Net, Version=2.6.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\BetListNPOI.2.6.0-beta-02\lib\netstandard2.0\BetListNPOI.OpenXml4Net.dll</HintPath>
+      <HintPath>..\..\..\packages\BetListNPOI.2.6.0\lib\netstandard2.0\BetListNPOI.OpenXml4Net.dll</HintPath>
     </Reference>
     <Reference Include="BetListNPOI.OpenXmlFormats, Version=2.6.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\BetListNPOI.2.6.0-beta-02\lib\netstandard2.0\BetListNPOI.OpenXmlFormats.dll</HintPath>
+      <HintPath>..\..\..\packages\BetListNPOI.2.6.0\lib\netstandard2.0\BetListNPOI.OpenXmlFormats.dll</HintPath>
     </Reference>
     <Reference Include="BouncyCastle.Crypto, Version=1.9.0.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Portable.BouncyCastle.1.9.0\lib\net40\BouncyCastle.Crypto.dll</HintPath>
@@ -59,25 +59,25 @@
       <HintPath>..\..\..\packages\Enums.NET.4.0.0\lib\net45\Enums.NET.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.Core, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Fanex.BetList.Core.3.0.0-net5-22\lib\net461\Fanex.BetList.Core.dll</HintPath>
+      <HintPath>..\..\..\packages\Fanex.BetList.Core.3.0.0\lib\net461\Fanex.BetList.Core.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.GTCasino, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Fanex.BetList.GTCasino.2.0.0-net5-06\lib\net461\Fanex.BetList.GTCasino.dll</HintPath>
+      <HintPath>..\..\..\packages\Fanex.BetList.GTCasino.2.0.0\lib\net461\Fanex.BetList.GTCasino.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.MGRNGCasino, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Fanex.BetList.MGRNGCasino.2.0.0-net5-01\lib\net461\Fanex.BetList.MGRNGCasino.dll</HintPath>
+      <HintPath>..\..\..\packages\Fanex.BetList.MGRNGCasino.2.0.0\lib\net461\Fanex.BetList.MGRNGCasino.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.NumberGame, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Fanex.BetList.NumberGame.2.0.0-net5-06\lib\net461\Fanex.BetList.NumberGame.dll</HintPath>
+      <HintPath>..\..\..\packages\Fanex.BetList.NumberGame.2.0.0\lib\net461\Fanex.BetList.NumberGame.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.SabaClub, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Fanex.BetList.SabaClub.2.0.0-net5-03\lib\net461\Fanex.BetList.SabaClub.dll</HintPath>
+      <HintPath>..\..\..\packages\Fanex.BetList.SabaClub.2.0.0\lib\net461\Fanex.BetList.SabaClub.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.SAGaming, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Fanex.BetList.SAGaming.2.0.0-net5-03\lib\net461\Fanex.BetList.SAGaming.dll</HintPath>
+      <HintPath>..\..\..\packages\Fanex.BetList.SAGaming.2.0.0\lib\net461\Fanex.BetList.SAGaming.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.SealEntertainment, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Fanex.BetList.SealEntertainment.2.0.0-net5-03\lib\net461\Fanex.BetList.SealEntertainment.dll</HintPath>
+      <HintPath>..\..\..\packages\Fanex.BetList.SealEntertainment.2.0.0\lib\net461\Fanex.BetList.SealEntertainment.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.Caching, Version=2.2.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Fanex.Caching.2.2.1\lib\net461\Fanex.Caching.dll</HintPath>
@@ -202,7 +202,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="TplNetCore, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\TplNetCore.1.0.0-beta1\lib\netstandard2.0\TplNetCore.dll</HintPath>
+      <HintPath>..\..\..\packages\TplNetCore.1.0.0\lib\netstandard2.0\TplNetCore.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="xunit.abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
