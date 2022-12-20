@@ -89,18 +89,6 @@
       <HintPath>..\..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="BestListNPOI, Version=2.6.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\BestListNPOI.1.0.0\lib\netstandard2.0\BestListNPOI.dll</HintPath>
-    </Reference>
-    <Reference Include="BestListNPOI.OOXML, Version=2.6.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\BestListNPOI.1.0.0\lib\netstandard2.0\BestListNPOI.OOXML.dll</HintPath>
-    </Reference>
-    <Reference Include="BestListNPOI.OpenXml4Net, Version=2.6.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\BestListNPOI.1.0.0\lib\netstandard2.0\BestListNPOI.OpenXml4Net.dll</HintPath>
-    </Reference>
-    <Reference Include="BestListNPOI.OpenXmlFormats, Version=2.6.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\BestListNPOI.1.0.0\lib\netstandard2.0\BestListNPOI.OpenXmlFormats.dll</HintPath>
-    </Reference>
     <Reference Include="BetListNPOI, Version=2.6.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
       <HintPath>..\..\packages\BetListNPOI.2.6.0\lib\netstandard2.0\BetListNPOI.dll</HintPath>
     </Reference>
@@ -406,8 +394,8 @@
       <HintPath>..\..\packages\ONEbook.SpreadSheets.1.0.0.1\lib\net461\ONEbook.SpreadSheets.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ONEbook.SpreadSheets.BetListNPOI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ONEbook.SpreadSheets.BetListNPOI.1.0.0.1\lib\net461\ONEbook.SpreadSheets.BetListNPOI.dll</HintPath>
+    <Reference Include="ONEbook.SpreadSheets.BetListNPOI, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ONEbook.SpreadSheets.BetListNPOI.1.0.0.2\lib\net461\ONEbook.SpreadSheets.BetListNPOI.dll</HintPath>
     </Reference>
     <Reference Include="ONEbook.SpreadSheets.NPOI, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\ONEbook.SpreadSheets.NPOI.1.0.0.3\lib\net461\ONEbook.SpreadSheets.NPOI.dll</HintPath>
@@ -488,9 +476,6 @@
     <Reference Include="System.Data.OracleClient" />
     <Reference Include="System.Diagnostics.PerformanceCounter, Version=4.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Diagnostics.PerformanceCounter.4.5.0\lib\net461\System.Diagnostics.PerformanceCounter.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Drawing.Common, Version=4.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Drawing.Common.4.5.0\lib\net461\System.Drawing.Common.dll</HintPath>
     </Reference>
     <Reference Include="System.IO.Compression, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.IO.Compression.4.3.0\lib\net46\System.IO.Compression.dll</HintPath>
