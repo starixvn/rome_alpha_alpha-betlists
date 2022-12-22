@@ -953,6 +953,8 @@
     <Content Include="App_Data\securitycode.pro2.json" />
     <Content Include="assets\styles\error\error-dark.scss" />
     <Content Include="assets\styles\error\error.scss" />
+    <Content Include="App_Data\securitycode.napinternal2.json" />
+    <Content Include="App_Data\securitycode.napinternal.json" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
