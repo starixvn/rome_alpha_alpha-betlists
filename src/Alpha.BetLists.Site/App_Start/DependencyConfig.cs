@@ -33,7 +33,7 @@
     using MediatR;
     using Models;
     using ONEbook.SpreadSheets;
-    using ONEbook.SpreadSheets.NPOI;
+    using ONEbook.SpreadSheets.BetListNPOI;
     using Services;
     using SimpleInjector;
     using SimpleInjector.Integration.Web;
