@@ -40,18 +40,18 @@
                 <th class="col-winloss">@Resources.lblWinLoss</th>
                 <th class="col-status">@Resources.status</th>
                 @if (Model.AllowToViewSuperPT)
-            {
+                {
                     <th class="col-pt">@Resources.superPT/ @Resources.lblComm</th>
                 }
                 @if (Model.AllowToViewMasterPT)
-            {
+                {
                     <th class="col-pt">@Resources.masterPT/ @Resources.lblComm</th>
                 }
                 <th class="col-pt">@Resources.agentPT/ @Resources.lblComm</th>
             </tr>
         </thead>
         @if (Model.DetailData.Tickets.Any())
-            {
+        {
             <tbody>
                 @{
                     var i = Model.StartNo;
@@ -82,21 +82,22 @@
                     }
                 }
             </tbody>
-                    }
-                    else
-                    {
-                        <tbody>
-                            <tr>
-                                <td colspan="@Model.TotalColumn" class="text-center">@Resources.NoInformationIsAvailable</td>
-                            </tr>
-                        </tbody>
-                    }
+        }
+        else
+        {
+            <tbody>
+                <tr>
+                    <td colspan="@Model.TotalColumn" class="text-center">@Resources.NoInformationIsAvailable</td>
+                </tr>
+            </tbody>
+        }
     </table>
 </div>
 @Pager.Render(Model.PagingViewModel)
 @Html.Hidden("betlist-path", HttpContext.Current.Response.ApplyAppPathModifier("~/"))
 @Html.Hidden("old-main-path", MicroSites.OldMainUrl("~/"))
 @Html.Hidden("results-path", AppPathHelper.GetAppPath(AppSettings.ResultAppPath, "~"))
+@Html.Hidden("site-main-path", AppPathHelper.GetAppPath(AppSettings.MainAppPath, "~"))
 @Html.Hidden("cust-id", Model.CustId)
 @Html.Hidden("viewer-id", Model.ViewerId)
 @Html.Hidden("viewer-level-id", Model.ViewerLevelId)
