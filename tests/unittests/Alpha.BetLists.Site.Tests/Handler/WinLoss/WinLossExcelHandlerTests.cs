@@ -2,7 +2,9 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.Specialized;
     using System.Linq;
+    using Alpha.BetLists.Configurations;
     using AppResources;
     using BetLists.Models;
     using BetLists.Tests.TestData;
@@ -72,6 +74,9 @@
             {
                 MembersToIgnore = new List<string> { "ResultsPath", "OldMainPath" }
             });
+
+            AppSettings.AppSettingValues = new NameValueCollection();
+            AppSettings.AppSettingValues.Add("SiteLabel", "Nova88");
         }
 
         private void InitWorkbook()

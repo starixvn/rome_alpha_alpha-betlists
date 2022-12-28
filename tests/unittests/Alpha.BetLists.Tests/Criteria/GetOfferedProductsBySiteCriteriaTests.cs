@@ -36,7 +36,7 @@
         public void IsValid_SiteHasValue_ReturnsTrue()
         {
             // Arrange
-            var getProductsCriteria = new GetOfferedProductsBySiteCriteria(1, "IBCIndo", 1);
+            var getProductsCriteria = new GetOfferedProductsBySiteCriteria(1, "IBC", 1);
 
             // Act
             var actualIsValid = getProductsCriteria.IsValid();
