@@ -81,6 +81,8 @@
 
         public string TotalBetsForecastPath => AppPathHelper.GetAppPath(AppSettings.TotalBetsForecastAppPath, "~");
 
+        public string SiteMainPath => AppPathHelper.GetAppPath(AppSettings.MainAppPath, "~");
+
         public int ViewerIdOrViewerAdminId { get; protected set; }
 
         public byte ViewerLevelId { get; protected set; }

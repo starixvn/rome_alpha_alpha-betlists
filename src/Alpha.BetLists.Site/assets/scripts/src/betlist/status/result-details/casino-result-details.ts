@@ -397,7 +397,7 @@
             Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/SportsLotteryDetailResult' + params, "", 835, 675);
         }
     }
-   export class BGResultDetails extends BaseResultDetails implements ResultDetails {
+    export class BGResultDetails extends BaseResultDetails implements ResultDetails {
         public ViewResultDetails = (
             matchId?: number,
             race?: number,
@@ -452,7 +452,7 @@
                 '&productId=60';
             Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/MaxGameResult' + params, "", 835, 675);
         }
-    }  
+    }
 
     export class PPLiveCasinoResultDetails extends BaseResultDetails implements ResultDetails {
         public ViewResultDetails = (
@@ -478,7 +478,24 @@
                 '&siteId=' + siteId +
                 '&BetType=' + betTypeId +
                 '&productId=65';
-            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/PPLiveCasinoResult' + params, "", 835, 675);
+
+            var topWindow: any;
+            topWindow = window.top;
+            var left = topWindow.popupManager.leftPosition();
+            var top = topWindow.popupManager.topPosition() + 100;
+            var option = "toolbar=no,scrollbars=no,resizable=yes,top=" + top + ",left=" + left + ",width=835,height=400,location=no";
+            var resultPopup = window.open("", "_blank", option);
+            resultPopup.document.title = "PP Live Casino Result";
+            $.ajax({
+                type: "POST",
+                url: Common.AppPath.ResultsAppPath() + 'ThirdParty/PPLiveCasinoResult' + params,
+                success: function (data) {
+                    resultPopup.location.href = data.Result;
+                },
+                error: function () {
+                    resultPopup.location.href = Common.AppPath.MainAppPath() + 'Error/Index';
+                }
+            });
         }
     }
 
@@ -509,7 +526,7 @@
             Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/HabaneroResult' + params, "", 835, 675);
         }
     }
-    
+
     export class CGResultDetails extends BaseResultDetails implements ResultDetails {
         public ViewResultDetails = (
             matchId?: number,
@@ -565,8 +582,8 @@
             Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/VGamingResult' + params, "", 835, 675);
         }
     }
-    
-    
+
+
     export class AdvantPlayResultDetails extends BaseResultDetails implements ResultDetails {
         public ViewResultDetails = (
             matchId?: number,
@@ -726,7 +743,7 @@
             transId3rd?: string,
             siteId?: string) => {
             var params = '?custId=' + custId +
-                '&transId3rd=' + transId3rd +                
+                '&transId3rd=' + transId3rd +
                 '&currencyId=' + currencyId +
                 '&siteId=' + siteId +
                 '&BetType=' + betTypeId +
@@ -734,9 +751,9 @@
             Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/SEALResult' + params, "", 835, 675);
         }
     }
-    
+
     export class MGResultDetails extends BaseResultDetails implements ResultDetails {
-         public ViewResultDetails = (
+        public ViewResultDetails = (
             matchId?: number,
             race?: number,
             betTypeId?: number,
