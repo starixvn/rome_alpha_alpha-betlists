@@ -11,9 +11,6 @@
     public static class UrlHelper
     {
         [ThreadStatic]
-        private static Func<string, string> mapReportsPath;
-
-        [ThreadStatic]
         private static Func<string, IDictionary<string, object>, string> addQueryStringParamsFunc;
 
         public static Func<string, IDictionary<string, object>, string> AddQueryStringParamsFunc
@@ -29,20 +26,7 @@
             }
         }
 
-        public static Func<string, string> MapReportsPath
-        {
-            get
-            {
-                mapReportsPath = mapReportsPath ?? MapReportsDomain;
-
-                return mapReportsPath;
-            }
-
-            internal set
-            {
-                mapReportsPath = value;
-            }
-        }
+        public static Func<string, string> MapReportsPath { get; internal set; } = MapReportsDomain;
 
         internal static string MapReportsDomain(string appPath)
         {

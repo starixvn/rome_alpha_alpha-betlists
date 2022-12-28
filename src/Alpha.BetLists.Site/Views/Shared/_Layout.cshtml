@@ -21,6 +21,7 @@
     @StaticResources.RenderScripts($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}assets/bundles/default")
     @Html.Partial("DetailsPopup")
     @RenderSection("Scripts", required: false)
-
+    @Html.Hidden("MainDomain", Sunplus.Agent.Model.Entities.UserSession.Current.GetProperty<string>("MainDomain"))
+    @Html.Hidden("BetListUrl", $"//{Request.Headers["Host"]}")
 </body>
 </html>
