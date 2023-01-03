@@ -18,7 +18,7 @@ var Common;
                 }
             };
             this.IsCallingOtherSites = function (url) {
-                return url.indexOf('/site-results/') > -1 || url.indexOf('/ex-main/') > -1;
+                return url.indexOf('/site-results/') > -1 || url.indexOf('/ex-main/') > -1 || url.indexOf('/ex-totalbetsforecast/') > -1;
             };
         }
         PopupDetails.Instance = function (topWindow) {
