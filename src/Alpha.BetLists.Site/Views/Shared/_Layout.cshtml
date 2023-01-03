@@ -23,5 +23,8 @@
     @RenderSection("Scripts", required: false)
     @Html.Hidden("MainDomain", Sunplus.Agent.Model.Entities.UserSession.Current.GetProperty<string>("MainDomain"))
     @Html.Hidden("BetListUrl", $"//{Request.Headers["Host"]}")
+    @Html.Hidden("ReportDomain", $"//{Sunplus.Agent.Model.Entities.UserSession.Current.GetProperty<string>("ReportDomainSessionKey")}")
+    @Html.Hidden("ReportSessionId", $"{Sunplus.Agent.Model.Entities.UserSession.Current.GetProperty<string>("ReportSessionID")}")
+    @Html.Hidden("SessionId", $"{Session.SessionID}")
 </body>
 </html>

@@ -209,8 +209,8 @@ var MemberBetListView = /** @class */ (function () {
         };
         this.changeBetlistType = function () {
             var url = _this.betlistTypeComponent.$dropdown.find("option:selected").data("url");
-            if (url.indexOf(_this.topWindow.menuBar.domElements.reportDomain) !== -1 && url.indexOf('(S(') !== -1) {
-                url = url.replace(_this.topWindow.menuBar.domElements.sessionId, _this.topWindow.menuBar.domElements.reportSessionId);
+            if (url.indexOf(_this.reportDomain) !== -1 && url.indexOf('(S(') !== -1) {
+                url = url.replace(_this.sessionId, _this.reportSessionId);
             }
             _this.windowLocation.href = url;
         };
@@ -263,6 +263,9 @@ var MemberBetListView = /** @class */ (function () {
         this.$pageTitle = this.$(".bl_title");
         this.$custId = this.$("#CustId");
         this.$isFilterVisible = this.$("#IsFilterVisible");
+        this.reportDomain = $("#ReportDomain").val();
+        this.reportSessionId = $("#ReportSessionId").val();
+        this.sessionId = $("#SessionId").val();
     };
     ;
     MemberBetListView.prototype.bindFilter = function () {
