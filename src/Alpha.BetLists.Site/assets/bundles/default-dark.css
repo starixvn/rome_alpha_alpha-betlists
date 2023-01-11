@@ -149,7 +149,7 @@ a {
   color: #56AEFF; }
 
 .bl_match {
-  color: #333;
+  color: #CBCBCB;
   font-weight: normal;
   line-height: 15px; }
 
@@ -252,7 +252,7 @@ div.match + div.league, div.league, .no-details {
 
 .detail {
   display: inline;
-  color: #333;
+  color: #CBCBCB;
   font-weight: bold;
   position: relative; }
   .detail:after {
