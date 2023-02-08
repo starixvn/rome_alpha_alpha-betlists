@@ -6,7 +6,7 @@
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Utils;
-    using NPOI.HSSF.UserModel;
+    using BetListNPOI.HSSF.UserModel;
     using NSubstitute;
     using SmartPunter.Services;
     using Utilities.IP;

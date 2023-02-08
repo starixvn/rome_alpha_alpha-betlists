@@ -9,7 +9,7 @@
     using Fanex.BetList.Core.Utils;
     using KellermanSoftware.CompareNetObjects;
     using Models;
-    using NPOI.HSSF.UserModel;
+    using BetListNPOI.HSSF.UserModel;
     using Xunit;
 
     [Trait("Category", "BaseBetList")]

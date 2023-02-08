@@ -7,6 +7,7 @@ var Common;
         AppPath.BetListAppPath = function () { return $('#betlist-path').val(); };
         AppPath.ResultsAppPath = function () { return $("#results-path").val(); };
         AppPath.TotalBetsForecastAppPath = function () { return $("#totalbets-forecast-path").val(); };
+        AppPath.MainAppPath = function () { return $("#site-main-path").val(); };
         return AppPath;
     }());
     Common.AppPath = AppPath;

@@ -6,8 +6,8 @@
     using BetLists.Models;
     using BetLists.Models.Parlay;
     using Fanex.BetList.Core.Entities;
-    using NPOI.HSSF.UserModel;
-    using NPOI.SS.UserModel;
+    using BetListNPOI.HSSF.UserModel;
+    using BetListNPOI.SS.UserModel;
     using Ploeh.AutoFixture;
 
     public class BetListDataTest

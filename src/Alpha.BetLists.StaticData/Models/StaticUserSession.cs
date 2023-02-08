@@ -1,7 +1,7 @@
 ﻿namespace Alpha.BetLists.StaticData.Models
 {
     using System;
-    using BetLists.Models;
+    using Alpha.BetLists.Models;
 
     public class StaticUserSession : IUser
     {
