@@ -8,7 +8,7 @@
 
     @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/common/common")
     @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-betlists/default")
-    @StaticResources.RenderStylesWithDarkMode("~/assets/bundles/default")
+    @StaticResources.RenderStylesWithDarkMode($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}assets/bundles/default")
     @RenderSection("Styles", required: false)
     @Alpha.Web.Helpers.GoogleAnalyticHepler.GtagScript()
 </head>
@@ -18,9 +18,13 @@
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/ajaxSetup")
     @StaticResources.AssetScripts.Render("/bundles/site-betlists/default")
-    @StaticResources.RenderScripts("~/assets/bundles/default")
+    @StaticResources.RenderScripts($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}assets/bundles/default")
     @Html.Partial("DetailsPopup")
     @RenderSection("Scripts", required: false)
-
+    @Html.Hidden("MainDomain", Sunplus.Agent.Model.Entities.UserSession.Current.GetProperty<string>("MainDomain"))
+    @Html.Hidden("BetListUrl", $"//{Request.Headers["Host"]}")
+    @Html.Hidden("ReportDomain", $"//{Sunplus.Agent.Model.Entities.UserSession.Current.GetProperty<string>("ReportDomainSessionKey")}")
+    @Html.Hidden("ReportSessionId", $"{Sunplus.Agent.Model.Entities.UserSession.Current.GetProperty<string>("ReportSessionID")}")
+    @Html.Hidden("SessionId", $"{Session.SessionID}")
 </body>
 </html>

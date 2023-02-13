@@ -9,7 +9,7 @@
     using Fixtures;
     using Handlers.Parlay;
     using KellermanSoftware.CompareNetObjects;
-    using NPOI.SS.UserModel;
+    using BetListNPOI.SS.UserModel;
     using NSubstitute;
     using ONEbook.SpreadSheets;
     using Requests.Parlay;

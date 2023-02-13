@@ -1,6 +1,4 @@
-﻿using Alpha.BetLists.AppResources;
-using Alpha.BetLists.Models;
-using Fanex.BetList.Core.App_GlobalResources;
+﻿using Alpha.BetLists.Models;
 
 namespace Alpha.BetLists.Site.ViewModels.CashOutHistory
 {
@@ -9,7 +7,7 @@ namespace Alpha.BetLists.Site.ViewModels.CashOutHistory
         public CashOutHistoryViewModel(CashOutHistoryModel model)
         {
             CashOutModel = model;
-            Title = $"{Resources.CashOutHistoryTitle} - {model.TransId}";
+            Title = $"{AppResources.Resources.CashOutHistoryTitle} - {model.TransId}";
         }
 
         public CashOutHistoryModel CashOutModel { get; }

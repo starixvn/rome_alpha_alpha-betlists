@@ -22,8 +22,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SonarQube", "SonarQube", "{
 		SonarQube\alpha-betlist\CSharp\SonarLint.xml = SonarQube\alpha-betlist\CSharp\SonarLint.xml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alpha.BetLists.StaticData", "tests\unittests\Alpha.BetLists.StaticData\Alpha.BetLists.StaticData.csproj", "{AD46527D-6231-4087-A84C-6FF70189EF78}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alpha.BetLists.IntegrationTests", "tests\unittests\Alpha.BetLists.IntegrationTests\Alpha.BetLists.IntegrationTests.csproj", "{A0C0F171-4182-4540-895B-6C6F96D654C7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{84BB840B-DF42-4155-ADF7-216FD1975F26}"
@@ -31,6 +29,15 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "unittests", "unittests", "{6DA53851-4FB0-43C1-8E41-A4DAD3CCF985}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{F4417210-A05D-4B3F-BAF2-C5AEEB039F2F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AD45504A-1AD8-4424-88C7-59884844EC45}"
+	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
+		.gitlab-ci.yml = .gitlab-ci.yml
+		Dockerfile = Dockerfile
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alpha.BetLists.StaticData", "src\Alpha.BetLists.StaticData\Alpha.BetLists.StaticData.csproj", "{AD46527D-6231-4087-A84C-6FF70189EF78}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,14 +72,14 @@ Global
 		{40E53E15-ABD2-4DD6-8456-342B3749A55E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40E53E15-ABD2-4DD6-8456-342B3749A55E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40E53E15-ABD2-4DD6-8456-342B3749A55E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AD46527D-6231-4087-A84C-6FF70189EF78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AD46527D-6231-4087-A84C-6FF70189EF78}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AD46527D-6231-4087-A84C-6FF70189EF78}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AD46527D-6231-4087-A84C-6FF70189EF78}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A0C0F171-4182-4540-895B-6C6F96D654C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A0C0F171-4182-4540-895B-6C6F96D654C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0C0F171-4182-4540-895B-6C6F96D654C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0C0F171-4182-4540-895B-6C6F96D654C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD46527D-6231-4087-A84C-6FF70189EF78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD46527D-6231-4087-A84C-6FF70189EF78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD46527D-6231-4087-A84C-6FF70189EF78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD46527D-6231-4087-A84C-6FF70189EF78}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -84,12 +91,12 @@ Global
 		{FB380412-8A33-4B4B-8497-C1D944A9D20C} = {6DA53851-4FB0-43C1-8E41-A4DAD3CCF985}
 		{C4D18432-0C45-40E3-B851-30DDF6E809EA} = {84BB840B-DF42-4155-ADF7-216FD1975F26}
 		{40E53E15-ABD2-4DD6-8456-342B3749A55E} = {6DA53851-4FB0-43C1-8E41-A4DAD3CCF985}
-		{AD46527D-6231-4087-A84C-6FF70189EF78} = {6DA53851-4FB0-43C1-8E41-A4DAD3CCF985}
 		{A0C0F171-4182-4540-895B-6C6F96D654C7} = {6DA53851-4FB0-43C1-8E41-A4DAD3CCF985}
 		{6DA53851-4FB0-43C1-8E41-A4DAD3CCF985} = {F4417210-A05D-4B3F-BAF2-C5AEEB039F2F}
+		{AD46527D-6231-4087-A84C-6FF70189EF78} = {84BB840B-DF42-4155-ADF7-216FD1975F26}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {EDFCC31A-82A7-4E54-AA79-F1A839E9870F}
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Logging.6.0.1304.0\lib\NET45
+		SolutionGuid = {EDFCC31A-82A7-4E54-AA79-F1A839E9870F}
 	EndGlobalSection
 EndGlobal

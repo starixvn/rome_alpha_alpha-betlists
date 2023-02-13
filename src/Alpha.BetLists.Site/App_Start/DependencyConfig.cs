@@ -200,8 +200,8 @@
 
         private static void RegisterNetThrottling(Container container)
         {
-            container.Register<INetThrottler, NetThrottler>(Lifestyle.Scoped);
-            container.Register<IThrottleSetting, ThrottleSetting>(Lifestyle.Scoped);
+            container.Register<INetThrottler>(() => new NetThrottler(false));
+            container.Register<IThrottleSetting>(() => new ThrottleSetting(false));
             container.Register<IClock, Clock>(Lifestyle.Scoped);
             container.Register<ILogger, Logger>(Lifestyle.Scoped);
             container.Register<ICacheServiceFactory, CacheServiceFactory>(Lifestyle.Scoped);

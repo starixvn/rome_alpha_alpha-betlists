@@ -8,7 +8,7 @@
 
 @section Styles{
     @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-betlists/filter")
-    @StaticResources.RenderStyles("~/assets/bundles/filter")
+    @StaticResources.RenderStyles($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}assets/bundles/filter")
 }
 <div class="bl_title">
     @Model.Title
@@ -27,7 +27,7 @@
     <div class="form-group">
         <select id="dropdown-betlist-type">
             <option value="1" data-url="@MemberBetListViewModel.GetDailyStatementLink(Model.CustId, Model.CustName,Model.ProductsId)">@Resources.DailyStatement</option>
-            <option value="2" data-url="@Model.BuildBetListLink(Url.Action("Index","MemberBetList"))">@Resources.BetList</option>
+            <option value="2" data-url="@Model.BuildBetListLink(Url.Action("Index", $"{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}MemberBetList"))">@Resources.BetList</option>
             <option value="3" selected="selected">@Resources.BetlistRunning</option>
         </select>
     </div>
@@ -110,7 +110,7 @@
                 }
 </table>
 
-@Html.Hidden("betlist-path", HttpContext.Current.Response.ApplyAppPathModifier("~/"))
+@Html.Hidden("betlist-path", Response.ApplyAppPathModifier($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}"))
 @Html.Hidden("old-main-path", Model.OldMainPath)
 @Html.Hidden("results-path", Model.ResultsPath)
 @Html.Hidden("totalbets-forecast-path", Model.TotalBetsForecastPath)
@@ -125,5 +125,5 @@
 
 @section Scripts{
     @StaticResources.AssetScripts.Render("/bundles/site-betlists/filter")
-    @StaticResources.RenderScripts("~/assets/bundles/running-betlist/running-betlist")
+    @StaticResources.RenderScripts($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}assets/bundles/running-betlist/running-betlist")
 }

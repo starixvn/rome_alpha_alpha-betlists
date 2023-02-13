@@ -12,7 +12,7 @@
 <div class="bl_title no-border-bottom fixed-top">
     <div class="bl-export-excel">
         <a id="icon-excel" class="icon icon-excel" title="@Resources.ExportToExcel"
-           href="@Url.Action("Excel", "CasinoDetails",
+           href="@Url.Action("Excel", $"{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}CasinoDetails",
                 new { RefNo = Model.RefNo,
                     CustId=Model.CustId,
                     TransType = Model.TransType,
@@ -94,7 +94,7 @@
     </table>
 </div>
 @Pager.Render(Model.PagingViewModel)
-@Html.Hidden("betlist-path", HttpContext.Current.Response.ApplyAppPathModifier("~/"))
+@Html.Hidden("betlist-path", Response.ApplyAppPathModifier($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}"))
 @Html.Hidden("old-main-path", MicroSites.OldMainUrl("~/"))
 @Html.Hidden("results-path", AppPathHelper.GetAppPath(AppSettings.ResultAppPath, "~"))
 @Html.Hidden("site-main-path", AppPathHelper.GetAppPath(AppSettings.MainAppPath, "~"))
@@ -103,5 +103,5 @@
 @Html.Hidden("viewer-level-id", Model.ViewerLevelId)
 @section Scripts{
     @StaticResources.AssetScripts.Render("/bundles/site-betlists/pagination")
-    @StaticResources.RenderScripts("~/assets/bundles/casino-detail/casino-detail")
+    @StaticResources.RenderScripts($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}assets/bundles/casino-detail/casino-detail")
 }

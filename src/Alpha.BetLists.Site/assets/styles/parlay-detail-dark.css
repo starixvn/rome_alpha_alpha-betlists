@@ -1,0 +1,28 @@
+﻿.divParlayDetail {
+  overflow-y: auto;
+  max-height: 250px;
+  overflow-x: hidden; }
+
+.over-flow-y-auto {
+  overflow-y: auto;
+  overflow-x: hidden; }
+
+.divWidth80 {
+  width: 80px; }
+
+.divEvent {
+  width: 340px; }
+
+.divWidth50 {
+  width: 50px; }
+
+.divWidth80 {
+  width: 80px; }
+
+.divWidth110 {
+  width: 110px; }
+
+tfoot th {
+  padding: 4px 8px;
+  border-right: 1px solid #353535; }
+

@@ -1,0 +1,108 @@
+"use strict";
+var PagerOption = /** @class */ (function () {
+    function PagerOption(onSelectPage, pagerId, formId, pageIndexId, pageSizeId) {
+        if (onSelectPage === void 0) { onSelectPage = null; }
+        if (pagerId === void 0) { pagerId = "betlist-pager"; }
+        if (formId === void 0) { formId = "betlist-form"; }
+        if (pageIndexId === void 0) { pageIndexId = "PageIndex"; }
+        if (pageSizeId === void 0) { pageSizeId = "PageSize"; }
+        this.onSelectPage = onSelectPage;
+        this.pagerId = pagerId;
+        this.formId = formId;
+        this.pageIndexId = pageIndexId;
+        this.pageSizeId = pageSizeId;
+    }
+    return PagerOption;
+}());
+var PagerComponent = /** @class */ (function () {
+    function PagerComponent($) {
+        var _this = this;
+        this.pageList = [1000, 2000, 3000, 5000];
+        this.smallPageList = [10, 50, 100, 500];
+        this.render = function (options) {
+            if (options === void 0) { options = new PagerOption(); }
+            var self = _this;
+            var pagerOption = _this.$.extend({}, _this.options, options);
+            var pager = _this.$("#" + pagerOption.pagerId);
+            _this.$betlistForm = _this.$("#" + _this.options.formId);
+            _this.totalRecords = pager.data("totalrecords");
+            _this.pageSize = pager.data("pagesize");
+            _this.pageIndex = pager.data("pageindex");
+            _this.$pageIndex =
+                _this.$("<input type=\"hidden\" id=\"" + pagerOption.pageIndexId + "\" name=\"" + pagerOption.pageIndexId + "\" value=\"" + _this.pageIndex + "\" />");
+            _this.$pageSize =
+                _this.$("<input type=\"hidden\" id=\"" + pagerOption.pageSizeId + "\" name=\"" + pagerOption.pageSizeId + "\" value=\"" + _this.pageSize + "\" />");
+            _this.$betlistForm.append(_this.$pageIndex).append(_this.$pageSize);
+            if (_this.isShow()) {
+                pager.pagination({
+                    pageList: _this.pageList,
+                    total: _this.totalRecords,
+                    pageSize: _this.pageSize,
+                    pageNumber: _this.pageIndex,
+                    showRefresh: false,
+                    onSelectPage: function (pageNumber, pageSize) {
+                        self.updateHiddenFields(pageNumber, pageSize);
+                        self.onChange();
+                    },
+                    beforePageText: pager.data("lablepage"),
+                    afterPageText: pager.data("labelof") + " {pages}",
+                    displayMsg: pager.data("labeldisplayitems")
+                });
+                pager.removeClass("hide");
+            }
+            else {
+                pager.addClass("hide");
+            }
+            return pager;
+        };
+        this.onChange = function () {
+            _this.$betlistForm.trigger("submit");
+        };
+        this.updateHiddenFields = function (pageNumber, pageSize) {
+            _this.$pageIndex.val(pageNumber);
+            _this.$pageSize.val(pageSize);
+        };
+        this.isShow = function () {
+            // total records less than min page size => do not need to show pager
+            return _this.pageList[0] <= _this.totalRecords;
+        };
+        this.hasAllDataOnClient = function () {
+            var result = _this.totalRecords <= _this.pageSize;
+            return result;
+        };
+        this.options = new PagerOption(this.onChange);
+        this.$ = $;
+    }
+    return PagerComponent;
+}());
+//# sourceMappingURL=pager.js.map
+/// <reference path="../components/pager.ts" />
+"use strict";
+var CasionDetailView = /** @class */ (function () {
+    function CasionDetailView($, pagerComponent) {
+        var _this = this;
+        this.pageList = [100, 200, 300, 500, 1000];
+        this.init = function () {
+            if (_this.isiOS()) {
+                var maxHeight = window.top.window.innerHeight - 260;
+                _this.$tblContainer = _this.$("#table-container");
+                _this.$tblContainer.css({ 'max-height': maxHeight, overflow: 'auto' });
+            }
+            _this.pagerComponent.pageList = _this.pageList;
+            _this.pagerComponent.render();
+        };
+        this.isiOS = function () {
+            var isiOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+            return isiOS;
+        };
+        this.$ = $;
+        this.pagerComponent = pagerComponent;
+    }
+    return CasionDetailView;
+}());
+;
+$(function () {
+    var rngCasinoView = new CasionDetailView($, new PagerComponent($));
+    rngCasinoView.init();
+});
+//# sourceMappingURL=casino-detail.js.map

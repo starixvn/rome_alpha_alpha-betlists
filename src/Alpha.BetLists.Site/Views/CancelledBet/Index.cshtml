@@ -9,7 +9,7 @@
 @section Styles{
     @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-betlists/pagination")
     @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-betlists/filter")
-    @StaticResources.RenderStyles("~/assets/bundles/filter")
+    @StaticResources.RenderStyles($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}assets/bundles/filter")
 }
 
 <div class="bl_title">
@@ -79,7 +79,7 @@
 @Pager.Render(Model.PagerViewModel)
 
 <form class="form-inline hide" role="form" id="export-excel-form"
-      action="@Url.Action("Excel", "CancelledBet")">
+      action="@Url.Action("Excel", $"{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}CancelledBet")">
     @Html.Hidden("CustId", Model.CustId)
     @Html.Hidden("FromDate", Model.FromDate)
     @Html.Hidden("ToDate", Model.ToDate)
@@ -87,12 +87,12 @@
     @Html.Hidden("StatusIds", Model.StatusIds)
 </form>
 
-@Html.Hidden("betlist-path", HttpContext.Current.Response.ApplyAppPathModifier("~/"))
+@Html.Hidden("betlist-path", Response.ApplyAppPathModifier($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}"))
 @Html.Hidden("old-main-path", Model.OldMainPath)
 @Html.Hidden("results-path", Model.ResultsPath)
 @Html.Hidden("totalbets-forecast-path", Model.TotalBetsForecastPath)
 @section Scripts{
     @StaticResources.AssetScripts.Render("/bundles/site-betlists/filter")
-    @StaticResources.RenderScripts("~/assets/bundles/cancelled-betlist/cancelled-betlist")
+    @StaticResources.RenderScripts($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}assets/bundles/cancelled-betlist/cancelled-betlist")
     @StaticResources.AssetScripts.Render("/bundles/site-betlists/pagination")
 }

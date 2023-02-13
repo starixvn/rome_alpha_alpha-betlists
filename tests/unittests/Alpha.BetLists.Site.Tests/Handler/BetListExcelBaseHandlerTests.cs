@@ -12,7 +12,7 @@
     using Fixtures;
     using Handlers;
     using KellermanSoftware.CompareNetObjects;
-    using NPOI.SS.UserModel;
+    using BetListNPOI.SS.UserModel;
     using NSubstitute;
     using Requests.WinLoss;
     using Site.ViewModels.Blocks;

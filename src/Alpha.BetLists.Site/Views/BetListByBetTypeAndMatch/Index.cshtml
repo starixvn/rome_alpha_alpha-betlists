@@ -7,7 +7,7 @@
     @Model.Title
     <div class="bl-export-excel">
         <a id="icon-excel" class="icon icon-excel" title="@Resources.ExportToExcel"
-           href="@Url.Action("Excel", "BetListByBetTypeAndMatch",
+           href="@Url.Action("Excel", $"{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}BetListByBetTypeAndMatch",
                 new
                 {
                     MatchId = Model.MatchId,

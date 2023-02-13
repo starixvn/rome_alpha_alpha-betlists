@@ -20,6 +20,10 @@ class MemberBetListView {
     betlistTypeComponent: SingleSelectionDropdownComponent;
     topWindow: any;
 
+    reportDomain: string;
+    reportSessionId: string;
+    sessionId: string;
+
     constructor(
         $: JQueryStatic,
         dateRangePickerComponent: DateRangePickerComponent,
@@ -48,6 +52,10 @@ class MemberBetListView {
         this.$custId = this.$("#CustId");
 
         this.$isFilterVisible = this.$("#IsFilterVisible");
+
+        this.reportDomain = $("#ReportDomain").val();
+        this.reportSessionId = $("#ReportSessionId").val();
+        this.sessionId = $("#SessionId").val();
     };
 
     public bindFilter() {
@@ -62,8 +70,8 @@ class MemberBetListView {
 
     changeBetlistType = () => {
         var url = this.betlistTypeComponent.$dropdown.find("option:selected").data("url");
-        if (url.indexOf(this.topWindow.menuBar.domElements.reportDomain) !== -1 && url.indexOf('(S(') !== -1) {
-            url = url.replace(this.topWindow.menuBar.domElements.sessionId, this.topWindow.menuBar.domElements.reportSessionId);
+        if (url.indexOf(this.reportDomain) !== -1 && url.indexOf('(S(') !== -1) {
+            url = url.replace(this.sessionId, this.reportSessionId);
         }
 
         this.windowLocation.href = url;

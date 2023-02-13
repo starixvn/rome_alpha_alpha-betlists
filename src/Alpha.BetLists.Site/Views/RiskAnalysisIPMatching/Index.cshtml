@@ -12,7 +12,7 @@
         @Model.Title
         <div class="bl-export-excel">
             <a id="icon-excel" class="icon icon-excel" title="@Resources.ExportToExcel"
-               href="@Url.Action("Excel", "RiskAnalysisIPMatching", new { Date = Model.Date, IP = Model.IP })">
+               href="@Url.Action("Excel", $"{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}RiskAnalysisIPMatching", new { Date = Model.Date, IP = Model.IP })">
             </a>
         </div>
     </div>

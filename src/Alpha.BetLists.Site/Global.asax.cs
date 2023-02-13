@@ -6,6 +6,7 @@
     using System.Linq;
     using System.Reflection;
     using System.Web;
+    using System.Web.Helpers;
     using System.Web.Mvc;
     using System.Web.Routing;
     using Alpha.Logging;
@@ -39,6 +40,8 @@
     {
         protected void Application_Start()
         {
+            AntiForgeryConfig.SuppressXFrameOptionsHeader = true;
+
             ViewEngines.Engines.Clear();
             ViewEngines.Engines.Add(new RazorViewEngine());
             MvcHandler.DisableMvcResponseHeader = true;
@@ -62,7 +65,7 @@
             LoggingConfig.Init(getDbExceptionInfo: DatabaseInfoGetters.GetDbExceptionInfo);
             if (!AppSettings.IsIntegrationTest)
             {
-                GlobalFilters.Filters.Add(new NetThrottlingFilterAttribute());
+                GlobalFilters.Filters.Add(new NetThrottlingFilterAttribute(false));
 
                 var umConfig = new UMClientConfiguration().Initialize();
                 UMClientManager
@@ -73,11 +76,11 @@
                 GlobalFilters.Filters.Add(new CheckUMFilterAttribute(
                     new MaintenanceService(UMClientManager.RestClient, UMClientManager.CacheService, UMClientManager.UMClientConfigs, UMClientManager.HttpContext), null));
 
-                GlobalFilters.Filters.Add(new CheckBelongingFilter());
+                GlobalFilters.Filters.Add(new CheckBelongingFilter(!AppSettings.IsStandaloneReport));
                 GlobalFilters.Filters.Add(new NoCacheFilter());
-                GlobalFilters.Filters.Add(new AfterLoginFlowFilter());
+                GlobalFilters.Filters.Add(new AfterLoginFlowFilter(!AppSettings.IsStandaloneReport));
                 GlobalFilters.Filters.Add(new PartialUMExceptionFilter(true));
-                GlobalFilters.Filters.Add(new ProtectedModeFilter());
+                GlobalFilters.Filters.Add(new ProtectedModeFilter(!AppSettings.IsStandaloneReport));
             }
 
             ModelBinders.Binders.DefaultBinder = new QueryEntityModelBinder();
