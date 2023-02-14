@@ -29,7 +29,7 @@
 
                     for (var i in queryStrings) {
                         if (queryStrings[i].toLowerCase().indexOf('parlay') !== -1
-                            && url.toLowerCase().indexOf('betteam=3') !== -1) {
+                            && (url.toLowerCase().indexOf('betteam=3') !== -1 || url.toLowerCase().indexOf('betteam=7') !== -1)) {
                             title = "System Parlay";
                             break;
                         }
