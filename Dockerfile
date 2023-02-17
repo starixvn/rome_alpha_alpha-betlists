@@ -11,24 +11,16 @@ WORKDIR /app
 
 # Copy files *.sln, *.csproj, packages.config to restore nuget packages
 COPY *.sln .
-COPY src\Alpha.BetLists.Site\*.csproj src\Alpha.BetLists.Site\
-COPY src\Alpha.BetLists.Site\packages.config src\Alpha.BetLists.Site\
-
-COPY src\Alpha.BetLists\*.csproj src\Alpha.BetLists\
-COPY src\Alpha.BetLists\packages.config src\Alpha.BetLists\
-
-COPY src\Alpha.BetLists.Builders\*.csproj src\Alpha.BetLists.Builders\
-COPY src\Alpha.BetLists.Builders\packages.config src\Alpha.BetLists.Builders\
-
-COPY src\Alpha.BetLists.StaticData\*.csproj src\Alpha.BetLists.StaticData\
-COPY src\Alpha.BetLists.StaticData\packages.config src\Alpha.BetLists.StaticData\
-
-RUN nuget.exe restore Alpha.BetLists.sln
-
 COPY src src\
 COPY SonarQube SonarQube\
+# Copy nuget packages
+COPY packages packages\
 
-RUN MSBuild.exe "src\Alpha.BetLists.Site\Alpha.BetLists.Site.csproj" `
+RUN `
+	# verify nuget packages
+	nuget.exe restore Alpha.BetLists.sln `
+	# build project
+	&& MSBuild.exe "src\Alpha.BetLists.Site\Alpha.BetLists.Site.csproj" `
     /t:Build;WebPublish /m `
     /p:DebugType=None `
     /p:Configuration=Release `
