@@ -572,7 +572,7 @@
             const params = '?refno=' + refNo
                 + '&custid=' + custId
                 + '&transType=' + transType
-                + '&sportName=Jili&productId=73';
+                + '&sportName=Jili&productId=75';
 
             let width = 1207;
             let roleId = Number(this.ViewerLevelId);
