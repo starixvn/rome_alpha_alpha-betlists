@@ -966,6 +966,9 @@
     <Content Include="assets\styles\error\error.scss" />
     <Content Include="App_Data\securitycode.napinternal2.json" />
     <Content Include="App_Data\securitycode.napinternal.json" />
+    <Content Include="App_Data\securitycode.aws_3.json" />
+    <Content Include="App_Data\ProductSection.aws_3.config" />
+    <Content Include="App_Data\activitytracking.aws_3.json" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -1087,6 +1090,9 @@
       <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
     </Content>
     <Content Include="Views\Error\Blocked.cshtml" />
+    <Content Include="Web.AppSettings.aws_3.config" />
+    <Content Include="Web.aws_3.config" />
+    <Content Include="Web.ConnectionStrings.aws_3.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_GlobalResources\Resources.Designer.cs">
