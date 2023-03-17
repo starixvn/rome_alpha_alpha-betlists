@@ -541,6 +541,25 @@ var BetList;
                 return MGResultDetails;
             }(ResultDetails.BaseResultDetails));
             ResultDetails.MGResultDetails = MGResultDetails;
+            var JiliResultDetails = /** @class */ (function (_super) {
+                __extends(JiliResultDetails, _super);
+                function JiliResultDetails() {
+                    var _this = _super !== null && _super.apply(this, arguments) || this;
+                    _this.ViewResultDetails = function (matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, currencyId, gameId3rd, custId, transId3rd, siteId) {
+                        var params = '?custId=' + custId +
+                            '&transId3rd=' + transId3rd +
+                            '&gameId3rd=' + gameId3rd +
+                            '&currencyId=' + currencyId +
+                            '&siteId=' + siteId +
+                            '&BetType=' + betTypeId +
+                            '&productId=75';
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/JiliResult' + params, "", 835, 675);
+                    };
+                    return _this;
+                }
+                return JiliResultDetails;
+            }(ResultDetails.BaseResultDetails));
+            ResultDetails.JiliResultDetails = JiliResultDetails;
         })(ResultDetails = Status.ResultDetails || (Status.ResultDetails = {}));
     })(Status = BetList.Status || (BetList.Status = {}));
 })(BetList || (BetList = {}));
