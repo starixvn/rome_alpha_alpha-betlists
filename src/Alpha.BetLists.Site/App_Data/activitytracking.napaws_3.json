@@ -1,0 +1,7 @@
+{
+  "rabbitMQConnectionString": "host=VN-LB-RabbitMQ-9fac8842d1891fc6.elb.ap-northeast-1.amazonaws.com:5672;virtualHost=/activity_tracking;username=activity_tracking;password=oF3tWUKgUmET01W4wdWWAA==;",
+  "enabledTrackAllRequests": true,
+  "logCategory": "Activity-Tracking-PRO",
+  "system": "Alpha",
+  "environment": "PRO"
+}

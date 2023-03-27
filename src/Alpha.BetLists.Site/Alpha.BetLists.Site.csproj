@@ -969,6 +969,9 @@
     <Content Include="App_Data\securitycode.aws_3.json" />
     <Content Include="App_Data\ProductSection.aws_3.config" />
     <Content Include="App_Data\activitytracking.aws_3.json" />
+    <Content Include="App_Data\ProductSection.napaws_3.config" />
+    <Content Include="App_Data\activitytracking.napaws_3.json" />
+    <Content Include="App_Data\securitycode.napaws_3.json" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -1093,6 +1096,9 @@
     <Content Include="Web.AppSettings.aws_3.config" />
     <Content Include="Web.aws_3.config" />
     <Content Include="Web.ConnectionStrings.aws_3.config" />
+    <Content Include="Web.AppSettings.napaws_3.config" />
+    <Content Include="Web.napaws_3.config" />
+    <Content Include="Web.ConnectionStrings.napaws_3.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_GlobalResources\Resources.Designer.cs">
