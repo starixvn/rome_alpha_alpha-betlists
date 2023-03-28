@@ -559,6 +559,37 @@
                 'MG-RNG - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
         }
     }
+
+    export class JiliTicketDetails extends BaseTicketDetails {
+        private static instance: JiliTicketDetails;
+
+        public static get Instance() {
+            this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new JiliTicketDetails() : this.instance;
+            return this.instance;
+        }
+
+        public ShowJiliBetDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
+            const params = '?refno=' + refNo
+                + '&custid=' + custId
+                + '&transType=' + transType
+                + '&sportName=Jili&productId=75';
+
+            let width = 1207;
+            let roleId = Number(this.ViewerLevelId);
+
+            if (roleId <= 3) {
+                width -= 105;
+            }
+
+            if (roleId <= 2) {
+                width -= 105;
+            }
+
+            Common.PopupDetails.Instance(window.top).Show(
+                Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params,
+                'Jili - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+        }
+    }
 }
 
 let showRnGCasinoDetails: Function;
@@ -593,6 +624,7 @@ let showAdvantPlayMiniBetDetails: Function;
 let showFGGBetDetails: Function;
 let showSealEntertainmentBetDetails: Function;
 let showMGRNGCasinoBetDetails: Function;
+let showJiliBetDetails: Function;
 
 $(document).ready(() => {
     showRnGCasinoDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowRnGCasinoDetails;
@@ -627,4 +659,5 @@ $(document).ready(() => {
     showFGGBetDetails = BetList.Choice.TicketDetails.FGGTicketDetails.Instance.ShowFGGBetDetails;
     showSealEntertainmentBetDetails = BetList.Choice.TicketDetails.SealEntertainmentTicketDetails.Instance.ShowSealEntertainmentBetDetails;
     showMGRNGCasinoBetDetails = BetList.Choice.TicketDetails.MGRNGTicketDetails.Instance.ShowMGRNGCasinoBetDetails;
+    showJiliBetDetails = BetList.Choice.TicketDetails.JiliTicketDetails.Instance.ShowJiliBetDetails;
 })

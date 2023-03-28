@@ -141,6 +141,10 @@ var BetList;
                         this.mgResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.mgResult) ? new ResultDetails.MGResultDetails() : this.mgResult;
                         return this.mgResult;
                     }
+                    if (betTypeId >= 5100 && betTypeId <= 5299) {
+                        this.jiliResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.jiliResult) ? new ResultDetails.JiliResultDetails() : this.jiliResult;
+                        return this.jiliResult;
+                    }
                     this.sportsbookResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sportsbookResult) ? new ResultDetails.SportsbookResultDetails : this.sportsbookResult;
                     return this.sportsbookResult;
                 };

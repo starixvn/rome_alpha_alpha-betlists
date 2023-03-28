@@ -33,6 +33,7 @@
         private static fggResult: ResultDetails;
         private static sealResult: ResultDetails;
         private static mgResult: ResultDetails;
+        private static jiliResult: ResultDetails;
 
         public static CreateInstance(betTypeId: number): ResultDetails {
             if (betTypeId >= 2501 && betTypeId <= 2699) {
@@ -195,6 +196,11 @@
             if (betTypeId >= 8400 && betTypeId <= 8699) {
                 this.mgResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.mgResult) ? new MGResultDetails() : this.mgResult;
                 return this.mgResult;
+            }
+
+            if (betTypeId >= 5100 && betTypeId <= 5299) {
+                this.jiliResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.jiliResult) ? new JiliResultDetails() : this.jiliResult;
+                return this.jiliResult;
             }
 
             this.sportsbookResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sportsbookResult) ? new SportsbookResultDetails : this.sportsbookResult;
