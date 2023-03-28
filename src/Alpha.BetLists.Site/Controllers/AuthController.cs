@@ -227,7 +227,8 @@ namespace Alpha.BetLists.Site.Controllers
             if (session.IsInternal
                 || session.IsIndirectLoggedIn
                 || Request.Headers["Referer"].IndexOf(Request.Headers["Host"], StringComparison.OrdinalIgnoreCase) != -1
-                || Request.Headers["Referer"].IndexOf(session.GetProperty<string>(SessionKey.MainDomainSessionKey) ?? string.Empty) != -1)
+                || Request.Headers["Referer"].IndexOf(session.GetProperty<string>(SessionKey.MainDomainSessionKey) ?? string.Empty) != -1
+                || string.IsNullOrWhiteSpace(session.GetProperty<string>(SessionKey.MainDomainSessionKey)))
             {
                 return true;
             }
