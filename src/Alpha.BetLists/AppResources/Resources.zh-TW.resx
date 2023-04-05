@@ -232,7 +232,7 @@
     <value>今日賽事</value>
   </data>
   <data name="Yesterday" xml:space="preserve">
-    <value>昨天</value>
+    <value>昨日賽事</value>
   </data>
   <data name="LastWeek" xml:space="preserve">
     <value>上週</value>
@@ -247,10 +247,10 @@
     <value>特定日期</value>
   </data>
   <data name="ThisWeek" xml:space="preserve">
-    <value>这星期</value>
+    <value>本週</value>
   </data>
   <data name="ThisMonth" xml:space="preserve">
-    <value>這個月</value>
+    <value>本月</value>
   </data>
   <data name="From" xml:space="preserve">
     <value>從</value>
