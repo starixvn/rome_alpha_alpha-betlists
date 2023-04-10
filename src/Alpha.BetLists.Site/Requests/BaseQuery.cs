@@ -1,6 +1,7 @@
 ﻿namespace Alpha.BetLists.Site.Requests
 {
     using System;
+    using Alpha.BetLists.Configurations;
     using BetLists.Models;
 
     public abstract class BaseQuery
@@ -66,7 +67,7 @@
 
         public bool IsEnableSabaPromotionForHeadline { get; }
 
-        public bool Is789Y => Site.Equals("789Y", StringComparison.CurrentCultureIgnoreCase);
+        public bool Is789Y => AppSettings.SiteLabel.Equals(AppSettings.SiteLabel789y);
 
     }
 }

@@ -209,7 +209,7 @@
         public void CanViewBySite_NonOfferedProduct_ReturnFalse()
         {
             // Arrange
-            var site = "IBCINdo";
+            var site = "IBC";
             var products = new List<ProductBySiteModel>() { new ProductBySiteModel(22), new ProductBySiteModel(23) };
             IEnumerable<ProductBySiteModel> cachedProducts;
             fanexDataFixture.CacheService.TryGet($"Alpha.Reports.Services.Impl.ProductsBySite-{site}", out cachedProducts).Returns(false);
@@ -227,7 +227,7 @@
         public void CanViewBySite_OfferedProduct_ReturnTrue()
         {
             // Arrange
-            var site = "IBCINdo";
+            var site = "IBC";
             var products = new List<ProductBySiteModel>() { new ProductBySiteModel(22), new ProductBySiteModel(23) };
             fanexDataFixture.CacheService.GetOrSet(Arg.Any<string>(), Arg.Any<Func<IEnumerable<ProductBySiteModel>>>(), Arg.Any<CacheItemOptions>()).Returns(x =>
             {

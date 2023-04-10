@@ -21,6 +21,11 @@
             set { appSettingValues = value; }
         }
 
+        public static string SiteLabel => GetConfigValue("SiteLabel");
+
+        public static string SiteLabel789y => GetConfigValue("SiteLabel789y");
+
+
         public static string StoredProcedurePath => GetConfigValue("StoredProcedurePath");
 
         public static string MainAppPath => GetConfigValue("MainAppPath") ?? "site-main";
@@ -107,6 +112,7 @@
         public static void Verify()
         {
             Require(StoredProcedurePath, nameof(StoredProcedurePath));
+            Require(SiteLabel, nameof(SiteLabel));
         }
 
         private static void Require(string key, string keyName)
