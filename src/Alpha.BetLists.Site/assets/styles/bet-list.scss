@@ -26,6 +26,12 @@ a {
         will-change: scroll-position;
     }
 }
+.cover-week-selection {
+    flex: 1;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+}
 .scrollable {
     overflow: auto;
     min-height: 150px;
@@ -106,6 +112,14 @@ a {
 
         tr#tr_footer:hover td {
             background-color: #E8DFCA;
+        }
+
+        tr {
+            &.text-center, &.bl_footertotal {
+                td {
+                    border-bottom: 0 !important;
+                }
+            }
         }
     }
 

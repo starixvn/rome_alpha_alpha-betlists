@@ -7,6 +7,7 @@
     using System.Threading.Tasks;
     using System.Web.Hosting;
     using System.Web.Mvc;
+    using Alpha.BetLists.Extensions;
     using Alpha.BetLists.Site.Requests.WinLoss;
     using Alpha.BetLists.Site.ViewModels.Components;
     using Alpha.IPInfo.Services;
@@ -78,7 +79,7 @@
 
         protected internal static IEnumerable<ProductViewModel> BuildProductViewModels(
             IEnumerable<Product> products,
-            WinLossNewQuery message)
+            WinLossIndexQuery message)
         {
             var productList = new List<ProductViewModel>();
 
@@ -133,7 +134,48 @@
                 p.DisplayName,
                 userSelectedResourceIds.ContainsKey(p.ResourceId)))
             : Enumerable.Empty<ProductDetailViewModel>();
-            
+
+
+        protected internal static IEnumerable<WeekSelectionViewModel> BuildWeekSelectionViewModels(
+            IEnumerable<TicketDto> tickets,
+            DateTime fromDate,
+            DateTime toDate,
+            DateTime? selectedFromDate,
+            DateTime? selectedToDate)
+        {
+            var weekSelections = BuildWeekSelectionViewModels(fromDate, toDate, selectedFromDate, selectedToDate);
+
+            foreach (var item in weekSelections)
+            {
+                item.IsEnable = tickets.Any(t => item.FromDate <= t.WinlostDate && t.WinlostDate <= item.ToDate);
+            }
+
+            return weekSelections;
+        }
+
+        protected internal static IEnumerable<WeekSelectionViewModel> BuildWeekSelectionViewModels(
+            DateTime fromDate,
+            DateTime toDate,
+            DateTime? selectedFromDate,
+            DateTime? selectedToDate)
+        {
+            var weekSelections = new List<WeekSelectionViewModel>();
+            var startDate = fromDate.Date;
+            var endDate = toDate.Date;
+
+            while (endDate.Subtract(startDate).TotalDays >= 0)
+            {
+                var endDateStartOfWeek = endDate.StartOfWeek();
+                var startDateOrEndDateStartOfWeek = startDate < endDateStartOfWeek ? endDateStartOfWeek : startDate;
+                weekSelections.Add(
+                    new WeekSelectionViewModel(startDateOrEndDateStartOfWeek, endDate, selectedFromDate, selectedToDate));
+
+                endDate = endDateStartOfWeek.AddDays(-1);
+            }
+
+            return weekSelections;
+        }
+        
         protected internal async Task AssignCountry(IEnumerable<ITicket> tickets, bool displayVNIP)
         {
             var ipList = tickets

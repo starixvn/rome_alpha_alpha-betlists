@@ -151,6 +151,24 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Apr.
+        /// </summary>
+        public static string Apr {
+            get {
+                return ResourceManager.GetString("Apr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aug.
+        /// </summary>
+        public static string Aug {
+            get {
+                return ResourceManager.GetString("Aug", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Auto refresh.
         /// </summary>
         public static string AutoRefresh {
@@ -331,6 +349,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dec.
+        /// </summary>
+        public static string Dec {
+            get {
+                return ResourceManager.GetString("Dec", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Draw.
         /// </summary>
         public static string draw {
@@ -372,6 +399,15 @@ namespace Alpha.BetLists.AppResources {
         public static string ExportToExcel {
             get {
                 return ResourceManager.GetString("ExportToExcel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Feb.
+        /// </summary>
+        public static string Feb {
+            get {
+                return ResourceManager.GetString("Feb", resourceCulture);
             }
         }
         
@@ -426,6 +462,33 @@ namespace Alpha.BetLists.AppResources {
         public static string IPMatchingTitle {
             get {
                 return ResourceManager.GetString("IPMatchingTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Jan.
+        /// </summary>
+        public static string Jan {
+            get {
+                return ResourceManager.GetString("Jan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Jul.
+        /// </summary>
+        public static string Jul {
+            get {
+                return ResourceManager.GetString("Jul", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Jun.
+        /// </summary>
+        public static string Jun {
+            get {
+                return ResourceManager.GetString("Jun", resourceCulture);
             }
         }
         
@@ -529,6 +592,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mar.
+        /// </summary>
+        public static string Mar {
+            get {
+                return ResourceManager.GetString("Mar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Master.
         /// </summary>
         public static string Master {
@@ -561,6 +633,15 @@ namespace Alpha.BetLists.AppResources {
         public static string MaxDataRetrieveHistoryError {
             get {
                 return ResourceManager.GetString("MaxDataRetrieveHistoryError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to May.
+        /// </summary>
+        public static string May {
+            get {
+                return ResourceManager.GetString("May", resourceCulture);
             }
         }
         
@@ -655,6 +736,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nov.
+        /// </summary>
+        public static string Nov {
+            get {
+                return ResourceManager.GetString("Nov", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to # Selected.
         /// </summary>
         public static string nSelected {
@@ -669,6 +759,15 @@ namespace Alpha.BetLists.AppResources {
         public static string number {
             get {
                 return ResourceManager.GetString("number", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Oct.
+        /// </summary>
+        public static string Oct {
+            get {
+                return ResourceManager.GetString("Oct", resourceCulture);
             }
         }
         
@@ -912,6 +1011,15 @@ namespace Alpha.BetLists.AppResources {
         public static string selectStatuses {
             get {
                 return ResourceManager.GetString("selectStatuses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sep.
+        /// </summary>
+        public static string Sep {
+            get {
+                return ResourceManager.GetString("Sep", resourceCulture);
             }
         }
         

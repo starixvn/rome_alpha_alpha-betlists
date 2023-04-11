@@ -18,8 +18,9 @@
 
     public class WinLossNewHandler :
         BetListBaseHandler,
-        IAsyncRequestHandler<WinLossNewQuery, WinLossNewViewModel>,
-        IAsyncRequestHandler<WinLossGetDataQuery, WinLossViewModel>
+        IAsyncRequestHandler<WinLossIndexQuery, WinLossIndexViewModel>,
+        IAsyncRequestHandler<WinLossBetListWeekSelectionQuery, WinLossBetListWeekSelectionViewModel>,
+        IAsyncRequestHandler<WinLossBetListQuery, WinLossViewModel>
     {
         private readonly WinLossService winLossService;
         private readonly ProductService productService;
@@ -40,23 +41,62 @@
             this.productDetailService = productDetailService;
         }
 
-        public async Task<WinLossNewViewModel> Handle(WinLossNewQuery message)
+        public async Task<WinLossIndexViewModel> Handle(WinLossIndexQuery message)
         {
+            var showContributionAmountRoundNote = message.IsEnabledJackpot;
             var productsAndProductDetails = await GetProductsAndProductDetails(message);
             var products = productsAndProductDetails.Item1;
             var productDetails = productsAndProductDetails.Item2;
 
-            var showContributionAmountRoundNote = message.IsEnabledJackpot;
-            var winLossParam = await CreateWinLossParam(message, products, productDetails);
-            var betlistData = await winLossService.GetBetList(winLossParam);
-            await AssignCountry(betlistData.Tickets, message.DisplayVNIP);
+            var validUserSelectedProductIds = GetValidUserSelectedProductIds(products, message.UserSelectedProductIds);
+            var validUserSelectedResourceIds = GetValidUserSelectedResourceIds(productDetails, message.UserSelectedResourceIds);
+            validUserSelectedProductIds = await productDetailService.RemoveProductIdsAsync(validUserSelectedProductIds, validUserSelectedResourceIds);
+            var productDetailsXML = await productDetailService.BuildProductDetailsXMLAsync(validUserSelectedProductIds, message.ResourceIds, message.Is789Y);
 
+            var winLossParam = new WinLossParam(
+                message.CustId,
+                validUserSelectedProductIds,
+                message.WeekFromDate ?? message.FromDate,
+                message.WeekToDate ?? message.ToDate,
+                message.LimitedDateToShowInfo,
+                message.Language,
+                productDetailsXML,
+                message.MaxTotalRow,
+                message.MaxTotalRowConfig);
+
+            var betlistData = await winLossService.GetBetList(winLossParam);
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
-            return new WinLossNewViewModel(
+            IEnumerable<TicketDto> ticketsToBuildWeekSelection = null;
+            if (message.WeekFromDate.HasValue
+                && message.WeekToDate.HasValue
+                && message.WeekFromDate.Value != message.FromDate
+                && message.WeekToDate.Value != message.ToDate)
+            {
+                var tempWinLossParam = new WinLossParam(
+                    message.CustId,
+                    validUserSelectedProductIds,
+                    message.FromDate,
+                    message.ToDate,
+                    message.LimitedDateToShowInfo,
+                    message.Language,
+                    productDetailsXML,
+                    message.MaxTotalRow,
+                    message.MaxTotalRowConfig);
+
+                ticketsToBuildWeekSelection = (await winLossService.GetBetList(tempWinLossParam)).Tickets;
+            }
+
+            return new WinLossIndexViewModel(
                 message,
                 BuildProductViewModels(products, message),
                 BuildProductDetailViewModels(productDetails, message.UserSelectedResourceIds),
+                BuildWeekSelectionViewModels(
+                    ticketsToBuildWeekSelection ?? betlistData.Tickets,
+                    message.FromDate,
+                    message.ToDate,
+                    message.WeekFromDate,
+                    message.WeekToDate),
                 betlistData,
                 Builder,
                 TicketHelper,
@@ -65,14 +105,32 @@
                 betlistOutputParams: betlistData.BetlistOutputParams);
         }
 
-        public async Task<WinLossViewModel> Handle(WinLossGetDataQuery message)
+        public async Task<WinLossBetListWeekSelectionViewModel> Handle(WinLossBetListWeekSelectionQuery message)
         {
             var showContributionAmountRoundNote = message.IsEnabledJackpot;
-            var winLossParam = await CreateWinLossParam(message);
-            var betlistData = await winLossService.GetBetList(winLossParam);
+            var betlistData = await GetBetListAndWriteLog(message);
             await AssignCountry(betlistData.Tickets, message.DisplayVNIP);
 
-            WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
+            return new WinLossBetListWeekSelectionViewModel(
+                message,
+                BuildWeekSelectionViewModels(
+                    betlistData.Tickets,
+                    message.FromDate,
+                    message.ToDate,
+                    message.WeekFromDate,
+                    message.WeekToDate),
+                betlistData,
+                Builder,
+                TicketHelper,
+                showContributionAmountRoundNote,
+                message.IsGroupHeadline,
+                betlistOutputParams: betlistData.BetlistOutputParams);
+        }
+
+        public async Task<WinLossViewModel> Handle(WinLossBetListQuery message)
+        {
+            var showContributionAmountRoundNote = message.IsEnabledJackpot;
+            var betlistData = await GetBetListAndWriteLog(message);
 
             return new WinLossViewModel(
                 message,
@@ -85,7 +143,7 @@
         }
 
         private async Task<Tuple<IEnumerable<Product>, IEnumerable<ProductDetail>>> GetProductsAndProductDetails(
-            WinLossGetDataQuery message)
+            WinLossBetListQuery message)
         {
             var products = productService.GetProductsForCustomer(
                 message.ViewerId,
@@ -101,15 +159,15 @@
             return Tuple.Create(products, productDetails);
         }
 
-        private async Task<WinLossParam> CreateWinLossParam(WinLossGetDataQuery message)
+        private async Task<BetListData> GetBetListAndWriteLog(WinLossBetListQuery message)
         {
             var productsAndProductDetails = await GetProductsAndProductDetails(message);
 
-            return await CreateWinLossParam(message, productsAndProductDetails.Item1, productsAndProductDetails.Item2);
+            return await GetBetListAndWriteLog(message, productsAndProductDetails.Item1, productsAndProductDetails.Item2);
         }
 
-        private async Task<WinLossParam> CreateWinLossParam(
-            WinLossGetDataQuery message,
+        private async Task<BetListData> GetBetListAndWriteLog(
+            WinLossBetListQuery message,
             IEnumerable<Product> products,
             IEnumerable<ProductDetail> productDetails)
         {
@@ -117,7 +175,7 @@
             var validUserSelectedResourceIds = GetValidUserSelectedResourceIds(productDetails, message.UserSelectedResourceIds);
             validUserSelectedProductIds = await productDetailService.RemoveProductIdsAsync(validUserSelectedProductIds, validUserSelectedResourceIds);
 
-            return new WinLossParam(
+            var winLossParam = new WinLossParam(
                 message.CustId,
                 validUserSelectedProductIds,
                 message.WeekFromDate ?? message.FromDate,
@@ -127,6 +185,11 @@
                 await productDetailService.BuildProductDetailsXMLAsync(validUserSelectedProductIds, message.ResourceIds, message.Is789Y),
                 message.MaxTotalRow,
                 message.MaxTotalRowConfig);
+
+            var betlistData = await winLossService.GetBetList(winLossParam);
+            WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
+
+            return betlistData;
         }
 
         private static IEnumerable<int> GetValidUserSelectedProductIds(

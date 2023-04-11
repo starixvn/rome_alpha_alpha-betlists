@@ -90,7 +90,7 @@
                     }
 
                     return new BetListData(
-                        betListDataTuple.Item1.Concat(oldBetListDataTuple.Item1),
+                        betListDataTuple.Item1.Concat(oldBetListDataTuple.Item1).ToList(),
                         betListDataTuple.Item2.Concat(oldBetListDataTuple.Item2).ToList<ITicketData>(),
                         oldBetListDataTuple.Item3);
                 }
@@ -100,7 +100,7 @@
                 betListDataTuple = await GetBetList(param, fromDate);
             }
 
-            return new BetListData(betListDataTuple.Item1, betListDataTuple.Item2.ToList<ITicketData>(), betListDataTuple.Item3);
+            return new BetListData(betListDataTuple.Item1.ToList(), betListDataTuple.Item2.ToList<ITicketData>(), betListDataTuple.Item3);
         }
 
         private async Task<Tuple<IEnumerable<TicketDto>, IEnumerable<TicketData>, BetlistOutputParams>> GetBetList(WinLossParam param, DateTime fromDate)

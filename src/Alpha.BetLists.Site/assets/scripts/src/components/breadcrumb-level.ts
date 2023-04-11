@@ -1,29 +1,53 @@
 ﻿"use strict";
 class BreadcrumbLevelOption {
     constructor(
-        public breadcrumbs = [],
         public onClick = Function(),
-        public selectorId = "breadcrumb") {
-        this.breadcrumbs = breadcrumbs;
+        public selectorId = "breadcrumb-level") {
         this.onClick = onClick;
         this.selectorId = selectorId;
     }
 }
 
 class BreadcrumbLevelComponent {
-    render(options: BreadcrumbLevelOption) {
-        const breadcrumbLength = options.breadcrumbs.length;
-        if (breadcrumbLength > 0) {
-            const html = options.breadcrumbs.map(function (item, index) {
-                return index + 1 === breadcrumbLength
-                    ? `<li>${item.custName}</li>`
-                    : `<li><a class="upline-link" href="javascript:;" data-custid="${item.custId}" data-custname="${item.custName}" data-custlevelid="${item.custLevelId}">${item.custName}</a></li>`;
-            });
+    private breadcrumbLevelOption: BreadcrumbLevelOption;
+    private breadcrumbLevels;
 
-            const breadcrumbSelector = $("#" + options.selectorId);
-            breadcrumbSelector
-                .html(html.join(""))
-                .find(".upline-link").off().click(options.onClick);
-        }
+    init(options: BreadcrumbLevelOption) {
+        this.breadcrumbLevelOption = options;
+        this._buildBreadcrumbLevels();
+        this.bindEvents();
+    }
+
+    _buildBreadcrumbLevels() {
+        this.breadcrumbLevels = [];
+        $("#" + this.breadcrumbLevelOption.selectorId).find("li").each((_, item: any) => {
+            const uplineLinkList = $(item).find(".upline-link");
+
+            if (uplineLinkList.length) {
+                const uplineLink = uplineLinkList.eq(0);
+                this.breadcrumbLevels.push({
+                    custId: uplineLink.data("custid"),
+                    custName: uplineLink.data("custname"),
+                    custLevelId: +uplineLink.data("custlevelid")
+                });
+            } else {
+                this.breadcrumbLevels.push({
+                    custName: item.innerText
+                });
+            }
+        });
+    }
+
+    bindEvents() {
+        $("#" + this.breadcrumbLevelOption.selectorId)
+            .find(".upline-link")
+            .off()
+            .click(this.breadcrumbLevelOption.onClick);
+    }
+
+    getBreadcrumbLevels(custLevelId = 0) {
+        return custLevelId
+            ? this.breadcrumbLevels.filter((item) => item.custLevelId >= custLevelId)
+            : this.breadcrumbLevels;
     }
 }

@@ -1,13 +1,10 @@
 "use strict";
 var BreadcrumbLevelOption = /** @class */ (function () {
-    function BreadcrumbLevelOption(breadcrumbs, onClick, selectorId) {
-        if (breadcrumbs === void 0) { breadcrumbs = []; }
+    function BreadcrumbLevelOption(onClick, selectorId) {
         if (onClick === void 0) { onClick = Function(); }
-        if (selectorId === void 0) { selectorId = "breadcrumb"; }
-        this.breadcrumbs = breadcrumbs;
+        if (selectorId === void 0) { selectorId = "breadcrumb-level"; }
         this.onClick = onClick;
         this.selectorId = selectorId;
-        this.breadcrumbs = breadcrumbs;
         this.onClick = onClick;
         this.selectorId = selectorId;
     }
@@ -16,19 +13,42 @@ var BreadcrumbLevelOption = /** @class */ (function () {
 var BreadcrumbLevelComponent = /** @class */ (function () {
     function BreadcrumbLevelComponent() {
     }
-    BreadcrumbLevelComponent.prototype.render = function (options) {
-        var breadcrumbLength = options.breadcrumbs.length;
-        if (breadcrumbLength > 0) {
-            var html = options.breadcrumbs.map(function (item, index) {
-                return index + 1 === breadcrumbLength
-                    ? "<li>" + item.custName + "</li>"
-                    : "<li><a class=\"upline-link\" href=\"javascript:;\" data-custid=\"" + item.custId + "\" data-custname=\"" + item.custName + "\" data-custlevelid=\"" + item.custLevelId + "\">" + item.custName + "</a></li>";
-            });
-            var breadcrumbSelector = $("#" + options.selectorId);
-            breadcrumbSelector
-                .html(html.join(""))
-                .find(".upline-link").off().click(options.onClick);
-        }
+    BreadcrumbLevelComponent.prototype.init = function (options) {
+        this.breadcrumbLevelOption = options;
+        this._buildBreadcrumbLevels();
+        this.bindEvents();
+    };
+    BreadcrumbLevelComponent.prototype._buildBreadcrumbLevels = function () {
+        var _this = this;
+        this.breadcrumbLevels = [];
+        $("#" + this.breadcrumbLevelOption.selectorId).find("li").each(function (_, item) {
+            var uplineLinkList = $(item).find(".upline-link");
+            if (uplineLinkList.length) {
+                var uplineLink = uplineLinkList.eq(0);
+                _this.breadcrumbLevels.push({
+                    custId: uplineLink.data("custid"),
+                    custName: uplineLink.data("custname"),
+                    custLevelId: +uplineLink.data("custlevelid")
+                });
+            }
+            else {
+                _this.breadcrumbLevels.push({
+                    custName: item.innerText
+                });
+            }
+        });
+    };
+    BreadcrumbLevelComponent.prototype.bindEvents = function () {
+        $("#" + this.breadcrumbLevelOption.selectorId)
+            .find(".upline-link")
+            .off()
+            .click(this.breadcrumbLevelOption.onClick);
+    };
+    BreadcrumbLevelComponent.prototype.getBreadcrumbLevels = function (custLevelId) {
+        if (custLevelId === void 0) { custLevelId = 0; }
+        return custLevelId
+            ? this.breadcrumbLevels.filter(function (item) { return item.custLevelId >= custLevelId; })
+            : this.breadcrumbLevels;
     };
     return BreadcrumbLevelComponent;
 }());
@@ -358,82 +378,57 @@ var ProductAndProductDetailDropdownComponent = /** @class */ (function () {
 }());
 //# sourceMappingURL=product-productdetail-dropdown.js.map
 "use strict";
-var WeekRangeOption = /** @class */ (function () {
-    function WeekRangeOption(onClick, language, selectorId) {
+var WeekSelectionOption = /** @class */ (function () {
+    function WeekSelectionOption(onClick, selectorId) {
         if (onClick === void 0) { onClick = Function(); }
-        if (language === void 0) { language = "en"; }
-        if (selectorId === void 0) { selectorId = "week-range-container"; }
+        if (selectorId === void 0) { selectorId = "week-selection"; }
         this.onClick = onClick;
-        this.language = language;
         this.selectorId = selectorId;
         this.onClick = onClick;
-        this.language = language;
         this.selectorId = selectorId;
     }
-    return WeekRangeOption;
+    return WeekSelectionOption;
 }());
-var WeekRangeComponent = /** @class */ (function () {
-    function WeekRangeComponent() {
+var WeekSelectionComponent = /** @class */ (function () {
+    function WeekSelectionComponent() {
     }
-    WeekRangeComponent.prototype.init = function (options) {
-        this.weekRangeOption = options;
-        this.weekRangeContainer = $("#" + options.selectorId);
+    WeekSelectionComponent.prototype.init = function (options) {
+        this.weekSelectionOption = options;
+        this.bindEvents();
     };
-    WeekRangeComponent.prototype.render = function (dateRange, activeWeekRange) {
+    WeekSelectionComponent.prototype.bindEvents = function () {
         var _this = this;
-        moment.locale(this.weekRangeOption.language);
-        this.weekRangeContainer.html(this.buildWeekRangeHtml(dateRange, activeWeekRange));
-        var labelWeeks = this.weekRangeContainer.find(".label-week");
+        var labelWeeks = $("#" + this.weekSelectionOption.selectorId).find(".label-week:not(.disabled)");
         labelWeeks
             .off()
             .click(function (e) {
             var $this = $(e.target);
             labelWeeks.removeClass("active");
             $this.addClass("active");
-            _this.weekRangeOption.onClick({ fromDate: $this.data("fromdate"), toDate: $this.data("todate") });
+            _this.weekSelectionOption.onClick({ fromDate: $this.data("fromdate"), toDate: $this.data("todate") });
         });
     };
-    WeekRangeComponent.prototype.buildWeekRangeHtml = function (dateRange, activeWeekRange) {
-        var weekRange = [];
-        var startDate = moment(dateRange.fromDate);
-        var endDate = moment(dateRange.toDate);
-        while (endDate.diff(startDate, "d") >= 0) {
-            var endDateStartOfWeek = moment(endDate).startOf("isoWeek");
-            var startDateOrEndDateStartOfWeek = startDate.isBefore(endDateStartOfWeek) ? endDateStartOfWeek : startDate;
-            var fromDateValue = startDateOrEndDateStartOfWeek.format(alphaReports.format.shortDateWithSlash_DatePicker);
-            var toDateValue = endDate.format(alphaReports.format.shortDateWithSlash_DatePicker);
-            var label = startDateOrEndDateStartOfWeek.isSame(endDate)
-                ? endDate.format(alphaReports.format.dayMonthName)
-                : startDateOrEndDateStartOfWeek.format(alphaReports.format.day) + " - " + endDate.format(alphaReports.format.dayMonthName);
-            var activeClassName = activeWeekRange
-                && activeWeekRange.weekFromDate === fromDateValue
-                && activeWeekRange.weekToDate === toDateValue ? " active" : "";
-            weekRange.push("<a href=\"javascript:;\" class=\"label-week" + activeClassName + "\" data-fromdate=\"" + fromDateValue + "\" data-todate=\"" + toDateValue + "\">" + label + "</a>");
-            endDate = moment(endDateStartOfWeek).subtract(1, "d");
-        }
-        return weekRange.join("");
-    };
-    WeekRangeComponent.prototype.getActiveWeekRange = function () {
-        var activeWeekRange = this.weekRangeContainer.find(".label-week.active");
-        if (activeWeekRange.length) {
-            var firstActiveWeekRange = activeWeekRange.eq(0);
+    WeekSelectionComponent.prototype.getActiveWeek = function () {
+        var activeWeek = $("#" + this.weekSelectionOption.selectorId).find(".label-week.active");
+        if (activeWeek.length) {
+            var firstActiveWeek = activeWeek.eq(0);
             return {
-                weekFromDate: firstActiveWeekRange.data("fromdate"),
-                weekToDate: firstActiveWeekRange.data("todate"),
+                weekFromDate: firstActiveWeek.data("fromdate"),
+                weekToDate: firstActiveWeek.data("todate"),
             };
         }
         return {};
     };
-    return WeekRangeComponent;
+    return WeekSelectionComponent;
 }());
-//# sourceMappingURL=week-range.js.map
+//# sourceMappingURL=week-selection.js.map
 "use strict";
 var WinLossBetListView = /** @class */ (function () {
-    function WinLossBetListView(breadcrumbLevelComponent, dateRangePickerComponent, productAndProductDetailDropdownComponent, weekRangeComponent, productList, productDetailList) {
+    function WinLossBetListView(dateRangePickerComponent, productAndProductDetailDropdownComponent, weekSelectionComponent, breadcrumbLevelComponent, productList, productDetailList) {
         this.breadcrumbLevelComponent = breadcrumbLevelComponent;
         this.dateRangePickerComponent = dateRangePickerComponent;
         this.productAndProductDetailDropdownComponent = productAndProductDetailDropdownComponent;
-        this.weekRangeComponent = weekRangeComponent;
+        this.weekSelectionComponent = weekSelectionComponent;
         this.productList = productList;
         this.productDetailList = productDetailList;
     }
@@ -453,6 +448,8 @@ var WinLossBetListView = /** @class */ (function () {
             }, 1000);
         });
         this.renderComponents();
+        // make fadeOut effect shorter 
+        $.blockUI.defaults.fadeOut = 0;
     };
     WinLossBetListView.prototype.cacheDOMElements = function () {
         this.globalFormData = {
@@ -463,28 +460,58 @@ var WinLossBetListView = /** @class */ (function () {
             custId: $("#cust-id").val(),
             custName: $("#cust-name").val()
         };
-        this.winlossBetListUrl = $("#betlist-path").val() + "winloss/getdata?";
-        this.tableBetList = $("#tbl-betlist");
+        var betlistPath = $("#betlist-path").val();
+        this.betListWeekSelectionUrl = betlistPath + "winloss/betlistweekselection?";
+        this.betListWeekSelection = $("#betlist-week-selection");
+        this.betListUrl = betlistPath + "winloss/betlist?";
+        this.tableBetList = this.betListWeekSelection.find("#tbl-betlist");
         var errorExceedRow = $("#error-exceed-row");
         errorExceedRow.length
             && this.tableBetList.find("tbody tr:first td").addClass("error-exceed-row").html(errorExceedRow.val());
-        var breadcrumbLevelJson = $("#breadcrumb-level-json").val();
-        this.breadcrumbs = breadcrumbLevelJson.length ? JSON.parse(breadcrumbLevelJson) : [];
     };
     WinLossBetListView.prototype.renderComponents = function () {
         var _this = this;
-        var currentLanguage = $("#language").data("currentlanguage");
-        this.breadcrumbLevelComponent.render(new BreadcrumbLevelOption(this.breadcrumbs, function (e) {
+        this.dateRangePickerComponent.render(new DateRangePickerJQueryOption(function (dateRange) {
+            _this.constraintDateRangeAndProductDropdownList(dateRange);
+            $.extend(_this.globalFormData, dateRange, _this.productAndProductDetailDropdownComponent.getCheckedValues());
+            if (_this.isInvalidGlobalFormData()) {
+                return;
+            }
+            _this.getBetListWeekSelection();
+        }, this.getDateRangePickerLocale($("#language").data("currentlanguage"))));
+        this.productAndProductDetailDropdownComponent.render(new ProductAndProductDetailDropdownOption(this.productList, this.productDetailList, function (productsAndResources) {
+            $.extend(_this.globalFormData, _this.dateRangePickerComponent.getDateRangeValues(), productsAndResources);
+            if (_this.isInvalidGlobalFormData()) {
+                return;
+            }
+            _this.getBetListWeekSelection();
+        }));
+        var dateRange = this.dateRangePickerComponent.getDateRangeValues();
+        this.constraintDateRangeAndProductDropdownList(dateRange);
+        this.weekSelectionComponent.init(new WeekSelectionOption(function (dateRange) {
+            if (_this.isInvalidGlobalFormData()) {
+                return;
+            }
+            $.extend(_this.globalFormData, dateRange);
+            _this.getBetListData();
+        }));
+        var activeWeek = this.weekSelectionComponent.getActiveWeek();
+        // update fromDate/toDate of globalFormData if activeWeek is NOT empty
+        if (Object.keys(activeWeek).length) {
+            this.globalFormData.fromDate = activeWeek.weekFromDate;
+            this.globalFormData.toDate = activeWeek.weekToDate;
+        }
+        this.breadcrumbLevelComponent.init(new BreadcrumbLevelOption(function (e) {
             if (_this.isInvalidGlobalFormData()) {
                 return;
             }
             _this.tableBetList.block();
             var $this = $(e.target);
             var custLevelId = +$this.data("custlevelid");
-            var breadcrumbLevel = _this.breadcrumbs.filter(function (item) { return item.custLevelId >= custLevelId; });
-            var reportParams = _this.weekRangeComponent.getActiveWeekRange();
-            if (breadcrumbLevel.length > 1) {
-                reportParams.breadcrumbLevelJson = JSON.stringify(breadcrumbLevel);
+            var breadcrumbLevels = _this.breadcrumbLevelComponent.getBreadcrumbLevels(custLevelId);
+            var reportParams = _this.weekSelectionComponent.getActiveWeek();
+            if (breadcrumbLevels.length > 1) {
+                reportParams.breadcrumbLevelJson = JSON.stringify(breadcrumbLevels);
             }
             $.extend(reportParams, _this.globalFormData, {
                 custId: $this.data("custid"),
@@ -493,42 +520,6 @@ var WinLossBetListView = /** @class */ (function () {
             }, _this.dateRangePickerComponent.getDateRangeValues());
             $this.attr("href", _this.buildWinLossReportUrl(reportParams));
         }));
-        this.dateRangePickerComponent.render(new DateRangePickerJQueryOption(function (dateRange) {
-            _this.constraintDateRangeAndProductDropdownList(dateRange);
-            $.extend(_this.globalFormData, dateRange, _this.productAndProductDetailDropdownComponent.getCheckedValues());
-            if (_this.isInvalidGlobalFormData()) {
-                return;
-            }
-            _this.getBetListAndRenderWeekRange();
-        }, this.getDateRangePickerLocale(currentLanguage)));
-        this.productAndProductDetailDropdownComponent.render(new ProductAndProductDetailDropdownOption(this.productList, this.productDetailList, function (productsAndResources) {
-            $.extend(_this.globalFormData, _this.dateRangePickerComponent.getDateRangeValues(), productsAndResources);
-            if (_this.isInvalidGlobalFormData()) {
-                return;
-            }
-            _this.getBetListAndRenderWeekRange();
-        }));
-        var dateRange = this.dateRangePickerComponent.getDateRangeValues();
-        this.constraintDateRangeAndProductDropdownList(dateRange);
-        this.weekRangeComponent.init(new WeekRangeOption(function (dateRange) {
-            if (_this.isInvalidGlobalFormData()) {
-                return;
-            }
-            _this.addIsWeekSelectionForStatistic();
-            $.extend(_this.globalFormData, dateRange);
-            _this.getBetList();
-        }, this.getMomentLocale(currentLanguage)));
-        var weekFromDate = $("#week-from-date");
-        var weekToDate = $("#week-to-date");
-        var activeWeekRange = weekFromDate.length > 0 && weekToDate.length > 0
-            ? { weekFromDate: weekFromDate.val(), weekToDate: weekToDate.val() }
-            : undefined;
-        this.weekRangeComponent.render(this.globalFormData, activeWeekRange);
-        // update fromDate/toDate of globalFormData if activeWeekRange is NOT undefined
-        if (activeWeekRange) {
-            this.globalFormData.fromDate = activeWeekRange.weekFromDate;
-            this.globalFormData.toDate = activeWeekRange.weekToDate;
-        }
     };
     WinLossBetListView.prototype.constraintDateRangeAndProductDropdownList = function (dateRange) {
         var historicPivotDate = moment(this.dateRangePickerComponent.getHistoricPivotDate());
@@ -548,57 +539,55 @@ var WinLossBetListView = /** @class */ (function () {
         };
         return locale[language] || "default";
     };
-    WinLossBetListView.prototype.getMomentLocale = function (language) {
-        var locale = {
-            "th-TH": "th",
-            "vi-VN": "vi",
-            "zh-CN": "zh-cn",
-            "zh-TW": "zh-tw",
-            "default": "en"
-        };
-        return locale[language] || locale.default;
-    };
     WinLossBetListView.prototype.buildWinLossReportUrl = function (reportFormData) {
         var action = reportFormData.custLevelId === 4 ? "master" : (reportFormData.custLevelId === 3 ? "agent" : "member");
         return $("#winloss-detail-report-path").val() + action + "new?" + $.param(reportFormData);
     };
-    WinLossBetListView.prototype.getBetListAndRenderWeekRange = function () {
+    WinLossBetListView.prototype.getBetListWeekSelection = function () {
         var _this = this;
-        this.getBetList(function () {
-            _this.weekRangeComponent.render(_this.globalFormData, undefined);
-            _this.updateCurrentUrl();
-        });
-    };
-    WinLossBetListView.prototype.getBetList = function (callback) {
-        var _this = this;
-        if (callback === void 0) { callback = Function(); }
+        this.betListWeekSelection.block();
         this.addUnselectedProductAndProductDetailForStatistic();
+        var formData = $.extend({}, this.globalFormData, { breadcrumbLevelJson: JSON.stringify(this.breadcrumbLevelComponent.getBreadcrumbLevels()) });
+        $.get(this.betListWeekSelectionUrl + $.param(formData), function (html) {
+            _this.betListWeekSelection.html(html);
+            _this.tableBetList = _this.betListWeekSelection.find("#tbl-betlist");
+            _this.weekSelectionComponent.bindEvents();
+            _this.breadcrumbLevelComponent.bindEvents();
+            _this.updateCurrentUrl();
+            _this.betListWeekSelection.unblock();
+        }).fail(function (jqXHR) { return _this.handleAjaxError(jqXHR, _this.betListWeekSelection); });
+    };
+    WinLossBetListView.prototype.getBetListData = function () {
+        var _this = this;
         this.tableBetList.block();
-        $.get(this.winlossBetListUrl + $.param(this.globalFormData), function (html) {
-            callback();
+        this.addUnselectedProductAndProductDetailForStatistic();
+        this.addIsWeekSelectionForStatistic();
+        $.get(this.betListUrl + $.param(this.globalFormData), function (html) {
             _this.tableBetList.find("tbody").html(html);
             _this.tableBetList.unblock();
-        }).fail(function (jqXHR) {
-            if (jqXHR.status === 429) {
-                window.location.href = window.top["alpha"].urls.mainRootPath + "error/blocked";
-            }
-            else if (jqXHR.status === 500 && jqXHR.responseText) {
-                var responseObject = JSON.parse(jqXHR.responseText);
-                if (responseObject.UMFrom && responseObject.UMTo) {
-                    window.location.href = window.top["alpha"].urls.mainRootPath + "partialum/index?" + $.param(responseObject);
-                }
-            }
-            else {
-                _this.tableBetList.unblock();
-            }
-        }).always(function () { return _this.removeIsWeekSelectionForStatistic(); });
+        }).fail(function (jqXHR) { return _this.handleAjaxError(jqXHR, _this.tableBetList); })
+            .always(function () { return _this.removeIsWeekSelectionForStatistic(); });
     };
     WinLossBetListView.prototype.isInvalidGlobalFormData = function () {
         return this.globalFormData.productIds.length === 0;
     };
+    WinLossBetListView.prototype.handleAjaxError = function (jqXHR, element) {
+        if (jqXHR.status === 429) {
+            window.location.href = window.top.alpha.urls.mainRootPath + "error/blocked";
+        }
+        else if (jqXHR.status === 500 && jqXHR.responseText) {
+            var responseObject = JSON.parse(jqXHR.responseText);
+            if (responseObject.UMFrom && responseObject.UMTo) {
+                window.location.href = window.top.alpha.urls.mainRootPath + "partialum/index?" + $.param(responseObject);
+            }
+        }
+        else {
+            element.unblock();
+        }
+    };
     WinLossBetListView.prototype.updateCurrentUrl = function () {
         if (this.globalFormData.productIds) {
-            var formData = $.extend({}, this.globalFormData, { breadcrumbLevelJson: JSON.stringify(this.breadcrumbs) });
+            var formData = $.extend({}, this.globalFormData, { breadcrumbLevelJson: JSON.stringify(this.breadcrumbLevelComponent.getBreadcrumbLevels()) });
             try {
                 window.top.indexManager.updateCurrentUrl($.param(formData));
             }
@@ -632,6 +621,6 @@ var WinLossBetListView = /** @class */ (function () {
     return WinLossBetListView;
 }());
 $(function () {
-    new WinLossBetListView(new BreadcrumbLevelComponent(), new DateRangePickerJQueryComponent(), new ProductAndProductDetailDropdownComponent(), new WeekRangeComponent(), window.productList, window.productDetailList).init();
+    new WinLossBetListView(new DateRangePickerJQueryComponent(), new ProductAndProductDetailDropdownComponent(), new WeekSelectionComponent(), new BreadcrumbLevelComponent(), window.productList, window.productDetailList).init();
 });
 //# sourceMappingURL=winloss-betlist.js.map

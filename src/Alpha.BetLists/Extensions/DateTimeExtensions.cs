@@ -33,5 +33,13 @@
 
         public static DateTime FirstDayOfYear(this DateTime dateTime)
             => new DateTime(dateTime.Year, 1, 1);
+
+        public static DateTime StartOfWeek(this DateTime date, DayOfWeek startOfWeek = DayOfWeek.Monday)
+        {
+            const int numberOfWeek = 7;
+            int diff = (numberOfWeek + (date.DayOfWeek - startOfWeek)) % numberOfWeek;
+
+            return date.AddDays(-1 * diff).Date;
+        }
     }
 }

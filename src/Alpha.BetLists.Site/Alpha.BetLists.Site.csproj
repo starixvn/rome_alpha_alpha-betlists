@@ -992,6 +992,8 @@
     <Content Include="App_Code\Components\DateRangePickerJQuery.cshtml" />
     <Content Include="assets\scripts\typings\globals\moment\typings.json" />
     <Content Include="App_Code\Components\ProductAndProductDetailDropdown.cshtml" />
+    <Content Include="App_Code\Components\WeekSelection.cshtml" />
+    <Content Include="App_Code\Components\BreadcrumbLevel.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -1113,7 +1115,8 @@
     </Content>
     <Content Include="Views\Error\Blocked.cshtml" />
     <Content Include="Views\WinLoss\IndexNew.cshtml" />
-    <Content Include="Views\WinLoss\GetData.cshtml" />
+    <Content Include="Views\WinLoss\BetList.cshtml" />
+    <Content Include="Views\WinLoss\BetListWeekSelection.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_GlobalResources\Resources.Designer.cs">
@@ -1246,8 +1249,9 @@
     <Compile Include="Requests\WinLossByMatch\WinLossByMatchExcelQuery.cs" />
     <Compile Include="Requests\WinLossByMatch\WinLossByMatchQuery.cs" />
     <Compile Include="Requests\WinLoss\WinLossExcelQuery.cs" />
-    <Compile Include="Requests\WinLoss\WinLossGetDataQuery.cs" />
-    <Compile Include="Requests\WinLoss\WinLossNewQuery.cs" />
+    <Compile Include="Requests\WinLoss\WinLossBetListQuery.cs" />
+    <Compile Include="Requests\WinLoss\WinLossBetListWeekSelectionQuery.cs" />
+    <Compile Include="Requests\WinLoss\WinLossIndexQuery.cs" />
     <Compile Include="Requests\WinLoss\WinLossQuery.cs" />
     <Compile Include="ViewModels\BetListBaseViewModel.cs" />
     <Compile Include="ViewModels\BetListByBetTypeAndMatch\BetListByBetTypeAndMatchViewModel.cs" />
@@ -1257,6 +1261,7 @@
     <Compile Include="ViewModels\CashOutHistory\CashOutHistoryViewModel.cs" />
     <Compile Include="ViewModels\CasinoDetails\CasinoDetailsViewModel.cs" />
     <Compile Include="ViewModels\CombinationMixParlay\CombinationMixParlayViewModel.cs" />
+    <Compile Include="ViewModels\Components\BreadcrumbLevelViewModel.cs" />
     <Compile Include="ViewModels\Components\DateRangePickerNewViewModel.cs" />
     <Compile Include="ViewModels\Components\GroupProductViewModel.cs" />
     <Compile Include="ViewModels\Components\PagerViewModel.cs">
@@ -1272,6 +1277,7 @@
     <Compile Include="ViewModels\Components\ProductMultiSelectionViewModel.cs">
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
+    <Compile Include="ViewModels\Components\WeekSelectionViewModel.cs" />
     <Compile Include="ViewModels\DailyStatement\DailyStatementViewModel.cs" />
     <Compile Include="ViewModels\CorrectScore\CorrectScoreViewModel.cs" />
     <Compile Include="ViewModels\ExcelFileViewModel.cs" />
@@ -1288,7 +1294,8 @@
     <Compile Include="ViewModels\Parlay\ComboParlayViewModel.cs" />
     <Compile Include="ViewModels\Parlay\MixParlayViewModel.cs" />
     <Compile Include="ViewModels\WinLossByMatch\WinLossByMatchViewModel.cs" />
-    <Compile Include="ViewModels\WinLoss\WinLossNewViewModel.cs" />
+    <Compile Include="ViewModels\WinLoss\WinLossBetListWeekSelectionViewModel.cs" />
+    <Compile Include="ViewModels\WinLoss\WinLossIndexViewModel.cs" />
     <Compile Include="ViewModels\WinLoss\WinLossViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1350,7 +1357,7 @@
     <TypeScriptCompile Include="assets\scripts\src\components\product-productdetail-dropdown.ts" />
     <TypeScriptCompile Include="assets\scripts\src\components\statusmultiselection.ts" />
     <TypeScriptCompile Include="assets\scripts\src\components\productmultiselection.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\components\week-range.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\components\week-selection.ts" />
     <TypeScriptCompile Include="assets\scripts\src\last-bets\last-bets.ts" />
     <TypeScriptCompile Include="assets\scripts\src\components\single-selection-dropdown.ts" />
     <TypeScriptCompile Include="assets\scripts\src\member-betlist\member-betlist-init.ts" />
