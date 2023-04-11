@@ -5,7 +5,6 @@
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Requests;
-    using System;
 
     public class WinLossViewModel : BetListBaseViewModel
     {

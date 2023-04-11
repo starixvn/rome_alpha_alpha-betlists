@@ -1090,6 +1090,7 @@
       <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
     </Content>
     <Content Include="Views\Error\Blocked.cshtml" />
+    <Content Include="Views\WinLoss\IndexNew.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_GlobalResources\Resources.Designer.cs">
