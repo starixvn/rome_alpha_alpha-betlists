@@ -97,6 +97,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All.
+        /// </summary>
+        public static string All {
+            get {
+                return ResourceManager.GetString("All", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All Agent.
         /// </summary>
         public static string AllAgent {
@@ -147,6 +156,15 @@ namespace Alpha.BetLists.AppResources {
         public static string AutoRefresh {
             get {
                 return ResourceManager.GetString("AutoRefresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Back To Current Report.
+        /// </summary>
+        public static string BackToCurrentReport {
+            get {
+                return ResourceManager.GetString("BackToCurrentReport", resourceCulture);
             }
         }
         
@@ -300,6 +318,15 @@ namespace Alpha.BetLists.AppResources {
         public static string date {
             get {
                 return ResourceManager.GetString("date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date Range.
+        /// </summary>
+        public static string DateRange {
+            get {
+                return ResourceManager.GetString("DateRange", resourceCulture);
             }
         }
         
@@ -583,6 +610,33 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to None Selected.
+        /// </summary>
+        public static string NoneSelected {
+            get {
+                return ResourceManager.GetString("NoneSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Product Detail Found.
+        /// </summary>
+        public static string NoProductDetailFound {
+            get {
+                return ResourceManager.GetString("NoProductDetailFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Product Found.
+        /// </summary>
+        public static string NoProductFound {
+            get {
+                return ResourceManager.GetString("NoProductFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Note.
         /// </summary>
         public static string Note {
@@ -633,6 +687,15 @@ namespace Alpha.BetLists.AppResources {
         public static string Off {
             get {
                 return ResourceManager.GetString("Off", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Older Than 3 Months.
+        /// </summary>
+        public static string OlderThan3Months {
+            get {
+                return ResourceManager.GetString("OlderThan3Months", resourceCulture);
             }
         }
         
@@ -718,6 +781,24 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Product.
+        /// </summary>
+        public static string Product {
+            get {
+                return ResourceManager.GetString("Product", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product Detail.
+        /// </summary>
+        public static string ProductDetail {
+            get {
+                return ResourceManager.GetString("ProductDetail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Progressive Jackpot Won Details.
         /// </summary>
         public static string ProgressiveJackpotWonDetails {
@@ -777,6 +858,33 @@ namespace Alpha.BetLists.AppResources {
         public static string running {
             get {
                 return ResourceManager.GetString("running", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search Product.
+        /// </summary>
+        public static string SearchProduct {
+            get {
+                return ResourceManager.GetString("SearchProduct", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search Product Detail.
+        /// </summary>
+        public static string SearchProductDetail {
+            get {
+                return ResourceManager.GetString("SearchProductDetail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select All.
+        /// </summary>
+        public static string SelectAll {
+            get {
+                return ResourceManager.GetString("SelectAll", resourceCulture);
             }
         }
         

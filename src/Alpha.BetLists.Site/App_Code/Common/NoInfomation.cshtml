@@ -3,8 +3,13 @@
 @helper Render(int colspan)
 {
     <tbody>
-        <tr>
-            <td colspan="@colspan" class="text-center">@Resources.NoInformationIsAvailable</td>
-        </tr>
+        @RenderWithoutTableBody(colspan)
     </tbody>
+}
+
+@helper RenderWithoutTableBody(int colspan)
+{
+    <tr>
+        <td colspan="@colspan" class="text-center">@Resources.NoInformationIsAvailable</td>
+    </tr>
 }

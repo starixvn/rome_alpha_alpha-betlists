@@ -68,6 +68,5 @@
         public bool IsEnableSabaPromotionForHeadline { get; }
 
         public bool Is789Y => AppSettings.SiteLabel.Equals(AppSettings.SiteLabel789y);
-
     }
 }

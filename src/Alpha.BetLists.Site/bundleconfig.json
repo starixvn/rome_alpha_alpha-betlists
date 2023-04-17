@@ -91,6 +91,16 @@
       "assets/styles/parlay-detail.css"
     ]
   },
+  {
+    "outputFileName": "assets/bundles/winloss/winloss-betlist.js",
+    "inputFiles": [
+      "assets/scripts/src/components/breadcrumb-level.js",
+      "assets/scripts/src/components/daterangepicker-jquery.js",
+      "assets/scripts/src/components/product-productdetail-dropdown.js",
+      "assets/scripts/src/components/week-range.js",
+      "assets/scripts/src/winloss/winloss-betlist.js"
+    ]
+  },
   /************************** Dark Mode ************************/
   {
     "outputFileName": "assets/bundles/default-dark.css",

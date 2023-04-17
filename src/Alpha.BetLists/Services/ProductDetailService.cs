@@ -18,17 +18,39 @@
         Task<string> BuildProductDetailsXMLAsync(IEnumerable<int> validProductIds, string userSelectedResourceIds, bool is789y = false);
 
         Task<IEnumerable<int>> RemoveProductIdsAsync(IEnumerable<int> productIds, string userSelectedResourceIds);
+
+        Task<IEnumerable<int>> RemoveProductIdsAsync(IEnumerable<int> productIds, IEnumerable<int> resourceIds);
+
+        Task<IEnumerable<ProductDetail>> GetProductDetailsAsync(int viewerId, string site, int currencyId);
+
+        Task<IEnumerable<int>> FilterResourceIdsByCustomerAsync(
+            int viewerId,
+            string site,
+            int currencyId,
+            string userSelectedResourceIds,
+            IEnumerable<ProductDetail> productDetails = null);
     }
 
     public class ProductDetailServiceImpl : ProductDetailService
     {
         private const int ProductDetailsCacheInDay = 1;
         private const string ProductDetailsCacheKey = "Alpha.BetLists.Services.Impl.ProductDetailService.ProductDetails";
+        private const int CustProductDetailsCacheInMinutes = 5;
 
+        private readonly Func<string, int, string> getProductDetailName;
+        private readonly Func<int, string, int, int, bool> canViewBySite;
+        private readonly Func<int, bool> canViewProduct;
         private readonly IDynamicRepository dynamicRepository;
 
-        public ProductDetailServiceImpl(IDynamicRepository dynamicRepository)
+        public ProductDetailServiceImpl(
+            Func<string, int, string> getProductDetailName,
+            Func<int, string, int, int, bool> canViewBySite,
+            Func<int, bool> canViewProduct,
+            IDynamicRepository dynamicRepository)
         {
+            this.getProductDetailName = getProductDetailName;
+            this.canViewBySite = canViewBySite;
+            this.canViewProduct = canViewProduct;
             this.dynamicRepository = dynamicRepository;
         }
 
@@ -101,7 +123,10 @@
             return xml.ToString();
         }
 
-        public async Task<IEnumerable<int>> RemoveProductIdsAsync(IEnumerable<int> productIds, string userSelectedResourceIds)
+        public Task<IEnumerable<int>> RemoveProductIdsAsync(IEnumerable<int> productIds, string userSelectedResourceIds)
+            => RemoveProductIdsAsync(productIds, userSelectedResourceIds.ToListInt());
+
+        public async Task<IEnumerable<int>> RemoveProductIdsAsync(IEnumerable<int> productIds, IEnumerable<int> resourceIds)
         {
             var removedProductIds = new List<int>(productIds);
 
@@ -113,7 +138,7 @@
                 {
                     if (IsSupportProductDetail(group.Key))
                     {
-                        var intersectResourceIds = group.Select(p => p.ResourceId).Intersect(userSelectedResourceIds.ToListInt());
+                        var intersectResourceIds = group.Select(p => p.ResourceId).Intersect(resourceIds);
 
                         if (!intersectResourceIds.Any())
                         {
@@ -127,5 +152,55 @@
 
         private static bool IsSupportProductDetail(int productId)
             => AppSettings.ProductOfferProductDetail.Any(i => i == productId);
+
+        public async Task<IEnumerable<ProductDetail>> GetProductDetailsAsync(int viewerId, string site, int currencyId)
+        {
+            if (viewerId <= 0)
+            {
+                return Enumerable.Empty<ProductDetail>();
+            }
+
+            var canViewProductDetails = CanViewProductDetails(viewerId, site, currencyId);
+
+            return await ConfiguredCacheService.GetOrSet(
+                $"{ProductDetailsCacheKey}-{viewerId}",
+                async () => (await GetProductDetailsAsync())
+                    .Where(p => canViewProductDetails.ContainsKey(p.ProductId))
+                    .Select(product =>
+                    {
+                        product.DisplayName = getProductDetailName(product.RefId, product.ResourceId);
+
+                        return product;
+                    }),
+                new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(CustProductDetailsCacheInMinutes)));
+        }
+
+        private IDictionary<int, bool> CanViewProductDetails(int viewerId, string site, int currencyId)
+        {
+            var canViewProductDetails = new Dictionary<int, bool>();
+
+            foreach (var product in AppSettings.ProductOfferProductDetail)
+            {
+                if (canViewBySite(viewerId, site, currencyId, product) || canViewProduct(product))
+                {
+                    canViewProductDetails[product] = true;
+                }
+            }
+
+            return canViewProductDetails;
+        }
+
+        public async Task<IEnumerable<int>> FilterResourceIdsByCustomerAsync(
+            int viewerId,
+            string site,
+            int currencyId,
+            string userSelectedResourceIds,
+            IEnumerable<ProductDetail> productDetails = null)
+        {
+            var resourceIdHash = userSelectedResourceIds.ToIntDictionary();
+            productDetails = productDetails ?? await GetProductDetailsAsync(viewerId, site, currencyId);
+
+            return productDetails.Where(p => resourceIdHash.ContainsKey(p.ResourceId)).Select(p => p.ResourceId);
+        }
     }
 }

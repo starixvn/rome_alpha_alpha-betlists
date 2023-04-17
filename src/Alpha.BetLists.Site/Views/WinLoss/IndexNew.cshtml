@@ -1,26 +1,48 @@
-﻿@using Alpha.BetLists.Site.ViewModels.WinLoss
+﻿@using Newtonsoft.Json
+@using Alpha.BetLists.Configurations
+@using Alpha.BetLists.Site.ViewModels.WinLoss
+@model WinLossNewViewModel
 @{
     ViewBag.Title = "Win Loss Bet List";
+    var jsonSettings = new JsonSerializerSettings { Formatting = Formatting.None, NullValueHandling = NullValueHandling.Ignore };
 }
-@model WinLossViewModel
+@section Styles {
+    @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-betlists/filter-new")
+}
+@section Scripts {
+    <script type="text/javascript">
+        var productList = $.parseJSON('@Html.Raw(JsonConvert.SerializeObject(Model.Products, jsonSettings))');
+        var productDetailList = $.parseJSON('@Html.Raw(JsonConvert.SerializeObject(Model.ProductDetails, jsonSettings))');
+    </script>
+    @StaticResources.AssetScripts.Render("/bundles/site-betlists/filter-new")
+    @StaticResources.RenderScripts($"~/{AppSettings.BetlistRouting}assets/bundles/winloss/winloss-betlist")
+}
 @if (!string.IsNullOrWhiteSpace(Model.BetlistOutputParams.ErrMsg))
 {
     <div style="border: 1px solid #f00; color: #f00; padding: 10px">@Model.BetlistOutputParams.ErrMsg</div>
 }
 <div class="bl_title">
-    @Model.Title
+    @Resources.memberBetList - @Model.CustName
     <div class="bl-export-excel">
-        <a id="icon-excel" class="icon icon-excel" title="@Resources.ExportToExcel"
-           href="@Url.Action("Excel", $"{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}WinLoss",
-                new { CustName = Model.CustName,
-                    CustId = Model.CustId,
-                    ProductIds = Model.ProductsId,
-                    ResourceIds = Model.ResourceIds,
-                    FromDate = Model.FromDate,
-                    ToDate = Model.ToDate,
-                    IsGroupHeadline = Model.IsGroupHeadline
-                })">
-        </a>
+        <a href="javacript:;"
+           id="icon-excel"
+           class="icon icon-excel"
+           title="@Resources.ExportToExcel"
+           data-url="@Response.ApplyAppPathModifier($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}winloss/excel")"></a>
+    </div>
+</div>
+<div class="form-inline filter">
+    @DateRangePickerJQuery.Render(Model.DateRangePickerViewModel)
+    @ProductAndProductDetailDropdown.Render()
+    <div class="label-week-box" id="labelWeekRange"></div>
+</div>
+<div class="breadcrumb-table">
+    <div class="breadcrumb-container">
+        <ul class="breadcrumb" id="breadcrumb"></ul>
     </div>
 </div>
 @Html.Partial("WinLossTable", Model)
+@Html.Hidden("winloss-detail-report-path", Alpha.BetLists.Site.Helpers.UrlHelper.MapReportsPath("~/winlossdetail/"))
+@Html.Hidden("breadcrumb-level-json", Model.BreadcrumbLevelJson)
+@Html.Hidden("resource-ids", Model.ResourceIds)
+@Html.Hidden("cust-name", Model.CustName)

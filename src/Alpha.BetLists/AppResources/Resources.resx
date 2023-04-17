@@ -447,4 +447,40 @@
   <data name="TicketDetails" xml:space="preserve">
     <value>Ticket Details</value>
   </data>
+  <data name="DateRange" xml:space="preserve">
+    <value>Date Range</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="BackToCurrentReport" xml:space="preserve">
+    <value>Back To Current Report</value>
+  </data>
+  <data name="NoneSelected" xml:space="preserve">
+    <value>None Selected</value>
+  </data>
+  <data name="NoProductDetailFound" xml:space="preserve">
+    <value>No Product Detail Found</value>
+  </data>
+  <data name="NoProductFound" xml:space="preserve">
+    <value>No Product Found</value>
+  </data>
+  <data name="OlderThan3Months" xml:space="preserve">
+    <value>Older Than 3 Months</value>
+  </data>
+  <data name="Product" xml:space="preserve">
+    <value>Product</value>
+  </data>
+  <data name="ProductDetail" xml:space="preserve">
+    <value>Product Detail</value>
+  </data>
+  <data name="SearchProduct" xml:space="preserve">
+    <value>Search Product</value>
+  </data>
+  <data name="SearchProductDetail" xml:space="preserve">
+    <value>Search Product Detail</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>Select All</value>
+  </data>
 </root>

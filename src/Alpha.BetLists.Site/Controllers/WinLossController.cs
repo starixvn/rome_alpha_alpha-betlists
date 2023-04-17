@@ -2,6 +2,7 @@
 {
     using System.Threading.Tasks;
     using System.Web.Mvc;
+    using Alpha.BetLists.Site.ViewModels.WinLoss;
     using MediatR;
     using Requests.WinLoss;
 
@@ -17,7 +18,10 @@
         public async Task<FileContentResult> Excel(WinLossExcelQuery message)
             => await ExcelView(message);
 
-        public Task<ActionResult> IndexNew(WinLossQuery message)
-            => View(message);
+        public Task<ActionResult> IndexNew(WinLossNewQuery message)
+            => View<WinLossNewViewModel>(message);
+
+        public Task<ActionResult> GetData(WinLossNewQuery message)
+            => PartialView<WinLossNewViewModel>(message);
     }
 }

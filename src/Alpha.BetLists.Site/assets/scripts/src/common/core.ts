@@ -2,15 +2,19 @@
 
 class AlphaCore {
     $: JQueryStatic;
+    store: any;
 
-    constructor($: JQueryStatic) {
+    constructor($: JQueryStatic, store: any) {
         this.$ = $;
+        this.store = store;
     }
 
     format = {
         monthFormat: "MMMM - yyyy",
         shortDateWithSlash_DatePicker: "MM/DD/YYYY",
-        shortDateWithSlash_MonthPicker: "MM/dd/yyyy"
+        shortDateWithSlash_MonthPicker: "MM/dd/yyyy",
+        dayMonthName: "DD MMM",
+        day: "DD"
     };
 
     sort = {
@@ -49,6 +53,26 @@ class AlphaCore {
 
             this$(combinedCells[index]).before(oldCells);
         });
+    };
+
+    localStorage = {
+        get: (key: string) => {
+            return this.store.enabled ? this.store.get(key) : this.$.cookie(key);
+        },
+
+        set: (key: string, value: any) => {
+            this.store.enabled ? this.store.set(key, value) : this.$.cookie(key, value, this.localStorage.getCookieExpireOptions());
+        },
+
+        getCookieExpireOptions: () => {
+            var cookieExpire: any = { expires: 365, path: window.location.pathname };
+
+            if (this.isIe()) {
+                cookieExpire = { expires: 365 };
+            }
+
+            return cookieExpire;
+        }
     };
 
     combineConsecutiveCells = (
@@ -137,7 +161,7 @@ class AlphaCore {
     formatCurrency = (value: number) => value.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
 }
 
-const alphaReports = new AlphaCore($);
+const alphaReports = new AlphaCore($, store);
 
 interface JQuery {
     stickyTableHeaders(): void;
