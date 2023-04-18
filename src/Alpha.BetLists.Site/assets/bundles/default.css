@@ -56,8 +56,7 @@ a {
   .tbl-betlist tbody tr#tr_footer:hover td {
     background-color: #E8DFCA; }
   .tbl-betlist .col-number {
-    width: 20px;
-    padding: 4px 4px; }
+    width: 20px; }
   .tbl-betlist .col-transtime, .tbl-betlist .col-member {
     width: 110px; }
   .tbl-betlist .col-odds, .tbl-betlist .col-stake, .tbl-betlist .col-winloss {
@@ -487,6 +486,10 @@ div.ticket-list div.void > div.match, div.ticket-list div.void div.firstGoal, di
 
 .game-id {
   color: #000; }
+
+.filter {
+  padding-top: 0;
+  padding-right: 0; }
 
 #details-modal .modal-dialog {
   margin: 30px auto; }
