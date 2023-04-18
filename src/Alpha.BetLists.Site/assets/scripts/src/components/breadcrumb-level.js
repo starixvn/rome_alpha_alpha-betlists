@@ -27,7 +27,6 @@ var BreadcrumbLevelComponent = /** @class */ (function () {
             var breadcrumbSelector = $("#" + options.selectorId);
             breadcrumbSelector
                 .html(html.join(""))
-                .removeClass("hide")
                 .find(".upline-link").off().click(options.onClick);
         }
     };

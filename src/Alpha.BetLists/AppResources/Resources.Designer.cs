@@ -160,15 +160,6 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Back To Current Report.
-        /// </summary>
-        public static string BackToCurrentReport {
-            get {
-                return ResourceManager.GetString("BackToCurrentReport", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Bet List.
         /// </summary>
         public static string BetList {
@@ -687,15 +678,6 @@ namespace Alpha.BetLists.AppResources {
         public static string Off {
             get {
                 return ResourceManager.GetString("Off", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Older Than 3 Months.
-        /// </summary>
-        public static string OlderThan3Months {
-            get {
-                return ResourceManager.GetString("OlderThan3Months", resourceCulture);
             }
         }
         

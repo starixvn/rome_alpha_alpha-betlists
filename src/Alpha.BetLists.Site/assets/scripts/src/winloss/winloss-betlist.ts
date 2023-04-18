@@ -38,7 +38,8 @@ class WinLossBetListView {
         this.cacheDOMElements();
         $("#icon-excel").click((e) => {
             const $this = $(e.target);
-            $this.attr("href", $this.data("url") + "?" + $.param(this.globalFormData));
+            const excelParams = $.extend({}, this.globalFormData, { custName: $this.data("custname") })
+            $this.attr("href", $this.data("url") + "?" + $.param(excelParams));
             setTimeout(function () {
                 $this.attr("href", "javascript:;");
             }, 1000);
@@ -56,43 +57,51 @@ class WinLossBetListView {
             custId: $("#cust-id").val()
         };
         this.winlossBetListUrl = $("#betlist-path").val() + "winloss/getdata?";
-        
+
         this.tableBetList = $("#tbl-betlist");
         const errorExceedRow = $("#error-exceed-row");
         errorExceedRow.length
             && this.tableBetList.find("tbody tr:first td").addClass("error-exceed-row").html(errorExceedRow.val());
 
-        this.breadcrumbs = JSON.parse($("#breadcrumb-level-json").val());
+        const breadcrumbLevelJson = $("#breadcrumb-level-json").val();
+        this.breadcrumbs = breadcrumbLevelJson.length ? JSON.parse(breadcrumbLevelJson) : [];
     }
 
     private renderComponents() {
         this.breadcrumbLevelComponent.render(new BreadcrumbLevelOption(this.breadcrumbs, (e) => {
+            this.tableBetList.block();
             const $this = $(e.target);
             const custLevelId = +$this.data("custlevelid")
             const reportFormData = $.extend({}, this.globalFormData, {
                 custId: $this.data("custid"),
                 custName: $this.data("custname"),
                 custLevelId
-            });
+            }, this.dateRangePickerComponent.getDateRangeValues());
 
-            const breadcrumbLevelJson = this.breadcrumbs.filter((item) => item.custLevelId >= custLevelId);
-            if (breadcrumbLevelJson.length > 1) {
-                reportFormData.breadcrumbLevelJson = JSON.stringify(breadcrumbLevelJson);
+            const breadcrumbLevel = this.breadcrumbs.filter((item) => item.custLevelId >= custLevelId);
+            if (breadcrumbLevel.length > 1) {
+                reportFormData.breadcrumbLevelJson = JSON.stringify(breadcrumbLevel);
             }
 
             $this.attr("href", this.buildWinLossReportUrl(reportFormData));
         }));
 
-        this.dateRangePickerComponent.render(new DateRangePickerJQueryOption(() => this.getBetListAndRenderWeekRange()));
+        this.dateRangePickerComponent.render(new DateRangePickerJQueryOption(
+            (dateRange) => {
+                $.extend(this.globalFormData, dateRange);
+                this.getBetListAndRenderWeekRange();
+            }));
 
         this.productAndProductDetailDropdownComponent.render(new ProductAndProductDetailDropdownOption(
             this.productList,
             this.productDetailList,
-            () => this.getBetListAndRenderWeekRange()));
+            (productsAndResources) => {
+                $.extend(this.globalFormData, this.dateRangePickerComponent.getDateRangeValues(), productsAndResources);
+                this.getBetListAndRenderWeekRange();
+            }));
 
-        this.weekRangeComponent.init(new WeekRangeOption((dateRange) => {
-            this.getBetList($.extend(this.globalFormData, dateRange));
-        }, this.getMomentLocale()));
+        this.weekRangeComponent.init(
+            new WeekRangeOption((dateRange) => this.getBetList($.extend(this.globalFormData, dateRange)), this.getMomentLocale()));
         this.weekRangeComponent.render(this.globalFormData);
     }
 
@@ -114,12 +123,10 @@ class WinLossBetListView {
     }
 
     private getBetListAndRenderWeekRange() {
-        const dateRange = this.dateRangePickerComponent.getDateRangeValues();
-        const productsAndResources = this.productAndProductDetailDropdownComponent.getSelectedItems();
-        $.extend(this.globalFormData, dateRange, productsAndResources);
-
-        this.getBetList(this.globalFormData, () => this.weekRangeComponent.render(this.globalFormData));
-        this.updateCurrentUrl();
+        this.getBetList(this.globalFormData, () => {
+            this.weekRangeComponent.render(this.globalFormData);
+            this.updateCurrentUrl();
+        });
     }
 
     private getBetList(formData: any, callback = Function()) {
@@ -143,8 +150,10 @@ class WinLossBetListView {
     }
 
     private updateCurrentUrl() {
-        const formData = $.extend({}, this.globalFormData, { breadcrumbLevelJson: JSON.stringify(this.breadcrumbs) });
-        window.top.indexManager.updateCurrentUrl($.param(formData));
+        if (this.globalFormData.productIds) {
+            const formData = $.extend({}, this.globalFormData, { breadcrumbLevelJson: JSON.stringify(this.breadcrumbs) });
+            window.top.indexManager.updateCurrentUrl($.param(formData));
+        }
     }
 }
 

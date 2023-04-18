@@ -12,6 +12,7 @@
     [SessionState(SessionStateBehavior.ReadOnly)]
     public abstract class BetListBaseController : BaseAsyncController
     {
+        protected const string InvalidBetListView = "~/Views/Shared/InvalidBetList.cshtml";
         protected readonly IMediator mediator;
 
         protected BetListBaseController(IMediator mediator)

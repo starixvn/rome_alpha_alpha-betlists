@@ -22,13 +22,6 @@
         Task<IEnumerable<int>> RemoveProductIdsAsync(IEnumerable<int> productIds, IEnumerable<int> resourceIds);
 
         Task<IEnumerable<ProductDetail>> GetProductDetailsAsync(int viewerId, string site, int currencyId);
-
-        Task<IEnumerable<int>> FilterResourceIdsByCustomerAsync(
-            int viewerId,
-            string site,
-            int currencyId,
-            string userSelectedResourceIds,
-            IEnumerable<ProductDetail> productDetails = null);
     }
 
     public class ProductDetailServiceImpl : ProductDetailService
@@ -188,19 +181,6 @@
             }
 
             return canViewProductDetails;
-        }
-
-        public async Task<IEnumerable<int>> FilterResourceIdsByCustomerAsync(
-            int viewerId,
-            string site,
-            int currencyId,
-            string userSelectedResourceIds,
-            IEnumerable<ProductDetail> productDetails = null)
-        {
-            var resourceIdHash = userSelectedResourceIds.ToIntDictionary();
-            productDetails = productDetails ?? await GetProductDetailsAsync(viewerId, site, currencyId);
-
-            return productDetails.Where(p => resourceIdHash.ContainsKey(p.ResourceId)).Select(p => p.ResourceId);
         }
     }
 }

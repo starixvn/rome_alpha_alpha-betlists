@@ -22,22 +22,22 @@
             string[] excludingTicketStatus = null,
             BetlistOutputParams betlistOutputParams = null)
             : base(
-                  query,
-                  betListData,
-                  builder,
-                  ticketHelper,
-                  showContributionAmountRoundNote,
-                  isGroupHeadline,
-                  showMemberName,
-                  excludingTicketStatus,
-                  betlistOutputParams)
+                query,
+                betListData,
+                builder,
+                ticketHelper,
+                showContributionAmountRoundNote,
+                isGroupHeadline,
+                showMemberName,
+                excludingTicketStatus,
+                betlistOutputParams)
         {
             BreadcrumbLevelJson = query.BreadcrumbLevelJson;
             DateRangePickerViewModel = new DateRangePickerNewViewModel(
-             query.FromDate,
-             query.ToDate,
-             query.MinDate,
-             query.HistoricMinDate);
+                query.FromDate,
+                query.ToDate,
+                query.HistoricPivotDate,
+                query.MinDate);
             Products = products;
             ProductDetails = productDetails;
         }

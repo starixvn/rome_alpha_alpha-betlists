@@ -453,9 +453,6 @@
   <data name="All" xml:space="preserve">
     <value>All</value>
   </data>
-  <data name="BackToCurrentReport" xml:space="preserve">
-    <value>Back To Current Report</value>
-  </data>
   <data name="NoneSelected" xml:space="preserve">
     <value>None Selected</value>
   </data>
@@ -464,9 +461,6 @@
   </data>
   <data name="NoProductFound" xml:space="preserve">
     <value>No Product Found</value>
-  </data>
-  <data name="OlderThan3Months" xml:space="preserve">
-    <value>Older Than 3 Months</value>
   </data>
   <data name="Product" xml:space="preserve">
     <value>Product</value>

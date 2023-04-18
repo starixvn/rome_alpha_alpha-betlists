@@ -18,10 +18,10 @@
         public async Task<FileContentResult> Excel(WinLossExcelQuery message)
             => await ExcelView(message);
 
-        public Task<ActionResult> IndexNew(WinLossNewQuery message)
-            => View<WinLossNewViewModel>(message);
+        public async Task<ActionResult> IndexNew(WinLossNewQuery message)
+            => message.IsValid() ? await View<WinLossNewViewModel>(message) : View(InvalidBetListView);
 
-        public Task<ActionResult> GetData(WinLossNewQuery message)
-            => PartialView<WinLossNewViewModel>(message);
+        public async Task<ActionResult> GetData(WinLossGetDataQuery message)
+            => message.IsValid() ? await PartialView(message) : View(InvalidBetListView);
     }
 }

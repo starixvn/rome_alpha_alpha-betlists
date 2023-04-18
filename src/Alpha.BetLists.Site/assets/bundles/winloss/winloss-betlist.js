@@ -27,7 +27,6 @@ var BreadcrumbLevelComponent = /** @class */ (function () {
             var breadcrumbSelector = $("#" + options.selectorId);
             breadcrumbSelector
                 .html(html.join(""))
-                .removeClass("hide")
                 .find(".upline-link").off().click(options.onClick);
         }
     };
@@ -48,67 +47,45 @@ var DateRangePickerJQueryOption = /** @class */ (function () {
 }());
 var DateRangePickerJQueryComponent = /** @class */ (function () {
     function DateRangePickerJQueryComponent() {
-        this.isHistoricReport = false;
     }
     DateRangePickerJQueryComponent.prototype.render = function (options) {
-        this.renderDateRangePicker($("#" + options.selectorId), options);
-    };
-    DateRangePickerJQueryComponent.prototype.renderDateRangePicker = function (dateRangePicker, options, raiseOnClosedEvent) {
         var _this = this;
-        if (raiseOnClosedEvent === void 0) { raiseOnClosedEvent = false; }
-        var olderThan3Months = dateRangePicker.data("label-olderthan3months");
-        var backToCurrentReport = dateRangePicker.data("label-backtocurrentreport");
+        var dateRangePicker = $("#" + options.selectorId);
+        var historicPivotDate = moment(dateRangePicker.data("historicpivotdate"));
+        this.fromDate = dateRangePicker.data("fromdate");
+        this.toDate = dateRangePicker.data("todate");
         dateRangePicker
-            .dateRangePicker(this.getDateRangeOptions(dateRangePicker, options))
-            .bind("datepicker-change", function (_, obj) {
-            if (obj.value === olderThan3Months || obj.value === backToCurrentReport) {
-                _this.isHistoricReport = obj.value === olderThan3Months;
-                dateRangePicker.off();
-                dateRangePicker.data("dateRangePicker").destroy();
-                _this.renderDateRangePicker(dateRangePicker, options, true);
-            }
-            else {
-                _this.fromDate = moment(obj.date1).format(alphaReports.format.shortDateWithSlash_DatePicker);
-                _this.toDate = moment(obj.date2).format(alphaReports.format.shortDateWithSlash_DatePicker);
-            }
-        }).bind("datepicker-closed", function () {
-            options.onClosed();
-        }).data("dateRangePicker").setDateRange(this.fromDate, this.toDate, false);
-        raiseOnClosedEvent && options.onClosed();
-    };
-    DateRangePickerJQueryComponent.prototype.getDateRangeOptions = function (dateRangePicker, options) {
-        var dateRangeOptions;
-        if (this.isHistoricReport) {
-            var today = moment(dateRangePicker.data("currentdate"));
-            this.fromDate = moment(today).startOf("M").format(alphaReports.format.shortDateWithSlash_DatePicker);
-            this.toDate = today.format(alphaReports.format.shortDateWithSlash_DatePicker);
-            dateRangeOptions = {
-                startDate: dateRangePicker.data("historicmindate"),
-                endDate: moment(today).endOf("M").format(alphaReports.format.shortDateWithSlash_DatePicker),
-                customShortcuts: this.getHistoricPredefinedRanges(dateRangePicker),
-                maxDays: 31,
-                monthSelect: true,
-                yearSelect: true
-            };
-        }
-        else {
-            this.fromDate = dateRangePicker.data("fromdate");
-            this.toDate = dateRangePicker.data("todate");
-            dateRangeOptions = {
-                startDate: dateRangePicker.data("mindate"),
-                endDate: dateRangePicker.data("maxdate"),
-                customShortcuts: this.getPredefinedRanges(dateRangePicker)
-            };
-        }
-        return $.extend({
+            .dateRangePicker({
             format: alphaReports.format.shortDateWithSlash_DatePicker,
             separator: " - ",
             language: "en",
+            startDate: dateRangePicker.data("mindate"),
+            endDate: dateRangePicker.data("maxdate"),
             showShortcuts: true,
             shortcuts: null,
+            customShortcuts: this.getPredefinedRanges(dateRangePicker),
             duration: 0,
-            singleMonth: true
-        }, dateRangeOptions);
+            singleMonth: true,
+            monthSelect: true,
+            yearSelect: true
+        }).bind("datepicker-change", function (_, obj) {
+            var startDate = moment(obj.date1);
+            var endDate = moment(obj.date2);
+            if (endDate.isBefore(historicPivotDate) && endDate.diff(startDate, "d") > 30) {
+                alert("Out of date range: from and to is between 31 days.");
+                dateRangePicker.data("dateRangePicker").setDateRange(_this.fromDate, _this.toDate, false);
+                return;
+            }
+            if (startDate.isBefore(historicPivotDate) && endDate.isSameOrAfter(historicPivotDate)) {
+                alert("Out of date range: gap between normal and history mode.");
+                dateRangePicker.data("dateRangePicker").setDateRange(_this.fromDate, _this.toDate, false);
+                return;
+            }
+            _this.fromDate = startDate.format(alphaReports.format.shortDateWithSlash_DatePicker);
+            _this.toDate = endDate.format(alphaReports.format.shortDateWithSlash_DatePicker);
+        })
+            .bind("datepicker-closed", function () { return options.onClosed(_this.getDateRangeValues()); })
+            .data("dateRangePicker").setDateRange(this.fromDate, this.toDate, false);
     };
     DateRangePickerJQueryComponent.prototype.getPredefinedRanges = function (dateRangePicker) {
         var minDate = moment(dateRangePicker.data("mindate"));
@@ -117,7 +94,7 @@ var DateRangePickerJQueryComponent = /** @class */ (function () {
         var yesterday = moment(today).subtract(1, "d");
         var thisWeekStartOfDay = moment(today).startOf("isoWeek");
         var lastMonthStartOfDay = moment(today).subtract(1, "M").startOf("M");
-        var ranges = [
+        return [
             {
                 name: dateRangePicker.data("label-today"),
                 dates: function () {
@@ -168,26 +145,9 @@ var DateRangePickerJQueryComponent = /** @class */ (function () {
                 }
             }
         ];
-        if (dateRangePicker.data("isshowhistoricreport") === 1) {
-            ranges.push({
-                name: dateRangePicker.data("label-olderthan3months"),
-                dates: function () {
-                    return [undefined, undefined];
-                }
-            });
-        }
-        return ranges;
-    };
-    DateRangePickerJQueryComponent.prototype.getHistoricPredefinedRanges = function (dateRangePicker) {
-        return [{
-                name: dateRangePicker.data("label-backtocurrentreport"),
-                dates: function () {
-                    return [undefined, undefined];
-                }
-            }];
     };
     DateRangePickerJQueryComponent.prototype.getDateRangeValues = function () {
-        return { fromDate: this.fromDate, toDate: this.toDate, isHistoricReport: this.isHistoricReport };
+        return { fromDate: this.fromDate, toDate: this.toDate };
     };
     return DateRangePickerJQueryComponent;
 }());
@@ -215,12 +175,43 @@ var ProductAndProductDetailDropdownComponent = /** @class */ (function () {
     function ProductAndProductDetailDropdownComponent() {
     }
     ProductAndProductDetailDropdownComponent.prototype.render = function (options) {
-        this.renderProductDropdown(options);
         this.renderProductDetailDropdown(options);
+        this.renderProductDropdown(options);
+    };
+    ProductAndProductDetailDropdownComponent.prototype.renderProductDetailDropdown = function (options) {
+        var self = this;
+        var productDetailList = options.productDetails.map(function (item) {
+            return self.buildCheckboxItem(item, {
+                productId: item.ProductId
+            });
+        });
+        var dropdown = $("#" + options.selectorProductDetailId);
+        this.dropdownProductDetail = dropdown.fanexMultiSelect({
+            checkAllText: dropdown.data("label-selectall"),
+            selectedText: "# " + dropdown.data("label-selected"),
+            noneSelectedText: dropdown.data("label-noneselected"),
+            useCustomCheckAllText: true,
+            customCheckAllText: dropdown.data("label-all") + " (#)",
+            showFilter: true,
+            filterPlaceHolder: dropdown.data("label-filterplaceholder"),
+            noItemFoundText: dropdown.data("label-noitemfound"),
+            minWidth: 250,
+            maxHeight: 250,
+            showTooltip: false,
+            listData: productDetailList,
+            onLeave: function () {
+                var productIds = self.dropdownProductDetail.fanexMultiSelect("getUncheckedProductIds");
+                if (productIds.length) {
+                    self.dropdownProduct.fanexMultiSelect("uncheck", productIds);
+                }
+                options.onDropdownHidden(self.getSelectedItems());
+            }
+        });
     };
     ProductAndProductDetailDropdownComponent.prototype.renderProductDropdown = function (options) {
         var self = this;
         var productIdWithSubProductIds = {};
+        var uncheckedProductIds = [];
         var productList = options.products.map(function (item) {
             var checkboxItem = self.buildCheckboxItem(item);
             if (item.Products) {
@@ -228,8 +219,12 @@ var ProductAndProductDetailDropdownComponent = /** @class */ (function () {
                 productIdWithSubProductIds[item.Id] = subProductIds_1;
                 checkboxItem.items = item.Products.map(function (item) {
                     subProductIds_1.push(item.Id);
+                    item.Checked || uncheckedProductIds.push(item.Id);
                     return self.buildCheckboxItem(item);
                 });
+            }
+            else {
+                item.Checked || uncheckedProductIds.push(item.Id);
             }
             return checkboxItem;
         });
@@ -262,64 +257,31 @@ var ProductAndProductDetailDropdownComponent = /** @class */ (function () {
                 }
             },
             onCheckAll: function () {
-                self.dropdownProductDetail.fanexMultiSelect("setSelectAll", this.checked);
+                var checked = this.checked;
+                self.dropdownProductDetail.fanexMultiSelect("showAllItems", checked);
+                self.dropdownProductDetail.fanexMultiSelect("disable", !checked);
             },
-            onLeave: options.onDropdownHidden
+            onLeave: function () {
+                var productIds = self.dropdownProduct.fanexMultiSelect("getCheckedValues");
+                var isError = productIds.length === 0;
+                self.dropdownProduct.fanexMultiSelect("addError", isError);
+                isError || options.onDropdownHidden({
+                    productIds: productIds,
+                    resourceIds: self.dropdownProductDetail.fanexMultiSelect("getCheckedValues")
+                });
+            }
         });
+        this.initState(uncheckedProductIds);
+    };
+    ProductAndProductDetailDropdownComponent.prototype.initState = function (uncheckedProductIds) {
+        var _this = this;
+        if (uncheckedProductIds.length) {
+            uncheckedProductIds.forEach(function (item) { return _this.handleOnCheckProduct(item, false); });
+        }
     };
     ProductAndProductDetailDropdownComponent.prototype.handleOnCheckProduct = function (productId, checked) {
-        if (checked) {
-            this.dropdownProductDetail.fanexMultiSelect("selectByCustomAttributes", { productId: productId });
-        }
-        else {
-            this.dropdownProductDetail.fanexMultiSelect("deselectByCustomAttributes", { productId: productId });
-        }
-    };
-    ProductAndProductDetailDropdownComponent.prototype.renderProductDetailDropdown = function (options) {
-        var self = this;
-        var productIdsHasDetail = {};
-        var productDetailList = options.productDetails.map(function (item) {
-            productIdsHasDetail[item.ProductId] = true;
-            return self.buildCheckboxItem(item, {
-                productId: item.ProductId
-            });
-        });
-        var dropdown = $("#" + options.selectorProductDetailId);
-        this.dropdownProductDetail = dropdown.fanexMultiSelect({
-            checkAllText: dropdown.data("label-selectall"),
-            selectedText: "# " + dropdown.data("label-selected"),
-            noneSelectedText: dropdown.data("label-noneselected"),
-            useCustomCheckAllText: true,
-            customCheckAllText: dropdown.data("label-all") + " (#)",
-            showFilter: true,
-            filterPlaceHolder: dropdown.data("label-filterplaceholder"),
-            noItemFoundText: dropdown.data("label-noitemfound"),
-            minWidth: 250,
-            maxHeight: 250,
-            showTooltip: false,
-            listData: productDetailList,
-            onCheck: function () {
-                var checked = this.checked;
-                var productId = $(this).data("productid");
-                if (checked) {
-                    self.dropdownProduct.fanexMultiSelect("select", productId);
-                }
-                else {
-                    if (!self.dropdownProductDetail.fanexMultiSelect("getSelectedItemsByCustomAttributes", { productId: productId }).length) {
-                        self.dropdownProduct.fanexMultiSelect("deselect", productId);
-                    }
-                }
-            },
-            onCheckAll: function () {
-                if (this.checked) {
-                    self.dropdownProduct.fanexMultiSelect("select", Object.keys(productIdsHasDetail));
-                }
-                else {
-                    self.dropdownProduct.fanexMultiSelect("deselect", Object.keys(productIdsHasDetail));
-                }
-            },
-            onLeave: options.onDropdownHidden
-        });
+        var action = checked ? "showItemsByCustomAttributes" : "hideItemsByCustomAttributes";
+        this.dropdownProductDetail.fanexMultiSelect(action, { productId: productId });
     };
     ProductAndProductDetailDropdownComponent.prototype.buildCheckboxItem = function (item, attributes) {
         if (attributes === void 0) { attributes = undefined; }
@@ -332,8 +294,8 @@ var ProductAndProductDetailDropdownComponent = /** @class */ (function () {
     };
     ProductAndProductDetailDropdownComponent.prototype.getSelectedItems = function () {
         return {
-            productIds: this.dropdownProduct.fanexMultiSelect("getSelectedValues"),
-            resourceIds: this.dropdownProductDetail.fanexMultiSelect("getSelectedValues")
+            productIds: this.dropdownProduct.fanexMultiSelect("getCheckedValues"),
+            resourceIds: this.dropdownProductDetail.fanexMultiSelect("getCheckedValues")
         };
     };
     return ProductAndProductDetailDropdownComponent;
@@ -413,7 +375,8 @@ var WinLossBetListView = /** @class */ (function () {
         this.cacheDOMElements();
         $("#icon-excel").click(function (e) {
             var $this = $(e.target);
-            $this.attr("href", $this.data("url") + "?" + $.param(_this.globalFormData));
+            var excelParams = $.extend({}, _this.globalFormData, { custName: $this.data("custname") });
+            $this.attr("href", $this.data("url") + "?" + $.param(excelParams));
             setTimeout(function () {
                 $this.attr("href", "javascript:;");
             }, 1000);
@@ -433,29 +396,35 @@ var WinLossBetListView = /** @class */ (function () {
         var errorExceedRow = $("#error-exceed-row");
         errorExceedRow.length
             && this.tableBetList.find("tbody tr:first td").addClass("error-exceed-row").html(errorExceedRow.val());
-        this.breadcrumbs = JSON.parse($("#breadcrumb-level-json").val());
+        var breadcrumbLevelJson = $("#breadcrumb-level-json").val();
+        this.breadcrumbs = breadcrumbLevelJson.length ? JSON.parse(breadcrumbLevelJson) : [];
     };
     WinLossBetListView.prototype.renderComponents = function () {
         var _this = this;
         this.breadcrumbLevelComponent.render(new BreadcrumbLevelOption(this.breadcrumbs, function (e) {
+            _this.tableBetList.block();
             var $this = $(e.target);
             var custLevelId = +$this.data("custlevelid");
             var reportFormData = $.extend({}, _this.globalFormData, {
                 custId: $this.data("custid"),
                 custName: $this.data("custname"),
                 custLevelId: custLevelId
-            });
-            var breadcrumbLevelJson = _this.breadcrumbs.filter(function (item) { return item.custLevelId >= custLevelId; });
-            if (breadcrumbLevelJson.length > 1) {
-                reportFormData.breadcrumbLevelJson = JSON.stringify(breadcrumbLevelJson);
+            }, _this.dateRangePickerComponent.getDateRangeValues());
+            var breadcrumbLevel = _this.breadcrumbs.filter(function (item) { return item.custLevelId >= custLevelId; });
+            if (breadcrumbLevel.length > 1) {
+                reportFormData.breadcrumbLevelJson = JSON.stringify(breadcrumbLevel);
             }
             $this.attr("href", _this.buildWinLossReportUrl(reportFormData));
         }));
-        this.dateRangePickerComponent.render(new DateRangePickerJQueryOption(function () { return _this.getBetListAndRenderWeekRange(); }));
-        this.productAndProductDetailDropdownComponent.render(new ProductAndProductDetailDropdownOption(this.productList, this.productDetailList, function () { return _this.getBetListAndRenderWeekRange(); }));
-        this.weekRangeComponent.init(new WeekRangeOption(function (dateRange) {
-            _this.getBetList($.extend(_this.globalFormData, dateRange));
-        }, this.getMomentLocale()));
+        this.dateRangePickerComponent.render(new DateRangePickerJQueryOption(function (dateRange) {
+            $.extend(_this.globalFormData, dateRange);
+            _this.getBetListAndRenderWeekRange();
+        }));
+        this.productAndProductDetailDropdownComponent.render(new ProductAndProductDetailDropdownOption(this.productList, this.productDetailList, function (productsAndResources) {
+            $.extend(_this.globalFormData, _this.dateRangePickerComponent.getDateRangeValues(), productsAndResources);
+            _this.getBetListAndRenderWeekRange();
+        }));
+        this.weekRangeComponent.init(new WeekRangeOption(function (dateRange) { return _this.getBetList($.extend(_this.globalFormData, dateRange)); }, this.getMomentLocale()));
         this.weekRangeComponent.render(this.globalFormData);
     };
     WinLossBetListView.prototype.getMomentLocale = function () {
@@ -474,11 +443,10 @@ var WinLossBetListView = /** @class */ (function () {
     };
     WinLossBetListView.prototype.getBetListAndRenderWeekRange = function () {
         var _this = this;
-        var dateRange = this.dateRangePickerComponent.getDateRangeValues();
-        var productsAndResources = this.productAndProductDetailDropdownComponent.getSelectedItems();
-        $.extend(this.globalFormData, dateRange, productsAndResources);
-        this.getBetList(this.globalFormData, function () { return _this.weekRangeComponent.render(_this.globalFormData); });
-        this.updateCurrentUrl();
+        this.getBetList(this.globalFormData, function () {
+            _this.weekRangeComponent.render(_this.globalFormData);
+            _this.updateCurrentUrl();
+        });
     };
     WinLossBetListView.prototype.getBetList = function (formData, callback) {
         var _this = this;
@@ -504,8 +472,10 @@ var WinLossBetListView = /** @class */ (function () {
         });
     };
     WinLossBetListView.prototype.updateCurrentUrl = function () {
-        var formData = $.extend({}, this.globalFormData, { breadcrumbLevelJson: JSON.stringify(this.breadcrumbs) });
-        window.top.indexManager.updateCurrentUrl($.param(formData));
+        if (this.globalFormData.productIds) {
+            var formData = $.extend({}, this.globalFormData, { breadcrumbLevelJson: JSON.stringify(this.breadcrumbs) });
+            window.top.indexManager.updateCurrentUrl($.param(formData));
+        }
     };
     return WinLossBetListView;
 }());

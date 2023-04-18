@@ -23,7 +23,6 @@ class BreadcrumbLevelComponent {
             const breadcrumbSelector = $("#" + options.selectorId);
             breadcrumbSelector
                 .html(html.join(""))
-                .removeClass("hide")
                 .find(".upline-link").off().click(options.onClick);
         }
     }

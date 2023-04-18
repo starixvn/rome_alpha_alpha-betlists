@@ -1,5 +1,5 @@
 ﻿@using Alpha.BetLists.Site.ViewModels.WinLoss
-@model WinLossNewViewModel
+@model WinLossViewModel
 @if (Model.BetListData.Total > 0)
 {
     var index = 0;
@@ -7,10 +7,6 @@
     {
         <tr id="r@(ticket.TransId)">
             <td class='w-order text-center'>@(++index)</td>
-            @if (Model.ShowMemberName)
-            {
-                <td class="text-center">@ticket.UserName</td>
-            }
             @Trans.Render(Model.Builder, ticket)
             @Choice.Render(Model.Builder, ticket, Model.TicketHelper, Model.BetListData.TicketData, Model.CanViewScoreMap(ticket))
             @Odds.Render(Model.Builder, ticket, Model.BetListData.TicketData, Model.TicketHelper.GetOddsTypeNameById)

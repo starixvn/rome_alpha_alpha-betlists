@@ -43,15 +43,6 @@
             int currencyId,
             DateTime minReportDate,
             bool isEnableSabaPromotion);
-
-        Task<IEnumerable<int>> FilterProductIdsByCustomerAsync(
-            int viewerId,
-            string site,
-            int currencyId,
-            DateTime minReportDate,
-            string productIds,
-            bool isEnableSabaPromotion,
-            IEnumerable<Product> customerProducts = null);
     }
 
     public class ProductServiceImpl : ProductService
@@ -256,21 +247,6 @@
                 new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(CustProductsCacheTimeInMinutes)));
 
             return GetProductsForCustomer(custProducts, minReportDate, isEnableSabaPromotion);
-        }
-
-        public async Task<IEnumerable<int>> FilterProductIdsByCustomerAsync(
-            int viewerId,
-            string site,
-            int currencyId,
-            DateTime minReportDate,
-            string userSelectedProductIds,
-            bool isEnableSabaPromotion,
-            IEnumerable<Product> customerProducts = null)
-        {
-            var productIdHash = userSelectedProductIds.ToIntDictionary();
-            customerProducts = customerProducts ?? await GetProductsForCustomerAsync(viewerId, site, currencyId, minReportDate, isEnableSabaPromotion);
-
-            return customerProducts.Where(product => productIdHash.ContainsKey(product.Id)).Select(product => product.Id);
         }
     }
 }

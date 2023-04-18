@@ -6,7 +6,6 @@
     using System.Linq;
     using System.Web.Hosting;
     using System.Web.Mvc;
-    using Alpha.BetLists.Extensions;
     using Alpha.BetLists.Site.ViewModels.Components;
     using BetLists.Models;
     using Fanex.BetList.Core.Builder;
@@ -70,14 +69,13 @@
                 : Enumerable.Empty<GroupProductViewModel>();
 
         protected internal static IEnumerable<ProductViewModel> BuildProductViewModels(
-            string userSelectedProductIds,
-            IEnumerable<Product> products)
+            IEnumerable<Product> products,
+            IDictionary<int, bool> userSelectedProductIds)
         {
             var productList = new List<ProductViewModel>();
 
             if (products?.Any() == true)
             {
-                var productIdHash = userSelectedProductIds.ToIntDictionary();
                 products
                     .GroupBy(product => new { product.Type, product.TypeName })
                     .ToList()
@@ -86,12 +84,12 @@
                         if (item.Key.Type == 0)
                         {
                             productList.AddRange(item.Select(
-                                p => new ProductViewModel(p.Id, p.DisplayName, productIdHash.ContainsKey(p.Id), null)));
+                                p => new ProductViewModel(p.Id, p.DisplayName, userSelectedProductIds.ContainsKey(p.Id), null)));
                         }
                         else
                         {
                             var children = item.Select(
-                                p => new ProductViewModel(p.Id, p.DisplayName, productIdHash.ContainsKey(p.Id), null)).ToList();
+                                p => new ProductViewModel(p.Id, p.DisplayName, userSelectedProductIds.ContainsKey(p.Id), null)).ToList();
                             productList.Add(new ProductViewModel(
                                 item.Key.Type,
                                 item.Key.TypeName,
@@ -105,20 +103,14 @@
         }
 
         protected internal static IEnumerable<ProductDetailViewModel> BuildProductDetailViewModels(
-            string userSelectedResourceIds,
-            IEnumerable<ProductDetail> productDetails)
-        {
-            if (productDetails.Any())
-            {
-                var resourceIdHash = userSelectedResourceIds.ToIntDictionary();
-                return productDetails.Select(p => new ProductDetailViewModel(
-                    p.ProductId,
-                    p.ResourceId,
-                    p.DisplayName,
-                    resourceIdHash.ContainsKey(p.ResourceId)));
-            }
-
-            return Enumerable.Empty<ProductDetailViewModel>();
-        }
+            IEnumerable<ProductDetail> productDetails,
+            IDictionary<int, bool> userSelectedResourceIds)
+            => productDetails.Any()
+            ? productDetails.Select(p => new ProductDetailViewModel(
+                p.ProductId,
+                p.ResourceId,
+                p.DisplayName,
+                userSelectedResourceIds.ContainsKey(p.ResourceId)))
+            : Enumerable.Empty<ProductDetailViewModel>();
     }
 }

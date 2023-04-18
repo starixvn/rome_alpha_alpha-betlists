@@ -13,7 +13,8 @@ var WinLossBetListView = /** @class */ (function () {
         this.cacheDOMElements();
         $("#icon-excel").click(function (e) {
             var $this = $(e.target);
-            $this.attr("href", $this.data("url") + "?" + $.param(_this.globalFormData));
+            var excelParams = $.extend({}, _this.globalFormData, { custName: $this.data("custname") });
+            $this.attr("href", $this.data("url") + "?" + $.param(excelParams));
             setTimeout(function () {
                 $this.attr("href", "javascript:;");
             }, 1000);
@@ -33,29 +34,35 @@ var WinLossBetListView = /** @class */ (function () {
         var errorExceedRow = $("#error-exceed-row");
         errorExceedRow.length
             && this.tableBetList.find("tbody tr:first td").addClass("error-exceed-row").html(errorExceedRow.val());
-        this.breadcrumbs = JSON.parse($("#breadcrumb-level-json").val());
+        var breadcrumbLevelJson = $("#breadcrumb-level-json").val();
+        this.breadcrumbs = breadcrumbLevelJson.length ? JSON.parse(breadcrumbLevelJson) : [];
     };
     WinLossBetListView.prototype.renderComponents = function () {
         var _this = this;
         this.breadcrumbLevelComponent.render(new BreadcrumbLevelOption(this.breadcrumbs, function (e) {
+            _this.tableBetList.block();
             var $this = $(e.target);
             var custLevelId = +$this.data("custlevelid");
             var reportFormData = $.extend({}, _this.globalFormData, {
                 custId: $this.data("custid"),
                 custName: $this.data("custname"),
                 custLevelId: custLevelId
-            });
-            var breadcrumbLevelJson = _this.breadcrumbs.filter(function (item) { return item.custLevelId >= custLevelId; });
-            if (breadcrumbLevelJson.length > 1) {
-                reportFormData.breadcrumbLevelJson = JSON.stringify(breadcrumbLevelJson);
+            }, _this.dateRangePickerComponent.getDateRangeValues());
+            var breadcrumbLevel = _this.breadcrumbs.filter(function (item) { return item.custLevelId >= custLevelId; });
+            if (breadcrumbLevel.length > 1) {
+                reportFormData.breadcrumbLevelJson = JSON.stringify(breadcrumbLevel);
             }
             $this.attr("href", _this.buildWinLossReportUrl(reportFormData));
         }));
-        this.dateRangePickerComponent.render(new DateRangePickerJQueryOption(function () { return _this.getBetListAndRenderWeekRange(); }));
-        this.productAndProductDetailDropdownComponent.render(new ProductAndProductDetailDropdownOption(this.productList, this.productDetailList, function () { return _this.getBetListAndRenderWeekRange(); }));
-        this.weekRangeComponent.init(new WeekRangeOption(function (dateRange) {
-            _this.getBetList($.extend(_this.globalFormData, dateRange));
-        }, this.getMomentLocale()));
+        this.dateRangePickerComponent.render(new DateRangePickerJQueryOption(function (dateRange) {
+            $.extend(_this.globalFormData, dateRange);
+            _this.getBetListAndRenderWeekRange();
+        }));
+        this.productAndProductDetailDropdownComponent.render(new ProductAndProductDetailDropdownOption(this.productList, this.productDetailList, function (productsAndResources) {
+            $.extend(_this.globalFormData, _this.dateRangePickerComponent.getDateRangeValues(), productsAndResources);
+            _this.getBetListAndRenderWeekRange();
+        }));
+        this.weekRangeComponent.init(new WeekRangeOption(function (dateRange) { return _this.getBetList($.extend(_this.globalFormData, dateRange)); }, this.getMomentLocale()));
         this.weekRangeComponent.render(this.globalFormData);
     };
     WinLossBetListView.prototype.getMomentLocale = function () {
@@ -74,11 +81,10 @@ var WinLossBetListView = /** @class */ (function () {
     };
     WinLossBetListView.prototype.getBetListAndRenderWeekRange = function () {
         var _this = this;
-        var dateRange = this.dateRangePickerComponent.getDateRangeValues();
-        var productsAndResources = this.productAndProductDetailDropdownComponent.getSelectedItems();
-        $.extend(this.globalFormData, dateRange, productsAndResources);
-        this.getBetList(this.globalFormData, function () { return _this.weekRangeComponent.render(_this.globalFormData); });
-        this.updateCurrentUrl();
+        this.getBetList(this.globalFormData, function () {
+            _this.weekRangeComponent.render(_this.globalFormData);
+            _this.updateCurrentUrl();
+        });
     };
     WinLossBetListView.prototype.getBetList = function (formData, callback) {
         var _this = this;
@@ -104,8 +110,10 @@ var WinLossBetListView = /** @class */ (function () {
         });
     };
     WinLossBetListView.prototype.updateCurrentUrl = function () {
-        var formData = $.extend({}, this.globalFormData, { breadcrumbLevelJson: JSON.stringify(this.breadcrumbs) });
-        window.top.indexManager.updateCurrentUrl($.param(formData));
+        if (this.globalFormData.productIds) {
+            var formData = $.extend({}, this.globalFormData, { breadcrumbLevelJson: JSON.stringify(this.breadcrumbs) });
+            window.top.indexManager.updateCurrentUrl($.param(formData));
+        }
     };
     return WinLossBetListView;
 }());

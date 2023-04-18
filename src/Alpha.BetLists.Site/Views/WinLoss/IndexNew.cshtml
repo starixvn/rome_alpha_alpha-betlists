@@ -17,10 +17,7 @@
     @StaticResources.AssetScripts.Render("/bundles/site-betlists/filter-new")
     @StaticResources.RenderScripts($"~/{AppSettings.BetlistRouting}assets/bundles/winloss/winloss-betlist")
 }
-<div class="bl_title">
-    @Resources.memberBetList - @Model.CustName
-    
-</div>
+<div class="bl_title">@Resources.memberBetList - @Model.CustName</div>
 <div class="form-inline filter">
     @DateRangePickerJQuery.Render(Model.DateRangePickerViewModel)
     @ProductAndProductDetailDropdown.Render()
@@ -34,10 +31,11 @@
         <ul>
             <li>               
                 <a href="javacript:;"
-                    id="icon-excel"
-                    class="icon icon-excel"
-                    title="@Resources.ExportToExcel"
-                    data-url="@Response.ApplyAppPathModifier($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}winloss/excel")"></a>
+                   id="icon-excel"
+                   class="icon icon-excel"
+                   title="@Resources.ExportToExcel"
+                   data-custname="@Model.CustName"
+                   data-url="@Response.ApplyAppPathModifier($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}winloss/excel")"></a>
             </li>
         </ul>
     </div>

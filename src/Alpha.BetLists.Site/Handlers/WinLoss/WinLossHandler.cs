@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using Alpha.BetLists.Models;
     using Extensions;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
@@ -16,8 +15,7 @@
 
     public class WinLossHandler :
         BetListBaseHandler,
-        IAsyncRequestHandler<WinLossQuery, WinLossViewModel>,
-        IAsyncRequestHandler<WinLossNewQuery, WinLossNewViewModel>
+        IAsyncRequestHandler<WinLossQuery, WinLossViewModel>
     {
         private readonly WinLossService winLossService;
         private readonly ProductService productService;
@@ -70,73 +68,5 @@
                productDetailsXML,
                maxTotalRow,
                maxTotalRowConfig);
-
-        public async Task<WinLossNewViewModel> Handle(WinLossNewQuery message)
-        {
-            var productsTask = productService.GetProductsForCustomerAsync(
-                message.ViewerId,
-                message.Site,
-                message.CurrencyId,
-                message.MinDate,
-                message.IsEnableSabaPromotion);
-            var productDetailsTask = productDetailService.GetProductDetailsAsync(
-                message.ViewerId,
-                message.Site,
-                message.CurrencyId);
-            await Task.WhenAll(productsTask, productDetailsTask);
-            var products = await productsTask;
-            var productDetails = await productDetailsTask;
-
-            var showContributionAmountRoundNote = message.IsGroupHeadline
-                ? productService.IsEnabledJackpot(message.Site, message.CurrencyId)
-                : message.IsEnabledJackpot;
-            var winLossParam = await CreateWinLossParam(message, products, productDetails);
-            var betlistData = await winLossService.GetBetList(winLossParam);
-
-            WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
-
-            return new WinLossNewViewModel(
-                message,
-                BuildProductViewModels(message.ProductIds, products),
-                BuildProductDetailViewModels(message.ResourceIds, await productDetailsTask),
-                betlistData,
-                Builder,
-                TicketHelper,
-                showContributionAmountRoundNote,
-                message.IsGroupHeadline,
-                betlistOutputParams: betlistData.BetlistOutputParams);
-        }
-
-        private async Task<WinLossParam> CreateWinLossParam(
-            WinLossQuery message,
-            IEnumerable<Product> products = null,
-            IEnumerable<ProductDetail> productDetails = null)
-        {
-            var validUserSelectedProductIdsTask = productService.FilterProductIdsByCustomerAsync(
-                message.ViewerId,
-                message.Site,
-                message.CurrencyId,
-                message.MinDate,
-                message.ProductIds,
-                message.IsEnableSabaPromotion,
-                products);
-            var validUserSelectedResourceIdsTask = productDetailService.FilterResourceIdsByCustomerAsync(
-                message.ViewerId,
-                message.Site,
-                message.CurrencyId,
-                message.ResourceIds,
-                productDetails);
-            await Task.WhenAll(validUserSelectedProductIdsTask, validUserSelectedResourceIdsTask);
-            var validUserSelectedProductIds = await validUserSelectedProductIdsTask;
-            var validUserSelectedResourceIds = await validUserSelectedResourceIdsTask;
-            validUserSelectedProductIds = await productDetailService.RemoveProductIdsAsync(validUserSelectedProductIds, validUserSelectedResourceIds);
-
-            return CreateWinLossParam(
-                message,
-                validUserSelectedProductIds,
-                await productDetailService.BuildProductDetailsXMLAsync(validUserSelectedProductIds, message.ResourceIds, message.Is789Y),
-                message.MaxTotalRow,
-                message.MaxTotalRowConfig);
-        }
     }
 }
