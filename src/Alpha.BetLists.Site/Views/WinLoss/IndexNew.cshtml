@@ -17,10 +17,6 @@
     @StaticResources.AssetScripts.Render("/bundles/site-betlists/filter-new")
     @StaticResources.RenderScripts($"~/{AppSettings.BetlistRouting}assets/bundles/winloss/winloss-betlist")
 }
-@if (!string.IsNullOrWhiteSpace(Model.BetlistOutputParams.ErrMsg))
-{
-    <div style="border: 1px solid #f00; color: #f00; padding: 10px">@Model.BetlistOutputParams.ErrMsg</div>
-}
 <div class="bl_title">
     @Resources.memberBetList - @Model.CustName
     
@@ -50,4 +46,7 @@
 @Html.Hidden("winloss-detail-report-path", Alpha.BetLists.Site.Helpers.UrlHelper.MapReportsPath("~/winlossdetail/"))
 @Html.Hidden("breadcrumb-level-json", Model.BreadcrumbLevelJson)
 @Html.Hidden("resource-ids", Model.ResourceIds)
-@Html.Hidden("cust-name", Model.CustName)
+@if (!string.IsNullOrWhiteSpace(Model.BetlistOutputParams.ErrMsg))
+{
+    @Html.Hidden("error-exceed-row", Model.BetlistOutputParams.ErrMsg)
+}

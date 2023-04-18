@@ -46,6 +46,10 @@ a {
         &.choice-block {
             white-space: normal;
         }
+
+        &.error-exceed-row {
+            color: $msg-error-color;
+        }
     }
 
     tbody {

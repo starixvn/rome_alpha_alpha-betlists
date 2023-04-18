@@ -1,15 +1,9 @@
-﻿@using Alpha.BetLists.AppResources;
-
+﻿﻿@using Alpha.BetLists.AppResources;
 @helper Render(int colspan)
 {
     <tbody>
-        @RenderWithoutTableBody(colspan)
+        <tr>
+            <td colspan="@colspan" class="text-center">@Resources.NoInformationIsAvailable</td>
+        </tr>
     </tbody>
-}
-
-@helper RenderWithoutTableBody(int colspan)
-{
-    <tr>
-        <td colspan="@colspan" class="text-center">@Resources.NoInformationIsAvailable</td>
-    </tr>
 }

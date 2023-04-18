@@ -2,7 +2,8 @@
 interface Window {
     $: JQueryStatic,
     productList: any,
-    productDetailList: any
+    productDetailList: any,
+    indexManager: any
 }
 
 class WinLossBetListView {
@@ -15,8 +16,8 @@ class WinLossBetListView {
     private globalFormData: any;
 
     private winlossBetListUrl: string;
-    private momentLocale: string;
     private tableBetList: JQuery;
+    private breadcrumbs: any;
 
     constructor(
         breadcrumbLevelComponent: BreadcrumbLevelComponent,
@@ -43,6 +44,10 @@ class WinLossBetListView {
             }, 1000);
         });
 
+        this.renderComponents();
+    }
+
+    private cacheDOMElements() {
         this.globalFormData = {
             fromDate: $("#from-date").val(),
             toDate: $("#to-date").val(),
@@ -50,41 +55,32 @@ class WinLossBetListView {
             resourceIds: $("#resource-ids").val(),
             custId: $("#cust-id").val()
         };
-
-        this.renderComponents();
-    }
-
-    private cacheDOMElements() {
         this.winlossBetListUrl = $("#betlist-path").val() + "winloss/getdata?";
-        const locale = {
-            "th-TH": "th",
-            "vi-VN": "vi",
-            "zh-CN": "zh-cn",
-            "zh-TW": "zh-tw",
-            "default": "en"
-        };
-        this.momentLocale = locale[window.top.$("#language").data("currentlanguage")] || locale.default;
-        this.tableBetList = $(".tbl-betlist");
+        
+        this.tableBetList = $("#tbl-betlist");
+        const errorExceedRow = $("#error-exceed-row");
+        errorExceedRow.length
+            && this.tableBetList.find("tbody tr:first td").addClass("error-exceed-row").html(errorExceedRow.val());
+
+        this.breadcrumbs = JSON.parse($("#breadcrumb-level-json").val());
     }
 
     private renderComponents() {
-        const self = this;
-        const breadcrumbLevelJson = this.getBreadcrumbLevelJson();
-        this.breadcrumbLevelComponent.render(new BreadcrumbLevelOption(breadcrumbLevelJson, function () {
-            const $this = $(this);
+        this.breadcrumbLevelComponent.render(new BreadcrumbLevelOption(this.breadcrumbs, (e) => {
+            const $this = $(e.target);
             const custLevelId = +$this.data("custlevelid")
-            const reportFormData = $.extend({}, self.globalFormData, {
+            const reportFormData = $.extend({}, this.globalFormData, {
                 custId: $this.data("custid"),
                 custName: $this.data("custname"),
                 custLevelId
             });
 
-            const breadcrumbs = breadcrumbLevelJson.filter((item) => item.custLevelId >= custLevelId);
-            if (breadcrumbs.length > 1) {
-                reportFormData.breadcrumbLevelJson = JSON.stringify(breadcrumbs);
+            const breadcrumbLevelJson = this.breadcrumbs.filter((item) => item.custLevelId >= custLevelId);
+            if (breadcrumbLevelJson.length > 1) {
+                reportFormData.breadcrumbLevelJson = JSON.stringify(breadcrumbLevelJson);
             }
 
-            $this.attr("href", self.buildWinLossReportUrl(reportFormData));
+            $this.attr("href", this.buildWinLossReportUrl(reportFormData));
         }));
 
         this.dateRangePickerComponent.render(new DateRangePickerJQueryOption(() => this.getBetListAndRenderWeekRange()));
@@ -96,19 +92,20 @@ class WinLossBetListView {
 
         this.weekRangeComponent.init(new WeekRangeOption((dateRange) => {
             this.getBetList($.extend(this.globalFormData, dateRange));
-        }, this.momentLocale));
+        }, this.getMomentLocale()));
         this.weekRangeComponent.render(this.globalFormData);
     }
 
-    private getBreadcrumbLevelJson() {
-        const breadcrumbLevelJson = JSON.parse($("#breadcrumb-level-json").val());
-        breadcrumbLevelJson.push({
-            custId: this.globalFormData.custId,
-            custName: $("#cust-name").val(),
-            custLevelId: 1
-        });
+    private getMomentLocale() {
+        const locale = {
+            "th-TH": "th",
+            "vi-VN": "vi",
+            "zh-CN": "zh-cn",
+            "zh-TW": "zh-tw",
+            "default": "en"
+        };
 
-        return breadcrumbLevelJson;
+        return locale[window.top.$("#language").data("currentlanguage")] || locale.default;
     }
 
     private buildWinLossReportUrl(reportFormData) {
@@ -122,6 +119,7 @@ class WinLossBetListView {
         $.extend(this.globalFormData, dateRange, productsAndResources);
 
         this.getBetList(this.globalFormData, () => this.weekRangeComponent.render(this.globalFormData));
+        this.updateCurrentUrl();
     }
 
     private getBetList(formData: any, callback = Function()) {
@@ -142,6 +140,11 @@ class WinLossBetListView {
                 this.tableBetList.unblock();
             }
         });
+    }
+
+    private updateCurrentUrl() {
+        const formData = $.extend({}, this.globalFormData, { breadcrumbLevelJson: JSON.stringify(this.breadcrumbs) });
+        window.top.indexManager.updateCurrentUrl($.param(formData));
     }
 }
 

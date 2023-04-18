@@ -51,6 +51,8 @@ a {
       white-space: normal; }
     .tbl-betlist td.choice-block {
       white-space: normal; }
+    .tbl-betlist td.error-exceed-row {
+      color: #fe0000; }
   .tbl-betlist tbody tr:hover td {
     background-color: #f8eb95; }
   .tbl-betlist tbody tr#tr_footer:hover td {

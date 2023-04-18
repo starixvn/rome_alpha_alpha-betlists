@@ -37,5 +37,14 @@
 }
 else
 {
-    @Common.NoInfomation.RenderWithoutTableBody(Model.TotalColumn)
+    <tr>
+        @if (string.IsNullOrWhiteSpace(Model.BetlistOutputParams.ErrMsg))
+        {
+            <td colspan="@Model.TotalColumn" class="text-center">@Resources.NoInformationIsAvailable</td>
+        }
+        else
+        {
+            <td colspan="@Model.TotalColumn" class="text-center error-exceed-row">@Model.BetlistOutputParams.ErrMsg</td>
+        }
+    </tr>
 }
