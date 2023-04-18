@@ -32,6 +32,8 @@ a {
     position: sticky;
     top: -1px;
     z-index: 3; }
+  .tbl-betlist-sticky tbody tr:last-child td {
+    border-bottom: 0; }
   .tbl-betlist th, .tbl-betlist td {
     height: 28px;
     padding: 4px 8px;
