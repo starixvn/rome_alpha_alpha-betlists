@@ -31,6 +31,10 @@ a {
   font-size: 13px;
   text-align: left;
   width: 100%; }
+  .tbl-betlist-sticky thead tr th {
+    position: sticky;
+    top: -1px;
+    z-index: 3; }
   .tbl-betlist th, .tbl-betlist td {
     height: 28px;
     padding: 4px 8px;
@@ -50,6 +54,8 @@ a {
       white-space: normal; }
     .tbl-betlist td.choice-block {
       white-space: normal; }
+    .tbl-betlist td.error-exceed-row {
+      color: #fe0000; }
   .tbl-betlist tbody tr:hover td {
     background-color: #f8eb95; }
   .tbl-betlist tbody tr#tr_footer:hover td {
@@ -500,6 +506,9 @@ div.ticket-list div.void > div.match, div.ticket-list div.void div.firstGoal, di
 .game-id {
   color: #fff; }
 
+.filter {
+  padding-top: 0;
+  padding-right: 0; }
 
 #details-modal .modal-dialog {
   margin: 30px auto; }

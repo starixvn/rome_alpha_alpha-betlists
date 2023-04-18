@@ -23,6 +23,18 @@ a {
     text-align: left;
     width: 100%;
 
+    &-sticky {
+        thead {
+            tr {
+                th {
+                    position: sticky;
+                    top: -1px;
+                    z-index: 3;
+                }
+            }
+        }
+    }
+
     th, td {
         height: $height-normal;
         padding: 4px 8px;

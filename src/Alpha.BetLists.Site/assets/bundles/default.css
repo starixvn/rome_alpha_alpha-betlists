@@ -28,6 +28,10 @@ a {
   font-size: 13px;
   text-align: left;
   width: 100%; }
+  .tbl-betlist-sticky thead tr th {
+    position: sticky;
+    top: -1px;
+    z-index: 3; }
   .tbl-betlist th, .tbl-betlist td {
     height: 28px;
     padding: 4px 8px;
