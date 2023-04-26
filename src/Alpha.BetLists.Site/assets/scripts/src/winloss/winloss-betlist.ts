@@ -37,6 +37,11 @@ class WinLossBetListView {
     init() {
         this.cacheDOMElements();
         $("#icon-excel").click((e) => {
+            if (this.isInvalidGlobalFormData()) {
+                e.preventDefault();
+                return;
+            }
+
             const $this = $(e.target);
             const excelParams = $.extend({}, this.globalFormData, { custName: $this.data("custname") })
             $this.attr("href", $this.data("url") + "?" + $.param(excelParams));
@@ -69,6 +74,10 @@ class WinLossBetListView {
 
     private renderComponents() {
         this.breadcrumbLevelComponent.render(new BreadcrumbLevelOption(this.breadcrumbs, (e) => {
+            if (this.isInvalidGlobalFormData()) {
+                return;
+            }
+
             this.tableBetList.block();
             const $this = $(e.target);
             const custLevelId = +$this.data("custlevelid")
@@ -89,6 +98,10 @@ class WinLossBetListView {
         this.dateRangePickerComponent.render(new DateRangePickerJQueryOption(
             (dateRange) => {
                 $.extend(this.globalFormData, dateRange);
+                if (this.isInvalidGlobalFormData()) {
+                    return;
+                }
+
                 this.getBetListAndRenderWeekRange();
             }));
 
@@ -97,11 +110,22 @@ class WinLossBetListView {
             this.productDetailList,
             (productsAndResources) => {
                 $.extend(this.globalFormData, this.dateRangePickerComponent.getDateRangeValues(), productsAndResources);
+                if (this.isInvalidGlobalFormData()) {
+                    return;
+                }
+
                 this.getBetListAndRenderWeekRange();
             }));
 
         this.weekRangeComponent.init(
-            new WeekRangeOption((dateRange) => this.getBetList($.extend(this.globalFormData, dateRange)), this.getMomentLocale()));
+            new WeekRangeOption((dateRange) => {
+                if (this.isInvalidGlobalFormData()) {
+                    return;
+                }
+
+                $.extend(this.globalFormData, dateRange);
+                this.getBetList();
+            }, this.getMomentLocale()));
         this.weekRangeComponent.render(this.globalFormData);
     }
 
@@ -123,15 +147,15 @@ class WinLossBetListView {
     }
 
     private getBetListAndRenderWeekRange() {
-        this.getBetList(this.globalFormData, () => {
+        this.getBetList(() => {
             this.weekRangeComponent.render(this.globalFormData);
             this.updateCurrentUrl();
         });
     }
 
-    private getBetList(formData: any, callback = Function()) {
+    private getBetList(callback = Function()) {
         this.tableBetList.block();
-        $.get(this.winlossBetListUrl + $.param(formData), (html) => {
+        $.get(this.winlossBetListUrl + $.param(this.globalFormData), (html) => {
             callback();
             this.tableBetList.find("tbody").html(html);
             this.tableBetList.unblock();
@@ -147,6 +171,10 @@ class WinLossBetListView {
                 this.tableBetList.unblock();
             }
         });
+    }
+
+    private isInvalidGlobalFormData() {
+        return this.globalFormData.productIds.length === 0;
     }
 
     private updateCurrentUrl() {
