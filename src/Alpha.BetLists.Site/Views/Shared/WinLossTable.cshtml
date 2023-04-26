@@ -1,72 +1,74 @@
 ﻿@using Alpha.BetLists.Site.ViewModels.WinLoss
 @model WinLossViewModel
-<table class="tblRpt tblRpt-bordered tblRpt-striped width-100per tablesorter tblRpt-hover tbl-betlist tbl-betlist-sticky" id="tbl-betlist">
-    <thead>
-        <tr>
-            <th class="col-number">#</th>
-            @if (Model.ShowMemberName)
-            {
-                <th class="col-member">@Resources.member</th>
-            }
-            <th class="col-transtime">@Resources.transtime</th>
-            <th>@Resources.choice</th>
-            <th class="col-odds">@Resources.odds</th>
-            <th class="col-stake">@Resources.stake</th>
-            <th class="col-winloss">@Resources.lblWinLoss</th>
-            <th class="col-status">@Resources.status</th>
-            @if (Model.AllowToViewSuperPT)
-            {
-                <th class="col-pt">@Resources.superPT/ @Resources.lblComm</th>
-            }
-            @if (Model.AllowToViewMasterPT)
-            {
-                <th class="col-pt">@Resources.masterPT/ @Resources.lblComm</th>
-            }
-            <th class="col-pt">@Resources.agentPT/ @Resources.lblComm</th>
-        </tr>
-    </thead>
-    @if (Model.BetListData.Tickets.Any())
-    {
-        <tbody>
-            @for (int i = 0; i < Model.BetListData.Total; i++)
-            {
-                var ticket = Model.BetListData.Tickets.ElementAt(i);
-                <tr id="r@(ticket.TransId)">
-                    <td class='w-order text-center'>@(i + 1)</td>
-                    @if (Model.ShowMemberName)
-                    {
-                        <td class="text-center">@ticket.UserName</td>
-                    }
-                    @Trans.Render(Model.Builder, ticket)
-                    @Choice.Render(Model.Builder, ticket, Model.TicketHelper, Model.BetListData.TicketData, Model.CanViewScoreMap(ticket))
-                    @Odds.Render(Model.Builder, ticket, Model.BetListData.TicketData, Model.TicketHelper.GetOddsTypeNameById)
-                    @Stake.Render(Model.Builder, ticket, Model.TicketHelper)
-                    @WinLoss.Render(ticket)
-                    @Status.Render(Model.Builder, ticket, Model.TicketHelper, Model.BetListData.TicketData, Model.DisplayVNIP)
-                    @if (Model.AllowToViewSuperPT)
-                    {
-                        @PositionTaking.Render(ticket, Model.BetListData.TicketData, UserLevel.Super)
-                    }
-                    @if (Model.AllowToViewMasterPT)
-                    {
-                        @PositionTaking.Render(ticket, Model.BetListData.TicketData, UserLevel.Master)
-                    }
-                    @PositionTaking.Render(ticket, Model.BetListData.TicketData, UserLevel.Agent)
-                </tr>
-            }
-            @Common.Footer.Render(
-            Model.Footer.SubTotalColSpan,
-            Model.Footer.StatusColSpan,
-            Model.Footer.SubTotalWinLoss,
-            Model.Footer.SubTotalCommission,
-            Model.Footer.Total)
-        </tbody>
-    }
-    else
-    {
-        @Common.NoInfomation.Render(Model.TotalColumn)
-    }
-</table>
+<div class="scrollable">
+    <table class="tblRpt tblRpt-bordered tblRpt-striped width-100per tablesorter tblRpt-hover tbl-betlist tbl-betlist-sticky" id="tbl-betlist">
+        <thead>
+            <tr>
+                <th class="col-number">#</th>
+                @if (Model.ShowMemberName)
+                {
+                    <th class="col-member">@Resources.member</th>
+                }
+                <th class="col-transtime">@Resources.transtime</th>
+                <th>@Resources.choice</th>
+                <th class="col-odds">@Resources.odds</th>
+                <th class="col-stake">@Resources.stake</th>
+                <th class="col-winloss">@Resources.lblWinLoss</th>
+                <th class="col-status">@Resources.status</th>
+                @if (Model.AllowToViewSuperPT)
+                {
+                    <th class="col-pt">@Resources.superPT/ @Resources.lblComm</th>
+                }
+                @if (Model.AllowToViewMasterPT)
+                {
+                    <th class="col-pt">@Resources.masterPT/ @Resources.lblComm</th>
+                }
+                <th class="col-pt">@Resources.agentPT/ @Resources.lblComm</th>
+            </tr>
+        </thead>
+        @if (Model.BetListData.Tickets.Any())
+        {
+            <tbody>
+                @for (int i = 0; i < Model.BetListData.Total; i++)
+                {
+                    var ticket = Model.BetListData.Tickets.ElementAt(i);
+                    <tr id="r@(ticket.TransId)">
+                        <td class='w-order text-center'>@(i + 1)</td>
+                        @if (Model.ShowMemberName)
+                        {
+                            <td class="text-center">@ticket.UserName</td>
+                        }
+                        @Trans.Render(Model.Builder, ticket)
+                        @Choice.Render(Model.Builder, ticket, Model.TicketHelper, Model.BetListData.TicketData, Model.CanViewScoreMap(ticket))
+                        @Odds.Render(Model.Builder, ticket, Model.BetListData.TicketData, Model.TicketHelper.GetOddsTypeNameById)
+                        @Stake.Render(Model.Builder, ticket, Model.TicketHelper)
+                        @WinLoss.Render(ticket)
+                        @Status.Render(Model.Builder, ticket, Model.TicketHelper, Model.BetListData.TicketData, Model.DisplayVNIP)
+                        @if (Model.AllowToViewSuperPT)
+                        {
+                            @PositionTaking.Render(ticket, Model.BetListData.TicketData, UserLevel.Super)
+                        }
+                        @if (Model.AllowToViewMasterPT)
+                        {
+                            @PositionTaking.Render(ticket, Model.BetListData.TicketData, UserLevel.Master)
+                        }
+                        @PositionTaking.Render(ticket, Model.BetListData.TicketData, UserLevel.Agent)
+                    </tr>
+                }
+                @Common.Footer.Render(
+                Model.Footer.SubTotalColSpan,
+                Model.Footer.StatusColSpan,
+                Model.Footer.SubTotalWinLoss,
+                Model.Footer.SubTotalCommission,
+                Model.Footer.Total)
+            </tbody>
+        }
+        else
+        {
+            @Common.NoInfomation.Render(Model.TotalColumn)
+        }
+    </table>
+</div>
 <div class="comm_note">
     <div class="title">
         <span class="star">*</span>@Resources.Note

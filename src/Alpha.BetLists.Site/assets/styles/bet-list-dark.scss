@@ -15,7 +15,9 @@ a {
         color: $link-hover-color;
     }
 }
-
+.scrollable {
+    overflow: auto;
+}
 .tbl-betlist {
     border-collapse: collapse;
     background-color: #212223;

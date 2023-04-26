@@ -22,6 +22,9 @@ body {
 a {
   text-decoration: none; }
 
+.scrollable {
+  overflow: auto; }
+
 .tbl-betlist {
   border-collapse: collapse;
   background-color: #fff;
