@@ -17,6 +17,10 @@ a {
 }
 .scrollable {
     overflow: auto;
+
+    .blockOverlay {
+        opacity: 0 !important;
+    }
 }
 .tbl-betlist {
     border-collapse: collapse;
