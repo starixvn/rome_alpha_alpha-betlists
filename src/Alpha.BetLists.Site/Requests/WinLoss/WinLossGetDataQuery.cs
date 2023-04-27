@@ -10,6 +10,8 @@
 
     public class WinLossGetDataQuery : WinLossQuery, IRequest<WinLossViewModel>
     {
+        private const int HistoryMaxDateRange = 31;
+
         public WinLossGetDataQuery(IUser viewer) : base(viewer)
         {
         }
@@ -46,20 +48,38 @@
             }
         }
 
+        public DateTime? WeekFromDate { get; set; }
+
+        public DateTime? WeekToDate { get; set; }
+
         public bool IsValid()
         {
             if (FromDate <= ToDate && MinDate <= FromDate)
             {
                 var historicPivotDate = HistoricPivotDate;
-                const int maxDaysInOneMonth = 31;
 
-                return !(
-                    ToDate < historicPivotDate && ToDate.Subtract(FromDate).TotalDays >= maxDaysInOneMonth
-                    || FromDate < historicPivotDate && historicPivotDate <= ToDate
+                var isValid = !(
+                    ToDate < historicPivotDate && ToDate.Subtract(FromDate).TotalDays >= HistoryMaxDateRange
+                    || FromDate < historicPivotDate && historicPivotDate <= ToDate && ToDate.Subtract(FromDate).TotalDays >= HistoryMaxDateRange
                 );
+
+                return isValid && IsValidWeekRange();
             }
 
             return false;
+        }
+
+        private bool IsValidWeekRange()
+        {
+            if (!WeekFromDate.HasValue && !WeekToDate.HasValue)
+            {
+                return true;
+            }
+
+            return WeekFromDate.HasValue
+                && WeekToDate.HasValue
+                && WeekFromDate.Value >= FromDate
+                && WeekToDate.Value <= ToDate;
         }
     }
 }

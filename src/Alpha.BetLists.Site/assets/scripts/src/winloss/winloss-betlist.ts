@@ -80,19 +80,20 @@ class WinLossBetListView {
 
             this.tableBetList.block();
             const $this = $(e.target);
-            const custLevelId = +$this.data("custlevelid")
-            const reportFormData = $.extend({}, this.globalFormData, {
+            const custLevelId = +$this.data("custlevelid");
+            const breadcrumbLevel = this.breadcrumbs.filter((item) => item.custLevelId >= custLevelId);
+
+            let reportParams: any = this.weekRangeComponent.getActiveWeekRange();
+            if (breadcrumbLevel.length > 1) {
+                reportParams.breadcrumbLevelJson = JSON.stringify(breadcrumbLevel);
+            }
+            $.extend(reportParams, this.globalFormData, {
                 custId: $this.data("custid"),
                 custName: $this.data("custname"),
                 custLevelId
             }, this.dateRangePickerComponent.getDateRangeValues());
 
-            const breadcrumbLevel = this.breadcrumbs.filter((item) => item.custLevelId >= custLevelId);
-            if (breadcrumbLevel.length > 1) {
-                reportFormData.breadcrumbLevelJson = JSON.stringify(breadcrumbLevel);
-            }
-
-            $this.attr("href", this.buildWinLossReportUrl(reportFormData));
+            $this.attr("href", this.buildWinLossReportUrl(reportParams));
         }));
 
         this.dateRangePickerComponent.render(new DateRangePickerJQueryOption(
@@ -123,10 +124,23 @@ class WinLossBetListView {
                     return;
                 }
 
+                this.addIsWeekSelectionForStatistic();
+
                 $.extend(this.globalFormData, dateRange);
                 this.getBetList();
             }, this.getMomentLocale()));
-        this.weekRangeComponent.render(this.globalFormData);
+
+        const weekFromDate = $("#week-from-date");
+        const weekToDate = $("#week-to-date");
+        const activeWeekRange = weekFromDate.length > 0 && weekToDate.length > 0
+            ? { weekFromDate: weekFromDate.val(), weekToDate: weekToDate.val() }
+            : undefined;
+        this.weekRangeComponent.render(this.globalFormData, activeWeekRange);
+        // update fromDate/toDate of globalFormData if activeWeekRange is NOT undefined
+        if (activeWeekRange) {
+            this.globalFormData.fromDate = activeWeekRange.weekFromDate;
+            this.globalFormData.toDate = activeWeekRange.weekToDate;
+        }
     }
 
     private getMomentLocale() {
@@ -148,12 +162,14 @@ class WinLossBetListView {
 
     private getBetListAndRenderWeekRange() {
         this.getBetList(() => {
-            this.weekRangeComponent.render(this.globalFormData);
+            this.weekRangeComponent.render(this.globalFormData, undefined);
             this.updateCurrentUrl();
         });
     }
 
     private getBetList(callback = Function()) {
+        this.addUnselectedProductAndProductDetailForStatistic();
+
         this.tableBetList.block();
         $.get(this.winlossBetListUrl + $.param(this.globalFormData), (html) => {
             callback();
@@ -170,7 +186,7 @@ class WinLossBetListView {
             } else {
                 this.tableBetList.unblock();
             }
-        });
+        }).always(() => this.removeIsWeekSelectionForStatistic());
     }
 
     private isInvalidGlobalFormData() {
@@ -182,6 +198,32 @@ class WinLossBetListView {
             const formData = $.extend({}, this.globalFormData, { breadcrumbLevelJson: JSON.stringify(this.breadcrumbs) });
             window.top.indexManager.updateCurrentUrl($.param(formData));
         }
+    }
+
+    private addUnselectedProductAndProductDetailForStatistic() {
+        let moreParams: any = {};
+        const productAndProductDetail = this.productAndProductDetailDropdownComponent.getUncheckedValues();
+        if (productAndProductDetail.unselectedProductIds) {
+            moreParams.unselectedProductIds = productAndProductDetail.unselectedProductIds;
+        } else {
+            delete this.globalFormData.unselectedProductIds;
+        }
+
+        if (productAndProductDetail.unselectedResourceIds) {
+            moreParams.unselectedResourceIds = productAndProductDetail.unselectedResourceIds;
+        } else {
+            delete this.globalFormData.unselectedResourceIds;
+        }
+
+        $.extend(this.globalFormData, moreParams);
+    }
+
+    private addIsWeekSelectionForStatistic() {
+        this.globalFormData.isWeekSelection = 1;
+    }
+
+    private removeIsWeekSelectionForStatistic() {
+        delete this.globalFormData.isWeekSelection;
     }
 }
 

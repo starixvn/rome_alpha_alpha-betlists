@@ -1,6 +1,7 @@
 ﻿namespace Alpha.BetLists.Site.ViewModels.WinLoss
 {
     using System.Collections.Generic;
+    using Alpha.BetLists.Extensions;
     using Alpha.BetLists.Models;
     using Alpha.BetLists.Site.Requests.WinLoss;
     using Alpha.BetLists.Site.ViewModels.Components;
@@ -40,6 +41,8 @@
                 query.MinDate);
             Products = products;
             ProductDetails = productDetails;
+            WeekFromDate = query.WeekFromDate.HasValue ? query.WeekFromDate.Value.ToShortDateWithSlash() : string.Empty;
+            WeekToDate = query.WeekToDate.HasValue ? query.WeekToDate.Value.ToShortDateWithSlash() : string.Empty;
         }
 
         public string BreadcrumbLevelJson { get; set; }
@@ -49,5 +52,9 @@
         public IEnumerable<ProductViewModel> Products { get; }
 
         public IEnumerable<ProductDetailViewModel> ProductDetails { get; }
+
+        public string WeekFromDate { get; }
+
+        public string WeekToDate { get; }
     }
 }

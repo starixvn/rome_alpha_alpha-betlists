@@ -120,8 +120,8 @@
             return new WinLossParam(
                 message.CustId,
                 validUserSelectedProductIds,
-                message.FromDate,
-                message.ToDate,
+                message.WeekFromDate ?? message.FromDate,
+                message.WeekToDate ?? message.ToDate,
                 message.LimitedDateToShowInfo,
                 message.Language,
                 await productDetailService.BuildProductDetailsXMLAsync(validUserSelectedProductIds, message.ResourceIds, message.Is789Y),

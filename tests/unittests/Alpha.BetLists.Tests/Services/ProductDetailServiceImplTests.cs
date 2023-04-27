@@ -1,5 +1,6 @@
 ﻿namespace Alpha.BetLists.Tests.Services
 {
+    using System;
     using System.Collections.Generic;
     using System.Collections.Specialized;
     using System.Threading.Tasks;
@@ -15,25 +16,30 @@
     [Trait("Category", "BaseFunction")]
     public class ProductDetailServiceImplTests
     {
+        private readonly Func<string, int, string> getProductDetailName;
         private readonly IDynamicRepository dynamicRepository;
         private readonly ProductDetailService productDetailService;
 
         public ProductDetailServiceImplTests()
         {
+            getProductDetailName = (refId, resourceId) => $"Product Detail {resourceId}";
+            Func<int, string, int, int, bool> canViewBySite = (viewerId, site, currencyId, productId) => true;
+            Func<int, bool> canViewProduct = (productId) => true;
+
             dynamicRepository = Substitute.For<IDynamicRepository>();
-            productDetailService = new ProductDetailServiceImpl(dynamicRepository);
+            productDetailService = new ProductDetailServiceImpl(getProductDetailName, canViewBySite, canViewProduct, dynamicRepository);
 
             dynamicRepository
                 .FetchAsync<ProductDetail>(Arg.Any<GetProductsDetailCriteria>())
                 .Returns(new List<ProductDetail>
                 {
-                    new ProductDetail(1, ProductIdConstants.Pragmatic, 200, 0, "0", "0"),
-                    new ProductDetail(2, ProductIdConstants.Pragmatic, 200, 0, "0", "0"),
-                    new ProductDetail(3, ProductIdConstants.Sportsbook, 200, 0, "0", "0"),
-                    new ProductDetail(4, ProductIdConstants.Sportsbook, 200, 0, "0", "0"),
-                    new ProductDetail(5, ProductIdConstants.Allbet, 200, 0, "0", "0"),
-                    new ProductDetail(6, ProductIdConstants.SexyGaming, 200, 0, "0", "0"),
-                    new ProductDetail(7, ProductIdConstants.SpadeGaming, 200, 0, "0", "0"),
+                    new ProductDetail("ProductDetail", 1, ProductIdConstants.Pragmatic, 200, 0, "0", "0"),
+                    new ProductDetail("ProductDetail", 2, ProductIdConstants.Pragmatic, 200, 0, "0", "0"),
+                    new ProductDetail("ProductDetail", 3, ProductIdConstants.Sportsbook, 200, 0, "0", "0"),
+                    new ProductDetail("ProductDetail", 4, ProductIdConstants.Sportsbook, 200, 0, "0", "0"),
+                    new ProductDetail("ProductDetail", 5, ProductIdConstants.Allbet, 200, 0, "0", "0"),
+                    new ProductDetail("ProductDetail", 6, ProductIdConstants.SexyGaming, 200, 0, "0", "0"),
+                    new ProductDetail("ProductDetail", 7, ProductIdConstants.SpadeGaming, 200, 0, "0", "0"),
                 });
         }
 
