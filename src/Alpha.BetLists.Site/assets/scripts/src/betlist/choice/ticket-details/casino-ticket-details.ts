@@ -590,6 +590,37 @@
                 'Jili - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
         }
     }
+
+    export class YeeBetTicketDetails extends BaseTicketDetails {
+        private static instance: YeeBetTicketDetails;
+
+        public static get Instance() {
+            this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new YeeBetTicketDetails() : this.instance;
+            return this.instance;
+        }
+
+        public ShowYeeBetTicketDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
+            const params = '?refno=' + refNo
+                + '&custid=' + custId
+                + '&transType=' + transType
+                + '&sportName=YeeBet&productId=76';
+
+            let width = 1147;
+            let roleId = Number(this.ViewerLevelId);
+
+            if (roleId <= 3) {
+                width -= 105;
+            }
+
+            if (roleId <= 2) {
+                width -= 105;
+            }
+
+            Common.PopupDetails.Instance(window.top).Show(
+                Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params,
+                'YeeBet - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+        }
+    }
 }
 
 let showRnGCasinoDetails: Function;
@@ -625,6 +656,7 @@ let showFGGBetDetails: Function;
 let showSealEntertainmentBetDetails: Function;
 let showMGRNGCasinoBetDetails: Function;
 let showJiliBetDetails: Function;
+let showYeeBetBetDetails: Function;
 
 $(document).ready(() => {
     showRnGCasinoDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowRnGCasinoDetails;
@@ -660,4 +692,5 @@ $(document).ready(() => {
     showSealEntertainmentBetDetails = BetList.Choice.TicketDetails.SealEntertainmentTicketDetails.Instance.ShowSealEntertainmentBetDetails;
     showMGRNGCasinoBetDetails = BetList.Choice.TicketDetails.MGRNGTicketDetails.Instance.ShowMGRNGCasinoBetDetails;
     showJiliBetDetails = BetList.Choice.TicketDetails.JiliTicketDetails.Instance.ShowJiliBetDetails;
+    showYeeBetBetDetails = BetList.Choice.TicketDetails.YeeBetTicketDetails.Instance.ShowYeeBetTicketDetails;
 })
