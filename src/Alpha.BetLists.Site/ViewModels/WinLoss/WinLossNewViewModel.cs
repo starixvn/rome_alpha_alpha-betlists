@@ -43,6 +43,7 @@
             ProductDetails = productDetails;
             WeekFromDate = query.WeekFromDate.HasValue ? query.WeekFromDate.Value.ToShortDateWithSlash() : string.Empty;
             WeekToDate = query.WeekToDate.HasValue ? query.WeekToDate.Value.ToShortDateWithSlash() : string.Empty;
+            Language = query.Language;
         }
 
         public string BreadcrumbLevelJson { get; set; }
@@ -56,5 +57,7 @@
         public string WeekFromDate { get; }
 
         public string WeekToDate { get; }
+
+        public string Language { get; }
     }
 }

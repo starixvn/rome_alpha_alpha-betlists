@@ -11,6 +11,19 @@ body {
 a {
     text-decoration: none;
 }
+.flex {
+    display: flex;
+    flex-direction: column;
+    max-height: 100%;
+
+    .comm_note {
+        float: none;
+    }
+
+    .scrollable{
+        flex: 1;
+    }
+}
 .scrollable {
     overflow: auto;
 
@@ -18,6 +31,22 @@ a {
         opacity: 0 !important;
     }
 }
+.tblRpt-freeze-header {
+    border-top: 0 !important;
+
+    thead {
+        tr {
+            th {
+                position: sticky !important;
+                position: -webkit-sticky !important;
+                top: 0 !important;
+                border-top: 0 !important;
+                z-index: 23;
+            }
+        }
+    }
+}
+
 .tbl-betlist {
     border-collapse: collapse;
     background-color: #fff;

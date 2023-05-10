@@ -35,12 +35,15 @@ var BreadcrumbLevelComponent = /** @class */ (function () {
 //# sourceMappingURL=breadcrumb-level.js.map
 "use strict";
 var DateRangePickerJQueryOption = /** @class */ (function () {
-    function DateRangePickerJQueryOption(onClosed, selectorId) {
+    function DateRangePickerJQueryOption(onClosed, language, selectorId) {
         if (onClosed === void 0) { onClosed = Function(); }
+        if (language === void 0) { language = "default"; }
         if (selectorId === void 0) { selectorId = "daterange-picker"; }
         this.onClosed = onClosed;
+        this.language = language;
         this.selectorId = selectorId;
         this.onClosed = onClosed;
+        this.language = language;
         this.selectorId = selectorId;
     }
     return DateRangePickerJQueryOption;
@@ -52,15 +55,15 @@ var DateRangePickerJQueryComponent = /** @class */ (function () {
     DateRangePickerJQueryComponent.prototype.render = function (options) {
         var _this = this;
         var dateRangePicker = $("#" + options.selectorId);
-        var historicPivotDateText = dateRangePicker.data("historicpivotdate");
-        var historicPivotDate = moment(historicPivotDateText);
+        this.historicPivotDateText = dateRangePicker.data("historicpivotdate");
+        var historicPivotDate = moment(this.historicPivotDateText);
         this.fromDate = dateRangePicker.data("fromdate");
         this.toDate = dateRangePicker.data("todate");
         dateRangePicker
             .dateRangePicker({
             format: alphaReports.format.shortDateWithSlash_DatePicker,
             separator: " - ",
-            language: "en",
+            language: options.language,
             startDate: dateRangePicker.data("mindate"),
             endDate: dateRangePicker.data("maxdate"),
             showShortcuts: true,
@@ -74,12 +77,22 @@ var DateRangePickerJQueryComponent = /** @class */ (function () {
             var startDate = moment(obj.date1);
             var endDate = moment(obj.date2);
             if (endDate.isBefore(historicPivotDate) && endDate.diff(startDate, "d") > _this.historyMaxDateRange) {
-                window.top.bootboxAlert("Data before " + historicPivotDateText + " can be retrieved " + (_this.historyMaxDateRange + 1) + " days in max, please review your date range.");
+                try {
+                    window.top.bootboxAlert(dateRangePicker.data("label-maxdataretrievehistoryerror"));
+                }
+                catch (e) {
+                    alert(dateRangePicker.data("label-maxdataretrievehistoryerror"));
+                }
                 dateRangePicker.data("dateRangePicker").setDateRange(_this.fromDate, _this.toDate, false);
                 return;
             }
             if (startDate.isBefore(historicPivotDate) && endDate.isSameOrAfter(historicPivotDate) && endDate.diff(startDate, "d") > _this.historyMaxDateRange) {
-                window.top.bootboxAlert("Data before " + historicPivotDateText + " can be retrieved " + (_this.historyMaxDateRange + 1) + " days in max, please review your date range.");
+                try {
+                    window.top.bootboxAlert(dateRangePicker.data("label-maxdataretrievehistoryerror"));
+                }
+                catch (e) {
+                    alert(dateRangePicker.data("label-maxdataretrievehistoryerror"));
+                }
                 dateRangePicker.data("dateRangePicker").setDateRange(_this.fromDate, _this.toDate, false);
                 return;
             }
@@ -151,6 +164,9 @@ var DateRangePickerJQueryComponent = /** @class */ (function () {
     DateRangePickerJQueryComponent.prototype.getDateRangeValues = function () {
         return { fromDate: this.fromDate, toDate: this.toDate };
     };
+    DateRangePickerJQueryComponent.prototype.getHistoricPivotDate = function () {
+        return this.historicPivotDateText;
+    };
     return DateRangePickerJQueryComponent;
 }());
 //# sourceMappingURL=daterangepicker-jquery.js.map
@@ -175,10 +191,13 @@ var ProductAndProductDetailDropdownOption = /** @class */ (function () {
 }());
 var ProductAndProductDetailDropdownComponent = /** @class */ (function () {
     function ProductAndProductDetailDropdownComponent() {
+        this.onlyShowHistoricProductIds = [];
     }
     ProductAndProductDetailDropdownComponent.prototype.render = function (options) {
         this.renderProductDetailDropdown(options);
         this.renderProductDropdown(options);
+        $("#" + options.selectorProductDetailId).closest(".form-group").removeClass("hide");
+        $("#" + options.selectorProductId).closest(".form-group").removeClass("hide");
     };
     ProductAndProductDetailDropdownComponent.prototype.renderProductDetailDropdown = function (options) {
         var self = this;
@@ -189,11 +208,10 @@ var ProductAndProductDetailDropdownComponent = /** @class */ (function () {
         });
         var dropdown = $("#" + options.selectorProductDetailId);
         this.dropdownProductDetail = dropdown.fanexMultiSelect({
-            checkAllText: dropdown.data("label-selectall"),
+            selectAllText: dropdown.data("label-selectall"),
             selectedText: "# " + dropdown.data("label-selected"),
             noneSelectedText: dropdown.data("label-noneselected"),
-            useCustomCheckAllText: true,
-            customCheckAllText: dropdown.data("label-all") + " (#)",
+            customSelectAllText: dropdown.data("label-all") + " (#)",
             showFilter: true,
             filterPlaceHolder: dropdown.data("label-filterplaceholder"),
             noItemFoundText: dropdown.data("label-noitemfound"),
@@ -211,18 +229,20 @@ var ProductAndProductDetailDropdownComponent = /** @class */ (function () {
         });
     };
     ProductAndProductDetailDropdownComponent.prototype.renderProductDropdown = function (options) {
-        var self = this;
+        var _this = this;
         var productIdWithSubProductIds = {};
         var uncheckedProductIds = [];
         var productList = options.products.map(function (item) {
-            var checkboxItem = self.buildCheckboxItem(item);
+            item.OnlyShowHistoric && _this.onlyShowHistoricProductIds.push(item.Id);
+            var checkboxItem = _this.buildCheckboxItem(item);
             if (item.Products) {
                 var subProductIds_1 = [];
                 productIdWithSubProductIds[item.Id] = subProductIds_1;
                 checkboxItem.items = item.Products.map(function (item) {
+                    item.OnlyShowHistoric && _this.onlyShowHistoricProductIds.push(item.Id);
                     subProductIds_1.push(item.Id);
                     item.Checked || uncheckedProductIds.push(item.Id);
-                    return self.buildCheckboxItem(item);
+                    return _this.buildCheckboxItem(item);
                 });
             }
             else {
@@ -230,13 +250,13 @@ var ProductAndProductDetailDropdownComponent = /** @class */ (function () {
             }
             return checkboxItem;
         });
+        var self = this;
         var dropdown = $("#" + options.selectorProductId);
         this.dropdownProduct = dropdown.fanexMultiSelect({
-            checkAllText: dropdown.data("label-selectall"),
+            selectAllText: dropdown.data("label-selectall"),
             selectedText: "# " + dropdown.data("label-selected"),
             noneSelectedText: dropdown.data("label-noneselected"),
-            useCustomCheckAllText: true,
-            customCheckAllText: dropdown.data("label-all") + " (#)",
+            customSelectAllText: dropdown.data("label-all") + " (#)",
             showFilter: true,
             filterPlaceHolder: dropdown.data("label-filterplaceholder"),
             noItemFoundText: dropdown.data("label-noitemfound"),
@@ -301,6 +321,14 @@ var ProductAndProductDetailDropdownComponent = /** @class */ (function () {
             unselectedProductIds: this.dropdownProduct.fanexMultiSelect("getUncheckedValues"),
             unselectedResourceIds: this.dropdownProductDetail.fanexMultiSelect("getUncheckedValues")
         };
+    };
+    ProductAndProductDetailDropdownComponent.prototype.showHistoricProducts = function () {
+        this.onlyShowHistoricProductIds.length
+            && this.dropdownProduct.fanexMultiSelect("showItemsByValues", this.onlyShowHistoricProductIds);
+    };
+    ProductAndProductDetailDropdownComponent.prototype.hideHistoricProducts = function () {
+        this.onlyShowHistoricProductIds.length
+            && this.dropdownProduct.fanexMultiSelect("hideItemsByValues", this.onlyShowHistoricProductIds);
     };
     return ProductAndProductDetailDropdownComponent;
 }());
@@ -420,6 +448,7 @@ var WinLossBetListView = /** @class */ (function () {
     };
     WinLossBetListView.prototype.renderComponents = function () {
         var _this = this;
+        var currentLanguage = $("#language").data("currentlanguage");
         this.breadcrumbLevelComponent.render(new BreadcrumbLevelOption(this.breadcrumbs, function (e) {
             if (_this.isInvalidGlobalFormData()) {
                 return;
@@ -440,12 +469,13 @@ var WinLossBetListView = /** @class */ (function () {
             $this.attr("href", _this.buildWinLossReportUrl(reportParams));
         }));
         this.dateRangePickerComponent.render(new DateRangePickerJQueryOption(function (dateRange) {
-            $.extend(_this.globalFormData, dateRange);
+            _this.constraintDateRangeAndProductDropdownList(dateRange);
+            $.extend(_this.globalFormData, dateRange, _this.productAndProductDetailDropdownComponent.getCheckedValues());
             if (_this.isInvalidGlobalFormData()) {
                 return;
             }
             _this.getBetListAndRenderWeekRange();
-        }));
+        }, this.getDateRangePickerLocale(currentLanguage)));
         this.productAndProductDetailDropdownComponent.render(new ProductAndProductDetailDropdownOption(this.productList, this.productDetailList, function (productsAndResources) {
             $.extend(_this.globalFormData, _this.dateRangePickerComponent.getDateRangeValues(), productsAndResources);
             if (_this.isInvalidGlobalFormData()) {
@@ -453,6 +483,8 @@ var WinLossBetListView = /** @class */ (function () {
             }
             _this.getBetListAndRenderWeekRange();
         }));
+        var dateRange = this.dateRangePickerComponent.getDateRangeValues();
+        this.constraintDateRangeAndProductDropdownList(dateRange);
         this.weekRangeComponent.init(new WeekRangeOption(function (dateRange) {
             if (_this.isInvalidGlobalFormData()) {
                 return;
@@ -460,7 +492,7 @@ var WinLossBetListView = /** @class */ (function () {
             _this.addIsWeekSelectionForStatistic();
             $.extend(_this.globalFormData, dateRange);
             _this.getBetList();
-        }, this.getMomentLocale()));
+        }, this.getMomentLocale(currentLanguage)));
         var weekFromDate = $("#week-from-date");
         var weekToDate = $("#week-to-date");
         var activeWeekRange = weekFromDate.length > 0 && weekToDate.length > 0
@@ -473,7 +505,25 @@ var WinLossBetListView = /** @class */ (function () {
             this.globalFormData.toDate = activeWeekRange.weekToDate;
         }
     };
-    WinLossBetListView.prototype.getMomentLocale = function () {
+    WinLossBetListView.prototype.constraintDateRangeAndProductDropdownList = function (dateRange) {
+        var historicPivotDate = moment(this.dateRangePickerComponent.getHistoricPivotDate());
+        if (moment(dateRange.fromDate).isSameOrAfter(historicPivotDate)) {
+            this.productAndProductDetailDropdownComponent.hideHistoricProducts();
+        }
+        else {
+            this.productAndProductDetailDropdownComponent.showHistoricProducts();
+        }
+    };
+    WinLossBetListView.prototype.getDateRangePickerLocale = function (language) {
+        var locale = {
+            "th-TH": "th",
+            "vi-VN": "vi",
+            "zh-CN": "cn",
+            "zh-TW": "tc"
+        };
+        return locale[language] || "default";
+    };
+    WinLossBetListView.prototype.getMomentLocale = function (language) {
         var locale = {
             "th-TH": "th",
             "vi-VN": "vi",
@@ -481,7 +531,7 @@ var WinLossBetListView = /** @class */ (function () {
             "zh-TW": "zh-tw",
             "default": "en"
         };
-        return locale[window.top.$("#language").data("currentlanguage")] || locale.default;
+        return locale[language] || locale.default;
     };
     WinLossBetListView.prototype.buildWinLossReportUrl = function (reportFormData) {
         var action = reportFormData.custLevelId === 4 ? "master" : (reportFormData.custLevelId === 3 ? "agent" : "member");
@@ -524,7 +574,11 @@ var WinLossBetListView = /** @class */ (function () {
     WinLossBetListView.prototype.updateCurrentUrl = function () {
         if (this.globalFormData.productIds) {
             var formData = $.extend({}, this.globalFormData, { breadcrumbLevelJson: JSON.stringify(this.breadcrumbs) });
-            window.top.indexManager.updateCurrentUrl($.param(formData));
+            try {
+                window.top.indexManager.updateCurrentUrl($.param(formData));
+            }
+            catch (e) {
+            }
         }
     };
     WinLossBetListView.prototype.addUnselectedProductAndProductDetailForStatistic = function () {

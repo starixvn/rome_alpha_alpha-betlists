@@ -6,6 +6,7 @@
     using System.Linq;
     using System.Web.Hosting;
     using System.Web.Mvc;
+    using Alpha.BetLists.Site.Requests.WinLoss;
     using Alpha.BetLists.Site.ViewModels.Components;
     using BetLists.Models;
     using Fanex.BetList.Core.Builder;
@@ -70,12 +71,13 @@
 
         protected internal static IEnumerable<ProductViewModel> BuildProductViewModels(
             IEnumerable<Product> products,
-            IDictionary<int, bool> userSelectedProductIds)
+            WinLossNewQuery message)
         {
             var productList = new List<ProductViewModel>();
 
             if (products?.Any() == true)
             {
+                var userSelectedProductIds = message.UserSelectedProductIds;
                 products
                     .GroupBy(product => new { product.Type, product.TypeName })
                     .ToList()
@@ -83,17 +85,29 @@
                     {
                         if (item.Key.Type == 0)
                         {
-                            productList.AddRange(item.Select(
-                                p => new ProductViewModel(p.Id, p.DisplayName, userSelectedProductIds.ContainsKey(p.Id), null)));
+                            productList.AddRange(item.Select(p => new ProductViewModel(
+                                p.Id,
+                                p.DisplayName,
+                                userSelectedProductIds.ContainsKey(p.Id),
+                                p.EndOfSupportDate.HasValue && p.EndOfSupportDate < message.HistoricPivotDate,
+                                null)));
                         }
                         else
                         {
-                            var children = item.Select(
-                                p => new ProductViewModel(p.Id, p.DisplayName, userSelectedProductIds.ContainsKey(p.Id), null)).ToList();
+                            var children = item.Select(p => new ProductViewModel(
+                                p.Id,
+                                p.DisplayName,
+                                userSelectedProductIds.ContainsKey(p.Id),
+                                p.EndOfSupportDate.HasValue && p.EndOfSupportDate < message.HistoricPivotDate,
+                                null)).ToList();
+                            var isGroupProductChecked = message.FromDate >= message.HistoricPivotDate
+                                ? children.Where(p => !p.OnlyShowHistoric).All(p => p.Checked)
+                                : children.All(p => p.Checked);
                             productList.Add(new ProductViewModel(
                                 item.Key.Type,
                                 item.Key.TypeName,
-                                children.All(p => p.Checked),
+                                isGroupProductChecked,
+                                false,
                                 children));
                         }
                     });

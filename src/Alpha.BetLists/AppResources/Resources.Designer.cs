@@ -556,6 +556,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Data before {0} can be retrieved 31 days in max, please review your date range..
+        /// </summary>
+        public static string MaxDataRetrieveHistoryError {
+            get {
+                return ResourceManager.GetString("MaxDataRetrieveHistoryError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Member.
         /// </summary>
         public static string member {
@@ -610,11 +619,11 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No Product Detail Found.
+        ///   Looks up a localized string similar to No Product Details Found.
         /// </summary>
-        public static string NoProductDetailFound {
+        public static string NoProductDetailsFound {
             get {
-                return ResourceManager.GetString("NoProductDetailFound", resourceCulture);
+                return ResourceManager.GetString("NoProductDetailsFound", resourceCulture);
             }
         }
         
@@ -772,11 +781,11 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Product Detail.
+        ///   Looks up a localized string similar to Product Details.
         /// </summary>
-        public static string ProductDetail {
+        public static string ProductDetails {
             get {
-                return ResourceManager.GetString("ProductDetail", resourceCulture);
+                return ResourceManager.GetString("ProductDetails", resourceCulture);
             }
         }
         
@@ -853,11 +862,11 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Search Product Detail.
+        ///   Looks up a localized string similar to Search Product Details.
         /// </summary>
-        public static string SearchProductDetail {
+        public static string SearchProductDetails {
             get {
-                return ResourceManager.GetString("SearchProductDetail", resourceCulture);
+                return ResourceManager.GetString("SearchProductDetails", resourceCulture);
             }
         }
         

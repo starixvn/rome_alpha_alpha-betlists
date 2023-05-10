@@ -73,6 +73,8 @@ class WinLossBetListView {
     }
 
     private renderComponents() {
+        const currentLanguage = $("#language").data("currentlanguage");
+
         this.breadcrumbLevelComponent.render(new BreadcrumbLevelOption(this.breadcrumbs, (e) => {
             if (this.isInvalidGlobalFormData()) {
                 return;
@@ -98,13 +100,14 @@ class WinLossBetListView {
 
         this.dateRangePickerComponent.render(new DateRangePickerJQueryOption(
             (dateRange) => {
-                $.extend(this.globalFormData, dateRange);
+                this.constraintDateRangeAndProductDropdownList(dateRange);
+                $.extend(this.globalFormData, dateRange, this.productAndProductDetailDropdownComponent.getCheckedValues());
                 if (this.isInvalidGlobalFormData()) {
                     return;
                 }
 
                 this.getBetListAndRenderWeekRange();
-            }));
+            }, this.getDateRangePickerLocale(currentLanguage)));
 
         this.productAndProductDetailDropdownComponent.render(new ProductAndProductDetailDropdownOption(
             this.productList,
@@ -118,6 +121,9 @@ class WinLossBetListView {
                 this.getBetListAndRenderWeekRange();
             }));
 
+        const dateRange = this.dateRangePickerComponent.getDateRangeValues();
+        this.constraintDateRangeAndProductDropdownList(dateRange);
+
         this.weekRangeComponent.init(
             new WeekRangeOption((dateRange) => {
                 if (this.isInvalidGlobalFormData()) {
@@ -128,7 +134,7 @@ class WinLossBetListView {
 
                 $.extend(this.globalFormData, dateRange);
                 this.getBetList();
-            }, this.getMomentLocale()));
+            }, this.getMomentLocale(currentLanguage)));
 
         const weekFromDate = $("#week-from-date");
         const weekToDate = $("#week-to-date");
@@ -143,7 +149,27 @@ class WinLossBetListView {
         }
     }
 
-    private getMomentLocale() {
+    private constraintDateRangeAndProductDropdownList(dateRange) {
+        const historicPivotDate = moment(this.dateRangePickerComponent.getHistoricPivotDate());
+        if (moment(dateRange.fromDate).isSameOrAfter(historicPivotDate)) {
+            this.productAndProductDetailDropdownComponent.hideHistoricProducts();
+        } else {
+            this.productAndProductDetailDropdownComponent.showHistoricProducts();
+        }
+    }
+
+    private getDateRangePickerLocale(language: string) {
+        const locale = {
+            "th-TH": "th",
+            "vi-VN": "vi",
+            "zh-CN": "cn",
+            "zh-TW": "tc"
+        };
+
+        return locale[language] || "default";
+    }
+
+    private getMomentLocale(language: string) {
         const locale = {
             "th-TH": "th",
             "vi-VN": "vi",
@@ -152,7 +178,7 @@ class WinLossBetListView {
             "default": "en"
         };
 
-        return locale[window.top.$("#language").data("currentlanguage")] || locale.default;
+        return locale[language] || locale.default;
     }
 
     private buildWinLossReportUrl(reportFormData) {
@@ -196,7 +222,10 @@ class WinLossBetListView {
     private updateCurrentUrl() {
         if (this.globalFormData.productIds) {
             const formData = $.extend({}, this.globalFormData, { breadcrumbLevelJson: JSON.stringify(this.breadcrumbs) });
-            window.top.indexManager.updateCurrentUrl($.param(formData));
+            try {
+                window.top.indexManager.updateCurrentUrl($.param(formData));
+            } catch (e) {
+            }
         }
     }
 

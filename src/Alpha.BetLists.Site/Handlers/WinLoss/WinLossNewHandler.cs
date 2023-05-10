@@ -53,7 +53,7 @@
 
             return new WinLossNewViewModel(
                 message,
-                BuildProductViewModels(products, message.UserSelectedProductIds),
+                BuildProductViewModels(products, message),
                 BuildProductDetailViewModels(productDetails, message.UserSelectedResourceIds),
                 betlistData,
                 Builder,

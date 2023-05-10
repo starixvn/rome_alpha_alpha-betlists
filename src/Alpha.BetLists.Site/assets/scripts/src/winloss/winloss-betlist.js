@@ -43,6 +43,7 @@ var WinLossBetListView = /** @class */ (function () {
     };
     WinLossBetListView.prototype.renderComponents = function () {
         var _this = this;
+        var currentLanguage = $("#language").data("currentlanguage");
         this.breadcrumbLevelComponent.render(new BreadcrumbLevelOption(this.breadcrumbs, function (e) {
             if (_this.isInvalidGlobalFormData()) {
                 return;
@@ -63,12 +64,13 @@ var WinLossBetListView = /** @class */ (function () {
             $this.attr("href", _this.buildWinLossReportUrl(reportParams));
         }));
         this.dateRangePickerComponent.render(new DateRangePickerJQueryOption(function (dateRange) {
-            $.extend(_this.globalFormData, dateRange);
+            _this.constraintDateRangeAndProductDropdownList(dateRange);
+            $.extend(_this.globalFormData, dateRange, _this.productAndProductDetailDropdownComponent.getCheckedValues());
             if (_this.isInvalidGlobalFormData()) {
                 return;
             }
             _this.getBetListAndRenderWeekRange();
-        }));
+        }, this.getDateRangePickerLocale(currentLanguage)));
         this.productAndProductDetailDropdownComponent.render(new ProductAndProductDetailDropdownOption(this.productList, this.productDetailList, function (productsAndResources) {
             $.extend(_this.globalFormData, _this.dateRangePickerComponent.getDateRangeValues(), productsAndResources);
             if (_this.isInvalidGlobalFormData()) {
@@ -76,6 +78,8 @@ var WinLossBetListView = /** @class */ (function () {
             }
             _this.getBetListAndRenderWeekRange();
         }));
+        var dateRange = this.dateRangePickerComponent.getDateRangeValues();
+        this.constraintDateRangeAndProductDropdownList(dateRange);
         this.weekRangeComponent.init(new WeekRangeOption(function (dateRange) {
             if (_this.isInvalidGlobalFormData()) {
                 return;
@@ -83,7 +87,7 @@ var WinLossBetListView = /** @class */ (function () {
             _this.addIsWeekSelectionForStatistic();
             $.extend(_this.globalFormData, dateRange);
             _this.getBetList();
-        }, this.getMomentLocale()));
+        }, this.getMomentLocale(currentLanguage)));
         var weekFromDate = $("#week-from-date");
         var weekToDate = $("#week-to-date");
         var activeWeekRange = weekFromDate.length > 0 && weekToDate.length > 0
@@ -96,7 +100,25 @@ var WinLossBetListView = /** @class */ (function () {
             this.globalFormData.toDate = activeWeekRange.weekToDate;
         }
     };
-    WinLossBetListView.prototype.getMomentLocale = function () {
+    WinLossBetListView.prototype.constraintDateRangeAndProductDropdownList = function (dateRange) {
+        var historicPivotDate = moment(this.dateRangePickerComponent.getHistoricPivotDate());
+        if (moment(dateRange.fromDate).isSameOrAfter(historicPivotDate)) {
+            this.productAndProductDetailDropdownComponent.hideHistoricProducts();
+        }
+        else {
+            this.productAndProductDetailDropdownComponent.showHistoricProducts();
+        }
+    };
+    WinLossBetListView.prototype.getDateRangePickerLocale = function (language) {
+        var locale = {
+            "th-TH": "th",
+            "vi-VN": "vi",
+            "zh-CN": "cn",
+            "zh-TW": "tc"
+        };
+        return locale[language] || "default";
+    };
+    WinLossBetListView.prototype.getMomentLocale = function (language) {
         var locale = {
             "th-TH": "th",
             "vi-VN": "vi",
@@ -104,7 +126,7 @@ var WinLossBetListView = /** @class */ (function () {
             "zh-TW": "zh-tw",
             "default": "en"
         };
-        return locale[window.top.$("#language").data("currentlanguage")] || locale.default;
+        return locale[language] || locale.default;
     };
     WinLossBetListView.prototype.buildWinLossReportUrl = function (reportFormData) {
         var action = reportFormData.custLevelId === 4 ? "master" : (reportFormData.custLevelId === 3 ? "agent" : "member");
@@ -147,7 +169,11 @@ var WinLossBetListView = /** @class */ (function () {
     WinLossBetListView.prototype.updateCurrentUrl = function () {
         if (this.globalFormData.productIds) {
             var formData = $.extend({}, this.globalFormData, { breadcrumbLevelJson: JSON.stringify(this.breadcrumbs) });
-            window.top.indexManager.updateCurrentUrl($.param(formData));
+            try {
+                window.top.indexManager.updateCurrentUrl($.param(formData));
+            }
+            catch (e) {
+            }
         }
     };
     WinLossBetListView.prototype.addUnselectedProductAndProductDetailForStatistic = function () {

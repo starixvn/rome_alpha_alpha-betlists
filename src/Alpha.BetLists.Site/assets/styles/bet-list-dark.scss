@@ -15,6 +15,19 @@ a {
         color: $link-hover-color;
     }
 }
+.flex {
+    display: flex;
+    flex-direction: column;
+    max-height: 100%;
+
+    .comm_note {
+        float: none;
+    }
+
+    .scrollable {
+        flex: 1;
+    }
+}
 .scrollable {
     overflow: auto;
 
@@ -22,6 +35,24 @@ a {
         opacity: 0 !important;
     }
 }
+.tblRpt-freeze-header {
+    border-top: 0 !important;
+
+    thead {
+        tr {
+            th {
+                position: sticky !important;
+                position: -webkit-sticky !important;
+                top: 0 !important;
+                border-top: 0 !important;
+                box-shadow: inset 0 1px 0 #5F626B, inset 0 -1px 0 #5F626B;
+                border-bottom: 0 !important;
+                z-index: 23;
+            }
+        }
+    }
+}
+
 .tbl-betlist {
     border-collapse: collapse;
     background-color: #212223;

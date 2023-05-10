@@ -22,10 +22,28 @@ body {
 a {
   text-decoration: none; }
 
+.flex {
+  display: flex;
+  flex-direction: column;
+  max-height: 100%; }
+  .flex .comm_note {
+    float: none; }
+  .flex .scrollable {
+    flex: 1; }
+
 .scrollable {
   overflow: auto; }
   .scrollable .blockOverlay {
     opacity: 0 !important; }
+
+.tblRpt-freeze-header {
+  border-top: 0 !important; }
+  .tblRpt-freeze-header thead tr th {
+    position: sticky !important;
+    position: -webkit-sticky !important;
+    top: 0 !important;
+    border-top: 0 !important;
+    z-index: 23; }
 
 .tbl-betlist {
   border-collapse: collapse;

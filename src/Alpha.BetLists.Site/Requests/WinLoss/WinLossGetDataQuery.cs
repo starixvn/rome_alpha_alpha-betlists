@@ -14,17 +14,18 @@
 
         public WinLossGetDataQuery(IUser viewer) : base(viewer)
         {
+            var today = SystemTime.Today;
+            MinDate = today.AddYears(NegativeThree)
+               .FirstDayOfYear()
+               .GetGreaterDate(LimitedDateToShowInfo);
+            HistoricPivotDate = today.AddMonths(NegativeThree).FirstDayOfMonth();
         }
 
         public string BreadcrumbLevelJson { get; set; }
 
-        public override DateTime MinDate
-            => SystemTime.Today.AddYears(NegativeThree)
-            .FirstDayOfYear()
-            .GetGreaterDate(LimitedDateToShowInfo);
+        public override DateTime MinDate { get; }
 
-        public DateTime HistoricPivotDate
-            => SystemTime.Today.AddMonths(NegativeThree).FirstDayOfMonth();
+        public DateTime HistoricPivotDate { get; }
 
         private IDictionary<int, bool> userSelectedProductIds;
         public IDictionary<int, bool> UserSelectedProductIds
