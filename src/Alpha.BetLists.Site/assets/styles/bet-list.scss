@@ -26,6 +26,7 @@ a {
 }
 .scrollable {
     overflow: auto;
+    min-height: 150px;
 
     .blockOverlay {
         opacity: 0 !important;
@@ -42,6 +43,7 @@ a {
                 top: 0 !important;
                 border-top: 0 !important;
                 z-index: 23;
+                background-clip: padding-box;
             }
         }
     }
@@ -53,28 +55,6 @@ a {
     font-size: $font-size;
     text-align: left;
     width: 100%;
-
-    &-sticky {
-        thead {
-            tr {
-                th {
-                    position: sticky;
-                    top: -1px;
-                    z-index: 3;
-                }
-            }
-        }
-
-        tbody {
-            tr {
-                &:last-child {
-                    td {
-                        border-bottom: 0;
-                    }
-                }
-            }
-        }
-    }
 
     th, td {
         height: $height-normal;

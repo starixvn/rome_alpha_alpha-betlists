@@ -32,7 +32,8 @@ a {
     flex: 1; }
 
 .scrollable {
-  overflow: auto; }
+  overflow: auto;
+  min-height: 150px; }
   .scrollable .blockOverlay {
     opacity: 0 !important; }
 
@@ -43,7 +44,8 @@ a {
     position: -webkit-sticky !important;
     top: 0 !important;
     border-top: 0 !important;
-    z-index: 23; }
+    z-index: 23;
+    background-clip: padding-box; }
 
 .tbl-betlist {
   border-collapse: collapse;
@@ -51,12 +53,6 @@ a {
   font-size: 13px;
   text-align: left;
   width: 100%; }
-  .tbl-betlist-sticky thead tr th {
-    position: sticky;
-    top: -1px;
-    z-index: 3; }
-  .tbl-betlist-sticky tbody tr:last-child td {
-    border-bottom: 0; }
   .tbl-betlist th, .tbl-betlist td {
     height: 28px;
     padding: 4px 8px;
