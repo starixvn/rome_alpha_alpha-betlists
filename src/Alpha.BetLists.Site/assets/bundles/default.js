@@ -249,6 +249,7 @@ var BetList;
                     if ((betTypeId >= 2401 && betTypeId <= 2499) ||
                         (betTypeId >= 3001 && betTypeId <= 3099) ||
                         (betTypeId >= 3101 && betTypeId <= 3149) ||
+                        (betTypeId >= 3151 && betTypeId <= 3200) ||
                         (betTypeId >= 3201 && betTypeId <= 3299) ||
                         (betTypeId >= 3401 && betTypeId <= 3499)) {
                         this.allbetResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.allbetResult) ? new ResultDetails.AllbetResultDetails() : this.allbetResult;
