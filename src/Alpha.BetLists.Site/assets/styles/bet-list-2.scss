@@ -12,6 +12,55 @@ a {
     text-decoration: none;
 }
 
+.flex {
+    display: flex;
+    flex-direction: column;
+    max-height: 100%;
+
+    .comm_note {
+        float: none;
+    }
+
+    .scrollable {
+        flex: 1;
+    }
+}
+
+.cover-week-selection {
+    flex: 1;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.scrollable {
+    overflow: auto;
+    min-height: 150px;
+
+    .blockOverlay {
+        opacity: 0 !important;
+    }
+}
+
+.tblRpt-freeze-header {
+    border-top: 0 !important;
+
+    thead {
+        background: $table-header-bg-color;
+
+        tr {
+            th {
+                position: sticky !important;
+                position: -webkit-sticky !important;
+                top: 0 !important;
+                border-top: 0 !important;
+                z-index: 23;
+                background-clip: padding-box;
+            }
+        }
+    }
+}
+
 .tbl-betlist {
     border-collapse: collapse;
     background-color: #fff;
@@ -59,6 +108,14 @@ a {
 
         tr#tr_footer:hover td {
             background-color: #E8DFCA;
+        }
+
+        tr {
+            &.text-center, &.bl_footertotal {
+                td {
+                    border-bottom: 0 !important;
+                }
+            }
         }
     }
 
@@ -119,11 +176,12 @@ a {
         color: #E54748;
     }
 }
+
 .bl_underdog {
     color: #01122B;
     font-weight: bold !important;
-
 }
+
 .bl_favorite, .favorite {
     font-weight: bold !important;
     color: $text-red-color-light;
@@ -499,6 +557,7 @@ div.ticket-list div.void > div.match, div.ticket-list div.void div.firstGoal, di
 .gtcasino-bet-type-name {
     color: #696969;
 }
+
 .bbin-bet-id {
     color: #bbb;
 }
@@ -506,6 +565,7 @@ div.ticket-list div.void > div.match, div.ticket-list div.void div.firstGoal, di
 .bbin-bet-type-name {
     color: #696969;
 }
+
 .bettype > .bet-id {
     color: #bbb;
 }
@@ -538,4 +598,10 @@ div.ticket-list div.void > div.match, div.ticket-list div.void div.firstGoal, di
 
 .game-id {
     color: #000;
+}
+
+//filter
+.filter {
+    padding-top: 0;
+    padding-right: 0;
 }
