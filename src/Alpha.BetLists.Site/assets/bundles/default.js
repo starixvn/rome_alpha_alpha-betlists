@@ -816,23 +816,11 @@ var BetList;
                             '&siteId=' + siteId +
                             '&BetType=' + betTypeId +
                             '&productId=65';
-                        var topWindow;
-                        topWindow = window.top;
-                        var left = topWindow.popupManager.leftPosition();
-                        var top = topWindow.popupManager.topPosition() + 100;
-                        var option = "toolbar=no,scrollbars=no,resizable=yes,top=" + top + ",left=" + left + ",width=835,height=400,location=no";
-                        var resultPopup = window.open("", "_blank", option);
-                        resultPopup.document.title = "PP Live Casino Result";
-                        $.ajax({
-                            type: "POST",
-                            url: Common.AppPath.ResultsAppPath() + 'ThirdParty/PPLiveCasinoResult' + params,
-                            success: function (data) {
-                                resultPopup.location.href = data.Result;
-                            },
-                            error: function () {
-                                resultPopup.location.href = Common.AppPath.MainAppPath() + 'Error/Index';
-                            }
-                        });
+                        var mainDomain = location.origin.split(':')[0] + ':' + $("#MainDomain").val() + '/site-main';
+                        window.top.postMessage({
+                            event_id: "pplivecasino-result",
+                            url: 'ThirdParty/PPLiveCasinoResult' + params
+                        }, mainDomain);
                     };
                     return _this;
                 }
