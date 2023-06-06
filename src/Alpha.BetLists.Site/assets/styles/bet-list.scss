@@ -20,8 +20,10 @@ a {
         float: none;
     }
 
-    .scrollable{
+    .scrollable {
         flex: 1;
+        -webkit-overflow-scrolling: touch;
+        will-change: scroll-position;
     }
 }
 .scrollable {
@@ -44,6 +46,14 @@ a {
                 border-top: 0 !important;
                 z-index: 23;
                 background-clip: padding-box;
+            }
+        }
+    }
+
+    tbody {
+        tr:last-child {
+            td {
+                border-bottom: 0;
             }
         }
     }

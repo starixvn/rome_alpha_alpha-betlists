@@ -32,7 +32,9 @@ a {
   .flex .comm_note {
     float: none; }
   .flex .scrollable {
-    flex: 1; }
+    flex: 1;
+    -webkit-overflow-scrolling: touch;
+    will-change: scroll-position; }
 
 .scrollable {
   overflow: auto;
@@ -51,6 +53,8 @@ a {
     border-bottom: 0 !important;
     z-index: 23;
     background-clip: padding-box; }
+  .tblRpt-freeze-header tbody tr:last-child td {
+    border-bottom: 0; }
 
 .tbl-betlist {
   border-collapse: collapse;
