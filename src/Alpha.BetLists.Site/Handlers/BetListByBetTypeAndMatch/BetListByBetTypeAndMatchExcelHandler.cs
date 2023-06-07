@@ -1,6 +1,7 @@
 ﻿namespace Alpha.BetLists.Site.Handlers.BetListByBetTypeAndMatch
 {
     using System.Threading.Tasks;
+    using Alpha.IPInfo.Services;
     using AppResources;
     using BetListByBetType;
     using BetLists.Models;
@@ -29,8 +30,9 @@
             ITicketHelper ticketHelper,
             ISmartPunterBetListMonitor monitorService,
             IPService ipService,
-            Workbook<TicketDto> workbook)
-            : base(builder, excelBuilder, ticketHelper, monitorService, ipService)
+            Workbook<TicketDto> workbook,
+            IIPInfoService ipInfoService)
+            : base(builder, excelBuilder, ticketHelper, monitorService, ipService, ipInfoService)
         {
             this.workbook = workbook;
             this.runningBetListByBetTypeAndMatchService = runningBetListByBetTypeAndMatchService;
@@ -41,6 +43,7 @@
 
             var param = BetListByBetTypeAndMatchHandler.CreateRunningBetListByBetTypeAndMatchParam(message);
             var betListData = await runningBetListByBetTypeAndMatchService.GetBetList(param);
+            await AssignCountry(betListData.Tickets, message.DisplayVNIP);
 
             var viewModel = new BetListByBetTypeAndMatchViewModel(message, betListData, null, TicketHelper);
 

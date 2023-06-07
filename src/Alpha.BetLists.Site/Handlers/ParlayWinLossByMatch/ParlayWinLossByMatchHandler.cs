@@ -1,6 +1,7 @@
 ﻿namespace Alpha.BetLists.Site.Handlers.ParlayWinLossByMatch
 {
     using System.Threading.Tasks;
+    using Alpha.IPInfo.Services;
     using BetLists.Models;
     using Extensions;
     using Fanex.BetList.Core.Builder;
@@ -23,8 +24,9 @@
             ISmartPunterBetListMonitor monitorService,
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper,
-            IPService ipService)
-            : base(builder, ticketHelper, monitorService, ipService)
+            IPService ipService,
+            IIPInfoService ipInfoService)
+            : base(builder, ticketHelper, monitorService, ipService, ipInfoService)
         {
             this.parlayWinLossByMatchService = parlayWinLossByMatchService;
         }
@@ -33,6 +35,7 @@
         {
             var winLossParam = CreateWinLossParam(message);
             var tickets = await parlayWinLossByMatchService.GetBetList(winLossParam);
+            await AssignCountry(tickets, message.DisplayVNIP);
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, tickets);
 

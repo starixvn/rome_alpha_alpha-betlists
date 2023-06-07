@@ -1,6 +1,7 @@
 ﻿namespace Alpha.BetLists.Site.Handlers.CombinationMixParlay
 {
     using System.Threading.Tasks;
+    using Alpha.IPInfo.Services;
     using AppResources;
     using BetListByBetType;
     using BetLists.Models;
@@ -29,8 +30,9 @@
             ITicketHelper ticketHelper,
             ISmartPunterBetListMonitor monitorService,
             IPService ipService,
-            Workbook<TicketDto> workbook)
-            : base(builder, excelBuilder, ticketHelper, monitorService, ipService)
+            Workbook<TicketDto> workbook,
+            IIPInfoService ipInfoService)
+            : base(builder, excelBuilder, ticketHelper, monitorService, ipService, ipInfoService)
         {
             this.runningBetListByBetTypeService = runningBetListByBetTypeService;
             this.workbook = workbook;
@@ -40,6 +42,7 @@
         {
             var param = BetListByBetTypeHandler.CreateRunningBetListByBetTypeParam(message);
             var tickets = await runningBetListByBetTypeService.GetBetList(param);
+            await AssignCountry(tickets, message.DisplayVNIP);
 
             var viewModel = new CombinationMixParlayViewModel(message, new BetListData(tickets, null), null, TicketHelper);
 

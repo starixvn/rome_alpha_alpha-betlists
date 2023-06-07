@@ -1,6 +1,7 @@
 ﻿namespace Alpha.BetLists.Site.Handlers.WinLossByMatch
 {
     using System.Threading.Tasks;
+    using Alpha.IPInfo.Services;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using MediatR;
@@ -20,8 +21,8 @@
            IBetListHTMLBuilder builder,
            ITicketHelper ticketHelper,
            ISmartPunterBetListMonitor monitorService,
-           IPService ipService)
-            : base(builder, ticketHelper, monitorService, ipService)
+           IPService ipService,
+           IIPInfoService ipInfoService) : base(builder, ticketHelper, monitorService, ipService, ipInfoService)
         {
             this.winLossByMatchService = winLossByMatchService;
         }
@@ -30,6 +31,7 @@
         {
             var winLossParam = CreateWinLossParam(message);
             var betlistData = await winLossByMatchService.GetBetList(winLossParam);
+            await AssignCountry(betlistData.Tickets, message.DisplayVNIP);
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 

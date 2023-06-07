@@ -2,13 +2,15 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
+    using Alpha.IPInfo.Services;
     using AppResources;
+    using BetListNPOI.SS.UserModel;
     using BetLists.Models;
     using Fanex.BetDetails.Casino.Services;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using MediatR;
-    using BetListNPOI.SS.UserModel;
     using ONEbook.SpreadSheets;
     using ONEbook.SpreadSheets.BetListNPOI;
     using Requests.CasinoDetails;
@@ -18,7 +20,7 @@
     using ViewModels.CasinoDetails;
     using static ONEbook.SpreadSheets.Column;
 
-    public class CasinoDetailsExcelHandler : BetListExcelBaseHandler, IRequestHandler<CasinoDetailsExcelQuery, ExcelFileViewModel>
+    public class CasinoDetailsExcelHandler : BetListExcelBaseHandler, IAsyncRequestHandler<CasinoDetailsExcelQuery, ExcelFileViewModel>
     {
         private int currentRowIndex = 1;
         private Workbook<TicketDto> workbook;
@@ -31,20 +33,21 @@
             ITicketHelper ticketHelper,
             ISmartPunterBetListMonitor monitorService,
             IPService ipService,
-            Workbook<TicketDto> workbook)
-            : base(builder, excelBuilder, ticketHelper, monitorService, ipService)
+            Workbook<TicketDto> workbook,
+            IIPInfoService ipInfoService)
+            : base(builder, excelBuilder, ticketHelper, monitorService, ipService, ipInfoService)
         {
             this.casinoDetailsService = casinoDetailsService;
             this.workbook = workbook;
         }
 
-        public ExcelFileViewModel Handle(CasinoDetailsExcelQuery message)
+        public async Task<ExcelFileViewModel> Handle(CasinoDetailsExcelQuery message)
         {
             var param = CasinoDetailsHandler.CreateCasinoDetailsParam(message);
+            var betlistData = casinoDetailsService.GetCasinoDetails(param);
+            await AssignCountry(betlistData.Tickets, message.DisplayVNIP);
 
-            var detailData = casinoDetailsService.GetCasinoDetails(param);
-
-            var viewModel = new CasinoDetailsViewModel(message, param, detailData, null, TicketHelper);
+            var viewModel = new CasinoDetailsViewModel(message, param, betlistData, null, TicketHelper);
 
             workbook = workbook.UseTemplate(GetTemplateInfo(message.ViewerLevel));
             RtfHelper = message.RtfHelper ?? InitRTFHelper((workbook as NpoiWorkbook<TicketDto>).Workbook);
@@ -52,7 +55,7 @@
             var fileContent = workbook
                 .Header(Resources.ResourceManager.GetString)
                 .Title(viewModel.Title)
-                .Body(detailData.Tickets as IEnumerable<TicketDto>, GetBodyRowMapper(message.ViewerLevel, message.DisplayVNIP))
+                .Body(betlistData.Tickets as IEnumerable<TicketDto>, GetBodyRowMapper(message.ViewerLevel, message.DisplayVNIP))
                 .ExportToBytes();
 
             return new ExcelFileViewModel(viewModel.Title, fileContent);
@@ -98,8 +101,22 @@
                .RenderRTF(ticket, null, GetOddsTypeName, RtfHelper);
 
         private IRichTextString BuildStatus(ITicket ticket, bool displayVNIP)
-            => ExcelBuilder
+        {
+            RtfHelper.RTFRenderer.AddText(ExcelBuilder
                 .CreateStatusBuilder(ticket.BetTypeId)
-                .RenderRTF(ticket, TicketHelper, null, displayVNIP, RtfHelper);
+                .RenderRTF(ticket, TicketHelper, null, displayVNIP, RtfHelper)
+                .ToString());
+
+            var ticketDto = (TicketDto)ticket;
+            if (!string.IsNullOrWhiteSpace(ticketDto.Country))
+            {
+                RtfHelper.RTFRenderer.AddText("\n" + ticketDto.Country);
+            }
+
+            var rtfText = RtfHelper.RTFRenderer.Render();
+            RtfHelper.RTFRenderer.Clear();
+
+            return rtfText;
+        }
     }
 }

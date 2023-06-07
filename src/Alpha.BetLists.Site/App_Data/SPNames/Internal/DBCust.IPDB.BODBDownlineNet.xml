@@ -5,5 +5,8 @@
       <Mapping DataField="ipfrom" ObjectProperty="From" />
       <Mapping DataField="ipto" ObjectProperty="To" />
     </Setting>
+    <Setting Key="Age_IPRangesByCountrySel" SpName="Age_IPRangesByCountrySel" DbName="DBCust.IPDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_IPRangesByCountrySelByIPList" SpName="Age_IPRangesByCountrySelByIPList" DbName="DBCust.IPDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_IPRangesByCountrySelByIPV6List" SpName="Age_IPRangesByCountrySelByIPV6List" DbName="DBCust.IPDB.BODBDownlineNet" Plain="0" />
   </Function>
 </Functions>

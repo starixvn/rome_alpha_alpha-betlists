@@ -50,7 +50,8 @@
                 betlistFixture.TicketHelper,
                 betlistFixture.MonitorService,
                 betlistFixture.IpService,
-                workbook);
+                workbook,
+                betlistFixture.IpInfoService);
             winLossHandler.MapPath = (path) => path;
             winLossHandler.IsFileExist = (path) => true;
 

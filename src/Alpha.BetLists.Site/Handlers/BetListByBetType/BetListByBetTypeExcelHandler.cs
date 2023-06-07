@@ -1,6 +1,7 @@
 ﻿namespace Alpha.BetLists.Site.Handlers.BetListByBetType
 {
     using System.Threading.Tasks;
+    using Alpha.IPInfo.Services;
     using AppResources;
     using BetLists.Models;
     using Fanex.BetList.Core.Builder;
@@ -27,8 +28,9 @@
             ITicketHelper ticketHelper,
             ISmartPunterBetListMonitor monitorService,
             IPService ipService,
-            Workbook<TicketDto> workbook)
-            : base(builder, excelBuilder, ticketHelper, monitorService, ipService)
+            Workbook<TicketDto> workbook,
+            IIPInfoService ipInfoService)
+            : base(builder, excelBuilder, ticketHelper, monitorService, ipService, ipInfoService)
         {
             this.workbook = workbook;
             this.runningBetListByBetTypeService = runningBetListByBetTypeService;
@@ -38,6 +40,7 @@
         {
             var param = BetListByBetTypeHandler.CreateRunningBetListByBetTypeParam(message);
             var tickets = await runningBetListByBetTypeService.GetBetList(param);
+            await AssignCountry(tickets, message.DisplayVNIP);
 
             var viewModel = new BetListByBetTypeViewModel(message, new BetListData(tickets, null), null, TicketHelper);
 

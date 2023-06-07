@@ -125,10 +125,10 @@
 
             var matches = await cacheService.GetOrSetAsync(
                 cacheKey,
-                () => dynamicRepository.Fetch<MatchInfo>(new GetRunningOutrightMatchCriteria()).ToList(),
+                () => dynamicRepository.FetchAsync<MatchInfo>(new GetRunningOutrightMatchCriteria()),
                 new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(cacheTime)));
 
-            return matches;
+            return matches.ToList();
         }
 
         private async Task<List<MatchInfo>> GetRunningOtherMatches(int cacheTime)
@@ -137,10 +137,10 @@
 
             var matches = await cacheService.GetOrSetAsync(
                 cacheKey,
-                () => dynamicRepository.Fetch<MatchInfo>(new GetRunningOtherMatchCriteria()).ToList(),
+                () => dynamicRepository.FetchAsync<MatchInfo>(new GetRunningOtherMatchCriteria()),
                 new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(cacheTime)));
 
-            return matches;
+            return matches.ToList();
         }
 
         public MatchInfo GetMatchInfoById(int matchId, int cacheTime)

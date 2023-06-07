@@ -4,6 +4,7 @@
     using Alpha.BetLists.Site.Requests.RiskAnalysisIPMatching;
     using Alpha.BetLists.Site.ViewModels.Blocks;
     using Alpha.BetLists.Site.ViewModels.RiskAnalysisIPMatching;
+    using Alpha.IPInfo.Services;
     using AppResources;
     using BetLists.Models;
     using Fanex.BetList.Core.Builder;
@@ -32,8 +33,9 @@
             ISmartPunterBetListMonitor monitorService,
             IPService ipService,
             RiskAnalysisIPMatchingHelper riskAnalysisIPMatchingHelper,
-            Workbook<TicketDto> workbook)
-            : base(builder, excelBuilder, ticketHelper, monitorService, ipService)
+            Workbook<TicketDto> workbook,
+            IIPInfoService ipInfoService)
+            : base(builder, excelBuilder, ticketHelper, monitorService, ipService, ipInfoService)
         {
             this.workbook = workbook;
             this.riskAnalysisIPMatchingHelper = riskAnalysisIPMatchingHelper;
@@ -45,6 +47,7 @@
 
             if (betlistData != null)
             {
+                await AssignCountry(betlistData.Tickets, message.DisplayVNIP);
                 var viewModel = new RiskAnalysisIPMatchingViewModel(message, betlistData, Builder, TicketHelper);
 
                 workbook = workbook.UseTemplate(GetTemplateInfo(message.ViewerLevel));

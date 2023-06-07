@@ -36,7 +36,8 @@
                 this.betlistFixture.TicketHelper,
                 this.betlistFixture.MonitorService,
                 this.betlistFixture.IpService,
-                riskAnalysisIPMatchingHelper);
+                riskAnalysisIPMatchingHelper,
+                this.betlistFixture.IpInfoService);
         }
 
         [Theory]

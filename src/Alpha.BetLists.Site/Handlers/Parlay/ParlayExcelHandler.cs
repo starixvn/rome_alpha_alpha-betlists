@@ -19,6 +19,7 @@
     using ViewModels.Parlay;
 
     using static ONEbook.SpreadSheets.Column;
+    using Alpha.IPInfo.Services;
 
     public class ParlayExcelHandler : BetListExcelBaseHandler, IAsyncRequestHandler<ComboParlayDetailExcelQuery, ExcelFileViewModel>
     {
@@ -32,8 +33,9 @@
             ITicketHelper ticketHelper,
             ISmartPunterBetListMonitor monitorService,
             IPService ipService,
-            ComboParlayDetailWorkbook workbook)
-            : base(builder, excelBuilder, ticketHelper, monitorService, ipService)
+            ComboParlayDetailWorkbook workbook,
+            IIPInfoService ipInfoService)
+            : base(builder, excelBuilder, ticketHelper, monitorService, ipService, ipInfoService)
         {
             this.workbook = workbook ?? new ComboParlayDetailWorkbookImpl();
             this.parlayService = parlayService;

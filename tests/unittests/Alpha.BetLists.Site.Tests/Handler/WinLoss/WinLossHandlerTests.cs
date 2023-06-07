@@ -54,7 +54,8 @@
                 this.betlistFixture.MonitorService,
                 this.betlistFixture.IpService,
                 productService,
-                productDetailService);
+                productDetailService,
+                this.betlistFixture.IpInfoService);
 
             compareLogic = new CompareLogic(new ComparisonConfig
             {

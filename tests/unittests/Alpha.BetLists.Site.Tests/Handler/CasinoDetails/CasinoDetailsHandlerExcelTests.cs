@@ -69,7 +69,8 @@
                 betlistFixture.TicketHelper,
                 betlistFixture.MonitorService,
                 betlistFixture.IpService,
-                workbook)
+                workbook,
+                betlistFixture.IpInfoService)
             {
                 MapPath = path => path,
                 IsFileExist = path => true

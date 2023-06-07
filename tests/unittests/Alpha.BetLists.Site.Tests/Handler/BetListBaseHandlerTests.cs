@@ -35,7 +35,8 @@
                 this.betlistFixture.HtmlBuilder,
                 this.betlistFixture.TicketHelper,
                 this.betlistFixture.MonitorService,
-                this.betlistFixture.IpService);
+                this.betlistFixture.IpService,
+                this.betlistFixture.IpInfoService);
 
             query = new WinLossQuery(betlistFixture.User);
             viewModel = new WinLossViewModel(query, BetListDataTest.BetListData, betlistFixture.HtmlBuilder, betlistFixture.TicketHelper, false);

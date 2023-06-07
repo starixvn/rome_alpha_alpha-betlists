@@ -34,6 +34,9 @@
     <CodeAnalysisRuleSet>Alpha.BetLists.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Alpha.IPInfo, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Alpha.IPInfo.1.0.0-beta05\lib\netstandard2.0\Alpha.IPInfo.dll</HintPath>
+    </Reference>
     <Reference Include="Alpha.PartialUM, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Alpha.PartialUM.1.0.0.2\lib\net461\Alpha.PartialUM.dll</HintPath>
     </Reference>
@@ -109,10 +112,11 @@
     </Reference>
     <Reference Include="Fanex.BetList.YeeBet, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.YeeBet.1.0.0\lib\net461\Fanex.BetList.YeeBet.dll</HintPath>
+      </Reference>
+    <Reference Include="Fanex.Caching, Version=2.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Caching.2.2.2\lib\net461\Fanex.Caching.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.Caching, Version=2.2.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.Caching.2.2.1\lib\net461\Fanex.Caching.dll</HintPath>
-    </Reference>
+    
     <Reference Include="Fanex.Common, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Common.1.1.0.1\lib\net40\Fanex.Common.dll</HintPath>
     </Reference>
@@ -362,6 +366,9 @@
     <Compile Include="Criteria\GetProductsDetailCriteria.cs" />
     <Compile Include="Criteria\GetScoreMapBetTypesCriteria.cs" />
     <Compile Include="Criteria\CasinoDetails\GetCasinoDetailsCriteria.cs" />
+    <Compile Include="Criteria\IPInfo\GetIPV4InfoByTopCountryCriteria.cs" />
+    <Compile Include="Criteria\IPInfo\GetIPV4InfoCriteria.cs" />
+    <Compile Include="Criteria\IPInfo\GetIPV6InfoCriteria.cs" />
     <Compile Include="Criteria\LastBets\GetMatchInfoByIdCriteria.cs" />
     <Compile Include="Criteria\MoveStatementHistory\GetBetListMoveStatementHistoryCriteria.cs" />
     <Compile Include="Criteria\ProgressiveJackpot\GetEnableJackpotProductCriteria.cs" />
@@ -392,6 +399,7 @@
     <Compile Include="Criteria\GetProductsByGroupHeadlineCriteria.cs" />
     <Compile Include="DataAccesses\CasinoDetailsDataAccess.cs" />
     <Compile Include="DataAccesses\BetBuilderDataAccess.cs" />
+    <Compile Include="DataAccesses\IPInfoDataAccess.cs" />
     <Compile Include="DataAccesses\SmartPunterDataAccess.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />

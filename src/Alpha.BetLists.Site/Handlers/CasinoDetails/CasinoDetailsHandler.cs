@@ -1,5 +1,7 @@
 ﻿namespace Alpha.BetLists.Site.Handlers.CasinoDetails
 {
+    using System.Threading.Tasks;
+    using Alpha.IPInfo.Services;
     using Fanex.BetDetails.Casino.Params;
     using Fanex.BetDetails.Casino.Services;
     using Fanex.BetList.Core.Builder;
@@ -10,7 +12,7 @@
     using Utilities.IP;
     using ViewModels.CasinoDetails;
 
-    public class CasinoDetailsHandler : BetListBaseHandler, IRequestHandler<CasinoDetailsQuery, CasinoDetailsViewModel>
+    public class CasinoDetailsHandler : BetListBaseHandler, IAsyncRequestHandler<CasinoDetailsQuery, CasinoDetailsViewModel>
     {
         private readonly ICasinoDetailsService casinoDetailsService;
 
@@ -19,19 +21,20 @@
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper,
             ISmartPunterBetListMonitor monitorService,
-            IPService ipService)
-            : base(builder, ticketHelper, monitorService, ipService)
+            IPService ipService,
+            IIPInfoService ipInfoService)
+            : base(builder, ticketHelper, monitorService, ipService, ipInfoService)
         {
             this.casinoDetailsService = casinoDetailsService;
         }
 
-        public CasinoDetailsViewModel Handle(CasinoDetailsQuery message)
+        public async Task<CasinoDetailsViewModel> Handle(CasinoDetailsQuery message)
         {
             var param = CreateCasinoDetailsParam(message);
+            var betlistData = casinoDetailsService.GetCasinoDetails(param);
+            await AssignCountry(betlistData.Tickets, message.DisplayVNIP);
 
-            var tickets = casinoDetailsService.GetCasinoDetails(param);
-
-            return new CasinoDetailsViewModel(message, param, tickets, Builder, TicketHelper);
+            return new CasinoDetailsViewModel(message, param, betlistData, Builder, TicketHelper);
         }
 
         protected internal static CasinoDetailsParam CreateCasinoDetailsParam(CasinoDetailsQuery message)

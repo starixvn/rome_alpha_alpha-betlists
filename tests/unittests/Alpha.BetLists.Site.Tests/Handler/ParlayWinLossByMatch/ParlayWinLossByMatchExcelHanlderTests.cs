@@ -53,7 +53,8 @@
                 betlistFixture.TicketHelper,
                 betlistFixture.MonitorService,
                 betlistFixture.IpService,
-                workbook);
+                workbook,
+                betlistFixture.IpInfoService);
             winLossByMatchExcelHandler.MapPath = (path) => path;
             winLossByMatchExcelHandler.IsFileExist = (path) => true;
 
@@ -64,6 +65,7 @@
                 betlistFixture.ExcelBuilder,
                 betlistFixture.TicketHelper,
                 betlistFixture.IpService,
+                betlistFixture.IpInfoService,
                 workbook,
                 winLossByMatchExcelHandler);
 

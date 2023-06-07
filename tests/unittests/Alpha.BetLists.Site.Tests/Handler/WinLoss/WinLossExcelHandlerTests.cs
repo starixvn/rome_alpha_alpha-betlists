@@ -65,7 +65,8 @@
                 this.betlistFixture.IpService,
                 workbook,
                 productService,
-                productDetailService);
+                productDetailService,
+                this.betlistFixture.IpInfoService);
 
             winLossExcelHandler.MapPath = (path) => path;
             winLossExcelHandler.IsFileExist = (path) => true;

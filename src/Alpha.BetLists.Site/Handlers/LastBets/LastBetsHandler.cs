@@ -2,6 +2,7 @@
 {
     using System.Linq;
     using System.Threading.Tasks;
+    using Alpha.IPInfo.Services;
     using AppResources;
     using BetLists.Constants;
     using BetLists.Models;
@@ -35,8 +36,9 @@
             ForecastService forecastService,
             ISmartPunterBetListMonitor monitorService,
             IPService ipService,
-            EncryptionService encryptionService) :
-            base(builder, ticketHelper, monitorService, ipService)
+            EncryptionService encryptionService,
+            IIPInfoService ipInfoService)
+            : base(builder, ticketHelper, monitorService, ipService, ipInfoService)
         {
             this.lastBetsService = lastBetsService;
             this.builder = builder;
@@ -60,6 +62,7 @@
 
             var param = new GetLastBetsParam(message.BetType, message.CustId, message.TransId == 0 ? 0 : message.TransId - 1, message.PageSize, message.RunningMatchCacheTime);
             var tickets = await lastBetsService.GetLastBets(param);
+            await AssignCountry(tickets, message.DisplayVNIP);
             var betListData = new BetListData(tickets, null);
             var supportScoreMapBetTypeIds = forecastService.GetBetTypeIdsSupportScoreMap();
 

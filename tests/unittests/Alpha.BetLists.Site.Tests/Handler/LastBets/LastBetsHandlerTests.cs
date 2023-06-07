@@ -65,7 +65,8 @@
                 forecastService,
                 monitorService,
                 this.betlistFixture.IpService,
-                encryptionService);
+                encryptionService,
+                betlistFixture.IpInfoService);
 
             user = Substitute.For<IUser>();
             user.Id.Returns(2);

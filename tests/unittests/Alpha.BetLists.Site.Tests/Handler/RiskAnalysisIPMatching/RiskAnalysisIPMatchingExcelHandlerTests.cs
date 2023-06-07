@@ -46,7 +46,8 @@
                 this.betlistFixture.MonitorService,
                 this.betlistFixture.IpService,
                 riskAnalysisIPMatchingHelper,
-                workbook);
+                workbook,
+                this.betlistFixture.IpInfoService);
 
             riskAnalysisIPMatchingExcelHandler.MapPath = (path) => path;
             riskAnalysisIPMatchingExcelHandler.IsFileExist = (path) => true;
