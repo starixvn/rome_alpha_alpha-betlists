@@ -33,7 +33,7 @@
                 <li>
                     <a href="javacript:;"
                        id="icon-excel"
-                       class="icon icon-excel"
+                       class="icon icon-excel icon-excel-new"
                        title="@Resources.ExportToExcel"
                        data-custname="@Model.CustName"
                        data-url="@Response.ApplyAppPathModifier($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}winloss/excel")"></a>
@@ -55,4 +55,5 @@
         @Html.Hidden("week-to-date", Model.WeekToDate)
     }
     <input type="hidden" id="language" data-currentlanguage="@Model.Language" />
+    @Html.Hidden("cust-name", Model.CustName)
 </div>

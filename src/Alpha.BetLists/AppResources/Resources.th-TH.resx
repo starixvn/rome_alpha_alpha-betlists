@@ -459,4 +459,7 @@
   <data name="SelectAll" xml:space="preserve">
     <value>เลือกทั้งหมด</value>
   </data>
+  <data name="nSelected" xml:space="preserve">
+    <value>ที่เลือกไว้ #</value>
+  </data>
 </root>

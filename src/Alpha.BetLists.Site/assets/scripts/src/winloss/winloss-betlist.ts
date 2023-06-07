@@ -59,7 +59,8 @@ class WinLossBetListView {
             toDate: $("#to-date").val(),
             productIds: $("#product-ids").val(),
             resourceIds: $("#resource-ids").val(),
-            custId: $("#cust-id").val()
+            custId: $("#cust-id").val(),
+            custName: $("#cust-name").val()
         };
         this.winlossBetListUrl = $("#betlist-path").val() + "winloss/getdata?";
 

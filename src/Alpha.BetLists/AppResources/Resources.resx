@@ -480,4 +480,7 @@
   <data name="MaxDataRetrieveHistoryError" xml:space="preserve">
     <value>Data before {0} can be retrieved 31 days in max, please review your date range.</value>
   </data>
+  <data name="nSelected" xml:space="preserve">
+    <value># Selected</value>
+  </data>
 </root>

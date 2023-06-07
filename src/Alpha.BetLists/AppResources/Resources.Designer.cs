@@ -655,6 +655,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to # Selected.
+        /// </summary>
+        public static string nSelected {
+            get {
+                return ResourceManager.GetString("nSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to #.
         /// </summary>
         public static string number {
