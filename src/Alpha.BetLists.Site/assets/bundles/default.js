@@ -249,6 +249,7 @@ var BetList;
                     if ((betTypeId >= 2401 && betTypeId <= 2499) ||
                         (betTypeId >= 3001 && betTypeId <= 3099) ||
                         (betTypeId >= 3101 && betTypeId <= 3149) ||
+                        (betTypeId >= 3151 && betTypeId <= 3200) ||
                         (betTypeId >= 3201 && betTypeId <= 3299) ||
                         (betTypeId >= 3401 && betTypeId <= 3499)) {
                         this.allbetResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.allbetResult) ? new ResultDetails.AllbetResultDetails() : this.allbetResult;
@@ -1988,6 +1989,38 @@ var BetList;
                 return JiliTicketDetails;
             }(TicketDetails.BaseTicketDetails));
             TicketDetails.JiliTicketDetails = JiliTicketDetails;
+            var YeeBetTicketDetails = /** @class */ (function (_super) {
+                __extends(YeeBetTicketDetails, _super);
+                function YeeBetTicketDetails() {
+                    var _this = _super !== null && _super.apply(this, arguments) || this;
+                    _this.ShowYeeBetTicketDetails = function (refNo, winlossDate, custId, transType) {
+                        var params = '?refno=' + refNo
+                            + '&custid=' + custId
+                            + '&transType=' + transType
+                            + '&sportName=YeeBet&productId=76';
+                        var width = 1147;
+                        var roleId = Number(_this.ViewerLevelId);
+                        if (roleId <= 3) {
+                            width -= 105;
+                        }
+                        if (roleId <= 2) {
+                            width -= 105;
+                        }
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'YeeBet - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                    };
+                    return _this;
+                }
+                Object.defineProperty(YeeBetTicketDetails, "Instance", {
+                    get: function () {
+                        this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new YeeBetTicketDetails() : this.instance;
+                        return this.instance;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                return YeeBetTicketDetails;
+            }(TicketDetails.BaseTicketDetails));
+            TicketDetails.YeeBetTicketDetails = YeeBetTicketDetails;
         })(TicketDetails = Choice.TicketDetails || (Choice.TicketDetails = {}));
     })(Choice = BetList.Choice || (BetList.Choice = {}));
 })(BetList || (BetList = {}));
@@ -2024,6 +2057,7 @@ var showFGGBetDetails;
 var showSealEntertainmentBetDetails;
 var showMGRNGCasinoBetDetails;
 var showJiliBetDetails;
+var showYeeBetBetDetails;
 $(document).ready(function () {
     showRnGCasinoDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowRnGCasinoDetails;
     showVoidBridgeDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowMacauGamesDetails;
@@ -2058,6 +2092,7 @@ $(document).ready(function () {
     showSealEntertainmentBetDetails = BetList.Choice.TicketDetails.SealEntertainmentTicketDetails.Instance.ShowSealEntertainmentBetDetails;
     showMGRNGCasinoBetDetails = BetList.Choice.TicketDetails.MGRNGTicketDetails.Instance.ShowMGRNGCasinoBetDetails;
     showJiliBetDetails = BetList.Choice.TicketDetails.JiliTicketDetails.Instance.ShowJiliBetDetails;
+    showYeeBetBetDetails = BetList.Choice.TicketDetails.YeeBetTicketDetails.Instance.ShowYeeBetTicketDetails;
 });
 //# sourceMappingURL=casino-ticket-details.js.map
 var __extends = (this && this.__extends) || (function () {
