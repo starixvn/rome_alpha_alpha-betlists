@@ -10,6 +10,7 @@
 
     public class WinLossQuery : BaseQuery, IRequest<WinLossViewModel>
     {
+        protected const int NegativeThree = -3;
         private const int DefaultMaxTotalRowView = 10000;
         private const int DefaultMaxTotalRowExportExcel = 50000;
 
@@ -23,8 +24,8 @@
 
         public bool IsGroupHeadline { get; set; }
 
-        public DateTime MinDate => IsGroupHeadline
-            ? SystemTime.Today.AddMonths(-3).FirstDayOfMonth()
+        public virtual DateTime MinDate => IsGroupHeadline
+            ? SystemTime.Today.AddMonths(NegativeThree).FirstDayOfMonth()
             : DateTime.MinValue;
 
         public int MaxTotalRowConfig { get; }

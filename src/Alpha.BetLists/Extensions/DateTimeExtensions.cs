@@ -8,20 +8,16 @@
         private const string ShortDate = "MMddyyyy";
 
         public static bool IsBefore(this DateTime dateTime, DateTime otherDateTime)
-        {
-            return dateTime < otherDateTime;
-        }
+            => dateTime < otherDateTime;
 
         public static bool IsBeforeOrEqual(this DateTime dateTime, DateTime otherDateTime)
-        {
-            return dateTime <= otherDateTime;
-        }
+            => dateTime <= otherDateTime;
 
         public static string ToShortDateWithSlash(this DateTime dateTime)
             => dateTime.ToString(ShortDateWithSlash);
 
         public static string ToShortDate(this DateTime dateTime)
-                    => dateTime.ToString(ShortDate);
+            => dateTime.ToString(ShortDate);
 
         public static DateTime FirstDayOfMonth(this DateTime dateTime)
             => new DateTime(dateTime.Year, dateTime.Month, 1);
@@ -34,5 +30,8 @@
 
         public static DateTime GetGreaterDate(this DateTime fromDate, DateTime limitedDate)
             => fromDate < limitedDate ? limitedDate : fromDate;
+
+        public static DateTime FirstDayOfYear(this DateTime dateTime)
+            => new DateTime(dateTime.Year, 1, 1);
     }
 }

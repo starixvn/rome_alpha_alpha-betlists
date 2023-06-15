@@ -426,4 +426,40 @@
   <data name="TicketDetails" xml:space="preserve">
     <value>รายละเอียดตั๋วเดิมพัน</value>
   </data>
+  <data name="MaxDataRetrieveHistoryError" xml:space="preserve">
+    <value>ข้อมูลก่อน {0} สามารถค้นได้สูงสุด 31 วัน กรุณาตรวจทานช่วงของข้อมูลที่คุณเลือก</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>ทั้งหมด</value>
+  </data>
+  <data name="DateRange" xml:space="preserve">
+    <value>ช่วงของข้อมูล</value>
+  </data>
+  <data name="NoneSelected" xml:space="preserve">
+    <value>ไม่ได้เลือก</value>
+  </data>
+  <data name="NoProductDetailsFound" xml:space="preserve">
+    <value>ไม่พบรายละเอียดผลิตภัณฑ์</value>
+  </data>
+  <data name="NoProductFound" xml:space="preserve">
+    <value>ไม่พบผลิตภัณฑ์</value>
+  </data>
+  <data name="Product" xml:space="preserve">
+    <value>ผลิตภัณฑ์</value>
+  </data>
+  <data name="ProductDetails" xml:space="preserve">
+    <value>รายละเอียดผลิตภัณฑ์</value>
+  </data>
+  <data name="SearchProduct" xml:space="preserve">
+    <value>ค้นหาผลิตภัณฑ์</value>
+  </data>
+  <data name="SearchProductDetails" xml:space="preserve">
+    <value>ค้นหารายละเอียดผลิตภัณฑ์</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>เลือกทั้งหมด</value>
+  </data>
+  <data name="nSelected" xml:space="preserve">
+    <value>ที่เลือกไว้ #</value>
+  </data>
 </root>

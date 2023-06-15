@@ -101,12 +101,14 @@ var Common;
 //# sourceMappingURL=app-path.js.map
 "use strict";
 var AlphaCore = /** @class */ (function () {
-    function AlphaCore($) {
+    function AlphaCore($, store) {
         var _this = this;
         this.format = {
             monthFormat: "MMMM - yyyy",
             shortDateWithSlash_DatePicker: "MM/DD/YYYY",
-            shortDateWithSlash_MonthPicker: "MM/dd/yyyy"
+            shortDateWithSlash_MonthPicker: "MM/dd/yyyy",
+            dayMonthName: "DD MMM",
+            day: "DD"
         };
         this.sort = {
             none: 0,
@@ -139,6 +141,21 @@ var AlphaCore = /** @class */ (function () {
                 }
                 this$(combinedCells[index]).before(oldCells);
             });
+        };
+        this.localStorage = {
+            get: function (key) {
+                return _this.store.enabled ? _this.store.get(key) : _this.$.cookie(key);
+            },
+            set: function (key, value) {
+                _this.store.enabled ? _this.store.set(key, value) : _this.$.cookie(key, value, _this.localStorage.getCookieExpireOptions());
+            },
+            getCookieExpireOptions: function () {
+                var cookieExpire = { expires: 365, path: window.location.pathname };
+                if (_this.isIe()) {
+                    cookieExpire = { expires: 365 };
+                }
+                return cookieExpire;
+            }
         };
         this.combineConsecutiveCells = function (firstCells, numberOfCombinedCells, combinedCellClass, combinedCellColSpan) {
             if (combinedCellColSpan === void 0) { combinedCellColSpan = 1; }
@@ -207,10 +224,11 @@ var AlphaCore = /** @class */ (function () {
         this.formatNumber = function (value) { return value.toLocaleString("en-US"); };
         this.formatCurrency = function (value) { return value.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,"); };
         this.$ = $;
+        this.store = store;
     }
     return AlphaCore;
 }());
-var alphaReports = new AlphaCore($);
+var alphaReports = new AlphaCore($, store);
 //# sourceMappingURL=core.js.map
 var BetList;
 (function (BetList) {
@@ -400,12 +418,9 @@ $(document).ready(function () {
 });
 //# sourceMappingURL=base-result-details.js.map
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -483,12 +498,9 @@ var BetList;
 })(BetList || (BetList = {}));
 //# sourceMappingURL=sportsbook-result-details.js.map
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -1037,12 +1049,9 @@ var BetList;
 })(BetList || (BetList = {}));
 //# sourceMappingURL=casino-result-details.js.map
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -1167,12 +1176,9 @@ var BetList;
 })(BetList || (BetList = {}));
 //# sourceMappingURL=base-ticket-details.js.map
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -1357,12 +1363,9 @@ $(document).ready(function () {
 });
 //# sourceMappingURL=sportsbook-ticket-details.js.map
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -2096,12 +2099,9 @@ $(document).ready(function () {
 });
 //# sourceMappingURL=casino-ticket-details.js.map
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }

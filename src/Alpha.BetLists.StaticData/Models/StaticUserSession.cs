@@ -27,6 +27,9 @@
         private static int adminId;
 
         [ThreadStatic]
+        private static int subAccId;
+
+        [ThreadStatic]
         private static bool isInternal;
 
         [ThreadStatic]
@@ -52,6 +55,7 @@
             string language,
             byte levelId,
             int adminId,
+            int subAccId,
             bool isInternal,
             bool isAdminCanViewVNIP,
             string langKey,
@@ -66,6 +70,7 @@
             StaticUserSession.language = language;
             StaticUserSession.levelId = levelId;
             StaticUserSession.adminId = adminId;
+            StaticUserSession.subAccId = subAccId;
             StaticUserSession.isInternal = isInternal;
             StaticUserSession.isAdminCanViewVNIP = isAdminCanViewVNIP;
             StaticUserSession.langKey = langKey;
@@ -87,6 +92,8 @@
         public byte LevelId => levelId;
 
         public int AdminId => adminId;
+
+        public int SubAccId => subAccId;
 
         public bool IsInternal => isInternal;
 

@@ -18,6 +18,8 @@ namespace Alpha.BetLists.Models
 
         int AdminId { get; }
 
+        int SubAccId { get; }
+
         bool IsInternal { get; }
 
         bool IsAdminCanViewVNIP { get; }

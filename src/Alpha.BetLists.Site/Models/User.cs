@@ -35,6 +35,8 @@
 
         public int AdminId => userSession.AdminId;
 
+        public int SubAccId => userSession.SubAccId;
+
         public bool IsInternal => userSession.IsInternal;
 
         public bool IsAdminCanViewVNIP => userSession.IsAdminCanViewVNIP;

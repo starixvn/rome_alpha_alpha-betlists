@@ -25,7 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>2.8</TypeScriptToolsVersion>
     <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -38,6 +38,19 @@
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>Alpha.BetLists.Site.Debug.ruleset</CodeAnalysisRuleSet>
     <NoWarn>618</NoWarn>
+    <TypeScriptTarget>ES5</TypeScriptTarget>
+    <TypeScriptJSXEmit>React</TypeScriptJSXEmit>
+    <TypeScriptModuleKind />
+    <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
+    <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
+    <TypeScriptOutFile />
+    <TypeScriptOutDir />
+    <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
+    <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
+    <TypeScriptSourceMap>True</TypeScriptSourceMap>
+    <TypeScriptMapRoot />
+    <TypeScriptSourceRoot />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -733,6 +746,10 @@
     <Content Include="assets\bundles\running-betlist\running-betlist.min.js">
       <DependentUpon>running-betlist.js</DependentUpon>
     </Content>
+    <Content Include="assets\bundles\winloss\winloss-betlist.js" />
+    <Content Include="assets\bundles\winloss\winloss-betlist.min.js">
+      <DependentUpon>winloss-betlist.js</DependentUpon>
+    </Content>
     <Content Include="assets\scripts\tests\app\templates\Cancelled-betlist\cancelled-betlist-template-with-hide-filter.html" />
     <Content Include="assets\scripts\tests\app\templates\Cancelled-betlist\cancelled-betlist-template.html" />
     <Content Include="assets\scripts\tests\app\templates\common-template.html" />
@@ -969,6 +986,9 @@
     <Content Include="assets\styles\error\error.scss" />
     <Content Include="App_Data\securitycode.napinternal2.json" />
     <Content Include="App_Data\securitycode.napinternal.json" />
+    <Content Include="App_Code\Components\DateRangePickerJQuery.cshtml" />
+    <Content Include="assets\scripts\typings\globals\moment\typings.json" />
+    <Content Include="App_Code\Components\ProductAndProductDetailDropdown.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -1043,7 +1063,6 @@
     <Content Include="Web.uat2.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
-    <Content Include="tsconfig.json" />
     <Content Include="Views\JackpotDetails\Index.cshtml" />
     <Content Include="Views\BetBuilder\ViewDetail.cshtml" />
     <Content Include="Views\Parlay\ComboParlayDetailMobile.cshtml" />
@@ -1090,6 +1109,8 @@
       <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
     </Content>
     <Content Include="Views\Error\Blocked.cshtml" />
+    <Content Include="Views\WinLoss\IndexNew.cshtml" />
+    <Content Include="Views\WinLoss\GetData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_GlobalResources\Resources.Designer.cs">
@@ -1143,6 +1164,7 @@
     <Compile Include="Handlers\RiskAnalysisIPMatching\RiskAnalysisIPMatchingHelper.cs" />
     <Compile Include="Handlers\RiskAnalysisIPMatching\RiskAnalysisIPMatchingHandler.cs" />
     <Compile Include="Handlers\RiskAnalysisIPMatching\RiskAnalysisIPMatchingExcelHandler.cs" />
+    <Compile Include="Handlers\WinLoss\WinLossNewHandler.cs" />
     <Compile Include="Helpers\BrowserHelper.cs">
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
@@ -1221,6 +1243,8 @@
     <Compile Include="Requests\WinLossByMatch\WinLossByMatchExcelQuery.cs" />
     <Compile Include="Requests\WinLossByMatch\WinLossByMatchQuery.cs" />
     <Compile Include="Requests\WinLoss\WinLossExcelQuery.cs" />
+    <Compile Include="Requests\WinLoss\WinLossGetDataQuery.cs" />
+    <Compile Include="Requests\WinLoss\WinLossNewQuery.cs" />
     <Compile Include="Requests\WinLoss\WinLossQuery.cs" />
     <Compile Include="ViewModels\BetListBaseViewModel.cs" />
     <Compile Include="ViewModels\BetListByBetTypeAndMatch\BetListByBetTypeAndMatchViewModel.cs" />
@@ -1230,10 +1254,13 @@
     <Compile Include="ViewModels\CashOutHistory\CashOutHistoryViewModel.cs" />
     <Compile Include="ViewModels\CasinoDetails\CasinoDetailsViewModel.cs" />
     <Compile Include="ViewModels\CombinationMixParlay\CombinationMixParlayViewModel.cs" />
+    <Compile Include="ViewModels\Components\DateRangePickerNewViewModel.cs" />
     <Compile Include="ViewModels\Components\GroupProductViewModel.cs" />
     <Compile Include="ViewModels\Components\PagerViewModel.cs">
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
+    <Compile Include="ViewModels\Components\ProductDetailViewModel.cs" />
+    <Compile Include="ViewModels\Components\ProductViewModel.cs" />
     <Compile Include="ViewModels\Components\StatusMultiSelectionViewModel.cs" />
     <Compile Include="ViewModels\Components\DateRangePickerViewModel.cs">
       <SonarQubeExclude>true</SonarQubeExclude>
@@ -1258,6 +1285,7 @@
     <Compile Include="ViewModels\Parlay\ComboParlayViewModel.cs" />
     <Compile Include="ViewModels\Parlay\MixParlayViewModel.cs" />
     <Compile Include="ViewModels\WinLossByMatch\WinLossByMatchViewModel.cs" />
+    <Compile Include="ViewModels\WinLoss\WinLossNewViewModel.cs" />
     <Compile Include="ViewModels\WinLoss\WinLossViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1312,15 +1340,20 @@
     <TypeScriptCompile Include="assets\scripts\src\betlist\status\result-details\base-result-details.ts" />
     <TypeScriptCompile Include="assets\scripts\src\betlist\status\result-details\casino-result-details.ts" />
     <TypeScriptCompile Include="assets\scripts\src\betlist\status\result-details\sportsbook-result-details.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\components\breadcrumb-level.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\components\daterangepicker-jquery.ts" />
     <TypeScriptCompile Include="assets\scripts\src\components\daterangepicker.ts" />
     <TypeScriptCompile Include="assets\scripts\src\components\pager.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\components\product-productdetail-dropdown.ts" />
     <TypeScriptCompile Include="assets\scripts\src\components\statusmultiselection.ts" />
     <TypeScriptCompile Include="assets\scripts\src\components\productmultiselection.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\components\week-range.ts" />
     <TypeScriptCompile Include="assets\scripts\src\last-bets\last-bets.ts" />
     <TypeScriptCompile Include="assets\scripts\src\components\single-selection-dropdown.ts" />
     <TypeScriptCompile Include="assets\scripts\src\member-betlist\member-betlist-init.ts" />
     <TypeScriptCompile Include="assets\scripts\src\member-betlist\member-betlist.ts" />
     <TypeScriptCompile Include="assets\scripts\src\running-betlist\running-betlist.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\winloss\winloss-betlist.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\casino-detail\casino-detail-tests.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\choice\ticket-details\score-map-tests.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\choice\ticket-details\base-ticket-details-tests.ts" />
@@ -1347,6 +1380,7 @@
     <TypeScriptCompile Include="assets\scripts\typings\globals\jquery.blockui\index.d.ts" />
     <TypeScriptCompile Include="assets\scripts\typings\globals\jquery.cookie\index.d.ts" />
     <TypeScriptCompile Include="assets\scripts\typings\globals\jquery\index.d.ts" />
+    <TypeScriptCompile Include="assets\scripts\typings\globals\moment\index.d.ts" />
     <TypeScriptCompile Include="assets\scripts\typings\index.d.ts" />
   </ItemGroup>
   <ItemGroup>

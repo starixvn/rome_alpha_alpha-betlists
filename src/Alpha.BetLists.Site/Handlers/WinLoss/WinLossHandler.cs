@@ -13,7 +13,9 @@
     using Utilities.IP;
     using ViewModels.WinLoss;
 
-    public class WinLossHandler : BetListBaseHandler, IAsyncRequestHandler<WinLossQuery, WinLossViewModel>
+    public class WinLossHandler :
+        BetListBaseHandler,
+        IAsyncRequestHandler<WinLossQuery, WinLossViewModel>
     {
         private readonly WinLossService winLossService;
         private readonly ProductService productService;

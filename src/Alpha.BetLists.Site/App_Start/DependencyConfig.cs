@@ -166,7 +166,12 @@
                     UserPermission.HasPermissionOnProduct,
                     CacheRefServiceHelper.GetProductName),
                 Lifestyle.Singleton);
-            container.RegisterSingleton<ProductDetailService, ProductDetailServiceImpl>();
+            container.RegisterSingleton<ProductDetailService>(
+                () => new ProductDetailServiceImpl(
+                    CacheRefServiceHelper.GetProductDetailName,
+                    container.GetInstance<ProductService>().CanViewBySite,
+                    UserPermission.HasPermissionOnProduct,
+                    container.GetInstance<IDynamicRepository>()));
             container.Register<CancelledBetService, CancelledBetServiceImpl>();
 
             container.Register<ICasinoDetailsService, CasinoDetailsService>(Lifestyle.Singleton);

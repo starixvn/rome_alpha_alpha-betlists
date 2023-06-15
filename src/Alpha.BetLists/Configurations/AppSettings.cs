@@ -25,7 +25,6 @@
 
         public static string SiteLabel789y => GetConfigValue("SiteLabel789y");
 
-
         public static string StoredProcedurePath => GetConfigValue("StoredProcedurePath");
 
         public static string MainAppPath => GetConfigValue("MainAppPath") ?? "site-main";

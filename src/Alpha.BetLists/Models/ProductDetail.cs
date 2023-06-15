@@ -7,6 +7,7 @@
         }
 
         public ProductDetail(
+            string refId,
             int resourceId,
             int productId,
             int sportType,
@@ -14,6 +15,7 @@
             string leagueGroupId,
             string ticketType)
         {
+            RefId = refId;
             ResourceId = resourceId;
             ProductId = productId;
             SportType = sportType;
@@ -22,7 +24,11 @@
             TicketType = ticketType;
         }
 
+        public string RefId { get; }
+
         public int ResourceId { get; }
+
+        public string DisplayName { get; set; }
 
         public int ProductId { get; }
 

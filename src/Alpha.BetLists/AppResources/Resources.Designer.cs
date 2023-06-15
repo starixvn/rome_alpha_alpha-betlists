@@ -19,7 +19,7 @@ namespace Alpha.BetLists.AppResources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -93,6 +93,15 @@ namespace Alpha.BetLists.AppResources {
         public static string agentptcomm {
             get {
                 return ResourceManager.GetString("agentptcomm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All.
+        /// </summary>
+        public static string All {
+            get {
+                return ResourceManager.GetString("All", resourceCulture);
             }
         }
         
@@ -300,6 +309,15 @@ namespace Alpha.BetLists.AppResources {
         public static string date {
             get {
                 return ResourceManager.GetString("date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date Range.
+        /// </summary>
+        public static string DateRange {
+            get {
+                return ResourceManager.GetString("DateRange", resourceCulture);
             }
         }
         
@@ -538,6 +556,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Data before {0} can be retrieved 31 days in max, please review your date range..
+        /// </summary>
+        public static string MaxDataRetrieveHistoryError {
+            get {
+                return ResourceManager.GetString("MaxDataRetrieveHistoryError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Member.
         /// </summary>
         public static string member {
@@ -583,6 +610,33 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to None Selected.
+        /// </summary>
+        public static string NoneSelected {
+            get {
+                return ResourceManager.GetString("NoneSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Product Details Found.
+        /// </summary>
+        public static string NoProductDetailsFound {
+            get {
+                return ResourceManager.GetString("NoProductDetailsFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Product Found.
+        /// </summary>
+        public static string NoProductFound {
+            get {
+                return ResourceManager.GetString("NoProductFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Note.
         /// </summary>
         public static string Note {
@@ -597,6 +651,15 @@ namespace Alpha.BetLists.AppResources {
         public static string NoteCancelledBetPage {
             get {
                 return ResourceManager.GetString("NoteCancelledBetPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to # Selected.
+        /// </summary>
+        public static string nSelected {
+            get {
+                return ResourceManager.GetString("nSelected", resourceCulture);
             }
         }
         
@@ -718,6 +781,24 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Product.
+        /// </summary>
+        public static string Product {
+            get {
+                return ResourceManager.GetString("Product", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product Details.
+        /// </summary>
+        public static string ProductDetails {
+            get {
+                return ResourceManager.GetString("ProductDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Progressive Jackpot Won Details.
         /// </summary>
         public static string ProgressiveJackpotWonDetails {
@@ -777,6 +858,33 @@ namespace Alpha.BetLists.AppResources {
         public static string running {
             get {
                 return ResourceManager.GetString("running", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search Product.
+        /// </summary>
+        public static string SearchProduct {
+            get {
+                return ResourceManager.GetString("SearchProduct", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search Product Details.
+        /// </summary>
+        public static string SearchProductDetails {
+            get {
+                return ResourceManager.GetString("SearchProductDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select All.
+        /// </summary>
+        public static string SelectAll {
+            get {
+                return ResourceManager.GetString("SelectAll", resourceCulture);
             }
         }
         

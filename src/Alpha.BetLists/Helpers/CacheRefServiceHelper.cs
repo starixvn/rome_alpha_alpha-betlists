@@ -20,6 +20,13 @@
                 LanguageCode,
                 string.Empty);
 
+        public static string GetProductDetailName(string refId, int resourceId)
+            => Instance.GetResourceDataByRefIdAndResourceId(
+                refId,
+                resourceId.ToString(),
+                LanguageCode,
+                string.Empty);
+
         internal static IRemotingRefService Instance
         {
             get
