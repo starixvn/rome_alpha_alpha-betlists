@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading.Tasks;
     using Constants;
     using Criteria;
     using Criteria.ProgressiveJackpot;
@@ -35,14 +34,6 @@
             bool isEnableSabaPromotion = false);
 
         bool CanViewBySite(int viewerId, string site, int currencyId, int productId);
-
-        // Async methods
-        Task<IEnumerable<Product>> GetProductsForCustomerAsync(
-            int viewerId,
-            string site,
-            int currencyId,
-            DateTime minReportDate,
-            bool isEnableSabaPromotion);
     }
 
     public class ProductServiceImpl : ProductService
@@ -225,28 +216,5 @@
                 "Alpha.BetLists.Services.Impl.ProductServiceImpl.OfferedJackpot",
                 () => dynamicRepository.FetchMultiple<JackpotOfferedBySite, JackpotOfferedByCurrency>(new GetEnableJackpotProductCriteria()),
             new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromDays(CacheDayforJackpot)));
-
-        // Async methods
-        public async Task<IEnumerable<Product>> GetProductsForCustomerAsync(
-            int viewerId,
-            string site,
-            int currencyId,
-            DateTime minReportDate,
-            bool isEnableSabaPromotion)
-        {
-            if (viewerId <= 0)
-            {
-                return Enumerable.Empty<Product>();
-            }
-
-            var custProducts = await cacheService.GetOrSetAsync(
-                $"Alpha.Reports.Services.Impl.ProductsForCustomer-{viewerId}",
-                () => GetProductsForReport()
-                    .Where(product => canViewProduct(product.Id) || CanViewBySite(viewerId, site, currencyId, product.Id))
-                    .Select(product => new Product(product.Id, product.Name, product.EndOfSupportDate, getProductName, product.Type, product.OrderNo)),
-                new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(CustProductsCacheTimeInMinutes)));
-
-            return GetProductsForCustomer(custProducts, minReportDate, isEnableSabaPromotion);
-        }
     }
 }

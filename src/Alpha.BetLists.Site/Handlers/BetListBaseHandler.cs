@@ -136,20 +136,11 @@
             
         protected internal async Task AssignCountry(IEnumerable<ITicket> tickets, bool displayVNIP)
         {
-            IDictionary<string, string> countryDictionary;
             var ipList = tickets
                 .Where(t => !string.IsNullOrWhiteSpace(t.IP) && (displayVNIP || !IpService.IsVNIP(t.IP.Trim())))
                 .Select(t => t.IP.Trim())
                 .Distinct();
-            try
-            {
-                countryDictionary = await IpInfoService.GetCountries(ipList);
-            }
-            catch (Exception ex)
-            {
-                ExceptionHandler.Handle(ex);
-                countryDictionary = new Dictionary<string, string>();
-            }
+            var countryDictionary = await GetCountries(ipList);
 
             string country;
             foreach (var item in tickets)
@@ -161,6 +152,19 @@
                 }
             }
         }
-    }
+
+        protected internal async Task<IDictionary<string, string>> GetCountries(IEnumerable<string> ipList)
+        {
+            try
+            {
+                return await IpInfoService.GetCountries(ipList);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.Handle(ex);
+            }
+
+            return new Dictionary<string, string>();
+        }
     }
 }
