@@ -39,20 +39,8 @@ class WinLossBetListView {
 
     init() {
         this.cacheDOMElements();
-        $("#icon-excel").click((e) => {
-            if (this.isInvalidGlobalFormData()) {
-                e.preventDefault();
-                return;
-            }
-
-            const $this = $(e.target);
-            const excelParams = $.extend({}, this.globalFormData, { custName: $this.data("custname") })
-            $this.attr("href", $this.data("url") + "?" + $.param(excelParams));
-            setTimeout(function () {
-                $this.attr("href", "javascript:;");
-            }, 1000);
-        });
-
+        this.bindShowHideFilterEvent();
+        this.bindExportExcelEvent();
         this.renderComponents();
 
         // make fadeOut effect shorter 
@@ -77,6 +65,46 @@ class WinLossBetListView {
         const errorExceedRow = $("#error-exceed-row");
         errorExceedRow.length
             && this.tableBetList.find("tbody tr:first td").addClass("error-exceed-row").html(errorExceedRow.val());
+    }
+
+    private bindShowHideFilterEvent() {
+        const hideFilterText = $("#hidden-hide-filter-text").val();
+        const showFilterText = $("#hidden-show-filter-text").val();
+        const formFilter = $("#form-filter");
+        const iconFilter = $("#icon-filter").click(function () {
+            const isHideFilter = iconFilter.hasClass("icon-arrow-up-drop-circle");
+            if (isHideFilter) {
+                iconFilter
+                    .removeClass("icon-arrow-up-drop-circle")
+                    .addClass("icon-arrow-down-drop-circle")
+                    .attr("title", showFilterText);
+                formFilter.addClass("hide");
+                $("#week-selection").addClass("hide");
+            } else {
+                iconFilter
+                    .removeClass("icon-arrow-down-drop-circle")
+                    .addClass("icon-arrow-up-drop-circle")
+                    .attr("title", hideFilterText);
+                formFilter.removeClass("hide");
+                $("#week-selection").removeClass("hide");
+            }
+        });
+    }
+
+    private bindExportExcelEvent() {
+        $("#icon-excel").off().click((e) => {
+            if (this.isInvalidGlobalFormData()) {
+                e.preventDefault();
+                return;
+            }
+
+            const $this = $(e.target);
+            const excelParams = $.extend({}, this.globalFormData)
+            $this.attr("href", $this.data("url") + "?" + $.param(excelParams));
+            setTimeout(function () {
+                $this.attr("href", "javascript:;");
+            }, 1000);
+        });
     }
 
     private renderComponents() {
@@ -187,6 +215,7 @@ class WinLossBetListView {
             this.tableBetList = this.betListWeekSelection.find("#tbl-betlist");
             this.weekSelectionComponent.bindEvents();
             this.breadcrumbLevelComponent.bindEvents();
+            this.bindExportExcelEvent();
             this.updateCurrentUrl();
 
             this.betListWeekSelection.unblock();

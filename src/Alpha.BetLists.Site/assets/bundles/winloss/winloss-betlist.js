@@ -282,17 +282,6 @@ var ProductAndProductDetailDropdownComponent = /** @class */ (function () {
             return checkboxItem;
         });
         var self = this;
-        var handleOnCheckProductInternal = function (productId, checked) {
-            var subProductIds = productIdWithSubProductIds[productId];
-            if (subProductIds) {
-                subProductIds.forEach(function (id) {
-                    self.handleOnCheckProduct(id, checked);
-                });
-            }
-            else {
-                self.handleOnCheckProduct(productId, checked);
-            }
-        };
         var dropdown = $("#" + options.selectorProductId);
         this.dropdownProduct = dropdown.fanexMultiSelect({
             selectAllText: dropdown.data("label-selectall"),
@@ -308,7 +297,20 @@ var ProductAndProductDetailDropdownComponent = /** @class */ (function () {
             expandGroupsByDefault: false,
             listData: productList,
             onCheck: function () {
-                handleOnCheckProductInternal(this.value, this.checked);
+                var productId = this.value;
+                var checked = this.checked;
+                var subProductIds = productIdWithSubProductIds[productId];
+                if (subProductIds) {
+                    var productIdString = checked
+                        ? self.dropdownProduct.fanexMultiSelect("getCheckedValues")
+                        : self.dropdownProduct.fanexMultiSelect("getUncheckedValues");
+                    productIdString.split(",").forEach(function (id) {
+                        self.handleOnCheckProduct(id, checked);
+                    });
+                }
+                else {
+                    self.handleOnCheckProduct(productId, checked);
+                }
             },
             onCheckAll: function () {
                 var checked = this.checked;
@@ -323,7 +325,7 @@ var ProductAndProductDetailDropdownComponent = /** @class */ (function () {
                         ? checkedValues
                         : uncheckedValues;
                     productIdString.split(",").forEach(function (id) {
-                        handleOnCheckProductInternal(id, checked);
+                        self.handleOnCheckProduct(id, checked);
                     });
                 }
             },
@@ -433,20 +435,9 @@ var WinLossBetListView = /** @class */ (function () {
         this.productDetailList = productDetailList;
     }
     WinLossBetListView.prototype.init = function () {
-        var _this = this;
         this.cacheDOMElements();
-        $("#icon-excel").click(function (e) {
-            if (_this.isInvalidGlobalFormData()) {
-                e.preventDefault();
-                return;
-            }
-            var $this = $(e.target);
-            var excelParams = $.extend({}, _this.globalFormData, { custName: $this.data("custname") });
-            $this.attr("href", $this.data("url") + "?" + $.param(excelParams));
-            setTimeout(function () {
-                $this.attr("href", "javascript:;");
-            }, 1000);
-        });
+        this.bindShowHideFilterEvent();
+        this.bindExportExcelEvent();
         this.renderComponents();
         // make fadeOut effect shorter 
         $.blockUI.defaults.fadeOut = 0;
@@ -468,6 +459,45 @@ var WinLossBetListView = /** @class */ (function () {
         var errorExceedRow = $("#error-exceed-row");
         errorExceedRow.length
             && this.tableBetList.find("tbody tr:first td").addClass("error-exceed-row").html(errorExceedRow.val());
+    };
+    WinLossBetListView.prototype.bindShowHideFilterEvent = function () {
+        var hideFilterText = $("#hidden-hide-filter-text").val();
+        var showFilterText = $("#hidden-show-filter-text").val();
+        var formFilter = $("#form-filter");
+        var iconFilter = $("#icon-filter").click(function () {
+            var isHideFilter = iconFilter.hasClass("icon-arrow-up-drop-circle");
+            if (isHideFilter) {
+                iconFilter
+                    .removeClass("icon-arrow-up-drop-circle")
+                    .addClass("icon-arrow-down-drop-circle")
+                    .attr("title", showFilterText);
+                formFilter.addClass("hide");
+                $("#week-selection").addClass("hide");
+            }
+            else {
+                iconFilter
+                    .removeClass("icon-arrow-down-drop-circle")
+                    .addClass("icon-arrow-up-drop-circle")
+                    .attr("title", hideFilterText);
+                formFilter.removeClass("hide");
+                $("#week-selection").removeClass("hide");
+            }
+        });
+    };
+    WinLossBetListView.prototype.bindExportExcelEvent = function () {
+        var _this = this;
+        $("#icon-excel").off().click(function (e) {
+            if (_this.isInvalidGlobalFormData()) {
+                e.preventDefault();
+                return;
+            }
+            var $this = $(e.target);
+            var excelParams = $.extend({}, _this.globalFormData);
+            $this.attr("href", $this.data("url") + "?" + $.param(excelParams));
+            setTimeout(function () {
+                $this.attr("href", "javascript:;");
+            }, 1000);
+        });
     };
     WinLossBetListView.prototype.renderComponents = function () {
         var _this = this;
@@ -553,6 +583,7 @@ var WinLossBetListView = /** @class */ (function () {
             _this.tableBetList = _this.betListWeekSelection.find("#tbl-betlist");
             _this.weekSelectionComponent.bindEvents();
             _this.breadcrumbLevelComponent.bindEvents();
+            _this.bindExportExcelEvent();
             _this.updateCurrentUrl();
             _this.betListWeekSelection.unblock();
         }).fail(function (jqXHR) { return _this.handleAjaxError(jqXHR, _this.betListWeekSelection); });

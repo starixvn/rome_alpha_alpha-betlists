@@ -9,20 +9,9 @@ var WinLossBetListView = /** @class */ (function () {
         this.productDetailList = productDetailList;
     }
     WinLossBetListView.prototype.init = function () {
-        var _this = this;
         this.cacheDOMElements();
-        $("#icon-excel").click(function (e) {
-            if (_this.isInvalidGlobalFormData()) {
-                e.preventDefault();
-                return;
-            }
-            var $this = $(e.target);
-            var excelParams = $.extend({}, _this.globalFormData, { custName: $this.data("custname") });
-            $this.attr("href", $this.data("url") + "?" + $.param(excelParams));
-            setTimeout(function () {
-                $this.attr("href", "javascript:;");
-            }, 1000);
-        });
+        this.bindShowHideFilterEvent();
+        this.bindExportExcelEvent();
         this.renderComponents();
         // make fadeOut effect shorter 
         $.blockUI.defaults.fadeOut = 0;
@@ -44,6 +33,45 @@ var WinLossBetListView = /** @class */ (function () {
         var errorExceedRow = $("#error-exceed-row");
         errorExceedRow.length
             && this.tableBetList.find("tbody tr:first td").addClass("error-exceed-row").html(errorExceedRow.val());
+    };
+    WinLossBetListView.prototype.bindShowHideFilterEvent = function () {
+        var hideFilterText = $("#hidden-hide-filter-text").val();
+        var showFilterText = $("#hidden-show-filter-text").val();
+        var formFilter = $("#form-filter");
+        var iconFilter = $("#icon-filter").click(function () {
+            var isHideFilter = iconFilter.hasClass("icon-arrow-up-drop-circle");
+            if (isHideFilter) {
+                iconFilter
+                    .removeClass("icon-arrow-up-drop-circle")
+                    .addClass("icon-arrow-down-drop-circle")
+                    .attr("title", showFilterText);
+                formFilter.addClass("hide");
+                $("#week-selection").addClass("hide");
+            }
+            else {
+                iconFilter
+                    .removeClass("icon-arrow-down-drop-circle")
+                    .addClass("icon-arrow-up-drop-circle")
+                    .attr("title", hideFilterText);
+                formFilter.removeClass("hide");
+                $("#week-selection").removeClass("hide");
+            }
+        });
+    };
+    WinLossBetListView.prototype.bindExportExcelEvent = function () {
+        var _this = this;
+        $("#icon-excel").off().click(function (e) {
+            if (_this.isInvalidGlobalFormData()) {
+                e.preventDefault();
+                return;
+            }
+            var $this = $(e.target);
+            var excelParams = $.extend({}, _this.globalFormData);
+            $this.attr("href", $this.data("url") + "?" + $.param(excelParams));
+            setTimeout(function () {
+                $this.attr("href", "javascript:;");
+            }, 1000);
+        });
     };
     WinLossBetListView.prototype.renderComponents = function () {
         var _this = this;
@@ -129,6 +157,7 @@ var WinLossBetListView = /** @class */ (function () {
             _this.tableBetList = _this.betListWeekSelection.find("#tbl-betlist");
             _this.weekSelectionComponent.bindEvents();
             _this.breadcrumbLevelComponent.bindEvents();
+            _this.bindExportExcelEvent();
             _this.updateCurrentUrl();
             _this.betListWeekSelection.unblock();
         }).fail(function (jqXHR) { return _this.handleAjaxError(jqXHR, _this.betListWeekSelection); });

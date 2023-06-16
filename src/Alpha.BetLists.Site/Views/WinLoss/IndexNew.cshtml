@@ -8,6 +8,7 @@
 }
 @section Styles {
     @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-betlists/filter-new")
+    @StaticResources.RenderStyles($"~/{AppSettings.BetlistRouting}assets/bundles/winloss/winloss-betlist")
 }
 @section Scripts {
     <script type="text/javascript">
@@ -18,8 +19,13 @@
     @StaticResources.RenderScripts($"~/{AppSettings.BetlistRouting}assets/bundles/winloss/winloss-betlist")
 }
 <div class="flex">
-    <div class="bl_title">@Resources.memberBetList - @Model.CustName</div>
-    <div class="form-inline filter">
+    <div class="bl_title">
+        @Resources.memberBetList - @Model.CustName
+        <div class="list-icon">
+            <ul><li><span class="icon-arrow-up-drop-circle icon-filter" id="icon-filter" title="@Resources.HideFilter"></span></li></ul>
+        </div>
+    </div>
+    <div class="form-inline filter" id="form-filter">
         @DateRangePickerJQuery.Render(Model.DateRangePickerViewModel)
         @ProductAndProductDetailDropdown.Render()
     </div>
@@ -33,4 +39,7 @@
         @Html.Hidden("error-exceed-row", Model.BetlistOutputParams.ErrMsg)
     }
     <input type="hidden" id="language" data-currentlanguage="@Model.Language" />
+    @Html.Hidden("cust-name", Model.CustName)
+    @Html.Hidden("hidden-hide-filter-text", Resources.HideFilter)
+    @Html.Hidden("hidden-show-filter-text", Resources.ShowFilter)
 </div>

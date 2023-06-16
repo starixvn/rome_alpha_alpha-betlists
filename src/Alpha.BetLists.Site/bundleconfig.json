@@ -101,6 +101,13 @@
       "assets/scripts/src/winloss/winloss-betlist.js"
     ]
   },
+  {
+    "outputFileName": "assets/bundles/winloss/winloss-betlist.css",
+    "inputFiles": [
+      "assets/styles/winloss.css",
+      "assets/styles/filter.css"
+    ]
+  },
   /************************** Dark Mode ************************/
   {
     "outputFileName": "assets/bundles/default-dark.css",

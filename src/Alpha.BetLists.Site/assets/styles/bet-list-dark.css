@@ -54,6 +54,8 @@ a {
     background-color: #f8eb95; }
   .tbl-betlist tbody tr#tr_footer:hover td {
     background-color: #E8DFCA; }
+  .tbl-betlist tbody tr.text-center td, .tbl-betlist tbody tr.bl_footertotal td {
+    border-bottom: 0 !important; }
   .tbl-betlist .col-number {
     width: 20px; }
   .tbl-betlist .col-transtime, .tbl-betlist .col-member {
@@ -500,3 +502,7 @@ div.ticket-list div.void > div.match, div.ticket-list div.void div.firstGoal, di
 .game-id {
   color: #fff; }
 
+.tblRpt tbody td.status-block {
+  white-space: normal; }
+  .tblRpt tbody td.status-block .country {
+    font-size: 11px; }

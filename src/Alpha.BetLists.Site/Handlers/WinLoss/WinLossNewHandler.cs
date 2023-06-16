@@ -65,6 +65,8 @@
                 message.MaxTotalRowConfig);
 
             var betlistData = await winLossService.GetBetList(winLossParam);
+            await AssignCountry(betlistData.Tickets, message.DisplayVNIP);
+
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
             IEnumerable<TicketDto> ticketsToBuildWeekSelection = null;
@@ -109,7 +111,6 @@
         {
             var showContributionAmountRoundNote = message.IsEnabledJackpot;
             var betlistData = await GetBetListAndWriteLog(message);
-            await AssignCountry(betlistData.Tickets, message.DisplayVNIP);
 
             return new WinLossBetListWeekSelectionViewModel(
                 message,
@@ -187,6 +188,8 @@
                 message.MaxTotalRowConfig);
 
             var betlistData = await winLossService.GetBetList(winLossParam);
+            await AssignCountry(betlistData.Tickets, message.DisplayVNIP);
+
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
             return betlistData;
