@@ -1224,6 +1224,7 @@
     <Content Include="Views\WinLoss\IndexNew.cshtml" />
     <Content Include="Views\WinLoss\BetList.cshtml" />
     <Content Include="Views\WinLoss\BetListWeekSelection.cshtml" />
+    <Content Include="Views\MonitoringBets\Index.cshtml" />
     <Content Include="Views\Shared\IconInformation.cshtml" />
     <Content Include="Web.AppSettings.staging.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
@@ -1292,6 +1293,7 @@
     <Compile Include="Controllers\BetBuilderController.cs" />
     <Compile Include="Controllers\CombinationMixParlayController.cs" />
     <Compile Include="Controllers\CorrectScoreController.cs" />
+    <Compile Include="Controllers\MonitoringBetsController.cs" />
     <Compile Include="Controllers\MoveStatementHistoryController.cs" />
     <Compile Include="Controllers\RiskAnalysisIPMatchingController.cs" />
     <Compile Include="Controllers\MemberBetListController.cs" />
@@ -1315,6 +1317,7 @@
     <Compile Include="Handlers\JackpotDetails\JackpotDetailsExcelHandler.cs" />
     <Compile Include="Handlers\JackpotDetails\JackpotDetailsHandler.cs" />
     <Compile Include="Handlers\BetBuilder\BetBuilderHandler.cs" />
+    <Compile Include="Handlers\MonitoringBets\MonitoringBetsHandler.cs" />
     <Compile Include="Handlers\MoveStatementHistory\MoveStatementHistoryHandler.cs" />
     <Compile Include="Handlers\RiskAnalysisIPMatching\RiskAnalysisIPMatchingHelper.cs" />
     <Compile Include="Handlers\RiskAnalysisIPMatching\RiskAnalysisIPMatchingHandler.cs" />
@@ -1383,6 +1386,7 @@
     <Compile Include="Requests\CorrectScore\CorrectScoreExcelQuery.cs" />
     <Compile Include="Requests\CorrectScore\CorrectScoreQuery.cs" />
     <Compile Include="Requests\MemberBetList\MemberBetListQuery.cs" />
+    <Compile Include="Requests\MonitoringBets\MonitoringBetsQuery.cs" />
     <Compile Include="Requests\MoveStatementHistory\MoveStatementHistoryQuery.cs" />
     <Compile Include="Requests\RiskAnalysisIPMatching\RiskAnalysisIPMatchingQuery.cs" />
     <Compile Include="Requests\RiskAnalysisIPMatching\RiskAnalysisIPMatchingExcelQuery.cs" />
@@ -1434,6 +1438,7 @@
     <Compile Include="ViewModels\SearchTickets\SearchTicketsViewModel.cs" />
     <Compile Include="ViewModels\JackpotDetails\JackpotDetailsViewModel.cs" />
     <Compile Include="ViewModels\MemberBetList\MemberBetListViewModel.cs" />
+    <Compile Include="ViewModels\MonitoringBets\MonitoringBetsViewModel.cs" />
     <Compile Include="ViewModels\MoveStatementHistory\MoveStatementHistoryViewModel.cs" />
     <Compile Include="ViewModels\RiskAnalysisIPMatching\RiskAnalysisIPMatchingViewModel.cs" />
     <Compile Include="ViewModels\RunningBetList\RunningBetListViewModel.cs" />

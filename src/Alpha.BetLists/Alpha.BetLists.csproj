@@ -457,6 +457,7 @@
     <Compile Include="Services\JackpotDetailsService.cs" />
     <Compile Include="Services\LastBetsService.cs" />
     <Compile Include="Services\CancelledBetService.cs" />
+    <Compile Include="Services\MonitoringBetsService.cs" />
     <Compile Include="Services\MoveStatementHistoryService.cs" />
     <Compile Include="Services\ProductDetailService.cs" />
     <Compile Include="Services\RiskAnalysisIPMatchingService.cs" />
@@ -508,6 +509,10 @@
     <AdditionalFiles Include="..\..\SonarQube\alpha-betlist\CSharp\SonarLint.xml">
       <Link>SonarLint.xml</Link>
     </AdditionalFiles>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Criteria\MonitoringBets\" />
+    <Folder Include="Params\MonitoringBets\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.2\build\Fanex.Visual-StyleCop.MSBuild.Targets" Condition="Exists('..\..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.2\build\Fanex.Visual-StyleCop.MSBuild.Targets')" />

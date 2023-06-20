@@ -213,6 +213,7 @@
                     container.GetInstance<ICacheService>(),
                     container.GetInstance<IIPInfoDataAccess>()),
                 Lifestyle.Singleton);
+            container.RegisterSingleton<MonitoringBetsService, MonitoringBetsServiceImpl>();
         }
 
         private static void RegisterStaticInstances(Container container)
