@@ -1,6 +1,7 @@
 ﻿namespace Alpha.BetLists.Site.Handlers.CombinationMixParlay
 {
     using System.Threading.Tasks;
+    using Alpha.IPInfo.Services;
     using BetListByBetType;
     using BetLists.Models;
     using Fanex.BetList.Core.Builder;
@@ -24,8 +25,9 @@
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper,
             ISmartPunterBetListMonitor monitorService,
-            IPService ipService)
-            : base(builder, ticketHelper, monitorService, ipService)
+            IPService ipService,
+            IIPInfoService ipInfoService)
+            : base(builder, ticketHelper, monitorService, ipService, ipInfoService)
         {
             this.forecastService = forecastService;
             this.runningBetListByBetTypeService = runningBetListByBetTypeService;
@@ -36,6 +38,7 @@
             var param = BetListByBetTypeHandler.CreateRunningBetListByBetTypeParam(message);
 
             var tickets = await runningBetListByBetTypeService.GetBetList(param);
+            await AssignCountry(tickets, message.DisplayVNIP);
             var supportScoreMapBetTypeIds = forecastService.GetBetTypeIdsSupportScoreMap();
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, tickets);

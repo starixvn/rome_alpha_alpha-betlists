@@ -1,6 +1,7 @@
 ﻿namespace Alpha.BetLists.Site.Handlers.CorrectScore
 {
     using System.Threading.Tasks;
+    using Alpha.IPInfo.Services;
     using AppResources;
     using BetListByBetType;
     using BetLists.Models;
@@ -28,8 +29,9 @@
             ITicketHelper ticketHelper,
             ISmartPunterBetListMonitor monitorService,
             IPService ipService,
-            Workbook<TicketDto> workbook)
-            : base(builder, excelBuilder, ticketHelper, monitorService, ipService)
+            Workbook<TicketDto> workbook,
+            IIPInfoService ipInfoService)
+            : base(builder, excelBuilder, ticketHelper, monitorService, ipService, ipInfoService)
         {
             this.correctScoreService = correctScoreService;
             this.workbook = workbook;
@@ -39,6 +41,7 @@
         {
             var correctScoreParam = CorrectScoreHandler.CreateCorrectScoreParam(message);
             var tickets = await correctScoreService.GetBetList(correctScoreParam);
+            await AssignCountry(tickets, message.DisplayVNIP);
 
             var viewModel = new CorrectScoreViewModel(message, new BetListData(tickets, null), null, TicketHelper);
 

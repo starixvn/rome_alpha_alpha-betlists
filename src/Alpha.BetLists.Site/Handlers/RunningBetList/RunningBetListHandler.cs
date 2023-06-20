@@ -1,6 +1,7 @@
 ﻿namespace Alpha.BetLists.Site.Handlers.RunningBetList
 {
     using System.Threading.Tasks;
+    using Alpha.IPInfo.Services;
     using Extensions;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
@@ -27,8 +28,9 @@
             ITicketHelper ticketHelper,
             ISmartPunterBetListMonitor monitorService,
             IPService ipService,
-            AutoFollowBetService autoFollowBetService)
-            : base(builder, ticketHelper, monitorService, ipService)
+            AutoFollowBetService autoFollowBetService,
+            IIPInfoService ipInfoService)
+            : base(builder, ticketHelper, monitorService, ipService, ipInfoService)
         {
             this.runningBetListService = runningBetListService;
             this.productService = productService;
@@ -57,6 +59,7 @@
                 message.CustName);
 
             var betlistData = await runningBetListService.GetBetList(runningBetListParam);
+            await AssignCountry(betlistData.Tickets, message.DisplayVNIP);
             var products = productService.GetProductsForCustomer(message.ViewerId, message.Site, message.CurrencyId, message.MinDate, message.IsEnableSabaPromotion);
             var supportScoreMapBetTypeIds = forecastService.GetBetTypeIdsSupportScoreMap();
 

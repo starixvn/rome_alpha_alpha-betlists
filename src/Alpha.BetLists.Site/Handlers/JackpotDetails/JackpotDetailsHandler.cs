@@ -1,6 +1,7 @@
 ﻿namespace Alpha.BetLists.Site.Handlers.JackpotDetails
 {
     using System.Threading.Tasks;
+    using Alpha.IPInfo.Services;
     using BetLists.Models;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
@@ -21,8 +22,9 @@
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper,
             ISmartPunterBetListMonitor monitorService,
-            IPService ipService)
-            : base(builder, ticketHelper, monitorService, ipService)
+            IPService ipService,
+            IIPInfoService ipInfoService)
+            : base(builder, ticketHelper, monitorService, ipService, ipInfoService)
         {
             this.jackpotDetailsService = jackpotDetailsService;
         }

@@ -25,6 +25,7 @@
             // Arrange
             AppSettings.AppSettingValues = new NameValueCollection();
             AppSettings.AppSettingValues.Add("StoredProcedurePath", "Local");
+            AppSettings.AppSettingValues.Add("SiteLabel", "xxx");
             var passVerify = false;
 
             // Act

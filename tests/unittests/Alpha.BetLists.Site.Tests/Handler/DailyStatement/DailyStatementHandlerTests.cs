@@ -42,7 +42,8 @@
                 betlistFixture.HtmlBuilder,
                 betlistFixture.TicketHelper,
                 betlistFixture.MonitorService,
-                betlistFixture.IpService);
+                betlistFixture.IpService,
+                betlistFixture.IpInfoService);
 
             user = betlistFixture.User;
             compareLogic = new CompareLogic();

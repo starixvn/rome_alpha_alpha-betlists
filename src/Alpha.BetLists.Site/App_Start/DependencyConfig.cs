@@ -5,6 +5,9 @@
     using System.Reflection;
     using System.Web.Mvc;
     using Alpha.BetLists.Site.Handlers.RiskAnalysisIPMatching;
+    using Alpha.IPInfo.DataAccess;
+    using Alpha.IPInfo.Models;
+    using Alpha.IPInfo.Services;
     using Alpha.NetThrottling;
     using Alpha.NetThrottling.Models;
     using Alpha.NetThrottling.Resolvers;
@@ -125,6 +128,7 @@
             container.Register<IBetBuilderDataAccess, BetBuilderDataAccess>(Lifestyle.Singleton);
             container.Register<ICasinoDetailsDataAccess, CasinoDetailsDataAccess>(Lifestyle.Singleton);
             container.Register<IPartialUMDataAccess, PartialUMDataAccess>(Lifestyle.Singleton);
+            container.Register<IIPInfoDataAccess, IPInfoDataAccess>(Lifestyle.Singleton);
         }
 
         private static void RegisterServices(Container container)
@@ -196,6 +200,18 @@
 
             container.Register<IPartialUMService, PartialUMService>(Lifestyle.Singleton);
             container.RegisterSingleton<AutoFollowBetService, AutoFollowBetServiceImpl>();
+            container.Register<IIPInfoService>(
+                () => new IPInfoService(
+                    new IPInformationConfig
+                    {
+                        IPV4TopCountries = AppSettings.IPV4TopCountries,
+                        IPV4TopCountriesCacheInMinutes = AppSettings.IPV4TopCountriesCacheInMinutes,
+                        IPV4CacheInMinutes = AppSettings.IPV4CacheInMinutes,
+                        IPV6CacheInMinutes = AppSettings.IPV6CacheInMinutes
+                    },
+                    container.GetInstance<ICacheService>(),
+                    container.GetInstance<IIPInfoDataAccess>()),
+                Lifestyle.Singleton);
         }
 
         private static void RegisterStaticInstances(Container container)

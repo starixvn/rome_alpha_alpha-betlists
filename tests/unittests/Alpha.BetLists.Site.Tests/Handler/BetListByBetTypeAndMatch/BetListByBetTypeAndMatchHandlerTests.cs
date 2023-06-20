@@ -47,7 +47,8 @@
                 betlistFixture.HtmlBuilder,
                 betlistFixture.TicketHelper,
                 betlistFixture.MonitorService,
-                betlistFixture.IpService);
+                betlistFixture.IpService,
+                betlistFixture.IpInfoService);
 
             var cacheRef = Substitute.For<IRemotingRefService>();
             cacheRef.GetBetTypeName(Arg.Any<string>(), Arg.Any<string>()).Returns("abc");

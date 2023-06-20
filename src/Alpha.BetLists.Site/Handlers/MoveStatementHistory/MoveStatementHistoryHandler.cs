@@ -5,6 +5,7 @@
     using Alpha.BetLists.Services;
     using Alpha.BetLists.Site.Requests.MoveStatementHistory;
     using Alpha.BetLists.Site.ViewModels.MoveStatementHistory;
+    using Alpha.IPInfo.Services;
     using Alpha.SmartPunter.Services;
     using Alpha.Utilities.IP;
     using Fanex.BetList.Core.Builder;
@@ -21,7 +22,8 @@
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper,
             ISmartPunterBetListMonitor monitorService,
-            IPService ipService) : base(builder, ticketHelper, monitorService, ipService)
+            IPService ipService,
+            IIPInfoService ipInfoService) : base(builder, ticketHelper, monitorService, ipService, ipInfoService)
         {
             this.moveStatementHistoryService = moveStatementHistoryService;
         }
@@ -30,6 +32,7 @@
         {
             var moveStatementHistoryParam = new MoveStatementHistoryParam(message.CustId, message.TransId);
             var tickets = await moveStatementHistoryService.GetBetList(moveStatementHistoryParam);
+            await AssignCountry(tickets, message.DisplayVNIP);
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, tickets);
 

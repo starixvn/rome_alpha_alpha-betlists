@@ -106,6 +106,14 @@
 
         public static bool DisabledVietnamese => IsMBCSite;
 
+        public static string IPV4TopCountries => GetConfigValue("IPInfo:IPV4TopCountries");
+
+        public static int IPV4TopCountriesCacheInMinutes => int.Parse(GetConfigValue("IPInfo:IPV4TopCountriesCacheInMinutes"));
+
+        public static int IPV4CacheInMinutes => int.Parse(GetConfigValue("IPInfo:IPV4CacheInMinutes"));
+
+        public static int IPV6CacheInMinutes => int.Parse(GetConfigValue("IPInfo:IPV6CacheInMinutes"));
+
         public static string GetConfigValue(string configName) => AppSettingValues[configName];
 
         public static void Verify()

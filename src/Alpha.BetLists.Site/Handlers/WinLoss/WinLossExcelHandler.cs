@@ -2,6 +2,7 @@
 {
     using System;
     using System.Threading.Tasks;
+    using Alpha.IPInfo.Services;
     using AppResources;
     using BetLists.Models;
     using Extensions;
@@ -34,8 +35,9 @@
             IPService ipService,
             Workbook<TicketDto> workbook,
             ProductService productService,
-            ProductDetailService productDetailService)
-            : base(builder, excelBuilder, ticketHelper, monitorService, ipService)
+            ProductDetailService productDetailService,
+            IIPInfoService ipInfoService)
+            : base(builder, excelBuilder, ticketHelper, monitorService, ipService, ipInfoService)
         {
             this.workbook = workbook;
             this.winLossService = winLossService;
@@ -55,6 +57,7 @@
             var winLossParam = WinLossHandler.CreateWinLossParam(message, validUserSelectedProductIds, productDetailsXML, message.MaxTotalRowExportExcel, message.MaxTotalRowExportExcelConfig);
             winLossParam.IsExcel = true;
             var betlistData = await winLossService.GetBetList(winLossParam);
+            await AssignCountry(betlistData.Tickets, message.DisplayVNIP);
 
             var winLossViewModel = new WinLossViewModel(message, betlistData, null, TicketHelper, false, betlistOutputParams: betlistData.BetlistOutputParams);
             workbook = workbook.UseTemplate(GetTemplateInfo(message.ViewerLevel));

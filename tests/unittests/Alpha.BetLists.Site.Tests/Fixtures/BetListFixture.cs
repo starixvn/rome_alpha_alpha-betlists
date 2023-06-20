@@ -10,6 +10,9 @@
     using NSubstitute;
     using SmartPunter.Services;
     using Utilities.IP;
+    using Alpha.IPInfo.Services;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     public class BetListFixture
     {
@@ -21,6 +24,10 @@
             TicketHelper = Substitute.For<ITicketHelper>();
             MonitorService = Substitute.For<ISmartPunterBetListMonitor>();
             IpService = Substitute.For<IPService>();
+            IpInfoService = Substitute.For<IIPInfoService>();
+            IpInfoService
+                .GetCountries(Arg.Any<IEnumerable<string>>())
+                .Returns(Task.FromResult<IDictionary<string, string>>(new Dictionary<string, string>()));
             AutoFollowBetService = Substitute.For<AutoFollowBetService>();
             ExcelBuilder.RTFHelper.Returns(CreateRtfHelper());
             RtfHelper = ExcelBuilder.RTFHelper;
@@ -47,6 +54,8 @@
         public BrowserHelper BrowserHelper { get; }
 
         public IPService IpService { get; }
+
+        public IIPInfoService IpInfoService { get; }
 
         public AutoFollowBetService AutoFollowBetService { get; }
 

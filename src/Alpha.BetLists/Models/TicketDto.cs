@@ -4,5 +4,6 @@
 
     public class TicketDto : Ticket
     {
+        public string Country { get; set; }
     }
 }

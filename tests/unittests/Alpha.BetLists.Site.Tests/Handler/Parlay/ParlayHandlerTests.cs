@@ -30,7 +30,8 @@
                 betListFixture.TicketHelper,
                 betListFixture.MonitorService,
                 betListFixture.IpService,
-                betListFixture.BrowserHelper);
+                betListFixture.BrowserHelper,
+                betListFixture.IpInfoService);
 
             comparer = new CompareLogic(new ComparisonConfig
             {

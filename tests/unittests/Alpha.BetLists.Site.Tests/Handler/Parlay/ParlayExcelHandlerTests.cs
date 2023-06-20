@@ -48,7 +48,8 @@
                 betListFixture.TicketHelper,
                 betListFixture.MonitorService,
                 betListFixture.IpService,
-                workbook);
+                workbook,
+                betListFixture.IpInfoService);
 
             parlayExcelHandler.MapPath = path => path;
             parlayExcelHandler.IsFileExist = path => true;

@@ -52,7 +52,8 @@
                 betListFixture.ExcelBuilder,
                 betListFixture.TicketHelper,
                 betListFixture.IpService,
-                workbook);
+                workbook,
+                betListFixture.IpInfoService);
 
             handler.IsFileExist = path => true;
 

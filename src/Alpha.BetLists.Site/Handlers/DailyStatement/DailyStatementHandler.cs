@@ -1,6 +1,7 @@
 ﻿namespace Alpha.BetLists.Site.Handlers.DailyStatement
 {
     using System.Threading.Tasks;
+    using Alpha.IPInfo.Services;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using MediatR;
@@ -22,8 +23,9 @@
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper,
             ISmartPunterBetListMonitor monitorService,
-            IPService ipService)
-            : base(builder, ticketHelper, monitorService, ipService)
+            IPService ipService,
+            IIPInfoService ipInfoService)
+            : base(builder, ticketHelper, monitorService, ipService, ipInfoService)
         {
             this.dailyStatementService = dailyStatementService;
             this.forecastService = forecastService;
@@ -33,6 +35,7 @@
         {
             var param = CreateDailyStatementParam(message);
             var betlistData = await dailyStatementService.GetBetList(param);
+            await AssignCountry(betlistData.Tickets, message.DisplayVNIP);
 
             var supportScoreMapBetTypeIds = forecastService.GetBetTypeIdsSupportScoreMap();
 

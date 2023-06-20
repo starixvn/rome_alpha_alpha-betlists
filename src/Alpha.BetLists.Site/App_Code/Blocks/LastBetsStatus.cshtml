@@ -1,15 +1,20 @@
 ﻿@using Fanex.BetList.Core.Entities
+@using Alpha.BetLists.Models
 
-@helper Render(ITicket ticket, ITicketHelper helper, bool isShowVNIP)
+@helper Render(TicketDto ticket, ITicketHelper helper, bool isShowVNIP)
 {
-<td class="status-block text-center sport-@(ticket.SportTypeId)">
+    <td class="status-block text-center sport-@(ticket.SportTypeId)">
     @if (!isShowVNIP && helper.IsVnIp(ticket.IP))
     {
-    <div class="ip"><div class="iplink">--</div></div>
+        <div class="ip"><div class="iplink">--</div></div>
     }
     else
     {
-    <div class="ip"><div class="iplink" onclick="OpenIPInfo('@ticket.IP');">@ticket.IP</div></div>
+        <div class="ip"><div class="iplink" onclick="OpenIPInfo('@ticket.IP');">@ticket.IP</div></div>
+        if (!string.IsNullOrWhiteSpace(ticket.Country))
+        {
+            <div class="country">@ticket.Country</div>
+        }
     }
-</td>
+    </td>
 }

@@ -4,13 +4,16 @@
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
+    using System.Threading.Tasks;
     using System.Web.Hosting;
     using System.Web.Mvc;
     using Alpha.BetLists.Site.Requests.WinLoss;
     using Alpha.BetLists.Site.ViewModels.Components;
+    using Alpha.IPInfo.Services;
     using BetLists.Models;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
+    using Fanex.Logging.Extensions.Web;
     using SmartPunter.Services;
     using Utilities.IP;
 
@@ -22,12 +25,14 @@
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper,
             ISmartPunterBetListMonitor monitorService,
-            IPService ipService)
+            IPService ipService,
+            IIPInfoService ipInfoService)
         {
             Builder = builder;
             TicketHelper = ticketHelper;
             MonitorService = monitorService;
             IpService = ipService;
+            IpInfoService = ipInfoService;
             TicketHelper.IsVnIp = IpService.IsVNIP;
             GetOddsTypeName = ticketHelper.GetOddsTypeNameById;
         }
@@ -39,6 +44,8 @@
         protected internal ISmartPunterBetListMonitor MonitorService { get; }
 
         protected internal IPService IpService { get; }
+
+        protected internal IIPInfoService IpInfoService { get; }
 
         protected internal GetCachePropertyById GetOddsTypeName { get; }
 
@@ -126,5 +133,38 @@
                 p.DisplayName,
                 userSelectedResourceIds.ContainsKey(p.ResourceId)))
             : Enumerable.Empty<ProductDetailViewModel>();
+            
+        protected internal async Task AssignCountry(IEnumerable<ITicket> tickets, bool displayVNIP)
+        {
+            var ipList = tickets
+                .Where(t => !string.IsNullOrWhiteSpace(t.IP) && (displayVNIP || !IpService.IsVNIP(t.IP.Trim())))
+                .Select(t => t.IP.Trim())
+                .Distinct();
+            var countryDictionary = await GetCountries(ipList);
+
+            string country;
+            foreach (var item in tickets)
+            {
+                if (!string.IsNullOrWhiteSpace(item.IP)
+                    && countryDictionary.TryGetValue(item.IP.Trim(), out country))
+                {
+                    ((TicketDto)item).Country = country;
+                }
+            }
+        }
+
+        protected internal async Task<IDictionary<string, string>> GetCountries(IEnumerable<string> ipList)
+        {
+            try
+            {
+                return await IpInfoService.GetCountries(ipList);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.Handle(ex);
+            }
+
+            return new Dictionary<string, string>();
+        }
     }
 }

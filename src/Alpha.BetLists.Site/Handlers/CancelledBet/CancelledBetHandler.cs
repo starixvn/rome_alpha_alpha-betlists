@@ -1,13 +1,12 @@
 ﻿namespace Alpha.BetLists.Site.Handlers.CancelledBet
 {
-    using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using Alpha.BetLists.Params;
     using Alpha.BetLists.Services;
     using Alpha.BetLists.Site.Requests.CancelledBet;
     using Alpha.BetLists.Site.ViewModels.CancelledBet;
+    using Alpha.IPInfo.Services;
     using Alpha.Utilities.IP;
     using Extensions;
     using Fanex.BetList.Core.Builder;
@@ -28,7 +27,8 @@
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper,
             ISmartPunterBetListMonitor monitorService,
-            IPService ipService) : base(builder, ticketHelper, monitorService, ipService)
+            IPService ipService,
+            IIPInfoService ipInfoService) : base(builder, ticketHelper, monitorService, ipService, ipInfoService)
         {
             this.service = service;
             this.productService = productService;
@@ -53,6 +53,11 @@
                 message.PageSize,
                 message.PageIndex);
             var cancelledBet = await service.GetCancelledBet(parameter);
+            var betlistData = cancelledBet.DataSource.FirstOrDefault();
+            if (betlistData != null)
+            {
+                await AssignCountry(betlistData.Tickets, message.DisplayVNIP);
+            }
 
             return new CancelledBetViewModel(
                 message,

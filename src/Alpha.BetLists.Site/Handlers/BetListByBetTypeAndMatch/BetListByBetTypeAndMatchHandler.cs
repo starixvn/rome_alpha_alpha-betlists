@@ -1,6 +1,7 @@
 ﻿namespace Alpha.BetLists.Site.Handlers.BetListByBetTypeAndMatch
 {
     using System.Threading.Tasks;
+    using Alpha.IPInfo.Services;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using MediatR;
@@ -23,8 +24,9 @@
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper,
             ISmartPunterBetListMonitor monitorService,
-            IPService ipService)
-            : base(builder, ticketHelper, monitorService, ipService)
+            IPService ipService,
+            IIPInfoService ipInfoService)
+            : base(builder, ticketHelper, monitorService, ipService, ipInfoService)
         {
             this.forecastService = forecastService;
             this.runningBetListByBetTypeAndMatchService = runningBetListByBetTypeAndMatchService;
@@ -35,6 +37,7 @@
             var param = CreateRunningBetListByBetTypeAndMatchParam(message);
 
             var betListData = await runningBetListByBetTypeAndMatchService.GetBetList(param);
+            await AssignCountry(betListData.Tickets, message.DisplayVNIP);
             var supportScoreMapBetTypeIds = forecastService.GetBetTypeIdsSupportScoreMap();
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betListData.Tickets);

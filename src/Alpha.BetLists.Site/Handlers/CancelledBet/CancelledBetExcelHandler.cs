@@ -10,6 +10,7 @@
     using Alpha.BetLists.Site.Requests.CancelledBet;
     using Alpha.BetLists.Site.ViewModels;
     using Alpha.BetLists.Site.ViewModels.CancelledBet;
+    using Alpha.IPInfo.Services;
     using Alpha.SmartPunter.Services;
     using Alpha.Utilities.IP;
     using BetLists.Constants;
@@ -37,7 +38,8 @@
             IBetListExcelBuilder excelBuilder,
             ITicketHelper ticketHelper,
             IPService ipService,
-            Workbook<TicketDto> workbook) : base(builder, excelBuilder, ticketHelper, monitorService, ipService)
+            Workbook<TicketDto> workbook,
+            IIPInfoService ipInfoService) : base(builder, excelBuilder, ticketHelper, monitorService, ipService, ipInfoService)
         {
             this.service = service;
             this.workbook = workbook;
@@ -62,6 +64,11 @@
                 DefaultVariables.MaximumnNumberRowExcelFile,
                 query.PageIndex);
             var cancelledBet = await service.GetCancelledBet(parameter);
+            var betlistData = cancelledBet.DataSource.FirstOrDefault();
+            if (betlistData != null)
+            {
+                await AssignCountry(betlistData.Tickets, query.DisplayVNIP);
+            }
 
             var viewModel = new CancelledBetViewModel(
                 query,

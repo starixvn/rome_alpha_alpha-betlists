@@ -51,7 +51,8 @@
                 betListFixture.TicketHelper,
                 betListFixture.MonitorService,
                 betListFixture.IpService,
-                workbook);
+                workbook,
+                betListFixture.IpInfoService);
             handler.MapPath = (path) => path;
             handler.IsFileExist = (path) => true;
 

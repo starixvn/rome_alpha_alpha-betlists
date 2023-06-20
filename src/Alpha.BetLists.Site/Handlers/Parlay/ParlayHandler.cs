@@ -2,6 +2,7 @@
 {
     using System.Threading.Tasks;
     using Alpha.BetLists.Site.Helpers;
+    using Alpha.IPInfo.Services;
     using BetLists.Models;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
@@ -26,8 +27,9 @@
             ITicketHelper ticketHelper,
             ISmartPunterBetListMonitor monitorService,
             IPService ipService,
-            BrowserHelper browserHelper)
-            : base(builder, ticketHelper, monitorService, ipService)
+            BrowserHelper browserHelper,
+            IIPInfoService ipInfoService)
+            : base(builder, ticketHelper, monitorService, ipService, ipInfoService)
         {
             this.parlayService = parlayService;
             this.browserHelper = browserHelper;

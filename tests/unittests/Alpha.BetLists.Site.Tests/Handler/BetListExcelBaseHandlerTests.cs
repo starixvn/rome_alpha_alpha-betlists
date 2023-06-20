@@ -39,7 +39,8 @@
                 this.betlistFixture.ExcelBuilder,
                 this.betlistFixture.TicketHelper,
                 this.betlistFixture.MonitorService,
-                this.betlistFixture.IpService);
+                this.betlistFixture.IpService,
+                this.betlistFixture.IpInfoService);
 
             query = new WinLossQuery(betlistFixture.User);
             viewModel = new WinLossViewModel(query, BetListDataTest.BetListData, betlistFixture.HtmlBuilder, betlistFixture.TicketHelper, false);
@@ -186,6 +187,7 @@
         {
             // Arrange
             var ticket = BetListDataTest.Ticket;
+            ticket.Country = null;
 
             betlistFixture.ExcelBuilder.CreateStatusBuilder(ticket.BetTypeId)
                  .RenderRTF(ticket, betlistFixture.TicketHelper, viewModel.BetListData.TicketData, query.DisplayVNIP, betlistFixture.RtfHelper)

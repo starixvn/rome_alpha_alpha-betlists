@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using Alpha.IPInfo.Services;
     using Extensions;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
@@ -28,8 +29,9 @@
             ISmartPunterBetListMonitor monitorService,
             IPService ipService,
             ProductService productService,
-            ProductDetailService productDetailService)
-            : base(builder, ticketHelper, monitorService, ipService)
+            ProductDetailService productDetailService,
+            IIPInfoService ipInfoService)
+            : base(builder, ticketHelper, monitorService, ipService, ipInfoService)
         {
             this.winLossService = winLossService;
             this.productService = productService;
@@ -51,6 +53,7 @@
 
             var winLossParam = CreateWinLossParam(message, validUserSelectedProductIds, productDetailsXML, message.MaxTotalRow, message.MaxTotalRowConfig);
             var betlistData = await winLossService.GetBetList(winLossParam);
+            await AssignCountry(betlistData.Tickets, message.DisplayVNIP);
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 

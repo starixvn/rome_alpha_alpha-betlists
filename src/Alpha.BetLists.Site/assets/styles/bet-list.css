@@ -521,3 +521,8 @@ div.ticket-list div.void > div.match, div.ticket-list div.void div.firstGoal, di
 .filter {
   padding-top: 0;
   padding-right: 0; }
+
+.tblRpt tbody td.status-block {
+  white-space: normal; }
+  .tblRpt tbody td.status-block .country {
+    font-size: 11px; }

@@ -43,7 +43,8 @@
                 this.betlistFixture.MonitorService,
                 this.betlistFixture.HtmlBuilder,
                 this.betlistFixture.TicketHelper,
-                this.betlistFixture.IpService);
+                this.betlistFixture.IpService,
+                this.betlistFixture.IpInfoService);
 
             compareLogic = new CompareLogic(new ComparisonConfig
             {

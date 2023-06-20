@@ -1,5 +1,6 @@
 ﻿namespace Alpha.BetLists.Site.Handlers.BetListByBetType
 {
+    using Alpha.IPInfo.Services;
     using BetLists.Models;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
@@ -16,8 +17,9 @@
             IBetListExcelBuilder excelBuilder,
             ITicketHelper ticketHelper,
             ISmartPunterBetListMonitor monitorService,
-            IPService ipService)
-            : base(builder, excelBuilder, ticketHelper, monitorService, ipService)
+            IPService ipService,
+            IIPInfoService ipInfoService)
+            : base(builder, excelBuilder, ticketHelper, monitorService, ipService, ipInfoService)
         {
         }
 

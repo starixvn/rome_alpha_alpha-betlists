@@ -9,6 +9,7 @@
     using Alpha.BetLists.Services;
     using Alpha.BetLists.Site.Requests.WinLoss;
     using Alpha.BetLists.Site.ViewModels.WinLoss;
+    using Alpha.IPInfo.Services;
     using Alpha.SmartPunter.Services;
     using Alpha.Utilities.IP;
     using Fanex.BetList.Core.Builder;
@@ -31,8 +32,8 @@
             ISmartPunterBetListMonitor monitorService,
             IPService ipService,
             ProductService productService,
-            ProductDetailService productDetailService)
-            : base(builder, ticketHelper, monitorService, ipService)
+            ProductDetailService productDetailService,
+            IIPInfoService ipInfoService) : base(builder, ticketHelper, monitorService, ipService, ipInfoService)
         {
             this.winLossService = winLossService;
             this.productService = productService;
@@ -48,6 +49,7 @@
             var showContributionAmountRoundNote = message.IsEnabledJackpot;
             var winLossParam = await CreateWinLossParam(message, products, productDetails);
             var betlistData = await winLossService.GetBetList(winLossParam);
+            await AssignCountry(betlistData.Tickets, message.DisplayVNIP);
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
@@ -68,6 +70,7 @@
             var showContributionAmountRoundNote = message.IsEnabledJackpot;
             var winLossParam = await CreateWinLossParam(message);
             var betlistData = await winLossService.GetBetList(winLossParam);
+            await AssignCountry(betlistData.Tickets, message.DisplayVNIP);
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
@@ -84,20 +87,17 @@
         private async Task<Tuple<IEnumerable<Product>, IEnumerable<ProductDetail>>> GetProductsAndProductDetails(
             WinLossGetDataQuery message)
         {
-            var productsTask = productService.GetProductsForCustomerAsync(
+            var products = productService.GetProductsForCustomer(
                 message.ViewerId,
                 message.Site,
                 message.CurrencyId,
                 message.MinDate,
                 message.IsEnableSabaPromotion);
-            var productDetailsTask = productDetailService.GetProductDetailsAsync(
+            var productDetails = await productDetailService.GetProductDetailsAsync(
                 message.ViewerId,
                 message.Site,
                 message.CurrencyId);
-            await Task.WhenAll(productsTask, productDetailsTask);
 
-            IEnumerable<Product> products = (await productsTask).ToList();
-            IEnumerable<ProductDetail> productDetails = (await productDetailsTask).ToList();
             return Tuple.Create(products, productDetails);
         }
 

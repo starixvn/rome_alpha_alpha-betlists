@@ -17,6 +17,7 @@
     using ViewModels;
     using ViewModels.Blocks;
     using static ONEbook.SpreadSheets.Column;
+    using Alpha.IPInfo.Services;
 
     /// <summary>
     /// Bet list excel base builder for default method that help to export Excel.
@@ -34,8 +35,9 @@
             IBetListExcelBuilder excelBuilder,
             ITicketHelper ticketHelper,
             ISmartPunterBetListMonitor monitorService,
-            IPService ipService)
-            : base(builder, ticketHelper, monitorService, ipService)
+            IPService ipService,
+            IIPInfoService ipInfoService)
+            : base(builder, ticketHelper, monitorService, ipService, ipInfoService)
         {
             ExcelBuilder = excelBuilder;
             RtfHelper = excelBuilder.RTFHelper;
@@ -206,10 +208,23 @@
         public virtual IRichTextString BuildStake(ITicket ticket)
             => ExcelBuilder.CreateStakeBuilder(ticket.BetTypeId).RenderRTF(ticket, TicketHelper, RtfHelper);
 
-        public virtual IRichTextString BuildStatus(ITicket ticket, BetListBaseViewModel viewModel)
-            => ExcelBuilder
+        public virtual IRichTextString BuildStatus(TicketDto ticket, BetListBaseViewModel viewModel)
+        {
+            RtfHelper.RTFRenderer.AddText(ExcelBuilder
                 .CreateStatusBuilder(ticket.BetTypeId)
-                .RenderRTF(ticket, TicketHelper, viewModel.BetListData.TicketData, viewModel.DisplayVNIP, RtfHelper);
+                .RenderRTF(ticket, TicketHelper, viewModel.BetListData.TicketData, viewModel.DisplayVNIP, RtfHelper)
+                .ToString());
+
+            if (!string.IsNullOrWhiteSpace(ticket.Country))
+            {
+                RtfHelper.RTFRenderer.AddText("\n" + ticket.Country);
+            }
+
+            var rtfText = RtfHelper.RTFRenderer.Render();
+            RtfHelper.RTFRenderer.Clear();
+
+            return rtfText;
+        }
 
         protected virtual IRichTextString BuildWinLoss(ITicket ticket)
         {
