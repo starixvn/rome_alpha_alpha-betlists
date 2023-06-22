@@ -48,6 +48,14 @@
     "inputFile": "assets/styles/last-bets-new.scss"
   },
   {
+    "outputFile": "assets/styles/filter-config-dark.css",
+    "inputFile": "assets/styles/filter-config-dark.scss"
+  },
+  {
+    "outputFile": "assets/styles/filter-config.css",
+    "inputFile": "assets/styles/filter-config.scss"
+  },
+  {
     "outputFile": "assets/styles/winloss.css",
     "inputFile": "assets/styles/winloss.scss"
   },

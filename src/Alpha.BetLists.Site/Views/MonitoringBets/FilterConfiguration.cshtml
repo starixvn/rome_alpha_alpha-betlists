@@ -7,6 +7,7 @@
 @section Styles {
     @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-betlists/filter")
     @*@StaticResources.RenderStylesWithDarkMode($"~/{AppSettings.BetlistRouting}assets/bundles/last-bets")*@
+    @StaticResources.RenderStylesWithDarkMode($"~/{AppSettings.BetlistRouting}assets/bundles/filter-config")
 }
 @section Scripts {
     @*@StaticResources.AssetScripts.Render("/bundles/site-betlists/last-bets")*@
@@ -15,5 +16,142 @@
 }
 <div class="bl_title">Filter Configuration</div>
 <form class="form-inline filter" role="form">
-
+    <div class="block-btn">
+        <input type="button" class="btn-cancel" value="Cancel">
+        <input type="button" class="btn-submit" value="Create">
+        <input type="button" class="btn-reset" value="Save Filter">
+    </div>
+    <div class="block-config block-config">
+        <div class="ttl-config">Filter by Bettype and Stake</div>
+        <div class="list-item">
+            <div class="item">
+                <label>Bettype</label>
+                <div class="inner">
+                    <select>
+                        <option value="Handicap, over/Under">Handicap, over/Under</option>
+                    </select>
+                </div>
+            </div>
+            <div class="item">
+                <label>Stake</label>
+                <div class="inner stake">
+                    <span>>=</span>
+                    <input type="text" name="stake" value="500" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="block-config">
+        <div class="ttl-config">Filter by Sports</div>
+        <div class="list-box">
+            <div class="box">
+                <label>All sport</label>
+                <p>Ticket of all sports will be monitored<br />New sports will be include automatically.</p>
+                <label class="bottom">
+                    <input type="radio" name="sport" value="" />
+                    <span></span>
+                </label>
+            </div>
+            <div class="box">
+                <label>specific sport</label>
+                <p>Ticket of selected options will be monitored.<br />Selecting specific a league/match may be obsolete once completing.</p>
+                <label class="bottom">
+                    <input type="radio" name="sport" value="" checked />
+                    <span></span>
+                </label>
+            </div>
+        </div>
+        <div class="list-item all-sport">
+            <div class="item">
+                <label>Match live indicator</label>
+                <div class="inner">
+                    <select>
+                        <option value="Live">Live</option>
+                    </select>
+                </div>
+            </div>
+            <div class="item">
+                <label>Group of sport</label>
+                <div class="inner">
+                    <select>
+                        <option value="Live">Live</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="">
+            Multy select here<br>
+            Multy select here<br>
+            Multy select here<br>
+            Multy select here<br>
+            Multy select here<br>
+            Multy select here<br>
+            Multy select here<br>
+            Multy select here<br>
+            Multy select here<br>
+            Multy select here<br>
+            Multy select here<br>
+            Multy select here<br>
+            Multy select here<br>
+            Multy select here<br>
+            Multy select here<br>
+        </div>
+    </div>
+    <div class="block-config">
+        <div class="ttl-config">Filter by Members</div>
+        <div class="list-box">
+            <div class="box">
+                <label>All Members</label>
+                <p>Ticket of all members will be monitored<br />New members will be include automatically.</p>
+                <label class="bottom">
+                    <input type="radio" name="member" value="" />
+                    <span></span>
+                </label>
+            </div>
+            <div class="box">
+                <label>specific Members</label>
+                <p>
+                    Specific members can be added manually or selected from monitored fist.<br />Selecting specific a member may be obsolete once member closed.
+                </p>
+                <label class="bottom">
+                    <input type="radio" name="member" value="" checked />
+                    <span></span>
+                </label>
+            </div>
+        </div>
+        <p class="text">Manually Ener Member Username</p>
+        <div class="">
+            label tag here<br />
+            label tag here<br />
+            label tag here<br />
+            label tag here<br />
+            label tag here<br />
+            label tag here<br />
+            label tag here<br />
+            label tag here<br />
+            label tag here<br />
+            label tag here<br />
+            label tag here<br />
+            label tag here<br />
+            label tag here<br />
+        </div>
+        <p class="text">Select monitored members from My Watchlist function</p>
+        <div>
+            search member here<br />
+            search member here<br />
+            search member here<br />
+            search member here<br />
+            search member here<br />
+            search member here<br />
+            search member here<br />
+            search member here<br />
+            search member here<br />
+            search member here<br />
+        </div>
+    </div>
+    <div class="block-btn">
+        <input type="button" class="btn-cancel" value="Cancel">
+        <input type="button" class="btn-submit" value="Create">
+        <input type="button" class="btn-reset" value="Save Filter">
+    </div>
 </form>

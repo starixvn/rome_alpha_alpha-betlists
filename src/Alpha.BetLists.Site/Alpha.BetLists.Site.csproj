@@ -774,6 +774,11 @@
     <Content Include="assets\bundles\error\error.min.css">
       <DependentUpon>error.css</DependentUpon>
     </Content>
+    <Content Include="assets\bundles\filter-config-dark.css" />
+    <Content Include="assets\bundles\filter-config.css" />
+    <Content Include="assets\bundles\filter-config.min.css">
+      <DependentUpon>filter-config.css</DependentUpon>
+    </Content>
     <Content Include="assets\bundles\filter.css" />
     <Content Include="assets\bundles\filter.min.css">
       <DependentUpon>filter.css</DependentUpon>
@@ -785,6 +790,10 @@
     <Content Include="assets\bundles\last-bets-dark.css" />
     <Content Include="assets\bundles\last-bets-dark.min.css">
       <DependentUpon>last-bets-dark.css</DependentUpon>
+    </Content>
+    <Content Include="assets\bundles\last-bets-new.css" />
+    <Content Include="assets\bundles\last-bets-new.min.css">
+      <DependentUpon>last-bets-new.css</DependentUpon>
     </Content>
     <Content Include="assets\bundles\member-betlist\member-betlist.js" />
     <Content Include="assets\bundles\member-betlist\member-betlist.min.js">
@@ -893,6 +902,18 @@
     <Content Include="assets\styles\error\error.min.css" />
     <Content Include="assets\styles\error\images\error-bg-dark.png" />
     <Content Include="assets\styles\error\images\error-bg.png" />
+    <Content Include="assets\styles\filter-config-dark.css">
+      <DependentUpon>filter-config-dark.scss</DependentUpon>
+    </Content>
+    <Content Include="assets\styles\filter-config-dark.min.css">
+      <DependentUpon>filter-config-dark.css</DependentUpon>
+    </Content>
+    <Content Include="assets\styles\filter-config.css">
+      <DependentUpon>filter-config.scss</DependentUpon>
+    </Content>
+    <Content Include="assets\styles\filter-config.min.css">
+      <DependentUpon>filter-config.css</DependentUpon>
+    </Content>
     <Content Include="assets\styles\filter.css">
       <DependentUpon>filter.scss</DependentUpon>
     </Content>
@@ -913,6 +934,12 @@
     </Content>
     <Content Include="assets\styles\last-bets-dark.min.css">
       <DependentUpon>last-bets-dark.css</DependentUpon>
+    </Content>
+    <Content Include="assets\styles\last-bets-new.css">
+      <DependentUpon>last-bets-new.scss</DependentUpon>
+    </Content>
+    <Content Include="assets\styles\last-bets-new.min.css">
+      <DependentUpon>last-bets-new.css</DependentUpon>
     </Content>
     <Content Include="assets\styles\last-bets.css">
       <DependentUpon>last-bets.scss</DependentUpon>
@@ -1037,6 +1064,8 @@
     <Content Include="assets\styles\_variables-dark.scss" />
     <Content Include="assets\styles\bet-list-dark.scss" />
     <Content Include="assets\styles\last-bets-dark.scss" />
+    <Content Include="assets\styles\last-bets-new-dark.scss" />
+    <Content Include="assets\styles\last-bets-new.scss" />
     <Content Include="assets\styles\parlay-detail-dark.scss" />
     <Content Include="App_Data\ProductSection.config" />
     <Content Include="WhoAmI.aspx" />
@@ -1066,6 +1095,8 @@
     <Content Include="assets\scripts\typings\globals\moment\typings.json" />
     <Content Include="App_Code\Components\ProductAndProductDetailDropdown.cshtml" />
     <Content Include="App_Code\Components\AutoRefresh.cshtml" />
+    <Content Include="assets\styles\filter-config.scss" />
+    <Content Include="assets\styles\filter-config-dark.scss" />
     <Content Include="App_Code\Components\WeekSelection.cshtml" />
     <Content Include="App_Code\Components\BreadcrumbLevel.cshtml" />
     <Content Include="assets\styles\winloss.scss" />

@@ -1,0 +1,123 @@
+﻿@import "mixins";
+@import "variables";
+
+.ttl-config {
+    color: #337ab7;
+    font-size: 16px;
+    padding: 10px 0;
+}
+
+.block-config {
+    border-bottom: 1px solid $table-border-color;
+    padding: 0 0 10px 0;
+    margin-bottom: 10px;
+
+    select, input[type="text"] {
+        box-shadow: none;
+        border: 1px solid $table-border-color;
+        height: 28px;
+    }
+}
+.text{
+    font-size: 16px;
+}
+.item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    width: 325px;
+    justify-content: space-between;
+
+    label {
+        min-width: 80px;
+        margin: 0;
+        padding-right: 10px;
+
+
+        .all-sport & {
+            min-width: 130px
+        }
+    }
+
+    .inner {
+        display: flex;
+        align-items: center;
+        background: #fff;
+        flex: 1;
+
+        input, select {
+            flex: 1;
+            width: 100%;
+        }
+
+        &.stake {
+            span {
+                border: 1px solid $table-border-color;
+                border-right: 0;
+                height: 28px;
+                line-height: 26px;
+                width: 30px;
+                text-align: center;
+            }
+        }
+    }
+}
+.list-box{
+    display: flex;
+    margin-bottom: 20px;
+}
+.box {
+    display: inline-flex;
+    flex-direction: column;
+    text-align: center;
+    border: 1px solid $table-border-color;
+    margin-right: 10px;
+    background: #fff;
+    width: 260px;
+
+    >label {
+        color: #06822D;
+        font-size: 16px;
+        padding: 10px;
+        text-align: left;
+        margin: 0;
+        text-transform: uppercase;
+    }
+
+    p {
+        padding: 0 10px;
+        margin: 0;
+        flex: 1;
+        display: flex;
+        align-items: center;
+    }
+
+    .bottom {
+        border-top: 1px solid $table-border-color;
+        background: #d9d9d9;
+        position: relative;
+        margin-top: auto;
+        padding: 0;
+        cursor: pointer;
+
+        input {
+            position: relative;
+            z-index: 10;
+            margin: 10px auto;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            display: block;
+
+            &:checked + span {
+                position: absolute;
+                content: "";
+                background: #E2EFDB;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+}

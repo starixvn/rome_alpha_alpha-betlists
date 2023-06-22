@@ -1,7 +1,16 @@
 ﻿.filter {
+    display: flex;
+    width: 100%;
+    clear: both;
+    align-items: flex-end;   
+
     .form-group {
         vertical-align: bottom;
-        label{
+        &:last-child{
+            margin-left: auto;
+        }
+
+        label {
             display: block;
         }
     }

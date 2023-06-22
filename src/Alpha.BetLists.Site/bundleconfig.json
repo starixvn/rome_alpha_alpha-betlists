@@ -176,5 +176,17 @@
     "inputFiles": [
       "assets/styles/last-bets-new.css"
     ]
+  },
+  {
+    "outputFileName": "assets/bundles/filter-config-dark.css",
+    "inputFiles": [
+      "assets/styles/filter-config-dark.css"
+    ]
+  },
+  {
+    "outputFileName": "assets/bundles/filter-config.css",
+    "inputFiles": [
+      "assets/styles/filter-config.css"
+    ]
   }
 ]

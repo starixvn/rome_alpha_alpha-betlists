@@ -1,7 +1,14 @@
-﻿.filter .form-group {
-  vertical-align: bottom; }
-  .filter .form-group label {
-    display: block; }
+﻿.filter {
+  display: flex;
+  width: 100%;
+  clear: both;
+  align-items: flex-end; }
+  .filter .form-group {
+    vertical-align: bottom; }
+    .filter .form-group:last-child {
+      margin-left: auto; }
+    .filter .form-group label {
+      display: block; }
 
 .scrollable {
   overflow: auto;
