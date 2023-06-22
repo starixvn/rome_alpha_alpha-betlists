@@ -133,6 +133,46 @@
       "assets/scripts/src/monitoring-bets/monitoring-bets.js"
     ]
   },
+  {
+    "outputFileName": "assets/bundles/monitoring-bets/monitoring-bets.css",
+    "inputFiles": [
+      "assets/styles/components/autorefresh.css",
+      "assets/styles/monitoring-bets.css"
+    ]
+  },
+  {
+    "outputFileName": "assets/bundles/monitoring-bets/manage-filters.js",
+    "inputFiles": [
+      "assets/scripts/src/common/ajax-helper.js",
+      "assets/scripts/src/components/inline-message.js",
+      "assets/scripts/src/monitoring-bets/manage-filters.js"
+    ]
+  },
+  {
+    "outputFileName": "assets/bundles/monitoring-bets/manage-filters.css",
+    "inputFiles": [
+      "assets/styles/monitoring-bets/manage-filters.css"
+    ]
+  },
+  {
+    "outputFileName": "assets/bundles/monitoring-bets/filter-configuration.js",
+    "inputFiles": [
+      "assets/scripts/src/components/inline-message.js",
+      "assets/scripts/src/components/dropdown-list.js",
+      "assets/scripts/src/components/sportleaguematch-treeview.js",
+      "assets/scripts/src/components/simple-treeview.js",
+      "assets/scripts/src/components/username-tagsinput.js",
+      "assets/scripts/src/monitoring-bets/filter-configuration.js"
+    ]
+  },
+  {
+    "outputFileName": "assets/bundles/monitoring-bets/filter-configuration.css",
+    "inputFiles": [
+      "assets/styles/components/treeview.css",
+      "assets/styles/components/username-tagsinput.css",
+      "assets/styles/monitoring-bets/filter-configuration.css"
+    ]
+  },
   /************************** Dark Mode ************************/
   {
     "outputFileName": "assets/bundles/default-dark.css",
@@ -166,27 +206,16 @@
     ]
   },
   {
-    "outputFileName": "assets/bundles/last-bets-new-dark.css",
+    "outputFileName": "assets/bundles/monitoring-bets/monitoring-bets-dark.css",
     "inputFiles": [
-      "assets/styles/last-bets-new-dark.css"
+      "assets/styles/monitoring-bets-dark.css"
     ]
   },
   {
-    "outputFileName": "assets/bundles/last-bets-new.css",
+    "outputFileName": "assets/bundles/monitoring-bets/filter-configuration-dark.css",
     "inputFiles": [
-      "assets/styles/last-bets-new.css"
-    ]
-  },
-  {
-    "outputFileName": "assets/bundles/filter-config-dark.css",
-    "inputFiles": [
-      "assets/styles/filter-config-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "assets/bundles/filter-config.css",
-    "inputFiles": [
-      "assets/styles/filter-config.css"
+      "assets/styles/tagsinput.css",
+      "assets/styles/filter-configuration-dark.css"
     ]
   }
 ]

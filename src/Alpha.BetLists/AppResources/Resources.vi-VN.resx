@@ -520,4 +520,145 @@
   <data name="CanOnlyViewDataAfterTimeHistoryReportWithFormat" xml:space="preserve">
     <value>Bạn chỉ có thể xem dữ liệu báo cáo với thời gian đã kết toán sau ngày {0} (mm/dd/yyyy).</value>
   </data>
+  <data name="InputMembers" xml:space="preserve">
+    <value>Input Member(s)</value>
+  </data>
+  <data name="InvalidUsername" xml:space="preserve">
+    <value>Invalid username</value>
+  </data>
+  <data name="Live" xml:space="preserve">
+    <value>Live</value>
+  </data>
+  <data name="ManageFilters" xml:space="preserve">
+    <value>Manage Filters</value>
+  </data>
+  <data name="Members" xml:space="preserve">
+    <value>Members</value>
+  </data>
+  <data name="MonitoredMembers" xml:space="preserve">
+    <value>Monitored Member(s)</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="NonLive" xml:space="preserve">
+    <value>Non-Live</value>
+  </data>
+  <data name="NotAMember" xml:space="preserve">
+    <value>Not a Member</value>
+  </data>
+  <data name="RemoveAllFilters" xml:space="preserve">
+    <value>Remove All Filters</value>
+  </data>
+  <data name="SetDefault" xml:space="preserve">
+    <value>Set Default</value>
+  </data>
+  <data name="SpecificMembers" xml:space="preserve">
+    <value>Specific Members</value>
+  </data>
+  <data name="SpecificSports" xml:space="preserve">
+    <value>Specific Sports</value>
+  </data>
+  <data name="Sports" xml:space="preserve">
+    <value>Sports</value>
+  </data>
+  <data name="UsernameTagsInputPlaceHolder" xml:space="preserve">
+    <value>Enter username(s) (Separate by comma, tab and enter)</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="FilterConfiguration" xml:space="preserve">
+    <value>Filter Configuration</value>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="SaveFilter" xml:space="preserve">
+    <value>Save Filter</value>
+  </data>
+  <data name="FilterByBettypeAndStake" xml:space="preserve">
+    <value>Filter by Bettype And Stake</value>
+  </data>
+  <data name="FilterBySports" xml:space="preserve">
+    <value>Filter by Sports</value>
+  </data>
+  <data name="FilterByMembers" xml:space="preserve">
+    <value>Filter by Members</value>
+  </data>
+  <data name="MatchLiveIndicator" xml:space="preserve">
+    <value>Match Live Indicator</value>
+  </data>
+  <data name="GroupOfSports" xml:space="preserve">
+    <value>Group of Sports</value>
+  </data>
+  <data name="EnterMemberUsernames" xml:space="preserve">
+    <value>Enter Member username(s)</value>
+  </data>
+  <data name="AddedSuccessfully" xml:space="preserve">
+    <value>Added successfully</value>
+  </data>
+  <data name="SelectMonitoredMembers" xml:space="preserve">
+    <value>Select monitored members</value>
+  </data>
+  <data name="SearchMemberUsername" xml:space="preserve">
+    <value>Search Member Username</value>
+  </data>
+  <data name="NoMemberUsernameFound" xml:space="preserve">
+    <value>No member username found</value>
+  </data>
+  <data name="AllIncludedNewlyAddedMembers" xml:space="preserve">
+    <value>All (included newly added Members)</value>
+  </data>
+  <data name="MajorSports" xml:space="preserve">
+    <value>Major Sports</value>
+  </data>
+  <data name="MinorSports" xml:space="preserve">
+    <value>Minor Sports</value>
+  </data>
+  <data name="SelectBettype" xml:space="preserve">
+    <value>Select Bettype</value>
+  </data>
+  <data name="NewView" xml:space="preserve">
+    <value>Phiên bản mới</value>
+  </data>
+  <data name="ClassicView" xml:space="preserve">
+    <value>Phiên bản cũ</value>
+  </data>
+  <data name="NotAuthorized" xml:space="preserve">
+    <value>Bạn không được cho phép sử dụng chức năng này.</value>
+  </data>
+  <data name="RemovedSuccessfully" xml:space="preserve">
+    <value>Đã xóa thành công</value>
+  </data>
+  <data name="UpdateSuccessfully" xml:space="preserve">
+    <value>Cập nhật thành công</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="AllMembers" xml:space="preserve">
+    <value>All Members</value>
+  </data>
+  <data name="AllSports" xml:space="preserve">
+    <value>All Sports</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="Bettype" xml:space="preserve">
+    <value>Bettype</value>
+  </data>
+  <data name="ConfirmMessageRemoveAllFilters" xml:space="preserve">
+    <value>Are you sure you want to remove all filters?</value>
+  </data>
+  <data name="ConfirmMessageRemoveFilter" xml:space="preserve">
+    <value>Are you sure you want to remove this filter?</value>
+  </data>
+  <data name="CreatedTime" xml:space="preserve">
+    <value>Created Time</value>
+  </data>
+  <data name="FilterName" xml:space="preserve">
+    <value>Filter Name</value>
+  </data>
 </root>

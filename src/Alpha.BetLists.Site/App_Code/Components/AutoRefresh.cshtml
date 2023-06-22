@@ -1,12 +1,11 @@
-﻿@using Alpha.BetLists.AppResources
-@helper Render(int[] seconds)
+﻿@helper Render(int[] seconds)
 {
     var selectedSecond = seconds[0];
     <div class="form-group">
         <div class="btn-group" id="auto-refresh">
             <button type="button" class="btn btn-default" id="btn-status">
                 <span class="icon-refresh"></span>
-                <span id="lbl-status-text">@Resources.Off</span>
+                <span id="lbl-status-text" data-running=""></span>
             </button>
             <button type="button"
                     class="btn btn-default dropdown-toggle"
@@ -20,7 +19,7 @@
             <ul class="dropdown-menu">
                 @foreach (var item in seconds)
                 {
-                    <li class="auto-refresh-menu-item">@item</li>
+                    <li class="auto-refresh-menu-item"><a href="javascript:;">@item</a></li>
                 }
             </ul>
         </div>

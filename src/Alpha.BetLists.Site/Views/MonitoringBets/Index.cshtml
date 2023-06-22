@@ -6,28 +6,25 @@
 }
 @section Styles {
     @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-betlists/filter")
-    @StaticResources.RenderStyles($"~/{AppSettings.BetlistRouting}assets/bundles/filter")
-    @*@StaticResources.RenderStylesWithDarkMode($"~/{AppSettings.BetlistRouting}assets/bundles/last-bets")*@
-    @StaticResources.RenderStylesWithDarkMode($"~/{AppSettings.BetlistRouting}assets/bundles/last-bets-new")
+    @StaticResources.RenderStyles($"~/{AppSettings.BetlistRouting}assets/bundles/monitoring-bets/monitoring-bets")
 }
 @section Scripts {
-    @*@StaticResources.AssetScripts.Render("/bundles/site-betlists/last-bets")*@
     @StaticResources.AssetScripts.RenderCommon("/bundles/site-betlists/filter")
     @StaticResources.RenderScripts($"~/{AppSettings.BetlistRouting}assets/bundles/monitoring-bets/monitoring-bets")
 }
 <div class="flex">
     <div class="bl_title">
         @Resources.LastBets
-        <div class="list-icon" id="betlist-filter">
+        <div class="list-icon">
             <ul>
-                <li class="showfilter-element"><span class="icon-arrow-up-drop-circle icon-filter" title="Hide Filter"></span></li>
-                <li class="hidefilter-element"><span class="icon-arrow-down-drop-circle icon-filter" title="Show Filter"></span></li>
+                <li><span class="icon-arrow-up-drop-circle icon-filter" title="Hide Filter"></span></li>
+                @*<li><span class="icon-arrow-down-drop-circle icon-filter" title="Show Filter"></span></li>*@
             </ul>
         </div>
     </div>
-    <form class="form-inline filter" role="form">
+    <form class="form-inline filter" role="form" id="form-monitoring-bets">
         <div class="form-group">
-            <label>Saved Filter</label>
+            <label class="label-form-control">Saved Filter</label>
             <select id="monitoring-bets-filter">
                 <option value="Default" selected>Default</option>
                 <option value="Stake above 800">Stake above 800</option>
@@ -37,10 +34,10 @@
             </select>
         </div>
         <div class="form-group">
-            <a href="javascript:;">Manage Filters</a>
+            @Html.ActionLink("Manage Filters", "ManageFilters", $"{AppSettings.BetlistRouting}MonitoringBets", null, new { target = "main" })
         </div>
         <div class="form-group">
-            <label>Show Top Tickets</label>
+            <label class="label-form-control">Show Top Tickets</label>
             <select id="monitoring-bets-top">
                 <option value="10" selected>10</option>
                 <option value="20">20</option>
@@ -52,12 +49,12 @@
         <div class="form-group">
             <input type="submit" value="@Resources.Submit" class="btn-submit" />
         </div>
-        @AutoRefresh.Render(new[] { 30, 60, 90 })
+        @AutoRefresh.Render(new[] { 5, 30, 60, 90 })
         <div class="form-group">
-            <a href="FilterConfiguration" target="main">Filter Configuration</a>
+            @Html.ActionLink("Filter Configuration", "FilterConfiguration", $"{AppSettings.BetlistRouting}MonitoringBets", new { showWelcomePopup = true }, new { target = "main" })
         </div>
         <div class="form-group">
-            <span id="icon-excel" class="icon-excel" title="Export to Excel"></span>
+            <span id="icon-icon" class="icon icon-content-copy" title="Copy"></span>
         </div>
     </form>
     <div class="scrollable">

@@ -15,43 +15,49 @@ var AutoRefreshOption = /** @class */ (function () {
 }());
 var AutoRefreshComponent = /** @class */ (function () {
     function AutoRefreshComponent() {
-        this.isRunning = false;
     }
     AutoRefreshComponent.prototype.init = function (option) {
         var _this = this;
         this.autoRefreshOption = option;
         var autoRefresh = $("#auto-refresh");
-        this.labelStatusText = autoRefresh.find("#lbl-status-text");
+        this.labelStatusText = autoRefresh.find("#lbl-status-text")
+            .data("running", "0")
+            .text(this.autoRefreshOption.offText);
         this.labelCountDown = autoRefresh.find("#lbl-count-down");
-        autoRefresh.find("#btn-status").click(function () { return _this.isRunning ? _this.stop() : _this.start(); });
+        autoRefresh.find("#btn-status").click(function () { return _this.labelStatusText.data("running") === "1" ? _this.stop() : _this.start(); });
         autoRefresh.find(".auto-refresh-menu-item").click(function (e) {
-            clearTimeout(_this.timeout);
-            var menuItem = $(e.target);
-            var second = menuItem.text();
+            var second = $(e.target).text();
             _this.labelCountDown.text(second).data("original", second);
-            _this.timeout = setTimeout(function () { return _this.decrement(); }, 1000);
         });
     };
     AutoRefreshComponent.prototype.start = function () {
         var _this = this;
         clearTimeout(this.timeout);
-        this.isRunning = true;
-        this.labelStatusText.text(this.autoRefreshOption.onText);
-        this.labelCountDown.text(this.labelCountDown.data("original"));
+        this.labelStatusText
+            .data("running", "1")
+            .text(this.autoRefreshOption.onText);
+        this.labelCountDown
+            .removeClass("icon-loading")
+            .text(this.labelCountDown.data("original"));
         this.timeout = setTimeout(function () { return _this.decrement(); }, 1000);
     };
     AutoRefreshComponent.prototype.stop = function () {
         clearTimeout(this.timeout);
-        this.isRunning = false;
-        this.labelStatusText.text(this.autoRefreshOption.offText);
-        this.labelCountDown.text(this.labelCountDown.data("original"));
+        this.labelStatusText
+            .data("running", "0")
+            .text(this.autoRefreshOption.offText);
+        this.labelCountDown
+            .removeClass("icon-loading")
+            .text(this.labelCountDown.data("original"));
     };
     AutoRefreshComponent.prototype.decrement = function () {
         var _this = this;
         var value = +this.labelCountDown.text();
         if (value === 1) {
             clearTimeout(this.timeout);
-            this.labelCountDown.text("...");
+            this.labelCountDown
+                .text("")
+                .addClass("icon-loading");
             this.autoRefreshOption.callback();
         }
         else {

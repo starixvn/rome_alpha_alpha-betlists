@@ -347,6 +347,8 @@
     </Compile>
     <Compile Include="Configurations\AppSettings.cs" />
     <Compile Include="Constants\DefaultVariables.cs" />
+    <Compile Include="Constants\FilterByMembersConstants.cs" />
+    <Compile Include="Constants\GroupOfSportsConstants.cs" />
     <Compile Include="Constants\TicketStatusIdConstants.cs" />
     <Compile Include="Constants\ProductIdConstants.cs" />
     <Compile Include="Constants\BetTypeIdConstants.cs" />
@@ -369,6 +371,14 @@
     <Compile Include="Criteria\IPInfo\GetIPV4InfoCriteria.cs" />
     <Compile Include="Criteria\IPInfo\GetIPV6InfoCriteria.cs" />
     <Compile Include="Criteria\LastBets\GetMatchInfoByIdCriteria.cs" />
+    <Compile Include="Criteria\MonitoringBets\AddFilterCommand.cs" />
+    <Compile Include="Criteria\MonitoringBets\CheckUsernamesCriteria.cs" />
+    <Compile Include="Criteria\MonitoringBets\DeleteFilterCommand.cs" />
+    <Compile Include="Criteria\MonitoringBets\GetFiltersCriteria.cs" />
+    <Compile Include="Criteria\MonitoringBets\GetMatchesCriteria.cs" />
+    <Compile Include="Criteria\MonitoringBets\GetMonitoredWatchlistMembersCriteria.cs" />
+    <Compile Include="Criteria\MonitoringBets\GetSportsCriteria.cs" />
+    <Compile Include="Criteria\MonitoringBets\UpdateFilterCommand.cs" />
     <Compile Include="Criteria\MoveStatementHistory\GetBetListMoveStatementHistoryCriteria.cs" />
     <Compile Include="Criteria\ProgressiveJackpot\GetEnableJackpotProductCriteria.cs" />
     <Compile Include="Criteria\ProgressiveJackpot\GetJackpotDetailsCriteria.cs" />
@@ -418,7 +428,14 @@
     <Compile Include="Models\IUser.cs" />
     <Compile Include="Models\JackpotOfferedByCurrency.cs" />
     <Compile Include="Models\JackpotOfferedBySite.cs" />
+    <Compile Include="Models\League.cs" />
+    <Compile Include="Models\Match.cs" />
     <Compile Include="Models\MatchInfo.cs" />
+    <Compile Include="Models\MonitoringBets\MemberErrCode.cs" />
+    <Compile Include="Models\MonitoringBets\FilterConfiguration.cs" />
+    <Compile Include="Models\MonitoringBets\FilterXml.cs" />
+    <Compile Include="Models\MonitoringBets\MonitoredWatchlistMember.cs" />
+    <Compile Include="Models\MonitoringBets\SportXml.cs" />
     <Compile Include="Models\NapUserFunctionPermission.cs" />
     <Compile Include="Models\PagedReportData.cs" />
     <Compile Include="Models\Parlay\MatchDetail.cs" />
@@ -428,6 +445,7 @@
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductDetail.cs" />
     <Compile Include="Models\ScoreMap.cs" />
+    <Compile Include="Models\Sport.cs" />
     <Compile Include="Models\StatusModel.cs" />
     <Compile Include="Models\TicketDto.cs" />
     <Compile Include="Models\UserLevel.cs" />
@@ -435,6 +453,9 @@
     <Compile Include="Params\DailyStatementParam.cs" />
     <Compile Include="Params\GetProductsByGroupHeadlineParam.cs" />
     <Compile Include="Params\JackpotDetailsParam.cs" />
+    <Compile Include="Params\MonitoringBets\AddFilterParam.cs" />
+    <Compile Include="Params\MonitoringBets\DeleteFiltersParam.cs" />
+    <Compile Include="Params\MonitoringBets\UpdateFilterParam.cs" />
     <Compile Include="Params\MoveStatementHistoryParam.cs" />
     <Compile Include="Params\RiskAnalysisIPMatchingParam.cs" />
     <Compile Include="Params\MemberBetListParam.cs" />
@@ -510,10 +531,7 @@
       <Link>SonarLint.xml</Link>
     </AdditionalFiles>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Criteria\MonitoringBets\" />
-    <Folder Include="Params\MonitoringBets\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.2\build\Fanex.Visual-StyleCop.MSBuild.Targets" Condition="Exists('..\..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.2\build\Fanex.Visual-StyleCop.MSBuild.Targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

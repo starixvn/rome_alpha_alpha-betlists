@@ -47,6 +47,9 @@
         [ThreadStatic]
         private static DateTime limitedDate;
 
+        [ThreadStatic]
+        private static string ip;
+
         public static void SetValues(
             int id,
             string name,
@@ -61,7 +64,8 @@
             string langKey,
             bool isShowRacing,
             Func<int, bool> hasPermissionOnProduct,
-            DateTime limitDate)
+            DateTime limitDate,
+            string ip)
         {
             StaticUserSession.id = id;
             StaticUserSession.site = site;
@@ -77,6 +81,7 @@
             StaticUserSession.isShowRacing = isShowRacing;
             StaticUserSession.hasPermissionOnProduct = hasPermissionOnProduct;
             StaticUserSession.limitedDate = limitDate;
+            StaticUserSession.ip = ip;
         }
 
         public int Id => id;
@@ -116,5 +121,7 @@
         public bool AutoFollowBetIsDummyAgent => false;
 
         public string MainDomain => string.Empty;
+        
+        public string IP => ip;
     }
 }

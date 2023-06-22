@@ -1,9 +1,11 @@
 ﻿namespace Alpha.BetLists.Site.Controllers
 {
     using System.Diagnostics.CodeAnalysis;
+    using System.Net;
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using System.Web.SessionState;
+    using Alpha.Web.Models;
     using MediatR;
     using ViewModels;
     using Web;
@@ -37,5 +39,13 @@
 
         protected async Task<ActionResult> View<TResponse>(IRequest<TResponse> message, string viewName)
             => View(viewName, await mediator.Send(message));
+
+        protected async Task<ActionResult> Json<TResponse>(
+            IRequest<TResponse> message,
+            JsonRequestBehavior jsonRequestBehavior = JsonRequestBehavior.DenyGet)
+            => Json(await mediator.Send(message), jsonRequestBehavior);
+
+        protected ActionResult JsonForbidden(JsonRequestBehavior jsonRequestBehavior = JsonRequestBehavior.DenyGet)
+            => Json(new Result((int)HttpStatusCode.Forbidden, AppResources.Resources.NotAuthorized), jsonRequestBehavior);
     }
 }

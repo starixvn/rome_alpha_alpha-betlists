@@ -27,6 +27,12 @@
                 LanguageCode,
                 string.Empty);
 
+        public static string GetSportName(int sportTypeId)
+            => Instance.GetSportName(sportTypeId.ToString(), LanguageCode, string.Empty);
+
+        public static string GetTeamName(int teamId)
+            => Instance.GetTeamName(teamId.ToString(), LanguageCode, string.Empty);
+
         internal static IRemotingRefService Instance
         {
             get

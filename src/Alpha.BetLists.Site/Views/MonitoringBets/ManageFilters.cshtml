@@ -1,0 +1,194 @@
+﻿@using Alpha.BetLists.Constants
+@using Alpha.BetLists.Configurations
+@using Alpha.BetLists.Extensions
+@using Alpha.BetLists.Models
+@{
+    ViewBag.Title = Resources.ManageFilters;
+    var allFilterIds = new List<int>();
+}
+@section Styles {
+    @StaticResources.RenderStyles($"~/{AppSettings.BetlistRouting}assets/bundles/monitoring-bets/manage-filters")
+}
+@section Scripts {
+    @StaticResources.RenderScripts($"~/{AppSettings.BetlistRouting}assets/bundles/monitoring-bets/manage-filters")
+}
+@model IEnumerable<Alpha.BetLists.Models.MonitoringBets.FilterConfiguration>
+<div class="bl_title">@Resources.ManageFilters</div>
+<div class="manage-filters">
+    <div id="inline-message" class="msg hide"></div>
+    <a href="Index" class="btn btn-cancel">@Resources.Back</a>
+    <button type="button" class="btn-remove" id="btn-delete-all-filters">@Resources.RemoveAllFilters</button>
+    <table class="tblRpt tblRpt-bordered tblRpt-hover width-100per" id="table-manage-filters">
+        <thead>
+            <tr>
+                <th class="width-180">@Resources.CreatedTime</th>
+                <th>@Resources.FilterName</th>
+                <th class="width-120">@Resources.SetDefault</th>
+                <th class="width-120">@Resources.Action</th>
+            </tr>
+        </thead>
+        @if (Model.Any())
+        {
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    { allFilterIds.Add(item.FilterId); }
+                    <tr data-filterid="@item.FilterId">
+                        <td class="text-center" id="created-time-@item.FilterId">@item.CreatedDate.ToLongDateTimeWithSlash()</td>
+                        <td class="text-left">
+                            <span class="arrow right collapse-expand"></span>
+                            <span class="filter-name" id="span-filter-name-@item.FilterId">@item.FilterName</span>
+                            <input type="text" value="@item.FilterName" class="hide" id="input-filter-name-@item.FilterId" autocomplete="off" maxlength="50" />
+                        </td>
+                        <td class="text-center"><input type="radio" name="default" id="radio-default-@item.FilterId" @(item.IsDefault ? "checked" : string.Empty) disabled /></td>
+                        <td class="text-center">
+                            <div class="edit-group">
+                                <span class="icon-edit"></span>
+                                <span class="icon-bin"></span>
+                            </div>
+                            <div class="confirm-group hide">
+                                <span class="icon-check"></span>
+                                <span class="icon-close"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="hide" data-filterid="@item.FilterId">
+                        <td>@Resources.Bettype</td>
+                        <td colspan="2">@item.FilterXml.BetTypeName</td>
+                    </tr>
+                    <tr class="hide" data-filterid="@item.FilterId">
+                        <td>@Resources.stake</td>
+                        <td colspan="2">>= @item.FilterXml.Stake.ToString("N0")</td>
+                    </tr>
+                    <tr class="hide" data-filterid="@item.FilterId">
+                        <td>
+                            @if (item.FilterXml.IsAllSports)
+                            {
+                                @:@Resources.Sports
+                            }
+                            else
+                            {
+                                <div class="treeview-sport">
+                                    <span class="arrow down" id="arrow-sport-@item.FilterId"></span> @Resources.Sports
+                                </div>
+                            }
+                        </td>
+                        <td colspan="2">
+                            @(item.FilterXml.IsLive ? Resources.Live : Resources.NonLive),
+                            @(item.FilterXml.IsAllSports ? Resources.AllSports : Resources.SpecificSports)
+                        </td>
+                    </tr>
+                    @RenderTreeViewSports(item.FilterId, item.FilterXml.FlatternSports)
+                    <tr class="hide" data-filterid="@item.FilterId">
+                        <td>@Resources.Members</td>
+                        <td colspan="2">@(item.FilterXml.IsWatchlist == FilterByMembersConstants.AllMembers ? Resources.AllMembers : Resources.SpecificMembers)</td>
+                    </tr>
+                    if (item.FilterXml.IsWatchlist != FilterByMembersConstants.AllMembers)
+                    {
+                        <tr class="hide" data-filterid="@item.FilterId">
+                            <td>@Resources.InputMembers</td>
+                            <td colspan="2">@RenderDropdownMembers(item.InputList)</td>
+                        </tr>
+                        <tr class="hide" data-filterid="@item.FilterId">
+                            <td>@Resources.MonitoredMembers</td>
+                            <td colspan="2">
+                                @if (item.FilterXml.IsWatchlist == FilterByMembersConstants.AllWatchlistMembers)
+                                {
+                                    @:Resources.AllMembers
+                                }
+                                else
+                                {
+                                    @RenderDropdownMembers(item.WatchList)
+                                }
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        }
+        else
+        {
+            @Common.NoInfomation.Render(4)
+        }
+    </table>
+    @Html.AntiForgeryToken()
+    @Html.Hidden("hidden-allFilterIds", string.Join(",", allFilterIds))
+    @Html.Hidden("hidden-confirmMessageRemoveAllFilters", Resources.ConfirmMessageRemoveAllFilters)
+    @Html.Hidden("hidden-confirmMessageRemoveFilter", Resources.ConfirmMessageRemoveFilter)
+    @Html.Hidden("hidden-removedSuccessfullyText", Resources.RemovedSuccessfully)
+</div>
+
+@helper RenderTreeViewSports(int filterId, IEnumerable<Sport> sports)
+{
+    if (sports.Any())
+    {
+        <tr class="hide" data-filterid="@filterId">
+            <td colspan="3">
+                <ul class="treeview">
+                    @foreach (var sport in sports)
+                    {
+                        <li>
+                            <div class="tree-node-name">
+                                <span class="arrow right"></span> @sport.Name
+                            </div>
+                            @RenderTreeViewLeagues(sport.Leagues)
+                        </li>
+                    }
+                </ul>
+            </td>
+        </tr>
+    }
+}
+
+@helper RenderTreeViewLeagues(IEnumerable<League> leagues)
+{
+    if (leagues.Any())
+    {
+        <ul class="subtree">
+            @foreach (var league in leagues)
+            {
+                <li>
+                    <div class="tree-node-name">
+                        <span class="arrow right"></span> @league.Name
+                    </div>
+                    @RenderTreeViewMatches(league.Matches)
+                </li>
+            }
+        </ul>
+    }
+}
+
+@helper RenderTreeViewMatches(IEnumerable<Match> matches)
+{
+    if (matches.Any())
+    {
+        <ul class="subtree">
+            @foreach (var match in matches)
+            {
+                <li>@match.MatchName</li>
+            }
+        </ul>
+    }
+}
+
+@helper RenderDropdownMembers(string members)
+{
+    if (string.IsNullOrWhiteSpace(members))
+    {
+        @:@Resources.None
+    }
+    else
+    {
+        <div class="dropdown">
+            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                @Resources.SpecificMembers<span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                @foreach (var item in members.SplitByCommaWithNoneEmptyEntries())
+                {
+                    <li><a href="javascript:;">@item</a></li>
+                }
+            </ul>
+        </div>
+    }
+}

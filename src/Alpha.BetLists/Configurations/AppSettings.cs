@@ -13,6 +13,7 @@
     {
         [ThreadStatic]
         private static NameValueCollection appSettingValues;
+        private static IEnumerable<string> monitoringBetsBettypes;
 
         internal static NameValueCollection AppSettingValues
         {
@@ -113,6 +114,16 @@
         public static int IPV4CacheInMinutes => int.Parse(GetConfigValue("IPInfo:IPV4CacheInMinutes"));
 
         public static int IPV6CacheInMinutes => int.Parse(GetConfigValue("IPInfo:IPV6CacheInMinutes"));
+
+        public static IEnumerable<string> MonitoringBetsBettypes
+        {
+            get
+            {
+                monitoringBetsBettypes = monitoringBetsBettypes ?? GetConfigValue("MonitoringBets:Bettypes").SplitByCommaWithNoneEmptyEntries();
+
+                return monitoringBetsBettypes;
+            }
+        }
 
         public static string GetConfigValue(string configName) => AppSettingValues[configName];
 

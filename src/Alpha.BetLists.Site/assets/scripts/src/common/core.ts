@@ -3,6 +3,9 @@
 class AlphaCore {
     $: JQueryStatic;
     store: any;
+    nonDigitalCharsRegex: RegExp = /\D/g;
+    leadingZerosRegex: RegExp = /^0+(?!$)/;
+    thousandsSeparatorRegex: RegExp = /\B(?=(\d{3})+(?!\d))/g;
 
     constructor($: JQueryStatic, store: any) {
         this.$ = $;
@@ -159,6 +162,11 @@ class AlphaCore {
     formatNumber = (value: number) => value.toLocaleString("en-US");
 
     formatCurrency = (value: number) => value.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+
+    forceInputDecimal = (value: string) => value
+        .replace(this.nonDigitalCharsRegex, "")
+        .replace(this.leadingZerosRegex, "")
+        .replace(this.thousandsSeparatorRegex, ",");
 }
 
 const alphaReports = new AlphaCore($, store);

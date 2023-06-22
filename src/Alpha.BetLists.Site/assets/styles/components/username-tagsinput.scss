@@ -1,0 +1,108 @@
+﻿$tagsinput-border-color: #e6e6e6;
+$tagsinput-border-color-focus: #ccc;
+$tag-bg-color: #556270;
+$tag-color: #fff;
+$tag-remove-color: #ff6b6b;
+$tag-placehoder: #ccc;
+
+.tagsinput {
+    background-color: #fff;
+    box-sizing: border-box;
+    border: 1px solid $tagsinput-border-color;
+    border-radius: 2px;
+    line-height: 20px;
+    padding: 0 5px;
+    position: relative;
+
+    &.focus {
+        border-color: $tagsinput-border-color-focus;
+    }
+
+    .tag-limit {
+        color: $tag-placehoder;
+        font-style: italic;
+        position: absolute;
+        right: 5px;
+        top: 5px;
+    }
+
+    input[type=text].tag-add {
+        box-sizing: border-box;
+        border: 0 none;
+        display: block;
+        margin: 0 5px 5px 0;
+        padding: 5px 125px 5px 5px;
+        width: 100%;
+
+        &::-ms-clear {
+            display: none;
+        }
+
+        &::-webkit-input-placeholder {
+            color: $tag-placehoder;
+            opacity: 1;
+        }
+
+        &:-moz-placeholder {
+            color: $tag-placehoder;
+            opacity: 1;
+        }
+
+        &::-moz-placeholder {
+            color: $tag-placehoder;
+            opacity: 1;
+        }
+
+        &::-ms-input-placeholder {
+            color: $tag-placehoder;
+            opacity: 1;
+        }
+    }
+
+    .tag {
+        background: $tag-bg-color;
+        border-radius: 2px;
+        color: $tag-color;
+        display: inline-block;
+        margin: 0 5px 5px 0;
+        padding: 5px 30px 5px 5px;
+        position: relative;
+
+        .tag-remove {
+            background: none;
+            border: 0;
+            color: $tag-remove-color;
+            cursor: pointer;
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 30px;
+            height: 30px;
+
+            &:before,
+            &:after {
+                background: $tag-remove-color;
+                content: "";
+                position: absolute;
+                top: 14px;
+                left: 10px;
+                width: 10px;
+                height: 2px;
+            }
+
+            &:before {
+                -webkit-transform: rotateZ(45deg);
+                transform: rotateZ(45deg);
+            }
+
+            &:after {
+                -webkit-transform: rotateZ(-45deg);
+                transform: rotateZ(-45deg);
+            }
+        }
+    }
+
+    .error {
+        color: $tag-remove-color;
+    }
+}

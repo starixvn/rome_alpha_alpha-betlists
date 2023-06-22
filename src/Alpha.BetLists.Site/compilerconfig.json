@@ -40,20 +40,40 @@
     "inputFile": "assets/styles/error/error-dark.scss"
   },
   {
-    "outputFile": "assets/styles/last-bets-new-dark.css",
-    "inputFile": "assets/styles/last-bets-new-dark.scss"
+    "outputFile": "assets/styles/monitoring-bets.css",
+    "inputFile": "assets/styles/monitoring-bets.scss"
   },
   {
-    "outputFile": "assets/styles/last-bets-new.css",
-    "inputFile": "assets/styles/last-bets-new.scss"
+    "outputFile": "assets/styles/monitoring-bets-dark.css",
+    "inputFile": "assets/styles/monitoring-bets-dark.scss"
   },
   {
-    "outputFile": "assets/styles/filter-config-dark.css",
-    "inputFile": "assets/styles/filter-config-dark.scss"
+    "outputFile": "assets/styles/components/autorefresh.css",
+    "inputFile": "assets/styles/components/autorefresh.scss"
   },
   {
-    "outputFile": "assets/styles/filter-config.css",
-    "inputFile": "assets/styles/filter-config.scss"
+    "outputFile": "assets/styles/filter-configuration.css",
+    "inputFile": "assets/styles/filter-configuration.scss"
+  },
+  {
+    "outputFile": "assets/styles/filter-configuration-dark.css",
+    "inputFile": "assets/styles/filter-configuration-dark.scss"
+  },
+  {
+    "outputFile": "assets/styles/components/username-tagsinput.css",
+    "inputFile": "assets/styles/components/username-tagsinput.scss"
+  },
+  {
+    "outputFile": "assets/styles/components/treeview.css",
+    "inputFile": "assets/styles/components/treeview.scss"
+  },
+  {
+    "outputFile": "assets/styles/monitoring-bets/manage-filters.css",
+    "inputFile": "assets/styles/monitoring-bets/manage-filters.scss"
+  },
+  {
+    "outputFile": "assets/styles/monitoring-bets/filter-configuration.css",
+    "inputFile": "assets/styles/monitoring-bets/filter-configuration.scss"
   },
   {
     "outputFile": "assets/styles/winloss.css",

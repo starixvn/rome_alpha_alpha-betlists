@@ -61,11 +61,29 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Action.
+        /// </summary>
+        public static string Action {
+            get {
+                return ResourceManager.GetString("Action", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Activity.
         /// </summary>
         public static string Activity {
             get {
                 return ResourceManager.GetString("Activity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Added successfully.
+        /// </summary>
+        public static string AddedSuccessfully {
+            get {
+                return ResourceManager.GetString("AddedSuccessfully", resourceCulture);
             }
         }
         
@@ -124,11 +142,29 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All (included newly added Members).
+        /// </summary>
+        public static string AllIncludedNewlyAddedMembers {
+            get {
+                return ResourceManager.GetString("AllIncludedNewlyAddedMembers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All Member.
         /// </summary>
         public static string AllMember {
             get {
                 return ResourceManager.GetString("AllMember", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All Members.
+        /// </summary>
+        public static string AllMembers {
+            get {
+                return ResourceManager.GetString("AllMembers", resourceCulture);
             }
         }
         
@@ -142,11 +178,29 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All Sports.
+        /// </summary>
+        public static string AllSports {
+            get {
+                return ResourceManager.GetString("AllSports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All Statuses.
         /// </summary>
         public static string AllStatus {
             get {
                 return ResourceManager.GetString("AllStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply.
+        /// </summary>
+        public static string Apply {
+            get {
+                return ResourceManager.GetString("Apply", resourceCulture);
             }
         }
         
@@ -174,6 +228,15 @@ namespace Alpha.BetLists.AppResources {
         public static string AutoRefresh {
             get {
                 return ResourceManager.GetString("AutoRefresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Back.
+        /// </summary>
+        public static string Back {
+            get {
+                return ResourceManager.GetString("Back", resourceCulture);
             }
         }
         
@@ -210,6 +273,24 @@ namespace Alpha.BetLists.AppResources {
         public static string Bets {
             get {
                 return ResourceManager.GetString("Bets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bettype.
+        /// </summary>
+        public static string Bettype {
+            get {
+                return ResourceManager.GetString("Bettype", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
             }
         }
         
@@ -295,6 +376,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Classic view.
+        /// </summary>
+        public static string ClassicView {
+            get {
+                return ResourceManager.GetString("ClassicView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There is a huge number of combinations of this Parlay ticket, please kindly click on &lt;a href={0}&gt;this link&lt;/a&gt; to download an Excel file comprising the full list of all combinations..
         /// </summary>
         public static string CombinationResultTooHuge {
@@ -313,11 +403,38 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to remove all filters?.
+        /// </summary>
+        public static string ConfirmMessageRemoveAllFilters {
+            get {
+                return ResourceManager.GetString("ConfirmMessageRemoveAllFilters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to remove this filter?.
+        /// </summary>
+        public static string ConfirmMessageRemoveFilter {
+            get {
+                return ResourceManager.GetString("ConfirmMessageRemoveFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The contribution amount will be rounded to 4 decimal places..
         /// </summary>
         public static string ContributionAmountRoundNote {
             get {
                 return ResourceManager.GetString("ContributionAmountRoundNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Created Time.
+        /// </summary>
+        public static string CreatedTime {
+            get {
+                return ResourceManager.GetString("CreatedTime", resourceCulture);
             }
         }
         
@@ -376,6 +493,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enter Member username(s).
+        /// </summary>
+        public static string EnterMemberUsernames {
+            get {
+                return ResourceManager.GetString("EnterMemberUsernames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Event.
         /// </summary>
         public static string events {
@@ -421,6 +547,51 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Filter by Bettype And Stake.
+        /// </summary>
+        public static string FilterByBettypeAndStake {
+            get {
+                return ResourceManager.GetString("FilterByBettypeAndStake", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter by Members.
+        /// </summary>
+        public static string FilterByMembers {
+            get {
+                return ResourceManager.GetString("FilterByMembers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter by Sports.
+        /// </summary>
+        public static string FilterBySports {
+            get {
+                return ResourceManager.GetString("FilterBySports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter Configuration.
+        /// </summary>
+        public static string FilterConfiguration {
+            get {
+                return ResourceManager.GetString("FilterConfiguration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter Name.
+        /// </summary>
+        public static string FilterName {
+            get {
+                return ResourceManager.GetString("FilterName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to From.
         /// </summary>
         public static string From {
@@ -448,6 +619,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Group of Sports.
+        /// </summary>
+        public static string GroupOfSports {
+            get {
+                return ResourceManager.GetString("GroupOfSports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Handicap.
         /// </summary>
         public static string Handicap {
@@ -462,6 +642,24 @@ namespace Alpha.BetLists.AppResources {
         public static string HideFilter {
             get {
                 return ResourceManager.GetString("HideFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Input Member(s).
+        /// </summary>
+        public static string InputMembers {
+            get {
+                return ResourceManager.GetString("InputMembers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid username.
+        /// </summary>
+        public static string InvalidUsername {
+            get {
+                return ResourceManager.GetString("InvalidUsername", resourceCulture);
             }
         }
         
@@ -592,6 +790,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Live.
+        /// </summary>
+        public static string Live {
+            get {
+                return ResourceManager.GetString("Live", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Lose.
         /// </summary>
         public static string lose {
@@ -606,6 +813,24 @@ namespace Alpha.BetLists.AppResources {
         public static string losingtickets {
             get {
                 return ResourceManager.GetString("losingtickets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Major Sports.
+        /// </summary>
+        public static string MajorSports {
+            get {
+                return ResourceManager.GetString("MajorSports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage Filters.
+        /// </summary>
+        public static string ManageFilters {
+            get {
+                return ResourceManager.GetString("ManageFilters", resourceCulture);
             }
         }
         
@@ -646,6 +871,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Match Live Indicator.
+        /// </summary>
+        public static string MatchLiveIndicator {
+            get {
+                return ResourceManager.GetString("MatchLiveIndicator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Data before {0} can be retrieved 31 days in max, please review your date range..
         /// </summary>
         public static string MaxDataRetrieveHistoryError {
@@ -682,6 +916,33 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Members.
+        /// </summary>
+        public static string Members {
+            get {
+                return ResourceManager.GetString("Members", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minor Sports.
+        /// </summary>
+        public static string MinorSports {
+            get {
+                return ResourceManager.GetString("MinorSports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Monitored Member(s).
+        /// </summary>
+        public static string MonitoredMembers {
+            get {
+                return ResourceManager.GetString("MonitoredMembers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Information is not available due to network latency. Please wait a few minutes and try again..
         /// </summary>
         public static string NetworkLatency {
@@ -700,6 +961,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New view.
+        /// </summary>
+        public static string NewView {
+            get {
+                return ResourceManager.GetString("NewView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No information is available.
         /// </summary>
         public static string NoInformationIsAvailable {
@@ -709,11 +979,38 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No member username found.
+        /// </summary>
+        public static string NoMemberUsernameFound {
+            get {
+                return ResourceManager.GetString("NoMemberUsernameFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        public static string None {
+            get {
+                return ResourceManager.GetString("None", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to None Selected.
         /// </summary>
         public static string NoneSelected {
             get {
                 return ResourceManager.GetString("NoneSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Non-Live.
+        /// </summary>
+        public static string NonLive {
+            get {
+                return ResourceManager.GetString("NonLive", resourceCulture);
             }
         }
         
@@ -732,6 +1029,24 @@ namespace Alpha.BetLists.AppResources {
         public static string NoProductFound {
             get {
                 return ResourceManager.GetString("NoProductFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not a Member.
+        /// </summary>
+        public static string NotAMember {
+            get {
+                return ResourceManager.GetString("NotAMember", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You are not authorized on this function..
+        /// </summary>
+        public static string NotAuthorized {
+            get {
+                return ResourceManager.GetString("NotAuthorized", resourceCulture);
             }
         }
         
@@ -970,6 +1285,24 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remove All Filters.
+        /// </summary>
+        public static string RemoveAllFilters {
+            get {
+                return ResourceManager.GetString("RemoveAllFilters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Removed successfully.
+        /// </summary>
+        public static string RemovedSuccessfully {
+            get {
+                return ResourceManager.GetString("RemovedSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Results.
         /// </summary>
         public static string result {
@@ -984,6 +1317,24 @@ namespace Alpha.BetLists.AppResources {
         public static string running {
             get {
                 return ResourceManager.GetString("running", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save Filter.
+        /// </summary>
+        public static string SaveFilter {
+            get {
+                return ResourceManager.GetString("SaveFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search Member Username.
+        /// </summary>
+        public static string SearchMemberUsername {
+            get {
+                return ResourceManager.GetString("SearchMemberUsername", resourceCulture);
             }
         }
         
@@ -1024,11 +1375,29 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select Bettype.
+        /// </summary>
+        public static string SelectBettype {
+            get {
+                return ResourceManager.GetString("SelectBettype", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to selected.
         /// </summary>
         public static string Selected {
             get {
                 return ResourceManager.GetString("Selected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select monitored members.
+        /// </summary>
+        public static string SelectMonitoredMembers {
+            get {
+                return ResourceManager.GetString("SelectMonitoredMembers", resourceCulture);
             }
         }
         
@@ -1060,6 +1429,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Set Default.
+        /// </summary>
+        public static string SetDefault {
+            get {
+                return ResourceManager.GetString("SetDefault", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show Filter.
         /// </summary>
         public static string ShowFilter {
@@ -1083,6 +1461,33 @@ namespace Alpha.BetLists.AppResources {
         public static string SpecificDate {
             get {
                 return ResourceManager.GetString("SpecificDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specific Members.
+        /// </summary>
+        public static string SpecificMembers {
+            get {
+                return ResourceManager.GetString("SpecificMembers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specific Sports.
+        /// </summary>
+        public static string SpecificSports {
+            get {
+                return ResourceManager.GetString("SpecificSports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sports.
+        /// </summary>
+        public static string Sports {
+            get {
+                return ResourceManager.GetString("Sports", resourceCulture);
             }
         }
         
@@ -1227,6 +1632,24 @@ namespace Alpha.BetLists.AppResources {
         public static string transtime {
             get {
                 return ResourceManager.GetString("transtime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update successfully.
+        /// </summary>
+        public static string UpdateSuccessfully {
+            get {
+                return ResourceManager.GetString("UpdateSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter username(s) (Separate by comma, tab and enter).
+        /// </summary>
+        public static string UsernameTagsInputPlaceHolder {
+            get {
+                return ResourceManager.GetString("UsernameTagsInputPlaceHolder", resourceCulture);
             }
         }
         

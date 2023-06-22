@@ -16,4 +16,12 @@
   <Function Name="Auto Follow Bet">
     <Setting Key="Age_Customer_FollowBetAccountListSelByAgent" SpName="Age_Customer_FollowBetAccountListSelByAgent" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
   </Function>
+  <Function Name="Last Bets Monitoring">
+    <Setting Key="Age_CustLastBetFilter_Sel" SpName="Age_CustLastBetFilter_Sel_xpre" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_CustLastBetFilter_Ins" SpName="Age_CustLastBetFilter_Ins_xpre" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_CustLastBetFilter_Upd" SpName="Age_CustLastBetFilter_Upd_xpre" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_CustLastBetFilter_Del" SpName="Age_CustLastBetFilter_Del_xpre" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_CustLastBetFilter_Check" SpName="Age_CustLastBetFilter_Check_xpre" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Acc_WLMonitored_Player_WatchList_Sel" SpName="Acc_WLMonitored_Player_WatchList_Sel_xpre" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
+  </Function>
 </Functions>
