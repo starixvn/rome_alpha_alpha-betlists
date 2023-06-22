@@ -164,5 +164,17 @@
     "inputFiles": [
       "assets/styles/error/error-dark.css"
     ]
+  },
+  {
+    "outputFileName": "assets/bundles/last-bets-new-dark.css",
+    "inputFiles": [
+      "assets/styles/last-bets-new-dark.css"
+    ]
+  },
+  {
+    "outputFileName": "assets/bundles/last-bets-new.css",
+    "inputFiles": [
+      "assets/styles/last-bets-new.css"
+    ]
   }
 ]

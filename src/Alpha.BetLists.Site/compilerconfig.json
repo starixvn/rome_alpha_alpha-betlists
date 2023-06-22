@@ -40,6 +40,14 @@
     "inputFile": "assets/styles/error/error-dark.scss"
   },
   {
+    "outputFile": "assets/styles/last-bets-new-dark.css",
+    "inputFile": "assets/styles/last-bets-new-dark.scss"
+  },
+  {
+    "outputFile": "assets/styles/last-bets-new.css",
+    "inputFile": "assets/styles/last-bets-new.scss"
+  },
+  {
     "outputFile": "assets/styles/winloss.css",
     "inputFile": "assets/styles/winloss.scss"
   },
