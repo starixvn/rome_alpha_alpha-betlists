@@ -126,6 +126,13 @@
       "assets/scripts/src/common/icon-note.js"
     ]
   },
+  {
+    "outputFileName": "assets/bundles/monitoring-bets/monitoring-bets.js",
+    "inputFiles": [
+      "assets/scripts/src/components/autorefresh.js",
+      "assets/scripts/src/monitoring-bets/monitoring-bets.js"
+    ]
+  },
   /************************** Dark Mode ************************/
   {
     "outputFileName": "assets/bundles/default-dark.css",

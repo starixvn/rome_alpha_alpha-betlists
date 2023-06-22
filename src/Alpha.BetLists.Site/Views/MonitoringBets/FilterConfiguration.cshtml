@@ -1,0 +1,19 @@
+﻿@using Alpha.BetLists.Configurations
+@using Alpha.BetLists.Site.ViewModels.MonitoringBets
+@model MonitoringBetsViewModel
+@{
+    ViewBag.Title = "Last Bets Monitoring";
+}
+@section Styles {
+    @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-betlists/filter")
+    @*@StaticResources.RenderStylesWithDarkMode($"~/{AppSettings.BetlistRouting}assets/bundles/last-bets")*@
+}
+@section Scripts {
+    @*@StaticResources.AssetScripts.Render("/bundles/site-betlists/last-bets")*@
+    @StaticResources.AssetScripts.RenderCommon("/bundles/site-betlists/filter")
+    @StaticResources.RenderScripts($"~/{AppSettings.BetlistRouting}assets/bundles/monitoring-bets/monitoring-bets")
+}
+<div class="bl_title">Filter Configuration</div>
+<form class="form-inline filter" role="form">
+
+</form>

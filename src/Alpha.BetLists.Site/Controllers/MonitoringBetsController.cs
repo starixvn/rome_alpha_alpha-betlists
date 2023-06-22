@@ -14,5 +14,7 @@
 
         [DisableNetThrottling]
         public Task<ActionResult> Index(MonitoringBetsQuery message) => View(message);
+
+        public ActionResult FilterConfiguration() => View();
     }
 }

@@ -798,6 +798,10 @@
     <Content Include="assets\bundles\last-bets.min.js">
       <DependentUpon>last-bets.js</DependentUpon>
     </Content>
+    <Content Include="assets\bundles\monitoring-bets\monitoring-bets.js" />
+    <Content Include="assets\bundles\monitoring-bets\monitoring-bets.min.js">
+      <DependentUpon>monitoring-bets.js</DependentUpon>
+    </Content>
     <Content Include="assets\bundles\parlay-detail-dark.css" />
     <Content Include="assets\bundles\parlay-detail-dark.min.css">
       <DependentUpon>parlay-detail-dark.css</DependentUpon>
@@ -1061,6 +1065,7 @@
     <Content Include="App_Code\Components\DateRangePickerJQuery.cshtml" />
     <Content Include="assets\scripts\typings\globals\moment\typings.json" />
     <Content Include="App_Code\Components\ProductAndProductDetailDropdown.cshtml" />
+    <Content Include="App_Code\Components\AutoRefresh.cshtml" />
     <Content Include="App_Code\Components\WeekSelection.cshtml" />
     <Content Include="App_Code\Components\BreadcrumbLevel.cshtml" />
     <Content Include="assets\styles\winloss.scss" />
@@ -1225,6 +1230,7 @@
     <Content Include="Views\WinLoss\BetList.cshtml" />
     <Content Include="Views\WinLoss\BetListWeekSelection.cshtml" />
     <Content Include="Views\MonitoringBets\Index.cshtml" />
+    <Content Include="Views\MonitoringBets\FilterConfiguration.cshtml" />
     <Content Include="Views\Shared\IconInformation.cshtml" />
     <Content Include="Web.AppSettings.staging.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
@@ -1508,6 +1514,7 @@
     <TypeScriptCompile Include="assets\scripts\src\betlist\status\result-details\base-result-details.ts" />
     <TypeScriptCompile Include="assets\scripts\src\betlist\status\result-details\casino-result-details.ts" />
     <TypeScriptCompile Include="assets\scripts\src\betlist\status\result-details\sportsbook-result-details.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\components\autorefresh.ts" />
     <TypeScriptCompile Include="assets\scripts\src\components\breadcrumb-level.ts" />
     <TypeScriptCompile Include="assets\scripts\src\components\daterangepicker-jquery.ts" />
     <TypeScriptCompile Include="assets\scripts\src\components\daterangepicker.ts" />
@@ -1521,6 +1528,7 @@
     <TypeScriptCompile Include="assets\scripts\src\components\single-selection-dropdown.ts" />
     <TypeScriptCompile Include="assets\scripts\src\member-betlist\member-betlist-init.ts" />
     <TypeScriptCompile Include="assets\scripts\src\member-betlist\member-betlist.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\monitoring-bets\monitoring-bets.ts" />
     <TypeScriptCompile Include="assets\scripts\src\running-betlist\running-betlist.ts" />
     <TypeScriptCompile Include="assets\scripts\src\winloss\winloss-betlist.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\casino-detail\casino-detail-tests.ts" />
