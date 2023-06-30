@@ -69,18 +69,6 @@
         }
     </table>
 </div>
-<div class="comm_note">
-    <div class="title">
-        <span class="star">*</span>@Resources.Note
-    </div>
-    <div class="content">
-        @Resources.CommissionRoundNote
-        @if (Model.ShowContributionAmountRoundNote)
-        {
-            <br>@Resources.ContributionAmountRoundNote
-        }
-    </div>
-</div>
 @Html.Hidden("betlist-path", Response.ApplyAppPathModifier($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}"))
 @Html.Hidden("old-main-path", Model.OldMainPath)
 @Html.Hidden("results-path", Model.ResultsPath)

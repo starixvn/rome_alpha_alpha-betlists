@@ -9,14 +9,29 @@
 @if (Model != null)
 {
     <div class="bl_title">
-        @Model.Title
-        <div class="bl-export-excel">
-            <a id="icon-excel" class="icon icon-excel" title="@Resources.ExportToExcel"
-               href="@Url.Action("Excel", $"{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}RiskAnalysisIPMatching", new { Date = Model.Date, IP = Model.IP })">
-            </a>
+        <div class="box">
+            <div>
+                @Model.Title
+            </div>
+            <div>
+                @Html.Partial("IconInformation", new List<string>() { Resources.ipnote, Resources.CommissionRoundNote })
+            </div>
+
+            <div class="push">
+                <div class="bl-export-excel">
+                    <a id="icon-excel" class="icon icon-excel" title="@Resources.ExportToExcel"
+                       href="@Url.Action("Excel", $"{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}RiskAnalysisIPMatching", new { Date = Model.Date, IP = Model.IP })">
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
+
     @Html.Partial("WinLossTable", Model)
+
+    @section Scripts{
+        @StaticResources.RenderScripts($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}assets/bundles/icon-note")
+    }
 }
 else
 {

@@ -10,12 +10,39 @@
     @StaticResources.RenderStyles($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}assets/bundles/filter")
 }
 <div class="bl_title">
-    @Model.Title
-    <div class="list-icon">
-        <ul>
-            <li class="showfilter-element"><span class="icon-arrow-up-drop-circle icon-filter" title="@Resources.HideFilter"></span></li>
-            <li class="hidefilter-element"><span class="icon-arrow-down-drop-circle icon-filter" title="@Resources.ShowFilter"></span></li>
-        </ul>
+
+    <div class="box">
+        <div>
+            @Model.Title
+        </div>
+        <div>
+
+            @{
+
+                var notes = new List<string>()
+                {
+                    Resources.ipnote, 
+                    Model.ViewDataInstructionMessage,
+                    Resources.CommissionRoundNote
+                };
+
+                if (Model.ShowContributionAmountRoundNote)
+                {
+                    notes.Add(Resources.ContributionAmountRoundNote);
+                }
+            }
+
+            @Html.Partial("IconInformation", notes)
+        </div>
+
+        <div class="push">
+            <div class="list-icon">
+                <ul>
+                    <li class="showfilter-element"><span class="icon-arrow-up-drop-circle icon-filter" title="@Resources.HideFilter"></span></li>
+                    <li class="hidefilter-element"><span class="icon-arrow-down-drop-circle icon-filter" title="@Resources.ShowFilter"></span></li>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -34,9 +61,6 @@
 
     @DateRangePicker.Render(Model.DateRangePickerViewModel)
 
-    <div class="note">
-        <span class="star">*</span>@Model.ViewDataInstructionMessage
-    </div>
 </form>
 
 @Html.Partial("WinLossTable", Model)
@@ -44,4 +68,5 @@
 @section Scripts{
     @StaticResources.AssetScripts.Render("/bundles/site-betlists/filter")
     @StaticResources.RenderScripts($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}assets/bundles/member-betlist/member-betlist")
+    @StaticResources.RenderScripts($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}assets/bundles/icon-note")
 }

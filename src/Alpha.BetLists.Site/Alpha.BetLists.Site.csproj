@@ -725,6 +725,10 @@
     <Content Include="assets\bundles\filter.min.css">
       <DependentUpon>filter.css</DependentUpon>
     </Content>
+    <Content Include="assets\bundles\icon-note.js" />
+    <Content Include="assets\bundles\icon-note.min.js">
+      <DependentUpon>icon-note.js</DependentUpon>
+    </Content>
     <Content Include="assets\bundles\last-bets-dark.css" />
     <Content Include="assets\bundles\last-bets-dark.min.css">
       <DependentUpon>last-bets-dark.css</DependentUpon>
@@ -1132,6 +1136,8 @@
     <Content Include="Views\WinLoss\IndexNew.cshtml" />
     <Content Include="Views\WinLoss\BetList.cshtml" />
     <Content Include="Views\WinLoss\BetListWeekSelection.cshtml" />
+    <Content Include="Views\WinLoss\GetData.cshtml" />
+    <Content Include="Views\Shared\IconInformation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_GlobalResources\Resources.Designer.cs">

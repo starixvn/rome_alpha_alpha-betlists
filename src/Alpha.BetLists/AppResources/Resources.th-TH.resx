@@ -498,4 +498,7 @@
   <data name="Sep" xml:space="preserve">
     <value>กันยา</value>
   </data>
+  <data name="ipnote" xml:space="preserve">
+    <value>ประเทศและชื่อเมืองได้ข้อมูลจาก IP2Location and DNS stuff ซึ่งเป็นเพียงข้อมูลอ้างอิงเท่านั้นไม่สามารถรับประกันได้ กรุณาศึกษาหาข้อมูลอื่นๆได้จากแหล่งผู้ให้ข้อมูลที่สามารถเชื่อถือได้ หากท่านต้องการ</value>
+  </data>
 </root>

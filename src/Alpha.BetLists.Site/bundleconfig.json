@@ -108,6 +108,12 @@
       "assets/styles/filter.css"
     ]
   },
+  {
+    "outputFileName": "assets/bundles/icon-note.js",
+    "inputFiles": [
+      "assets/scripts/src/common/icon-note.js"
+    ]
+  },
   /************************** Dark Mode ************************/
   {
     "outputFileName": "assets/bundles/default-dark.css",

@@ -4,15 +4,39 @@
     ViewBag.Title = "Daily Statement Bet List";
 }
 <div class="bl_title">
-    @Model.Title
-    <div class="bl-export-excel">
-        <a id="icon-excel" class="icon icon-excel" title="@Resources.ExportToExcel"
-           href="@Url.Action("Excel", $"{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}DailyStatement",
+
+    <div class="box">
+        <div>
+            @Model.Title
+        </div>
+        <div>
+            @{
+                var notes = new List<string>() {
+                    Resources.ipnote,
+                    Resources.CommissionRoundNote
+                    };
+
+                if (Model.ShowContributionAmountRoundNote)
+                {
+                    notes.Add(Resources.ContributionAmountRoundNote);
+                }
+            }
+
+            @Html.Partial("IconInformation", notes)
+        </div>
+
+        <div class="push">
+            <div class="bl-export-excel">
+                <a id="icon-excel" class="icon icon-excel" title="@Resources.ExportToExcel"
+                   href="@Url.Action("Excel", $"{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}DailyStatement",
                 new { CustId = Model.CustId,
                     CustName=Model.CustName,
                     WinLossDate = Model.WinLossDate,
                     TransType = Model.TransType })">
-        </a>
+                </a>
+            </div>
+        </div>
+
     </div>
 </div>
 <table class="tblRpt tblRpt-bordered tblRpt-striped width-100per tablesorter tblRpt-hover tbl-betlist">
@@ -57,18 +81,6 @@
         @Common.NoInfomation.Render(Model.TotalColumn)
     }
 </table>
-<div class="comm_note">
-    <div class="title">
-        <span class="star">*</span>@Resources.Note
-    </div>
-    <div class="content">
-        @Resources.CommissionRoundNote
-        @if (Model.ShowContributionAmountRoundNote)
-        {
-            <br>@Resources.ContributionAmountRoundNote
-        }
-    </div>
-</div>
 @Html.Hidden("betlist-path", Response.ApplyAppPathModifier($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}"))
 @Html.Hidden("old-main-path", Model.OldMainPath)
 @Html.Hidden("results-path", Model.ResultsPath)
@@ -80,3 +92,6 @@
 @Html.Hidden("cust-id", Model.CustId)
 @Html.Hidden("viewer-id", Model.ViewerIdOrViewerAdminId)
 @Html.Hidden("viewer-level-id", Model.ViewerLevelId)
+@section Scripts{
+    @StaticResources.RenderScripts($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}assets/bundles/icon-note")
+}

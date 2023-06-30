@@ -7,10 +7,18 @@
 }
 
 <div class="bl_title">
-    @Model.Title
-    <div class="bl-export-excel">
-        <a id="icon-excel" class="icon icon-excel" title="Excel"
-           href="@Url.Action("Excel", $"{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}ParlayWinLossByMatch",
+    <div class="box">
+        <div>
+            @Model.Title
+        </div>
+        <div>
+            @Html.Partial("IconInformation", new List<string>() { Resources.ipnote })
+        </div>
+
+        <div class="push">
+            <div class="bl-export-excel">
+                <a id="icon-excel" class="icon icon-excel" title="Excel"
+                   href="@Url.Action("Excel", $"{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}ParlayWinLossByMatch",
                 new
                 {
                     CustName = Model.CustName,
@@ -21,8 +29,14 @@
                     BetType = Model.BetType,
                     CustLevelId = Model.CustLevelId
                 })">
-        </a>
+                </a>
+            </div>
+        </div>
     </div>
 </div>
 
 @Html.Partial("WinLossTable", Model)
+
+@section Scripts{
+    @StaticResources.RenderScripts($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}assets/bundles/icon-note")
+}

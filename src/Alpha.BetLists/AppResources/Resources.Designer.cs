@@ -488,7 +488,16 @@ namespace Alpha.BetLists.AppResources {
         /// </summary>
         public static string Jun {
             get {
-                return ResourceManager.GetString("Jun", resourceCulture);
+                return ResourceManager.GetString("Jun", resourceCulture);  
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Country and city information is provided by IP2Location™ and DNSstuff which might only serve as a reference, with no warranty. Please consult other reliable sources for the current and accurate information, if required..
+        /// </summary>
+        public static string ipnote {
+            get {
+                return ResourceManager.GetString("ipnote", resourceCulture);
             }
         }
         

@@ -10,10 +10,31 @@
     <div style="border: 1px solid #f00; color: #f00; padding: 10px">@Model.BetlistOutputParams.ErrMsg</div>
 }
 <div class="bl_title">
-    @Model.Title
-    <div class="bl-export-excel">
-        <a id="icon-excel" class="icon icon-excel" title="@Resources.ExportToExcel"
-           href="@Url.Action("Excel", $"{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}WinLoss",
+
+    <div class="box">
+        <div>
+            @Model.Title
+        </div>
+        <div>
+            @{
+                var notes = new List<string>() {
+                    Resources.ipnote,
+                    Resources.CommissionRoundNote
+                    };
+
+                if (Model.ShowContributionAmountRoundNote)
+                {
+                    notes.Add(Resources.ContributionAmountRoundNote);
+                }
+            }
+
+            @Html.Partial("IconInformation", notes)
+        </div>
+
+        <div class="push">
+            <div class="bl-export-excel">
+                <a id="icon-excel" class="icon icon-excel" title="@Resources.ExportToExcel"
+                   href="@Url.Action("Excel", $"{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}WinLoss",
                 new { CustName = Model.CustName,
                     CustId = Model.CustId,
                     ProductIds = Model.ProductsId,
@@ -22,7 +43,14 @@
                     ToDate = Model.ToDate,
                     IsGroupHeadline = Model.IsGroupHeadline
                 })">
-        </a>
+                </a>
+            </div>
+        </div>
     </div>
+
 </div>
 @Html.Partial("WinLossTable", Model)
+
+@section Scripts{
+    @StaticResources.RenderScripts($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}assets/bundles/icon-note")
+}

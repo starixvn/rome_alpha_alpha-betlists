@@ -498,4 +498,7 @@
   <data name="Sep" xml:space="preserve">
     <value>9月</value>
   </data>
+  <data name="ipnote" xml:space="preserve">
+    <value>由IP2Location™ 和 DNSstuff提供的國家與城市的信息只供參考, 並無保證. 如有需要, 請諮詢其他可靠來源以獲得最新的及準確的信息.</value>
+  </data>
 </root>
