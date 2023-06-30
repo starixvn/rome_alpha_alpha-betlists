@@ -3,12 +3,27 @@
 @{
     ViewBag.Title = "Bet List By Bet Type";
 }
+
 <div class="bl_title">
-    @Model.Title
-    <div class="bl-export-excel">
-        <a id="icon-excel" class="icon icon-excel" title="@Resources.ExportToExcel"
-           href="@Url.Action($"{Model.FuncName}Excel", $"{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}BetListByBetType", new { BetType=Model.BetType })">
-        </a>
+    <div class="box">
+        <div>
+            @Model.Title
+        </div>
+        <div>
+            @Html.Partial("IconInformation", new List<string>() { Resources.ipnote })
+        </div>
+
+        <div class="push">
+            <div class="bl-export-excel">
+                <a id="icon-excel" class="icon icon-excel" title="@Resources.ExportToExcel"
+                   href="@Url.Action($"{Model.FuncName}Excel", $"{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}BetListByBetType", new { BetType=Model.BetType })">
+                </a>
+            </div>
+        </div>
     </div>
 </div>
+
 @Html.Partial("TableWithoutWinLoss", Model)
+@section Scripts{
+    @StaticResources.RenderScripts($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}assets/bundles/icon-note")
+}

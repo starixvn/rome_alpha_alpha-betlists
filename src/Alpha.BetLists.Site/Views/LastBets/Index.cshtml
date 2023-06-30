@@ -9,7 +9,14 @@
     @StaticResources.RenderStylesWithDarkMode($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}assets/bundles/last-bets")
 }
 <div class="bl_title">
-    @Resources.LastBets
+    <div class="box">
+        <div>
+            @Resources.LastBets
+        </div>
+        <div>
+            @Html.Partial("IconInformation", new List<string>() { Resources.ipnote })
+        </div>
+    </div>
 </div>
 <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="tab-report-type @(Model.IsSelectedBetType(BetTypeIdConstants.AllBetTypes) ?"active":string.Empty)">
@@ -65,4 +72,5 @@
 @section Scripts {
     @StaticResources.AssetScripts.Render("/bundles/site-betlists/last-bets")
     @StaticResources.RenderScripts($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}assets/bundles/last-bets")
+    @StaticResources.RenderScripts($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}assets/bundles/icon-note")
 }

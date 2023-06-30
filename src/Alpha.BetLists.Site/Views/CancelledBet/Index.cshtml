@@ -13,12 +13,22 @@
 }
 
 <div class="bl_title">
-    @Model.Title
-    <div class="list-icon" id="betlist-filter">
-        <ul>
-            <li class="showfilter-element"><span class="icon-arrow-up-drop-circle icon-filter" title="@Resources.HideFilter"></span></li>
-            <li class="hidefilter-element"><span class="icon-arrow-down-drop-circle icon-filter" title="@Resources.ShowFilter"></span></li>
-        </ul>
+    <div class="box">
+        <div>
+            @Model.Title
+        </div>
+        <div>
+            @Html.Partial("IconInformation", new List<string>() { Resources.ipnote, Model.ViewDataInstructionMessage })
+        </div>
+
+        <div class="push">
+            <div class="list-icon" id="betlist-filter">
+                <ul>
+                    <li class="showfilter-element"><span class="icon-arrow-up-drop-circle icon-filter" title="@Resources.HideFilter"></span></li>
+                    <li class="hidefilter-element"><span class="icon-arrow-down-drop-circle icon-filter" title="@Resources.ShowFilter"></span></li>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -32,10 +42,6 @@
 
     <div class="form-group">
         <span id="icon-excel" class="icon-excel" title="@Resources.ExportToExcel"></span>
-    </div>
-
-    <div class="note">
-        <span class="star">*</span>@Model.ViewDataInstructionMessage
     </div>
 </form>
 
@@ -95,4 +101,5 @@
     @StaticResources.AssetScripts.Render("/bundles/site-betlists/filter")
     @StaticResources.RenderScripts($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}assets/bundles/cancelled-betlist/cancelled-betlist")
     @StaticResources.AssetScripts.Render("/bundles/site-betlists/pagination")
+    @StaticResources.RenderScripts($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}assets/bundles/icon-note")
 }

@@ -7,7 +7,14 @@
 }
 
 <div class="bl_title">
-    @Model.GetMoveStatementHistoryTitle
+    <div class="box">
+        <div>
+            @Model.GetMoveStatementHistoryTitle
+        </div>
+        <div>
+            @Html.Partial("IconInformation", new List<string>() {Resources.ipnote})
+        </div>
+    </div>
 </div>
 <table class="tblRpt tblRpt-bordered tblRpt-striped width-100per tablesorter tblRpt-hover tbl-betlist">
     <thead>
@@ -82,3 +89,6 @@
 @Html.Hidden("is-historic-report", Model.IsHistoricReport)
 @Html.Hidden("viewer-id", Model.ViewerIdOrViewerAdminId)
 @Html.Hidden("viewer-level-id", Model.ViewerLevelId)
+@section Scripts{
+    @StaticResources.RenderScripts($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}assets/bundles/icon-note")
+}

@@ -17,12 +17,25 @@
     </script>
     @StaticResources.AssetScripts.Render("/bundles/site-betlists/filter-new")
     @StaticResources.RenderScripts($"~/{AppSettings.BetlistRouting}assets/bundles/winloss/winloss-betlist")
+    @StaticResources.RenderScripts($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}assets/bundles/icon-note")
 }
 <div class="flex">
     <div class="bl_title">
-        @Resources.memberBetList - @Model.CustName
-        <div class="list-icon">
-            <ul><li><span class="icon-arrow-up-drop-circle icon-filter" id="icon-filter" title="@Resources.HideFilter"></span></li></ul>
+        <div class="box">
+            <div>
+                @Resources.memberBetList - @Model.CustName
+            </div>
+            <div>
+                @Html.Partial("IconInformation", new List<string>() { Resources.ipnote, Resources.CommissionRoundNote, Resources.ContributionAmountRoundNote })
+            </div>
+
+            <div class="push">
+                <div class="list-icon">
+                    <ul>
+                        <li><span class="icon-arrow-up-drop-circle icon-filter" id="icon-filter" title="@Resources.HideFilter"></span></li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
     <div class="form-inline filter" id="form-filter">
