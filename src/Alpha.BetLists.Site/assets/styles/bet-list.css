@@ -22,35 +22,6 @@ body {
 a {
   text-decoration: none; }
 
-.flex {
-  display: flex;
-  flex-direction: column;
-  max-height: 100%; }
-  .flex .comm_note {
-    float: none; }
-  .flex .scrollable {
-    flex: 1;
-    -webkit-overflow-scrolling: touch;
-    will-change: scroll-position; }
-
-.scrollable {
-  overflow: auto;
-  min-height: 150px; }
-  .scrollable .blockOverlay {
-    opacity: 0 !important; }
-
-.tblRpt-freeze-header {
-  border-top: 0 !important; }
-  .tblRpt-freeze-header thead tr th {
-    position: sticky !important;
-    position: -webkit-sticky !important;
-    top: 0 !important;
-    border-top: 0 !important;
-    z-index: 23;
-    background-clip: padding-box; }
-  .tblRpt-freeze-header tbody tr:last-child td {
-    border-bottom: 0; }
-
 .tbl-betlist {
   border-collapse: collapse;
   background-color: #fff;
@@ -80,12 +51,12 @@ a {
       white-space: normal; }
     .tbl-betlist td.choice-block {
       white-space: normal; }
-    .tbl-betlist td.error-exceed-row {
-      color: #fe0000; }
   .tbl-betlist tbody tr:hover td {
     background-color: #f8eb95; }
   .tbl-betlist tbody tr#tr_footer:hover td {
     background-color: #E8DFCA; }
+  .tbl-betlist tbody tr.text-center td, .tbl-betlist tbody tr.bl_footertotal td {
+    border-bottom: 0 !important; }
   .tbl-betlist .col-number {
     width: 20px; }
   .tbl-betlist .col-transtime, .tbl-betlist .col-member {
@@ -517,10 +488,6 @@ div.ticket-list div.void > div.match, div.ticket-list div.void div.firstGoal, di
 
 .game-id {
   color: #000; }
-
-.filter {
-  padding-top: 0;
-  padding-right: 0; }
 
 .tblRpt tbody td.status-block {
   white-space: normal; }

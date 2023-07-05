@@ -1,13 +1,10 @@
 "use strict";
 var BreadcrumbLevelOption = /** @class */ (function () {
-    function BreadcrumbLevelOption(breadcrumbs, onClick, selectorId) {
-        if (breadcrumbs === void 0) { breadcrumbs = []; }
+    function BreadcrumbLevelOption(onClick, selectorId) {
         if (onClick === void 0) { onClick = Function(); }
-        if (selectorId === void 0) { selectorId = "breadcrumb"; }
-        this.breadcrumbs = breadcrumbs;
+        if (selectorId === void 0) { selectorId = "breadcrumb-level"; }
         this.onClick = onClick;
         this.selectorId = selectorId;
-        this.breadcrumbs = breadcrumbs;
         this.onClick = onClick;
         this.selectorId = selectorId;
     }
@@ -16,19 +13,42 @@ var BreadcrumbLevelOption = /** @class */ (function () {
 var BreadcrumbLevelComponent = /** @class */ (function () {
     function BreadcrumbLevelComponent() {
     }
-    BreadcrumbLevelComponent.prototype.render = function (options) {
-        var breadcrumbLength = options.breadcrumbs.length;
-        if (breadcrumbLength > 0) {
-            var html = options.breadcrumbs.map(function (item, index) {
-                return index + 1 === breadcrumbLength
-                    ? "<li>" + item.custName + "</li>"
-                    : "<li><a class=\"upline-link\" href=\"javascript:;\" data-custid=\"" + item.custId + "\" data-custname=\"" + item.custName + "\" data-custlevelid=\"" + item.custLevelId + "\">" + item.custName + "</a></li>";
-            });
-            var breadcrumbSelector = $("#" + options.selectorId);
-            breadcrumbSelector
-                .html(html.join(""))
-                .find(".upline-link").off().click(options.onClick);
-        }
+    BreadcrumbLevelComponent.prototype.init = function (options) {
+        this.breadcrumbLevelOption = options;
+        this._buildBreadcrumbLevels();
+        this.bindEvents();
+    };
+    BreadcrumbLevelComponent.prototype._buildBreadcrumbLevels = function () {
+        var _this = this;
+        this.breadcrumbLevels = [];
+        $("#" + this.breadcrumbLevelOption.selectorId).find("li").each(function (_, item) {
+            var uplineLinkList = $(item).find(".upline-link");
+            if (uplineLinkList.length) {
+                var uplineLink = uplineLinkList.eq(0);
+                _this.breadcrumbLevels.push({
+                    custId: uplineLink.data("custid"),
+                    custName: uplineLink.data("custname"),
+                    custLevelId: +uplineLink.data("custlevelid")
+                });
+            }
+            else {
+                _this.breadcrumbLevels.push({
+                    custName: item.innerText
+                });
+            }
+        });
+    };
+    BreadcrumbLevelComponent.prototype.bindEvents = function () {
+        $("#" + this.breadcrumbLevelOption.selectorId)
+            .find(".upline-link")
+            .off()
+            .click(this.breadcrumbLevelOption.onClick);
+    };
+    BreadcrumbLevelComponent.prototype.getBreadcrumbLevels = function (custLevelId) {
+        if (custLevelId === void 0) { custLevelId = 0; }
+        return custLevelId
+            ? this.breadcrumbLevels.filter(function (item) { return item.custLevelId >= custLevelId; })
+            : this.breadcrumbLevels;
     };
     return BreadcrumbLevelComponent;
 }());

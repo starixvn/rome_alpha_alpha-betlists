@@ -18,10 +18,13 @@
         public async Task<FileContentResult> Excel(WinLossExcelQuery message)
             => await ExcelView(message);
 
-        public async Task<ActionResult> IndexNew(WinLossNewQuery message)
-            => message.IsValid() ? await View<WinLossNewViewModel>(message) : View(InvalidBetListView);
+        public async Task<ActionResult> IndexNew(WinLossIndexQuery message)
+            => message.IsValid() ? await View<WinLossIndexViewModel>(message) : View(InvalidBetListView);
 
-        public async Task<ActionResult> GetData(WinLossGetDataQuery message)
+        public async Task<ActionResult> BetListWeekSelection(WinLossBetListWeekSelectionQuery message)
+            => message.IsValid() ? await PartialView<WinLossBetListWeekSelectionViewModel>(message) : View(InvalidBetListView);
+
+        public async Task<ActionResult> BetList(WinLossBetListQuery message)
             => message.IsValid() ? await PartialView(message) : View(InvalidBetListView);
     }
 }

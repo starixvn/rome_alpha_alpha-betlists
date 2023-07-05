@@ -1,0 +1,22 @@
+﻿@using Alpha.BetLists.Site.ViewModels.Components;
+
+@helper Render(IEnumerable<BreadcrumbLevelViewModel> viewModels)
+{
+    <div class="breadcrumb-container">
+        <ul class="breadcrumb" id="breadcrumb-level">
+            @foreach (var item in viewModels)
+            {
+                <li>
+                    @if (item.CustLevelId > 1)
+                    {
+                        <a href="javascript:;" class="upline-link" data-custid="@item.CustId" data-custname="@item.CustName" data-custlevelid="@item.CustLevelId">@item.CustName</a>
+                    }
+                    else
+                    {
+                        @:@item.CustName
+                    }
+                </li>
+            }
+        </ul>
+    </div>
+}

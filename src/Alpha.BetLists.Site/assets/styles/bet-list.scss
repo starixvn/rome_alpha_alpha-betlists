@@ -11,53 +11,6 @@ body {
 a {
     text-decoration: none;
 }
-.flex {
-    display: flex;
-    flex-direction: column;
-    max-height: 100%;
-
-    .comm_note {
-        float: none;
-    }
-
-    .scrollable {
-        flex: 1;
-        -webkit-overflow-scrolling: touch;
-        will-change: scroll-position;
-    }
-}
-.scrollable {
-    overflow: auto;
-    min-height: 150px;
-
-    .blockOverlay {
-        opacity: 0 !important;
-    }
-}
-.tblRpt-freeze-header {
-    border-top: 0 !important;
-
-    thead {
-        tr {
-            th {
-                position: sticky !important;
-                position: -webkit-sticky !important;
-                top: 0 !important;
-                border-top: 0 !important;
-                z-index: 23;
-                background-clip: padding-box;
-            }
-        }
-    }
-
-    tbody {
-        tr:last-child {
-            td {
-                border-bottom: 0;
-            }
-        }
-    }
-}
 
 .tbl-betlist {
     border-collapse: collapse;
@@ -93,10 +46,6 @@ a {
         &.choice-block {
             white-space: normal;
         }
-
-        &.error-exceed-row {
-            color: $msg-error-color;
-        }
     }
 
     tbody {
@@ -106,6 +55,14 @@ a {
 
         tr#tr_footer:hover td {
             background-color: #E8DFCA;
+        }
+
+        tr {
+            &.text-center, &.bl_footertotal {
+                td {
+                    border-bottom: 0 !important;
+                }
+            }
         }
     }
 
@@ -617,11 +574,6 @@ div.ticket-list div.void > div.match, div.ticket-list div.void div.firstGoal, di
     color: #000;
 }
 
-//filter
-.filter{
-    padding-top: 0;
-    padding-right: 0;
-}
 
 .tblRpt tbody td.status-block {
     white-space: normal;

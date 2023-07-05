@@ -1,13 +1,14 @@
 ﻿@using Newtonsoft.Json
 @using Alpha.BetLists.Configurations
 @using Alpha.BetLists.Site.ViewModels.WinLoss
-@model WinLossNewViewModel
+@model WinLossIndexViewModel
 @{
     ViewBag.Title = "Win Loss Bet List";
     var jsonSettings = new JsonSerializerSettings { Formatting = Formatting.None, NullValueHandling = NullValueHandling.Ignore };
 }
 @section Styles {
     @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-betlists/filter-new")
+    @StaticResources.RenderStyles($"~/{AppSettings.BetlistRouting}assets/bundles/winloss/winloss-betlist")
 }
 @section Scripts {
     <script type="text/javascript">
@@ -18,42 +19,27 @@
     @StaticResources.RenderScripts($"~/{AppSettings.BetlistRouting}assets/bundles/winloss/winloss-betlist")
 }
 <div class="flex">
-    <div class="bl_title">@Resources.memberBetList - @Model.CustName</div>
-    <div class="form-inline filter">
+    <div class="bl_title">
+        @Resources.memberBetList - @Model.CustName
+        <div class="list-icon">
+            <ul><li><span class="icon-arrow-up-drop-circle icon-filter" id="icon-filter" title="@Resources.HideFilter"></span></li></ul>
+        </div>
+    </div>
+    <div class="form-inline filter" id="form-filter">
         @DateRangePickerJQuery.Render(Model.DateRangePickerViewModel)
         @ProductAndProductDetailDropdown.Render()
-        <div class="label-week-box" id="week-range-container"></div>
     </div>
-    <div class="breadcrumb-table">
-        <div class="breadcrumb-container">
-            <ul class="breadcrumb" id="breadcrumb"></ul>
-        </div>
-        <div class="list-icon">
-            <ul>
-                <li>
-                    <a href="javacript:;"
-                       id="icon-excel"
-                       class="icon icon-excel icon-excel-new"
-                       title="@Resources.ExportToExcel"
-                       data-custname="@Model.CustName"
-                       data-url="@Response.ApplyAppPathModifier($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}winloss/excel")"></a>
-                </li>
-            </ul>
-        </div>
+    <div id="betlist-week-selection" class="cover-week-selection">
+        @Html.Partial("~/Views/WinLoss/BetListWeekSelection.cshtml", Model)
     </div>
-    @Html.Partial("WinLossTable", Model)
     @Html.Hidden("winloss-detail-report-path", Alpha.BetLists.Site.Helpers.UrlHelper.MapReportsPath("~/winlossdetail/"))
-    @Html.Hidden("breadcrumb-level-json", Model.BreadcrumbLevelJson)
     @Html.Hidden("resource-ids", Model.ResourceIds)
     @if (!string.IsNullOrWhiteSpace(Model.BetlistOutputParams.ErrMsg))
     {
         @Html.Hidden("error-exceed-row", Model.BetlistOutputParams.ErrMsg)
     }
-    @if (!string.IsNullOrWhiteSpace(Model.WeekFromDate) && !string.IsNullOrWhiteSpace(Model.WeekToDate))
-    {
-        @Html.Hidden("week-from-date", Model.WeekFromDate)
-        @Html.Hidden("week-to-date", Model.WeekToDate)
-    }
     <input type="hidden" id="language" data-currentlanguage="@Model.Language" />
     @Html.Hidden("cust-name", Model.CustName)
+    @Html.Hidden("hidden-hide-filter-text", Resources.HideFilter)
+    @Html.Hidden("hidden-show-filter-text", Resources.ShowFilter)
 </div>

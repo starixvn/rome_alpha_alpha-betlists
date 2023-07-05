@@ -1,0 +1,18 @@
+﻿@using Alpha.BetLists.Site.ViewModels.WinLoss
+@model WinLossBetListWeekSelectionViewModel
+@WeekSelection.Render(Model.WeekSelections)
+<div class="breadcrumb-table">
+    @BreadcrumbLevel.Render(Model.BreadcrumbLevels)
+    <div class="list-icon">
+        <ul>
+            <li>
+                <a href="javascript:;"
+                    id="icon-excel"
+                    class="icon icon-excel icon-excel-new"
+                    title="@Resources.ExportToExcel"
+                    data-url="@Response.ApplyAppPathModifier($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}winloss/excel")"></a>
+            </li>
+        </ul>
+    </div>
+</div>
+@Html.Partial("~/Views/Shared/WinLossTable.cshtml", Model)

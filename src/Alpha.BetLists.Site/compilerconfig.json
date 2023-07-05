@@ -38,5 +38,9 @@
   {
     "outputFile": "assets/styles/error/error-dark.css",
     "inputFile": "assets/styles/error/error-dark.scss"
+  },
+  {
+    "outputFile": "assets/styles/winloss.css",
+    "inputFile": "assets/styles/winloss.scss"
   }
 ]

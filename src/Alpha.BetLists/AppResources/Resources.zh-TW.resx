@@ -462,4 +462,40 @@
   <data name="nSelected" xml:space="preserve">
     <value>已選 #</value>
   </data>
+  <data name="Apr" xml:space="preserve">
+    <value>4月</value>
+  </data>
+  <data name="Aug" xml:space="preserve">
+    <value>8月</value>
+  </data>
+  <data name="Dec" xml:space="preserve">
+    <value>12月</value>
+  </data>
+  <data name="Feb" xml:space="preserve">
+    <value>2月</value>
+  </data>
+  <data name="Jan" xml:space="preserve">
+    <value>1月</value>
+  </data>
+  <data name="Jul" xml:space="preserve">
+    <value>7月</value>
+  </data>
+  <data name="Jun" xml:space="preserve">
+    <value>6月</value>
+  </data>
+  <data name="Mar" xml:space="preserve">
+    <value>3月</value>
+  </data>
+  <data name="May" xml:space="preserve">
+    <value>5月</value>
+  </data>
+  <data name="Nov" xml:space="preserve">
+    <value>11月</value>
+  </data>
+  <data name="Oct" xml:space="preserve">
+    <value>10月</value>
+  </data>
+  <data name="Sep" xml:space="preserve">
+    <value>9月</value>
+  </data>
 </root>

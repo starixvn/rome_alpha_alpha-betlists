@@ -1,0 +1,15 @@
+﻿@using Alpha.BetLists.Extensions;
+@using Alpha.BetLists.Site.ViewModels.Components;
+
+@helper Render(IEnumerable<WeekSelectionViewModel> viewModels)
+{
+    <div class="label-week-box" id="week-selection">
+        @foreach (var item in viewModels)
+        {
+            <a href="javascript:;"
+               class="label-week@(item.IsActive ? " active" : string.Empty)@(item.IsEnable ? string.Empty : " disabled")"
+               data-fromdate="@item.FromDate.ToShortDateWithSlash()"
+               data-todate="@item.ToDate.ToShortDateWithSlash()">@item.Display</a>
+        }
+    </div>
+}
