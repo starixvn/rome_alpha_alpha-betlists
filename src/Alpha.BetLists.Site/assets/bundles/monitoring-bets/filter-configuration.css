@@ -67,6 +67,8 @@
   .treeview .selectall-box {
     padding: 10px 0 8px 3px;
     margin-right: 11px; }
+    .treeview .selectall-box .node-label {
+      margin-right: 23px; }
   .treeview .checkbox-list {
     margin-bottom: 0;
     overflow-y: auto; }
@@ -172,7 +174,6 @@
   line-height: 20px;
   position: relative;
   outline: none;
-  overflow: hidden;
   margin-bottom: 19px; }
   .tagsinput .tag-limit {
     color: #8E8E8E;
@@ -191,7 +192,8 @@
     border-radius: 0px;
     background-color: #ffffff;
     appearance: none;
-    height: 42px; }
+    height: 42px;
+    border-radius: 3px 3px 0 0; }
     .tagsinput input[type=text].tag-add::-ms-clear {
       display: none; }
     .tagsinput input[type=text].tag-add::-webkit-input-placeholder {
@@ -278,8 +280,10 @@
   .button:hover {
     opacity: 0.8; }
 
-.block-btn.top {
-  margin-bottom: 16px; }
+.block-btn {
+  display: flex; }
+  .block-btn.top {
+    margin-bottom: 16px; }
 
 .ttl-config {
   color: #094980;

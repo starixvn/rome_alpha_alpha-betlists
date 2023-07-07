@@ -105,6 +105,9 @@ $border-color: #E0E0E0;
     .selectall-box {
         padding: 10px 0 8px 3px;
         margin-right: $tree-view-padding;
+        .node-label{
+            margin-right: 23px;
+        }
     }
 
     .checkbox-list {

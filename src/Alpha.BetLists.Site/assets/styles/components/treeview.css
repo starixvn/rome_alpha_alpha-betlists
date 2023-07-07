@@ -67,6 +67,8 @@
   .treeview .selectall-box {
     padding: 10px 0 8px 3px;
     margin-right: 11px; }
+    .treeview .selectall-box .node-label {
+      margin-right: 23px; }
   .treeview .checkbox-list {
     margin-bottom: 0;
     overflow-y: auto; }

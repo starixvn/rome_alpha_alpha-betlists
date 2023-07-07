@@ -31,8 +31,10 @@
   .button:hover {
     opacity: 0.8; }
 
-.block-btn.top {
-  margin-bottom: 16px; }
+.block-btn {
+  display: flex; }
+  .block-btn.top {
+    margin-bottom: 16px; }
 
 .ttl-config {
   color: #094980;

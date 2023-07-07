@@ -17,7 +17,6 @@ $tag-placehoder: #8E8E8E;
     line-height: 20px;
     position: relative;
     outline: none;
-    overflow: hidden;
     margin-bottom: 19px;
 
     .tag-limit {
@@ -40,7 +39,7 @@ $tag-placehoder: #8E8E8E;
         background-color: #ffffff;
         appearance: none;
         height: 42px;
-
+        border-radius: 3px 3px 0 0;
         &::-ms-clear {
             display: none;
         }
