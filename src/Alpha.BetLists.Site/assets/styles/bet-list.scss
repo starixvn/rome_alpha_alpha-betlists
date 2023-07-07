@@ -404,7 +404,7 @@ div.ticket-list div.void > div.match, div.ticket-list div.void div.firstGoal, di
 }
 
 .p213, .p214, .p215, .p216, .p217, .p218 {
-    .detail, .ng2-detail, .result {
+    .detail, .result {
         display: none;
     }
 }
@@ -488,12 +488,6 @@ div.ticket-list div.void > div.match, div.ticket-list div.void div.firstGoal, di
 
     .no-wrap {
         white-space: nowrap;
-    }
-}
-
-.sport-213, .sport-214, .sport-215, .sport-216, .sport-217, .sport-218 {
-    .detail, .ng2-detail, .result {
-        display: none;
     }
 }
 

@@ -356,9 +356,6 @@ div.ticket-list div.void > div.match, div.ticket-list div.void div.firstGoal, di
 .allbet-bet-type-name {
   color: #696969; }
 
-.p213 .detail, .p213 .ng2-detail, .p213 .result, .p214 .detail, .p214 .ng2-detail, .p214 .result, .p215 .detail, .p215 .ng2-detail, .p215 .result, .p216 .detail, .p216 .ng2-detail, .p216 .result, .p217 .detail, .p217 .ng2-detail, .p217 .result, .p218 .detail, .p218 .ng2-detail, .p218 .result {
-  display: none; }
-
 .blue {
   color: #2673CE; }
 
@@ -471,3 +468,4 @@ div.ticket-list div.void > div.match, div.ticket-list div.void div.firstGoal, di
   white-space: normal; }
   .tblRpt tbody td.status-block .country {
     font-size: 11px; }
+

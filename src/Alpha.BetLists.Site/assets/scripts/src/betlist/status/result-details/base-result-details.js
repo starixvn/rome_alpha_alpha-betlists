@@ -8,10 +8,6 @@ var BetList;
                 function ResultDetailsFactory() {
                 }
                 ResultDetailsFactory.CreateInstance = function (betTypeId) {
-                    if (betTypeId >= 2501 && betTypeId <= 2699) {
-                        this.ng2Result = Common.Utils.IsNullOrUndefinedOrEmpty(this.ng2Result) ? new ResultDetails.NG2ResultDetails() : this.ng2Result;
-                        return this.ng2Result;
-                    }
                     if (betTypeId === 9 || betTypeId === 29 || betTypeId === 2799) {
                         this.mixParlayResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.mixParlayResult) ? new ResultDetails.MixParlayResultDetails() : this.mixParlayResult;
                         return this.mixParlayResult;

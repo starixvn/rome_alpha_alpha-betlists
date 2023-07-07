@@ -17,15 +17,5 @@ describe("Status_ResultDetails_", function () {
         loadFixtures("common-template.html");
         popupDetailsShow = spyOn(PopupDetails, "Show").and.callFake(function () { });
     });
-    describe("NG2_", function () {
-        it("ViewResultDetails -> Redirect Expected Url", function () {
-            // Arrange
-            var params = '?gambleId=' + matchId;
-            // Act
-            new BetList.Status.ResultDetails.NG2ResultDetails().ViewResultDetails(matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, betId);
-            // Assert
-            expect(popupDetailsShow).toHaveBeenCalledWith("result-path/ng2/TicketDetail" + params, "", 500, 400);
-        });
-    });
 });
 //# sourceMappingURL=other-result-details-tests.js.map

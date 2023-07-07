@@ -363,7 +363,7 @@ div.ticket-list div.void > div.match, div.ticket-list div.void div.firstGoal, di
 .allbet-bet-type-name {
   color: #696969; }
 
-.p213 .detail, .p213 .ng2-detail, .p213 .result, .p214 .detail, .p214 .ng2-detail, .p214 .result, .p215 .detail, .p215 .ng2-detail, .p215 .result, .p216 .detail, .p216 .ng2-detail, .p216 .result, .p217 .detail, .p217 .ng2-detail, .p217 .result, .p218 .detail, .p218 .ng2-detail, .p218 .result {
+.p213 .detail, .p213 .result, .p214 .detail, .p214 .result, .p215 .detail, .p215 .result, .p216 .detail, .p216 .result, .p217 .detail, .p217 .result, .p218 .detail, .p218 .result {
   display: none; }
 
 .blue {
@@ -423,9 +423,6 @@ div.ticket-list div.void > div.match, div.ticket-list div.void div.firstGoal, di
     font-size: 11px; }
   .no-wrap {
     white-space: nowrap; } }
-
-.sport-213 .detail, .sport-213 .ng2-detail, .sport-213 .result, .sport-214 .detail, .sport-214 .ng2-detail, .sport-214 .result, .sport-215 .detail, .sport-215 .ng2-detail, .sport-215 .result, .sport-216 .detail, .sport-216 .ng2-detail, .sport-216 .result, .sport-217 .detail, .sport-217 .ng2-detail, .sport-217 .result, .sport-218 .detail, .sport-218 .ng2-detail, .sport-218 .result {
-  display: none; }
 
 .betbuilder {
   color: #171717;
@@ -493,6 +490,7 @@ div.ticket-list div.void > div.match, div.ticket-list div.void div.firstGoal, di
   white-space: normal; }
   .tblRpt tbody td.status-block .country {
     font-size: 11px; }
+
 
 #details-modal .modal-dialog {
   margin: 30px auto; }

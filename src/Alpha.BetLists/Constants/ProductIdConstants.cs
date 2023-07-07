@@ -10,7 +10,6 @@ namespace Alpha.BetLists.Constants
         public const int Casino = 6;
         public const int Keno = 8;
         public const int GoldDeluxe = 12;
-        public const int NG2 = 23;
         public const int FishingWorld = 24;
         public const int Lottery = 28;
         public const int VirtualSports2 = 27;

@@ -14,27 +14,6 @@ var BetList;
     (function (Choice) {
         var TicketDetails;
         (function (TicketDetails) {
-            var NG2TicketDetails = /** @class */ (function (_super) {
-                __extends(NG2TicketDetails, _super);
-                function NG2TicketDetails() {
-                    var _this = _super !== null && _super.apply(this, arguments) || this;
-                    _this.ShowNG2BetDetails = function (transId, refNo, custId) {
-                        var params = "?refNo=" + refNo;
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ng2/ParlayDetail' + params, "", 600, 350);
-                    };
-                    return _this;
-                }
-                Object.defineProperty(NG2TicketDetails, "Instance", {
-                    get: function () {
-                        this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new NG2TicketDetails() : this.instance;
-                        return this.instance;
-                    },
-                    enumerable: true,
-                    configurable: true
-                });
-                return NG2TicketDetails;
-            }(TicketDetails.BaseTicketDetails));
-            TicketDetails.NG2TicketDetails = NG2TicketDetails;
             var GoldDeluxeTicketDetails = /** @class */ (function (_super) {
                 __extends(GoldDeluxeTicketDetails, _super);
                 function GoldDeluxeTicketDetails() {
@@ -63,10 +42,8 @@ var BetList;
         })(TicketDetails = Choice.TicketDetails || (Choice.TicketDetails = {}));
     })(Choice = BetList.Choice || (BetList.Choice = {}));
 })(BetList || (BetList = {}));
-var showNG2Details;
 var showDetail;
 $(document).ready(function () {
-    showNG2Details = BetList.Choice.TicketDetails.NG2TicketDetails.Instance.ShowNG2BetDetails;
     showDetail = BetList.Choice.TicketDetails.GoldDeluxeTicketDetails.Instance.ShowDetails;
 });
 //# sourceMappingURL=other-ticket-details.js.map
