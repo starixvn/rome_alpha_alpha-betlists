@@ -1,38 +1,45 @@
-﻿$tagsinput-border-color: #e6e6e6;
-$tagsinput-border-color-focus: #ccc;
-$tag-bg-color: #556270;
-$tag-color: #fff;
-$tag-remove-color: #ff6b6b;
-$tag-placehoder: #ccc;
+﻿$tagsinput-border-color: #d1d1d1;
+$tagsinput-color: #10663E;
+$tagsinput-bg-color: #D0F2E4;
+
+$tag-remove-color: #6B6B6B ;
+
+$tagsinput-error-border-color: #F3CACA;
+$tagsinput-error-color: #CB0008;
+$tagsinput-error-bg-color: #E5BFBF;
+$tag-placehoder: #8E8E8E;
 
 .tagsinput {
-    background-color: #fff;
+    background-color: #f7f7f7;
     box-sizing: border-box;
     border: 1px solid $tagsinput-border-color;
-    border-radius: 2px;
+    border-radius: 3px;
     line-height: 20px;
-    padding: 0 5px;
     position: relative;
-
-    &.focus {
-        border-color: $tagsinput-border-color-focus;
-    }
+    outline: none;
+    overflow: hidden;
+    margin-bottom: 19px;
 
     .tag-limit {
         color: $tag-placehoder;
         font-style: italic;
         position: absolute;
         right: 5px;
-        top: 5px;
+        top: 10px;
     }
 
     input[type=text].tag-add {
         box-sizing: border-box;
         border: 0 none;
         display: block;
-        margin: 0 5px 5px 0;
-        padding: 5px 125px 5px 5px;
+        border-bottom: 1px solid $tagsinput-border-color;
+        margin: 0 0 -1px 0;
+        padding: 0px 130px 1px 9px;
         width: 100%;
+        border-radius: 0px;
+        background-color: #ffffff;
+        appearance: none;
+        height: 42px;
 
         &::-ms-clear {
             display: none;
@@ -60,13 +67,15 @@ $tag-placehoder: #ccc;
     }
 
     .tag {
-        background: $tag-bg-color;
-        border-radius: 2px;
-        color: $tag-color;
+        background: $tagsinput-bg-color;
+        border: 1px solid $tagsinput-border-color;
+        border-radius: 3px;
+        color: $tagsinput-color;
         display: inline-block;
-        margin: 0 5px 5px 0;
-        padding: 5px 30px 5px 5px;
+        margin: 10px 3px 9px 9px;
+        padding: 2px 30px 2px 5px;
         position: relative;
+        font-weight: bold;
 
         .tag-remove {
             background: none;
@@ -74,19 +83,19 @@ $tag-placehoder: #ccc;
             color: $tag-remove-color;
             cursor: pointer;
             position: absolute;
-            top: 0;
-            right: 0;
-            width: 30px;
-            height: 30px;
+            top: 7px;
+            right: 9px;
+            width: 12px;
+            height: 12px;
 
             &:before,
             &:after {
-                background: $tag-remove-color;
+                background: #6B6B6B;
                 content: "";
                 position: absolute;
-                top: 14px;
-                left: 10px;
-                width: 10px;
+                top: 4px;
+                left: 0px;
+                width: 15px;
                 height: 2px;
             }
 
@@ -103,6 +112,8 @@ $tag-placehoder: #ccc;
     }
 
     .error {
-        color: $tag-remove-color;
+        background: $tagsinput-error-bg-color;
+        border: 1px solid $tagsinput-error-border-color;
+        color: $tagsinput-error-color;
     }
 }

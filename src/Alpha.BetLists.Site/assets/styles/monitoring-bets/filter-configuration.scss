@@ -1,6 +1,32 @@
 ﻿@import "../_mixins.scss";
 @import "../_variables.scss";
 
+.button {
+    appearance: none;
+    outline: none;
+    border: 0;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 4px 16px;
+    color: #ffffff;
+    border-radius: 3px;
+    background-color: #0B599C;
+    margin-right: 17px;
+    &.button-cancel {
+        background-color: #696969;
+    }
+    &.button-reset {
+        background-color: #1BAC69;
+    }
+    &:hover{
+        opacity: 0.8;
+    }
+}
+.block-btn {
+    &.top{
+        margin-bottom: 16px;
+    }
+}
 .ttl-config {
     color: #094980;
     font-size: 16px;
@@ -25,7 +51,8 @@
 }
 
 .text {
-    font-size: 16px;
+    font-size: 14px;
+    margin-bottom: 4px;
 }
 
 .item {

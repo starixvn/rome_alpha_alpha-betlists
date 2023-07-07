@@ -157,7 +157,8 @@
       width: 18px;
       height: 18px;
       display: inline-block;
-      vertical-align: text-bottom; }
+      vertical-align: text-bottom;
+      outline: none; }
     .treeview .node-label.highlight-text {
       color: #e9322d; }
   .treeview .filter-hidden {

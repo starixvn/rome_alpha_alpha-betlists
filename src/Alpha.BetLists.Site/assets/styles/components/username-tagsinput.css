@@ -1,65 +1,72 @@
 ﻿.tagsinput {
-  background-color: #fff;
+  background-color: #f7f7f7;
   box-sizing: border-box;
-  border: 1px solid #e6e6e6;
-  border-radius: 2px;
+  border: 1px solid #d1d1d1;
+  border-radius: 3px;
   line-height: 20px;
-  padding: 0 5px;
-  position: relative; }
-  .tagsinput.focus {
-    border-color: #ccc; }
+  position: relative;
+  outline: none;
+  overflow: hidden;
+  margin-bottom: 19px; }
   .tagsinput .tag-limit {
-    color: #ccc;
+    color: #8E8E8E;
     font-style: italic;
     position: absolute;
     right: 5px;
-    top: 5px; }
+    top: 10px; }
   .tagsinput input[type=text].tag-add {
     box-sizing: border-box;
     border: 0 none;
     display: block;
-    margin: 0 5px 5px 0;
-    padding: 5px 125px 5px 5px;
-    width: 100%; }
+    border-bottom: 1px solid #d1d1d1;
+    margin: 0 0 -1px 0;
+    padding: 0px 130px 1px 9px;
+    width: 100%;
+    border-radius: 0px;
+    background-color: #ffffff;
+    appearance: none;
+    height: 42px; }
     .tagsinput input[type=text].tag-add::-ms-clear {
       display: none; }
     .tagsinput input[type=text].tag-add::-webkit-input-placeholder {
-      color: #ccc;
+      color: #8E8E8E;
       opacity: 1; }
     .tagsinput input[type=text].tag-add:-moz-placeholder {
-      color: #ccc;
+      color: #8E8E8E;
       opacity: 1; }
     .tagsinput input[type=text].tag-add::-moz-placeholder {
-      color: #ccc;
+      color: #8E8E8E;
       opacity: 1; }
     .tagsinput input[type=text].tag-add::-ms-input-placeholder {
-      color: #ccc;
+      color: #8E8E8E;
       opacity: 1; }
   .tagsinput .tag {
-    background: #556270;
-    border-radius: 2px;
-    color: #fff;
+    background: #D0F2E4;
+    border: 1px solid #d1d1d1;
+    border-radius: 3px;
+    color: #10663E;
     display: inline-block;
-    margin: 0 5px 5px 0;
-    padding: 5px 30px 5px 5px;
-    position: relative; }
+    margin: 10px 3px 9px 9px;
+    padding: 2px 30px 2px 5px;
+    position: relative;
+    font-weight: bold; }
     .tagsinput .tag .tag-remove {
       background: none;
       border: 0;
-      color: #ff6b6b;
+      color: #6B6B6B;
       cursor: pointer;
       position: absolute;
-      top: 0;
-      right: 0;
-      width: 30px;
-      height: 30px; }
+      top: 7px;
+      right: 9px;
+      width: 12px;
+      height: 12px; }
       .tagsinput .tag .tag-remove:before, .tagsinput .tag .tag-remove:after {
-        background: #ff6b6b;
+        background: #6B6B6B;
         content: "";
         position: absolute;
-        top: 14px;
-        left: 10px;
-        width: 10px;
+        top: 4px;
+        left: 0px;
+        width: 15px;
         height: 2px; }
       .tagsinput .tag .tag-remove:before {
         -webkit-transform: rotateZ(45deg);
@@ -68,4 +75,6 @@
         -webkit-transform: rotateZ(-45deg);
         transform: rotateZ(-45deg); }
   .tagsinput .error {
-    color: #ff6b6b; }
+    background: #E5BFBF;
+    border: 1px solid #F3CACA;
+    color: #CB0008; }
