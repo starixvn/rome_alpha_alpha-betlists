@@ -10,6 +10,7 @@ $icon-close-color: #808080;
 $border-radius: 3px;
 $border-color: #E0E0E0;
 
+
 @mixin icon-dropdown($right) {
     cursor: pointer;
     position: absolute;
@@ -73,7 +74,7 @@ $border-color: #E0E0E0;
 
         > input[type="text"] {
             border: 1px solid $border-color;
-            border-radius: 3px;
+            border-radius: $border-radius;
             box-shadow: none;
             height: 32px;
             line-height: 32px;
@@ -105,7 +106,8 @@ $border-color: #E0E0E0;
     .selectall-box {
         padding: 10px 0 8px 3px;
         margin-right: $tree-view-padding;
-        .node-label{
+
+        .node-label {
             margin-right: 23px;
         }
     }
@@ -133,7 +135,7 @@ $border-color: #E0E0E0;
                 position: absolute;
                 height: calc(100% - 13px);
                 width: 1px;
-                border-left: 1px dashed #E0E0E0;
+                border-left: 1px dashed $border-color;
                 bottom: 16px;
                 left: 8px;
                 content: "";
@@ -153,7 +155,7 @@ $border-color: #E0E0E0;
                     width: 14px;
                     top: 15px;
                     left: -15px;
-                    border-bottom: 1px dashed #E0E0E0;
+                    border-bottom: 1px dashed $border-color;
                 }
             }
         }

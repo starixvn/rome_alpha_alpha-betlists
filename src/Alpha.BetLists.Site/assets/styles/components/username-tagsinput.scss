@@ -4,13 +4,16 @@ $tagsinput-bg-color: #D0F2E4;
 
 $tag-remove-color: #6B6B6B ;
 
-$tagsinput-error-border-color: #F3CACA;
+$tagsinput-error-border-color: #E5BFBF;
 $tagsinput-error-color: #CB0008;
-$tagsinput-error-bg-color: #E5BFBF;
+$tagsinput-error-bg-color: #F3CACA;
 $tag-placehoder: #8E8E8E;
+$tag-input-bg: #f7f7f7;
+$bg-input: #ffffff;
+$color-btn-close: #6B6B6B;
 
 .tagsinput {
-    background-color: #f7f7f7;
+    background-color: $tag-input-bg;
     box-sizing: border-box;
     border: 1px solid $tagsinput-border-color;
     border-radius: 3px;
@@ -36,10 +39,10 @@ $tag-placehoder: #8E8E8E;
         padding: 0px 130px 1px 9px;
         width: 100%;
         border-radius: 0px;
-        background-color: #ffffff;
-        appearance: none;
+        background-color: $bg-input;
         height: 42px;
         border-radius: 3px 3px 0 0;
+
         &::-ms-clear {
             display: none;
         }
@@ -89,7 +92,7 @@ $tag-placehoder: #8E8E8E;
 
             &:before,
             &:after {
-                background: #6B6B6B;
+                background: $color-btn-close;
                 content: "";
                 position: absolute;
                 top: 4px;
@@ -114,5 +117,15 @@ $tag-placehoder: #8E8E8E;
         background: $tagsinput-error-bg-color;
         border: 1px solid $tagsinput-error-border-color;
         color: $tagsinput-error-color;
+
+        + .tooltip {
+            .tooltip-arrow {
+                border-top-color: #6A1212;
+            }
+
+            .tooltip-inner {
+                background: #6A1212;
+            }
+        }
     }
 }

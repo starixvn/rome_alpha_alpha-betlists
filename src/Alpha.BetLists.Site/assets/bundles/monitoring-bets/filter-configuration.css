@@ -191,7 +191,6 @@
     width: 100%;
     border-radius: 0px;
     background-color: #ffffff;
-    appearance: none;
     height: 42px;
     border-radius: 3px 3px 0 0; }
     .tagsinput input[type=text].tag-add::-ms-clear {
@@ -243,9 +242,13 @@
         -webkit-transform: rotateZ(-45deg);
         transform: rotateZ(-45deg); }
   .tagsinput .error {
-    background: #E5BFBF;
-    border: 1px solid #F3CACA;
+    background: #F3CACA;
+    border: 1px solid #E5BFBF;
     color: #CB0008; }
+    .tagsinput .error + .tooltip .tooltip-arrow {
+      border-top-color: #6A1212; }
+    .tagsinput .error + .tooltip .tooltip-inner {
+      background: #6A1212; }
 
 /*******************************************/
 /* Effect of dropdownlist */
@@ -327,7 +330,7 @@
   .item .inner {
     display: flex;
     align-items: center;
-    background: #fff;
+    background: #ffffff;
     flex: 1;
     height: 32px;
     border-radius: 3px;
@@ -365,7 +368,7 @@
   display: inline-flex;
   flex-direction: column;
   margin-right: 20px;
-  background: #fff;
+  background: #ffffff;
   width: 400px;
   position: relative;
   padding: 19px 19px 15px;
@@ -403,26 +406,3 @@
     font-size: 14px;
     line-height: 16.41px;
     margin-bottom: 8px; }
-  .box .bottom {
-    border-top: 1px solid #d1d1d1;
-    background: #d9d9d9;
-    position: relative;
-    margin-top: auto;
-    padding: 0;
-    cursor: pointer; }
-    .box .bottom input {
-      position: relative;
-      z-index: 10;
-      margin: 10px auto;
-      top: 0;
-      width: 20px;
-      height: 20px;
-      display: block; }
-      .box .bottom input:checked + span {
-        position: absolute;
-        content: "";
-        background: #E2EFDB;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%; }
