@@ -36,18 +36,18 @@
   display: inline-block; }
 
 .treeview {
-  border: 1px solid #dfdfdf;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  padding: 12px 0 0 12px; }
+  border: 1px solid #E0E0E0;
+  padding: 11px 0 0 11px;
+  border-radius: 3px; }
   .treeview .filter-box {
-    margin-right: 12px;
+    margin-right: 11px;
     position: relative; }
     .treeview .filter-box > input[type="text"] {
-      border: 1px solid #ccc;
+      border: 1px solid #E0E0E0;
       border-radius: 3px;
       box-shadow: none;
-      height: 30px;
-      line-height: 30px;
+      height: 32px;
+      line-height: 32px;
       padding-right: 25px;
       width: 100%; }
     .treeview .filter-box .icon-close {
@@ -65,15 +65,18 @@
       .treeview .filter-box .not-found.show {
         display: block; }
   .treeview .selectall-box {
-    border-bottom: 1px solid #ccc;
-    margin-right: 12px; }
+    padding: 10px 0 8px 3px;
+    margin-right: 11px; }
   .treeview .checkbox-list {
     margin-bottom: 0;
     overflow-y: auto; }
+    .treeview .checkbox-list > .tree-node {
+      padding: 0 0 0 26px;
+      position: relative; }
     .treeview .checkbox-list .subtree {
       display: none;
       margin: 0;
-      padding-left: 20px;
+      padding: 3px 0 0 24px;
       -webkit-user-select: none;
       /* Chrome all / Safari all */
       -moz-user-select: none;
@@ -81,38 +84,80 @@
       -ms-user-select: none;
       /* IE 10+ */
       user-select: none;
-      /* Likely future */ }
+      /* Likely future */
+      position: relative; }
+      .treeview .checkbox-list .subtree:after {
+        position: absolute;
+        height: calc(100% - 13px);
+        width: 1px;
+        border-left: 1px dashed #E0E0E0;
+        bottom: 16px;
+        left: 8px;
+        content: ""; }
       .treeview .checkbox-list .subtree.expand {
         display: block; }
+      .treeview .checkbox-list .subtree .node-label {
+        position: relative; }
+        .treeview .checkbox-list .subtree .node-label:after {
+          position: absolute;
+          content: "";
+          height: 1px;
+          width: 14px;
+          top: 15px;
+          left: -15px;
+          border-bottom: 1px dashed #E0E0E0; }
   .treeview .icon-dropdown-all {
     cursor: pointer;
-    display: inline-block;
-    padding: 4px 0; }
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 2px;
+    left: 0px; }
     .treeview .icon-dropdown-all:after {
+      width: 0;
+      height: 0;
       border-style: solid;
-      border-width: 0 0 6px 6px;
-      border-color: transparent transparent #444 transparent;
+      border-width: 5px 5px 0 5px;
+      border-color: #444 transparent transparent transparent;
       content: "";
-      margin: 0 10px 0 auto;
-      transform: rotate(-45deg); }
+      position: absolute;
+      top: 9px;
+      left: 7px;
+      transform: rotate(-90deg);
+      transition: 0.35s; }
     .treeview .icon-dropdown-all.expand:after {
-      transform: rotate(45deg); }
+      transform: rotate(0deg); }
   .treeview .icon-dropdown {
     cursor: pointer;
-    display: inline-block;
-    padding: 4px 0; }
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 2px;
+    left: 0px; }
     .treeview .icon-dropdown:after {
+      width: 0;
+      height: 0;
       border-style: solid;
-      border-width: 0 0 6px 6px;
-      border-color: transparent transparent #444 transparent;
+      border-width: 5px 5px 0 5px;
+      border-color: #444 transparent transparent transparent;
       content: "";
-      margin: 0 10px 0 auto;
-      transform: rotate(-45deg); }
+      position: absolute;
+      top: 9px;
+      left: 7px;
+      transform: rotate(-90deg);
+      transition: 0.35s; }
     .treeview .icon-dropdown.expand:after {
-      transform: rotate(45deg); }
+      transform: rotate(0deg); }
   .treeview .node-label {
     margin-bottom: 0;
-    line-height: 32px; }
+    line-height: 28px;
+    cursor: pointer; }
+    .treeview .node-label input[type="checkbox"] {
+      margin-right: 11px;
+      width: 18px;
+      height: 18px;
+      display: inline-block;
+      vertical-align: text-bottom; }
     .treeview .node-label.highlight-text {
       color: #e9322d; }
   .treeview .filter-hidden {

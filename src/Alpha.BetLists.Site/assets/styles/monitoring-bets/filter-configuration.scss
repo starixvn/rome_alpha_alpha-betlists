@@ -2,15 +2,20 @@
 @import "../_variables.scss";
 
 .ttl-config {
-    color: #337ab7;
+    color: #094980;
     font-size: 16px;
-    padding: 10px 0;
+    padding: 10px 0 16px 0;
+    font-weight: bold;
 }
-
+.wrapper {
+    background: #ffffff;
+    border: 1px solid #E0E0E0;
+    border-radius: 3px;
+    padding: 15px;
+    width: 1000px;
+}
 .block-config {
-    border-bottom: 1px solid $table-border-color;
-    padding: 0 0 10px 0;
-    margin-bottom: 10px;
+    margin-bottom: 3px;
 
     select, input[type="text"] {
         box-shadow: none;
@@ -24,17 +29,19 @@
 }
 
 .item {
-    display: flex;
+    display: inline-flex;
+    flex-wrap: wrap;
     align-items: center;
     margin-bottom: 10px;
-    width: 325px;
+    margin-right: 13px;
+    width: 200px;
     justify-content: space-between;
 
     label {
-        min-width: 80px;
-        margin: 0;
+        width: 100%;
+        margin: 0 0 4px 0;
         padding-right: 10px;
-
+        font-size: 14px;
 
         .all-sport & {
             min-width: 130px
@@ -46,25 +53,50 @@
         align-items: center;
         background: #fff;
         flex: 1;
+        height: 32px;
+        border-radius: 3px;
+        border: 1px solid $table-border-color;
+        background: #FFF;
+        font-size: 14px;
 
-        input, select {
-            flex: 1;
+        .btn-group {
             width: 100%;
+            &.open > .dropdown-toggle.btn.btn-default{
+                box-shadow: none;
+            }
+        }
+
+        input, button {
+            &:not([type='checkbox']) {
+                border: 0;
+                box-shadow: none;
+                width: 100%;
+            }
+        }
+
+        .multiselect-selected-text {
+            width: 100%;
+            color: #333;
         }
 
         &.stake {
+            line-height: 22px;
+            color: #333333;
+
             span {
-                border: 1px solid $table-border-color;
-                border-right: 0;
-                height: 28px;
-                line-height: 26px;
-                width: 30px;
-                text-align: center;
+                color: #757575;
+                padding: 0 6px;
+            }
+
+            input {
+                padding: 0;
             }
         }
     }
 }
-
+.multiselect-container.dropdown-menu .checkbox input[type="checkbox"]{
+    top: 8px;
+}
 .list-box {
     display: flex;
     margin-bottom: 20px;
@@ -73,27 +105,53 @@
 .box {
     display: inline-flex;
     flex-direction: column;
-    text-align: center;
-    border: 1px solid $table-border-color;
-    margin-right: 10px;
+    margin-right: 20px;
     background: #fff;
-    width: 260px;
+    width: 400px;
+    position: relative;
+    padding: 19px 19px 15px;
+    z-index: 0;
 
-    > label {
-        color: #06822D;
-        font-size: 16px;
-        padding: 10px;
-        text-align: left;
-        margin: 0;
-        text-transform: uppercase;
+    label {
+        color: #333;
+        font-size: 20px;
+        font-weight: bold;
+        margin: 0 0 13px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        input {
+            width: 20px;
+            height: 20px;
+            margin: 0;
+            top: 0;
+
+            &:checked + span {
+                background-color: #F5F8FE;
+                border-color: #3873E9;
+                box-shadow: rgb(56, 115, 233) 0px 0px 0px 1px inset;
+            }
+        }
+
+        .overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            cursor: pointer;
+            border-radius: 3px;
+            border: 1px solid $table-border-color;
+            z-index: -1;
+        }
     }
 
     p {
-        padding: 0 10px;
-        margin: 0;
-        flex: 1;
-        display: flex;
-        align-items: center;
+        pointer-events: none;
+        font-size: 14px;
+        line-height: 16.41px;
+        margin-bottom: 8px;
     }
 
     .bottom {
