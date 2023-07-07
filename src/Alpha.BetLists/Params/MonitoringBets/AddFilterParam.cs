@@ -1,5 +1,7 @@
 ﻿namespace Alpha.BetLists.Params.MonitoringBets
 {
+    using Alpha.BetLists.Models.MonitoringBets;
+
     public class AddFilterParam : UpdateFilterParam
     {
         public AddFilterParam(
@@ -7,9 +9,9 @@
             int subAccId,
             string filterName,
             bool isDefault,
-            string bettype,
+            string betType,
             int stake,
-            string sporttypeList,
+            SportXml[] sports,
             bool isLive,
             string inputList,
             string watchList,
@@ -17,20 +19,20 @@
             string languageKey,
             string ip) : base(custId, subAccId, 0, filterName, isDefault, languageKey, ip)
         {
-            Bettype = bettype;
+            BetType = betType;
             Stake = stake;
-            SporttypeList = sporttypeList;
+            Sports = sports;
             IsLive = isLive;
             InputList = inputList;
             WatchList = watchList;
             IsWatchList = isWatchList;
         }
 
-        public string Bettype { get; }
+        public string BetType { get; }
 
         public int Stake { get; }
 
-        public string SporttypeList { get; }
+        public SportXml[] Sports { get; }
 
         public bool IsLive { get; }
 

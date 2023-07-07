@@ -16,7 +16,7 @@
 <div class="wrapper">
     <div id="inline-message" class="msg hide"></div>
     <div class="block-btn top">
-        <input type="button" class="button button-cancel" value="@Resources.Cancel" />
+        @Html.ActionLink(Resources.Cancel, "Index", null, new { @class = "button button-cancel" })
         <input type="button" class="button button-submit" value="@Resources.Apply" />
         <input type="button" class="button button-reset" value="@Resources.SaveFilter" />
     </div>
@@ -115,7 +115,7 @@
         </div>
     </div>
     <div class="block-btn">
-        <input type="button" class="button button-cancel" value="@Resources.Cancel" />
+        @Html.ActionLink(Resources.Cancel, "Index", null, new { @class = "button button-cancel" })
         <input type="button" class="button button-submit" value="@Resources.Apply" />
         <input type="button" class="button button-reset" value="@Resources.SaveFilter" />
     </div>
@@ -146,13 +146,21 @@
                     <h4 class="modal-title">Save New Filter</h4>
                 </div>
                 <div class="modal-body">
-                    <p>One fine body&hellip;</p>
+                <div id="inline-message-popup" class="msg hide"></div>
+                <input type="text" id="txt-filterName" autocomplete="off" maxlength="500" />
+                <input type="checkbox" id="chk-isDefault" />
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn-cancel" data-dismiss="modal">@Resources.Cancel</button>
-                    <button type="button" class="btn-submit" id="btn-saveFilter">Save Filter</button>
+                <button type="button" class="btn-submit">Save Filter</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
+@Html.AntiForgeryToken()
+@Html.Hidden("hidden-BetTypesRequiredError", Resources.FilterConfigurationBetTypesRequiredError)
+@Html.Hidden("hidden-StakeRequiredError", Resources.FilterConfigurationStakeRequiredError)
+@Html.Hidden("hidden-SportsRequiredError", Resources.FilterConfigurationSportsRequiredError)
+@Html.Hidden("hidden-FilterByMembersRequiredError", Resources.FilterConfigurationFilterByMembersRequiredError)
+@Html.Hidden("hidden-FilterNameRequiredError", Resources.FilterConfigurationFilterNameRequiredError)

@@ -229,3 +229,4 @@
 
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Critical Code Smell", "S1067:Expressions should not be too complex", Justification = "<Pending>", Scope = "member", Target = "~M:Alpha.BetLists.Site.Requests.WinLoss.WinLossGetDataQuery.IsValid~System.Boolean")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Critical Code Smell", "S1067:Expressions should not be too complex", Justification = "<Pending>", Scope = "member", Target = "~M:Alpha.BetLists.Site.Requests.WinLoss.WinLossDataQuery.IsValid~System.Boolean")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Critical Code Smell", "S1067:Expressions should not be too complex", Justification = "<Pending>", Scope = "member", Target = "~M:Alpha.BetLists.Site.Requests.MonitoringBets.AddFilterCommand.IsValid~System.Boolean")]

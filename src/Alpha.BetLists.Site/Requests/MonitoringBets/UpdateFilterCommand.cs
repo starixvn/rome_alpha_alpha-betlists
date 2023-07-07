@@ -27,5 +27,8 @@
         public string LanguageKey { get; }
 
         public string IP { get; }
+
+        public virtual bool IsValid()
+            => FilterId > 0 && !string.IsNullOrWhiteSpace(FilterName);
     }
 }

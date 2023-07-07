@@ -1,5 +1,7 @@
 ﻿namespace Alpha.BetLists.Criteria.MonitoringBets
 {
+    using System.Text;
+    using Alpha.BetLists.Models.MonitoringBets;
     using Alpha.BetLists.Params.MonitoringBets;
     using Fanex.Data.Repository;
 
@@ -11,9 +13,9 @@
             SubAccId = param.SubAccId;
             FilterName = param.FilterName;
             IsDefault = param.IsDefault;
-            Bettype = param.Bettype;
+            BetType = param.BetType;
             Stake = param.Stake;
-            SporttypeList = param.SporttypeList;
+            SportTypeList = ToXml(param.Sports);
             IsLive = param.IsLive;
             InputList = param.InputList;
             WatchList = param.WatchList;
@@ -30,11 +32,11 @@
 
         public bool IsDefault { get; }
 
-        public string Bettype { get; }
+        public string BetType { get; }
 
         public int Stake { get; }
 
-        public string SporttypeList { get; }
+        public string SportTypeList { get; }
 
         public bool IsLive { get; }
 
@@ -60,9 +62,39 @@
             return CustId > 0
                 && SubAccId >= 0
                 && !string.IsNullOrWhiteSpace(FilterName)
-                && !string.IsNullOrWhiteSpace(Bettype)
+                && !string.IsNullOrWhiteSpace(BetType)
                 && Stake >= 0
-                && !string.IsNullOrWhiteSpace(SporttypeList);
+                && !string.IsNullOrWhiteSpace(SportTypeList);
         }
+
+        private static string ToXml(SportXml[] sports)
+        {
+            var xml = new StringBuilder("<SportList>");
+
+            foreach (var item in sports)
+            {
+                AppendSportXml(xml, item);
+            }
+
+            xml.Append("</SportList>");
+
+            return xml.ToString();
+        }
+
+        private static void AppendSportXml(StringBuilder xml, SportXml sport)
+            => xml
+            .Append("<Sport s=\"")
+            .Append(sport.Sport)
+            .Append("\" l=\"")
+            .Append(sport.League)
+            .Append("\" m=\"")
+            .Append(sport.Match)
+            .Append("\" h=\"")
+            .Append(sport.Home)
+            .Append("\" a=\"")
+            .Append(sport.Away)
+            .Append("\" iN=\"")
+            .Append(sport.IsNeutral ? 1 : 0)
+            .Append("\"/>");
     }
 }

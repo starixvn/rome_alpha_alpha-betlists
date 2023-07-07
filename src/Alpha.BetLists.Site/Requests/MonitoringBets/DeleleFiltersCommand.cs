@@ -21,5 +21,7 @@
         public int SubAccId { get; }
 
         public string IP { get; }
+
+        public bool IsValid() => Ids?.Length > 0;
     }
 }

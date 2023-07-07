@@ -583,6 +583,51 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please select Bet type.
+        /// </summary>
+        public static string FilterConfigurationBetTypesRequiredError {
+            get {
+                return ResourceManager.GetString("FilterConfigurationBetTypesRequiredError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter Member username(s) or select Member(s).
+        /// </summary>
+        public static string FilterConfigurationFilterByMembersRequiredError {
+            get {
+                return ResourceManager.GetString("FilterConfigurationFilterByMembersRequiredError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter a filter name.
+        /// </summary>
+        public static string FilterConfigurationFilterNameRequiredError {
+            get {
+                return ResourceManager.GetString("FilterConfigurationFilterNameRequiredError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select sport(s).
+        /// </summary>
+        public static string FilterConfigurationSportsRequiredError {
+            get {
+                return ResourceManager.GetString("FilterConfigurationSportsRequiredError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter Stake.
+        /// </summary>
+        public static string FilterConfigurationStakeRequiredError {
+            get {
+                return ResourceManager.GetString("FilterConfigurationStakeRequiredError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Filter Name.
         /// </summary>
         public static string FilterName {

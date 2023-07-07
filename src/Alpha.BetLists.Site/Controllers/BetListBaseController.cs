@@ -45,7 +45,10 @@
             JsonRequestBehavior jsonRequestBehavior = JsonRequestBehavior.DenyGet)
             => Json(await mediator.Send(message), jsonRequestBehavior);
 
-        protected ActionResult JsonForbidden(JsonRequestBehavior jsonRequestBehavior = JsonRequestBehavior.DenyGet)
-            => Json(new Result((int)HttpStatusCode.Forbidden, AppResources.Resources.NotAuthorized), jsonRequestBehavior);
+        protected Result ForbiddenResult()
+            => new Result((int)HttpStatusCode.Forbidden, AppResources.Resources.NotAuthorized);
+
+        protected Result BadRequestResult()
+            => new Result((int)HttpStatusCode.BadRequest, "Bad Request");
     }
 }

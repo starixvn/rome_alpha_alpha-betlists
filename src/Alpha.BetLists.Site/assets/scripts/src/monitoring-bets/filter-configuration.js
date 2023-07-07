@@ -5,14 +5,14 @@ var FilterConfigurationView = /** @class */ (function () {
     FilterConfigurationView.prototype.init = function () {
         var welcomePopup = $("#welcome-popup");
         welcomePopup.length && welcomePopup.modal("show");
-        this.cacheDOMElements();
+        this.initComponents();
         this.bindEvents();
     };
-    FilterConfigurationView.prototype.cacheDOMElements = function () {
+    FilterConfigurationView.prototype.initComponents = function () {
         var _this = this;
         this.inlineMessage = new InlineMessageComponent();
-        this.bettypeDropdown = new DropdownListComponent();
-        this.bettypeDropdown.render("ddl-bettypes");
+        this.betTypeDropdown = new DropdownListComponent();
+        this.betTypeDropdown.render("ddl-bettypes");
         this.matchLiveIndicatorDropdown = new DropdownListComponent();
         this.matchLiveIndicatorDropdown.render("ddl-matchLiveIndicator", {
             onChange: function (select) { return _this.getSports(select.val(), _this.groupOfSportsDropdown.getSelected()[0]); }
@@ -22,23 +22,24 @@ var FilterConfigurationView = /** @class */ (function () {
             onChange: function (select) { return _this.getSports(_this.matchLiveIndicatorDropdown.getSelected()[0], select.val()); }
         });
         this.sportLeagueMatchTreeview = new SportLeagueMatchTreeViewComponent();
-        this.sportLeagueMatchTreeview.render(new SportLeagueMatchTreeViewOption("sportleaguematch-treeview"));
+        this.sportLeagueMatchTreeview.render(new SportLeagueMatchTreeViewOption("sportleaguematch-treeview", "Search Sport/ League", "No Sport/ League found", "Select All", "No information is available", false, 400));
         this.monitoredWatchlistMemberTreeview = new SportLeagueMatchTreeViewComponent();
-        this.monitoredWatchlistMemberTreeview.render(new SportLeagueMatchTreeViewOption("monitored-watchlist-members", "Search member username", "No member username found", "All (Include newly add ...)"));
+        this.monitoredWatchlistMemberTreeview.render(new SportLeagueMatchTreeViewOption("monitored-watchlist-members", "Search member username", "No member username found", "All (Include newly add ...)", "No information is available", false, 400));
         this.memberTagsInput = new UsernameTagsInputComponent();
         this.memberTagsInput.render(new UsernameTagsInputOption("username", 100, "Max: # username(s)", "Duplicated username"));
-        this.stake = $("#txt-stake");
+        this.inlineMessagePopup = new InlineMessageComponent("inline-message-popup");
     };
     FilterConfigurationView.prototype.bindEvents = function () {
         var _this = this;
-        this.stake.on("input", function () {
+        this.stakeInput = $("#txt-stake");
+        this.stakeInput.on("input", function () {
             this.value = alphaReports.forceInputDecimal(this.value);
         });
         var boxFilterBySports = $("#box-filterBySports");
         $("#rdo-allSports").change(function () {
             this.checked && boxFilterBySports.addClass("hide");
         });
-        $("#rdo-specificSports").change(function (e) {
+        var rdoSpecificSports = $("#rdo-specificSports").change(function (e) {
             if ($(e.target).is(":checked")) {
                 boxFilterBySports.removeClass("hide");
                 _this.getSports(_this.matchLiveIndicatorDropdown.getSelected()[0], _this.groupOfSportsDropdown.getSelected()[0]);
@@ -62,62 +63,80 @@ var FilterConfigurationView = /** @class */ (function () {
                 });
             }
         });
-        $(".btn-reset").click(function () {
-            _this.inlineMessage.hide();
-            var formData = _this.getFormData(rdoSpecificMembers);
-            console.dir(formData);
-            if (formData) {
-                _this.addFilterPopup = $("#add-filter-popup");
-                _this.addFilterPopup.modal("show");
+        var addFilterPopup = $("#add-filter-popup");
+        addFilterPopup.on("hidden.bs.modal", function () {
+            $("#txt-filterName").val("");
+            $("#chk-isDefault").prop("checked", false);
+        });
+        addFilterPopup.find(".btn-submit").click(function () {
+            var formDataPopup = _this.getFormDataPopup();
+            if (formDataPopup) {
+                _this.addFilterFormData = $.extend(_this.addFilterFormData, formDataPopup);
+                AJAXHelper.postJSON("AddFilter", _this.addFilterFormData, function (result) {
+                    _this.inlineMessagePopup.show(result);
+                    if (!result.ErrCode) {
+                        _this.addFilterFormData = null;
+                        _this.reloadPageAfterTimeout();
+                    }
+                });
             }
+        });
+        $(".button-reset").click(function () {
+            _this.addFilterFormData = _this.getFormData(rdoSpecificSports, rdoSpecificMembers);
+            _this.addFilterFormData && addFilterPopup.modal("show");
+            console.dir(_this.addFilterFormData);
         });
     };
     FilterConfigurationView.prototype.getSports = function (isLive, groupSport) {
         var _this = this;
         this.sportLeagueMatchTreeview.addIconLoading();
         $.get("FilterBySports?isLive=" + isLive + "&groupSport=" + groupSport, function (data) {
-            var listData = [];
-            data.forEach(function (sport) {
-                var leagueList = [];
-                sport.Leagues.forEach(function (league) {
-                    leagueList.push({
-                        value: league.Id,
-                        text: league.Name,
-                        attributes: {
-                            "data-leagueid": league.Id
-                        },
-                        items: league.Matches.map(function (m) {
-                            return {
-                                value: m.MatchId,
-                                text: m.MatchName,
-                                subText: m.KickOffTimeStr,
-                                attributes: {
-                                    "data-homeid": m.HomeId,
-                                    "data-awayid": m.AwayId,
-                                    "data-isneutral": m.IsNeutral
-                                }
-                            };
-                        })
-                    });
-                });
-                listData.push({
+            var listData = data.map(function (sport) {
+                return {
                     value: sport.Id,
                     text: sport.Name,
-                    attributes: {
-                        "data-sportid": sport.Id
-                    },
-                    items: leagueList
-                });
+                    items: sport.Leagues.map(function (league) {
+                        return {
+                            value: league.Id,
+                            text: league.Name
+                        };
+                    })
+                };
             });
             return _this.sportLeagueMatchTreeview.renderTreeNodeList(listData);
         });
     };
-    FilterConfigurationView.prototype.getFormData = function (rdoSpecificMembers) {
-        var betType = this.bettypeDropdown.isSelectAll() ? "0" : this.bettypeDropdown.getSelected().join();
-        var stake = +this.stake.val();
-        var isLive = this.matchLiveIndicatorDropdown.getSelected()[0] === "1";
-        var sportTypeList = "0";
-        if (!this.sportLeagueMatchTreeview.isSelectAll()) {
+    FilterConfigurationView.prototype.getFormData = function (rdoSpecificSports, rdoSpecificMembers) {
+        var betType;
+        if (this.betTypeDropdown.isSelectAll()) {
+            betType = "0";
+        }
+        else {
+            betType = this.betTypeDropdown.getSelected().join();
+            if (!betType.length) {
+                this.inlineMessage.showError($("#hidden-BetTypesRequiredError").val());
+                this.scrollTopInlineMessage();
+                return;
+            }
+        }
+        var stake = $.trim(this.stakeInput.val().replace(/,/g, ""));
+        if (!stake.length) {
+            this.inlineMessage.showError($("#hidden-StakeRequiredError").val());
+            this.stakeInput.focus();
+            return;
+        }
+        var sports = [{ sport: 0 }];
+        var isLive = false;
+        if (rdoSpecificSports.is(":checked")) {
+            isLive = this.matchLiveIndicatorDropdown.getSelected()[0] === "1";
+            if (!this.sportLeagueMatchTreeview.isSelectAll()) {
+                sports = this.sportLeagueMatchTreeview.getSportsLeagues();
+                if (!sports.length) {
+                    this.inlineMessage.showError($("#hidden-SportsRequiredError").val());
+                    this.scrollTopInlineMessage();
+                    return;
+                }
+            }
         }
         var isWatchList = 2;
         var inputList = "0";
@@ -131,16 +150,45 @@ var FilterConfigurationView = /** @class */ (function () {
                 watchList = this.monitoredWatchlistMemberTreeview.getSelected().join();
             }
             inputList = this.memberTagsInput.getCustIds().join();
+            if (!watchList.length && !inputList.length) {
+                this.inlineMessage.showError($("#hidden-FilterByMembersRequiredError").val());
+                this.scrollTopInlineMessage();
+                return;
+            }
         }
+        this.inlineMessage.hide();
         return {
             betType: betType,
             stake: stake,
             isLive: isLive,
-            sportTypeList: sportTypeList,
+            sports: sports,
             isWatchList: isWatchList,
             inputList: inputList,
             watchList: watchList
         };
+    };
+    FilterConfigurationView.prototype.getFormDataPopup = function () {
+        var filterNameElement = $("#txt-filterName");
+        var filterName = $.trim(filterNameElement.val());
+        if (!filterName.length) {
+            this.inlineMessagePopup.showError($("#hidden-FilterNameRequiredError").val());
+            return;
+        }
+        var isDefault = $("#chk-isDefault").is(":checked");
+        this.inlineMessagePopup.hide();
+        return {
+            filterName: filterName,
+            isDefault: isDefault
+        };
+    };
+    FilterConfigurationView.prototype.scrollTopInlineMessage = function () {
+        $("html, body").scrollTop(this.inlineMessage.getInlineMessage().offset().top);
+    };
+    FilterConfigurationView.prototype.reloadPageAfterTimeout = function (timeout) {
+        if (timeout === void 0) { timeout = 3000; }
+        setTimeout(function () {
+            window.location.reload();
+        }, timeout);
     };
     return FilterConfigurationView;
 }());

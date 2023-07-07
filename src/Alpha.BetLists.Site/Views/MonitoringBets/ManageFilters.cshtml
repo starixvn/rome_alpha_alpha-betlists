@@ -16,7 +16,7 @@
 <div class="bl_title">@Resources.ManageFilters</div>
 <div class="manage-filters">
     <div id="inline-message" class="msg hide"></div>
-    <a href="Index" class="btn btn-cancel">@Resources.Back</a>
+    @Html.ActionLink(Resources.Back, "Index", null, new { @class = "btn btn-cancel" })
     <button type="button" class="btn-remove" id="btn-delete-all-filters">@Resources.RemoveAllFilters</button>
     <table class="tblRpt tblRpt-bordered tblRpt-hover width-100per" id="table-manage-filters">
         <thead>

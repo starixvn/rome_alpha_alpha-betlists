@@ -1,5 +1,6 @@
 ﻿namespace Alpha.BetLists.Site.Controllers
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Web.Mvc;
@@ -7,6 +8,7 @@
     using Alpha.BetLists.Site.ViewModels.MonitoringBets;
     using Alpha.NetThrottling.Mvc;
     using Alpha.Web.Filters;
+    using Alpha.Web.Models;
     using MediatR;
 
     public class MonitoringBetsController : BetListBaseController
@@ -32,11 +34,27 @@
 
         [HttpPost, AntiXsrfFilter]
         public async Task<ActionResult> UpdateFilter(UpdateFilterCommand message)
-            => message.IsInternal ? JsonForbidden() : await Json(message);
+            => Json(await ValidateAndDoAction(message), JsonRequestBehavior.DenyGet);
 
         [HttpPost, AntiXsrfFilter]
         public async Task<ActionResult> DeleteFilters(DeleleFiltersCommand message)
-            => message.IsInternal ? JsonForbidden() : await Json(message);
+        {
+            IEnumerable<Result> results;
+            if (message.IsInternal)
+            {
+                results = new[] { ForbiddenResult() };
+            }
+            else if (!message.IsValid())
+            {
+                results = new[] { BadRequestResult() };
+            }
+            else
+            {
+                results = await mediator.Send(message);
+            }
+
+            return Json(results, JsonRequestBehavior.DenyGet);
+        }
 
         public ActionResult FilterConfiguration(bool welcome = false)
             => View(new FilterConfigurationViewModel(welcome));
@@ -52,6 +70,18 @@
 
         [HttpPost, AntiXsrfFilter]
         public async Task<ActionResult> AddFilter(AddFilterCommand message)
-            => message.IsInternal ? JsonForbidden() : await Json(message);
+            => Json(await ValidateAndDoAction(message), JsonRequestBehavior.DenyGet);
+
+        private async Task<Result> ValidateAndDoAction(UpdateFilterCommand message)
+        {
+            if (message.IsInternal)
+            {
+                return ForbiddenResult();
+            }
+
+            return message.IsValid()
+                ? await mediator.Send(message)
+                : BadRequestResult();
+        }
     }
 }

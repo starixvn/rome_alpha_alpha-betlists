@@ -102,12 +102,15 @@ var UsernameTagsInputComponent = /** @class */ (function () {
             _this.tagsInputContainer.append($("<span>", {
                 class: "tag" + (result.ErrCode ? " error" : ""),
                 title: result.ErrMsg,
-                "data-custid": result.CustId
+                "data-custid": result.CustId,
+                "data-toggle": "tooltip",
+                "data-placement": "top"
             }).append($("<span>", { class: "tag-text" }).text(result.Username), $("<button>", { type: "button", class: "tag-remove" }).click(function (e) {
                 $(e.target).parent().remove();
                 _this.updateTagLimitText();
             })));
         });
+        this.tagsInputContainer.find('[data-toggle="tooltip"]').tooltip();
         this.updateTagLimitText();
         this.realInput.val("").focus();
     };

@@ -3,8 +3,12 @@
 class InlineMessageComponent {
     inlineMessage: JQuery;
 
-    constructor() {
-        this.inlineMessage = $("#inline-message");
+    constructor(selectorId = "inline-message") {
+        this.inlineMessage = $(`#${selectorId}`);
+    }
+
+    public getInlineMessage() {
+        return this.inlineMessage;
     }
 
     public show(result) {

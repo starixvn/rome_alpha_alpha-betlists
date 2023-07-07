@@ -40,9 +40,13 @@ var AJAXHelper = /** @class */ (function () {
 //# sourceMappingURL=ajax-helper.js.map
 "use strict";
 var InlineMessageComponent = /** @class */ (function () {
-    function InlineMessageComponent() {
-        this.inlineMessage = $("#inline-message");
+    function InlineMessageComponent(selectorId) {
+        if (selectorId === void 0) { selectorId = "inline-message"; }
+        this.inlineMessage = $("#" + selectorId);
     }
+    InlineMessageComponent.prototype.getInlineMessage = function () {
+        return this.inlineMessage;
+    };
     InlineMessageComponent.prototype.show = function (result) {
         this.inlineMessage
             .html(result.ErrMsg)

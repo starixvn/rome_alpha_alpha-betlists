@@ -2,28 +2,33 @@
 
 class FilterConfigurationView {
     private inlineMessage: InlineMessageComponent;
-    private bettypeDropdown: DropdownListComponent;
+    private betTypeDropdown: DropdownListComponent;
+    private stakeInput: JQuery;
     private matchLiveIndicatorDropdown: DropdownListComponent;
     private groupOfSportsDropdown: DropdownListComponent;
     private sportLeagueMatchTreeview: SportLeagueMatchTreeViewComponent;
     private monitoredWatchlistMemberTreeview: SportLeagueMatchTreeViewComponent;
     private memberTagsInput: UsernameTagsInputComponent;
-    private stake: JQuery;
-    private addFilterPopup: JQuery;
+
+    private inlineMessagePopup: InlineMessageComponent;
+    private filterNameInput: JQuery;
+    private isDefaultCheckbox: JQuery;
+
+    private addFilterFormData: any;
 
     init() {
         const welcomePopup = $("#welcome-popup");
         welcomePopup.length && welcomePopup.modal("show");
 
-        this.cacheDOMElements();
+        this.initComponents();
         this.bindEvents();
     }
 
-    private cacheDOMElements() {
+    private initComponents() {
         this.inlineMessage = new InlineMessageComponent();
 
-        this.bettypeDropdown = new DropdownListComponent();
-        this.bettypeDropdown.render("ddl-bettypes");
+        this.betTypeDropdown = new DropdownListComponent();
+        this.betTypeDropdown.render("ddl-bettypes");
 
         this.matchLiveIndicatorDropdown = new DropdownListComponent();
         this.matchLiveIndicatorDropdown.render("ddl-matchLiveIndicator", {
@@ -37,7 +42,13 @@ class FilterConfigurationView {
 
         this.sportLeagueMatchTreeview = new SportLeagueMatchTreeViewComponent();
         this.sportLeagueMatchTreeview.render(new SportLeagueMatchTreeViewOption(
-            "sportleaguematch-treeview"
+            "sportleaguematch-treeview",
+            "Search Sport/ League",
+            "No Sport/ League found",
+            "Select All",
+            "No information is available",
+            false,
+            400
         ));
 
         this.monitoredWatchlistMemberTreeview = new SportLeagueMatchTreeViewComponent();
@@ -45,7 +56,10 @@ class FilterConfigurationView {
             "monitored-watchlist-members",
             "Search member username",
             "No member username found",
-            "All (Include newly add ...)"
+            "All (Include newly add ...)",
+            "No information is available",
+            false,
+            400
         ));
 
         this.memberTagsInput = new UsernameTagsInputComponent();
@@ -56,11 +70,12 @@ class FilterConfigurationView {
             "Duplicated username"
         ));
 
-        this.stake = $("#txt-stake");
+        this.inlineMessagePopup = new InlineMessageComponent("inline-message-popup");
     }
 
     private bindEvents() {
-        this.stake.on("input", function () {
+        this.stakeInput = $("#txt-stake");
+        this.stakeInput.on("input", function () {
             this.value = alphaReports.forceInputDecimal(this.value);
         });
 
@@ -68,7 +83,7 @@ class FilterConfigurationView {
         $("#rdo-allSports").change(function () {
             this.checked && boxFilterBySports.addClass("hide");
         });
-        $("#rdo-specificSports").change((e) => {
+        const rdoSpecificSports = $("#rdo-specificSports").change((e) => {
             if ($(e.target).is(":checked")) {
                 boxFilterBySports.removeClass("hide");
                 this.getSports(
@@ -97,67 +112,85 @@ class FilterConfigurationView {
             }
         });
 
-        $(".btn-reset").click(() => {
-            this.inlineMessage.hide();
-            const formData = this.getFormData(rdoSpecificMembers);
-            console.dir(formData);
-
-            if (formData) {
-                this.addFilterPopup = $("#add-filter-popup");
-                this.addFilterPopup.modal("show")
+        const addFilterPopup = $("#add-filter-popup");
+        addFilterPopup.on("hidden.bs.modal", function () {
+            $("#txt-filterName").val("");
+            $("#chk-isDefault").prop("checked", false);
+        });
+        addFilterPopup.find(".btn-submit").click(() => {
+            const formDataPopup = this.getFormDataPopup();
+            if (formDataPopup) {
+                this.addFilterFormData = $.extend(this.addFilterFormData, formDataPopup);
+                AJAXHelper.postJSON("AddFilter", this.addFilterFormData, (result) => {
+                    this.inlineMessagePopup.show(result);
+                    if (!result.ErrCode) {
+                        this.addFilterFormData = null;
+                        this.reloadPageAfterTimeout();
+                    }
+                });
             }
+        });
+
+        $(".button-reset").click(() => {
+            this.addFilterFormData = this.getFormData(rdoSpecificSports, rdoSpecificMembers);
+            this.addFilterFormData && addFilterPopup.modal("show");
+
+            console.dir(this.addFilterFormData);
         });
     }
 
     private getSports(isLive: string, groupSport: string) {
         this.sportLeagueMatchTreeview.addIconLoading();
         $.get(`FilterBySports?isLive=${isLive}&groupSport=${groupSport}`, (data) => {
-            const listData = [];
-            data.forEach(function (sport) {
-                const leagueList = []
-                sport.Leagues.forEach(function (league) {
-                    leagueList.push({
-                        value: league.Id,
-                        text: league.Name,
-                        attributes: {
-                            "data-leagueid": league.Id
-                        },
-                        items: league.Matches.map(function (m) {
-                            return {
-                                value: m.MatchId,
-                                text: m.MatchName,
-                                subText: m.KickOffTimeStr,
-                                attributes: {
-                                    "data-homeid": m.HomeId,
-                                    "data-awayid": m.AwayId,
-                                    "data-isneutral": m.IsNeutral
-                                }
-                            };
-                        })
-                    });
-                });
-
-                listData.push({
+            const listData = data.map(function (sport) {
+                return {
                     value: sport.Id,
                     text: sport.Name,
-                    attributes: {
-                        "data-sportid": sport.Id
-                    },
-                    items: leagueList
-                });
+                    items: sport.Leagues.map(function (league) {
+                        return {
+                            value: league.Id,
+                            text: league.Name
+                        };
+                    })
+                };
             });
 
             return this.sportLeagueMatchTreeview.renderTreeNodeList(listData);
         });
     }
 
-    private getFormData(rdoSpecificMembers: JQuery) {
-        const betType = this.bettypeDropdown.isSelectAll() ? "0" : this.bettypeDropdown.getSelected().join();
-        const stake = +this.stake.val();
-        const isLive = this.matchLiveIndicatorDropdown.getSelected()[0] === "1";
-        let sportTypeList = "0";
-        if (!this.sportLeagueMatchTreeview.isSelectAll()) {
+    private getFormData(rdoSpecificSports: JQuery, rdoSpecificMembers: JQuery) {
+        let betType: string;
+        if (this.betTypeDropdown.isSelectAll()) {
+            betType = "0";
+        } else {
+            betType = this.betTypeDropdown.getSelected().join();
+            if (!betType.length) {
+                this.inlineMessage.showError($("#hidden-BetTypesRequiredError").val());
+                this.scrollTopInlineMessage();
+                return;
+            }
+        }
 
+        const stake = $.trim(this.stakeInput.val().replace(/,/g, ""));
+        if (!stake.length) {
+            this.inlineMessage.showError($("#hidden-StakeRequiredError").val());
+            this.stakeInput.focus();
+            return;
+        }
+
+        let sports = [{ sport: 0 }];
+        let isLive = false;
+        if (rdoSpecificSports.is(":checked")) {
+            isLive = this.matchLiveIndicatorDropdown.getSelected()[0] === "1";
+            if (!this.sportLeagueMatchTreeview.isSelectAll()) {
+                sports = this.sportLeagueMatchTreeview.getSportsLeagues();
+                if (!sports.length) {
+                    this.inlineMessage.showError($("#hidden-SportsRequiredError").val());
+                    this.scrollTopInlineMessage();
+                    return;
+                }
+            }
         }
 
         let isWatchList = 2;
@@ -172,17 +205,50 @@ class FilterConfigurationView {
             }
 
             inputList = this.memberTagsInput.getCustIds().join();
+            if (!watchList.length && !inputList.length) {
+                this.inlineMessage.showError($("#hidden-FilterByMembersRequiredError").val());
+                this.scrollTopInlineMessage();
+                return;
+            }
         }
 
+        this.inlineMessage.hide();
         return {
             betType,
             stake,
             isLive,
-            sportTypeList,
+            sports,
             isWatchList,
             inputList,
             watchList
         };
+    }
+
+    private getFormDataPopup() {
+        const filterNameElement = $("#txt-filterName");
+        const filterName = $.trim(filterNameElement.val());
+        if (!filterName.length) {
+            this.inlineMessagePopup.showError($("#hidden-FilterNameRequiredError").val());
+            return;
+        }
+
+        const isDefault = $("#chk-isDefault").is(":checked");
+        this.inlineMessagePopup.hide();
+
+        return {
+            filterName,
+            isDefault
+        };
+    }
+
+    private scrollTopInlineMessage() {
+        $("html, body").scrollTop(this.inlineMessage.getInlineMessage().offset().top);
+    }
+
+    private reloadPageAfterTimeout(timeout = 3000) {
+        setTimeout(function () {
+            window.location.reload();
+        }, timeout);
     }
 }
 

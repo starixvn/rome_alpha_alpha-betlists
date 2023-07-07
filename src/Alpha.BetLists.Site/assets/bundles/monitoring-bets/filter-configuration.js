@@ -1,8 +1,52 @@
 "use strict";
-var InlineMessageComponent = /** @class */ (function () {
-    function InlineMessageComponent() {
-        this.inlineMessage = $("#inline-message");
+var AJAXHelper = /** @class */ (function () {
+    function AJAXHelper() {
     }
+    AJAXHelper.postJSON = function (url, formData, onSuccess) {
+        var _this = this;
+        $.blockUI();
+        $.ajax({
+            url: url,
+            headers: {
+                __RequestVerificationToken: $("input[name='__RequestVerificationToken']").val(),
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            dataType: "json",
+            type: "POST",
+            data: formData,
+            success: function (result) {
+                onSuccess(result);
+                $.unblockUI();
+            },
+            error: function (jqXHR) { return _this.handleOnFail(jqXHR); }
+        });
+    };
+    AJAXHelper.handleOnFail = function (jqXHR) {
+        $.unblockUI();
+        if (jqXHR) {
+            if (jqXHR.status === 401) {
+                window.top["age"].SignOut();
+            }
+            else if (jqXHR.status === 500 && jqXHR.responseText) {
+                var jsonData = JSON.parse(jqXHR.responseText);
+                if (jsonData.UMFrom && jsonData.UMTo) {
+                    location.href = window.top["alpha"].urls.mainRootPath + "PartialUM/Index?umfrom=" + jsonData.UMFrom + "&umto=" + jsonData.UMTo;
+                }
+            }
+        }
+    };
+    return AJAXHelper;
+}());
+//# sourceMappingURL=ajax-helper.js.map
+"use strict";
+var InlineMessageComponent = /** @class */ (function () {
+    function InlineMessageComponent(selectorId) {
+        if (selectorId === void 0) { selectorId = "inline-message"; }
+        this.inlineMessage = $("#" + selectorId);
+    }
+    InlineMessageComponent.prototype.getInlineMessage = function () {
+        return this.inlineMessage;
+    };
     InlineMessageComponent.prototype.show = function (result) {
         this.inlineMessage
             .html(result.ErrMsg)
@@ -58,14 +102,16 @@ var DropdownListComponent = /** @class */ (function () {
 //# sourceMappingURL=dropdown-list.js.map
 "use strict";
 var SportLeagueMatchTreeViewOption = /** @class */ (function () {
-    function SportLeagueMatchTreeViewOption(selectorId, filterPlaceholder, filterNotFoundText, selectAllText, noDataText, expandGroupsByDefault, maxHeight) {
+    function SportLeagueMatchTreeViewOption(selectorId, filterPlaceholder, filterNotFoundText, selectAllText, noDataText, expandGroupsByDefault, maxHeight, expandAllText, selectedOnlyText) {
         if (selectorId === void 0) { selectorId = "sportleaguematch-treeview"; }
-        if (filterPlaceholder === void 0) { filterPlaceholder = "Search Sport/ League/ Match"; }
-        if (filterNotFoundText === void 0) { filterNotFoundText = "No Sport/ League/ Match found"; }
+        if (filterPlaceholder === void 0) { filterPlaceholder = "Search Sport/ League"; }
+        if (filterNotFoundText === void 0) { filterNotFoundText = "No Sport/ League found"; }
         if (selectAllText === void 0) { selectAllText = "Select All"; }
         if (noDataText === void 0) { noDataText = "No information is available"; }
-        if (expandGroupsByDefault === void 0) { expandGroupsByDefault = true; }
+        if (expandGroupsByDefault === void 0) { expandGroupsByDefault = false; }
         if (maxHeight === void 0) { maxHeight = 400; }
+        if (expandAllText === void 0) { expandAllText = "Expand All"; }
+        if (selectedOnlyText === void 0) { selectedOnlyText = "Selected Only"; }
         this.selectorId = selectorId;
         this.filterPlaceholder = filterPlaceholder;
         this.filterNotFoundText = filterNotFoundText;
@@ -73,6 +119,8 @@ var SportLeagueMatchTreeViewOption = /** @class */ (function () {
         this.noDataText = noDataText;
         this.expandGroupsByDefault = expandGroupsByDefault;
         this.maxHeight = maxHeight;
+        this.expandAllText = expandAllText;
+        this.selectedOnlyText = selectedOnlyText;
         this.selectorId = selectorId;
         this.filterPlaceholder = filterPlaceholder;
         this.filterNotFoundText = filterNotFoundText;
@@ -80,6 +128,8 @@ var SportLeagueMatchTreeViewOption = /** @class */ (function () {
         this.noDataText = noDataText;
         this.expandGroupsByDefault = expandGroupsByDefault;
         this.maxHeight = maxHeight;
+        this.expandAllText = expandAllText;
+        this.selectedOnlyText = selectedOnlyText;
     }
     return SportLeagueMatchTreeViewOption;
 }());
@@ -96,7 +146,6 @@ var SportLeagueMatchTreeViewComponent = /** @class */ (function () {
         this.selectAllContainer = selector.find(".selectall-box");
         this.selectAll = selector.find("#select-all-" + this.treeviewOption.selectorId);
         this.checkboxListContainer = selector.find(".checkbox-list");
-        this.checkboxList = this.checkboxListContainer.find(":checkbox");
         this.bindPersistentEvents(selector);
         this.disableFilerAndSelectAll(true);
     };
@@ -116,11 +165,12 @@ var SportLeagueMatchTreeViewComponent = /** @class */ (function () {
     SportLeagueMatchTreeViewComponent.prototype.appendSelectAll = function (html) {
         var selectAllId = "select-all-" + this.treeviewOption.selectorId;
         var collapseExpandAllId = "icon-dropdown-all-" + this.treeviewOption.selectorId;
+        var selectedOnlyId = "selected-only-" + this.treeviewOption.selectorId;
         html.push('<div class="selectall-box">');
         if (this.enableCollapseExpandAll()) {
             html.push('<span id="', collapseExpandAllId, '" class="icon-dropdown-all', this.treeviewOption.expandGroupsByDefault ? " expand" : "", '"></span>');
         }
-        html.push('<label class="node-label"><input type="checkbox" id="', selectAllId, '"/>', this.treeviewOption.selectAllText, '</label></div>');
+        html.push('<label class="node-label"><input type="checkbox" id="', selectAllId, '"/>', this.treeviewOption.selectAllText, '</label>', '<label class="node-label"><input type="checkbox" id="', collapseExpandAllId, '"/>', this.treeviewOption.expandAllText, '</label>', '<label class="node-label"><input type="checkbox" id="', selectedOnlyId, '"/>', this.treeviewOption.selectedOnlyText, '</label></div>');
     };
     SportLeagueMatchTreeViewComponent.prototype.enableCollapseExpandAll = function () {
         //const listData = this.treeviewOption.listData;
@@ -147,7 +197,11 @@ var SportLeagueMatchTreeViewComponent = /** @class */ (function () {
             }
         });
         this.selectAll.click(function () {
-            _this.checkboxList.prop("checked", _this.selectAll.is(":checked"));
+            var checked = _this.selectAll.is(":checked");
+            _this.checkboxListContainer.find(":checkbox").prop({
+                indeterminate: false,
+                checked: checked
+            });
         });
     };
     SportLeagueMatchTreeViewComponent.prototype.handleFiltering = function (filterValue) {
@@ -155,12 +209,11 @@ var SportLeagueMatchTreeViewComponent = /** @class */ (function () {
         if (filterValue === void 0) { filterValue = ""; }
         var notFound = true;
         if (filterValue.length) {
-            this.checkboxList.each(function (_, item) {
-                var checkbox = $(item);
-                var treeNode = checkbox.closest(".tree-node");
-                var text = checkbox.data("text");
+            this.checkboxListContainer.find(".tree-node").each(function (_, item) {
+                var treeNode = $(item);
+                var text = treeNode.data("text");
                 if (text.indexOf(filterValue) !== -1) {
-                    _this.showParentTreeNode(checkbox);
+                    _this.showParentTreeNode(treeNode);
                     treeNode.removeClass("filter-hidden");
                     notFound = false;
                 }
@@ -170,61 +223,48 @@ var SportLeagueMatchTreeViewComponent = /** @class */ (function () {
             });
         }
         else {
-            this.checkboxList.each(function (_, item) {
-                $(item).closest(".tree-node").removeClass("filter-hidden");
-            });
+            this.checkboxListContainer.find(".tree-node").removeClass("filter-hidden");
             notFound = false;
         }
         this.notFoundText.toggleClass("show", notFound);
         this.selectAllContainer.toggleClass("filter-hidden", notFound);
     };
-    SportLeagueMatchTreeViewComponent.prototype.showParentTreeNode = function (checkbox) {
-        checkbox.parents(".subtree").each(function (_, item) {
-            var subtree = $(item);
-            //subtree.prev().find(":checkbox").removeClass("filter-hidden");
-            subtree.parent().removeClass("filter-hidden");
+    SportLeagueMatchTreeViewComponent.prototype.showParentTreeNode = function (treeNode) {
+        treeNode.parents(".subtree").each(function (_, item) {
+            $(item).parent().removeClass("filter-hidden");
         });
     };
-    SportLeagueMatchTreeViewComponent.prototype.appendTreeNode = function (html, data) {
+    SportLeagueMatchTreeViewComponent.prototype.appendTreeNode = function (html, data, level) {
         var _this = this;
-        var value = data.value || "";
-        if (value) {
-            var isHasChild = data.items && data.items.length > 0;
-            html.push('<li class="tree-node">');
-            if (isHasChild) {
-                html.push('<span class="icon-dropdown', this.treeviewOption.expandGroupsByDefault ? " expand" : "", '"></span>', this.renderCheckbox(data, isHasChild), '<ul class="subtree', this.treeviewOption.expandGroupsByDefault ? " expand" : "", '">');
-                data.items.forEach(function (item) { return html.push(_this.appendTreeNode(html, item)); });
-                html.push("</ul>");
-            }
-            else {
-                html.push(this.renderCheckbox(data, isHasChild));
-            }
-            html.push("</li>");
+        var isHasChild = data.items && data.items.length > 0;
+        html.push('<li class="tree-node" data-text="', data.text.toLowerCase(), '">');
+        if (isHasChild) {
+            html.push('<span class="icon-dropdown', this.treeviewOption.expandGroupsByDefault ? " expand" : "", '"></span>', this.renderCheckbox(data, isHasChild, level), '<ul class="subtree', this.treeviewOption.expandGroupsByDefault ? " expand" : "", '">');
+            level++;
+            data.items.forEach(function (item) { return html.push(_this.appendTreeNode(html, item, level)); });
+            html.push("</ul>");
         }
+        else {
+            html.push(this.renderCheckbox(data, isHasChild, level));
+        }
+        html.push("</li>");
     };
-    SportLeagueMatchTreeViewComponent.prototype.renderCheckbox = function (data, isHasChild) {
-        var title = data.text || "";
-        var attributes = data.attributes || {};
-        var html = [
-            '<label class="node-label"><input type="checkbox" data-text="',
-            title.toLowerCase(),
-            '" value="',
+    SportLeagueMatchTreeViewComponent.prototype.renderCheckbox = function (data, isHasChild, level) {
+        return [
+            '<label class="node-label"><input type="checkbox" value="',
             data.value,
             '"',
             isHasChild ? ' class="checkbox-subtree"' : "",
-            data.checked ? " checked" : ""
-        ];
-        Object.keys(attributes).forEach(function (key) {
-            html.push(' ', key, '="', attributes[key], '"');
-        });
-        html.push('/><span>', title, '</span>');
-        data.subText && html.push('<span>', data.subText, '</span>');
-        html.push('</label>');
-        return html.join("");
+            ' data-level="',
+            level,
+            '"/>',
+            data.text,
+            '</label>'
+        ].join("");
     };
     SportLeagueMatchTreeViewComponent.prototype.bindEphemeralEvents = function () {
         var _this = this;
-        this.checkboxList.off().click(function (e) {
+        this.checkboxListContainer.find(":checkbox").off().click(function (e) {
             _this.toggleCheckbox($(e.target));
             _this.updateSelectAll();
         });
@@ -270,7 +310,7 @@ var SportLeagueMatchTreeViewComponent = /** @class */ (function () {
         });
     };
     SportLeagueMatchTreeViewComponent.prototype.updateSelectAll = function () {
-        var allCheckboxes = this.checkboxList.filter(":not(.filter-hidden,.checkbox-subtree)");
+        var allCheckboxes = this.checkboxListContainer.find(":checkbox:not(.checkbox-subtree)");
         this.updateCheckboxStatus(this.selectAll, allCheckboxes);
     };
     SportLeagueMatchTreeViewComponent.prototype.updateCheckboxStatus = function (checkbox, allCheckboxes) {
@@ -295,19 +335,19 @@ var SportLeagueMatchTreeViewComponent = /** @class */ (function () {
     };
     SportLeagueMatchTreeViewComponent.prototype.addIconLoading = function () {
         this.checkboxListContainer.html('<li><span class="icon-loading"></span></li>');
+        this.disableFilerAndSelectAll(true);
     };
     SportLeagueMatchTreeViewComponent.prototype.renderTreeNodeList = function (listData) {
         var _this = this;
         var html = [];
         var hasListData = listData.length > 0;
         if (hasListData) {
-            listData.forEach(function (item) { return _this.appendTreeNode(html, item); });
+            listData.forEach(function (item) { return _this.appendTreeNode(html, item, 0); });
         }
         else {
             html.push(this.renderNoData());
         }
         this.checkboxListContainer.html(html.join(""));
-        this.checkboxList = this.checkboxListContainer.find(":checkbox");
         if (hasListData) {
             this.bindEphemeralEvents();
             this.updateSelectAll();
@@ -316,7 +356,7 @@ var SportLeagueMatchTreeViewComponent = /** @class */ (function () {
     };
     SportLeagueMatchTreeViewComponent.prototype.getSelected = function () {
         var selected = [];
-        this.checkboxList.filter(":checked").each(function (_, item) {
+        this.checkboxListContainer.find(":checkbox:checked").each(function (_, item) {
             selected.push(item.value);
         });
         return selected;
@@ -324,105 +364,25 @@ var SportLeagueMatchTreeViewComponent = /** @class */ (function () {
     SportLeagueMatchTreeViewComponent.prototype.isSelectAll = function () {
         return this.selectAll.is(":checked");
     };
+    SportLeagueMatchTreeViewComponent.prototype.getSportsLeagues = function () {
+        var sportsAllLeagues = [];
+        var sports = [];
+        this.checkboxListContainer.find(":checkbox[data-level=0]").each(function (_, sportElement) {
+            if (sportElement.checked) {
+                sportsAllLeagues.push(sportElement.value);
+            }
+            else if (sportElement.indeterminate) {
+                $(sportElement).parent().next(".subtree").find(":checkbox:checked").each(function (_, leagueElement) {
+                    sports.push({ sport: sportElement.value, league: leagueElement.value });
+                });
+            }
+        });
+        sportsAllLeagues.length && sports.push({ sport: sportsAllLeagues.join() });
+        return sports;
+    };
     return SportLeagueMatchTreeViewComponent;
 }());
 //# sourceMappingURL=sportleaguematch-treeview.js.map
-"use strict";
-var SimpleTreeViewComponent = /** @class */ (function () {
-    function SimpleTreeViewComponent() {
-    }
-    SimpleTreeViewComponent.prototype.render = function (selectorId) {
-        if (selectorId === void 0) { selectorId = "simple-treeview"; }
-        var selector = $("#" + selectorId);
-        this.noDataText = selector.find("#not-found-" + selectorId);
-        this.selectAllContainer = selector.find(".selectall-box");
-        this.selectAll = this.selectAllContainer.find("#select-all-" + selectorId);
-        this.checkboxList = selector.find(".checkbox-list :checkbox");
-        this.registerEvents(selector, selectorId);
-    };
-    SimpleTreeViewComponent.prototype.registerEvents = function (selector, selectorId) {
-        var _this = this;
-        this.selectAll.click(function () { return _this.checkboxList.prop("checked", _this.selectAll.is(":checked")); });
-        this.checkboxList.click(function (e) {
-            var allCheckboxesLength = _this.checkboxList.length;
-            var checkedCheckboxesLength = _this.checkboxList.filter(":checked").length;
-            var isSelectAll = checkedCheckboxesLength > 0 && checkedCheckboxesLength === allCheckboxesLength;
-            _this.selectAll.prop({
-                indeterminate: !isSelectAll && checkedCheckboxesLength > 0,
-                checked: isSelectAll
-            });
-        });
-        this.registerFilterEvent(selector, selectorId);
-    };
-    SimpleTreeViewComponent.prototype.registerFilterEvent = function (selector, selectorId) {
-        var _this = this;
-        var filterContainer = selector.find(".filter-box");
-        var filterInput = filterContainer.find("#filter-input-" + selectorId);
-        var noDataText = filterContainer.find("#not-found-" + selectorId);
-        var selectAllContainer = this.selectAll.closest(".select-all-box");
-        var handleFilterNotFound = function (notFound) {
-            if (notFound) {
-                noDataText.addClass("show");
-                selectAllContainer.addClass("filter-hidden");
-            }
-            else {
-                noDataText.removeClass("show");
-                selectAllContainer.removeClass("filter-hidden");
-            }
-        };
-        filterInput.keyup(function (e) {
-            e.preventDefault();
-            e.which === 13 && _this.handleFilterHideItems(filterInput.val().toLowerCase());
-        });
-        filterContainer.find("#icon-delete-" + selectorId).click(function () {
-            if (filterInput.val().length) {
-                filterInput.val("");
-                _this.handleFilterHideItems();
-            }
-        });
-    };
-    SimpleTreeViewComponent.prototype.handleFilterHideItems = function (filterValue) {
-        if (filterValue === void 0) { filterValue = ""; }
-        var notFound = true;
-        if (filterValue.length) {
-            this.checkboxList.each(function (_, item) {
-                var checkbox = $(item);
-                var treeNode = checkbox.closest(".tree-node");
-                var text = checkbox.data("text");
-                if (text.indexOf(filterValue) !== -1) {
-                    checkbox.removeClass("filter-hidden");
-                    treeNode.removeClass("filter-hidden");
-                    notFound = false;
-                }
-                else {
-                    checkbox.addClass("filter-hidden");
-                    treeNode.addClass("filter-hidden");
-                }
-            });
-        }
-        else {
-            this.checkboxList.each(function (_, item) {
-                var checkbox = $(item).removeClass("filter-hidden");
-                var treeNode = checkbox.closest(".tree-node").removeClass("filter-hidden");
-            });
-            notFound = false;
-        }
-        this.noDataText.toggleClass("show", notFound);
-        this.selectAllContainer.toggleClass("filter-hidden", notFound);
-    };
-    SimpleTreeViewComponent.prototype.getSelected = function () {
-        var selected = [];
-        this.checkboxList.filter(":checked").each(function (_, item) {
-            selected.push(item.value);
-        });
-        return selected;
-    };
-    SimpleTreeViewComponent.prototype.isSelectAll = function () {
-        return this.selectAll.is(":checked");
-    };
-    return SimpleTreeViewComponent;
-}());
-//# sourceMappingURL=simple-treeview.js.map
 "use strict";
 var UsernameTagsInputOption = /** @class */ (function () {
     function UsernameTagsInputOption(selectorId, limit, limitText, duplicatedUsernameText, width, height, delimiter) {
@@ -527,12 +487,15 @@ var UsernameTagsInputComponent = /** @class */ (function () {
             _this.tagsInputContainer.append($("<span>", {
                 class: "tag" + (result.ErrCode ? " error" : ""),
                 title: result.ErrMsg,
-                "data-custid": result.CustId
+                "data-custid": result.CustId,
+                "data-toggle": "tooltip",
+                "data-placement": "top"
             }).append($("<span>", { class: "tag-text" }).text(result.Username), $("<button>", { type: "button", class: "tag-remove" }).click(function (e) {
                 $(e.target).parent().remove();
                 _this.updateTagLimitText();
             })));
         });
+        this.tagsInputContainer.find('[data-toggle="tooltip"]').tooltip();
         this.updateTagLimitText();
         this.realInput.val("").focus();
     };
@@ -609,14 +572,14 @@ var FilterConfigurationView = /** @class */ (function () {
     FilterConfigurationView.prototype.init = function () {
         var welcomePopup = $("#welcome-popup");
         welcomePopup.length && welcomePopup.modal("show");
-        this.cacheDOMElements();
+        this.initComponents();
         this.bindEvents();
     };
-    FilterConfigurationView.prototype.cacheDOMElements = function () {
+    FilterConfigurationView.prototype.initComponents = function () {
         var _this = this;
         this.inlineMessage = new InlineMessageComponent();
-        this.bettypeDropdown = new DropdownListComponent();
-        this.bettypeDropdown.render("ddl-bettypes");
+        this.betTypeDropdown = new DropdownListComponent();
+        this.betTypeDropdown.render("ddl-bettypes");
         this.matchLiveIndicatorDropdown = new DropdownListComponent();
         this.matchLiveIndicatorDropdown.render("ddl-matchLiveIndicator", {
             onChange: function (select) { return _this.getSports(select.val(), _this.groupOfSportsDropdown.getSelected()[0]); }
@@ -626,23 +589,24 @@ var FilterConfigurationView = /** @class */ (function () {
             onChange: function (select) { return _this.getSports(_this.matchLiveIndicatorDropdown.getSelected()[0], select.val()); }
         });
         this.sportLeagueMatchTreeview = new SportLeagueMatchTreeViewComponent();
-        this.sportLeagueMatchTreeview.render(new SportLeagueMatchTreeViewOption("sportleaguematch-treeview"));
+        this.sportLeagueMatchTreeview.render(new SportLeagueMatchTreeViewOption("sportleaguematch-treeview", "Search Sport/ League", "No Sport/ League found", "Select All", "No information is available", false, 400));
         this.monitoredWatchlistMemberTreeview = new SportLeagueMatchTreeViewComponent();
-        this.monitoredWatchlistMemberTreeview.render(new SportLeagueMatchTreeViewOption("monitored-watchlist-members", "Search member username", "No member username found", "All (Include newly add ...)"));
+        this.monitoredWatchlistMemberTreeview.render(new SportLeagueMatchTreeViewOption("monitored-watchlist-members", "Search member username", "No member username found", "All (Include newly add ...)", "No information is available", false, 400));
         this.memberTagsInput = new UsernameTagsInputComponent();
         this.memberTagsInput.render(new UsernameTagsInputOption("username", 100, "Max: # username(s)", "Duplicated username"));
-        this.stake = $("#txt-stake");
+        this.inlineMessagePopup = new InlineMessageComponent("inline-message-popup");
     };
     FilterConfigurationView.prototype.bindEvents = function () {
         var _this = this;
-        this.stake.on("input", function () {
+        this.stakeInput = $("#txt-stake");
+        this.stakeInput.on("input", function () {
             this.value = alphaReports.forceInputDecimal(this.value);
         });
         var boxFilterBySports = $("#box-filterBySports");
         $("#rdo-allSports").change(function () {
             this.checked && boxFilterBySports.addClass("hide");
         });
-        $("#rdo-specificSports").change(function (e) {
+        var rdoSpecificSports = $("#rdo-specificSports").change(function (e) {
             if ($(e.target).is(":checked")) {
                 boxFilterBySports.removeClass("hide");
                 _this.getSports(_this.matchLiveIndicatorDropdown.getSelected()[0], _this.groupOfSportsDropdown.getSelected()[0]);
@@ -666,62 +630,80 @@ var FilterConfigurationView = /** @class */ (function () {
                 });
             }
         });
-        $(".btn-reset").click(function () {
-            _this.inlineMessage.hide();
-            var formData = _this.getFormData(rdoSpecificMembers);
-            console.dir(formData);
-            if (formData) {
-                _this.addFilterPopup = $("#add-filter-popup");
-                _this.addFilterPopup.modal("show");
+        var addFilterPopup = $("#add-filter-popup");
+        addFilterPopup.on("hidden.bs.modal", function () {
+            $("#txt-filterName").val("");
+            $("#chk-isDefault").prop("checked", false);
+        });
+        addFilterPopup.find(".btn-submit").click(function () {
+            var formDataPopup = _this.getFormDataPopup();
+            if (formDataPopup) {
+                _this.addFilterFormData = $.extend(_this.addFilterFormData, formDataPopup);
+                AJAXHelper.postJSON("AddFilter", _this.addFilterFormData, function (result) {
+                    _this.inlineMessagePopup.show(result);
+                    if (!result.ErrCode) {
+                        _this.addFilterFormData = null;
+                        _this.reloadPageAfterTimeout();
+                    }
+                });
             }
+        });
+        $(".button-reset").click(function () {
+            _this.addFilterFormData = _this.getFormData(rdoSpecificSports, rdoSpecificMembers);
+            _this.addFilterFormData && addFilterPopup.modal("show");
+            console.dir(_this.addFilterFormData);
         });
     };
     FilterConfigurationView.prototype.getSports = function (isLive, groupSport) {
         var _this = this;
         this.sportLeagueMatchTreeview.addIconLoading();
         $.get("FilterBySports?isLive=" + isLive + "&groupSport=" + groupSport, function (data) {
-            var listData = [];
-            data.forEach(function (sport) {
-                var leagueList = [];
-                sport.Leagues.forEach(function (league) {
-                    leagueList.push({
-                        value: league.Id,
-                        text: league.Name,
-                        attributes: {
-                            "data-leagueid": league.Id
-                        },
-                        items: league.Matches.map(function (m) {
-                            return {
-                                value: m.MatchId,
-                                text: m.MatchName,
-                                subText: m.KickOffTimeStr,
-                                attributes: {
-                                    "data-homeid": m.HomeId,
-                                    "data-awayid": m.AwayId,
-                                    "data-isneutral": m.IsNeutral
-                                }
-                            };
-                        })
-                    });
-                });
-                listData.push({
+            var listData = data.map(function (sport) {
+                return {
                     value: sport.Id,
                     text: sport.Name,
-                    attributes: {
-                        "data-sportid": sport.Id
-                    },
-                    items: leagueList
-                });
+                    items: sport.Leagues.map(function (league) {
+                        return {
+                            value: league.Id,
+                            text: league.Name
+                        };
+                    })
+                };
             });
             return _this.sportLeagueMatchTreeview.renderTreeNodeList(listData);
         });
     };
-    FilterConfigurationView.prototype.getFormData = function (rdoSpecificMembers) {
-        var betType = this.bettypeDropdown.isSelectAll() ? "0" : this.bettypeDropdown.getSelected().join();
-        var stake = +this.stake.val();
-        var isLive = this.matchLiveIndicatorDropdown.getSelected()[0] === "1";
-        var sportTypeList = "0";
-        if (!this.sportLeagueMatchTreeview.isSelectAll()) {
+    FilterConfigurationView.prototype.getFormData = function (rdoSpecificSports, rdoSpecificMembers) {
+        var betType;
+        if (this.betTypeDropdown.isSelectAll()) {
+            betType = "0";
+        }
+        else {
+            betType = this.betTypeDropdown.getSelected().join();
+            if (!betType.length) {
+                this.inlineMessage.showError($("#hidden-BetTypesRequiredError").val());
+                this.scrollTopInlineMessage();
+                return;
+            }
+        }
+        var stake = $.trim(this.stakeInput.val().replace(/,/g, ""));
+        if (!stake.length) {
+            this.inlineMessage.showError($("#hidden-StakeRequiredError").val());
+            this.stakeInput.focus();
+            return;
+        }
+        var sports = [{ sport: 0 }];
+        var isLive = false;
+        if (rdoSpecificSports.is(":checked")) {
+            isLive = this.matchLiveIndicatorDropdown.getSelected()[0] === "1";
+            if (!this.sportLeagueMatchTreeview.isSelectAll()) {
+                sports = this.sportLeagueMatchTreeview.getSportsLeagues();
+                if (!sports.length) {
+                    this.inlineMessage.showError($("#hidden-SportsRequiredError").val());
+                    this.scrollTopInlineMessage();
+                    return;
+                }
+            }
         }
         var isWatchList = 2;
         var inputList = "0";
@@ -735,16 +717,45 @@ var FilterConfigurationView = /** @class */ (function () {
                 watchList = this.monitoredWatchlistMemberTreeview.getSelected().join();
             }
             inputList = this.memberTagsInput.getCustIds().join();
+            if (!watchList.length && !inputList.length) {
+                this.inlineMessage.showError($("#hidden-FilterByMembersRequiredError").val());
+                this.scrollTopInlineMessage();
+                return;
+            }
         }
+        this.inlineMessage.hide();
         return {
             betType: betType,
             stake: stake,
             isLive: isLive,
-            sportTypeList: sportTypeList,
+            sports: sports,
             isWatchList: isWatchList,
             inputList: inputList,
             watchList: watchList
         };
+    };
+    FilterConfigurationView.prototype.getFormDataPopup = function () {
+        var filterNameElement = $("#txt-filterName");
+        var filterName = $.trim(filterNameElement.val());
+        if (!filterName.length) {
+            this.inlineMessagePopup.showError($("#hidden-FilterNameRequiredError").val());
+            return;
+        }
+        var isDefault = $("#chk-isDefault").is(":checked");
+        this.inlineMessagePopup.hide();
+        return {
+            filterName: filterName,
+            isDefault: isDefault
+        };
+    };
+    FilterConfigurationView.prototype.scrollTopInlineMessage = function () {
+        $("html, body").scrollTop(this.inlineMessage.getInlineMessage().offset().top);
+    };
+    FilterConfigurationView.prototype.reloadPageAfterTimeout = function (timeout) {
+        if (timeout === void 0) { timeout = 3000; }
+        setTimeout(function () {
+            window.location.reload();
+        }, timeout);
     };
     return FilterConfigurationView;
 }());

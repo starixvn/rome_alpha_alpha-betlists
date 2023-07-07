@@ -1608,7 +1608,6 @@
     <TypeScriptCompile Include="assets\scripts\src\components\daterangepicker.ts" />
     <TypeScriptCompile Include="assets\scripts\src\components\pager.ts" />
     <TypeScriptCompile Include="assets\scripts\src\components\product-productdetail-dropdown.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\components\simple-treeview.ts" />
     <TypeScriptCompile Include="assets\scripts\src\components\statusmultiselection.ts" />
     <TypeScriptCompile Include="assets\scripts\src\components\productmultiselection.ts" />
     <TypeScriptCompile Include="assets\scripts\src\components\username-tagsinput.ts" />

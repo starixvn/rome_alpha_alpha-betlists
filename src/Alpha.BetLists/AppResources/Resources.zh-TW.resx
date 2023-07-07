@@ -651,4 +651,19 @@
   <data name="FilterName" xml:space="preserve">
     <value>Filter Name</value>
   </data>
+  <data name="FilterConfigurationBetTypesRequiredError" xml:space="preserve">
+    <value>Please select Bet type</value>
+  </data>
+  <data name="FilterConfigurationStakeRequiredError" xml:space="preserve">
+    <value>Please enter Stake</value>
+  </data>
+  <data name="FilterConfigurationSportsRequiredError" xml:space="preserve">
+    <value>Please select sport(s)</value>
+  </data>
+  <data name="FilterConfigurationFilterByMembersRequiredError" xml:space="preserve">
+    <value>Please enter Member username(s) or select Member(s)</value>
+  </data>
+  <data name="FilterConfigurationFilterNameRequiredError" xml:space="preserve">
+    <value>Please enter a filter name</value>
+  </data>
 </root>

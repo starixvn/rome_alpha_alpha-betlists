@@ -157,10 +157,10 @@
   {
     "outputFileName": "assets/bundles/monitoring-bets/filter-configuration.js",
     "inputFiles": [
+      "assets/scripts/src/common/ajax-helper.js",
       "assets/scripts/src/components/inline-message.js",
       "assets/scripts/src/components/dropdown-list.js",
       "assets/scripts/src/components/sportleaguematch-treeview.js",
-      "assets/scripts/src/components/simple-treeview.js",
       "assets/scripts/src/components/username-tagsinput.js",
       "assets/scripts/src/monitoring-bets/filter-configuration.js"
     ]
