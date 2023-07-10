@@ -26,7 +26,7 @@
         public List<SportXml> Sports { get; set; }
 
         [XmlIgnore]
-        public string BetTypeName { get; set; }
+        public string[] BetTypeNames { get; set; }
 
         [XmlIgnore]
         public IEnumerable<Sport> FlatternSports { get; set; }

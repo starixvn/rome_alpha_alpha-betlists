@@ -54,11 +54,15 @@
                     </tr>
                     <tr class="hide" data-filterid="@item.FilterId">
                         <td>@Resources.BetType</td>
-                        <td colspan="2">@item.FilterXml.BetTypeName</td>
+                        <td colspan="2">@RenderDropdownBetTypes(item.FilterXml.BetTypeNames)</td>
                     </tr>
                     <tr class="hide" data-filterid="@item.FilterId">
                         <td>@Resources.stake</td>
                         <td colspan="2">>= @item.FilterXml.Stake.ToString("N0")</td>
+                    </tr>
+                    <tr class="hide" data-filterid="@item.FilterId">
+                        <td>@Resources.EventStatus</td>
+                        <td colspan="2">@(item.FilterXml.IsLive ? Resources.Live : Resources.NonLive)</td>
                     </tr>
                     <tr class="hide" data-filterid="@item.FilterId">
                         <td>
@@ -73,10 +77,7 @@
                                 </div>
                             }
                         </td>
-                        <td colspan="2">
-                            @(item.FilterXml.IsLive ? Resources.Live : Resources.NonLive),
-                            @(item.FilterXml.IsAllSports ? Resources.AllSports : Resources.SpecificSports)
-                        </td>
+                        <td colspan="2">@(item.FilterXml.IsAllSports ? Resources.AllSports : Resources.SpecificSports)</td>
                     </tr>
                     @RenderTreeViewSports(item.FilterId, item.FilterXml.FlatternSports)
                     <tr class="hide" data-filterid="@item.FilterId">
@@ -94,7 +95,7 @@
                             <td colspan="2">
                                 @if (item.FilterXml.IsWatchlist == FilterByMembersConstants.AllWatchlistMembers)
                                 {
-                                    @:Resources.AllMembers
+                                    @:@Resources.AllIncludedNewlyAddedMembers
                                 }
                                 else
                                 {
@@ -149,28 +150,45 @@
             {
                 <li>@league.Name</li>
                 @*<li>
-                    <div class="tree-node-name">
-                        <span class="arrow right"></span> @league.Name
-                    </div>
-                    @RenderTreeViewMatches(league.Matches)
-                </li>*@
+                        <div class="tree-node-name">
+                            <span class="arrow right"></span> @league.Name
+                        </div>
+                        @RenderTreeViewMatches(league.Matches)
+                    </li>*@
             }
         </ul>
     }
 }
 
 @*@helper RenderTreeViewMatches(IEnumerable<Match> matches)
-{
-    if (matches.Any())
     {
-        <ul class="subtree">
-            @foreach (var match in matches)
-            {
-                <li>@match.MatchName</li>
-            }
-        </ul>
+        if (matches.Any())
+        {
+            <ul class="subtree">
+                @foreach (var match in matches)
+                {
+                    <li>@match.MatchName</li>
+                }
+            </ul>
+        }
+    }*@
+
+@helper RenderDropdownBetTypes(string[] betTypeNames)
+{
+    var length = betTypeNames.Length;
+    if (length == 0)
+    {
+        @:@Resources.AllBetTypes
     }
-}*@
+    else if (length == 1)
+    {
+        @:betTypeNames[0]
+    }
+    else
+    {
+        @RenderDropdown(betTypeNames, Resources.BetTypes)
+    }
+}
 
 @helper RenderDropdownMembers(string members)
 {
@@ -180,24 +198,29 @@
     }
     else
     {
-        @{ var memberList = members.SplitByCommaWithNoneEmptyEntries(); }
+        var memberList = members.SplitByCommaWithNoneEmptyEntries();
         if (memberList.Length == 1)
         {
             @:memberList[0]
         }
         else
         {
-            <div class="dropdown">
-                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-                    @memberList.Length @Resources.Members<span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                    @foreach (var item in memberList)
-                    {
-                        <li><a href="javascript:;">@item</a></li>
-                    }
-                </ul>
-            </div>
+            @RenderDropdown(memberList, Resources.Members)
         }
     }
+}
+
+@helper RenderDropdown(IEnumerable<string> options, string title)
+{
+    <div class="dropdown">
+        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+            @options.Count() @title<span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+            @foreach (var item in options)
+            {
+                <li><a href="javascript:;">@item</a></li>
+            }
+        </ul>
+    </div>
 }

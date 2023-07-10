@@ -17,6 +17,8 @@
 
     public interface MonitoringBetsService
     {
+        Task<IEnumerable<SavedFilter>> GetSavedFilters(int custId, int subAccId);
+
         Task<IEnumerable<FilterConfiguration>> GetFilters(int custId, int subAccId);
 
         Task<Result> AddFilter(AddFilterParam param);
@@ -49,6 +51,20 @@
         public MonitoringBetsServiceImpl(IDynamicRepository dynamicRepository)
             => this.dynamicRepository = dynamicRepository;
 
+        public async Task<IEnumerable<SavedFilter>> GetSavedFilters(int custId, int subAccId)
+        {
+            var filterConfigurations = await dynamicRepository.FetchAsync<FilterConfiguration>(
+                new GetFiltersCriteria(custId, subAccId));
+
+            return filterConfigurations.Select(f => new SavedFilter(
+                f.FilterId,
+                f.FilterName,
+                f.IsDefault,
+                f.FilterXml.BetType,
+                f.FilterXml.Stake,
+                f.FilterXml.Members));
+        }
+
         public async Task<IEnumerable<FilterConfiguration>> GetFilters(int custId, int subAccId)
         {
             var filterConfigurations = await dynamicRepository.FetchAsync<FilterConfiguration>(
@@ -57,20 +73,20 @@
             foreach (var item in filterConfigurations)
             {
                 var filterXml = item.FilterXml;
-                filterXml.BetTypeName = BuildBetTypes(filterXml.BetType);
+                filterXml.BetTypeNames = BuildBetTypeNames(filterXml.BetType);
                 filterXml.FlatternSports = BuildSports(FlattenSports(filterXml.Sports).OrderBy(s => s.SportId)).ToList();
             }
 
             return filterConfigurations;
         }
 
-        private static string BuildBetTypes(string betTypes)
+        private static string[] BuildBetTypeNames(string betTypes)
             => betTypes.Equals("0", StringComparison.OrdinalIgnoreCase)
-            ? Resources.AllBetTypes
+            ? Array.Empty<string>()
             : betTypes
                 .SplitByCommaWithNoneEmptyEntries()
                 .Select(t => CacheRefServiceHelper.GetBetTypeName(Convert.ToInt32(t)))
-                .JoinWithComma(", ");
+                .ToArray();
 
         private static IEnumerable<Match> FlattenSports(IEnumerable<SportXml> sportXmlList)
         {

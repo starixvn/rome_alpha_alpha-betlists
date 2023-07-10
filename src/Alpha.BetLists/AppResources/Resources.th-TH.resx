@@ -735,4 +735,7 @@
   <data name="SelectedOnly" xml:space="preserve">
     <value>Selected Only</value>
   </data>
+  <data name="BetTypes" xml:space="preserve">
+    <value>ประเภทการเดิมพัน</value>
+  </data>
 </root>

@@ -286,6 +286,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bet Type(s).
+        /// </summary>
+        public static string BetTypes {
+            get {
+                return ResourceManager.GetString("BetTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string Cancel {

@@ -435,6 +435,7 @@
     <Compile Include="Models\MonitoringBets\FilterConfiguration.cs" />
     <Compile Include="Models\MonitoringBets\FilterXml.cs" />
     <Compile Include="Models\MonitoringBets\MonitoredWatchlistMember.cs" />
+    <Compile Include="Models\MonitoringBets\SavedFilter.cs" />
     <Compile Include="Models\MonitoringBets\SportXml.cs" />
     <Compile Include="Models\NapUserFunctionPermission.cs" />
     <Compile Include="Models\PagedReportData.cs" />
