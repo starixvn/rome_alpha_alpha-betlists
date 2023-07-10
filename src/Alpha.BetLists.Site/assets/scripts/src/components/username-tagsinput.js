@@ -3,8 +3,8 @@ var UsernameTagsInputOption = /** @class */ (function () {
     function UsernameTagsInputOption(selectorId, limit, limitText, duplicatedUsernameText, width, height, delimiter) {
         if (selectorId === void 0) { selectorId = "tagsinput"; }
         if (limit === void 0) { limit = 100; }
-        if (limitText === void 0) { limitText = "Max: # tag(s)"; }
-        if (duplicatedUsernameText === void 0) { duplicatedUsernameText = "Duplicated username"; }
+        if (limitText === void 0) { limitText = "Max: # username(s)"; }
+        if (duplicatedUsernameText === void 0) { duplicatedUsernameText = "Username already exists"; }
         if (width === void 0) { width = "auto"; }
         if (height === void 0) { height = "auto"; }
         if (delimiter === void 0) { delimiter = [","]; }
@@ -106,11 +106,13 @@ var UsernameTagsInputComponent = /** @class */ (function () {
                 "data-toggle": "tooltip",
                 "data-placement": "top"
             }).append($("<span>", { class: "tag-text" }).text(result.Username), $("<button>", { type: "button", class: "tag-remove" }).click(function (e) {
-                $(e.target).parent().remove();
+                var tag = $(e.target).parent();
+                tag.hasClass("error") && tag.tooltip("destroy");
+                tag.remove();
                 _this.updateTagLimitText();
             })));
         });
-        this.tagsInputContainer.find('[data-toggle="tooltip"]').tooltip();
+        this.tagsInputContainer.find(".error:last").tooltip("destroy").tooltip();
         this.updateTagLimitText();
         this.realInput.val("").focus();
     };

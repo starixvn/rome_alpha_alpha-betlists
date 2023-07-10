@@ -3,23 +3,25 @@
 class SportLeagueMatchTreeViewOption {
     constructor(
         public selectorId = "sportleaguematch-treeview",
+        public noDataText = "No information is available",
         public filterPlaceholder = "Search Sport/ League",
         public filterNotFoundText = "No Sport/ League found",
         public selectAllText = "Select All",
-        public noDataText = "No information is available",
-        public expandGroupsByDefault = false,
-        public maxHeight = 400,
+        public enableExpandAll = false,
         public expandAllText = "Expand All",
-        public selectedOnlyText = "Selected Only") {
+        public selectedOnlyText = "Selected Only",
+        public expandGroupsByDefault = false,
+        public maxHeight = 400) {
         this.selectorId = selectorId;
+        this.noDataText = noDataText;
         this.filterPlaceholder = filterPlaceholder;
         this.filterNotFoundText = filterNotFoundText;
         this.selectAllText = selectAllText;
-        this.noDataText = noDataText;
-        this.expandGroupsByDefault = expandGroupsByDefault;
-        this.maxHeight = maxHeight;
+        this.enableExpandAll = enableExpandAll;
         this.expandAllText = expandAllText;
         this.selectedOnlyText = selectedOnlyText;
+        this.expandGroupsByDefault = expandGroupsByDefault;
+        this.maxHeight = maxHeight;
     }
 }
 
@@ -29,6 +31,8 @@ class SportLeagueMatchTreeViewComponent {
     private notFoundText: JQuery;
     private selectAllContainer: JQuery;
     private selectAll: JQuery;
+    private expandAll: JQuery;
+    private selectedOnly: JQuery;
     private checkboxListContainer: JQuery;
 
     render(option: SportLeagueMatchTreeViewOption) {
@@ -41,6 +45,10 @@ class SportLeagueMatchTreeViewComponent {
         this.notFoundText = selector.find(`#not-found-${this.treeviewOption.selectorId}`);
         this.selectAllContainer = selector.find(".selectall-box");
         this.selectAll = selector.find(`#select-all-${this.treeviewOption.selectorId}`);
+        if (this.treeviewOption.enableExpandAll) {
+            this.expandAll = selector.find(`#expand-all-${this.treeviewOption.selectorId}`);
+            this.selectedOnly = selector.find(`#selected-only-${this.treeviewOption.selectorId}`);
+        }
         this.checkboxListContainer = selector.find(".checkbox-list");
 
         this.bindPersistentEvents(selector);
@@ -85,49 +93,32 @@ class SportLeagueMatchTreeViewComponent {
 
     private appendSelectAll(html) {
         const selectAllId = `select-all-${this.treeviewOption.selectorId}`;
-        const collapseExpandAllId = `icon-dropdown-all-${this.treeviewOption.selectorId}`;
-        const selectedOnlyId = `selected-only-${this.treeviewOption.selectorId}`;
-        html.push('<div class="selectall-box">');
-
-        if (this.enableCollapseExpandAll()) {
-            html.push(
-                '<span id="',
-                collapseExpandAllId,
-                '" class="icon-dropdown-all',
-                this.treeviewOption.expandGroupsByDefault ? " expand" : "",
-                '"></span>'
-            );
-        }
-
         html.push(
+            '<div class="selectall-box">',
             '<label class="node-label"><input type="checkbox" id="',
             selectAllId,
             '"/>',
             this.treeviewOption.selectAllText,
-            '</label>',
-            '<label class="node-label"><input type="checkbox" id="',
-            collapseExpandAllId,
-            '"/>',
-            this.treeviewOption.expandAllText,
-            '</label>',
-            '<label class="node-label"><input type="checkbox" id="',
-            selectedOnlyId,
-            '"/>',
-            this.treeviewOption.selectedOnlyText,
-            '</label></div>'
+            '</label>'
         );
-    }
+        if (this.treeviewOption.enableExpandAll) {
+            const collapseExpandAllId = `expand-all-${this.treeviewOption.selectorId}`;
+            const selectedOnlyId = `selected-only-${this.treeviewOption.selectorId}`;
+            html.push(
+                '<label class="node-label"><input type="checkbox" id="',
+                collapseExpandAllId,
+                '"/>',
+                this.treeviewOption.expandAllText,
+                '</label>',
+                '<label class="node-label"><input type="checkbox" id="',
+                selectedOnlyId,
+                '"/>',
+                this.treeviewOption.selectedOnlyText,
+                '</label>'
+            );
+        }
 
-    private enableCollapseExpandAll() {
-        //const listData = this.treeviewOption.listData;
-
-        //for (let i = 0, max = listData.length; i < max; i++) {
-        //    if (listData[i].items && listData[i].items.length > 0) {
-        //        return true;
-        //    }
-        //}
-
-        return false;
+        html.push('</div>');
     }
 
     private renderNoData() {
@@ -154,13 +145,29 @@ class SportLeagueMatchTreeViewComponent {
                 checked: checked
             });
         });
+
+        if (this.treeviewOption.enableExpandAll) {
+            this.expandAll.click(() => {
+                const checked = this.expandAll.is(":checked");
+                this.checkboxListContainer
+                    .find(".icon-dropdown")
+                    .each((_, item) => this.collapseExpand($(item), checked));
+            });
+
+            this.selectedOnly.click(() => {
+                this.checkboxListContainer.find(":checkbox:not(:checked)")
+                    .closest(".tree-node")
+                    .toggleClass("hide", this.selectedOnly.is(":checked"));
+            });
+        }
     }
 
     private handleFiltering(filterValue = "") {
         let notFound = true;
+        const treeNodeList = this.checkboxListContainer.find(".tree-node");
 
         if (filterValue.length) {
-            this.checkboxListContainer.find(".tree-node").each((_, item) => {
+            treeNodeList.each((_, item) => {
                 const treeNode = $(item);
                 const text = treeNode.data("text");
                 if (text.indexOf(filterValue) !== -1) {
@@ -172,7 +179,7 @@ class SportLeagueMatchTreeViewComponent {
                 }
             });
         } else {
-            this.checkboxListContainer.find(".tree-node").removeClass("filter-hidden");
+            treeNodeList.removeClass("filter-hidden");
             notFound = false;
         }
 
@@ -232,29 +239,13 @@ class SportLeagueMatchTreeViewComponent {
             this.updateSelectAll();
         });
 
-        const iconDropdownAll = this.selectAllContainer.find(`#icon-dropdown-all-${this.treeviewOption.selectorId}`);
         const iconDropdownList = this.checkboxListContainer.find(".icon-dropdown");
-
-        iconDropdownAll.off().click((e) => {
-            const icon = $(e.target);
-            const isExpand = icon.hasClass("expand");
-            iconDropdownList.each((_, item) => this.collapseExpand($(item), !isExpand));
-            icon.toggleClass("expand", !isExpand);
-        });
-
         iconDropdownList.off().click((e) => {
             const icon = $(e.target);
             const isExpand = icon.hasClass("expand");
             this.collapseExpand(icon, !isExpand);
-            //if (isExpand) {
-            //    if (!iconDropdownList.filter(":not(.expand)").length) {
-            //        iconDropdownAll.addClass("expand");
-            //    }
-            //} else {
-            //    if (!iconDropdownList.filter(".expand").length) {
-            //        iconDropdownAll.removeClass("expand");
-            //    }
-            //}
+            this.treeviewOption.enableExpandAll &&
+                this.expandAll.prop("checked", !isExpand && iconDropdownList.filter(":not(.expand)").length === 0);
         });
     }
 
@@ -295,15 +286,22 @@ class SportLeagueMatchTreeViewComponent {
         });
     }
 
-    private disableFilerAndSelectAll(disable) {
+    private disableFilerAndSelectAll(disable: boolean) {
         this.filterInput.prop("disabled", disable);
-        this.selectAll.prop("disabled", disable);
-        const selectAllLabel = this.selectAll.parent();
-        if (disable) {
-            selectAllLabel.attr("disabled", "disabled");
-        } else {
-            selectAllLabel.removeAttr("disabled");
-        }
+        const checkboxes = [this.selectAll];
+        this.treeviewOption.enableExpandAll && checkboxes.push(this.expandAll, this.selectedOnly);
+        this.disableLabelAndCheckbox(checkboxes, disable);
+    }
+
+    private disableLabelAndCheckbox(checkboxes, disable: boolean) {
+        checkboxes.forEach(function (item) {
+            item.prop("disabled", disable);
+            if (disable) {
+                item.parent().attr("disabled", "disabled");
+            } else {
+                item.parent().removeAttr("disabled");
+            }
+        });
     }
 
     public addIconLoading() {

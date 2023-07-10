@@ -1,33 +1,36 @@
 "use strict";
 var SportLeagueMatchTreeViewOption = /** @class */ (function () {
-    function SportLeagueMatchTreeViewOption(selectorId, filterPlaceholder, filterNotFoundText, selectAllText, noDataText, expandGroupsByDefault, maxHeight, expandAllText, selectedOnlyText) {
+    function SportLeagueMatchTreeViewOption(selectorId, noDataText, filterPlaceholder, filterNotFoundText, selectAllText, enableExpandAll, expandAllText, selectedOnlyText, expandGroupsByDefault, maxHeight) {
         if (selectorId === void 0) { selectorId = "sportleaguematch-treeview"; }
+        if (noDataText === void 0) { noDataText = "No information is available"; }
         if (filterPlaceholder === void 0) { filterPlaceholder = "Search Sport/ League"; }
         if (filterNotFoundText === void 0) { filterNotFoundText = "No Sport/ League found"; }
         if (selectAllText === void 0) { selectAllText = "Select All"; }
-        if (noDataText === void 0) { noDataText = "No information is available"; }
-        if (expandGroupsByDefault === void 0) { expandGroupsByDefault = false; }
-        if (maxHeight === void 0) { maxHeight = 400; }
+        if (enableExpandAll === void 0) { enableExpandAll = false; }
         if (expandAllText === void 0) { expandAllText = "Expand All"; }
         if (selectedOnlyText === void 0) { selectedOnlyText = "Selected Only"; }
+        if (expandGroupsByDefault === void 0) { expandGroupsByDefault = false; }
+        if (maxHeight === void 0) { maxHeight = 400; }
         this.selectorId = selectorId;
+        this.noDataText = noDataText;
         this.filterPlaceholder = filterPlaceholder;
         this.filterNotFoundText = filterNotFoundText;
         this.selectAllText = selectAllText;
-        this.noDataText = noDataText;
-        this.expandGroupsByDefault = expandGroupsByDefault;
-        this.maxHeight = maxHeight;
+        this.enableExpandAll = enableExpandAll;
         this.expandAllText = expandAllText;
         this.selectedOnlyText = selectedOnlyText;
+        this.expandGroupsByDefault = expandGroupsByDefault;
+        this.maxHeight = maxHeight;
         this.selectorId = selectorId;
+        this.noDataText = noDataText;
         this.filterPlaceholder = filterPlaceholder;
         this.filterNotFoundText = filterNotFoundText;
         this.selectAllText = selectAllText;
-        this.noDataText = noDataText;
-        this.expandGroupsByDefault = expandGroupsByDefault;
-        this.maxHeight = maxHeight;
+        this.enableExpandAll = enableExpandAll;
         this.expandAllText = expandAllText;
         this.selectedOnlyText = selectedOnlyText;
+        this.expandGroupsByDefault = expandGroupsByDefault;
+        this.maxHeight = maxHeight;
     }
     return SportLeagueMatchTreeViewOption;
 }());
@@ -43,6 +46,10 @@ var SportLeagueMatchTreeViewComponent = /** @class */ (function () {
         this.notFoundText = selector.find("#not-found-" + this.treeviewOption.selectorId);
         this.selectAllContainer = selector.find(".selectall-box");
         this.selectAll = selector.find("#select-all-" + this.treeviewOption.selectorId);
+        if (this.treeviewOption.enableExpandAll) {
+            this.expandAll = selector.find("#expand-all-" + this.treeviewOption.selectorId);
+            this.selectedOnly = selector.find("#selected-only-" + this.treeviewOption.selectorId);
+        }
         this.checkboxListContainer = selector.find(".checkbox-list");
         this.bindPersistentEvents(selector);
         this.disableFilerAndSelectAll(true);
@@ -62,22 +69,13 @@ var SportLeagueMatchTreeViewComponent = /** @class */ (function () {
     };
     SportLeagueMatchTreeViewComponent.prototype.appendSelectAll = function (html) {
         var selectAllId = "select-all-" + this.treeviewOption.selectorId;
-        var collapseExpandAllId = "icon-dropdown-all-" + this.treeviewOption.selectorId;
-        var selectedOnlyId = "selected-only-" + this.treeviewOption.selectorId;
-        html.push('<div class="selectall-box">');
-        if (this.enableCollapseExpandAll()) {
-            html.push('<span id="', collapseExpandAllId, '" class="icon-dropdown-all', this.treeviewOption.expandGroupsByDefault ? " expand" : "", '"></span>');
+        html.push('<div class="selectall-box">', '<label class="node-label"><input type="checkbox" id="', selectAllId, '"/>', this.treeviewOption.selectAllText, '</label>');
+        if (this.treeviewOption.enableExpandAll) {
+            var collapseExpandAllId = "expand-all-" + this.treeviewOption.selectorId;
+            var selectedOnlyId = "selected-only-" + this.treeviewOption.selectorId;
+            html.push('<label class="node-label"><input type="checkbox" id="', collapseExpandAllId, '"/>', this.treeviewOption.expandAllText, '</label>', '<label class="node-label"><input type="checkbox" id="', selectedOnlyId, '"/>', this.treeviewOption.selectedOnlyText, '</label>');
         }
-        html.push('<label class="node-label"><input type="checkbox" id="', selectAllId, '"/>', this.treeviewOption.selectAllText, '</label>', '<label class="node-label"><input type="checkbox" id="', collapseExpandAllId, '"/>', this.treeviewOption.expandAllText, '</label>', '<label class="node-label"><input type="checkbox" id="', selectedOnlyId, '"/>', this.treeviewOption.selectedOnlyText, '</label></div>');
-    };
-    SportLeagueMatchTreeViewComponent.prototype.enableCollapseExpandAll = function () {
-        //const listData = this.treeviewOption.listData;
-        //for (let i = 0, max = listData.length; i < max; i++) {
-        //    if (listData[i].items && listData[i].items.length > 0) {
-        //        return true;
-        //    }
-        //}
-        return false;
+        html.push('</div>');
     };
     SportLeagueMatchTreeViewComponent.prototype.renderNoData = function () {
         return '<li><label class="node-label">' + this.treeviewOption.noDataText + '</label></li>';
@@ -101,13 +99,27 @@ var SportLeagueMatchTreeViewComponent = /** @class */ (function () {
                 checked: checked
             });
         });
+        if (this.treeviewOption.enableExpandAll) {
+            this.expandAll.click(function () {
+                var checked = _this.expandAll.is(":checked");
+                _this.checkboxListContainer
+                    .find(".icon-dropdown")
+                    .each(function (_, item) { return _this.collapseExpand($(item), checked); });
+            });
+            this.selectedOnly.click(function () {
+                _this.checkboxListContainer.find(":checkbox:not(:checked)")
+                    .closest(".tree-node")
+                    .toggleClass("hide", _this.selectedOnly.is(":checked"));
+            });
+        }
     };
     SportLeagueMatchTreeViewComponent.prototype.handleFiltering = function (filterValue) {
         var _this = this;
         if (filterValue === void 0) { filterValue = ""; }
         var notFound = true;
+        var treeNodeList = this.checkboxListContainer.find(".tree-node");
         if (filterValue.length) {
-            this.checkboxListContainer.find(".tree-node").each(function (_, item) {
+            treeNodeList.each(function (_, item) {
                 var treeNode = $(item);
                 var text = treeNode.data("text");
                 if (text.indexOf(filterValue) !== -1) {
@@ -121,7 +133,7 @@ var SportLeagueMatchTreeViewComponent = /** @class */ (function () {
             });
         }
         else {
-            this.checkboxListContainer.find(".tree-node").removeClass("filter-hidden");
+            treeNodeList.removeClass("filter-hidden");
             notFound = false;
         }
         this.notFoundText.toggleClass("show", notFound);
@@ -166,27 +178,13 @@ var SportLeagueMatchTreeViewComponent = /** @class */ (function () {
             _this.toggleCheckbox($(e.target));
             _this.updateSelectAll();
         });
-        var iconDropdownAll = this.selectAllContainer.find("#icon-dropdown-all-" + this.treeviewOption.selectorId);
         var iconDropdownList = this.checkboxListContainer.find(".icon-dropdown");
-        iconDropdownAll.off().click(function (e) {
-            var icon = $(e.target);
-            var isExpand = icon.hasClass("expand");
-            iconDropdownList.each(function (_, item) { return _this.collapseExpand($(item), !isExpand); });
-            icon.toggleClass("expand", !isExpand);
-        });
         iconDropdownList.off().click(function (e) {
             var icon = $(e.target);
             var isExpand = icon.hasClass("expand");
             _this.collapseExpand(icon, !isExpand);
-            //if (isExpand) {
-            //    if (!iconDropdownList.filter(":not(.expand)").length) {
-            //        iconDropdownAll.addClass("expand");
-            //    }
-            //} else {
-            //    if (!iconDropdownList.filter(".expand").length) {
-            //        iconDropdownAll.removeClass("expand");
-            //    }
-            //}
+            _this.treeviewOption.enableExpandAll &&
+                _this.expandAll.prop("checked", !isExpand && iconDropdownList.filter(":not(.expand)").length === 0);
         });
     };
     SportLeagueMatchTreeViewComponent.prototype.collapseExpand = function (icon, isExpand) {
@@ -222,14 +220,20 @@ var SportLeagueMatchTreeViewComponent = /** @class */ (function () {
     };
     SportLeagueMatchTreeViewComponent.prototype.disableFilerAndSelectAll = function (disable) {
         this.filterInput.prop("disabled", disable);
-        this.selectAll.prop("disabled", disable);
-        var selectAllLabel = this.selectAll.parent();
-        if (disable) {
-            selectAllLabel.attr("disabled", "disabled");
-        }
-        else {
-            selectAllLabel.removeAttr("disabled");
-        }
+        var checkboxes = [this.selectAll];
+        this.treeviewOption.enableExpandAll && checkboxes.push(this.expandAll, this.selectedOnly);
+        this.disableLabelAndCheckbox(checkboxes, disable);
+    };
+    SportLeagueMatchTreeViewComponent.prototype.disableLabelAndCheckbox = function (checkboxes, disable) {
+        checkboxes.forEach(function (item) {
+            item.prop("disabled", disable);
+            if (disable) {
+                item.parent().attr("disabled", "disabled");
+            }
+            else {
+                item.parent().removeAttr("disabled");
+            }
+        });
     };
     SportLeagueMatchTreeViewComponent.prototype.addIconLoading = function () {
         this.checkboxListContainer.html('<li><span class="icon-loading"></span></li>');

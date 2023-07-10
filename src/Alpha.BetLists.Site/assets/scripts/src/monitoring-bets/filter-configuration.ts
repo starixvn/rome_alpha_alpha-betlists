@@ -4,11 +4,11 @@ class FilterConfigurationView {
     private inlineMessage: InlineMessageComponent;
     private betTypeDropdown: DropdownListComponent;
     private stakeInput: JQuery;
-    private matchLiveIndicatorDropdown: DropdownListComponent;
-    private groupOfSportsDropdown: DropdownListComponent;
+    private eventStatusDropdown: DropdownListComponent;
+    private sportGroupDropdown: DropdownListComponent;
     private sportLeagueMatchTreeview: SportLeagueMatchTreeViewComponent;
     private monitoredWatchlistMemberTreeview: SportLeagueMatchTreeViewComponent;
-    private memberTagsInput: UsernameTagsInputComponent;
+    private usernameTagsInput: UsernameTagsInputComponent;
 
     private inlineMessagePopup: InlineMessageComponent;
     private filterNameInput: JQuery;
@@ -25,57 +25,52 @@ class FilterConfigurationView {
     }
 
     private initComponents() {
+        const noInfoText = $("#hidden-NoInformationIsAvailable").val();
         this.inlineMessage = new InlineMessageComponent();
+        this.inlineMessagePopup = new InlineMessageComponent("inline-message-popup");
 
         this.betTypeDropdown = new DropdownListComponent();
-        this.betTypeDropdown.render("ddl-bettypes");
+        this.betTypeDropdown.render("ddl-betType");
 
-        this.matchLiveIndicatorDropdown = new DropdownListComponent();
-        this.matchLiveIndicatorDropdown.render("ddl-matchLiveIndicator", {
-            onChange: (select) => this.getSports(select.val(), this.groupOfSportsDropdown.getSelected()[0])
+        this.eventStatusDropdown = new DropdownListComponent();
+        this.eventStatusDropdown.render("ddl-eventStatus", {
+            onChange: (select) => this.getSports(select.val(), this.sportGroupDropdown.getSelected()[0])
         });
 
-        this.groupOfSportsDropdown = new DropdownListComponent();
-        this.groupOfSportsDropdown.render("ddl-groupOfSport", {
-            onChange: (select) => this.getSports(this.matchLiveIndicatorDropdown.getSelected()[0], select.val())
+        this.sportGroupDropdown = new DropdownListComponent();
+        this.sportGroupDropdown.render("ddl-sportGroup", {
+            onChange: (select) => this.getSports(this.eventStatusDropdown.getSelected()[0], select.val())
         });
 
         this.sportLeagueMatchTreeview = new SportLeagueMatchTreeViewComponent();
         this.sportLeagueMatchTreeview.render(new SportLeagueMatchTreeViewOption(
             "sportleaguematch-treeview",
-            "Search Sport/ League",
-            "No Sport/ League found",
-            "Select All",
-            "No information is available",
-            false,
-            400
+            noInfoText,
+            $("#hidden-SearchSportLeague").val(),
+            $("#hidden-SportLeagueNotFound").val(),
+            $("#hidden-SelectAll").val(),
+            true,
+            $("#hidden-ExpandAll").val(),
+            $("#hidden-SelectedOnly").val()
         ));
 
         this.monitoredWatchlistMemberTreeview = new SportLeagueMatchTreeViewComponent();
         this.monitoredWatchlistMemberTreeview.render(new SportLeagueMatchTreeViewOption(
             "monitored-watchlist-members",
-            "Search member username",
-            "No member username found",
-            "All (Include newly add ...)",
-            "No information is available",
-            false,
-            400
+            noInfoText,
+            $("#hidden-SearchMemberUsername").val(),
+            $("#hidden-MemberUsernameNotFound").val(),
+            $("#hidden-AllIncludedNewlyAddedMembers").val()
         ));
 
-        this.memberTagsInput = new UsernameTagsInputComponent();
-        this.memberTagsInput.render(new UsernameTagsInputOption(
-            "username",
-            100,
-            "Max: # username(s)",
-            "Duplicated username"
+        this.usernameTagsInput = new UsernameTagsInputComponent();
+        this.usernameTagsInput.render(new UsernameTagsInputOption(
+            "username", 100, $("#hidden-MaxNoUsernames").val(), $("#hidden-UsernameAlreadyExists").val()
         ));
-
-        this.inlineMessagePopup = new InlineMessageComponent("inline-message-popup");
     }
 
     private bindEvents() {
-        this.stakeInput = $("#txt-stake");
-        this.stakeInput.on("input", function () {
+        this.stakeInput = $("#txt-stake").on("input", function () {
             this.value = alphaReports.forceInputDecimal(this.value);
         });
 
@@ -87,8 +82,8 @@ class FilterConfigurationView {
             if ($(e.target).is(":checked")) {
                 boxFilterBySports.removeClass("hide");
                 this.getSports(
-                    this.matchLiveIndicatorDropdown.getSelected()[0],
-                    this.groupOfSportsDropdown.getSelected()[0]
+                    this.eventStatusDropdown.getSelected()[0],
+                    this.sportGroupDropdown.getSelected()[0]
                 );
             }
         });
@@ -134,8 +129,6 @@ class FilterConfigurationView {
         $(".button-reset").click(() => {
             this.addFilterFormData = this.getFormData(rdoSpecificSports, rdoSpecificMembers);
             this.addFilterFormData && addFilterPopup.modal("show");
-
-            console.dir(this.addFilterFormData);
         });
     }
 
@@ -182,7 +175,7 @@ class FilterConfigurationView {
         let sports = [{ sport: 0 }];
         let isLive = false;
         if (rdoSpecificSports.is(":checked")) {
-            isLive = this.matchLiveIndicatorDropdown.getSelected()[0] === "1";
+            isLive = this.eventStatusDropdown.getSelected()[0] === "1";
             if (!this.sportLeagueMatchTreeview.isSelectAll()) {
                 sports = this.sportLeagueMatchTreeview.getSportsLeagues();
                 if (!sports.length) {
@@ -204,7 +197,7 @@ class FilterConfigurationView {
                 watchList = this.monitoredWatchlistMemberTreeview.getSelected().join();
             }
 
-            inputList = this.memberTagsInput.getCustIds().join();
+            inputList = this.usernameTagsInput.getCustIds().join();
             if (!watchList.length && !inputList.length) {
                 this.inlineMessage.showError($("#hidden-FilterByMembersRequiredError").val());
                 this.scrollTopInlineMessage();

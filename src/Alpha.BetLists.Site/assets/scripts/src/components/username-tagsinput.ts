@@ -4,8 +4,8 @@ class UsernameTagsInputOption {
     constructor(
         public selectorId = "tagsinput",
         public limit = 100,
-        public limitText = "Max: # tag(s)",
-        public duplicatedUsernameText = "Duplicated username",
+        public limitText = "Max: # username(s)",
+        public duplicatedUsernameText = "Username already exists",
         public width = "auto",
         public height = "auto",
         public delimiter = [","]) {
@@ -118,13 +118,15 @@ class UsernameTagsInputComponent {
                 }).append(
                     $("<span>", { class: "tag-text" }).text(result.Username),
                     $("<button>", { type: "button", class: "tag-remove" }).click((e) => {
-                        $(e.target).parent().remove();
+                        const tag = $(e.target).parent();
+                        tag.hasClass("error") && tag.tooltip("destroy");
+                        tag.remove();
                         this.updateTagLimitText();
                     })
                 ));
         });
 
-        this.tagsInputContainer.find('[data-toggle="tooltip"]').tooltip();
+        this.tagsInputContainer.find(".error:last").tooltip("destroy").tooltip();
         this.updateTagLimitText();
         this.realInput.val("").focus();
     }

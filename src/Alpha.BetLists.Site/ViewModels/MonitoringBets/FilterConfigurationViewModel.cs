@@ -15,7 +15,7 @@
 
         public bool ShowWelcomePopup { get; }
 
-        public IEnumerable<SelectListItem> Bettypes
+        public IEnumerable<SelectListItem> BetTypes
         {
             get
             {
@@ -33,7 +33,7 @@
             }
         }
 
-        public IEnumerable<SelectListItem> MatchLiveIndicators
+        public IEnumerable<SelectListItem> EventStatus
         {
             get
             {
@@ -42,7 +42,7 @@
             }
         }
 
-        public IEnumerable<SelectListItem> GroupOfSports
+        public IEnumerable<SelectListItem> SportGroups
         {
             get
             {

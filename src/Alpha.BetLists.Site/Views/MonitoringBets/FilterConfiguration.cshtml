@@ -21,18 +21,18 @@
         <input type="button" class="button button-reset" value="@Resources.SaveFilter" />
     </div>
     <div class="block-config">
-        <div class="ttl-config">@Resources.FilterByBettypeAndStake</div>
+        <div class="ttl-config">@Resources.FilterByBetTypeAndStake</div>
         <div class="list-item">
             <div class="item">
-                <label>@Resources.Bettype</label>
+                <label>@Resources.BetType</label>
                 <div class="inner">
-                    @Html.DropDownList("ddl-bettypes", Model.Bettypes, new Dictionary<string, object>
-                    {
-                        ["multiple"] = "multiple",
-                        ["data-label-select"] = Resources.SelectBettype,
-                        ["data-label-selected"] = Resources.Selected,
-                        ["data-label-all"] = Resources.AllBetTypes
-                    })
+                    @Html.DropDownList("ddl-betType", Model.BetTypes, new Dictionary<string, object>
+               {
+                   ["multiple"] = "multiple",
+                   ["data-label-select"] = Resources.SelectBettype,
+                   ["data-label-selected"] = Resources.Selected,
+                   ["data-label-all"] = Resources.AllBetTypes
+               })
                 </div>
             </div>
             <div class="item">
@@ -53,8 +53,8 @@
                     <input type="radio" name="filterBySports" value="all" id="rdo-allSports" checked />
                     <span class="overlay"></span>
                 </label>
-                <p>Ticket of all sports will be monitored</p>
-                <p>New sports will be include automatically.</p>
+                <p>@Resources.FilterConfigurationAllSportsContent</p>
+                <p>@Resources.FilterConfigurationAllSportsContent2</p>
             </div>
             <div class="box">
                 <label for="rdo-specificSports">
@@ -62,27 +62,26 @@
                     <input type="radio" name="filterBySports" value="specific" id="rdo-specificSports" />
                     <span class="overlay"></span>
                 </label>
-                <p>Ticket of selected options will be monitored.</p>
-                <p>Selecting specific a league/match may be obsolete once completing.</p>
+                <p>@Resources.FilterConfigurationSpecificSportsContent</p>
+                <p>@Resources.FilterConfigurationSpecificSportsContent2</p>
             </div>
         </div>
         <div class="hide" id="box-filterBySports">
             <div class="list-item all-sport">
                 <div class="item">
-                    <label>@Resources.MatchLiveIndicator</label>
+                    <label>@Resources.EventStatus</label>
                     <div class="inner">
-                        @Html.DropDownList("ddl-matchLiveIndicator", Model.MatchLiveIndicators)
+                        @Html.DropDownList("ddl-eventStatus", Model.EventStatus)
                     </div>
                 </div>
                 <div class="item">
-                    <label>@Resources.GroupOfSports</label>
+                    <label>@Resources.SportGroup</label>
                     <div class="inner">
-                        @Html.DropDownList("ddl-groupOfSport", Model.GroupOfSports)
+                        @Html.DropDownList("ddl-sportGroup", Model.SportGroups)
                     </div>
                 </div>
             </div>
-            <div class="treeview" id="sportleaguematch-treeview">
-            </div>
+            <div class="treeview" id="sportleaguematch-treeview"></div>
         </div>
     </div>
     <div class="block-config">
@@ -94,8 +93,8 @@
                     <input type="radio" name="filterByMembers" value="all" id="rdo-allMembers" checked />
                     <span class="overlay"></span>
                 </label>
-                <p>Ticket of all members will be monitored</p>
-                <p>New members will be include automatically.</p>
+                <p>@Resources.FilterConfigurationAllMembersContent</p>
+                <p>@Resources.FilterConfigurationAllMembersContent2</p>
             </div>
             <div class="box">
                 <label for="rdo-specificMembers">
@@ -103,14 +102,13 @@
                     <input type="radio" name="filterByMembers" value="specific" id="rdo-specificMembers" />
                     <span class="overlay"></span>
                 </label>
-                <p>Specific members can be added manually or selected from monitored fist.</p>
-                <p>Selecting specific a member may be obsolete once member closed.</p>
+                <p>@Resources.FilterConfigurationSpecificMembersContent</p>
             </div>
         </div>
         <div class="hide" id="box-filterByMembers">
             <p class="text">@Resources.EnterMemberUsernames</p>
             @UsernameTagsInput.Render("username", Resources.UsernameTagsInputPlaceHolder)
-            <p class="text">@Resources.SelectMonitoredMembers</p>
+            <p class="text">@Resources.SelectMembers</p>
             <div id="monitored-watchlist-members"></div>
         </div>
     </div>
@@ -126,13 +124,14 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="icon icon-close close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
-                        <h4 class="modal-title">Set your filter criteria first</h4>
+                        <h4 class="modal-title">@Resources.FilterConfigurationWelcomeTitle</h4>
                     </div>
                     <div class="modal-body">
-                        <p>Go ahead and give it a try?</p>
+                        <p>@Resources.FilterConfigurationWelcomeContent</p>
+                        <p>@Resources.FilterConfigurationWelcomeContent2</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn-submit" data-dismiss="modal">YES</button>
+                        <button type="button" class="btn-submit" data-dismiss="modal">@Resources.Yes</button>
                     </div>
                 </div>
             </div>
@@ -143,16 +142,16 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="icon icon-close close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
-                    <h4 class="modal-title">Save New Filter</h4>
+                    <h4 class="modal-title">@Resources.SaveToMyFilters</h4>
                 </div>
                 <div class="modal-body">
-                <div id="inline-message-popup" class="msg hide"></div>
-                <input type="text" id="txt-filterName" autocomplete="off" maxlength="500" />
-                <input type="checkbox" id="chk-isDefault" />
+                    <div id="inline-message-popup" class="msg hide"></div>
+                    <input type="text" id="txt-filterName" autocomplete="off" maxlength="500" />
+                    <input type="checkbox" id="chk-isDefault" />
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn-cancel" data-dismiss="modal">@Resources.Cancel</button>
-                <button type="button" class="btn-submit">Save Filter</button>
+                    <button type="button" class="btn-submit">@Resources.SaveFilter</button>
                 </div>
             </div>
         </div>
@@ -164,3 +163,14 @@
 @Html.Hidden("hidden-SportsRequiredError", Resources.FilterConfigurationSportsRequiredError)
 @Html.Hidden("hidden-FilterByMembersRequiredError", Resources.FilterConfigurationFilterByMembersRequiredError)
 @Html.Hidden("hidden-FilterNameRequiredError", Resources.FilterConfigurationFilterNameRequiredError)
+@Html.Hidden("hidden-SelectAll", Resources.SelectAll)
+@Html.Hidden("hidden-SearchSportLeague", Resources.SearchSportLeague)
+@Html.Hidden("hidden-SportLeagueNotFound", Resources.SportLeagueNotFound)
+@Html.Hidden("hidden-ExpandAll", Resources.ExpandAll)
+@Html.Hidden("hidden-SelectedOnly", Resources.SelectedOnly)
+@Html.Hidden("hidden-SearchMemberUsername", Resources.SearchMemberUsername)
+@Html.Hidden("hidden-MemberUsernameNotFound", Resources.MemberUsernameNotFound)
+@Html.Hidden("hidden-AllIncludedNewlyAddedMembers", Resources.AllIncludedNewlyAddedMembers)
+@Html.Hidden("hidden-NoInformationIsAvailable", Resources.NoInformationIsAvailable)
+@Html.Hidden("hidden-MaxNoUsernames", Resources.MaxNoUsernames)
+@Html.Hidden("hidden-UsernameAlreadyExists", Resources.UsernameAlreadyExists)

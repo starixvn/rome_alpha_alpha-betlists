@@ -66,7 +66,7 @@
 
         private static string BuildBetTypes(string betTypes)
             => betTypes.Equals("0", StringComparison.OrdinalIgnoreCase)
-            ? Resources.All
+            ? Resources.AllBetTypes
             : betTypes
                 .SplitByCommaWithNoneEmptyEntries()
                 .Select(t => CacheRefServiceHelper.GetBetTypeName(Convert.ToInt32(t)))

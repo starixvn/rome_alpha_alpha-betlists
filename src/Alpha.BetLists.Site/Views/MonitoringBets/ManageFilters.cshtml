@@ -53,7 +53,7 @@
                         </td>
                     </tr>
                     <tr class="hide" data-filterid="@item.FilterId">
-                        <td>@Resources.Bettype</td>
+                        <td>@Resources.BetType</td>
                         <td colspan="2">@item.FilterXml.BetTypeName</td>
                     </tr>
                     <tr class="hide" data-filterid="@item.FilterId">
@@ -86,11 +86,11 @@
                     if (item.FilterXml.IsWatchlist != FilterByMembersConstants.AllMembers)
                     {
                         <tr class="hide" data-filterid="@item.FilterId">
-                            <td>@Resources.InputMembers</td>
+                            <td>@Resources.EnteredMembers</td>
                             <td colspan="2">@RenderDropdownMembers(item.InputList)</td>
                         </tr>
                         <tr class="hide" data-filterid="@item.FilterId">
-                            <td>@Resources.MonitoredMembers</td>
+                            <td>@Resources.SelectedMembers</td>
                             <td colspan="2">
                                 @if (item.FilterXml.IsWatchlist == FilterByMembersConstants.AllWatchlistMembers)
                                 {
@@ -147,18 +147,19 @@
         <ul class="subtree">
             @foreach (var league in leagues)
             {
-                <li>
+                <li>@league.Name</li>
+                @*<li>
                     <div class="tree-node-name">
                         <span class="arrow right"></span> @league.Name
                     </div>
                     @RenderTreeViewMatches(league.Matches)
-                </li>
+                </li>*@
             }
         </ul>
     }
 }
 
-@helper RenderTreeViewMatches(IEnumerable<Match> matches)
+@*@helper RenderTreeViewMatches(IEnumerable<Match> matches)
 {
     if (matches.Any())
     {
@@ -169,7 +170,7 @@
             }
         </ul>
     }
-}
+}*@
 
 @helper RenderDropdownMembers(string members)
 {
@@ -179,16 +180,24 @@
     }
     else
     {
-        <div class="dropdown">
-            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-                @Resources.SpecificMembers<span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-                @foreach (var item in members.SplitByCommaWithNoneEmptyEntries())
-                {
-                    <li><a href="javascript:;">@item</a></li>
-                }
-            </ul>
-        </div>
+        @{ var memberList = members.SplitByCommaWithNoneEmptyEntries(); }
+        if (memberList.Length == 1)
+        {
+            @:memberList[0]
+        }
+        else
+        {
+            <div class="dropdown">
+                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                    @memberList.Length @Resources.Members<span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    @foreach (var item in memberList)
+                    {
+                        <li><a href="javascript:;">@item</a></li>
+                    }
+                </ul>
+            </div>
+        }
     }
 }

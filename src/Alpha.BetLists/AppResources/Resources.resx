@@ -522,6 +522,7 @@
   <data name="ipnote" xml:space="preserve">
     <value>Country info provided by IP2Location™ and DNSstuff is for reference only, without warranty. For current and accurate info, consult reliable sources if needed</value>
   </data>
+<<<<<<< HEAD
   <data name="SearchTickets" xml:space="preserve">
     <value>Search Tickets</value>
   </data>
@@ -533,6 +534,11 @@
   </data>
   <data name="InputMembers" xml:space="preserve">
     <value>Input Member(s)</value>
+=======
+  <data name="EnteredMembers" xml:space="preserve">
+    <value>Entered Member(s)</value>
+  </data>
+>>>>>>> e0f7702c (feat: 186142 - update resource)
   </data>
   <data name="InvalidUsername" xml:space="preserve">
     <value>Invalid username</value>
@@ -546,8 +552,8 @@
   <data name="Members" xml:space="preserve">
     <value>Members</value>
   </data>
-  <data name="MonitoredMembers" xml:space="preserve">
-    <value>Monitored Member(s)</value>
+  <data name="SelectedMembers" xml:space="preserve">
+    <value>Selected Member(s)</value>
   </data>
   <data name="None" xml:space="preserve">
     <value>None</value>
@@ -574,7 +580,7 @@
     <value>Sports</value>
   </data>
   <data name="UsernameTagsInputPlaceHolder" xml:space="preserve">
-    <value>Enter username(s) (Separate by comma, tab and enter)</value>
+    <value>Enter username(s) (separated by comma, tab and enter)</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
@@ -588,8 +594,8 @@
   <data name="SaveFilter" xml:space="preserve">
     <value>Save Filter</value>
   </data>
-  <data name="FilterByBettypeAndStake" xml:space="preserve">
-    <value>Filter by Bettype And Stake</value>
+  <data name="FilterByBetTypeAndStake" xml:space="preserve">
+    <value>Filter by Bet type and Stake</value>
   </data>
   <data name="FilterBySports" xml:space="preserve">
     <value>Filter by Sports</value>
@@ -597,11 +603,11 @@
   <data name="FilterByMembers" xml:space="preserve">
     <value>Filter by Members</value>
   </data>
-  <data name="MatchLiveIndicator" xml:space="preserve">
-    <value>Match Live Indicator</value>
+  <data name="EventStatus" xml:space="preserve">
+    <value>Event Status</value>
   </data>
-  <data name="GroupOfSports" xml:space="preserve">
-    <value>Group of Sports</value>
+  <data name="SportGroup" xml:space="preserve">
+    <value>Sport Group</value>
   </data>
   <data name="EnterMemberUsernames" xml:space="preserve">
     <value>Enter Member username(s)</value>
@@ -609,8 +615,8 @@
   <data name="AddedSuccessfully" xml:space="preserve">
     <value>Added successfully</value>
   </data>
-  <data name="SelectMonitoredMembers" xml:space="preserve">
-    <value>Select monitored members</value>
+  <data name="SelectMembers" xml:space="preserve">
+    <value>Select Member(s)</value>
   </data>
   <data name="SearchMemberUsername" xml:space="preserve">
     <value>Search Member Username</value>
@@ -657,8 +663,8 @@
   <data name="Back" xml:space="preserve">
     <value>Back</value>
   </data>
-  <data name="Bettype" xml:space="preserve">
-    <value>Bettype</value>
+  <data name="BetType" xml:space="preserve">
+    <value>Bet Type</value>
   </data>
   <data name="ConfirmMessageRemoveAllFilters" xml:space="preserve">
     <value>Are you sure you want to remove all filters?</value>
@@ -686,5 +692,65 @@
   </data>
   <data name="FilterConfigurationFilterNameRequiredError" xml:space="preserve">
     <value>Please enter a filter name</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="SaveToMyFilters" xml:space="preserve">
+    <value>Save to My Filters</value>
+  </data>
+  <data name="SetAsDefaultFilter" xml:space="preserve">
+    <value>Set as default filter</value>
+  </data>
+  <data name="MemberUsernameNotFound" xml:space="preserve">
+    <value>Member username not found</value>
+  </data>
+  <data name="UsernameAlreadyExists" xml:space="preserve">
+    <value>Username already exists</value>
+  </data>
+  <data name="MaxNoUsernames" xml:space="preserve">
+    <value>Max: # username(s)</value>
+  </data>
+  <data name="SearchSportLeague" xml:space="preserve">
+    <value>Search Sport/ League</value>
+  </data>
+  <data name="SportLeagueNotFound" xml:space="preserve">
+    <value>Sport/League not found</value>
+  </data>
+  <data name="FilterConfigurationWelcomeTitle" xml:space="preserve">
+    <value>Set your filter criteria first</value>
+  </data>
+  <data name="FilterConfigurationWelcomeContent" xml:space="preserve">
+    <value>First time using Last Bet function? Please set the filter criteria based on your monitoring needs for bet tickets, and don’t forget to save your filter for later use.</value>
+  </data>
+  <data name="FilterConfigurationWelcomeContent2" xml:space="preserve">
+    <value>Go ahead and give it a try!</value>
+  </data>
+  <data name="FilterConfigurationAllSportsContent" xml:space="preserve">
+    <value>Monitor tickets of all sports.</value>
+  </data>
+  <data name="FilterConfigurationAllSportsContent2" xml:space="preserve">
+    <value>New sports are automatically included.</value>
+  </data>
+  <data name="FilterConfigurationSpecificSportsContent" xml:space="preserve">
+    <value>Monitor tickets based on the selected criteria (sports/leagues).</value>
+  </data>
+  <data name="FilterConfigurationSpecificSportsContent2" xml:space="preserve">
+    <value>The completed league will be removed from the filter criteria.</value>
+  </data>
+  <data name="FilterConfigurationAllMembersContent" xml:space="preserve">
+    <value>Monitor tickets of all Members.</value>
+  </data>
+  <data name="FilterConfigurationAllMembersContent2" xml:space="preserve">
+    <value>New Members are automatically included.</value>
+  </data>
+  <data name="FilterConfigurationSpecificMembersContent" xml:space="preserve">
+    <value>Monitor tickets of the selected Member(s), which can be added manually or selected from My Watchlist.</value>
+  </data>
+  <data name="ExpandAll" xml:space="preserve">
+    <value>Expand All</value>
+  </data>
+  <data name="SelectedOnly" xml:space="preserve">
+    <value>Selected Only</value>
   </data>
 </root>
