@@ -274,10 +274,15 @@
   padding: 4px 16px;
   color: #ffffff;
   border-radius: 3px;
+  box-shadow: none;
   background-color: #0B599C;
-  margin-right: 17px; }
+  margin-right: 17px;
+  text-decoration: none; }
   .button.button-cancel {
     background-color: #696969; }
+    .button.button-cancel:hover {
+      color: #fff !important;
+      text-decoration: none; }
   .button.button-reset {
     background-color: #1BAC69; }
   .button:hover {
@@ -310,7 +315,8 @@
 
 .text {
   font-size: 14px;
-  margin-bottom: 4px; }
+  margin-bottom: 4px;
+  font-weight: bold; }
 
 .item {
   display: inline-flex;
@@ -406,3 +412,37 @@
     font-size: 14px;
     line-height: 16.41px;
     margin-bottom: 8px; }
+
+.modal-body {
+  display: flex;
+  flex-direction: column; }
+  .modal-body .ttl {
+    font-size: 14px; }
+  .modal-body .require {
+    color: #FE0000; }
+  .modal-body input[type="text"] {
+    width: 100%;
+    box-shadow: none;
+    border: 1px solid #d1d1d1;
+    border-radius: 3px; }
+  .modal-body .msg {
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 3px;
+    padding: 8px 11px;
+    margin: 10px 0 0; }
+    .modal-body .msg:before {
+      display: none; }
+  .modal-body .msg-error {
+    color: #FE0000;
+    background-color: #FFF2F2;
+    border-color: #FE0000; }
+
+.modal-footer {
+  display: flex;
+  align-items: center; }
+  .modal-footer label {
+    margin: 0;
+    cursor: pointer; }
+  .modal-footer .block-btn {
+    margin-left: auto; }
