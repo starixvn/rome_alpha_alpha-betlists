@@ -22,6 +22,16 @@ body {
 a {
   text-decoration: none; }
 
+.space-between {
+  display: flex;
+  justify-content: space-between; }
+  .space-between .switch-version {
+    position: relative;
+    top: auto;
+    margin-top: 5px; }
+    .space-between .switch-version .btn-switch-version {
+      text-decoration: none !important; }
+
 .tbl-betlist {
   border-collapse: collapse;
   background-color: #fff;
@@ -485,6 +495,10 @@ div.ticket-list div.void > div.match, div.ticket-list div.void div.firstGoal, di
 
 .game-id {
   color: #000; }
+
+.filter {
+  padding-top: 0;
+  padding-right: 0; }
 
 .tblRpt tbody td.status-block {
   white-space: normal; }

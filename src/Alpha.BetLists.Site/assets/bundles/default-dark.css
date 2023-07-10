@@ -25,6 +25,16 @@ a {
   a:hover {
     color: #F60; }
 
+.space-between {
+  display: flex;
+  justify-content: space-between; }
+  .space-between .switch-version {
+    position: relative;
+    top: auto;
+    margin-top: 5px; }
+    .space-between .switch-version .btn-switch-version {
+      text-decoration: none !important; }
+
 .tbl-betlist {
   border-collapse: collapse;
   background-color: #212223;

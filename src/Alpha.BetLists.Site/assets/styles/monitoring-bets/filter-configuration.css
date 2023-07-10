@@ -20,12 +20,12 @@
   font-size: 13px;
   font-weight: bold;
   padding: 4px 16px;
-  color: #ffffff;
+  color: #ffffff !important;
   border-radius: 3px;
   box-shadow: none;
   background-color: #0B599C;
   margin-right: 17px;
-  text-decoration: none; }
+  text-decoration: none !important; }
   .button.button-cancel {
     background-color: #696969; }
     .button.button-cancel:hover {
@@ -186,6 +186,15 @@
     background-color: #FFF2F2;
     border-color: #FE0000; }
 
+.modal-open .modal .modal-dialog {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%; }
+
+#details-modal {
+  z-index: 100; }
+
 .modal-footer {
   display: flex;
   align-items: center; }
@@ -195,15 +204,16 @@
   .modal-footer .block-btn {
     margin-left: auto; }
 
-.modal-new-last-bet .modal-content .modal-header .modal-title {
+.modal-new-last-bet .modal-content {
   border: 0;
-  color: #094980;
-  font-size: 16px; }
-
-.modal-new-last-bet .modal-content .modal-body p {
-  font-size: 14px;
-  margin-bottom: 12px; }
-
-.modal-new-last-bet .modal-content .modal-footer {
-  display: flex;
-  justify-content: space-around; }
+  box-shadow: none; }
+  .modal-new-last-bet .modal-content .modal-header .modal-title {
+    border: 0;
+    color: #094980;
+    font-size: 16px; }
+  .modal-new-last-bet .modal-content .modal-body p {
+    font-size: 14px;
+    margin-bottom: 12px; }
+  .modal-new-last-bet .modal-content .modal-footer {
+    display: flex;
+    justify-content: space-around; }

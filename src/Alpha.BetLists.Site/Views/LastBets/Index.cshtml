@@ -33,23 +33,25 @@
         @Html.ActionLink(Resources.OtherBetTypes, "Index", $"{AppSettings.BetlistRouting}LastBets", new { BetType = BetTypeIdConstants.OtherBetTypes, IsAutoRefresh = Model.IsAutoRefresh, PageSize = Model.PageSize }, new { id = "tab-other-bet-types" })
     </li>
 </ul>
-<div class="page-section">
-    <span>@Resources.Last</span>
-    <ul class="page-size-container">
-        <li id="page-size-10" class="page-size @(Model.IsSelectedPageSize(10) ? "active" : string.Empty)">10</li>
-        <li id="page-size-20" class="page-size @(Model.IsSelectedPageSize(20) ? "active" : string.Empty)">20</li>
-        <li id="page-size-30" class="page-size @(Model.IsSelectedPageSize(30) ? "active" : string.Empty)">30</li>
-    </ul>
-    <div id="btn-turn-off-on" class="btn-turn-off-on">
-        <input type="checkbox" id="chb-switch" @(Model.IsAutoRefresh ? "checked" : string.Empty) />
-        <label id="lbl-switch" class="switch">
-            <span class="slider" data-on="@Resources.On" data-off="@Resources.Off"></span>
-        </label>
-        <span>@Resources.AutoRefresh</span>
+<div class="space-between">
+    <div class="page-section">
+        <span>@Resources.Last</span>
+        <ul class="page-size-container">
+            <li id="page-size-10" class="page-size @(Model.IsSelectedPageSize(10) ? "active" : string.Empty)">10</li>
+            <li id="page-size-20" class="page-size @(Model.IsSelectedPageSize(20) ? "active" : string.Empty)">20</li>
+            <li id="page-size-30" class="page-size @(Model.IsSelectedPageSize(30) ? "active" : string.Empty)">30</li>
+        </ul>
+        <div id="btn-turn-off-on" class="btn-turn-off-on">
+            <input type="checkbox" id="chb-switch" @(Model.IsAutoRefresh ? "checked" : string.Empty) />
+            <label id="lbl-switch" class="switch">
+                <span class="slider" data-on="@Resources.On" data-off="@Resources.Off"></span>
+            </label>
+            <span>@Resources.AutoRefresh</span>
+        </div>
+        <span id="loading-icon" class="loading-icon"></span>
     </div>
-    <span id="loading-icon" class="loading-icon"></span>
+    @Common.SwitchVersionButton.Render(Resources.NewView, Url.Action("Index", $"{AppSettings.BetlistRouting}MonitoringBets"))
 </div>
-@Common.SwitchVersionButton.Render(Resources.NewView, Url.Action("Index", $"{AppSettings.BetlistRouting}MonitoringBets"))
 <div id="msg-error" class="msg msg-error hide">
     @Resources.FunctionTurnOffError
 </div>

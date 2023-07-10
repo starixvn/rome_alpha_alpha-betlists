@@ -11,10 +11,20 @@ body {
 a {
     text-decoration: none;
 }
+.space-between {
+    display: flex;
+    justify-content: space-between;
 
+    .switch-version {
+        position: relative;
+        top: auto;
+        margin-top: 5px;
 
-
-
+        .btn-switch-version {
+            text-decoration: none !important;
+        }
+    }
+}
 .tbl-betlist {
     border-collapse: collapse;
     background-color: #fff;

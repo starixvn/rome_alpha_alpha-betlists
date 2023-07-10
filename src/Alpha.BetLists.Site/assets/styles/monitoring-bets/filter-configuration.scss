@@ -13,16 +13,18 @@ $border-color: #E0E0E0;
     font-size: 13px;
     font-weight: bold;
     padding: 4px 16px;
-    color: #ffffff;
+    color: #ffffff !important;
     border-radius: 3px;
     box-shadow: none;
     background-color: $bg-btn;
     margin-right: 17px;
-    text-decoration: none;
+    text-decoration: none !important;
+
     &.button-cancel {
         background-color: $bg-btn-cancel;
-        &:hover{
-            color: #fff!important;
+
+        &:hover {
+            color: #fff !important;
             text-decoration: none;
         }
     }
@@ -236,6 +238,19 @@ $border-color: #E0E0E0;
         border-color: #FE0000;
     }
 }
+
+//modal
+.modal-open .modal {
+    .modal-dialog {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+    }
+}
+#details-modal{
+    z-index: 100;
+}
 .modal-footer {
     display: flex;
     align-items: center;
@@ -251,6 +266,8 @@ $border-color: #E0E0E0;
 }
 .modal-new-last-bet {
     .modal-content {
+        border: 0;
+        box-shadow: none;
         .modal-header {
             .modal-title {
                 border: 0;
