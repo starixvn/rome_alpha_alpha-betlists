@@ -643,10 +643,10 @@
     <value>ประเภทการเดิมพัน</value>
   </data>
   <data name="ConfirmMessageRemoveAllFilters" xml:space="preserve">
-    <value>Are you sure you want to remove all filters?</value>
+    <value>Remove all filters? The filters cannot be recovered after removal.</value>
   </data>
   <data name="ConfirmMessageRemoveFilter" xml:space="preserve">
-    <value>Are you sure you want to remove this filter?</value>
+    <value>Remove this filter? The filter cannot be recovered after removal.</value>
   </data>
   <data name="CreatedTime" xml:space="preserve">
     <value>Created Time</value>

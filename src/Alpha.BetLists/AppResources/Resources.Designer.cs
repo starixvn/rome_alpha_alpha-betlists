@@ -412,7 +412,7 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure you want to remove all filters?.
+        ///   Looks up a localized string similar to Remove all filters? The filters cannot be recovered after removal..
         /// </summary>
         public static string ConfirmMessageRemoveAllFilters {
             get {
@@ -421,7 +421,7 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure you want to remove this filter?.
+        ///   Looks up a localized string similar to Remove this filter? The filter cannot be recovered after removal..
         /// </summary>
         public static string ConfirmMessageRemoveFilter {
             get {

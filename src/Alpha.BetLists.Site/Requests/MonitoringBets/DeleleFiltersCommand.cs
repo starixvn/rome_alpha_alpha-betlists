@@ -14,7 +14,7 @@
             IP = viewer.IP;
         }
 
-        public int[] Ids { get; set; }
+        public string Ids { get; set; }
 
         public bool IsInternal { get; }
 
@@ -22,6 +22,6 @@
 
         public string IP { get; }
 
-        public bool IsValid() => Ids?.Length > 0;
+        public bool IsValid() => !string.IsNullOrWhiteSpace(Ids);
     }
 }

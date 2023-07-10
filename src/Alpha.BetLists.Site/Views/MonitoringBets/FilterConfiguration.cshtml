@@ -27,12 +27,12 @@
                 <label>@Resources.BetType</label>
                 <div class="inner">
                     @Html.DropDownList("ddl-betType", Model.BetTypes, new Dictionary<string, object>
-               {
-                   ["multiple"] = "multiple",
-                   ["data-label-select"] = Resources.SelectBettype,
-                   ["data-label-selected"] = Resources.Selected,
-                   ["data-label-all"] = Resources.AllBetTypes
-               })
+                    {
+                        ["multiple"] = "multiple",
+                        ["data-label-select"] = Resources.SelectBettype,
+                        ["data-label-selected"] = Resources.Selected,
+                        ["data-label-all"] = Resources.AllBetTypes
+                    })
                 </div>
             </div>
             <div class="item">
@@ -145,13 +145,13 @@
                 <h4 class="modal-title">@Resources.SaveToMyFilters</h4>
             </div>
             <div class="modal-body">
-                <label class="ttl">Filter Name <span class="require">*</span></label>
-                <input type="text" id="txt-filterName" autocomplete="off" maxlength="500" />
+                <label class="ttl">@Resources.FilterName <span class="require">*</span></label>
+                <input type="text" id="txt-filterName" autocomplete="off" maxlength="50" />
                 <div id="inline-message-popup" class="msg hide"></div>
             </div>
             <div class="modal-footer">
-                <label><input type="checkbox" id="chk-isDefault" /><span>Set it as default filter</span></label>
-                <div class=" block-btn ">
+                <label><input type="checkbox" id="chk-isDefault" /><span>@Resources.SetAsDefaultFilter</span></label>
+                <div class="block-btn">
                     <button type="button" class="button button-cancel" data-dismiss="modal">@Resources.Cancel</button>
                     <button type="button" class="button button-reset btn-submit">@Resources.SaveFilter</button>
                 </div>

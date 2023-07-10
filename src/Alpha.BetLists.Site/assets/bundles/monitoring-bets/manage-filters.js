@@ -88,7 +88,7 @@ var ManageFiltersView = /** @class */ (function () {
         var _this = this;
         this.inlineMessageComponent.hide();
         window.top.bootboxConfirm($("#hidden-confirmMessageRemoveAllFilters").val(), undefined, function () {
-            _this.handleDeleteFilters($("#hidden-allFilterIds").val().split());
+            _this.handleDeleteFilters($("#hidden-allFilterIds").val());
         });
     };
     ManageFiltersView.prototype.handleToggleFilterDetails = function (table) {
@@ -149,7 +149,7 @@ var ManageFiltersView = /** @class */ (function () {
                 }
                 else {
                     _this.inlineMessageComponent.showSuccess($("#hidden-removedSuccessfullyText").val());
-                    _this.reloadPageAfterTimeout();
+                    Common.Utils.ReloadPageAfterTimeout();
                 }
             }
             else {
@@ -176,7 +176,7 @@ var ManageFiltersView = /** @class */ (function () {
         else {
             AJAXHelper.postJSON("UpdateFilter", formData, function (result) {
                 _this.inlineMessageComponent.show(result);
-                result.ErrCode || _this.reloadPageAfterTimeout();
+                result.ErrCode || Common.Utils.ReloadPageAfterTimeout();
             });
         }
     };
@@ -190,12 +190,6 @@ var ManageFiltersView = /** @class */ (function () {
         // reset UI to original data
         radioDefaultFilter.prop("checked", true);
         this.originalData = {};
-    };
-    ManageFiltersView.prototype.reloadPageAfterTimeout = function (timeout) {
-        if (timeout === void 0) { timeout = 3000; }
-        setTimeout(function () {
-            window.location.reload();
-        }, timeout);
     };
     ManageFiltersView.prototype.handleToggleSports = function () {
         var $this = $(this);

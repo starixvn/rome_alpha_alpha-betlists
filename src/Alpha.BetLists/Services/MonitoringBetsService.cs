@@ -159,8 +159,9 @@
         public async Task<IEnumerable<Result>> DeleteFilters(DeleteFiltersParam param)
         {
             var results = new List<Result>();
+            var filterIdList = param.FilterIds.ToListInt();
 
-            foreach (var filterId in param.FilterIds)
+            foreach (var filterId in filterIdList)
             {
                 var command = new DeleteFilterCommand(param.CustId, param.SubAccId, filterId, param.IP);
                 await dynamicRepository.ExecuteAsync(command);

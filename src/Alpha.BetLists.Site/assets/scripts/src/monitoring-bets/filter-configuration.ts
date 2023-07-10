@@ -120,7 +120,13 @@ class FilterConfigurationView {
                     this.inlineMessagePopup.show(result);
                     if (!result.ErrCode) {
                         this.addFilterFormData = null;
-                        this.reloadPageAfterTimeout();
+
+                        let url = window.location.href;
+                        if (url.indexOf("?welcome=True") > -1) {
+                            url = url.replace("?welcome=True", "");
+                        }
+
+                        Common.Utils.ReloadPageAfterTimeout(url);
                     }
                 });
             }
@@ -236,12 +242,6 @@ class FilterConfigurationView {
 
     private scrollTopInlineMessage() {
         $("html, body").scrollTop(this.inlineMessage.getInlineMessage().offset().top);
-    }
-
-    private reloadPageAfterTimeout(timeout = 3000) {
-        setTimeout(function () {
-            window.location.reload();
-        }, timeout);
     }
 }
 

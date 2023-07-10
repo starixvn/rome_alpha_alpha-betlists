@@ -37,7 +37,7 @@ class ManageFiltersView {
     private handleOnClickButtonDeleteAllFilters() {
         this.inlineMessageComponent.hide();
         window.top.bootboxConfirm($("#hidden-confirmMessageRemoveAllFilters").val(), undefined, () => {
-            this.handleDeleteFilters($("#hidden-allFilterIds").val().split());
+            this.handleDeleteFilters($("#hidden-allFilterIds").val());
         });
     }
 
@@ -102,7 +102,7 @@ class ManageFiltersView {
                     this.inlineMessageComponent.showError(errors.join("<br/>"));
                 } else {
                     this.inlineMessageComponent.showSuccess($("#hidden-removedSuccessfullyText").val());
-                    this.reloadPageAfterTimeout();
+                    Common.Utils.ReloadPageAfterTimeout();
                 }
             } else {
                 this.inlineMessageComponent.showError(results.ErrMsg);
@@ -129,7 +129,7 @@ class ManageFiltersView {
         } else {
             AJAXHelper.postJSON("UpdateFilter", formData, (result) => {
                 this.inlineMessageComponent.show(result);
-                result.ErrCode || this.reloadPageAfterTimeout();
+                result.ErrCode || Common.Utils.ReloadPageAfterTimeout();
             });
         }
     }
@@ -146,12 +146,6 @@ class ManageFiltersView {
         // reset UI to original data
         radioDefaultFilter.prop("checked", true);
         this.originalData = {};
-    }
-
-    private reloadPageAfterTimeout(timeout = 3000) {
-        setTimeout(function () {
-            window.location.reload();
-        }, timeout);
     }
 
     private handleToggleSports() {

@@ -2,7 +2,7 @@
 {
     public class DeleteFiltersParam
     {
-        public DeleteFiltersParam(int custId, int subAccId, int[] filterIds, string ip)
+        public DeleteFiltersParam(int custId, int subAccId, string filterIds, string ip)
         {
             CustId = custId;
             SubAccId = subAccId;
@@ -14,7 +14,7 @@
 
         public int SubAccId { get; }
 
-        public int[] FilterIds { get; }
+        public string FilterIds { get; }
 
         public string IP { get; }
     }

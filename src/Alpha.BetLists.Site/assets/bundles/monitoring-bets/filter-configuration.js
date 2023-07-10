@@ -675,7 +675,11 @@ var FilterConfigurationView = /** @class */ (function () {
                     _this.inlineMessagePopup.show(result);
                     if (!result.ErrCode) {
                         _this.addFilterFormData = null;
-                        _this.reloadPageAfterTimeout();
+                        var url = window.location.href;
+                        if (url.indexOf("?welcome=True") > -1) {
+                            url = url.replace("?welcome=True", "");
+                        }
+                        Common.Utils.ReloadPageAfterTimeout(url);
                     }
                 });
             }
@@ -781,12 +785,6 @@ var FilterConfigurationView = /** @class */ (function () {
     };
     FilterConfigurationView.prototype.scrollTopInlineMessage = function () {
         $("html, body").scrollTop(this.inlineMessage.getInlineMessage().offset().top);
-    };
-    FilterConfigurationView.prototype.reloadPageAfterTimeout = function (timeout) {
-        if (timeout === void 0) { timeout = 3000; }
-        setTimeout(function () {
-            window.location.reload();
-        }, timeout);
     };
     return FilterConfigurationView;
 }());
