@@ -194,3 +194,16 @@
     cursor: pointer; }
   .modal-footer .block-btn {
     margin-left: auto; }
+
+.modal-new-last-bet .modal-content .modal-header .modal-title {
+  border: 0;
+  color: #094980;
+  font-size: 16px; }
+
+.modal-new-last-bet .modal-content .modal-body p {
+  font-size: 14px;
+  margin-bottom: 12px; }
+
+.modal-new-last-bet .modal-content .modal-footer {
+  display: flex;
+  justify-content: space-around; }
