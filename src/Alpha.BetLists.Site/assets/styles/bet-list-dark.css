@@ -33,7 +33,16 @@ a {
     top: auto;
     margin-top: 5px; }
     .space-between .switch-version .btn-switch-version {
-      text-decoration: none !important; }
+      text-decoration: none !important;
+      background: #3b4652;
+      color: #ededed;
+      border-color: #3b4652;
+      padding: 6px 12px;
+      align-items: center;
+      font-weight: 500;
+      margin-bottom: 5px; }
+      .space-between .switch-version .btn-switch-version .icon-swap-horizontal {
+        top: 0; }
 
 .tbl-betlist {
   border-collapse: collapse;

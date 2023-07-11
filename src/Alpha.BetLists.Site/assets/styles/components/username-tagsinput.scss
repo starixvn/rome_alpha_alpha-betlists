@@ -1,21 +1,23 @@
-﻿$tagsinput-border-color: #d1d1d1;
-$tagsinput-color: #10663E;
-$tagsinput-bg-color: #D0F2E4;
-
-$tag-remove-color: #6B6B6B ;
-
-$tagsinput-error-border-color: #E5BFBF;
-$tagsinput-error-color: #CB0008;
-$tagsinput-error-bg-color: #F3CACA;
-$tag-placehoder: #8E8E8E;
-$tag-input-bg: #f7f7f7;
-$bg-input: #ffffff;
-$color-btn-close: #6B6B6B;
+﻿:root {
+    --tagsinput-border-color: #D1D1D1;
+    --tagsinput-color: #10663E;
+    --tagsinput-bg-color: #D0F2E4;
+    --tags-remove-color: #6B6B6B;
+    --tagsinput-error-border-color: #E5BFBF;
+    --tagsinput-error-color: #CB0008;
+    --tagsinput-error-bg-color: #F3CACA;
+    --tags-placehoder: #8E8E8E;
+    --tags-input-bg: #F7F7F&;
+    --bg-input: #FFFFFF;
+    --color-btn-close: #6B6B6B;
+    //tooltip
+    --bg--tooltip: #6A1212;
+}
 
 .tagsinput {
-    background-color: $tag-input-bg;
+    background-color: var(--tags-input-bg);
     box-sizing: border-box;
-    border: 1px solid $tagsinput-border-color;
+    border: 1px solid var(--tagsinput-border-color);
     border-radius: 3px;
     line-height: 20px;
     position: relative;
@@ -23,7 +25,7 @@ $color-btn-close: #6B6B6B;
     margin-bottom: 19px;
 
     .tag-limit {
-        color: $tag-placehoder;
+        color: var(--tags-placehoder);
         font-style: italic;
         position: absolute;
         right: 5px;
@@ -34,12 +36,12 @@ $color-btn-close: #6B6B6B;
         box-sizing: border-box;
         border: 0 none;
         display: block;
-        border-bottom: 1px solid $tagsinput-border-color;
+        border-bottom: 1px solid var(--tagsinput-border-color);
         margin: 0 0 -1px 0;
         padding: 0px 130px 1px 9px;
         width: 100%;
         border-radius: 0px;
-        background-color: $bg-input;
+        background-color: var(--bg-input);
         height: 42px;
         border-radius: 3px 3px 0 0;
 
@@ -48,31 +50,31 @@ $color-btn-close: #6B6B6B;
         }
 
         &::-webkit-input-placeholder {
-            color: $tag-placehoder;
+            color: var(--tags-placehoder);
             opacity: 1;
         }
 
         &:-moz-placeholder {
-            color: $tag-placehoder;
+            color: var(--tags-placehoder);
             opacity: 1;
         }
 
         &::-moz-placeholder {
-            color: $tag-placehoder;
+            color: var(--tags-placehoder);
             opacity: 1;
         }
 
         &::-ms-input-placeholder {
-            color: $tag-placehoder;
+            color: var(--tags-placehoder);
             opacity: 1;
         }
     }
 
     .tag {
-        background: $tagsinput-bg-color;
-        border: 1px solid $tagsinput-border-color;
+        background: var(--tagsinput-bg-color);
+        border: 1px solid var(--tagsinput-border-color);
         border-radius: 3px;
-        color: $tagsinput-color;
+        color: var(--tagsinput-color);
         display: inline-block;
         margin: 10px 3px 9px 9px;
         padding: 2px 30px 2px 5px;
@@ -82,7 +84,7 @@ $color-btn-close: #6B6B6B;
         .tag-remove {
             background: none;
             border: 0;
-            color: $tag-remove-color;
+            color: var(--tags-remove-color);
             cursor: pointer;
             position: absolute;
             top: 7px;
@@ -92,7 +94,7 @@ $color-btn-close: #6B6B6B;
 
             &:before,
             &:after {
-                background: $color-btn-close;
+                background: var(--color-btn-close);
                 content: "";
                 position: absolute;
                 top: 4px;
@@ -114,18 +116,18 @@ $color-btn-close: #6B6B6B;
     }
 
     .error {
-        background: $tagsinput-error-bg-color;
-        border: 1px solid $tagsinput-error-border-color;
-        color: $tagsinput-error-color;
+        background: var(--tagsinput-error-bg-color);
+        border: 1px solid var(--tagsinput-error-border-color);
+        color: var(--tagsinput-error-color);
+    }
 
-        + .tooltip {
-            .tooltip-arrow {
-                border-top-color: #6A1212;
-            }
+    .tooltip {
+        .tooltip-arrow {
+            border-top-color: var(--bg--tooltip);
+        }
 
-            .tooltip-inner {
-                background: #6A1212;
-            }
+        .tooltip-inner {
+            background: var(--bg--tooltip);
         }
     }
 }
