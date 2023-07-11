@@ -106,6 +106,7 @@ var DropdownListComponent = /** @class */ (function () {
                 nonSelectedText: this.dropdownList.data("label-select"),
                 nSelectedText: " " + this.dropdownList.data("label-selected"),
                 allSelectedText: this.dropdownList.data("label-all"),
+                selectAllText: this.dropdownList.data("label-selectall"),
                 includeSelectAllOption: true
             });
         }
@@ -122,6 +123,12 @@ var DropdownListComponent = /** @class */ (function () {
     };
     DropdownListComponent.prototype.isSelectAll = function () {
         return this.dropdownList.next().find(".multiselect-container .multiselect-all :checkbox").is(":checked");
+    };
+    DropdownListComponent.prototype.enable = function () {
+        this.dropdownList.multiselect("enable");
+    };
+    DropdownListComponent.prototype.disable = function () {
+        this.dropdownList.multiselect("disable");
     };
     return DropdownListComponent;
 }());
@@ -235,9 +242,16 @@ var SportLeagueMatchTreeViewComponent = /** @class */ (function () {
                     .each(function (_, item) { return _this.collapseExpand($(item), checked); });
             });
             this.selectedOnly.click(function () {
-                _this.checkboxListContainer.find(":checkbox:not(:checked)")
-                    .closest(".tree-node")
-                    .toggleClass("hide", _this.selectedOnly.is(":checked"));
+                if (_this.selectedOnly.is(":checked")) {
+                    _this.checkboxListContainer
+                        .find(":checkbox:not(:checked)")
+                        .filter(function () { return !this.indeterminate; })
+                        .closest(".tree-node")
+                        .addClass("selected-only-hidden");
+                }
+                else {
+                    _this.checkboxListContainer.find(".tree-node.selected-only-hidden").removeClass("selected-only-hidden");
+                }
             });
         }
     };
@@ -407,7 +421,7 @@ var SportLeagueMatchTreeViewComponent = /** @class */ (function () {
                 });
             }
         });
-        sportsAllLeagues.length && sports.push({ sport: sportsAllLeagues.join() });
+        sportsAllLeagues.length && sports.push({ sport: sportsAllLeagues.join(), league: "0" });
         return sports;
     };
     return SportLeagueMatchTreeViewComponent;
@@ -613,19 +627,17 @@ var FilterConfigurationView = /** @class */ (function () {
         this.inlineMessage = new InlineMessageComponent();
         this.inlineMessagePopup = new InlineMessageComponent("inline-message-popup");
         this.betTypeDropdown = new DropdownListComponent();
-        this.betTypeDropdown.render("ddl-betType");
+        this.betTypeDropdown.render("ddl-bettype");
         this.eventStatusDropdown = new DropdownListComponent();
-        this.eventStatusDropdown.render("ddl-eventStatus", {
-            onChange: function (select) { return _this.getSports(select.val(), _this.sportGroupDropdown.getSelected()[0]); }
-        });
+        this.eventStatusDropdown.render("ddl-event-status");
         this.sportGroupDropdown = new DropdownListComponent();
-        this.sportGroupDropdown.render("ddl-sportGroup", {
-            onChange: function (select) { return _this.getSports(_this.eventStatusDropdown.getSelected()[0], select.val()); }
+        this.sportGroupDropdown.render("ddl-sport-group", {
+            onChange: function (select) { return _this.getSports(select.val()); }
         });
         this.sportLeagueMatchTreeview = new SportLeagueMatchTreeViewComponent();
         this.sportLeagueMatchTreeview.render(new SportLeagueMatchTreeViewOption("sportleaguematch-treeview", noInfoText, $("#hidden-SearchSportLeague").val(), $("#hidden-SportLeagueNotFound").val(), $("#hidden-SelectAll").val(), true, $("#hidden-ExpandAll").val(), $("#hidden-SelectedOnly").val()));
-        this.monitoredWatchlistMemberTreeview = new SportLeagueMatchTreeViewComponent();
-        this.monitoredWatchlistMemberTreeview.render(new SportLeagueMatchTreeViewOption("monitored-watchlist-members", noInfoText, $("#hidden-SearchMemberUsername").val(), $("#hidden-MemberUsernameNotFound").val(), $("#hidden-AllIncludedNewlyAddedMembers").val()));
+        this.myWatchlistMemberTreeview = new SportLeagueMatchTreeViewComponent();
+        this.myWatchlistMemberTreeview.render(new SportLeagueMatchTreeViewOption("my-watchlist-members", noInfoText, $("#hidden-SearchMemberUsername").val(), $("#hidden-MemberUsernameNotFound").val(), $("#hidden-AllIncludedNewlyAddedMembers").val()));
         this.usernameTagsInput = new UsernameTagsInputComponent();
         this.usernameTagsInput.render(new UsernameTagsInputOption("username", 100, $("#hidden-MaxNoUsernames").val(), $("#hidden-UsernameAlreadyExists").val()));
     };
@@ -634,78 +646,77 @@ var FilterConfigurationView = /** @class */ (function () {
         this.stakeInput = $("#txt-stake").on("input", function () {
             this.value = alphaReports.forceInputDecimal(this.value);
         });
-        var boxFilterBySports = $("#box-filterBySports");
-        $("#rdo-allSports").change(function () {
-            this.checked && boxFilterBySports.addClass("hide");
+        var sportsContainer = $("#sports-container");
+        $("#rdo-all-sports").change(function () {
+            this.checked && sportsContainer.addClass("hide");
         });
-        var rdoSpecificSports = $("#rdo-specificSports").change(function (e) {
-            if ($(e.target).is(":checked")) {
-                boxFilterBySports.removeClass("hide");
-                _this.getSports(_this.eventStatusDropdown.getSelected()[0], _this.sportGroupDropdown.getSelected()[0]);
+        var rdoSpecificSports = $("#rdo-specific-sports").change(function (e) {
+            if (rdoSpecificSports.is(":checked")) {
+                sportsContainer.removeClass("hide");
+                _this.getSports(_this.sportGroupDropdown.getSelected()[0]);
             }
         });
-        var boxFilterByMembers = $("#box-filterByMembers");
-        $("#rdo-allMembers").change(function () {
-            this.checked && boxFilterByMembers.addClass("hide");
+        var membersContainer = $("#members-container");
+        $("#rdo-all-members").change(function () {
+            this.checked && membersContainer.addClass("hide");
         });
-        var rdoSpecificMembers = $("#rdo-specificMembers").change(function () {
+        var rdoSpecificMembers = $("#rdo-specific-members").change(function () {
             if (rdoSpecificMembers.is(":checked")) {
-                boxFilterByMembers.removeClass("hide");
-                _this.monitoredWatchlistMemberTreeview.addIconLoading();
-                $.get("GetMonitoredWatchlistMembers", function (data) {
-                    return _this.monitoredWatchlistMemberTreeview.renderTreeNodeList(data.map(function (d) {
-                        return {
-                            value: d.CustId,
-                            text: d.Username
-                        };
-                    }));
-                });
+                membersContainer.removeClass("hide");
+                _this.getMyWatchlistMembers();
             }
         });
         var addFilterPopup = $("#add-filter-popup");
-        addFilterPopup.on("hidden.bs.modal", function () {
-            $("#txt-filterName").val("");
-            $("#chk-isDefault").prop("checked", false);
+        this.filterNameInput = addFilterPopup.find("#txt-filterName");
+        this.isDefaultCheckbox = addFilterPopup.find("#chk-isDefault");
+        addFilterPopup
+            .on("shown.bs.modal", function () { return _this.filterNameInput.focus(); })
+            .on("hidden.bs.modal", function () {
+            _this.filterNameInput.val("");
+            _this.isDefaultCheckbox.prop("checked", false);
+            _this.inlineMessagePopup.hide();
         });
-        addFilterPopup.find(".btn-submit").click(function () {
-            var formDataPopup = _this.getFormDataPopup();
-            if (formDataPopup) {
-                _this.addFilterFormData = $.extend(_this.addFilterFormData, formDataPopup);
-                AJAXHelper.postJSON("AddFilter", _this.addFilterFormData, function (result) {
-                    _this.inlineMessagePopup.show(result);
-                    if (!result.ErrCode) {
-                        _this.addFilterFormData = null;
-                        var url = window.location.href;
-                        if (url.indexOf("?welcome=True") > -1) {
-                            url = url.replace("?welcome=True", "");
-                        }
-                        Common.Utils.ReloadPageAfterTimeout(url);
-                    }
-                });
-            }
+        addFilterPopup.find("#btn-save-filter-popup").click(function () { return _this.handleSaveFilterPopup(); });
+        $(".btn-apply").click(function (e) {
+            _this.addFilterFormData = _this.getFormData(rdoSpecificSports, rdoSpecificMembers);
+            _this.addFilterFormData && _this.handleApplyFilter();
         });
-        $(".button-reset").click(function () {
+        $(".btn-save-filter").click(function (e) {
             _this.addFilterFormData = _this.getFormData(rdoSpecificSports, rdoSpecificMembers);
             _this.addFilterFormData && addFilterPopup.modal("show");
         });
     };
-    FilterConfigurationView.prototype.getSports = function (isLive, groupSport) {
+    FilterConfigurationView.prototype.getSports = function (groupSport) {
         var _this = this;
+        this.sportGroupDropdown.disable();
         this.sportLeagueMatchTreeview.addIconLoading();
-        $.get("FilterBySports?isLive=" + isLive + "&groupSport=" + groupSport, function (data) {
+        $.get("FilterBySports?groupSport=" + groupSport, function (data) {
             var listData = data.map(function (sport) {
                 return {
                     value: sport.Id,
                     text: sport.Name,
                     items: sport.Leagues.map(function (league) {
                         return {
-                            value: league.Id,
-                            text: league.Name
+                            value: league.LeagueId,
+                            text: league.LeagueName
                         };
                     })
                 };
             });
-            return _this.sportLeagueMatchTreeview.renderTreeNodeList(listData);
+            _this.sportLeagueMatchTreeview.renderTreeNodeList(listData);
+            _this.sportGroupDropdown.enable();
+        });
+    };
+    FilterConfigurationView.prototype.getMyWatchlistMembers = function () {
+        var _this = this;
+        this.myWatchlistMemberTreeview.addIconLoading();
+        $.get("GetMyWatchlistMembers", function (data) {
+            return _this.myWatchlistMemberTreeview.renderTreeNodeList(data.map(function (d) {
+                return {
+                    value: d.CustId,
+                    text: d.Username
+                };
+            }));
         });
     };
     FilterConfigurationView.prototype.getFormData = function (rdoSpecificSports, rdoSpecificMembers) {
@@ -727,11 +738,11 @@ var FilterConfigurationView = /** @class */ (function () {
             this.stakeInput.focus();
             return;
         }
-        var sports = [{ sport: 0 }];
-        var isLive = false;
+        var isLive = this.eventStatusDropdown.getSelected()[0];
+        var sports = [{ sport: "0", league: "0" }];
         if (rdoSpecificSports.is(":checked")) {
-            isLive = this.eventStatusDropdown.getSelected()[0] === "1";
-            if (!this.sportLeagueMatchTreeview.isSelectAll()) {
+            var sportGroup = this.sportGroupDropdown.getSelected()[0];
+            if (sportGroup === "0" && !this.sportLeagueMatchTreeview.isSelectAll() || sportGroup !== "0") {
                 sports = this.sportLeagueMatchTreeview.getSportsLeagues();
                 if (!sports.length) {
                     this.inlineMessage.showError($("#hidden-SportsRequiredError").val());
@@ -740,19 +751,19 @@ var FilterConfigurationView = /** @class */ (function () {
                 }
             }
         }
-        var isWatchList = 2;
+        var filterByMembers = 2; // all members
         var inputList = "0";
-        var watchList = "0";
+        var myWatchlist = "0";
         if (rdoSpecificMembers.is(":checked")) {
-            if (this.monitoredWatchlistMemberTreeview.isSelectAll()) {
-                isWatchList = 1;
+            if (this.myWatchlistMemberTreeview.isSelectAll()) {
+                filterByMembers = 1; // all my wachlist members
             }
             else {
-                isWatchList = 0;
-                watchList = this.monitoredWatchlistMemberTreeview.getSelected().join();
+                filterByMembers = 0;
+                myWatchlist = this.myWatchlistMemberTreeview.getSelected().join();
             }
             inputList = this.usernameTagsInput.getCustIds().join();
-            if (!watchList.length && !inputList.length) {
+            if (!myWatchlist.length && !inputList.length) {
                 this.inlineMessage.showError($("#hidden-FilterByMembersRequiredError").val());
                 this.scrollTopInlineMessage();
                 return;
@@ -764,24 +775,51 @@ var FilterConfigurationView = /** @class */ (function () {
             stake: stake,
             isLive: isLive,
             sports: sports,
-            isWatchList: isWatchList,
+            filterByMembers: filterByMembers,
             inputList: inputList,
-            watchList: watchList
+            myWatchlist: myWatchlist
         };
     };
     FilterConfigurationView.prototype.getFormDataPopup = function () {
-        var filterNameElement = $("#txt-filterName");
-        var filterName = $.trim(filterNameElement.val());
+        var filterName = $.trim(this.filterNameInput.val());
         if (!filterName.length) {
             this.inlineMessagePopup.showError($("#hidden-FilterNameRequiredError").val());
             return;
         }
-        var isDefault = $("#chk-isDefault").is(":checked");
+        var isDefault = this.isDefaultCheckbox.is(":checked");
         this.inlineMessagePopup.hide();
         return {
             filterName: filterName,
             isDefault: isDefault
         };
+    };
+    FilterConfigurationView.prototype.handleApplyFilter = function () {
+        var _this = this;
+        this.addFilterFormData.filterName = "Default";
+        AJAXHelper.postJSON("ApplyFilter", this.addFilterFormData, function (result) {
+            if (result.ErrCode) {
+                _this.inlineMessage.showError(result.ErrMsg);
+            }
+            else {
+                _this.addFilterFormData = null;
+                var url = window.location.href.split("?")[0];
+                window.location.href = url.replace(/FilterConfiguration/i, "");
+            }
+        });
+    };
+    FilterConfigurationView.prototype.handleSaveFilterPopup = function () {
+        var _this = this;
+        var formDataPopup = this.getFormDataPopup();
+        if (formDataPopup) {
+            this.addFilterFormData = $.extend(this.addFilterFormData, formDataPopup);
+            AJAXHelper.postJSON("AddFilter", this.addFilterFormData, function (result) {
+                _this.inlineMessagePopup.show(result);
+                if (!result.ErrCode) {
+                    _this.addFilterFormData = null;
+                    Common.Utils.ReloadPageAfterTimeout(window.location.href.split("?")[0]);
+                }
+            });
+        }
     };
     FilterConfigurationView.prototype.scrollTopInlineMessage = function () {
         $("html, body").scrollTop(this.inlineMessage.getInlineMessage().offset().top);

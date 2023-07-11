@@ -151,6 +151,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All Leagues.
+        /// </summary>
+        public static string AllLeagues {
+            get {
+                return ResourceManager.GetString("AllLeagues", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All Member.
         /// </summary>
         public static string AllMember {
@@ -655,7 +664,7 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please select Bet type.
+        ///   Looks up a localized string similar to Please select Bet Type(s).
         /// </summary>
         public static string FilterConfigurationBetTypesRequiredError {
             get {
@@ -1299,6 +1308,15 @@ namespace Alpha.BetLists.AppResources {
         public static string OtherBetTypes {
             get {
                 return ResourceManager.GetString("OtherBetTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Others.
+        /// </summary>
+        public static string Others {
+            get {
+                return ResourceManager.GetString("Others", resourceCulture);
             }
         }
         

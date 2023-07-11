@@ -20,13 +20,13 @@
         public byte IsWatchlist { get; set; }
 
         [XmlAttribute(AttributeName = "iL")]
-        public bool IsLive { get; set; }
+        public byte IsLive { get; set; }
 
         [XmlElement(ElementName = "Sport")]
         public List<SportXml> Sports { get; set; }
 
         [XmlIgnore]
-        public string[] BetTypeNames { get; set; }
+        public IEnumerable<string> BetTypeNames { get; set; }
 
         [XmlIgnore]
         public IEnumerable<Sport> FlatternSports { get; set; }

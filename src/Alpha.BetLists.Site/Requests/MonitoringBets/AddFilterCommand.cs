@@ -18,13 +18,13 @@
 
         public SportXml[] Sports { get; set; }
 
-        public bool IsLive { get; set; }
+        public byte IsLive { get; set; }
+
+        public byte FilterByMembers { get; set; }
 
         public string InputList { get; set; }
 
-        public string WatchList { get; set; }
-
-        public byte IsWatchList { get; set; }
+        public string MyWatchlist { get; set; }
 
         public override bool IsValid()
         {
@@ -32,10 +32,10 @@
                 && !string.IsNullOrWhiteSpace(BetType)
                 && Stake > 0
                 && Sports?.Length > 0
-                && !string.IsNullOrWhiteSpace(InputList) && !string.IsNullOrWhiteSpace(WatchList)
-                && (IsWatchList == FilterByMembersConstants.AllMembers
-                || IsWatchList == FilterByMembersConstants.AllWatchlistMembers
-                || IsWatchList == FilterByMembersConstants.SpecificMembers);
+                && (FilterByMembers == FilterByMembersConstants.AllMembers
+                || FilterByMembers == FilterByMembersConstants.AllWatchlistMembers
+                || FilterByMembers == FilterByMembersConstants.SpecificMembers)
+                && (!string.IsNullOrWhiteSpace(InputList) || !string.IsNullOrWhiteSpace(MyWatchlist));
         }
     }
 }

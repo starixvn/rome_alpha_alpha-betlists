@@ -1,6 +1,6 @@
 ﻿namespace Alpha.BetLists.Constants
 {
-    public static class GroupOfSportsConstants
+    public static class SportGroupConstants
     {
         public const byte All = 0;
 

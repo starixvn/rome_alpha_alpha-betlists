@@ -347,8 +347,10 @@
     </Compile>
     <Compile Include="Configurations\AppSettings.cs" />
     <Compile Include="Constants\DefaultVariables.cs" />
+    <Compile Include="Constants\EventStatusConstants.cs" />
     <Compile Include="Constants\FilterByMembersConstants.cs" />
-    <Compile Include="Constants\GroupOfSportsConstants.cs" />
+    <Compile Include="Constants\SportGroupConstants.cs" />
+    <Compile Include="Constants\SportTypeIdConstants.cs" />
     <Compile Include="Constants\TicketStatusIdConstants.cs" />
     <Compile Include="Constants\ProductIdConstants.cs" />
     <Compile Include="Constants\BetTypeIdConstants.cs" />
@@ -429,12 +431,11 @@
     <Compile Include="Models\JackpotOfferedByCurrency.cs" />
     <Compile Include="Models\JackpotOfferedBySite.cs" />
     <Compile Include="Models\League.cs" />
-    <Compile Include="Models\Match.cs" />
     <Compile Include="Models\MatchInfo.cs" />
     <Compile Include="Models\MonitoringBets\MemberErrCode.cs" />
     <Compile Include="Models\MonitoringBets\FilterConfiguration.cs" />
     <Compile Include="Models\MonitoringBets\FilterXml.cs" />
-    <Compile Include="Models\MonitoringBets\MonitoredWatchlistMember.cs" />
+    <Compile Include="Models\MonitoringBets\MyWatchlistMember.cs" />
     <Compile Include="Models\MonitoringBets\SavedFilter.cs" />
     <Compile Include="Models\MonitoringBets\SportXml.cs" />
     <Compile Include="Models\NapUserFunctionPermission.cs" />

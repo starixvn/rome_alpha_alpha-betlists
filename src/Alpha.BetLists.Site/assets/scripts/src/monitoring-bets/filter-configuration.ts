@@ -7,7 +7,7 @@ class FilterConfigurationView {
     private eventStatusDropdown: DropdownListComponent;
     private sportGroupDropdown: DropdownListComponent;
     private sportLeagueMatchTreeview: SportLeagueMatchTreeViewComponent;
-    private monitoredWatchlistMemberTreeview: SportLeagueMatchTreeViewComponent;
+    private myWatchlistMemberTreeview: SportLeagueMatchTreeViewComponent;
     private usernameTagsInput: UsernameTagsInputComponent;
 
     private inlineMessagePopup: InlineMessageComponent;
@@ -30,16 +30,14 @@ class FilterConfigurationView {
         this.inlineMessagePopup = new InlineMessageComponent("inline-message-popup");
 
         this.betTypeDropdown = new DropdownListComponent();
-        this.betTypeDropdown.render("ddl-betType");
+        this.betTypeDropdown.render("ddl-bettype");
 
         this.eventStatusDropdown = new DropdownListComponent();
-        this.eventStatusDropdown.render("ddl-eventStatus", {
-            onChange: (select) => this.getSports(select.val(), this.sportGroupDropdown.getSelected()[0])
-        });
+        this.eventStatusDropdown.render("ddl-event-status");
 
         this.sportGroupDropdown = new DropdownListComponent();
-        this.sportGroupDropdown.render("ddl-sportGroup", {
-            onChange: (select) => this.getSports(this.eventStatusDropdown.getSelected()[0], select.val())
+        this.sportGroupDropdown.render("ddl-sport-group", {
+            onChange: (select) => this.getSports(select.val())
         });
 
         this.sportLeagueMatchTreeview = new SportLeagueMatchTreeViewComponent();
@@ -54,9 +52,9 @@ class FilterConfigurationView {
             $("#hidden-SelectedOnly").val()
         ));
 
-        this.monitoredWatchlistMemberTreeview = new SportLeagueMatchTreeViewComponent();
-        this.monitoredWatchlistMemberTreeview.render(new SportLeagueMatchTreeViewOption(
-            "monitored-watchlist-members",
+        this.myWatchlistMemberTreeview = new SportLeagueMatchTreeViewComponent();
+        this.myWatchlistMemberTreeview.render(new SportLeagueMatchTreeViewOption(
+            "my-watchlist-members",
             noInfoText,
             $("#hidden-SearchMemberUsername").val(),
             $("#hidden-MemberUsernameNotFound").val(),
@@ -74,88 +72,83 @@ class FilterConfigurationView {
             this.value = alphaReports.forceInputDecimal(this.value);
         });
 
-        const boxFilterBySports = $("#box-filterBySports");
-        $("#rdo-allSports").change(function () {
-            this.checked && boxFilterBySports.addClass("hide");
+        const sportsContainer = $("#sports-container");
+        $("#rdo-all-sports").change(function () {
+            this.checked && sportsContainer.addClass("hide");
         });
-        const rdoSpecificSports = $("#rdo-specificSports").change((e) => {
-            if ($(e.target).is(":checked")) {
-                boxFilterBySports.removeClass("hide");
-                this.getSports(
-                    this.eventStatusDropdown.getSelected()[0],
-                    this.sportGroupDropdown.getSelected()[0]
-                );
+        const rdoSpecificSports = $("#rdo-specific-sports").change((e) => {
+            if (rdoSpecificSports.is(":checked")) {
+                sportsContainer.removeClass("hide");
+                this.getSports(this.sportGroupDropdown.getSelected()[0]);
             }
         });
 
-        const boxFilterByMembers = $("#box-filterByMembers");
-        $("#rdo-allMembers").change(function () {
-            this.checked && boxFilterByMembers.addClass("hide");
+        const membersContainer = $("#members-container");
+        $("#rdo-all-members").change(function () {
+            this.checked && membersContainer.addClass("hide");
         });
-        const rdoSpecificMembers = $("#rdo-specificMembers").change(() => {
+        const rdoSpecificMembers = $("#rdo-specific-members").change(() => {
             if (rdoSpecificMembers.is(":checked")) {
-                boxFilterByMembers.removeClass("hide");
-                this.monitoredWatchlistMemberTreeview.addIconLoading();
-                $.get("GetMonitoredWatchlistMembers", (data) =>
-                    this.monitoredWatchlistMemberTreeview.renderTreeNodeList(data.map(function (d) {
-                        return {
-                            value: d.CustId,
-                            text: d.Username
-                        };
-                    }))
-                );
+                membersContainer.removeClass("hide");
+                this.getMyWatchlistMembers();
             }
         });
 
         const addFilterPopup = $("#add-filter-popup");
-        addFilterPopup.on("hidden.bs.modal", function () {
-            $("#txt-filterName").val("");
-            $("#chk-isDefault").prop("checked", false);
-        });
-        addFilterPopup.find(".btn-submit").click(() => {
-            const formDataPopup = this.getFormDataPopup();
-            if (formDataPopup) {
-                this.addFilterFormData = $.extend(this.addFilterFormData, formDataPopup);
-                AJAXHelper.postJSON("AddFilter", this.addFilterFormData, (result) => {
-                    this.inlineMessagePopup.show(result);
-                    if (!result.ErrCode) {
-                        this.addFilterFormData = null;
+        this.filterNameInput = addFilterPopup.find("#txt-filterName");
+        this.isDefaultCheckbox = addFilterPopup.find("#chk-isDefault");
+        addFilterPopup
+            .on("shown.bs.modal", () => this.filterNameInput.focus())
+            .on("hidden.bs.modal", () => {
+                this.filterNameInput.val("");
+                this.isDefaultCheckbox.prop("checked", false);
+                this.inlineMessagePopup.hide();
+            });
+        addFilterPopup.find("#btn-save-filter-popup").click(() => this.handleSaveFilterPopup());
 
-                        let url = window.location.href;
-                        if (url.indexOf("?welcome=True") > -1) {
-                            url = url.replace("?welcome=True", "");
-                        }
-
-                        Common.Utils.ReloadPageAfterTimeout(url);
-                    }
-                });
-            }
+        $(".btn-apply").click((e) => {
+            this.addFilterFormData = this.getFormData(rdoSpecificSports, rdoSpecificMembers);
+            this.addFilterFormData && this.handleApplyFilter();
         });
 
-        $(".button-reset").click(() => {
+        $(".btn-save-filter").click((e) => {
             this.addFilterFormData = this.getFormData(rdoSpecificSports, rdoSpecificMembers);
             this.addFilterFormData && addFilterPopup.modal("show");
         });
     }
 
-    private getSports(isLive: string, groupSport: string) {
+    private getSports(groupSport: string) {
+        this.sportGroupDropdown.disable();
         this.sportLeagueMatchTreeview.addIconLoading();
-        $.get(`FilterBySports?isLive=${isLive}&groupSport=${groupSport}`, (data) => {
+        $.get(`FilterBySports?groupSport=${groupSport}`, (data) => {
             const listData = data.map(function (sport) {
                 return {
                     value: sport.Id,
                     text: sport.Name,
                     items: sport.Leagues.map(function (league) {
                         return {
-                            value: league.Id,
-                            text: league.Name
+                            value: league.LeagueId,
+                            text: league.LeagueName
                         };
                     })
                 };
             });
 
-            return this.sportLeagueMatchTreeview.renderTreeNodeList(listData);
+            this.sportLeagueMatchTreeview.renderTreeNodeList(listData);
+            this.sportGroupDropdown.enable();
         });
+    }
+
+    private getMyWatchlistMembers() {
+        this.myWatchlistMemberTreeview.addIconLoading();
+        $.get("GetMyWatchlistMembers", (data) =>
+            this.myWatchlistMemberTreeview.renderTreeNodeList(data.map(function (d) {
+                return {
+                    value: d.CustId,
+                    text: d.Username
+                };
+            }))
+        );
     }
 
     private getFormData(rdoSpecificSports: JQuery, rdoSpecificMembers: JQuery) {
@@ -178,11 +171,12 @@ class FilterConfigurationView {
             return;
         }
 
-        let sports = [{ sport: 0 }];
-        let isLive = false;
+        const isLive = this.eventStatusDropdown.getSelected()[0];
+
+        let sports = [{ sport: "0", league: "0" }];
         if (rdoSpecificSports.is(":checked")) {
-            isLive = this.eventStatusDropdown.getSelected()[0] === "1";
-            if (!this.sportLeagueMatchTreeview.isSelectAll()) {
+            const sportGroup = this.sportGroupDropdown.getSelected()[0];
+            if (sportGroup === "0" && !this.sportLeagueMatchTreeview.isSelectAll() || sportGroup !== "0") {
                 sports = this.sportLeagueMatchTreeview.getSportsLeagues();
                 if (!sports.length) {
                     this.inlineMessage.showError($("#hidden-SportsRequiredError").val());
@@ -192,19 +186,19 @@ class FilterConfigurationView {
             }
         }
 
-        let isWatchList = 2;
+        let filterByMembers = 2; // all members
         let inputList = "0";
-        let watchList = "0";
+        let myWatchlist = "0";
         if (rdoSpecificMembers.is(":checked")) {
-            if (this.monitoredWatchlistMemberTreeview.isSelectAll()) {
-                isWatchList = 1;
+            if (this.myWatchlistMemberTreeview.isSelectAll()) {
+                filterByMembers = 1; // all my wachlist members
             } else {
-                isWatchList = 0;
-                watchList = this.monitoredWatchlistMemberTreeview.getSelected().join();
+                filterByMembers = 0;
+                myWatchlist = this.myWatchlistMemberTreeview.getSelected().join();
             }
 
             inputList = this.usernameTagsInput.getCustIds().join();
-            if (!watchList.length && !inputList.length) {
+            if (!myWatchlist.length && !inputList.length) {
                 this.inlineMessage.showError($("#hidden-FilterByMembersRequiredError").val());
                 this.scrollTopInlineMessage();
                 return;
@@ -217,27 +211,53 @@ class FilterConfigurationView {
             stake,
             isLive,
             sports,
-            isWatchList,
+            filterByMembers,
             inputList,
-            watchList
+            myWatchlist
         };
     }
 
     private getFormDataPopup() {
-        const filterNameElement = $("#txt-filterName");
-        const filterName = $.trim(filterNameElement.val());
+        const filterName = $.trim(this.filterNameInput.val());
         if (!filterName.length) {
             this.inlineMessagePopup.showError($("#hidden-FilterNameRequiredError").val());
             return;
         }
 
-        const isDefault = $("#chk-isDefault").is(":checked");
+        const isDefault = this.isDefaultCheckbox.is(":checked");
         this.inlineMessagePopup.hide();
 
         return {
             filterName,
             isDefault
         };
+    }
+
+    private handleApplyFilter() {
+        this.addFilterFormData.filterName = "Default";
+        AJAXHelper.postJSON("ApplyFilter", this.addFilterFormData, (result) => {
+            if (result.ErrCode) {
+                this.inlineMessage.showError(result.ErrMsg);
+            } else {
+                this.addFilterFormData = null;
+                let url = window.location.href.split("?")[0];
+                window.location.href = url.replace(/FilterConfiguration/i, "");
+            }
+        });
+    }
+
+    private handleSaveFilterPopup() {
+        const formDataPopup = this.getFormDataPopup();
+        if (formDataPopup) {
+            this.addFilterFormData = $.extend(this.addFilterFormData, formDataPopup);
+            AJAXHelper.postJSON("AddFilter", this.addFilterFormData, (result) => {
+                this.inlineMessagePopup.show(result);
+                if (!result.ErrCode) {
+                    this.addFilterFormData = null;
+                    Common.Utils.ReloadPageAfterTimeout(window.location.href.split("?")[0]);
+                }
+            });
+        }
     }
 
     private scrollTopInlineMessage() {

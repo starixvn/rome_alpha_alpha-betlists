@@ -155,9 +155,15 @@ class SportLeagueMatchTreeViewComponent {
             });
 
             this.selectedOnly.click(() => {
-                this.checkboxListContainer.find(":checkbox:not(:checked)")
-                    .closest(".tree-node")
-                    .toggleClass("hide", this.selectedOnly.is(":checked"));
+                if (this.selectedOnly.is(":checked")) {
+                    this.checkboxListContainer
+                        .find(":checkbox:not(:checked)")
+                        .filter(function () { return !this.indeterminate; })
+                        .closest(".tree-node")
+                        .addClass("selected-only-hidden");
+                } else {
+                    this.checkboxListContainer.find(".tree-node.selected-only-hidden").removeClass("selected-only-hidden");
+                }
             });
         }
     }
@@ -355,7 +361,7 @@ class SportLeagueMatchTreeViewComponent {
             }
         });
 
-        sportsAllLeagues.length && sports.push({ sport: sportsAllLeagues.join() });
+        sportsAllLeagues.length && sports.push({ sport: sportsAllLeagues.join(), league: "0" });
 
         return sports;
     }

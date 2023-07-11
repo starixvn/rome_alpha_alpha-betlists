@@ -4,6 +4,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Web.Mvc;
+    using System.Web.SessionState;
     using Alpha.BetLists.Site.Requests.MonitoringBets;
     using Alpha.BetLists.Site.ViewModels.MonitoringBets;
     using Alpha.NetThrottling.Mvc;
@@ -11,6 +12,7 @@
     using Alpha.Web.Models;
     using MediatR;
 
+    [SessionState(SessionStateBehavior.Default)]
     public class MonitoringBetsController : BetListBaseController
     {
         public MonitoringBetsController(IMediator mediator) : base(mediator)
@@ -65,8 +67,12 @@
         [HttpPost]
         public Task<ActionResult> CheckUsernames(CheckUsernamesQuery message) => Json(message);
 
-        public Task<ActionResult> GetMonitoredWatchlistMembers(GetMonitoredWatchlistMembersQuery message)
+        public Task<ActionResult> GetMyWatchlistMembers(GetMyWatchlistMembersQuery message)
             => Json(message, JsonRequestBehavior.AllowGet);
+
+        [HttpPost, AntiXsrfFilter]
+        public async Task<ActionResult> ApplyFilter(ApplyFilterCommand message)
+            => Json(await ValidateAndDoAction(message), JsonRequestBehavior.DenyGet);
 
         [HttpPost, AntiXsrfFilter]
         public async Task<ActionResult> AddFilter(AddFilterCommand message)

@@ -1471,10 +1471,11 @@
     <Compile Include="Requests\CorrectScore\CorrectScoreQuery.cs" />
     <Compile Include="Requests\MemberBetList\MemberBetListQuery.cs" />
     <Compile Include="Requests\MonitoringBets\AddFilterCommand.cs" />
+    <Compile Include="Requests\MonitoringBets\ApplyFilterCommand.cs" />
     <Compile Include="Requests\MonitoringBets\CheckUsernamesQuery.cs" />
     <Compile Include="Requests\MonitoringBets\DeleleFiltersCommand.cs" />
     <Compile Include="Requests\MonitoringBets\FilterBySportsQuery.cs" />
-    <Compile Include="Requests\MonitoringBets\GetMonitoredWatchlistMembersQuery.cs" />
+    <Compile Include="Requests\MonitoringBets\GetMyWatchlistMembersQuery.cs" />
     <Compile Include="Requests\MonitoringBets\ManageFiltersQuery.cs" />
     <Compile Include="Requests\MonitoringBets\MonitoringBetsQuery.cs" />
     <Compile Include="Requests\MonitoringBets\UpdateFilterCommand.cs" />

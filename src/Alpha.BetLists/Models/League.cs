@@ -1,20 +1,22 @@
 ﻿namespace Alpha.BetLists.Models
 {
-    using System.Collections.Generic;
-
     public class League
     {
-        public League(int id, string name, IEnumerable<Match> matches)
+        public League()
         {
-            Id = id;
-            Name = name;
-            Matches = matches;
         }
 
-        public int Id { get; }
+        public League(int sportType, int leagueId, string leagueName = null)
+        {
+            SportType = sportType;
+            LeagueId = leagueId;
+            LeagueName = leagueName;
+        }
 
-        public string Name { get; }
+        public int SportType { get; }
 
-        public IEnumerable<Match> Matches { get; }
+        public int LeagueId { get; }
+
+        public string LeagueName { get; }
     }
 }

@@ -29,7 +29,12 @@
                     };
                 }
 
-                yield return new SelectListItem { Text = AppResources.Resources.OtherBetTypes, Value = "99", Selected = true };
+                yield return new SelectListItem
+                {
+                    Text = AppResources.Resources.Others,
+                    Value = BetTypeIdConstants.Others.ToString(),
+                    Selected = true
+                };
             }
         }
 
@@ -37,8 +42,9 @@
         {
             get
             {
-                yield return new SelectListItem { Text = AppResources.Resources.Live, Value = "1", Selected = true };
-                yield return new SelectListItem { Text = AppResources.Resources.NonLive, Value = "0"};
+                yield return new SelectListItem { Text = AppResources.Resources.All, Value = EventStatusConstants.All.ToString(), Selected = true };
+                yield return new SelectListItem { Text = AppResources.Resources.Live, Value = EventStatusConstants.Live.ToString() };
+                yield return new SelectListItem { Text = AppResources.Resources.NonLive, Value = EventStatusConstants.NonLive.ToString() };
             }
         }
 
@@ -46,9 +52,9 @@
         {
             get
             {
-                yield return new SelectListItem { Text = AppResources.Resources.All, Value = GroupOfSportsConstants.All.ToString(), Selected = true };
-                yield return new SelectListItem { Text = AppResources.Resources.MajorSports, Value = GroupOfSportsConstants.MajorSports.ToString() };
-                yield return new SelectListItem { Text = AppResources.Resources.MinorSports, Value = GroupOfSportsConstants.MinorSports.ToString() };
+                yield return new SelectListItem { Text = AppResources.Resources.All, Value = SportGroupConstants.All.ToString(), Selected = true };
+                yield return new SelectListItem { Text = AppResources.Resources.MajorSports, Value = SportGroupConstants.MajorSports.ToString() };
+                yield return new SelectListItem { Text = AppResources.Resources.MinorSports, Value = SportGroupConstants.MinorSports.ToString() };
             }
         }
     }

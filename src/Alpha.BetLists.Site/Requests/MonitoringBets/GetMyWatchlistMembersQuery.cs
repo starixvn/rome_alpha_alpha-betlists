@@ -5,9 +5,9 @@
     using Alpha.BetLists.Models.MonitoringBets;
     using MediatR;
 
-    public class GetMonitoredWatchlistMembersQuery : BaseQuery, IRequest<IEnumerable<MonitoredWatchlistMember>>
+    public class GetMyWatchlistMembersQuery : BaseQuery, IRequest<IEnumerable<MyWatchlistMember>>
     {
-        public GetMonitoredWatchlistMembersQuery(IUser viewer) : base(viewer)
+        public GetMyWatchlistMembersQuery(IUser viewer) : base(viewer)
         {
         }
     }

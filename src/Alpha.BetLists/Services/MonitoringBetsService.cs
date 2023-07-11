@@ -27,24 +27,25 @@
 
         Task<IEnumerable<Result>> DeleteFilters(DeleteFiltersParam param);
 
-        Task<IEnumerable<Sport>> GetSports(byte groupOfSports);
-
-        Task<IEnumerable<Sport>> GetSports(bool isLive, byte groupOfSports);
+        Task<IEnumerable<Sport>> GetSports(byte sportGroup);
 
         Task<IEnumerable<MemberErrCode>> CheckUsernames(int agentId, string usernames);
 
-        Task<IEnumerable<MonitoredWatchlistMember>> GetMonitoredWatchlistMembers(int agentId);
+        Task<IEnumerable<MyWatchlistMember>> GetMyWatchlistMembers(int agentId);
     }
 
     public class MonitoringBetsServiceImpl : MonitoringBetsService
     {
+        private const int InvalidUsername = 100;
+        private const int NotAMember = 101;
+        private const string IgnoreSportTypeName = "upcoming";
         private static readonly IDictionary<int, bool> MajorSports = new Dictionary<int, bool>
         {
-            [1] = true, // Soccer
-            [2] = true, // Basketball
-            [9] = true, // Badminton
-            [43] = true, // E-Sports
-            [5] = true // Tennis
+            [SportTypeIdConstants.Soccer] = true,
+            [SportTypeIdConstants.Basketball] = true,
+            [SportTypeIdConstants.Badminton] = true,
+            [SportTypeIdConstants.ESports] = true,
+            [SportTypeIdConstants.Tennis] = true
         };
         private readonly IDynamicRepository dynamicRepository;
 
@@ -74,67 +75,63 @@
             {
                 var filterXml = item.FilterXml;
                 filterXml.BetTypeNames = BuildBetTypeNames(filterXml.BetType);
-                filterXml.FlatternSports = BuildSports(FlattenSports(filterXml.Sports).OrderBy(s => s.SportId)).ToList();
+                filterXml.FlatternSports = BuildSports(FlattenSports(filterXml.Sports)).ToList();
             }
 
             return filterConfigurations;
         }
 
-        private static string[] BuildBetTypeNames(string betTypes)
+        private static IEnumerable<string> BuildBetTypeNames(string betTypes)
             => betTypes.Equals("0", StringComparison.OrdinalIgnoreCase)
-            ? Array.Empty<string>()
-            : betTypes
-                .SplitByCommaWithNoneEmptyEntries()
-                .Select(t => CacheRefServiceHelper.GetBetTypeName(Convert.ToInt32(t)))
-                .ToArray();
+            ? Enumerable.Empty<string>()
+            : betTypes.ToListInt().Select(t => GetBetTypeName(t)).ToList();
 
-        private static IEnumerable<Match> FlattenSports(IEnumerable<SportXml> sportXmlList)
+        private static string GetBetTypeName(int betTypeId)
+            => betTypeId == BetTypeIdConstants.Others
+            ? Resources.Others
+            : CacheRefServiceHelper.GetBetTypeName(betTypeId);
+
+        private static IEnumerable<League> FlattenSports(IEnumerable<SportXml> sportXmlList)
         {
             foreach (var item in sportXmlList)
             {
-                foreach (var sport in item.Sport.SplitByCommaWithNoneEmptyEntries())
+                if (!item.Sport.Equals("0", StringComparison.OrdinalIgnoreCase))
                 {
-                    foreach (var league in item.League.SplitByCommaWithNoneEmptyEntries())
+                    foreach (var sport in item.Sport.SplitByCommaWithNoneEmptyEntries())
                     {
-                        yield return new Match(
-                            Convert.ToInt32(sport),
-                            Convert.ToInt32(league),
-                            item.Match,
-                            item.Home,
-                            item.Away,
-                            item.IsNeutral);
+                        foreach (var league in item.League.SplitByCommaWithNoneEmptyEntries())
+                        {
+                            yield return new League(Convert.ToInt32(sport), Convert.ToInt32(league));
+                        }
                     }
                 }
             }
         }
 
-        private static IEnumerable<Sport> BuildSports(IEnumerable<Match> matchList)
-            => matchList.Where(m => m.SportId != 0).GroupBy(
-                m => m.SportId,
-                (sportId, matches) => new Sport(
-                    sportId,
-                    CacheRefServiceHelper.GetSportName(sportId),
-                    BuildLeagues(matches).ToList()));
+        private static IEnumerable<Sport> BuildSports(IEnumerable<League> leagueList)
+        {
+            var groupBySportTypes = leagueList.GroupBy(l => l.SportType).OrderBy(l => l.Key);
 
-        private static IEnumerable<League> BuildLeagues(IEnumerable<Match> matchList)
-            => matchList.Where(m => m.LeagueId != 0).GroupBy(
-                m => m.LeagueId,
-                (leagueId, matches) => new League(
-                    leagueId,
-                    CacheRefServiceHelper.GetLeagueName(leagueId),
-                    Enumerable.Empty<Match>()
-                    /*BuildMatches(matches).ToList()*/));
-
-        private static IEnumerable<Match> BuildMatches(IEnumerable<Match> matchList)
-            => matchList.Where(m => m.MatchId != 0).Select(match =>
+            foreach (var group in groupBySportTypes)
             {
-                match.MatchName = string.Format(
-                    "{0} - {1}",
-                    CacheRefServiceHelper.GetTeamName(match.HomeId),
-                    CacheRefServiceHelper.GetTeamName(match.AwayId));
+                var sportTypeName = CacheRefServiceHelper.GetSportName(group.Key);
+                if (sportTypeName.IndexOf(IgnoreSportTypeName, StringComparison.OrdinalIgnoreCase) == -1)
+                {
+                    yield return new Sport(
+                        group.Key,
+                        sportTypeName,
+                        BuildLeagues(group.Key, group).ToList());
+                }
+            }
+        }
 
-                return match;
-            });
+        private static IEnumerable<League> BuildLeagues(int sportType, IEnumerable<League> leagueList)
+            => leagueList.GroupBy(
+                l => l.LeagueId,
+                (leagueId, matches) => new League(
+                    sportType,
+                    leagueId,
+                    leagueId == 0 ? Resources.AllLeagues : CacheRefServiceHelper.GetLeagueName(leagueId)));
 
         public async Task<Result> AddFilter(AddFilterParam param)
         {
@@ -172,53 +169,23 @@
             return results;
         }
 
-        public async Task<IEnumerable<Sport>> GetSports(byte groupOfSports)
+        public async Task<IEnumerable<Sport>> GetSports(byte sportGroup)
         {
-            var sports = await dynamicRepository.FetchAsync<Sport>(new GetSportsCriteria());
+            var leagues = await dynamicRepository.FetchAsync<League>(new GetMatchesCriteria());
 
-            if (groupOfSports == GroupOfSportsConstants.MajorSports)
+            if (sportGroup != SportGroupConstants.All)
             {
-                sports = sports.Where(s => MajorSports.ContainsKey(s.Id));
-            }
-            else if (groupOfSports == GroupOfSportsConstants.MinorSports)
-            {
-                sports = sports.Where(s => !MajorSports.ContainsKey(s.Id));
+                leagues = sportGroup == SportGroupConstants.MajorSports
+                    ? leagues.Where(m => MajorSports.ContainsKey(m.SportType))
+                    : leagues.Where(m => !MajorSports.ContainsKey(m.SportType));
             }
 
-            return sports;
-        }
-
-        public async Task<IEnumerable<Sport>> GetSports(bool isLive, byte groupOfSports)
-        {
-            var matches = await dynamicRepository.FetchAsync<Match>(new GetMatchesCriteria());
-
-            //const int NumberTest = 500;
-            //if (matches.Count() > NumberTest)
-            //{
-            //    matches = matches.Take(NumberTest);
-            //}
-
-            var currentTime = DateTime.Now;
-            matches = isLive
-                ? matches.Where(m => m.KickOffTime > currentTime)
-                : matches.Where(m => m.KickOffTime <= currentTime);
-
-            if (groupOfSports != GroupOfSportsConstants.All)
-            {
-                matches = groupOfSports == GroupOfSportsConstants.MajorSports
-                    ? matches.Where(m => MajorSports.ContainsKey(m.SportId))
-                    : matches.Where(m => !MajorSports.ContainsKey(m.SportId));
-            }
-
-            var sports = BuildSports(matches.ToList()).ToList();
+            var sports = BuildSports(leagues.ToList()).ToList();
             return sports;
         }
 
         public async Task<IEnumerable<MemberErrCode>> CheckUsernames(int agentId, string usernames)
         {
-            const int InvalidUsername = 100;
-            const int NotAMember = 101;
-
             var checkUsernames = await dynamicRepository.FetchAsync<MemberErrCode>(
                 new CheckUsernamesCriteria(agentId, usernames));
 
@@ -237,7 +204,7 @@
             return checkUsernames;
         }
 
-        public Task<IEnumerable<MonitoredWatchlistMember>> GetMonitoredWatchlistMembers(int agentId)
-            => dynamicRepository.FetchAsync<MonitoredWatchlistMember>(new GetMonitoredWatchlistMembersCriteria(agentId));
+        public Task<IEnumerable<MyWatchlistMember>> GetMyWatchlistMembers(int agentId)
+            => dynamicRepository.FetchAsync<MyWatchlistMember>(new GetMonitoredWatchlistMembersCriteria(agentId));
     }
 }

@@ -10,8 +10,6 @@
         {
         }
 
-        public bool IsLive { get; set; }
-
         public byte GroupSport { get; set; }
     }
 }

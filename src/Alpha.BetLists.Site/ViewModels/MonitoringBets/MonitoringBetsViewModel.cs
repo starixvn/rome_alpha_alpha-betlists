@@ -11,7 +11,7 @@
     {
         public MonitoringBetsViewModel(
             BaseQuery message,
-            IEnumerable<FilterConfiguration> filters,
+            IEnumerable<SavedFilter> filters,
             BetListData betListData,
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper,
@@ -20,6 +20,6 @@
             Filters = filters;
         }
 
-        public IEnumerable<FilterConfiguration> Filters { get; }
+        public IEnumerable<SavedFilter> Filters { get; }
     }
 }

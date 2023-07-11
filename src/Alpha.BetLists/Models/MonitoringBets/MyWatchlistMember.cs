@@ -1,8 +1,8 @@
 ﻿namespace Alpha.BetLists.Models.MonitoringBets
 {
-    public class MonitoredWatchlistMember
+    public class MyWatchlistMember
     {
-        public MonitoredWatchlistMember(int custId, string username)
+        public MyWatchlistMember(int custId, string username)
         {
             CustId = custId;
             Username = username;

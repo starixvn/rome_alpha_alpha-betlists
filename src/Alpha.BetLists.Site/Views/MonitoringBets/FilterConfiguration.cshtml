@@ -6,7 +6,7 @@
 }
 @section Styles {
     @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-betlists/filter")
-    @StaticResources.RenderStylesWithDarkMode($"~/{AppSettings.BetlistRouting}assets/bundles/monitoring-bets/filter-configuration")
+    @StaticResources.RenderStyles($"~/{AppSettings.BetlistRouting}assets/bundles/monitoring-bets/filter-configuration")
 }
 @section Scripts {
     @StaticResources.AssetScripts.RenderCommon("/bundles/site-betlists/filter")
@@ -15,28 +15,25 @@
 <div class="bl_title">@Resources.FilterConfiguration</div>
 <div class="wrapper">
     <div id="inline-message" class="msg hide"></div>
-    <div class="block-btn top">
-        @Html.ActionLink(Resources.Cancel, "Index", null, new { @class = "button button-cancel" })
-        <input type="button" class="button button-submit" value="@Resources.Apply" />
-        <input type="button" class="button button-reset" value="@Resources.SaveFilter" />
-    </div>
+    <div class="block-btn top">@RenderButtonGroup()</div>
     <div class="block-config">
         <div class="ttl-config">@Resources.FilterByBetTypeAndStake</div>
         <div class="list-item">
             <div class="item">
                 <label>@Resources.BetType</label>
                 <div class="inner">
-                    @Html.DropDownList("ddl-betType", Model.BetTypes, new Dictionary<string, object>
+                    @Html.DropDownList("ddl-bettype", Model.BetTypes, new Dictionary<string, object>
                     {
                         ["multiple"] = "multiple",
                         ["data-label-select"] = Resources.SelectBettype,
                         ["data-label-selected"] = Resources.Selected,
-                        ["data-label-all"] = Resources.AllBetTypes
+                        ["data-label-all"] = Resources.AllBetTypes,
+                        ["data-label-selectall"] = Resources.SelectAll
                     })
                 </div>
             </div>
             <div class="item">
-                <label>@Resources.stake</label>
+                <label for="txt-stake">@Resources.stake</label>
                 <div class="inner stake">
                     <span>>=</span>
                     <input type="text" id="txt-stake" value="500" autocomplete="off" maxlength="13" />
@@ -44,9 +41,7 @@
             </div>
             <div class="item">
                 <label>@Resources.EventStatus</label>
-                <div class="inner">
-                    @Html.DropDownList("ddl-eventStatus", Model.EventStatus)
-                </div>
+                <div class="inner">@Html.DropDownList("ddl-event-status", Model.EventStatus)</div>
             </div>
         </div>
     </div>
@@ -54,31 +49,27 @@
         <div class="ttl-config">@Resources.FilterBySports</div>
         <div class="list-box">
             <div class="box">
-                <label for="rdo-allSports">
-                    @Resources.AllSports
-                    <input type="radio" name="filterBySports" value="all" id="rdo-allSports" checked />
+                <label for="rdo-all-sports">@Resources.AllSports
+                    <input type="radio" name="filterbysports" id="rdo-all-sports" checked />
                     <span class="overlay"></span>
                 </label>
                 <p>@Resources.FilterConfigurationAllSportsContent</p>
                 <p>@Resources.FilterConfigurationAllSportsContent2</p>
             </div>
             <div class="box">
-                <label for="rdo-specificSports">
-                    @Resources.SpecificSports
-                    <input type="radio" name="filterBySports" value="specific" id="rdo-specificSports" />
+                <label for="rdo-specific-sports">@Resources.SpecificSports
+                    <input type="radio" name="filterbysports" id="rdo-specific-sports" />
                     <span class="overlay"></span>
                 </label>
                 <p>@Resources.FilterConfigurationSpecificSportsContent</p>
                 <p>@Resources.FilterConfigurationSpecificSportsContent2</p>
             </div>
         </div>
-        <div class="hide" id="box-filterBySports">
-            <div class="list-item all-sport">                
+        <div class="hide" id="sports-container">
+            <div class="list-item all-sport">
                 <div class="item">
                     <label>@Resources.SportGroup</label>
-                    <div class="inner">
-                        @Html.DropDownList("ddl-sportGroup", Model.SportGroups)
-                    </div>
+                    <div class="inner">@Html.DropDownList("ddl-sport-group", Model.SportGroups)</div>
                 </div>
             </div>
             <div class="treeview" id="sportleaguematch-treeview"></div>
@@ -88,39 +79,34 @@
         <div class="ttl-config">@Resources.FilterByMembers</div>
         <div class="list-box">
             <div class="box">
-                <label for="rdo-allMembers">
-                    @Resources.AllMembers
-                    <input type="radio" name="filterByMembers" value="all" id="rdo-allMembers" checked />
+                <label for="rdo-all-members">@Resources.AllMembers
+                    <input type="radio" name="filterbymembers" id="rdo-all-members" checked />
                     <span class="overlay"></span>
                 </label>
                 <p>@Resources.FilterConfigurationAllMembersContent</p>
                 <p>@Resources.FilterConfigurationAllMembersContent2</p>
             </div>
             <div class="box">
-                <label for="rdo-specificMembers">
+                <label for="rdo-specific-members">
                     @Resources.SpecificMembers
-                    <input type="radio" name="filterByMembers" value="specific" id="rdo-specificMembers" />
+                    <input type="radio" name="filterbymembers" id="rdo-specific-members" />
                     <span class="overlay"></span>
                 </label>
                 <p>@Resources.FilterConfigurationSpecificMembersContent</p>
             </div>
         </div>
-        <div class="hide" id="box-filterByMembers">
+        <div class="hide" id="members-container">
             <p class="text">@Resources.EnterMemberUsernames</p>
             @UsernameTagsInput.Render("username", Resources.UsernameTagsInputPlaceHolder)
             <p class="text">@Resources.SelectMembers</p>
-            <div id="monitored-watchlist-members"></div>
+            <div id="my-watchlist-members"></div>
         </div>
     </div>
-    <div class="block-btn">
-        @Html.ActionLink(Resources.Cancel, "Index", null, new { @class = "button button-cancel" })
-        <input type="button" class="button button-submit" value="@Resources.Apply" />
-        <input type="button" class="button button-reset" value="@Resources.SaveFilter" />
-    </div>
+    <div class="block-btn">@RenderButtonGroup()</div>
     @if (Model.ShowWelcomePopup)
     {
         <div class="modal fade" tabindex="-1" role="dialog" id="welcome-popup">
-            <div class="modal-dialog modal-new-last-bet" role="document">
+            <div class="modal-dialog welcome-popup" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="icon icon-close close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
@@ -131,34 +117,34 @@
                         <p>@Resources.FilterConfigurationWelcomeContent2</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="button button-submit btn-submit" data-dismiss="modal">@Resources.Yes</button>
+                        <button type="button" class="button button-submit" data-dismiss="modal">@Resources.Yes</button>
                     </div>
                 </div>
             </div>
         </div>
     }
-<div class="modal fade" data-backdrop="false" tabindex="-1" role="dialog" id="add-filter-popup">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="icon icon-close close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
-                <h4 class="modal-title">@Resources.SaveToMyFilters</h4>
-            </div>
-            <div class="modal-body">
-                <label class="ttl">@Resources.FilterName <span class="require">*</span></label>
-                <input type="text" id="txt-filterName" autocomplete="off" maxlength="50" />
-                <div id="inline-message-popup" class="msg hide"></div>
-            </div>
-            <div class="modal-footer">
-                <label><input type="checkbox" id="chk-isDefault" /><span>@Resources.SetAsDefaultFilter</span></label>
-                <div class="block-btn">
-                    <button type="button" class="button button-cancel" data-dismiss="modal">@Resources.Cancel</button>
-                    <button type="button" class="button button-reset btn-submit">@Resources.SaveFilter</button>
+    <div class="modal fade" data-backdrop="false" tabindex="-1" role="dialog" id="add-filter-popup">
+        <div class="modal-dialog add-filter-popup" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="icon icon-close close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+                    <h4 class="modal-title">@Resources.SaveToMyFilters</h4>
+                </div>
+                <div class="modal-body">
+                    <label class="ttl">@Resources.FilterName <span class="require">*</span></label>
+                    <input type="text" id="txt-filterName" autocomplete="off" maxlength="50" />
+                    <div id="inline-message-popup" class="msg hide"></div>
+                </div>
+                <div class="modal-footer">
+                    <label><input type="checkbox" id="chk-isDefault" /><span>@Resources.SetAsDefaultFilter</span></label>
+                    <div class="block-btn">
+                        <button type="button" class="button button-cancel" data-dismiss="modal">@Resources.Cancel</button>
+                        <button type="button" class="button button-reset" id="btn-save-filter-popup">@Resources.SaveFilter</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 @Html.AntiForgeryToken()
 @Html.Hidden("hidden-BetTypesRequiredError", Resources.FilterConfigurationBetTypesRequiredError)
@@ -177,3 +163,15 @@
 @Html.Hidden("hidden-NoInformationIsAvailable", Resources.NoInformationIsAvailable)
 @Html.Hidden("hidden-MaxNoUsernames", Resources.MaxNoUsernames)
 @Html.Hidden("hidden-UsernameAlreadyExists", Resources.UsernameAlreadyExists)
+
+@helper RenderButtonGroup()
+{
+    var htmlAttributes = new Dictionary<string, object> { ["class"] = "button button-cancel" };
+    if (Model.ShowWelcomePopup)
+    {
+        htmlAttributes["disabled"] = "disabled";
+    }
+    @Html.ActionLink(Resources.Cancel, "Index", null, htmlAttributes)
+    <input type="button" class="button button-submit btn-apply" value="@Resources.Apply" />
+    <input type="button" class="button button-reset btn-save-filter" value="@Resources.SaveFilter" />
+}

@@ -655,7 +655,7 @@
     <value>Filter Name</value>
   </data>
   <data name="FilterConfigurationBetTypesRequiredError" xml:space="preserve">
-    <value>Please select Bet type</value>
+    <value>Please select Bet Type(s)</value>
   </data>
   <data name="FilterConfigurationStakeRequiredError" xml:space="preserve">
     <value>Please enter Stake</value>
@@ -737,5 +737,11 @@
   </data>
   <data name="BetTypes" xml:space="preserve">
     <value>ประเภทการเดิมพัน</value>
+  </data>
+  <data name="AllLeagues" xml:space="preserve">
+    <value>All Leagues</value>
+  </data>
+  <data name="Others" xml:space="preserve">
+    <value>อื่นๆ</value>
   </data>
 </root>

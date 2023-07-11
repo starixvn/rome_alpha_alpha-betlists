@@ -13,6 +13,7 @@ var DropdownListComponent = /** @class */ (function () {
                 nonSelectedText: this.dropdownList.data("label-select"),
                 nSelectedText: " " + this.dropdownList.data("label-selected"),
                 allSelectedText: this.dropdownList.data("label-all"),
+                selectAllText: this.dropdownList.data("label-selectall"),
                 includeSelectAllOption: true
             });
         }
@@ -29,6 +30,12 @@ var DropdownListComponent = /** @class */ (function () {
     };
     DropdownListComponent.prototype.isSelectAll = function () {
         return this.dropdownList.next().find(".multiselect-container .multiselect-all :checkbox").is(":checked");
+    };
+    DropdownListComponent.prototype.enable = function () {
+        this.dropdownList.multiselect("enable");
+    };
+    DropdownListComponent.prototype.disable = function () {
+        this.dropdownList.multiselect("disable");
     };
     return DropdownListComponent;
 }());

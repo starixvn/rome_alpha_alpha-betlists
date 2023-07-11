@@ -25,8 +25,10 @@
     //modal
     --color-title-modal: #094980;
 }
+
 :root [data-theme='light'] {
 }
+
 :root [data-theme='dark'] {
 }
 
@@ -61,18 +63,22 @@
         opacity: 0.8;
     }
 }
+
 .block-btn {
     display: flex;
-    &.top{
+
+    &.top {
         margin-bottom: 16px;
     }
 }
+
 .ttl-config {
     color: var(--color-ttl);
     font-size: 16px;
     padding: 10px 0 16px 0;
     font-weight: bold;
 }
+
 .wrapper {
     background: var(--bg-white);
     border: 1px solid var(--border-color);
@@ -80,6 +86,7 @@
     padding: 15px;
     width: 1000px;
 }
+
 .block-config {
     margin-bottom: 3px;
 
@@ -89,11 +96,13 @@
         height: 28px;
     }
 }
+
 .text {
     font-size: 14px;
     margin-bottom: 4px;
     font-weight: bold;
 }
+
 .item {
     display: inline-flex;
     flex-wrap: wrap;
@@ -161,13 +170,16 @@
         }
     }
 }
-.multiselect-container.dropdown-menu .checkbox input[type="checkbox"]{
+
+.multiselect-container.dropdown-menu .checkbox input[type="checkbox"] {
     top: 8px;
 }
+
 .list-box {
     display: flex;
     margin-bottom: 20px;
 }
+
 .box {
     display: inline-flex;
     flex-direction: column;
@@ -221,6 +233,7 @@
         margin-bottom: 8px;
     }
 }
+
 // modal
 .modal-body {
     display: flex;
@@ -261,17 +274,21 @@
 }
 
 //modal
-.modal-open .modal {
-    .modal-dialog {
-        position: absolute;
-        transform: translate(-50%, -50%);
-        top: 50%;
-        left: 50%;
+.modal-open .modal .modal-dialog {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 20%;
+    left: 50%;
+
+    .modal-title {
+        cursor: default;
     }
 }
-#details-modal{
+
+#details-modal {
     z-index: 100;
 }
+
 .modal-footer {
     display: flex;
     align-items: center;
@@ -285,7 +302,12 @@
         margin-left: auto;
     }
 }
-.modal-new-last-bet {
+
+.add-filter-popup .modal-content .modal-body {
+    padding: 15px;
+}
+
+.welcome-popup {
     .modal-content {
         border: 0;
         box-shadow: none;
@@ -317,6 +339,7 @@
         padding: 10px;
         width: 100%;
     }
+
     .modal-open .modal .modal-dialog {
         max-width: 90%;
         width: 100%;

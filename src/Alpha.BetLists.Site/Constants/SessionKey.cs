@@ -46,5 +46,7 @@
         public const string BetlistSessionID = "BetlistSessionID";
         public const string ReportDomainSessionKey = "ReportDomainSessionKey";
         public const string ReportSessionID = "ReportSessionID";
+
+        public const string LastBetsMonitoringDefault = "LastBetsMonitoringDefault";
     }
 }

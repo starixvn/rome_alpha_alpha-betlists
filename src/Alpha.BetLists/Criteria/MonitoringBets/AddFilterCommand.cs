@@ -17,9 +17,9 @@
             Stake = param.Stake;
             SportTypeList = ToXml(param.Sports);
             IsLive = param.IsLive;
+            IsWatchList = param.FilterByMembers;
             InputList = param.InputList;
-            WatchList = param.WatchList;
-            IsWatchList = param.IsWatchList;
+            WatchList = param.MyWatchlist;
             Language = param.LanguageKey;
             IP = param.IP;
         }
@@ -38,13 +38,13 @@
 
         public string SportTypeList { get; }
 
-        public bool IsLive { get; }
+        public byte IsLive { get; }
+
+        public byte IsWatchList { get; }
 
         public string InputList { get; }
 
         public string WatchList { get; }
-
-        public byte IsWatchList { get; }
 
         public string Language { get; }
 
@@ -87,14 +87,6 @@
             .Append(sport.Sport)
             .Append("\" l=\"")
             .Append(sport.League)
-            .Append("\" m=\"")
-            .Append(sport.Match)
-            .Append("\" h=\"")
-            .Append(sport.Home)
-            .Append("\" a=\"")
-            .Append(sport.Away)
-            .Append("\" iN=\"")
-            .Append(sport.IsNeutral ? 1 : 0)
             .Append("\"/>");
     }
 }

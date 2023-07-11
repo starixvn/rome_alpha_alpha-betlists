@@ -12,10 +12,10 @@
             string betType,
             int stake,
             SportXml[] sports,
-            bool isLive,
+            byte isLive,
             string inputList,
-            string watchList,
-            byte isWatchList,
+            string myWatchlist,
+            byte filterByMembers,
             string languageKey,
             string ip) : base(custId, subAccId, 0, filterName, isDefault, languageKey, ip)
         {
@@ -24,8 +24,8 @@
             Sports = sports;
             IsLive = isLive;
             InputList = inputList;
-            WatchList = watchList;
-            IsWatchList = isWatchList;
+            MyWatchlist = myWatchlist;
+            FilterByMembers = filterByMembers;
         }
 
         public string BetType { get; }
@@ -34,12 +34,12 @@
 
         public SportXml[] Sports { get; }
 
-        public bool IsLive { get; }
+        public byte IsLive { get; }
+
+        public byte FilterByMembers { get; }
 
         public string InputList { get; }
 
-        public string WatchList { get; }
-
-        public byte IsWatchList { get; }
+        public string MyWatchlist { get; }
     }
 }

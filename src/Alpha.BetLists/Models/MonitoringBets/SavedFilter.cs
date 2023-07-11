@@ -1,5 +1,8 @@
 ﻿namespace Alpha.BetLists.Models.MonitoringBets
 {
+    using System;
+
+    [Serializable]
     public class SavedFilter
     {
         public SavedFilter(

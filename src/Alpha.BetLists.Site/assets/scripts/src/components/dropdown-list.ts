@@ -14,6 +14,7 @@ class DropdownListComponent {
                 nonSelectedText: this.dropdownList.data("label-select"),
                 nSelectedText: ` ${this.dropdownList.data("label-selected")}`,
                 allSelectedText: this.dropdownList.data("label-all"),
+                selectAllText: this.dropdownList.data("label-selectall"),
                 includeSelectAllOption: true
             });
         }
@@ -33,5 +34,13 @@ class DropdownListComponent {
 
     isSelectAll() {
         return this.dropdownList.next().find(".multiselect-container .multiselect-all :checkbox").is(":checked");
+    }
+
+    enable() {
+        this.dropdownList.multiselect("enable");
+    }
+
+    disable() {
+        this.dropdownList.multiselect("disable");
     }
 }

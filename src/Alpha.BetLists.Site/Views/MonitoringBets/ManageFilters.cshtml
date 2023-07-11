@@ -62,7 +62,20 @@
                     </tr>
                     <tr class="hide" data-filterid="@item.FilterId">
                         <td>@Resources.EventStatus</td>
-                        <td colspan="2">@(item.FilterXml.IsLive ? Resources.Live : Resources.NonLive)</td>
+                        <td colspan="2">
+                            @if (item.FilterXml.IsLive == EventStatusConstants.All)
+                            {
+                                @:@Resources.All
+                            }
+                            else if (item.FilterXml.IsLive == EventStatusConstants.Live)
+                            {
+                                @:@Resources.Live
+                            }
+                            else
+                            {
+                                @:@Resources.NonLive
+                            }
+                        </td>
                     </tr>
                     <tr class="hide" data-filterid="@item.FilterId">
                         <td>
@@ -79,7 +92,10 @@
                         </td>
                         <td colspan="2">@(item.FilterXml.IsAllSports ? Resources.AllSports : Resources.SpecificSports)</td>
                     </tr>
-                    @RenderTreeViewSports(item.FilterId, item.FilterXml.FlatternSports)
+                    if (!item.FilterXml.IsAllSports)
+                    {
+                        @RenderTreeViewSports(item.FilterId, item.FilterXml.FlatternSports)
+                    }
                     <tr class="hide" data-filterid="@item.FilterId">
                         <td>@Resources.Members</td>
                         <td colspan="2">@(item.FilterXml.IsWatchlist == FilterByMembersConstants.AllMembers ? Resources.AllMembers : Resources.SpecificMembers)</td>
@@ -121,68 +137,43 @@
 
 @helper RenderTreeViewSports(int filterId, IEnumerable<Sport> sports)
 {
-    if (sports.Any())
-    {
-        <tr class="hide" data-filterid="@filterId">
-            <td colspan="3">
-                <ul class="treeview">
-                    @foreach (var sport in sports)
-                    {
-                        <li>
-                            <div class="tree-node-name">
-                                <span class="arrow right"></span> @sport.Name
-                            </div>
-                            @RenderTreeViewLeagues(sport.Leagues)
-                        </li>
-                    }
-                </ul>
-            </td>
-        </tr>
-    }
+    <tr class="hide" data-filterid="@filterId">
+        <td colspan="3">
+            <ul class="treeview">
+                @foreach (var sport in sports)
+                {
+                    <li>
+                        <div class="tree-node-name">
+                            <span class="arrow right"></span> @sport.Name
+                        </div>
+                        @RenderTreeViewLeagues(sport.Leagues)
+                    </li>
+                }
+            </ul>
+        </td>
+    </tr>
 }
 
 @helper RenderTreeViewLeagues(IEnumerable<League> leagues)
 {
-    if (leagues.Any())
-    {
-        <ul class="subtree">
-            @foreach (var league in leagues)
-            {
-                <li>@league.Name</li>
-                @*<li>
-                        <div class="tree-node-name">
-                            <span class="arrow right"></span> @league.Name
-                        </div>
-                        @RenderTreeViewMatches(league.Matches)
-                    </li>*@
-            }
-        </ul>
-    }
+    <ul class="subtree">
+        @foreach (var league in leagues)
+        {
+            <li>@league.LeagueName</li>
+        }
+    </ul>
 }
 
-@*@helper RenderTreeViewMatches(IEnumerable<Match> matches)
-    {
-        if (matches.Any())
-        {
-            <ul class="subtree">
-                @foreach (var match in matches)
-                {
-                    <li>@match.MatchName</li>
-                }
-            </ul>
-        }
-    }*@
-
-@helper RenderDropdownBetTypes(string[] betTypeNames)
+@helper RenderDropdownBetTypes(IEnumerable<string> betTypeNames)
 {
-    var length = betTypeNames.Length;
+    var length = betTypeNames.Count();
     if (length == 0)
     {
         @:@Resources.AllBetTypes
     }
     else if (length == 1)
     {
-        @:betTypeNames[0]
+        @:@betTypeNames.First()
     }
     else
     {
@@ -201,7 +192,7 @@
         var memberList = members.SplitByCommaWithNoneEmptyEntries();
         if (memberList.Length == 1)
         {
-            @:memberList[0]
+            @:@memberList[0]
         }
         else
         {
