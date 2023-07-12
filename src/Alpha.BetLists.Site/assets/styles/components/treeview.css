@@ -50,7 +50,8 @@
 .treeview {
   border: 1px solid var(--border-color);
   padding: var(--tree-view-padding) 0 0 var(--tree-view-padding);
-  border-radius: var(--border-radius); }
+  border-radius: var(--border-radius);
+  margin-bottom: 24px; }
   .treeview .filter-box {
     margin-right: var(--tree-view-padding);
     position: relative; }

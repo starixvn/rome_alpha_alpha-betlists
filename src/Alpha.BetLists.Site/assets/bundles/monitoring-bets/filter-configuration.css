@@ -50,7 +50,8 @@
 .treeview {
   border: 1px solid var(--border-color);
   padding: var(--tree-view-padding) 0 0 var(--tree-view-padding);
-  border-radius: var(--border-radius); }
+  border-radius: var(--border-radius);
+  margin-bottom: 24px; }
   .treeview .filter-box {
     margin-right: var(--tree-view-padding);
     position: relative; }
@@ -187,7 +188,7 @@
   --tagsinput-error-color: #CB0008;
   --tagsinput-error-bg-color: #F3CACA;
   --tags-placehoder: #8E8E8E;
-  --tags-input-bg: #F7F7F :root;
+  --tags-input-bg: #F7F7F7;
   --bg-input: #FFFFFF;
   --color-btn-close: #6B6B6B;
   --bg--tooltip: #6A1212; }
@@ -296,11 +297,6 @@
   --color-light-gray: #757575;
   --color-gray: #333333;
   --bg-white: #FFFFFF;
-  --bg-btn: #0B599C;
-  --bg-btn-disabled: #82A0BA;
-  --bg-btn-cancel: #696969;
-  --bg-btn-cancel-disabled: #909090;
-  --bg-btn-reset: #1BAC69;
   --color-ttl: #094980;
   --border-color: #D1D1D1;
   --bg-box: #F5F8FE;
@@ -310,34 +306,6 @@
   --bg-error: #FFF2F2;
   --border-error: #FE0000;
   --color-title-modal: #094980; }
-
-.button {
-  appearance: none;
-  outline: none;
-  border: 0;
-  font-size: 13px;
-  font-weight: bold;
-  padding: 4px 16px;
-  color: var(--color-white) !important;
-  border-radius: 3px;
-  box-shadow: none;
-  background-color: var(--bg-btn);
-  margin-right: 17px;
-  text-decoration: none !important; }
-  .button.disabled, .button[disabled] {
-    background-color: var(--bg-btn-disabled);
-    cursor: not-allowed; }
-  .button.button-cancel {
-    background-color: var(--bg-btn-cancel); }
-    .button.button-cancel.disabled, .button.button-cancel[disabled] {
-      background-color: var(--bg-btn-cancel-disabled); }
-    .button.button-cancel:hover {
-      color: var(--color-white) !important;
-      text-decoration: none; }
-  .button.button-reset {
-    background-color: var(--bg-btn-reset); }
-  .button:hover {
-    opacity: 0.8; }
 
 .block-btn {
   display: flex; }

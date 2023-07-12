@@ -5,6 +5,7 @@
     ViewBag.Title = Resources.FilterConfiguration;
 }
 @section Styles {
+    @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/common-new/common")
     @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-betlists/filter")
     @StaticResources.RenderStyles($"~/{AppSettings.BetlistRouting}assets/bundles/monitoring-bets/filter-configuration")
 }
@@ -49,7 +50,8 @@
         <div class="ttl-config">@Resources.FilterBySports</div>
         <div class="list-box">
             <div class="box">
-                <label for="rdo-all-sports">@Resources.AllSports
+                <label for="rdo-all-sports">
+                    @Resources.AllSports
                     <input type="radio" name="filterbysports" id="rdo-all-sports" checked />
                     <span class="overlay"></span>
                 </label>
@@ -57,7 +59,8 @@
                 <p>@Resources.FilterConfigurationAllSportsContent2</p>
             </div>
             <div class="box">
-                <label for="rdo-specific-sports">@Resources.SpecificSports
+                <label for="rdo-specific-sports">
+                    @Resources.SpecificSports
                     <input type="radio" name="filterbysports" id="rdo-specific-sports" />
                     <span class="overlay"></span>
                 </label>
@@ -79,7 +82,8 @@
         <div class="ttl-config">@Resources.FilterByMembers</div>
         <div class="list-box">
             <div class="box">
-                <label for="rdo-all-members">@Resources.AllMembers
+                <label for="rdo-all-members">
+                    @Resources.AllMembers
                     <input type="radio" name="filterbymembers" id="rdo-all-members" checked />
                     <span class="overlay"></span>
                 </label>
@@ -166,12 +170,12 @@
 
 @helper RenderButtonGroup()
 {
-    var htmlAttributes = new Dictionary<string, object> { ["class"] = "button button-cancel" };
+    var htmlAttributes = new Dictionary<string, object> { ["class"] = "button-cancel" };
     if (Model.ShowWelcomePopup)
     {
         htmlAttributes["disabled"] = "disabled";
     }
     @Html.ActionLink(Resources.Cancel, "Index", null, htmlAttributes)
-    <input type="button" class="button button-submit btn-apply" value="@Resources.Apply" />
-    <input type="button" class="button button-reset btn-save-filter" value="@Resources.SaveFilter" />
+    <input type="button" class="button-apply" value="@Resources.Apply" />
+    <input type="button" class="button-save" value="@Resources.SaveFilter" />
 }
