@@ -1,11 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Functions>
   <Function Name="Last Bets Monitoring">
-    <Setting Key="Age_BetList_LastBets_SportSel" SpName="Age_BetList_LastBets_SportSel" DbName="DBBOF.bodb02.BODBDownlineNet" Plain="0">
-      <Mapping DataField="SportType" ObjectProperty="Id" />
-      <Mapping DataField="SportName" ObjectProperty="Name" />
-    </Setting>
-    <Setting Key="Age_BetList_LastBets_MatchSel" SpName="Age_BetList_LastBets_MatchSel" DbName="DBBOF.bodb02.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_BetList_LastBets_LeagueSel" SpName="Age_BetList_LastBets_LeagueSel" DbName="DBBOF.bodb02.BODBDownlineNet" Plain="0" />
     <Setting Key="Age_BetList_LastBets_Ag" SpName="Age_BetList_LastBets_Ag" DbName="DBBOF.bodb02.BODBDownlineNet" Plain="0" />
   </Function>
 </Functions>

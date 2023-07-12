@@ -377,9 +377,8 @@
     <Compile Include="Criteria\MonitoringBets\CheckUsernamesCriteria.cs" />
     <Compile Include="Criteria\MonitoringBets\DeleteFilterCommand.cs" />
     <Compile Include="Criteria\MonitoringBets\GetFiltersCriteria.cs" />
-    <Compile Include="Criteria\MonitoringBets\GetMatchesCriteria.cs" />
+    <Compile Include="Criteria\MonitoringBets\GetLeaguesCriteria.cs" />
     <Compile Include="Criteria\MonitoringBets\GetMonitoredWatchlistMembersCriteria.cs" />
-    <Compile Include="Criteria\MonitoringBets\GetSportsCriteria.cs" />
     <Compile Include="Criteria\MonitoringBets\UpdateFilterCommand.cs" />
     <Compile Include="Criteria\MoveStatementHistory\GetBetListMoveStatementHistoryCriteria.cs" />
     <Compile Include="Criteria\ProgressiveJackpot\GetEnableJackpotProductCriteria.cs" />

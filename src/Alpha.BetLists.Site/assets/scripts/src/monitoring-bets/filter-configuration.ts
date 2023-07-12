@@ -120,7 +120,7 @@ class FilterConfigurationView {
     private getSports(groupSport: string) {
         this.sportGroupDropdown.disable();
         this.sportLeagueMatchTreeview.addIconLoading();
-        $.get(`FilterBySports?groupSport=${groupSport}`, (data) => {
+        AJAXHelper.getJSONWithoutBlockUI(`FilterBySports?groupSport=${groupSport}`, (data) => {
             const listData = data.map(function (sport) {
                 return {
                     value: sport.Id,
@@ -141,7 +141,7 @@ class FilterConfigurationView {
 
     private getMyWatchlistMembers() {
         this.myWatchlistMemberTreeview.addIconLoading();
-        $.get("GetMyWatchlistMembers", (data) =>
+        AJAXHelper.getJSONWithoutBlockUI("GetMyWatchlistMembers", (data) =>
             this.myWatchlistMemberTreeview.renderTreeNodeList(data.map(function (d) {
                 return {
                     value: d.CustId,

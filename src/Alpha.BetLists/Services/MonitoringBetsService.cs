@@ -12,6 +12,7 @@
     using Alpha.BetLists.Models;
     using Alpha.BetLists.Models.MonitoringBets;
     using Alpha.BetLists.Params.MonitoringBets;
+    using Alpha.PartialUM.Services;
     using Alpha.Web.Models;
     using Fanex.Data.Repository;
 
@@ -47,16 +48,23 @@
             [SportTypeIdConstants.ESports] = true,
             [SportTypeIdConstants.Tennis] = true
         };
+        private readonly IPartialUMService partialUMService;
         private readonly IDynamicRepository dynamicRepository;
 
-        public MonitoringBetsServiceImpl(IDynamicRepository dynamicRepository)
-            => this.dynamicRepository = dynamicRepository;
+        public MonitoringBetsServiceImpl(
+            IPartialUMService partialUMService,
+            IDynamicRepository dynamicRepository)
+        {
+            this.partialUMService = partialUMService;
+            this.dynamicRepository = dynamicRepository;
+        }
 
         public async Task<IEnumerable<SavedFilter>> GetSavedFilters(int custId, int subAccId)
         {
-            var filterConfigurations = await dynamicRepository.FetchAsync<FilterConfiguration>(
-                new GetFiltersCriteria(custId, subAccId));
+            var criteria = new GetFiltersCriteria(custId, subAccId);
+            partialUMService.ThrowIfUM(criteria.GetSettingKey());
 
+            var filterConfigurations = await dynamicRepository.FetchAsync<FilterConfiguration>(criteria);
             return filterConfigurations.Select(f => new SavedFilter(
                 f.FilterId,
                 f.FilterName,
@@ -68,9 +76,10 @@
 
         public async Task<IEnumerable<FilterConfiguration>> GetFilters(int custId, int subAccId)
         {
-            var filterConfigurations = await dynamicRepository.FetchAsync<FilterConfiguration>(
-                new GetFiltersCriteria(custId, subAccId));
+            var criteria = new GetFiltersCriteria(custId, subAccId);
+            partialUMService.ThrowIfUM(criteria.GetSettingKey());
 
+            var filterConfigurations = await dynamicRepository.FetchAsync<FilterConfiguration>(criteria);
             foreach (var item in filterConfigurations)
             {
                 var filterXml = item.FilterXml;
@@ -136,8 +145,9 @@
         public async Task<Result> AddFilter(AddFilterParam param)
         {
             var command = new AddFilterCommand(param);
-            await dynamicRepository.ExecuteAsync(command);
+            partialUMService.ThrowIfUM(command.GetSettingKey());
 
+            await dynamicRepository.ExecuteAsync(command);
             return new Result(
                 command.ErrCode,
                 command.ErrCode == 0 ? Resources.AddedSuccessfully : command.ErrMsg);
@@ -146,8 +156,9 @@
         public async Task<Result> UpdateFilter(UpdateFilterParam param)
         {
             var command = new UpdateFilterCommand(param);
-            await dynamicRepository.ExecuteAsync(command);
+            partialUMService.ThrowIfUM(command.GetSettingKey());
 
+            await dynamicRepository.ExecuteAsync(command);
             return new Result(
                 command.ErrCode,
                 command.ErrCode == 0 ? Resources.UpdateSuccessfully : command.ErrMsg);
@@ -161,8 +172,9 @@
             foreach (var filterId in filterIdList)
             {
                 var command = new DeleteFilterCommand(param.CustId, param.SubAccId, filterId, param.IP);
-                await dynamicRepository.ExecuteAsync(command);
+                partialUMService.ThrowIfUM(command.GetSettingKey());
 
+                await dynamicRepository.ExecuteAsync(command);
                 results.Add(new Result(command.ErrCode, command.ErrMsg));
             }
 
@@ -171,8 +183,10 @@
 
         public async Task<IEnumerable<Sport>> GetSports(byte sportGroup)
         {
-            var leagues = await dynamicRepository.FetchAsync<League>(new GetMatchesCriteria());
+            var criteria = new GetLeaguesCriteria();
+            partialUMService.ThrowIfUM(criteria.GetSettingKey());
 
+            var leagues = await dynamicRepository.FetchAsync<League>(criteria);
             if (sportGroup != SportGroupConstants.All)
             {
                 leagues = sportGroup == SportGroupConstants.MajorSports
@@ -186,9 +200,10 @@
 
         public async Task<IEnumerable<MemberErrCode>> CheckUsernames(int agentId, string usernames)
         {
-            var checkUsernames = await dynamicRepository.FetchAsync<MemberErrCode>(
-                new CheckUsernamesCriteria(agentId, usernames));
+            var criteria = new CheckUsernamesCriteria(agentId, usernames);
+            partialUMService.ThrowIfUM(criteria.GetSettingKey());
 
+            var checkUsernames = await dynamicRepository.FetchAsync<MemberErrCode>(criteria);
             foreach (var item in checkUsernames)
             {
                 if (item.ErrCode == InvalidUsername)

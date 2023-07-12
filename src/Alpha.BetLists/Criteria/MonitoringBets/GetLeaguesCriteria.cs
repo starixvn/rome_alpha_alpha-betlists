@@ -2,10 +2,10 @@
 {
     using Fanex.Data.Repository;
 
-    public class GetSportsCriteria : CriteriaBase
+    public class GetLeaguesCriteria : CriteriaBase
     {
         public override string GetSettingKey()
-            => "Age_BetList_LastBets_SportSel";
+            => "Age_BetList_LastBets_LeagueSel";
 
         public override bool IsValid()
             => true;

@@ -2,6 +2,10 @@
 var AJAXHelper = /** @class */ (function () {
     function AJAXHelper() {
     }
+    AJAXHelper.getJSONWithoutBlockUI = function (url, onSuccess) {
+        var _this = this;
+        $.getJSON(url, onSuccess).fail(function (jqXHR) { return _this.handleOnFail(jqXHR); });
+    };
     AJAXHelper.postJSON = function (url, formData, onSuccess) {
         var _this = this;
         $.blockUI();
