@@ -171,7 +171,7 @@ class FilterConfigurationView {
             return;
         }
 
-        const isLive = this.eventStatusDropdown.getSelected()[0];
+        const eventStatus = this.eventStatusDropdown.getSelected()[0];
 
         let sports = [{ sport: "0", league: "0" }];
         if (rdoSpecificSports.is(":checked")) {
@@ -209,7 +209,7 @@ class FilterConfigurationView {
         return {
             betType,
             stake,
-            isLive,
+            eventStatus,
             sports,
             filterByMembers,
             inputList,

@@ -125,7 +125,7 @@ var FilterConfigurationView = /** @class */ (function () {
             this.stakeInput.focus();
             return;
         }
-        var isLive = this.eventStatusDropdown.getSelected()[0];
+        var eventStatus = this.eventStatusDropdown.getSelected()[0];
         var sports = [{ sport: "0", league: "0" }];
         if (rdoSpecificSports.is(":checked")) {
             var sportGroup = this.sportGroupDropdown.getSelected()[0];
@@ -160,7 +160,7 @@ var FilterConfigurationView = /** @class */ (function () {
         return {
             betType: betType,
             stake: stake,
-            isLive: isLive,
+            eventStatus: eventStatus,
             sports: sports,
             filterByMembers: filterByMembers,
             inputList: inputList,

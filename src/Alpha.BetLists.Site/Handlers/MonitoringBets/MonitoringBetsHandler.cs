@@ -94,7 +94,11 @@
                 true,
                 message.BetType,
                 message.Stake,
-                null);
+                message.EventStatus,
+                "",
+                "",
+                message.InputList + message.MyWatchlist,
+                message.FilterByMembers);
             userSession.SetProperty(SessionKey.LastBetsMonitoringDefault, savedFilter);
 
             return Task.FromResult(new Result());
@@ -109,7 +113,7 @@
                 message.BetType,
                 message.Stake,
                 message.Sports,
-                message.IsLive,
+                message.EventStatus,
                 message.InputList,
                 message.MyWatchlist,
                 message.FilterByMembers,

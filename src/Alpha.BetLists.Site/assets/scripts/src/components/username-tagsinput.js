@@ -34,10 +34,11 @@ var UsernameTagsInputComponent = /** @class */ (function () {
         this.bindEvents();
     };
     UsernameTagsInputComponent.prototype.cacheDOMElements = function () {
-        this.tagsInputContainer = $("#" + this.tagsInputOption.selectorId + "_tagsinput");
-        this.tagLimit = this.tagsInputContainer.find("#" + this.tagsInputOption.selectorId + "_taglimit");
-        this.realInput = this.tagsInputContainer.find("#" + this.tagsInputOption.selectorId + "_input");
-        this.tagsInputContainer.css({
+        var tagsInputContainer = $("#" + this.tagsInputOption.selectorId + "_tagsinput");
+        this.tagLimit = tagsInputContainer.find("#" + this.tagsInputOption.selectorId + "_taglimit");
+        this.realInput = tagsInputContainer.find("#" + this.tagsInputOption.selectorId + "_input");
+        this.tagsBox = tagsInputContainer.find("#" + this.tagsInputOption.selectorId + "_tags");
+        tagsInputContainer.css({
             width: this.tagsInputOption.width,
             "min-height": this.tagsInputOption.height
         });
@@ -57,11 +58,7 @@ var UsernameTagsInputComponent = /** @class */ (function () {
             var tagsList = _this.splitIntoTags(value);
             tagsList.length > 1 && _this.addTagsList(tagsList);
         });
-        this.realInput.on("focus", function () { return _this.tagsInputContainer.addClass("focus"); });
-        this.realInput.blur(function () {
-            _this.tagsInputContainer.removeClass("focus");
-            _this.addTag(_this.realInput.val());
-        });
+        this.realInput.blur(function () { return _this.addTag(_this.realInput.val()); });
         // If a user types a delimiter create a new tag
         this.realInput.keypress(function (event) {
             if (_this.checkDelimiter(event)) {
@@ -99,7 +96,7 @@ var UsernameTagsInputComponent = /** @class */ (function () {
     UsernameTagsInputComponent.prototype.appendTags = function (results) {
         var _this = this;
         results.forEach(function (result) {
-            _this.tagsInputContainer.append($("<span>", {
+            _this.tagsBox.append($("<span>", {
                 class: "tag" + (result.ErrCode ? " error" : ""),
                 title: result.ErrMsg,
                 "data-custid": result.CustId,
@@ -112,13 +109,13 @@ var UsernameTagsInputComponent = /** @class */ (function () {
                 _this.updateTagLimitText();
             })));
         });
-        this.tagsInputContainer.find(".error:last").tooltip("destroy").tooltip();
+        this.tagsBox.find(".error:last").tooltip("destroy").tooltip();
         this.updateTagLimitText();
         this.realInput.val("").focus();
     };
     UsernameTagsInputComponent.prototype.updateTagLimitText = function (tagsListLength) {
         if (tagsListLength === void 0) { tagsListLength = undefined; }
-        tagsListLength = tagsListLength || this.tagsInputContainer.find(".tag-text").length;
+        tagsListLength = tagsListLength || this.tagsBox.find(".tag-text").length;
         var availableTags = this.tagsInputOption.limit - tagsListLength;
         this.tagLimit
             .text(this.tagsInputOption.limitText.replace("#", availableTags.toString()))
@@ -167,14 +164,14 @@ var UsernameTagsInputComponent = /** @class */ (function () {
     };
     UsernameTagsInputComponent.prototype.getUsernames = function () {
         var tagsList = [];
-        this.tagsInputContainer.find(".tag-text").each(function () {
+        this.tagsBox.find(".tag-text").each(function () {
             tagsList.push(this.innerText);
         });
         return tagsList;
     };
     UsernameTagsInputComponent.prototype.getCustIds = function () {
         var tagsList = [];
-        this.tagsInputContainer.find(".tag:not(.error)").each(function () {
+        this.tagsBox.find(".tag:not(.error)").each(function () {
             tagsList.push($(this).data("custid"));
         });
         return tagsList;

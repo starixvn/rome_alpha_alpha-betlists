@@ -204,18 +204,5 @@
     "inputFiles": [
       "assets/styles/error/error-dark.css"
     ]
-  },
-  {
-    "outputFileName": "assets/bundles/monitoring-bets/monitoring-bets-dark.css",
-    "inputFiles": [
-      "assets/styles/monitoring-bets-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "assets/bundles/monitoring-bets/filter-configuration-dark.css",
-    "inputFiles": [
-      "assets/styles/tagsinput.css",
-      "assets/styles/filter-configuration-dark.css"
-    ]
   }
 ]

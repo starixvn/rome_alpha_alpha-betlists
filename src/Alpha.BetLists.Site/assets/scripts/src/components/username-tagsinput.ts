@@ -21,9 +21,9 @@ class UsernameTagsInputOption {
 
 class UsernameTagsInputComponent {
     private tagsInputOption: UsernameTagsInputOption;
-    private tagsInputContainer: JQuery;
     private tagLimit: JQuery;
     private realInput: JQuery;
+    private tagsBox: JQuery;
 
     render(option: UsernameTagsInputOption) {
         this.tagsInputOption = option;
@@ -32,11 +32,12 @@ class UsernameTagsInputComponent {
     }
 
     private cacheDOMElements() {
-        this.tagsInputContainer = $(`#${this.tagsInputOption.selectorId}_tagsinput`);
-        this.tagLimit = this.tagsInputContainer.find(`#${this.tagsInputOption.selectorId}_taglimit`);
-        this.realInput = this.tagsInputContainer.find(`#${this.tagsInputOption.selectorId}_input`);
+        const tagsInputContainer = $(`#${this.tagsInputOption.selectorId}_tagsinput`);
+        this.tagLimit = tagsInputContainer.find(`#${this.tagsInputOption.selectorId}_taglimit`);
+        this.realInput = tagsInputContainer.find(`#${this.tagsInputOption.selectorId}_input`);
+        this.tagsBox = tagsInputContainer.find(`#${this.tagsInputOption.selectorId}_tags`);
 
-        this.tagsInputContainer.css({
+        tagsInputContainer.css({
             width: this.tagsInputOption.width,
             "min-height": this.tagsInputOption.height
         });
@@ -60,12 +61,7 @@ class UsernameTagsInputComponent {
             tagsList.length > 1 && this.addTagsList(tagsList);
         });
 
-        this.realInput.on("focus", () => this.tagsInputContainer.addClass("focus"));
-
-        this.realInput.blur(() => {
-            this.tagsInputContainer.removeClass("focus");
-            this.addTag(this.realInput.val());
-        });
+        this.realInput.blur(() => this.addTag(this.realInput.val()));
 
         // If a user types a delimiter create a new tag
         this.realInput.keypress((event) => {
@@ -108,7 +104,7 @@ class UsernameTagsInputComponent {
 
     private appendTags(results) {
         results.forEach((result) => {
-            this.tagsInputContainer.append(
+            this.tagsBox.append(
                 $("<span>", {
                     class: `tag${result.ErrCode ? " error" : ""}`,
                     title: result.ErrMsg,
@@ -126,13 +122,13 @@ class UsernameTagsInputComponent {
                 ));
         });
 
-        this.tagsInputContainer.find(".error:last").tooltip("destroy").tooltip();
+        this.tagsBox.find(".error:last").tooltip("destroy").tooltip();
         this.updateTagLimitText();
         this.realInput.val("").focus();
     }
 
     private updateTagLimitText(tagsListLength = undefined) {
-        tagsListLength = tagsListLength || this.tagsInputContainer.find(".tag-text").length;
+        tagsListLength = tagsListLength || this.tagsBox.find(".tag-text").length;
         const availableTags = this.tagsInputOption.limit - tagsListLength;
         this.tagLimit
             .text(this.tagsInputOption.limitText.replace("#", availableTags.toString()))
@@ -193,7 +189,7 @@ class UsernameTagsInputComponent {
 
     private getUsernames() {
         const tagsList = [];
-        this.tagsInputContainer.find(".tag-text").each(function () {
+        this.tagsBox.find(".tag-text").each(function () {
             tagsList.push(this.innerText);
         });
 
@@ -202,7 +198,7 @@ class UsernameTagsInputComponent {
 
     getCustIds() {
         const tagsList = [];
-        this.tagsInputContainer.find(".tag:not(.error)").each(function () {
+        this.tagsBox.find(".tag:not(.error)").each(function () {
             tagsList.push($(this).data("custid"));
         });
 

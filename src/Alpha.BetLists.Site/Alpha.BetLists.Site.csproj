@@ -802,7 +802,6 @@
     <Content Include="assets\bundles\last-bets.min.js">
       <DependentUpon>last-bets.js</DependentUpon>
     </Content>
-    <Content Include="assets\bundles\monitoring-bets\filter-configuration-dark.css" />
     <Content Include="assets\bundles\monitoring-bets\filter-configuration.css" />
     <Content Include="assets\bundles\monitoring-bets\filter-configuration.js" />
     <Content Include="assets\bundles\monitoring-bets\filter-configuration.min.css">
@@ -819,7 +818,6 @@
     <Content Include="assets\bundles\monitoring-bets\manage-filters.min.js">
       <DependentUpon>manage-filters.js</DependentUpon>
     </Content>
-    <Content Include="assets\bundles\monitoring-bets\monitoring-bets-dark.css" />
     <Content Include="assets\bundles\monitoring-bets\monitoring-bets.css" />
     <Content Include="assets\bundles\monitoring-bets\monitoring-bets.js" />
     <Content Include="assets\bundles\monitoring-bets\monitoring-bets.min.css">
@@ -964,12 +962,6 @@
     <Content Include="assets\styles\last-bets.min.css">
       <DependentUpon>last-bets.css</DependentUpon>
     </Content>
-    <Content Include="assets\styles\monitoring-bets-dark.css">
-      <DependentUpon>monitoring-bets-dark.scss</DependentUpon>
-    </Content>
-    <Content Include="assets\styles\monitoring-bets-dark.min.css">
-      <DependentUpon>monitoring-bets-dark.css</DependentUpon>
-    </Content>
     <Content Include="assets\styles\monitoring-bets.css">
       <DependentUpon>monitoring-bets.scss</DependentUpon>
     </Content>
@@ -1105,7 +1097,6 @@
     <Content Include="assets\styles\_variables-dark.scss" />
     <Content Include="assets\styles\bet-list-dark.scss" />
     <Content Include="assets\styles\last-bets-dark.scss" />
-    <Content Include="assets\styles\monitoring-bets-dark.scss" />
     <Content Include="assets\styles\monitoring-bets.scss" />
     <Content Include="assets\styles\parlay-detail-dark.scss" />
     <Content Include="App_Data\ProductSection.config" />

@@ -65,13 +65,51 @@
             partialUMService.ThrowIfUM(criteria.GetSettingKey());
 
             var filterConfigurations = await dynamicRepository.FetchAsync<FilterConfiguration>(criteria);
-            return filterConfigurations.Select(f => new SavedFilter(
-                f.FilterId,
-                f.FilterName,
-                f.IsDefault,
-                f.FilterXml.BetType,
-                f.FilterXml.Stake,
-                f.FilterXml.Members));
+            return filterConfigurations.Select(f =>
+            {
+                var filterXml = f.FilterXml;
+                var (sportTypes, leagues) = BuildSportTypesAndLeagues(filterXml.Sports);
+
+                return new SavedFilter(
+                    f.FilterId,
+                    f.FilterName,
+                    f.IsDefault,
+                    filterXml.BetType,
+                    filterXml.Stake,
+                    filterXml.IsLive,
+                    sportTypes,
+                    leagues,
+                    filterXml.Members,
+                    filterXml.IsWatchlist);
+            });
+        }
+
+        private static Tuple<string, string> BuildSportTypesAndLeagues(IEnumerable<SportXml> sportXmlList)
+        {
+            var sportTypes = new HashSet< int>();
+            var leagues = new HashSet<int>();
+
+            foreach (var item in sportXmlList)
+            {
+                if (item.Sport.Equals("0", StringComparison.OrdinalIgnoreCase))
+                {
+                    sportTypes.Add(0);
+                    leagues.Add(0);
+                }
+                else
+                {
+                    foreach (var sport in item.Sport.ToListInt())
+                    {
+                        sportTypes.Add(sport);
+                        foreach (var league in item.League.ToListInt())
+                        {
+                            leagues.Add(league);
+                        }
+                    }
+                }
+            }
+
+            return Tuple.Create(string.Join(",", sportTypes), string.Join(",", leagues));
         }
 
         public async Task<IEnumerable<FilterConfiguration>> GetFilters(int custId, int subAccId)

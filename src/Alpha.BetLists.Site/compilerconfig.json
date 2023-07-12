@@ -44,20 +44,12 @@
     "inputFile": "assets/styles/monitoring-bets.scss"
   },
   {
-    "outputFile": "assets/styles/monitoring-bets-dark.css",
-    "inputFile": "assets/styles/monitoring-bets-dark.scss"
-  },
-  {
     "outputFile": "assets/styles/components/autorefresh.css",
     "inputFile": "assets/styles/components/autorefresh.scss"
   },
   {
     "outputFile": "assets/styles/filter-configuration.css",
     "inputFile": "assets/styles/filter-configuration.scss"
-  },
-  {
-    "outputFile": "assets/styles/filter-configuration-dark.css",
-    "inputFile": "assets/styles/filter-configuration-dark.scss"
   },
   {
     "outputFile": "assets/styles/components/username-tagsinput.css",
