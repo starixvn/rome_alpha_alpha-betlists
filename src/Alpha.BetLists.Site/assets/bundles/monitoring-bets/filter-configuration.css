@@ -296,9 +296,10 @@
   --color-light-gray: #757575;
   --color-gray: #333333;
   --bg-white: #FFFFFF;
-  --border-color: #E0E0E0;
   --bg-btn: #0B599C;
+  --bg-btn-disabled: #82A0BA;
   --bg-btn-cancel: #696969;
+  --bg-btn-cancel-disabled: #909090;
   --bg-btn-reset: #1BAC69;
   --color-ttl: #094980;
   --border-color: #D1D1D1;
@@ -323,8 +324,13 @@
   background-color: var(--bg-btn);
   margin-right: 17px;
   text-decoration: none !important; }
+  .button.disabled, .button[disabled] {
+    background-color: var(--bg-btn-disabled);
+    cursor: not-allowed; }
   .button.button-cancel {
     background-color: var(--bg-btn-cancel); }
+    .button.button-cancel.disabled, .button.button-cancel[disabled] {
+      background-color: var(--bg-btn-cancel-disabled); }
     .button.button-cancel:hover {
       color: var(--color-white) !important;
       text-decoration: none; }
@@ -386,7 +392,6 @@
     height: 32px;
     border-radius: 3px;
     border: 1px solid var(--border-color);
-    background: var(--bg-white);
     font-size: 14px; }
     .item .inner .btn-group {
       width: 100%; }

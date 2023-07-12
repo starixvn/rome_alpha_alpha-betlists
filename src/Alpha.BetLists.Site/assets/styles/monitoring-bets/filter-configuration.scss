@@ -6,11 +6,14 @@
     --color-light-gray: #757575;
     --color-gray: #333333;
     --bg-white: #FFFFFF;
-    --border-color: #E0E0E0;
     //button
     --bg-btn: #0B599C;
+    --bg-btn-disabled: #82A0BA;
     --bg-btn-cancel: #696969;
+    --bg-btn-cancel-disabled: #909090;
     --bg-btn-reset: #1BAC69;
+
+
     --color-ttl: #094980;
     --border-color: #D1D1D1;
     //box
@@ -46,8 +49,17 @@
     margin-right: 17px;
     text-decoration: none !important;
 
+    &.disabled, &[disabled] {
+        background-color: var(--bg-btn-disabled);
+        cursor: not-allowed;
+    }
+
     &.button-cancel {
         background-color: var(--bg-btn-cancel);
+
+        &.disabled, &[disabled] {
+            background-color: var(--bg-btn-cancel-disabled);
+        }
 
         &:hover {
             color: var(--color-white) !important;
@@ -131,7 +143,6 @@
         height: 32px;
         border-radius: 3px;
         border: 1px solid var(--border-color);
-        background: var(--bg-white);
         font-size: 14px;
 
         .btn-group {
