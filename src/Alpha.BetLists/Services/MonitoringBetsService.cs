@@ -86,30 +86,31 @@
 
         private static Tuple<string, string> BuildSportTypesAndLeagues(IEnumerable<SportXml> sportXmlList)
         {
-            var sportTypes = new HashSet< int>();
-            var leagues = new HashSet<int>();
+            var sportTypes = new HashSet<string>();
+            var leagues = new HashSet<string>();
 
             foreach (var item in sportXmlList)
             {
-                if (item.Sport.Equals("0", StringComparison.OrdinalIgnoreCase))
+                if (!item.Sport.Equals("0", StringComparison.OrdinalIgnoreCase))
                 {
-                    sportTypes.Add(0);
-                    leagues.Add(0);
-                }
-                else
-                {
-                    foreach (var sport in item.Sport.ToListInt())
+                    foreach (var sport in item.Sport.SplitByCommaWithNoneEmptyEntries())
                     {
                         sportTypes.Add(sport);
-                        foreach (var league in item.League.ToListInt())
+                        foreach (var league in item.League.SplitByCommaWithNoneEmptyEntries())
                         {
-                            leagues.Add(league);
+                            if (!league.Equals("0", StringComparison.OrdinalIgnoreCase))
+                            {
+                                leagues.Add(league);
+                            }
                         }
                     }
                 }
             }
 
-            return Tuple.Create(string.Join(",", sportTypes), string.Join(",", leagues));
+            var sportTypeIds = sportTypes.Count == 0 ? "0" : string.Join(",", sportTypes);
+            var leagueIds = leagues.Count == 0 ? "0" : string.Join(",", leagues);
+
+            return Tuple.Create(sportTypeIds, leagueIds);
         }
 
         public async Task<IEnumerable<FilterConfiguration>> GetFilters(int custId, int subAccId)

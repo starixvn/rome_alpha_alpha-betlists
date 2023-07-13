@@ -2,7 +2,9 @@
 {
     public static class EventStatusConstants
     {
-        public const byte All = 2;
+        public const byte All = 3;
+
+        public const byte Mix = 2;
 
         public const byte Live = 1;
 

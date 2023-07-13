@@ -744,4 +744,13 @@
   <data name="Others" xml:space="preserve">
     <value>อื่นๆ</value>
   </data>
+  <data name="Mix" xml:space="preserve">
+    <value>Mix</value>
+  </data>
+  <data name="Copied" xml:space="preserve">
+    <value>คัดลอก</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>สำเนา</value>
+  </data>
 </root>

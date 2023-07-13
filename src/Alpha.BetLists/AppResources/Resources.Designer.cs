@@ -448,6 +448,24 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copied.
+        /// </summary>
+        public static string Copied {
+            get {
+                return ResourceManager.GetString("Copied", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy.
+        /// </summary>
+        public static string Copy {
+            get {
+                return ResourceManager.GetString("Copy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Created Time.
         /// </summary>
         public static string CreatedTime {
@@ -1101,6 +1119,15 @@ namespace Alpha.BetLists.AppResources {
         public static string MinorSports {
             get {
                 return ResourceManager.GetString("MinorSports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mix.
+        /// </summary>
+        public static string Mix {
+            get {
+                return ResourceManager.GetString("Mix", resourceCulture);
             }
         }
         

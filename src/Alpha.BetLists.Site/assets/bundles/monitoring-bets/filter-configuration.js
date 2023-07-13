@@ -648,11 +648,11 @@ var FilterConfigurationView = /** @class */ (function () {
             _this.inlineMessagePopup.hide();
         });
         addFilterPopup.find("#btn-save-filter-popup").click(function () { return _this.handleSaveFilterPopup(); });
-        $(".btn-apply").click(function (e) {
+        $(".button-apply").click(function (e) {
             _this.addFilterFormData = _this.getFormData(rdoSpecificSports, rdoSpecificMembers);
             _this.addFilterFormData && _this.handleApplyFilter();
         });
-        $(".btn-save-filter").click(function (e) {
+        $(".button-save").click(function (e) {
             _this.addFilterFormData = _this.getFormData(rdoSpecificSports, rdoSpecificMembers);
             _this.addFilterFormData && addFilterPopup.modal("show");
         });

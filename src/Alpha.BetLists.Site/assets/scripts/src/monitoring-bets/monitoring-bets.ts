@@ -4,10 +4,13 @@ class MonitoringBetsView {
     private dropdownFilter: JQuery;
     private dropdownTop: JQuery;
     private autoRefreshComponent: AutoRefreshComponent;
+    private monitoringBetsCopyHtml: MonitoringBetsCopyHtml;
 
     constructor(
-        autoRefreshComponent: AutoRefreshComponent) {
+        autoRefreshComponent: AutoRefreshComponent,
+        monitoringBetsCopyHtml: MonitoringBetsCopyHtml) {
         this.autoRefreshComponent = autoRefreshComponent;
+        this.monitoringBetsCopyHtml = monitoringBetsCopyHtml;
     }
 
     init() {
@@ -39,9 +42,13 @@ class MonitoringBetsView {
                     self.autoRefreshComponent.start();
                 }, 3000);
             }));
+
+        //this.monitoringBetsCopyHtml.init();
     }
 }
 
 $(function () {
-    new MonitoringBetsView(new AutoRefreshComponent()).init();
+    new MonitoringBetsView(
+        new AutoRefreshComponent(),
+        new MonitoringBetsCopyHtml(Clipboard)).init();
 });

@@ -106,12 +106,12 @@ class FilterConfigurationView {
             });
         addFilterPopup.find("#btn-save-filter-popup").click(() => this.handleSaveFilterPopup());
 
-        $(".btn-apply").click((e) => {
+        $(".button-apply").click((e) => {
             this.addFilterFormData = this.getFormData(rdoSpecificSports, rdoSpecificMembers);
             this.addFilterFormData && this.handleApplyFilter();
         });
 
-        $(".btn-save-filter").click((e) => {
+        $(".button-save").click((e) => {
             this.addFilterFormData = this.getFormData(rdoSpecificSports, rdoSpecificMembers);
             this.addFilterFormData && addFilterPopup.modal("show");
         });

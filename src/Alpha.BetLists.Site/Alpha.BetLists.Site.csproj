@@ -1612,6 +1612,7 @@
     <TypeScriptCompile Include="assets\scripts\src\member-betlist\member-betlist.ts" />
     <TypeScriptCompile Include="assets\scripts\src\monitoring-bets\filter-configuration.ts" />
     <TypeScriptCompile Include="assets\scripts\src\monitoring-bets\manage-filters.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\monitoring-bets\monitoring-bets-copyhtml.ts" />
     <TypeScriptCompile Include="assets\scripts\src\monitoring-bets\monitoring-bets.ts" />
     <TypeScriptCompile Include="assets\scripts\src\running-betlist\running-betlist.ts" />
     <TypeScriptCompile Include="assets\scripts\src\winloss\winloss-betlist.ts" />

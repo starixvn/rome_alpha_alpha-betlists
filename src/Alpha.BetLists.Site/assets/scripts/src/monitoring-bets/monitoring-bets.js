@@ -1,7 +1,8 @@
 "use strict";
 var MonitoringBetsView = /** @class */ (function () {
-    function MonitoringBetsView(autoRefreshComponent) {
+    function MonitoringBetsView(autoRefreshComponent, monitoringBetsCopyHtml) {
         this.autoRefreshComponent = autoRefreshComponent;
+        this.monitoringBetsCopyHtml = monitoringBetsCopyHtml;
     }
     MonitoringBetsView.prototype.init = function () {
         this.dropdownFilter = $("#monitoring-bets-filter");
@@ -27,10 +28,11 @@ var MonitoringBetsView = /** @class */ (function () {
                 self.autoRefreshComponent.start();
             }, 3000);
         }));
+        //this.monitoringBetsCopyHtml.init();
     };
     return MonitoringBetsView;
 }());
 $(function () {
-    new MonitoringBetsView(new AutoRefreshComponent()).init();
+    new MonitoringBetsView(new AutoRefreshComponent(), new MonitoringBetsCopyHtml(Clipboard)).init();
 });
 //# sourceMappingURL=monitoring-bets.js.map

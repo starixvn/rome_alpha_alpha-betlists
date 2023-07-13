@@ -42,9 +42,10 @@
         {
             get
             {
-                yield return new SelectListItem { Text = AppResources.Resources.All, Value = EventStatusConstants.All.ToString(), Selected = true };
-                yield return new SelectListItem { Text = AppResources.Resources.Live, Value = EventStatusConstants.Live.ToString() };
-                yield return new SelectListItem { Text = AppResources.Resources.NonLive, Value = EventStatusConstants.NonLive.ToString() };
+                yield return BuildSelectListItem(AppResources.Resources.All, EventStatusConstants.All, true);
+                yield return BuildSelectListItem(AppResources.Resources.Live, EventStatusConstants.Live);
+                yield return BuildSelectListItem(AppResources.Resources.NonLive, EventStatusConstants.NonLive);
+                yield return BuildSelectListItem(AppResources.Resources.Mix, EventStatusConstants.Mix);
             }
         }
 
@@ -52,10 +53,13 @@
         {
             get
             {
-                yield return new SelectListItem { Text = AppResources.Resources.All, Value = SportGroupConstants.All.ToString(), Selected = true };
-                yield return new SelectListItem { Text = AppResources.Resources.MajorSports, Value = SportGroupConstants.MajorSports.ToString() };
-                yield return new SelectListItem { Text = AppResources.Resources.MinorSports, Value = SportGroupConstants.MinorSports.ToString() };
+                yield return BuildSelectListItem(AppResources.Resources.All, SportGroupConstants.All, true);
+                yield return BuildSelectListItem(AppResources.Resources.MajorSports, SportGroupConstants.MajorSports);
+                yield return BuildSelectListItem(AppResources.Resources.MinorSports, SportGroupConstants.MinorSports);
             }
         }
+
+        private static SelectListItem BuildSelectListItem(string text, byte value, bool selected = false)
+            => new SelectListItem { Text = text, Value = value.ToString(), Selected = selected };
     }
 }
