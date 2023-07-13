@@ -21,6 +21,8 @@
   position: relative;
   outline: none;
   margin-bottom: 19px; }
+  .tagsinput .tags-box {
+    padding: 10px 0 0 10px; }
   .tagsinput .tag-limit {
     color: var(--tags-placehoder);
     font-style: italic;
@@ -59,7 +61,7 @@
     border-radius: 3px;
     color: var(--tagsinput-color);
     display: inline-block;
-    margin: 10px 3px 9px 9px;
+    margin: 0 10px 10px 0;
     padding: 2px 30px 2px 5px;
     position: relative;
     font-weight: bold; }
