@@ -7,16 +7,45 @@
 /*******************************************/
 /* Ripple Effect */
 /*******************************************/
+:root {
+  --color-gray: #333333;
+  --bg-white: #FFFFFF;
+  --border-color: #D1D1D1;
+  --bg-sub-head-tb: #DBE0E5;
+  --bg-table: #f7f7f7;
+  --bg-col-name: #ffffff; }
+
+.manage-filters {
+  background: var(--bg-white);
+  border: 1px solid var(--border-color);
+  border-radius: 3px;
+  padding: 15px;
+  width: 1000px; }
+
+.block-btn {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 17px; }
+
 .manage-filters {
   width: 960px; }
 
-.tblRpt .width-120 {
+.tb .sub-headed td {
+  background-color: var(--bg-sub-head-tb); }
+
+.tb td {
+  background: var(--bg-table); }
+
+.tb .col-name td {
+  background: var(--bg-col-name); }
+
+.tb .width-120 {
   width: 120px; }
 
-.tblRpt .width-180 {
+.tb .width-180 {
   width: 180px; }
 
-.tblRpt .filter-name {
+.tb .filter-name {
   cursor: pointer;
   -webkit-user-select: none;
   /* Chrome all / Safari all */
@@ -27,33 +56,36 @@
   user-select: none;
   /* Likely future */ }
 
-.tblRpt input[type='text'] {
-  width: 98%; }
+.tb input[type='text'] {
+  width: 94%;
+  position: relative;
+  z-index: 12;
+  left: -23px; }
 
-.tblRpt .caret {
+.tb .caret {
   top: 8px;
   right: 16px; }
 
-.tblRpt .dropdown-menu > li > a {
+.tb .dropdown-menu > li > a {
   line-height: 1;
   padding: 8px; }
-  .tblRpt .dropdown-menu > li > a:hover {
+  .tb .dropdown-menu > li > a:hover {
     background: transparent;
     cursor: default; }
 
-.tblRpt .icon-edit, .tblRpt .icon-bin, .tblRpt .icon-check, .tblRpt .icon-close {
+.tb .icon-edit, .tb .icon-bin, .tb .icon-check, .tb .icon-close {
   cursor: pointer; }
 
-.tblRpt .icon-edit {
+.tb .icon-edit {
   margin-right: 5px; }
 
-.tblRpt .icon-check {
-  color: #52a220; }
+.tb .icon-check {
+  color: #1BAC69; }
 
-.tblRpt .icon-close {
-  color: #fe0000; }
+.tb .icon-close {
+  color: #DD3333; }
 
-.tblRpt .icon-check, .tblRpt .icon-close {
+.tb .icon-check, .tb .icon-close {
   font-size: 18px;
   font-weight: bold; }
 
@@ -61,11 +93,12 @@ a:hover, a:focus {
   text-decoration: none; }
 
 .arrow {
-  border: 4px solid transparent;
+  border: 5px solid transparent;
   cursor: pointer;
   display: inline-block;
   width: 0;
   height: 0;
+  margin: 5px 4px 0 5px;
   -webkit-user-select: none;
   /* Chrome all / Safari all */
   -moz-user-select: none;
@@ -84,16 +117,21 @@ a:hover, a:focus {
 
 .treeview-sport {
   cursor: pointer;
-  display: inline-block; }
+  display: inline-block;
+  padding: 0 0 0 24px; }
 
 .treeview {
-  margin-bottom: 0; }
+  margin-bottom: 0;
+  padding: 0 0 0 48px; }
   .treeview .tree-node-name {
     cursor: pointer;
     display: inline-block;
     line-height: 1.8; }
   .treeview .subtree {
     display: none;
-    margin-left: 13px; }
+    margin-left: 13px;
+    padding: 0 0 0 18px; }
+    .treeview .subtree li {
+      margin-top: 6px; }
     .treeview .subtree.expand {
       display: block; }

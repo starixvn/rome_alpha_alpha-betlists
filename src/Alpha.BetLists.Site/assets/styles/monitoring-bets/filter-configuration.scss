@@ -31,7 +31,9 @@
 
 .block-btn {
     display: flex;
-
+    *{
+        margin-right: 8px;
+    }
     &.top {
         margin-bottom: 16px;
     }
@@ -44,7 +46,7 @@
     font-weight: bold;
 }
 
-.wrapper {
+.filter-config {
     background: var(--bg-white);
     border: 1px solid var(--border-color);
     border-radius: 3px;

@@ -1,14 +1,54 @@
 ﻿@import "../_mixins.scss";
 
-$icon-check-color: #52a220;
-$icon-close-color: #fe0000;
+$icon-check-color: #1BAC69;
+$icon-close-color: #DD3333;
 $icon-dropdown-border-color: #444;
 
+:root {
+    --color-gray: #333333;
+    --bg-white: #FFFFFF;
+    --border-color: #D1D1D1;
+    //table
+    --bg-sub-head-tb: #DBE0E5;
+    --bg-table: #f7f7f7;
+    --bg-col-name: #ffffff;
+}
+
+
+.manage-filters {
+    background: var(--bg-white);
+    border: 1px solid var(--border-color);
+    border-radius: 3px;
+    padding: 15px;
+    width: 1000px;
+}
+
+.block-btn{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 17px;
+}
 .manage-filters {
     width: 960px;
 }
 
-.tblRpt {
+.tb {
+    .sub-headed {
+        td {
+            background-color: var(--bg-sub-head-tb);
+        }
+    }
+
+    td {
+        background: var(--bg-table);
+    }
+
+    .col-name {
+        td {
+            background: var(--bg-col-name);
+        }
+    }
+
     .width-120 {
         width: 120px;
     }
@@ -23,7 +63,10 @@ $icon-dropdown-border-color: #444;
     }
 
     input[type='text'] {
-        width: 98%;
+        width: 94%;
+        position: relative;
+        z-index: 12;
+        left: -23px;
     }
 
     .caret {
@@ -68,11 +111,12 @@ a:hover, a:focus {
 }
 
 .arrow {
-    border: 4px solid transparent;
+    border: 5px solid transparent;
     cursor: pointer;
     display: inline-block;
     width: 0;
     height: 0;
+    margin: 5px 4px 0 5px;
     @include user-select-none;
 }
 
@@ -88,10 +132,12 @@ a:hover, a:focus {
 .treeview-sport {
     cursor: pointer;
     display: inline-block;
+    padding: 0 0 0 24px;
 }
 
 .treeview {
     margin-bottom: 0;
+    padding: 0 0 0 48px;
 
     .tree-node-name {
         cursor: pointer;
@@ -102,7 +148,10 @@ a:hover, a:focus {
     .subtree {
         display: none;
         margin-left: 13px;
-
+        padding: 0 0 0 18px;
+        li{
+            margin-top: 6px;
+        }
         &.expand {
             display: block;
         }

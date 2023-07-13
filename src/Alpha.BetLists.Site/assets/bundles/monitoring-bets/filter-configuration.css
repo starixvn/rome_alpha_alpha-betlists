@@ -311,6 +311,8 @@
 
 .block-btn {
   display: flex; }
+  .block-btn * {
+    margin-right: 8px; }
   .block-btn.top {
     margin-bottom: 16px; }
 
@@ -320,7 +322,7 @@
   padding: 10px 0 16px 0;
   font-weight: bold; }
 
-.wrapper {
+.filter-config {
   background: var(--bg-white);
   border: 1px solid var(--border-color);
   border-radius: 3px;
