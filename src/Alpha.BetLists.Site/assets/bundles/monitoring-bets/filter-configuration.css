@@ -504,3 +504,12 @@
   .modal-open .modal .modal-dialog {
     max-width: 90%;
     width: 100%; } }
+
+@media only screen and (max-device-width: 767px) {
+  .filter-config {
+    width: 100%; }
+  .list-box {
+    justify-content: space-between; }
+  .box {
+    width: 48%;
+    margin: 0; } }

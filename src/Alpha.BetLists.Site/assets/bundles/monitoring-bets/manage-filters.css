@@ -43,7 +43,7 @@
   width: 120px; }
 
 .tb .width-180 {
-  width: 180px; }
+  max-width: 180px; }
 
 .tb .filter-name {
   cursor: pointer;
@@ -73,21 +73,16 @@
     background: transparent;
     cursor: default; }
 
-.tb .icon-edit, .tb .icon-bin, .tb .icon-check, .tb .icon-close {
+.tb .edit-group, .tb .confirm-group {
+  display: flex;
+  justify-content: center; }
+  .tb .edit-group [class^="ic-"], .tb .edit-group [class*=" ic-"], .tb .confirm-group [class^="ic-"], .tb .confirm-group [class*=" ic-"] {
+    display: block;
+    margin: 0 4px; }
+
+.tb [class^="ic-"], .tb [class*=" ic-"] {
+  font-size: 24px;
   cursor: pointer; }
-
-.tb .icon-edit {
-  margin-right: 5px; }
-
-.tb .icon-check {
-  color: #1BAC69; }
-
-.tb .icon-close {
-  color: #DD3333; }
-
-.tb .icon-check, .tb .icon-close {
-  font-size: 18px;
-  font-weight: bold; }
 
 a:hover, a:focus {
   text-decoration: none; }
@@ -135,3 +130,11 @@ a:hover, a:focus {
       margin-top: 6px; }
     .treeview .subtree.expand {
       display: block; }
+
+@media only screen and (max-device-width: 767px) {
+  .manage-filters {
+    width: 100%; }
+  .tb .width-180 {
+    width: 100px; }
+  .tb .width-120 {
+    width: auto; } }

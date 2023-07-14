@@ -1,7 +1,5 @@
 ﻿@import "../_mixins.scss";
 
-$icon-check-color: #1BAC69;
-$icon-close-color: #DD3333;
 $icon-dropdown-border-color: #444;
 
 :root {
@@ -54,7 +52,7 @@ $icon-dropdown-border-color: #444;
     }
 
     .width-180 {
-        width: 180px;
+        max-width: 180px;
     }
 
     .filter-name {
@@ -84,25 +82,19 @@ $icon-dropdown-border-color: #444;
         }
     }
 
-    .icon-edit, .icon-bin, .icon-check, .icon-close {
+    .edit-group, .confirm-group {
+        display: flex;
+        justify-content: center;
+
+        [class^="ic-"], [class*=" ic-"] {
+            display: block;
+            margin: 0 4px;
+        }
+    }
+
+    [class^="ic-"], [class*=" ic-"] {
+        font-size: 24px;
         cursor: pointer;
-    }
-
-    .icon-edit {
-        margin-right: 5px;
-    }
-
-    .icon-check {
-        color: $icon-check-color;
-    }
-
-    .icon-close {
-        color: $icon-close-color;
-    }
-
-    .icon-check, .icon-close {
-        font-size: 18px;
-        font-weight: bold;
     }
 }
 
@@ -154,6 +146,20 @@ a:hover, a:focus {
         }
         &.expand {
             display: block;
+        }
+    }
+}
+@media only screen and (max-device-width: 767px) {
+    .manage-filters{
+        width: 100%;
+    }
+    .tb {
+        .width-180 {
+            width: 100px;
+        }
+
+        .width-120 {
+            width: auto;
         }
     }
 }
