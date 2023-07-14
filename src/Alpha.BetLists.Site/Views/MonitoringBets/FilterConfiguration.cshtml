@@ -18,7 +18,7 @@
     <div id="inline-message" class="msg hide"></div>
     <div class="block-btn top">@RenderButtonGroup()</div>
     <div class="block-config">
-        <div class="ttl-config">@Resources.FilterByBetTypeAndStake</div>
+        <div class="ttl-config">@Resources.FilterByTickets</div>
         <div class="list-item">
             <div class="item">
                 <label>@Resources.BetType</label>
@@ -41,8 +41,8 @@
                 </div>
             </div>
             <div class="item">
-                <label>@Resources.EventStatus</label>
-                <div class="inner">@Html.DropDownList("ddl-event-status", Model.EventStatus)</div>
+                <label>@Resources.LiveStatus</label>
+                <div class="inner">@Html.DropDownList("ddl-live-status", Model.LiveStatus)</div>
             </div>
         </div>
     </div>

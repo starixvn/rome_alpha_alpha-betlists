@@ -38,14 +38,14 @@
             }
         }
 
-        public IEnumerable<SelectListItem> EventStatus
+        public IEnumerable<SelectListItem> LiveStatus
         {
             get
             {
-                yield return BuildSelectListItem(AppResources.Resources.All, EventStatusConstants.All, true);
-                yield return BuildSelectListItem(AppResources.Resources.Live, EventStatusConstants.Live);
-                yield return BuildSelectListItem(AppResources.Resources.NonLive, EventStatusConstants.NonLive);
-                yield return BuildSelectListItem(AppResources.Resources.Mix, EventStatusConstants.Mix);
+                yield return BuildSelectListItem(AppResources.Resources.All, LiveStatusConstants.All, true);
+                yield return BuildSelectListItem(AppResources.Resources.Live, LiveStatusConstants.Live);
+                yield return BuildSelectListItem(AppResources.Resources.NonLive, LiveStatusConstants.NonLive);
+                yield return BuildSelectListItem(AppResources.Resources.Mix, LiveStatusConstants.Mix);
             }
         }
 

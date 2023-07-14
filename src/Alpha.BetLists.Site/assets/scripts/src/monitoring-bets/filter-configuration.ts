@@ -4,7 +4,7 @@ class FilterConfigurationView {
     private inlineMessage: InlineMessageComponent;
     private betTypeDropdown: DropdownListComponent;
     private stakeInput: JQuery;
-    private eventStatusDropdown: DropdownListComponent;
+    private liveStatusDropdown: DropdownListComponent;
     private sportGroupDropdown: DropdownListComponent;
     private sportLeagueMatchTreeview: SportLeagueMatchTreeViewComponent;
     private myWatchlistMemberTreeview: SportLeagueMatchTreeViewComponent;
@@ -32,8 +32,8 @@ class FilterConfigurationView {
         this.betTypeDropdown = new DropdownListComponent();
         this.betTypeDropdown.render("ddl-bettype");
 
-        this.eventStatusDropdown = new DropdownListComponent();
-        this.eventStatusDropdown.render("ddl-event-status");
+        this.liveStatusDropdown = new DropdownListComponent();
+        this.liveStatusDropdown.render("ddl-live-status");
 
         this.sportGroupDropdown = new DropdownListComponent();
         this.sportGroupDropdown.render("ddl-sport-group", {
@@ -171,7 +171,7 @@ class FilterConfigurationView {
             return;
         }
 
-        const eventStatus = this.eventStatusDropdown.getSelected()[0];
+        const liveStatus = this.liveStatusDropdown.getSelected()[0];
 
         let sports = [{ sport: "0", league: "0" }];
         if (rdoSpecificSports.is(":checked")) {
@@ -209,7 +209,7 @@ class FilterConfigurationView {
         return {
             betType,
             stake,
-            eventStatus,
+            liveStatus,
             sports,
             filterByMembers,
             inputList,

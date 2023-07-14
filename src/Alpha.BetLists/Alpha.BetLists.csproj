@@ -347,7 +347,7 @@
     </Compile>
     <Compile Include="Configurations\AppSettings.cs" />
     <Compile Include="Constants\DefaultVariables.cs" />
-    <Compile Include="Constants\EventStatusConstants.cs" />
+    <Compile Include="Constants\LiveStatusConstants.cs" />
     <Compile Include="Constants\FilterByMembersConstants.cs" />
     <Compile Include="Constants\SportGroupConstants.cs" />
     <Compile Include="Constants\SportTypeIdConstants.cs" />

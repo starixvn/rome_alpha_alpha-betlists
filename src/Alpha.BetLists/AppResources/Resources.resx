@@ -594,8 +594,8 @@
   <data name="SaveFilter" xml:space="preserve">
     <value>Save Filter</value>
   </data>
-  <data name="FilterByBetTypeAndStake" xml:space="preserve">
-    <value>Filter by Bet type and Stake</value>
+  <data name="FilterByTickets" xml:space="preserve">
+    <value>Filter by Tickets</value>
   </data>
   <data name="FilterBySports" xml:space="preserve">
     <value>Filter by Sports</value>
@@ -603,8 +603,8 @@
   <data name="FilterByMembers" xml:space="preserve">
     <value>Filter by Members</value>
   </data>
-  <data name="EventStatus" xml:space="preserve">
-    <value>Event Status</value>
+  <data name="LiveStatus" xml:space="preserve">
+    <value>Live Status</value>
   </data>
   <data name="SportGroup" xml:space="preserve">
     <value>Sport Group</value>

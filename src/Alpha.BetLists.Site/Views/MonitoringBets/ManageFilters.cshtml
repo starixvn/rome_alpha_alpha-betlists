@@ -24,8 +24,8 @@
     <table class="tb tb-bordered w-full" id="table-manage-filters">
         <thead>
             <tr>
-                <th class="width-180">@Resources.CreatedTime</th>
                 <th>@Resources.FilterName</th>
+                <th class="width-180">@Resources.CreatedTime</th>
                 <th class="width-120">@Resources.SetDefault</th>
                 <th class="width-120">@Resources.Action</th>
             </tr>
@@ -37,12 +37,12 @@
                 {
                     { allFilterIds.Add(item.FilterId); }
                     <tr data-filterid="@item.FilterId" class="col-name">
-                        <td class="text-center" id="created-time-@item.FilterId">@item.CreatedDate.ToLongDateTimeWithSlash()</td>
                         <td class="text-left">
                             <span class="arrow right collapse-expand"></span>
                             <span class="filter-name" id="span-filter-name-@item.FilterId">@item.FilterName</span>
                             <input type="text" value="@item.FilterName" class="hide" id="input-filter-name-@item.FilterId" autocomplete="off" maxlength="50" />
                         </td>
+                        <td class="text-center" id="created-time-@item.FilterId">@item.CreatedDate.ToLongDateTimeWithSlash()</td>
                         <td class="text-center"><input type="radio" name="default" id="radio-default-@item.FilterId" @(item.IsDefault ? "checked" : string.Empty) disabled /></td>
                         <td class="text-center">
                             <div class="edit-group">
@@ -55,63 +55,80 @@
                             </div>
                         </td>
                     </tr>
+                    <tr class="hide sub-headed" data-filterid="@item.FilterId">
+                        <td colspan="4">
+                            <div class="filter-by-tickets">
+                                <span class="arrow right"></span> @Resources.FilterByTickets
+                            </div>
+                        </td>
+                    </tr>
                     <tr class="hide" data-filterid="@item.FilterId">
                         <td>@Resources.BetType</td>
-                        <td colspan="2">@RenderDropdownBetTypes(item.FilterXml.BetTypeNames)</td>
+                        <td colspan="3">@RenderDropdownBetTypes(item.FilterXml.BetTypeNames)</td>
                     </tr>
                     <tr class="hide" data-filterid="@item.FilterId">
                         <td>@Resources.stake</td>
-                        <td colspan="2">>= @item.FilterXml.Stake.ToString("N0")</td>
+                        <td colspan="3">>= @item.FilterXml.Stake.ToString("N0")</td>
                     </tr>
                     <tr class="hide" data-filterid="@item.FilterId">
-                        <td>@Resources.EventStatus</td>
-                        <td colspan="2">
-                            @if (item.FilterXml.IsLive == EventStatusConstants.All)
+                        <td>@Resources.LiveStatus</td>
+                        <td colspan="3">
+                            @if (item.FilterXml.IsLive == LiveStatusConstants.NonLive)
                             {
-                                @:@Resources.All
+                                @:@Resources.NonLive
                             }
-                            else if (item.FilterXml.IsLive == EventStatusConstants.Live)
+                            else if (item.FilterXml.IsLive == LiveStatusConstants.Live)
                             {
                                 @:@Resources.Live
                             }
+                            else if (item.FilterXml.IsLive == LiveStatusConstants.Mix)
+                            {
+                                @:@Resources.Mix
+                            }
                             else
                             {
-                                @:@Resources.NonLive
+                                @:@Resources.All
                             }
                         </td>
                     </tr>
                     <tr class="hide sub-headed" data-filterid="@item.FilterId">
                         <td>
+                            <div class="filter-by-sports">
+                                <span class="arrow right"></span> @Resources.FilterBySports
+                            </div>
+                        </td>
+                        <td colspan="3">
                             @if (item.FilterXml.IsAllSports)
                             {
                                 @:@Resources.Sports
                             }
                             else
                             {
-                                <div class="treeview-sport">
-                                    <span class="arrow down" id="arrow-sport-@item.FilterId"></span> @Resources.Sports
-                                </div>
+                                @:@Resources.SpecificSports
                             }
                         </td>
-                        <td colspan="2">@(item.FilterXml.IsAllSports ? Resources.AllSports : Resources.SpecificSports)</td>
                     </tr>
                     if (!item.FilterXml.IsAllSports)
                     {
                         @RenderTreeViewSports(item.FilterId, item.FilterXml.FlatternSports)
                     }
-                    <tr class="hide" data-filterid="@item.FilterId">
-                        <td>@Resources.Members</td>
-                        <td colspan="2">@(item.FilterXml.IsWatchlist == FilterByMembersConstants.AllMembers ? Resources.AllMembers : Resources.SpecificMembers)</td>
+                    <tr class="hide sub-headed" data-filterid="@item.FilterId">
+                        <td>
+                            <div class="filter-by-members">
+                                <span class="arrow right"></span> @Resources.FilterByMembers
+                            </div>
+                        </td>
+                        <td colspan="3">@(item.FilterXml.IsWatchlist == FilterByMembersConstants.AllMembers ? Resources.AllMembers : Resources.SpecificMembers)</td>
                     </tr>
                     if (item.FilterXml.IsWatchlist != FilterByMembersConstants.AllMembers)
                     {
                         <tr class="hide" data-filterid="@item.FilterId">
                             <td>@Resources.EnteredMembers</td>
-                            <td colspan="2">@RenderDropdownMembers(item.InputList)</td>
+                            <td colspan="3">@RenderDropdownMembers(item.InputList)</td>
                         </tr>
                         <tr class="hide" data-filterid="@item.FilterId">
                             <td>@Resources.SelectedMembers</td>
-                            <td colspan="2">
+                            <td colspan="3">
                                 @if (item.FilterXml.IsWatchlist == FilterByMembersConstants.AllWatchlistMembers)
                                 {
                                     @:@Resources.AllIncludedNewlyAddedMembers
@@ -141,7 +158,7 @@
 @helper RenderTreeViewSports(int filterId, IEnumerable<Sport> sports)
 {
     <tr class="hide" data-filterid="@filterId">
-        <td colspan="3">
+        <td colspan="4">
             <ul class="treeview">
                 @foreach (var sport in sports)
                 {
@@ -180,7 +197,7 @@
     }
     else
     {
-        @RenderDropdown(betTypeNames, Resources.BetTypes)
+        @RenderDropdown(betTypeNames)
     }
 }
 
@@ -199,16 +216,16 @@
         }
         else
         {
-            @RenderDropdown(memberList, Resources.Members)
+            @RenderDropdown(memberList)
         }
     }
 }
 
-@helper RenderDropdown(IEnumerable<string> options, string title)
+@helper RenderDropdown(IEnumerable<string> options)
 {
     <div class="dropdown">
         <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-            @options.Count() @title<span class="caret"></span>
+            @options.Count() @Resources.Selected<span class="caret"></span>
         </a>
         <ul class="dropdown-menu">
             @foreach (var item in options)

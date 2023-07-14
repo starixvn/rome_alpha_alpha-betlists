@@ -1,6 +1,6 @@
 ﻿namespace Alpha.BetLists.Constants
 {
-    public static class EventStatusConstants
+    public static class LiveStatusConstants
     {
         public const byte All = 3;
 

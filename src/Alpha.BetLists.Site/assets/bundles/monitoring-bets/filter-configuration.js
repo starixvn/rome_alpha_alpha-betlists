@@ -599,8 +599,8 @@ var FilterConfigurationView = /** @class */ (function () {
         this.inlineMessagePopup = new InlineMessageComponent("inline-message-popup");
         this.betTypeDropdown = new DropdownListComponent();
         this.betTypeDropdown.render("ddl-bettype");
-        this.eventStatusDropdown = new DropdownListComponent();
-        this.eventStatusDropdown.render("ddl-event-status");
+        this.liveStatusDropdown = new DropdownListComponent();
+        this.liveStatusDropdown.render("ddl-live-status");
         this.sportGroupDropdown = new DropdownListComponent();
         this.sportGroupDropdown.render("ddl-sport-group", {
             onChange: function (select) { return _this.getSports(select.val()); }
@@ -709,7 +709,7 @@ var FilterConfigurationView = /** @class */ (function () {
             this.stakeInput.focus();
             return;
         }
-        var eventStatus = this.eventStatusDropdown.getSelected()[0];
+        var liveStatus = this.liveStatusDropdown.getSelected()[0];
         var sports = [{ sport: "0", league: "0" }];
         if (rdoSpecificSports.is(":checked")) {
             var sportGroup = this.sportGroupDropdown.getSelected()[0];
@@ -744,7 +744,7 @@ var FilterConfigurationView = /** @class */ (function () {
         return {
             betType: betType,
             stake: stake,
-            eventStatus: eventStatus,
+            liveStatus: liveStatus,
             sports: sports,
             filterByMembers: filterByMembers,
             inputList: inputList,

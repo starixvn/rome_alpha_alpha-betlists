@@ -556,15 +556,6 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Event Status.
-        /// </summary>
-        public static string EventStatus {
-            get {
-                return ResourceManager.GetString("EventStatus", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The system can only export up to {0} tickets. Please select a shorter date range..
         /// </summary>
         public static string ExceededMaxTotalRowExportExcelFunc {
@@ -610,15 +601,6 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Filter by Bet type and Stake.
-        /// </summary>
-        public static string FilterByBetTypeAndStake {
-            get {
-                return ResourceManager.GetString("FilterByBetTypeAndStake", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Filter by Members.
         /// </summary>
         public static string FilterByMembers {
@@ -633,6 +615,15 @@ namespace Alpha.BetLists.AppResources {
         public static string FilterBySports {
             get {
                 return ResourceManager.GetString("FilterBySports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter by Tickets.
+        /// </summary>
+        public static string FilterByTickets {
+            get {
+                return ResourceManager.GetString("FilterByTickets", resourceCulture);
             }
         }
         
@@ -975,6 +966,15 @@ namespace Alpha.BetLists.AppResources {
         public static string Live {
             get {
                 return ResourceManager.GetString("Live", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Live Status.
+        /// </summary>
+        public static string LiveStatus {
+            get {
+                return ResourceManager.GetString("LiveStatus", resourceCulture);
             }
         }
         

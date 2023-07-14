@@ -18,7 +18,7 @@
 
         public SportXml[] Sports { get; set; }
 
-        public byte EventStatus { get; set; }
+        public byte LiveStatus { get; set; }
 
         public byte FilterByMembers { get; set; }
 

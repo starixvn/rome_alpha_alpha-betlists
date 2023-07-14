@@ -16,7 +16,7 @@
             BetType = param.BetType;
             Stake = param.Stake;
             SportTypeList = ToXml(param.Sports);
-            IsLive = param.IsLive;
+            IsLive = param.LiveStatus;
             IsWatchList = param.FilterByMembers;
             InputList = param.InputList;
             WatchList = param.MyWatchlist;

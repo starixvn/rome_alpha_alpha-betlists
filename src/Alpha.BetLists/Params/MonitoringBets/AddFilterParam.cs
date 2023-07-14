@@ -12,7 +12,7 @@
             string betType,
             int stake,
             SportXml[] sports,
-            byte isLive,
+            byte liveStatus,
             string inputList,
             string myWatchlist,
             byte filterByMembers,
@@ -22,7 +22,7 @@
             BetType = betType;
             Stake = stake;
             Sports = sports;
-            IsLive = isLive;
+            LiveStatus = liveStatus;
             InputList = inputList;
             MyWatchlist = myWatchlist;
             FilterByMembers = filterByMembers;
@@ -34,7 +34,7 @@
 
         public SportXml[] Sports { get; }
 
-        public byte IsLive { get; }
+        public byte LiveStatus { get; }
 
         public byte FilterByMembers { get; }
 
