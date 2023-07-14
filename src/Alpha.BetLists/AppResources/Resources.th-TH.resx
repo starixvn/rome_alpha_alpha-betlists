@@ -753,4 +753,7 @@
   <data name="Copy" xml:space="preserve">
     <value>สำเนา</value>
   </data>
+  <data name="Username" xml:space="preserve">
+    <value>ชื่อผู้ใช้ระบบ</value>
+  </data>
 </root>

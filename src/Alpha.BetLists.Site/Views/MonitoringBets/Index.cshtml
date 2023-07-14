@@ -11,6 +11,7 @@
 @section Scripts {
     @StaticResources.AssetScripts.RenderCommon("/bundles/site-betlists/filter")
     @StaticResources.RenderScripts($"~/{AppSettings.BetlistRouting}assets/bundles/monitoring-bets/monitoring-bets")
+    @StaticResources.AssetScripts.Render("/bundles/site-betlists/last-bets")
 }
 <div class="flex">
     <div class="bl_title">
@@ -26,28 +27,38 @@
         <div class="form-group">
             <label class="label-form-control">Saved Filter</label>
             <select id="monitoring-bets-filter">
-                <option value="Default" selected>Default</option>
-                <option value="Stake above 800">Stake above 800</option>
-                <option value="New filter name 1">New filter name 1</option>
-                <option value="New filter name 2">New filter name 2</option>
-                <option value="New filter name 3">New filter name 3</option>
+                @{
+                    if (Model.Filters.Any())
+                    {
+                        foreach (var savedFilter in Model.Filters)
+                        {
+                            var selected = savedFilter.IsDefault ? "selected" : "";
+                            <option value=@savedFilter.FilterId @selected
+                                    data-filter-id=@savedFilter.FilterId
+                                    data-members=@savedFilter.Members
+                                    data-bet-types=@savedFilter.BetTypes
+                                    data-sport-types=@savedFilter.SportTypes
+                                    data-leagues=@savedFilter.Leagues
+                                    data-event-status=@savedFilter.EventStatus
+                                    data-stake=@savedFilter.Stake
+                                    data-filter-by-member=@savedFilter.FilterByMembers>
+                                @savedFilter.FilterName
+                            </option>
+                        }
+                    }
+                }
             </select>
         </div>
         <div class="form-group">
             @Html.ActionLink("Manage Filters", "ManageFilters", $"{AppSettings.BetlistRouting}MonitoringBets", null, new { target = "main" })
         </div>
         <div class="form-group">
-            <label class="label-form-control">Show Top Tickets</label>
-            <select id="monitoring-bets-top">
-                <option value="10" selected>10</option>
-                <option value="20">20</option>
-                <option value="30">30</option>
-                <option value="50">50</option>
-                <option value="100">100</option>
+            <label class="label-form-control">Most Recent Tickets</label>
+            <select id="most-recent-tickets">
+                <option value="100" selected>100</option>
+                <option value="200">300</option>
+                <option value="300">500</option>
             </select>
-        </div>
-        <div class="form-group">
-            <input type="submit" value="@Resources.Submit" class="btn-submit" />
         </div>
         @AutoRefresh.Render(new[] { 5, 30, 60, 90 })
         <div class="form-group">
@@ -57,288 +68,15 @@
             <span class="icon icon-content-copy" title="Copy" id="icon-copy"></span>
         </div>
     </form>
-    <div class="scrollable">
-        <table class="tblRpt tblRpt-bordered tblRpt-striped width-100per tablesorter tblRpt-hover tbl-betlist tblRpt-freeze-header" id="tbl-betlist">
-            <thead>
-                <tr>
-                    <th>Ref No</th>
-                    <th class="col-transtime">Trans.Time</th>
-                    <th class="col-member">Username</th>
-                    <th>Bet Type</th>
-                    <th>Choice</th>
-                    <th class="col-odds">Odds</th>
-                    <th class="col-stake">Stake</th>
-                    <th class="col-status">IP</th>
-                </tr>
-            </thead>
 
-            <tbody>
-                <tr id="r131788382828232807">
-                    <td class="w-order text-center">131788382828232807</td>
-                    <td class="trans-block text-center nonbreak">
-                        <div class="time">6/20/2023 11:26:12 PM</div>
-                    </td>
-                    <td class="text-center">member10</td>
+    <div id="msg-error" class="msg msg-error hide">
+        @Resources.FunctionTurnOffError
+    </div>
+    <div class="scrollable" id="bet-list-table-container">
 
-                    <td class="text-center">Handicap</td>
-
-                    <td class="choice-block text-right sport-1">
-                        <div class=""><span class="favorite">Miss<span class="handicap"> </span></span><div class="bettype"> Away Penalty Shootout - Round 5</div><div class="match"><span>Pro Piacenza 45:01-60:00</span><span>&nbsp;-&nbsp;vs&nbsp;-&nbsp;</span><span>Valencia CF/VfL Wolfsburg</span></div><div class="league"><span class="sport">Soccer</span><span class="leagueName">&nbsp;TEST ADDING EVENT</span></div><div class="event-date">6/20/2023 12:00 AM</div></div>
-                    </td>
-
-                    <td class="odds-block bl_underdog nonbreak text-right">
-                        <span class="underdog">1.97</span><br><span class="oddstype">MY</span>
-                    </td>
-
-                    <td class="stake-block bl_underdog text-right">
-                        <div class="stake">1,000</div>
-                    </td>
-
-                    <td class="status-block text-center sport-1">
-                        <div class="ip"><div class="iplink" onclick="OpenIPInfo('10.18.200.126  ');">10.18.200.126  </div></div>
-                        <div class="country">-</div>
-                    </td>
-
-                </tr>
-                <tr id="r131788382828232806">
-                    <td class="w-order text-center">131788382828232806</td>
-                    <td class="trans-block text-center nonbreak">
-                        <div class="time">6/20/2023 11:26:12 PM</div>
-                    </td>
-                    <td class="text-center">member10</td>
-
-                    <td class="text-center">Handicap</td>
-
-                    <td class="choice-block text-right sport-1">
-                        <div class=""><span class="favorite">Goal<span class="handicap"> </span></span><div class="bettype"> Away Penalty Shootout - Round 5</div><div class="match"><span>Pro Piacenza 45:01-60:00</span><span>&nbsp;-&nbsp;vs&nbsp;-&nbsp;</span><span>Valencia CF/VfL Wolfsburg</span></div><div class="league"><span class="sport">Soccer</span><span class="leagueName">&nbsp;TEST ADDING EVENT</span></div><div class="event-date">6/20/2023 12:00 AM</div></div>
-                    </td>
-
-                    <td class="odds-block bl_underdog nonbreak text-right">
-                        <span class="underdog">1.97</span><br><span class="oddstype">MY</span>
-                    </td>
-
-                    <td class="stake-block bl_underdog text-right">
-                        <div class="stake">1,000</div>
-                    </td>
-
-                    <td class="status-block text-center sport-1">
-                        <div class="ip"><div class="iplink" onclick="OpenIPInfo('10.18.200.126  ');">10.18.200.126  </div></div>
-                        <div class="country">Afghanistan</div>
-                    </td>
-
-                </tr>
-                <tr id="r131788382828232805">
-                    <td class="w-order text-center">131788382828232805</td>
-                    <td class="trans-block text-center nonbreak">
-                        <div class="time">6/20/2023 11:26:12 PM</div>
-                    </td>
-                    <td class="text-center">member10</td>
-
-                    <td class="text-center">Handicap</td>
-                    <td class="choice-block text-right sport-1">
-                        <div class=""><span class="favorite">Miss<span class="handicap"> </span></span><div class="bettype"> Away Penalty Shootout - Round 4</div><div class="match"><span>Pro Piacenza 45:01-60:00</span><span>&nbsp;-&nbsp;vs&nbsp;-&nbsp;</span><span>Valencia CF/VfL Wolfsburg</span></div><div class="league"><span class="sport">Soccer</span><span class="leagueName">&nbsp;TEST ADDING EVENT</span></div><div class="event-date">6/20/2023 12:00 AM</div></div>
-                    </td>
-
-                    <td class="odds-block bl_underdog nonbreak text-right">
-                        <span class="underdog">1.97</span><br><span class="oddstype">MY</span>
-                    </td>
-
-                    <td class="stake-block bl_underdog text-right">
-                        <div class="stake">1,000</div>
-                    </td>
-
-                    <td class="status-block text-center sport-1">
-                        <div class="ip"><div class="iplink" onclick="OpenIPInfo('10.18.200.126  ');">10.18.200.126  </div></div>
-                        <div class="country">Belgium</div>
-                    </td>
-
-                </tr>
-                <tr id="r131788382828232804">
-                    <td class="w-order text-center">131788382828232804</td>
-                    <td class="trans-block text-center nonbreak">
-                        <div class="time">6/20/2023 11:26:12 PM</div>
-                    </td>
-                    <td class="text-center">member10</td>
-
-                    <td class="text-center">Handicap</td>
-                    <td class="choice-block text-right sport-1">
-                        <div class=""><span class="favorite">Goal<span class="handicap"> </span></span><div class="bettype"> Away Penalty Shootout - Round 4</div><div class="match"><span>Pro Piacenza 45:01-60:00</span><span>&nbsp;-&nbsp;vs&nbsp;-&nbsp;</span><span>Valencia CF/VfL Wolfsburg</span></div><div class="league"><span class="sport">Soccer</span><span class="leagueName">&nbsp;TEST ADDING EVENT</span></div><div class="event-date">6/20/2023 12:00 AM</div></div>
-                    </td>
-
-                    <td class="odds-block bl_underdog nonbreak text-right">
-                        <span class="underdog">1.97</span><br><span class="oddstype">MY</span>
-                    </td>
-
-                    <td class="stake-block bl_underdog text-right">
-                        <div class="stake">1,000</div>
-                    </td>
-
-                    <td class="status-block text-center sport-1">
-                        <div class="ip"><div class="iplink" onclick="OpenIPInfo('10.18.200.126  ');">10.18.200.126  </div></div>
-                        <div class="country">Cambodia</div>
-                    </td>
-
-                </tr>
-                <tr id="r131788382828232803">
-                    <td class="w-order text-center">131788382828232803</td>
-                    <td class="trans-block text-center nonbreak">
-                        <div class="time">6/20/2023 11:26:12 PM</div>
-                    </td>
-                    <td class="text-center">member10</td>
-
-                    <td class="text-center">Handicap</td>
-                    <td class="choice-block text-right sport-1">
-                        <div class=""><span class="favorite">Miss<span class="handicap"> </span></span><div class="bettype"> Away Penalty Shootout - Round 3</div><div class="match"><span>Pro Piacenza 45:01-60:00</span><span>&nbsp;-&nbsp;vs&nbsp;-&nbsp;</span><span>Valencia CF/VfL Wolfsburg</span></div><div class="league"><span class="sport">Soccer</span><span class="leagueName">&nbsp;TEST ADDING EVENT</span></div><div class="event-date">6/20/2023 12:00 AM</div></div>
-                    </td>
-
-                    <td class="odds-block bl_underdog nonbreak text-right">
-                        <span class="underdog">1.97</span><br><span class="oddstype">MY</span>
-                    </td>
-
-                    <td class="stake-block bl_underdog text-right">
-                        <div class="stake">1,000</div>
-                    </td>
-
-                    <td class="status-block text-center sport-1">
-                        <div class="ip"><div class="iplink" onclick="OpenIPInfo('10.18.200.126  ');">10.18.200.126  </div></div>
-                        <div class="country">Denmark</div>
-                    </td>
-
-                </tr>
-                <tr id="r131788382828232802">
-                    <td class="w-order text-center">131788382828232802</td>
-                    <td class="trans-block text-center nonbreak">
-                        <div class="time">6/20/2023 11:26:12 PM</div>
-                    </td>
-                    <td class="text-center">member10</td>
-
-                    <td class="text-center">Handicap</td>
-                    <td class="choice-block text-right sport-1">
-                        <div class=""><span class="favorite">Goal<span class="handicap"> </span></span><div class="bettype"> Away Penalty Shootout - Round 3</div><div class="match"><span>Pro Piacenza 45:01-60:00</span><span>&nbsp;-&nbsp;vs&nbsp;-&nbsp;</span><span>Valencia CF/VfL Wolfsburg</span></div><div class="league"><span class="sport">Soccer</span><span class="leagueName">&nbsp;TEST ADDING EVENT</span></div><div class="event-date">6/20/2023 12:00 AM</div></div>
-                    </td>
-
-                    <td class="odds-block bl_underdog nonbreak text-right">
-                        <span class="underdog">1.97</span><br><span class="oddstype">MY</span>
-                    </td>
-
-                    <td class="stake-block bl_underdog text-right">
-                        <div class="stake">1,000</div>
-                    </td>
-
-                    <td class="status-block text-center sport-1">
-                        <div class="ip"><div class="iplink" onclick="OpenIPInfo('10.18.200.126  ');">10.18.200.126  </div></div>
-                        <div class="country">Ecuador</div>
-                    </td>
-
-                </tr>
-                <tr id="r131788382828232801">
-                    <td class="w-order text-center">131788382828232801</td>
-                    <td class="trans-block text-center nonbreak">
-                        <div class="time">6/20/2023 11:26:12 PM</div>
-                    </td>
-                    <td class="text-center">member10</td>
-
-                    <td class="text-center">Handicap</td>
-                    <td class="choice-block text-right sport-1">
-                        <div class=""><span class="favorite">Miss<span class="handicap"> </span></span><div class="bettype"> Away Penalty Shootout - Round 2</div><div class="match"><span>Pro Piacenza 45:01-60:00</span><span>&nbsp;-&nbsp;vs&nbsp;-&nbsp;</span><span>Valencia CF/VfL Wolfsburg</span></div><div class="league"><span class="sport">Soccer</span><span class="leagueName">&nbsp;TEST ADDING EVENT</span></div><div class="event-date">6/20/2023 12:00 AM</div></div>
-                    </td>
-
-                    <td class="odds-block bl_underdog nonbreak text-right">
-                        <span class="underdog">1.97</span><br><span class="oddstype">MY</span>
-                    </td>
-
-                    <td class="stake-block bl_underdog text-right">
-                        <div class="stake">1,000</div>
-                    </td>
-
-                    <td class="status-block text-center sport-1">
-                        <div class="ip"><div class="iplink" onclick="OpenIPInfo('10.18.200.126  ');">10.18.200.126  </div></div>
-                        <div class="country">France</div>
-                    </td>
-
-                </tr>
-                <tr id="r131788382828232800">
-                    <td class="w-order text-center">131788382828232800</td>
-                    <td class="trans-block text-center nonbreak">
-                        <div class="time">6/20/2023 11:26:12 PM</div>
-                    </td>
-                    <td class="text-center">member10</td>
-
-                    <td class="text-center">Handicap</td>
-                    <td class="choice-block text-right sport-1">
-                        <div class=""><span class="favorite">Goal<span class="handicap"> </span></span><div class="bettype"> Away Penalty Shootout - Round 2</div><div class="match"><span>Pro Piacenza 45:01-60:00</span><span>&nbsp;-&nbsp;vs&nbsp;-&nbsp;</span><span>Valencia CF/VfL Wolfsburg</span></div><div class="league"><span class="sport">Soccer</span><span class="leagueName">&nbsp;TEST ADDING EVENT</span></div><div class="event-date">6/20/2023 12:00 AM</div></div>
-                    </td>
-
-                    <td class="odds-block bl_underdog nonbreak text-right">
-                        <span class="underdog">1.97</span><br><span class="oddstype">MY</span>
-                    </td>
-
-                    <td class="stake-block bl_underdog text-right">
-                        <div class="stake">1,000</div>
-                    </td>
-
-                    <td class="status-block text-center sport-1">
-                        <div class="ip"><div class="iplink" onclick="OpenIPInfo('10.18.200.126  ');">10.18.200.126  </div></div>
-                        <div class="country">Germany</div>
-                    </td>
-
-                </tr>
-                <tr id="r131788382828232799">
-                    <td class="w-order text-center">131788382828232799</td>
-                    <td class="trans-block text-center nonbreak">
-                        <div class="time">6/20/2023 11:26:12 PM</div>
-                    </td>
-                    <td class="text-center">member10</td>
-
-                    <td class="text-center">Handicap</td>
-                    <td class="choice-block text-right sport-1">
-                        <div class=""><span class="favorite">Miss<span class="handicap"> </span></span><div class="bettype"> Away Penalty Shootout - Round 1</div><div class="match"><span>Pro Piacenza 45:01-60:00</span><span>&nbsp;-&nbsp;vs&nbsp;-&nbsp;</span><span>Valencia CF/VfL Wolfsburg</span></div><div class="league"><span class="sport">Soccer</span><span class="leagueName">&nbsp;TEST ADDING EVENT</span></div><div class="event-date">6/20/2023 12:00 AM</div></div>
-                    </td>
-
-                    <td class="odds-block bl_underdog nonbreak text-right">
-                        <span class="underdog">1.97</span><br><span class="oddstype">MY</span>
-                    </td>
-
-                    <td class="stake-block bl_underdog text-right">
-                        <div class="stake">1,000</div>
-                    </td>
-
-                    <td class="status-block text-center sport-1">
-                        <div class="ip"><div class="iplink" onclick="OpenIPInfo('10.18.200.126  ');">10.18.200.126  </div></div>
-                        <div class="country">Hong Kong</div>
-                    </td>
-
-                </tr>
-                <tr id="r131788382828232798">
-                    <td class="w-order text-center">131788382828232798</td>
-                    <td class="trans-block text-center nonbreak">
-                        <div class="time">6/20/2023 11:26:12 PM</div>
-                    </td>
-                    <td class="text-center">member10</td>
-
-                    <td class="text-center">Handicap</td>
-                    <td class="choice-block text-right sport-1">
-                        <div class=""><span class="favorite">Goal<span class="handicap"> </span></span><div class="bettype"> Away Penalty Shootout - Round 1</div><div class="match"><span>Pro Piacenza 45:01-60:00</span><span>&nbsp;-&nbsp;vs&nbsp;-&nbsp;</span><span>Valencia CF/VfL Wolfsburg</span></div><div class="league"><span class="sport">Soccer</span><span class="leagueName">&nbsp;TEST ADDING EVENT</span></div><div class="event-date">6/20/2023 12:00 AM</div></div>
-                    </td>
-
-                    <td class="odds-block bl_underdog nonbreak text-right">
-                        <span class="underdog">1.97</span><br><span class="oddstype">MY</span>
-                    </td>
-
-                    <td class="stake-block bl_underdog text-right">
-                        <div class="stake">1,000</div>
-                    </td>
-
-                    <td class="status-block text-center sport-1">
-                        <div class="ip"><div class="iplink" onclick="OpenIPInfo('10.18.200.126  ');">10.18.200.126  </div></div>
-                        <div class="country">Iran (Islamic Republic of)</div>
-                    </td>
-
-                </tr>
-
-
-            </tbody>
-        </table>
+        <input id="get-bets-url" type="hidden" value="@Url.Action("BetData",$"{AppSettings.BetlistRouting}MonitoringBets")" />
+        <input id="last-trans-id-cache-key-by-filter" type="hidden" value="@Model.LastTransIdCacheKeyByFilter" />
+        <input id="latest-trans-id-cache-key-by-filter" type="hidden" value="@Model.LatestTransIdCacheKeyByFilter" />
     </div>
 </div>
 @Html.Hidden("hidden-CopyText", Resources.Copy)

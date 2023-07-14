@@ -333,4 +333,7 @@
   <data name="ipnote" xml:space="preserve">
     <value>Country and city information is provided by IP2Location™ and DNSstuff which might only serve as a reference, with no warranty. Please consult other reliable sources for the current and accurate information, if required.</value>
   </data>
+  <data name="Username" xml:space="preserve">
+    <value>사용자 이름</value>
+  </data>
 </root>

@@ -378,6 +378,7 @@
     <Compile Include="Criteria\MonitoringBets\DeleteFilterCommand.cs" />
     <Compile Include="Criteria\MonitoringBets\GetFiltersCriteria.cs" />
     <Compile Include="Criteria\MonitoringBets\GetLeaguesCriteria.cs" />
+    <Compile Include="Criteria\MonitoringBets\GetLastFilteringBetsCriteria.cs" />
     <Compile Include="Criteria\MonitoringBets\GetMonitoredWatchlistMembersCriteria.cs" />
     <Compile Include="Criteria\MonitoringBets\UpdateFilterCommand.cs" />
     <Compile Include="Criteria\MoveStatementHistory\GetBetListMoveStatementHistoryCriteria.cs" />
@@ -456,6 +457,7 @@
     <Compile Include="Params\JackpotDetailsParam.cs" />
     <Compile Include="Params\MonitoringBets\AddFilterParam.cs" />
     <Compile Include="Params\MonitoringBets\DeleteFiltersParam.cs" />
+    <Compile Include="Params\MonitoringBets\GetLastFilteringBetsParams.cs" />
     <Compile Include="Params\MonitoringBets\UpdateFilterParam.cs" />
     <Compile Include="Params\MoveStatementHistoryParam.cs" />
     <Compile Include="Params\RiskAnalysisIPMatchingParam.cs" />

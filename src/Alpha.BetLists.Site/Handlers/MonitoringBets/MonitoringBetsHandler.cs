@@ -3,6 +3,8 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using AppResources;
+    using Alpha.BetLists.Constants;
     using Alpha.BetLists.Models;
     using Alpha.BetLists.Models.MonitoringBets;
     using Alpha.BetLists.Params.MonitoringBets;
@@ -10,14 +12,15 @@
     using Alpha.BetLists.Site.Constants;
     using Alpha.BetLists.Site.Requests.MonitoringBets;
     using Alpha.BetLists.Site.ViewModels.MonitoringBets;
-    using Alpha.IPInfo.Services;
-    using Alpha.SmartPunter.Services;
-    using Alpha.Utilities.IP;
-    using Alpha.Web.Models;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using MediatR;
     using Sunplus.Agent.Model.Entities;
+    using Alpha.BetLists.Params.LastBets;
+    using Alpha.IPInfo.Services;
+    using Alpha.SmartPunter.Services;
+    using Alpha.Utilities.IP;
+    using Alpha.Web.Models;
 
     public class MonitoringBetsHandler :
         BetListBaseHandler,
@@ -29,35 +32,51 @@
         IAsyncRequestHandler<DeleleFiltersCommand, IEnumerable<Result>>,
         IAsyncRequestHandler<FilterBySportsQuery, IEnumerable<Sport>>,
         IAsyncRequestHandler<CheckUsernamesQuery, IEnumerable<MemberErrCode>>,
-        IAsyncRequestHandler<GetMyWatchlistMembersQuery, IEnumerable<MyWatchlistMember>>
+        IAsyncRequestHandler<GetMyWatchlistMembersQuery, IEnumerable<MyWatchlistMember>>,
+        IRequestHandler<CheckCanViewLastFilteringBetsQuery, Result>,
+        IAsyncRequestHandler<GetLastFilteringBetsQuery, FilteringBetDataViewModel>
     {
         private readonly IUserSession userSession;
         private readonly MonitoringBetsService monitoringBetService;
+        private readonly LastBetsService lastBetsService;
+        private readonly ForecastService forecastService;
+        private readonly EncryptionService encryptionService;
+
 
         public MonitoringBetsHandler(
             IUserSession userSession,
             MonitoringBetsService monitoringBetService,
+            LastBetsService lastBetsService,
+            ForecastService forecastService,
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper,
             ISmartPunterBetListMonitor monitorService,
             IPService ipService,
+            EncryptionService encryptionService,
             IIPInfoService ipInfoService) : base(builder, ticketHelper, monitorService, ipService, ipInfoService)
         {
             this.userSession = userSession;
             this.monitoringBetService = monitoringBetService;
+            this.lastBetsService = lastBetsService;
+            this.forecastService = forecastService;
+            this.encryptionService = encryptionService;
         }
 
         public async Task<MonitoringBetsViewModel> Handle(MonitoringBetsQuery message)
         {
             var filters = (await monitoringBetService.GetSavedFilters(message.ViewerId, message.SubAccId)).ToList();
-
             var tempFilter = userSession.GetProperty<SavedFilter>(SessionKey.LastBetsMonitoringDefault);
             if (tempFilter != null)
             {
                 filters.Insert(0, tempFilter);
             }
+            
+            var defaultFilter = filters.FirstOrDefault(f => f.IsDefault);
+            var filterId = defaultFilter != null ? defaultFilter.FilterId : filters.Last().FilterId;
 
-            return new MonitoringBetsViewModel(message, filters, null, Builder, TicketHelper);
+            return new MonitoringBetsViewModel(message, filters, null, Builder, TicketHelper,
+                encryptionService.CfsEncode($"LastTransId_{message.CustId}_{filterId}", numberOfEncodeResult: 6),
+                encryptionService.CfsEncode($"LatestTransId_{message.CustId}_{filterId}", numberOfEncodeResult: 6));
         }
 
         public Task<IEnumerable<FilterConfiguration>> Handle(ManageFiltersQuery message)
@@ -102,6 +121,59 @@
             userSession.SetProperty(SessionKey.LastBetsMonitoringDefault, savedFilter);
 
             return Task.FromResult(new Result());
+        }
+
+
+        public async Task<FilteringBetDataViewModel> Handle(GetLastFilteringBetsQuery message)
+        {
+            if (message.FilterByMembers == FilterByMembersConstants.AllWatchlistMembers)
+            {
+                var custIds = (await monitoringBetService.GetMyWatchlistMembers(message.ViewerId)).Select(member => member.CustId);
+                message.MemberList = string.Join(",", custIds);
+            }
+
+            var param = new GetLastFilteringBetsParams(message.CustId,
+                message.TransId == 0 ? 0 : message.TransId - 1,
+                message.MemberList,
+                message.SportTypeList,
+                message.LeagueList,
+                message.BetTypeList,
+                LiveStatusConstants.GetStatusById(message.EvenStatus),
+                message.MinStake,
+                message.LimitRowCount);
+            var tickets = await monitoringBetService.GetLastFilteringBets(param);
+
+            await AssignCountry(tickets, message.DisplayVNIP);
+            var betListData = new BetListData(tickets, null);
+
+            var newTickets = tickets.Where(t => t.TransId > message.LatestTransId);
+
+            if (newTickets.Any())
+            {
+                WriteLog(message.CustId, newTickets);
+            }
+
+            var latestTransId = newTickets.Any() ? newTickets.First().TransId : message.LatestTransId;
+
+            return new FilteringBetDataViewModel(latestTransId,
+                encryptionService.CfsEncode($"LastTransId_{message.CustId}_{message.FilterId}", numberOfEncodeResult: 6),
+                encryptionService.CfsEncode($"LatestTransId_{message.CustId}_{message.FilterId}", numberOfEncodeResult: 6),
+                message, betListData, Builder, TicketHelper);
+        }
+
+        public Result Handle(CheckCanViewLastFilteringBetsQuery message)
+        {
+            var canViewLastBets = lastBetsService.CanViewLastBets(
+                new CheckCanViewLastBetsParam(
+                    message.CustId,
+                    message.IsInternal,
+                    message.IsEnableLastBetsMonitoring,
+                    message.UsersAlwaysAllowAccessBetsListMonitoring));
+
+            var errorCode = canViewLastBets ? ErrorCodeConstants.None : ErrorCodeConstants.FunctionTurnOff;
+            var errorMessage = canViewLastBets ? string.Empty : Resources.FunctionTurnOffError;
+
+            return new Result(errorCode, errorMessage);
         }
 
         public Task<Result> Handle(AddFilterCommand message)

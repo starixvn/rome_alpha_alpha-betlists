@@ -1,4 +1,5 @@
 ﻿"use strict";
+const defaultValue = 60;
 
 class AutoRefreshOption {
     constructor(
@@ -12,9 +13,9 @@ class AutoRefreshOption {
 }
 
 class AutoRefreshComponent {
-    private autoRefreshOption: AutoRefreshOption;
+    public autoRefreshOption: AutoRefreshOption;
     private timeout;
-    private labelStatusText: JQuery;
+    public labelStatusText: JQuery;
     private labelCountDown: JQuery;
 
     init(option: AutoRefreshOption) {
@@ -22,8 +23,9 @@ class AutoRefreshComponent {
         const autoRefresh = $("#auto-refresh");
         this.labelStatusText = autoRefresh.find("#lbl-status-text")
             .data("running", "0")
-            .text(this.autoRefreshOption.offText);
+            .text(this.autoRefreshOption.onText);
         this.labelCountDown = autoRefresh.find("#lbl-count-down");
+        this.labelCountDown.text(defaultValue).data("original", defaultValue);
 
         autoRefresh.find("#btn-status").click(() => this.labelStatusText.data("running") === "1" ? this.stop() : this.start());
 
@@ -31,6 +33,7 @@ class AutoRefreshComponent {
             const second = $(e.target).text();
             this.labelCountDown.text(second).data("original", second);
         });
+        this.start();
     }
 
     start() {

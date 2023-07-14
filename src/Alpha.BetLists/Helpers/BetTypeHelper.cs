@@ -1,6 +1,7 @@
 ﻿namespace Alpha.BetLists.Helpers
 {
     using System.Linq;
+    using Alpha.BetLists.AppResources;
     using Constants;
 
     public static class BetTypeHelper
@@ -32,5 +33,10 @@
         public static bool IsHorseRacing(int betType) => HorseRacingBetType.Contains(betType);
 
         public static bool IsJackpotContribution(int betType) => JackpotContributionBetType.Contains(betType);
+
+        public static string GetBetTypeName(int betTypeId)
+            => betTypeId == BetTypeIdConstants.Others
+            ? Resources.Others
+            : CacheRefServiceHelper.GetBetTypeName(betTypeId);
     }
 }

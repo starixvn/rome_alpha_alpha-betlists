@@ -1300,6 +1300,7 @@
     <Content Include="Views\MonitoringBets\Index.cshtml" />
     <Content Include="Views\MonitoringBets\FilterConfiguration.cshtml" />
     <Content Include="Views\MonitoringBets\ManageFilters.cshtml" />
+    <Content Include="Views\MonitoringBets\BetData.cshtml" />
     <Content Include="Views\Shared\IconInformation.cshtml" />
     <Content Include="Web.AppSettings.staging.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
@@ -1463,10 +1464,12 @@
     <Compile Include="Requests\MemberBetList\MemberBetListQuery.cs" />
     <Compile Include="Requests\MonitoringBets\AddFilterCommand.cs" />
     <Compile Include="Requests\MonitoringBets\ApplyFilterCommand.cs" />
+    <Compile Include="Requests\MonitoringBets\CheckCanViewLastFilteringBetsQuery.cs" />
     <Compile Include="Requests\MonitoringBets\CheckUsernamesQuery.cs" />
     <Compile Include="Requests\MonitoringBets\DeleleFiltersCommand.cs" />
     <Compile Include="Requests\MonitoringBets\FilterBySportsQuery.cs" />
     <Compile Include="Requests\MonitoringBets\GetMyWatchlistMembersQuery.cs" />
+    <Compile Include="Requests\MonitoringBets\GetLastFilteringBetsQuery.cs" />
     <Compile Include="Requests\MonitoringBets\ManageFiltersQuery.cs" />
     <Compile Include="Requests\MonitoringBets\MonitoringBetsQuery.cs" />
     <Compile Include="Requests\MonitoringBets\UpdateFilterCommand.cs" />
@@ -1521,6 +1524,7 @@
     <Compile Include="ViewModels\SearchTickets\SearchTicketsViewModel.cs" />
     <Compile Include="ViewModels\JackpotDetails\JackpotDetailsViewModel.cs" />
     <Compile Include="ViewModels\MemberBetList\MemberBetListViewModel.cs" />
+    <Compile Include="ViewModels\MonitoringBets\FilteringBetDataViewModel.cs" />
     <Compile Include="ViewModels\MonitoringBets\FilterConfigurationViewModel.cs" />
     <Compile Include="ViewModels\MonitoringBets\MonitoringBetsViewModel.cs" />
     <Compile Include="ViewModels\MoveStatementHistory\MoveStatementHistoryViewModel.cs" />

@@ -5,6 +5,8 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using System.Web.SessionState;
+    using Alpha.BetLists.Constants;
+    using Alpha.BetLists.Models;
     using Alpha.BetLists.Site.Requests.MonitoringBets;
     using Alpha.BetLists.Site.ViewModels.MonitoringBets;
     using Alpha.NetThrottling.Mvc;
@@ -15,8 +17,11 @@
     [SessionState(SessionStateBehavior.Default)]
     public class MonitoringBetsController : BetListBaseController
     {
-        public MonitoringBetsController(IMediator mediator) : base(mediator)
+        private readonly IUser viewer;
+
+        public MonitoringBetsController(IMediator mediator, IUser viewer) : base(mediator)
         {
+            this.viewer = viewer;
         }
 
         [DisableNetThrottling]
@@ -88,6 +93,19 @@
             return message.IsValid()
                 ? await mediator.Send(message)
                 : BadRequestResult();
+        }
+
+        [DisableNetThrottling]
+        public async Task<ActionResult> BetData(GetLastFilteringBetsQuery message)
+        {
+            var canViewLastBets = await mediator.Send(new CheckCanViewLastFilteringBetsQuery(viewer));
+
+            if (canViewLastBets.ErrCode != ErrorCodeConstants.None)
+            {
+                return Json(canViewLastBets, JsonRequestBehavior.AllowGet);
+            }
+
+            return await View(message);
         }
     }
 }

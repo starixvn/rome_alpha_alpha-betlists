@@ -9,5 +9,8 @@
         public const byte Live = 1;
 
         public const byte NonLive = 0;
+
+        public static string GetStatusById(byte id) => id == All ? "All" : id.ToString();
+
     }
 }

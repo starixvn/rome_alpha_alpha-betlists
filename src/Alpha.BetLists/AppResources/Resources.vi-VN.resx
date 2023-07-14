@@ -757,4 +757,7 @@
   <data name="Copy" xml:space="preserve">
     <value>Sao chép</value>
   </data>
+  <data name="Username" xml:space="preserve">
+    <value>Tên đăng nhập</value>
+  </data>
 </root>

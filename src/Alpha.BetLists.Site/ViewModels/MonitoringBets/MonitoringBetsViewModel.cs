@@ -4,22 +4,32 @@
     using Alpha.BetLists.Models;
     using Alpha.BetLists.Models.MonitoringBets;
     using Alpha.BetLists.Site.Requests;
+    using Alpha.BetLists.Site.Requests.MonitoringBets;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
 
     public class MonitoringBetsViewModel : BetListBaseViewModel
     {
         public MonitoringBetsViewModel(
-            BaseQuery message,
+            MonitoringBetsQuery query,
             IEnumerable<SavedFilter> filters,
             BetListData betListData,
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper,
-            bool showMemberName = false) : base(message, betListData, builder, ticketHelper, showMemberName)
+            string lastTransIdCacheKeyByFilter,
+            string latestTransIdCacheKeyByFilter,
+            bool showMemberName = false) : base(query, betListData, builder, ticketHelper, showMemberName)
         {
             Filters = filters;
+
+            LastTransIdCacheKeyByFilter = lastTransIdCacheKeyByFilter;
+            LatestTransIdCacheKeyByFilter = latestTransIdCacheKeyByFilter;
         }
 
         public IEnumerable<SavedFilter> Filters { get; }
+
+        public string LastTransIdCacheKeyByFilter { get; }
+
+        public string LatestTransIdCacheKeyByFilter { get; }
     }
 }

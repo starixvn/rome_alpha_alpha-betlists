@@ -753,4 +753,7 @@
   <data name="Copy" xml:space="preserve">
     <value>复制</value>
   </data>
+  <data name="Username" xml:space="preserve">
+    <value>用户名</value>>>>>>>> ea69fd3f (abc)
+  </data>
 </root>

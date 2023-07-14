@@ -4,6 +4,8 @@
 @helper Render(IBetListHTMLBuilder builder, ITicket ticket)
 {
     <td class="trans-block text-center nonbreak">
-        @(new HtmlString(builder.BuildTrans(ticket)))
+        <div class="time">
+            @(new HtmlString(builder.BuildTrans(ticket)))
+        </div>        
     </td>
 }

@@ -1,4 +1,5 @@
 "use strict";
+var defaultValue = 60;
 var AutoRefreshOption = /** @class */ (function () {
     function AutoRefreshOption(onText, offText, callback) {
         if (onText === void 0) { onText = "ON"; }
@@ -22,13 +23,15 @@ var AutoRefreshComponent = /** @class */ (function () {
         var autoRefresh = $("#auto-refresh");
         this.labelStatusText = autoRefresh.find("#lbl-status-text")
             .data("running", "0")
-            .text(this.autoRefreshOption.offText);
+            .text(this.autoRefreshOption.onText);
         this.labelCountDown = autoRefresh.find("#lbl-count-down");
+        this.labelCountDown.text(defaultValue).data("original", defaultValue);
         autoRefresh.find("#btn-status").click(function () { return _this.labelStatusText.data("running") === "1" ? _this.stop() : _this.start(); });
         autoRefresh.find(".auto-refresh-menu-item").click(function (e) {
             var second = $(e.target).text();
             _this.labelCountDown.text(second).data("original", second);
         });
+        this.start();
     };
     AutoRefreshComponent.prototype.start = function () {
         var _this = this;

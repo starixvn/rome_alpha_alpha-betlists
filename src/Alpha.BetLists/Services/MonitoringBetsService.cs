@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Alpha.BetLists.AppResources;
+    using Alpha.BetLists.Configurations;
     using Alpha.BetLists.Constants;
     using Alpha.BetLists.Criteria.MonitoringBets;
     using Alpha.BetLists.Extensions;
@@ -33,6 +34,8 @@
         Task<IEnumerable<MemberErrCode>> CheckUsernames(int agentId, string usernames);
 
         Task<IEnumerable<MyWatchlistMember>> GetMyWatchlistMembers(int agentId);
+        Task<IEnumerable<TicketDto>> GetLastFilteringBets(GetLastFilteringBetsParams param);
+
     }
 
     public class MonitoringBetsServiceImpl : MonitoringBetsService
@@ -50,12 +53,15 @@
         };
         private readonly IPartialUMService partialUMService;
         private readonly IDynamicRepository dynamicRepository;
+        private readonly LastBetsService lastBetsService;
 
         public MonitoringBetsServiceImpl(
             IPartialUMService partialUMService,
+            LastBetsService lastBetsService,
             IDynamicRepository dynamicRepository)
         {
             this.partialUMService = partialUMService;
+            this.lastBetsService = lastBetsService;
             this.dynamicRepository = dynamicRepository;
         }
 
@@ -65,23 +71,23 @@
             partialUMService.ThrowIfUM(criteria.GetSettingKey());
 
             var filterConfigurations = await dynamicRepository.FetchAsync<FilterConfiguration>(criteria);
-            return filterConfigurations.Select(f =>
-            {
-                var filterXml = f.FilterXml;
-                var (sportTypes, leagues) = BuildSportTypesAndLeagues(filterXml.Sports);
+            return filterConfigurations.OrderByDescending(f => f.FilterId).Select(f =>
+              {
+                  var filterXml = f.FilterXml;
+                  var (sportTypes, leagues) = BuildSportTypesAndLeagues(filterXml.Sports);
 
-                return new SavedFilter(
-                    f.FilterId,
-                    f.FilterName,
-                    f.IsDefault,
-                    filterXml.BetType,
-                    filterXml.Stake,
-                    filterXml.IsLive,
-                    sportTypes,
-                    leagues,
-                    filterXml.Members,
-                    filterXml.IsWatchlist);
-            });
+                  return new SavedFilter(
+                      f.FilterId,
+                      f.FilterName,
+                      f.IsDefault,
+                      filterXml.BetType,
+                      filterXml.Stake,
+                      filterXml.IsLive,
+                      sportTypes,
+                      leagues,
+                      filterXml.Members,
+                      filterXml.IsWatchlist);
+              });
         }
 
         private static Tuple<string, string> BuildSportTypesAndLeagues(IEnumerable<SportXml> sportXmlList)
@@ -260,5 +266,35 @@
 
         public Task<IEnumerable<MyWatchlistMember>> GetMyWatchlistMembers(int agentId)
             => dynamicRepository.FetchAsync<MyWatchlistMember>(new GetMonitoredWatchlistMembersCriteria(agentId));
+
+        public async Task<IEnumerable<TicketDto>> GetLastFilteringBets(GetLastFilteringBetsParams param)
+        {
+            var criteria = new GetLastFilteringBetsCriteria(param.CustId, param.TransId,
+                param.MemberList, param.SportTypeList,
+                param.LeagueList, param.BetTypeList,
+                param.LiveIndicator,
+                param.MinStake, param.LimitRowCount);
+
+            partialUMService.ThrowIfUM(criteria.GetSettingKey());
+
+            var tickets = await dynamicRepository.FetchAsync<TicketDto>(criteria);
+
+            if (tickets.Any())
+            {
+                var cacheTime = AppSettings.RunningMatchCacheTime;
+                var outrightMatches = await lastBetsService.GetRunningOutrightMatches(cacheTime);
+                var otherMatches = await lastBetsService.GetRunningOtherMatches(cacheTime);
+
+                foreach (var ticket in tickets)
+                {
+                    var matches = BetTypeHelper.IsOutRight(ticket.BetTypeId) ? outrightMatches : otherMatches;
+                    var matchInfo = lastBetsService.GetMatchInfo(ticket.MatchId, matches, cacheTime);
+
+                    LastBetsServiceImpl.AssignMatchInfoToTicket(ticket, matchInfo);
+                }
+            }
+
+            return tickets;
+        }
     }
 }

@@ -20,6 +20,12 @@
         bool CanViewLastBets(CheckCanViewLastBetsParam param);
 
         MatchInfo GetMatchInfoById(int matchId, int cacheTime);
+        
+        MatchInfo GetMatchInfo(int matchId, List<MatchInfo> matches, int cacheTime);
+        
+        Task<List<MatchInfo>> GetRunningOutrightMatches(int cacheTime);
+        
+        Task<List<MatchInfo>> GetRunningOtherMatches(int cacheTime);
     }
 
     public class LastBetsServiceImpl : LastBetsService
@@ -76,7 +82,7 @@
 
         private static bool IsDummyMatch(int matchId) => matchId <= 999;
 
-        private static void AssignMatchInfoToTicket(Ticket ticket, MatchInfo matchInfo)
+        public static void AssignMatchInfoToTicket(Ticket ticket, MatchInfo matchInfo)
         {
             if (matchInfo == null)
             {
@@ -96,7 +102,7 @@
             ticket.EventDate = matchInfo.EventDate;
         }
 
-        private MatchInfo GetMatchInfo(int matchId, List<MatchInfo> matches, int cacheTime)
+        public MatchInfo GetMatchInfo(int matchId, List<MatchInfo> matches, int cacheTime)
         {
             var cachedKey = $"{RunningMatchesCacheKey}_{matchId}";
             var matchInfo = matches.FirstOrDefault(match => match.MatchId == matchId)
@@ -119,7 +125,7 @@
             return matchInfo;
         }
 
-        private async Task<List<MatchInfo>> GetRunningOutrightMatches(int cacheTime)
+        public async Task<List<MatchInfo>> GetRunningOutrightMatches(int cacheTime)
         {
             var cacheKey = RunningOutrightMatchesCacheKey;
 
@@ -131,7 +137,7 @@
             return matches.ToList();
         }
 
-        private async Task<List<MatchInfo>> GetRunningOtherMatches(int cacheTime)
+        public async Task<List<MatchInfo>> GetRunningOtherMatches(int cacheTime)
         {
             var cacheKey = RunningOtherMatchesCacheKey;
 
