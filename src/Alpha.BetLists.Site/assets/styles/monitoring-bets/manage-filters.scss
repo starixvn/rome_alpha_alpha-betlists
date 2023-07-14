@@ -21,11 +21,12 @@ $icon-dropdown-border-color: #444;
     width: 1000px;
 }
 
-.block-btn{
+.block-btn {
     display: flex;
     justify-content: space-between;
     margin-bottom: 17px;
 }
+
 .manage-filters {
     width: 960px;
 }
@@ -59,8 +60,12 @@ $icon-dropdown-border-color: #444;
         width: 180px;
     }
 
-    .filter-name {
+    .filter-name,
+    .filter-by-tickets,
+    .filter-by-sports,
+    .filter-by-members {
         cursor: pointer;
+        display: inline-block;
         @include user-select-none;
     }
 
@@ -142,10 +147,19 @@ a:hover, a:focus {
         }
     }
 }
+
+.filter-name-hidden,
+.filter-by-tickets-hidden,
+.filter-by-sports-hidden,
+.filter-by-members-hidden {
+    display: none;
+}
+
 @media only screen and (max-device-width: 767px) {
-    .manage-filters{
+    .manage-filters {
         width: 100%;
     }
+
     .tb {
         .width-180 {
             width: 100px;

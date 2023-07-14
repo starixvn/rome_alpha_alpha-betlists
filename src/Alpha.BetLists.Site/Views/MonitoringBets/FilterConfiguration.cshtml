@@ -109,46 +109,9 @@
     <div class="block-btn">@RenderButtonGroup()</div>
     @if (Model.ShowWelcomePopup)
     {
-        <div class="modal fade" tabindex="-1" role="dialog" id="welcome-popup">
-            <div class="modal-dialog welcome-popup" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="icon icon-close close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
-                        <h4 class="modal-title">@Resources.FilterConfigurationWelcomeTitle</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>@Resources.FilterConfigurationWelcomeContent</p>
-                        <p>@Resources.FilterConfigurationWelcomeContent2</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="button button-submit" data-dismiss="modal">@Resources.Yes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @Html.Partial("_WelcomePopup")
     }
-    <div class="modal fade" data-backdrop="false" tabindex="-1" role="dialog" id="add-filter-popup">
-        <div class="modal-dialog add-filter-popup" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="icon icon-close close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
-                    <h4 class="modal-title">@Resources.SaveToMyFilters</h4>
-                </div>
-                <div class="modal-body">
-                    <label class="ttl">@Resources.FilterName <span class="require">*</span></label>
-                    <input type="text" id="txt-filterName" autocomplete="off" maxlength="50" />
-                    <div id="inline-message-popup" class="msg hide"></div>
-                </div>
-                <div class="modal-footer">
-                    <label><input type="checkbox" id="chk-isDefault" /><span>@Resources.SetAsDefaultFilter</span></label>
-                    <div class="block-btn">
-                        <button type="button" class="button button-cancel" data-dismiss="modal">@Resources.Cancel</button>
-                        <button type="button" class="button button-reset" id="btn-save-filter-popup">@Resources.SaveFilter</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    @Html.Partial("_SaveFilterConfirmPopup")
 </div>
 @Html.AntiForgeryToken()
 @Html.Hidden("hidden-BetTypesRequiredError", Resources.FilterConfigurationBetTypesRequiredError)

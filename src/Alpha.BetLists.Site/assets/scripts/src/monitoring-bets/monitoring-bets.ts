@@ -1,6 +1,5 @@
-﻿declare var store: any;
-
-"use strict";
+﻿"use strict";
+declare var store: any;
 
 class MonitoringBetsView {
     private dropdownFilter: JQuery;
@@ -55,7 +54,6 @@ class MonitoringBetsView {
         this.dropdownFilter = $("#monitoring-bets-filter");
 
         this.dropdownMostRecentTicket = $("#most-recent-tickets");
-
     };
 
     private registerEvents = () => {

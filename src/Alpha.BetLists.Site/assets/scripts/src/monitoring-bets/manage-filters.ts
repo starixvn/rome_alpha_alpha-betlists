@@ -19,11 +19,26 @@ class ManageFiltersView {
         const radioDefaultFilter = table.find("input[name=default]:checked");
         const iconCloseList = table.find(".ic-close");
 
-        table.find(".collapse-expand,.filter-name").click(this.handleToggleFilterDetails);
+        const self = this;
+        table.find(".filter-name").click(function () {
+            self.handleToggleCollapseExpand($(this), false);
+        });
+
+        table.find(".filter-by-tickets").click(function () {
+            self.handleToggleCollapseExpand($(this));
+        });
+
+        table.find(".filter-by-sports").click(function () {
+            self.handleToggleCollapseExpand($(this));
+        });
+
+        table.find(".filter-by-members").click(function () {
+            self.handleToggleCollapseExpand($(this));
+        });
 
         table.find(".ic-edit").click(e => this.handleOnClickIconEdit(e, iconCloseList, radioDefaultFilter));
 
-        table.find(".ic-bin").click(e => this.handleOnClickIconBin(e));
+        table.find(".ic-delete").click(e => this.handleOnClickIconBin(e));
 
         table.find(".ic-check").click(e => this.handleOnClickIconCheck(e));
 
@@ -41,24 +56,19 @@ class ManageFiltersView {
         });
     }
 
-    private handleToggleFilterDetails(table) {
-        const $this = $(this);
-        const iconArrow = $this.hasClass("arrow") ? $this : $this.prev();
-        const isCollapse = iconArrow.hasClass("right");
-        const createdTimeColumn = iconArrow.parent().prev();
+    private handleToggleCollapseExpand($target, getSiblingRowsWithCustomData = true) {
+        const className = $target.attr("class");
+        const iconArrow = $target.find(".arrow");
         const parentRow = iconArrow.closest("tr");
-        const filterId = parentRow.data("filterid");
-        const siblingRows = parentRow.siblings(`[data-filterid=${filterId}]`);
+        const customData = getSiblingRowsWithCustomData ? `[data-${className.replace(/-/g, "")}=1]` : "";
+        const siblingRows = parentRow.siblings(`[data-filterid=${parentRow.data("filterid")}]${customData}`);
 
-        if (isCollapse) {
+        if (iconArrow.hasClass("right")) {
             iconArrow.removeClass("right").addClass("down")
-            createdTimeColumn.attr("rowspan", siblingRows.length + 1);
-            $(`#arrow-sport-${filterId}`).removeClass("right").addClass("down");
-            siblingRows.removeClass("hide");
+            siblingRows.removeClass(`${className}-hidden`);
         } else {
             iconArrow.removeClass("down").addClass("right");
-            createdTimeColumn.removeAttr("rowspan");
-            siblingRows.addClass("hide");
+            siblingRows.addClass(`${className}-hidden`);
         }
     }
 
@@ -152,17 +162,13 @@ class ManageFiltersView {
         const $this = $(this);
         const iconArrow = $this.find(".arrow");
         const parentRow = $this.closest("tr");
-        const createdTimeColumn = $(`#created-time-${parentRow.data("filterid")}`);
-        let rowspan = +createdTimeColumn.attr("rowspan");
 
         if (iconArrow.hasClass("right")) {
             iconArrow.removeClass("right").addClass("down")
             parentRow.next().removeClass("hide")
-            createdTimeColumn.attr("rowspan", ++rowspan);
         } else {
             iconArrow.removeClass("down").addClass("right");
             parentRow.next().addClass("hide");
-            createdTimeColumn.attr("rowspan", --rowspan);
         }
     }
 

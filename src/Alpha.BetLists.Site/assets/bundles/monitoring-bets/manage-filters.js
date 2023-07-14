@@ -80,9 +80,21 @@ var ManageFiltersView = /** @class */ (function () {
         var table = $("#table-manage-filters");
         var radioDefaultFilter = table.find("input[name=default]:checked");
         var iconCloseList = table.find(".ic-close");
-        table.find(".collapse-expand,.filter-name").click(this.handleToggleFilterDetails);
+        var self = this;
+        table.find(".filter-name").click(function () {
+            self.handleToggleCollapseExpand($(this), false);
+        });
+        table.find(".filter-by-tickets").click(function () {
+            self.handleToggleCollapseExpand($(this));
+        });
+        table.find(".filter-by-sports").click(function () {
+            self.handleToggleCollapseExpand($(this));
+        });
+        table.find(".filter-by-members").click(function () {
+            self.handleToggleCollapseExpand($(this));
+        });
         table.find(".ic-edit").click(function (e) { return _this.handleOnClickIconEdit(e, iconCloseList, radioDefaultFilter); });
-        table.find(".ic-bin").click(function (e) { return _this.handleOnClickIconBin(e); });
+        table.find(".ic-delete").click(function (e) { return _this.handleOnClickIconBin(e); });
         table.find(".ic-check").click(function (e) { return _this.handleOnClickIconCheck(e); });
         iconCloseList.click(function (e) { return _this.handleOnClickIconClose($(e.target), radioDefaultFilter); });
         table.find(".treeview-sport").click(this.handleToggleSports);
@@ -95,24 +107,20 @@ var ManageFiltersView = /** @class */ (function () {
             _this.handleDeleteFilters($("#hidden-allFilterIds").val());
         });
     };
-    ManageFiltersView.prototype.handleToggleFilterDetails = function (table) {
-        var $this = $(this);
-        var iconArrow = $this.hasClass("arrow") ? $this : $this.prev();
-        var isCollapse = iconArrow.hasClass("right");
-        var createdTimeColumn = iconArrow.parent().prev();
+    ManageFiltersView.prototype.handleToggleCollapseExpand = function ($target, getSiblingRowsWithCustomData) {
+        if (getSiblingRowsWithCustomData === void 0) { getSiblingRowsWithCustomData = true; }
+        var className = $target.attr("class");
+        var iconArrow = $target.find(".arrow");
         var parentRow = iconArrow.closest("tr");
-        var filterId = parentRow.data("filterid");
-        var siblingRows = parentRow.siblings("[data-filterid=" + filterId + "]");
-        if (isCollapse) {
+        var customData = getSiblingRowsWithCustomData ? "[data-" + className.replace(/-/g, "") + "=1]" : "";
+        var siblingRows = parentRow.siblings("[data-filterid=" + parentRow.data("filterid") + "]" + customData);
+        if (iconArrow.hasClass("right")) {
             iconArrow.removeClass("right").addClass("down");
-            createdTimeColumn.attr("rowspan", siblingRows.length + 1);
-            $("#arrow-sport-" + filterId).removeClass("right").addClass("down");
-            siblingRows.removeClass("hide");
+            siblingRows.removeClass(className + "-hidden");
         }
         else {
             iconArrow.removeClass("down").addClass("right");
-            createdTimeColumn.removeAttr("rowspan");
-            siblingRows.addClass("hide");
+            siblingRows.addClass(className + "-hidden");
         }
     };
     ManageFiltersView.prototype.handleOnClickIconEdit = function (e, iconCloseList, radioDefaultFilter) {
@@ -199,17 +207,13 @@ var ManageFiltersView = /** @class */ (function () {
         var $this = $(this);
         var iconArrow = $this.find(".arrow");
         var parentRow = $this.closest("tr");
-        var createdTimeColumn = $("#created-time-" + parentRow.data("filterid"));
-        var rowspan = +createdTimeColumn.attr("rowspan");
         if (iconArrow.hasClass("right")) {
             iconArrow.removeClass("right").addClass("down");
             parentRow.next().removeClass("hide");
-            createdTimeColumn.attr("rowspan", ++rowspan);
         }
         else {
             iconArrow.removeClass("down").addClass("right");
             parentRow.next().addClass("hide");
-            createdTimeColumn.attr("rowspan", --rowspan);
         }
     };
     ManageFiltersView.prototype.handleTreeviewCollapseExpand = function () {

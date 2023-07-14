@@ -48,8 +48,12 @@
 .tb .width-180 {
   width: 180px; }
 
-.tb .filter-name {
+.tb .filter-name,
+.tb .filter-by-tickets,
+.tb .filter-by-sports,
+.tb .filter-by-members {
   cursor: pointer;
+  display: inline-block;
   -webkit-user-select: none;
   /* Chrome all / Safari all */
   -moz-user-select: none;
@@ -124,6 +128,12 @@ a:hover, a:focus {
       margin-top: 10px; }
     .treeview .subtree.expand {
       display: block; }
+
+.filter-name-hidden,
+.filter-by-tickets-hidden,
+.filter-by-sports-hidden,
+.filter-by-members-hidden {
+  display: none; }
 
 @media only screen and (max-device-width: 767px) {
   .manage-filters {
