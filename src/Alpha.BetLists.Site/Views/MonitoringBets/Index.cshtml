@@ -5,6 +5,7 @@
     ViewBag.Title = "Last Bets Monitoring";
 }
 @section Styles {
+    @StaticResources.AssetStyles.RenderWithDarkMode("/bundles-v2/common/common")
     @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-betlists/filter")
     @StaticResources.RenderStyles($"~/{AppSettings.BetlistRouting}assets/bundles/monitoring-bets/monitoring-bets")
 }
