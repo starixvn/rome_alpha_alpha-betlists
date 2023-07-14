@@ -32,6 +32,10 @@ $icon-dropdown-border-color: #444;
 
 .tb {
     .sub-headed {
+        [class^="filter-by-"], [class*=" filter-by-"] {
+            padding-left: 19px;
+        }
+
         td {
             background-color: var(--bg-sub-head-tb);
         }
@@ -52,7 +56,7 @@ $icon-dropdown-border-color: #444;
     }
 
     .width-180 {
-        max-width: 180px;
+        width: 180px;
     }
 
     .filter-name {
@@ -65,21 +69,6 @@ $icon-dropdown-border-color: #444;
         position: relative;
         z-index: 12;
         left: -23px;
-    }
-
-    .caret {
-        top: 8px;
-        right: 16px;
-    }
-
-    .dropdown-menu > li > a {
-        line-height: 1;
-        padding: 8px;
-
-        &:hover {
-            background: transparent;
-            cursor: default;
-        }
     }
 
     .edit-group, .confirm-group {
@@ -129,8 +118,10 @@ a:hover, a:focus {
 
 .treeview {
     margin-bottom: 0;
-    padding: 0 0 0 48px;
-
+    padding: 5px 0 5px 38px;
+    > li{
+        margin-bottom: 2px;
+    }
     .tree-node-name {
         cursor: pointer;
         display: inline-block;
@@ -140,10 +131,12 @@ a:hover, a:focus {
     .subtree {
         display: none;
         margin-left: 13px;
-        padding: 0 0 0 18px;
-        li{
-            margin-top: 6px;
+        padding: 0 0 7px 18px;
+
+        li {
+            margin-top: 10px;
         }
+
         &.expand {
             display: block;
         }

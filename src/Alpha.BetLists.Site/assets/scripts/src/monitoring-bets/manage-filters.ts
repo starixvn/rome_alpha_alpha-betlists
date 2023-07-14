@@ -17,15 +17,15 @@ class ManageFiltersView {
 
         const table = $("#table-manage-filters");
         const radioDefaultFilter = table.find("input[name=default]:checked");
-        const iconCloseList = table.find(".icon-close");
+        const iconCloseList = table.find(".ic-close");
 
         table.find(".collapse-expand,.filter-name").click(this.handleToggleFilterDetails);
 
-        table.find(".icon-edit").click(e => this.handleOnClickIconEdit(e, iconCloseList, radioDefaultFilter));
+        table.find(".ic-edit").click(e => this.handleOnClickIconEdit(e, iconCloseList, radioDefaultFilter));
 
-        table.find(".icon-bin").click(e => this.handleOnClickIconBin(e));
+        table.find(".ic-bin").click(e => this.handleOnClickIconBin(e));
 
-        table.find(".icon-check").click(e => this.handleOnClickIconCheck(e));
+        table.find(".ic-check").click(e => this.handleOnClickIconCheck(e));
 
         iconCloseList.click(e => this.handleOnClickIconClose($(e.target), radioDefaultFilter));
 

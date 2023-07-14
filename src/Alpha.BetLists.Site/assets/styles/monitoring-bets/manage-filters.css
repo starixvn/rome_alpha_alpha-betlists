@@ -30,6 +30,9 @@
 .manage-filters {
   width: 960px; }
 
+.tb .sub-headed [class^="filter-by-"], .tb .sub-headed [class*=" filter-by-"] {
+  padding-left: 19px; }
+
 .tb .sub-headed td {
   background-color: var(--bg-sub-head-tb); }
 
@@ -43,7 +46,7 @@
   width: 120px; }
 
 .tb .width-180 {
-  max-width: 180px; }
+  width: 180px; }
 
 .tb .filter-name {
   cursor: pointer;
@@ -61,17 +64,6 @@
   position: relative;
   z-index: 12;
   left: -23px; }
-
-.tb .caret {
-  top: 8px;
-  right: 16px; }
-
-.tb .dropdown-menu > li > a {
-  line-height: 1;
-  padding: 8px; }
-  .tb .dropdown-menu > li > a:hover {
-    background: transparent;
-    cursor: default; }
 
 .tb .edit-group, .tb .confirm-group {
   display: flex;
@@ -117,7 +109,9 @@ a:hover, a:focus {
 
 .treeview {
   margin-bottom: 0;
-  padding: 0 0 0 48px; }
+  padding: 5px 0 5px 38px; }
+  .treeview > li {
+    margin-bottom: 2px; }
   .treeview .tree-node-name {
     cursor: pointer;
     display: inline-block;
@@ -125,9 +119,9 @@ a:hover, a:focus {
   .treeview .subtree {
     display: none;
     margin-left: 13px;
-    padding: 0 0 0 18px; }
+    padding: 0 0 7px 18px; }
     .treeview .subtree li {
-      margin-top: 6px; }
+      margin-top: 10px; }
     .treeview .subtree.expand {
       display: block; }
 

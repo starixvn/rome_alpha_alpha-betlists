@@ -8,11 +8,11 @@ var ManageFiltersView = /** @class */ (function () {
         $("#btn-delete-all-filters").click(function () { return _this.handleOnClickButtonDeleteAllFilters(); });
         var table = $("#table-manage-filters");
         var radioDefaultFilter = table.find("input[name=default]:checked");
-        var iconCloseList = table.find(".icon-close");
+        var iconCloseList = table.find(".ic-close");
         table.find(".collapse-expand,.filter-name").click(this.handleToggleFilterDetails);
-        table.find(".icon-edit").click(function (e) { return _this.handleOnClickIconEdit(e, iconCloseList, radioDefaultFilter); });
-        table.find(".icon-bin").click(function (e) { return _this.handleOnClickIconBin(e); });
-        table.find(".icon-check").click(function (e) { return _this.handleOnClickIconCheck(e); });
+        table.find(".ic-edit").click(function (e) { return _this.handleOnClickIconEdit(e, iconCloseList, radioDefaultFilter); });
+        table.find(".ic-bin").click(function (e) { return _this.handleOnClickIconBin(e); });
+        table.find(".ic-check").click(function (e) { return _this.handleOnClickIconCheck(e); });
         iconCloseList.click(function (e) { return _this.handleOnClickIconClose($(e.target), radioDefaultFilter); });
         table.find(".treeview-sport").click(this.handleToggleSports);
         table.find(".tree-node-name").click(this.handleTreeviewCollapseExpand);
