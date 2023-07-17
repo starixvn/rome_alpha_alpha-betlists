@@ -50,7 +50,7 @@
             </select>
         </div>
         <div class="form-group">
-            @Html.ActionLink("Manage Filters", "ManageFilters", $"{AppSettings.BetlistRouting}MonitoringBets", null, new { target = "main" })
+            @Html.ActionLink("Manage Filters", "ManageFilters", $"{AppSettings.BetlistRouting}MonitoringBets", null, new { target = "main" , @class="button-link"})
         </div>
         <div class="form-group">
             <label class="label-form-control">Most Recent Tickets</label>
@@ -63,10 +63,10 @@
         </div>
         @AutoRefresh.Render(new[] { 5, 30, 60, 90 })
         <div class="form-group">
-            @Html.ActionLink("Filter Configuration", "FilterConfiguration", $"{AppSettings.BetlistRouting}MonitoringBets", null, new { target = "main" })
+            @Html.ActionLink("Filter Configuration", "FilterConfiguration", $"{AppSettings.BetlistRouting}MonitoringBets", new { showWelcomePopup = true }, new { target = "main", @class = "button-link" })
         </div>
         <div class="form-group">
-            <span class="icon icon-content-copy" title="Copy" id="icon-copy"></span>
+            <span class="ic-copy" title="Copy" id="icon-copy"></span>
         </div>
     </form>
 
@@ -74,7 +74,7 @@
         @Resources.FunctionTurnOffError
     </div>
     <div class="scrollable" id="bet-list-table-container">
-        <table class="tblRpt tblRpt-bordered tblRpt-striped width-100per tablesorter tblRpt-hover tbl-betlist tblRpt-freeze-header" id="tbl-betlist">
+        <table class="tb tb-bordered w-full" id="tbl-betlist">
             <thead>
                 <tr>
                     <th class="col-number">Ref No</th>
