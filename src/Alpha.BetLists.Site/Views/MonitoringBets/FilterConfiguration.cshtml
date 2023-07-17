@@ -5,7 +5,7 @@
     ViewBag.Title = Resources.FilterConfiguration;
 }
 @section Styles {
-    @StaticResources.AssetStyles.RenderWithDarkMode("/bundles-v2/common/common")
+    @StaticResources.AssetStyles.Render("/bundles-v2/common/common")
     @StaticResources.AssetStyles.Render("/bundles-v2/site-betlists/monitoring-bets")
     @StaticResources.RenderStyles($"~/{AppSettings.BetlistRouting}assets/bundles/monitoring-bets/filter-configuration")
 }

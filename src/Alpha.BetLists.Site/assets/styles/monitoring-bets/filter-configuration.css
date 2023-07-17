@@ -18,8 +18,9 @@
   --color-light-gray: #757575;
   --color-gray: #333333;
   --bg-main: #FFFFFF;
+  --bg-stake: #FFFFFF;
+  --border-color: #d1d1d1;
   --color-ttl: #094980;
-  --border-color: #D1D1D1;
   --bg-box: #F5F8FE;
   --border-box: #3873E9;
   --color-require: #FE0000;
@@ -32,8 +33,9 @@
   --color-light-gray: #757575;
   --color-gray: #333333;
   --bg-main: #FFFFFF;
+  --bg-stake: #FFFFFF;
+  --border-color: #d1d1d1;
   --color-ttl: #094980;
-  --border-color: #D1D1D1;
   --bg-box: #ffffff;
   --bg-box-active: #F5F8FE;
   --border-box: #E0E0E0;
@@ -48,8 +50,10 @@
   --color-light-gray: #919191;
   --color-gray: #EDEDED;
   --bg-main: #171717;
+  --bg-stake: #2b2b2b;
+  --border-color: #474747;
   --color-ttl: #459BE5;
-  --border-color: #313334;
+  --border-stake: #474747;
   --bg-box: #2b2b2b;
   --bg-box-active: #363738;
   --border-box: #2B2B2B;
@@ -85,7 +89,7 @@
   .block-config select, .block-config input[type="text"] {
     box-shadow: none;
     border: 1px solid var(--border-color);
-    height: 26px; }
+    height: 30px; }
 
 .text {
   font-size: 14px;
@@ -102,7 +106,7 @@
   justify-content: space-between; }
   .item label {
     width: 100%;
-    margin: 0 0 4px 0;
+    margin: 0 0 7px 0;
     padding-right: 10px;
     font-size: 14px; }
     .all-sport .item label {
@@ -125,6 +129,7 @@
       width: 100%;
       color: var(--color-gray); }
     .item .inner.stake {
+      background-color: var(--bg-stake);
       border-radius: 3px;
       line-height: 22px;
       color: var(--color-gray);

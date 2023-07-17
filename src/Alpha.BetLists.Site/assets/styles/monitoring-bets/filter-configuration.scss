@@ -6,10 +6,10 @@
     --color-light-gray: #757575;
     --color-gray: #333333;
     --bg-main: #FFFFFF;
+    --bg-stake: #FFFFFF;
+    --border-color: #d1d1d1;
     //button
-
     --color-ttl: #094980;
-    --border-color: #D1D1D1;
     //box
     --bg-box: #F5F8FE;
     --border-box: #3873E9;
@@ -27,9 +27,10 @@
     --color-light-gray: #757575;
     --color-gray: #333333;
     --bg-main: #FFFFFF;
+    --bg-stake: #FFFFFF;
+    --border-color: #d1d1d1;
     //button
     --color-ttl: #094980;
-    --border-color: #D1D1D1;
     //box
     --bg-box: #ffffff;
     --bg-box-active: #F5F8FE;
@@ -49,9 +50,11 @@
     --color-light-gray: #919191;
     --color-gray: #EDEDED;
     --bg-main: #171717;
+    --bg-stake: #2b2b2b;
+    --border-color: #474747;
     //button
     --color-ttl: #459BE5;
-    --border-color: #313334;
+    --border-stake: #474747;
     //box
     --bg-box: #2b2b2b;
     --bg-box-active: #363738;
@@ -98,7 +101,7 @@
     select, input[type="text"] {
         box-shadow: none;
         border: 1px solid var(--border-color);
-        height: 26px;
+        height: 30px;
     }
 }
 
@@ -119,7 +122,7 @@
 
     label {
         width: 100%;
-        margin: 0 0 4px 0;
+        margin: 0 0 7px 0;
         padding-right: 10px;
         font-size: 14px;
 
@@ -157,6 +160,7 @@
         }
 
         &.stake {
+            background-color: var(--bg-stake);
             border-radius: 3px;
             line-height: 22px;
             color: var(--color-gray);

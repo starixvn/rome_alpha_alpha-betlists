@@ -7,6 +7,7 @@
     --border-color: #E0E0E0;
     --highlight-text: #e9322d;
     --tree-color: #333333;
+    --tree-filter-bg: #ffffff;
 }
 :root [data-theme='light'] {
     --icon-dropdown-border-color: #444;
@@ -16,6 +17,7 @@
     --border-color: #E0E0E0;
     --highlight-text: #e9322d;
     --tree-color: #333333;
+    --tree-filter-bg: #ffffff;
 }
 :root [data-theme='dark'] {
     --icon-dropdown-border-color: #EDEDED;
@@ -25,6 +27,7 @@
     --border-color: #f2f2f2;
     --highlight-text: #e9322d;
     --tree-color: #ededed;
+    --tree-filter-bg: #2b2b2b;
 }
 @mixin icon-dropdown($right) {
     cursor: pointer;
@@ -96,6 +99,7 @@
             line-height: 32px;
             padding-right: 25px;
             width: 100%;
+            background-color: var(--tree-filter-bg);
         }
 
         .icon-close {
