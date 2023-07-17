@@ -31,7 +31,9 @@ var AutoRefreshComponent = /** @class */ (function () {
             var second = $(e.target).text();
             _this.labelCountDown.text(second).data("original", second);
         });
-        this.start();
+    };
+    AutoRefreshComponent.prototype.setIsLoading = function () {
+        this.labelCountDown.text("").addClass("icon-loading");
     };
     AutoRefreshComponent.prototype.start = function () {
         var _this = this;
@@ -71,6 +73,144 @@ var AutoRefreshComponent = /** @class */ (function () {
     return AutoRefreshComponent;
 }());
 //# sourceMappingURL=autorefresh.js.map
+"use strict";
+var AlphaCore = /** @class */ (function () {
+    function AlphaCore($, store) {
+        var _this = this;
+        this.nonDigitalCharsRegex = /\D/g;
+        this.leadingZerosRegex = /^0+(?!$)/;
+        this.thousandsSeparatorRegex = /\B(?=(\d{3})+(?!\d))/g;
+        this.format = {
+            monthFormat: "MMMM - yyyy",
+            shortDateWithSlash_DatePicker: "MM/DD/YYYY",
+            shortDateWithSlash_MonthPicker: "MM/dd/yyyy",
+            dayMonthName: "DD MMM",
+            day: "DD"
+        };
+        this.sort = {
+            none: 0,
+            ascending: 1,
+            descending: -1
+        };
+        this.keyCode = {
+            enter: 13
+        };
+        this.numberDisplayedProductsOnFilter = 1;
+        this.maxTimesToShowTooltip = 5;
+        this.screenSmallThan768 = function () {
+            var currentWindowWidth = screen.width || _this.$(window).width();
+            return currentWindowWidth < 768;
+        };
+        this.splitCell = function (firstCell, cellClass, lastCellStyle) {
+            if (cellClass === void 0) { cellClass = ""; }
+            if (lastCellStyle === void 0) { lastCellStyle = "bold"; }
+            var this$ = _this.$;
+            var combinedCells = _this.$("." + firstCell + "-combined");
+            combinedCells.each(function (index) {
+                var oldValues = this$(this).find("li");
+                var cellsLength = oldValues.length;
+                var oldCells = "";
+                for (var i = 0, lastCellIndex = cellsLength - 1; i < cellsLength; i++) {
+                    oldCells += "<td class=\"hidden-stack-mode " + cellClass +
+                        (i === lastCellIndex ? " " + lastCellStyle : "") + "\">" +
+                        this$(oldValues[i]).html() +
+                        "</td>";
+                }
+                this$(combinedCells[index]).before(oldCells);
+            });
+        };
+        this.localStorage = {
+            get: function (key) {
+                return _this.store.enabled ? _this.store.get(key) : _this.$.cookie(key);
+            },
+            set: function (key, value) {
+                _this.store.enabled ? _this.store.set(key, value) : _this.$.cookie(key, value, _this.localStorage.getCookieExpireOptions());
+            },
+            getCookieExpireOptions: function () {
+                var cookieExpire = { expires: 365, path: window.location.pathname };
+                if (_this.isIe()) {
+                    cookieExpire = { expires: 365 };
+                }
+                return cookieExpire;
+            }
+        };
+        this.combineConsecutiveCells = function (firstCells, numberOfCombinedCells, combinedCellClass, combinedCellColSpan) {
+            if (combinedCellColSpan === void 0) { combinedCellColSpan = 1; }
+            if (numberOfCombinedCells <= 1) {
+                return;
+            }
+            var this$ = _this.$;
+            firstCells.each(function (index) {
+                var newCell = "<td class=\"visible-stack-mode combinedcell " +
+                    combinedCellClass + "\" colspan=\"" + combinedCellColSpan + "\">\
+                    <ul>";
+                var currentCell = this$(firstCells[index]);
+                var isLastCell = false;
+                for (var i = 0; i < numberOfCombinedCells; i++) {
+                    newCell += "<li>" + currentCell.html() + "</li>";
+                    if (currentCell.next().length) {
+                        currentCell = currentCell.next();
+                    }
+                    else {
+                        isLastCell = true;
+                    }
+                }
+                newCell += "</ul>\
+                        </td>";
+                if (isLastCell) {
+                    currentCell.after(newCell);
+                }
+                else {
+                    currentCell.prev().after(newCell);
+                }
+            });
+        };
+        this.isIe = function () {
+            var ua = window.navigator.userAgent;
+            var msie = ua.indexOf("MSIE ");
+            return msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./);
+        };
+        this.replaceQueryStringValue = function (queryString, paramName, paramValue) {
+            if (typeof queryString === "undefined"
+                || queryString === null) {
+                return "";
+            }
+            var regex = new RegExp("([?&])" + paramName + "=[^&]*", "i");
+            var newQueryString = regex.test(queryString)
+                ? queryString.replace(regex, "$1" + paramName + "=" + paramValue)
+                : queryString + (queryString.indexOf("?") >= 0 ? "&" : "?") + paramName + "=" + paramValue;
+            return newQueryString;
+        };
+        this.correctEvenRowClass = function ($tableReport) {
+            var this$ = _this.$;
+            var isEvenRow = false;
+            $tableReport.find("tbody > tr").each(function () {
+                var $row = this$(this);
+                if ($row.hasClass("even-row") && !isEvenRow) {
+                    $row.removeClass("even-row");
+                }
+                else if (!$row.hasClass("even-row") && isEvenRow) {
+                    $row.addClass("even-row");
+                }
+                isEvenRow = !isEvenRow;
+            });
+        };
+        this.convertAttributeToBool = function (attrValue) {
+            return !!attrValue && attrValue.toString().toLowerCase() === "true";
+        };
+        this.formatNumber = function (value) { return value.toLocaleString("en-US"); };
+        this.formatCurrency = function (value) { return value.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,"); };
+        this.forceInputDecimal = function (value) { return value
+            .replace(_this.nonDigitalCharsRegex, "")
+            .replace(_this.leadingZerosRegex, "")
+            .replace(_this.thousandsSeparatorRegex, ","); };
+        this.$ = $;
+        this.store = store;
+    }
+    return AlphaCore;
+}());
+var alphaReports = new AlphaCore($, store);
+//# sourceMappingURL=core.js.map
 "use strict";
 var MonitoringBetsCopyHtml = /** @class */ (function () {
     function MonitoringBetsCopyHtml(clipboard) {
@@ -153,12 +293,11 @@ var MonitoringBetsView = /** @class */ (function () {
             _this.dropdownFilter.multiselect({
                 multiple: false,
                 maxHeight: 300,
-                nonSelectedText: 'Select...',
                 numberDisplayed: 1,
                 includeSelectAllOption: false
             });
             _this.dropdownFilter.change(function () {
-                _this.loadLastBets(false);
+                _this.loadLastBets(true);
             });
             _this.dropdownMostRecentTicket.multiselect({
                 multiple: false,
@@ -167,7 +306,7 @@ var MonitoringBetsView = /** @class */ (function () {
                 includeSelectAllOption: false
             });
             _this.dropdownMostRecentTicket.change(function () {
-                _this.loadLastBets(false);
+                _this.loadLastBets(true);
             });
             _this.autoRefreshComponent.init(new AutoRefreshOption("ON", "OFF", function () {
                 setTimeout(function () {
@@ -243,35 +382,16 @@ var MonitoringBetsView = /** @class */ (function () {
             if (_this.autoRefreshComponent.labelStatusText.text() == _this.autoRefreshComponent.autoRefreshOption.onText)
                 _this.autoRefreshComponent.start();
         };
-        this.localStorage = {
-            get: function (key) {
-                return _this.store.enabled ? _this.store.get(key) : $.cookie(key);
-            },
-            set: function (key, value) {
-                _this.store.enabled ? _this.store.set(key, value) : $.cookie(key, value, _this.localStorage.getCookieExpireOptions());
-            },
-            getCookieExpireOptions: function () {
-                var cookieExpire = { expires: 365, path: window.location.pathname };
-                if (_this.isIe()) {
-                    cookieExpire = { expires: 365 };
-                }
-                return cookieExpire;
-            }
-        };
-        this.isIe = function () {
-            var ua = window.navigator.userAgent;
-            var msie = ua.indexOf("MSIE ");
-            return msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./);
-        };
         this.autoRefreshComponent = autoRefreshComponent;
         this.monitoringBetsCopyHtml = monitoringBetsCopyHtml;
     }
     MonitoringBetsView.prototype.init = function () {
-        this.store = store;
+        this.localStorage = alphaReports.localStorage;
         this.cacheElements();
         this.registerEvents();
         this.setLastTransIdByFilter();
         this.loadLastBets(false);
+        this.autoRefreshComponent.setIsLoading();
         this.monitoringBetsCopyHtml.init();
     };
     MonitoringBetsView.prototype.setLastTransIdByFilter = function () {

@@ -70,9 +70,13 @@
             {
                 filters.Insert(0, tempFilter);
             }
-            
-            var defaultFilter = filters.FirstOrDefault(f => f.IsDefault);
-            var filterId = defaultFilter != null ? defaultFilter.FilterId : filters.Last().FilterId;
+
+            var filterId = 0;
+            if (filters.Any())
+            {
+                var defaultFilter = filters.FirstOrDefault(f => f.IsDefault);
+                filterId = defaultFilter != null ? defaultFilter.FilterId : filters.Last().FilterId;
+            }
 
             return new MonitoringBetsViewModel(message, filters, null, Builder, TicketHelper,
                 encryptionService.CfsEncode($"LastTransId_{message.CustId}_{filterId}", numberOfEncodeResult: 6),
@@ -138,7 +142,7 @@
                 message.SportTypeList,
                 message.LeagueList,
                 message.BetTypeList,
-                LiveStatusConstants.GetStatusById(message.EvenStatus),
+                message.EvenStatus,
                 message.MinStake,
                 message.LimitRowCount);
             var tickets = await monitoringBetService.GetLastFilteringBets(param);

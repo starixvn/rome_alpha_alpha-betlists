@@ -8,8 +8,8 @@
             => "Age_BetList_LastBets_Ag";
         public GetLastFilteringBetsCriteria(int custId, long transId, 
             string memberList, string sportTypeList, 
-            string leagueList, string betTypeList, 
-            string liveIndicator,
+            string leagueList, string betTypeList,
+            byte liveIndicator,
             decimal minStake, int limitRowCount)
         {
             CustId = custId;
@@ -33,14 +33,14 @@
         public string SportTypeList { get; }
         
         public string LeagueList { get; }
-        public string LiveIndicator { get; }
+        public byte LiveIndicator { get; }
 
         public decimal MinStake { get; }
         
         public int LimitRowCount { get; }
 
         public override bool IsValid() => 
-            !string.IsNullOrWhiteSpace(MemberList) && !string.IsNullOrWhiteSpace(BetTypeList)
+            !string.IsNullOrWhiteSpace(BetTypeList)
             && !string.IsNullOrWhiteSpace(SportTypeList) && !string.IsNullOrWhiteSpace(LeagueList)
             && MinStake > 0 && LimitRowCount > 0;
     }

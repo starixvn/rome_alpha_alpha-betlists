@@ -7,7 +7,7 @@ class MonitoringBetsView {
     private autoRefreshComponent: AutoRefreshComponent;
     private monitoringBetsCopyHtml: MonitoringBetsCopyHtml;
 
-    store: any;
+    localStorage: any;
     $pageSize: JQuery;
     $msgError: JQuery;
     $betListTableContainer: JQuery;
@@ -32,14 +32,14 @@ class MonitoringBetsView {
     }
 
     init() {
-        this.store = store;
-
+        this.localStorage = alphaReports.localStorage;
+        
         this.cacheElements();
         this.registerEvents();
         this.setLastTransIdByFilter();
 
         this.loadLastBets(false);
-
+        this.autoRefreshComponent.setIsLoading();
         this.monitoringBetsCopyHtml.init();    
     }
 
@@ -62,13 +62,12 @@ class MonitoringBetsView {
         this.dropdownFilter.multiselect({
             multiple: false,
             maxHeight: 300,
-            nonSelectedText: 'Select...',
             numberDisplayed: 1,
             includeSelectAllOption: false
         });
 
         this.dropdownFilter.change(() => {
-            this.loadLastBets(false);
+            this.loadLastBets(true);
         });
 
         this.dropdownMostRecentTicket.multiselect({
@@ -79,7 +78,7 @@ class MonitoringBetsView {
         });
 
         this.dropdownMostRecentTicket.change(() => {
-            this.loadLastBets(false);
+            this.loadLastBets(true);
         });
 
         this.autoRefreshComponent.init(new AutoRefreshOption(
@@ -177,6 +176,7 @@ class MonitoringBetsView {
     };
 
     private successGetLastBets = (responseHtml: any) => {
+
         if ((responseHtml.ErrorCode && responseHtml.ErrorCode !== "0") ||
             (responseHtml.ErrCode && responseHtml.ErrCode !== "0")) {
             this.showError();
@@ -216,33 +216,6 @@ class MonitoringBetsView {
     private completeGetLastBets = () => {
         if (this.autoRefreshComponent.labelStatusText.text() == this.autoRefreshComponent.autoRefreshOption.onText)
             this.autoRefreshComponent.start();
-    };
-
-    private localStorage = {
-        get: (key: string) => {
-            return this.store.enabled ? this.store.get(key) : $.cookie(key);
-        },
-
-        set: (key: string, value: any) => {
-            this.store.enabled ? this.store.set(key, value) : $.cookie(key, value, this.localStorage.getCookieExpireOptions());
-        },
-
-        getCookieExpireOptions: () => {
-            var cookieExpire: any = { expires: 365, path: window.location.pathname };
-
-            if (this.isIe()) {
-                cookieExpire = { expires: 365 };
-            }
-
-            return cookieExpire;
-        }
-    };
-
-    private isIe = () => {
-        var ua = window.navigator.userAgent;
-        var msie = ua.indexOf("MSIE ");
-
-        return msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./);
     };
 }
 

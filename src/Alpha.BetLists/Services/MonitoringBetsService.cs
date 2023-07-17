@@ -72,22 +72,22 @@
 
             var filterConfigurations = await dynamicRepository.FetchAsync<FilterConfiguration>(criteria);
             return filterConfigurations.OrderByDescending(f => f.FilterId).Select(f =>
-              {
-                  var filterXml = f.FilterXml;
-                  var (sportTypes, leagues) = BuildSportTypesAndLeagues(filterXml.Sports);
+            {
+                var filterXml = f.FilterXml;
+                var (sportTypes, leagues) = BuildSportTypesAndLeagues(filterXml.Sports);
 
-                  return new SavedFilter(
-                      f.FilterId,
-                      f.FilterName,
-                      f.IsDefault,
-                      filterXml.BetType,
-                      filterXml.Stake,
-                      filterXml.IsLive,
-                      sportTypes,
-                      leagues,
-                      filterXml.Members,
-                      filterXml.IsWatchlist);
-              });
+                return new SavedFilter(
+                    f.FilterId,
+                    f.FilterName,
+                    f.IsDefault,
+                    filterXml.BetType,
+                    filterXml.Stake,
+                    filterXml.IsLive,
+                    sportTypes,
+                    leagues,
+                    filterXml.Members,
+                    filterXml.IsWatchlist);
+            });
         }
 
         private static Tuple<string, string> BuildSportTypesAndLeagues(IEnumerable<SportXml> sportXmlList)

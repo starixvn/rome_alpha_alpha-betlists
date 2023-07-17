@@ -12,7 +12,7 @@ namespace Alpha.BetLists.Params.MonitoringBets
         public GetLastFilteringBetsParams(int custId, long transId, 
             string memberList, string sportTypeList, 
             string leagueList, string betTypeList,
-            string liveIndicator,
+            byte liveIndicator,
             decimal minStake, int limitRowCount)
         {
             CustId = custId;
@@ -38,7 +38,7 @@ namespace Alpha.BetLists.Params.MonitoringBets
         
         public string LeagueList { get; }
         
-        public string LiveIndicator { get; }
+        public byte LiveIndicator { get; }
         
         public decimal MinStake { get; }
         

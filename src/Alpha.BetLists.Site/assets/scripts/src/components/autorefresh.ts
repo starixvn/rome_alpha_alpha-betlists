@@ -33,7 +33,10 @@ class AutoRefreshComponent {
             const second = $(e.target).text();
             this.labelCountDown.text(second).data("original", second);
         });
-        this.start();
+    }
+
+    setIsLoading() {
+        this.labelCountDown.text("").addClass("icon-loading");
     }
 
     start() {

@@ -31,7 +31,9 @@ var AutoRefreshComponent = /** @class */ (function () {
             var second = $(e.target).text();
             _this.labelCountDown.text(second).data("original", second);
         });
-        this.start();
+    };
+    AutoRefreshComponent.prototype.setIsLoading = function () {
+        this.labelCountDown.text("").addClass("icon-loading");
     };
     AutoRefreshComponent.prototype.start = function () {
         var _this = this;

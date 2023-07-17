@@ -24,12 +24,11 @@ var MonitoringBetsView = /** @class */ (function () {
             _this.dropdownFilter.multiselect({
                 multiple: false,
                 maxHeight: 300,
-                nonSelectedText: 'Select...',
                 numberDisplayed: 1,
                 includeSelectAllOption: false
             });
             _this.dropdownFilter.change(function () {
-                _this.loadLastBets(false);
+                _this.loadLastBets(true);
             });
             _this.dropdownMostRecentTicket.multiselect({
                 multiple: false,
@@ -38,7 +37,7 @@ var MonitoringBetsView = /** @class */ (function () {
                 includeSelectAllOption: false
             });
             _this.dropdownMostRecentTicket.change(function () {
-                _this.loadLastBets(false);
+                _this.loadLastBets(true);
             });
             _this.autoRefreshComponent.init(new AutoRefreshOption("ON", "OFF", function () {
                 setTimeout(function () {
@@ -114,35 +113,16 @@ var MonitoringBetsView = /** @class */ (function () {
             if (_this.autoRefreshComponent.labelStatusText.text() == _this.autoRefreshComponent.autoRefreshOption.onText)
                 _this.autoRefreshComponent.start();
         };
-        this.localStorage = {
-            get: function (key) {
-                return _this.store.enabled ? _this.store.get(key) : $.cookie(key);
-            },
-            set: function (key, value) {
-                _this.store.enabled ? _this.store.set(key, value) : $.cookie(key, value, _this.localStorage.getCookieExpireOptions());
-            },
-            getCookieExpireOptions: function () {
-                var cookieExpire = { expires: 365, path: window.location.pathname };
-                if (_this.isIe()) {
-                    cookieExpire = { expires: 365 };
-                }
-                return cookieExpire;
-            }
-        };
-        this.isIe = function () {
-            var ua = window.navigator.userAgent;
-            var msie = ua.indexOf("MSIE ");
-            return msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./);
-        };
         this.autoRefreshComponent = autoRefreshComponent;
         this.monitoringBetsCopyHtml = monitoringBetsCopyHtml;
     }
     MonitoringBetsView.prototype.init = function () {
-        this.store = store;
+        this.localStorage = alphaReports.localStorage;
         this.cacheElements();
         this.registerEvents();
         this.setLastTransIdByFilter();
         this.loadLastBets(false);
+        this.autoRefreshComponent.setIsLoading();
         this.monitoringBetsCopyHtml.init();
     };
     MonitoringBetsView.prototype.setLastTransIdByFilter = function () {

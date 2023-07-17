@@ -6,7 +6,7 @@
 }
 @section Styles {
     @StaticResources.AssetStyles.RenderWithDarkMode("/bundles-v2/common/common")
-    @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-betlists/filter")
+    @StaticResources.AssetStyles.Render("/bundles-v2/site-betlists/monitoring-bets")
     @StaticResources.RenderStyles($"~/{AppSettings.BetlistRouting}assets/bundles/monitoring-bets/monitoring-bets")
 }
 @section Scripts {
@@ -55,14 +55,15 @@
         <div class="form-group">
             <label class="label-form-control">Most Recent Tickets</label>
             <select id="most-recent-tickets">
-                <option value="100" selected>100</option>
+                <option value="1" selected>1</option>
+                <option value="100">100</option>
                 <option value="200">300</option>
                 <option value="300">500</option>
             </select>
         </div>
         @AutoRefresh.Render(new[] { 5, 30, 60, 90 })
         <div class="form-group">
-            @Html.ActionLink("Filter Configuration", "FilterConfiguration", $"{AppSettings.BetlistRouting}MonitoringBets", new { showWelcomePopup = true }, new { target = "main" })
+            @Html.ActionLink("Filter Configuration", "FilterConfiguration", $"{AppSettings.BetlistRouting}MonitoringBets", null, new { target = "main" })
         </div>
         <div class="form-group">
             <span class="icon icon-content-copy" title="Copy" id="icon-copy"></span>
@@ -73,6 +74,21 @@
         @Resources.FunctionTurnOffError
     </div>
     <div class="scrollable" id="bet-list-table-container">
+        <table class="tblRpt tblRpt-bordered tblRpt-striped width-100per tablesorter tblRpt-hover tbl-betlist tblRpt-freeze-header" id="tbl-betlist">
+            <thead>
+                <tr>
+                    <th class="col-number">Ref No</th>
+                    <th class="col-transtime">@Resources.transtime</th>
+                    <th class="col-member">@Resources.Username</th>
+                    <th>@Resources.BetType</th>
+                    <th>@Resources.choice</th>
+                    <th class="col-odds">@Resources.odds</th>
+                    <th class="col-stake">@Resources.stake</th>
+                    <th class="col-status">IP</th>
+                </tr>
+            </thead>
+            @Common.NoInfomation.Render(Model.TotalColumn)
+        </table>
 
         <input id="get-bets-url" type="hidden" value="@Url.Action("BetData",$"{AppSettings.BetlistRouting}MonitoringBets")" />
         <input id="last-trans-id-cache-key-by-filter" type="hidden" value="@Model.LastTransIdCacheKeyByFilter" />
