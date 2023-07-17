@@ -13,7 +13,36 @@
     //tooltip
     --bg--tooltip: #6A1212;
 }
-
+:root [data-theme='light'] {
+    --tagsinput-border-color: #2F2F2F;
+    --tagsinput-color: #10663E;
+    --tagsinput-bg-color: #D0F2E4;
+    --tags-remove-color: #6B6B6B;
+    --tagsinput-error-border-color: #E5BFBF;
+    --tagsinput-error-color: #CB0008;
+    --tagsinput-error-bg-color: #F3CACA;
+    --tags-placehoder: #8E8E8E;
+    --tags-input-bg: #F7F7F7;
+    --bg-input: #FFFFFF;
+    --color-btn-close: #6B6B6B;
+    //tooltip
+    --bg--tooltip: #6A1212;
+}
+:root [data-theme='dark'] {
+    --tagsinput-border-color: #2F2F2F;
+    --tagsinput-color: #10663E;
+    --tagsinput-bg-color: #AFCCC0;
+    --tags-remove-color: #545454;
+    --tagsinput-error-border-color: #E5BFBF;
+    --tagsinput-error-color: #CB0008;
+    --tagsinput-error-bg-color: #CCAAAA;
+    --tags-placehoder: #919191;
+    --tags-input-bg: #171717;
+    --bg-input: #171717;
+    --color-btn-close: #545454;
+    //tooltip
+    --bg--tooltip: #6A1212;
+}
 .tagsinput {
     background-color: var(--tags-input-bg);
     box-sizing: border-box;
@@ -23,9 +52,11 @@
     position: relative;
     outline: none;
     margin-bottom: 19px;
-    .tags-box{
-        padding: 10px 0 0 10px;
+
+    .tags-box {
+        padding-right: 10px;
     }
+
     .tag-limit {
         color: var(--tags-placehoder);
         font-style: italic;
@@ -78,10 +109,19 @@
         border-radius: 3px;
         color: var(--tagsinput-color);
         display: inline-block;
-        margin: 0 10px 10px 0;
+        margin: 0 0 10px 10px;
         padding: 2px 30px 2px 5px;
         position: relative;
         font-weight: bold;
+
+        &:first-child {
+            margin-top: 10px;
+            margin-left: 10px
+        }
+
+        &:last-child {
+            margin-bottom: 10px;
+        }
 
         .tag-remove {
             background: none;

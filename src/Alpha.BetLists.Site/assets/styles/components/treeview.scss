@@ -1,15 +1,30 @@
 ﻿@import "../_mixins.scss";
 :root {
-    --error-border-color: #e9322d;
-    --button-text-color: #212121;
     --icon-dropdown-border-color: #444;
-    --tree-view-border-color: #dfdfdf;
     --tree-view-padding: 11px;
-    --filter-border-color: #ccc;
     --icon-close-color: #808080;
     --border-radius: 3px;
     --border-color: #E0E0E0;
     --highlight-text: #e9322d;
+    --tree-color: #333333;
+}
+:root [data-theme='light'] {
+    --icon-dropdown-border-color: #444;
+    --tree-view-padding: 11px;
+    --icon-close-color: #808080;
+    --border-radius: 3px;
+    --border-color: #E0E0E0;
+    --highlight-text: #e9322d;
+    --tree-color: #333333;
+}
+:root [data-theme='dark'] {
+    --icon-dropdown-border-color: #EDEDED;
+    --tree-view-padding: 11px;
+    --icon-close-color: #808080;
+    --border-radius: 3px;
+    --border-color: #f2f2f2;
+    --highlight-text: #e9322d;
+    --tree-color: #ededed;
 }
 @mixin icon-dropdown($right) {
     cursor: pointer;
@@ -68,6 +83,7 @@
     padding: var(--tree-view-padding) 0 0 var(--tree-view-padding);
     border-radius: var(--border-radius);
     margin-bottom: 24px;
+
     .filter-box {
         margin-right: var(--tree-view-padding);
         position: relative;
@@ -109,6 +125,7 @@
 
         .node-label {
             margin-right: 23px;
+            font-weight: bold;
         }
     }
 
@@ -173,6 +190,8 @@
         margin-bottom: 0;
         line-height: 28px;
         cursor: pointer;
+        color: var(--tree-color);
+        font-weight: normal;
 
         input[type="checkbox"] {
             margin-right: 11px;

@@ -37,6 +37,7 @@
 
         &:last-child {
             margin-left: auto;
+            margin-right: 0;
         }
 
         label {
@@ -63,8 +64,43 @@
     flex-direction: column;
     max-height: 100%;
 }
+.tb {
+    .col-number {
+        width: 20px;
+    }
 
-.tblRpt-freeze-header {
+    .col-transtime, .col-member {
+        width: 110px;
+    }
+
+    .col-odds, .col-stake, .col-winloss {
+        width: 50px;
+    }
+
+    .col-type, .col-status {
+        width: 85px;
+    }
+
+    .col-pt {
+        width: 100px;
+    }
+
+    .bl_btype, .bettype {
+        color: #3873E9;
+        font-weight: normal;
+    }
+
+    .minus-value {
+        color: #DD3333;
+    }
+
+    .w-order {
+        color: #3873E9;
+        font-weight: normal;
+        text-align: right;
+    }
+}
+.tb-freeze-header {
     border-top: 0 !important;
 
     thead {

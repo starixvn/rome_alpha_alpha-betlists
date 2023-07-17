@@ -69,7 +69,8 @@
   .filter .form-group {
     vertical-align: bottom; }
     .filter .form-group:last-child {
-      margin-left: auto; }
+      margin-left: auto;
+      margin-right: 0; }
     .filter .form-group label {
       display: block; }
   .filter .icon-content-copy {
@@ -114,14 +115,41 @@
   flex-direction: column;
   max-height: 100%; }
 
-.tblRpt-freeze-header {
+.tb .col-number {
+  width: 20px; }
+
+.tb .col-transtime, .tb .col-member {
+  width: 110px; }
+
+.tb .col-odds, .tb .col-stake, .tb .col-winloss {
+  width: 50px; }
+
+.tb .col-type, .tb .col-status {
+  width: 85px; }
+
+.tb .col-pt {
+  width: 100px; }
+
+.tb .bl_btype, .tb .bettype {
+  color: #3873E9;
+  font-weight: normal; }
+
+.tb .minus-value {
+  color: #DD3333; }
+
+.tb .w-order {
+  color: #3873E9;
+  font-weight: normal;
+  text-align: right; }
+
+.tb-freeze-header {
   border-top: 0 !important; }
-  .tblRpt-freeze-header thead tr th {
+  .tb-freeze-header thead tr th {
     position: sticky !important;
     position: -webkit-sticky !important;
     top: 0 !important;
     border-top: 0 !important;
     z-index: 23;
     background-clip: padding-box; }
-  .tblRpt-freeze-header tbody tr:last-child td {
+  .tb-freeze-header tbody tr:last-child td {
     border-bottom: 0; }

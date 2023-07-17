@@ -17,12 +17,44 @@
   --color-white: #FFFFFF;
   --color-light-gray: #757575;
   --color-gray: #333333;
-  --bg-white: #FFFFFF;
+  --bg-main: #FFFFFF;
   --color-ttl: #094980;
   --border-color: #D1D1D1;
   --bg-box: #F5F8FE;
   --border-box: #3873E9;
   --color-require: #FE0000;
+  --color-error: #FE0000;
+  --bg-error: #FFF2F2;
+  --border-error: #FE0000;
+  --color-title-modal: #094980; }
+
+:root [data-theme='light'] {
+  --color-light-gray: #757575;
+  --color-gray: #333333;
+  --bg-main: #FFFFFF;
+  --color-ttl: #094980;
+  --border-color: #D1D1D1;
+  --bg-box: #ffffff;
+  --bg-box-active: #F5F8FE;
+  --border-box: #E0E0E0;
+  --border-box-active: #3873E9;
+  --color-require: #FE0000;
+  --color-error: #FE0000;
+  --bg-error: #FFF2F2;
+  --border-error: #FE0000;
+  --color-title-modal: #094980; }
+
+:root [data-theme='dark'] {
+  --color-light-gray: #919191;
+  --color-gray: #EDEDED;
+  --bg-main: #171717;
+  --color-ttl: #459BE5;
+  --border-color: #313334;
+  --bg-box: #2b2b2b;
+  --bg-box-active: #363738;
+  --border-box: #2B2B2B;
+  --border-box-active: #6699FF;
+  --color-require: #DD3333;
   --color-error: #FE0000;
   --bg-error: #FFF2F2;
   --border-error: #FE0000;
@@ -42,7 +74,7 @@
   font-weight: bold; }
 
 .filter-config {
-  background: var(--bg-white);
+  background: var(--bg-main);
   border: 1px solid var(--border-color);
   border-radius: 3px;
   padding: 15px;
@@ -78,7 +110,7 @@
   .item .inner {
     display: flex;
     align-items: center;
-    background: var(--bg-white);
+    background: var(--bg-main);
     flex: 1;
     font-size: 14px; }
     .item .inner .btn-group {
@@ -114,11 +146,12 @@
   display: inline-flex;
   flex-direction: column;
   margin-right: 20px;
-  background: var(--bg-white);
+  background: var(--bg-box);
   width: 400px;
   position: relative;
   padding: 19px 19px 15px;
-  z-index: 0; }
+  z-index: 0;
+  border-radius: 3px; }
   .box label {
     color: var(--color-gray);
     font-size: 20px;
@@ -134,8 +167,8 @@
       margin: 0;
       top: 0; }
       .box label input:checked + span {
-        background-color: var(--bg-box);
-        border-color: var(--border-box);
+        background-color: var(--bg-box-active);
+        border-color: var(--border-box-active);
         box-shadow: #3873e9 0px 0px 0px 1px inset; }
     .box label .overlay {
       position: absolute;
