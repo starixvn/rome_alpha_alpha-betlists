@@ -95,6 +95,7 @@
                 : BadRequestResult();
         }
 
+        [HttpPost]
         [DisableNetThrottling]
         public async Task<ActionResult> BetData(GetLastFilteringBetsQuery message)
         {

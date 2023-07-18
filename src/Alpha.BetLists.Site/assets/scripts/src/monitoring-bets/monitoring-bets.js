@@ -51,7 +51,7 @@ var MonitoringBetsView = /** @class */ (function () {
             }
             _this.isCalling = true;
             _this.ajaxRequest = $.ajax({
-                method: "GET",
+                method: "POST",
                 data: _this.getParam(),
                 url: _this.getBetsUrl,
                 success: _this.successGetLastBets,
@@ -134,7 +134,7 @@ var MonitoringBetsView = /** @class */ (function () {
         var LeagueList = selectedFilter.data("leagues");
         var EvenStatus = selectedFilter.data("event-status");
         var MinStake = selectedFilter.data("stake");
-        var FilterByMember = selectedFilter.data("filter-by-member");
+        var FilterByMembers = selectedFilter.data("filter-by-member");
         var LimitRowCount = this.dropdownMostRecentTicket.find("option:selected:first").val();
         var param = {
             FilterId: FilterId,
@@ -146,7 +146,7 @@ var MonitoringBetsView = /** @class */ (function () {
             EvenStatus: EvenStatus,
             MinStake: MinStake,
             LimitRowCount: LimitRowCount,
-            FilterByMember: FilterByMember,
+            FilterByMembers: FilterByMembers,
             LatestTransId: latestTransId
         };
         return param;

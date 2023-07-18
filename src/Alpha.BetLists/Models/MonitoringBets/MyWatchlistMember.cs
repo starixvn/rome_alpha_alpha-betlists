@@ -8,7 +8,7 @@
             Username = username;
         }
 
-        public int CustId { get; }
+        public long CustId { get; }
 
         public string Username { get; }
     }

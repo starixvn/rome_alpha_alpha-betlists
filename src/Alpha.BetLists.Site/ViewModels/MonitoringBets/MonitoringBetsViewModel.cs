@@ -21,7 +21,7 @@
             bool showMemberName = false) : base(query, betListData, builder, ticketHelper, showMemberName)
         {
             Filters = filters;
-
+            TotalColumn = 8;
             LastTransIdCacheKeyByFilter = lastTransIdCacheKeyByFilter;
             LatestTransIdCacheKeyByFilter = latestTransIdCacheKeyByFilter;
         }

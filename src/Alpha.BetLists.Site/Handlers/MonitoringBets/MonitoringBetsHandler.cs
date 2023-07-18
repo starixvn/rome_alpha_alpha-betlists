@@ -39,15 +39,12 @@
         private readonly IUserSession userSession;
         private readonly MonitoringBetsService monitoringBetService;
         private readonly LastBetsService lastBetsService;
-        private readonly ForecastService forecastService;
         private readonly EncryptionService encryptionService;
-
 
         public MonitoringBetsHandler(
             IUserSession userSession,
             MonitoringBetsService monitoringBetService,
             LastBetsService lastBetsService,
-            ForecastService forecastService,
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper,
             ISmartPunterBetListMonitor monitorService,
@@ -58,7 +55,6 @@
             this.userSession = userSession;
             this.monitoringBetService = monitoringBetService;
             this.lastBetsService = lastBetsService;
-            this.forecastService = forecastService;
             this.encryptionService = encryptionService;
         }
 
@@ -72,13 +68,36 @@
             }
 
             var filterId = 0;
+            BetListData betListData = null;
             if (filters.Any())
             {
-                var defaultFilter = filters.FirstOrDefault(f => f.IsDefault);
-                filterId = defaultFilter != null ? defaultFilter.FilterId : filters.Last().FilterId;
+                var defaultFilter = filters.FirstOrDefault(f => f.IsDefault && f.FilterId != 0);
+
+                defaultFilter = defaultFilter ?? filters.First();
+                filterId = defaultFilter.FilterId;
+                var memberList = defaultFilter.Members;
+                if (defaultFilter.FilterByMembers == FilterByMembersConstants.AllWatchlistMembers)
+                {
+                    var custIds = (await monitoringBetService.GetMyWatchlistMembers(message.ViewerId)).Select(member => member.CustId);
+                    memberList = $"{defaultFilter.Members},{string.Join(",", custIds)}";
+                }
+
+                var param = new GetLastFilteringBetsParams(message.ViewerId,
+                    0,
+                    memberList,
+                    defaultFilter.SportTypes,
+                    defaultFilter.Leagues,
+                    defaultFilter.BetTypes,
+                    defaultFilter.EventStatus,
+                    defaultFilter.Stake,
+                    limitRowCount: 10);
+                var tickets = await monitoringBetService.GetLastFilteringBets(param);
+
+                await AssignCountry(tickets, message.DisplayVNIP);
+                betListData = new BetListData(tickets, null);
             }
 
-            return new MonitoringBetsViewModel(message, filters, null, Builder, TicketHelper,
+            return new MonitoringBetsViewModel(message, filters, betListData, Builder, TicketHelper,
                 encryptionService.CfsEncode($"LastTransId_{message.CustId}_{filterId}", numberOfEncodeResult: 6),
                 encryptionService.CfsEncode($"LatestTransId_{message.CustId}_{filterId}", numberOfEncodeResult: 6));
         }
@@ -132,13 +151,13 @@
 
         public async Task<FilteringBetDataViewModel> Handle(GetLastFilteringBetsQuery message)
         {
+            IEnumerable<long> memberInWatchIds = (await monitoringBetService.GetMyWatchlistMembers(message.ViewerId)).Select(member => member.CustId);
             if (message.FilterByMembers == FilterByMembersConstants.AllWatchlistMembers)
             {
-                var custIds = (await monitoringBetService.GetMyWatchlistMembers(message.ViewerId)).Select(member => member.CustId);
-                message.MemberList = string.Join(",", custIds);
+                message.MemberList = $"{message.MemberList},{string.Join(",", memberInWatchIds)}";
             }
 
-            var param = new GetLastFilteringBetsParams(message.CustId,
+            var param = new GetLastFilteringBetsParams(message.ViewerId,
                 message.TransId == 0 ? 0 : message.TransId - 1,
                 message.MemberList,
                 message.SportTypeList,
@@ -147,7 +166,23 @@
                 message.EvenStatus,
                 message.MinStake,
                 message.LimitRowCount);
+
             var tickets = await monitoringBetService.GetLastFilteringBets(param);
+
+            if (memberInWatchIds.Any())
+            {
+                foreach (var ticket in tickets)
+                {
+                    foreach (var memberId in memberInWatchIds)
+                    {
+                        if (ticket.CustId == memberId)
+                        {
+                            ticket.IsInWatchlist = true;
+                        }
+                    }
+
+                }
+            }
 
             await AssignCountry(tickets, message.DisplayVNIP);
             var betListData = new BetListData(tickets, null);

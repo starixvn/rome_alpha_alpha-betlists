@@ -37,7 +37,7 @@
 
         public long LatestTransId { get; set; }
 
-        public byte FilterByMembers { get; }
+        public byte FilterByMembers { get; set; }
 
         public int RunningMatchCacheTime { get; } = AppSettings.RunningMatchCacheTime;
     }

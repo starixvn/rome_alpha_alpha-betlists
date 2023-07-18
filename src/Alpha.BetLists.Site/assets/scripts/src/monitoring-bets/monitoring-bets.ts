@@ -40,7 +40,7 @@ class MonitoringBetsView {
 
         this.loadLastBets(false);
         this.autoRefreshComponent.setIsLoading();
-        this.monitoringBetsCopyHtml.init();    
+        this.monitoringBetsCopyHtml.init();
     }
 
     private cacheElements = () => {
@@ -104,7 +104,7 @@ class MonitoringBetsView {
 
         this.isCalling = true;
         this.ajaxRequest = $.ajax({
-            method: "GET",
+            method: "POST",
             data: this.getParam(),
             url: this.getBetsUrl,
             success: this.successGetLastBets,
@@ -125,7 +125,7 @@ class MonitoringBetsView {
         const LeagueList = selectedFilter.data("leagues");
         const EvenStatus = selectedFilter.data("event-status");
         const MinStake = selectedFilter.data("stake");
-        const FilterByMember = selectedFilter.data("filter-by-member");
+        const FilterByMembers = selectedFilter.data("filter-by-member");
         const LimitRowCount = this.dropdownMostRecentTicket.find("option:selected:first").val();
 
         const param = {
@@ -138,7 +138,7 @@ class MonitoringBetsView {
             EvenStatus,
             MinStake,
             LimitRowCount,
-            FilterByMember,
+            FilterByMembers,
             LatestTransId: latestTransId
         };
         return param;

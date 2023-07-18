@@ -25,22 +25,29 @@
     </div>
     <form class="form-inline filter" role="form" id="form-monitoring-bets">
         <div class="form-group">
+
             <label class="label-form-control">@Resources.MyFilters</label>
             <select id="monitoring-bets-filter">
-                @foreach (var savedFilter in Model.Filters)
-                {
-                    var selected = savedFilter.IsDefault ? "selected" : string.Empty;
-                    <option value=@savedFilter.FilterId @selected
-                            data-filter-id=@savedFilter.FilterId
-                            data-members=@savedFilter.Members
-                            data-bet-types=@savedFilter.BetTypes
-                            data-sport-types=@savedFilter.SportTypes
-                            data-leagues=@savedFilter.Leagues
-                            data-event-status=@savedFilter.EventStatus
-                            data-stake=@savedFilter.Stake
-                            data-filter-by-member=@savedFilter.FilterByMembers>
-                        @savedFilter.FilterName
-                    </option>
+                @{
+                    if (Model.Filters.Any())
+                    {
+                        foreach (var savedFilter in Model.Filters)
+                        {
+                            var selected = savedFilter.IsDefault ? "selected" : string.Empty;
+                            var members = savedFilter.Members == "" ? "''" : savedFilter.Members;
+                            <option value=@savedFilter.FilterId @selected
+                                    data-filter-id=@savedFilter.FilterId
+                                    data-members=@members
+                                    data-bet-types=@savedFilter.BetTypes
+                                    data-sport-types=@savedFilter.SportTypes
+                                    data-leagues=@savedFilter.Leagues
+                                    data-event-status=@savedFilter.EventStatus
+                                    data-stake=@savedFilter.Stake
+                                    data-filter-by-member=@savedFilter.FilterByMembers>
+                                @savedFilter.FilterName
+                            </option>
+                        }
+                    }
                 }
             </select>
         </div>
@@ -63,7 +70,8 @@
     <div id="msg-error" class="msg msg-error hide">
         @Resources.FunctionTurnOffError
     </div>
-    <div class="scrollable" id="bet-list-table-container">
+
+    <div class="scrollable">
         <table class="tb tb-bordered tb-freeze-header w-full" id="tbl-betlist">
             <thead>
                 <tr>
@@ -77,12 +85,36 @@
                     <th class="col-status">@Resources.IP</th>
                 </tr>
             </thead>
-            @Common.NoInfomation.Render(Model.TotalColumn)
+            <tbody id="bet-list-table-container">
+                @if (Model.BetListData != null && Model.BetListData.Tickets.Any())
+                {
+                    foreach (var ticket in Model.BetListData.Tickets)
+                    {
+                        <tr id="r@(ticket.TransId)">
+                            <td class='w-order text-center'>@ticket.RefNo</td>
+                            <td class="trans-block text-center nonbreak">
+                                <div class="time">@ticket.TransDate.ToString()</div>
+                            </td>
+                            <td class="text-center">@ticket.UserName</td>
+                            <td class="text-center">@ticket.BetType</td>
+                            @Choice.Render(Model.Builder, ticket, Model.TicketHelper, Model.BetListData.TicketData, Model.CanViewScoreMap(ticket))
+                            @Odds.Render(Model.Builder, ticket, Model.BetListData.TicketData, Model.TicketHelper.GetOddsTypeNameById)
+                            @Stake.Render(Model.Builder, ticket, Model.TicketHelper)
+                            @LastBetsStatus.Render(ticket, Model.TicketHelper, Model.DisplayVNIP)
+                        </tr>
+                    }
+                }
+                else
+                {
+                    @Common.NoInfomation.Render(Model.TotalColumn, false)
+                }
+            </tbody>
         </table>
-        <input id="get-bets-url" type="hidden" value="@Url.Action("BetData", $"{AppSettings.BetlistRouting}MonitoringBets")" />
-        <input id="last-trans-id-cache-key-by-filter" type="hidden" value="@Model.LastTransIdCacheKeyByFilter" />
-        <input id="latest-trans-id-cache-key-by-filter" type="hidden" value="@Model.LatestTransIdCacheKeyByFilter" />
     </div>
+    <input id="get-bets-url" type="hidden" value="@Url.Action("BetData", $"{AppSettings.BetlistRouting}MonitoringBets")" />
+    <input id="last-trans-id-cache-key-by-filter" type="hidden" value="@Model.LastTransIdCacheKeyByFilter" />
+    <input id="latest-trans-id-cache-key-by-filter" type="hidden" value="@Model.LatestTransIdCacheKeyByFilter" />
+
 </div>
 @Html.Hidden("hidden-On", Resources.On)
 @Html.Hidden("hidden-Off", Resources.Off)
