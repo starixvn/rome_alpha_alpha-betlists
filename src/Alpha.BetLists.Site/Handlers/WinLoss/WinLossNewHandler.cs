@@ -72,8 +72,7 @@
             IEnumerable<TicketDto> ticketsToBuildWeekSelection = null;
             if (message.WeekFromDate.HasValue
                 && message.WeekToDate.HasValue
-                && message.WeekFromDate.Value != message.FromDate
-                && message.WeekToDate.Value != message.ToDate)
+                && (message.WeekFromDate.Value != message.FromDate || message.WeekToDate.Value != message.ToDate))
             {
                 var tempWinLossParam = new WinLossParam(
                     message.CustId,
