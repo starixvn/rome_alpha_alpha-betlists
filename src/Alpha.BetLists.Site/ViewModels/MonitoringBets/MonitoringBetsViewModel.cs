@@ -32,15 +32,14 @@
 
         public string LatestTransIdCacheKeyByFilter { get; }
 
-        public IEnumerable<SelectListItem> MostRecentTickets
+        public int[] AutoRefreshSeconds { get; } = new[] { 30, 60, 90 };
+
+        public IEnumerable<SelectListItem> MostRecentTickets { get; } = new[]
         {
-            get
-            {
-                yield return BuildSelectListItem(100, true);
-                yield return BuildSelectListItem(300);
-                yield return BuildSelectListItem(500);
-            }
-        }
+            BuildSelectListItem(100, true),
+            BuildSelectListItem(300),
+            BuildSelectListItem(500)
+        };
 
         private static SelectListItem BuildSelectListItem(int value, bool selected = false)
             => new SelectListItem { Text = value.ToString(), Value = value.ToString(), Selected = selected };

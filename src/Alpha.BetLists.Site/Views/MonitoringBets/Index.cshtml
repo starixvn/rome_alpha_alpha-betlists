@@ -58,7 +58,7 @@
             <label class="label-form-control">@Resources.MostRecentTickets</label>
             @Html.DropDownList("most-recent-tickets", Model.MostRecentTickets, new { id = "most-recent-tickets" })
         </div>
-        @AutoRefresh.Render(new[] { 30, 60, 90 })
+        @AutoRefresh.Render(Model.AutoRefreshSeconds, Model.AutoRefreshSeconds[1])
         <div class="form-group">
             @Html.ActionLink(Resources.FilterConfiguration, "FilterConfiguration", $"{AppSettings.BetlistRouting}MonitoringBets", null, new { target = "main", @class = "button-link" })
         </div>
@@ -91,7 +91,7 @@
                     foreach (var ticket in Model.BetListData.Tickets)
                     {
                         <tr id="r@(ticket.TransId)">
-                            <td class='w-order text-center'>@ticket.RefNo</td>
+                            <td class="w-order text-center">@ticket.RefNo</td>
                             <td class="trans-block text-center nonbreak">
                                 <div class="time">@ticket.TransDate.ToString()</div>
                             </td>

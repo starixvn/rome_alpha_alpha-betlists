@@ -1,6 +1,5 @@
-﻿@helper Render(int[] seconds)
+﻿@helper Render(int[] seconds, int defaultSelected)
 {
-    var selectedSecond = seconds[0];
     <div class="form-group">
         <div class="btn-group-refresh" id="auto-refresh">
             <button type="button" class="button-refresh" id="btn-status">
@@ -13,7 +12,7 @@
                     aria-haspopup="true"
                     aria-expanded="false">
                 <span class="countdown">
-                    <span id="lbl-count-down" data-original="@selectedSecond">@selectedSecond</span>
+                    <span id="lbl-count-down" data-original="@defaultSelected">@defaultSelected</span>
                     <span class="lds-spinner">
                         <span></span>
                         <span></span>

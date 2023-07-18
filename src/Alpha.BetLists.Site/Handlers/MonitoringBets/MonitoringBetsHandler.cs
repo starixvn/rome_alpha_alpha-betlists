@@ -71,11 +71,10 @@
             BetListData betListData = null;
             if (filters.Any())
             {
-                var defaultFilter = filters.FirstOrDefault(f => f.IsDefault && f.FilterId != 0);
-
-                defaultFilter = defaultFilter ?? filters.First();
+                var defaultFilter = filters.FirstOrDefault(f => f.IsDefault) ?? filters.First();
                 filterId = defaultFilter.FilterId;
                 var memberList = defaultFilter.Members;
+
                 if (defaultFilter.FilterByMembers == FilterByMembersConstants.AllWatchlistMembers)
                 {
                     var custIds = (await monitoringBetService.GetMyWatchlistMembers(message.ViewerId)).Select(member => member.CustId);

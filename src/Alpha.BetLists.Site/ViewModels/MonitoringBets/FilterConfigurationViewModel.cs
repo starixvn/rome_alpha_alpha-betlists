@@ -19,22 +19,18 @@
         {
             get
             {
-                foreach (var bettypeId in AppSettings.MonitoringBetsBettypes)
+                foreach (var item in AppSettings.MonitoringBetsBettypes)
                 {
+                    var betTypeId = int.Parse(item);
                     yield return new SelectListItem
                     {
-                        Text = CacheRefServiceHelper.GetBetTypeName(int.Parse(bettypeId)),
-                        Value = bettypeId,
+                        Text = betTypeId == BetTypeIdConstants.Others
+                            ? AppResources.Resources.Others
+                            : CacheRefServiceHelper.GetBetTypeName(betTypeId),
+                        Value = item,
                         Selected = true
                     };
                 }
-
-                yield return new SelectListItem
-                {
-                    Text = AppResources.Resources.Others,
-                    Value = BetTypeIdConstants.Others.ToString(),
-                    Selected = true
-                };
             }
         }
 

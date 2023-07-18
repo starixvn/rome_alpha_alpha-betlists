@@ -84,7 +84,7 @@
             return new SavedFilter(
                 0,
                 param.FilterName,
-                true,
+                false,
                 param.BetType,
                 param.Stake,
                 param.LiveStatus,
