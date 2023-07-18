@@ -514,103 +514,103 @@
     <value>Input Member(s)</value>
   </data>
   <data name="EnteredMembers" xml:space="preserve">
-    <value>Entered Member(s)</value>
+    <value>已輸入會員</value>
   </data>
   <data name="InvalidUsername" xml:space="preserve">
-    <value>Invalid username</value>
+    <value>賬號無效</value>
   </data>
   <data name="Live" xml:space="preserve">
     <value>現場</value>
   </data>
   <data name="ManageFilters" xml:space="preserve">
-    <value>Manage Filters</value>
+    <value>管理篩選</value>
   </data>
   <data name="Members" xml:space="preserve">
     <value>Members</value>
   </data>
   <data name="SelectedMembers" xml:space="preserve">
-    <value>Selected Member(s)</value>
+    <value>選定會員</value>
   </data>
   <data name="None" xml:space="preserve">
     <value>沒有</value>
   </data>
   <data name="NonLive" xml:space="preserve">
-    <value>Non-Live</value>
+    <value>非滾球</value>
   </data>
   <data name="NotAMember" xml:space="preserve">
-    <value>Not a Member</value>
+    <value>並非會員</value>
   </data>
   <data name="RemoveAllFilters" xml:space="preserve">
-    <value>Remove All Filters</value>
+    <value>拆除全部篩選</value>
   </data>
   <data name="SetDefault" xml:space="preserve">
-    <value>Set Default</value>
+    <value>設置默認</value>
   </data>
   <data name="SpecificMembers" xml:space="preserve">
-    <value>Specific Members</value>
+    <value>特定會員</value>
   </data>
   <data name="SpecificSports" xml:space="preserve">
-    <value>Specific Sports</value>
+    <value>特定賽事</value>
   </data>
   <data name="Sports" xml:space="preserve">
     <value>Sports</value>
   </data>
   <data name="UsernameTagsInputPlaceHolder" xml:space="preserve">
-    <value>Enter username(s) (separated by comma, tab and enter)</value>
+    <value>輸入賬號 (分隔以逗號、標籤及輸入)</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
   <data name="FilterConfiguration" xml:space="preserve">
-    <value>Filter Configuration</value>
+    <value>篩選配置</value>
   </data>
   <data name="Apply" xml:space="preserve">
     <value>應用</value>
   </data>
   <data name="SaveFilter" xml:space="preserve">
-    <value>Save Filter</value>
+    <value>保存篩選</value>
   </data>
   <data name="FilterByTickets" xml:space="preserve">
-    <value>Filter by Tickets</value>
+    <value>按照注單篩選</value>
   </data>
   <data name="FilterBySports" xml:space="preserve">
-    <value>Filter by Sports</value>
+    <value>按照體育篩選</value>
   </data>
   <data name="FilterByMembers" xml:space="preserve">
-    <value>Filter by Members</value>
+    <value>按照會員篩選</value>
   </data>
   <data name="LiveStatus" xml:space="preserve">
-    <value>Live Status</value>
+    <value>賽事狀態</value>
   </data>
   <data name="SportGroup" xml:space="preserve">
-    <value>Sport Group</value>
+    <value>體育組別</value>
   </data>
   <data name="EnterMemberUsernames" xml:space="preserve">
-    <value>Enter Member username(s)</value>
+    <value>輸入會員賬號</value>
   </data>
   <data name="AddedSuccessfully" xml:space="preserve">
     <value>Added successfully</value>
   </data>
   <data name="SelectMembers" xml:space="preserve">
-    <value>Select Member(s)</value>
+    <value>選擇會員</value>
   </data>
   <data name="SearchMemberUsername" xml:space="preserve">
-    <value>Search Member Username</value>
+    <value>搜索會員用戶名</value>
   </data>
   <data name="NoMemberUsernameFound" xml:space="preserve">
     <value>No member username found</value>
   </data>
   <data name="AllIncludedNewlyAddedMembers" xml:space="preserve">
-    <value>All (included newly added Members)</value>
+    <value>全部（包括新增會員）</value>
   </data>
   <data name="MajorSports" xml:space="preserve">
-    <value>Major Sports</value>
+    <value>大聯賽體育</value>
   </data>
   <data name="MinorSports" xml:space="preserve">
-    <value>Minor Sports</value>
+    <value>小聯賽體育</value>
   </data>
   <data name="SelectBettype" xml:space="preserve">
-    <value>Select Bettype</value>
+    <value>選擇投注類型</value>
   </data>
   <data name="NewView" xml:space="preserve">
     <value>新版本</value>
@@ -643,40 +643,40 @@
     <value>投注類別</value>
   </data>
   <data name="ConfirmMessageRemoveAllFilters" xml:space="preserve">
-    <value>Remove all filters? The filters cannot be recovered after removal.</value>
+    <value>拆除全部篩選？篩選拆除後無法恢復。</value>
   </data>
   <data name="ConfirmMessageRemoveFilter" xml:space="preserve">
-    <value>Remove this filter? The filter cannot be recovered after removal.</value>
+    <value>拆除這個篩選？篩選拆除後無法恢復。</value>
   </data>
   <data name="CreatedTime" xml:space="preserve">
-    <value>Created Time</value>
+    <value>創建時間</value>
   </data>
   <data name="FilterName" xml:space="preserve">
-    <value>Filter Name</value>
+    <value>篩選名稱</value>
   </data>
   <data name="FilterConfigurationBetTypesRequiredError" xml:space="preserve">
     <value>Please select Bet Type(s)</value>
   </data>
   <data name="FilterConfigurationStakeRequiredError" xml:space="preserve">
-    <value>Please enter Stake</value>
+    <value>請輸入本金</value>
   </data>
   <data name="FilterConfigurationSportsRequiredError" xml:space="preserve">
-    <value>Please select sport(s)</value>
+    <value>請選擇體育項目</value>
   </data>
   <data name="FilterConfigurationFilterByMembersRequiredError" xml:space="preserve">
-    <value>Please enter Member username(s) or select Member(s)</value>
+    <value>請輸入會員賬號或選擇會員</value>
   </data>
   <data name="FilterConfigurationFilterNameRequiredError" xml:space="preserve">
-    <value>Please enter a filter name</value>
+    <value>請輸入篩選名稱</value>
   </data>
   <data name="Yes" xml:space="preserve">
     <value>是</value>
   </data>
   <data name="SaveToMyFilters" xml:space="preserve">
-    <value>Save to My Filters</value>
+    <value>保存到我的篩選</value>
   </data>
   <data name="SetAsDefaultFilter" xml:space="preserve">
-    <value>Set as default filter</value>
+    <value>設置為默認篩選</value>
   </data>
   <data name="Off" xml:space="preserve">
     <value>關閉</value>
@@ -685,55 +685,55 @@
     <value>開啟</value>
   </data>
   <data name="MemberUsernameNotFound" xml:space="preserve">
-    <value>Member username not found</value>
+    <value>未找到會員用戶名</value>
   </data>
   <data name="UsernameAlreadyExists" xml:space="preserve">
-    <value>Username already exists</value>
+    <value>此用戶名已存在</value>
   </data>
   <data name="MaxNoUsernames" xml:space="preserve">
-    <value>Max: # username(s)</value>
+    <value>最大限度：# 用戶名</value>
   </data>
   <data name="SearchSportLeague" xml:space="preserve">
-    <value>Search Sport/ League</value>
+    <value>搜索體育/聯賽</value>
   </data>
   <data name="SportLeagueNotFound" xml:space="preserve">
-    <value>Sport/League not found</value>
+    <value>未找到體育/聯賽</value>
   </data>
   <data name="FilterConfigurationWelcomeTitle" xml:space="preserve">
-    <value>Set your filter criteria first</value>
+    <value>先設置您的篩選標準</value>
   </data>
   <data name="FilterConfigurationWelcomeContent" xml:space="preserve">
-    <value>First time using Last Bet function? Please set the filter criteria based on your monitoring needs for bet tickets, and don’t forget to save your filter for later use.</value>
+    <value>第一次使用最後投注功能？請根據您對投注注單的監控需求設置篩選標準，並且不要忘記保存您篩選標準以供日後使用。</value>
   </data>
   <data name="FilterConfigurationWelcomeContent2" xml:space="preserve">
-    <value>Go ahead and give it a try!</value>
+    <value>來嘗試一下吧！</value>
   </data>
   <data name="FilterConfigurationAllSportsContent" xml:space="preserve">
-    <value>Monitor tickets of all sports.</value>
+    <value>監控所有體育注單</value>
   </data>
   <data name="FilterConfigurationAllSportsContent2" xml:space="preserve">
-    <value>New sports are automatically included.</value>
+    <value>新的體育會自動包含在內。</value>
   </data>
   <data name="FilterConfigurationSpecificSportsContent" xml:space="preserve">
-    <value>Monitor tickets based on the selected criteria (sports/leagues).</value>
+    <value>根據所選標準（體育/聯賽）監控注單。</value>
   </data>
   <data name="FilterConfigurationSpecificSportsContent2" xml:space="preserve">
-    <value>The completed league will be removed from the filter criteria.</value>
+    <value>已完成的聯賽將從篩選標準中刪除。</value>
   </data>
   <data name="FilterConfigurationAllMembersContent" xml:space="preserve">
-    <value>Monitor tickets of all Members.</value>
+    <value>監控所有會員的注單。</value>
   </data>
   <data name="FilterConfigurationAllMembersContent2" xml:space="preserve">
-    <value>New Members are automatically included.</value>
+    <value>新的會員會自動包含在內。</value>
   </data>
   <data name="FilterConfigurationSpecificMembersContent" xml:space="preserve">
-    <value>Monitor tickets of the selected Member(s), which can be added manually or selected from My Watchlist.</value>
+    <value>監控所選會員的注單，可以手動添加或從我的監控列表裡選擇。</value>
   </data>
   <data name="ExpandAll" xml:space="preserve">
     <value>全部打開</value>
   </data>
   <data name="SelectedOnly" xml:space="preserve">
-    <value>Selected Only</value>
+    <value>僅選擇</value>
   </data>
   <data name="BetTypes" xml:space="preserve">
     <value>投注類別</value>
@@ -755,5 +755,17 @@
   </data>
   <data name="Username" xml:space="preserve">
     <value>用戶名</value>
+  </data>
+  <data name="MyFilters" xml:space="preserve">
+    <value>我的篩選</value>
+  </data>
+  <data name="MostRecentTickets" xml:space="preserve">
+    <value>最最近的注單</value>
+  </data>
+  <data name="RefNo" xml:space="preserve">
+    <value>參照號碼</value>
+  </data>
+  <data name="IP" xml:space="preserve">
+    <value>IP</value>
   </data>
 </root>

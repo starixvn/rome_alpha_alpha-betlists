@@ -82,15 +82,9 @@ class MonitoringBetsView {
         });
 
         this.autoRefreshComponent.init(new AutoRefreshOption(
-            "ON",
-            "OFF",
-            () => {
-                setTimeout(() => {
-                    console.log('get data from server');
-                    this.loadLastBets(false);
-
-                }, 3000);
-            }));
+            $("#hidden-On").val(),
+            $("#hidden-Off").val(),
+            () => this.loadLastBets(false)));
     };
 
     private setLastTransIdByFilter() {
@@ -214,8 +208,7 @@ class MonitoringBetsView {
     };
 
     private completeGetLastBets = () => {
-        if (this.autoRefreshComponent.labelStatusText.text() == this.autoRefreshComponent.autoRefreshOption.onText)
-            this.autoRefreshComponent.start();
+        this.autoRefreshComponent.isOn() && this.autoRefreshComponent.start();
     };
 }
 

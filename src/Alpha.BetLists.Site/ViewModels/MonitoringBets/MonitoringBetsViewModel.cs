@@ -1,9 +1,9 @@
 ﻿namespace Alpha.BetLists.Site.ViewModels.MonitoringBets
 {
     using System.Collections.Generic;
+    using System.Web.Mvc;
     using Alpha.BetLists.Models;
     using Alpha.BetLists.Models.MonitoringBets;
-    using Alpha.BetLists.Site.Requests;
     using Alpha.BetLists.Site.Requests.MonitoringBets;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
@@ -31,5 +31,18 @@
         public string LastTransIdCacheKeyByFilter { get; }
 
         public string LatestTransIdCacheKeyByFilter { get; }
+
+        public IEnumerable<SelectListItem> MostRecentTickets
+        {
+            get
+            {
+                yield return BuildSelectListItem(100, true);
+                yield return BuildSelectListItem(300);
+                yield return BuildSelectListItem(500);
+            }
+        }
+
+        private static SelectListItem BuildSelectListItem(int value, bool selected = false)
+            => new SelectListItem { Text = value.ToString(), Value = value.ToString(), Selected = selected };
     }
 }

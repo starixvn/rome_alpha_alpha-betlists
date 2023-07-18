@@ -19,6 +19,8 @@
 
     public interface MonitoringBetsService
     {
+        SavedFilter BuildSavedFilter(AddFilterParam param);
+
         Task<IEnumerable<SavedFilter>> GetSavedFilters(int custId, int subAccId);
 
         Task<IEnumerable<FilterConfiguration>> GetFilters(int custId, int subAccId);
@@ -63,6 +65,33 @@
             this.partialUMService = partialUMService;
             this.lastBetsService = lastBetsService;
             this.dynamicRepository = dynamicRepository;
+        }
+
+        public SavedFilter BuildSavedFilter(AddFilterParam param)
+        {
+            var (sportTypes, leagues) = BuildSportTypesAndLeagues(param.Sports);
+
+            var members = "0";
+            if (param.FilterByMembers == FilterByMembersConstants.AllWatchlistMembers)
+            {
+                members = param.InputList;
+            }
+            else if (param.FilterByMembers == FilterByMembersConstants.SpecificMembers)
+            {
+                members = $"{param.InputList ?? string.Empty},{param.MyWatchlist ?? string.Empty}".TrimStart(',');
+            }
+
+            return new SavedFilter(
+                0,
+                param.FilterName,
+                true,
+                param.BetType,
+                param.Stake,
+                param.LiveStatus,
+                sportTypes,
+                leagues,
+                members,
+                param.FilterByMembers);
         }
 
         public async Task<IEnumerable<SavedFilter>> GetSavedFilters(int custId, int subAccId)

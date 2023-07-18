@@ -6,39 +6,34 @@
 <table class="tb tb-bordered tb-freeze-header tb-freeze-header w-full" id="tbl-betlist">
     <thead>
         <tr>
-            <th class="col-number">Ref No</th>
+            <th class="col-number">@Resources.RefNo</th>
             <th class="col-transtime">@Resources.transtime</th>
             <th class="col-member">@Resources.Username</th>
             <th>@Resources.BetType</th>
             <th>@Resources.choice</th>
             <th class="col-odds">@Resources.odds</th>
             <th class="col-stake">@Resources.stake</th>
-            <th class="col-status">IP</th>
+            <th class="col-status">@Resources.IP</th>
         </tr>
     </thead>
-
     @if (Model.BetListData.Tickets.Any())
     {
         <tbody>
-            @{
-
-                foreach (var ticket in Model.BetListData.Tickets)
-                {
-                    <tr id="r@(ticket.TransId)">
-                        <td class='w-order text-center'>@ticket.RefNo</td>
-                        <td class="trans-block text-center nonbreak">
-                            <div class="time">@ticket.TransDate.ToString()</div>
-                        </td>
-                        <td class="text-center">@ticket.UserName</td>
-                        <td class="text-center">@ticket.BetType</td>
-                        @Choice.Render(Model.Builder, ticket, Model.TicketHelper, Model.BetListData.TicketData, Model.CanViewScoreMap(ticket))
-                        @Odds.Render(Model.Builder, ticket, Model.BetListData.TicketData, Model.TicketHelper.GetOddsTypeNameById)
-                        @Stake.Render(Model.Builder, ticket, Model.TicketHelper)
-                        @LastBetsStatus.Render(ticket, Model.TicketHelper, Model.DisplayVNIP)
-                    </tr>
-                }
-            }
-
+        @foreach (var ticket in Model.BetListData.Tickets)
+        {
+            <tr id="r@(ticket.TransId)">
+                <td class="w-order text-center">@ticket.RefNo</td>
+                <td class="trans-block text-center nonbreak">
+                    <div class="time">@ticket.TransDate.ToString()</div>
+                </td>
+                <td class="text-center">@ticket.UserName</td>
+                <td class="text-center">@ticket.BetType</td>
+                @Choice.Render(Model.Builder, ticket, Model.TicketHelper, Model.BetListData.TicketData, Model.CanViewScoreMap(ticket))
+                @Odds.Render(Model.Builder, ticket, Model.BetListData.TicketData, Model.TicketHelper.GetOddsTypeNameById)
+                @Stake.Render(Model.Builder, ticket, Model.TicketHelper)
+                @LastBetsStatus.Render(ticket, Model.TicketHelper, Model.DisplayVNIP)
+            </tr>
+        }
         </tbody>
     }
     else

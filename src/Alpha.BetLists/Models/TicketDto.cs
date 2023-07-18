@@ -6,6 +6,7 @@
     public class TicketDto : Ticket
     {
         public string Country { get; set; }
-        public string BetType { get => BetTypeHelper.GetBetTypeName(BetTypeId); }
+
+        public string BetType => BetTypeHelper.GetBetTypeName(BetTypeId);
     }
 }

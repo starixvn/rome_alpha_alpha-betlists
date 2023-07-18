@@ -634,7 +634,7 @@
     <value>Minor Sports</value>
   </data>
   <data name="SelectBettype" xml:space="preserve">
-    <value>Select Bettype</value>
+    <value>Select Bet Type</value>
   </data>
   <data name="NewView" xml:space="preserve">
     <value>New view</value>
@@ -773,5 +773,17 @@
   </data>
   <data name="Username" xml:space="preserve">
     <value>Username</value>
+  </data>
+  <data name="MyFilters" xml:space="preserve">
+    <value>My Filters</value>
+  </data>
+  <data name="MostRecentTickets" xml:space="preserve">
+    <value>Most Recent Tickets</value>
+  </data>
+  <data name="RefNo" xml:space="preserve">
+    <value>Ref No</value>
+  </data>
+  <data name="IP" xml:space="preserve">
+    <value>IP</value>
   </data>
 </root>

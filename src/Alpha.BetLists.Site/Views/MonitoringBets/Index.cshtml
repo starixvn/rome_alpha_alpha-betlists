@@ -25,48 +25,38 @@
     </div>
     <form class="form-inline filter" role="form" id="form-monitoring-bets">
         <div class="form-group">
-            <label class="label-form-control">Saved Filter</label>
+            <label class="label-form-control">@Resources.MyFilters</label>
             <select id="monitoring-bets-filter">
-                @{
-                    if (Model.Filters.Any())
-                    {
-                        foreach (var savedFilter in Model.Filters)
-                        {
-                            var selected = savedFilter.IsDefault ? "selected" : "";
-                            <option value=@savedFilter.FilterId @selected
-                                    data-filter-id=@savedFilter.FilterId
-                                    data-members=@savedFilter.Members
-                                    data-bet-types=@savedFilter.BetTypes
-                                    data-sport-types=@savedFilter.SportTypes
-                                    data-leagues=@savedFilter.Leagues
-                                    data-event-status=@savedFilter.EventStatus
-                                    data-stake=@savedFilter.Stake
-                                    data-filter-by-member=@savedFilter.FilterByMembers>
-                                @savedFilter.FilterName
-                            </option>
-                        }
-                    }
+                @foreach (var savedFilter in Model.Filters)
+                {
+                    var selected = savedFilter.IsDefault ? "selected" : string.Empty;
+                    <option value=@savedFilter.FilterId @selected
+                            data-filter-id=@savedFilter.FilterId
+                            data-members=@savedFilter.Members
+                            data-bet-types=@savedFilter.BetTypes
+                            data-sport-types=@savedFilter.SportTypes
+                            data-leagues=@savedFilter.Leagues
+                            data-event-status=@savedFilter.EventStatus
+                            data-stake=@savedFilter.Stake
+                            data-filter-by-member=@savedFilter.FilterByMembers>
+                        @savedFilter.FilterName
+                    </option>
                 }
             </select>
         </div>
         <div class="form-group">
-            @Html.ActionLink("Manage Filters", "ManageFilters", $"{AppSettings.BetlistRouting}MonitoringBets", null, new { target = "main" , @class="button-link"})
+            @Html.ActionLink(Resources.ManageFilters, "ManageFilters", $"{AppSettings.BetlistRouting}MonitoringBets", null, new { target = "main", @class = "button-link" })
         </div>
         <div class="form-group">
-            <label class="label-form-control">Most Recent Tickets</label>
-            <select id="most-recent-tickets">
-                <option value="1" selected>1</option>
-                <option value="100">100</option>
-                <option value="200">300</option>
-                <option value="300">500</option>
-            </select>
+            <label class="label-form-control">@Resources.MostRecentTickets</label>
+            @Html.DropDownList("most-recent-tickets", Model.MostRecentTickets, new { id = "most-recent-tickets" })
         </div>
-        @AutoRefresh.Render(new[] { 5, 30, 60, 90 })
+        @AutoRefresh.Render(new[] { 30, 60, 90 })
         <div class="form-group">
-            @Html.ActionLink("Filter Configuration", "FilterConfiguration", $"{AppSettings.BetlistRouting}MonitoringBets", new { showWelcomePopup = true }, new { target = "main", @class = "button-link" })
+            @Html.ActionLink(Resources.FilterConfiguration, "FilterConfiguration", $"{AppSettings.BetlistRouting}MonitoringBets", null, new { target = "main", @class = "button-link" })
         </div>
         <div class="form-group">
-            <span class="ic-copy" title="Copy" id="icon-copy"></span>
+            <span class="ic-copy" title="@Resources.Copy" id="icon-copy"></span>
         </div>
     </form>
 
@@ -77,23 +67,24 @@
         <table class="tb tb-bordered tb-freeze-header w-full" id="tbl-betlist">
             <thead>
                 <tr>
-                    <th class="col-number">Ref No</th>
+                    <th class="col-number">@Resources.RefNo</th>
                     <th class="col-transtime">@Resources.transtime</th>
                     <th class="col-member">@Resources.Username</th>
                     <th>@Resources.BetType</th>
                     <th>@Resources.choice</th>
                     <th class="col-odds">@Resources.odds</th>
                     <th class="col-stake">@Resources.stake</th>
-                    <th class="col-status">IP</th>
+                    <th class="col-status">@Resources.IP</th>
                 </tr>
             </thead>
             @Common.NoInfomation.Render(Model.TotalColumn)
         </table>
-
-        <input id="get-bets-url" type="hidden" value="@Url.Action("BetData",$"{AppSettings.BetlistRouting}MonitoringBets")" />
+        <input id="get-bets-url" type="hidden" value="@Url.Action("BetData", $"{AppSettings.BetlistRouting}MonitoringBets")" />
         <input id="last-trans-id-cache-key-by-filter" type="hidden" value="@Model.LastTransIdCacheKeyByFilter" />
         <input id="latest-trans-id-cache-key-by-filter" type="hidden" value="@Model.LatestTransIdCacheKeyByFilter" />
     </div>
 </div>
+@Html.Hidden("hidden-On", Resources.On)
+@Html.Hidden("hidden-Off", Resources.Off)
 @Html.Hidden("hidden-CopyText", Resources.Copy)
 @Html.Hidden("hidden-CopiedText", Resources.Copied)

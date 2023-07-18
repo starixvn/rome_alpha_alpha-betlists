@@ -111,22 +111,24 @@
 
         public Task<Result> Handle(ApplyFilterCommand message)
         {
-            var savedFilter = new SavedFilter(
-                0,
+            var savedFilter = monitoringBetService.BuildSavedFilter(new AddFilterParam(
+                message.ViewerId,
+                message.SubAccId,
                 message.FilterName,
-                true,
+                message.IsDefault,
                 message.BetType,
                 message.Stake,
+                message.Sports,
                 message.LiveStatus,
-                "",
-                "",
-                message.InputList + message.MyWatchlist,
-                message.FilterByMembers);
+                message.InputList,
+                message.MyWatchlist,
+                message.FilterByMembers,
+                message.LanguageKey,
+                message.IP));
             userSession.SetProperty(SessionKey.LastBetsMonitoringDefault, savedFilter);
 
             return Task.FromResult(new Result());
         }
-
 
         public async Task<FilteringBetDataViewModel> Handle(GetLastFilteringBetsQuery message)
         {

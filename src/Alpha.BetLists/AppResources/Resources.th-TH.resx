@@ -655,7 +655,7 @@
     <value>Filter Name</value>
   </data>
   <data name="FilterConfigurationBetTypesRequiredError" xml:space="preserve">
-    <value>Please select Bet Type(s)</value>
+    <value>請選擇投注類型</value>
   </data>
   <data name="FilterConfigurationStakeRequiredError" xml:space="preserve">
     <value>Please enter Stake</value>
@@ -755,5 +755,14 @@
   </data>
   <data name="Username" xml:space="preserve">
     <value>ชื่อผู้ใช้ระบบ</value>
+  </data>
+  <data name="MostRecentTickets" xml:space="preserve">
+    <value>Most Recent Tickets</value>
+  </data>
+  <data name="RefNo" xml:space="preserve">
+    <value>หมายเลขอ้างอิง</value>
+  </data>
+  <data name="IP" xml:space="preserve">
+    <value>เลขไอพี</value>
   </data>
 </root>

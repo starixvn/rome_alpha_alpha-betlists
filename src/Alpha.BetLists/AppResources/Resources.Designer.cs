@@ -835,6 +835,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to IP.
+        /// </summary>
+        public static string IP {
+            get {
+                return ResourceManager.GetString("IP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Member Bet List {0} - IP Matching: {1}.
         /// </summary>
         public static string IPMatchingTitle {
@@ -1128,6 +1137,24 @@ namespace Alpha.BetLists.AppResources {
         public static string Mix {
             get {
                 return ResourceManager.GetString("Mix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Most Recent Tickets.
+        /// </summary>
+        public static string MostRecentTickets {
+            get {
+                return ResourceManager.GetString("MostRecentTickets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to My Filters.
+        /// </summary>
+        public static string MyFilters {
+            get {
+                return ResourceManager.GetString("MyFilters", resourceCulture);
             }
         }
         
@@ -1591,7 +1618,7 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select Bettype.
+        ///   Looks up a localized string similar to Select Bet Type.
         /// </summary>
         public static string SelectBettype {
             get {

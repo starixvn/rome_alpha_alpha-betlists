@@ -15,21 +15,22 @@ class AutoRefreshOption {
 class AutoRefreshComponent {
     public autoRefreshOption: AutoRefreshOption;
     private timeout;
-    public labelStatusText: JQuery;
+    private autoRefresh: JQuery;
+    private labelStatusText: JQuery;
     private labelCountDown: JQuery;
 
     init(option: AutoRefreshOption) {
         this.autoRefreshOption = option;
-        const autoRefresh = $("#auto-refresh");
-        this.labelStatusText = autoRefresh.find("#lbl-status-text")
+        this.autoRefresh = $("#auto-refresh");
+        this.labelStatusText = this.autoRefresh.find("#lbl-status-text")
             .data("running", "0")
             .text(this.autoRefreshOption.onText);
-        this.labelCountDown = autoRefresh.find("#lbl-count-down");
+        this.labelCountDown = this.autoRefresh.find("#lbl-count-down");
         this.labelCountDown.text(defaultValue).data("original", defaultValue);
 
-        autoRefresh.find("#btn-status").click(() => this.labelStatusText.data("running") === "1" ? this.stop() : this.start());
+        this.autoRefresh.find("#btn-status").click(() => this.labelStatusText.data("running") === "1" ? this.stop() : this.start());
 
-        autoRefresh.find(".auto-refresh-menu-item").click((e) => {
+        this.autoRefresh.find(".auto-refresh-menu-item").click((e) => {
             const second = $(e.target).text();
             this.labelCountDown.text(second).data("original", second);
         });
@@ -39,8 +40,13 @@ class AutoRefreshComponent {
         this.labelCountDown.text("").addClass("icon-loading");
     }
 
+    isOn() {
+        return !this.autoRefresh.hasClass("off");
+    }
+
     start() {
         clearTimeout(this.timeout);
+        this.autoRefresh.removeClass("off");
         this.labelStatusText
             .data("running", "1")
             .text(this.autoRefreshOption.onText);
@@ -52,6 +58,7 @@ class AutoRefreshComponent {
 
     stop() {
         clearTimeout(this.timeout);
+        this.autoRefresh.addClass("off");
         this.labelStatusText
             .data("running", "0")
             .text(this.autoRefreshOption.offText);

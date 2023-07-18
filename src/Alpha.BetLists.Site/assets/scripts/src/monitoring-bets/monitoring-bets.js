@@ -39,12 +39,7 @@ var MonitoringBetsView = /** @class */ (function () {
             _this.dropdownMostRecentTicket.change(function () {
                 _this.loadLastBets(true);
             });
-            _this.autoRefreshComponent.init(new AutoRefreshOption("ON", "OFF", function () {
-                setTimeout(function () {
-                    console.log('get data from server');
-                    _this.loadLastBets(false);
-                }, 3000);
-            }));
+            _this.autoRefreshComponent.init(new AutoRefreshOption($("#hidden-On").val(), $("#hidden-Off").val(), function () { return _this.loadLastBets(false); }));
         };
         this.loadLastBets = function (isAutoLoad) {
             if (!isAutoLoad) {
@@ -110,8 +105,7 @@ var MonitoringBetsView = /** @class */ (function () {
             // protection level, avoid through too many exceptions on server
         };
         this.completeGetLastBets = function () {
-            if (_this.autoRefreshComponent.labelStatusText.text() == _this.autoRefreshComponent.autoRefreshOption.onText)
-                _this.autoRefreshComponent.start();
+            _this.autoRefreshComponent.isOn() && _this.autoRefreshComponent.start();
         };
         this.autoRefreshComponent = autoRefreshComponent;
         this.monitoringBetsCopyHtml = monitoringBetsCopyHtml;

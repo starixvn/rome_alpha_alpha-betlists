@@ -20,14 +20,14 @@ var AutoRefreshComponent = /** @class */ (function () {
     AutoRefreshComponent.prototype.init = function (option) {
         var _this = this;
         this.autoRefreshOption = option;
-        var autoRefresh = $("#auto-refresh");
-        this.labelStatusText = autoRefresh.find("#lbl-status-text")
+        this.autoRefresh = $("#auto-refresh");
+        this.labelStatusText = this.autoRefresh.find("#lbl-status-text")
             .data("running", "0")
             .text(this.autoRefreshOption.onText);
-        this.labelCountDown = autoRefresh.find("#lbl-count-down");
+        this.labelCountDown = this.autoRefresh.find("#lbl-count-down");
         this.labelCountDown.text(defaultValue).data("original", defaultValue);
-        autoRefresh.find("#btn-status").click(function () { return _this.labelStatusText.data("running") === "1" ? _this.stop() : _this.start(); });
-        autoRefresh.find(".auto-refresh-menu-item").click(function (e) {
+        this.autoRefresh.find("#btn-status").click(function () { return _this.labelStatusText.data("running") === "1" ? _this.stop() : _this.start(); });
+        this.autoRefresh.find(".auto-refresh-menu-item").click(function (e) {
             var second = $(e.target).text();
             _this.labelCountDown.text(second).data("original", second);
         });
@@ -35,9 +35,13 @@ var AutoRefreshComponent = /** @class */ (function () {
     AutoRefreshComponent.prototype.setIsLoading = function () {
         this.labelCountDown.text("").addClass("icon-loading");
     };
+    AutoRefreshComponent.prototype.isOn = function () {
+        return !this.autoRefresh.hasClass("off");
+    };
     AutoRefreshComponent.prototype.start = function () {
         var _this = this;
         clearTimeout(this.timeout);
+        this.autoRefresh.removeClass("off");
         this.labelStatusText
             .data("running", "1")
             .text(this.autoRefreshOption.onText);
@@ -48,6 +52,7 @@ var AutoRefreshComponent = /** @class */ (function () {
     };
     AutoRefreshComponent.prototype.stop = function () {
         clearTimeout(this.timeout);
+        this.autoRefresh.addClass("off");
         this.labelStatusText
             .data("running", "0")
             .text(this.autoRefreshOption.offText);

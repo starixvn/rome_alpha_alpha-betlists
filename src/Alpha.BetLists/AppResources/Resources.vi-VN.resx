@@ -323,7 +323,7 @@
     <value>Quản lý cược gần nhất</value>
   </data>
   <data name="AllBetTypes" xml:space="preserve">
-    <value>Tất cả loại cược</value>
+    <value>Tất Cả Loại Cược</value>
   </data>
   <data name="Handicap" xml:space="preserve">
     <value>Cược Chấp</value>
@@ -440,7 +440,7 @@
     <value>Vui lòng xem lại thời gian báo cáo vì dữ liệu từ trước ngày {0} chỉ có thể được truy xuất trong vòng 31 ngày.</value>
   </data>
   <data name="All" xml:space="preserve">
-    <value>Tất cả</value>
+    <value>Tất Cả</value>
   </data>
   <data name="DateRange" xml:space="preserve">
     <value>Thời gian báo cáo</value>
@@ -467,7 +467,7 @@
     <value>Tìm Sản Phẩm Phụ</value>
   </data>
   <data name="SelectAll" xml:space="preserve">
-    <value>Chọn tất cả</value>
+    <value>Chọn Tất Cả</value>
   </data>
   <data name="nSelected" xml:space="preserve">
     <value>Đã chọn #</value>
@@ -524,103 +524,103 @@
     <value>Input Member(s)</value>
   </data>
   <data name="EnteredMembers" xml:space="preserve">
-    <value>Entered Member(s)</value>
+    <value>Member đã nhập</value>
   </data>
   <data name="InvalidUsername" xml:space="preserve">
-    <value>Invalid username</value>
+    <value>Tên người dùng không hợp lệ</value>
   </data>
   <data name="Live" xml:space="preserve">
     <value>Trực Tiếp</value>
   </data>
   <data name="ManageFilters" xml:space="preserve">
-    <value>Manage Filters</value>
+    <value>Quản Lý Bộ Lọc</value>
   </data>
   <data name="Members" xml:space="preserve">
     <value>Members</value>
   </data>
   <data name="SelectedMembers" xml:space="preserve">
-    <value>Selected Member(s)</value>
+    <value>Member đã chọn</value>
   </data>
   <data name="None" xml:space="preserve">
     <value>Không Chọn</value>
   </data>
   <data name="NonLive" xml:space="preserve">
-    <value>Non-Live</value>
+    <value>Không Trực Tiếp</value>
   </data>
   <data name="NotAMember" xml:space="preserve">
-    <value>Not a Member</value>
+    <value>Không phải Member</value>
   </data>
   <data name="RemoveAllFilters" xml:space="preserve">
-    <value>Remove All Filters</value>
+    <value>Xóa Tất Cả Bộ Lọc</value>
   </data>
   <data name="SetDefault" xml:space="preserve">
-    <value>Set Default</value>
+    <value>Đặt Làm Mặc Định</value>
   </data>
   <data name="SpecificMembers" xml:space="preserve">
-    <value>Specific Members</value>
+    <value>Member Cụ Thể</value>
   </data>
   <data name="SpecificSports" xml:space="preserve">
-    <value>Specific Sports</value>
+    <value>Môn Thể Thao Cụ Thể</value>
   </data>
   <data name="Sports" xml:space="preserve">
     <value>Sports</value>
   </data>
   <data name="UsernameTagsInputPlaceHolder" xml:space="preserve">
-    <value>Enter username(s) (separated by comma, tab and enter)</value>
+    <value>Nhập các tên người dùng (cách nhau bằng dấu phẩy, tab hoặc enter)</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
   <data name="FilterConfiguration" xml:space="preserve">
-    <value>Filter Configuration</value>
+    <value>Cấu hình Bộ Lọc</value>
   </data>
   <data name="Apply" xml:space="preserve">
     <value>Áp dụng</value>
   </data>
   <data name="SaveFilter" xml:space="preserve">
-    <value>Save Filter</value>
+    <value>Lưu Bộ Lọc</value>
   </data>
   <data name="FilterByTickets" xml:space="preserve">
-    <value>Filter by Tickets</value>
+    <value>Lọc theo Vé Cược</value>
   </data>
   <data name="FilterBySports" xml:space="preserve">
-    <value>Filter by Sports</value>
+    <value>Lọc theo Môn Thể Thao</value>
   </data>
   <data name="FilterByMembers" xml:space="preserve">
-    <value>Filter by Members</value>
+    <value>Lọc theo Member</value>
   </data>
   <data name="LiveStatus" xml:space="preserve">
-    <value>Live Status</value>
+    <value>Trạng Thái Trực Tiếp</value>
   </data>
   <data name="SportGroup" xml:space="preserve">
-    <value>Sport Group</value>
+    <value>Nhóm Thể Thao</value>
   </data>
   <data name="EnterMemberUsernames" xml:space="preserve">
-    <value>Enter Member username(s)</value>
+    <value>Nhập tên người dùng của Member</value>
   </data>
   <data name="AddedSuccessfully" xml:space="preserve">
     <value>Added successfully</value>
   </data>
   <data name="SelectMembers" xml:space="preserve">
-    <value>Select Member(s)</value>
+    <value>Chọn Member</value>
   </data>
   <data name="SearchMemberUsername" xml:space="preserve">
-    <value>Search Member Username</value>
+    <value>Tìm tên người dùng của Member</value>
   </data>
   <data name="NoMemberUsernameFound" xml:space="preserve">
     <value>No member username found</value>
   </data>
   <data name="AllIncludedNewlyAddedMembers" xml:space="preserve">
-    <value>All (included newly added Members)</value>
+    <value>Tất cả (bao gồm Member mới tạo)</value>
   </data>
   <data name="MajorSports" xml:space="preserve">
-    <value>Major Sports</value>
+    <value>Môn Thể Thao Chính</value>
   </data>
   <data name="MinorSports" xml:space="preserve">
-    <value>Minor Sports</value>
+    <value>Môn Thể Thao Phụ</value>
   </data>
   <data name="SelectBettype" xml:space="preserve">
-    <value>Select Bettype</value>
+    <value>Chọn Loại Cược</value>
   </data>
   <data name="NewView" xml:space="preserve">
     <value>Phiên bản mới</value>
@@ -647,97 +647,97 @@
     <value>Tất cả các môn thể thao</value>
   </data>
   <data name="Back" xml:space="preserve">
-    <value>Trở lại</value>
+    <value>Trở Lại</value>
   </data>
   <data name="BetType" xml:space="preserve">
     <value>Loại cược</value>
   </data>
   <data name="ConfirmMessageRemoveAllFilters" xml:space="preserve">
-    <value>Remove all filters? The filters cannot be recovered after removal.</value>
+    <value>Xóa tất cả bộ lọc? Các bộ lọc sẽ không thể khôi phục sau khi xóa.</value>
   </data>
   <data name="ConfirmMessageRemoveFilter" xml:space="preserve">
-    <value>Remove this filter? The filter cannot be recovered after removal.</value>
+    <value>Xóa bộ lọc này? Bộ lọc sẽ không thể khôi phục sau khi xóa.</value>
   </data>
   <data name="CreatedTime" xml:space="preserve">
-    <value>Created Time</value>
+    <value>Thời Gian Tạo</value>
   </data>
   <data name="FilterName" xml:space="preserve">
-    <value>Filter Name</value>
+    <value>Tên Bộ Lọc</value>
   </data>
   <data name="FilterConfigurationBetTypesRequiredError" xml:space="preserve">
-    <value>Please select Bet Type(s)</value>
+    <value>Vui lòng chọn Loại Cược</value>
   </data>
   <data name="FilterConfigurationStakeRequiredError" xml:space="preserve">
-    <value>Please enter Stake</value>
+    <value>Vui lòng nhập Tiền Cược</value>
   </data>
   <data name="FilterConfigurationSportsRequiredError" xml:space="preserve">
-    <value>Please select sport(s)</value>
+    <value>Vui lòng chọn môn thể thao</value>
   </data>
   <data name="FilterConfigurationFilterByMembersRequiredError" xml:space="preserve">
-    <value>Please enter Member username(s) or select Member(s)</value>
+    <value>Vui lòng nhập tên người dùng của Member hoặc chọn Member</value>
   </data>
   <data name="FilterConfigurationFilterNameRequiredError" xml:space="preserve">
-    <value>Please enter a filter name</value>
+    <value>Vui lòng nhập tên bộ lọc</value>
   </data>
   <data name="Yes" xml:space="preserve">
     <value>Có</value>
   </data>
   <data name="SaveToMyFilters" xml:space="preserve">
-    <value>Save to My Filters</value>
+    <value>Lưu vào Bộ Lọc Của Tôi</value>
   </data>
   <data name="SetAsDefaultFilter" xml:space="preserve">
-    <value>Set as default filter</value>
+    <value>Đặ̣t làm bộ lọc mặc định</value>
   </data>
   <data name="MemberUsernameNotFound" xml:space="preserve">
-    <value>Member username not found</value>
+    <value>Không tìm thấy tên người dùng của Member</value>
   </data>
   <data name="UsernameAlreadyExists" xml:space="preserve">
-    <value>Username already exists</value>
+    <value>Tên người dùng đã tồn tại</value>
   </data>
   <data name="MaxNoUsernames" xml:space="preserve">
-    <value>Max: # username(s)</value>
+    <value>Tối đa: # người dùng</value>
   </data>
   <data name="SearchSportLeague" xml:space="preserve">
-    <value>Search Sport/ League</value>
+    <value>Tìm Môn Thể Thao/ Giải đấu</value>
   </data>
   <data name="SportLeagueNotFound" xml:space="preserve">
-    <value>Sport/League not found</value>
+    <value>Không tìm thấy Môn Thể Thao/Giải đấu</value>
   </data>
   <data name="FilterConfigurationWelcomeTitle" xml:space="preserve">
-    <value>Set your filter criteria first</value>
+    <value>Chọn tiêu chí cho bộ lọc trước tiên</value>
   </data>
   <data name="FilterConfigurationWelcomeContent" xml:space="preserve">
-    <value>First time using Last Bet function? Please set the filter criteria based on your monitoring needs for bet tickets, and don’t forget to save your filter for later use.</value>
+    <value>Lần đầu tiên sử dụng chức năng Cược Gần Nhất? Vui lòng chọn tiêu chí cho bộ lọc dựa trên nhu cầu theo dõi vé cược của bạn, và đừng quên lưu lại cấu hình bộ lọc này để sử dụng trong lần sau.</value>
   </data>
   <data name="FilterConfigurationWelcomeContent2" xml:space="preserve">
-    <value>Go ahead and give it a try!</value>
+    <value>Đừng ngần ngại trải nghiệm chức năng mới này!</value>
   </data>
   <data name="FilterConfigurationAllSportsContent" xml:space="preserve">
-    <value>Monitor tickets of all sports.</value>
+    <value>Theo dõi toàn bộ vé cược thể thao.</value>
   </data>
   <data name="FilterConfigurationAllSportsContent2" xml:space="preserve">
-    <value>New sports are automatically included.</value>
+    <value>Các môn thể thao mới sẽ được tự động thêm vào.</value>
   </data>
   <data name="FilterConfigurationSpecificSportsContent" xml:space="preserve">
-    <value>Monitor tickets based on the selected criteria (sports/leagues).</value>
+    <value>Theo dõi các vé cược theo các tiêu chí đã chọn (môn thể thao/giải đấu).</value>
   </data>
   <data name="FilterConfigurationSpecificSportsContent2" xml:space="preserve">
-    <value>The completed league will be removed from the filter criteria.</value>
+    <value>Giải đấu đã kết thúc sẽ bị xóa khỏi bộ lọc.</value>
   </data>
   <data name="FilterConfigurationAllMembersContent" xml:space="preserve">
-    <value>Monitor tickets of all Members.</value>
+    <value>Theo dõi vé cược của tất cả Member.</value>
   </data>
   <data name="FilterConfigurationAllMembersContent2" xml:space="preserve">
-    <value>New Members are automatically included.</value>
+    <value>Member mới sẽ được tự động thêm vào.</value>
   </data>
   <data name="FilterConfigurationSpecificMembersContent" xml:space="preserve">
-    <value>Monitor tickets of the selected Member(s), which can be added manually or selected from My Watchlist.</value>
+    <value>Theo dõi vé cược của những Member được chọn, có thể thêm thủ công hoặc chọn từ Danh Sách Theo Dõi.</value>
   </data>
   <data name="ExpandAll" xml:space="preserve">
     <value>Mở Rộng Tất Cả</value>
   </data>
   <data name="SelectedOnly" xml:space="preserve">
-    <value>Selected Only</value>
+    <value>Đã Chọn</value>
   </data>
   <data name="BetTypes" xml:space="preserve">
     <value>Loại cược</value>
@@ -749,7 +749,7 @@
     <value>Khác</value>
   </data>
   <data name="Mix" xml:space="preserve">
-    <value>Mix</value>
+    <value>Kết Hợp</value>
   </data>
   <data name="Copied" xml:space="preserve">
     <value>Đã sao chép</value>
@@ -759,5 +759,17 @@
   </data>
   <data name="Username" xml:space="preserve">
     <value>Tên đăng nhập</value>
+  </data>
+  <data name="MyFilters" xml:space="preserve">
+    <value>Bộ Lọc Của Tôi</value>
+  </data>
+  <data name="MostRecentTickets" xml:space="preserve">
+    <value>Vé Cược Gần Đây</value>
+  </data>
+  <data name="RefNo" xml:space="preserve">
+    <value>Số Tham Chiếu</value>
+  </data>
+  <data name="IP" xml:space="preserve">
+    <value>IP</value>
   </data>
 </root>
