@@ -100,27 +100,3 @@
         text-align: right;
     }
 }
-.tb-freeze-header {
-    border-top: 0 !important;
-
-    thead {
-        tr {
-            th {
-                position: sticky !important;
-                position: -webkit-sticky !important;
-                top: 0 !important;
-                border-top: 0 !important;
-                z-index: 23;
-                background-clip: padding-box;
-            }
-        }
-    }
-
-    tbody {
-        tr:last-child {
-            td {
-                border-bottom: 0;
-            }
-        }
-    }
-}

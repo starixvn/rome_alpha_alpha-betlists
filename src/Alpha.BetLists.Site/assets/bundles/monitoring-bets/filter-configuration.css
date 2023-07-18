@@ -355,6 +355,7 @@
   --color-gray: #333333;
   --bg-main: #FFFFFF;
   --bg-stake: #FFFFFF;
+  --border-color-wrapper: #E0E0E0;
   --border-color: #d1d1d1;
   --color-ttl: #094980;
   --bg-box: #F5F8FE;
@@ -370,11 +371,12 @@
   --color-gray: #333333;
   --bg-main: #FFFFFF;
   --bg-stake: #FFFFFF;
+  --border-color-wrapper: #E0E0E0;
   --border-color: #d1d1d1;
   --color-ttl: #094980;
   --bg-box: #ffffff;
   --bg-box-active: #F5F8FE;
-  --border-box: #E0E0E0;
+  --border-box: var(--border-color);
   --border-box-active: #3873E9;
   --color-require: #FE0000;
   --color-error: #FE0000;
@@ -387,12 +389,13 @@
   --color-gray: #EDEDED;
   --bg-main: #171717;
   --bg-stake: #2b2b2b;
+  --border-color-wrapper: #2F2F2F;
   --border-color: #474747;
   --color-ttl: #459BE5;
   --border-stake: #474747;
   --bg-box: #2b2b2b;
   --bg-box-active: #363738;
-  --border-box: #2B2B2B;
+  --border-box: var(--border-color);
   --border-box-active: #6699FF;
   --color-require: #DD3333;
   --color-error: #FE0000;
@@ -415,7 +418,7 @@
 
 .filter-config {
   background: var(--bg-main);
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--border-color-wrapper);
   border-radius: 3px;
   padding: 15px;
   width: 1000px; }

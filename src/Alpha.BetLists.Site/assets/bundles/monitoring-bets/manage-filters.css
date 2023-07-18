@@ -9,14 +9,33 @@
 /*******************************************/
 :root {
   --color-gray: #333333;
-  --bg-white: #FFFFFF;
+  --bg-main: #FFFFFF;
   --border-color: #D1D1D1;
   --bg-sub-head-tb: #DBE0E5;
   --bg-table: #f7f7f7;
-  --bg-col-name: #ffffff; }
+  --bg-col-name: #ffffff;
+  --icon-dropdown-border-color: #444; }
+
+:root [data-theme='light'] {
+  --color-gray: #333333;
+  --bg-main: #FFFFFF;
+  --border-color: #D1D1D1;
+  --bg-sub-head-tb: #DBE0E5;
+  --bg-table: #f7f7f7;
+  --bg-col-name: #ffffff;
+  --icon-dropdown-border-color: #444; }
+
+:root [data-theme='dark'] {
+  --color-gray: #333333;
+  --bg-main: #171717;
+  --border-color: #2F2F2F;
+  --bg-sub-head-tb: #1D2633;
+  --bg-table: #161D26;
+  --bg-col-name: #171717;
+  --icon-dropdown-border-color: #ededed; }
 
 .manage-filters {
-  background: var(--bg-white);
+  background: var(--bg-main);
   border: 1px solid var(--border-color);
   border-radius: 3px;
   padding: 15px;
@@ -36,8 +55,11 @@
 .tb .sub-headed td {
   background-color: var(--bg-sub-head-tb); }
 
-.tb td {
+.tb tbody tr th, .tb tbody tr td {
   background: var(--bg-table); }
+
+.tb .row-level3 td:first-child {
+  padding-left: 55px; }
 
 .tb .col-name td {
   background: var(--bg-col-name); }
@@ -100,11 +122,11 @@ a:hover, a:focus {
   /* Likely future */ }
 
 .arrow.down {
-  border-top-color: #444;
+  border-top-color: var(--icon-dropdown-border-color);
   vertical-align: middle; }
 
 .arrow.right {
-  border-left-color: #444; }
+  border-left-color: var(--icon-dropdown-border-color); }
 
 .treeview-sport {
   cursor: pointer;

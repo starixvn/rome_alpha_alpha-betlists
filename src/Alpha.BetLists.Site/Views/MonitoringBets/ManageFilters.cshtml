@@ -7,7 +7,7 @@
     var allFilterIds = new List<int>();
 }
 @section Styles {
-    @StaticResources.AssetStyles.RenderWithDarkMode("/bundles-v2/common/common")
+    @StaticResources.AssetStyles.Render("/bundles-v2/common/common")
     @StaticResources.RenderStyles($"~/{AppSettings.BetlistRouting}assets/bundles/monitoring-bets/manage-filters")
 }
 @section Scripts {
@@ -64,15 +64,15 @@
                             </div>
                         </td>
                     </tr>
-                    <tr class="filter-by-tickets-hidden" data-filterid="@item.FilterId" data-filterbytickets="1">
+                    <tr class="filter-by-tickets-hidden row-level3" data-filterid="@item.FilterId" data-filterbytickets="1">
                         <td>@Resources.BetType</td>
                         <td colspan="3">@RenderDropdownBetTypes(item.FilterXml.BetTypeNames)</td>
                     </tr>
-                    <tr class="filter-by-tickets-hidden" data-filterid="@item.FilterId" data-filterbytickets="1">
+                    <tr class="filter-by-tickets-hidden row-level3" data-filterid="@item.FilterId" data-filterbytickets="1">
                         <td>@Resources.stake</td>
                         <td colspan="3">>= @item.FilterXml.Stake.ToString("N0")</td>
                     </tr>
-                    <tr class="filter-by-tickets-hidden" data-filterid="@item.FilterId" data-filterbytickets="1">
+                    <tr class="filter-by-tickets-hidden row-level3" data-filterid="@item.FilterId" data-filterbytickets="1">
                         <td>@Resources.LiveStatus</td>
                         <td colspan="3">
                             @if (item.FilterXml.IsLive == LiveStatusConstants.NonLive)
@@ -95,16 +95,16 @@
                     </tr>
                     <tr class="filter-name-hidden sub-headed" data-filterid="@item.FilterId">
                         <td>
-                            @if (item.FilterXml.IsAllSports)
-                            {
-                                @:@Resources.FilterBySports
-                            }
-                            else
-                            {
-                                <div class="filter-by-sports">
+                            <div class="filter-by-sports">
+                                @if (item.FilterXml.IsAllSports)
+                                {
+                                    @:@Resources.FilterBySports
+                                }
+                                else
+                                {
                                     <span class="arrow right"></span> @Resources.FilterBySports
-                                </div>
-                            }
+                                }
+                            </div>
                         </td>
                         <td colspan="3">
                             @if (item.FilterXml.IsAllSports)
@@ -123,26 +123,26 @@
                     }
                     <tr class="filter-name-hidden sub-headed" data-filterid="@item.FilterId">
                         <td>
-                            @if (item.FilterXml.IsWatchlist == FilterByMembersConstants.AllMembers)
-                            {
-                                @:@Resources.FilterByMembers
-                            }
-                            else
-                            {
-                                <div class="filter-by-members">
+                            <div class="filter-by-members">
+                                @if (item.FilterXml.IsWatchlist == FilterByMembersConstants.AllMembers)
+                                {
+                                    @:@Resources.FilterByMembers
+                                }
+                                else
+                                {
                                     <span class="arrow right"></span> @Resources.FilterByMembers
-                                </div>
-                            }
+                                }
+                            </div>
                         </td>
                         <td colspan="3">@(item.FilterXml.IsWatchlist == FilterByMembersConstants.AllMembers ? Resources.AllMembers : Resources.SpecificMembers)</td>
                     </tr>
                     if (item.FilterXml.IsWatchlist != FilterByMembersConstants.AllMembers)
                     {
-                        <tr class="filter-by-members-hidden" data-filterid="@item.FilterId" data-filterbymembers="1">
+                        <tr class="filter-by-members-hidden row-level3" data-filterid="@item.FilterId" data-filterbymembers="1">
                             <td>@Resources.EnteredMembers</td>
                             <td colspan="3">@RenderDropdownMembers(item.InputList)</td>
                         </tr>
-                        <tr class="filter-by-members-hidden" data-filterid="@item.FilterId" data-filterbymembers="1">
+                        <tr class="filter-by-members-hidden row-level3" data-filterid="@item.FilterId" data-filterbymembers="1">
                             <td>@Resources.SelectedMembers</td>
                             <td colspan="3">
                                 @if (item.FilterXml.IsWatchlist == FilterByMembersConstants.AllWatchlistMembers)

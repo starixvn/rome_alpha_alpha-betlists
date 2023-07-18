@@ -141,15 +141,3 @@
   color: #3873E9;
   font-weight: normal;
   text-align: right; }
-
-.tb-freeze-header {
-  border-top: 0 !important; }
-  .tb-freeze-header thead tr th {
-    position: sticky !important;
-    position: -webkit-sticky !important;
-    top: 0 !important;
-    border-top: 0 !important;
-    z-index: 23;
-    background-clip: padding-box; }
-  .tb-freeze-header tbody tr:last-child td {
-    border-bottom: 0; }
