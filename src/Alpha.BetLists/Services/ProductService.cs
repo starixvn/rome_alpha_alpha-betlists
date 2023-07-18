@@ -121,7 +121,6 @@
                 ProductIdConstants.VirtualSports2,
                 ProductIdConstants.Keno,
                 ProductIdConstants.GoldDeluxe,
-                ProductIdConstants.NG2,
                 ProductIdConstants.Lottery,
                 ProductIdConstants.TableGames,
                 ProductIdConstants.VirtualGames,

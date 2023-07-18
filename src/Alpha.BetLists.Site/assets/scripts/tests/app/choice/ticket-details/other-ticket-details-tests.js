@@ -6,17 +6,6 @@ describe("Choice_TicketDetails_", function () {
         loadFixtures("common-template.html");
         popupDetailsShow = spyOn(PopupDetails, "Show").and.callFake(function () { });
     });
-    describe("NG2TicketDetails_", function () {
-        it("ShowNG2BetDetails -> Show Popup Details", function () {
-            // Arrange
-            var refNo = "1";
-            var expectedUrl = "result-path/ng2/ParlayDetail?refNo=" + refNo;
-            // Act
-            BetList.Choice.TicketDetails.NG2TicketDetails.Instance.ShowNG2BetDetails("1", refNo, "1");
-            // Assert
-            expect(popupDetailsShow).toHaveBeenCalledWith(expectedUrl, "", 600, 350);
-        });
-    });
     describe("GoldDeluxeTicketDetails_", function () {
         describe("ShowDetails_", function () {
             var element;
@@ -45,12 +34,6 @@ describe("Choice_TicketDetails_", function () {
         });
     });
     describe("GlobalDetailsFunction_", function () {
-        it("showNG2Details -> Assign Correct Show Details Function", function () {
-            // Arrange
-            var showDetailsFunc = BetList.Choice.TicketDetails.NG2TicketDetails.Instance.ShowNG2BetDetails;
-            // Assert
-            expect(showNG2Details).toBe(showDetailsFunc);
-        });
         it("showDetails -> Assign Correct Show GoldDeluxe Details Function", function () {
             // Arrange
             var showDetailsFunc = BetList.Choice.TicketDetails.GoldDeluxeTicketDetails.Instance.ShowDetails;

@@ -1,15 +1,5 @@
 ﻿describe("Status_ResultDetails_", () => {
     describe("Factory_", () => {
-        for (let betType = 2501; betType <= 2699; betType++) {
-            it("CreateInstance_ByBetType -> Return NG2ResultDetails Instance", () => {
-                // Act
-                let actualInstance = BetList.Status.ResultDetails.ResultDetailsFactory.CreateInstance(betType);
-
-                // Assert
-                expect(actualInstance).toEqual(jasmine.any(BetList.Status.ResultDetails.NG2ResultDetails));
-            });
-        };
-
         [9, 29, 2799].forEach((betType: number) => {
             it("CreateInstance_ByBetType -> Return MixParlayResultDetails Instance", () => {
                 // Act
