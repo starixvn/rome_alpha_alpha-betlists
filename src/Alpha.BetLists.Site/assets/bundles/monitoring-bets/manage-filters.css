@@ -57,12 +57,16 @@
 
 .tb tbody tr th, .tb tbody tr td {
   background: var(--bg-table); }
+  .tb tbody tr th .multiselect, .tb tbody tr td .multiselect {
+    height: 26px !important;
+    line-height: 24px !important; }
 
 .tb .row-level3 td:first-child {
   padding-left: 55px; }
 
 .tb .col-name td {
-  background: var(--bg-col-name); }
+  background: var(--bg-col-name);
+  height: 40px; }
 
 .tb .width-120 {
   width: 120px; }

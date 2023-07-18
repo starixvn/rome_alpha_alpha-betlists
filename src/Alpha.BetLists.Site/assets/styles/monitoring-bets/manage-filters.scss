@@ -71,6 +71,10 @@
         tr {
             th, td {
                 background: var(--bg-table);
+                .multiselect{
+                    height: 26px!important;
+                    line-height: 24px!important;
+                }
             }
         }
     }
@@ -86,6 +90,7 @@
     .col-name {
         td {
             background: var(--bg-col-name);
+            height: 40px;
         }
     }
 
