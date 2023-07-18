@@ -37,7 +37,7 @@ class AutoRefreshComponent {
     }
 
     setIsLoading() {
-        this.labelCountDown.text("").addClass("icon-loading");
+        this.labelCountDown.text("").addClass("show-loading");
     }
 
     isOn() {
@@ -51,7 +51,7 @@ class AutoRefreshComponent {
             .data("running", "1")
             .text(this.autoRefreshOption.onText);
         this.labelCountDown
-            .removeClass("icon-loading")
+            .removeClass("show-loading")
             .text(this.labelCountDown.data("original"));
         this.timeout = setTimeout(() => this.decrement(), 1000);
     }
@@ -63,7 +63,7 @@ class AutoRefreshComponent {
             .data("running", "0")
             .text(this.autoRefreshOption.offText);
         this.labelCountDown
-            .removeClass("icon-loading")
+            .removeClass("show-loading")
             .text(this.labelCountDown.data("original"));
     }
 
@@ -73,7 +73,7 @@ class AutoRefreshComponent {
             clearTimeout(this.timeout);
             this.labelCountDown
                 .text("")
-                .addClass("icon-loading");
+                .addClass("show-loading");
             this.autoRefreshOption.callback();
         } else {
             this.labelCountDown.text(--value);

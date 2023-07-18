@@ -33,7 +33,7 @@ var AutoRefreshComponent = /** @class */ (function () {
         });
     };
     AutoRefreshComponent.prototype.setIsLoading = function () {
-        this.labelCountDown.text("").addClass("icon-loading");
+        this.labelCountDown.text("").addClass("show-loading");
     };
     AutoRefreshComponent.prototype.isOn = function () {
         return !this.autoRefresh.hasClass("off");
@@ -46,7 +46,7 @@ var AutoRefreshComponent = /** @class */ (function () {
             .data("running", "1")
             .text(this.autoRefreshOption.onText);
         this.labelCountDown
-            .removeClass("icon-loading")
+            .removeClass("show-loading")
             .text(this.labelCountDown.data("original"));
         this.timeout = setTimeout(function () { return _this.decrement(); }, 1000);
     };
@@ -57,7 +57,7 @@ var AutoRefreshComponent = /** @class */ (function () {
             .data("running", "0")
             .text(this.autoRefreshOption.offText);
         this.labelCountDown
-            .removeClass("icon-loading")
+            .removeClass("show-loading")
             .text(this.labelCountDown.data("original"));
     };
     AutoRefreshComponent.prototype.decrement = function () {
@@ -67,7 +67,7 @@ var AutoRefreshComponent = /** @class */ (function () {
             clearTimeout(this.timeout);
             this.labelCountDown
                 .text("")
-                .addClass("icon-loading");
+                .addClass("show-loading");
             this.autoRefreshOption.callback();
         }
         else {

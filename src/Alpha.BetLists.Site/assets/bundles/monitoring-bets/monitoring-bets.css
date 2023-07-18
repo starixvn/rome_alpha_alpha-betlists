@@ -141,3 +141,15 @@
   color: #3873E9;
   font-weight: normal;
   text-align: right; }
+
+.countdown {
+  margin-right: 0px;
+  display: block;
+  min-width: 22px;
+  text-align: left; }
+
+.lds-spinner {
+  display: none; }
+
+.show-loading + .lds-spinner {
+  display: block; }
