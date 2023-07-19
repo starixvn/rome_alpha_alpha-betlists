@@ -11,12 +11,12 @@ class MonitoringBetsView {
     $msgError: JQuery;
     $betListTableContainer: JQuery;
 
-    getBetsUrl: string = "";
+    getBetsUrl = "";
     isCalling = false;
     ajaxRequest: JQueryXHR;
 
-    lastTransIdCacheKeyByFilter: string = "";
-    latestTransIdCacheKeyByFilter: string = "";
+    lastTransIdCacheKeyByFilter = "";
+    latestTransIdCacheKeyByFilter = "";
 
     constructor(
         autoRefreshComponent: AutoRefreshComponent,
@@ -50,11 +50,11 @@ class MonitoringBetsView {
 
         this.dropdownFilter.multiselect({
             maxHeight: 300,
-            onChange: () => this.loadLastBets(true)
+            onChange: () => this.loadLastBets(false)
         });
 
         this.dropdownMostRecentTicket.multiselect({
-            onChange: () => this.loadLastBets(true)
+            onChange: () => this.loadLastBets(false)
         });
 
         this.autoRefreshComponent.init(new AutoRefreshOption(

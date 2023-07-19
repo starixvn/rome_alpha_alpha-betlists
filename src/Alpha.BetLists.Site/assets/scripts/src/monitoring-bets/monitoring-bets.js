@@ -17,10 +17,10 @@ var MonitoringBetsView = /** @class */ (function () {
             _this.registerToggleFilter();
             _this.dropdownFilter.multiselect({
                 maxHeight: 300,
-                onChange: function () { return _this.loadLastBets(true); }
+                onChange: function () { return _this.loadLastBets(false); }
             });
             _this.dropdownMostRecentTicket.multiselect({
-                onChange: function () { return _this.loadLastBets(true); }
+                onChange: function () { return _this.loadLastBets(false); }
             });
             _this.autoRefreshComponent.init(new AutoRefreshOption($("#hidden-OnText").val(), $("#hidden-OffText").val(), function () { return _this.loadLastBets(true); }));
         };
