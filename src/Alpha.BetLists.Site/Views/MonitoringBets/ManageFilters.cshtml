@@ -9,9 +9,11 @@
 }
 @section Styles {
     @StaticResources.AssetStyles.Render("/bundles-v2/common/common")
+    @StaticResources.AssetStyles.Render("/bundles-v2/site-betlists/monitoring-bets")
     @StaticResources.RenderStyles($"~/{AppSettings.BetlistRouting}assets/bundles/monitoring-bets/manage-filters")
 }
 @section Scripts {
+    @StaticResources.AssetScripts.RenderCommon("/bundles-v2/site-betlists/monitoring-bets")
     @StaticResources.RenderScripts($"~/{AppSettings.BetlistRouting}assets/bundles/monitoring-bets/manage-filters")
 }
 @model IEnumerable<Alpha.BetLists.Models.MonitoringBets.FilterConfiguration>
@@ -170,6 +172,8 @@
     @Html.Hidden("hidden-confirmMessageRemoveAllFilters", Resources.ConfirmMessageRemoveAllFilters)
     @Html.Hidden("hidden-confirmMessageRemoveFilter", Resources.ConfirmMessageRemoveFilter)
     @Html.Hidden("hidden-removedSuccessfullyText", Resources.RemovedSuccessfully)
+    @Html.Hidden("hidden-filterNameRequiredError", Resources.FilterConfigurationFilterNameRequiredError)
+    @Html.Hidden("hidden-noChangeToUpdate", Resources.NoChangeToUpdate)
 </div>
 
 @helper RenderTreeViewSports(int filterId, IEnumerable<Sport> sports)

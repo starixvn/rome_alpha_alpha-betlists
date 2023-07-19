@@ -786,4 +786,7 @@
   <data name="IP" xml:space="preserve">
     <value>IP</value>
   </data>
+  <data name="NoChangeToUpdate" xml:space="preserve">
+    <value>There is no change to update.</value>
+  </data>
 </root>

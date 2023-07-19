@@ -772,4 +772,7 @@
   <data name="IP" xml:space="preserve">
     <value>IP</value>
   </data>
+  <data name="NoChangeToUpdate" xml:space="preserve">
+    <value>Không có thay đổi để cập nhật.</value>
+  </data>
 </root>

@@ -765,4 +765,7 @@
   <data name="IP" xml:space="preserve">
     <value>เลขไอพี</value>
   </data>
+  <data name="NoChangeToUpdate" xml:space="preserve">
+    <value>ไม่มีการเปลี่ยนแปลงในการอัปเดตนี้</value>
+  </data>
 </root>

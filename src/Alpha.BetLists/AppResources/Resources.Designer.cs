@@ -1186,6 +1186,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There is no change to update..
+        /// </summary>
+        public static string NoChangeToUpdate {
+            get {
+                return ResourceManager.GetString("NoChangeToUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No information is available.
         /// </summary>
         public static string NoInformationIsAvailable {

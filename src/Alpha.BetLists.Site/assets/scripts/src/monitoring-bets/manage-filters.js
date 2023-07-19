@@ -103,7 +103,12 @@ var ManageFiltersView = /** @class */ (function () {
         this.inlineMessageComponent.hide();
         var iconCheck = $(e.target);
         var filterId = iconCheck.closest("tr").data("filterid");
-        var filterName = $.trim($("#input-filter-name-" + filterId).val());
+        var filterNameElement = $("#input-filter-name-" + filterId);
+        var filterName = $.trim(filterNameElement.val());
+        if (!filterName) {
+            TipsyHelper.showError(filterNameElement, $("#hidden-filterNameRequiredError").val());
+            return;
+        }
         var formData = {
             filterId: filterId,
             filterName: filterName,
@@ -112,7 +117,7 @@ var ManageFiltersView = /** @class */ (function () {
         if (this.originalData.filterId === formData.filterId
             && this.originalData.filterName === formData.filterName
             && this.originalData.isDefault === formData.isDefault) {
-            this.inlineMessageComponent.showError("There is no change to update");
+            this.inlineMessageComponent.showError($("#hidden-noChangeToUpdate").val());
         }
         else {
             AJAXHelper.postJSON("UpdateFilter", formData, function (result) {
@@ -123,6 +128,7 @@ var ManageFiltersView = /** @class */ (function () {
     };
     ManageFiltersView.prototype.handleOnClickIconClose = function (iconClose, radioDefaultFilter) {
         this.inlineMessageComponent.hide();
+        TipsyHelper.clearAll();
         var filterId = iconClose.closest("tr").data("filterid");
         iconClose.parent().addClass("hide").prev().removeClass("hide");
         var filterName = $("#span-filter-name-" + filterId).removeClass("hide").text();
