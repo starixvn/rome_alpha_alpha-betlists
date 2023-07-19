@@ -105,6 +105,25 @@ var AJAXHelper = /** @class */ (function () {
             complete: onComplete
         });
     };
+    AJAXHelper.post = function (url, formData, onSuccess, onComplete) {
+        var _this = this;
+        $.blockUI();
+        return $.ajax({
+            url: url,
+            headers: {
+                __RequestVerificationToken: $("input[name='__RequestVerificationToken']").val(),
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            type: "POST",
+            data: formData,
+            success: function (result) {
+                onSuccess(result);
+                $.unblockUI();
+            },
+            error: function (jqXHR) { return _this.handleOnFail(jqXHR); },
+            complete: onComplete
+        });
+    };
     AJAXHelper.handleOnFail = function (jqXHR) {
         $.unblockUI();
         if (jqXHR) {
@@ -362,7 +381,7 @@ var MonitoringBetsView = /** @class */ (function () {
             _this.dropdownMostRecentTicket.multiselect({
                 onChange: function () { return _this.loadLastBets(true); }
             });
-            _this.autoRefreshComponent.init(new AutoRefreshOption($("#hidden-OnText").val(), $("#hidden-OffText").val(), function () { return _this.loadLastBets(false); }));
+            _this.autoRefreshComponent.init(new AutoRefreshOption($("#hidden-OnText").val(), $("#hidden-OffText").val(), function () { return _this.loadLastBets(true); }));
         };
         this.loadLastBets = function (isAutoLoad) {
             if (!isAutoLoad) {

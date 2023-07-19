@@ -22,7 +22,7 @@ var MonitoringBetsView = /** @class */ (function () {
             _this.dropdownMostRecentTicket.multiselect({
                 onChange: function () { return _this.loadLastBets(true); }
             });
-            _this.autoRefreshComponent.init(new AutoRefreshOption($("#hidden-OnText").val(), $("#hidden-OffText").val(), function () { return _this.loadLastBets(false); }));
+            _this.autoRefreshComponent.init(new AutoRefreshOption($("#hidden-OnText").val(), $("#hidden-OffText").val(), function () { return _this.loadLastBets(true); }));
         };
         this.loadLastBets = function (isAutoLoad) {
             if (!isAutoLoad) {

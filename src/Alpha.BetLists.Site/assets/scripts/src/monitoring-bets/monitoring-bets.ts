@@ -60,7 +60,7 @@ class MonitoringBetsView {
         this.autoRefreshComponent.init(new AutoRefreshOption(
             $("#hidden-OnText").val(),
             $("#hidden-OffText").val(),
-            () => this.loadLastBets(false)));
+            () => this.loadLastBets(true)));
     };
 
     private registerToggleFilter() {

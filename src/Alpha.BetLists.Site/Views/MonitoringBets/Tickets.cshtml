@@ -9,7 +9,7 @@
     foreach (var ticket in Model.BetListData.Tickets)
     {
         <tr id="r@(ticket.TransId)">
-            <td class="trans-block text-center">@ticket.RefNo</td>
+            <td class="trans-block text-center">@ticket.TransId</td>
             <td class="trans-block text-center nonbreak">
                 <div class="time">@ticket.TransDate.ToString()</div>
             </td>
