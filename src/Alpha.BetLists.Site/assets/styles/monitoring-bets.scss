@@ -69,8 +69,12 @@
         width: 20px;
     }
 
-    .col-transtime, .col-member {
+    .col-refno, .col-transtime, .col-member {
         width: 110px;
+    }
+
+    .col-bettype {
+        width: 200px;
     }
 
     .col-odds, .col-stake, .col-winloss {
@@ -104,7 +108,7 @@
         font-size: 20px;
         vertical-align: text-bottom;
         display: inline-block;
-        margin:0 5px;
+        margin: 0 5px;
 
         &:before {
             color: #444;

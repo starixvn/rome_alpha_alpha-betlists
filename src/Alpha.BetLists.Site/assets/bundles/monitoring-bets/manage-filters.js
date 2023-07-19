@@ -25,25 +25,6 @@ var AJAXHelper = /** @class */ (function () {
             complete: onComplete
         });
     };
-    AJAXHelper.post = function (url, formData, onSuccess, onComplete) {
-        var _this = this;
-        $.blockUI();
-        return $.ajax({
-            url: url,
-            headers: {
-                __RequestVerificationToken: $("input[name='__RequestVerificationToken']").val(),
-                'X-Requested-With': 'XMLHttpRequest'
-            },
-            type: "POST",
-            data: formData,
-            success: function (result) {
-                onSuccess(result);
-                $.unblockUI();
-            },
-            error: function (jqXHR) { return _this.handleOnFail(jqXHR); },
-            complete: onComplete
-        });
-    };
     AJAXHelper.handleOnFail = function (jqXHR) {
         $.unblockUI();
         if (jqXHR) {

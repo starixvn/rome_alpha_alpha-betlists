@@ -10,14 +10,11 @@
     {
         <tr id="r@(ticket.TransId)">
             <td class="trans-block text-center">@ticket.TransId</td>
-            <td class="trans-block text-center nonbreak">
-                <div class="time">@ticket.TransDate.ToString()</div>
-            </td>
-            <td class="text-center">
-                @ticket.UserName @{ if (ticket.IsInWatchlist)
-                    {
-                        <span class="icon-mywatchlist"></span>
-                    }
+            <td class="trans-block text-center nonbreak">@ticket.TransDate.ToString()</td>
+            <td>@ticket.UserName
+                @if (ticket.IsInWatchlist)
+                {
+                    <span class="icon-mywatchlist"></span>
                 }
             </td>
             <td class="text-center">@ticket.BetType</td>

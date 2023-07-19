@@ -118,8 +118,11 @@
 .tb .col-number {
   width: 20px; }
 
-.tb .col-transtime, .tb .col-member {
+.tb .col-refno, .tb .col-transtime, .tb .col-member {
   width: 110px; }
+
+.tb .col-bettype {
+  width: 200px; }
 
 .tb .col-odds, .tb .col-stake, .tb .col-winloss {
   width: 50px; }
