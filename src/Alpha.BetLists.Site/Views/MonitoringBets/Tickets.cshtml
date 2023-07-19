@@ -11,11 +11,14 @@
         <tr id="r@(ticket.TransId)">
             <td class="trans-block text-center">@ticket.TransId</td>
             <td class="trans-block text-center nonbreak">@ticket.TransDate.ToString()</td>
-            <td>@ticket.UserName
-                @if (ticket.IsInWatchlist)
-                {
-                    <span class="icon-mywatchlist"></span>
-                }
+            <td>
+                <div class="line-username">
+                    <span>@ticket.UserName</span>
+                    @if (ticket.IsInWatchlist)
+                    {
+                        <span class="icon-mywatchlist"></span>
+                    }
+                </div>
             </td>
             <td class="text-center">@ticket.BetType</td>
             @Choice.Render(Model.Builder, ticket, Model.TicketHelper, Model.BetListData.TicketData, Model.CanViewScoreMap(ticket))

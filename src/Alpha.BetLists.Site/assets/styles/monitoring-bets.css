@@ -139,11 +139,16 @@
   font-weight: normal;
   text-align: right; }
 
+.tb .line-username {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; }
+
 .tb .icon-mywatchlist {
   font-size: 20px;
   vertical-align: text-bottom;
   display: inline-block;
-  margin: 0 5px; }
+  margin: 0 0 0 5px; }
   .tb .icon-mywatchlist:before {
     color: #444; }
 
