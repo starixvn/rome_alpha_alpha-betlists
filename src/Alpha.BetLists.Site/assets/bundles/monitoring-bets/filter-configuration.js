@@ -6,28 +6,31 @@ var AJAXHelper = /** @class */ (function () {
         var _this = this;
         $.getJSON(url, onSuccess).fail(function (jqXHR) { return _this.handleOnFail(jqXHR); });
     };
-    AJAXHelper.postJSON = function (url, formData, onSuccess) {
+    AJAXHelper.post = function (url, formData, onSuccess, onComplete) {
         var _this = this;
         $.blockUI();
-        $.ajax({
+        return $.ajax({
             url: url,
             headers: {
                 __RequestVerificationToken: $("input[name='__RequestVerificationToken']").val(),
                 'X-Requested-With': 'XMLHttpRequest'
             },
-            dataType: "json",
             type: "POST",
             data: formData,
             success: function (result) {
                 onSuccess(result);
                 $.unblockUI();
             },
-            error: function (jqXHR) { return _this.handleOnFail(jqXHR); }
+            error: function (jqXHR) { return _this.handleOnFail(jqXHR); },
+            complete: onComplete
         });
     };
     AJAXHelper.handleOnFail = function (jqXHR) {
         $.unblockUI();
         if (jqXHR) {
+            if (jqXHR.statusText === "abort") {
+                return;
+            }
             if (jqXHR.status === 401) {
                 window.top["age"].SignOut();
             }
@@ -38,6 +41,25 @@ var AJAXHelper = /** @class */ (function () {
                 }
             }
         }
+    };
+    AJAXHelper.get = function (url, formData, onSuccess, onComplete) {
+        var _this = this;
+        $.blockUI();
+        return $.ajax({
+            url: url,
+            headers: {
+                __RequestVerificationToken: $("input[name='__RequestVerificationToken']").val(),
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            type: "GET",
+            data: formData,
+            success: function (result) {
+                onSuccess(result);
+                $.unblockUI();
+            },
+            error: function (jqXHR) { return _this.handleOnFail(jqXHR); },
+            complete: onComplete
+        });
     };
     return AJAXHelper;
 }());
