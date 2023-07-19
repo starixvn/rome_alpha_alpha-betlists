@@ -136,6 +136,14 @@
   font-weight: normal;
   text-align: right; }
 
+.tb .icon-mywatchlist {
+  font-size: 20px;
+  vertical-align: text-bottom;
+  display: inline-block;
+  margin: 0 5px; }
+  .tb .icon-mywatchlist:before {
+    color: #444; }
+
 .countdown {
   margin-right: 0px;
   display: block;

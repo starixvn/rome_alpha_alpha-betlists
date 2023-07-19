@@ -99,6 +99,17 @@
         font-weight: normal;
         text-align: right;
     }
+
+    .icon-mywatchlist {
+        font-size: 20px;
+        vertical-align: text-bottom;
+        display: inline-block;
+        margin:0 5px;
+
+        &:before {
+            color: #444;
+        }
+    }
 }
 
 .countdown {
