@@ -37,9 +37,8 @@ class MonitoringBetsView {
         this.cacheElements();
         this.registerEvents();
         this.setLastTransIdByFilter();
-
-        this.loadLastBets(false);
-        this.autoRefreshComponent.setIsLoading();
+        
+        this.autoRefreshComponent.start();
         this.monitoringBetsCopyHtml.init();
     }
 
@@ -103,14 +102,7 @@ class MonitoringBetsView {
         }
 
         this.isCalling = true;
-        this.ajaxRequest = $.ajax({
-            method: "POST",
-            data: this.getParam(),
-            url: this.getBetsUrl,
-            success: this.successGetLastBets,
-            error: this.errorRequest,
-            complete: this.completeGetLastBets
-        });
+        this.ajaxRequest = AJAXHelper.postJSON(this.getBetsUrl, this.getParam(), this.successGetLastBets, this.completeGetLastBets);
     };
 
     private getParam() {
@@ -149,24 +141,6 @@ class MonitoringBetsView {
         if (this.ajaxRequest) {
             this.ajaxRequest.abort();
         }
-    };
-
-    private errorRequest = (request: any) => {
-        if (request.statusText === "abort") {
-            return;
-        }
-
-        if (request.status === 500 && request.responseText) {
-            const jsonData = JSON.parse(request.responseText);
-            if (jsonData.UMFrom && jsonData.UMTo) {
-                location.href = top["alpha"].urls.mainRootPath
-                    + "PartialUM/Index?umfrom=" + jsonData.UMFrom
-                    + "&umto=" + jsonData.UMTo;
-                return;
-            }
-        }
-
-        this.showError();
     };
 
     private successGetLastBets = (responseHtml: any) => {

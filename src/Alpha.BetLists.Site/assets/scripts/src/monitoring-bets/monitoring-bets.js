@@ -50,34 +50,12 @@ var MonitoringBetsView = /** @class */ (function () {
                 _this.abortRequest();
             }
             _this.isCalling = true;
-            _this.ajaxRequest = $.ajax({
-                method: "POST",
-                data: _this.getParam(),
-                url: _this.getBetsUrl,
-                success: _this.successGetLastBets,
-                error: _this.errorRequest,
-                complete: _this.completeGetLastBets
-            });
+            _this.ajaxRequest = AJAXHelper.postJSON(_this.getBetsUrl, _this.getParam(), _this.successGetLastBets, _this.completeGetLastBets);
         };
         this.abortRequest = function () {
             if (_this.ajaxRequest) {
                 _this.ajaxRequest.abort();
             }
-        };
-        this.errorRequest = function (request) {
-            if (request.statusText === "abort") {
-                return;
-            }
-            if (request.status === 500 && request.responseText) {
-                var jsonData = JSON.parse(request.responseText);
-                if (jsonData.UMFrom && jsonData.UMTo) {
-                    location.href = top["alpha"].urls.mainRootPath
-                        + "PartialUM/Index?umfrom=" + jsonData.UMFrom
-                        + "&umto=" + jsonData.UMTo;
-                    return;
-                }
-            }
-            _this.showError();
         };
         this.successGetLastBets = function (responseHtml) {
             if ((responseHtml.ErrorCode && responseHtml.ErrorCode !== "0") ||
@@ -115,8 +93,7 @@ var MonitoringBetsView = /** @class */ (function () {
         this.cacheElements();
         this.registerEvents();
         this.setLastTransIdByFilter();
-        this.loadLastBets(false);
-        this.autoRefreshComponent.setIsLoading();
+        this.autoRefreshComponent.start();
         this.monitoringBetsCopyHtml.init();
     };
     MonitoringBetsView.prototype.setLastTransIdByFilter = function () {

@@ -2,6 +2,10 @@
 var AJAXHelper = /** @class */ (function () {
     function AJAXHelper() {
     }
+    AJAXHelper.getJSONWithoutBlockUI = function (url, onSuccess) {
+        var _this = this;
+        $.getJSON(url, onSuccess).fail(function (jqXHR) { return _this.handleOnFail(jqXHR); });
+    };
     AJAXHelper.postJSON = function (url, formData, onSuccess) {
         var _this = this;
         $.blockUI();
@@ -664,7 +668,7 @@ var FilterConfigurationView = /** @class */ (function () {
         var _this = this;
         this.sportGroupDropdown.disable();
         this.sportLeagueMatchTreeview.addIconLoading();
-        $.get("FilterBySports?groupSport=" + groupSport, function (data) {
+        AJAXHelper.getJSONWithoutBlockUI("FilterBySports?groupSport=" + groupSport, function (data) {
             var listData = data.map(function (sport) {
                 return {
                     value: sport.Id,
@@ -684,7 +688,7 @@ var FilterConfigurationView = /** @class */ (function () {
     FilterConfigurationView.prototype.getMyWatchlistMembers = function () {
         var _this = this;
         this.myWatchlistMemberTreeview.addIconLoading();
-        $.get("GetMyWatchlistMembers", function (data) {
+        AJAXHelper.getJSONWithoutBlockUI("GetMyWatchlistMembers", function (data) {
             return _this.myWatchlistMemberTreeview.renderTreeNodeList(data.map(function (d) {
                 return {
                     value: d.CustId,

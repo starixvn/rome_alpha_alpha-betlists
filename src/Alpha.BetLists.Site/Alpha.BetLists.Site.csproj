@@ -1303,6 +1303,7 @@
     <Content Include="Views\MonitoringBets\BetData.cshtml" />
     <Content Include="Views\MonitoringBets\_WelcomePopup.cshtml" />
     <Content Include="Views\MonitoringBets\_SaveFilterConfirmPopup.cshtml" />
+    <Content Include="Views\MonitoringBets\Tickets.cshtml" />
     <Content Include="Views\Shared\IconInformation.cshtml" />
     <Content Include="Web.AppSettings.staging.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>

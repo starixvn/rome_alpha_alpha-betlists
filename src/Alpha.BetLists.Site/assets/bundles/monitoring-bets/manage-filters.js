@@ -6,10 +6,10 @@ var AJAXHelper = /** @class */ (function () {
         var _this = this;
         $.getJSON(url, onSuccess).fail(function (jqXHR) { return _this.handleOnFail(jqXHR); });
     };
-    AJAXHelper.postJSON = function (url, formData, onSuccess) {
+    AJAXHelper.postJSON = function (url, formData, onSuccess, onComplete) {
         var _this = this;
         $.blockUI();
-        $.ajax({
+        return $.ajax({
             url: url,
             headers: {
                 __RequestVerificationToken: $("input[name='__RequestVerificationToken']").val(),
@@ -22,11 +22,15 @@ var AJAXHelper = /** @class */ (function () {
                 onSuccess(result);
                 $.unblockUI();
             },
-            error: function (jqXHR) { return _this.handleOnFail(jqXHR); }
+            error: function (jqXHR) { return _this.handleOnFail(jqXHR); },
+            complete: onComplete
         });
     };
     AJAXHelper.handleOnFail = function (jqXHR) {
         $.unblockUI();
+        if (jqXHR.statusText === "abort") {
+            return;
+        }
         if (jqXHR) {
             if (jqXHR.status === 401) {
                 window.top["age"].SignOut();

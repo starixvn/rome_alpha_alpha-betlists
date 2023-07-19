@@ -97,16 +97,9 @@
 
         [HttpPost]
         [DisableNetThrottling]
-        public async Task<ActionResult> BetData(GetLastFilteringBetsQuery message)
-        {
-            var canViewLastBets = await mediator.Send(new CheckCanViewLastFilteringBetsQuery(viewer));
+        public Task<ActionResult> BetData(GetLastFilteringBetsQuery message)
+            => View(message);
 
-            if (canViewLastBets.ErrCode != ErrorCodeConstants.None)
-            {
-                return Json(canViewLastBets, JsonRequestBehavior.AllowGet);
-            }
 
-            return await View(message);
-        }
     }
 }

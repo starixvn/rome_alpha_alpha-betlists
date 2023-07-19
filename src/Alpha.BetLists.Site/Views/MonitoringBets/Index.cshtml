@@ -86,28 +86,7 @@
                 </tr>
             </thead>
             <tbody id="bet-list-table-container">
-                @if (Model.BetListData != null && Model.BetListData.Tickets.Any())
-                {
-                    foreach (var ticket in Model.BetListData.Tickets)
-                    {
-                        <tr id="r@(ticket.TransId)">
-                            <td class="trans-block text-center">@ticket.RefNo</td>
-                            <td class="trans-block text-center nonbreak">
-                                <div class="time">@ticket.TransDate.ToString()</div>
-                            </td>
-                            <td>@ticket.UserName</td>
-                            <td class="text-center">@ticket.BetType</td>
-                            @Choice.Render(Model.Builder, ticket, Model.TicketHelper, Model.BetListData.TicketData, Model.CanViewScoreMap(ticket))
-                            @Odds.Render(Model.Builder, ticket, Model.BetListData.TicketData, Model.TicketHelper.GetOddsTypeNameById)
-                            @Stake.Render(Model.Builder, ticket, Model.TicketHelper)
-                            @LastBetsStatus.Render(ticket, Model.TicketHelper, Model.DisplayVNIP)
-                        </tr>
-                    }
-                }
-                else
-                {
-                    @Common.NoInfomation.Render(Model.TotalColumn, false)
-                }
+                @Html.Partial("Tickets", Model)
             </tbody>
         </table>
     </div>

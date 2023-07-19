@@ -33,7 +33,6 @@
         IAsyncRequestHandler<FilterBySportsQuery, IEnumerable<Sport>>,
         IAsyncRequestHandler<CheckUsernamesQuery, IEnumerable<MemberErrCode>>,
         IAsyncRequestHandler<GetMyWatchlistMembersQuery, IEnumerable<MyWatchlistMember>>,
-        IRequestHandler<CheckCanViewLastFilteringBetsQuery, Result>,
         IAsyncRequestHandler<GetLastFilteringBetsQuery, FilteringBetDataViewModel>
     {
         private readonly IUserSession userSession;
@@ -150,10 +149,10 @@
 
         public async Task<FilteringBetDataViewModel> Handle(GetLastFilteringBetsQuery message)
         {
-            IEnumerable<long> memberInWatchIds = (await monitoringBetService.GetMyWatchlistMembers(message.ViewerId)).Select(member => member.CustId);
+            IEnumerable<long> memberInWatchlistIds = (await monitoringBetService.GetMyWatchlistMembers(message.ViewerId)).Select(member => member.CustId);
             if (message.FilterByMembers == FilterByMembersConstants.AllWatchlistMembers)
             {
-                message.MemberList = $"{message.MemberList},{string.Join(",", memberInWatchIds)}";
+                message.MemberList = $"{message.MemberList},{string.Join(",", memberInWatchlistIds)}";
             }
 
             var param = new GetLastFilteringBetsParams(message.ViewerId,
@@ -168,18 +167,20 @@
 
             var tickets = await monitoringBetService.GetLastFilteringBets(param);
 
-            if (memberInWatchIds.Any())
+            if (memberInWatchlistIds.Any())
             {
+                Dictionary<long, bool> memberInWatchlistDictionary = new Dictionary<long, bool>();
+                foreach (var memberId in memberInWatchlistIds)
+                {
+                    memberInWatchlistDictionary.Add(memberId, true);
+                }
+
                 foreach (var ticket in tickets)
                 {
-                    foreach (var memberId in memberInWatchIds)
+                    if (memberInWatchlistDictionary.ContainsKey(ticket.CustId))
                     {
-                        if (ticket.CustId == memberId)
-                        {
-                            ticket.IsInWatchlist = true;
-                        }
+                        ticket.IsInWatchlist = memberInWatchlistDictionary[ticket.CustId];
                     }
-
                 }
             }
 
@@ -199,21 +200,6 @@
                 encryptionService.CfsEncode($"LastTransId_{message.CustId}_{message.FilterId}", numberOfEncodeResult: 6),
                 encryptionService.CfsEncode($"LatestTransId_{message.CustId}_{message.FilterId}", numberOfEncodeResult: 6),
                 message, betListData, Builder, TicketHelper);
-        }
-
-        public Result Handle(CheckCanViewLastFilteringBetsQuery message)
-        {
-            var canViewLastBets = lastBetsService.CanViewLastBets(
-                new CheckCanViewLastBetsParam(
-                    message.CustId,
-                    message.IsInternal,
-                    message.IsEnableLastBetsMonitoring,
-                    message.UsersAlwaysAllowAccessBetsListMonitoring));
-
-            var errorCode = canViewLastBets ? ErrorCodeConstants.None : ErrorCodeConstants.FunctionTurnOff;
-            var errorMessage = canViewLastBets ? string.Empty : Resources.FunctionTurnOffError;
-
-            return new Result(errorCode, errorMessage);
         }
 
         public Task<Result> Handle(AddFilterCommand message)
