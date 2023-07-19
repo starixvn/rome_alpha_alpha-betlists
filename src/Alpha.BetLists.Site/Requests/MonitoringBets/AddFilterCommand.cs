@@ -27,15 +27,25 @@
         public string MyWatchlist { get; set; }
 
         public override bool IsValid()
-        {
-            return !string.IsNullOrWhiteSpace(FilterName)
+            => !string.IsNullOrWhiteSpace(FilterName)
                 && !string.IsNullOrWhiteSpace(BetType)
                 && Stake > 0
                 && Sports?.Length > 0
-                && (FilterByMembers == FilterByMembersConstants.AllMembers
-                || FilterByMembers == FilterByMembersConstants.AllWatchlistMembers
-                || FilterByMembers == FilterByMembersConstants.SpecificMembers)
-                && (!string.IsNullOrWhiteSpace(InputList) || !string.IsNullOrWhiteSpace(MyWatchlist));
+                && IsValidFilterByMembers();
+
+        private bool IsValidFilterByMembers()
+        {
+            if (FilterByMembers == FilterByMembersConstants.AllMembers)
+            {
+                return InputList == "0" && MyWatchlist == "0";
+            }
+
+            if (FilterByMembers == FilterByMembersConstants.AllWatchlistMembers)
+            {
+                return MyWatchlist == "0";
+            }
+
+            return !string.IsNullOrWhiteSpace(InputList) || !string.IsNullOrWhiteSpace(MyWatchlist);
         }
     }
 }

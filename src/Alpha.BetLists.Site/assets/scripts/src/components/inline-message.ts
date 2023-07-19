@@ -14,8 +14,8 @@ class InlineMessageComponent {
     public show(result) {
         this.inlineMessage
             .html(result.ErrMsg)
-            .addClass(result.ErrCode ? "msg-error" : "msg-success")
-            .removeClass("hide");
+            .removeClass("msg-error msg-success hide")
+            .addClass(result.ErrCode ? "msg-error" : "msg-success");
     }
 
     public showError(message: string) {

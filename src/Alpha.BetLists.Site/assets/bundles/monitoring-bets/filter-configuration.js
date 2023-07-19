@@ -50,8 +50,8 @@ var InlineMessageComponent = /** @class */ (function () {
     InlineMessageComponent.prototype.show = function (result) {
         this.inlineMessage
             .html(result.ErrMsg)
-            .addClass(result.ErrCode ? "msg-error" : "msg-success")
-            .removeClass("hide");
+            .removeClass("msg-error msg-success hide")
+            .addClass(result.ErrCode ? "msg-error" : "msg-success");
     };
     InlineMessageComponent.prototype.showError = function (message) {
         this.show({ ErrCode: 1, ErrMsg: message });
@@ -598,7 +598,9 @@ var FilterConfigurationView = /** @class */ (function () {
         this.inlineMessage = new InlineMessageComponent();
         this.inlineMessagePopup = new InlineMessageComponent("inline-message-popup");
         this.betTypeDropdown = new DropdownListComponent();
-        this.betTypeDropdown.render("ddl-bettype");
+        this.betTypeDropdown.render("ddl-bettype", {
+            onChange: function () { return TipsyHelper.clear($("#ddl-bettype").next(".btn-group")); }
+        });
         this.liveStatusDropdown = new DropdownListComponent();
         this.liveStatusDropdown.render("ddl-live-status");
         this.sportGroupDropdown = new DropdownListComponent();
@@ -642,13 +644,14 @@ var FilterConfigurationView = /** @class */ (function () {
         this.isDefaultCheckbox = addFilterPopup.find("#chk-isDefault");
         addFilterPopup
             .on("shown.bs.modal", function () { return _this.filterNameInput.focus(); })
-            .on("hidden.bs.modal", function () {
+            .on("hide.bs.modal", function () {
             _this.filterNameInput.val("");
+            TipsyHelper.clear(_this.filterNameInput);
             _this.isDefaultCheckbox.prop("checked", false);
             _this.inlineMessagePopup.hide();
         });
         addFilterPopup.find("#btn-save-filter-popup").click(function () { return _this.handleSaveFilterPopup(); });
-        $(".button-apply").click(function (e) {
+        $(".block-btn .button-apply").click(function (e) {
             _this.addFilterFormData = _this.getFormData(rdoSpecificSports, rdoSpecificMembers);
             _this.addFilterFormData && _this.handleApplyFilter();
         });
@@ -698,15 +701,15 @@ var FilterConfigurationView = /** @class */ (function () {
         else {
             betType = this.betTypeDropdown.getSelected().join();
             if (!betType.length) {
-                this.inlineMessage.showError($("#hidden-BetTypesRequiredError").val());
-                this.scrollTopInlineMessage();
+                var betTypeElement = $("#ddl-bettype").next(".btn-group");
+                TipsyHelper.showError(betTypeElement, $("#hidden-BetTypesRequiredError").val());
+                this.scrollTopInlineMessage(betTypeElement);
                 return;
             }
         }
         var stake = $.trim(this.stakeInput.val().replace(/,/g, ""));
         if (!stake.length) {
-            this.inlineMessage.showError($("#hidden-StakeRequiredError").val());
-            this.stakeInput.focus();
+            TipsyHelper.showError(this.stakeInput, $("#hidden-StakeRequiredError").val());
             return;
         }
         var liveStatus = this.liveStatusDropdown.getSelected()[0];
@@ -754,11 +757,10 @@ var FilterConfigurationView = /** @class */ (function () {
     FilterConfigurationView.prototype.getFormDataPopup = function () {
         var filterName = $.trim(this.filterNameInput.val());
         if (!filterName.length) {
-            this.inlineMessagePopup.showError($("#hidden-FilterNameRequiredError").val());
+            TipsyHelper.showError(this.filterNameInput, $("#hidden-FilterNameRequiredError").val());
             return;
         }
         var isDefault = this.isDefaultCheckbox.is(":checked");
-        this.inlineMessagePopup.hide();
         return {
             filterName: filterName,
             isDefault: isDefault
@@ -792,8 +794,9 @@ var FilterConfigurationView = /** @class */ (function () {
             });
         }
     };
-    FilterConfigurationView.prototype.scrollTopInlineMessage = function () {
-        $("html, body").scrollTop(this.inlineMessage.getInlineMessage().offset().top);
+    FilterConfigurationView.prototype.scrollTopInlineMessage = function ($element) {
+        if ($element === void 0) { $element = undefined; }
+        $("html, body").scrollTop(($element || this.inlineMessage.getInlineMessage()).offset().top);
     };
     return FilterConfigurationView;
 }());

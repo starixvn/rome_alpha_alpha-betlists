@@ -1,4 +1,5 @@
 ﻿"use strict";
+declare var TipsyHelper;
 
 class FilterConfigurationView {
     private inlineMessage: InlineMessageComponent;
@@ -30,7 +31,9 @@ class FilterConfigurationView {
         this.inlineMessagePopup = new InlineMessageComponent("inline-message-popup");
 
         this.betTypeDropdown = new DropdownListComponent();
-        this.betTypeDropdown.render("ddl-bettype");
+        this.betTypeDropdown.render("ddl-bettype", {
+            onChange: () => TipsyHelper.clear($("#ddl-bettype").next(".btn-group"))
+        });
 
         this.liveStatusDropdown = new DropdownListComponent();
         this.liveStatusDropdown.render("ddl-live-status");
@@ -99,14 +102,15 @@ class FilterConfigurationView {
         this.isDefaultCheckbox = addFilterPopup.find("#chk-isDefault");
         addFilterPopup
             .on("shown.bs.modal", () => this.filterNameInput.focus())
-            .on("hidden.bs.modal", () => {
+            .on("hide.bs.modal", () => {
                 this.filterNameInput.val("");
+                TipsyHelper.clear(this.filterNameInput);
                 this.isDefaultCheckbox.prop("checked", false);
                 this.inlineMessagePopup.hide();
             });
         addFilterPopup.find("#btn-save-filter-popup").click(() => this.handleSaveFilterPopup());
 
-        $(".button-apply").click((e) => {
+        $(".block-btn .button-apply").click((e) => {
             this.addFilterFormData = this.getFormData(rdoSpecificSports, rdoSpecificMembers);
             this.addFilterFormData && this.handleApplyFilter();
         });
@@ -158,16 +162,16 @@ class FilterConfigurationView {
         } else {
             betType = this.betTypeDropdown.getSelected().join();
             if (!betType.length) {
-                this.inlineMessage.showError($("#hidden-BetTypesRequiredError").val());
-                this.scrollTopInlineMessage();
+                const betTypeElement = $("#ddl-bettype").next(".btn-group");
+                TipsyHelper.showError(betTypeElement, $("#hidden-BetTypesRequiredError").val());
+                this.scrollTopInlineMessage(betTypeElement);
                 return;
             }
         }
 
         const stake = $.trim(this.stakeInput.val().replace(/,/g, ""));
         if (!stake.length) {
-            this.inlineMessage.showError($("#hidden-StakeRequiredError").val());
-            this.stakeInput.focus();
+            TipsyHelper.showError(this.stakeInput, $("#hidden-StakeRequiredError").val());
             return;
         }
 
@@ -220,13 +224,11 @@ class FilterConfigurationView {
     private getFormDataPopup() {
         const filterName = $.trim(this.filterNameInput.val());
         if (!filterName.length) {
-            this.inlineMessagePopup.showError($("#hidden-FilterNameRequiredError").val());
+            TipsyHelper.showError(this.filterNameInput, $("#hidden-FilterNameRequiredError").val());
             return;
         }
 
         const isDefault = this.isDefaultCheckbox.is(":checked");
-        this.inlineMessagePopup.hide();
-
         return {
             filterName,
             isDefault
@@ -260,8 +262,8 @@ class FilterConfigurationView {
         }
     }
 
-    private scrollTopInlineMessage() {
-        $("html, body").scrollTop(this.inlineMessage.getInlineMessage().offset().top);
+    private scrollTopInlineMessage($element = undefined) {
+        $("html, body").scrollTop(($element || this.inlineMessage.getInlineMessage()).offset().top);
     }
 }
 

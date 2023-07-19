@@ -75,7 +75,7 @@
         <table class="tb tb-bordered tb-freeze-header w-full" id="tbl-betlist">
             <thead>
                 <tr>
-                    <th class="col-number">@Resources.RefNo</th>
+                    <th class="col-transtime">@Resources.RefNo</th>
                     <th class="col-transtime">@Resources.transtime</th>
                     <th class="col-member">@Resources.Username</th>
                     <th>@Resources.BetType</th>
@@ -91,11 +91,11 @@
                     foreach (var ticket in Model.BetListData.Tickets)
                     {
                         <tr id="r@(ticket.TransId)">
-                            <td class="w-order text-center">@ticket.RefNo</td>
+                            <td class="trans-block text-center">@ticket.RefNo</td>
                             <td class="trans-block text-center nonbreak">
                                 <div class="time">@ticket.TransDate.ToString()</div>
                             </td>
-                            <td class="text-center">@ticket.UserName</td>
+                            <td>@ticket.UserName</td>
                             <td class="text-center">@ticket.BetType</td>
                             @Choice.Render(Model.Builder, ticket, Model.TicketHelper, Model.BetListData.TicketData, Model.CanViewScoreMap(ticket))
                             @Odds.Render(Model.Builder, ticket, Model.BetListData.TicketData, Model.TicketHelper.GetOddsTypeNameById)

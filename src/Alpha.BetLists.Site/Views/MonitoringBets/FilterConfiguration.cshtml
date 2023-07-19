@@ -133,12 +133,14 @@
 
 @helper RenderButtonGroup()
 {
-    var htmlAttributes = new Dictionary<string, object> { ["class"] = "button-cancel" };
     if (Model.ShowWelcomePopup)
     {
-        htmlAttributes["disabled"] = "disabled";
+        <input type="button" class="button-cancel" value="@Resources.Back" disabled />
     }
-    @Html.ActionLink(Resources.Back, "Index", null, htmlAttributes)
+    else
+    {
+        @Html.ActionLink(Resources.Back, "Index", null, new { @class = "button-cancel" })
+    }
     <input type="button" class="button-apply" value="@Resources.Apply" />
     <input type="button" class="button-save" value="@Resources.SaveFilter" />
 }

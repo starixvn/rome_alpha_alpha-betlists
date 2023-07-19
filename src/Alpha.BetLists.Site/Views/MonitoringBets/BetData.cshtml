@@ -9,11 +9,11 @@
     foreach (var ticket in Model.BetListData.Tickets)
     {
         <tr id="r@(ticket.TransId)">
-            <td class="w-order text-center">@ticket.RefNo</td>
+            <td class="trans-block text-center">@ticket.RefNo</td>
             <td class="trans-block text-center nonbreak">
                 <div class="time">@ticket.TransDate.ToString()</div>
             </td>
-            <td class="text-center">
+            <td>
                 @ticket.UserName @{ if (ticket.IsInWatchlist)
                     {
                         <p>in WL</p>
