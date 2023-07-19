@@ -50,7 +50,7 @@ var MonitoringBetsView = /** @class */ (function () {
                 _this.abortRequest();
             }
             _this.isCalling = true;
-            _this.ajaxRequest = AJAXHelper.postJSON(_this.getBetsUrl, _this.getParam(), _this.successGetLastBets, _this.completeGetLastBets);
+            _this.ajaxRequest = AJAXHelper.post(_this.getBetsUrl, _this.getParam(), _this.successGetLastBets, _this.completeGetLastBets);
         };
         this.abortRequest = function () {
             if (_this.ajaxRequest) {

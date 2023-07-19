@@ -106,6 +106,25 @@ var AJAXHelper = /** @class */ (function () {
             complete: onComplete
         });
     };
+    AJAXHelper.post = function (url, formData, onSuccess, onComplete) {
+        var _this = this;
+        $.blockUI();
+        return $.ajax({
+            url: url,
+            headers: {
+                __RequestVerificationToken: $("input[name='__RequestVerificationToken']").val(),
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            type: "POST",
+            data: formData,
+            success: function (result) {
+                onSuccess(result);
+                $.unblockUI();
+            },
+            error: function (jqXHR) { return _this.handleOnFail(jqXHR); },
+            complete: onComplete
+        });
+    };
     AJAXHelper.handleOnFail = function (jqXHR) {
         $.unblockUI();
         if (jqXHR.statusText === "abort") {
@@ -372,7 +391,7 @@ var MonitoringBetsView = /** @class */ (function () {
                 _this.abortRequest();
             }
             _this.isCalling = true;
-            _this.ajaxRequest = AJAXHelper.postJSON(_this.getBetsUrl, _this.getParam(), _this.successGetLastBets, _this.completeGetLastBets);
+            _this.ajaxRequest = AJAXHelper.post(_this.getBetsUrl, _this.getParam(), _this.successGetLastBets, _this.completeGetLastBets);
         };
         this.abortRequest = function () {
             if (_this.ajaxRequest) {

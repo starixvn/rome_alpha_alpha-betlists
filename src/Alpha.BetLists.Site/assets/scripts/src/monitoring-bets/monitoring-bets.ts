@@ -102,7 +102,7 @@ class MonitoringBetsView {
         }
 
         this.isCalling = true;
-        this.ajaxRequest = AJAXHelper.postJSON(this.getBetsUrl, this.getParam(), this.successGetLastBets, this.completeGetLastBets);
+        this.ajaxRequest = AJAXHelper.post(this.getBetsUrl, this.getParam(), this.successGetLastBets, this.completeGetLastBets);
     };
 
     private getParam() {

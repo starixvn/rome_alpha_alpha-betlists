@@ -74,10 +74,10 @@
                 filterId = defaultFilter.FilterId;
                 var memberList = defaultFilter.Members;
 
+                var memberInWatchlistIds = (await monitoringBetService.GetMyWatchlistMembers(message.ViewerId)).Select(member => member.CustId).ToList();
                 if (defaultFilter.FilterByMembers == FilterByMembersConstants.AllWatchlistMembers)
                 {
-                    var custIds = (await monitoringBetService.GetMyWatchlistMembers(message.ViewerId)).Select(member => member.CustId);
-                    memberList = $"{defaultFilter.Members},{string.Join(",", custIds)}";
+                    memberList = $"{defaultFilter.Members},{string.Join(",", memberInWatchlistIds)}";
                 }
 
                 var param = new GetLastFilteringBetsParams(message.ViewerId,
@@ -90,9 +90,12 @@
                     defaultFilter.Stake,
                     limitRowCount: 10);
                 var tickets = await monitoringBetService.GetLastFilteringBets(param);
+                UpdateInWatchlistState(memberInWatchlistIds, tickets);
 
                 await AssignCountry(tickets, message.DisplayVNIP);
                 betListData = new BetListData(tickets, null);
+
+                WriteLog(message.CustId, tickets);
             }
 
             return new MonitoringBetsViewModel(message, filters, betListData, Builder, TicketHelper,
@@ -147,6 +150,26 @@
             return Task.FromResult(new Result());
         }
 
+        private void UpdateInWatchlistState(IEnumerable<long> memberInWatchlistIds, IEnumerable<TicketDto> tickets)
+        {
+            if (memberInWatchlistIds.Any())
+            {
+                Dictionary<long, bool> memberInWatchlistDictionary = new Dictionary<long, bool>();
+                foreach (var memberId in memberInWatchlistIds)
+                {
+                    memberInWatchlistDictionary.Add(memberId, true);
+                }
+
+                foreach (var ticket in tickets)
+                {
+                    if (memberInWatchlistDictionary.ContainsKey(ticket.CustId))
+                    {
+                        ticket.IsInWatchlist = memberInWatchlistDictionary[ticket.CustId];
+                    }
+                }
+            }
+        }
+
         public async Task<FilteringBetDataViewModel> Handle(GetLastFilteringBetsQuery message)
         {
             IEnumerable<long> memberInWatchlistIds = (await monitoringBetService.GetMyWatchlistMembers(message.ViewerId)).Select(member => member.CustId);
@@ -167,22 +190,7 @@
 
             var tickets = await monitoringBetService.GetLastFilteringBets(param);
 
-            if (memberInWatchlistIds.Any())
-            {
-                Dictionary<long, bool> memberInWatchlistDictionary = new Dictionary<long, bool>();
-                foreach (var memberId in memberInWatchlistIds)
-                {
-                    memberInWatchlistDictionary.Add(memberId, true);
-                }
-
-                foreach (var ticket in tickets)
-                {
-                    if (memberInWatchlistDictionary.ContainsKey(ticket.CustId))
-                    {
-                        ticket.IsInWatchlist = memberInWatchlistDictionary[ticket.CustId];
-                    }
-                }
-            }
+            UpdateInWatchlistState(memberInWatchlistIds, tickets);
 
             await AssignCountry(tickets, message.DisplayVNIP);
             var betListData = new BetListData(tickets, null);
@@ -191,6 +199,10 @@
 
             if (newTickets.Any())
             {
+                foreach (var ticket in newTickets)
+                {
+                    ticket.IsHighlight = true;
+                }
                 WriteLog(message.CustId, newTickets);
             }
 
