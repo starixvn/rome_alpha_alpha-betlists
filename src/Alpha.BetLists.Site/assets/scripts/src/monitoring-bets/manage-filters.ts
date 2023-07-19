@@ -100,7 +100,7 @@ class ManageFiltersView {
     }
 
     private handleDeleteFilters(ids) {
-        AJAXHelper.postJSON("DeleteFilters", { ids }, (results) => {
+        AJAXHelper.post("DeleteFilters", { ids }, (results) => {
             if ($.isArray(results)) {
                 const errors = [];
 
@@ -143,7 +143,7 @@ class ManageFiltersView {
             && this.originalData.isDefault === formData.isDefault) {
             this.inlineMessageComponent.showError($("#hidden-noChangeToUpdate").val());
         } else {
-            AJAXHelper.postJSON("UpdateFilter", formData, (result) => {
+            AJAXHelper.post("UpdateFilter", formData, (result) => {
                 this.inlineMessageComponent.show(result);
                 result.ErrCode || Common.Utils.ReloadPageAfterTimeout();
             });

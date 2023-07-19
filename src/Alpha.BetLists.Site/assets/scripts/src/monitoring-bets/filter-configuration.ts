@@ -237,7 +237,7 @@ class FilterConfigurationView {
 
     private handleApplyFilter() {
         this.addFilterFormData.filterName = "Default";
-        AJAXHelper.postJSON("ApplyFilter", this.addFilterFormData, (result) => {
+        AJAXHelper.post("ApplyFilter", this.addFilterFormData, (result) => {
             if (result.ErrCode) {
                 this.inlineMessage.showError(result.ErrMsg);
             } else {
@@ -252,7 +252,7 @@ class FilterConfigurationView {
         const formDataPopup = this.getFormDataPopup();
         if (formDataPopup) {
             this.addFilterFormData = $.extend(this.addFilterFormData, formDataPopup);
-            AJAXHelper.postJSON("AddFilter", this.addFilterFormData, (result) => {
+            AJAXHelper.post("AddFilter", this.addFilterFormData, (result) => {
                 this.inlineMessagePopup.show(result);
                 if (!result.ErrCode) {
                     this.addFilterFormData = null;

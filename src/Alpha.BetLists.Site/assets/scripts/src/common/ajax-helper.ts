@@ -24,25 +24,6 @@ class AJAXHelper {
         });
     }
 
-    static post(url: string, formData: any, onSuccess, onComplete?: any) {
-        $.blockUI();
-        return $.ajax({
-            url: url,
-            headers: {
-                __RequestVerificationToken: $("input[name='__RequestVerificationToken']").val(),
-                'X-Requested-With': 'XMLHttpRequest'
-            },
-            type: "POST",
-            data: formData,
-            success: function (result) {
-                onSuccess(result);
-                $.unblockUI();
-            },
-            error: jqXHR => this.handleOnFail(jqXHR),
-            complete: onComplete
-        });
-    }
-
     private static handleOnFail(jqXHR) {
         $.unblockUI();
         

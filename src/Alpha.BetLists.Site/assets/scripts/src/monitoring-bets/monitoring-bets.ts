@@ -8,17 +8,11 @@ class MonitoringBetsView {
     private monitoringBetsCopyHtml: MonitoringBetsCopyHtml;
 
     localStorage: any;
-    $pageSize: JQuery;
     $msgError: JQuery;
     $betListTableContainer: JQuery;
 
     getBetsUrl: string = "";
     isCalling = false;
-    pageSize: number = 10;
-
-    timeToGetLastBets: number = 2000;
-    timeToRetryGetLastBets: number = 600000;
-    getLastBetsTimeOut: number = 0;
     ajaxRequest: JQueryXHR;
 
     lastTransIdCacheKeyByFilter: string = "";
@@ -43,48 +37,51 @@ class MonitoringBetsView {
     }
 
     private cacheElements = () => {
-        this.$pageSize = $(".page-size");
         this.$msgError = $("#msg-error");
         this.$betListTableContainer = $("#bet-list-table-container");
-
         this.getBetsUrl = $("#get-bets-url").val();
-        this.pageSize = parseInt($(".page-size.active").html());
 
         this.dropdownFilter = $("#monitoring-bets-filter");
-
         this.dropdownMostRecentTicket = $("#most-recent-tickets");
     };
 
     private registerEvents = () => {
-        const self = this;
+        this.registerToggleFilter();
 
         this.dropdownFilter.multiselect({
-            multiple: false,
             maxHeight: 300,
-            numberDisplayed: 1,
-            includeSelectAllOption: false
-        });
-
-        this.dropdownFilter.change(() => {
-            this.loadLastBets(true);
+            onChange: () => this.loadLastBets(true)
         });
 
         this.dropdownMostRecentTicket.multiselect({
-            multiple: false,
-            maxHeight: 300,
-            numberDisplayed: 1,
-            includeSelectAllOption: false
-        });
-
-        this.dropdownMostRecentTicket.change(() => {
-            this.loadLastBets(true);
+            onChange: () => this.loadLastBets(true)
         });
 
         this.autoRefreshComponent.init(new AutoRefreshOption(
-            $("#hidden-On").val(),
-            $("#hidden-Off").val(),
+            $("#hidden-OnText").val(),
+            $("#hidden-OffText").val(),
             () => this.loadLastBets(false)));
     };
+
+    private registerToggleFilter() {
+        const filterContainer = $("#form-monitoring-bets");
+        const iconFilter = $("#icon-filter").click(function () {
+            const isHideFilter = iconFilter.hasClass("icon-arrow-up-drop-circle");
+            if (isHideFilter) {
+                iconFilter
+                    .removeClass("icon-arrow-up-drop-circle")
+                    .addClass("icon-arrow-down-drop-circle")
+                    .attr("title", $("#hidden-ShowFilterText").val());
+                filterContainer.addClass("hide");
+            } else {
+                iconFilter
+                    .removeClass("icon-arrow-down-drop-circle")
+                    .addClass("icon-arrow-up-drop-circle")
+                    .attr("title", $("#hidden-HideFilterText").val());
+                filterContainer.removeClass("hide");
+            }
+        });
+    }
 
     private setLastTransIdByFilter() {
         this.lastTransIdCacheKeyByFilter = $("#last-trans-id-cache-key-by-filter").val();
@@ -97,9 +94,7 @@ class MonitoringBetsView {
             this.localStorage.set(this.latestTransIdCacheKeyByFilter, 0);
         }
 
-        if (this.isCalling) {
-            this.abortRequest();
-        }
+        this.isCalling && this.abortRequest();
 
         this.isCalling = true;
         this.ajaxRequest = AJAXHelper.post(this.getBetsUrl, this.getParam(), this.successGetLastBets, this.completeGetLastBets);
@@ -120,7 +115,7 @@ class MonitoringBetsView {
         const FilterByMembers = selectedFilter.data("filter-by-member");
         const LimitRowCount = this.dropdownMostRecentTicket.find("option:selected:first").val();
 
-        const param = {
+        return {
             FilterId,
             TransId: lastTransId ? lastTransId : "0",
             MemberList,
@@ -133,18 +128,13 @@ class MonitoringBetsView {
             FilterByMembers,
             LatestTransId: latestTransId
         };
-        return param;
     }
 
-
     private abortRequest = () => {
-        if (this.ajaxRequest) {
-            this.ajaxRequest.abort();
-        }
+        this.ajaxRequest && this.ajaxRequest.abort();
     };
 
     private successGetLastBets = (responseHtml: any) => {
-
         if ((responseHtml.ErrorCode && responseHtml.ErrorCode !== "0") ||
             (responseHtml.ErrCode && responseHtml.ErrCode !== "0")) {
             this.showError();

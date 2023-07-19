@@ -18,36 +18,28 @@
         @Resources.LastBets
         <div class="list-icon">
             <ul>
-                <li><span class="icon-arrow-up-drop-circle icon-filter" title="Hide Filter"></span></li>
-                @*<li><span class="icon-arrow-down-drop-circle icon-filter" title="Show Filter"></span></li>*@
+                <li><span class="icon-arrow-up-drop-circle icon-filter" id="icon-filter" title="@Resources.HideFilter"></span></li>
             </ul>
         </div>
     </div>
-    <form class="form-inline filter" role="form" id="form-monitoring-bets">
+    <div class="form-inline filter" id="form-monitoring-bets">
         <div class="form-group">
-
             <label class="label-form-control">@Resources.MyFilters</label>
             <select id="monitoring-bets-filter">
-                @{
-                    if (Model.Filters.Any())
-                    {
-                        foreach (var savedFilter in Model.Filters)
-                        {
-                            var selected = savedFilter.IsDefault ? "selected" : string.Empty;
-                            var members = savedFilter.Members == "" ? "''" : savedFilter.Members;
-                            <option value=@savedFilter.FilterId @selected
-                                    data-filter-id=@savedFilter.FilterId
-                                    data-members=@members
-                                    data-bet-types=@savedFilter.BetTypes
-                                    data-sport-types=@savedFilter.SportTypes
-                                    data-leagues=@savedFilter.Leagues
-                                    data-event-status=@savedFilter.EventStatus
-                                    data-stake=@savedFilter.Stake
-                                    data-filter-by-member=@savedFilter.FilterByMembers>
-                                @savedFilter.FilterName
-                            </option>
-                        }
-                    }
+                @foreach (var savedFilter in Model.Filters)
+                {
+                    <option value="@savedFilter.FilterId"
+                            data-filter-id="@savedFilter.FilterId"
+                            data-members="@savedFilter.Members"
+                            data-bet-types="@savedFilter.BetTypes"
+                            data-sport-types="@savedFilter.SportTypes"
+                            data-leagues="@savedFilter.Leagues"
+                            data-event-status="@savedFilter.EventStatus"
+                            data-stake="@savedFilter.Stake"
+                            data-filter-by-member="@savedFilter.FilterByMembers"
+                            @(savedFilter.IsDefault ? "selected" : string.Empty)>
+                        @savedFilter.FilterName
+                    </option>
                 }
             </select>
         </div>
@@ -65,12 +57,9 @@
         <div class="form-group">
             <span class="ic-copy" title="@Resources.Copy" id="icon-copy"></span>
         </div>
-    </form>
-
-    <div id="msg-error" class="msg msg-error hide">
-        @Resources.FunctionTurnOffError
     </div>
 
+    <div id="msg-error" class="msg msg-error hide">@Resources.FunctionTurnOffError</div>
     <div class="scrollable">
         <table class="tb tb-bordered tb-freeze-header w-full" id="tbl-betlist">
             <thead>
@@ -93,9 +82,10 @@
     <input id="get-bets-url" type="hidden" value="@Url.Action("BetData", $"{AppSettings.BetlistRouting}MonitoringBets")" />
     <input id="last-trans-id-cache-key-by-filter" type="hidden" value="@Model.LastTransIdCacheKeyByFilter" />
     <input id="latest-trans-id-cache-key-by-filter" type="hidden" value="@Model.LatestTransIdCacheKeyByFilter" />
-
 </div>
-@Html.Hidden("hidden-On", Resources.On)
-@Html.Hidden("hidden-Off", Resources.Off)
+@Html.Hidden("hidden-OnText", Resources.On)
+@Html.Hidden("hidden-OffText", Resources.Off)
 @Html.Hidden("hidden-CopyText", Resources.Copy)
 @Html.Hidden("hidden-CopiedText", Resources.Copied)
+@Html.Hidden("hidden-HideFilterText", Resources.HideFilter)
+@Html.Hidden("hidden-ShowFilterText", Resources.ShowFilter)

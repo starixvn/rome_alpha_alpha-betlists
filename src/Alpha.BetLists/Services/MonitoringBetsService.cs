@@ -71,16 +71,6 @@
         {
             var (sportTypes, leagues) = BuildSportTypesAndLeagues(param.Sports);
 
-            var members = "0";
-            if (param.FilterByMembers == FilterByMembersConstants.AllWatchlistMembers)
-            {
-                members = param.InputList;
-            }
-            else if (param.FilterByMembers == FilterByMembersConstants.SpecificMembers)
-            {
-                members = $"{param.InputList ?? string.Empty},{param.MyWatchlist ?? string.Empty}".TrimStart(',');
-            }
-
             return new SavedFilter(
                 0,
                 param.FilterName,
@@ -90,7 +80,7 @@
                 param.LiveStatus,
                 sportTypes,
                 leagues,
-                members,
+                BuildMembers(param.FilterByMembers, param.InputList, param.MyWatchlist),
                 param.FilterByMembers);
         }
 
@@ -114,7 +104,7 @@
                     filterXml.IsLive,
                     sportTypes,
                     leagues,
-                    filterXml.Members,
+                    BuildMembers(filterXml.IsWatchlist, filterXml.Members, filterXml.MyWatchlistMembers),
                     filterXml.IsWatchlist);
             });
         }
@@ -146,6 +136,21 @@
             var leagueIds = leagues.Count == 0 ? "0" : string.Join(",", leagues);
 
             return Tuple.Create(sportTypeIds, leagueIds);
+        }
+
+        private static string BuildMembers(byte filterByMembers, string members, string myWatchlistMembers)
+        {
+            if (filterByMembers == FilterByMembersConstants.AllMembers)
+            {
+                return members;
+            }
+
+            if (filterByMembers == FilterByMembersConstants.AllWatchlistMembers)
+            {
+                return members;
+            }
+
+            return $"{members ?? string.Empty},{myWatchlistMembers ?? string.Empty}".TrimStart(',');
         }
 
         public async Task<IEnumerable<FilterConfiguration>> GetFilters(int custId, int subAccId)

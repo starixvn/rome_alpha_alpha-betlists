@@ -16,6 +16,9 @@
         [XmlAttribute(AttributeName = "members")]
         public string Members { get; set; }
 
+        [XmlAttribute(AttributeName = "wl")]
+        public string MyWatchlistMembers { get; set; }
+
         [XmlAttribute(AttributeName = "iWL")]
         public byte IsWatchlist { get; set; }
 

@@ -185,7 +185,7 @@ var FilterConfigurationView = /** @class */ (function () {
     FilterConfigurationView.prototype.handleApplyFilter = function () {
         var _this = this;
         this.addFilterFormData.filterName = "Default";
-        AJAXHelper.postJSON("ApplyFilter", this.addFilterFormData, function (result) {
+        AJAXHelper.post("ApplyFilter", this.addFilterFormData, function (result) {
             if (result.ErrCode) {
                 _this.inlineMessage.showError(result.ErrMsg);
             }
@@ -201,7 +201,7 @@ var FilterConfigurationView = /** @class */ (function () {
         var formDataPopup = this.getFormDataPopup();
         if (formDataPopup) {
             this.addFilterFormData = $.extend(this.addFilterFormData, formDataPopup);
-            AJAXHelper.postJSON("AddFilter", this.addFilterFormData, function (result) {
+            AJAXHelper.post("AddFilter", this.addFilterFormData, function (result) {
                 _this.inlineMessagePopup.show(result);
                 if (!result.ErrCode) {
                     _this.addFilterFormData = null;

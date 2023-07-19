@@ -4,58 +4,37 @@ var MonitoringBetsView = /** @class */ (function () {
         var _this = this;
         this.getBetsUrl = "";
         this.isCalling = false;
-        this.pageSize = 10;
-        this.timeToGetLastBets = 2000;
-        this.timeToRetryGetLastBets = 600000;
-        this.getLastBetsTimeOut = 0;
         this.lastTransIdCacheKeyByFilter = "";
         this.latestTransIdCacheKeyByFilter = "";
         this.cacheElements = function () {
-            _this.$pageSize = $(".page-size");
             _this.$msgError = $("#msg-error");
             _this.$betListTableContainer = $("#bet-list-table-container");
             _this.getBetsUrl = $("#get-bets-url").val();
-            _this.pageSize = parseInt($(".page-size.active").html());
             _this.dropdownFilter = $("#monitoring-bets-filter");
             _this.dropdownMostRecentTicket = $("#most-recent-tickets");
         };
         this.registerEvents = function () {
-            var self = _this;
+            _this.registerToggleFilter();
             _this.dropdownFilter.multiselect({
-                multiple: false,
                 maxHeight: 300,
-                numberDisplayed: 1,
-                includeSelectAllOption: false
-            });
-            _this.dropdownFilter.change(function () {
-                _this.loadLastBets(true);
+                onChange: function () { return _this.loadLastBets(true); }
             });
             _this.dropdownMostRecentTicket.multiselect({
-                multiple: false,
-                maxHeight: 300,
-                numberDisplayed: 1,
-                includeSelectAllOption: false
+                onChange: function () { return _this.loadLastBets(true); }
             });
-            _this.dropdownMostRecentTicket.change(function () {
-                _this.loadLastBets(true);
-            });
-            _this.autoRefreshComponent.init(new AutoRefreshOption($("#hidden-On").val(), $("#hidden-Off").val(), function () { return _this.loadLastBets(false); }));
+            _this.autoRefreshComponent.init(new AutoRefreshOption($("#hidden-OnText").val(), $("#hidden-OffText").val(), function () { return _this.loadLastBets(false); }));
         };
         this.loadLastBets = function (isAutoLoad) {
             if (!isAutoLoad) {
                 _this.localStorage.set(_this.lastTransIdCacheKeyByFilter, 0);
                 _this.localStorage.set(_this.latestTransIdCacheKeyByFilter, 0);
             }
-            if (_this.isCalling) {
-                _this.abortRequest();
-            }
+            _this.isCalling && _this.abortRequest();
             _this.isCalling = true;
             _this.ajaxRequest = AJAXHelper.post(_this.getBetsUrl, _this.getParam(), _this.successGetLastBets, _this.completeGetLastBets);
         };
         this.abortRequest = function () {
-            if (_this.ajaxRequest) {
-                _this.ajaxRequest.abort();
-            }
+            _this.ajaxRequest && _this.ajaxRequest.abort();
         };
         this.successGetLastBets = function (responseHtml) {
             if ((responseHtml.ErrorCode && responseHtml.ErrorCode !== "0") ||
@@ -96,6 +75,26 @@ var MonitoringBetsView = /** @class */ (function () {
         this.autoRefreshComponent.start();
         this.monitoringBetsCopyHtml.init();
     };
+    MonitoringBetsView.prototype.registerToggleFilter = function () {
+        var filterContainer = $("#form-monitoring-bets");
+        var iconFilter = $("#icon-filter").click(function () {
+            var isHideFilter = iconFilter.hasClass("icon-arrow-up-drop-circle");
+            if (isHideFilter) {
+                iconFilter
+                    .removeClass("icon-arrow-up-drop-circle")
+                    .addClass("icon-arrow-down-drop-circle")
+                    .attr("title", $("#hidden-ShowFilterText").val());
+                filterContainer.addClass("hide");
+            }
+            else {
+                iconFilter
+                    .removeClass("icon-arrow-down-drop-circle")
+                    .addClass("icon-arrow-up-drop-circle")
+                    .attr("title", $("#hidden-HideFilterText").val());
+                filterContainer.removeClass("hide");
+            }
+        });
+    };
     MonitoringBetsView.prototype.setLastTransIdByFilter = function () {
         this.lastTransIdCacheKeyByFilter = $("#last-trans-id-cache-key-by-filter").val();
         this.latestTransIdCacheKeyByFilter = $("#latest-trans-id-cache-key-by-filter").val();
@@ -113,7 +112,7 @@ var MonitoringBetsView = /** @class */ (function () {
         var MinStake = selectedFilter.data("stake");
         var FilterByMembers = selectedFilter.data("filter-by-member");
         var LimitRowCount = this.dropdownMostRecentTicket.find("option:selected:first").val();
-        var param = {
+        return {
             FilterId: FilterId,
             TransId: lastTransId ? lastTransId : "0",
             MemberList: MemberList,
@@ -126,7 +125,6 @@ var MonitoringBetsView = /** @class */ (function () {
             FilterByMembers: FilterByMembers,
             LatestTransId: latestTransId
         };
-        return param;
     };
     return MonitoringBetsView;
 }());

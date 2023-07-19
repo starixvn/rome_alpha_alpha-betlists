@@ -6,26 +6,6 @@ var AJAXHelper = /** @class */ (function () {
         var _this = this;
         $.getJSON(url, onSuccess).fail(function (jqXHR) { return _this.handleOnFail(jqXHR); });
     };
-    AJAXHelper.postJSON = function (url, formData, onSuccess, onComplete) {
-        var _this = this;
-        $.blockUI();
-        return $.ajax({
-            url: url,
-            headers: {
-                __RequestVerificationToken: $("input[name='__RequestVerificationToken']").val(),
-                'X-Requested-With': 'XMLHttpRequest'
-            },
-            dataType: "json",
-            type: "POST",
-            data: formData,
-            success: function (result) {
-                onSuccess(result);
-                $.unblockUI();
-            },
-            error: function (jqXHR) { return _this.handleOnFail(jqXHR); },
-            complete: onComplete
-        });
-    };
     AJAXHelper.post = function (url, formData, onSuccess, onComplete) {
         var _this = this;
         $.blockUI();
@@ -47,10 +27,10 @@ var AJAXHelper = /** @class */ (function () {
     };
     AJAXHelper.handleOnFail = function (jqXHR) {
         $.unblockUI();
-        if (jqXHR.statusText === "abort") {
-            return;
-        }
         if (jqXHR) {
+            if (jqXHR.statusText === "abort") {
+                return;
+            }
             if (jqXHR.status === 401) {
                 window.top["age"].SignOut();
             }
@@ -61,6 +41,25 @@ var AJAXHelper = /** @class */ (function () {
                 }
             }
         }
+    };
+    AJAXHelper.get = function (url, formData, onSuccess, onComplete) {
+        var _this = this;
+        $.blockUI();
+        return $.ajax({
+            url: url,
+            headers: {
+                __RequestVerificationToken: $("input[name='__RequestVerificationToken']").val(),
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            type: "GET",
+            data: formData,
+            success: function (result) {
+                onSuccess(result);
+                $.unblockUI();
+            },
+            error: function (jqXHR) { return _this.handleOnFail(jqXHR); },
+            complete: onComplete
+        });
     };
     return AJAXHelper;
 }());
@@ -173,7 +172,7 @@ var ManageFiltersView = /** @class */ (function () {
     };
     ManageFiltersView.prototype.handleDeleteFilters = function (ids) {
         var _this = this;
-        AJAXHelper.postJSON("DeleteFilters", { ids: ids }, function (results) {
+        AJAXHelper.post("DeleteFilters", { ids: ids }, function (results) {
             if ($.isArray(results)) {
                 var errors_1 = [];
                 results.forEach(function (item) {
@@ -214,7 +213,7 @@ var ManageFiltersView = /** @class */ (function () {
             this.inlineMessageComponent.showError($("#hidden-noChangeToUpdate").val());
         }
         else {
-            AJAXHelper.postJSON("UpdateFilter", formData, function (result) {
+            AJAXHelper.post("UpdateFilter", formData, function (result) {
                 _this.inlineMessageComponent.show(result);
                 result.ErrCode || Common.Utils.ReloadPageAfterTimeout();
             });

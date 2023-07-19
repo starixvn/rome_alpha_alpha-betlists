@@ -79,7 +79,7 @@ var ManageFiltersView = /** @class */ (function () {
     };
     ManageFiltersView.prototype.handleDeleteFilters = function (ids) {
         var _this = this;
-        AJAXHelper.postJSON("DeleteFilters", { ids: ids }, function (results) {
+        AJAXHelper.post("DeleteFilters", { ids: ids }, function (results) {
             if ($.isArray(results)) {
                 var errors_1 = [];
                 results.forEach(function (item) {
@@ -120,7 +120,7 @@ var ManageFiltersView = /** @class */ (function () {
             this.inlineMessageComponent.showError($("#hidden-noChangeToUpdate").val());
         }
         else {
-            AJAXHelper.postJSON("UpdateFilter", formData, function (result) {
+            AJAXHelper.post("UpdateFilter", formData, function (result) {
                 _this.inlineMessageComponent.show(result);
                 result.ErrCode || Common.Utils.ReloadPageAfterTimeout();
             });

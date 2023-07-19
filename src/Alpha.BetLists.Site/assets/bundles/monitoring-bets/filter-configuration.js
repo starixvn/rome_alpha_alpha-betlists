@@ -6,23 +6,23 @@ var AJAXHelper = /** @class */ (function () {
         var _this = this;
         $.getJSON(url, onSuccess).fail(function (jqXHR) { return _this.handleOnFail(jqXHR); });
     };
-    AJAXHelper.post = function (url, formData, onSuccess, onComplete) {
+    AJAXHelper.postJSON = function (url, formData, onSuccess) {
         var _this = this;
         $.blockUI();
-        return $.ajax({
+        $.ajax({
             url: url,
             headers: {
                 __RequestVerificationToken: $("input[name='__RequestVerificationToken']").val(),
                 'X-Requested-With': 'XMLHttpRequest'
             },
+            dataType: "json",
             type: "POST",
             data: formData,
             success: function (result) {
                 onSuccess(result);
                 $.unblockUI();
             },
-            error: function (jqXHR) { return _this.handleOnFail(jqXHR); },
-            complete: onComplete
+            error: function (jqXHR) { return _this.handleOnFail(jqXHR); }
         });
     };
     AJAXHelper.post = function (url, formData, onSuccess, onComplete) {
@@ -47,9 +47,6 @@ var AJAXHelper = /** @class */ (function () {
     AJAXHelper.handleOnFail = function (jqXHR) {
         $.unblockUI();
         if (jqXHR) {
-            if (jqXHR.statusText === "abort") {
-                return;
-            }
             if (jqXHR.status === 401) {
                 window.top["age"].SignOut();
             }
@@ -60,25 +57,6 @@ var AJAXHelper = /** @class */ (function () {
                 }
             }
         }
-    };
-    AJAXHelper.get = function (url, formData, onSuccess, onComplete) {
-        var _this = this;
-        $.blockUI();
-        return $.ajax({
-            url: url,
-            headers: {
-                __RequestVerificationToken: $("input[name='__RequestVerificationToken']").val(),
-                'X-Requested-With': 'XMLHttpRequest'
-            },
-            type: "GET",
-            data: formData,
-            success: function (result) {
-                onSuccess(result);
-                $.unblockUI();
-            },
-            error: function (jqXHR) { return _this.handleOnFail(jqXHR); },
-            complete: onComplete
-        });
     };
     return AJAXHelper;
 }());
