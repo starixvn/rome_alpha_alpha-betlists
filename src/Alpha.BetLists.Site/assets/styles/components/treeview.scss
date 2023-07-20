@@ -1,6 +1,7 @@
 ﻿@import "../_mixins.scss";
 :root {
     --icon-dropdown-border-color: #444;
+    --icon-loading: var(--icon-dropdown-border-color);
     --tree-view-padding: 11px;
     --icon-close-color: #808080;
     --border-radius: 3px;
@@ -11,6 +12,7 @@
 }
 :root [data-theme='light'] {
     --icon-dropdown-border-color: #444;
+    --icon-loading: var(--icon-dropdown-border-color);
     --tree-view-padding: 11px;
     --icon-close-color: #808080;
     --border-radius: 3px;
@@ -21,6 +23,7 @@
 }
 :root [data-theme='dark'] {
     --icon-dropdown-border-color: #EDEDED;
+    --icon-loading: var(--icon-dropdown-border-color);
     --tree-view-padding: 11px;
     --icon-close-color: #808080;
     --border-radius: 3px;
@@ -86,6 +89,16 @@
     padding: var(--tree-view-padding) 0 0 var(--tree-view-padding);
     border-radius: var(--border-radius);
     margin-bottom: 24px;
+
+    .lds-spinner {
+        color: var(--icon-loading);
+
+        span {
+            &:after {
+                background: var(--icon-loading);
+            }
+        }
+    }
 
     .filter-box {
         margin-right: var(--tree-view-padding);

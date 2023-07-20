@@ -243,7 +243,7 @@ var SportLeagueMatchTreeViewComponent = /** @class */ (function () {
         });
     };
     SportLeagueMatchTreeViewComponent.prototype.addIconLoading = function () {
-        this.checkboxListContainer.html('<li><span class="icon-loading"></span></li>');
+        this.checkboxListContainer.html('<li><span class="lds-spinner"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></li>');
         this.disableFilerAndSelectAll(true);
     };
     SportLeagueMatchTreeViewComponent.prototype.renderTreeNodeList = function (listData) {

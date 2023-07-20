@@ -311,7 +311,7 @@ class SportLeagueMatchTreeViewComponent {
     }
 
     public addIconLoading() {
-        this.checkboxListContainer.html('<li><span class="icon-loading"></span></li>');
+        this.checkboxListContainer.html('<li><span class="lds-spinner"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></li>');
         this.disableFilerAndSelectAll(true);
     }
 

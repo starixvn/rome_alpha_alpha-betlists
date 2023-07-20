@@ -24,7 +24,7 @@
         @Html.ActionLink(Resources.Back, "Index", null, new { @class = "button-cancel" })
         <button type="button" class="button-remove" id="btn-delete-all-filters" @(hasData ? string.Empty : "disabled")>@Resources.RemoveAllFilters</button>
     </div>
-    <table class="tb tb-bordered w-full" id="table-manage-filters">
+    <table class="tb tb-bordered tb-hover w-full" id="table-manage-filters">
         <thead>
             <tr>
                 <th>@Resources.FilterName</th>
