@@ -1,14 +1,10 @@
 ﻿namespace Alpha.BetLists.Site.ViewModels.MonitoringBets
 {
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Web.Mvc;
-    using Alpha.BetLists.Services;
     using Alpha.BetLists.Site.Requests.MonitoringBets;
     using BetLists.Models;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
-    using Requests.LastBets;
 
     public class FilteringBetDataViewModel : BetListBaseViewModel
     {
@@ -28,7 +24,6 @@
 
             TotalColumn = 8;
         }
-
 
         public long LatestTransId { get; }
 

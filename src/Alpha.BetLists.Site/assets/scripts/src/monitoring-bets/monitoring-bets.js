@@ -17,17 +17,16 @@ var MonitoringBetsView = /** @class */ (function () {
             _this.registerToggleFilter();
             _this.dropdownFilter.multiselect({
                 maxHeight: 300,
-                onChange: function () { return _this.loadLastBets(false); }
+                onChange: function () { return _this.loadLastBets(true); }
             });
             _this.dropdownMostRecentTicket.multiselect({
-                onChange: function () { return _this.loadLastBets(false); }
+                onChange: function () { return _this.loadLastBets(true); }
             });
-            _this.autoRefreshComponent.init(new AutoRefreshOption($("#hidden-OnText").val(), $("#hidden-OffText").val(), function () { return _this.loadLastBets(true); }));
+            _this.autoRefreshComponent.init(new AutoRefreshOption($("#hidden-OnText").val(), $("#hidden-OffText").val(), function () { return _this.loadLastBets(false); }));
         };
-        this.loadLastBets = function (isAutoLoad) {
-            if (!isAutoLoad) {
-                _this.localStorage.set(_this.lastTransIdCacheKeyByFilter, 0);
-                _this.localStorage.set(_this.latestTransIdCacheKeyByFilter, 0);
+        this.loadLastBets = function (isResetTransId) {
+            if (isResetTransId) {
+                _this.setTransId(0, 0);
             }
             _this.isCalling && _this.abortRequest();
             _this.isCalling = true;
@@ -47,14 +46,12 @@ var MonitoringBetsView = /** @class */ (function () {
                 return;
             }
             _this.$betListTableContainer.html(responseHtml);
+            var lastTransIdCacheKeyByFilter = _this.$betListTableContainer.find("#new-last-trans-id-by-filter").val();
+            var latestTransIdCacheKeyByFilter = _this.$betListTableContainer.find("#new-latest-trans-id-by-filter").val();
+            _this.setTransIdCacheKeyByFilter(lastTransIdCacheKeyByFilter, latestTransIdCacheKeyByFilter);
             var lastTransId = _this.$betListTableContainer.find("#last-trans-id").val();
-            _this.lastTransIdCacheKeyByFilter = _this.$betListTableContainer.find("#new-last-trans-id-by-filter").val();
-            if (lastTransId > 0) {
-                _this.localStorage.set(_this.lastTransIdCacheKeyByFilter, lastTransId);
-            }
-            _this.latestTransIdCacheKeyByFilter = _this.$betListTableContainer.find("#new-latest-trans-id-by-filter").val();
             var latestTransId = _this.$betListTableContainer.find("#latest-trans-id").val();
-            _this.localStorage.set(_this.latestTransIdCacheKeyByFilter, latestTransId);
+            _this.setTransId(lastTransId, latestTransId);
             _this.isCalling = false;
         };
         this.showError = function () {
@@ -71,7 +68,8 @@ var MonitoringBetsView = /** @class */ (function () {
         this.localStorage = alphaReports.localStorage;
         this.cacheElements();
         this.registerEvents();
-        this.setLastTransIdByFilter();
+        this.setTransIdCacheKeyByFilter($("#last-trans-id-cache-key-by-filter").val(), $("#latest-trans-id-cache-key-by-filter").val());
+        this.setTransId($("#last-trans-id").val(), $("#latest-trans-id").val());
         this.autoRefreshComponent.start();
         this.monitoringBetsCopyHtml.init();
     };
@@ -95,9 +93,13 @@ var MonitoringBetsView = /** @class */ (function () {
             }
         });
     };
-    MonitoringBetsView.prototype.setLastTransIdByFilter = function () {
-        this.lastTransIdCacheKeyByFilter = $("#last-trans-id-cache-key-by-filter").val();
-        this.latestTransIdCacheKeyByFilter = $("#latest-trans-id-cache-key-by-filter").val();
+    MonitoringBetsView.prototype.setTransIdCacheKeyByFilter = function (lastTransId, lastestTransId) {
+        this.lastTransIdCacheKeyByFilter = lastTransId;
+        this.latestTransIdCacheKeyByFilter = lastestTransId;
+    };
+    MonitoringBetsView.prototype.setTransId = function (lastTransId, lastestTransId) {
+        this.localStorage.set(this.lastTransIdCacheKeyByFilter, lastTransId);
+        this.localStorage.set(this.latestTransIdCacheKeyByFilter, lastestTransId);
     };
     MonitoringBetsView.prototype.getParam = function () {
         var lastTransId = this.localStorage.get(this.lastTransIdCacheKeyByFilter);
@@ -114,7 +116,7 @@ var MonitoringBetsView = /** @class */ (function () {
         var LimitRowCount = this.dropdownMostRecentTicket.find("option:selected:first").val();
         return {
             FilterId: FilterId,
-            TransId: lastTransId ? lastTransId : "0",
+            TransId: lastTransId ? lastTransId : 0,
             MemberList: MemberList,
             BetTypeList: BetTypeList,
             SportTypeList: SportTypeList,

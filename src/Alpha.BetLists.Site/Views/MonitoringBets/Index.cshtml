@@ -79,9 +79,12 @@
             </tbody>
         </table>
     </div>
-    <input id="get-bets-url" type="hidden" value="@Url.Action("BetData", $"{AppSettings.BetlistRouting}MonitoringBets")" />
-    <input id="last-trans-id-cache-key-by-filter" type="hidden" value="@Model.LastTransIdCacheKeyByFilter" />
-    <input id="latest-trans-id-cache-key-by-filter" type="hidden" value="@Model.LatestTransIdCacheKeyByFilter" />
+    
+    @Html.Hidden("get-bets-url", @Url.Action("BetData", $"{AppSettings.BetlistRouting}MonitoringBets"))
+    @Html.Hidden("last-trans-id", Model.LastTransId.ToString())
+    @Html.Hidden("latest-trans-id", Model.LatestTransId.ToString())
+    @Html.Hidden("last-trans-id-cache-key-by-filter", Model.LastTransIdCacheKeyByFilter.ToString())
+    @Html.Hidden("latest-trans-id-cache-key-by-filter", Model.LatestTransIdCacheKeyByFilter.ToString())
 </div>
 @Html.Hidden("betlist-path", Response.ApplyAppPathModifier($"~/{AppSettings.BetlistRouting}"))
 @Html.Hidden("old-main-path", Model.OldMainPath)

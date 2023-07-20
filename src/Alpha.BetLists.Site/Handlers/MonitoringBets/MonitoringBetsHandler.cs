@@ -68,6 +68,7 @@
 
             var filterId = 0;
             BetListData betListData = null;
+            long latestTransId = 0;
             if (filters.Any())
             {
                 var defaultFilter = filters.FirstOrDefault(f => f.IsDefault) ?? filters.First();
@@ -96,9 +97,13 @@
                 betListData = new BetListData(tickets, null);
 
                 WriteLog(message.CustId, tickets);
+                if (tickets.Any())
+                {
+                    latestTransId = tickets.First().TransId;
+                }
             }
 
-            return new MonitoringBetsViewModel(message, filters, betListData, Builder, TicketHelper,
+            return new MonitoringBetsViewModel(latestTransId, message, filters, betListData, Builder, TicketHelper,
                 encryptionService.CfsEncode($"LastTransId_{message.CustId}_{filterId}", numberOfEncodeResult: 6),
                 encryptionService.CfsEncode($"LatestTransId_{message.CustId}_{filterId}", numberOfEncodeResult: 6));
         }
@@ -150,21 +155,16 @@
             return Task.FromResult(new Result());
         }
 
-        private void UpdateInWatchlistState(IEnumerable<long> memberInWatchlistIds, IEnumerable<TicketDto> tickets)
+        private void UpdateInWatchlistState(List<int> memberInWatchlistIds, IEnumerable<TicketDto> tickets)
         {
             if (memberInWatchlistIds.Any())
             {
-                Dictionary<long, bool> memberInWatchlistDictionary = new Dictionary<long, bool>();
-                foreach (var memberId in memberInWatchlistIds)
-                {
-                    memberInWatchlistDictionary.Add(memberId, true);
-                }
-
+                var memberInWatchlistDictionary = memberInWatchlistIds.ToDictionary(id => id, id => true);
                 foreach (var ticket in tickets)
                 {
-                    if (memberInWatchlistDictionary.ContainsKey(ticket.CustId))
+                    if (memberInWatchlistDictionary.ContainsKey((int)ticket.CustId))
                     {
-                        ticket.IsInWatchlist = memberInWatchlistDictionary[ticket.CustId];
+                        ticket.IsInWatchlist = memberInWatchlistDictionary[(int)ticket.CustId];
                     }
                 }
             }
@@ -172,7 +172,7 @@
 
         public async Task<FilteringBetDataViewModel> Handle(GetLastFilteringBetsQuery message)
         {
-            IEnumerable<long> memberInWatchlistIds = (await monitoringBetService.GetMyWatchlistMembers(message.ViewerId)).Select(member => member.CustId);
+            var memberInWatchlistIds = (await monitoringBetService.GetMyWatchlistMembers(message.ViewerId)).Select(member => member.CustId).ToList();
             if (message.FilterByMembers == FilterByMembersConstants.AllWatchlistMembers)
             {
                 message.MemberList = $"{message.MemberList},{string.Join(",", memberInWatchlistIds)}";

@@ -962,12 +962,6 @@
     <Content Include="assets\styles\last-bets.min.css">
       <DependentUpon>last-bets.css</DependentUpon>
     </Content>
-    <Content Include="assets\styles\monitoring-bets.css">
-      <DependentUpon>monitoring-bets.scss</DependentUpon>
-    </Content>
-    <Content Include="assets\styles\monitoring-bets.min.css">
-      <DependentUpon>monitoring-bets.css</DependentUpon>
-    </Content>
     <Content Include="assets\styles\monitoring-bets\filter-configuration.css">
       <DependentUpon>filter-configuration.scss</DependentUpon>
     </Content>
@@ -980,6 +974,8 @@
     <Content Include="assets\styles\monitoring-bets\manage-filters.min.css">
       <DependentUpon>manage-filters.css</DependentUpon>
     </Content>
+    <Content Include="assets\styles\monitoring-bets\monitoring-bets.css" />
+    <Content Include="assets\styles\monitoring-bets\monitoring-bets.min.css" />
     <Content Include="assets\styles\parlay-detail-dark.css">
       <DependentUpon>parlay-detail-dark.scss</DependentUpon>
     </Content>
@@ -1097,7 +1093,6 @@
     <Content Include="assets\styles\_variables-dark.scss" />
     <Content Include="assets\styles\bet-list-dark.scss" />
     <Content Include="assets\styles\last-bets-dark.scss" />
-    <Content Include="assets\styles\monitoring-bets.scss" />
     <Content Include="assets\styles\parlay-detail-dark.scss" />
     <Content Include="App_Data\ProductSection.config" />
     <Content Include="WhoAmI.aspx" />
@@ -1137,6 +1132,7 @@
     <Content Include="assets\styles\winloss.scss" />
     <Content Include="App_Code\Components\UsernameTagsInput.cshtml" />
     <Content Include="App_Code\Common\SwitchVersionButton.cshtml" />
+    <Content Include="assets\styles\monitoring-bets\monitoring-bets.scss" />
     <Content Include="App_Data\activitytracking.staging.json">
       <DependentUpon>activitytracking.json</DependentUpon>
     </Content>

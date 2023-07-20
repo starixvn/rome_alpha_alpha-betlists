@@ -1,19 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Alpha.BetLists.Params.MonitoringBets
+﻿namespace Alpha.BetLists.Params.MonitoringBets
 {
     public class GetLastFilteringBetsParams
     {
-
-        public GetLastFilteringBetsParams(int custId, long transId, 
-            string memberList, string sportTypeList, 
-            string leagueList, string betTypeList,
+        public GetLastFilteringBetsParams(
+            int custId,
+            long transId, 
+            string memberList,
+            string sportTypeList, 
+            string leagueList,
+            string betTypeList,
             byte liveIndicator,
-            decimal minStake, int limitRowCount)
+            decimal minStake,
+            int limitRowCount)
         {
             CustId = custId;
             TransId = transId;

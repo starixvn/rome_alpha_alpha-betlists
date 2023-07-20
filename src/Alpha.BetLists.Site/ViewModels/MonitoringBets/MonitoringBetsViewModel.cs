@@ -1,6 +1,7 @@
 ﻿namespace Alpha.BetLists.Site.ViewModels.MonitoringBets
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Web.Mvc;
     using Alpha.BetLists.Models;
     using Alpha.BetLists.Models.MonitoringBets;
@@ -10,7 +11,7 @@
 
     public class MonitoringBetsViewModel : BetListBaseViewModel
     {
-        public MonitoringBetsViewModel(
+        public MonitoringBetsViewModel(long latestTransId,
             MonitoringBetsQuery query,
             IEnumerable<SavedFilter> filters,
             BetListData betListData,
@@ -20,6 +21,7 @@
             string latestTransIdCacheKeyByFilter,
             bool showMemberName = false) : base(query, betListData, builder, ticketHelper, showMemberName)
         {
+            LatestTransId = latestTransId;
             Filters = filters;
             TotalColumn = 8;
             LastTransIdCacheKeyByFilter = lastTransIdCacheKeyByFilter;
@@ -31,6 +33,12 @@
         public string LastTransIdCacheKeyByFilter { get; }
 
         public string LatestTransIdCacheKeyByFilter { get; }
+        
+        public long LatestTransId { get; }
+        public long LastTransId
+            => BetListData.Tickets.Any()
+            ? BetListData.Tickets.ElementAt(BetListData.Total - 1).TransId
+            : 0;
 
         public int[] AutoRefreshSeconds { get; } = new[] { 30, 60, 90 };
 

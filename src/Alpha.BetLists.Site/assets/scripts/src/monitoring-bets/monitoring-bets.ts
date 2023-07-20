@@ -30,7 +30,8 @@ class MonitoringBetsView {
         
         this.cacheElements();
         this.registerEvents();
-        this.setLastTransIdByFilter();
+        this.setTransIdCacheKeyByFilter($("#last-trans-id-cache-key-by-filter").val(), $("#latest-trans-id-cache-key-by-filter").val());
+        this.setTransId($("#last-trans-id").val(), $("#latest-trans-id").val());
         
         this.autoRefreshComponent.start();
         this.monitoringBetsCopyHtml.init();
@@ -50,17 +51,17 @@ class MonitoringBetsView {
 
         this.dropdownFilter.multiselect({
             maxHeight: 300,
-            onChange: () => this.loadLastBets(false)
+            onChange: () => this.loadLastBets(true)
         });
 
         this.dropdownMostRecentTicket.multiselect({
-            onChange: () => this.loadLastBets(false)
+            onChange: () => this.loadLastBets(true)
         });
 
         this.autoRefreshComponent.init(new AutoRefreshOption(
             $("#hidden-OnText").val(),
             $("#hidden-OffText").val(),
-            () => this.loadLastBets(true)));
+            () => this.loadLastBets(false)));
     };
 
     private registerToggleFilter() {
@@ -83,15 +84,19 @@ class MonitoringBetsView {
         });
     }
 
-    private setLastTransIdByFilter() {
-        this.lastTransIdCacheKeyByFilter = $("#last-trans-id-cache-key-by-filter").val();
-        this.latestTransIdCacheKeyByFilter = $("#latest-trans-id-cache-key-by-filter").val();
+    private setTransIdCacheKeyByFilter(lastTransId, lastestTransId) {
+        this.lastTransIdCacheKeyByFilter = lastTransId;
+        this.latestTransIdCacheKeyByFilter = lastestTransId;
     }
 
-    private loadLastBets = (isAutoLoad: boolean) => {
-        if (!isAutoLoad) {
-            this.localStorage.set(this.lastTransIdCacheKeyByFilter, 0);
-            this.localStorage.set(this.latestTransIdCacheKeyByFilter, 0);
+    private setTransId(lastTransId, lastestTransId) {
+        this.localStorage.set(this.lastTransIdCacheKeyByFilter, lastTransId);
+        this.localStorage.set(this.latestTransIdCacheKeyByFilter, lastestTransId);
+    }
+
+    private loadLastBets = (isResetTransId: boolean) => {
+        if (isResetTransId) {
+            this.setTransId(0, 0);
         }
 
         this.isCalling && this.abortRequest();
@@ -117,7 +122,7 @@ class MonitoringBetsView {
 
         return {
             FilterId,
-            TransId: lastTransId ? lastTransId : "0",
+            TransId: lastTransId ? lastTransId : 0,
             MemberList,
             BetTypeList,
             SportTypeList,
@@ -149,19 +154,13 @@ class MonitoringBetsView {
 
         this.$betListTableContainer.html(responseHtml);
 
+        const lastTransIdCacheKeyByFilter = this.$betListTableContainer.find("#new-last-trans-id-by-filter").val();
+        const latestTransIdCacheKeyByFilter = this.$betListTableContainer.find("#new-latest-trans-id-by-filter").val();
+        this.setTransIdCacheKeyByFilter(lastTransIdCacheKeyByFilter, latestTransIdCacheKeyByFilter)
+
         const lastTransId = this.$betListTableContainer.find("#last-trans-id").val();
-
-        this.lastTransIdCacheKeyByFilter = this.$betListTableContainer.find("#new-last-trans-id-by-filter").val();
-
-        if (lastTransId > 0) {
-            this.localStorage.set(this.lastTransIdCacheKeyByFilter, lastTransId);
-        }
-
-        this.latestTransIdCacheKeyByFilter = this.$betListTableContainer.find("#new-latest-trans-id-by-filter").val();
-
         const latestTransId = this.$betListTableContainer.find("#latest-trans-id").val();
-
-        this.localStorage.set(this.latestTransIdCacheKeyByFilter, latestTransId);
+        this.setTransId(lastTransId, latestTransId);
 
         this.isCalling = false;
     };
