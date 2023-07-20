@@ -36,8 +36,8 @@
         Task<IEnumerable<MemberErrCode>> CheckUsernames(int agentId, string usernames);
 
         Task<IEnumerable<MyWatchlistMember>> GetMyWatchlistMembers(int agentId);
-        Task<IEnumerable<TicketDto>> GetLastFilteringBets(GetLastFilteringBetsParams param);
 
+        Task<IEnumerable<TicketDto>> GetLastFilteringBets(GetLastFilteringBetsParams param);
     }
 
     public class MonitoringBetsServiceImpl : MonitoringBetsService
@@ -296,34 +296,18 @@
         public Task<IEnumerable<MyWatchlistMember>> GetMyWatchlistMembers(int agentId)
             => dynamicRepository.FetchAsync<MyWatchlistMember>(new GetMonitoredWatchlistMembersCriteria(agentId));
 
-        public async Task<IEnumerable<TicketDto>> GetLastFilteringBets(GetLastFilteringBetsParams param)
-        {
-            var criteria = new GetLastFilteringBetsCriteria(param.CustId, param.TransId,
-                param.MemberList, param.SportTypeList,
-                param.LeagueList, param.BetTypeList,
-                param.LiveIndicator,
-                param.MinStake, param.LimitRowCount);
-
-            partialUMService.ThrowIfUM(criteria.GetSettingKey());
-
-            var tickets = await dynamicRepository.FetchAsync<TicketDto>(criteria);
-
-            if (tickets.Any())
-            {
-                var cacheTime = AppSettings.RunningMatchCacheTime;
-                var outrightMatches = await lastBetsService.GetRunningOutrightMatches(cacheTime);
-                var otherMatches = await lastBetsService.GetRunningOtherMatches(cacheTime);
-
-                foreach (var ticket in tickets)
-                {
-                    var matches = BetTypeHelper.IsOutRight(ticket.BetTypeId) ? outrightMatches : otherMatches;
-                    var matchInfo = lastBetsService.GetMatchInfo(ticket.MatchId, matches, cacheTime);
-
-                    LastBetsServiceImpl.AssignMatchInfoToTicket(ticket, matchInfo);
-                }
-            }
-
-            return tickets;
-        }
+        public Task<IEnumerable<TicketDto>> GetLastFilteringBets(GetLastFilteringBetsParams param)
+            => lastBetsService.GetLastBets(
+                new GetLastFilteringBetsCriteria(
+                    param.CustId,
+                    param.TransId,
+                    param.MemberList,
+                    param.SportTypeList,
+                    param.LeagueList,
+                    param.BetTypeList,
+                    param.LiveIndicator,
+                    param.MinStake,
+                    param.LimitRowCount),
+                AppSettings.RunningMatchCacheTime);
     }
 }

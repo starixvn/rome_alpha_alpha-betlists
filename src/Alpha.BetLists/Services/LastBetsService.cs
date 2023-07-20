@@ -17,6 +17,8 @@
     {
         Task<IEnumerable<TicketDto>> GetLastBets(GetLastBetsParam param);
 
+        Task<IEnumerable<TicketDto>> GetLastBets(ICriteria criteria, int cacheTime);
+
         bool CanViewLastBets(CheckCanViewLastBetsParam param);
 
         MatchInfo GetMatchInfoById(int matchId, int cacheTime);
@@ -49,19 +51,25 @@
             this.partialUMService = partialUMService;
         }
 
-        public async Task<IEnumerable<TicketDto>> GetLastBets(GetLastBetsParam param)
-        {
-            var criteria = new GetLastBetsCriteria(param.BetType, param.CustId, param.TransId, param.PageSize);
+        public Task<IEnumerable<TicketDto>> GetLastBets(GetLastBetsParam param)
+            => GetLastBets(
+                new GetLastBetsCriteria(param.BetType, param.CustId, param.TransId, param.PageSize),
+                param.RunningMatchCacheTime);
 
+        public async Task<IEnumerable<TicketDto>> GetLastBets(ICriteria criteria, int cacheTime)
+        {
             partialUMService.ThrowIfUM(criteria.GetSettingKey());
 
             var tickets = await dynamicRepository.FetchAsync<TicketDto>(criteria);
 
             if (tickets.Any())
             {
-                var cacheTime = param.RunningMatchCacheTime;
-                var outrightMatches = await GetRunningOutrightMatches(cacheTime);
-                var otherMatches = await GetRunningOtherMatches(cacheTime);
+                var outrightMatchesTask = GetRunningOutrightMatches(cacheTime);
+                var otherMatchesTask = GetRunningOtherMatches(cacheTime);
+                await Task.WhenAll(outrightMatchesTask, otherMatchesTask);
+
+                var outrightMatches = await outrightMatchesTask;
+                var otherMatches = await otherMatchesTask;
 
                 foreach (var ticket in tickets)
                 {
@@ -82,7 +90,7 @@
 
         private static bool IsDummyMatch(int matchId) => matchId <= 999;
 
-        public static void AssignMatchInfoToTicket(Ticket ticket, MatchInfo matchInfo)
+        private static void AssignMatchInfoToTicket(Ticket ticket, MatchInfo matchInfo)
         {
             if (matchInfo == null)
             {
