@@ -8,6 +8,7 @@
         public string Country { get; set; }
 
         public bool IsInWatchlist { get; set; }
+
         public bool IsHighlight { get; set; }
 
         public string BetType => BetTypeHelper.GetBetTypeName(BetTypeId);

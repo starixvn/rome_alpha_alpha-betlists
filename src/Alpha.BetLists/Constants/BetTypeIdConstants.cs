@@ -35,6 +35,6 @@
         public const int Happy5LinkedGamesMin = 3601;
         public const int Happy5LinkedGamesMax = 3610;
 
-        public const int Others = 99;
+        public const int MonitoringBetsOthers = -1;
     }
 }

@@ -35,7 +35,7 @@
         public static bool IsJackpotContribution(int betType) => JackpotContributionBetType.Contains(betType);
 
         public static string GetBetTypeName(int betTypeId)
-            => betTypeId == BetTypeIdConstants.Others
+            => betTypeId == BetTypeIdConstants.MonitoringBetsOthers
             ? Resources.Others
             : CacheRefServiceHelper.GetBetTypeName(betTypeId);
     }

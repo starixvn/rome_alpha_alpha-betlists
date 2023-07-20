@@ -21,12 +21,9 @@
             {
                 foreach (var item in AppSettings.MonitoringBetsBettypes)
                 {
-                    var betTypeId = int.Parse(item);
                     yield return new SelectListItem
                     {
-                        Text = betTypeId == BetTypeIdConstants.Others
-                            ? AppResources.Resources.Others
-                            : CacheRefServiceHelper.GetBetTypeName(betTypeId),
+                        Text = BetTypeHelper.GetBetTypeName(int.Parse(item)),
                         Value = item,
                         Selected = true
                     };

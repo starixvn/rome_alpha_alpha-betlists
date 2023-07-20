@@ -172,12 +172,7 @@
         private static IEnumerable<string> BuildBetTypeNames(string betTypes)
             => betTypes.Equals("0", StringComparison.OrdinalIgnoreCase)
             ? Enumerable.Empty<string>()
-            : betTypes.ToListInt().Select(t => GetBetTypeName(t)).ToList();
-
-        private static string GetBetTypeName(int betTypeId)
-            => betTypeId == BetTypeIdConstants.Others
-            ? Resources.Others
-            : CacheRefServiceHelper.GetBetTypeName(betTypeId);
+            : betTypes.ToListInt().Select(t => BetTypeHelper.GetBetTypeName(t)).ToList();
 
         private static IEnumerable<League> FlattenSports(IEnumerable<SportXml> sportXmlList)
         {
