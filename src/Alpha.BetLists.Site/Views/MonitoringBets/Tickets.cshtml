@@ -8,7 +8,8 @@
 {
     foreach (var ticket in Model.BetListData.Tickets)
     {
-        <tr id="r@(ticket.TransId)">
+        
+        <tr id="r@(ticket.TransId)" class="@(ticket.IsHighlight ? "row-highlight" : "")">
             <td class="trans-block text-center">@ticket.TransId</td>
             <td class="trans-block text-center nonbreak">@ticket.TransDate.ToString()</td>
             <td>

@@ -5,6 +5,10 @@
     <Setting Key="Age_BetList_LastBets_Ag" SpName="Age_BetList_LastBets_Ag" DbName="DBBOF.bodb02.BODBDownlineNet" Plain="0">
       <Mapping DataField="SportType" ObjectProperty="SportTypeId" />
       <Mapping DataField="BetType" ObjectProperty="BetTypeId" />
+      <Mapping DataField="hdp1" ObjectProperty="Handicap1" />
+      <Mapping DataField="Hdp2" ObjectProperty="Handicap2" />
+      <Mapping DataField="actual_stake" ObjectProperty="ActualStake" />
+      <Mapping DataField="MatchId" ObjectProperty="MatchId" />
     </Setting>
   </Function>
 </Functions>

@@ -88,7 +88,7 @@
                     defaultFilter.BetTypes,
                     defaultFilter.EventStatus,
                     defaultFilter.Stake,
-                    limitRowCount: 10);
+                    limitRowCount: 100);
                 var tickets = await monitoringBetService.GetLastFilteringBets(param);
                 UpdateInWatchlistState(memberInWatchlistIds, tickets);
 
@@ -195,13 +195,20 @@
             await AssignCountry(tickets, message.DisplayVNIP);
             var betListData = new BetListData(tickets, null);
 
-            var newTickets = tickets.Where(t => t.TransId > message.LatestTransId);
+            var isManualLoad = message.LatestTransId == 0;
+
+            var previousLatestTransId = isManualLoad ? 0 : message.LatestTransId;
+
+            var newTickets = tickets.Where(t => t.TransId > previousLatestTransId);
 
             if (newTickets.Any())
             {
-                foreach (var ticket in newTickets)
+                if (!isManualLoad)
                 {
-                    ticket.IsHighlight = true;
+                    foreach (var ticket in newTickets)
+                    {
+                        ticket.IsHighlight = true;
+                    }
                 }
                 WriteLog(message.CustId, newTickets);
             }
