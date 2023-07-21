@@ -131,6 +131,6 @@ var MonitoringBetsView = /** @class */ (function () {
     return MonitoringBetsView;
 }());
 $(function () {
-    new MonitoringBetsView(new AutoRefreshComponent(), new MonitoringBetsCopyHtml(Clipboard)).init();
+    new MonitoringBetsView(new AutoRefreshComponent(), new MonitoringBetsCopyHtml()).init();
 });
 //# sourceMappingURL=monitoring-bets.js.map

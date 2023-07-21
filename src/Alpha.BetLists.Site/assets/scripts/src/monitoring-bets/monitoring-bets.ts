@@ -178,5 +178,5 @@ class MonitoringBetsView {
 $(function () {
     new MonitoringBetsView(
         new AutoRefreshComponent(),
-        new MonitoringBetsCopyHtml(Clipboard)).init();
+        new MonitoringBetsCopyHtml()).init();
 });

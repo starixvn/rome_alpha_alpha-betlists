@@ -1,12 +1,11 @@
 "use strict";
 var MonitoringBetsCopyHtml = /** @class */ (function () {
-    function MonitoringBetsCopyHtml(clipboard) {
-        this.clipboard = clipboard;
+    function MonitoringBetsCopyHtml() {
     }
     MonitoringBetsCopyHtml.prototype.init = function () {
         var _this = this;
         $("#icon-copy").tooltip();
-        var clipboard = new this.clipboard("#icon-copy", {
+        var clipboard = new Clipboard("#icon-copy", {
             text: function () { return _this._copyTableHtml($("#tbl-betlist")); }
         });
         if (window.document.queryCommandSupported && window.document.queryCommandSupported("copy")) {

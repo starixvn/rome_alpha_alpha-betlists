@@ -2,15 +2,9 @@
 declare var Clipboard: any;
 
 class MonitoringBetsCopyHtml {
-    private clipboard: any;
-
-    constructor(clipboard: any) {
-        this.clipboard = clipboard;
-    }
-
     init() {
         $("#icon-copy").tooltip();
-        const clipboard = new this.clipboard("#icon-copy", {
+        const clipboard = new Clipboard("#icon-copy", {
             text: () => this._copyTableHtml($("#tbl-betlist"))
         });
 

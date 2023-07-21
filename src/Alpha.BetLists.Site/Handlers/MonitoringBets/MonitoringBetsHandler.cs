@@ -3,7 +3,6 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using AppResources;
     using Alpha.BetLists.Constants;
     using Alpha.BetLists.Models;
     using Alpha.BetLists.Models.MonitoringBets;
@@ -16,11 +15,11 @@
     using Fanex.BetList.Core.Entities;
     using MediatR;
     using Sunplus.Agent.Model.Entities;
-    using Alpha.BetLists.Params.LastBets;
     using Alpha.IPInfo.Services;
     using Alpha.SmartPunter.Services;
     using Alpha.Utilities.IP;
     using Alpha.Web.Models;
+    using System;
 
     public class MonitoringBetsHandler :
         BetListBaseHandler,
@@ -73,13 +72,11 @@
             {
                 var defaultFilter = filters.FirstOrDefault(f => f.IsDefault) ?? filters.First();
                 filterId = defaultFilter.FilterId;
-                var memberList = defaultFilter.Members;
 
-                var memberInWatchlistIds = (await monitoringBetService.GetMyWatchlistMembers(message.ViewerId)).Select(member => member.CustId).ToList();
-                if (defaultFilter.FilterByMembers == FilterByMembersConstants.AllWatchlistMembers)
-                {
-                    memberList = $"{defaultFilter.Members},{string.Join(",", memberInWatchlistIds)}";
-                }
+                var result = await GetMemberList(defaultFilter.Members, message.ViewerId, defaultFilter.FilterByMembers);
+
+                var memberList = result.Item1;
+                var memberInWatchlistIds = result.Item2;
 
                 var param = new GetLastFilteringBetsParams(message.ViewerId,
                     0,
@@ -90,22 +87,26 @@
                     defaultFilter.EventStatus,
                     defaultFilter.Stake,
                     limitRowCount: 100);
-                var tickets = await monitoringBetService.GetLastFilteringBets(param);
-                UpdateInWatchlistState(memberInWatchlistIds, tickets);
 
-                await AssignCountry(tickets, message.DisplayVNIP);
-                betListData = new BetListData(tickets, null);
+                var betData = await GetBetData(param, memberInWatchlistIds, message.DisplayVNIP, latestTransId, message.CustId);
 
-                WriteLog(message.CustId, tickets);
-                if (tickets.Any())
-                {
-                    latestTransId = tickets.First().TransId;
-                }
+                betListData = betData.Item1;
+                latestTransId = betData.Item2;
             }
 
             return new MonitoringBetsViewModel(latestTransId, message, filters, betListData, Builder, TicketHelper,
                 encryptionService.CfsEncode($"LastTransId_{message.CustId}_{filterId}", numberOfEncodeResult: 6),
                 encryptionService.CfsEncode($"LatestTransId_{message.CustId}_{filterId}", numberOfEncodeResult: 6));
+        }
+
+        private async Task<Tuple<string, List<int>>> GetMemberList(string memberList, int viewerId, int filterByMembers)
+        {
+            var memberInWatchlistIds = (await monitoringBetService.GetMyWatchlistMembers(viewerId)).Select(member => member.CustId).ToList();
+            if (filterByMembers == FilterByMembersConstants.AllWatchlistMembers)
+            {
+                memberList = $"{memberList},{string.Join(",", memberInWatchlistIds)}";
+            }
+            return Tuple.Create(memberList, memberInWatchlistIds);
         }
 
         public Task<IEnumerable<FilterConfiguration>> Handle(ManageFiltersQuery message)
@@ -170,17 +171,48 @@
             }
         }
 
+        private async Task<Tuple<BetListData, long>> GetBetData(GetLastFilteringBetsParams param, List<int> memberInWatchlistIds, bool displayVNIP, long latestTransId, int custId)
+        {
+            var tickets = await monitoringBetService.GetLastFilteringBets(param);
+
+            UpdateInWatchlistState(memberInWatchlistIds, tickets);
+
+            await AssignCountry(tickets, displayVNIP);
+            var betListData = new BetListData(tickets, null);
+
+            var isTransIdReset = latestTransId == 0;
+
+            var previousLatestTransId = isTransIdReset ? 0 : latestTransId;
+
+            var newTickets = tickets.Where(t => t.TransId > previousLatestTransId);
+
+            if (newTickets.Any())
+            {
+                if (!isTransIdReset)
+                {
+                    foreach (var ticket in newTickets)
+                    {
+                        ticket.IsHighlight = true;
+                    }
+                }
+                WriteLog(custId, newTickets);
+            }
+
+            latestTransId = newTickets.FirstOrDefault()?.TransId ?? latestTransId;
+
+            return Tuple.Create(betListData, latestTransId);
+        }
+
         public async Task<FilteringBetDataViewModel> Handle(GetLastFilteringBetsQuery message)
         {
-            var memberInWatchlistIds = (await monitoringBetService.GetMyWatchlistMembers(message.ViewerId)).Select(member => member.CustId).ToList();
-            if (message.FilterByMembers == FilterByMembersConstants.AllWatchlistMembers)
-            {
-                message.MemberList = $"{message.MemberList},{string.Join(",", memberInWatchlistIds)}";
-            }
+            var result = await GetMemberList(message.MemberList, message.ViewerId, message.FilterByMembers);
+
+            var memberList = result.Item1;
+            var memberInWatchlistIds = result.Item2;
 
             var param = new GetLastFilteringBetsParams(message.ViewerId,
                 message.TransId == 0 ? 0 : message.TransId - 1,
-                message.MemberList,
+                memberList,
                 message.SportTypeList,
                 message.LeagueList,
                 message.BetTypeList,
@@ -188,32 +220,10 @@
                 message.MinStake,
                 message.LimitRowCount);
 
-            var tickets = await monitoringBetService.GetLastFilteringBets(param);
+            var betData = await GetBetData(param, memberInWatchlistIds, message.DisplayVNIP, message.LatestTransId, message.CustId);
 
-            UpdateInWatchlistState(memberInWatchlistIds, tickets);
-
-            await AssignCountry(tickets, message.DisplayVNIP);
-            var betListData = new BetListData(tickets, null);
-
-            var isManualLoad = message.LatestTransId == 0;
-
-            var previousLatestTransId = isManualLoad ? 0 : message.LatestTransId;
-
-            var newTickets = tickets.Where(t => t.TransId > previousLatestTransId);
-
-            if (newTickets.Any())
-            {
-                if (!isManualLoad)
-                {
-                    foreach (var ticket in newTickets)
-                    {
-                        ticket.IsHighlight = true;
-                    }
-                }
-                WriteLog(message.CustId, newTickets);
-            }
-
-            var latestTransId = newTickets.Any() ? newTickets.First().TransId : message.LatestTransId;
+            var betListData = betData.Item1;
+            var latestTransId = betData.Item2;
 
             return new FilteringBetDataViewModel(latestTransId,
                 encryptionService.CfsEncode($"LastTransId_{message.CustId}_{message.FilterId}", numberOfEncodeResult: 6),
