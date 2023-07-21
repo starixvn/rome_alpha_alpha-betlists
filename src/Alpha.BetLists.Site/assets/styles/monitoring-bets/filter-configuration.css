@@ -126,8 +126,6 @@
       border: 0;
       box-shadow: none;
       width: 100%; }
-    .item .inner .multiselect-container.dropdown-menu label.checkbox {
-      padding-left: 38px !important; }
     .item .inner .multiselect-selected-text {
       width: 100%;
       color: var(--color-gray); }

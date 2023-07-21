@@ -40,8 +40,8 @@
     "inputFile": "assets/styles/error/error-dark.scss"
   },
   {
-    "outputFile": "assets/styles/monitoring-bets.css",
-    "inputFile": "assets/styles/monitoring-bets.scss"
+    "outputFile": "assets/styles/monitoring-bets/monitoring-bets.css",
+    "inputFile": "assets/styles/monitoring-bets/monitoring-bets.scss"
   },
   {
     "outputFile": "assets/styles/components/autorefresh.css",

@@ -140,7 +140,7 @@
     "outputFileName": "assets/bundles/monitoring-bets/monitoring-bets.css",
     "inputFiles": [
       "assets/styles/components/autorefresh.css",
-      "assets/styles/monitoring-bets.css"
+      "assets/styles/monitoring-bets/monitoring-bets.css"
     ]
   },
   {

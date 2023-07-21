@@ -1,5 +1,5 @@
-﻿@import "mixins";
-@import "variables";
+﻿@import "../_mixins.scss";
+@import "../_variables.scss";
 
 .bl_title {
     .list-icon {
@@ -64,6 +64,7 @@
     flex-direction: column;
     max-height: 100%;
 }
+
 .tb {
     .col-number {
         width: 20px;
@@ -124,9 +125,11 @@
     min-width: 22px;
     text-align: left;
 }
+
 .lds-spinner {
     display: none;
 }
+
 .show-loading {
     + .lds-spinner {
         display: block;
