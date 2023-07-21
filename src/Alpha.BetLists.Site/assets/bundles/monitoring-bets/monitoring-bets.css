@@ -65,7 +65,8 @@
   display: flex;
   width: 100%;
   clear: both;
-  align-items: flex-end; }
+  align-items: flex-end;
+  flex-wrap: wrap; }
   .filter .form-group {
     vertical-align: bottom; }
     .filter .form-group:last-child {
