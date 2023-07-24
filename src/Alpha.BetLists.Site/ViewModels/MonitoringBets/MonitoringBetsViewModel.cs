@@ -1,44 +1,40 @@
 ﻿namespace Alpha.BetLists.Site.ViewModels.MonitoringBets
 {
     using System.Collections.Generic;
-    using System.Linq;
     using System.Web.Mvc;
     using Alpha.BetLists.Models;
     using Alpha.BetLists.Models.MonitoringBets;
-    using Alpha.BetLists.Site.Requests.MonitoringBets;
+    using Alpha.BetLists.Site.Requests;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
 
-    public class MonitoringBetsViewModel : BetListBaseViewModel
+    public class MonitoringBetsViewModel : FilteringBetDataViewModel
     {
-        public MonitoringBetsViewModel(long latestTransId,
-            MonitoringBetsQuery query,
+        public MonitoringBetsViewModel(
+            int filterId,
             IEnumerable<SavedFilter> filters,
-            BetListData betListData,
-            IBetListHTMLBuilder builder,
-            ITicketHelper ticketHelper,
+            long latestTransId,
             string lastTransIdCacheKeyByFilter,
             string latestTransIdCacheKeyByFilter,
-            bool showMemberName = false) : base(query, betListData, builder, ticketHelper, showMemberName)
+            BaseQuery query,
+            BetListData betListData,
+            IBetListHTMLBuilder builder,
+            ITicketHelper ticketHelper) : base(
+                latestTransId,
+                lastTransIdCacheKeyByFilter,
+                latestTransIdCacheKeyByFilter,
+                query,
+                betListData,
+                builder,
+                ticketHelper)
         {
-            LatestTransId = latestTransId;
+            FilterId = filterId;
             Filters = filters;
-            TotalColumn = 8;
-            LastTransIdCacheKeyByFilter = lastTransIdCacheKeyByFilter;
-            LatestTransIdCacheKeyByFilter = latestTransIdCacheKeyByFilter;
         }
 
+        public int FilterId { get; }
+
         public IEnumerable<SavedFilter> Filters { get; }
-
-        public string LastTransIdCacheKeyByFilter { get; }
-
-        public string LatestTransIdCacheKeyByFilter { get; }
-        
-        public long LatestTransId { get; }
-        public long LastTransId
-            => BetListData.Tickets.Any()
-            ? BetListData.Tickets.ElementAt(BetListData.Total - 1).TransId
-            : 0;
 
         public int[] AutoRefreshSeconds { get; } = new[] { 30, 60, 90 };
 

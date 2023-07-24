@@ -12,5 +12,7 @@
         }
 
         public int SubAccId { get; }
+
+        public string FilterName { get; set; }
     }
 }

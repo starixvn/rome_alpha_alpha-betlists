@@ -1,9 +1,17 @@
 ﻿namespace Alpha.BetLists.Models.MonitoringBets
 {
-    public class MemberErrCode : MyWatchlistMember
+    public class MemberErrCode
     {
-        public MemberErrCode(int custId, string username, int errCode) : base(custId, username)
-            => ErrCode = errCode;
+        public MemberErrCode(int custId, string username, int errCode)
+        {
+            CustId = custId;
+            Username = username;
+            ErrCode = errCode;
+        }
+
+        public int CustId { get; }
+
+        public string Username { get; }
 
         public int ErrCode { get; }
 

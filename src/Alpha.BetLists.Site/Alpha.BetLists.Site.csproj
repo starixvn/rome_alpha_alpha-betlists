@@ -1465,7 +1465,7 @@
     <Compile Include="Requests\MonitoringBets\ApplyFilterCommand.cs" />
     <Compile Include="Requests\MonitoringBets\CheckCanViewLastFilteringBetsQuery.cs" />
     <Compile Include="Requests\MonitoringBets\CheckUsernamesQuery.cs" />
-    <Compile Include="Requests\MonitoringBets\DeleleFiltersCommand.cs" />
+    <Compile Include="Requests\MonitoringBets\DeleteFiltersCommand.cs" />
     <Compile Include="Requests\MonitoringBets\FilterBySportsQuery.cs" />
     <Compile Include="Requests\MonitoringBets\GetMyWatchlistMembersQuery.cs" />
     <Compile Include="Requests\MonitoringBets\GetLastFilteringBetsQuery.cs" />

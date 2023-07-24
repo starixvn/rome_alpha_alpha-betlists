@@ -5,7 +5,6 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using System.Web.SessionState;
-    using Alpha.BetLists.Constants;
     using Alpha.BetLists.Models;
     using Alpha.BetLists.Site.Requests.MonitoringBets;
     using Alpha.BetLists.Site.ViewModels.MonitoringBets;
@@ -29,7 +28,7 @@
         {
             var viewModel = await mediator.Send(message);
 
-            if (viewModel.Filters.Any())
+            if (viewModel != null && viewModel.Filters.Any())
             {
                 return View(viewModel);
             }
@@ -44,7 +43,7 @@
             => Json(await ValidateAndDoAction(message), JsonRequestBehavior.DenyGet);
 
         [HttpPost, AntiXsrfFilter]
-        public async Task<ActionResult> DeleteFilters(DeleleFiltersCommand message)
+        public async Task<ActionResult> DeleteFilters(DeleteFiltersCommand message)
         {
             IEnumerable<Result> results;
             if (message.IsInternal)
@@ -99,7 +98,5 @@
         [DisableNetThrottling]
         public Task<ActionResult> BetData(GetLastFilteringBetsQuery message)
             => View(message);
-
-
     }
 }

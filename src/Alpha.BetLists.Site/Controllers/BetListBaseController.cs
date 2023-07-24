@@ -49,6 +49,6 @@
             => new Result((int)HttpStatusCode.Forbidden, AppResources.Resources.NotAuthorized);
 
         protected Result BadRequestResult()
-            => new Result((int)HttpStatusCode.BadRequest, "Bad Request");
+            => new Result((int)HttpStatusCode.BadRequest, AppResources.Resources.BadRequest);
     }
 }

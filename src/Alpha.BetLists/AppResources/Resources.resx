@@ -522,7 +522,6 @@
   <data name="ipnote" xml:space="preserve">
     <value>Country info provided by IP2Location™ and DNSstuff is for reference only, without warranty. For current and accurate info, consult reliable sources if needed</value>
   </data>
-<<<<<<< HEAD
   <data name="SearchTickets" xml:space="preserve">
     <value>Search Tickets</value>
   </data>
@@ -534,11 +533,9 @@
   </data>
   <data name="InputMembers" xml:space="preserve">
     <value>Input Member(s)</value>
-=======
+  </data>
   <data name="EnteredMembers" xml:space="preserve">
     <value>Entered Member(s)</value>
-  </data>
->>>>>>> e0f7702c (feat: 186142 - update resource)
   </data>
   <data name="InvalidUsername" xml:space="preserve">
     <value>Invalid username</value>
@@ -788,5 +785,20 @@
   </data>
   <data name="NoChangeToUpdate" xml:space="preserve">
     <value>There is no change to update.</value>
+  </data>
+  <data name="BadRequest" xml:space="preserve">
+    <value>Bad Request</value>
+  </data>
+  <data name="SaveFilterAndApply" xml:space="preserve">
+    <value>Save Filter And Apply</value>
+  </data>
+  <data name="MonitoredMember" xml:space="preserve">
+    <value>Monitored Member</value>
+  </data>
+  <data name="UnsavedFilter" xml:space="preserve">
+    <value>Unsaved Filter</value>
+  </data>
+  <data name="FilterNameAlreadyExists" xml:space="preserve">
+    <value>Filter name already exists.</value>
   </data>
 </root>

@@ -46,8 +46,8 @@
         {
             get
             {
-                yield return BuildSelectListItem(AppResources.Resources.All, SportGroupConstants.All, true);
-                yield return BuildSelectListItem(AppResources.Resources.MajorSports, SportGroupConstants.MajorSports);
+                yield return BuildSelectListItem(AppResources.Resources.All, SportGroupConstants.All);
+                yield return BuildSelectListItem(AppResources.Resources.MajorSports, SportGroupConstants.MajorSports, true);
                 yield return BuildSelectListItem(AppResources.Resources.MinorSports, SportGroupConstants.MinorSports);
             }
         }

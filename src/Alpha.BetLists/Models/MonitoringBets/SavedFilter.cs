@@ -31,7 +31,7 @@
 
         public int FilterId { get; }
 
-        public string FilterName { get; }
+        public string FilterName { get; set; }
 
         public bool IsDefault { get; }
 

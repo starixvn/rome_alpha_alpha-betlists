@@ -768,4 +768,13 @@
   <data name="NoChangeToUpdate" xml:space="preserve">
     <value>ไม่มีการเปลี่ยนแปลงในการอัปเดตนี้</value>
   </data>
+  <data name="SaveFilterAndApply" xml:space="preserve">
+    <value>Save Filter And Apply</value>
+  </data>
+  <data name="MonitoredMember" xml:space="preserve">
+    <value>Monitored Member</value>
+  </data>
+  <data name="UnsavedFilter" xml:space="preserve">
+    <value>Unsaved Filter</value>
+  </data>
 </root>

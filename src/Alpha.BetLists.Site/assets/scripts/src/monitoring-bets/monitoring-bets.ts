@@ -35,6 +35,7 @@ class MonitoringBetsView {
         
         this.autoRefreshComponent.start();
         this.monitoringBetsCopyHtml.init();
+        this.$betListTableContainer.find('[data-toggle="tooltip"]').tooltip();
     }
 
     private cacheElements = () => {
@@ -153,6 +154,7 @@ class MonitoringBetsView {
         }
 
         this.$betListTableContainer.html(responseHtml);
+        this.$betListTableContainer.find('[data-toggle="tooltip"]').tooltip();
 
         const lastTransIdCacheKeyByFilter = this.$betListTableContainer.find("#new-last-trans-id-by-filter").val();
         const latestTransIdCacheKeyByFilter = this.$betListTableContainer.find("#new-latest-trans-id-by-filter").val();

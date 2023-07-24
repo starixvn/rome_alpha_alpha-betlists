@@ -46,6 +46,7 @@ var MonitoringBetsView = /** @class */ (function () {
                 return;
             }
             _this.$betListTableContainer.html(responseHtml);
+            _this.$betListTableContainer.find('[data-toggle="tooltip"]').tooltip();
             var lastTransIdCacheKeyByFilter = _this.$betListTableContainer.find("#new-last-trans-id-by-filter").val();
             var latestTransIdCacheKeyByFilter = _this.$betListTableContainer.find("#new-latest-trans-id-by-filter").val();
             _this.setTransIdCacheKeyByFilter(lastTransIdCacheKeyByFilter, latestTransIdCacheKeyByFilter);
@@ -72,6 +73,7 @@ var MonitoringBetsView = /** @class */ (function () {
         this.setTransId($("#last-trans-id").val(), $("#latest-trans-id").val());
         this.autoRefreshComponent.start();
         this.monitoringBetsCopyHtml.init();
+        this.$betListTableContainer.find('[data-toggle="tooltip"]').tooltip();
     };
     MonitoringBetsView.prototype.registerToggleFilter = function () {
         var filterContainer = $("#form-monitoring-bets");

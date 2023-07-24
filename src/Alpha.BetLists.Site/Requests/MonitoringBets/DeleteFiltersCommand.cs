@@ -5,9 +5,9 @@
     using Alpha.Web.Models;
     using MediatR;
 
-    public class DeleleFiltersCommand : BaseQuery, IRequest<IEnumerable<Result>>
+    public class DeleteFiltersCommand : BaseQuery, IRequest<IEnumerable<Result>>
     {
-        public DeleleFiltersCommand(IUser viewer) : base(viewer)
+        public DeleteFiltersCommand(IUser viewer) : base(viewer)
         {
             IsInternal = viewer.IsInternal;
             SubAccId = viewer.SubAccId;

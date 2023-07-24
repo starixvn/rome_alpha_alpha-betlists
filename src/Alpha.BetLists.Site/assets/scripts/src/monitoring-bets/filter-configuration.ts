@@ -108,14 +108,23 @@ class FilterConfigurationView {
                 this.isDefaultCheckbox.prop("checked", false);
                 this.inlineMessagePopup.hide();
             });
-        addFilterPopup.find("#btn-save-filter-popup").click(() => this.handleSaveFilterPopup());
+        addFilterPopup.find("#btn-save-filter-popup").click(
+            () => this.handleSaveFilterPopup(() => Common.Utils.ReloadPageAfterTimeout(this.getCurrentUrlWithoutQueryString()))
+        );
+        addFilterPopup.find("#btn-save-filter-apply-popup").click(
+            () => this.handleSaveFilterPopup(() => {
+                const url = this.getCurrentUrlWithoutQueryString();
+                const mainPage = this.getMainPageUrl(url);
+                Common.Utils.ReloadPageAfterTimeout(`${mainPage}?filterName=${this.addFilterFormData.filterName}`);
+            })
+        );
 
-        $(".block-btn .button-apply").click((e) => {
+        $(".button-apply.apply").click((e) => {
             this.addFilterFormData = this.getFormData(rdoSpecificSports, rdoSpecificMembers);
             this.addFilterFormData && this.handleApplyFilter();
         });
 
-        $(".button-save").click((e) => {
+        $(".button-save.save").click((e) => {
             this.addFilterFormData = this.getFormData(rdoSpecificSports, rdoSpecificMembers);
             this.addFilterFormData && addFilterPopup.modal("show");
         });
@@ -149,7 +158,7 @@ class FilterConfigurationView {
             this.myWatchlistMemberTreeview.renderTreeNodeList(data.map(function (d) {
                 return {
                     value: d.CustId,
-                    text: d.Username
+                    text: d.Username + (d.Username2 ? ` (${d.Username2})` : "")
                 };
             }))
         );
@@ -241,25 +250,33 @@ class FilterConfigurationView {
             if (result.ErrCode) {
                 this.inlineMessage.showError(result.ErrMsg);
             } else {
+                const url = this.getCurrentUrlWithoutQueryString();
+                window.location.href = this.getMainPageUrl(url);
                 this.addFilterFormData = null;
-                let url = window.location.href.split("?")[0];
-                window.location.href = url.replace(/FilterConfiguration/i, "");
             }
         });
     }
 
-    private handleSaveFilterPopup() {
+    private handleSaveFilterPopup(reloadPageCallback) {
         const formDataPopup = this.getFormDataPopup();
         if (formDataPopup) {
             this.addFilterFormData = $.extend(this.addFilterFormData, formDataPopup);
             AJAXHelper.post("AddFilter", this.addFilterFormData, (result) => {
                 this.inlineMessagePopup.show(result);
                 if (!result.ErrCode) {
+                    reloadPageCallback();
                     this.addFilterFormData = null;
-                    Common.Utils.ReloadPageAfterTimeout(window.location.href.split("?")[0]);
                 }
             });
         }
+    }
+
+    private getCurrentUrlWithoutQueryString() {
+        return window.location.href.split("?")[0];
+    }
+
+    private getMainPageUrl(currentUrl: string) {
+        return currentUrl.replace(/FilterConfiguration/i, "");
     }
 
     private scrollTopInlineMessage($element = undefined) {

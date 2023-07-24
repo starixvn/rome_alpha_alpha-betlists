@@ -464,6 +464,9 @@
   <ItemGroup>
     <Content Include="SAGaming.css" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Criteria\MonitoringBets\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

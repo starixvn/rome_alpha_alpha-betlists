@@ -37,7 +37,7 @@
                             data-event-status="@savedFilter.EventStatus"
                             data-stake="@savedFilter.Stake"
                             data-filter-by-member="@savedFilter.FilterByMembers"
-                            @(savedFilter.IsDefault ? "selected" : string.Empty)>
+                            @(savedFilter.FilterId == Model.FilterId ? "selected" : string.Empty)>
                         @savedFilter.FilterName
                     </option>
                 }
@@ -64,6 +64,7 @@
         <table class="tb tb-bordered tb-hover tb-freeze-header w-full" id="tbl-betlist">
             <thead>
                 <tr>
+                    <th class="col-number">#</th>
                     <th class="col-refno">@Resources.RefNo</th>
                     <th class="col-transtime">@Resources.transtime</th>
                     <th class="col-member">@Resources.Username</th>

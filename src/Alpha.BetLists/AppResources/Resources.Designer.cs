@@ -250,6 +250,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bad Request.
+        /// </summary>
+        public static string BadRequest {
+            get {
+                return ResourceManager.GetString("BadRequest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bet List.
         /// </summary>
         public static string BetList {
@@ -781,6 +790,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Filter name already exists..
+        /// </summary>
+        public static string FilterNameAlreadyExists {
+            get {
+                return ResourceManager.GetString("FilterNameAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to From.
         /// </summary>
         public static string From {
@@ -822,15 +840,6 @@ namespace Alpha.BetLists.AppResources {
         public static string HideFilter {
             get {
                 return ResourceManager.GetString("HideFilter", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Invalid username.
-        /// </summary>
-        public static string InvalidUsername {
-            get {
-                return ResourceManager.GetString("InvalidUsername", resourceCulture);
             }
         }
         
@@ -1137,6 +1146,15 @@ namespace Alpha.BetLists.AppResources {
         public static string Mix {
             get {
                 return ResourceManager.GetString("Mix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Monitored Member.
+        /// </summary>
+        public static string MonitoredMember {
+            get {
+                return ResourceManager.GetString("MonitoredMember", resourceCulture);
             }
         }
         
@@ -1564,6 +1582,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save Filter And Apply.
+        /// </summary>
+        public static string SaveFilterAndApply {
+            get {
+                return ResourceManager.GetString("SaveFilterAndApply", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save to My Filters.
         /// </summary>
         public static string SaveToMyFilters {
@@ -1929,6 +1956,15 @@ namespace Alpha.BetLists.AppResources {
         public static string transtime {
             get {
                 return ResourceManager.GetString("transtime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unsaved Filter.
+        /// </summary>
+        public static string UnsavedFilter {
+            get {
+                return ResourceManager.GetString("UnsavedFilter", resourceCulture);
             }
         }
         

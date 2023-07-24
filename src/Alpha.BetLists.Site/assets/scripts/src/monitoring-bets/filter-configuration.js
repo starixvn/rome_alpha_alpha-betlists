@@ -66,12 +66,17 @@ var FilterConfigurationView = /** @class */ (function () {
             _this.isDefaultCheckbox.prop("checked", false);
             _this.inlineMessagePopup.hide();
         });
-        addFilterPopup.find("#btn-save-filter-popup").click(function () { return _this.handleSaveFilterPopup(); });
-        $(".block-btn .button-apply").click(function (e) {
+        addFilterPopup.find("#btn-save-filter-popup").click(function () { return _this.handleSaveFilterPopup(function () { return Common.Utils.ReloadPageAfterTimeout(_this.getCurrentUrlWithoutQueryString()); }); });
+        addFilterPopup.find("#btn-save-filter-apply-popup").click(function () { return _this.handleSaveFilterPopup(function () {
+            var url = _this.getCurrentUrlWithoutQueryString();
+            var mainPage = _this.getMainPageUrl(url);
+            Common.Utils.ReloadPageAfterTimeout(mainPage + "?filterName=" + _this.addFilterFormData.filterName);
+        }); });
+        $(".button-apply.apply").click(function (e) {
             _this.addFilterFormData = _this.getFormData(rdoSpecificSports, rdoSpecificMembers);
             _this.addFilterFormData && _this.handleApplyFilter();
         });
-        $(".button-save").click(function (e) {
+        $(".button-save.save").click(function (e) {
             _this.addFilterFormData = _this.getFormData(rdoSpecificSports, rdoSpecificMembers);
             _this.addFilterFormData && addFilterPopup.modal("show");
         });
@@ -104,7 +109,7 @@ var FilterConfigurationView = /** @class */ (function () {
             return _this.myWatchlistMemberTreeview.renderTreeNodeList(data.map(function (d) {
                 return {
                     value: d.CustId,
-                    text: d.Username
+                    text: d.Username + (d.Username2 ? " (" + d.Username2 + ")" : "")
                 };
             }));
         });
@@ -190,13 +195,13 @@ var FilterConfigurationView = /** @class */ (function () {
                 _this.inlineMessage.showError(result.ErrMsg);
             }
             else {
+                var url = _this.getCurrentUrlWithoutQueryString();
+                window.location.href = _this.getMainPageUrl(url);
                 _this.addFilterFormData = null;
-                var url = window.location.href.split("?")[0];
-                window.location.href = url.replace(/FilterConfiguration/i, "");
             }
         });
     };
-    FilterConfigurationView.prototype.handleSaveFilterPopup = function () {
+    FilterConfigurationView.prototype.handleSaveFilterPopup = function (reloadPageCallback) {
         var _this = this;
         var formDataPopup = this.getFormDataPopup();
         if (formDataPopup) {
@@ -204,11 +209,17 @@ var FilterConfigurationView = /** @class */ (function () {
             AJAXHelper.post("AddFilter", this.addFilterFormData, function (result) {
                 _this.inlineMessagePopup.show(result);
                 if (!result.ErrCode) {
+                    reloadPageCallback();
                     _this.addFilterFormData = null;
-                    Common.Utils.ReloadPageAfterTimeout(window.location.href.split("?")[0]);
                 }
             });
         }
+    };
+    FilterConfigurationView.prototype.getCurrentUrlWithoutQueryString = function () {
+        return window.location.href.split("?")[0];
+    };
+    FilterConfigurationView.prototype.getMainPageUrl = function (currentUrl) {
+        return currentUrl.replace(/FilterConfiguration/i, "");
     };
     FilterConfigurationView.prototype.scrollTopInlineMessage = function ($element) {
         if ($element === void 0) { $element = undefined; }

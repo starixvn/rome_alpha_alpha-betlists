@@ -42,16 +42,18 @@
 
     public class MonitoringBetsServiceImpl : MonitoringBetsService
     {
-        private const int InvalidUsername = 100;
-        private const int NotAMember = 101;
         private const string IgnoreSportTypeName = "upcoming";
-        private static readonly IDictionary<int, bool> MajorSports = new Dictionary<int, bool>
+        private static readonly HashSet<int> MajorSports = new HashSet<int>
         {
-            [SportTypeIdConstants.Soccer] = true,
-            [SportTypeIdConstants.Basketball] = true,
-            [SportTypeIdConstants.Badminton] = true,
-            [SportTypeIdConstants.ESports] = true,
-            [SportTypeIdConstants.Tennis] = true
+            SportTypeIdConstants.Soccer,
+            SportTypeIdConstants.Basketball,
+            SportTypeIdConstants.Badminton,
+            SportTypeIdConstants.ESports,
+            SportTypeIdConstants.Tennis
+        };
+        private static readonly HashSet<string> SpecialFilterNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+        {
+            "Unsaved Filter"
         };
         private readonly IPartialUMService partialUMService;
         private readonly IDynamicRepository dynamicRepository;
@@ -74,7 +76,7 @@
             return new SavedFilter(
                 0,
                 param.FilterName,
-                false,
+                true,
                 param.BetType,
                 param.Stake,
                 param.LiveStatus,
@@ -218,6 +220,12 @@
 
         public async Task<Result> AddFilter(AddFilterParam param)
         {
+            if (SpecialFilterNames.Contains(param.FilterName))
+            {
+                const int AlreadyExistsErrorCode = 90020;
+                return new Result(AlreadyExistsErrorCode, Resources.FilterNameAlreadyExists);
+            }
+
             var command = new AddFilterCommand(param);
             partialUMService.ThrowIfUM(command.GetSettingKey());
 
@@ -264,8 +272,8 @@
             if (sportGroup != SportGroupConstants.All)
             {
                 leagues = sportGroup == SportGroupConstants.MajorSports
-                    ? leagues.Where(m => MajorSports.ContainsKey(m.SportType))
-                    : leagues.Where(m => !MajorSports.ContainsKey(m.SportType));
+                    ? leagues.Where(m => MajorSports.Contains(m.SportType))
+                    : leagues.Where(m => !MajorSports.Contains(m.SportType));
             }
 
             var sports = BuildSports(leagues.ToList()).ToList();
@@ -278,19 +286,16 @@
             partialUMService.ThrowIfUM(criteria.GetSettingKey());
 
             var checkUsernames = await dynamicRepository.FetchAsync<MemberErrCode>(criteria);
-            foreach (var item in checkUsernames)
+
+            return checkUsernames.Select(item =>
             {
-                if (item.ErrCode == InvalidUsername)
-                {
-                    item.ErrMsg = Resources.InvalidUsername;
-                }
-                else if (item.ErrCode == NotAMember)
+                if (item.ErrCode != 0)
                 {
                     item.ErrMsg = Resources.NotAMember;
                 }
-            }
 
-            return checkUsernames;
+                return item;
+            });
         }
 
         public Task<IEnumerable<MyWatchlistMember>> GetMyWatchlistMembers(int agentId)
