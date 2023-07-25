@@ -14,13 +14,22 @@
 /* Note */
 /*******************************************/
 :root {
-  --main-color: #333333; }
+  --main-color: #333333;
+  --color-minus: #DD3333;
+  --color-bettype: #3873E9;
+  --color-favorite: #DD3333; }
 
 :root [data-theme='light'] {
-  --main-color: #333333; }
+  --main-color: #333333;
+  --color-minus: #DD3333;
+  --color-bettype: #3873E9;
+  --color-favorite: #DD3333; }
 
 :root [data-theme='dark'] {
-  --main-color: #ededed; }
+  --main-color: #ededed;
+  --color-minus: #E54748;
+  --color-bettype: #41A4FF;
+  --color-favorite: #E54748; }
 
 .bl_title .list-icon {
   float: right; }
@@ -137,12 +146,20 @@
 .tb .col-pt {
   width: 100px; }
 
+.tb .bl_underdog, .tb .underdog, .tb .bl_btype, .tb .bettype, .tb oddstype, .tb .minus-value, .tb .bl_favorite, .tb .favorite {
+  font-weight: normal !important; }
+
 .tb .bl_btype, .tb .bettype {
-  color: #3873E9;
-  font-weight: normal; }
+  color: var(--color-bettype); }
+
+.tb .oddstype {
+  color: var(--main-color); }
 
 .tb .minus-value {
-  color: #DD3333; }
+  color: var(--color-minus); }
+
+.tb .bl_favorite, .tb .favorite {
+  color: var(--color-favorite); }
 
 .tb .w-order {
   color: var(--main-color);

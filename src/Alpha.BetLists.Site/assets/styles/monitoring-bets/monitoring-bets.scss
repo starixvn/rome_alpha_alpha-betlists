@@ -3,15 +3,23 @@
 
 :root {
     --main-color: #333333;
+    --color-minus: #DD3333;
+    --color-bettype: #3873E9;
+    --color-favorite: #DD3333;
 }
 
 :root [data-theme='light'] {
     --main-color: #333333;
+    --color-minus: #DD3333;
+    --color-bettype: #3873E9;
+    --color-favorite: #DD3333;
 }
 
 :root [data-theme='dark'] {
     --main-color: #ededed;
-  
+    --color-minus: #E54748;
+    --color-bettype: #41A4FF;
+    --color-favorite: #E54748;
 }
 
 
@@ -105,13 +113,24 @@
         width: 100px;
     }
 
+    .bl_underdog, .underdog, .bl_btype, .bettype, oddstype, .minus-value, .bl_favorite, .favorite {
+        font-weight: normal !important;
+    }
+
     .bl_btype, .bettype {
-        color: #3873E9;
-        font-weight: normal;
+        color: var(--color-bettype);
+    }
+
+    .oddstype {
+        color: var(--main-color);
     }
 
     .minus-value {
-        color: #DD3333;
+        color: var(--color-minus);
+    }
+
+    .bl_favorite, .favorite {
+        color: var(--color-favorite);
     }
 
     .w-order {
