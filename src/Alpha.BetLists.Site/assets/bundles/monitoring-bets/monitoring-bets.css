@@ -19,6 +19,15 @@
 /*******************************************/
 /* Note */
 /*******************************************/
+:root {
+  --main-color: #333333; }
+
+:root [data-theme='light'] {
+  --main-color: #333333; }
+
+:root [data-theme='dark'] {
+  --main-color: #ededed; }
+
 .bl_title .list-icon {
   float: right; }
   .bl_title .list-icon ul li {
@@ -142,7 +151,7 @@
   color: #DD3333; }
 
 .tb .w-order {
-  color: #3873E9;
+  color: var(--main-color);
   font-weight: normal;
   text-align: right; }
 
