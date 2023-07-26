@@ -60,13 +60,7 @@
 
         public async Task<MonitoringBetsViewModel> Handle(MonitoringBetsQuery message)
         {
-            var filters = (await monitoringBetService.GetSavedFilters(message.ViewerId, message.SubAccId)).ToList();
-            var customFilter = userSession.GetProperty<SavedFilter>(SessionKey.LastBetsMonitoringCustomFilter);
-            if (customFilter != null)
-            {
-                customFilter.FilterName = AppResources.Resources.UnsavedFilter;
-                filters.Insert(0, customFilter);
-            }
+            var filters = await GetSavedFilters(message.ViewerId, message.SubAccId);
 
             var filterId = 0;
             BetListData betListData = null;
@@ -77,7 +71,6 @@
                 filterId = defaultFilter.FilterId;
 
                 var result = await GetMemberList(defaultFilter.Members, message.ViewerId, defaultFilter.FilterByMembers);
-
                 var memberList = result.Item1;
                 var memberInWatchlistIds = result.Item2;
 
@@ -92,7 +85,7 @@
                     defaultFilter.Stake,
                     limitRowCount: 100);
 
-                var betData = await GetBetData(param, memberInWatchlistIds, message.DisplayVNIP, latestTransId, message.ViewerId);
+                var betData = await GetBetData(param, memberInWatchlistIds, message.DisplayVNIP, latestTransId);
 
                 betListData = betData.Item1;
                 latestTransId = betData.Item2;
@@ -108,6 +101,20 @@
                 betListData,
                 Builder,
                 TicketHelper);
+        }
+
+        private async Task<IEnumerable<SavedFilter>> GetSavedFilters(int viewerId, int subAccId)
+        {
+            var filters = (await monitoringBetService.GetSavedFilters(viewerId, subAccId)).ToList();
+            var customFilter = userSession.GetProperty<SavedFilter>(SessionKey.LastBetsMonitoringCustomFilter);
+
+            if (customFilter != null)
+            {
+                customFilter.FilterName = AppResources.Resources.UnsavedFilter;
+                filters.Insert(0, customFilter);
+            }
+
+            return filters;
         }
 
         private static SavedFilter GetDefaultFilter(IEnumerable<SavedFilter> filters, string filterName)
@@ -189,7 +196,8 @@
             var memberList = result.Item1;
             var memberInWatchlistIds = result.Item2;
 
-            var param = new GetLastFilteringBetsParams(message.ViewerId,
+            var param = new GetLastFilteringBetsParams(
+                message.ViewerId,
                 message.TransId == 0 ? 0 : message.TransId - 1,
                 memberList,
                 message.SportTypeList,
@@ -199,7 +207,7 @@
                 message.MinStake,
                 message.LimitRowCount);
 
-            var betData = await GetBetData(param, memberInWatchlistIds, message.DisplayVNIP, message.LatestTransId, message.ViewerId);
+            var betData = await GetBetData(param, memberInWatchlistIds, message.DisplayVNIP, message.LatestTransId);
 
             var betListData = betData.Item1;
             var latestTransId = betData.Item2;
@@ -214,12 +222,12 @@
                 TicketHelper);
         }
 
-        private async Task<Tuple<string, IEnumerable<int>>> GetMemberList(string memberList, int viewerId, byte filterByMembers)
+        private async Task<Tuple<string, IEnumerable<int>>> GetMemberList(string memberList, int agentId, byte filterByMembers)
         {
-            var memberInWatchlistIds = (await monitoringBetService.GetMyWatchlistMembers(viewerId)).Select(member => member.CustId).ToList();
+            var memberInWatchlistIds = (await monitoringBetService.GetMyWatchlistMembers(agentId)).Select(member => member.CustId).ToList();
             if (filterByMembers == FilterByMembersConstants.AllWatchlistMembers)
             {
-                memberList = $"{memberList},{string.Join(",", memberInWatchlistIds)}".TrimStart(',');
+                memberList = $"{memberList ?? string.Empty},{string.Join(",", memberInWatchlistIds)}".TrimStart(',');
             }
 
             return Tuple.Create<string, IEnumerable<int>>(memberList, memberInWatchlistIds);
@@ -229,8 +237,7 @@
             GetLastFilteringBetsParams param,
             IEnumerable<int> memberInWatchlistIds,
             bool displayVNIP,
-            long latestTransId,
-            int custId)
+            long latestTransId)
         {
             var tickets = await monitoringBetService.GetLastFilteringBets(param);
 
@@ -254,7 +261,7 @@
                         ticket.IsHighlight = true;
                     }
                 }
-                WriteLog(custId, newTickets);
+                WriteLog(param.CustId, newTickets);
             }
 
             latestTransId = newTickets.FirstOrDefault()?.TransId ?? latestTransId;

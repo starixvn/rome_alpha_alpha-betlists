@@ -528,9 +528,6 @@
   <data name="Members" xml:space="preserve">
     <value>Members</value>
   </data>
-  <data name="SelectedMembers" xml:space="preserve">
-    <value>Selected Member(s)</value>
-  </data>
   <data name="None" xml:space="preserve">
     <value>ไม่ใช่</value>
   </data>
@@ -556,7 +553,7 @@
     <value>Sports</value>
   </data>
   <data name="UsernameTagsInputPlaceHolder" xml:space="preserve">
-    <value>Enter username(s) (separated by comma, tab and enter)</value>
+    <value>Enter username(s)/nickname(s) (separated by comma, tab or enter)</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
@@ -585,8 +582,8 @@
   <data name="SportGroup" xml:space="preserve">
     <value>Sport Group</value>
   </data>
-  <data name="EnterMemberUsernames" xml:space="preserve">
-    <value>Enter Member username(s)</value>
+  <data name="EnterMemberUsernamesOrNicknames" xml:space="preserve">
+    <value>Enter Member username(s)/nickname(s)</value>
   </data>
   <data name="AddedSuccessfully" xml:space="preserve">
     <value>Added successfully</value>
@@ -594,8 +591,8 @@
   <data name="SelectMembers" xml:space="preserve">
     <value>Select Member(s)</value>
   </data>
-  <data name="SearchMemberUsername" xml:space="preserve">
-    <value>Search Member Username</value>
+  <data name="SearchMemberUsernameOrNickname" xml:space="preserve">
+    <value>搜索會員用戶名/暱稱</value>
   </data>
   <data name="NoMemberUsernameFound" xml:space="preserve">
     <value>No member username found</value>
@@ -664,7 +661,7 @@
     <value>Please select sport(s)</value>
   </data>
   <data name="FilterConfigurationFilterByMembersRequiredError" xml:space="preserve">
-    <value>Please enter Member username(s) or select Member(s)</value>
+    <value>Please enter Member username(s)/nickname(s) or select Member(s)</value>
   </data>
   <data name="FilterConfigurationFilterNameRequiredError" xml:space="preserve">
     <value>Please enter a filter name</value>
@@ -687,11 +684,11 @@
   <data name="MemberUsernameNotFound" xml:space="preserve">
     <value>Member username not found</value>
   </data>
-  <data name="UsernameAlreadyExists" xml:space="preserve">
-    <value>Username already exists</value>
+  <data name="MemberAlreadyExists" xml:space="preserve">
+    <value>Member already exists</value>
   </data>
   <data name="MaxNoUsernames" xml:space="preserve">
-    <value>Max: # username(s)</value>
+    <value>Max: # member(s)</value>
   </data>
   <data name="SearchSportLeague" xml:space="preserve">
     <value>Search Sport/ League</value>
@@ -703,7 +700,7 @@
     <value>Set your filter criteria first</value>
   </data>
   <data name="FilterConfigurationWelcomeContent" xml:space="preserve">
-    <value>First time using Last Bet function? Please set the filter criteria based on your monitoring needs for bet tickets, and don’t forget to save your filter for later use.</value>
+    <value>First time using &lt;strong&gt;Last Bet&lt;/strong&gt; function? Please set the filter criteria based on your monitoring needs for bet tickets, and don’t forget to save your filter for later use.</value>
   </data>
   <data name="FilterConfigurationWelcomeContent2" xml:space="preserve">
     <value>Go ahead and give it a try!</value>
@@ -776,5 +773,11 @@
   </data>
   <data name="UnsavedFilter" xml:space="preserve">
     <value>Unsaved Filter</value>
+  </data>
+  <data name="ManuallyEntered" xml:space="preserve">
+    <value>Manually entered</value>
+  </data>
+  <data name="FromMonitoredList" xml:space="preserve">
+    <value>From monitored list</value>
   </data>
 </root>

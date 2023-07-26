@@ -528,9 +528,6 @@
   <data name="Members" xml:space="preserve">
     <value>Members</value>
   </data>
-  <data name="SelectedMembers" xml:space="preserve">
-    <value>选定会员</value>
-  </data>
   <data name="None" xml:space="preserve">
     <value>没有</value>
   </data>
@@ -556,7 +553,7 @@
     <value>Sports</value>
   </data>
   <data name="UsernameTagsInputPlaceHolder" xml:space="preserve">
-    <value>输入账号 (分隔以逗号、标签及输入)</value>
+    <value>输入账号/昵称 (分隔以逗号、标签及输入)</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
@@ -585,8 +582,8 @@
   <data name="SportGroup" xml:space="preserve">
     <value>体育组别</value>
   </data>
-  <data name="EnterMemberUsernames" xml:space="preserve">
-    <value>输入会员账号</value>
+  <data name="EnterMemberUsernamesOrNicknames" xml:space="preserve">
+    <value>输入会员账号/昵称</value>
   </data>
   <data name="AddedSuccessfully" xml:space="preserve">
     <value>Added successfully</value>
@@ -594,8 +591,8 @@
   <data name="SelectMembers" xml:space="preserve">
     <value>选择会员</value>
   </data>
-  <data name="SearchMemberUsername" xml:space="preserve">
-    <value>搜索会员用户名</value>
+  <data name="SearchMemberUsernameOrNickname" xml:space="preserve">
+    <value>搜索会员用户名/昵称</value>
   </data>
   <data name="NoMemberUsernameFound" xml:space="preserve">
     <value>No member username found</value>
@@ -687,7 +684,7 @@
   <data name="MemberUsernameNotFound" xml:space="preserve">
     <value>未找到会员用户名</value>
   </data>
-  <data name="UsernameAlreadyExists" xml:space="preserve">
+  <data name="MemberAlreadyExists" xml:space="preserve">
     <value>此用户名已存在</value>
   </data>
   <data name="MaxNoUsernames" xml:space="preserve">
@@ -703,7 +700,8 @@
     <value>先设置您的筛选标准</value>
   </data>
   <data name="FilterConfigurationWelcomeContent" xml:space="preserve">
-    <value>第一次使用最后投注功能？请根据您对投注注单的监控需求设置筛选标准，并且不要忘记保存您筛选标准以供日后使用。</value>
+    <value>第一次使用&lt;strong&gt;最后投注&lt;/strong&gt;功能？请根据您对投注注单的监控需求设置筛选标准，并且不要忘记保存您筛选标准以供日后使用。
+ 来尝试一下吧！</value>
   </data>
   <data name="FilterConfigurationWelcomeContent2" xml:space="preserve">
     <value>来尝试一下吧</value>
@@ -739,13 +737,13 @@
     <value>投注类别</value>
   </data>
   <data name="AllLeagues" xml:space="preserve">
-    <value>All Leagues</value>
+    <value>所有联赛</value>
   </data>
   <data name="Others" xml:space="preserve">
     <value>其他</value>
   </data>
   <data name="Mix" xml:space="preserve">
-    <value>Mix</value>
+    <value>混合</value>
   </data>
   <data name="Copied" xml:space="preserve">
     <value>复制</value>
@@ -782,5 +780,11 @@
   </data>
   <data name="FilterNameAlreadyExists" xml:space="preserve">
     <value>筛选名称已存在</value>
+  </data>
+  <data name="ManuallyEntered" xml:space="preserve">
+    <value>Manually entered</value>
+  </data>
+  <data name="FromMonitoredList" xml:space="preserve">
+    <value>From monitored list</value>
   </data>
 </root>

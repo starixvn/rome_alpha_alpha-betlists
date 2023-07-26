@@ -142,11 +142,11 @@
                     if (item.FilterXml.IsWatchlist != FilterByMembersConstants.AllMembers)
                     {
                         <tr class="filter-by-members-hidden row-level3" data-filterid="@item.FilterId" data-filterbymembers="1">
-                            <td>@Resources.EnteredMembers</td>
+                            <td>@Resources.ManuallyEntered</td>
                             <td colspan="3">@RenderDropdownMembers(item.InputList)</td>
                         </tr>
                         <tr class="filter-by-members-hidden row-level3" data-filterid="@item.FilterId" data-filterbymembers="1">
-                            <td>@Resources.SelectedMembers</td>
+                            <td>@Resources.FromMonitoredList</td>
                             <td colspan="3">
                                 @if (item.FilterXml.IsWatchlist == FilterByMembersConstants.AllWatchlistMembers)
                                 {

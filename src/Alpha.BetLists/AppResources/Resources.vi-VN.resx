@@ -335,7 +335,7 @@
     <value>Cuối cùng</value>
   </data>
   <data name="LastBets" xml:space="preserve">
-    <value>Cược mới nhất</value>
+    <value>Cược Gần Nhất</value>
   </data>
   <data name="OtherBetTypes" xml:space="preserve">
     <value>Loại cược khác</value>
@@ -538,9 +538,6 @@
   <data name="Members" xml:space="preserve">
     <value>Members</value>
   </data>
-  <data name="SelectedMembers" xml:space="preserve">
-    <value>Member đã chọn</value>
-  </data>
   <data name="None" xml:space="preserve">
     <value>Không Chọn</value>
   </data>
@@ -566,13 +563,13 @@
     <value>Sports</value>
   </data>
   <data name="UsernameTagsInputPlaceHolder" xml:space="preserve">
-    <value>Nhập các tên người dùng (cách nhau bằng dấu phẩy, tab hoặc enter)</value>
+    <value>Nhập các tên người dùng/biệt danh (cách nhau bằng dấu phẩy, tab hoặc enter)</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
   <data name="FilterConfiguration" xml:space="preserve">
-    <value>Cấu hình Bộ Lọc</value>
+    <value>Cấu Hình Bộ Lọc</value>
   </data>
   <data name="Apply" xml:space="preserve">
     <value>Áp dụng</value>
@@ -595,8 +592,8 @@
   <data name="SportGroup" xml:space="preserve">
     <value>Nhóm Thể Thao</value>
   </data>
-  <data name="EnterMemberUsernames" xml:space="preserve">
-    <value>Nhập tên người dùng của Member</value>
+  <data name="EnterMemberUsernamesOrNicknames" xml:space="preserve">
+    <value>Nhập tên người dùng/biệt danh của Member</value>
   </data>
   <data name="AddedSuccessfully" xml:space="preserve">
     <value>Added successfully</value>
@@ -604,8 +601,8 @@
   <data name="SelectMembers" xml:space="preserve">
     <value>Chọn Member</value>
   </data>
-  <data name="SearchMemberUsername" xml:space="preserve">
-    <value>Tìm tên người dùng của Member</value>
+  <data name="SearchMemberUsernameOrNickname" xml:space="preserve">
+    <value>Tìm tên người dùng/biệt danh của Member</value>
   </data>
   <data name="NoMemberUsernameFound" xml:space="preserve">
     <value>No member username found</value>
@@ -691,7 +688,7 @@
   <data name="MemberUsernameNotFound" xml:space="preserve">
     <value>Không tìm thấy tên người dùng của Member</value>
   </data>
-  <data name="UsernameAlreadyExists" xml:space="preserve">
+  <data name="MemberAlreadyExists" xml:space="preserve">
     <value>Tên người dùng đã tồn tại</value>
   </data>
   <data name="MaxNoUsernames" xml:space="preserve">
@@ -707,7 +704,9 @@
     <value>Chọn tiêu chí cho bộ lọc trước tiên</value>
   </data>
   <data name="FilterConfigurationWelcomeContent" xml:space="preserve">
-    <value>Lần đầu tiên sử dụng chức năng Cược Gần Nhất? Vui lòng chọn tiêu chí cho bộ lọc dựa trên nhu cầu theo dõi vé cược của bạn, và đừng quên lưu lại cấu hình bộ lọc này để sử dụng trong lần sau.</value>
+    <value>Lần đầu tiên sử dụng chức năng &lt;strong&gt;Cược Gần Nhất&lt;/strong&gt;?
+Vui lòng chọn tiêu chí cho bộ lọc dựa trên nhu cầu theo dõi vé cược của bạn, và đừng quên lưu lại cấu hình bộ lọc này để sử dụng trong lần sau.
+Đừng ngần ngại trải nghiệm chức năng mới này!</value>
   </data>
   <data name="FilterConfigurationWelcomeContent2" xml:space="preserve">
     <value>Đừng ngần ngại trải nghiệm chức năng mới này!</value>
@@ -743,7 +742,7 @@
     <value>Loại cược</value>
   </data>
   <data name="AllLeagues" xml:space="preserve">
-    <value>All Leagues</value>
+    <value>Tất cả giải đấu</value>
   </data>
   <data name="Others" xml:space="preserve">
     <value>Khác</value>
@@ -786,5 +785,11 @@
   </data>
   <data name="FilterNameAlreadyExists" xml:space="preserve">
     <value>Tên bộ lọc đã tồn tại.</value>
+  </data>
+  <data name="ManuallyEntered" xml:space="preserve">
+    <value>Manually entered</value>
+  </data>
+  <data name="FromMonitoredList" xml:space="preserve">
+    <value>From monitored list</value>
   </data>
 </root>

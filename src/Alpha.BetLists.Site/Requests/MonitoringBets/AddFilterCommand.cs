@@ -29,7 +29,7 @@
         public override bool IsValid()
             => !string.IsNullOrWhiteSpace(FilterName)
                 && !string.IsNullOrWhiteSpace(BetType)
-                && Stake > 0
+                && Stake >= 0
                 && Sports?.Length > 0
                 && IsValidFilterByMembers();
 

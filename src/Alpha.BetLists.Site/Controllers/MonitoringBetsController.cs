@@ -28,7 +28,7 @@
         {
             var viewModel = await mediator.Send(message);
 
-            if (viewModel != null && viewModel.Filters.Any())
+            if (viewModel.Filters.Any())
             {
                 return View(viewModel);
             }

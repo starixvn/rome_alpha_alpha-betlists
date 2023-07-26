@@ -37,7 +37,7 @@
                 <label for="txt-stake">@Resources.stake</label>
                 <div class="inner stake">
                     <span>>=</span>
-                    <input type="text" id="txt-stake" value="500" autocomplete="off" maxlength="13" />
+                    <input type="text" id="txt-stake" value="0" autocomplete="off" maxlength="13" />
                 </div>
             </div>
             <div class="item">
@@ -100,7 +100,7 @@
             </div>
         </div>
         <div class="hide" id="members-container">
-            <p class="text">@Resources.EnterMemberUsernames</p>
+            <p class="text">@Resources.EnterMemberUsernamesOrNicknames</p>
             @UsernameTagsInput.Render("username", Resources.UsernameTagsInputPlaceHolder)
             <p class="text">@Resources.SelectMembers</p>
             <div id="my-watchlist-members"></div>
@@ -124,12 +124,12 @@
 @Html.Hidden("hidden-SportLeagueNotFound", Resources.SportLeagueNotFound)
 @Html.Hidden("hidden-ExpandAll", Resources.ExpandAll)
 @Html.Hidden("hidden-SelectedOnly", Resources.SelectedOnly)
-@Html.Hidden("hidden-SearchMemberUsername", Resources.SearchMemberUsername)
+@Html.Hidden("hidden-SearchMemberUsername", Resources.SearchMemberUsernameOrNickname)
 @Html.Hidden("hidden-MemberUsernameNotFound", Resources.MemberUsernameNotFound)
 @Html.Hidden("hidden-AllIncludedNewlyAddedMembers", Resources.AllIncludedNewlyAddedMembers)
 @Html.Hidden("hidden-NoInformationIsAvailable", Resources.NoInformationIsAvailable)
 @Html.Hidden("hidden-MaxNoUsernames", Resources.MaxNoUsernames)
-@Html.Hidden("hidden-UsernameAlreadyExists", Resources.UsernameAlreadyExists)
+@Html.Hidden("hidden-UsernameAlreadyExists", Resources.MemberAlreadyExists)
 @helper RenderButtonGroup()
 {
     if (Model.ShowWelcomePopup)
