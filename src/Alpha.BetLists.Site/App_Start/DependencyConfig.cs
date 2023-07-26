@@ -152,6 +152,7 @@
             container.Register<ParlayWinLossByMatchService, ParlayWinLossByMatchServiceImpl>(Lifestyle.Singleton);
             container.Register<RunningBetListService, RunningBetListServiceImpl>(Lifestyle.Singleton);
             container.Register<IBetBuilderService, BetBuilderService>(Lifestyle.Singleton);
+            container.Register<FindTicketsService, FindTicketsServiceImpl>(Lifestyle.Singleton);
 
             container.Register<LastBetsService, LastBetsServiceImpl>(Lifestyle.Singleton);
             container.Register<EncryptionService, EncryptionServiceImpl>(Lifestyle.Singleton);

@@ -1,0 +1,13 @@
+.loading-icon {
+  height: 16px;
+  top: 8px;
+  width: 16px;
+  background: url(../../styles/find-tickets/images/ajax-loader-small.gif) no-repeat top;
+  position: absolute;
+  right: 0; }
+
+.form-inline.find-ticket {
+  padding-top: 15px;
+  position: relative; }
+  .form-inline.find-ticket .form-group {
+    margin: 0 16px 15px 0; }

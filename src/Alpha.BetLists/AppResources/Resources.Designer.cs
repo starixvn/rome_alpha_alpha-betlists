@@ -412,6 +412,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Find Tickets.
+        /// </summary>
+        public static string FindTickets {
+            get {
+                return ResourceManager.GetString("FindTickets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to From.
         /// </summary>
         public static string From {
@@ -912,6 +921,15 @@ namespace Alpha.BetLists.AppResources {
         public static string ProgressiveJackpotWonDetails {
             get {
                 return ResourceManager.GetString("ProgressiveJackpotWonDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ref No.
+        /// </summary>
+        public static string RefNo {
+            get {
+                return ResourceManager.GetString("RefNo", resourceCulture);
             }
         }
         

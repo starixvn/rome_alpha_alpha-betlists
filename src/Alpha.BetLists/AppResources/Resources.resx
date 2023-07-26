@@ -522,4 +522,10 @@
   <data name="ipnote" xml:space="preserve">
     <value>Country info provided by IP2Location™ and DNSstuff is for reference only, without warranty. For current and accurate info, consult reliable sources if needed</value>
   </data>
+  <data name="FindTickets" xml:space="preserve">
+    <value>Find Tickets</value>
+  </data>
+  <data name="RefNo" xml:space="preserve">
+    <value>Ref No</value>
+  </data>
 </root>

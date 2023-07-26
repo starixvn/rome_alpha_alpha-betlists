@@ -46,6 +46,12 @@
     ]
   },
   {
+    "outputFileName": "assets/bundles/find-tickets/find-tickets.js",
+    "inputFiles": [
+      "assets/scripts/src/find-tickets/find-tickets.js"
+    ]
+  },
+  {
     "outputFileName": "assets/bundles/running-betlist/running-betlist.js",
     "inputFiles": [
       "assets/scripts/src/components/daterangepicker.js",
@@ -55,7 +61,6 @@
       "assets/scripts/src/running-betlist/running-betlist.js"
     ]
   },
-
   {
     "outputFileName": "assets/bundles/member-betlist/member-betlist.js",
     "inputFiles": [
@@ -109,6 +114,12 @@
     ]
   },
   {
+    "outputFileName": "assets/bundles/find-tickets/find-tickets.css",
+    "inputFiles": [
+      "assets/styles/find-tickets/find-tickets.css"
+    ]
+  },
+  {
     "outputFileName": "assets/bundles/icon-note.js",
     "inputFiles": [
       "assets/scripts/src/common/icon-note.js"
@@ -128,7 +139,6 @@
       "assets/styles/last-bets-dark.css"
     ]
   },
-
   {
     "outputFileName": "assets/bundles/parlay-detail-dark.css",
     "inputFiles": [
