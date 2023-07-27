@@ -538,6 +538,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Entered Member(s).
+        /// </summary>
+        public static string EnteredMembers {
+            get {
+                return ResourceManager.GetString("EnteredMembers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enter Member username(s)/nickname(s).
         /// </summary>
         public static string EnterMemberUsernamesOrNicknames {

@@ -126,9 +126,6 @@
       border: 0;
       box-shadow: none;
       width: 100%; }
-    .item .inner .multiselect-selected-text {
-      width: 100%;
-      color: var(--color-gray); }
     .item .inner.stake {
       background-color: var(--bg-stake);
       border-radius: 3px;
