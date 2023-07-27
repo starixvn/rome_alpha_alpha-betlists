@@ -475,14 +475,17 @@ var UsernameTagsInputComponent = /** @class */ (function () {
             _this.realInput.data("pasted", false);
             var value = $.trim(_this.realInput.val());
             var tagsList = _this.splitIntoTags(value);
-            tagsList.length > 1 && _this.addTagsList(tagsList);
+            tagsList.length > 1 && _this.addTagsList(tagsList, false);
         });
-        this.realInput.blur(function () { return _this.addTag(_this.realInput.val()); });
+        this.realInput.blur(function () {
+            var visible = _this.realInput.next(".typeahead").is(":visible");
+            !visible && _this.addTag(_this.realInput.val(), false);
+        });
         // If a user types a delimiter create a new tag
         this.realInput.keypress(function (event) {
             if (_this.checkDelimiter(event)) {
                 event.preventDefault();
-                _this.addTag(_this.realInput.val());
+                _this.addTag(_this.realInput.val(), false);
             }
         });
         this.initSuggestion();
@@ -497,24 +500,27 @@ var UsernameTagsInputComponent = /** @class */ (function () {
             items: 10,
             minLength: 2,
             highlighter: function (displayText) {
-                var parts = displayText.split("#");
-                return parts[0] + " <br/> " + parts[1];
+                var parts = displayText.split("∞");
+                return parts[0] + "<br/>" + parts[1];
             },
             displayText: function (item) {
                 var nickname = item.Username2 ? " (" + item.Username2 + ")" : "";
-                return "" + item.Username + nickname + "#" + item.FirstName + " " + item.LastName;
+                return "<strong>" + item.Username + nickname + "</strong>\u221E" + item.FirstName + " " + item.LastName;
             },
             autoSelect: false,
-            afterSelect: function (item) { return _this.realInput.val(item.Username); },
+            afterSelect: function (item) {
+                _this.realInput.val("");
+                _this.addTag(item.Username, true);
+            },
             delay: 200
         };
         this.realInput.typeahead(typeaheadOptions);
     };
-    UsernameTagsInputComponent.prototype.addTag = function (value) {
+    UsernameTagsInputComponent.prototype.addTag = function (value, fromSuggestion) {
         value = $.trim(value);
-        this.validateTag(value) && this.addTagsList([value]);
+        this.validateTag(value) && this.addTagsList([value], fromSuggestion);
     };
-    UsernameTagsInputComponent.prototype.addTagsList = function (tagsList) {
+    UsernameTagsInputComponent.prototype.addTagsList = function (tagsList, fromSuggestion) {
         var _this = this;
         var usernames = this.getUsernames();
         var usernamesLength = usernames.length;
@@ -529,7 +535,8 @@ var UsernameTagsInputComponent = /** @class */ (function () {
                     uniqueTagsList_1.push(item);
                 }
             });
-            $.post("CheckUsernames", { usernames: uniqueTagsList_1.join() }, function (results) { return _this.appendTags(results); });
+            var formData = { usernames: uniqueTagsList_1.join(), fromSuggestion: fromSuggestion };
+            $.post(this.tagsInputOption.baseUrl + "/CheckUsernames", formData, function (results) { return _this.appendTags(results); });
         }
     };
     UsernameTagsInputComponent.prototype.tagExist = function (tagsList, value) {
@@ -539,6 +546,10 @@ var UsernameTagsInputComponent = /** @class */ (function () {
     UsernameTagsInputComponent.prototype.appendTags = function (results) {
         var _this = this;
         results.forEach(function (result) {
+            if (!result.ErrCode && _this.tagsBox.find(".tag[data-custid=" + result.CustId + "]").length) {
+                result.ErrCode = 1;
+                result.ErrMsg = _this.tagsInputOption.duplicatedUsernameText;
+            }
             _this.tagsBox.append($("<span>", {
                 class: "tag" + (result.ErrCode ? " error" : ""),
                 title: result.ErrMsg,

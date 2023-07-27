@@ -33,8 +33,6 @@
 
         Task<IEnumerable<Sport>> GetSports(byte sportGroup);
 
-        Task<IEnumerable<MemberErrCode>> CheckUsernames(int agentId, string usernames);
-
         Task<IEnumerable<MyWatchlistMember>> GetMyWatchlistMembers(int agentId);
 
         Task<IEnumerable<TicketDto>> GetLastFilteringBets(GetLastFilteringBetsParams param);
@@ -277,24 +275,6 @@
 
             var sports = BuildSports(leagues.ToList()).ToList();
             return sports;
-        }
-
-        public async Task<IEnumerable<MemberErrCode>> CheckUsernames(int agentId, string usernames)
-        {
-            var criteria = new CheckUsernamesCriteria(agentId, usernames);
-            partialUMService.ThrowIfUM(criteria.GetSettingKey());
-
-            var checkUsernames = await dynamicRepository.FetchAsync<MemberErrCode>(criteria);
-
-            return checkUsernames.Select(item =>
-            {
-                if (item.ErrCode != 0)
-                {
-                    item.ErrMsg = Resources.NotAMember;
-                }
-
-                return item;
-            });
         }
 
         public Task<IEnumerable<MyWatchlistMember>> GetMyWatchlistMembers(int agentId)

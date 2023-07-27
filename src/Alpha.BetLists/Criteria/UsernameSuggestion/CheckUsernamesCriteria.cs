@@ -1,4 +1,4 @@
-﻿namespace Alpha.BetLists.Criteria.MonitoringBets
+﻿namespace Alpha.BetLists.Criteria.UsernameSuggestion
 {
     using Fanex.Data.Repository;
 

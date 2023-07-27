@@ -369,13 +369,11 @@
     <Compile Include="Criteria\GetProductsDetailCriteria.cs" />
     <Compile Include="Criteria\GetScoreMapBetTypesCriteria.cs" />
     <Compile Include="Criteria\CasinoDetails\GetCasinoDetailsCriteria.cs" />
-    <Compile Include="Criteria\GetUsernameSuggestionCriteria.cs" />
     <Compile Include="Criteria\IPInfo\GetIPV4InfoByTopCountryCriteria.cs" />
     <Compile Include="Criteria\IPInfo\GetIPV4InfoCriteria.cs" />
     <Compile Include="Criteria\IPInfo\GetIPV6InfoCriteria.cs" />
     <Compile Include="Criteria\LastBets\GetMatchInfoByIdCriteria.cs" />
     <Compile Include="Criteria\MonitoringBets\AddFilterCommand.cs" />
-    <Compile Include="Criteria\MonitoringBets\CheckUsernamesCriteria.cs" />
     <Compile Include="Criteria\MonitoringBets\DeleteFilterCommand.cs" />
     <Compile Include="Criteria\MonitoringBets\GetFiltersCriteria.cs" />
     <Compile Include="Criteria\MonitoringBets\GetLeaguesCriteria.cs" />
@@ -402,6 +400,9 @@
     <Compile Include="Criteria\SmartPunter\NAPUserPermissionCriteria.cs" />
     <Compile Include="Criteria\SmartPunter\InternalAdminCheckerCriteria.cs" />
     <Compile Include="Criteria\ParlayWinLossByMatch\GetParlayWinLossByMatchCriteria.cs" />
+    <Compile Include="Criteria\UsernameSuggestion\CheckUsernamesCriteria.cs" />
+    <Compile Include="Criteria\UsernameSuggestion\GetUsernameSuggestionCriteria.cs" />
+    <Compile Include="Criteria\UsernameSuggestion\UpdateUserSearchCriteria.cs" />
     <Compile Include="Criteria\WinLossByMatch\GetWinLossByMatchCriteria.cs" />
     <Compile Include="Criteria\WinLossByMatch\GetWinLossLeapGamingCriteria.cs" />
     <Compile Include="Criteria\WinLossByMatch\GetWinLossOutrightCriteria.cs" />
@@ -433,7 +434,6 @@
     <Compile Include="Models\JackpotOfferedBySite.cs" />
     <Compile Include="Models\League.cs" />
     <Compile Include="Models\MatchInfo.cs" />
-    <Compile Include="Models\MonitoringBets\MemberErrCode.cs" />
     <Compile Include="Models\MonitoringBets\FilterConfiguration.cs" />
     <Compile Include="Models\MonitoringBets\FilterXml.cs" />
     <Compile Include="Models\MonitoringBets\MyWatchlistMember.cs" />
@@ -453,6 +453,7 @@
     <Compile Include="Models\TicketDto.cs" />
     <Compile Include="Models\UserLevel.cs" />
     <Compile Include="Params\SearchTicketsParam.cs" />
+    <Compile Include="Models\UsernameErrCode.cs" />
     <Compile Include="Models\UsernameSuggestion.cs" />
     <Compile Include="Params\DailyStatementParam.cs" />
     <Compile Include="Params\GetProductsByGroupHeadlineParam.cs" />

@@ -1398,7 +1398,7 @@
     <Compile Include="Handlers\RiskAnalysisIPMatching\RiskAnalysisIPMatchingHelper.cs" />
     <Compile Include="Handlers\RiskAnalysisIPMatching\RiskAnalysisIPMatchingHandler.cs" />
     <Compile Include="Handlers\RiskAnalysisIPMatching\RiskAnalysisIPMatchingExcelHandler.cs" />
-    <Compile Include="Handlers\UsernameSuggestionHandler.cs" />
+    <Compile Include="Handlers\UsernameSuggestion\UsernameSuggestionHandler.cs" />
     <Compile Include="Handlers\WinLoss\WinLossNewHandler.cs" />
     <Compile Include="Helpers\BrowserHelper.cs">
       <SonarQubeExclude>true</SonarQubeExclude>
@@ -1465,8 +1465,6 @@
     <Compile Include="Requests\MemberBetList\MemberBetListQuery.cs" />
     <Compile Include="Requests\MonitoringBets\AddFilterCommand.cs" />
     <Compile Include="Requests\MonitoringBets\ApplyFilterCommand.cs" />
-    <Compile Include="Requests\MonitoringBets\CheckCanViewLastFilteringBetsQuery.cs" />
-    <Compile Include="Requests\MonitoringBets\CheckUsernamesQuery.cs" />
     <Compile Include="Requests\MonitoringBets\DeleteFiltersCommand.cs" />
     <Compile Include="Requests\MonitoringBets\FilterBySportsQuery.cs" />
     <Compile Include="Requests\MonitoringBets\GetMyWatchlistMembersQuery.cs" />
@@ -1487,7 +1485,8 @@
     <Compile Include="Requests\Parlay\ComboParlayDetailQuery.cs" />
     <Compile Include="Requests\Parlay\ComboParlayQuery.cs" />
     <Compile Include="Requests\Parlay\MixParlayQuery.cs" />
-    <Compile Include="Requests\UsernameSuggestionQuery.cs" />
+    <Compile Include="Requests\UsernameSuggestion\CheckUsernamesQuery.cs" />
+    <Compile Include="Requests\UsernameSuggestion\UsernameSuggestionQuery.cs" />
     <Compile Include="Requests\WinLossByMatch\WinLossByMatchExcelQuery.cs" />
     <Compile Include="Requests\WinLossByMatch\WinLossByMatchQuery.cs" />
     <Compile Include="Requests\WinLoss\WinLossExcelQuery.cs" />

@@ -514,3 +514,36 @@ div.ticket-list div.void > div.match, div.ticket-list div.void div.firstGoal, di
   .tblRpt tbody td.status-block .country {
     font-size: 11px; }
 
+.icon {
+  margin: 5px; }
+
+#info-note.message-modal {
+  width: 750px; }
+  #info-note.message-modal .modal-dialog {
+    width: 750px; }
+    #info-note.message-modal .modal-dialog .modal-content .modal-header {
+      height: 40px; }
+      #info-note.message-modal .modal-dialog .modal-content .modal-header .modal-title {
+        height: 35px; }
+    #info-note.message-modal .modal-dialog .modal-content .modal-body #msg-content {
+      text-transform: none;
+      color: #333;
+      font-weight: 300; }
+
+@media only screen and (max-device-width: 767px) {
+  div#info-note.message-modal {
+    width: 550px; }
+    div#info-note.message-modal .modal-dialog {
+      width: 550px; }
+      div#info-note.message-modal .modal-dialog .modal-content .modal-header {
+        height: 50px; }
+        div#info-note.message-modal .modal-dialog .modal-content .modal-header .modal-title {
+          height: 40px; }
+      div#info-note.message-modal .modal-dialog .modal-content .modal-body #msg-content {
+        font-size: 14px; } }
+
+.box {
+  display: flex; }
+
+.push {
+  margin-left: auto; }

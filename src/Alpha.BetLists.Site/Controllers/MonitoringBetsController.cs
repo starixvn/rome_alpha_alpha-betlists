@@ -36,6 +36,9 @@
             return RedirectToAction(nameof(FilterConfiguration), new { welcome = true });
         }
 
+        [HttpPost, DisableNetThrottling]
+        public Task<ActionResult> BetData(GetLastFilteringBetsQuery message) => View(message);
+
         public Task<ActionResult> ManageFilters(ManageFiltersQuery message) => View(message);
 
         [HttpPost, AntiXsrfFilter]
@@ -68,9 +71,6 @@
         public Task<ActionResult> FilterBySports(FilterBySportsQuery message)
             => Json(message, JsonRequestBehavior.AllowGet);
 
-        [HttpPost]
-        public Task<ActionResult> CheckUsernames(CheckUsernamesQuery message) => Json(message);
-
         public Task<ActionResult> GetMyWatchlistMembers(GetMyWatchlistMembersQuery message)
             => Json(message, JsonRequestBehavior.AllowGet);
 
@@ -93,10 +93,5 @@
                 ? await mediator.Send(message)
                 : BadRequestResult();
         }
-
-        [HttpPost]
-        [DisableNetThrottling]
-        public Task<ActionResult> BetData(GetLastFilteringBetsQuery message)
-            => View(message);
     }
 }

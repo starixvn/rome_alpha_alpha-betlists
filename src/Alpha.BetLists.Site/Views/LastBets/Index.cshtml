@@ -50,7 +50,7 @@
         </div>
         <span id="loading-icon" class="loading-icon"></span>
     </div>
-    @Common.SwitchVersionButton.Render(Resources.NewView, Url.Action("Index", $"{AppSettings.BetlistRouting}MonitoringBets"))
+    @Common.SwitchVersionButton.NewView(Url.Action("Index", $"{AppSettings.BetlistRouting}MonitoringBets"))
 </div>
 <div id="msg-error" class="msg msg-error hide">
     @Resources.FunctionTurnOffError

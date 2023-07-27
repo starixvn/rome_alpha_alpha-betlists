@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using Alpha.BetLists.Models;
-    using Alpha.BetLists.Site.Requests;
+    using Alpha.BetLists.Site.Requests.UsernameSuggestion;
     using MediatR;
 
     public class UsernameSuggestionController : BetListBaseController
@@ -21,5 +21,8 @@
 
             return Json(usernamesSuggestion, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        public Task<ActionResult> CheckUsernames(CheckUsernamesQuery message) => Json(message);
     }
 }

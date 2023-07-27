@@ -574,8 +574,8 @@
   <data name="Apply" xml:space="preserve">
     <value>Áp dụng</value>
   </data>
-  <data name="SaveFilter" xml:space="preserve">
-    <value>Lưu Bộ Lọc</value>
+  <data name="Save" xml:space="preserve">
+    <value>Lưu</value>
   </data>
   <data name="FilterByTickets" xml:space="preserve">
     <value>Lọc theo Vé Cược</value>
@@ -592,8 +592,8 @@
   <data name="SportGroup" xml:space="preserve">
     <value>Nhóm Thể Thao</value>
   </data>
-  <data name="EnterMemberUsernamesOrNicknames" xml:space="preserve">
-    <value>Nhập tên người dùng/biệt danh của Member</value>
+  <data name="EnterMembers" xml:space="preserve">
+    <value>Enter Member(s)</value>
   </data>
   <data name="AddedSuccessfully" xml:space="preserve">
     <value>Added successfully</value>
@@ -671,7 +671,7 @@
     <value>Vui lòng chọn môn thể thao</value>
   </data>
   <data name="FilterConfigurationFilterByMembersRequiredError" xml:space="preserve">
-    <value>Vui lòng nhập tên người dùng của Member hoặc chọn Member</value>
+    <value>Please enter or select Member(s)</value>
   </data>
   <data name="FilterConfigurationFilterNameRequiredError" xml:space="preserve">
     <value>Vui lòng nhập tên bộ lọc</value>
@@ -685,8 +685,8 @@
   <data name="SetAsDefaultFilter" xml:space="preserve">
     <value>Đặ̣t làm bộ lọc mặc định</value>
   </data>
-  <data name="MemberUsernameNotFound" xml:space="preserve">
-    <value>Không tìm thấy tên người dùng của Member</value>
+  <data name="MemberNotFound" xml:space="preserve">
+    <value>Member not found</value>
   </data>
   <data name="MemberAlreadyExists" xml:space="preserve">
     <value>Tên người dùng đã tồn tại</value>
@@ -774,8 +774,8 @@ Vui lòng chọn tiêu chí cho bộ lọc dựa trên nhu cầu theo dõi
   <data name="NoChangeToUpdate" xml:space="preserve">
     <value>Không có thay đổi để cập nhật.</value>
   </data>
-  <data name="SaveFilterAndApply" xml:space="preserve">
-    <value>Save Filter And Apply</value>
+  <data name="SaveAndApply" xml:space="preserve">
+    <value>Save &amp; Apply</value>
   </data>
   <data name="MonitoredMember" xml:space="preserve">
     <value>Monitored Member</value>
@@ -791,5 +791,8 @@ Vui lòng chọn tiêu chí cho bộ lọc dựa trên nhu cầu theo dõi
   </data>
   <data name="FromMonitoredList" xml:space="preserve">
     <value>From Monitored List</value>
+  </data>
+  <data name="SaveFilter" xml:space="preserve">
+    <value>Lưu Bộ Lọc</value>
   </data>
 </root>

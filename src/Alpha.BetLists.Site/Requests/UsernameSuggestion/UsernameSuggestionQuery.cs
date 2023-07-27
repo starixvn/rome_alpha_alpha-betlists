@@ -1,4 +1,4 @@
-﻿namespace Alpha.BetLists.Site.Requests
+﻿namespace Alpha.BetLists.Site.Requests.UsernameSuggestion
 {
     using System.Collections.Generic;
     using Alpha.BetLists.Models;

@@ -585,8 +585,8 @@
   <data name="Apply" xml:space="preserve">
     <value>Apply</value>
   </data>
-  <data name="SaveFilter" xml:space="preserve">
-    <value>Save Filter</value>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
   </data>
   <data name="FilterByTickets" xml:space="preserve">
     <value>Filter by Tickets</value>
@@ -603,8 +603,8 @@
   <data name="SportGroup" xml:space="preserve">
     <value>Sport Group</value>
   </data>
-  <data name="EnterMemberUsernamesOrNicknames" xml:space="preserve">
-    <value>Enter Member username(s)/nickname(s)</value>
+  <data name="EnterMembers" xml:space="preserve">
+    <value>Enter Member(s)</value>
   </data>
   <data name="AddedSuccessfully" xml:space="preserve">
     <value>Added successfully</value>
@@ -682,7 +682,7 @@
     <value>Please select sport(s)</value>
   </data>
   <data name="FilterConfigurationFilterByMembersRequiredError" xml:space="preserve">
-    <value>Please enter Member username(s)/nickname(s) or select Member(s)</value>
+    <value>Please enter or select Member(s)</value>
   </data>
   <data name="FilterConfigurationFilterNameRequiredError" xml:space="preserve">
     <value>Please enter a filter name</value>
@@ -696,8 +696,8 @@
   <data name="SetAsDefaultFilter" xml:space="preserve">
     <value>Set as default filter</value>
   </data>
-  <data name="MemberUsernameNotFound" xml:space="preserve">
-    <value>Member username not found</value>
+  <data name="MemberNotFound" xml:space="preserve">
+    <value>Member not found</value>
   </data>
   <data name="MemberAlreadyExists" xml:space="preserve">
     <value>Member already exists</value>
@@ -786,8 +786,8 @@
   <data name="BadRequest" xml:space="preserve">
     <value>Bad Request</value>
   </data>
-  <data name="SaveFilterAndApply" xml:space="preserve">
-    <value>Save Filter And Apply</value>
+  <data name="SaveAndApply" xml:space="preserve">
+    <value>Save &amp; Apply</value>
   </data>
   <data name="MonitoredMember" xml:space="preserve">
     <value>Monitored Member</value>
@@ -803,5 +803,8 @@
   </data>
   <data name="FromMonitoredList" xml:space="preserve">
     <value>From Monitored List</value>
+  </data>
+  <data name="SaveFilter" xml:space="preserve">
+    <value>Save Filter</value>
   </data>
 </root>

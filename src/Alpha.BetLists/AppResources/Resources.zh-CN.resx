@@ -564,8 +564,8 @@
   <data name="Apply" xml:space="preserve">
     <value>应用</value>
   </data>
-  <data name="SaveFilter" xml:space="preserve">
-    <value>保存筛选</value>
+  <data name="Save" xml:space="preserve">
+    <value>保存</value>
   </data>
   <data name="FilterByTickets" xml:space="preserve">
     <value>按照注单筛选</value>
@@ -582,8 +582,8 @@
   <data name="SportGroup" xml:space="preserve">
     <value>体育组别</value>
   </data>
-  <data name="EnterMemberUsernamesOrNicknames" xml:space="preserve">
-    <value>输入会员账号/昵称</value>
+  <data name="EnterMembers" xml:space="preserve">
+    <value>Enter Member(s)</value>
   </data>
   <data name="AddedSuccessfully" xml:space="preserve">
     <value>Added successfully</value>
@@ -661,7 +661,7 @@
     <value>请选择体育项目</value>
   </data>
   <data name="FilterConfigurationFilterByMembersRequiredError" xml:space="preserve">
-    <value>请输入会员账号或选择会员</value>
+    <value>Please enter or select Member(s)</value>
   </data>
   <data name="FilterConfigurationFilterNameRequiredError" xml:space="preserve">
     <value>请输入筛选名称</value>
@@ -681,8 +681,8 @@
   <data name="On" xml:space="preserve">
     <value>开启</value>
   </data>
-  <data name="MemberUsernameNotFound" xml:space="preserve">
-    <value>未找到会员用户名</value>
+  <data name="MemberNotFound" xml:space="preserve">
+    <value>Member not found</value>
   </data>
   <data name="MemberAlreadyExists" xml:space="preserve">
     <value>此用户名已存在</value>
@@ -769,8 +769,8 @@
   <data name="NoChangeToUpdate" xml:space="preserve">
     <value>此更新没有任何变化</value>
   </data>
-  <data name="SaveFilterAndApply" xml:space="preserve">
-    <value>Save Filter And Apply</value>
+  <data name="SaveAndApply" xml:space="preserve">
+    <value>Save &amp; Apply</value>
   </data>
   <data name="MonitoredMember" xml:space="preserve">
     <value>Monitored Member</value>
@@ -786,5 +786,8 @@
   </data>
   <data name="FromMonitoredList" xml:space="preserve">
     <value>From Monitored List</value>
+  </data>
+  <data name="SaveFilter" xml:space="preserve">
+    <value>保存筛选</value>
   </data>
 </root>

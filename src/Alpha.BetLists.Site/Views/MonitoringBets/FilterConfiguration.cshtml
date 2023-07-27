@@ -100,7 +100,7 @@
             </div>
         </div>
         <div class="hide" id="members-container">
-            <p class="text">@Resources.EnterMemberUsernamesOrNicknames</p>
+            <p class="text">@Resources.EnterMembers</p>
             @UsernameTagsInput.Render("username", Resources.UsernameTagsInputPlaceHolder)
             <p class="text">@Resources.SelectMembers</p>
             <div id="my-watchlist-members"></div>
@@ -125,7 +125,7 @@
 @Html.Hidden("hidden-ExpandAll", Resources.ExpandAll)
 @Html.Hidden("hidden-SelectedOnly", Resources.SelectedOnly)
 @Html.Hidden("hidden-SearchMemberUsername", Resources.SearchMemberUsernameOrNickname)
-@Html.Hidden("hidden-MemberUsernameNotFound", Resources.MemberUsernameNotFound)
+@Html.Hidden("hidden-MemberUsernameNotFound", Resources.MemberNotFound)
 @Html.Hidden("hidden-AllIncludedNewlyAddedMembers", Resources.AllIncludedNewlyAddedMembers)
 @Html.Hidden("hidden-NoInformationIsAvailable", Resources.NoInformationIsAvailable)
 @Html.Hidden("hidden-MaxNoUsernames", Resources.MaxNoUsernames)

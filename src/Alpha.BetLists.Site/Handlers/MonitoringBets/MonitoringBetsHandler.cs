@@ -31,7 +31,6 @@
         IAsyncRequestHandler<UpdateFilterCommand, Result>,
         IAsyncRequestHandler<DeleteFiltersCommand, IEnumerable<Result>>,
         IAsyncRequestHandler<FilterBySportsQuery, IEnumerable<Sport>>,
-        IAsyncRequestHandler<CheckUsernamesQuery, IEnumerable<MemberErrCode>>,
         IAsyncRequestHandler<GetMyWatchlistMembersQuery, IEnumerable<MyWatchlistMember>>,
         IAsyncRequestHandler<GetLastFilteringBetsQuery, FilteringBetDataViewModel>
     {
@@ -147,9 +146,6 @@
         public Task<IEnumerable<Sport>> Handle(FilterBySportsQuery message)
             => monitoringBetService.GetSports(message.GroupSport);
 
-        public Task<IEnumerable<MemberErrCode>> Handle(CheckUsernamesQuery message)
-            => monitoringBetService.CheckUsernames(message.ViewerId, message.Usernames);
-
         public Task<IEnumerable<MyWatchlistMember>> Handle(GetMyWatchlistMembersQuery message)
             => monitoringBetService.GetMyWatchlistMembers(message.ViewerId);
 
@@ -160,12 +156,12 @@
                 message.SubAccId,
                 message.FilterName,
                 message.IsDefault,
-                message.BetType,
+                message.BetType.RemoveDuplicate(),
                 message.Stake,
                 message.Sports,
                 message.LiveStatus,
-                message.InputList,
-                message.MyWatchlist,
+                message.InputList.RemoveDuplicate(),
+                message.MyWatchlist.RemoveDuplicate(),
                 message.FilterByMembers,
                 message.LanguageKey,
                 message.IP));

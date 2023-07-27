@@ -19,7 +19,7 @@ namespace Alpha.BetLists.AppResources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -547,11 +547,19 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enter Member username(s)/nickname(s).
         /// </summary>
-        public static string EnterMemberUsernamesOrNicknames {
+        public static string EnteredMembers {
             get {
-                return ResourceManager.GetString("EnterMemberUsernamesOrNicknames", resourceCulture);
+                return ResourceManager.GetString("EnteredMembers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter Member(s).
+        /// </summary>
+        public static string EnterMembers {
+            get {
+                return ResourceManager.GetString("EnterMembers", resourceCulture);
             }
         }
         
@@ -691,7 +699,7 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please enter Member username(s)/nickname(s) or select Member(s).
+        ///   Looks up a localized string similar to Please enter or select Member(s).
         /// </summary>
         public static string FilterConfigurationFilterByMembersRequiredError {
             get {
@@ -1159,20 +1167,20 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Member not found.
+        /// </summary>
+        public static string MemberNotFound {
+            get {
+                return ResourceManager.GetString("MemberNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Members.
         /// </summary>
         public static string Members {
             get {
                 return ResourceManager.GetString("Members", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Member username not found.
-        /// </summary>
-        public static string MemberUsernameNotFound {
-            get {
-                return ResourceManager.GetString("MemberUsernameNotFound", resourceCulture);
             }
         }
         
@@ -1618,20 +1626,29 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save &amp; Apply.
+        /// </summary>
+        public static string SaveAndApply {
+            get {
+                return ResourceManager.GetString("SaveAndApply", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save Filter.
         /// </summary>
         public static string SaveFilter {
             get {
                 return ResourceManager.GetString("SaveFilter", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Save Filter And Apply.
-        /// </summary>
-        public static string SaveFilterAndApply {
-            get {
-                return ResourceManager.GetString("SaveFilterAndApply", resourceCulture);
             }
         }
         

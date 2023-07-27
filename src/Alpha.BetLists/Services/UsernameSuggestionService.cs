@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using Alpha.BetLists.Criteria;
+    using Alpha.BetLists.Criteria.UsernameSuggestion;
     using Alpha.BetLists.Models;
     using Fanex.Data.Repository;
 
@@ -15,6 +15,10 @@
             bool isInternal,
             bool directDownline,
             bool isAccInfo);
+
+        Task UpdateUserSearch(int userId, string search, string firstName, string lastName, string nickname);
+
+        Task<IEnumerable<UsernameErrCode>> CheckUsernames(int agentId, string usernames);
     }
 
     public class UsernameSuggestionServiceImpl : UsernameSuggestionService
@@ -36,5 +40,11 @@
                    isInternal,
                    directDownline,
                    isAccInfo))).OrderBy(item => item.Username);
+
+        public Task UpdateUserSearch(int userId, string search, string firstName, string lastName, string nickname)
+            => dynamicRepository.ExecuteAsync(new UpdateUserSearchCriteria(userId, search, firstName, lastName, nickname));
+
+        public Task<IEnumerable<UsernameErrCode>> CheckUsernames(int agentId, string usernames)
+            => dynamicRepository.FetchAsync<UsernameErrCode>(new CheckUsernamesCriteria(agentId, usernames));
     }
 }

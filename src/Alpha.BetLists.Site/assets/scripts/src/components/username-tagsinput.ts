@@ -52,16 +52,19 @@ class UsernameTagsInputComponent {
 
             const value = $.trim(this.realInput.val());
             const tagsList = this.splitIntoTags(value);
-            tagsList.length > 1 && this.addTagsList(tagsList);
+            tagsList.length > 1 && this.addTagsList(tagsList, false);
         });
 
-        this.realInput.blur(() => this.addTag(this.realInput.val()));
+        this.realInput.blur(() => {
+            const visible = this.realInput.next(".typeahead").is(":visible");
+            !visible && this.addTag(this.realInput.val(), false);
+        });
 
         // If a user types a delimiter create a new tag
         this.realInput.keypress((event) => {
             if (this.checkDelimiter(event)) {
                 event.preventDefault();
-                this.addTag(this.realInput.val());
+                this.addTag(this.realInput.val(), false);
             }
         });
 
@@ -78,27 +81,30 @@ class UsernameTagsInputComponent {
             items: 10,
             minLength: 2,
             highlighter: function (displayText: string) {
-                const parts = displayText.split("#");
-                return `${parts[0]} <br/> ${parts[1]}`;
+                const parts = displayText.split("∞");
+                return `${parts[0]}<br/>${parts[1]}`;
             },
             displayText: function (item) {
                 const nickname = item.Username2 ? ` (${item.Username2})` : "";
-                return `${item.Username}${nickname}#${item.FirstName} ${item.LastName}`;
+                return `<strong>${item.Username}${nickname}</strong>∞${item.FirstName} ${item.LastName}`;
             },
             autoSelect: false,
-            afterSelect: (item) => this.realInput.val(item.Username),
+            afterSelect: (item) => {
+                this.realInput.val("");
+                this.addTag(item.Username, true);
+            },
             delay: 200
         };
 
         this.realInput.typeahead(typeaheadOptions);
     }
 
-    private addTag(value: string) {
+    private addTag(value: string, fromSuggestion: boolean) {
         value = $.trim(value);
-        this.validateTag(value) && this.addTagsList([value]);
+        this.validateTag(value) && this.addTagsList([value], fromSuggestion);
     }
 
-    private addTagsList(tagsList) {
+    private addTagsList(tagsList, fromSuggestion: boolean) {
         const usernames = this.getUsernames();
         const usernamesLength = usernames.length;
 
@@ -113,7 +119,8 @@ class UsernameTagsInputComponent {
                 }
             });
 
-            $.post("CheckUsernames", { usernames: uniqueTagsList.join() }, (results) => this.appendTags(results));
+            const formData = { usernames: uniqueTagsList.join(), fromSuggestion };
+            $.post(`${this.tagsInputOption.baseUrl}/CheckUsernames`, formData, (results) => this.appendTags(results));
         }
     }
 
@@ -125,6 +132,11 @@ class UsernameTagsInputComponent {
 
     private appendTags(results) {
         results.forEach((result) => {
+            if (!result.ErrCode && this.tagsBox.find(`.tag[data-custid=${result.CustId}]`).length) {
+                result.ErrCode = 1;
+                result.ErrMsg = this.tagsInputOption.duplicatedUsernameText;
+            }
+
             this.tagsBox.append(
                 $("<span>", {
                     class: `tag${result.ErrCode ? " error" : ""}`,
