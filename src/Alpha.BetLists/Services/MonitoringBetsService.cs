@@ -249,15 +249,18 @@
         public async Task<IEnumerable<Result>> DeleteFilters(DeleteFiltersParam param)
         {
             var results = new List<Result>();
-            var filterIdList = param.FilterIds.ToListInt();
-
-            foreach (var filterId in filterIdList)
+            if (!string.IsNullOrWhiteSpace(param.FilterIds))
             {
-                var command = new DeleteFilterCommand(param.CustId, param.SubAccId, filterId, param.IP);
-                partialUMService.ThrowIfUM(command.GetSettingKey());
+                var filterIdList = param.FilterIds.ToListInt();
 
-                await dynamicRepository.ExecuteAsync(command);
-                results.Add(new Result(command.ErrCode, command.ErrMsg));
+                foreach (var filterId in filterIdList)
+                {
+                    var command = new DeleteFilterCommand(param.CustId, param.SubAccId, filterId, param.IP);
+                    partialUMService.ThrowIfUM(command.GetSettingKey());
+
+                    await dynamicRepository.ExecuteAsync(command);
+                    results.Add(new Result(command.ErrCode, command.ErrMsg));
+                }
             }
 
             return results;

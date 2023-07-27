@@ -41,6 +41,11 @@ namespace Alpha.BetLists.Site.Tests.Handler.MonitoringBets
         private readonly EncryptionService encryptionService;
         private readonly ISmartPunterBetListMonitor monitorService;
         private readonly IEnumerable<TicketDto> tickets;
+        private readonly IEnumerable<TicketDto> newTickets = new List<TicketDto> {
+            new TicketDto { TransId = 30 },
+            new TicketDto { TransId = 20 }
+        };
+
         private readonly IUserSession userSession;
 
         public MonitoringBetsHandlerTests(BetListFixture betlistFixture)
@@ -284,53 +289,44 @@ namespace Alpha.BetLists.Site.Tests.Handler.MonitoringBets
                 Arg.Is<IList<ITicket>>(t => t.SequenceEqual(tickets)));
         }
 
+
         [Fact]
-        public async Task HandleGetLastFilteringBetsQuery_AutoLoadAndHaveNewTickets_WriteLog()
+        public void HandleGetLastFilteringBetsQuery_AutoLoadAndHaveNewTickets_WriteLog()
         {
             // Arrange
             var message = new GetLastFilteringBetsQuery(user);
-            
             message.LatestTransId = 10;
 
-            var expectedWriteLogTickets = new List<ITicket> {
-                new TicketDto { TransId = 30 },
-                new TicketDto { TransId = 20 }
-            };
-
             // Act
-            await handler.Handle(message);
+            handler.Handle(message).GetAwaiter().GetResult();
 
             // Assert
             monitorService.Received().WriteLog(
                 Arg.Any<int>(),
-                Arg.Is<IList<ITicket>>(t => t.SequenceEqual(expectedWriteLogTickets)));
+                Arg.Is<IList<ITicket>>(t => t.SequenceEqual(newTickets)));
         }
 
-        //[Fact]
-        //public void HandleGetMonitoringBetsQuery_AutoLoadNotHaveNewTickets_NotCallWriteLog()
-        //{
-        //    // Arrange
-        //    var message = new GetMonitoringBetsQuery(user);
-        //    message.IsAutoLoad = true;
-        //    message.LatestTransId = 30;
+        [Fact]
+        public void HandleGetLastFilteringBetsQuery_AutoLoadNotHaveNewTickets_NotCallWriteLog()
+        {
+            // Arrange
+            var message = new GetLastFilteringBetsQuery(user);
+            message.LatestTransId = 30;
 
-        //    // Act
-        //    handler.Handle(message).GetAwaiter().GetResult();
+            // Act
+            handler.Handle(message).GetAwaiter().GetResult();
 
-        //    // Assert
-        //    monitorService.DidNotReceive().WriteLog(
-        //        Arg.Any<int>(),
-        //        Arg.Any<IList<ITicket>>());
-        //}
+            // Assert
+            monitorService.DidNotReceive().WriteLog(
+                Arg.Any<int>(),
+                Arg.Any<IList<ITicket>>());
+        }
 
         private IEnumerable<TicketDto> CreateTickets()
         {
-            var result = new List<TicketDto> {
-                new TicketDto { TransId = 30 },
-                new TicketDto { TransId = 20 },
-                new TicketDto { TransId = 10 }
-            };
-
+            var result = new List<TicketDto>();
+            result.AddRange(newTickets);
+            result.Add(new TicketDto { TransId = 10 });
             return result;
         }
     }
