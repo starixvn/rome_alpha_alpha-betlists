@@ -16,7 +16,7 @@
             BetListData betListData,
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper)
-            : base(query, betListData, builder, ticketHelper, query.IsEnabledJackpot, showMemberName: true)
+            : base(query, betListData, builder, ticketHelper, query.IsEnabledJackpot)
         {
 
             RefNo = query.RefNo;
@@ -24,10 +24,13 @@
                 Resources.CanOnlyViewDataAfterTimeHistoryReport,
                 query.MinDate.ToShortDateWithSlash());
             Title = Resources.FindTickets;
+            MainDomain = query.IsInternal ? query.MainDomain : string.Empty;
         }
 
         public long RefNo { get; }
+        
         public string ViewDataInstructionMessage { get; }
-
+        
+        public string MainDomain { get; }
     }
 }

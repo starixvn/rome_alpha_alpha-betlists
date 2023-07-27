@@ -36,6 +36,8 @@ namespace Alpha.BetLists.Models
 
         bool IsEnableSabaPromotionForHeadline { get; }
 
+        string MainDomain { get; }
+
         bool AutoFollowBetIsDummyAgent { get; }
     }
 }

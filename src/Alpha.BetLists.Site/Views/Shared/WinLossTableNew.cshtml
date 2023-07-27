@@ -4,7 +4,11 @@
     <table class="tb tb-bordered tb-hover tb-freeze-header w-full" id="tbl-betlist">
         <thead>
             <tr>
-                <th class="col-number">#</th>
+                @if (Model.ShowOrder)
+                {
+                    <th class="col-number">#</th>
+                }
+
                 @if (Model.ShowMemberName)
                 {
                     <th class="col-member">@Resources.member</th>
@@ -33,7 +37,10 @@
                 {
                     var ticket = Model.BetListData.Tickets.ElementAt(i);
                     <tr id="r@(ticket.TransId)">
-                        <td class='w-order text-center'>@(i + 1)</td>
+                        @if (Model.ShowOrder)
+                        {
+                            <td class='w-order text-center'>@(i + 1)</td>
+                        }
                         @if (Model.ShowMemberName)
                         {
                             <td class="text-center">@ticket.UserName</td>
@@ -55,12 +62,15 @@
                         @PositionTaking.Render(ticket, Model.BetListData.TicketData, UserLevel.Agent)
                     </tr>
                 }
-                @Common.Footer.Render(
-                Model.Footer.SubTotalColSpan,
-                Model.Footer.StatusColSpan,
-                Model.Footer.SubTotalWinLoss,
-                Model.Footer.SubTotalCommission,
-                Model.Footer.Total)
+                @if (Model.ShowFooter)
+                {
+                    @Common.Footer.Render(
+                    Model.Footer.SubTotalColSpan,
+                    Model.Footer.StatusColSpan,
+                    Model.Footer.SubTotalWinLoss,
+                    Model.Footer.SubTotalCommission,
+                    Model.Footer.Total)
+                }
             </tbody>
         }
         else

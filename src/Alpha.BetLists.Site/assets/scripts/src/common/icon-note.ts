@@ -18,6 +18,7 @@
         const iconInformation = this.$("#icon-information");
         const guideNote = this.$("#info-note");
         guideNote.modal({ show: true, backdrop: false });
+
         const iconHelpPosition = iconInformation.position();
         guideNote.css({
             bottom: "auto",

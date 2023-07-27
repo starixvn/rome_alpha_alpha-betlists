@@ -893,8 +893,6 @@
     <Content Include="assets\styles\filter.min.css">
       <DependentUpon>filter.css</DependentUpon>
     </Content>
-    <Content Include="assets\styles\find-tickets.css" />
-    <Content Include="assets\styles\find-tickets.min.css" />
     <Content Include="assets\styles\find-tickets\find-tickets.css">
       <DependentUpon>find-tickets.scss</DependentUpon>
     </Content>
@@ -1064,7 +1062,6 @@
     <Content Include="App_Code\Components\WeekSelection.cshtml" />
     <Content Include="App_Code\Components\BreadcrumbLevel.cshtml" />
     <Content Include="assets\styles\winloss.scss" />
-<<<<<<< HEAD
     <Content Include="App_Data\activitytracking.staging.json">
       <DependentUpon>activitytracking.json</DependentUpon>
     </Content>
@@ -1101,10 +1098,8 @@
     <Content Include="App_Data\securitycode.staginginternal2.json">
       <DependentUpon>securitycode.json</DependentUpon>
     </Content>
-=======
     <Content Include="assets\styles\find-tickets\find-tickets.scss" />
     <Content Include="assets\styles\find-tickets.scss" />
->>>>>>> 1889b181 (feat: 190045 - Bet List - Add Find tickets)
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>

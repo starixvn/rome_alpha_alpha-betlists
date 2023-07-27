@@ -11,3 +11,6 @@
   position: relative; }
   .form-inline.find-ticket .form-group {
     margin: 0 16px 15px 0; }
+
+#info-note {
+  bottom: 0 !important; }

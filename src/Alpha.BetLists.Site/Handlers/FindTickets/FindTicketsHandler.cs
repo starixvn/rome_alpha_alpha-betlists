@@ -29,17 +29,13 @@
 
         public async Task<FindTicketsViewModel> Handle(FindTicketsQuery message)
         {
-            var winLossParam = CreateWinLossParam(message);
-            var betlistData = await FindTicketsService.GetBetList(winLossParam);
+            var param = new FindTicketsParam(message.RefNo, message.ViewerId, message.ViewerLevel);
+            var betlistData = await FindTicketsService.GetBetList(param);
             await AssignCountry(betlistData.Tickets, message.DisplayVNIP);
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
             return new FindTicketsViewModel(message, betlistData, Builder, TicketHelper);
         }
-
-        protected internal static FindTicketsParam CreateWinLossParam(FindTicketsQuery message)
-            => new FindTicketsParam(
-                message.RefNo);
     }
 }

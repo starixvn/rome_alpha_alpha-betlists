@@ -8,7 +8,7 @@
 
 
 @section Styles {
-    @StaticResources.AssetStyles.Render("/bundles-v2/common/common")    
+    @StaticResources.AssetStyles.Render("/bundles-v2/common/common")
     @StaticResources.RenderStyles($"~/{AppSettings.BetlistRouting}assets/bundles/find-tickets/find-tickets")
 }
 <div class="bl_title">
@@ -47,7 +47,7 @@
     </div>
 
 </form>
-
+@Html.Hidden("MainDomain", Model.MainDomain)
 
 @Html.Partial("WinLossTableNew", Model)
 

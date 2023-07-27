@@ -114,5 +114,7 @@
         public bool IsEnableSabaPromotionForHeadline => false;
 
         public bool AutoFollowBetIsDummyAgent => false;
+
+        public string MainDomain => string.Empty;
     }
 }
