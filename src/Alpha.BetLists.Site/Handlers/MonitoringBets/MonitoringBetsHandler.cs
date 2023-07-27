@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Alpha.BetLists.Constants;
+    using Alpha.BetLists.Extensions;
     using Alpha.BetLists.Models;
     using Alpha.BetLists.Models.MonitoringBets;
     using Alpha.BetLists.Params.MonitoringBets;
@@ -179,12 +180,12 @@
                 message.SubAccId,
                 message.FilterName,
                 message.IsDefault,
-                message.BetType,
+                message.BetType.RemoveDuplicate(),
                 message.Stake,
                 message.Sports,
                 message.LiveStatus,
-                message.InputList,
-                message.MyWatchlist,
+                message.InputList.RemoveDuplicate(),
+                message.MyWatchlist.RemoveDuplicate(),
                 message.FilterByMembers,
                 message.LanguageKey,
                 message.IP));
@@ -227,7 +228,7 @@
             var memberInWatchlistIds = (await monitoringBetService.GetMyWatchlistMembers(agentId)).Select(member => member.CustId).ToList();
             if (filterByMembers == FilterByMembersConstants.AllWatchlistMembers)
             {
-                memberList = $"{memberList ?? string.Empty},{string.Join(",", memberInWatchlistIds)}".TrimStart(',');
+                memberList = $"{memberList},{string.Join(",", memberInWatchlistIds)}".TrimStart(',');
             }
 
             return Tuple.Create<string, IEnumerable<int>>(memberList, memberInWatchlistIds);

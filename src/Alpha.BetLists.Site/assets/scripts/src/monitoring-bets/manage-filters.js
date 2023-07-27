@@ -23,7 +23,7 @@ var ManageFiltersView = /** @class */ (function () {
             self.handleToggleCollapseExpand($(this));
         });
         table.find(".ic-edit").click(function (e) { return _this.handleOnClickIconEdit(e, iconCloseList, radioDefaultFilter); });
-        table.find(".ic-delete").click(function (e) { return _this.handleOnClickIconBin(e); });
+        table.find(".ic-delete").click(function (e) { return _this.handleOnClickIconDelete(e); });
         table.find(".ic-check").click(function (e) { return _this.handleOnClickIconCheck(e); });
         iconCloseList.click(function (e) { return _this.handleOnClickIconClose($(e.target), radioDefaultFilter); });
         table.find(".treeview-sport").click(this.handleToggleSports);
@@ -68,7 +68,7 @@ var ManageFiltersView = /** @class */ (function () {
         var isDefault = $("#radio-default-" + filterId).prop("disabled", false).is(":checked");
         this.originalData = { filterId: filterId, filterName: filterName, isDefault: isDefault };
     };
-    ManageFiltersView.prototype.handleOnClickIconBin = function (e) {
+    ManageFiltersView.prototype.handleOnClickIconDelete = function (e) {
         var _this = this;
         this.inlineMessageComponent.hide();
         var iconBin = $(e.target);

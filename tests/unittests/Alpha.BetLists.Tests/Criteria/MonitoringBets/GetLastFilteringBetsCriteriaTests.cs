@@ -1,8 +1,6 @@
 ﻿namespace Alpha.BetLists.Tests.Criteria.MonitoringBets
 {
     using Alpha.BetLists.Criteria.MonitoringBets;
-    using Alpha.BetLists.Models.MonitoringBets;
-    using Alpha.BetLists.Params.MonitoringBets;
     using Xunit;
 
     [Trait("Category", "GetLastFilteringBets")]
@@ -39,7 +37,6 @@
             // Assert
             Assert.True(actualIsValid);
         }
-
 
         [Theory]
         [InlineData("", "0", "0", 1, 1)]

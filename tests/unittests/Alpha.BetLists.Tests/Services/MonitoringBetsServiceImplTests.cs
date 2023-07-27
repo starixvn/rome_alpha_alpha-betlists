@@ -1,11 +1,8 @@
-﻿using System.Threading.Tasks;
-using Alpha.BetLists.Criteria.CancelledBet;
-using Alpha.BetLists.Criteria.LastBets;
-using Alpha.BetLists.Models.MonitoringBets;
-using NSubstitute.ReceivedExtensions;
-
-namespace Alpha.BetLists.Tests.Services
+﻿namespace Alpha.BetLists.Tests.Services
 {
+    using System.Threading.Tasks;
+    using Alpha.BetLists.Criteria.LastBets;
+    using Alpha.BetLists.Models.MonitoringBets;
     using BetLists.Configurations;
     using BetLists.Criteria.MonitoringBets;
     using BetLists.Models;
@@ -14,9 +11,7 @@ namespace Alpha.BetLists.Tests.Services
     using Fixtures;
     using KellermanSoftware.CompareNetObjects;
     using NSubstitute;
-    using System.Collections.Generic;
     using System.Collections.Specialized;
-    using System.Linq;
     using TestData;
     using Xunit;
 
@@ -39,8 +34,6 @@ namespace Alpha.BetLists.Tests.Services
             };
             lastBetsService = Substitute.For<LastBetsService>();
             this.dataFixture = dataFixture;
-
-            //reportDateService.GetBalanceUpDay().Returns(DateTime.Today);
 
             dataFixture.DynamicRepository
                 .FetchAsync<TicketDto>(Arg.Any<GetLastFilteringBetsCriteria>())
@@ -98,7 +91,6 @@ namespace Alpha.BetLists.Tests.Services
         public async Task UpdateFilter_Always_CallsDynamicRepository()
         {
             // Arrange
-
             var param = new UpdateFilterParam(0, 1,
                 1, "", true,
                 "EN", "1.2.3.4");
@@ -113,7 +105,6 @@ namespace Alpha.BetLists.Tests.Services
         public async Task DeleteFilters_ValidParam_CallsDynamicRepository()
         {
             // Arrange 
-
             var param = new DeleteFiltersParam(1, 1,
                 "1", "1.2.3.4");
             // Act
@@ -130,9 +121,6 @@ namespace Alpha.BetLists.Tests.Services
             // Arrange &
             var param = new DeleteFiltersParam(1, 1,
                 "", "1.2.3.4");
-
-            var command = new DeleteFilterCommand(param.CustId, param.SubAccId, Arg.Any<int>(), param.IP);
-
             // Act
             await monitoringBetsService.DeleteFilters(param);
 
@@ -171,7 +159,6 @@ namespace Alpha.BetLists.Tests.Services
             await dataFixture.DynamicRepository.Received().FetchAsync<MyWatchlistMember>(Arg.Any<GetMonitoredWatchlistMembersCriteria>());
         }
 
-
         [Fact]
         public async Task GetLastFilteringBets_Always_CallsDynamicRepository()
         {
@@ -182,31 +169,5 @@ namespace Alpha.BetLists.Tests.Services
             // Assert
             await lastBetsService.Received().GetLastBets(Arg.Any<GetLastFilteringBetsCriteria>(), AppSettings.RunningMatchCacheTime);
         }
-
-        //[Fact]
-        //public void CanViewMonitoringBets_CustIdInAlwaysAllowAccessList_ReturnTrue()
-        //{
-        //    // Arrange
-        //    var param = new CheckCanViewMonitoringBetsParam(2, false, false, new List<int> { 1, 2, 3 });
-
-        //    // Act
-        //    var actualCanViewMonitoringBets = monitoringBetsService.CanViewMonitoringBets(param);
-
-        //    // Assert
-        //    Assert.True(actualCanViewMonitoringBets);
-        //}
-
-        //[Fact]
-        //public void CanViewMonitoringBets_CustIdNotInAlwaysAllowAccessList_ReturnFalse()
-        //{
-        //    // Arrange
-        //    var param = new CheckCanViewMonitoringBetsParam(4, false, false, new List<int> { 1, 2, 3 });
-
-        //    // Act
-        //    var actualCanViewMonitoringBets = monitoringBetsService.CanViewMonitoringBets(param);
-
-        //    // Assert
-        //    Assert.False(actualCanViewMonitoringBets);
-        //}
     }
 }

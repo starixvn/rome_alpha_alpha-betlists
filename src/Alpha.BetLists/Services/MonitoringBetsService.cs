@@ -152,7 +152,7 @@
                 return members;
             }
 
-            return $"{members ?? string.Empty},{myWatchlistMembers ?? string.Empty}".TrimStart(',');
+            return $"{members},{myWatchlistMembers}".Trim(',');
         }
 
         public async Task<IEnumerable<FilterConfiguration>> GetFilters(int custId, int subAccId)
@@ -249,20 +249,16 @@
         public async Task<IEnumerable<Result>> DeleteFilters(DeleteFiltersParam param)
         {
             var results = new List<Result>();
-            if (!string.IsNullOrWhiteSpace(param.FilterIds))
+            var filterIdList = param.FilterIds.ToListInt();
+
+            foreach (var filterId in filterIdList)
             {
-                var filterIdList = param.FilterIds.ToListInt();
+                var command = new DeleteFilterCommand(param.CustId, param.SubAccId, filterId, param.IP);
+                partialUMService.ThrowIfUM(command.GetSettingKey());
 
-                foreach (var filterId in filterIdList)
-                {
-                    var command = new DeleteFilterCommand(param.CustId, param.SubAccId, filterId, param.IP);
-                    partialUMService.ThrowIfUM(command.GetSettingKey());
-
-                    await dynamicRepository.ExecuteAsync(command);
-                    results.Add(new Result(command.ErrCode, command.ErrMsg));
-                }
+                await dynamicRepository.ExecuteAsync(command);
+                results.Add(new Result(command.ErrCode, command.ErrMsg));
             }
-
             return results;
         }
 

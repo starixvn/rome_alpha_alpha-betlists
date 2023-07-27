@@ -30,8 +30,15 @@
             => !string.IsNullOrWhiteSpace(FilterName)
                 && !string.IsNullOrWhiteSpace(BetType)
                 && Stake >= 0
+                && IsValidLiveStatus()
                 && Sports?.Length > 0
                 && IsValidFilterByMembers();
+
+        private bool IsValidLiveStatus()
+            => LiveStatus == LiveStatusConstants.All
+            || LiveStatus == LiveStatusConstants.Live
+            || LiveStatus == LiveStatusConstants.NonLive
+            || LiveStatus == LiveStatusConstants.Mix;
 
         private bool IsValidFilterByMembers()
         {

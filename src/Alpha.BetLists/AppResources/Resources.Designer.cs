@@ -808,7 +808,7 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to From monitored list.
+        ///   Looks up a localized string similar to From Monitored List.
         /// </summary>
         public static string FromMonitoredList {
             get {
@@ -1060,7 +1060,7 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Manually entered.
+        ///   Looks up a localized string similar to Manually Entered.
         /// </summary>
         public static string ManuallyEntered {
             get {

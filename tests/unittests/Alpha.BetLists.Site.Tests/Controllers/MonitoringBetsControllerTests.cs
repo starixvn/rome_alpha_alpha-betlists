@@ -263,7 +263,6 @@ namespace Alpha.BetLists.Site.Tests.Controllers
             await mediator.Received().Send(message);
         }
 
-
         [Fact]
         public async Task ApplyFilterCommand_InternalUser_ReturnsForbiddenResult()
         {
@@ -280,7 +279,6 @@ namespace Alpha.BetLists.Site.Tests.Controllers
             // Assert
             Assert.Equal(AppResources.Resources.NotAuthorized, actualData.ErrMsg);
         }
-
 
         [Fact]
         public async Task AddFilterCommand_ValidCommand_CallMediatorAddFilterCommand()
@@ -300,7 +298,6 @@ namespace Alpha.BetLists.Site.Tests.Controllers
             // Assert
             await mediator.Received().Send(message);
         }
-
 
         [Fact]
         public async Task AddFilterCommand_InternalUser_ReturnsForbiddenResult()

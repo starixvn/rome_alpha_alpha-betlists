@@ -782,9 +782,9 @@
     <value>篩選名稱已存在</value>
   </data>
   <data name="ManuallyEntered" xml:space="preserve">
-    <value>Manually entered</value>
+    <value>Manually Entered</value>
   </data>
   <data name="FromMonitoredList" xml:space="preserve">
-    <value>From monitored list</value>
+    <value>From Monitored List</value>
   </data>
 </root>

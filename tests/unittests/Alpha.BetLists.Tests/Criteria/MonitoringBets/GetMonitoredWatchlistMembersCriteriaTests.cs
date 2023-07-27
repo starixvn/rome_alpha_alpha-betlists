@@ -1,8 +1,6 @@
 ﻿namespace Alpha.BetLists.Tests.Criteria.MonitoringBets
 {
     using Alpha.BetLists.Criteria.MonitoringBets;
-    using Alpha.BetLists.Models.MonitoringBets;
-    using Alpha.BetLists.Params.MonitoringBets;
     using Xunit;
 
     [Trait("Category", "GetMonitoredWatchlistMembers")]
@@ -35,7 +33,6 @@
             // Assert
             Assert.True(actualIsValid);
         }
-
 
         [Fact]
         public void IsValid_InvalidParam_ReturnsFalse()

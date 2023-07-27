@@ -38,7 +38,7 @@ class ManageFiltersView {
 
         table.find(".ic-edit").click(e => this.handleOnClickIconEdit(e, iconCloseList, radioDefaultFilter));
 
-        table.find(".ic-delete").click(e => this.handleOnClickIconBin(e));
+        table.find(".ic-delete").click(e => this.handleOnClickIconDelete(e));
 
         table.find(".ic-check").click(e => this.handleOnClickIconCheck(e));
 
@@ -90,7 +90,7 @@ class ManageFiltersView {
         this.originalData = { filterId, filterName, isDefault };
     }
 
-    private handleOnClickIconBin(e) {
+    private handleOnClickIconDelete(e) {
         this.inlineMessageComponent.hide();
         const iconBin = $(e.target);
         window.top.bootboxConfirm($("#hidden-confirmMessageRemoveFilter").val(), undefined, () => {

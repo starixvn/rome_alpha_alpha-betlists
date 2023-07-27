@@ -46,7 +46,6 @@
             Assert.True(actualIsValid);
         }
 
-
         [Theory]
         [InlineData(0, 1, "Default", "0", 10)]
         [InlineData(1, -1, "Default", "0", 10)]
