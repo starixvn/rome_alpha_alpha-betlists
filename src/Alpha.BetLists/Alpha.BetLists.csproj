@@ -369,6 +369,7 @@
     <Compile Include="Criteria\GetProductsDetailCriteria.cs" />
     <Compile Include="Criteria\GetScoreMapBetTypesCriteria.cs" />
     <Compile Include="Criteria\CasinoDetails\GetCasinoDetailsCriteria.cs" />
+    <Compile Include="Criteria\GetUsernameSuggestionCriteria.cs" />
     <Compile Include="Criteria\IPInfo\GetIPV4InfoByTopCountryCriteria.cs" />
     <Compile Include="Criteria\IPInfo\GetIPV4InfoCriteria.cs" />
     <Compile Include="Criteria\IPInfo\GetIPV6InfoCriteria.cs" />
@@ -452,6 +453,7 @@
     <Compile Include="Models\TicketDto.cs" />
     <Compile Include="Models\UserLevel.cs" />
     <Compile Include="Params\SearchTicketsParam.cs" />
+    <Compile Include="Models\UsernameSuggestion.cs" />
     <Compile Include="Params\DailyStatementParam.cs" />
     <Compile Include="Params\GetProductsByGroupHeadlineParam.cs" />
     <Compile Include="Params\JackpotDetailsParam.cs" />
@@ -495,6 +497,7 @@
     <Compile Include="Services\ReportDateService.cs" />
     <Compile Include="Services\CorrectScoreService.cs" />
     <Compile Include="Services\SearchTicketsService.cs" />
+    <Compile Include="Services\UsernameSuggestionService.cs" />
     <Compile Include="Services\WinLossByMatchService.cs" />
     <Compile Include="Services\CashOutHistoryService.cs" />
     <Compile Include="Services\WinLossService.cs" />

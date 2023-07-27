@@ -214,6 +214,7 @@
                     container.GetInstance<IIPInfoDataAccess>()),
                 Lifestyle.Singleton);
             container.RegisterSingleton<MonitoringBetsService, MonitoringBetsServiceImpl>();
+            container.RegisterSingleton<UsernameSuggestionService, UsernameSuggestionServiceImpl>();
         }
 
         private static void RegisterStaticInstances(Container container)

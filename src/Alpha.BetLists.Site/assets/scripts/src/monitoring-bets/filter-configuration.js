@@ -28,7 +28,7 @@ var FilterConfigurationView = /** @class */ (function () {
         this.myWatchlistMemberTreeview = new SportLeagueMatchTreeViewComponent();
         this.myWatchlistMemberTreeview.render(new SportLeagueMatchTreeViewOption("my-watchlist-members", noInfoText, $("#hidden-SearchMemberUsername").val(), $("#hidden-MemberUsernameNotFound").val(), $("#hidden-AllIncludedNewlyAddedMembers").val()));
         this.usernameTagsInput = new UsernameTagsInputComponent();
-        this.usernameTagsInput.render(new UsernameTagsInputOption("username", 100, $("#hidden-MaxNoUsernames").val(), $("#hidden-UsernameAlreadyExists").val()));
+        this.usernameTagsInput.render(new UsernameTagsInputOption("username", 100, $("#hidden-MaxNoUsernames").val(), $("#hidden-UsernameAlreadyExists").val(), $("#hidden-UsernameSuggestionUrl").val()));
     };
     FilterConfigurationView.prototype.bindEvents = function () {
         var _this = this;

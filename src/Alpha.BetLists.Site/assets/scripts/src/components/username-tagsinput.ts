@@ -4,17 +4,15 @@ class UsernameTagsInputOption {
     constructor(
         public selectorId = "tagsinput",
         public limit = 100,
-        public limitText = "Max: # username(s)",
-        public duplicatedUsernameText = "Username already exists",
-        public width = "auto",
-        public height = "auto",
+        public limitText = "Max: # member(s)",
+        public duplicatedUsernameText = "Member already exists",
+        public baseUrl = "",
         public delimiter = [","]) {
         this.selectorId = selectorId;
         this.limit = limit;
         this.limitText = limitText;
         this.duplicatedUsernameText = duplicatedUsernameText;
-        this.width = width;
-        this.height = height;
+        this.baseUrl = baseUrl;
         this.delimiter = delimiter;
     }
 }
@@ -37,10 +35,6 @@ class UsernameTagsInputComponent {
         this.realInput = tagsInputContainer.find(`#${this.tagsInputOption.selectorId}_input`);
         this.tagsBox = tagsInputContainer.find(`#${this.tagsInputOption.selectorId}_tags`);
 
-        tagsInputContainer.css({
-            width: this.tagsInputOption.width,
-            "min-height": this.tagsInputOption.height
-        });
         this.tagLimit.text(this.tagsInputOption.limitText.replace("#", this.tagsInputOption.limit.toString()));
     }
 
@@ -70,6 +64,33 @@ class UsernameTagsInputComponent {
                 this.addTag(this.realInput.val());
             }
         });
+
+        this.initSuggestion();
+    }
+
+    private initSuggestion() {
+        const urlAndQueryString = `${this.tagsInputOption.baseUrl}/Get?suggestionquery=`;
+
+        const typeaheadOptions = {
+            source: function (query: string, process) {
+                return $.get(urlAndQueryString + query, process);
+            },
+            items: 10,
+            minLength: 2,
+            highlighter: function (displayText: string) {
+                const parts = displayText.split("#");
+                return `${parts[0]} <br/> ${parts[1]}`;
+            },
+            displayText: function (item) {
+                const nickname = item.Username2 ? ` (${item.Username2})` : "";
+                return `${item.Username}${nickname}#${item.FirstName} ${item.LastName}`;
+            },
+            autoSelect: false,
+            afterSelect: (item) => this.realInput.val(item.Username),
+            delay: 200
+        };
+
+        this.realInput.typeahead(typeaheadOptions);
     }
 
     private addTag(value: string) {

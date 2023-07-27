@@ -1379,6 +1379,7 @@
       <DependentUpon>Error.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Content>
+    <Compile Include="Controllers\UsernameSuggestionController.cs" />
     <Compile Include="Handlers\BetListByBetTypeAndMatch\BetListByBetTypeAndMatchExcelHandler.cs" />
     <Compile Include="Handlers\BetListByBetTypeAndMatch\BetListByBetTypeAndMatchHandler.cs" />
     <Compile Include="Handlers\BetListByBetType\BetListByBetTypeExcelBaseHandler.cs" />
@@ -1397,6 +1398,7 @@
     <Compile Include="Handlers\RiskAnalysisIPMatching\RiskAnalysisIPMatchingHelper.cs" />
     <Compile Include="Handlers\RiskAnalysisIPMatching\RiskAnalysisIPMatchingHandler.cs" />
     <Compile Include="Handlers\RiskAnalysisIPMatching\RiskAnalysisIPMatchingExcelHandler.cs" />
+    <Compile Include="Handlers\UsernameSuggestionHandler.cs" />
     <Compile Include="Handlers\WinLoss\WinLossNewHandler.cs" />
     <Compile Include="Helpers\BrowserHelper.cs">
       <SonarQubeExclude>true</SonarQubeExclude>
@@ -1485,6 +1487,7 @@
     <Compile Include="Requests\Parlay\ComboParlayDetailQuery.cs" />
     <Compile Include="Requests\Parlay\ComboParlayQuery.cs" />
     <Compile Include="Requests\Parlay\MixParlayQuery.cs" />
+    <Compile Include="Requests\UsernameSuggestionQuery.cs" />
     <Compile Include="Requests\WinLossByMatch\WinLossByMatchExcelQuery.cs" />
     <Compile Include="Requests\WinLossByMatch\WinLossByMatchQuery.cs" />
     <Compile Include="Requests\WinLoss\WinLossExcelQuery.cs" />

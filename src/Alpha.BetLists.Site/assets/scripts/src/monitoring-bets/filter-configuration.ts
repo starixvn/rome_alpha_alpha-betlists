@@ -66,7 +66,11 @@ class FilterConfigurationView {
 
         this.usernameTagsInput = new UsernameTagsInputComponent();
         this.usernameTagsInput.render(new UsernameTagsInputOption(
-            "username", 100, $("#hidden-MaxNoUsernames").val(), $("#hidden-UsernameAlreadyExists").val()
+            "username",
+            100,
+            $("#hidden-MaxNoUsernames").val(),
+            $("#hidden-UsernameAlreadyExists").val(),
+            $("#hidden-UsernameSuggestionUrl").val()
         ));
     }
 

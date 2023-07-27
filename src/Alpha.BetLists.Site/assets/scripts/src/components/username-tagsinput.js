@@ -1,26 +1,23 @@
 "use strict";
 var UsernameTagsInputOption = /** @class */ (function () {
-    function UsernameTagsInputOption(selectorId, limit, limitText, duplicatedUsernameText, width, height, delimiter) {
+    function UsernameTagsInputOption(selectorId, limit, limitText, duplicatedUsernameText, baseUrl, delimiter) {
         if (selectorId === void 0) { selectorId = "tagsinput"; }
         if (limit === void 0) { limit = 100; }
-        if (limitText === void 0) { limitText = "Max: # username(s)"; }
-        if (duplicatedUsernameText === void 0) { duplicatedUsernameText = "Username already exists"; }
-        if (width === void 0) { width = "auto"; }
-        if (height === void 0) { height = "auto"; }
+        if (limitText === void 0) { limitText = "Max: # member(s)"; }
+        if (duplicatedUsernameText === void 0) { duplicatedUsernameText = "Member already exists"; }
+        if (baseUrl === void 0) { baseUrl = ""; }
         if (delimiter === void 0) { delimiter = [","]; }
         this.selectorId = selectorId;
         this.limit = limit;
         this.limitText = limitText;
         this.duplicatedUsernameText = duplicatedUsernameText;
-        this.width = width;
-        this.height = height;
+        this.baseUrl = baseUrl;
         this.delimiter = delimiter;
         this.selectorId = selectorId;
         this.limit = limit;
         this.limitText = limitText;
         this.duplicatedUsernameText = duplicatedUsernameText;
-        this.width = width;
-        this.height = height;
+        this.baseUrl = baseUrl;
         this.delimiter = delimiter;
     }
     return UsernameTagsInputOption;
@@ -38,10 +35,6 @@ var UsernameTagsInputComponent = /** @class */ (function () {
         this.tagLimit = tagsInputContainer.find("#" + this.tagsInputOption.selectorId + "_taglimit");
         this.realInput = tagsInputContainer.find("#" + this.tagsInputOption.selectorId + "_input");
         this.tagsBox = tagsInputContainer.find("#" + this.tagsInputOption.selectorId + "_tags");
-        tagsInputContainer.css({
-            width: this.tagsInputOption.width,
-            "min-height": this.tagsInputOption.height
-        });
         this.tagLimit.text(this.tagsInputOption.limitText.replace("#", this.tagsInputOption.limit.toString()));
     };
     UsernameTagsInputComponent.prototype.bindEvents = function () {
@@ -66,6 +59,30 @@ var UsernameTagsInputComponent = /** @class */ (function () {
                 _this.addTag(_this.realInput.val());
             }
         });
+        this.initSuggestion();
+    };
+    UsernameTagsInputComponent.prototype.initSuggestion = function () {
+        var _this = this;
+        var urlAndQueryString = this.tagsInputOption.baseUrl + "/Get?suggestionquery=";
+        var typeaheadOptions = {
+            source: function (query, process) {
+                return $.get(urlAndQueryString + query, process);
+            },
+            items: 10,
+            minLength: 2,
+            highlighter: function (displayText) {
+                var parts = displayText.split("#");
+                return parts[0] + " <br/> " + parts[1];
+            },
+            displayText: function (item) {
+                var nickname = item.Username2 ? " (" + item.Username2 + ")" : "";
+                return "" + item.Username + nickname + "#" + item.FirstName + " " + item.LastName;
+            },
+            autoSelect: false,
+            afterSelect: function (item) { return _this.realInput.val(item.Username); },
+            delay: 200
+        };
+        this.realInput.typeahead(typeaheadOptions);
     };
     UsernameTagsInputComponent.prototype.addTag = function (value) {
         value = $.trim(value);

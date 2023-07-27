@@ -130,6 +130,7 @@
 @Html.Hidden("hidden-NoInformationIsAvailable", Resources.NoInformationIsAvailable)
 @Html.Hidden("hidden-MaxNoUsernames", Resources.MaxNoUsernames)
 @Html.Hidden("hidden-UsernameAlreadyExists", Resources.MemberAlreadyExists)
+@Html.Hidden("hidden-UsernameSuggestionUrl", Response.ApplyAppPathModifier($"~/{AppSettings.BetlistRouting}UsernameSuggestion"))
 @helper RenderButtonGroup()
 {
     if (Model.ShowWelcomePopup)
