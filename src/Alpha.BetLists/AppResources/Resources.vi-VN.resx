@@ -508,4 +508,7 @@
   <data name="Sep" xml:space="preserve">
     <value>Th09</value>
   </data>
+  <data name="ipnote" xml:space="preserve">
+    <value>Thông tin về quốc gia, được cung cấp bởi IP2Location™ và DNSstuff, chỉ mang tính chất tham khảo và không được đảm bảo chính xác. Vui lòng tham khảo các nguồn đáng tin cậy khác để cập nhật thông tin mới nhất và chính xác nhất nếu cần.</value>
+  </data>
 </root>

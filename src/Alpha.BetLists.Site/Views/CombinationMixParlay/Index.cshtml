@@ -6,12 +6,23 @@
 @section Styles{
     @StaticResources.AssetStyles.RenderWithDarkMode($"/bundles/common/common-{Model.ViewerLevel.DisplayName}")
 }
+
 <div class="bl_title">
-    @Model.Title
-    <div class="bl-export-excel">
-        <a id="icon-excel" class="icon icon-excel" title="@Resources.ExportToExcel"
-           href="@Url.Action("Excel", $"{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}CombinationMixParlay")">
-        </a>
+    <div class="box">
+        <div>
+            @Model.Title
+        </div>
+        <div>
+            @Html.Partial("IconInformation", new List<string>() { Resources.ipnote })
+        </div>
+
+        <div class="push">
+            <div class="bl-export-excel">
+                <a id="icon-excel" class="icon icon-excel" title="@Resources.ExportToExcel"
+                   href="@Url.Action("Excel", $"{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}CombinationMixParlay")">
+                </a>
+            </div>
+        </div>
     </div>
 </div>
 <div class="tab-content">
@@ -19,3 +30,6 @@
         @Html.Partial("TableWithoutWinLoss", Model)
     </div>
 </div>
+@section Scripts{
+    @StaticResources.RenderScripts($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}assets/bundles/icon-note")
+}
