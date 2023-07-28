@@ -1,7 +1,6 @@
 ﻿namespace Alpha.BetLists.Params
 {
     using Alpha.BetLists.Models;
-    using System;
 
     public class FindTicketsParam
     {

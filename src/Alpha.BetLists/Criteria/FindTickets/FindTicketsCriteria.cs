@@ -16,13 +16,13 @@
             MoveBetsDay = moveBetsDay;
         }
 
-        public long RefNo{ get; }
+        public long RefNo { get; }
         public int UplineId { get; }
         public byte RoleId { get; }
         public DateTime MoveBetsDay { get; }
 
         public override string GetSettingKey() => "Age_BetList_SearchByRefNo";
 
-        public override bool IsValid() => RefNo > 0;
+        public override bool IsValid() => RefNo > 0 && UplineId > 0;
     }
 }

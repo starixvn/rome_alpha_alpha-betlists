@@ -4,7 +4,6 @@
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Requests.FindTickets;
-    using FindTickets;
     using Alpha.BetLists.Site.ViewModels.WinLoss;
     using AppResources;
     using Alpha.BetLists.Extensions;

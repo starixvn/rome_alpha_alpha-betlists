@@ -421,6 +421,7 @@
     <Compile Include="Controllers\ParlayWinLossByMatchControllerTests.cs" />
     <Compile Include="Controllers\RunningBetListControllerTests.cs" />
     <Compile Include="Controllers\WinLossByMatchControllerTests.cs" />
+    <Compile Include="Controllers\FindTicketsControllerTests.cs" />
     <Compile Include="Controllers\WinLossControllerTests.cs" />
     <Compile Include="Fixtures\BetListFixture.cs" />
     <Compile Include="Fixtures\ParlayServiceFixture.cs" />
@@ -456,6 +457,7 @@
     <Compile Include="Handler\Parlay\ComboParlayDetailWorkbookTests.cs" />
     <Compile Include="Handler\Parlay\ParlayExcelHandlerTests.cs" />
     <Compile Include="Handler\Parlay\ParlayHandlerTests.cs" />
+    <Compile Include="Handler\FindTickets\FindTicketsHandlerTests.cs" />
     <Compile Include="Handler\WinLossByMatch\WinLossByMatchExcelHandlerTests.cs" />
     <Compile Include="Handler\WinLossByMatch\WinLossByMatchHandlerTests.cs" />
     <Compile Include="Handler\WinLoss\WinLossExcelHandlerTests.cs" />
