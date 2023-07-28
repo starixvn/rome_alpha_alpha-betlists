@@ -31,3 +31,10 @@
   bottom: 0 !important; }
   #info-note .modal-dialog .modal-content .modal-body #msg-content {
     color: var(--main-color) !important; }
+
+#info-note.message-modal {
+  width: auto; }
+  #info-note.message-modal .modal-dialog {
+    width: 624px; }
+    #info-note.message-modal .modal-dialog .modal-content .modal-header .modal-title {
+      height: 41px; }

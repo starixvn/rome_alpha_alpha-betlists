@@ -42,3 +42,13 @@
         }
     }
 }
+#info-note.message-modal {
+    width: auto;
+
+    .modal-dialog {
+        width: 624px;
+        .modal-content .modal-header .modal-title{
+            height: 41px;
+        }
+    }
+}
