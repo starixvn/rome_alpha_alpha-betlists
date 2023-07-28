@@ -97,7 +97,8 @@
 .text {
   font-size: 14px;
   margin-bottom: 4px;
-  font-weight: bold; }
+  font-weight: bold;
+  line-height: 24px; }
 
 .item {
   display: inline-flex;
@@ -188,6 +189,26 @@
     font-size: 14px;
     line-height: 16.41px;
     margin-bottom: 8px; }
+
+#my-watchlist-members.treeview {
+  padding-bottom: 10px; }
+  #my-watchlist-members.treeview .selectall-box {
+    padding: 5px 0;
+    border-bottom: 1px solid var(--border-color); }
+    #my-watchlist-members.treeview .selectall-box .node-label {
+      line-height: 20px; }
+      #my-watchlist-members.treeview .selectall-box .node-label input[type="checkbox"] {
+        margin-right: 4px; }
+  #my-watchlist-members.treeview .checkbox-list .tree-node {
+    padding: 0;
+    margin: 4px 0 0 0; }
+    #my-watchlist-members.treeview .checkbox-list .tree-node .node-label {
+      line-height: 20px;
+      font-weight: bold; }
+      #my-watchlist-members.treeview .checkbox-list .tree-node .node-label input[type="checkbox"] {
+        margin-right: 4px; }
+      #my-watchlist-members.treeview .checkbox-list .tree-node .node-label span {
+        font-weight: normal; }
 
 #details-modal {
   z-index: 100; }

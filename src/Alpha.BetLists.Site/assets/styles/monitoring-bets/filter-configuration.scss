@@ -112,6 +112,7 @@
     font-size: 14px;
     margin-bottom: 4px;
     font-weight: bold;
+    line-height: 24px;
 }
 
 .item {
@@ -235,7 +236,42 @@
         margin-bottom: 8px;
     }
 }
+#my-watchlist-members.treeview {
+    padding-bottom: 10px;
 
+    .selectall-box {
+        padding: 5px 0;
+        border-bottom: 1px solid var(--border-color);
+
+        .node-label {
+            input[type="checkbox"] {
+                margin-right: 4px;
+            }
+
+            line-height: 20px;
+        }
+    }
+
+    .checkbox-list {
+        .tree-node {
+            padding: 0;
+            margin: 4px 0 0 0;
+
+            .node-label {
+                input[type="checkbox"] {
+                    margin-right: 4px;
+                }
+
+                line-height: 20px;
+                font-weight: bold;
+
+                span {
+                    font-weight: normal;
+                }
+            }
+        }
+    }
+}
 #details-modal {
     z-index: 100;
 }
