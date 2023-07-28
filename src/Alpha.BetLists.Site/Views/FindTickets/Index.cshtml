@@ -1,22 +1,16 @@
 ﻿@using Alpha.BetLists.Site.ViewModels.FindTickets
-﻿@using Alpha.BetLists.Configurations
 @model FindTicketsViewModel
-
 @{
     ViewBag.Title = "Win Loss Bet List";
 }
-
-
 @section Styles {
     @StaticResources.AssetStyles.Render("/bundles-v2/common/common")
-    @StaticResources.RenderStyles($"~/{AppSettings.BetlistRouting}assets/bundles/find-tickets/find-tickets")
+    @StaticResources.RenderStyles($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}assets/bundles/find-tickets/find-tickets")
 }
 <div class="bl_title">
-
     <div class="box">
         <div>
             @Model.Title
-
         </div>
         <div>
             @{
@@ -26,13 +20,11 @@
             }
             @Html.Partial("IconInformation", notes)
         </div>
-
         <div class="push">
         </div>
     </div>
-
 </div>
-<form class="form-inline find-ticket" role="form" id="betlist-form" action="@Url.Action("Index", $"{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}FindTickets")">
+<form class="form-inline find-ticket filter" role="form" id="betlist-form" action="@Url.Action("Index", $"{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}FindTickets")">
     @Html.Hidden("RefNo", Model.RefNo)
     <div class="form-group">
         <label>@Resources.RefNo<span class="red">*</span></label>
