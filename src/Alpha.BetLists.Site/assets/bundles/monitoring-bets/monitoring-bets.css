@@ -37,6 +37,11 @@
   --color-bettype: #41A4FF;
   --color-favorite: #E54748; }
 
+.bl_title .icon-information-outline {
+  float: none;
+  margin-left: 5px;
+  top: -2px; }
+
 .bl_title .list-icon {
   float: right; }
   .bl_title .list-icon ul li {
