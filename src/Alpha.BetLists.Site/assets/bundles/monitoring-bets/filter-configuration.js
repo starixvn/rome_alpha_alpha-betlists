@@ -6,26 +6,6 @@ var AJAXHelper = /** @class */ (function () {
         var _this = this;
         $.getJSON(url, onSuccess).fail(function (jqXHR) { return _this.handleOnFail(jqXHR); });
     };
-    AJAXHelper.postJSON = function (url, formData, onSuccess, onComplete) {
-        var _this = this;
-        $.blockUI();
-        return $.ajax({
-            url: url,
-            headers: {
-                __RequestVerificationToken: $("input[name='__RequestVerificationToken']").val(),
-                'X-Requested-With': 'XMLHttpRequest'
-            },
-            dataType: "json",
-            type: "POST",
-            data: formData,
-            success: function (result) {
-                onSuccess(result);
-                $.unblockUI();
-            },
-            error: function (jqXHR) { return _this.handleOnFail(jqXHR); },
-            complete: onComplete
-        });
-    };
     AJAXHelper.post = function (url, formData, onSuccess, onComplete) {
         var _this = this;
         $.blockUI();
@@ -47,10 +27,10 @@ var AJAXHelper = /** @class */ (function () {
     };
     AJAXHelper.handleOnFail = function (jqXHR) {
         $.unblockUI();
-        if (jqXHR.statusText === "abort") {
-            return;
-        }
         if (jqXHR) {
+            if (jqXHR.statusText === "abort") {
+                return;
+            }
             if (jqXHR.status === 401) {
                 window.top["age"].SignOut();
             }
@@ -61,6 +41,25 @@ var AJAXHelper = /** @class */ (function () {
                 }
             }
         }
+    };
+    AJAXHelper.get = function (url, formData, onSuccess, onComplete) {
+        var _this = this;
+        $.blockUI();
+        return $.ajax({
+            url: url,
+            headers: {
+                __RequestVerificationToken: $("input[name='__RequestVerificationToken']").val(),
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            type: "GET",
+            data: formData,
+            success: function (result) {
+                onSuccess(result);
+                $.unblockUI();
+            },
+            error: function (jqXHR) { return _this.handleOnFail(jqXHR); },
+            complete: onComplete
+        });
     };
     return AJAXHelper;
 }());
@@ -312,6 +311,7 @@ var SportLeagueMatchTreeViewComponent = /** @class */ (function () {
             level,
             '"/>',
             data.text,
+            data.subText ? "<span>" + data.subText + "</span>" : "",
             '</label>'
         ].join("");
     };
@@ -399,12 +399,14 @@ var SportLeagueMatchTreeViewComponent = /** @class */ (function () {
         }
         this.disableFilerAndSelectAll(!hasListData);
     };
-    SportLeagueMatchTreeViewComponent.prototype.getSelected = function () {
-        var selected = [];
+    SportLeagueMatchTreeViewComponent.prototype.getSelectedMembers = function () {
+        var custIds = [];
+        var usernames = [];
         this.checkboxListContainer.find(":checkbox:checked").each(function (_, item) {
-            selected.push(item.value);
+            custIds.push(item.value);
+            usernames.push($(item).parent(".node-label").text());
         });
-        return selected;
+        return { custIds: custIds, usernames: usernames };
     };
     SportLeagueMatchTreeViewComponent.prototype.isSelectAll = function () {
         return this.selectAll.is(":checked");
@@ -627,12 +629,15 @@ var UsernameTagsInputComponent = /** @class */ (function () {
         });
         return tagsList;
     };
-    UsernameTagsInputComponent.prototype.getCustIds = function () {
-        var tagsList = [];
-        this.tagsBox.find(".tag:not(.error)").each(function () {
-            tagsList.push($(this).data("custid"));
+    UsernameTagsInputComponent.prototype.getMemberTags = function () {
+        var custIds = [];
+        var usernames = [];
+        this.tagsBox.find(".tag:not(.error)").each(function (_, item) {
+            var tag = $(item);
+            custIds.push(tag.data("custid"));
+            usernames.push(tag.find(".tag-text").text());
         });
-        return tagsList;
+        return { custIds: custIds, usernames: usernames };
     };
     return UsernameTagsInputComponent;
 }());
@@ -694,10 +699,10 @@ var FilterConfigurationView = /** @class */ (function () {
                 _this.getMyWatchlistMembers();
             }
         });
-        var addFilterPopup = $("#add-filter-popup");
-        this.filterNameInput = addFilterPopup.find("#txt-filterName");
-        this.isDefaultCheckbox = addFilterPopup.find("#chk-isDefault");
-        addFilterPopup
+        var saveFilterPopup = $("#save-filter-popup");
+        this.filterNameInput = saveFilterPopup.find("#txt-filterName");
+        this.isDefaultCheckbox = saveFilterPopup.find("#chk-isDefault");
+        saveFilterPopup
             .on("shown.bs.modal", function () { return _this.filterNameInput.focus(); })
             .on("hide.bs.modal", function () {
             _this.filterNameInput.val("");
@@ -705,8 +710,8 @@ var FilterConfigurationView = /** @class */ (function () {
             _this.isDefaultCheckbox.prop("checked", false);
             _this.inlineMessagePopup.hide();
         });
-        addFilterPopup.find("#btn-save-filter-popup").click(function () { return _this.handleSaveFilterPopup(function () { return Common.Utils.ReloadPageAfterTimeout(_this.getCurrentUrlWithoutQueryString()); }); });
-        addFilterPopup.find("#btn-save-filter-apply-popup").click(function () { return _this.handleSaveFilterPopup(function () {
+        saveFilterPopup.find("#btn-save-filter-popup").click(function () { return _this.handleSaveFilterPopup(function () { return Common.Utils.ReloadPageAfterTimeout(_this.getCurrentUrlWithoutQueryString()); }); });
+        saveFilterPopup.find("#btn-save-filter-apply-popup").click(function () { return _this.handleSaveFilterPopup(function () {
             var url = _this.getCurrentUrlWithoutQueryString();
             var mainPage = _this.getMainPageUrl(url);
             Common.Utils.ReloadPageAfterTimeout(mainPage + "?filterName=" + _this.addFilterFormData.filterName);
@@ -717,7 +722,7 @@ var FilterConfigurationView = /** @class */ (function () {
         });
         $(".button-save.save").click(function (e) {
             _this.addFilterFormData = _this.getFormData(rdoSpecificSports, rdoSpecificMembers);
-            _this.addFilterFormData && addFilterPopup.modal("show");
+            _this.addFilterFormData && saveFilterPopup.modal("show");
         });
     };
     FilterConfigurationView.prototype.getSports = function (groupSport) {
@@ -748,7 +753,8 @@ var FilterConfigurationView = /** @class */ (function () {
             return _this.myWatchlistMemberTreeview.renderTreeNodeList(data.map(function (d) {
                 return {
                     value: d.CustId,
-                    text: d.Username + (d.Username2 ? " (" + d.Username2 + ")" : "")
+                    text: d.Username,
+                    subText: d.Username2 ? " (" + d.Username2 + ")" : ""
                 };
             }));
         });
@@ -787,16 +793,22 @@ var FilterConfigurationView = /** @class */ (function () {
         }
         var filterByMembers = 2; // all members
         var inputList = "0";
+        var inputListMembers = "0";
         var myWatchlist = "0";
+        var myWatchlistMembers = "0";
         if (rdoSpecificMembers.is(":checked")) {
             if (this.myWatchlistMemberTreeview.isSelectAll()) {
                 filterByMembers = 1; // all my wachlist members
             }
             else {
                 filterByMembers = 0;
-                myWatchlist = this.myWatchlistMemberTreeview.getSelected().join();
+                var memberMyWatchlist = this.myWatchlistMemberTreeview.getSelectedMembers();
+                myWatchlist = memberMyWatchlist.custIds.join();
+                myWatchlistMembers = memberMyWatchlist.usernames.join();
             }
-            inputList = this.usernameTagsInput.getCustIds().join();
+            var memberTags = this.usernameTagsInput.getMemberTags();
+            inputList = memberTags.custIds.join();
+            inputListMembers = memberTags.usernames.join();
             if (!myWatchlist.length && !inputList.length) {
                 this.inlineMessage.showError($("#hidden-FilterByMembersRequiredError").val());
                 this.scrollTopInlineMessage();
@@ -811,7 +823,9 @@ var FilterConfigurationView = /** @class */ (function () {
             sports: sports,
             filterByMembers: filterByMembers,
             inputList: inputList,
-            myWatchlist: myWatchlist
+            inputListMembers: inputListMembers,
+            myWatchlist: myWatchlist,
+            myWatchlistMembers: myWatchlistMembers
         };
     };
     FilterConfigurationView.prototype.getFormDataPopup = function () {
@@ -828,8 +842,8 @@ var FilterConfigurationView = /** @class */ (function () {
     };
     FilterConfigurationView.prototype.handleApplyFilter = function () {
         var _this = this;
-        this.addFilterFormData.filterName = "Default";
-        AJAXHelper.postJSON("ApplyFilter", this.addFilterFormData, function (result) {
+        this.addFilterFormData.filterName = "Unsaved Filter";
+        AJAXHelper.post("ApplyFilter", this.addFilterFormData, function (result) {
             if (result.ErrCode) {
                 _this.inlineMessage.showError(result.ErrMsg);
             }
@@ -845,7 +859,7 @@ var FilterConfigurationView = /** @class */ (function () {
         var formDataPopup = this.getFormDataPopup();
         if (formDataPopup) {
             this.addFilterFormData = $.extend(this.addFilterFormData, formDataPopup);
-            AJAXHelper.postJSON("AddFilter", this.addFilterFormData, function (result) {
+            AJAXHelper.post("AddFilter", this.addFilterFormData, function (result) {
                 _this.inlineMessagePopup.show(result);
                 if (!result.ErrCode) {
                     reloadPageCallback();
