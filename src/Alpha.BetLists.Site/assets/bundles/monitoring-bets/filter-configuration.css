@@ -559,8 +559,7 @@
     .treeview .selectall-box .node-label input[type="checkbox"] {
       margin-right: 4px; }
   .treeview .checkbox-list .tree-node {
-    padding: 0;
-    margin: 4px 0 0 0; }
+    margin: 5px 0 0 0; }
     .treeview .checkbox-list .tree-node .node-label {
       line-height: 20px;
       font-weight: bold; }
@@ -572,6 +571,9 @@
 
 #details-modal {
   z-index: 100; }
+
+.my-watchlist.treeview .checkbox-list .tree-node {
+  padding-left: 0; }
 
 @media only screen and (max-width: 767px) {
   .wrapper {

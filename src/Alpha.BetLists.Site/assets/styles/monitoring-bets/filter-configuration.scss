@@ -254,8 +254,8 @@
 
     .checkbox-list {
         .tree-node {
-            padding: 0;
-            margin: 4px 0 0 0;
+             
+            margin: 5px 0 0 0;
 
             .node-label {
                 input[type="checkbox"] {
@@ -276,12 +276,14 @@
 #details-modal {
     z-index: 100;
 }
-
+.my-watchlist.treeview .checkbox-list .tree-node{
+    padding-left: 0;
+}
 @media only screen and (max-width: 767px) {
     .wrapper {
         padding: 10px;
         width: 100%;
-    }   
+    }
 }
 @media only screen and (max-device-width: 767px) {
     .filter-config{
