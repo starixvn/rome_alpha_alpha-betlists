@@ -10,6 +10,7 @@
             CustId = param.CustId;
             SubAccId = param.SubAccId;
             FilterId = param.FilterId;
+            Language = param.LanguageKey;
             IP = param.IP;
         }
 
@@ -18,6 +19,8 @@
         public int SubAccId { get; }
 
         public int FilterId { get; }
+
+        public string Language { get; }
 
         public string IP { get; }
 

@@ -26,7 +26,7 @@
         BetListBaseHandler,
         IAsyncRequestHandler<MonitoringBetsQuery, MonitoringBetsViewModel>,
         IAsyncRequestHandler<ManageFiltersQuery, IEnumerable<FilterConfiguration>>,
-        IAsyncRequestHandler<ApplyFilterCommand, Result>,
+        IRequestHandler<ApplyFilterCommand, Result>,
         IAsyncRequestHandler<AddCustomFilterCommand, Result>,
         IAsyncRequestHandler<AddFilterCommand, Result>,
         IAsyncRequestHandler<UpdateFilterCommand, Result>,
@@ -166,7 +166,7 @@
                 else
                 {
                     results.Add(await monitoringBetService.DeleteFilter(
-                        new DeleteFilterParam(message.ViewerId, message.SubAccId, id, message.IP)));
+                        new DeleteFilterParam(message.ViewerId, message.SubAccId, id, message.LanguageKey, message.IP)));
                 }
             }
 
@@ -179,9 +179,9 @@
         public Task<IEnumerable<MyWatchlistMember>> Handle(GetMyWatchlistMembersQuery message)
             => monitoringBetService.GetMyWatchlistMembers(message.ViewerId);
 
-        public async Task<Result> Handle(ApplyFilterCommand message)
+        public Result Handle(ApplyFilterCommand message)
         {
-            AddFilterParamSession = await BuildAddFilterParam(message);
+            AddFilterParamSession = BuildAddFilterParam(message);
 
             return new Result();
         }
@@ -221,40 +221,31 @@
             return result;
         }
 
-        public async Task<Result> Handle(AddFilterCommand message)
-            => await monitoringBetService.AddFilter(await BuildAddFilterParam(message));
+        public Task<Result> Handle(AddFilterCommand message)
+            => monitoringBetService.AddFilter(BuildAddFilterParam(message));
 
-        private async Task<AddFilterParam> BuildAddFilterParam(AddFilterCommand message)
+        private static AddFilterParam BuildAddFilterParam(AddFilterCommand message)
             => new AddFilterParam(
                 message.ViewerId,
                 message.SubAccId,
                 message.FilterName,
                 message.IsDefault,
-                message.BetType == "0" ? message.BetType : message.BetType.RemoveDuplicate(),
+                CheckIdList(message.BetType),
                 message.Stake,
                 message.Sports,
                 message.LiveStatus,
-                await CheckCustIds(message.ViewerId, message.InputList),
+                CheckIdList(message.InputList),
                 message.InputListMembers,
-                await CheckCustIds(message.ViewerId, message.MyWatchlist),
+                CheckIdList(message.MyWatchlist),
                 message.MyWatchlistMembers,
                 message.FilterByMembers,
                 message.LanguageKey,
                 message.IP);
 
-        private async Task<string> CheckCustIds(int agentId, string idList)
-        {
-            if (string.IsNullOrWhiteSpace(idList) || idList == "0")
-            {
-                return idList;
-            }
-
-            var custIds = (await usernameSuggestionService.CheckUsernames(agentId, idList.RemoveDuplicate()))
-                .Where(u => u.ErrCode == 0)
-                .Select(u => u.CustId);
-
-            return string.Join(",", custIds);
-        }
+        private static string CheckIdList(string idList)
+            => string.IsNullOrWhiteSpace(idList) || idList == "0"
+            ? idList
+            : idList.RemoveDuplicate();
 
         public async Task<FilteringBetDataViewModel> Handle(GetLastFilteringBetsQuery message)
         {

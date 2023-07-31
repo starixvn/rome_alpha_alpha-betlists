@@ -11,6 +11,7 @@
         {
             IsInternal = viewer.IsInternal;
             SubAccId = viewer.SubAccId;
+            LanguageKey = viewer.LangKey;
             IP = viewer.IP;
         }
 
@@ -19,6 +20,8 @@
         public bool IsInternal { get; }
 
         public int SubAccId { get; }
+
+        public string LanguageKey { get; }
 
         public string IP { get; }
 
