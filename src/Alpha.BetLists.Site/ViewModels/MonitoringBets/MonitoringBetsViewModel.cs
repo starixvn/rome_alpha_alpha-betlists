@@ -1,6 +1,7 @@
 ﻿namespace Alpha.BetLists.Site.ViewModels.MonitoringBets
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Web.Mvc;
     using Alpha.BetLists.Models;
     using Alpha.BetLists.Models.MonitoringBets;
@@ -35,6 +36,8 @@
         public int FilterId { get; }
 
         public IEnumerable<SavedFilter> Filters { get; }
+
+        public bool HasCustomFilter => Filters?.Any(f => f.FromSession) == true;
 
         public int[] AutoRefreshSeconds { get; } = new[] { 30, 60, 90 };
 

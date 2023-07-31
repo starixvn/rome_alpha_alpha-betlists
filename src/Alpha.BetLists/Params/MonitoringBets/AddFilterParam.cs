@@ -1,7 +1,9 @@
 ﻿namespace Alpha.BetLists.Params.MonitoringBets
 {
+    using System;
     using Alpha.BetLists.Models.MonitoringBets;
 
+    [Serializable]
     public class AddFilterParam : UpdateFilterParam
     {
         public AddFilterParam(
@@ -14,7 +16,9 @@
             SportXml[] sports,
             byte liveStatus,
             string inputList,
+            string inputListMembers,
             string myWatchlist,
+            string myWatchlistMembers,
             byte filterByMembers,
             string languageKey,
             string ip) : base(custId, subAccId, 0, filterName, isDefault, languageKey, ip)
@@ -24,7 +28,9 @@
             Sports = sports;
             LiveStatus = liveStatus;
             InputList = inputList;
+            InputListMembers = inputListMembers;
             MyWatchlist = myWatchlist;
+            MyWatchlistMembers = myWatchlistMembers;
             FilterByMembers = filterByMembers;
         }
 
@@ -40,6 +46,10 @@
 
         public string InputList { get; }
 
+        public string InputListMembers { get; }
+
         public string MyWatchlist { get; }
+
+        public string MyWatchlistMembers { get; }
     }
 }

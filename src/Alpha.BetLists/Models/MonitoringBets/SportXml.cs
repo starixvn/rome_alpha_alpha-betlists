@@ -1,7 +1,9 @@
 ﻿namespace Alpha.BetLists.Models.MonitoringBets
 {
+    using System;
     using System.Xml.Serialization;
 
+    [Serializable]
     public class SportXml
     {
         [XmlAttribute(AttributeName = "s")]

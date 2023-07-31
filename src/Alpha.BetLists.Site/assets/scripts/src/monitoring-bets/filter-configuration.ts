@@ -101,10 +101,10 @@ class FilterConfigurationView {
             }
         });
 
-        const addFilterPopup = $("#add-filter-popup");
-        this.filterNameInput = addFilterPopup.find("#txt-filterName");
-        this.isDefaultCheckbox = addFilterPopup.find("#chk-isDefault");
-        addFilterPopup
+        const saveFilterPopup = $("#save-filter-popup");
+        this.filterNameInput = saveFilterPopup.find("#txt-filterName");
+        this.isDefaultCheckbox = saveFilterPopup.find("#chk-isDefault");
+        saveFilterPopup
             .on("shown.bs.modal", () => this.filterNameInput.focus())
             .on("hide.bs.modal", () => {
                 this.filterNameInput.val("");
@@ -112,10 +112,10 @@ class FilterConfigurationView {
                 this.isDefaultCheckbox.prop("checked", false);
                 this.inlineMessagePopup.hide();
             });
-        addFilterPopup.find("#btn-save-filter-popup").click(
+        saveFilterPopup.find("#btn-save-filter-popup").click(
             () => this.handleSaveFilterPopup(() => Common.Utils.ReloadPageAfterTimeout(this.getCurrentUrlWithoutQueryString()))
         );
-        addFilterPopup.find("#btn-save-filter-apply-popup").click(
+        saveFilterPopup.find("#btn-save-filter-apply-popup").click(
             () => this.handleSaveFilterPopup(() => {
                 const url = this.getCurrentUrlWithoutQueryString();
                 const mainPage = this.getMainPageUrl(url);
@@ -130,7 +130,7 @@ class FilterConfigurationView {
 
         $(".button-save.save").click((e) => {
             this.addFilterFormData = this.getFormData(rdoSpecificSports, rdoSpecificMembers);
-            this.addFilterFormData && addFilterPopup.modal("show");
+            this.addFilterFormData && saveFilterPopup.modal("show");
         });
     }
 
@@ -162,7 +162,8 @@ class FilterConfigurationView {
             this.myWatchlistMemberTreeview.renderTreeNodeList(data.map(function (d) {
                 return {
                     value: d.CustId,
-                    text: d.Username + (d.Username2 ? ` (${d.Username2})` : "")
+                    text: d.Username,
+                    subText: d.Username2 ? ` (${d.Username2})` : ""
                 };
             }))
         );
@@ -205,16 +206,22 @@ class FilterConfigurationView {
 
         let filterByMembers = 2; // all members
         let inputList = "0";
+        let inputListMembers = "0";
         let myWatchlist = "0";
+        let myWatchlistMembers = "0";
         if (rdoSpecificMembers.is(":checked")) {
             if (this.myWatchlistMemberTreeview.isSelectAll()) {
                 filterByMembers = 1; // all my wachlist members
             } else {
                 filterByMembers = 0;
-                myWatchlist = this.myWatchlistMemberTreeview.getSelected().join();
+                const memberMyWatchlist = this.myWatchlistMemberTreeview.getSelectedMembers();
+                myWatchlist = memberMyWatchlist.custIds.join();
+                myWatchlistMembers = memberMyWatchlist.usernames.join();
             }
 
-            inputList = this.usernameTagsInput.getCustIds().join();
+            const memberTags = this.usernameTagsInput.getMemberTags();
+            inputList = memberTags.custIds.join();
+            inputListMembers = memberTags.usernames.join();
             if (!myWatchlist.length && !inputList.length) {
                 this.inlineMessage.showError($("#hidden-FilterByMembersRequiredError").val());
                 this.scrollTopInlineMessage();
@@ -230,7 +237,9 @@ class FilterConfigurationView {
             sports,
             filterByMembers,
             inputList,
-            myWatchlist
+            inputListMembers,
+            myWatchlist,
+            myWatchlistMembers
         };
     }
 
@@ -249,7 +258,7 @@ class FilterConfigurationView {
     }
 
     private handleApplyFilter() {
-        this.addFilterFormData.filterName = "Default";
+        this.addFilterFormData.filterName = "Unsaved Filter";
         AJAXHelper.post("ApplyFilter", this.addFilterFormData, (result) => {
             if (result.ErrCode) {
                 this.inlineMessage.showError(result.ErrMsg);

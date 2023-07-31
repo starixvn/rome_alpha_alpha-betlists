@@ -9,9 +9,5 @@
         public ApplyFilterCommand(IUser viewer) : base(viewer)
         {
         }
-
-        public string InputListMembers { get; set; }
-
-        public string MyWatchlistMembers { get; set; }
     }
 }

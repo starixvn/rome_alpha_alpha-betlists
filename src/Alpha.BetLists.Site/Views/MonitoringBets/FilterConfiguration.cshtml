@@ -75,7 +75,7 @@
                     <div class="inner">@Html.DropDownList("ddl-sport-group", Model.SportGroups)</div>
                 </div>
             </div>
-            <div class="treeview" id="sportleaguematch-treeview"></div>
+            <div id="sportleaguematch-treeview"></div>
         </div>
     </div>
     <div class="block-config">
@@ -103,7 +103,7 @@
             <p class="text">@Resources.EnterMembers</p>
             @UsernameTagsInput.Render("username", Resources.UsernameTagsInputPlaceHolder)
             <p class="text">@Resources.SelectMembers</p>
-            <div id="my-watchlist-members"></div>
+            <div class="my-watchlist" id="my-watchlist-members"></div>
         </div>
     </div>
     <div class="block-btn">@RenderButtonGroup()</div>
@@ -111,14 +111,13 @@
     {
         @Html.Partial("_WelcomePopup")
     }
-    @Html.Partial("_SaveFilterConfirmPopup")
+    @Html.Partial("_SaveFilterConfirmPopup", true)
 </div>
 @Html.AntiForgeryToken()
 @Html.Hidden("hidden-BetTypesRequiredError", Resources.FilterConfigurationBetTypesRequiredError)
 @Html.Hidden("hidden-StakeRequiredError", Resources.FilterConfigurationStakeRequiredError)
 @Html.Hidden("hidden-SportsRequiredError", Resources.FilterConfigurationSportsRequiredError)
 @Html.Hidden("hidden-FilterByMembersRequiredError", Resources.FilterConfigurationFilterByMembersRequiredError)
-@Html.Hidden("hidden-FilterNameRequiredError", Resources.FilterConfigurationFilterNameRequiredError)
 @Html.Hidden("hidden-SelectAll", Resources.SelectAll)
 @Html.Hidden("hidden-SearchSportLeague", Resources.SearchSportLeague)
 @Html.Hidden("hidden-SportLeagueNotFound", Resources.SportLeagueNotFound)

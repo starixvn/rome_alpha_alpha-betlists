@@ -197,12 +197,15 @@ var UsernameTagsInputComponent = /** @class */ (function () {
         });
         return tagsList;
     };
-    UsernameTagsInputComponent.prototype.getCustIds = function () {
-        var tagsList = [];
-        this.tagsBox.find(".tag:not(.error)").each(function () {
-            tagsList.push($(this).data("custid"));
+    UsernameTagsInputComponent.prototype.getMemberTags = function () {
+        var custIds = [];
+        var usernames = [];
+        this.tagsBox.find(".tag:not(.error)").each(function (_, item) {
+            var tag = $(item);
+            custIds.push(tag.data("custid"));
+            usernames.push(tag.find(".tag-text").text());
         });
-        return tagsList;
+        return { custIds: custIds, usernames: usernames };
     };
     return UsernameTagsInputComponent;
 }());

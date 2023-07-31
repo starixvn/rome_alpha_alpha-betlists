@@ -229,12 +229,15 @@ class UsernameTagsInputComponent {
         return tagsList;
     }
 
-    getCustIds() {
-        const tagsList = [];
-        this.tagsBox.find(".tag:not(.error)").each(function () {
-            tagsList.push($(this).data("custid"));
+    getMemberTags() {
+        const custIds = [];
+        const usernames = [];
+        this.tagsBox.find(".tag:not(.error)").each(function (_, item) {
+            const tag = $(item);
+            custIds.push(tag.data("custid"));
+            usernames.push(tag.find(".tag-text").text());
         });
 
-        return tagsList;
+        return { custIds, usernames };
     }
 }

@@ -176,6 +176,7 @@ var SportLeagueMatchTreeViewComponent = /** @class */ (function () {
             level,
             '"/>',
             data.text,
+            data.subText ? "<span>" + data.subText + "</span>" : "",
             '</label>'
         ].join("");
     };
@@ -263,12 +264,14 @@ var SportLeagueMatchTreeViewComponent = /** @class */ (function () {
         }
         this.disableFilerAndSelectAll(!hasListData);
     };
-    SportLeagueMatchTreeViewComponent.prototype.getSelected = function () {
-        var selected = [];
+    SportLeagueMatchTreeViewComponent.prototype.getSelectedMembers = function () {
+        var custIds = [];
+        var usernames = [];
         this.checkboxListContainer.find(":checkbox:checked").each(function (_, item) {
-            selected.push(item.value);
+            custIds.push(item.value);
+            usernames.push($(item).parent(".node-label").text());
         });
-        return selected;
+        return { custIds: custIds, usernames: usernames };
     };
     SportLeagueMatchTreeViewComponent.prototype.isSelectAll = function () {
         return this.selectAll.is(":checked");

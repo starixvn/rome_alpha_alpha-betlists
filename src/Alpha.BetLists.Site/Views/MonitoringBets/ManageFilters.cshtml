@@ -167,6 +167,7 @@
             @Common.NoInfomation.Render(4)
         }
     </table>
+    @Html.Partial("_SaveFilterConfirmPopup", false)
     @Html.AntiForgeryToken()
     @Html.Hidden("hidden-allFilterIds", string.Join(",", allFilterIds))
     @Html.Hidden("hidden-confirmMessageRemoveAllFilters", Resources.ConfirmMessageRemoveAllFilters)

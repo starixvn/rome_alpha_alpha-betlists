@@ -1,8 +1,5 @@
 ﻿namespace Alpha.BetLists.Models.MonitoringBets
 {
-    using System;
-
-    [Serializable]
     public class SavedFilter
     {
         public SavedFilter(
@@ -15,7 +12,8 @@
             string sportTypes,
             string leagues,
             string members,
-            byte filterByMembers)
+            byte filterByMembers,
+            bool fromSession = false)
         {
             FilterId = filterId;
             FilterName = filterName;
@@ -27,11 +25,12 @@
             Leagues = leagues;
             Members = members;
             FilterByMembers = filterByMembers;
+            FromSession = fromSession;
         }
 
         public int FilterId { get; }
 
-        public string FilterName { get; set; }
+        public string FilterName { get; }
 
         public bool IsDefault { get; }
 
@@ -48,5 +47,7 @@
         public string Members { get; }
 
         public byte FilterByMembers { get; }
+
+        public bool FromSession { get; }
     }
 }

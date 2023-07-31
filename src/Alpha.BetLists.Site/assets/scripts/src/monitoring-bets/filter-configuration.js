@@ -55,10 +55,10 @@ var FilterConfigurationView = /** @class */ (function () {
                 _this.getMyWatchlistMembers();
             }
         });
-        var addFilterPopup = $("#add-filter-popup");
-        this.filterNameInput = addFilterPopup.find("#txt-filterName");
-        this.isDefaultCheckbox = addFilterPopup.find("#chk-isDefault");
-        addFilterPopup
+        var saveFilterPopup = $("#save-filter-popup");
+        this.filterNameInput = saveFilterPopup.find("#txt-filterName");
+        this.isDefaultCheckbox = saveFilterPopup.find("#chk-isDefault");
+        saveFilterPopup
             .on("shown.bs.modal", function () { return _this.filterNameInput.focus(); })
             .on("hide.bs.modal", function () {
             _this.filterNameInput.val("");
@@ -66,8 +66,8 @@ var FilterConfigurationView = /** @class */ (function () {
             _this.isDefaultCheckbox.prop("checked", false);
             _this.inlineMessagePopup.hide();
         });
-        addFilterPopup.find("#btn-save-filter-popup").click(function () { return _this.handleSaveFilterPopup(function () { return Common.Utils.ReloadPageAfterTimeout(_this.getCurrentUrlWithoutQueryString()); }); });
-        addFilterPopup.find("#btn-save-filter-apply-popup").click(function () { return _this.handleSaveFilterPopup(function () {
+        saveFilterPopup.find("#btn-save-filter-popup").click(function () { return _this.handleSaveFilterPopup(function () { return Common.Utils.ReloadPageAfterTimeout(_this.getCurrentUrlWithoutQueryString()); }); });
+        saveFilterPopup.find("#btn-save-filter-apply-popup").click(function () { return _this.handleSaveFilterPopup(function () {
             var url = _this.getCurrentUrlWithoutQueryString();
             var mainPage = _this.getMainPageUrl(url);
             Common.Utils.ReloadPageAfterTimeout(mainPage + "?filterName=" + _this.addFilterFormData.filterName);
@@ -78,7 +78,7 @@ var FilterConfigurationView = /** @class */ (function () {
         });
         $(".button-save.save").click(function (e) {
             _this.addFilterFormData = _this.getFormData(rdoSpecificSports, rdoSpecificMembers);
-            _this.addFilterFormData && addFilterPopup.modal("show");
+            _this.addFilterFormData && saveFilterPopup.modal("show");
         });
     };
     FilterConfigurationView.prototype.getSports = function (groupSport) {
@@ -109,7 +109,8 @@ var FilterConfigurationView = /** @class */ (function () {
             return _this.myWatchlistMemberTreeview.renderTreeNodeList(data.map(function (d) {
                 return {
                     value: d.CustId,
-                    text: d.Username + (d.Username2 ? " (" + d.Username2 + ")" : "")
+                    text: d.Username,
+                    subText: d.Username2 ? " (" + d.Username2 + ")" : ""
                 };
             }));
         });
@@ -148,16 +149,22 @@ var FilterConfigurationView = /** @class */ (function () {
         }
         var filterByMembers = 2; // all members
         var inputList = "0";
+        var inputListMembers = "0";
         var myWatchlist = "0";
+        var myWatchlistMembers = "0";
         if (rdoSpecificMembers.is(":checked")) {
             if (this.myWatchlistMemberTreeview.isSelectAll()) {
                 filterByMembers = 1; // all my wachlist members
             }
             else {
                 filterByMembers = 0;
-                myWatchlist = this.myWatchlistMemberTreeview.getSelected().join();
+                var memberMyWatchlist = this.myWatchlistMemberTreeview.getSelectedMembers();
+                myWatchlist = memberMyWatchlist.custIds.join();
+                myWatchlistMembers = memberMyWatchlist.usernames.join();
             }
-            inputList = this.usernameTagsInput.getCustIds().join();
+            var memberTags = this.usernameTagsInput.getMemberTags();
+            inputList = memberTags.custIds.join();
+            inputListMembers = memberTags.usernames.join();
             if (!myWatchlist.length && !inputList.length) {
                 this.inlineMessage.showError($("#hidden-FilterByMembersRequiredError").val());
                 this.scrollTopInlineMessage();
@@ -172,7 +179,9 @@ var FilterConfigurationView = /** @class */ (function () {
             sports: sports,
             filterByMembers: filterByMembers,
             inputList: inputList,
-            myWatchlist: myWatchlist
+            inputListMembers: inputListMembers,
+            myWatchlist: myWatchlist,
+            myWatchlistMembers: myWatchlistMembers
         };
     };
     FilterConfigurationView.prototype.getFormDataPopup = function () {
@@ -189,7 +198,7 @@ var FilterConfigurationView = /** @class */ (function () {
     };
     FilterConfigurationView.prototype.handleApplyFilter = function () {
         var _this = this;
-        this.addFilterFormData.filterName = "Default";
+        this.addFilterFormData.filterName = "Unsaved Filter";
         AJAXHelper.post("ApplyFilter", this.addFilterFormData, function (result) {
             if (result.ErrCode) {
                 _this.inlineMessage.showError(result.ErrMsg);

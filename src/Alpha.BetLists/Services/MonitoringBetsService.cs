@@ -73,7 +73,7 @@
 
             return new SavedFilter(
                 0,
-                param.FilterName,
+                Resources.UnsavedFilter,
                 true,
                 param.BetType,
                 param.Stake,
@@ -81,7 +81,8 @@
                 sportTypes,
                 leagues,
                 BuildMembers(param.FilterByMembers, param.InputList, param.MyWatchlist),
-                param.FilterByMembers);
+                param.FilterByMembers,
+                fromSession: true);
         }
 
         public async Task<IEnumerable<SavedFilter>> GetSavedFilters(int custId, int subAccId)

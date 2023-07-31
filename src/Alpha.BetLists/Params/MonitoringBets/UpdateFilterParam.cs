@@ -1,5 +1,8 @@
 ﻿namespace Alpha.BetLists.Params.MonitoringBets
 {
+    using System;
+
+    [Serializable]
     public class UpdateFilterParam
     {
         public UpdateFilterParam(

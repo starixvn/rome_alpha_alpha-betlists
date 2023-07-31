@@ -235,6 +235,7 @@ class SportLeagueMatchTreeViewComponent {
             level,
             '"/>',
             data.text,
+            data.subText ? `<span>${data.subText}</span>` : "",
             '</label>'
         ].join("");
     }
@@ -334,13 +335,15 @@ class SportLeagueMatchTreeViewComponent {
         this.disableFilerAndSelectAll(!hasListData);
     }
 
-    public getSelected() {
-        const selected = [];
+    public getSelectedMembers() {
+        const custIds = [];
+        const usernames = [];
         this.checkboxListContainer.find(":checkbox:checked").each(function (_, item: any) {
-            selected.push(item.value);
+            custIds.push(item.value);
+            usernames.push($(item).parent(".node-label").text());
         });
 
-        return selected;
+        return { custIds, usernames };
     }
 
     public isSelectAll() {

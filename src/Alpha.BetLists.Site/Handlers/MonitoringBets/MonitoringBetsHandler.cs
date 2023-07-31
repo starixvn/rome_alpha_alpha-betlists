@@ -38,24 +38,24 @@
 
         private readonly IUserSession userSession;
         private readonly MonitoringBetsService monitoringBetService;
-        private readonly LastBetsService lastBetsService;
         private readonly EncryptionService encryptionService;
+        private readonly UsernameSuggestionService usernameSuggestionService;
 
         public MonitoringBetsHandler(
             IUserSession userSession,
             MonitoringBetsService monitoringBetService,
-            LastBetsService lastBetsService,
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper,
             ISmartPunterBetListMonitor monitorService,
             IPService ipService,
             EncryptionService encryptionService,
-            IIPInfoService ipInfoService) : base(builder, ticketHelper, monitorService, ipService, ipInfoService)
+            IIPInfoService ipInfoService,
+            UsernameSuggestionService usernameSuggestionService) : base(builder, ticketHelper, monitorService, ipService, ipInfoService)
         {
             this.userSession = userSession;
             this.monitoringBetService = monitoringBetService;
-            this.lastBetsService = lastBetsService;
             this.encryptionService = encryptionService;
+            this.usernameSuggestionService = usernameSuggestionService;
         }
 
         public async Task<MonitoringBetsViewModel> Handle(MonitoringBetsQuery message)
@@ -95,8 +95,8 @@
                 filterId,
                 filters,
                 latestTransId,
-                encryptionService.CfsEncode($"LastTransId_{message.ViewerId}_{filterId}", NumberOfEncodeResult),
-                encryptionService.CfsEncode($"LatestTransId_{message.ViewerId}_{filterId}", NumberOfEncodeResult),
+                LastTransIdCacheKeyByFilter(message.ViewerId, filterId),
+                LatestTransIdCacheKeyByFilter(message.ViewerId, filterId),
                 message,
                 betListData,
                 Builder,
@@ -106,12 +106,12 @@
         private async Task<IEnumerable<SavedFilter>> GetSavedFilters(int viewerId, int subAccId)
         {
             var filters = (await monitoringBetService.GetSavedFilters(viewerId, subAccId)).ToList();
-            var customFilter = userSession.GetProperty<SavedFilter>(SessionKey.LastBetsMonitoringCustomFilter);
+            var customAddFilterParam = userSession.GetProperty<AddFilterParam>(SessionKey.LastBetsMonitoringCustomFilter);
 
-            if (customFilter != null)
+            if (customAddFilterParam != null)
             {
-                customFilter.FilterName = AppResources.Resources.UnsavedFilter;
-                filters.Insert(0, customFilter);
+                var customSavedFilter = monitoringBetService.BuildSavedFilter(customAddFilterParam);
+                filters.Insert(0, customSavedFilter);
             }
 
             return filters;
@@ -149,42 +149,48 @@
         public Task<IEnumerable<MyWatchlistMember>> Handle(GetMyWatchlistMembersQuery message)
             => monitoringBetService.GetMyWatchlistMembers(message.ViewerId);
 
-        public Task<Result> Handle(ApplyFilterCommand message)
+        public async Task<Result> Handle(ApplyFilterCommand message)
         {
-            var savedFilter = monitoringBetService.BuildSavedFilter(new AddFilterParam(
-                message.ViewerId,
-                message.SubAccId,
-                message.FilterName,
-                message.IsDefault,
-                message.BetType.RemoveDuplicate(),
-                message.Stake,
-                message.Sports,
-                message.LiveStatus,
-                message.InputList.RemoveDuplicate(),
-                message.MyWatchlist.RemoveDuplicate(),
-                message.FilterByMembers,
-                message.LanguageKey,
-                message.IP));
-            userSession.SetProperty(SessionKey.LastBetsMonitoringCustomFilter, savedFilter);
+            var addFilterParam = await BuildAddFilterParam(message);
+            userSession.SetProperty(SessionKey.LastBetsMonitoringCustomFilter, addFilterParam);
 
-            return Task.FromResult(new Result());
+            return new Result();
         }
 
-        public Task<Result> Handle(AddFilterCommand message)
-            => monitoringBetService.AddFilter(new AddFilterParam(
+        public async Task<Result> Handle(AddFilterCommand message)
+            => await monitoringBetService.AddFilter(await BuildAddFilterParam(message));
+
+        private async Task<AddFilterParam> BuildAddFilterParam(AddFilterCommand message)
+            => new AddFilterParam(
                 message.ViewerId,
                 message.SubAccId,
                 message.FilterName,
                 message.IsDefault,
-                message.BetType.RemoveDuplicate(),
+                message.BetType == "0" ? message.BetType : message.BetType.RemoveDuplicate(),
                 message.Stake,
                 message.Sports,
                 message.LiveStatus,
-                message.InputList.RemoveDuplicate(),
-                message.MyWatchlist.RemoveDuplicate(),
+                await CheckCustIds(message.ViewerId, message.InputList),
+                message.InputListMembers,
+                await CheckCustIds(message.ViewerId, message.MyWatchlist),
+                message.MyWatchlistMembers,
                 message.FilterByMembers,
                 message.LanguageKey,
-                message.IP));
+                message.IP);
+
+        private async Task<string> CheckCustIds(int agentId, string idList)
+        {
+            if (string.IsNullOrWhiteSpace(idList) || idList == "0")
+            {
+                return idList;
+            }
+
+            var custIds = (await usernameSuggestionService.CheckUsernames(agentId, idList.RemoveDuplicate()))
+                .Where(u => u.ErrCode == 0)
+                .Select(u => u.CustId);
+
+            return string.Join(",", custIds);
+        }
 
         public async Task<FilteringBetDataViewModel> Handle(GetLastFilteringBetsQuery message)
         {
@@ -211,8 +217,8 @@
 
             return new FilteringBetDataViewModel(
                 latestTransId,
-                encryptionService.CfsEncode($"LastTransId_{message.ViewerId}_{message.FilterId}", NumberOfEncodeResult),
-                encryptionService.CfsEncode($"LatestTransId_{message.ViewerId}_{message.FilterId}", NumberOfEncodeResult),
+                LastTransIdCacheKeyByFilter(message.ViewerId, message.FilterId),
+                LatestTransIdCacheKeyByFilter(message.ViewerId, message.FilterId),
                 message,
                 betListData,
                 Builder,
@@ -278,5 +284,11 @@
                 }
             }
         }
+
+        private string LastTransIdCacheKeyByFilter(int viewerId, int filterId)
+            => encryptionService.CfsEncode($"LastTransId_{viewerId}_{filterId}", NumberOfEncodeResult);
+
+        private string LatestTransIdCacheKeyByFilter(int viewerId, int filterId)
+            => encryptionService.CfsEncode($"LatestTransId_{viewerId}_{filterId}", NumberOfEncodeResult);
     }
 }

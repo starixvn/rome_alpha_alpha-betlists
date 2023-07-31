@@ -24,7 +24,11 @@
 
         public string InputList { get; set; }
 
+        public string InputListMembers { get; set; }
+
         public string MyWatchlist { get; set; }
+
+        public string MyWatchlistMembers { get; set; }
 
         public override bool IsValid()
             => !string.IsNullOrWhiteSpace(FilterName)
