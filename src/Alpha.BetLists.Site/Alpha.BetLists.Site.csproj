@@ -776,14 +776,6 @@
     <Content Include="assets\bundles\filter.min.css">
       <DependentUpon>filter.css</DependentUpon>
     </Content>
-    <Content Include="assets\bundles\find-tickets\find-tickets.css" />
-    <Content Include="assets\bundles\find-tickets\find-tickets.js" />
-    <Content Include="assets\bundles\find-tickets\find-tickets.min.css">
-      <DependentUpon>find-tickets.css</DependentUpon>
-    </Content>
-    <Content Include="assets\bundles\find-tickets\find-tickets.min.js">
-      <DependentUpon>find-tickets.js</DependentUpon>
-    </Content>
     <Content Include="assets\bundles\icon-note.js" />
     <Content Include="assets\bundles\icon-note.min.js">
       <DependentUpon>icon-note.js</DependentUpon>
@@ -815,6 +807,14 @@
     <Content Include="assets\bundles\running-betlist\running-betlist.js" />
     <Content Include="assets\bundles\running-betlist\running-betlist.min.js">
       <DependentUpon>running-betlist.js</DependentUpon>
+    </Content>
+    <Content Include="assets\bundles\search-tickets\search-tickets.css" />
+    <Content Include="assets\bundles\search-tickets\search-tickets.js" />
+    <Content Include="assets\bundles\search-tickets\search-tickets.min.css">
+      <DependentUpon>search-tickets.css</DependentUpon>
+    </Content>
+    <Content Include="assets\bundles\search-tickets\search-tickets.min.js">
+      <DependentUpon>search-tickets.js</DependentUpon>
     </Content>
     <Content Include="assets\bundles\winloss\winloss-betlist.css" />
     <Content Include="assets\bundles\winloss\winloss-betlist.js" />
@@ -893,12 +893,6 @@
     <Content Include="assets\styles\filter.min.css">
       <DependentUpon>filter.css</DependentUpon>
     </Content>
-    <Content Include="assets\styles\find-tickets\find-tickets.css">
-      <DependentUpon>find-tickets.scss</DependentUpon>
-    </Content>
-    <Content Include="assets\styles\find-tickets\find-tickets.min.css">
-      <DependentUpon>find-tickets.css</DependentUpon>
-    </Content>
     <Content Include="assets\styles\images\1F.gif" />
     <Content Include="assets\styles\images\1L.gif" />
     <Content Include="assets\styles\images\ajax-loader-small.gif" />
@@ -931,6 +925,12 @@
     </Content>
     <Content Include="assets\styles\parlay-detail.min.css">
       <DependentUpon>parlay-detail.css</DependentUpon>
+    </Content>
+    <Content Include="assets\styles\search-tickets\search-tickets.css">
+      <DependentUpon>search-tickets.scss</DependentUpon>
+    </Content>
+    <Content Include="assets\styles\search-tickets\search-tickets.min.css">
+      <DependentUpon>search-tickets.css</DependentUpon>
     </Content>
     <Content Include="assets\styles\winloss.css">
       <DependentUpon>winloss.scss</DependentUpon>
@@ -1098,8 +1098,7 @@
     <Content Include="App_Data\securitycode.staginginternal2.json">
       <DependentUpon>securitycode.json</DependentUpon>
     </Content>
-    <Content Include="assets\styles\find-tickets\find-tickets.scss" />
-    <Content Include="assets\styles\find-tickets.scss" />
+    <Content Include="assets\styles\search-tickets\search-tickets.scss" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -1261,7 +1260,7 @@
     <Content Include="Web.staginginternal2.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
-    <Content Include="Views\FindTickets\Index.cshtml" />
+    <Content Include="Views\SearchTickets\Index.cshtml" />
     <Content Include="Views\Shared\WinLossTableNew.cshtml" />
     <Content Include="Views\Shared\WinLossTableData.cshtml" />
   </ItemGroup>
@@ -1284,7 +1283,7 @@
     <Compile Include="Controllers\BetListByBetTypeAndMatchController.cs" />
     <Compile Include="Controllers\BetListByBetTypeController.cs" />
     <Compile Include="Controllers\CancelledBetController.cs" />
-    <Compile Include="Controllers\FindTicktesController.cs" />
+    <Compile Include="Controllers\SearchTicktesController.cs" />
     <Compile Include="Controllers\DailyStatementController.cs" />
     <Compile Include="Controllers\CashOutHistoryController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
@@ -1374,7 +1373,7 @@
     <Compile Include="Requests\BetListByBetType\BetListByBetTypeExcelQuery.cs" />
     <Compile Include="Requests\BetListByBetType\BetListByBetTypeQuery.cs" />
     <Compile Include="Requests\DailyStatement\DailyStatementExcelQuery.cs" />
-    <Compile Include="Requests\FindTickets\FindTicketsQuery.cs" />
+    <Compile Include="Requests\SearchTickets\SearchTicketsQuery.cs" />
     <Compile Include="Requests\JackpotDetails\JackpotDetailsExcelQuery.cs" />
     <Compile Include="Requests\JackpotDetails\JackpotDetailsQuery.cs" />
     <Compile Include="Requests\DailyStatement\DailyStatementQuery.cs" />
@@ -1431,7 +1430,7 @@
     <Compile Include="ViewModels\DailyStatement\DailyStatementViewModel.cs" />
     <Compile Include="ViewModels\CorrectScore\CorrectScoreViewModel.cs" />
     <Compile Include="ViewModels\ExcelFileViewModel.cs" />
-    <Compile Include="ViewModels\FindTickets\FindTicketsViewModel.cs" />
+    <Compile Include="ViewModels\SearchTickets\SearchTicketsViewModel.cs" />
     <Compile Include="ViewModels\JackpotDetails\JackpotDetailsViewModel.cs" />
     <Compile Include="ViewModels\MemberBetList\MemberBetListViewModel.cs" />
     <Compile Include="ViewModels\MoveStatementHistory\MoveStatementHistoryViewModel.cs" />
@@ -1511,7 +1510,7 @@
     <TypeScriptCompile Include="assets\scripts\src\components\statusmultiselection.ts" />
     <TypeScriptCompile Include="assets\scripts\src\components\productmultiselection.ts" />
     <TypeScriptCompile Include="assets\scripts\src\components\week-selection.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\find-tickets\find-tickets.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\search-tickets\search-tickets.ts" />
     <TypeScriptCompile Include="assets\scripts\src\last-bets\last-bets.ts" />
     <TypeScriptCompile Include="assets\scripts\src\components\single-selection-dropdown.ts" />
     <TypeScriptCompile Include="assets\scripts\src\member-betlist\member-betlist-init.ts" />

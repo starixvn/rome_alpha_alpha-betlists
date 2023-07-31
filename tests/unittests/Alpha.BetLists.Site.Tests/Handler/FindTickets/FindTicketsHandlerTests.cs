@@ -1,6 +1,6 @@
 ﻿using Alpha.BetLists.Site.Tests.Constants;
 
-namespace Alpha.BetLists.Site.Tests.Handler.FindTickets
+namespace Alpha.BetLists.Site.Tests.Handler.SearchTickets
 {
     using System;
     using System.Collections.Generic;
@@ -10,38 +10,38 @@ namespace Alpha.BetLists.Site.Tests.Handler.FindTickets
     using Extensions;
     using Fanex.BetList.Core.Entities;
     using Fixtures;
-    using Handlers.FindTickets;
+    using Handlers.SearchTickets;
     using KellermanSoftware.CompareNetObjects;
     using NSubstitute;
     using Params;
-    using Requests.FindTickets;
+    using Requests.SearchTickets;
     using Services;
-    using Site.ViewModels.FindTickets;
+    using Site.ViewModels.SearchTickets;
     using Xunit;
 
-    [Trait("Category", "FindTicketsBetList")]
+    [Trait("Category", "SearchTicketsBetList")]
     [Collection("BetListCollection")]
-    public class FindTicketsHandlerTests
+    public class SearchTicketsHandlerTests
     {
         private readonly BetListFixture betlistFixture;
-        private readonly FindTicketsHandler FindTicketsHandler;
-        private readonly FindTicketsService FindTicketsService;
-        private readonly FindTicketsQuery query;
+        private readonly SearchTicketsHandler SearchTicketsHandler;
+        private readonly SearchTicketsService SearchTicketsService;
+        private readonly SearchTicketsQuery query;
         private readonly CompareLogic compareLogic;
 
-        public FindTicketsHandlerTests(BetListFixture betlistFixture)
+        public SearchTicketsHandlerTests(BetListFixture betlistFixture)
         {
             this.betlistFixture = betlistFixture;
-            FindTicketsService = Substitute.For<FindTicketsService>();
-            FindTicketsService.GetBetList(Arg.Any<FindTicketsParam>()).Returns(BetListDataTest.BetListData);
+            SearchTicketsService = Substitute.For<SearchTicketsService>();
+            SearchTicketsService.GetBetList(Arg.Any<SearchTicketsParam>()).Returns(BetListDataTest.BetListData);
             var reportDateService = Substitute.For<ReportDateService>();
             ReportDateServiceImpl.Instance = reportDateService;
             reportDateService.GetMoveBetsDay().Returns(DefaultVariablesTest.MoveBetDate);
 
-            query = new FindTicketsQuery(this.betlistFixture.User);
+            query = new SearchTicketsQuery(this.betlistFixture.User);
 
-            FindTicketsHandler = new FindTicketsHandler(
-                FindTicketsService,
+            SearchTicketsHandler = new SearchTicketsHandler(
+                SearchTicketsService,
                 this.betlistFixture.HtmlBuilder,
                 this.betlistFixture.TicketHelper,
                 this.betlistFixture.MonitorService,
@@ -63,7 +63,7 @@ namespace Alpha.BetLists.Site.Tests.Handler.FindTickets
             query.CustId = custId;
 
             // Act
-            FindTicketsHandler.Handle(query).GetAwaiter().GetResult();
+            SearchTicketsHandler.Handle(query).GetAwaiter().GetResult();
 
             // Assert
             betlistFixture.MonitorService.Received().WriteLog(
@@ -75,24 +75,24 @@ namespace Alpha.BetLists.Site.Tests.Handler.FindTickets
         public void Handle_Always_CallGetBetListFromService()
         {
             // Arrange & Act
-            FindTicketsHandler.Handle(query).GetAwaiter().GetResult();
+            SearchTicketsHandler.Handle(query).GetAwaiter().GetResult();
 
             // Assert
-            FindTicketsService.Received().GetBetList(Arg.Any<FindTicketsParam>());
+            SearchTicketsService.Received().GetBetList(Arg.Any<SearchTicketsParam>());
         }
 
         [Fact]
-        public void Hanlde_Always_ReturnFindTicketsViewModel()
+        public void Hanlde_Always_ReturnSearchTicketsViewModel()
         {
             // Arrange
-            var expectedViewModel = new FindTicketsViewModel(
+            var expectedViewModel = new SearchTicketsViewModel(
                 query,
                 BetListDataTest.BetListData,
                 betlistFixture.HtmlBuilder,
                 betlistFixture.TicketHelper);
 
             // Act
-            var viewModel = FindTicketsHandler.Handle(query).GetAwaiter().GetResult();
+            var viewModel = SearchTicketsHandler.Handle(query).GetAwaiter().GetResult();
 
             // Assert
             Assert.True(compareLogic.Compare(viewModel, expectedViewModel).AreEqual);

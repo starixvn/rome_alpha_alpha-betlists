@@ -1,17 +1,17 @@
-﻿namespace Alpha.BetLists.Site.ViewModels.FindTickets
+﻿namespace Alpha.BetLists.Site.ViewModels.SearchTickets
 {
     using BetLists.Models;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
-    using Requests.FindTickets;
+    using Requests.SearchTickets;
     using Alpha.BetLists.Site.ViewModels.WinLoss;
     using AppResources;
     using Alpha.BetLists.Extensions;
 
-    public class FindTicketsViewModel : WinLossViewModel
+    public class SearchTicketsViewModel : WinLossViewModel
     {
-        public FindTicketsViewModel(
-            FindTicketsQuery query,
+        public SearchTicketsViewModel(
+            SearchTicketsQuery query,
             BetListData betListData,
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper)
@@ -22,7 +22,7 @@
             ViewDataInstructionMessage = string.Format(
                 Resources.CanOnlyViewDataAfterTimeHistoryReport,
                 query.MinDate.ToShortDateWithSlash());
-            Title = Resources.FindTickets;
+            Title = Resources.SearchTickets;
             MainDomain = query.IsInternal ? query.MainDomain : string.Empty;
         }
 

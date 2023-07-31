@@ -501,4 +501,7 @@
   <data name="ipnote" xml:space="preserve">
     <value>由IP2Location™ 和 DNSstuff提供的国家与城市的信息只供参考, 并无保证. 如有需要, 请咨询其他可靠来源以获得最新的及准确的信息.</value>
   </data>
+  <data name="RefNo" xml:space="preserve">
+    <value>参照号码</value>
+  </data>
 </root>

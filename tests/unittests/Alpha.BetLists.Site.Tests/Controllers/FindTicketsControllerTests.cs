@@ -6,19 +6,19 @@ namespace Alpha.BetLists.Site.Tests.Controllers
     using BetLists.Models;
     using MediatR;
     using NSubstitute;
-    using Requests.FindTickets;
+    using Requests.SearchTickets;
     using Site.Controllers;
     using Site.ViewModels;
     using Xunit;
 
-    [Trait("Category", "FindTickets")]
-    public class FindTicketsControllerTests
+    [Trait("Category", "SearchTickets")]
+    public class SearchTicketsControllerTests
     {
         private readonly IMediator mediator;
-        private readonly FindTicketsController FindTicketsController;
+        private readonly SearchTicketsController SearchTicketsController;
         private readonly IUser user;
 
-        public FindTicketsControllerTests()
+        public SearchTicketsControllerTests()
         {
             mediator = Substitute.For<IMediator>();
             user = Substitute.For<IUser>();
@@ -27,17 +27,17 @@ namespace Alpha.BetLists.Site.Tests.Controllers
             ReportDateServiceImpl.Instance = reportDateService;
             reportDateService.GetMoveBetsDay().Returns(DefaultVariablesTest.MoveBetDate);
 
-            FindTicketsController = new FindTicketsController(mediator);
+            SearchTicketsController = new SearchTicketsController(mediator);
         }
 
         [Fact]
-        public void Index_Always_CallsMediatorSendFindTicketsQuery()
+        public void Index_Always_CallsMediatorSendSearchTicketsQuery()
         {
             // Arrange
-            var message = new FindTicketsQuery(user);
+            var message = new SearchTicketsQuery(user);
 
             // Act
-            FindTicketsController.Index(message).GetAwaiter().GetResult();
+            SearchTicketsController.Index(message).GetAwaiter().GetResult();
 
             // Assert
             mediator.Received().Send(message);

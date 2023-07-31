@@ -22,9 +22,10 @@
   right: 0; }
 
 .filter {
-  z-index: 0; }
+  z-index: 0;
+  padding-top: 0; }
 
-.form-inline.find-ticket .form-group {
+.form-inline.search-ticket .form-group {
   margin: 0 16px 15px 0; }
 
 #info-note {

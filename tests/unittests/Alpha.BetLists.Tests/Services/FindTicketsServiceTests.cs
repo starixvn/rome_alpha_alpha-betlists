@@ -3,7 +3,7 @@
     using System;
     using System.Linq;
     using Alpha.BetLists.AppResources;
-    using BetLists.Criteria.FindTickets;
+    using BetLists.Criteria.SearchTickets;
     using BetLists.Extensions;
     using BetLists.Models;
     using BetLists.Params;
@@ -14,36 +14,36 @@
     using TestData;
     using Xunit;
 
-    [Trait("Category", "FindTickets")]
+    [Trait("Category", "SearchTickets")]
     [Collection("FanexDataCollection")]
-    public class FindTicketsServiceTests
+    public class SearchTicketsServiceTests
     {
-        private readonly FindTicketsService findTicketsService;
+        private readonly SearchTicketsService searchTicketsService;
 
-        public FindTicketsServiceTests(FanexDataFixture dataFixture)
+        public SearchTicketsServiceTests(FanexDataFixture dataFixture)
         {
             var reportDateService = Substitute.For<ReportDateService>();
             reportDateService.GetBalanceUpDay().Returns(DateTime.Today);
             reportDateService.GetMoveBetsDay().Returns(DateTime.Today);
 
             dataFixture.DynamicRepository
-                .FetchMultipleAsync<TicketDto, TicketData>(Arg.Any<FindTicketsCriteria>())
+                .FetchMultipleAsync<TicketDto, TicketData>(Arg.Any<SearchTicketsCriteria>())
                 .Returns(BetListDataTest.BetListDataTuple);
 
-            findTicketsService = new FindTicketsServiceImpl(reportDateService, dataFixture.DynamicRepository, dataFixture.PartialUMService);
+            searchTicketsService = new SearchTicketsServiceImpl(reportDateService, dataFixture.DynamicRepository, dataFixture.PartialUMService);
         }
 
         [Fact]
         public void GetBetList_Always_ReturnBetListData()
         {
             // Arrange
-            var param = new FindTicketsParam(
+            var param = new SearchTicketsParam(
                 1,
                 2,
                 UserLevel.Agent);
 
             // Act
-            var actualBetListData = findTicketsService.GetBetList(param).GetAwaiter().GetResult();
+            var actualBetListData = searchTicketsService.GetBetList(param).GetAwaiter().GetResult();
 
             // Assert
             Assert.True(BetListDataTest.Tickets.SequenceEqual(actualBetListData.Tickets) &&

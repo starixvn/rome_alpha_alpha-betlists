@@ -1,18 +1,18 @@
-﻿namespace Alpha.BetLists.Tests.Criteria.FindTickets
+﻿namespace Alpha.BetLists.Tests.Criteria.SearchTickets
 {
     using System;
-    using BetLists.Criteria.FindTickets;
+    using BetLists.Criteria.SearchTickets;
     using BetLists.Models;
     using Xunit;
 
-    [Trait("Category", "FindTickets")]
-    public class FindTicketsCriteriaTests
+    [Trait("Category", "SearchTickets")]
+    public class SearchTicketsCriteriaTests
     {
         [Fact]
         public void GetSettingKey_Always_ReturnsCorrectSettingKey()
         {
             // Arrange
-            var criteria = new FindTicketsCriteria(1, 1, UserLevel.Agent, DateTime.Now);
+            var criteria = new SearchTicketsCriteria(1, 1, UserLevel.Agent, DateTime.Now);
 
             // Act
             var actualSettingKey = criteria.GetSettingKey();
@@ -28,7 +28,7 @@
         public void IsValid_InvalidCriteria_ReturnsFalse(long refNo, int uplineId)
         {
             // Arrange
-            var criteria = new FindTicketsCriteria(refNo, uplineId, UserLevel.Agent, DateTime.Now);
+            var criteria = new SearchTicketsCriteria(refNo, uplineId, UserLevel.Agent, DateTime.Now);
 
             // Act
             var actualIsValid = criteria.IsValid();
@@ -41,7 +41,7 @@
         public void IsValid_ValidCriteria_ReturnsTrue()
         {
             // Arrange
-            var criteria = new FindTicketsCriteria(1, 1, UserLevel.Agent, DateTime.Now);
+            var criteria = new SearchTicketsCriteria(1, 1, UserLevel.Agent, DateTime.Now);
 
             // Act
             var actualIsValid = criteria.IsValid();

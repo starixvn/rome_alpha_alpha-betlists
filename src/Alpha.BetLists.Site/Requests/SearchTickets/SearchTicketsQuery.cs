@@ -1,14 +1,14 @@
-﻿namespace Alpha.BetLists.Site.Requests.FindTickets
+﻿namespace Alpha.BetLists.Site.Requests.SearchTickets
 {
     using System;
     using Alpha.BetLists.Services;
-    using Alpha.BetLists.Site.ViewModels.FindTickets;
+    using Alpha.BetLists.Site.ViewModels.SearchTickets;
     using BetLists.Models;
     using MediatR;
 
-    public class FindTicketsQuery : BaseQuery, IRequest<FindTicketsViewModel>
+    public class SearchTicketsQuery : BaseQuery, IRequest<SearchTicketsViewModel>
     {
-        public FindTicketsQuery(IUser viewer) : base(viewer)
+        public SearchTicketsQuery(IUser viewer) : base(viewer)
         {
             MinDate = ReportDateServiceImpl.Instance.GetMoveBetsDay().AddDays(1);
         }

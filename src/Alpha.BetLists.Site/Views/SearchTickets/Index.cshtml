@@ -1,11 +1,11 @@
-﻿@using Alpha.BetLists.Site.ViewModels.FindTickets
-@model FindTicketsViewModel
+﻿@using Alpha.BetLists.Site.ViewModels.SearchTickets
+@model SearchTicketsViewModel
 @{
     ViewBag.Title = "Win Loss Bet List";
 }
 @section Styles {
     @StaticResources.AssetStyles.Render("/bundles-v2/common/common")
-    @StaticResources.RenderStyles($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}assets/bundles/find-tickets/find-tickets")
+    @StaticResources.RenderStyles($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}assets/bundles/search-tickets/search-tickets")
 }
 <div class="bl_title">
     <div class="box">
@@ -24,7 +24,7 @@
         </div>
     </div>
 </div>
-<form class="form-inline find-ticket filter" role="form" id="betlist-form" action="@Url.Action("Index", $"{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}FindTickets")">
+<form class="form-inline search-ticket filter" role="form" id="betlist-form" action="@Url.Action("Index", $"{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}SearchTickets")">
     @Html.Hidden("RefNo", Model.RefNo)
     <div class="form-group">
         <label>@Resources.RefNo<span class="red">*</span></label>
@@ -40,10 +40,10 @@
 
 </form>
 @Html.Hidden("MainDomain", Model.MainDomain)
-@Html.Hidden("get-bets-url", @Url.Action("BetData", $"{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}FindTickets"))
+@Html.Hidden("get-bets-url", @Url.Action("BetData", $"{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}SearchTickets"))
 @Html.Partial("WinLossTableNew", Model)
 
 @section Scripts{
     @StaticResources.RenderScripts($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}assets/bundles/icon-note")
-    @StaticResources.RenderScripts($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}assets/bundles/find-tickets/find-tickets")
+    @StaticResources.RenderScripts($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}assets/bundles/search-tickets/search-tickets")
 }

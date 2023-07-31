@@ -2,9 +2,9 @@
 {
     using Alpha.BetLists.Models;
 
-    public class FindTicketsParam
+    public class SearchTicketsParam
     {
-        public FindTicketsParam(
+        public SearchTicketsParam(
             long refNo,
             int uplineId,
             UserLevel custLevel)        {

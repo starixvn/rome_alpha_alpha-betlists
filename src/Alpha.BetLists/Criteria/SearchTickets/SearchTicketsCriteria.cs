@@ -1,13 +1,13 @@
-﻿namespace Alpha.BetLists.Criteria.FindTickets
+﻿namespace Alpha.BetLists.Criteria.SearchTickets
 {
     using System;
     using Fanex.Data;
     using Fanex.Data.Repository;
     using Models;
 
-    public class FindTicketsCriteria : CriteriaBase
+    public class SearchTicketsCriteria : CriteriaBase
     {
-        public FindTicketsCriteria(
+        public SearchTicketsCriteria(
              long refNo, int uplineId, UserLevel custLevel, DateTime moveBetsDay)
         {
             RefNo = refNo;

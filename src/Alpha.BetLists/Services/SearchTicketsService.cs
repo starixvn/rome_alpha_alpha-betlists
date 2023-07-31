@@ -1,29 +1,26 @@
 ﻿namespace Alpha.BetLists.Services
 {
-    using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using Alpha.PartialUM.Services;
-    using Criteria.FindTickets;
+    using Criteria.SearchTickets;
     using Fanex.BetList.Core.Entities;
     using Fanex.Data.Repository;
-    using Helpers;
     using Models;
     using Params;
 
-    public interface FindTicketsService
+    public interface SearchTicketsService
     {
-        Task<BetListData> GetBetList(FindTicketsParam param);
+        Task<BetListData> GetBetList(SearchTicketsParam param);
     }
 
-    public class FindTicketsServiceImpl : FindTicketsService
+    public class SearchTicketsServiceImpl : SearchTicketsService
     {
         private readonly ReportDateService reportDateService;
         private readonly IDynamicRepository dynamicRepository;
         private readonly IPartialUMService partialUMService;
 
-        public FindTicketsServiceImpl(
+        public SearchTicketsServiceImpl(
             ReportDateService reportDateService,
             IDynamicRepository dynamicRepository,
             IPartialUMService partialUMService)
@@ -33,9 +30,9 @@
             this.partialUMService = partialUMService;
         }
 
-        public async Task<BetListData> GetBetList(FindTicketsParam param)
+        public async Task<BetListData> GetBetList(SearchTicketsParam param)
         {
-            var criteria = new FindTicketsCriteria(param.RefNo, param.UplineId, param.CustLevel, reportDateService.GetMoveBetsDay());
+            var criteria = new SearchTicketsCriteria(param.RefNo, param.UplineId, param.CustLevel, reportDateService.GetMoveBetsDay());
 
             partialUMService.ThrowIfUM(criteria.GetSettingKey());
 

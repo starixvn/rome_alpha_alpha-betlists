@@ -357,7 +357,7 @@
     <Compile Include="Criteria\CancelledBet\GetCancelledBetCriteria.cs" />
     <Compile Include="Constants\ErrorCodeConstants.cs" />
     <Compile Include="Criteria\CorrectScore\GetRunningCorrectScoreCriteria.cs" />
-    <Compile Include="Criteria\FindTickets\FindTicketsCriteria.cs" />
+    <Compile Include="Criteria\SearchTickets\SearchTicketsCriteria.cs" />
     <Compile Include="Criteria\GetBalanceUpDayAndMoveBetsDayCriteria.cs" />
     <Compile Include="Criteria\GetFollowBetAccountsCriteria.cs" />
     <Compile Include="Criteria\GetOfferedProductsBySiteCriteria.cs" />
@@ -432,7 +432,7 @@
     <Compile Include="Models\StatusModel.cs" />
     <Compile Include="Models\TicketDto.cs" />
     <Compile Include="Models\UserLevel.cs" />
-    <Compile Include="Params\FindTicketsParam.cs" />
+    <Compile Include="Params\SearchTicketsParam.cs" />
     <Compile Include="Params\DailyStatementParam.cs" />
     <Compile Include="Params\GetProductsByGroupHeadlineParam.cs" />
     <Compile Include="Params\JackpotDetailsParam.cs" />
@@ -470,7 +470,7 @@
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="Services\ReportDateService.cs" />
     <Compile Include="Services\CorrectScoreService.cs" />
-    <Compile Include="Services\FindTicketsService.cs" />
+    <Compile Include="Services\SearchTicketsService.cs" />
     <Compile Include="Services\WinLossByMatchService.cs" />
     <Compile Include="Services\CashOutHistoryService.cs" />
     <Compile Include="Services\WinLossService.cs" />

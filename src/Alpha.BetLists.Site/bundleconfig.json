@@ -46,10 +46,10 @@
     ]
   },
   {
-    "outputFileName": "assets/bundles/find-tickets/find-tickets.js",
+    "outputFileName": "assets/bundles/search-tickets/search-tickets.js",
     "inputFiles": [
       "assets/scripts/src/common/ajax-helper.js",
-      "assets/scripts/src/find-tickets/find-tickets.js"
+      "assets/scripts/src/search-tickets/search-tickets.js"
     ]
   },
   {
@@ -115,9 +115,9 @@
     ]
   },
   {
-    "outputFileName": "assets/bundles/find-tickets/find-tickets.css",
+    "outputFileName": "assets/bundles/search-tickets/search-tickets.css",
     "inputFiles": [
-      "assets/styles/find-tickets/find-tickets.css"
+      "assets/styles/search-tickets/search-tickets.css"
     ]
   },
   {
