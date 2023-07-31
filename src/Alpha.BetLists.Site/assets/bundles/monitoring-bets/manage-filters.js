@@ -92,12 +92,73 @@ var InlineMessageComponent = /** @class */ (function () {
 }());
 //# sourceMappingURL=inline-message.js.map
 "use strict";
+var SaveFilterView = /** @class */ (function () {
+    function SaveFilterView() {
+    }
+    SaveFilterView.prototype.init = function (element) {
+        var _this = this;
+        if (element.length) {
+            var saveFilterPopup_1 = $("#save-filter-popup");
+            this.inlineMessagePopup = new InlineMessageComponent("inline-message-popup");
+            this.filterNameInput = saveFilterPopup_1.find("#txt-filterName");
+            this.isDefaultCheckbox = saveFilterPopup_1.find("#chk-isDefault");
+            saveFilterPopup_1
+                .on("shown.bs.modal", function () { return _this.filterNameInput.focus(); })
+                .on("hide.bs.modal", function () {
+                _this.filterNameInput.val("");
+                TipsyHelper.clear(_this.filterNameInput);
+                _this.isDefaultCheckbox.prop("checked", false);
+                _this.inlineMessagePopup.hide();
+            });
+            saveFilterPopup_1.find("#btn-save-filter-popup").click(function () { return _this.handleSaveFilterPopup(function () { return Common.Utils.ReloadPageAfterTimeout(_this.getCurrentUrlWithoutQueryString()); }); });
+            /*saveFilterPopup.find("#btn-save-filter-apply-popup").click(
+                () => this.handleSaveFilterPopup(() => {
+                    const url = this.getCurrentUrlWithoutQueryString();
+                    const mainPage = this.getMainPageUrl(url);
+                    Common.Utils.ReloadPageAfterTimeout(`${mainPage}?filterName=${this.addFilterFormData.filterName}`);
+                })
+            );*/
+            element.click(function () {
+                saveFilterPopup_1.modal("show");
+            });
+        }
+    };
+    SaveFilterView.prototype.handleSaveFilterPopup = function (reloadPageCallback) {
+        var _this = this;
+        var formDataPopup = this.getFormDataPopup();
+        if (formDataPopup) {
+            AJAXHelper.post($("#hidden-SaveFilterUrl").val(), formDataPopup, function (result) {
+                _this.inlineMessagePopup.show(result);
+                !result.ErrCode && reloadPageCallback();
+            });
+        }
+    };
+    SaveFilterView.prototype.getFormDataPopup = function () {
+        var filterName = $.trim(this.filterNameInput.val());
+        if (!filterName.length) {
+            TipsyHelper.showError(this.filterNameInput, $("#hidden-FilterNameRequiredError").val());
+            return;
+        }
+        var isDefault = this.isDefaultCheckbox.is(":checked");
+        return {
+            filterName: filterName,
+            isDefault: isDefault
+        };
+    };
+    SaveFilterView.prototype.getCurrentUrlWithoutQueryString = function () {
+        return window.location.href.split("?")[0];
+    };
+    return SaveFilterView;
+}());
+//# sourceMappingURL=save-filter.js.map
+"use strict";
 var ManageFiltersView = /** @class */ (function () {
-    function ManageFiltersView(inlineMessageComponent) {
-        this.inlineMessageComponent = inlineMessageComponent;
+    function ManageFiltersView(saveFilter) {
+        this.saveFilter = saveFilter;
     }
     ManageFiltersView.prototype.init = function () {
         var _this = this;
+        this.inlineMessageComponent = new InlineMessageComponent();
         $("#btn-delete-all-filters").click(function () { return _this.handleOnClickButtonDeleteAllFilters(); });
         var table = $("#table-manage-filters");
         var radioDefaultFilter = table.find("input[name=default]:checked");
@@ -121,6 +182,7 @@ var ManageFiltersView = /** @class */ (function () {
         iconCloseList.click(function (e) { return _this.handleOnClickIconClose($(e.target), radioDefaultFilter); });
         table.find(".treeview-sport").click(this.handleToggleSports);
         table.find(".tree-node-name").click(this.handleTreeviewCollapseExpand);
+        this.saveFilter.init($("#icon-save"));
     };
     ManageFiltersView.prototype.handleOnClickButtonDeleteAllFilters = function () {
         var _this = this;
@@ -260,6 +322,6 @@ var ManageFiltersView = /** @class */ (function () {
     return ManageFiltersView;
 }());
 $(function () {
-    new ManageFiltersView(new InlineMessageComponent()).init();
+    new ManageFiltersView(new SaveFilterView()).init();
 });
 //# sourceMappingURL=manage-filters.js.map

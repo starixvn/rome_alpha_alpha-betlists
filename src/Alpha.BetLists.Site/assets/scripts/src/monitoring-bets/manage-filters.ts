@@ -7,12 +7,14 @@ interface Window {
 class ManageFiltersView {
     private inlineMessageComponent: InlineMessageComponent;
     private originalData: any;
+    private saveFilter: SaveFilterView;
 
-    constructor(inlineMessageComponent: InlineMessageComponent) {
-        this.inlineMessageComponent = inlineMessageComponent;
+    constructor(saveFilter: SaveFilterView) {
+        this.saveFilter = saveFilter;
     }
 
     init() {
+        this.inlineMessageComponent = new InlineMessageComponent();
         $("#btn-delete-all-filters").click(() => this.handleOnClickButtonDeleteAllFilters());
 
         const table = $("#table-manage-filters");
@@ -47,6 +49,8 @@ class ManageFiltersView {
         table.find(".treeview-sport").click(this.handleToggleSports);
 
         table.find(".tree-node-name").click(this.handleTreeviewCollapseExpand);
+
+        this.saveFilter.init($("#icon-save"));
     }
 
     private handleOnClickButtonDeleteAllFilters() {
@@ -195,5 +199,5 @@ class ManageFiltersView {
 }
 
 $(function () {
-    new ManageFiltersView(new InlineMessageComponent()).init();
+    new ManageFiltersView(new SaveFilterView()).init();
 });

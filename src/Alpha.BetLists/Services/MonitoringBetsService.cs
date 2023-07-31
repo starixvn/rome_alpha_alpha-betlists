@@ -23,13 +23,15 @@
 
         Task<IEnumerable<SavedFilter>> GetSavedFilters(int custId, int subAccId);
 
+        FilterConfiguration BuildFilterConfiguration(AddFilterParam param);
+
         Task<IEnumerable<FilterConfiguration>> GetFilters(int custId, int subAccId);
 
         Task<Result> AddFilter(AddFilterParam param);
 
         Task<Result> UpdateFilter(UpdateFilterParam param);
 
-        Task<IEnumerable<Result>> DeleteFilters(DeleteFiltersParam param);
+        Task<Result> DeleteFilter(DeleteFilterParam param);
 
         Task<IEnumerable<Sport>> GetSports(byte sportGroup);
 
@@ -102,11 +104,11 @@
                     f.IsDefault,
                     filterXml.BetType,
                     filterXml.Stake,
-                    filterXml.IsLive,
+                    filterXml.LiveStatus,
                     sportTypes,
                     leagues,
-                    BuildMembers(filterXml.IsWatchlist, filterXml.Members, filterXml.MyWatchlistMembers),
-                    filterXml.IsWatchlist);
+                    BuildMembers(filterXml.FilterByMembers, filterXml.Members, filterXml.MyWatchlistMembers),
+                    filterXml.FilterByMembers);
             });
         }
 
@@ -152,6 +154,33 @@
             }
 
             return $"{members},{myWatchlistMembers}".Trim(',');
+        }
+
+        public FilterConfiguration BuildFilterConfiguration(AddFilterParam param)
+        {
+            var filterXml = new FilterXml
+            {
+                BetType = param.BetType,
+                Stake = param.Stake,
+                Members = param.InputList,
+                MyWatchlistMembers = param.MyWatchlist,
+                FilterByMembers = param.FilterByMembers,
+                LiveStatus = param.LiveStatus,
+                Sports = param.Sports.ToList()
+            };
+
+            filterXml.BetTypeNames = BuildBetTypeNames(filterXml.BetType);
+            filterXml.FlatternSports = BuildSports(FlattenSports(filterXml.Sports)).ToList();
+
+            return new FilterConfiguration(
+                param.FilterId,
+                param.FilterName,
+                string.Empty,
+                filterXml,
+                param.IsDefault,
+                DateTime.MinValue,
+                param.MyWatchlistMembers,
+                param.InputListMembers);
         }
 
         public async Task<IEnumerable<FilterConfiguration>> GetFilters(int custId, int subAccId)
@@ -245,20 +274,14 @@
                 command.ErrCode == 0 ? Resources.UpdateSuccessfully : command.ErrMsg);
         }
 
-        public async Task<IEnumerable<Result>> DeleteFilters(DeleteFiltersParam param)
+        public async Task<Result> DeleteFilter(DeleteFilterParam param)
         {
-            var results = new List<Result>();
-            var filterIdList = param.FilterIds.ToListInt();
+            var command = new DeleteFilterCommand(param);
+            partialUMService.ThrowIfUM(command.GetSettingKey());
 
-            foreach (var filterId in filterIdList)
-            {
-                var command = new DeleteFilterCommand(param.CustId, param.SubAccId, filterId, param.IP);
-                partialUMService.ThrowIfUM(command.GetSettingKey());
+            await dynamicRepository.ExecuteAsync(command);
 
-                await dynamicRepository.ExecuteAsync(command);
-                results.Add(new Result(command.ErrCode, command.ErrMsg));
-            }
-            return results;
+            return new Result(command.ErrCode, command.ErrMsg);
         }
 
         public async Task<IEnumerable<Sport>> GetSports(byte sportGroup)

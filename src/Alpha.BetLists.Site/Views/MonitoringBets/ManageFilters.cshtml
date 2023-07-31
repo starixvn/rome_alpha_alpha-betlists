@@ -47,17 +47,30 @@
                             </div>
                             <input type="text" value="@item.FilterName" class="hide" id="input-filter-name-@item.FilterId" autocomplete="off" maxlength="50" />
                         </td>
-                        <td class="text-center" id="created-time-@item.FilterId">@item.CreatedDate.ToLongDateTimeWithSlash()</td>
-                        <td class="text-center"><input type="radio" name="default" id="radio-default-@item.FilterId" @(item.IsDefault ? "checked" : string.Empty) disabled /></td>
+                        <td class="text-center" id="created-time-@item.FilterId">@(item.CreatedDate == DateTime.MinValue ? "N/A" : item.CreatedDate.ToLongDateTimeWithSlash())</td>
                         <td class="text-center">
-                            <div class="edit-group">
-                                <span class="ic-edit"></span>
+                            @if (item.FilterId != 0)
+                            {
+                                <input type="radio" name="default" id="radio-default-@item.FilterId" @(item.IsDefault ? "checked" : string.Empty) disabled />
+                            }
+                        </td>
+                        <td class="text-center">
+                            @if (item.FilterId == 0)
+                            {
+                                <span class="ic-save" id="icon-save"></span>
                                 <span class="ic-delete"></span>
-                            </div>
-                            <div class="confirm-group hide">
-                                <span class="ic-check"></span>
-                                <span class="ic-close"></span>
-                            </div>
+                            }
+                            else
+                            {
+                                <div class="edit-group">
+                                    <span class="ic-edit"></span>
+                                    <span class="ic-delete"></span>
+                                </div>
+                                <div class="confirm-group hide">
+                                    <span class="ic-check"></span>
+                                    <span class="ic-close"></span>
+                                </div>
+                            }
                         </td>
                     </tr>
                     <tr class="filter-name-hidden sub-headed" data-filterid="@item.FilterId">
@@ -78,15 +91,15 @@
                     <tr class="filter-by-tickets-hidden row-level3" data-filterid="@item.FilterId" data-filterbytickets="1">
                         <td>@Resources.LiveStatus</td>
                         <td colspan="3">
-                            @if (item.FilterXml.IsLive == LiveStatusConstants.NonLive)
+                            @if (item.FilterXml.LiveStatus == LiveStatusConstants.NonLive)
                             {
                                 @:@Resources.NonLive
                             }
-                            else if (item.FilterXml.IsLive == LiveStatusConstants.Live)
+                            else if (item.FilterXml.LiveStatus == LiveStatusConstants.Live)
                             {
                                 @:@Resources.Live
                             }
-                            else if (item.FilterXml.IsLive == LiveStatusConstants.Mix)
+                            else if (item.FilterXml.LiveStatus == LiveStatusConstants.Mix)
                             {
                                 @:@Resources.Mix
                             }
@@ -127,7 +140,7 @@
                     <tr class="filter-name-hidden sub-headed" data-filterid="@item.FilterId">
                         <td>
                             <div class="filter-by-members">
-                                @if (item.FilterXml.IsWatchlist == FilterByMembersConstants.AllMembers)
+                                @if (item.FilterXml.FilterByMembers == FilterByMembersConstants.AllMembers)
                                 {
                                     @:@Resources.FilterByMembers
                                 }
@@ -137,9 +150,9 @@
                                 }
                             </div>
                         </td>
-                        <td colspan="3">@(item.FilterXml.IsWatchlist == FilterByMembersConstants.AllMembers ? Resources.AllMembers : Resources.SpecificMembers)</td>
+                        <td colspan="3">@(item.FilterXml.FilterByMembers == FilterByMembersConstants.AllMembers ? Resources.AllMembers : Resources.SpecificMembers)</td>
                     </tr>
-                    if (item.FilterXml.IsWatchlist != FilterByMembersConstants.AllMembers)
+                    if (item.FilterXml.FilterByMembers != FilterByMembersConstants.AllMembers)
                     {
                         <tr class="filter-by-members-hidden row-level3" data-filterid="@item.FilterId" data-filterbymembers="1">
                             <td>@Resources.ManuallyEntered</td>
@@ -148,7 +161,7 @@
                         <tr class="filter-by-members-hidden row-level3" data-filterid="@item.FilterId" data-filterbymembers="1">
                             <td>@Resources.FromMonitoredList</td>
                             <td colspan="3">
-                                @if (item.FilterXml.IsWatchlist == FilterByMembersConstants.AllWatchlistMembers)
+                                @if (item.FilterXml.FilterByMembers == FilterByMembersConstants.AllWatchlistMembers)
                                 {
                                     @:@Resources.AllIncludedNewlyAddedMembers
                                 }
@@ -168,7 +181,6 @@
         }
     </table>
     @Html.Partial("_SaveFilterConfirmPopup", false)
-    @Html.AntiForgeryToken()
     @Html.Hidden("hidden-allFilterIds", string.Join(",", allFilterIds))
     @Html.Hidden("hidden-confirmMessageRemoveAllFilters", Resources.ConfirmMessageRemoveAllFilters)
     @Html.Hidden("hidden-confirmMessageRemoveFilter", Resources.ConfirmMessageRemoveFilter)

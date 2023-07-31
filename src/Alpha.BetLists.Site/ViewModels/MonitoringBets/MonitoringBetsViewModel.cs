@@ -31,13 +31,14 @@
         {
             FilterId = filterId;
             Filters = filters;
+            HasCustomFilter = filters?.Any(f => f.FromSession) == true;
         }
 
         public int FilterId { get; }
 
         public IEnumerable<SavedFilter> Filters { get; }
 
-        public bool HasCustomFilter => Filters?.Any(f => f.FromSession) == true;
+        public bool HasCustomFilter { get; }
 
         public int[] AutoRefreshSeconds { get; } = new[] { 30, 60, 90 };
 

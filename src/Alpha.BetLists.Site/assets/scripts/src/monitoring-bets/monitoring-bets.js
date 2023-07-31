@@ -1,6 +1,6 @@
 "use strict";
 var MonitoringBetsView = /** @class */ (function () {
-    function MonitoringBetsView(autoRefreshComponent, monitoringBetsCopyHtml) {
+    function MonitoringBetsView(autoRefreshComponent, monitoringBetsCopyHtml, saveFilter) {
         var _this = this;
         this.getBetsUrl = "";
         this.isCalling = false;
@@ -64,6 +64,7 @@ var MonitoringBetsView = /** @class */ (function () {
         };
         this.autoRefreshComponent = autoRefreshComponent;
         this.monitoringBetsCopyHtml = monitoringBetsCopyHtml;
+        this.saveFilter = saveFilter;
     }
     MonitoringBetsView.prototype.init = function () {
         this.localStorage = alphaReports.localStorage;
@@ -73,6 +74,7 @@ var MonitoringBetsView = /** @class */ (function () {
         this.setTransId($("#last-trans-id").val(), $("#latest-trans-id").val());
         this.autoRefreshComponent.start();
         this.monitoringBetsCopyHtml.init();
+        this.saveFilter.init($("#icon-save"));
         this.$betListTableContainer.find('[data-toggle="tooltip"]').tooltip();
     };
     MonitoringBetsView.prototype.registerToggleFilter = function () {
@@ -133,6 +135,6 @@ var MonitoringBetsView = /** @class */ (function () {
     return MonitoringBetsView;
 }());
 $(function () {
-    new MonitoringBetsView(new AutoRefreshComponent(), new MonitoringBetsCopyHtml()).init();
+    new MonitoringBetsView(new AutoRefreshComponent(), new MonitoringBetsCopyHtml(), new SaveFilterView()).init();
 });
 //# sourceMappingURL=monitoring-bets.js.map

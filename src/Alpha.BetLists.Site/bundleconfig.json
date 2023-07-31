@@ -129,9 +129,10 @@
   {
     "outputFileName": "assets/bundles/monitoring-bets/monitoring-bets.js",
     "inputFiles": [
-      "assets/scripts/src/components/autorefresh.js",
       "assets/scripts/src/common/ajax-helper.js",
-      "assets/scripts/src/common/core.js",
+      "assets/scripts/src/components/autorefresh.js",
+      "assets/scripts/src/components/inline-message.js",
+      "assets/scripts/src/monitoring-bets/save-filter.js",
       "assets/scripts/src/monitoring-bets/monitoring-bets-copyhtml.js",
       "assets/scripts/src/monitoring-bets/monitoring-bets.js"
     ]
@@ -148,6 +149,7 @@
     "inputFiles": [
       "assets/scripts/src/common/ajax-helper.js",
       "assets/scripts/src/components/inline-message.js",
+      "assets/scripts/src/monitoring-bets/save-filter.js",
       "assets/scripts/src/monitoring-bets/manage-filters.js"
     ]
   },

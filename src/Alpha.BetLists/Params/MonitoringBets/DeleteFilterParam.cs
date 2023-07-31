@@ -1,12 +1,15 @@
 ﻿namespace Alpha.BetLists.Params.MonitoringBets
 {
-    public class DeleteFiltersParam
+    using System;
+
+    [Serializable]
+    public class DeleteFilterParam
     {
-        public DeleteFiltersParam(int custId, int subAccId, string filterIds, string ip)
+        public DeleteFilterParam(int custId, int subAccId, int filterId, string ip)
         {
             CustId = custId;
             SubAccId = subAccId;
-            FilterIds = filterIds;
+            FilterId = filterId;
             IP = ip;
         }
 
@@ -14,7 +17,7 @@
 
         public int SubAccId { get; }
 
-        public string FilterIds { get; }
+        public int FilterId { get; }
 
         public string IP { get; }
     }

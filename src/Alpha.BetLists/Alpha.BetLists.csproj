@@ -459,7 +459,7 @@
     <Compile Include="Params\GetProductsByGroupHeadlineParam.cs" />
     <Compile Include="Params\JackpotDetailsParam.cs" />
     <Compile Include="Params\MonitoringBets\AddFilterParam.cs" />
-    <Compile Include="Params\MonitoringBets\DeleteFiltersParam.cs" />
+    <Compile Include="Params\MonitoringBets\DeleteFilterParam.cs" />
     <Compile Include="Params\MonitoringBets\GetLastFilteringBetsParams.cs" />
     <Compile Include="Params\MonitoringBets\UpdateFilterParam.cs" />
     <Compile Include="Params\MoveStatementHistoryParam.cs" />

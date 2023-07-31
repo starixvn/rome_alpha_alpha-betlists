@@ -27,6 +27,7 @@
         IAsyncRequestHandler<MonitoringBetsQuery, MonitoringBetsViewModel>,
         IAsyncRequestHandler<ManageFiltersQuery, IEnumerable<FilterConfiguration>>,
         IAsyncRequestHandler<ApplyFilterCommand, Result>,
+        IAsyncRequestHandler<AddCustomFilterCommand, Result>,
         IAsyncRequestHandler<AddFilterCommand, Result>,
         IAsyncRequestHandler<UpdateFilterCommand, Result>,
         IAsyncRequestHandler<DeleteFiltersCommand, IEnumerable<Result>>,
@@ -106,7 +107,7 @@
         private async Task<IEnumerable<SavedFilter>> GetSavedFilters(int viewerId, int subAccId)
         {
             var filters = (await monitoringBetService.GetSavedFilters(viewerId, subAccId)).ToList();
-            var customAddFilterParam = userSession.GetProperty<AddFilterParam>(SessionKey.LastBetsMonitoringCustomFilter);
+            var customAddFilterParam = AddFilterParamSession;
 
             if (customAddFilterParam != null)
             {
@@ -126,8 +127,19 @@
             return defaultFilter ?? filters.First();
         }
 
-        public Task<IEnumerable<FilterConfiguration>> Handle(ManageFiltersQuery message)
-            => monitoringBetService.GetFilters(message.ViewerId, message.SubAccId);
+        public async Task<IEnumerable<FilterConfiguration>> Handle(ManageFiltersQuery message)
+        {
+            var filterConfiguration = (await monitoringBetService.GetFilters(message.ViewerId, message.SubAccId)).ToList();
+            var customAddFilterParam = AddFilterParamSession;
+
+            if (customAddFilterParam != null)
+            {
+                var customFilterConfiguration = monitoringBetService.BuildFilterConfiguration(customAddFilterParam);
+                filterConfiguration.Insert(0, customFilterConfiguration);
+            }
+
+            return filterConfiguration;
+        }
 
         public Task<Result> Handle(UpdateFilterCommand message)
             => monitoringBetService.UpdateFilter(new UpdateFilterParam(
@@ -139,9 +151,27 @@
                 message.LanguageKey,
                 message.IP));
 
-        public Task<IEnumerable<Result>> Handle(DeleteFiltersCommand message)
-            => monitoringBetService.DeleteFilters(
-                new DeleteFiltersParam(message.ViewerId, message.SubAccId, message.Ids, message.IP));
+        public async Task<IEnumerable<Result>> Handle(DeleteFiltersCommand message)
+        {
+            var results = new List<Result>();
+            var filterIds = message.Ids.ToListInt();
+
+            foreach (var id in filterIds)
+            {
+                if (id == 0)
+                {
+                    AddFilterParamSession = null;
+                    results.Add(new Result());
+                }
+                else
+                {
+                    results.Add(await monitoringBetService.DeleteFilter(
+                        new DeleteFilterParam(message.ViewerId, message.SubAccId, id, message.IP)));
+                }
+            }
+
+            return results;
+        }
 
         public Task<IEnumerable<Sport>> Handle(FilterBySportsQuery message)
             => monitoringBetService.GetSports(message.GroupSport);
@@ -151,10 +181,44 @@
 
         public async Task<Result> Handle(ApplyFilterCommand message)
         {
-            var addFilterParam = await BuildAddFilterParam(message);
-            userSession.SetProperty(SessionKey.LastBetsMonitoringCustomFilter, addFilterParam);
+            AddFilterParamSession = await BuildAddFilterParam(message);
 
             return new Result();
+        }
+
+        public async Task<Result> Handle(AddCustomFilterCommand message)
+        {
+            var customAddFilterParam = AddFilterParamSession;
+
+            if (customAddFilterParam == null)
+            {
+                return new Result();
+            }
+
+            var result = await monitoringBetService.AddFilter(new AddFilterParam(
+                message.ViewerId,
+                message.SubAccId,
+                message.FilterName,
+                message.IsDefault,
+                customAddFilterParam.BetType,
+                customAddFilterParam.Stake,
+                customAddFilterParam.Sports,
+                customAddFilterParam.LiveStatus,
+                customAddFilterParam.InputList,
+                customAddFilterParam.InputListMembers,
+                customAddFilterParam.MyWatchlist,
+                customAddFilterParam.MyWatchlistMembers,
+                customAddFilterParam.FilterByMembers,
+                message.LanguageKey,
+                customAddFilterParam.IP
+            ));
+
+            if (result.ErrCode == 0)
+            {
+                AddFilterParamSession = null;
+            }
+
+            return result;
         }
 
         public async Task<Result> Handle(AddFilterCommand message)
@@ -290,5 +354,17 @@
 
         private string LatestTransIdCacheKeyByFilter(int viewerId, int filterId)
             => encryptionService.CfsEncode($"LatestTransId_{viewerId}_{filterId}", NumberOfEncodeResult);
+
+        private AddFilterParam AddFilterParamSession
+        {
+            get
+            {
+                return userSession.GetProperty<AddFilterParam>(SessionKey.LastBetsMonitoringCustomFilter);
+            }
+            set
+            {
+                userSession.SetProperty(SessionKey.LastBetsMonitoringCustomFilter, value);
+            }
+        }
     }
 }

@@ -150,7 +150,7 @@ namespace Alpha.BetLists.Site.Tests.Handler.MonitoringBets
             // Arrange
             var message = new DeleteFiltersCommand(user);
 
-            var param = new DeleteFiltersParam(
+            var param = new DeleteFilterParam(
                 message.ViewerId,
                 message.SubAccId,
                 "1,2,3",
@@ -160,7 +160,7 @@ namespace Alpha.BetLists.Site.Tests.Handler.MonitoringBets
             await handler.Handle(message);
 
             // Assert
-            await service.Received().DeleteFilters(Arg.Any<DeleteFiltersParam>());
+            await service.Received().DeleteFilters(Arg.Any<DeleteFilterParam>());
         }
 
         [Fact]

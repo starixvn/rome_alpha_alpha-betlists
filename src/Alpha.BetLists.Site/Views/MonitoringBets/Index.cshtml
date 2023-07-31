@@ -26,7 +26,7 @@
     <div class="form-inline filter" id="form-monitoring-bets">
         <div class="form-group">
             <label class="label-form-control">@Resources.MyFilters
-                @if (Model.HasCustomFilter) { <span class="ic-save"></span> }
+                @if (Model.HasCustomFilter) { <span class="ic-save" id="icon-save"></span> }
             </label>
             <select id="monitoring-bets-filter">
                 @foreach (var savedFilter in Model.Filters)
@@ -81,8 +81,10 @@
             </tbody>
         </table>
     </div>
-    @Html.Partial("_SaveFilterConfirmPopup", false)
-    @Html.Hidden("get-bets-url", @Url.Action("BetData", $"{AppSettings.BetlistRouting}MonitoringBets"))
+    @if (Model.HasCustomFilter) {
+        Html.RenderPartial("_SaveFilterConfirmPopup", false);
+    }
+    @Html.Hidden("get-bets-url", Url.Action("BetData", $"{AppSettings.BetlistRouting}MonitoringBets"))
     @Html.Hidden("last-trans-id", Model.LastTransId.ToString())
     @Html.Hidden("latest-trans-id", Model.LatestTransId.ToString())
     @Html.Hidden("last-trans-id-cache-key-by-filter", Model.LastTransIdCacheKeyByFilter.ToString())

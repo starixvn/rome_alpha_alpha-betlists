@@ -105,7 +105,7 @@
         public async Task DeleteFilters_ValidParam_CallsDynamicRepository()
         {
             // Arrange 
-            var param = new DeleteFiltersParam(1, 1,
+            var param = new DeleteFilterParam(1, 1,
                 "1", "1.2.3.4");
             // Act
             await monitoringBetsService.DeleteFilters(param);
@@ -119,7 +119,7 @@
         public async Task DeleteFilters_InvalidParam_NotCallsDynamicRepository()
         {
             // Arrange &
-            var param = new DeleteFiltersParam(1, 1,
+            var param = new DeleteFilterParam(1, 1,
                 "", "1.2.3.4");
             // Act
             await monitoringBetsService.DeleteFilters(param);

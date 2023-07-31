@@ -4,8 +4,7 @@
 
     public class UpdateFilterCommand : DeleteFilterCommand
     {
-        public UpdateFilterCommand(UpdateFilterParam param)
-            : base(param.CustId, param.SubAccId, param.FilterId, param.IP)
+        public UpdateFilterCommand(UpdateFilterParam param) : base(param)
         {
             FilterName = param.FilterName;
             IsDefault = param.IsDefault;

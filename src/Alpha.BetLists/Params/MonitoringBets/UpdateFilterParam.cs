@@ -3,7 +3,7 @@
     using System;
 
     [Serializable]
-    public class UpdateFilterParam
+    public class UpdateFilterParam : DeleteFilterParam
     {
         public UpdateFilterParam(
             int custId,
@@ -12,29 +12,18 @@
             string filterName,
             bool isDefault,
             string languageKey,
-            string ip)
+            string ip) : base(custId, subAccId, filterId, ip)
         {
-            CustId = custId;
-            SubAccId = subAccId;
-            FilterId = filterId;
             FilterName = filterName;
             IsDefault = isDefault;
             LanguageKey = languageKey;
-            IP = ip;
         }
 
-        public int CustId { get; }
-
-        public int SubAccId { get; }
-
-        public int FilterId { get; }
 
         public string FilterName { get; }
 
         public bool IsDefault { get; }
 
         public string LanguageKey { get; }
-
-        public string IP { get; }
     }
 }

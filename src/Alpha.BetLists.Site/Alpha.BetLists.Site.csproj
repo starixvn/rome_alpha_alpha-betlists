@@ -1463,6 +1463,7 @@
     <Compile Include="Requests\CorrectScore\CorrectScoreExcelQuery.cs" />
     <Compile Include="Requests\CorrectScore\CorrectScoreQuery.cs" />
     <Compile Include="Requests\MemberBetList\MemberBetListQuery.cs" />
+    <Compile Include="Requests\MonitoringBets\AddCustomFilterCommand.cs" />
     <Compile Include="Requests\MonitoringBets\AddFilterCommand.cs" />
     <Compile Include="Requests\MonitoringBets\ApplyFilterCommand.cs" />
     <Compile Include="Requests\MonitoringBets\DeleteFiltersCommand.cs" />

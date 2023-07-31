@@ -1,10 +1,11 @@
 "use strict";
 var ManageFiltersView = /** @class */ (function () {
-    function ManageFiltersView(inlineMessageComponent) {
-        this.inlineMessageComponent = inlineMessageComponent;
+    function ManageFiltersView(saveFilter) {
+        this.saveFilter = saveFilter;
     }
     ManageFiltersView.prototype.init = function () {
         var _this = this;
+        this.inlineMessageComponent = new InlineMessageComponent();
         $("#btn-delete-all-filters").click(function () { return _this.handleOnClickButtonDeleteAllFilters(); });
         var table = $("#table-manage-filters");
         var radioDefaultFilter = table.find("input[name=default]:checked");
@@ -28,6 +29,7 @@ var ManageFiltersView = /** @class */ (function () {
         iconCloseList.click(function (e) { return _this.handleOnClickIconClose($(e.target), radioDefaultFilter); });
         table.find(".treeview-sport").click(this.handleToggleSports);
         table.find(".tree-node-name").click(this.handleTreeviewCollapseExpand);
+        this.saveFilter.init($("#icon-save"));
     };
     ManageFiltersView.prototype.handleOnClickButtonDeleteAllFilters = function () {
         var _this = this;
@@ -167,6 +169,6 @@ var ManageFiltersView = /** @class */ (function () {
     return ManageFiltersView;
 }());
 $(function () {
-    new ManageFiltersView(new InlineMessageComponent()).init();
+    new ManageFiltersView(new SaveFilterView()).init();
 });
 //# sourceMappingURL=manage-filters.js.map

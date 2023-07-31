@@ -20,10 +20,10 @@
         public string MyWatchlistMembers { get; set; }
 
         [XmlAttribute(AttributeName = "iWL")]
-        public byte IsWatchlist { get; set; }
+        public byte FilterByMembers { get; set; }
 
         [XmlAttribute(AttributeName = "iL")]
-        public byte IsLive { get; set; }
+        public byte LiveStatus { get; set; }
 
         [XmlElement(ElementName = "Sport")]
         public List<SportXml> Sports { get; set; }

@@ -16,6 +16,7 @@
             int filterId,
             string filterName,
             string filterValue,
+            FilterXml filterXml,
             bool isDefault,
             DateTime createdDate,
             string watchList,
@@ -24,6 +25,7 @@
             FilterId = filterId;
             FilterName = filterName;
             FilterValue = filterValue;
+            this.filterXml = filterXml;
             IsDefault = isDefault;
             CreatedDate = createdDate;
             WatchList = watchList;

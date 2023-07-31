@@ -82,7 +82,11 @@
         public async Task<ActionResult> AddFilter(AddFilterCommand message)
             => Json(await ValidateAndDoAction(message), JsonRequestBehavior.DenyGet);
 
-        private async Task<Result> ValidateAndDoAction(UpdateFilterCommand message)
+        [HttpPost, AntiXsrfFilter]
+        public async Task<ActionResult> AddCustomFilter(AddCustomFilterCommand message)
+            => Json(await ValidateAndDoAction(message), JsonRequestBehavior.DenyGet);
+
+        private async Task<Result> ValidateAndDoAction(AddCustomFilterCommand message)
         {
             if (message.IsInternal)
             {

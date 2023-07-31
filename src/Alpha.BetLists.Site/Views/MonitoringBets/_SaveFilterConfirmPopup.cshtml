@@ -1,4 +1,5 @@
-﻿@{ Layout = null; }
+﻿@using Alpha.BetLists.Configurations
+@{ Layout = null; }
 @model bool
 <div class="modal fade modal-form" data-backdrop="false" tabindex="-1" role="dialog" id="save-filter-popup">
     <div class="modal-dialog save-filter-popup" role="document">
@@ -26,4 +27,6 @@
         </div>
     </div>
 </div>
+@Html.AntiForgeryToken()
 @Html.Hidden("hidden-FilterNameRequiredError", Resources.FilterConfigurationFilterNameRequiredError)
+@Html.Hidden("hidden-SaveFilterUrl", Url.Action($"Add{(Model ? string.Empty : "Custom")}Filter", $"{AppSettings.BetlistRouting}MonitoringBets"))
