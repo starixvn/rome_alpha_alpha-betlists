@@ -10,7 +10,9 @@
   --tags-input-bg: #F7F7F7;
   --bg-input: #FFFFFF;
   --color-btn-close: #6B6B6B;
-  --bg--tooltip: #6A1212; }
+  --bg--tooltip: #6A1212;
+  --dropdown-color: #333;
+  --dropdown-color-gray: #666; }
 
 :root [data-theme='light'] {
   --tagsinput-border-color: #d1d1d1;
@@ -24,7 +26,9 @@
   --tags-input-bg: #F7F7F7;
   --bg-input: #FFFFFF;
   --color-btn-close: #6B6B6B;
-  --bg--tooltip: #6A1212; }
+  --bg--tooltip: #6A1212;
+  --dropdown-color: #333;
+  --dropdown-color-gray: #666; }
 
 :root [data-theme='dark'] {
   --tagsinput-border-color: #474747;
@@ -38,7 +42,9 @@
   --tags-input-bg: #171717;
   --bg-input: #171717;
   --color-btn-close: #545454;
-  --bg--tooltip: #6A1212; }
+  --bg--tooltip: #6A1212;
+  --dropdown-color: #ededed;
+  --dropdown-color-gray: #ffffff; }
 
 .tagsinput {
   background-color: var(--tags-input-bg);
@@ -130,3 +136,14 @@
     border-top-color: var(--bg--tooltip); }
   .tagsinput .tooltip .tooltip-inner {
     background: var(--bg--tooltip); }
+  .tagsinput .dropdown-menu {
+    width: calc(100% + 2px);
+    margin: -2px 0px 0 -1px;
+    line-height: 1.2;
+    border-radius: 0 0 3px 3px; }
+    .tagsinput .dropdown-menu > li > a {
+      color: var(--dropdown-color-gray);
+      padding: 3px 9px; }
+      .tagsinput .dropdown-menu > li > a strong {
+        color: var(--dropdown-color);
+        font-size: 13px; }

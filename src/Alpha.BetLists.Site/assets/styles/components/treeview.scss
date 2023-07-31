@@ -137,8 +137,8 @@
     }
 
     .selectall-box {
-        padding: 10px 0 8px 3px;
-        margin-right: var(--tree-view-padding);
+        padding: 8px 0;
+        border-bottom: 1px solid var(--border-color);
 
         .node-label {
             margin-right: 23px;
