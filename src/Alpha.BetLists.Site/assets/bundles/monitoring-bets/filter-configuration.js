@@ -289,7 +289,8 @@ var SportLeagueMatchTreeViewComponent = /** @class */ (function () {
     SportLeagueMatchTreeViewComponent.prototype.appendTreeNode = function (html, data, level) {
         var _this = this;
         var isHasChild = data.items && data.items.length > 0;
-        html.push('<li class="tree-node" data-text="', data.text.toLowerCase(), '">');
+        var textSearch = data.text.toLowerCase() + (data.subText ? data.subText.toLowerCase() : "");
+        html.push('<li class="tree-node" data-text="', textSearch, '">');
         if (isHasChild) {
             html.push('<span class="icon-dropdown', this.treeviewOption.expandGroupsByDefault ? " expand" : "", '"></span>', this.renderCheckbox(data, isHasChild, level), '<ul class="subtree', this.treeviewOption.expandGroupsByDefault ? " expand" : "", '">');
             level++;

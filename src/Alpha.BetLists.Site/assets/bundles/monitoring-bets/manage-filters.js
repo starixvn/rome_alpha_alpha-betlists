@@ -98,8 +98,8 @@ var SaveFilterView = /** @class */ (function () {
     SaveFilterView.prototype.init = function (element) {
         var _this = this;
         if (element.length) {
-            var saveFilterPopup_1 = $("#save-filter-popup");
             this.inlineMessagePopup = new InlineMessageComponent("inline-message-popup");
+            var saveFilterPopup_1 = $("#save-filter-popup");
             this.filterNameInput = saveFilterPopup_1.find("#txt-filterName");
             this.isDefaultCheckbox = saveFilterPopup_1.find("#chk-isDefault");
             saveFilterPopup_1
@@ -110,26 +110,19 @@ var SaveFilterView = /** @class */ (function () {
                 _this.isDefaultCheckbox.prop("checked", false);
                 _this.inlineMessagePopup.hide();
             });
-            saveFilterPopup_1.find("#btn-save-filter-popup").click(function () { return _this.handleSaveFilterPopup(function () { return Common.Utils.ReloadPageAfterTimeout(_this.getCurrentUrlWithoutQueryString()); }); });
-            /*saveFilterPopup.find("#btn-save-filter-apply-popup").click(
-                () => this.handleSaveFilterPopup(() => {
-                    const url = this.getCurrentUrlWithoutQueryString();
-                    const mainPage = this.getMainPageUrl(url);
-                    Common.Utils.ReloadPageAfterTimeout(`${mainPage}?filterName=${this.addFilterFormData.filterName}`);
-                })
-            );*/
+            saveFilterPopup_1.find("#btn-save-filter-popup").click(function () { return _this.handleSaveFilterPopup(); });
             element.click(function () {
                 saveFilterPopup_1.modal("show");
             });
         }
     };
-    SaveFilterView.prototype.handleSaveFilterPopup = function (reloadPageCallback) {
+    SaveFilterView.prototype.handleSaveFilterPopup = function () {
         var _this = this;
         var formDataPopup = this.getFormDataPopup();
         if (formDataPopup) {
             AJAXHelper.post($("#hidden-SaveFilterUrl").val(), formDataPopup, function (result) {
                 _this.inlineMessagePopup.show(result);
-                !result.ErrCode && reloadPageCallback();
+                !result.ErrCode && Common.Utils.ReloadPageAfterTimeout();
             });
         }
     };
@@ -144,9 +137,6 @@ var SaveFilterView = /** @class */ (function () {
             filterName: filterName,
             isDefault: isDefault
         };
-    };
-    SaveFilterView.prototype.getCurrentUrlWithoutQueryString = function () {
-        return window.location.href.split("?")[0];
     };
     return SaveFilterView;
 }());

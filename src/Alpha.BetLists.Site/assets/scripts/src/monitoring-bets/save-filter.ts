@@ -8,8 +8,9 @@ class SaveFilterView {
 
     init(element: JQuery) {
         if (element.length) {
-            const saveFilterPopup = $("#save-filter-popup");
             this.inlineMessagePopup = new InlineMessageComponent("inline-message-popup");
+
+            const saveFilterPopup = $("#save-filter-popup");
             this.filterNameInput = saveFilterPopup.find("#txt-filterName");
             this.isDefaultCheckbox = saveFilterPopup.find("#chk-isDefault");
             saveFilterPopup
@@ -20,16 +21,7 @@ class SaveFilterView {
                     this.isDefaultCheckbox.prop("checked", false);
                     this.inlineMessagePopup.hide();
                 });
-            saveFilterPopup.find("#btn-save-filter-popup").click(
-                () => this.handleSaveFilterPopup(() => Common.Utils.ReloadPageAfterTimeout(this.getCurrentUrlWithoutQueryString()))
-            );
-            /*saveFilterPopup.find("#btn-save-filter-apply-popup").click(
-                () => this.handleSaveFilterPopup(() => {
-                    const url = this.getCurrentUrlWithoutQueryString();
-                    const mainPage = this.getMainPageUrl(url);
-                    Common.Utils.ReloadPageAfterTimeout(`${mainPage}?filterName=${this.addFilterFormData.filterName}`);
-                })
-            );*/
+            saveFilterPopup.find("#btn-save-filter-popup").click(() => this.handleSaveFilterPopup());
 
             element.click(function () {
                 saveFilterPopup.modal("show");
@@ -37,12 +29,12 @@ class SaveFilterView {
         }
     }
 
-    private handleSaveFilterPopup(reloadPageCallback) {
+    private handleSaveFilterPopup() {
         const formDataPopup = this.getFormDataPopup();
         if (formDataPopup) {
             AJAXHelper.post($("#hidden-SaveFilterUrl").val(), formDataPopup, (result) => {
                 this.inlineMessagePopup.show(result);
-                !result.ErrCode && reloadPageCallback();
+                !result.ErrCode && Common.Utils.ReloadPageAfterTimeout();
             });
         }
     }
@@ -59,9 +51,5 @@ class SaveFilterView {
             filterName,
             isDefault
         };
-    }
-
-    private getCurrentUrlWithoutQueryString() {
-        return window.location.href.split("?")[0];
     }
 }

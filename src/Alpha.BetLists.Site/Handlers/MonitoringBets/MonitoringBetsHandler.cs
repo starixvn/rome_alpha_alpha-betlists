@@ -61,7 +61,7 @@
 
         public async Task<MonitoringBetsViewModel> Handle(MonitoringBetsQuery message)
         {
-            var filters = await GetSavedFilters(message.ViewerId, message.SubAccId);
+            var filters = await monitoringBetService.GetSavedFilters(message.ViewerId, message.SubAccId, AddFilterParamSession);
 
             var filterId = 0;
             BetListData betListData = null;
@@ -104,20 +104,6 @@
                 TicketHelper);
         }
 
-        private async Task<IEnumerable<SavedFilter>> GetSavedFilters(int viewerId, int subAccId)
-        {
-            var filters = (await monitoringBetService.GetSavedFilters(viewerId, subAccId)).ToList();
-            var customAddFilterParam = AddFilterParamSession;
-
-            if (customAddFilterParam != null)
-            {
-                var customSavedFilter = monitoringBetService.BuildSavedFilter(customAddFilterParam);
-                filters.Insert(0, customSavedFilter);
-            }
-
-            return filters;
-        }
-
         private static SavedFilter GetDefaultFilter(IEnumerable<SavedFilter> filters, string filterName)
         {
             var defaultFilter = string.IsNullOrWhiteSpace(filterName)
@@ -127,19 +113,8 @@
             return defaultFilter ?? filters.First();
         }
 
-        public async Task<IEnumerable<FilterConfiguration>> Handle(ManageFiltersQuery message)
-        {
-            var filterConfiguration = (await monitoringBetService.GetFilters(message.ViewerId, message.SubAccId)).ToList();
-            var customAddFilterParam = AddFilterParamSession;
-
-            if (customAddFilterParam != null)
-            {
-                var customFilterConfiguration = monitoringBetService.BuildFilterConfiguration(customAddFilterParam);
-                filterConfiguration.Insert(0, customFilterConfiguration);
-            }
-
-            return filterConfiguration;
-        }
+        public Task<IEnumerable<FilterConfiguration>> Handle(ManageFiltersQuery message)
+            => monitoringBetService.GetFilters(message.ViewerId, message.SubAccId, AddFilterParamSession);
 
         public Task<Result> Handle(UpdateFilterCommand message)
             => monitoringBetService.UpdateFilter(new UpdateFilterParam(

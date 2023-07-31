@@ -19,13 +19,9 @@
 
     public interface MonitoringBetsService
     {
-        SavedFilter BuildSavedFilter(AddFilterParam param);
+        Task<IEnumerable<SavedFilter>> GetSavedFilters(int custId, int subAccId, AddFilterParam customFilter);
 
-        Task<IEnumerable<SavedFilter>> GetSavedFilters(int custId, int subAccId);
-
-        FilterConfiguration BuildFilterConfiguration(AddFilterParam param);
-
-        Task<IEnumerable<FilterConfiguration>> GetFilters(int custId, int subAccId);
+        Task<IEnumerable<FilterConfiguration>> GetFilters(int custId, int subAccId, AddFilterParam customFilter);
 
         Task<Result> AddFilter(AddFilterParam param);
 
@@ -69,47 +65,56 @@
             this.dynamicRepository = dynamicRepository;
         }
 
-        public SavedFilter BuildSavedFilter(AddFilterParam param)
+        public async Task<IEnumerable<SavedFilter>> GetSavedFilters(int custId, int subAccId, AddFilterParam customFilter)
         {
-            var (sportTypes, leagues) = BuildSportTypesAndLeagues(param.Sports);
+            var criteria = new GetFiltersCriteria(custId, subAccId);
+            partialUMService.ThrowIfUM(criteria.GetSettingKey());
+
+            var filterConfiguration = (await dynamicRepository.FetchAsync<FilterConfiguration>(criteria))
+                .OrderByDescending(f => f.FilterId)
+                .Select(f =>
+                {
+                    var filterXml = f.FilterXml;
+                    var (sportTypes, leagues) = BuildSportTypesAndLeagues(filterXml.Sports);
+
+                    return new SavedFilter(
+                        f.FilterId,
+                        f.FilterName,
+                        f.IsDefault,
+                        filterXml.BetType,
+                        filterXml.Stake,
+                        filterXml.LiveStatus,
+                        sportTypes,
+                        leagues,
+                        BuildMembers(filterXml.FilterByMembers, filterXml.Members, filterXml.MyWatchlistMembers),
+                        filterXml.FilterByMembers);
+                })
+                .ToList();
+
+            if (customFilter != null)
+            {
+                filterConfiguration.Insert(0, BuildSavedFilter(customFilter));
+            }
+
+            return filterConfiguration;
+        }
+
+        private static SavedFilter BuildSavedFilter(AddFilterParam customFilter)
+        {
+            var (sportTypes, leagues) = BuildSportTypesAndLeagues(customFilter.Sports);
 
             return new SavedFilter(
                 0,
                 Resources.UnsavedFilter,
                 true,
-                param.BetType,
-                param.Stake,
-                param.LiveStatus,
+                customFilter.BetType,
+                customFilter.Stake,
+                customFilter.LiveStatus,
                 sportTypes,
                 leagues,
-                BuildMembers(param.FilterByMembers, param.InputList, param.MyWatchlist),
-                param.FilterByMembers,
+                BuildMembers(customFilter.FilterByMembers, customFilter.InputList, customFilter.MyWatchlist),
+                customFilter.FilterByMembers,
                 fromSession: true);
-        }
-
-        public async Task<IEnumerable<SavedFilter>> GetSavedFilters(int custId, int subAccId)
-        {
-            var criteria = new GetFiltersCriteria(custId, subAccId);
-            partialUMService.ThrowIfUM(criteria.GetSettingKey());
-
-            var filterConfigurations = await dynamicRepository.FetchAsync<FilterConfiguration>(criteria);
-            return filterConfigurations.OrderByDescending(f => f.FilterId).Select(f =>
-            {
-                var filterXml = f.FilterXml;
-                var (sportTypes, leagues) = BuildSportTypesAndLeagues(filterXml.Sports);
-
-                return new SavedFilter(
-                    f.FilterId,
-                    f.FilterName,
-                    f.IsDefault,
-                    filterXml.BetType,
-                    filterXml.Stake,
-                    filterXml.LiveStatus,
-                    sportTypes,
-                    leagues,
-                    BuildMembers(filterXml.FilterByMembers, filterXml.Members, filterXml.MyWatchlistMembers),
-                    filterXml.FilterByMembers);
-            });
         }
 
         private static Tuple<string, string> BuildSportTypesAndLeagues(IEnumerable<SportXml> sportXmlList)
@@ -156,7 +161,32 @@
             return $"{members},{myWatchlistMembers}".Trim(',');
         }
 
-        public FilterConfiguration BuildFilterConfiguration(AddFilterParam param)
+        public async Task<IEnumerable<FilterConfiguration>> GetFilters(int custId, int subAccId, AddFilterParam customFilter)
+        {
+            var criteria = new GetFiltersCriteria(custId, subAccId);
+            partialUMService.ThrowIfUM(criteria.GetSettingKey());
+
+            var filterConfiguration = (await dynamicRepository.FetchAsync<FilterConfiguration>(criteria))
+                .OrderByDescending(f => f.FilterId)
+                .Select(item =>
+                {
+                    var filterXml = item.FilterXml;
+                    filterXml.BetTypeNames = BuildBetTypeNames(filterXml.BetType);
+                    filterXml.FlatternSports = BuildSports(FlattenSports(filterXml.Sports)).ToList();
+
+                    return item;
+                })
+                .ToList();
+
+            if (customFilter != null)
+            {
+                filterConfiguration.Insert(0, BuildFilterConfiguration(customFilter));
+            }
+
+            return filterConfiguration;
+        }
+
+        private static FilterConfiguration BuildFilterConfiguration(AddFilterParam param)
         {
             var filterXml = new FilterXml
             {
@@ -181,22 +211,6 @@
                 DateTime.MinValue,
                 param.MyWatchlistMembers,
                 param.InputListMembers);
-        }
-
-        public async Task<IEnumerable<FilterConfiguration>> GetFilters(int custId, int subAccId)
-        {
-            var criteria = new GetFiltersCriteria(custId, subAccId);
-            partialUMService.ThrowIfUM(criteria.GetSettingKey());
-
-            var filterConfigurations = await dynamicRepository.FetchAsync<FilterConfiguration>(criteria);
-            foreach (var item in filterConfigurations)
-            {
-                var filterXml = item.FilterXml;
-                filterXml.BetTypeNames = BuildBetTypeNames(filterXml.BetType);
-                filterXml.FlatternSports = BuildSports(FlattenSports(filterXml.Sports)).ToList();
-            }
-
-            return filterConfigurations;
         }
 
         private static IEnumerable<string> BuildBetTypeNames(string betTypes)

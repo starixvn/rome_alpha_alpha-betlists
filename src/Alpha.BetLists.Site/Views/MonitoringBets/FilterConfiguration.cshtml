@@ -107,13 +107,9 @@
         </div>
     </div>
     <div class="block-btn">@RenderButtonGroup()</div>
-    @if (Model.ShowWelcomePopup)
-    {
-        @Html.Partial("_WelcomePopup")
-    }
+    @if (Model.ShowWelcomePopup) { @Html.Partial("_WelcomePopup") }
     @Html.Partial("_SaveFilterConfirmPopup", true)
 </div>
-@Html.AntiForgeryToken()
 @Html.Hidden("hidden-BetTypesRequiredError", Resources.FilterConfigurationBetTypesRequiredError)
 @Html.Hidden("hidden-StakeRequiredError", Resources.FilterConfigurationStakeRequiredError)
 @Html.Hidden("hidden-SportsRequiredError", Resources.FilterConfigurationSportsRequiredError)

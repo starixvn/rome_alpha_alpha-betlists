@@ -384,7 +384,6 @@
   --color-ttl: #094980;
   --bg-box: #F5F8FE;
   --border-box: #3873E9;
-  --color-require: #FE0000;
   --color-error: #FE0000;
   --bg-error: #FFF2F2;
   --border-error: #FE0000;
@@ -403,7 +402,6 @@
   --bg-box-active: #F5F8FE;
   --border-box: var(--border-color);
   --border-box-active: #3873E9;
-  --color-require: #FE0000;
   --color-error: #FE0000;
   --bg-error: #FFF2F2;
   --border-error: #FE0000;
@@ -423,7 +421,6 @@
   --bg-box-active: #363738;
   --border-box: var(--border-color);
   --border-box-active: #6699FF;
-  --color-require: #DD3333;
   --color-error: #FE0000;
   --bg-error: #FFF2F2;
   --border-error: #FE0000;

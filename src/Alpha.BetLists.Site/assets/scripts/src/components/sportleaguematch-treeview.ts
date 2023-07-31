@@ -201,7 +201,8 @@ class SportLeagueMatchTreeViewComponent {
 
     private appendTreeNode(html, data, level: number) {
         const isHasChild = data.items && data.items.length > 0;
-        html.push('<li class="tree-node" data-text="', data.text.toLowerCase(), '">');
+        const textSearch = data.text.toLowerCase() + (data.subText ? data.subText.toLowerCase() : "");
+        html.push('<li class="tree-node" data-text="', textSearch, '">');
 
         if (isHasChild) {
             html.push(
