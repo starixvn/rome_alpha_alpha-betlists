@@ -69,9 +69,10 @@
         tr {
             th, td {
                 background: var(--bg-table);
-                .multiselect{
-                    height: 26px!important;
-                    line-height: 24px!important;
+
+                .multiselect {
+                    height: 26px !important;
+                    line-height: 24px !important;
                 }
             }
         }
@@ -120,15 +121,23 @@
         display: flex;
         justify-content: center;
 
-        [class^="ic-"], [class*=" ic-"] {
-            display: block;
-            margin: 0 4px;
-        }
+       
+    }
+
+    [class^="ic-"], [class*=" ic-"], [class^="icon-"], [class*=" icon-"] {
+        display: inline-block;
+        vertical-align: middle;
+        cursor: pointer;
+        margin: 0 4px;
+        cursor: pointer;
     }
 
     [class^="ic-"], [class*=" ic-"] {
         font-size: 24px;
-        cursor: pointer;
+    }
+
+    [class^="icon-"], [class*=" icon-"] {
+        font-size: 16px;
     }
 }
 

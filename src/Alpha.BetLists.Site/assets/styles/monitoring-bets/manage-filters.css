@@ -98,13 +98,19 @@
 .tb .edit-group, .tb .confirm-group {
   display: flex;
   justify-content: center; }
-  .tb .edit-group [class^="ic-"], .tb .edit-group [class*=" ic-"], .tb .confirm-group [class^="ic-"], .tb .confirm-group [class*=" ic-"] {
-    display: block;
-    margin: 0 4px; }
+
+.tb [class^="ic-"], .tb [class*=" ic-"], .tb [class^="icon-"], .tb [class*=" icon-"] {
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+  margin: 0 4px;
+  cursor: pointer; }
 
 .tb [class^="ic-"], .tb [class*=" ic-"] {
-  font-size: 24px;
-  cursor: pointer; }
+  font-size: 24px; }
+
+.tb [class^="icon-"], .tb [class*=" icon-"] {
+  font-size: 16px; }
 
 a:hover, a:focus {
   text-decoration: none; }
