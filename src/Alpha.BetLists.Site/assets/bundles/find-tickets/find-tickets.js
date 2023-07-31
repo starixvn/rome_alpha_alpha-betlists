@@ -1,7 +1,74 @@
 "use strict";
+var AJAXHelper = /** @class */ (function () {
+    function AJAXHelper() {
+    }
+    AJAXHelper.getJSONWithoutBlockUI = function (url, onSuccess) {
+        var _this = this;
+        $.getJSON(url, onSuccess).fail(function (jqXHR) { return _this.handleOnFail(jqXHR); });
+    };
+    AJAXHelper.post = function (url, formData, onSuccess, onComplete) {
+        var _this = this;
+        $.blockUI();
+        return $.ajax({
+            url: url,
+            headers: {
+                __RequestVerificationToken: $("input[name='__RequestVerificationToken']").val(),
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            type: "POST",
+            data: formData,
+            success: function (result) {
+                onSuccess(result);
+                $.unblockUI();
+            },
+            error: function (jqXHR) { return _this.handleOnFail(jqXHR); },
+            complete: onComplete
+        });
+    };
+    AJAXHelper.handleOnFail = function (jqXHR) {
+        $.unblockUI();
+        if (jqXHR) {
+            if (jqXHR.statusText === "abort") {
+                return;
+            }
+            if (jqXHR.status === 401) {
+                window.top["age"].SignOut();
+            }
+            else if (jqXHR.status === 500 && jqXHR.responseText) {
+                var jsonData = JSON.parse(jqXHR.responseText);
+                if (jsonData.UMFrom && jsonData.UMTo) {
+                    location.href = window.top["alpha"].urls.mainRootPath + "PartialUM/Index?umfrom=" + jsonData.UMFrom + "&umto=" + jsonData.UMTo;
+                }
+            }
+        }
+    };
+    AJAXHelper.get = function (url, formData, onSuccess, onComplete) {
+        var _this = this;
+        $.blockUI();
+        return $.ajax({
+            url: url,
+            headers: {
+                __RequestVerificationToken: $("input[name='__RequestVerificationToken']").val(),
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            type: "GET",
+            data: formData,
+            success: function (result) {
+                onSuccess(result);
+                $.unblockUI();
+            },
+            error: function (jqXHR) { return _this.handleOnFail(jqXHR); },
+            complete: onComplete
+        });
+    };
+    return AJAXHelper;
+}());
+//# sourceMappingURL=ajax-helper.js.map
+"use strict";
 var FindTicketView = /** @class */ (function () {
     function FindTicketView($) {
         var _this = this;
+        this.getBetsUrl = "";
         this.init = function () {
             _this.cacheDOMElements();
             _this.registerEvents();
@@ -24,6 +91,20 @@ var FindTicketView = /** @class */ (function () {
         this.cacheDOMElements = function () {
             _this.$refNo = _this.$("#ref-no");
             _this.$submitButton = _this.$("#submit-betList-form");
+            _this.$betListTableContainer = _this.$("#tbl-betlist");
+            _this.getBetsUrl = _this.$("#get-bets-url").val();
+        };
+        this.getTickets = function (e) {
+            e.preventDefault();
+            _this.$.blockUI();
+            AJAXHelper.get(_this.getBetsUrl, { RefNo: _this.$("#RefNo").val() }, _this.successGetLastBets);
+        };
+        this.successGetLastBets = function (responseHtml) {
+            if ((responseHtml.ErrorCode && responseHtml.ErrorCode !== "0") ||
+                (responseHtml.ErrCode && responseHtml.ErrCode !== "0")) {
+                return;
+            }
+            _this.$betListTableContainer.children('tbody').html(responseHtml);
         };
         this.onChangeRefNoTextBox = function () {
             _this.$refNo.on('change keyup paste', function () {
@@ -41,6 +122,7 @@ var FindTicketView = /** @class */ (function () {
     }
     FindTicketView.prototype.registerEvents = function () {
         this.$submitButton.prop("disabled", true);
+        this.$submitButton.on("click", this.getTickets);
         this.onChangeRefNoTextBox();
     };
     return FindTicketView;

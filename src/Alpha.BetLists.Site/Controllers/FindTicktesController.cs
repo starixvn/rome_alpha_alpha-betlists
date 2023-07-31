@@ -14,5 +14,8 @@
 
         public async Task<ActionResult> Index(FindTicketsQuery message)
             => await View(message);
+
+        public async Task<ActionResult> BetData(FindTicketsQuery message)
+            => await View("WinLossTableData", message);
     }
 }

@@ -48,6 +48,7 @@
   {
     "outputFileName": "assets/bundles/find-tickets/find-tickets.js",
     "inputFiles": [
+      "assets/scripts/src/common/ajax-helper.js",
       "assets/scripts/src/find-tickets/find-tickets.js"
     ]
   },

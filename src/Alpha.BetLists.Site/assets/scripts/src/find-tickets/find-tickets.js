@@ -2,6 +2,7 @@
 var FindTicketView = /** @class */ (function () {
     function FindTicketView($) {
         var _this = this;
+        this.getBetsUrl = "";
         this.init = function () {
             _this.cacheDOMElements();
             _this.registerEvents();
@@ -24,6 +25,20 @@ var FindTicketView = /** @class */ (function () {
         this.cacheDOMElements = function () {
             _this.$refNo = _this.$("#ref-no");
             _this.$submitButton = _this.$("#submit-betList-form");
+            _this.$betListTableContainer = _this.$("#tbl-betlist");
+            _this.getBetsUrl = _this.$("#get-bets-url").val();
+        };
+        this.getTickets = function (e) {
+            e.preventDefault();
+            _this.$.blockUI();
+            AJAXHelper.get(_this.getBetsUrl, { RefNo: _this.$("#RefNo").val() }, _this.successGetLastBets);
+        };
+        this.successGetLastBets = function (responseHtml) {
+            if ((responseHtml.ErrorCode && responseHtml.ErrorCode !== "0") ||
+                (responseHtml.ErrCode && responseHtml.ErrCode !== "0")) {
+                return;
+            }
+            _this.$betListTableContainer.children('tbody').html(responseHtml);
         };
         this.onChangeRefNoTextBox = function () {
             _this.$refNo.on('change keyup paste', function () {
@@ -41,6 +56,7 @@ var FindTicketView = /** @class */ (function () {
     }
     FindTicketView.prototype.registerEvents = function () {
         this.$submitButton.prop("disabled", true);
+        this.$submitButton.on("click", this.getTickets);
         this.onChangeRefNoTextBox();
     };
     return FindTicketView;

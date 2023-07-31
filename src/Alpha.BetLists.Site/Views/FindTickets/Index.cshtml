@@ -29,7 +29,7 @@
     <div class="form-group">
         <label>@Resources.RefNo<span class="red">*</span></label>
 
-        <input type="text"
+        <input type="number"
                id="ref-no"
                name="RefNo"
                class="form-control" />
@@ -40,7 +40,7 @@
 
 </form>
 @Html.Hidden("MainDomain", Model.MainDomain)
-
+@Html.Hidden("get-bets-url", @Url.Action("BetData", $"{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}FindTickets"))
 @Html.Partial("WinLossTableNew", Model)
 
 @section Scripts{

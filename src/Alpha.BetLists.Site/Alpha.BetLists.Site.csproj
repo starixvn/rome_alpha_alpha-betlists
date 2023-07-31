@@ -1263,6 +1263,7 @@
     </Content>
     <Content Include="Views\FindTickets\Index.cshtml" />
     <Content Include="Views\Shared\WinLossTableNew.cshtml" />
+    <Content Include="Views\Shared\WinLossTableData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_GlobalResources\Resources.Designer.cs">
@@ -1489,6 +1490,7 @@
     <TypeScriptCompile Include="assets\scripts\src\betlist\status\result-details\other-result-details.ts" />
     <TypeScriptCompile Include="assets\scripts\src\cancelled-betlist\cancelled-betlist-constants.ts" />
     <TypeScriptCompile Include="assets\scripts\src\cancelled-betlist\cancelled-betlist.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\common\ajax-helper.ts" />
     <TypeScriptCompile Include="assets\scripts\src\common\app-path.ts" />
     <TypeScriptCompile Include="assets\scripts\src\common\icon-note.ts" />
     <TypeScriptCompile Include="assets\scripts\src\common\popup-details.ts" />

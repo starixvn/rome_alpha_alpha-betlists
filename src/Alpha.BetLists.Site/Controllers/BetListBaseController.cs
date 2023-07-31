@@ -26,6 +26,9 @@
         protected async Task<ActionResult> View<TResponse>(IRequest<TResponse> message)
             => View(await mediator.Send(message));
 
+        protected async Task<ActionResult> View<TResponse>(string viewName, IRequest<TResponse> message)
+            => View(viewName, await mediator.Send(message));
+
         protected async Task<ActionResult> PartialView<TResponse>(IRequest<TResponse> message)
             => PartialView(await mediator.Send(message));
 

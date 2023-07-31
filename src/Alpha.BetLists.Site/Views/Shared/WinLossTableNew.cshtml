@@ -30,10 +30,10 @@
                 <th class="col-pt">@Resources.agentPT/ @Resources.lblComm</th>
             </tr>
         </thead>
-        @if (Model.BetListData.Tickets.Any())
-        {
-            <tbody>
-                @for (int i = 0; i < Model.BetListData.Total; i++)
+        <tbody>
+            @if (Model.BetListData.Tickets.Any())
+            {
+                for (int i = 0; i < Model.BetListData.Total; i++)
                 {
                     var ticket = Model.BetListData.Tickets.ElementAt(i);
                     <tr id="r@(ticket.TransId)">
@@ -62,7 +62,7 @@
                         @PositionTaking.Render(ticket, Model.BetListData.TicketData, UserLevel.Agent)
                     </tr>
                 }
-                @if (Model.ShowFooter)
+                if (Model.ShowFooter)
                 {
                     @Common.Footer.Render(
                     Model.Footer.SubTotalColSpan,
@@ -71,12 +71,12 @@
                     Model.Footer.SubTotalCommission,
                     Model.Footer.Total)
                 }
-            </tbody>
-        }
-        else
-        {
-            @Common.NoInfomation.Render(Model.TotalColumn)
-        }
+            }
+            else
+            {
+                @Common.NoInfomation.Render(Model.TotalColumn, false)
+            }
+        </tbody>
     </table>
 </div>
 @Html.Hidden("betlist-path", Response.ApplyAppPathModifier($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}"))
