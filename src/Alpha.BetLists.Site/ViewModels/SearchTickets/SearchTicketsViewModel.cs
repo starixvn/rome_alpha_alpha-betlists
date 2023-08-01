@@ -15,9 +15,8 @@
             BetListData betListData,
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper)
-            : base(query, betListData, builder, ticketHelper, query.IsEnabledJackpot)
+            : base(query, betListData, builder, ticketHelper, query.IsEnabledJackpot, false, true)
         {
-
             RefNo = query.RefNo;
             ViewDataInstructionMessage = string.Format(
                 Resources.CanOnlyViewDataAfterTimeHistoryReport,
@@ -27,9 +26,9 @@
         }
 
         public long RefNo { get; }
-        
+
         public string ViewDataInstructionMessage { get; }
-        
+
         public string MainDomain { get; }
     }
 }

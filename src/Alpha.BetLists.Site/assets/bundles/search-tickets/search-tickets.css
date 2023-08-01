@@ -42,3 +42,15 @@
     transform: translate(0, 0); }
     #info-note.message-modal .modal-dialog .modal-content .modal-header .modal-title {
       height: 41px; }
+
+.tb .col-odds, .tb .col-stake {
+  width: 50px; }
+
+.tb .col-member, .tb .col-winloss {
+  width: 90px; }
+
+.tb .col-status {
+  width: 110px; }
+
+.tb .col-transtime, .tb .col-member, .tb .col-pt {
+  width: 130px; }

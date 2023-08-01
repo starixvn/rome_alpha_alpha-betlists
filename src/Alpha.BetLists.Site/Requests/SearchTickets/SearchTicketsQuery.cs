@@ -10,7 +10,7 @@
     {
         public SearchTicketsQuery(IUser viewer) : base(viewer)
         {
-            MinDate = ReportDateServiceImpl.Instance.GetMoveBetsDay().AddDays(1);
+            MinDate = ReportDateServiceImpl.Instance.GetMoveBetsDay();
         }
 
         public long RefNo { get; set; }

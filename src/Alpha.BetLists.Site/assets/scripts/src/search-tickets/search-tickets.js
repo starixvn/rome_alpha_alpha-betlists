@@ -14,11 +14,11 @@ var FindTicketView = /** @class */ (function () {
                         : mainDomain;
                     window.top.postMessage({
                         event_id: "winlossdetailnew-feedback",
-                        feedback_id: 2
+                        feedback_id: 3
                     }, mainDomain);
                 }
                 else {
-                    window.top.indexManager.initFeedbackFunction(2);
+                    window.top.indexManager.initFeedbackFunction(3);
                 }
             }, 1000);
         };

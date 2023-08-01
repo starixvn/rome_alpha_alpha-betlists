@@ -24,7 +24,7 @@
 
 .filter {
     z-index: 0;
-     padding-top: 0;
+    padding-top: 0;
 }
 
 .form-inline.search-ticket {
@@ -43,6 +43,7 @@
         }
     }
 }
+
 #info-note.message-modal {
     width: auto;
 
@@ -56,4 +57,20 @@
             height: 41px;
         }
     }
+}
+
+.tb .col-odds, .tb .col-stake {
+    width: 50px
+}
+
+.tb .col-member, .tb .col-winloss {
+    width: 90px
+}
+
+.tb .col-status {
+    width: 110px
+}
+
+.tb .col-transtime, .tb .col-member, .tb .col-pt {
+    width: 130px
 }

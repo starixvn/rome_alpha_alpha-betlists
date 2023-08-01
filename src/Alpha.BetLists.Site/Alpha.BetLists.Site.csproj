@@ -1310,7 +1310,7 @@
     <Compile Include="Handlers\CasinoDetails\CasinoDetailsExcelHandler.cs" />
     <Compile Include="Handlers\CasinoDetails\CasinoDetailsHandler.cs" />
     <Compile Include="Handlers\CashOutHistory\CashOutHistoryHandler.cs" />
-    <Compile Include="Handlers\FindTickets\FindTicketsHandler.cs" />
+    <Compile Include="Handlers\SearchTickets\SearchTicketsHandler.cs" />
     <Compile Include="Handlers\JackpotDetails\JackpotDetailsExcelHandler.cs" />
     <Compile Include="Handlers\JackpotDetails\JackpotDetailsHandler.cs" />
     <Compile Include="Handlers\BetBuilder\BetBuilderHandler.cs" />
