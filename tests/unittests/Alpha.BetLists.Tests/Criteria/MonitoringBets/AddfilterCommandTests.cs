@@ -15,10 +15,22 @@
         {
             // Arrange
             var criteria = new AddFilterCommand(
-                new AddFilterParam(1, 1,
-                    "Test", true, "0", 10,
-                    Sports, 1, "0", "0", 1,
-                    "EN", "1.2.3.4"));
+                new AddFilterParam(
+                    1,
+                    1,
+                    "Test",
+                    true,
+                    "0",
+                    10,
+                    Sports,
+                    1,
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    1,
+                    "EN",
+                    "1.2.3.4"));
 
             var expectedSettingKey = "Age_CustLastBetFilter_Ins";
 
@@ -34,10 +46,22 @@
         {
             // Arrange
             var criteria = new AddFilterCommand(
-                new AddFilterParam(1, 1,
-                    "Default", true, "0", 0,
-                    Sports, 1, "0", "0", 1,
-                    "EN", "1.2.3.4"));
+                new AddFilterParam(
+                    1,
+                    1,
+                    "Default",
+                    true,
+                    "0",
+                    0,
+                    Sports,
+                    1,
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    1,
+                    "EN",
+                    "1.2.3.4"));
 
             // Act
             var actualIsValid = criteria.IsValid();
@@ -56,10 +80,22 @@
         {
             // Arrange
             var criteria = new AddFilterCommand(
-                new AddFilterParam(custId, subAccId,
-                    filterName, true, betType, stake,
-                    Sports, 1, "0", "0", 1,
-                    "EN", "1.2.3.4"));
+                new AddFilterParam(
+                    custId,
+                    subAccId,
+                    filterName,
+                    true,
+                    betType,
+                    stake,
+                    Sports,
+                    1,
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    1,
+                    "EN",
+                    "1.2.3.4"));
 
             // Act
             var actualIsValid = criteria.IsValid();

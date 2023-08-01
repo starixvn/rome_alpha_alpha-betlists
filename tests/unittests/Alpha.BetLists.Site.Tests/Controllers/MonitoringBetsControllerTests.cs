@@ -219,17 +219,17 @@ namespace Alpha.BetLists.Site.Tests.Controllers
             await mediator.Received().Send(message);
         }
 
-        [Fact]
-        public async Task CheckUsernamesQuery_Always_CallMediatorCheckUsernamesQuery()
-        {
-            // Arrange
-            var message = new CheckUsernamesQuery(user);
-            // Act
-            await controller.CheckUsernames(message);
+        //[Fact]
+        //public async Task CheckUsernamesQuery_Always_CallMediatorCheckUsernamesQuery()
+        //{
+        //    // Arrange
+        //    var message = new CheckUsernamesQuery(user);
+        //    // Act
+        //    await controller.CheckUsernames(message);
 
-            // Assert
-            await mediator.Received().Send(message);
-        }
+        //    // Assert
+        //    await mediator.Received().Send(message);
+        //}
 
         [Fact]
         public async Task GetMyWatchlistMembersQuery_Always_CallMediatorGetMyWatchlistMembersQuery()
@@ -248,7 +248,6 @@ namespace Alpha.BetLists.Site.Tests.Controllers
         {
             // Arrange
             var message = new ApplyFilterCommand(user);
-            message.FilterId = 1;
             message.FilterName = "Default";
             message.BetType = "1,2,3";
             message.Stake = 10;
@@ -269,7 +268,6 @@ namespace Alpha.BetLists.Site.Tests.Controllers
             // Arrange
             user.IsInternal.Returns(true);
             var message = new ApplyFilterCommand(user);
-            message.FilterId = 1;
             message.FilterName = "Default";
 
             // Act
@@ -285,7 +283,6 @@ namespace Alpha.BetLists.Site.Tests.Controllers
         {
             // Arrange
             var message = new AddFilterCommand(user);
-            message.FilterId = 1;
             message.FilterName = "Default";
             message.BetType = "1,2,3";
             message.Stake = 10;

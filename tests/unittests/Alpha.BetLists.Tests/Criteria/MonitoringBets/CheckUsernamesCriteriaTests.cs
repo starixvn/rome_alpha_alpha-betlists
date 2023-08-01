@@ -1,6 +1,6 @@
 ﻿namespace Alpha.BetLists.Tests.Criteria.MonitoringBets
 {
-    using Alpha.BetLists.Criteria.MonitoringBets;
+    using Alpha.BetLists.Criteria.UsernameSuggestion;
     using Xunit;
 
     [Trait("Category", "CheckUsernames")]

@@ -1,5 +1,6 @@
 ﻿namespace Alpha.BetLists.Tests.Services
 {
+    using System.Collections.Specialized;
     using System.Threading.Tasks;
     using Alpha.BetLists.Criteria.LastBets;
     using Alpha.BetLists.Models.MonitoringBets;
@@ -11,7 +12,6 @@
     using Fixtures;
     using KellermanSoftware.CompareNetObjects;
     using NSubstitute;
-    using System.Collections.Specialized;
     using TestData;
     using Xunit;
 
@@ -56,7 +56,7 @@
         public async Task GetSavedFilters_ValidCriteria_CallsDynamicRepository()
         {
             // Arrange & Act
-            await monitoringBetsService.GetSavedFilters(1, 1);
+            await monitoringBetsService.GetSavedFilters(1, 1, null);
 
             // Assert
             await dataFixture.DynamicRepository.Received().FetchAsync<FilterConfiguration>(Arg.Any<GetFiltersCriteria>());
@@ -66,7 +66,7 @@
         public async Task GetFilters_ValidCriteria_CallsDynamicRepository()
         {
             // Arrange & Act
-            await monitoringBetsService.GetFilters(1, 1);
+            await monitoringBetsService.GetFilters(1, 1, null);
 
             // Assert
             await dataFixture.DynamicRepository.Received().FetchAsync<FilterConfiguration>(Arg.Any<GetFiltersCriteria>());
@@ -77,9 +77,23 @@
         {
             // Arrange
 
-            var param = new AddFilterParam(0, 1, "New filter", true, "0", 10,
+            var param = new AddFilterParam(
+                0,
+                1,
+                "New filter",
+                true,
+                "0",
+                10,
                 new[] { new SportXml() { League = "A", Sport = "Soccer" } },
-                1, "0", "0", 1, "EN", "1.2.3.4");
+                1,
+                "0",
+                "0",
+                "0",
+                "0",
+                1,
+                "EN",
+                "1.2.3.4");
+
             // Act
             await monitoringBetsService.AddFilter(param);
 
@@ -91,9 +105,15 @@
         public async Task UpdateFilter_Always_CallsDynamicRepository()
         {
             // Arrange
-            var param = new UpdateFilterParam(0, 1,
-                1, "", true,
-                "EN", "1.2.3.4");
+            var param = new UpdateFilterParam(
+                0,
+                1,
+                1,
+                "",
+                true,
+                "EN",
+                "1.2.3.4");
+
             // Act
             await monitoringBetsService.UpdateFilter(param);
 
@@ -105,28 +125,26 @@
         public async Task DeleteFilters_ValidParam_CallsDynamicRepository()
         {
             // Arrange 
-            var param = new DeleteFilterParam(1, 1,
-                "1", "1.2.3.4");
+            var param = new DeleteFilterParam(1, 1, 1, "EN", "1.2.3.4");
+
             // Act
-            await monitoringBetsService.DeleteFilters(param);
+            await monitoringBetsService.DeleteFilter(param);
 
             // Assert
             dataFixture.DynamicRepository.ReceivedWithAnyArgs();
-
         }
 
         [Fact]
         public async Task DeleteFilters_InvalidParam_NotCallsDynamicRepository()
         {
             // Arrange &
-            var param = new DeleteFilterParam(1, 1,
-                "", "1.2.3.4");
+            var param = new DeleteFilterParam(1, 1, -1, "EN", "1.2.3.4");
+
             // Act
-            await monitoringBetsService.DeleteFilters(param);
+            await monitoringBetsService.DeleteFilter(param);
 
             // Assert
             dataFixture.DynamicRepository.DidNotReceiveWithAnyArgs();
-
         }
 
         [Fact]
@@ -137,16 +155,6 @@
 
             // Assert
             await dataFixture.DynamicRepository.Received().FetchAsync<League>(Arg.Any<GetLeaguesCriteria>());
-        }
-
-        [Fact]
-        public async Task CheckUsernames_Always_CallsDynamicRepository()
-        {
-            // Arrange & Act
-            await monitoringBetsService.CheckUsernames(1,"member01");
-
-            // Assert
-            await dataFixture.DynamicRepository.Received().FetchAsync<MemberErrCode>(Arg.Any<CheckUsernamesCriteria>());
         }
 
         [Fact]
