@@ -51,7 +51,7 @@
             => !string.IsNullOrWhiteSpace(BetTypeList)
             && !string.IsNullOrWhiteSpace(SportTypeList)
             && !string.IsNullOrWhiteSpace(LeagueList)
-            && MinStake > 0
+            && MinStake >= 0
             && LimitRowCount > 0;
     }
 }
