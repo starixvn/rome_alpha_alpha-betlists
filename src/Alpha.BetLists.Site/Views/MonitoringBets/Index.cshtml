@@ -12,21 +12,34 @@
 @section Scripts {
     @StaticResources.AssetScripts.RenderCommon("/bundles-v2/site-betlists/monitoring-bets")
     @StaticResources.RenderScripts($"~/{AppSettings.BetlistRouting}assets/bundles/monitoring-bets/monitoring-bets")
+    @StaticResources.RenderScripts($"~/{AppSettings.BetlistRouting}assets/bundles/icon-note")
+
 }
 <div class="flex">
     <div class="bl_title">
-        @Resources.LastBets
-        <span class="icon-information-outline"></span>
-        <div class="list-icon">
-            <ul>
-                <li><span class="icon-arrow-up-drop-circle icon-filter" id="icon-filter" title="@Resources.HideFilter"></span></li>
-            </ul>
+        <div class="box">
+            <div>
+                @Resources.LastBets
+            </div>
+            <div>
+                @Html.Partial("IconInformation", new List<string>() { Resources.ipnote })
+            </div>
+            <div class="push">
+                <div class="list-icon">
+                    <ul>
+                        <li><span class="icon-arrow-up-drop-circle icon-filter" id="icon-filter" title="@Resources.HideFilter"></span></li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
+
     <div class="form-inline filter" id="form-monitoring-bets">
         <div class="form-group">
-            <label class="label-form-control">@Resources.MyFilters
-                @if (Model.HasCustomFilter) { <span class="icon-save" id="icon-save"></span> }
+            <label class="label-form-control">
+                @Resources.MyFilters
+                @if (Model.HasCustomFilter)
+                {<span class="icon-save" id="icon-save"></span>}
             </label>
             <select id="monitoring-bets-filter">
                 @foreach (var savedFilter in Model.Filters)
@@ -40,7 +53,9 @@
                             data-event-status="@savedFilter.EventStatus"
                             data-stake="@savedFilter.Stake"
                             data-filter-by-member="@savedFilter.FilterByMembers"
-                            @(savedFilter.FilterId == Model.FilterId ? "selected" : string.Empty)>@savedFilter.FilterName</option>
+                            @(savedFilter.FilterId == Model.FilterId ? "selected" : string.Empty)>
+                        @savedFilter.FilterName
+                    </option>
                 }
             </select>
         </div>
@@ -81,7 +96,8 @@
             </tbody>
         </table>
     </div>
-    @if (Model.HasCustomFilter) {
+    @if (Model.HasCustomFilter)
+    {
         Html.RenderPartial("_SaveFilterConfirmPopup", false);
     }
     @Html.Hidden("get-bets-url", Url.Action("BetData", $"{AppSettings.BetlistRouting}MonitoringBets"))

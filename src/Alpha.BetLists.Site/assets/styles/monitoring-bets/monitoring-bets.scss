@@ -24,9 +24,17 @@
 
 
 .bl_title {
+    #info-note.message-modal {
+        bottom: 0px !important;
+
+        .modal-dialog {
+            top: 10%;
+        }
+    }
+
     .icon-information-outline {
         float: none;
-        margin-left: 5px;
+        margin: 0px 0px 10px 5px;
         top: -2px;
     }
 
