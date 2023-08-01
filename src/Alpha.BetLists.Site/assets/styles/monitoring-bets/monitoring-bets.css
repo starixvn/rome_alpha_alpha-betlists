@@ -31,10 +31,16 @@
   --color-bettype: #41A4FF;
   --color-favorite: #E54748; }
 
+#info-note.message-modal {
+  width: auto; }
+  #info-note.message-modal .modal-dialog {
+    width: 624px;
+    top: 0;
+    left: 0;
+    transform: translate(0, 0); }
+
 .bl_title #info-note.message-modal {
   bottom: 0px !important; }
-  .bl_title #info-note.message-modal .modal-dialog {
-    top: 10%; }
 
 .bl_title .icon-information-outline {
   float: none;
