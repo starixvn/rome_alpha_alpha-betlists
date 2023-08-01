@@ -10,7 +10,7 @@
 :root {
   --color-gray: #333333;
   --bg-main: #FFFFFF;
-  --border-color: #D1D1D1;
+  --border-manage-color: #D1D1D1;
   --bg-sub-head-tb: #DBE0E5;
   --bg-table: #f7f7f7;
   --bg-col-name: #ffffff;
@@ -19,7 +19,7 @@
 :root [data-theme='light'] {
   --color-gray: #333333;
   --bg-main: #FFFFFF;
-  --border-color: #D1D1D1;
+  --border-manage-color: #D1D1D1;
   --bg-sub-head-tb: #DBE0E5;
   --bg-table: #f7f7f7;
   --bg-col-name: #ffffff;
@@ -28,7 +28,7 @@
 :root [data-theme='dark'] {
   --color-gray: #333333;
   --bg-main: #171717;
-  --border-color: #2F2F2F;
+  --border-manage-color: #2F2F2F;
   --bg-sub-head-tb: #1D2633;
   --bg-table: #161D26;
   --bg-col-name: #171717;
@@ -36,7 +36,7 @@
 
 .manage-filters {
   background: var(--bg-main);
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--border-manage-color);
   border-radius: 3px;
   padding: 15px;
   width: 1000px; }
