@@ -517,7 +517,7 @@ div.ticket-list div.void > div.match, div.ticket-list div.void div.firstGoal, di
         height: 35px; }
     #info-note.message-modal .modal-dialog .modal-content .modal-body #msg-content {
       text-transform: none;
-      color: #333;
+      color: #EDEDED;
       font-weight: 300; }
 
 @media only screen and (max-device-width: 767px) {
