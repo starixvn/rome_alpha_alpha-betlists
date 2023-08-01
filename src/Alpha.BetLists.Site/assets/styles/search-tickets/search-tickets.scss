@@ -48,7 +48,11 @@
 
     .modal-dialog {
         width: 624px;
-        .modal-content .modal-header .modal-title{
+        top: 0;
+        left: 0;
+        transform: translate(0, 0);
+
+        .modal-content .modal-header .modal-title {
             height: 41px;
         }
     }

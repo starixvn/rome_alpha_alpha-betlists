@@ -36,6 +36,9 @@
 #info-note.message-modal {
   width: auto; }
   #info-note.message-modal .modal-dialog {
-    width: 624px; }
+    width: 624px;
+    top: 0;
+    left: 0;
+    transform: translate(0, 0); }
     #info-note.message-modal .modal-dialog .modal-content .modal-header .modal-title {
       height: 41px; }
