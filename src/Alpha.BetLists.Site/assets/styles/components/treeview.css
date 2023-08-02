@@ -70,7 +70,7 @@
 
 .treeview {
   border: 1px solid var(--border-color);
-  padding: var(--tree-view-padding) 0 0 var(--tree-view-padding);
+  padding: var(--tree-view-padding) 0 var(--tree-view-padding) var(--tree-view-padding);
   border-radius: var(--border-radius);
   margin-bottom: 24px; }
   .treeview .lds-spinner {

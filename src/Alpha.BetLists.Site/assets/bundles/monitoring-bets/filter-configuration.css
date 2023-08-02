@@ -70,7 +70,7 @@
 
 .treeview {
   border: 1px solid var(--border-color);
-  padding: var(--tree-view-padding) 0 0 var(--tree-view-padding);
+  padding: var(--tree-view-padding) 0 var(--tree-view-padding) var(--tree-view-padding);
   border-radius: var(--border-radius);
   margin-bottom: 24px; }
   .treeview .lds-spinner {
@@ -448,6 +448,11 @@
 
 .block-config {
   margin-bottom: 3px; }
+  .block-config.border-bottom {
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color); }
+    .block-config.border-bottom .list-box {
+      margin-bottom: 0; }
   .block-config select, .block-config input[type="text"] {
     box-shadow: none;
     border: 1px solid var(--border-color);
@@ -549,8 +554,14 @@
     line-height: 16.41px;
     margin-bottom: 8px; }
 
+#sports-container {
+  margin-top: 20px; }
+
+#members-container {
+  margin-bottom: 20px; }
+
 .treeview {
-  padding-bottom: 10px; }
+  margin-bottom: 0; }
   .treeview .selectall-box .node-label {
     line-height: 20px; }
     .treeview .selectall-box .node-label input[type="checkbox"] {

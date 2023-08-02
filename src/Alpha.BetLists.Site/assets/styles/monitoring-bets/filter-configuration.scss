@@ -97,6 +97,14 @@
 .block-config {
     margin-bottom: 3px;
 
+    &.border-bottom {
+        padding-bottom: 15px;
+        border-bottom: 1px solid var(--border-color);
+        .list-box{
+            margin-bottom: 0;
+        }
+    }
+
     select, input[type="text"] {
         box-shadow: none;
         border: 1px solid var(--border-color);
@@ -232,10 +240,16 @@
         margin-bottom: 8px;
     }
 }
+#sports-container {
+    margin-top: 20px;
+}
+#members-container{
+    margin-bottom: 20px;
+}
 .treeview {
-    padding-bottom: 10px;
+    margin-bottom: 0;
 
-    .selectall-box {      
+    .selectall-box {
 
         .node-label {
             input[type="checkbox"] {
@@ -248,7 +262,6 @@
 
     .checkbox-list {
         .tree-node {
-             
             margin: 5px 0 0 0;
 
             .node-label {
