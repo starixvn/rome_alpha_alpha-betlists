@@ -3,6 +3,7 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using Alpha.BetLists.Site.Requests.SearchTickets;
+    using Alpha.BetLists.Site.ViewModels.SearchTickets;
     using MediatR;
 
     public class SearchTicketsController : BetListBaseController
@@ -12,8 +13,8 @@
         {
         }
 
-        public async Task<ActionResult> Index(SearchTicketsQuery message)
-            => await View(message);
+        public ActionResult Index(SearchTicketsQuery message)
+            => View(new SearchTicketsViewModel(message, null, null, null));
 
         public async Task<ActionResult> BetData(SearchTicketsQuery message)
             => await View("WinLossTableData", message);

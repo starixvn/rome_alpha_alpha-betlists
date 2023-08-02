@@ -11,10 +11,11 @@
     using SmartPunter.Services;
     using Utilities.IP;
     using ViewModels.SearchTickets;
+    using System.Linq;
 
     public class SearchTicketsHandler : BetListBaseHandler, IAsyncRequestHandler<SearchTicketsQuery, SearchTicketsViewModel>
     {
-        private readonly SearchTicketsService SearchTicketsService;
+        private readonly SearchTicketsService searchTicketsService;
 
         public SearchTicketsHandler(
            SearchTicketsService SearchTicketsService,
@@ -24,17 +25,18 @@
            IPService ipService,
            IIPInfoService ipInfoService) : base(builder, ticketHelper, monitorService, ipService, ipInfoService)
         {
-            this.SearchTicketsService = SearchTicketsService;
+            this.searchTicketsService = SearchTicketsService;
         }
 
         public async Task<SearchTicketsViewModel> Handle(SearchTicketsQuery message)
         {
             var param = new SearchTicketsParam(message.RefNo, message.ViewerId, message.ViewerLevel);
-            var betlistData = await SearchTicketsService.GetBetList(param);
-            await AssignCountry(betlistData.Tickets, message.DisplayVNIP);
-
-            WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
-
+            var betlistData = await searchTicketsService.GetBetList(param);
+            if (betlistData.Tickets.Any())
+            {
+                await AssignCountry(betlistData.Tickets, message.DisplayVNIP);
+                WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
+            }
             return new SearchTicketsViewModel(message, betlistData, Builder, TicketHelper);
         }
     }

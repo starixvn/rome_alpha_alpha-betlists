@@ -17,12 +17,15 @@
 
         public Footer(BetListData betListData, UserLevel viewerLevel, bool showMemberName, string[] excludingTicketStatus = null)
         {
-            TotalWinLoss = betListData.Tickets.Sum(ticket =>
+            if (betListData != null)
+            {
+                TotalWinLoss = betListData.Tickets.Sum(ticket =>
                IsNotCricket(ticket.BetTypeId) &&
                NotContainExcludingStatus(ticket, excludingTicketStatus) ? ticket.Winlost : 0);
 
-            TotalCommission = betListData.Tickets.Sum(ticket =>
-                NotContainExcludingStatus(ticket, excludingTicketStatus) ? ticket.PlayerComm : 0);
+                TotalCommission = betListData.Tickets.Sum(ticket =>
+                    NotContainExcludingStatus(ticket, excludingTicketStatus) ? ticket.PlayerComm : 0);
+            }
 
             StatusColSpan = FooterStatusColSpanByViewLevelId[viewerLevel];
             SubTotalWinLoss = ConvertByBetType.Winloss(TotalWinLoss);

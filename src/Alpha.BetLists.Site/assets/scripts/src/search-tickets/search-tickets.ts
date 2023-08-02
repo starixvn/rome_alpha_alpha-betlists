@@ -44,7 +44,7 @@ class FindTicketView {
     private getTickets = (e) => {
         e.preventDefault();
         this.$.blockUI();
-        AJAXHelper.get(this.getBetsUrl, { RefNo: this.$("#RefNo").val() }, this.successGetLastBets);
+        AJAXHelper.get(this.getBetsUrl, { RefNo: this.$refNo.val() }, this.successGetLastBets);
     };
 
     private successGetLastBets = (responseHtml: any) => {
@@ -64,17 +64,24 @@ class FindTicketView {
     }
 
     onChangeRefNoTextBox = () => {
-        this.$refNo.on('change keyup paste', () => {
-            const content = this.$refNo.val().trim();
-            if (content) {
-                this.$("#RefNo").val(content);
-                this.$submitButton.prop("disabled", false);
-            }
-            else {
-                this.$submitButton.prop("disabled", true);
-            }
+        this.$refNo.on('change keyup', () => {
+            this.updateBtnStateOnTextChange();
         });
 
+        this.$refNo.on('paste', () => {
+            setTimeout(this.updateBtnStateOnTextChange, 100);
+        });
+    }
+
+    updateBtnStateOnTextChange() {
+        const content = this.$("#ref-no").val().trim();
+        if (content) {
+            this.$("#ref-no").val(content);
+            this.$("#submit-betList-form").prop("disabled", false);
+        }
+        else {
+            this.$("#submit-betList-form").prop("disabled", true);
+        }
     }
 }
 

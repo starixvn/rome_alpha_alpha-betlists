@@ -37,7 +37,7 @@ namespace Alpha.BetLists.Site.Tests.Controllers
             var message = new SearchTicketsQuery(user);
 
             // Act
-            SearchTicketsController.Index(message).GetAwaiter().GetResult();
+            SearchTicketsController.Index(message);
 
             // Assert
             mediator.Received().Send(message);

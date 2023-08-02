@@ -31,7 +31,7 @@ var FindTicketView = /** @class */ (function () {
         this.getTickets = function (e) {
             e.preventDefault();
             _this.$.blockUI();
-            AJAXHelper.get(_this.getBetsUrl, { RefNo: _this.$("#RefNo").val() }, _this.successGetLastBets);
+            AJAXHelper.get(_this.getBetsUrl, { RefNo: _this.$refNo.val() }, _this.successGetLastBets);
         };
         this.successGetLastBets = function (responseHtml) {
             if ((responseHtml.ErrorCode && responseHtml.ErrorCode !== "0") ||
@@ -41,15 +41,11 @@ var FindTicketView = /** @class */ (function () {
             _this.$betListTableContainer.children('tbody').html(responseHtml);
         };
         this.onChangeRefNoTextBox = function () {
-            _this.$refNo.on('change keyup paste', function () {
-                var content = _this.$refNo.val().trim();
-                if (content) {
-                    _this.$("#RefNo").val(content);
-                    _this.$submitButton.prop("disabled", false);
-                }
-                else {
-                    _this.$submitButton.prop("disabled", true);
-                }
+            _this.$refNo.on('change keyup', function () {
+                _this.updateBtnStateOnTextChange();
+            });
+            _this.$refNo.on('paste', function () {
+                setTimeout(_this.updateBtnStateOnTextChange, 100);
             });
         };
         this.$ = $;
@@ -58,6 +54,16 @@ var FindTicketView = /** @class */ (function () {
         this.$submitButton.prop("disabled", true);
         this.$submitButton.on("click", this.getTickets);
         this.onChangeRefNoTextBox();
+    };
+    FindTicketView.prototype.updateBtnStateOnTextChange = function () {
+        var content = this.$("#ref-no").val().trim();
+        if (content) {
+            this.$("#ref-no").val(content);
+            this.$("#submit-betList-form").prop("disabled", false);
+        }
+        else {
+            this.$("#submit-betList-form").prop("disabled", true);
+        }
     };
     return FindTicketView;
 }());
