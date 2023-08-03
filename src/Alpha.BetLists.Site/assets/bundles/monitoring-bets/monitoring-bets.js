@@ -23,7 +23,7 @@ var AutoRefreshComponent = /** @class */ (function () {
         this.autoRefresh = $("#auto-refresh");
         this.labelStatusText = this.autoRefresh.find("#lbl-status-text")
             .data("running", "0")
-            .text(this.autoRefreshOption.onText);
+            .text(this.autoRefreshOption.offText);
         this.labelCountDown = this.autoRefresh.find("#lbl-count-down");
         this.labelCountDown.text(defaultValue).data("original", defaultValue);
         this.autoRefresh.find("#btn-status").click(function () { return _this.labelStatusText.data("running") === "1" ? _this.stop() : _this.start(); });
