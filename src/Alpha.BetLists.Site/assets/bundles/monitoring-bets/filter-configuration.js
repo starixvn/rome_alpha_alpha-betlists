@@ -357,10 +357,15 @@ var SportLeagueMatchTreeViewComponent = /** @class */ (function () {
         var allCheckboxesLength = allCheckboxes.length;
         var checkedCheckboxesLength = allCheckboxes.filter(":checked").length;
         var isSelectAll = checkedCheckboxesLength > 0 && checkedCheckboxesLength === allCheckboxesLength;
+        var isIndeterminate = !isSelectAll && checkedCheckboxesLength > 0;
         checkbox.prop({
-            indeterminate: !isSelectAll && checkedCheckboxesLength > 0,
+            indeterminate: isIndeterminate,
             checked: isSelectAll
         });
+        !isSelectAll
+            && !isIndeterminate
+            && this.treeviewOption.enableExpandAll && this.selectedOnly.is(":checked")
+            && checkbox.closest(".tree-node").addClass("selected-only-hidden");
     };
     SportLeagueMatchTreeViewComponent.prototype.disableFilerAndSelectAll = function (disable) {
         this.filterInput.prop("disabled", disable);

@@ -295,10 +295,16 @@ class SportLeagueMatchTreeViewComponent {
         const allCheckboxesLength = allCheckboxes.length;
         const checkedCheckboxesLength = allCheckboxes.filter(":checked").length;
         const isSelectAll = checkedCheckboxesLength > 0 && checkedCheckboxesLength === allCheckboxesLength;
+        const isIndeterminate = !isSelectAll && checkedCheckboxesLength > 0;
         checkbox.prop({
-            indeterminate: !isSelectAll && checkedCheckboxesLength > 0,
+            indeterminate: isIndeterminate,
             checked: isSelectAll
         });
+
+        !isSelectAll
+            && !isIndeterminate
+            && this.treeviewOption.enableExpandAll && this.selectedOnly.is(":checked")
+            && checkbox.closest(".tree-node").addClass("selected-only-hidden");
     }
 
     private disableFilerAndSelectAll(disable: boolean) {
