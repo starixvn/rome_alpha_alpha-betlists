@@ -783,4 +783,7 @@
   <data name="SaveFilter" xml:space="preserve">
     <value>Save Filter</value>
   </data>
+  <data name="PleaseSelect" xml:space="preserve">
+    <value>กรุณาเลือก</value>
+  </data>
 </root>

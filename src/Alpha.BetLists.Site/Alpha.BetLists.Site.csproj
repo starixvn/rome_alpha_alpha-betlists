@@ -1468,6 +1468,7 @@
     <Compile Include="Requests\MonitoringBets\ApplyFilterCommand.cs" />
     <Compile Include="Requests\MonitoringBets\DeleteFiltersCommand.cs" />
     <Compile Include="Requests\MonitoringBets\FilterBySportsQuery.cs" />
+    <Compile Include="Requests\MonitoringBets\FilterConfigurationQuery.cs" />
     <Compile Include="Requests\MonitoringBets\GetMyWatchlistMembersQuery.cs" />
     <Compile Include="Requests\MonitoringBets\GetLastFilteringBetsQuery.cs" />
     <Compile Include="Requests\MonitoringBets\ManageFiltersQuery.cs" />
@@ -1528,6 +1529,7 @@
     <Compile Include="ViewModels\MemberBetList\MemberBetListViewModel.cs" />
     <Compile Include="ViewModels\MonitoringBets\FilteringBetDataViewModel.cs" />
     <Compile Include="ViewModels\MonitoringBets\FilterConfigurationViewModel.cs" />
+    <Compile Include="ViewModels\MonitoringBets\ManageFiltersViewModel.cs" />
     <Compile Include="ViewModels\MonitoringBets\MonitoringBetsViewModel.cs" />
     <Compile Include="ViewModels\MoveStatementHistory\MoveStatementHistoryViewModel.cs" />
     <Compile Include="ViewModels\RiskAnalysisIPMatching\RiskAnalysisIPMatchingViewModel.cs" />

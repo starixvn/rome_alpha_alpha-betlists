@@ -6,7 +6,7 @@ class SaveFilterView {
     private filterNameInput: JQuery;
     private isDefaultCheckbox: JQuery;
 
-    init(element: JQuery) {
+    init(element: JQuery, getSelectedFilterParamsFunc = undefined) {
         if (element.length) {
             this.inlineMessagePopup = new InlineMessageComponent("inline-message-popup");
 
@@ -21,7 +21,7 @@ class SaveFilterView {
                     this.isDefaultCheckbox.prop("checked", false);
                     this.inlineMessagePopup.hide();
                 });
-            saveFilterPopup.find("#btn-save-filter-popup").click(() => this.handleSaveFilterPopup());
+            saveFilterPopup.find("#btn-save-filter-popup").click(() => this.handleSaveFilterPopup(getSelectedFilterParamsFunc));
 
             element.click(function () {
                 saveFilterPopup.modal("show");
@@ -29,12 +29,21 @@ class SaveFilterView {
         }
     }
 
-    private handleSaveFilterPopup() {
+    private handleSaveFilterPopup(getSelectedFilterParamsFunc) {
         const formDataPopup = this.getFormDataPopup();
         if (formDataPopup) {
             AJAXHelper.post($("#hidden-SaveFilterUrl").val(), formDataPopup, (result) => {
                 this.inlineMessagePopup.show(result);
-                !result.ErrCode && Common.Utils.ReloadPageAfterTimeout();
+                if (!result.ErrCode) {
+                    let url = undefined;
+                    if (getSelectedFilterParamsFunc) {
+                        const filterParam = getSelectedFilterParamsFunc();
+                        filterParam.filterName = formDataPopup.filterName;
+                        url = `${window.location.href.split("?")[0]}?${$.param(filterParam)}`;
+                    }
+
+                    Common.Utils.ReloadPageAfterTimeout(url);
+                }
             });
         }
     }

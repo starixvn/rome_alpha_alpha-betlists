@@ -65,8 +65,8 @@
             return Json(results, JsonRequestBehavior.DenyGet);
         }
 
-        public ActionResult FilterConfiguration(bool welcome = false)
-            => View(new FilterConfigurationViewModel(welcome));
+        public ActionResult FilterConfiguration(FilterConfigurationQuery message)
+            => View(new FilterConfigurationViewModel(message));
 
         public Task<ActionResult> FilterBySports(FilterBySportsQuery message)
             => Json(message, JsonRequestBehavior.AllowGet);

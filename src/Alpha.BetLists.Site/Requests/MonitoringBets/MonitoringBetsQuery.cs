@@ -11,8 +11,12 @@
             SubAccId = viewer.SubAccId;
         }
 
-        public int SubAccId { get; }
-
         public string FilterName { get; set; }
+
+        public int LimitRowCount { get; set; } = 100;
+
+        public bool AutoStart { get; set; } = true;
+
+        public int SubAccId { get; }
     }
 }

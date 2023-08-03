@@ -18,12 +18,8 @@
 <div class="flex">
     <div class="bl_title">
         <div class="box">
-            <div>
-                @Resources.LastBets
-            </div>
-            <div>
-                @Html.Partial("IconInformation", new List<string>() { Resources.ipnote })
-            </div>
+            <div>@Resources.LastBets</div>
+            <div>@Html.Partial("IconInformation", new List<string>() { Resources.ipnote })</div>
             <div class="push">
                 <div class="list-icon">
                     <ul>
@@ -33,13 +29,11 @@
             </div>
         </div>
     </div>
-
     <div class="form-inline filter" id="form-monitoring-bets">
         <div class="form-group">
             <label class="label-form-control">
                 @Resources.MyFilters
-                @if (Model.HasCustomFilter)
-                {<span class="icon-save" id="icon-save"></span>}
+                <span class="icon-save hide" id="icon-save-filter"></span>
             </label>
             <select id="monitoring-bets-filter">
                 @foreach (var savedFilter in Model.Filters)
@@ -60,15 +54,15 @@
             </select>
         </div>
         <div class="form-group">
-            @Html.ActionLink(Resources.ManageFilters, "ManageFilters", $"{AppSettings.BetlistRouting}MonitoringBets", null, new { target = "main", @class = "button-link" })
+            @Html.ActionLink(Resources.ManageFilters, "ManageFilters", $"{AppSettings.BetlistRouting}MonitoringBets", null, new { target = "main", @class = "button-link navigation" })
         </div>
         <div class="form-group">
             <label class="label-form-control">@Resources.MostRecentTickets</label>
             @Html.DropDownList("most-recent-tickets", Model.MostRecentTickets, new { id = "most-recent-tickets" })
         </div>
-        @AutoRefresh.Render(Model.AutoRefreshSeconds, Model.AutoRefreshSeconds[1])
+        @AutoRefresh.Render(Model.AutoRefreshSeconds, Model.AutoRefreshSeconds[1], Model.AutoStart && Model.FilterId != -1)
         <div class="form-group">
-            @Html.ActionLink(Resources.FilterConfiguration, "FilterConfiguration", $"{AppSettings.BetlistRouting}MonitoringBets", null, new { target = "main", @class = "button-link" })
+            @Html.ActionLink(Resources.FilterConfiguration, "FilterConfiguration", $"{AppSettings.BetlistRouting}MonitoringBets", null, new { target = "main", @class = "button-link navigation" })
         </div>
         <div class="form-group col-item">
             @Common.SwitchVersionButton.ClassicView(Url.Action("Index", $"{AppSettings.BetlistRouting}LastBets"))
@@ -96,10 +90,7 @@
             </tbody>
         </table>
     </div>
-    @if (Model.HasCustomFilter)
-    {
-        Html.RenderPartial("_SaveFilterConfirmPopup", false);
-    }
+    @{ Html.RenderPartial("_SaveFilterConfirmPopup", false); }
     @Html.Hidden("get-bets-url", Url.Action("BetData", $"{AppSettings.BetlistRouting}MonitoringBets"))
     @Html.Hidden("last-trans-id", Model.LastTransId.ToString())
     @Html.Hidden("latest-trans-id", Model.LatestTransId.ToString())

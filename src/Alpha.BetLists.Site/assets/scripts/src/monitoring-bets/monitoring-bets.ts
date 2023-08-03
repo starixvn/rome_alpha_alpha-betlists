@@ -2,11 +2,12 @@
 declare var store: any;
 
 class MonitoringBetsView {
+    private iconSaveFilter: JQuery;
     private dropdownFilter: JQuery;
     private dropdownMostRecentTicket: JQuery;
     private autoRefreshComponent: AutoRefreshComponent;
     private monitoringBetsCopyHtml: MonitoringBetsCopyHtml;
-    private saveFilter: SaveFilterView;
+    private saveFilterView: SaveFilterView;
 
     localStorage: any;
     $msgError: JQuery;
@@ -25,7 +26,7 @@ class MonitoringBetsView {
         saveFilter: SaveFilterView) {
         this.autoRefreshComponent = autoRefreshComponent;
         this.monitoringBetsCopyHtml = monitoringBetsCopyHtml;
-        this.saveFilter = saveFilter;
+        this.saveFilterView = saveFilter;
     }
 
     init() {
@@ -36,10 +37,12 @@ class MonitoringBetsView {
         this.setTransIdCacheKeyByFilter($("#last-trans-id-cache-key-by-filter").val(), $("#latest-trans-id-cache-key-by-filter").val());
         this.setTransId($("#last-trans-id").val(), $("#latest-trans-id").val());
         
-        this.autoRefreshComponent.start();
         this.monitoringBetsCopyHtml.init();
-        this.saveFilter.init($("#icon-save"));
+        this.saveFilterView.init(this.iconSaveFilter, () => this.getSelectedFilterParams());
         this.$betListTableContainer.find('[data-toggle="tooltip"]').tooltip();
+
+        this.iconSaveFilter.toggleClass("hide", this.dropdownFilter.find("option:selected:first").val() !== "0");
+        this.autoRefreshComponent.isOn() && this.autoRefreshComponent.start();
     }
 
     private cacheElements = () => {
@@ -47,6 +50,7 @@ class MonitoringBetsView {
         this.$betListTableContainer = $("#bet-list-table-container");
         this.getBetsUrl = $("#get-bets-url").val();
 
+        this.iconSaveFilter = $("#icon-save-filter");
         this.dropdownFilter = $("#monitoring-bets-filter");
         this.dropdownMostRecentTicket = $("#most-recent-tickets");
     };
@@ -56,17 +60,37 @@ class MonitoringBetsView {
 
         this.dropdownFilter.multiselect({
             maxHeight: 300,
-            onChange: () => this.loadLastBets(true)
+            onChange: (selectedOption) => {
+                const filterId = selectedOption.val();
+                if (filterId === "-1") {
+                    this.autoRefreshComponent.stop();
+                } else {
+                    this.loadLastBets(true)
+                }
+
+                this.iconSaveFilter.toggleClass("hide", filterId !== "0");
+                Common.Utils.UpdateCurrentUrl(this.getSelectedFilterParams());
+            }
         });
 
         this.dropdownMostRecentTicket.multiselect({
-            onChange: () => this.loadLastBets(true)
+            onChange: () => {
+                this.loadLastBets(true);
+                Common.Utils.UpdateCurrentUrl(this.getSelectedFilterParams());
+            }
         });
 
         this.autoRefreshComponent.init(new AutoRefreshOption(
             $("#hidden-OnText").val(),
             $("#hidden-OffText").val(),
-            () => this.loadLastBets(false)));
+            () => this.loadLastBets(false),
+            (onOffStatus) => Common.Utils.UpdateCurrentUrl(this.getSelectedFilterParams(onOffStatus))));
+
+        $(".navigation").click((e) => {
+            const $this = $(e.target);
+            const url = `${$this.attr("href")}?${$.param(this.getSelectedFilterParams())}`;
+            $this.attr("href", url);
+        });
     };
 
     private registerToggleFilter() {
@@ -179,6 +203,14 @@ class MonitoringBetsView {
     private completeGetLastBets = () => {
         this.autoRefreshComponent.isOn() && this.autoRefreshComponent.start();
     };
+
+    private getSelectedFilterParams(autoStart = undefined) {
+        return {
+            filterName: $.trim(this.dropdownFilter.find("option:selected:first").text()),
+            limitRowCount: this.dropdownMostRecentTicket.find("option:selected:first").val(),
+            autoStart: autoStart || this.autoRefreshComponent.isOn()
+        }
+    }
 }
 
 $(function () {

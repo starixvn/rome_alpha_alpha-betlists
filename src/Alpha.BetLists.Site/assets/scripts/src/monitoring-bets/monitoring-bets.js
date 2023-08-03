@@ -10,6 +10,7 @@ var MonitoringBetsView = /** @class */ (function () {
             _this.$msgError = $("#msg-error");
             _this.$betListTableContainer = $("#bet-list-table-container");
             _this.getBetsUrl = $("#get-bets-url").val();
+            _this.iconSaveFilter = $("#icon-save-filter");
             _this.dropdownFilter = $("#monitoring-bets-filter");
             _this.dropdownMostRecentTicket = $("#most-recent-tickets");
         };
@@ -17,12 +18,30 @@ var MonitoringBetsView = /** @class */ (function () {
             _this.registerToggleFilter();
             _this.dropdownFilter.multiselect({
                 maxHeight: 300,
-                onChange: function () { return _this.loadLastBets(true); }
+                onChange: function (selectedOption) {
+                    var filterId = selectedOption.val();
+                    if (filterId === "-1") {
+                        _this.autoRefreshComponent.stop();
+                    }
+                    else {
+                        _this.loadLastBets(true);
+                    }
+                    _this.iconSaveFilter.toggleClass("hide", filterId !== "0");
+                    Common.Utils.UpdateCurrentUrl(_this.getSelectedFilterParams());
+                }
             });
             _this.dropdownMostRecentTicket.multiselect({
-                onChange: function () { return _this.loadLastBets(true); }
+                onChange: function () {
+                    _this.loadLastBets(true);
+                    Common.Utils.UpdateCurrentUrl(_this.getSelectedFilterParams());
+                }
             });
-            _this.autoRefreshComponent.init(new AutoRefreshOption($("#hidden-OnText").val(), $("#hidden-OffText").val(), function () { return _this.loadLastBets(false); }));
+            _this.autoRefreshComponent.init(new AutoRefreshOption($("#hidden-OnText").val(), $("#hidden-OffText").val(), function () { return _this.loadLastBets(false); }, function (onOffStatus) { return Common.Utils.UpdateCurrentUrl(_this.getSelectedFilterParams(onOffStatus)); }));
+            $(".navigation").click(function (e) {
+                var $this = $(e.target);
+                var url = $this.attr("href") + "?" + $.param(_this.getSelectedFilterParams());
+                $this.attr("href", url);
+            });
         };
         this.loadLastBets = function (isResetTransId) {
             if (isResetTransId) {
@@ -64,18 +83,20 @@ var MonitoringBetsView = /** @class */ (function () {
         };
         this.autoRefreshComponent = autoRefreshComponent;
         this.monitoringBetsCopyHtml = monitoringBetsCopyHtml;
-        this.saveFilter = saveFilter;
+        this.saveFilterView = saveFilter;
     }
     MonitoringBetsView.prototype.init = function () {
+        var _this = this;
         this.localStorage = alphaReports.localStorage;
         this.cacheElements();
         this.registerEvents();
         this.setTransIdCacheKeyByFilter($("#last-trans-id-cache-key-by-filter").val(), $("#latest-trans-id-cache-key-by-filter").val());
         this.setTransId($("#last-trans-id").val(), $("#latest-trans-id").val());
-        this.autoRefreshComponent.start();
         this.monitoringBetsCopyHtml.init();
-        this.saveFilter.init($("#icon-save"));
+        this.saveFilterView.init(this.iconSaveFilter, function () { return _this.getSelectedFilterParams(); });
         this.$betListTableContainer.find('[data-toggle="tooltip"]').tooltip();
+        this.iconSaveFilter.toggleClass("hide", this.dropdownFilter.find("option:selected:first").val() !== "0");
+        this.autoRefreshComponent.isOn() && this.autoRefreshComponent.start();
     };
     MonitoringBetsView.prototype.registerToggleFilter = function () {
         var filterContainer = $("#form-monitoring-bets");
@@ -130,6 +151,14 @@ var MonitoringBetsView = /** @class */ (function () {
             LimitRowCount: LimitRowCount,
             FilterByMembers: FilterByMembers,
             LatestTransId: latestTransId
+        };
+    };
+    MonitoringBetsView.prototype.getSelectedFilterParams = function (autoStart) {
+        if (autoStart === void 0) { autoStart = undefined; }
+        return {
+            filterName: $.trim(this.dropdownFilter.find("option:selected:first").text()),
+            limitRowCount: this.dropdownMostRecentTicket.find("option:selected:first").val(),
+            autoStart: autoStart || this.autoRefreshComponent.isOn()
         };
     };
     return MonitoringBetsView;

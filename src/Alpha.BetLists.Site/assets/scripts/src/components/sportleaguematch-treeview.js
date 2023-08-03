@@ -98,6 +98,9 @@ var SportLeagueMatchTreeViewComponent = /** @class */ (function () {
                 indeterminate: false,
                 checked: checked
             });
+            _this.treeviewOption.enableExpandAll
+                && _this.selectedOnly.is(":checked")
+                && _this.checkboxListContainer.find(".tree-node").toggleClass("selected-only-hidden", !checked);
         });
         if (this.treeviewOption.enableExpandAll) {
             this.expandAll.click(function () {
@@ -213,6 +216,9 @@ var SportLeagueMatchTreeViewComponent = /** @class */ (function () {
             var subtreeCheckboxes = subtree.find(":checkbox");
             _this.updateCheckboxStatus(subtreeCheckbox, subtreeCheckboxes);
         });
+        if (this.treeviewOption.enableExpandAll && this.selectedOnly.is(":checked")) {
+            checkbox.closest(".tree-node").toggleClass("selected-only-hidden", !checked);
+        }
     };
     SportLeagueMatchTreeViewComponent.prototype.updateSelectAll = function () {
         var allCheckboxes = this.checkboxListContainer.find(":checkbox:not(.checkbox-subtree)");

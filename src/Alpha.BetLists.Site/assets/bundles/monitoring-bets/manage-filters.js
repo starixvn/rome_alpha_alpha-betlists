@@ -95,8 +95,9 @@ var InlineMessageComponent = /** @class */ (function () {
 var SaveFilterView = /** @class */ (function () {
     function SaveFilterView() {
     }
-    SaveFilterView.prototype.init = function (element) {
+    SaveFilterView.prototype.init = function (element, getSelectedFilterParamsFunc) {
         var _this = this;
+        if (getSelectedFilterParamsFunc === void 0) { getSelectedFilterParamsFunc = undefined; }
         if (element.length) {
             this.inlineMessagePopup = new InlineMessageComponent("inline-message-popup");
             var saveFilterPopup_1 = $("#save-filter-popup");
@@ -110,19 +111,27 @@ var SaveFilterView = /** @class */ (function () {
                 _this.isDefaultCheckbox.prop("checked", false);
                 _this.inlineMessagePopup.hide();
             });
-            saveFilterPopup_1.find("#btn-save-filter-popup").click(function () { return _this.handleSaveFilterPopup(); });
+            saveFilterPopup_1.find("#btn-save-filter-popup").click(function () { return _this.handleSaveFilterPopup(getSelectedFilterParamsFunc); });
             element.click(function () {
                 saveFilterPopup_1.modal("show");
             });
         }
     };
-    SaveFilterView.prototype.handleSaveFilterPopup = function () {
+    SaveFilterView.prototype.handleSaveFilterPopup = function (getSelectedFilterParamsFunc) {
         var _this = this;
         var formDataPopup = this.getFormDataPopup();
         if (formDataPopup) {
             AJAXHelper.post($("#hidden-SaveFilterUrl").val(), formDataPopup, function (result) {
                 _this.inlineMessagePopup.show(result);
-                !result.ErrCode && Common.Utils.ReloadPageAfterTimeout();
+                if (!result.ErrCode) {
+                    var url = undefined;
+                    if (getSelectedFilterParamsFunc) {
+                        var filterParam = getSelectedFilterParamsFunc();
+                        filterParam.filterName = formDataPopup.filterName;
+                        url = window.location.href.split("?")[0] + "?" + $.param(filterParam);
+                    }
+                    Common.Utils.ReloadPageAfterTimeout(url);
+                }
             });
         }
     };
@@ -172,7 +181,7 @@ var ManageFiltersView = /** @class */ (function () {
         iconCloseList.click(function (e) { return _this.handleOnClickIconClose($(e.target), radioDefaultFilter); });
         table.find(".treeview-sport").click(this.handleToggleSports);
         table.find(".tree-node-name").click(this.handleTreeviewCollapseExpand);
-        this.saveFilter.init($("#icon-save"));
+        this.saveFilter.init($("#icon-save-filter"));
     };
     ManageFiltersView.prototype.handleOnClickButtonDeleteAllFilters = function () {
         var _this = this;

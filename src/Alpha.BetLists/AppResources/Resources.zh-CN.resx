@@ -790,4 +790,7 @@
   <data name="SaveFilter" xml:space="preserve">
     <value>保存筛选</value>
   </data>
+  <data name="PleaseSelect" xml:space="preserve">
+    <value>请选择</value>
+  </data>
 </root>

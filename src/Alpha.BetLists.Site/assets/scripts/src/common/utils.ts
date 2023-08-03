@@ -19,5 +19,12 @@
                 }
             }, timeout);
         }
+
+        public static UpdateCurrentUrl(formData) {
+            try {
+                window.top.indexManager.updateCurrentUrl($.param(formData));
+            } catch (e) {
+            }
+        }
     }
 }

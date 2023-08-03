@@ -25,7 +25,7 @@
     public class MonitoringBetsHandler :
         BetListBaseHandler,
         IAsyncRequestHandler<MonitoringBetsQuery, MonitoringBetsViewModel>,
-        IAsyncRequestHandler<ManageFiltersQuery, IEnumerable<FilterConfiguration>>,
+        IAsyncRequestHandler<ManageFiltersQuery, ManageFiltersViewModel>,
         IRequestHandler<ApplyFilterCommand, Result>,
         IAsyncRequestHandler<AddCustomFilterCommand, Result>,
         IAsyncRequestHandler<AddFilterCommand, Result>,
@@ -64,32 +64,36 @@
             var filters = await monitoringBetService.GetSavedFilters(message.ViewerId, message.SubAccId, AddFilterParamSession);
 
             var filterId = 0;
-            BetListData betListData = null;
             long latestTransId = 0;
+            BetListData betListData = null;
+
             if (filters.Any())
             {
                 var defaultFilter = GetDefaultFilter(filters, message.FilterName);
                 filterId = defaultFilter.FilterId;
 
-                var result = await GetMemberList(defaultFilter.Members, message.ViewerId, defaultFilter.FilterByMembers);
-                var memberList = result.Item1;
-                var memberInWatchlistIds = result.Item2;
+                if (filterId != -1)
+                {
+                    var result = await GetMemberList(defaultFilter.Members, message.ViewerId, defaultFilter.FilterByMembers);
+                    var memberList = result.Item1;
+                    var memberInWatchlistIds = result.Item2;
 
-                var param = new GetLastFilteringBetsParams(
-                    message.ViewerId,
-                    0,
-                    memberList,
-                    defaultFilter.SportTypes,
-                    defaultFilter.Leagues,
-                    defaultFilter.BetTypes,
-                    defaultFilter.EventStatus,
-                    defaultFilter.Stake,
-                    limitRowCount: 100);
+                    var param = new GetLastFilteringBetsParams(
+                        message.ViewerId,
+                        0,
+                        memberList,
+                        defaultFilter.SportTypes,
+                        defaultFilter.Leagues,
+                        defaultFilter.BetTypes,
+                        defaultFilter.EventStatus,
+                        defaultFilter.Stake,
+                        message.LimitRowCount);
 
-                var betData = await GetBetData(param, memberInWatchlistIds, message.DisplayVNIP, latestTransId);
+                    var betData = await GetBetData(param, memberInWatchlistIds, message.DisplayVNIP, latestTransId);
 
-                betListData = betData.Item1;
-                latestTransId = betData.Item2;
+                    betListData = betData.Item1;
+                    latestTransId = betData.Item2;
+                }
             }
 
             return new MonitoringBetsViewModel(
@@ -107,14 +111,17 @@
         private static SavedFilter GetDefaultFilter(IEnumerable<SavedFilter> filters, string filterName)
         {
             var defaultFilter = string.IsNullOrWhiteSpace(filterName)
-                ? filters.FirstOrDefault(f => f.IsDefault)
+                ? null
                 : filters.FirstOrDefault(f => f.FilterName.Equals(filterName, StringComparison.OrdinalIgnoreCase));
+            defaultFilter = defaultFilter ?? filters.FirstOrDefault(f => f.IsDefault);
 
             return defaultFilter ?? filters.First();
         }
 
-        public Task<IEnumerable<FilterConfiguration>> Handle(ManageFiltersQuery message)
-            => monitoringBetService.GetFilters(message.ViewerId, message.SubAccId, AddFilterParamSession);
+        public async Task<ManageFiltersViewModel> Handle(ManageFiltersQuery message)
+            => new ManageFiltersViewModel(
+                await monitoringBetService.GetFilters(message.ViewerId, message.SubAccId, AddFilterParamSession),
+                message);
 
         public Task<Result> Handle(UpdateFilterCommand message)
             => monitoringBetService.UpdateFilter(new UpdateFilterParam(

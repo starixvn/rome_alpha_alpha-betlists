@@ -15,6 +15,13 @@ var Common;
                 }
             }, timeout);
         };
+        Utils.UpdateCurrentUrl = function (formData) {
+            try {
+                window.top.indexManager.updateCurrentUrl($.param(formData));
+            }
+            catch (e) {
+            }
+        };
         Utils.IsNullOrUndefinedOrEmpty = function (value) { return value === null || value === undefined || value === ''; };
         Utils.ParseBoolean = function (value) {
             if (!Utils.IsNullOrUndefinedOrEmpty(value)) {

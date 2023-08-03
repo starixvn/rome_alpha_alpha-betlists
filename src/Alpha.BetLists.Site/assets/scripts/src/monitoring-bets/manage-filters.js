@@ -29,7 +29,7 @@ var ManageFiltersView = /** @class */ (function () {
         iconCloseList.click(function (e) { return _this.handleOnClickIconClose($(e.target), radioDefaultFilter); });
         table.find(".treeview-sport").click(this.handleToggleSports);
         table.find(".tree-node-name").click(this.handleTreeviewCollapseExpand);
-        this.saveFilter.init($("#icon-save"));
+        this.saveFilter.init($("#icon-save-filter"));
     };
     ManageFiltersView.prototype.handleOnClickButtonDeleteAllFilters = function () {
         var _this = this;

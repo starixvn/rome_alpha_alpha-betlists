@@ -19,7 +19,7 @@ namespace Alpha.BetLists.AppResources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -539,14 +539,6 @@ namespace Alpha.BetLists.AppResources {
         
         /// <summary>
         ///   Looks up a localized string similar to Entered Member(s).
-        /// </summary>
-        public static string EnteredMembers {
-            get {
-                return ResourceManager.GetString("EnteredMembers", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         /// </summary>
         public static string EnteredMembers {
             get {
@@ -1505,6 +1497,15 @@ namespace Alpha.BetLists.AppResources {
         public static string place {
             get {
                 return ResourceManager.GetString("place", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please Select.
+        /// </summary>
+        public static string PleaseSelect {
+            get {
+                return ResourceManager.GetString("PleaseSelect", resourceCulture);
             }
         }
         

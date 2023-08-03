@@ -1,84 +1,4 @@
 "use strict";
-var defaultValue = 60;
-var AutoRefreshOption = /** @class */ (function () {
-    function AutoRefreshOption(onText, offText, callback) {
-        if (onText === void 0) { onText = "ON"; }
-        if (offText === void 0) { offText = "OFF"; }
-        if (callback === void 0) { callback = Function(); }
-        this.onText = onText;
-        this.offText = offText;
-        this.callback = callback;
-        this.onText = onText;
-        this.offText = offText;
-        this.callback = callback;
-    }
-    return AutoRefreshOption;
-}());
-var AutoRefreshComponent = /** @class */ (function () {
-    function AutoRefreshComponent() {
-    }
-    AutoRefreshComponent.prototype.init = function (option) {
-        var _this = this;
-        this.autoRefreshOption = option;
-        this.autoRefresh = $("#auto-refresh");
-        this.labelStatusText = this.autoRefresh.find("#lbl-status-text")
-            .data("running", "0")
-            .text(this.autoRefreshOption.onText);
-        this.labelCountDown = this.autoRefresh.find("#lbl-count-down");
-        this.labelCountDown.text(defaultValue).data("original", defaultValue);
-        this.autoRefresh.find("#btn-status").click(function () { return _this.labelStatusText.data("running") === "1" ? _this.stop() : _this.start(); });
-        this.autoRefresh.find(".auto-refresh-menu-item").click(function (e) {
-            var second = $(e.target).text();
-            _this.labelCountDown.text(second).data("original", second);
-        });
-    };
-    AutoRefreshComponent.prototype.setIsLoading = function () {
-        this.labelCountDown.text("").addClass("show-loading");
-    };
-    AutoRefreshComponent.prototype.isOn = function () {
-        return !this.autoRefresh.hasClass("off");
-    };
-    AutoRefreshComponent.prototype.start = function () {
-        var _this = this;
-        clearTimeout(this.timeout);
-        this.autoRefresh.removeClass("off");
-        this.labelStatusText
-            .data("running", "1")
-            .text(this.autoRefreshOption.onText);
-        this.labelCountDown
-            .removeClass("show-loading")
-            .text(this.labelCountDown.data("original"));
-        this.timeout = setTimeout(function () { return _this.decrement(); }, 1000);
-    };
-    AutoRefreshComponent.prototype.stop = function () {
-        clearTimeout(this.timeout);
-        this.autoRefresh.addClass("off");
-        this.labelStatusText
-            .data("running", "0")
-            .text(this.autoRefreshOption.offText);
-        this.labelCountDown
-            .removeClass("show-loading")
-            .text(this.labelCountDown.data("original"));
-    };
-    AutoRefreshComponent.prototype.decrement = function () {
-        var _this = this;
-        var value = +this.labelCountDown.text();
-        if (value === 1) {
-            clearTimeout(this.timeout);
-            this.labelCountDown
-                .text("")
-                .addClass("show-loading");
-            this.autoRefreshOption.callback();
-        }
-        else {
-            this.labelCountDown.text(--value);
-            this.timeout = setTimeout(function () { return _this.decrement(); }, 1000);
-        }
-    };
-    return AutoRefreshComponent;
-}());
-//# sourceMappingURL=autorefresh.js.map
-"use strict";
 var AJAXHelper = /** @class */ (function () {
     function AJAXHelper() {
     }
@@ -145,143 +65,176 @@ var AJAXHelper = /** @class */ (function () {
 }());
 //# sourceMappingURL=ajax-helper.js.map
 "use strict";
-var AlphaCore = /** @class */ (function () {
-    function AlphaCore($, store) {
-        var _this = this;
-        this.nonDigitalCharsRegex = /\D/g;
-        this.leadingZerosRegex = /^0+(?!$)/;
-        this.thousandsSeparatorRegex = /\B(?=(\d{3})+(?!\d))/g;
-        this.format = {
-            monthFormat: "MMMM - yyyy",
-            shortDateWithSlash_DatePicker: "MM/DD/YYYY",
-            shortDateWithSlash_MonthPicker: "MM/dd/yyyy",
-            dayMonthName: "DD MMM",
-            day: "DD"
-        };
-        this.sort = {
-            none: 0,
-            ascending: 1,
-            descending: -1
-        };
-        this.keyCode = {
-            enter: 13
-        };
-        this.numberDisplayedProductsOnFilter = 1;
-        this.maxTimesToShowTooltip = 5;
-        this.screenSmallThan768 = function () {
-            var currentWindowWidth = screen.width || _this.$(window).width();
-            return currentWindowWidth < 768;
-        };
-        this.splitCell = function (firstCell, cellClass, lastCellStyle) {
-            if (cellClass === void 0) { cellClass = ""; }
-            if (lastCellStyle === void 0) { lastCellStyle = "bold"; }
-            var this$ = _this.$;
-            var combinedCells = _this.$("." + firstCell + "-combined");
-            combinedCells.each(function (index) {
-                var oldValues = this$(this).find("li");
-                var cellsLength = oldValues.length;
-                var oldCells = "";
-                for (var i = 0, lastCellIndex = cellsLength - 1; i < cellsLength; i++) {
-                    oldCells += "<td class=\"hidden-stack-mode " + cellClass +
-                        (i === lastCellIndex ? " " + lastCellStyle : "") + "\">" +
-                        this$(oldValues[i]).html() +
-                        "</td>";
-                }
-                this$(combinedCells[index]).before(oldCells);
-            });
-        };
-        this.localStorage = {
-            get: function (key) {
-                return _this.store.enabled ? _this.store.get(key) : _this.$.cookie(key);
-            },
-            set: function (key, value) {
-                _this.store.enabled ? _this.store.set(key, value) : _this.$.cookie(key, value, _this.localStorage.getCookieExpireOptions());
-            },
-            getCookieExpireOptions: function () {
-                var cookieExpire = { expires: 365, path: window.location.pathname };
-                if (_this.isIe()) {
-                    cookieExpire = { expires: 365 };
-                }
-                return cookieExpire;
-            }
-        };
-        this.combineConsecutiveCells = function (firstCells, numberOfCombinedCells, combinedCellClass, combinedCellColSpan) {
-            if (combinedCellColSpan === void 0) { combinedCellColSpan = 1; }
-            if (numberOfCombinedCells <= 1) {
-                return;
-            }
-            var this$ = _this.$;
-            firstCells.each(function (index) {
-                var newCell = "<td class=\"visible-stack-mode combinedcell " +
-                    combinedCellClass + "\" colspan=\"" + combinedCellColSpan + "\">\
-                    <ul>";
-                var currentCell = this$(firstCells[index]);
-                var isLastCell = false;
-                for (var i = 0; i < numberOfCombinedCells; i++) {
-                    newCell += "<li>" + currentCell.html() + "</li>";
-                    if (currentCell.next().length) {
-                        currentCell = currentCell.next();
-                    }
-                    else {
-                        isLastCell = true;
-                    }
-                }
-                newCell += "</ul>\
-                        </td>";
-                if (isLastCell) {
-                    currentCell.after(newCell);
-                }
-                else {
-                    currentCell.prev().after(newCell);
-                }
-            });
-        };
-        this.isIe = function () {
-            var ua = window.navigator.userAgent;
-            var msie = ua.indexOf("MSIE ");
-            return msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./);
-        };
-        this.replaceQueryStringValue = function (queryString, paramName, paramValue) {
-            if (typeof queryString === "undefined"
-                || queryString === null) {
-                return "";
-            }
-            var regex = new RegExp("([?&])" + paramName + "=[^&]*", "i");
-            var newQueryString = regex.test(queryString)
-                ? queryString.replace(regex, "$1" + paramName + "=" + paramValue)
-                : queryString + (queryString.indexOf("?") >= 0 ? "&" : "?") + paramName + "=" + paramValue;
-            return newQueryString;
-        };
-        this.correctEvenRowClass = function ($tableReport) {
-            var this$ = _this.$;
-            var isEvenRow = false;
-            $tableReport.find("tbody > tr").each(function () {
-                var $row = this$(this);
-                if ($row.hasClass("even-row") && !isEvenRow) {
-                    $row.removeClass("even-row");
-                }
-                else if (!$row.hasClass("even-row") && isEvenRow) {
-                    $row.addClass("even-row");
-                }
-                isEvenRow = !isEvenRow;
-            });
-        };
-        this.convertAttributeToBool = function (attrValue) {
-            return !!attrValue && attrValue.toString().toLowerCase() === "true";
-        };
-        this.formatNumber = function (value) { return value.toLocaleString("en-US"); };
-        this.formatCurrency = function (value) { return value.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,"); };
-        this.forceInputDecimal = function (value) { return value
-            .replace(_this.nonDigitalCharsRegex, "")
-            .replace(_this.leadingZerosRegex, "")
-            .replace(_this.thousandsSeparatorRegex, ","); };
-        this.$ = $;
-        this.store = store;
+var AutoRefreshOption = /** @class */ (function () {
+    function AutoRefreshOption(onText, offText, callback, onOffStatus) {
+        if (onText === void 0) { onText = "ON"; }
+        if (offText === void 0) { offText = "OFF"; }
+        if (callback === void 0) { callback = Function(); }
+        if (onOffStatus === void 0) { onOffStatus = Function(); }
+        this.onText = onText;
+        this.offText = offText;
+        this.callback = callback;
+        this.onOffStatus = onOffStatus;
+        this.onText = onText;
+        this.offText = offText;
+        this.callback = callback;
+        this.onOffStatus = onOffStatus;
     }
-    return AlphaCore;
+    return AutoRefreshOption;
 }());
-var alphaReports = new AlphaCore($, store);
-//# sourceMappingURL=core.js.map
+var AutoRefreshComponent = /** @class */ (function () {
+    function AutoRefreshComponent() {
+    }
+    AutoRefreshComponent.prototype.init = function (option) {
+        var _this = this;
+        this.autoRefreshOption = option;
+        this.autoRefresh = $("#auto-refresh");
+        this.labelStatusText = this.autoRefresh.find("#lbl-status-text")
+            .data("running", "0")
+            .text(this.autoRefreshOption.onText);
+        this.labelCountDown = this.autoRefresh.find("#lbl-count-down");
+        this.autoRefresh.find("#btn-status").click(function () {
+            var running = _this.labelStatusText.data("running") === "1";
+            running ? _this.stop() : _this.start();
+            option.onOffStatus(!running);
+        });
+        this.autoRefresh.find(".auto-refresh-menu-item").click(function (e) {
+            var second = $(e.target).text();
+            _this.labelCountDown.text(second).data("original", second);
+        });
+    };
+    AutoRefreshComponent.prototype.setIsLoading = function () {
+        this.labelCountDown.text("").addClass("show-loading");
+    };
+    AutoRefreshComponent.prototype.isOn = function () {
+        return !this.autoRefresh.hasClass("off");
+    };
+    AutoRefreshComponent.prototype.start = function () {
+        var _this = this;
+        clearTimeout(this.timeout);
+        this.autoRefresh.removeClass("off");
+        this.labelStatusText
+            .data("running", "1")
+            .text(this.autoRefreshOption.onText);
+        this.labelCountDown
+            .removeClass("show-loading")
+            .text(this.labelCountDown.data("original"));
+        this.timeout = setTimeout(function () { return _this.decrement(); }, 1000);
+    };
+    AutoRefreshComponent.prototype.stop = function () {
+        clearTimeout(this.timeout);
+        this.autoRefresh.addClass("off");
+        this.labelStatusText
+            .data("running", "0")
+            .text(this.autoRefreshOption.offText);
+        this.labelCountDown
+            .removeClass("show-loading")
+            .text(this.labelCountDown.data("original"));
+    };
+    AutoRefreshComponent.prototype.decrement = function () {
+        var _this = this;
+        var value = +this.labelCountDown.text();
+        if (value === 1) {
+            clearTimeout(this.timeout);
+            this.labelCountDown
+                .text("")
+                .addClass("show-loading");
+            this.autoRefreshOption.callback();
+        }
+        else {
+            this.labelCountDown.text(--value);
+            this.timeout = setTimeout(function () { return _this.decrement(); }, 1000);
+        }
+    };
+    return AutoRefreshComponent;
+}());
+//# sourceMappingURL=autorefresh.js.map
+"use strict";
+var InlineMessageComponent = /** @class */ (function () {
+    function InlineMessageComponent(selectorId) {
+        if (selectorId === void 0) { selectorId = "inline-message"; }
+        this.inlineMessage = $("#" + selectorId);
+    }
+    InlineMessageComponent.prototype.getInlineMessage = function () {
+        return this.inlineMessage;
+    };
+    InlineMessageComponent.prototype.show = function (result) {
+        this.inlineMessage
+            .html(result.ErrMsg)
+            .removeClass("msg-error msg-success hide")
+            .addClass(result.ErrCode ? "msg-error" : "msg-success");
+    };
+    InlineMessageComponent.prototype.showError = function (message) {
+        this.show({ ErrCode: 1, ErrMsg: message });
+    };
+    InlineMessageComponent.prototype.showSuccess = function (message) {
+        this.show({ ErrCode: 0, ErrMsg: message });
+    };
+    InlineMessageComponent.prototype.hide = function () {
+        this.inlineMessage.addClass("hide").html("");
+    };
+    return InlineMessageComponent;
+}());
+//# sourceMappingURL=inline-message.js.map
+"use strict";
+var SaveFilterView = /** @class */ (function () {
+    function SaveFilterView() {
+    }
+    SaveFilterView.prototype.init = function (element, getSelectedFilterParamsFunc) {
+        var _this = this;
+        if (getSelectedFilterParamsFunc === void 0) { getSelectedFilterParamsFunc = undefined; }
+        if (element.length) {
+            this.inlineMessagePopup = new InlineMessageComponent("inline-message-popup");
+            var saveFilterPopup_1 = $("#save-filter-popup");
+            this.filterNameInput = saveFilterPopup_1.find("#txt-filterName");
+            this.isDefaultCheckbox = saveFilterPopup_1.find("#chk-isDefault");
+            saveFilterPopup_1
+                .on("shown.bs.modal", function () { return _this.filterNameInput.focus(); })
+                .on("hide.bs.modal", function () {
+                _this.filterNameInput.val("");
+                TipsyHelper.clear(_this.filterNameInput);
+                _this.isDefaultCheckbox.prop("checked", false);
+                _this.inlineMessagePopup.hide();
+            });
+            saveFilterPopup_1.find("#btn-save-filter-popup").click(function () { return _this.handleSaveFilterPopup(getSelectedFilterParamsFunc); });
+            element.click(function () {
+                saveFilterPopup_1.modal("show");
+            });
+        }
+    };
+    SaveFilterView.prototype.handleSaveFilterPopup = function (getSelectedFilterParamsFunc) {
+        var _this = this;
+        var formDataPopup = this.getFormDataPopup();
+        if (formDataPopup) {
+            AJAXHelper.post($("#hidden-SaveFilterUrl").val(), formDataPopup, function (result) {
+                _this.inlineMessagePopup.show(result);
+                if (!result.ErrCode) {
+                    var url = undefined;
+                    if (getSelectedFilterParamsFunc) {
+                        var filterParam = getSelectedFilterParamsFunc();
+                        filterParam.filterName = formDataPopup.filterName;
+                        url = window.location.href.split("?")[0] + "?" + $.param(filterParam);
+                    }
+                    Common.Utils.ReloadPageAfterTimeout(url);
+                }
+            });
+        }
+    };
+    SaveFilterView.prototype.getFormDataPopup = function () {
+        var filterName = $.trim(this.filterNameInput.val());
+        if (!filterName.length) {
+            TipsyHelper.showError(this.filterNameInput, $("#hidden-FilterNameRequiredError").val());
+            return;
+        }
+        var isDefault = this.isDefaultCheckbox.is(":checked");
+        return {
+            filterName: filterName,
+            isDefault: isDefault
+        };
+    };
+    return SaveFilterView;
+}());
+//# sourceMappingURL=save-filter.js.map
 "use strict";
 var MonitoringBetsCopyHtml = /** @class */ (function () {
     function MonitoringBetsCopyHtml() {
@@ -339,7 +292,7 @@ var MonitoringBetsCopyHtml = /** @class */ (function () {
 //# sourceMappingURL=monitoring-bets-copyhtml.js.map
 "use strict";
 var MonitoringBetsView = /** @class */ (function () {
-    function MonitoringBetsView(autoRefreshComponent, monitoringBetsCopyHtml) {
+    function MonitoringBetsView(autoRefreshComponent, monitoringBetsCopyHtml, saveFilter) {
         var _this = this;
         this.getBetsUrl = "";
         this.isCalling = false;
@@ -349,6 +302,7 @@ var MonitoringBetsView = /** @class */ (function () {
             _this.$msgError = $("#msg-error");
             _this.$betListTableContainer = $("#bet-list-table-container");
             _this.getBetsUrl = $("#get-bets-url").val();
+            _this.iconSaveFilter = $("#icon-save-filter");
             _this.dropdownFilter = $("#monitoring-bets-filter");
             _this.dropdownMostRecentTicket = $("#most-recent-tickets");
         };
@@ -356,12 +310,30 @@ var MonitoringBetsView = /** @class */ (function () {
             _this.registerToggleFilter();
             _this.dropdownFilter.multiselect({
                 maxHeight: 300,
-                onChange: function () { return _this.loadLastBets(true); }
+                onChange: function (selectedOption) {
+                    var filterId = selectedOption.val();
+                    if (filterId === "-1") {
+                        _this.autoRefreshComponent.stop();
+                    }
+                    else {
+                        _this.loadLastBets(true);
+                    }
+                    _this.iconSaveFilter.toggleClass("hide", filterId !== "0");
+                    Common.Utils.UpdateCurrentUrl(_this.getSelectedFilterParams());
+                }
             });
             _this.dropdownMostRecentTicket.multiselect({
-                onChange: function () { return _this.loadLastBets(true); }
+                onChange: function () {
+                    _this.loadLastBets(true);
+                    Common.Utils.UpdateCurrentUrl(_this.getSelectedFilterParams());
+                }
             });
-            _this.autoRefreshComponent.init(new AutoRefreshOption($("#hidden-OnText").val(), $("#hidden-OffText").val(), function () { return _this.loadLastBets(false); }));
+            _this.autoRefreshComponent.init(new AutoRefreshOption($("#hidden-OnText").val(), $("#hidden-OffText").val(), function () { return _this.loadLastBets(false); }, function (onOffStatus) { return Common.Utils.UpdateCurrentUrl(_this.getSelectedFilterParams(onOffStatus)); }));
+            $(".navigation").click(function (e) {
+                var $this = $(e.target);
+                var url = $this.attr("href") + "?" + $.param(_this.getSelectedFilterParams());
+                $this.attr("href", url);
+            });
         };
         this.loadLastBets = function (isResetTransId) {
             if (isResetTransId) {
@@ -403,16 +375,20 @@ var MonitoringBetsView = /** @class */ (function () {
         };
         this.autoRefreshComponent = autoRefreshComponent;
         this.monitoringBetsCopyHtml = monitoringBetsCopyHtml;
+        this.saveFilterView = saveFilter;
     }
     MonitoringBetsView.prototype.init = function () {
+        var _this = this;
         this.localStorage = alphaReports.localStorage;
         this.cacheElements();
         this.registerEvents();
         this.setTransIdCacheKeyByFilter($("#last-trans-id-cache-key-by-filter").val(), $("#latest-trans-id-cache-key-by-filter").val());
         this.setTransId($("#last-trans-id").val(), $("#latest-trans-id").val());
-        this.autoRefreshComponent.start();
         this.monitoringBetsCopyHtml.init();
+        this.saveFilterView.init(this.iconSaveFilter, function () { return _this.getSelectedFilterParams(); });
         this.$betListTableContainer.find('[data-toggle="tooltip"]').tooltip();
+        this.iconSaveFilter.toggleClass("hide", this.dropdownFilter.find("option:selected:first").val() !== "0");
+        this.autoRefreshComponent.isOn() && this.autoRefreshComponent.start();
     };
     MonitoringBetsView.prototype.registerToggleFilter = function () {
         var filterContainer = $("#form-monitoring-bets");
@@ -469,9 +445,17 @@ var MonitoringBetsView = /** @class */ (function () {
             LatestTransId: latestTransId
         };
     };
+    MonitoringBetsView.prototype.getSelectedFilterParams = function (autoStart) {
+        if (autoStart === void 0) { autoStart = undefined; }
+        return {
+            filterName: $.trim(this.dropdownFilter.find("option:selected:first").text()),
+            limitRowCount: this.dropdownMostRecentTicket.find("option:selected:first").val(),
+            autoStart: autoStart || this.autoRefreshComponent.isOn()
+        };
+    };
     return MonitoringBetsView;
 }());
 $(function () {
-    new MonitoringBetsView(new AutoRefreshComponent(), new MonitoringBetsCopyHtml()).init();
+    new MonitoringBetsView(new AutoRefreshComponent(), new MonitoringBetsCopyHtml(), new SaveFilterView()).init();
 });
 //# sourceMappingURL=monitoring-bets.js.map

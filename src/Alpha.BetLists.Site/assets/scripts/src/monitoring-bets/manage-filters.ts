@@ -50,7 +50,7 @@ class ManageFiltersView {
 
         table.find(".tree-node-name").click(this.handleTreeviewCollapseExpand);
 
-        this.saveFilter.init($("#icon-save"));
+        this.saveFilter.init($("#icon-save-filter"));
     }
 
     private handleOnClickButtonDeleteAllFilters() {

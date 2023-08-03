@@ -795,4 +795,7 @@ Vui lòng chọn tiêu chí cho bộ lọc dựa trên nhu cầu theo dõi
   <data name="SaveFilter" xml:space="preserve">
     <value>Lưu Bộ Lọc</value>
   </data>
+  <data name="PleaseSelect" xml:space="preserve">
+    <value>Vui lòng chọn</value>
+  </data>
 </root>

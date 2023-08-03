@@ -5,13 +5,23 @@
     using Alpha.BetLists.Configurations;
     using Alpha.BetLists.Constants;
     using Alpha.BetLists.Helpers;
+    using Alpha.BetLists.Site.Requests.MonitoringBets;
 
     public class FilterConfigurationViewModel
     {
-        public FilterConfigurationViewModel(bool showWelcomePopup)
+        public FilterConfigurationViewModel(FilterConfigurationQuery message)
         {
-            ShowWelcomePopup = showWelcomePopup;
+            FilterName = message.FilterName;
+            LimitRowCount = message.LimitRowCount;
+            AutoStart = message.AutoStart;
+            ShowWelcomePopup = message.Welcome;
         }
+
+        public string FilterName { get; }
+
+        public int LimitRowCount { get; }
+
+        public bool AutoStart { get; }
 
         public bool ShowWelcomePopup { get; }
 

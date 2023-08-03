@@ -67,11 +67,7 @@
 
         public async Task<IEnumerable<SavedFilter>> GetSavedFilters(int custId, int subAccId, AddFilterParam customFilter)
         {
-            var criteria = new GetFiltersCriteria(custId, subAccId);
-            partialUMService.ThrowIfUM(criteria.GetSettingKey());
-
-            var filterConfiguration = (await dynamicRepository.FetchAsync<FilterConfiguration>(criteria))
-                .OrderByDescending(f => f.FilterId)
+            var filterConfiguration = (await GetFilterConfiguration(custId, subAccId))
                 .Select(f =>
                 {
                     var filterXml = f.FilterXml;
@@ -96,6 +92,11 @@
                 filterConfiguration.Insert(0, BuildSavedFilter(customFilter));
             }
 
+            if (filterConfiguration.Count > 0 && !filterConfiguration.Any(f => f.IsDefault))
+            {
+                filterConfiguration.Insert(0, new SavedFilter());
+            }
+
             return filterConfiguration;
         }
 
@@ -106,15 +107,14 @@
             return new SavedFilter(
                 0,
                 Resources.UnsavedFilter,
-                true,
+                false,
                 customFilter.BetType,
                 customFilter.Stake,
                 customFilter.LiveStatus,
                 sportTypes,
                 leagues,
                 BuildMembers(customFilter.FilterByMembers, customFilter.InputList, customFilter.MyWatchlist),
-                customFilter.FilterByMembers,
-                fromSession: true);
+                customFilter.FilterByMembers);
         }
 
         private static Tuple<string, string> BuildSportTypesAndLeagues(IEnumerable<SportXml> sportXmlList)
@@ -163,11 +163,7 @@
 
         public async Task<IEnumerable<FilterConfiguration>> GetFilters(int custId, int subAccId, AddFilterParam customFilter)
         {
-            var criteria = new GetFiltersCriteria(custId, subAccId);
-            partialUMService.ThrowIfUM(criteria.GetSettingKey());
-
-            var filterConfiguration = (await dynamicRepository.FetchAsync<FilterConfiguration>(criteria))
-                .OrderByDescending(f => f.FilterId)
+            var filterConfiguration = (await GetFilterConfiguration(custId, subAccId))
                 .Select(item =>
                 {
                     var filterXml = item.FilterXml;
@@ -184,6 +180,14 @@
             }
 
             return filterConfiguration;
+        }
+
+        private async Task<IEnumerable<FilterConfiguration>> GetFilterConfiguration(int custId, int subAccId)
+        {
+            var criteria = new GetFiltersCriteria(custId, subAccId);
+            partialUMService.ThrowIfUM(criteria.GetSettingKey());
+
+            return (await dynamicRepository.FetchAsync<FilterConfiguration>(criteria)).OrderByDescending(f => f.FilterId);
         }
 
         private static FilterConfiguration BuildFilterConfiguration(AddFilterParam param)

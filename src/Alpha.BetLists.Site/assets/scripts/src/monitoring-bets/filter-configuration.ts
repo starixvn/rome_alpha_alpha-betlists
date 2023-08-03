@@ -113,14 +113,18 @@ class FilterConfigurationView {
                 this.inlineMessagePopup.hide();
             });
         saveFilterPopup.find("#btn-save-filter-popup").click(
-            () => this.handleSaveFilterPopup(() => Common.Utils.ReloadPageAfterTimeout(this.getCurrentUrlWithoutQueryString()))
+            () => this.handleSaveFilterPopup(() => {
+                const currentUrl = window.location.href;
+                if (currentUrl.toLowerCase().indexOf("welcome=true")) {
+                    Common.Utils.ReloadPageAfterTimeout(currentUrl.split("?")[0]);
+                } else {
+                    Common.Utils.ReloadPageAfterTimeout();
+                }
+            })
         );
         saveFilterPopup.find("#btn-save-filter-apply-popup").click(
-            () => this.handleSaveFilterPopup(() => {
-                const url = this.getCurrentUrlWithoutQueryString();
-                const mainPage = this.getMainPageUrl(url);
-                Common.Utils.ReloadPageAfterTimeout(`${mainPage}?filterName=${this.addFilterFormData.filterName}`);
-            })
+            () => this.handleSaveFilterPopup(() =>
+                Common.Utils.ReloadPageAfterTimeout(this.getMainPageUrl(this.addFilterFormData.filterName)))
         );
 
         $(".button-apply.apply").click((e) => {
@@ -258,14 +262,12 @@ class FilterConfigurationView {
     }
 
     private handleApplyFilter() {
-        this.addFilterFormData.filterName = "Unsaved Filter";
+        this.addFilterFormData.filterName = $("#hidden-UnsavedFilter").val();
         AJAXHelper.post("ApplyFilter", this.addFilterFormData, (result) => {
             if (result.ErrCode) {
                 this.inlineMessage.showError(result.ErrMsg);
             } else {
-                const url = this.getCurrentUrlWithoutQueryString();
-                window.location.href = this.getMainPageUrl(url);
-                this.addFilterFormData = null;
+                window.location.href = this.getMainPageUrl(this.addFilterFormData.filterName);
             }
         });
     }
@@ -284,12 +286,8 @@ class FilterConfigurationView {
         }
     }
 
-    private getCurrentUrlWithoutQueryString() {
-        return window.location.href.split("?")[0];
-    }
-
-    private getMainPageUrl(currentUrl: string) {
-        return currentUrl.replace(/FilterConfiguration/i, "");
+    private getMainPageUrl(filterName: string) {
+        return window.location.href.split("?")[0].replace(/FilterConfiguration/i, "") + "?filterName=" + filterName;
     }
 
     private scrollTopInlineMessage($element = undefined) {

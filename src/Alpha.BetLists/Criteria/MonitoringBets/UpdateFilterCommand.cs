@@ -8,14 +8,11 @@
         {
             FilterName = param.FilterName;
             IsDefault = param.IsDefault;
-            Language = param.LanguageKey;
         }
 
         public string FilterName { get; }
 
         public bool IsDefault { get; }
-
-        public string Language { get; }
 
         public override string GetSettingKey()
             => "Age_CustLastBetFilter_Upd";

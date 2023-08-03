@@ -2,6 +2,12 @@
 {
     public class SavedFilter
     {
+        public SavedFilter()
+        {
+            FilterId = -1;
+            FilterName = AppResources.Resources.PleaseSelect;
+        }
+
         public SavedFilter(
             int filterId,
             string filterName,
@@ -12,8 +18,7 @@
             string sportTypes,
             string leagues,
             string members,
-            byte filterByMembers,
-            bool fromSession = false)
+            byte filterByMembers)
         {
             FilterId = filterId;
             FilterName = filterName;
@@ -25,7 +30,6 @@
             Leagues = leagues;
             Members = members;
             FilterByMembers = filterByMembers;
-            FromSession = fromSession;
         }
 
         public int FilterId { get; }
@@ -47,7 +51,5 @@
         public string Members { get; }
 
         public byte FilterByMembers { get; }
-
-        public bool FromSession { get; }
     }
 }

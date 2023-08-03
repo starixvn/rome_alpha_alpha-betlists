@@ -1,14 +1,15 @@
 ﻿"use strict";
-const defaultValue = 60;
 
 class AutoRefreshOption {
     constructor(
         public onText = "ON",
         public offText = "OFF",
-        public callback = Function()) {
+        public callback = Function(),
+        public onOffStatus = Function()) {
         this.onText = onText;
         this.offText = offText;
         this.callback = callback;
+        this.onOffStatus = onOffStatus;
     }
 }
 
@@ -26,9 +27,12 @@ class AutoRefreshComponent {
             .data("running", "0")
             .text(this.autoRefreshOption.onText);
         this.labelCountDown = this.autoRefresh.find("#lbl-count-down");
-        this.labelCountDown.text(defaultValue).data("original", defaultValue);
 
-        this.autoRefresh.find("#btn-status").click(() => this.labelStatusText.data("running") === "1" ? this.stop() : this.start());
+        this.autoRefresh.find("#btn-status").click(() => {
+            const running = this.labelStatusText.data("running") === "1";
+            running ? this.stop() : this.start();
+            option.onOffStatus(!running);
+        });
 
         this.autoRefresh.find(".auto-refresh-menu-item").click((e) => {
             const second = $(e.target).text();

@@ -1,16 +1,18 @@
 "use strict";
-var defaultValue = 60;
 var AutoRefreshOption = /** @class */ (function () {
-    function AutoRefreshOption(onText, offText, callback) {
+    function AutoRefreshOption(onText, offText, callback, onOffStatus) {
         if (onText === void 0) { onText = "ON"; }
         if (offText === void 0) { offText = "OFF"; }
         if (callback === void 0) { callback = Function(); }
+        if (onOffStatus === void 0) { onOffStatus = Function(); }
         this.onText = onText;
         this.offText = offText;
         this.callback = callback;
+        this.onOffStatus = onOffStatus;
         this.onText = onText;
         this.offText = offText;
         this.callback = callback;
+        this.onOffStatus = onOffStatus;
     }
     return AutoRefreshOption;
 }());
@@ -25,8 +27,11 @@ var AutoRefreshComponent = /** @class */ (function () {
             .data("running", "0")
             .text(this.autoRefreshOption.onText);
         this.labelCountDown = this.autoRefresh.find("#lbl-count-down");
-        this.labelCountDown.text(defaultValue).data("original", defaultValue);
-        this.autoRefresh.find("#btn-status").click(function () { return _this.labelStatusText.data("running") === "1" ? _this.stop() : _this.start(); });
+        this.autoRefresh.find("#btn-status").click(function () {
+            var running = _this.labelStatusText.data("running") === "1";
+            running ? _this.stop() : _this.start();
+            option.onOffStatus(!running);
+        });
         this.autoRefresh.find(".auto-refresh-menu-item").click(function (e) {
             var second = $(e.target).text();
             _this.labelCountDown.text(second).data("original", second);

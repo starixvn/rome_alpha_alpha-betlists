@@ -202,7 +202,8 @@ namespace Alpha.BetLists.Site.Tests.Controllers
         public void FilterConfiguration_Always_ReturnValidPageView(bool welcome)
         {
             // Arrange & Act
-            var actualView = controller.FilterConfiguration(welcome) as ViewResult;
+            var actualView = controller.FilterConfiguration(new FilterConfigurationQuery { Welcome = welcome }) as ViewResult;
+
             // Assert
             Assert.IsType<FilterConfigurationViewModel>(actualView.Model);
         }

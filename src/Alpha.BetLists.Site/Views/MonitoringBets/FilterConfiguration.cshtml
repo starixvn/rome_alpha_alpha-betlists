@@ -114,6 +114,7 @@
 @Html.Hidden("hidden-StakeRequiredError", Resources.FilterConfigurationStakeRequiredError)
 @Html.Hidden("hidden-SportsRequiredError", Resources.FilterConfigurationSportsRequiredError)
 @Html.Hidden("hidden-FilterByMembersRequiredError", Resources.FilterConfigurationFilterByMembersRequiredError)
+@Html.Hidden("hidden-UnsavedFilter", Resources.UnsavedFilter)
 @Html.Hidden("hidden-SelectAll", Resources.SelectAll)
 @Html.Hidden("hidden-SearchSportLeague", Resources.SearchSportLeague)
 @Html.Hidden("hidden-SportLeagueNotFound", Resources.SportLeagueNotFound)
@@ -134,7 +135,7 @@
     }
     else
     {
-        @Html.ActionLink(Resources.Back, "Index", null, new { @class = "button-cancel" })
+        @Html.ActionLink(Resources.Back, "Index", new { FilterName = Model.FilterName, LimitRowCount = Model.LimitRowCount, AutoStart = Model.AutoStart }, new { @class = "button-cancel" })
     }
     <input type="button" class="button-apply apply" value="@Resources.Apply" />
     <input type="button" class="button-save save" value="@Resources.SaveFilter" />

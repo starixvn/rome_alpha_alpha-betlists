@@ -144,6 +144,9 @@ class SportLeagueMatchTreeViewComponent {
                 indeterminate: false,
                 checked: checked
             });
+            this.treeviewOption.enableExpandAll
+                && this.selectedOnly.is(":checked")
+                && this.checkboxListContainer.find(".tree-node").toggleClass("selected-only-hidden", !checked);
         });
 
         if (this.treeviewOption.enableExpandAll) {
@@ -277,6 +280,10 @@ class SportLeagueMatchTreeViewComponent {
 
             this.updateCheckboxStatus(subtreeCheckbox, subtreeCheckboxes);
         });
+
+        if (this.treeviewOption.enableExpandAll && this.selectedOnly.is(":checked")) {
+            checkbox.closest(".tree-node").toggleClass("selected-only-hidden", !checked);
+        }
     }
 
     private updateSelectAll() {

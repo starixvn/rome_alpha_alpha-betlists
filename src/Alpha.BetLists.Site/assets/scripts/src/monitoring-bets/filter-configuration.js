@@ -66,11 +66,17 @@ var FilterConfigurationView = /** @class */ (function () {
             _this.isDefaultCheckbox.prop("checked", false);
             _this.inlineMessagePopup.hide();
         });
-        saveFilterPopup.find("#btn-save-filter-popup").click(function () { return _this.handleSaveFilterPopup(function () { return Common.Utils.ReloadPageAfterTimeout(_this.getCurrentUrlWithoutQueryString()); }); });
+        saveFilterPopup.find("#btn-save-filter-popup").click(function () { return _this.handleSaveFilterPopup(function () {
+            var currentUrl = window.location.href;
+            if (currentUrl.toLowerCase().indexOf("welcome=true")) {
+                Common.Utils.ReloadPageAfterTimeout(currentUrl.split("?")[0]);
+            }
+            else {
+                Common.Utils.ReloadPageAfterTimeout();
+            }
+        }); });
         saveFilterPopup.find("#btn-save-filter-apply-popup").click(function () { return _this.handleSaveFilterPopup(function () {
-            var url = _this.getCurrentUrlWithoutQueryString();
-            var mainPage = _this.getMainPageUrl(url);
-            Common.Utils.ReloadPageAfterTimeout(mainPage + "?filterName=" + _this.addFilterFormData.filterName);
+            return Common.Utils.ReloadPageAfterTimeout(_this.getMainPageUrl(_this.addFilterFormData.filterName));
         }); });
         $(".button-apply.apply").click(function (e) {
             _this.addFilterFormData = _this.getFormData(rdoSpecificSports, rdoSpecificMembers);
@@ -198,15 +204,13 @@ var FilterConfigurationView = /** @class */ (function () {
     };
     FilterConfigurationView.prototype.handleApplyFilter = function () {
         var _this = this;
-        this.addFilterFormData.filterName = "Unsaved Filter";
+        this.addFilterFormData.filterName = $("#hidden-UnsavedFilter").val();
         AJAXHelper.post("ApplyFilter", this.addFilterFormData, function (result) {
             if (result.ErrCode) {
                 _this.inlineMessage.showError(result.ErrMsg);
             }
             else {
-                var url = _this.getCurrentUrlWithoutQueryString();
-                window.location.href = _this.getMainPageUrl(url);
-                _this.addFilterFormData = null;
+                window.location.href = _this.getMainPageUrl(_this.addFilterFormData.filterName);
             }
         });
     };
@@ -224,11 +228,8 @@ var FilterConfigurationView = /** @class */ (function () {
             });
         }
     };
-    FilterConfigurationView.prototype.getCurrentUrlWithoutQueryString = function () {
-        return window.location.href.split("?")[0];
-    };
-    FilterConfigurationView.prototype.getMainPageUrl = function (currentUrl) {
-        return currentUrl.replace(/FilterConfiguration/i, "");
+    FilterConfigurationView.prototype.getMainPageUrl = function (filterName) {
+        return window.location.href.split("?")[0].replace(/FilterConfiguration/i, "") + "?filterName=" + filterName;
     };
     FilterConfigurationView.prototype.scrollTopInlineMessage = function ($element) {
         if ($element === void 0) { $element = undefined; }
