@@ -128,10 +128,13 @@
                 {
                     foreach (var sport in item.Sport.SplitByCommaWithNoneEmptyEntries())
                     {
-                        sportTypes.Add(sport);
-                        foreach (var league in item.League.SplitByCommaWithNoneEmptyEntries())
+                        if (item.League.Equals("0", StringComparison.OrdinalIgnoreCase))
                         {
-                            if (!league.Equals("0", StringComparison.OrdinalIgnoreCase))
+                            sportTypes.Add(sport);
+                        }
+                        else
+                        {
+                            foreach (var league in item.League.SplitByCommaWithNoneEmptyEntries())
                             {
                                 leagues.Add(league);
                             }

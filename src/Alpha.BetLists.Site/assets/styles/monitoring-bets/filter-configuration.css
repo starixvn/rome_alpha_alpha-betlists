@@ -105,6 +105,9 @@
   font-weight: bold;
   line-height: 24px; }
 
+.list-item.all-sport .item {
+  margin-bottom: 11px; }
+
 .item {
   display: inline-flex;
   flex-wrap: wrap;
