@@ -269,8 +269,14 @@ class SportLeagueMatchTreeViewComponent {
         const checked = checkbox.is(":checked");
 
         // check/uncheck children
-        checkbox.hasClass("checkbox-subtree") &&
-            checkbox.parent().next(".subtree").find(":checkbox").prop("checked", checked);
+        if (checkbox.hasClass("checkbox-subtree")) {
+            const subtree = checkbox.parent().next(".subtree");
+            subtree.find(":checkbox").prop("checked", checked);
+
+            if (this.treeviewOption.enableExpandAll && this.selectedOnly.is(":checked")) {
+                subtree.find(".tree-node").removeClass("selected-only-hidden");
+            }
+        }
 
         // check/uncheck parents
         checkbox.parents(".subtree").each((_, item) => {

@@ -22,9 +22,11 @@ var MonitoringBetsView = /** @class */ (function () {
                     var filterId = selectedOption.val();
                     if (filterId === "-1") {
                         _this.autoRefreshComponent.stop();
+                        _this.autoRefreshComponent.disable();
                     }
                     else {
                         _this.loadLastBets(true);
+                        _this.autoRefreshComponent.enable();
                     }
                     _this.iconSaveFilter.toggleClass("hide", filterId !== "0");
                     Common.Utils.UpdateCurrentUrl(_this.getSelectedFilterParams());
@@ -32,8 +34,10 @@ var MonitoringBetsView = /** @class */ (function () {
             });
             _this.dropdownMostRecentTicket.multiselect({
                 onChange: function () {
-                    _this.loadLastBets(true);
-                    Common.Utils.UpdateCurrentUrl(_this.getSelectedFilterParams());
+                    if (_this.dropdownFilter.find("option:selected:first").val() !== "-1") {
+                        _this.loadLastBets(true);
+                        Common.Utils.UpdateCurrentUrl(_this.getSelectedFilterParams());
+                    }
                 }
             });
             _this.autoRefreshComponent.init(new AutoRefreshOption($("#hidden-OnText").val(), $("#hidden-OffText").val(), function () { return _this.loadLastBets(false); }, function (onOffStatus) { return Common.Utils.UpdateCurrentUrl(_this.getSelectedFilterParams(onOffStatus)); }));
@@ -95,8 +99,14 @@ var MonitoringBetsView = /** @class */ (function () {
         this.monitoringBetsCopyHtml.init();
         this.saveFilterView.init(this.iconSaveFilter, function () { return _this.getSelectedFilterParams(); });
         this.$betListTableContainer.find('[data-toggle="tooltip"]').tooltip();
-        this.iconSaveFilter.toggleClass("hide", this.dropdownFilter.find("option:selected:first").val() !== "0");
-        this.autoRefreshComponent.isOn() && this.autoRefreshComponent.start();
+        var filterId = this.dropdownFilter.find("option:selected:first").val();
+        this.iconSaveFilter.toggleClass("hide", filterId !== "0");
+        if (filterId === "-1") {
+            this.autoRefreshComponent.disable();
+        }
+        else if (this.autoRefreshComponent.isOn()) {
+            this.autoRefreshComponent.start();
+        }
     };
     MonitoringBetsView.prototype.registerToggleFilter = function () {
         var filterContainer = $("#form-monitoring-bets");

@@ -770,22 +770,22 @@
     <value>此更新没有任何变化</value>
   </data>
   <data name="SaveAndApply" xml:space="preserve">
-    <value>Save &amp; Apply</value>
+    <value>保存并应用</value>
   </data>
   <data name="MonitoredMember" xml:space="preserve">
     <value>Monitored Member</value>
   </data>
   <data name="UnsavedFilter" xml:space="preserve">
-    <value>Unsaved Filter</value>
+    <value>未保存筛选</value>
   </data>
   <data name="FilterNameAlreadyExists" xml:space="preserve">
     <value>筛选名称已存在</value>
   </data>
   <data name="ManuallyEntered" xml:space="preserve">
-    <value>Manually Entered</value>
+    <value>手动输入</value>
   </data>
   <data name="FromMonitoredList" xml:space="preserve">
-    <value>From Monitored List</value>
+    <value>从监控列表</value>
   </data>
   <data name="SaveFilter" xml:space="preserve">
     <value>保存筛选</value>

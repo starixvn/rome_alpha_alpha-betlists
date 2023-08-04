@@ -71,6 +71,14 @@ class AutoRefreshComponent {
             .text(this.labelCountDown.data("original"));
     }
 
+    enable() {
+        this.autoRefresh.find("#btn-status").prop("disabled", false);
+    }
+
+    disable() {
+        this.autoRefresh.find("#btn-status").prop("disabled", true);
+    }
+
     private decrement() {
         let value = +this.labelCountDown.text();
         if (value === 1) {

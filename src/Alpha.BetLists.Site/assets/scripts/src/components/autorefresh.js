@@ -65,6 +65,12 @@ var AutoRefreshComponent = /** @class */ (function () {
             .removeClass("show-loading")
             .text(this.labelCountDown.data("original"));
     };
+    AutoRefreshComponent.prototype.enable = function () {
+        this.autoRefresh.find("#btn-status").prop("disabled", false);
+    };
+    AutoRefreshComponent.prototype.disable = function () {
+        this.autoRefresh.find("#btn-status").prop("disabled", true);
+    };
     AutoRefreshComponent.prototype.decrement = function () {
         var _this = this;
         var value = +this.labelCountDown.text();

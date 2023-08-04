@@ -122,9 +122,6 @@ var Common;
 var AlphaCore = /** @class */ (function () {
     function AlphaCore($, store) {
         var _this = this;
-        this.nonDigitalCharsRegex = /\D/g;
-        this.leadingZerosRegex = /^0+(?!$)/;
-        this.thousandsSeparatorRegex = /\B(?=(\d{3})+(?!\d))/g;
         this.format = {
             monthFormat: "MMMM - yyyy",
             shortDateWithSlash_DatePicker: "MM/DD/YYYY",
@@ -245,10 +242,6 @@ var AlphaCore = /** @class */ (function () {
         };
         this.formatNumber = function (value) { return value.toLocaleString("en-US"); };
         this.formatCurrency = function (value) { return value.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,"); };
-        this.forceInputDecimal = function (value) { return value
-            .replace(_this.nonDigitalCharsRegex, "")
-            .replace(_this.leadingZerosRegex, "")
-            .replace(_this.thousandsSeparatorRegex, ","); };
         this.$ = $;
         this.store = store;
     }

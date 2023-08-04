@@ -41,8 +41,13 @@ class MonitoringBetsView {
         this.saveFilterView.init(this.iconSaveFilter, () => this.getSelectedFilterParams());
         this.$betListTableContainer.find('[data-toggle="tooltip"]').tooltip();
 
-        this.iconSaveFilter.toggleClass("hide", this.dropdownFilter.find("option:selected:first").val() !== "0");
-        this.autoRefreshComponent.isOn() && this.autoRefreshComponent.start();
+        const filterId = this.dropdownFilter.find("option:selected:first").val();
+        this.iconSaveFilter.toggleClass("hide", filterId !== "0");
+        if (filterId === "-1") {
+            this.autoRefreshComponent.disable();
+        } else if (this.autoRefreshComponent.isOn()) {
+            this.autoRefreshComponent.start();
+        }
     }
 
     private cacheElements = () => {
@@ -64,8 +69,10 @@ class MonitoringBetsView {
                 const filterId = selectedOption.val();
                 if (filterId === "-1") {
                     this.autoRefreshComponent.stop();
+                    this.autoRefreshComponent.disable();
                 } else {
                     this.loadLastBets(true)
+                    this.autoRefreshComponent.enable();
                 }
 
                 this.iconSaveFilter.toggleClass("hide", filterId !== "0");
@@ -75,8 +82,10 @@ class MonitoringBetsView {
 
         this.dropdownMostRecentTicket.multiselect({
             onChange: () => {
-                this.loadLastBets(true);
-                Common.Utils.UpdateCurrentUrl(this.getSelectedFilterParams());
+                if (this.dropdownFilter.find("option:selected:first").val() !== "-1") {
+                    this.loadLastBets(true);
+                    Common.Utils.UpdateCurrentUrl(this.getSelectedFilterParams());
+                }
             }
         });
 
