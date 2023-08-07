@@ -3,12 +3,15 @@
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Web;
+    using Alpha.BetLists.Site.Constants;
     using AppResources;
     using BetLists.Models;
     using Configurations;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Requests;
+    using Sunplus.Agent.Model.Entities;
     using Web.Helpers;
 
     [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1304:NonPrivateReadonlyFieldsMustBeginWithUpperCaseLetter", Justification = "Reviewed.")]
@@ -75,11 +78,15 @@
 
         public bool IsHistoricReport { get; protected set; }
 
-        public string ResultsPath => AppPathHelper.GetAppPath(AppSettings.ResultAppPath, "~");
+        public string ResultsPath => HttpContext.Current.Session.IsCookieless ?
+            $"/site-results/(S({UserSession.Current.GetProperty<string>(SessionKey.MainSessionID)}))/"
+            : AppPathHelper.GetAppPath(AppSettings.ResultAppPath, "~");
 
-        public string OldMainPath => MicroSites.OldMainUrl("~");
+        public string OldMainPath => HttpContext.Current.Session.IsCookieless ?
+            $"/ex-main/(S({UserSession.Current.GetProperty<string>(SessionKey.MainSessionID)}))/" : MicroSites.OldMainUrl("~");
 
-        public string TotalBetsForecastPath => AppPathHelper.GetAppPath(AppSettings.TotalBetsForecastAppPath, "~");
+        public string TotalBetsForecastPath => HttpContext.Current.Session.IsCookieless ?
+            $"/ex-totalbetsforecast/(S({UserSession.Current.GetProperty<string>(SessionKey.MainSessionID)}))/" : AppPathHelper.GetAppPath(AppSettings.TotalBetsForecastAppPath, "~");
 
         public string SiteMainPath => AppPathHelper.GetAppPath(AppSettings.MainAppPath, "~");
 
