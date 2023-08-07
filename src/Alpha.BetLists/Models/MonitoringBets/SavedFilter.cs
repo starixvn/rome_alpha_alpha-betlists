@@ -2,12 +2,6 @@
 {
     public class SavedFilter
     {
-        public SavedFilter()
-        {
-            FilterId = -1;
-            FilterName = AppResources.Resources.PleaseSelect;
-        }
-
         public SavedFilter(
             int filterId,
             string filterName,

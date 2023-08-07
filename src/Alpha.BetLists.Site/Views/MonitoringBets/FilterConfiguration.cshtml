@@ -37,7 +37,7 @@
                 <label for="txt-stake">@Resources.stake</label>
                 <div class="inner stake">
                     <span>>=</span>
-                    <input type="text" id="txt-stake" value="0" autocomplete="off" maxlength="13" />
+                    <input type="text" id="txt-stake" value="0" autocomplete="off" maxlength="11" />
                 </div>
             </div>
             <div class="item">
@@ -135,7 +135,7 @@
     }
     else
     {
-        @Html.ActionLink(Resources.Back, "Index", new { FilterName = Model.FilterName, LimitRowCount = Model.LimitRowCount, AutoStart = Model.AutoStart }, new { @class = "button-cancel" })
+        <a class="button-cancel" href="@Url.Action("Index", $"{AppSettings.BetlistRouting}MonitoringBets", new { FilterName = Model.FilterName, LimitRowCount = Model.LimitRowCount, AutoStart = Model.AutoStart })">@Resources.Back</a>
     }
     <input type="button" class="button-apply apply" value="@Resources.Apply" />
     <input type="button" class="button-save save" value="@Resources.SaveFilter" />

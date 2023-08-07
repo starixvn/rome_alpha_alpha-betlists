@@ -31,61 +31,59 @@ class MonitoringBetsView {
 
     init() {
         this.localStorage = alphaReports.localStorage;
-        
+
         this.cacheElements();
         this.registerEvents();
         this.setTransIdCacheKeyByFilter($("#last-trans-id-cache-key-by-filter").val(), $("#latest-trans-id-cache-key-by-filter").val());
         this.setTransId($("#last-trans-id").val(), $("#latest-trans-id").val());
-        
+
         this.monitoringBetsCopyHtml.init();
         this.saveFilterView.init(this.iconSaveFilter, () => this.getSelectedFilterParams());
         this.$betListTableContainer.find('[data-toggle="tooltip"]').tooltip();
 
-        const filterId = this.dropdownFilter.find("option:selected:first").val();
+        const filterId = this.dropdownFilter.find(":selected").val();
         this.iconSaveFilter.toggleClass("hide", filterId !== "0");
-        if (filterId === "-1") {
+        if (!filterId) {
             this.autoRefreshComponent.disable();
         } else if (this.autoRefreshComponent.isOn()) {
             this.autoRefreshComponent.start();
         }
+
+        this.initFeedback();
     }
 
-    private cacheElements = () => {
+    private cacheElements() {
         this.$msgError = $("#msg-error");
         this.$betListTableContainer = $("#bet-list-table-container");
         this.getBetsUrl = $("#get-bets-url").val();
 
         this.iconSaveFilter = $("#icon-save-filter");
-        this.dropdownFilter = $("#monitoring-bets-filter");
-        this.dropdownMostRecentTicket = $("#most-recent-tickets");
-    };
+    }
 
-    private registerEvents = () => {
+    private registerEvents() {
         this.registerToggleFilter();
 
-        this.dropdownFilter.multiselect({
-            maxHeight: 300,
-            onChange: (selectedOption) => {
-                const filterId = selectedOption.val();
-                if (filterId === "-1") {
-                    this.autoRefreshComponent.stop();
-                    this.autoRefreshComponent.disable();
-                } else {
-                    this.loadLastBets(true)
-                    this.autoRefreshComponent.enable();
-                }
+        this.dropdownFilter = $("#monitoring-bets-filter").select2({
+            minimumResultsForSearch: -1
+        });
+        this.dropdownFilter.on("change.select2", () => {
+            this.loadLastBets(true)
+            this.autoRefreshComponent.enable()
+            this.autoRefreshComponent.start();
 
-                this.iconSaveFilter.toggleClass("hide", filterId !== "0");
-                Common.Utils.UpdateCurrentUrl(this.getSelectedFilterParams());
-            }
+            const filterId = this.dropdownFilter.find(":selected").val();
+            this.iconSaveFilter.toggleClass("hide", filterId !== "0");
+
+            Common.Utils.UpdateCurrentUrl(this.getSelectedFilterParams());
         });
 
-        this.dropdownMostRecentTicket.multiselect({
-            onChange: () => {
-                if (this.dropdownFilter.find("option:selected:first").val() !== "-1") {
-                    this.loadLastBets(true);
-                    Common.Utils.UpdateCurrentUrl(this.getSelectedFilterParams());
-                }
+        this.dropdownMostRecentTicket = $("#most-recent-tickets").select2({
+            minimumResultsForSearch: -1
+        });
+        this.dropdownMostRecentTicket.on("change.select2", () => {
+            if (this.dropdownFilter.find(":selected").val()) {
+                this.loadLastBets(true);
+                Common.Utils.UpdateCurrentUrl(this.getSelectedFilterParams());
             }
         });
 
@@ -100,7 +98,7 @@ class MonitoringBetsView {
             const url = `${$this.attr("href")}?${$.param(this.getSelectedFilterParams())}`;
             $this.attr("href", url);
         });
-    };
+    }
 
     private registerToggleFilter() {
         const filterContainer = $("#form-monitoring-bets");
@@ -120,6 +118,26 @@ class MonitoringBetsView {
                 filterContainer.removeClass("hide");
             }
         });
+    }
+
+    private initFeedback() {
+        setTimeout(function () {
+            const feedbackId = 4;
+            const popupHeight = 450;
+            if ($("#hidden-IsInternal").val() === "1") {
+                let mainDomain = $("#MainDomain").val();
+                mainDomain = mainDomain.indexOf("http") === -1
+                    ? location.origin.split(":")[0] + ":" + mainDomain + "/site-main"
+                    : mainDomain;
+                window.top.postMessage({
+                    event_id: "winlossdetailnew-feedback",
+                    feedback_id: feedbackId,
+                    popup_height: popupHeight
+                }, mainDomain);
+            } else {
+                window.top.indexManager.initFeedbackFunction(feedbackId, undefined, popupHeight);
+            }
+        }, 1000);
     }
 
     private setTransIdCacheKeyByFilter(lastTransId, lastestTransId) {
@@ -146,7 +164,7 @@ class MonitoringBetsView {
     private getParam() {
         let lastTransId = this.localStorage.get(this.lastTransIdCacheKeyByFilter);
         let latestTransId = this.localStorage.get(this.latestTransIdCacheKeyByFilter);
-        const selectedFilter = this.dropdownFilter.find("option:selected:first");
+        const selectedFilter = this.dropdownFilter.find(":selected");
 
         const FilterId = selectedFilter.val();
         const MemberList = selectedFilter.data("members");
@@ -156,7 +174,7 @@ class MonitoringBetsView {
         const EvenStatus = selectedFilter.data("event-status");
         const MinStake = selectedFilter.data("stake");
         const FilterByMembers = selectedFilter.data("filter-by-member");
-        const LimitRowCount = this.dropdownMostRecentTicket.find("option:selected:first").val();
+        const LimitRowCount = this.dropdownMostRecentTicket.find(":selected").val();
 
         return {
             FilterId,
@@ -173,9 +191,9 @@ class MonitoringBetsView {
         };
     }
 
-    private abortRequest = () => {
+    private abortRequest() {
         this.ajaxRequest && this.ajaxRequest.abort();
-    };
+    }
 
     private successGetLastBets = (responseHtml: any) => {
         if ((responseHtml.ErrorCode && responseHtml.ErrorCode !== "0") ||
@@ -204,10 +222,10 @@ class MonitoringBetsView {
         this.isCalling = false;
     };
 
-    private showError = () => {
+    private showError() {
         this.$msgError.removeClass("hide");
         // protection level, avoid through too many exceptions on server
-    };
+    }
 
     private completeGetLastBets = () => {
         this.autoRefreshComponent.isOn() && this.autoRefreshComponent.start();
@@ -215,8 +233,8 @@ class MonitoringBetsView {
 
     private getSelectedFilterParams(autoStart = undefined) {
         return {
-            filterName: $.trim(this.dropdownFilter.find("option:selected:first").text()),
-            limitRowCount: this.dropdownMostRecentTicket.find("option:selected:first").val(),
+            filterName: $.trim(this.dropdownFilter.find(":selected").text()),
+            limitRowCount: this.dropdownMostRecentTicket.find(":selected").val(),
             autoStart: autoStart || this.autoRefreshComponent.isOn()
         }
     }

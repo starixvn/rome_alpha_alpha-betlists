@@ -5,6 +5,7 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using System.Web.SessionState;
+    using Alpha.BetLists.Configurations;
     using Alpha.BetLists.Models;
     using Alpha.BetLists.Site.Requests.MonitoringBets;
     using Alpha.BetLists.Site.ViewModels.MonitoringBets;
@@ -33,7 +34,7 @@
                 return View(viewModel);
             }
 
-            return RedirectToAction(nameof(FilterConfiguration), new { welcome = true });
+            return RedirectPermanent($"~/{AppSettings.BetlistRouting}MonitoringBets/FilterConfiguration?welcome=true");
         }
 
         [HttpPost, DisableNetThrottling]
@@ -76,7 +77,9 @@
 
         [HttpPost, AntiXsrfFilter]
         public async Task<ActionResult> ApplyFilter(ApplyFilterCommand message)
-            => Json(await ValidateAndDoAction(message), JsonRequestBehavior.DenyGet);
+            => Json(
+                message.IsValid() ? await mediator.Send(message) : BadRequestResult(),
+                JsonRequestBehavior.DenyGet);
 
         [HttpPost, AntiXsrfFilter]
         public async Task<ActionResult> AddFilter(AddFilterCommand message)

@@ -35,11 +35,13 @@
                 @Resources.MyFilters
                 <span class="icon-save hide" id="icon-save-filter"></span>
             </label>
-            <select id="monitoring-bets-filter">
+            <select id="monitoring-bets-filter" style="width: 160px" data-placeholder="@Resources.PleaseSelect">
+                @if (Model.IsShowFilterPlaceHolder)
+                {
+                    <option></option>}
                 @foreach (var savedFilter in Model.Filters)
                 {
                     <option value="@savedFilter.FilterId"
-                            data-filter-id="@savedFilter.FilterId"
                             data-members="@savedFilter.Members"
                             data-bet-types="@savedFilter.BetTypes"
                             data-sport-types="@savedFilter.SportTypes"
@@ -58,7 +60,7 @@
         </div>
         <div class="form-group">
             <label class="label-form-control">@Resources.MostRecentTickets</label>
-            @Html.DropDownList("most-recent-tickets", Model.MostRecentTickets, new { id = "most-recent-tickets" })
+            @Html.DropDownList("most-recent-tickets", Model.MostRecentTickets, new { id = "most-recent-tickets", style = "width: 160px" })
         </div>
         @AutoRefresh.Render(Model.AutoRefreshSeconds, Model.AutoRefreshSeconds[1], Model.AutoStart && Model.FilterId != -1)
         <div class="form-group">
@@ -99,6 +101,7 @@
 </div>
 @Html.Hidden("betlist-path", Response.ApplyAppPathModifier($"~/{AppSettings.BetlistRouting}"))
 @Html.Hidden("old-main-path", Model.OldMainPath)
+@Html.Hidden("hidden-IsInternal", Convert.ToByte(Model.IsInternal))
 @Html.Hidden("hidden-OnText", Resources.On)
 @Html.Hidden("hidden-OffText", Resources.Off)
 @Html.Hidden("hidden-CopyText", Resources.Copy)

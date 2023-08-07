@@ -63,17 +63,19 @@
         {
             var filters = await monitoringBetService.GetSavedFilters(message.ViewerId, message.SubAccId, AddFilterParamSession);
 
-            var filterId = 0;
+            var filterId = -1;
+            var isShowFilterPlaceHolder = true;
             long latestTransId = 0;
             BetListData betListData = null;
 
             if (filters.Any())
             {
                 var defaultFilter = GetDefaultFilter(filters, message.FilterName);
-                filterId = defaultFilter.FilterId;
-
-                if (filterId != -1)
+                if (defaultFilter != null)
                 {
+                    filterId = defaultFilter.FilterId;
+                    isShowFilterPlaceHolder = false;
+
                     var result = await GetMemberList(defaultFilter.Members, message.ViewerId, defaultFilter.FilterByMembers);
                     var memberList = result.Item1;
                     var memberInWatchlistIds = result.Item2;
@@ -99,6 +101,7 @@
             return new MonitoringBetsViewModel(
                 filterId,
                 filters,
+                isShowFilterPlaceHolder,
                 latestTransId,
                 LastTransIdCacheKeyByFilter(message.ViewerId, filterId),
                 LatestTransIdCacheKeyByFilter(message.ViewerId, filterId),
@@ -113,9 +116,8 @@
             var defaultFilter = string.IsNullOrWhiteSpace(filterName)
                 ? null
                 : filters.FirstOrDefault(f => f.FilterName.Equals(filterName, StringComparison.OrdinalIgnoreCase));
-            defaultFilter = defaultFilter ?? filters.FirstOrDefault(f => f.IsDefault);
 
-            return defaultFilter ?? filters.First();
+            return defaultFilter ?? filters.FirstOrDefault(f => f.IsDefault);
         }
 
         public async Task<ManageFiltersViewModel> Handle(ManageFiltersQuery message)

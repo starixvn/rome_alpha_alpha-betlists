@@ -9,6 +9,7 @@
         public MonitoringBetsQuery(IUser viewer) : base(viewer)
         {
             SubAccId = viewer.SubAccId;
+            IsInternal = viewer.IsInternal;
         }
 
         public string FilterName { get; set; }
@@ -18,5 +19,7 @@
         public bool AutoStart { get; set; } = true;
 
         public int SubAccId { get; }
+
+        public bool IsInternal { get; }
     }
 }

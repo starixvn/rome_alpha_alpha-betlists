@@ -13,6 +13,7 @@
         public MonitoringBetsViewModel(
             int filterId,
             IEnumerable<SavedFilter> filters,
+            bool isShowFilterPlaceHolder,
             long latestTransId,
             string lastTransIdCacheKeyByFilter,
             string latestTransIdCacheKeyByFilter,
@@ -30,6 +31,7 @@
         {
             FilterId = filterId;
             Filters = filters;
+            IsShowFilterPlaceHolder = isShowFilterPlaceHolder;
             MostRecentTickets = new[]
             {
                 BuildSelectListItem(100, 100 == query.LimitRowCount),
@@ -37,17 +39,22 @@
                 BuildSelectListItem(500, 500 == query.LimitRowCount)
             };
             AutoStart = query.AutoStart;
+            IsInternal = query.IsInternal;
         }
 
         public int FilterId { get; }
 
         public IEnumerable<SavedFilter> Filters { get; }
 
+        public bool IsShowFilterPlaceHolder { get; }
+
         public IEnumerable<SelectListItem> MostRecentTickets { get; }
 
         public int[] AutoRefreshSeconds { get; } = new[] { 30, 60, 90 };
 
         public bool AutoStart { get; }
+
+        public bool IsInternal { get; }
 
         private static SelectListItem BuildSelectListItem(int value, bool selected)
             => new SelectListItem { Text = value.ToString(), Value = value.ToString(), Selected = selected };

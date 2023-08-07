@@ -92,11 +92,6 @@
                 filterConfiguration.Insert(0, BuildSavedFilter(customFilter));
             }
 
-            if (filterConfiguration.Count > 0 && !filterConfiguration.Any(f => f.IsDefault))
-            {
-                filterConfiguration.Insert(0, new SavedFilter());
-            }
-
             return filterConfiguration;
         }
 

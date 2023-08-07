@@ -21,7 +21,7 @@
 <div class="manage-filters">
     <div id="inline-message" class="msg hide"></div>
     <div class="block-btn">
-        @Html.ActionLink(Resources.Back, "Index", new { FilterName = Model.FilterName, LimitRowCount = Model.LimitRowCount, AutoStart = Model.AutoStart }, new { @class = "button-cancel" })
+        <a class="button-cancel" href="@Url.Action("Index", $"{AppSettings.BetlistRouting}MonitoringBets", new { FilterName = Model.FilterName, LimitRowCount = Model.LimitRowCount, AutoStart = Model.AutoStart })">@Resources.Back</a>
         <button type="button" class="button-remove" id="btn-delete-all-filters" @(hasData ? string.Empty : "disabled")>@Resources.RemoveAllFilters</button>
     </div>
     <table class="tb tb-bordered tb-hover w-full" id="table-manage-filters">

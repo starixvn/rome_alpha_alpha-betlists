@@ -88,6 +88,7 @@ namespace Alpha.BetLists.Site.Tests.Handler.MonitoringBets
             var expectedViewModel = new MonitoringBetsViewModel(
                 0,
                 new List<SavedFilter>(),
+                false,
                 0,
                 "EncodedString",
                 "EncodedString",
