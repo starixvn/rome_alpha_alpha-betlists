@@ -71,7 +71,8 @@ var MonitoringBetsView = /** @class */ (function () {
         var _this = this;
         this.registerToggleFilter();
         this.dropdownFilter = $("#monitoring-bets-filter").select2({
-            minimumResultsForSearch: -1
+            minimumResultsForSearch: -1,
+            dropdownAutoWidth: true
         });
         this.dropdownFilter.on("change.select2", function () {
             _this.loadLastBets(true);

@@ -1,4 +1,70 @@
 "use strict";
+var AJAXHelper = /** @class */ (function () {
+    function AJAXHelper() {
+    }
+    AJAXHelper.getJSONWithoutBlockUI = function (url, onSuccess) {
+        var _this = this;
+        $.getJSON(url, onSuccess).fail(function (jqXHR) { return _this.handleOnFail(jqXHR); });
+    };
+    AJAXHelper.post = function (url, formData, onSuccess, onComplete) {
+        var _this = this;
+        $.blockUI();
+        return $.ajax({
+            url: url,
+            headers: {
+                __RequestVerificationToken: $("input[name='__RequestVerificationToken']").val(),
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            type: "POST",
+            data: formData,
+            success: function (result) {
+                onSuccess(result);
+                $.unblockUI();
+            },
+            error: function (jqXHR) { return _this.handleOnFail(jqXHR); },
+            complete: onComplete
+        });
+    };
+    AJAXHelper.handleOnFail = function (jqXHR) {
+        $.unblockUI();
+        if (jqXHR) {
+            if (jqXHR.statusText === "abort") {
+                return;
+            }
+            if (jqXHR.status === 401) {
+                window.top["age"].SignOut();
+            }
+            else if (jqXHR.status === 500 && jqXHR.responseText) {
+                var jsonData = JSON.parse(jqXHR.responseText);
+                if (jsonData.UMFrom && jsonData.UMTo) {
+                    location.href = window.top["alpha"].urls.mainRootPath + "PartialUM/Index?umfrom=" + jsonData.UMFrom + "&umto=" + jsonData.UMTo;
+                }
+            }
+        }
+    };
+    AJAXHelper.get = function (url, formData, onSuccess, onComplete) {
+        var _this = this;
+        $.blockUI();
+        return $.ajax({
+            url: url,
+            headers: {
+                __RequestVerificationToken: $("input[name='__RequestVerificationToken']").val(),
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            type: "GET",
+            data: formData,
+            success: function (result) {
+                onSuccess(result);
+                $.unblockUI();
+            },
+            error: function (jqXHR) { return _this.handleOnFail(jqXHR); },
+            complete: onComplete
+        });
+    };
+    return AJAXHelper;
+}());
+//# sourceMappingURL=ajax-helper.js.map
+"use strict";
 var defaultValue = 60;
 var AutoRefreshOption = /** @class */ (function () {
     function AutoRefreshOption(onText, offText, callback) {
@@ -79,209 +145,92 @@ var AutoRefreshComponent = /** @class */ (function () {
 }());
 //# sourceMappingURL=autorefresh.js.map
 "use strict";
-var AJAXHelper = /** @class */ (function () {
-    function AJAXHelper() {
+var InlineMessageComponent = /** @class */ (function () {
+    function InlineMessageComponent(selectorId) {
+        if (selectorId === void 0) { selectorId = "inline-message"; }
+        this.inlineMessage = $("#" + selectorId);
     }
-    AJAXHelper.getJSONWithoutBlockUI = function (url, onSuccess) {
-        var _this = this;
-        $.getJSON(url, onSuccess).fail(function (jqXHR) { return _this.handleOnFail(jqXHR); });
+    InlineMessageComponent.prototype.getInlineMessage = function () {
+        return this.inlineMessage;
     };
-    AJAXHelper.post = function (url, formData, onSuccess, onComplete) {
-        var _this = this;
-        $.blockUI();
-        return $.ajax({
-            url: url,
-            headers: {
-                __RequestVerificationToken: $("input[name='__RequestVerificationToken']").val(),
-                'X-Requested-With': 'XMLHttpRequest'
-            },
-            type: "POST",
-            data: formData,
-            success: function (result) {
-                onSuccess(result);
-                $.unblockUI();
-            },
-            error: function (jqXHR) { return _this.handleOnFail(jqXHR); },
-            complete: onComplete
-        });
+    InlineMessageComponent.prototype.show = function (result) {
+        this.inlineMessage
+            .html(result.ErrMsg)
+            .removeClass("msg-error msg-success hide")
+            .addClass(result.ErrCode ? "msg-error" : "msg-success");
     };
-    AJAXHelper.handleOnFail = function (jqXHR) {
-        $.unblockUI();
-        if (jqXHR) {
-            if (jqXHR.statusText === "abort") {
-                return;
-            }
-            if (jqXHR.status === 401) {
-                window.top["age"].SignOut();
-            }
-            else if (jqXHR.status === 500 && jqXHR.responseText) {
-                var jsonData = JSON.parse(jqXHR.responseText);
-                if (jsonData.UMFrom && jsonData.UMTo) {
-                    location.href = window.top["alpha"].urls.mainRootPath + "PartialUM/Index?umfrom=" + jsonData.UMFrom + "&umto=" + jsonData.UMTo;
-                }
-            }
+    InlineMessageComponent.prototype.showError = function (message) {
+        this.show({ ErrCode: 1, ErrMsg: message });
+    };
+    InlineMessageComponent.prototype.showSuccess = function (message) {
+        this.show({ ErrCode: 0, ErrMsg: message });
+    };
+    InlineMessageComponent.prototype.hide = function () {
+        this.inlineMessage.addClass("hide").html("");
+    };
+    return InlineMessageComponent;
+}());
+//# sourceMappingURL=inline-message.js.map
+"use strict";
+var SaveFilterView = /** @class */ (function () {
+    function SaveFilterView() {
+    }
+    SaveFilterView.prototype.init = function (element) {
+        var _this = this;
+        if (element.length) {
+            var saveFilterPopup_1 = $("#save-filter-popup");
+            this.inlineMessagePopup = new InlineMessageComponent("inline-message-popup");
+            this.filterNameInput = saveFilterPopup_1.find("#txt-filterName");
+            this.isDefaultCheckbox = saveFilterPopup_1.find("#chk-isDefault");
+            saveFilterPopup_1
+                .on("shown.bs.modal", function () { return _this.filterNameInput.focus(); })
+                .on("hide.bs.modal", function () {
+                _this.filterNameInput.val("");
+                TipsyHelper.clear(_this.filterNameInput);
+                _this.isDefaultCheckbox.prop("checked", false);
+                _this.inlineMessagePopup.hide();
+            });
+            saveFilterPopup_1.find("#btn-save-filter-popup").click(function () { return _this.handleSaveFilterPopup(function () { return Common.Utils.ReloadPageAfterTimeout(_this.getCurrentUrlWithoutQueryString()); }); });
+            /*saveFilterPopup.find("#btn-save-filter-apply-popup").click(
+                () => this.handleSaveFilterPopup(() => {
+                    const url = this.getCurrentUrlWithoutQueryString();
+                    const mainPage = this.getMainPageUrl(url);
+                    Common.Utils.ReloadPageAfterTimeout(`${mainPage}?filterName=${this.addFilterFormData.filterName}`);
+                })
+            );*/
+            element.click(function () {
+                saveFilterPopup_1.modal("show");
+            });
         }
     };
-    AJAXHelper.get = function (url, formData, onSuccess, onComplete) {
+    SaveFilterView.prototype.handleSaveFilterPopup = function (reloadPageCallback) {
         var _this = this;
-        $.blockUI();
-        return $.ajax({
-            url: url,
-            headers: {
-                __RequestVerificationToken: $("input[name='__RequestVerificationToken']").val(),
-                'X-Requested-With': 'XMLHttpRequest'
-            },
-            type: "GET",
-            data: formData,
-            success: function (result) {
-                onSuccess(result);
-                $.unblockUI();
-            },
-            error: function (jqXHR) { return _this.handleOnFail(jqXHR); },
-            complete: onComplete
-        });
+        var formDataPopup = this.getFormDataPopup();
+        if (formDataPopup) {
+            AJAXHelper.post($("#hidden-SaveFilterUrl").val(), formDataPopup, function (result) {
+                _this.inlineMessagePopup.show(result);
+                !result.ErrCode && reloadPageCallback();
+            });
+        }
     };
-    return AJAXHelper;
+    SaveFilterView.prototype.getFormDataPopup = function () {
+        var filterName = $.trim(this.filterNameInput.val());
+        if (!filterName.length) {
+            TipsyHelper.showError(this.filterNameInput, $("#hidden-FilterNameRequiredError").val());
+            return;
+        }
+        var isDefault = this.isDefaultCheckbox.is(":checked");
+        return {
+            filterName: filterName,
+            isDefault: isDefault
+        };
+    };
+    SaveFilterView.prototype.getCurrentUrlWithoutQueryString = function () {
+        return window.location.href.split("?")[0];
+    };
+    return SaveFilterView;
 }());
-//# sourceMappingURL=ajax-helper.js.map
-"use strict";
-var AlphaCore = /** @class */ (function () {
-    function AlphaCore($, store) {
-        var _this = this;
-        this.nonDigitalCharsRegex = /\D/g;
-        this.leadingZerosRegex = /^0+(?!$)/;
-        this.thousandsSeparatorRegex = /\B(?=(\d{3})+(?!\d))/g;
-        this.format = {
-            monthFormat: "MMMM - yyyy",
-            shortDateWithSlash_DatePicker: "MM/DD/YYYY",
-            shortDateWithSlash_MonthPicker: "MM/dd/yyyy",
-            dayMonthName: "DD MMM",
-            day: "DD"
-        };
-        this.sort = {
-            none: 0,
-            ascending: 1,
-            descending: -1
-        };
-        this.keyCode = {
-            enter: 13
-        };
-        this.numberDisplayedProductsOnFilter = 1;
-        this.maxTimesToShowTooltip = 5;
-        this.screenSmallThan768 = function () {
-            var currentWindowWidth = screen.width || _this.$(window).width();
-            return currentWindowWidth < 768;
-        };
-        this.splitCell = function (firstCell, cellClass, lastCellStyle) {
-            if (cellClass === void 0) { cellClass = ""; }
-            if (lastCellStyle === void 0) { lastCellStyle = "bold"; }
-            var this$ = _this.$;
-            var combinedCells = _this.$("." + firstCell + "-combined");
-            combinedCells.each(function (index) {
-                var oldValues = this$(this).find("li");
-                var cellsLength = oldValues.length;
-                var oldCells = "";
-                for (var i = 0, lastCellIndex = cellsLength - 1; i < cellsLength; i++) {
-                    oldCells += "<td class=\"hidden-stack-mode " + cellClass +
-                        (i === lastCellIndex ? " " + lastCellStyle : "") + "\">" +
-                        this$(oldValues[i]).html() +
-                        "</td>";
-                }
-                this$(combinedCells[index]).before(oldCells);
-            });
-        };
-        this.localStorage = {
-            get: function (key) {
-                return _this.store.enabled ? _this.store.get(key) : _this.$.cookie(key);
-            },
-            set: function (key, value) {
-                _this.store.enabled ? _this.store.set(key, value) : _this.$.cookie(key, value, _this.localStorage.getCookieExpireOptions());
-            },
-            getCookieExpireOptions: function () {
-                var cookieExpire = { expires: 365, path: window.location.pathname };
-                if (_this.isIe()) {
-                    cookieExpire = { expires: 365 };
-                }
-                return cookieExpire;
-            }
-        };
-        this.combineConsecutiveCells = function (firstCells, numberOfCombinedCells, combinedCellClass, combinedCellColSpan) {
-            if (combinedCellColSpan === void 0) { combinedCellColSpan = 1; }
-            if (numberOfCombinedCells <= 1) {
-                return;
-            }
-            var this$ = _this.$;
-            firstCells.each(function (index) {
-                var newCell = "<td class=\"visible-stack-mode combinedcell " +
-                    combinedCellClass + "\" colspan=\"" + combinedCellColSpan + "\">\
-                    <ul>";
-                var currentCell = this$(firstCells[index]);
-                var isLastCell = false;
-                for (var i = 0; i < numberOfCombinedCells; i++) {
-                    newCell += "<li>" + currentCell.html() + "</li>";
-                    if (currentCell.next().length) {
-                        currentCell = currentCell.next();
-                    }
-                    else {
-                        isLastCell = true;
-                    }
-                }
-                newCell += "</ul>\
-                        </td>";
-                if (isLastCell) {
-                    currentCell.after(newCell);
-                }
-                else {
-                    currentCell.prev().after(newCell);
-                }
-            });
-        };
-        this.isIe = function () {
-            var ua = window.navigator.userAgent;
-            var msie = ua.indexOf("MSIE ");
-            return msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./);
-        };
-        this.replaceQueryStringValue = function (queryString, paramName, paramValue) {
-            if (typeof queryString === "undefined"
-                || queryString === null) {
-                return "";
-            }
-            var regex = new RegExp("([?&])" + paramName + "=[^&]*", "i");
-            var newQueryString = regex.test(queryString)
-                ? queryString.replace(regex, "$1" + paramName + "=" + paramValue)
-                : queryString + (queryString.indexOf("?") >= 0 ? "&" : "?") + paramName + "=" + paramValue;
-            return newQueryString;
-        };
-        this.correctEvenRowClass = function ($tableReport) {
-            var this$ = _this.$;
-            var isEvenRow = false;
-            $tableReport.find("tbody > tr").each(function () {
-                var $row = this$(this);
-                if ($row.hasClass("even-row") && !isEvenRow) {
-                    $row.removeClass("even-row");
-                }
-                else if (!$row.hasClass("even-row") && isEvenRow) {
-                    $row.addClass("even-row");
-                }
-                isEvenRow = !isEvenRow;
-            });
-        };
-        this.convertAttributeToBool = function (attrValue) {
-            return !!attrValue && attrValue.toString().toLowerCase() === "true";
-        };
-        this.formatNumber = function (value) { return value.toLocaleString("en-US"); };
-        this.formatCurrency = function (value) { return value.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,"); };
-        this.forceInputDecimal = function (value) { return value
-            .replace(_this.nonDigitalCharsRegex, "")
-            .replace(_this.leadingZerosRegex, "")
-            .replace(_this.thousandsSeparatorRegex, ","); };
-        this.$ = $;
-        this.store = store;
-    }
-    return AlphaCore;
-}());
-var alphaReports = new AlphaCore($, store);
-//# sourceMappingURL=core.js.map
+//# sourceMappingURL=save-filter.js.map
 "use strict";
 var MonitoringBetsCopyHtml = /** @class */ (function () {
     function MonitoringBetsCopyHtml() {
@@ -339,7 +288,7 @@ var MonitoringBetsCopyHtml = /** @class */ (function () {
 //# sourceMappingURL=monitoring-bets-copyhtml.js.map
 "use strict";
 var MonitoringBetsView = /** @class */ (function () {
-    function MonitoringBetsView(autoRefreshComponent, monitoringBetsCopyHtml) {
+    function MonitoringBetsView(autoRefreshComponent, monitoringBetsCopyHtml, saveFilter) {
         var _this = this;
         this.getBetsUrl = "";
         this.isCalling = false;
@@ -403,6 +352,7 @@ var MonitoringBetsView = /** @class */ (function () {
         };
         this.autoRefreshComponent = autoRefreshComponent;
         this.monitoringBetsCopyHtml = monitoringBetsCopyHtml;
+        this.saveFilter = saveFilter;
     }
     MonitoringBetsView.prototype.init = function () {
         this.localStorage = alphaReports.localStorage;
@@ -412,6 +362,7 @@ var MonitoringBetsView = /** @class */ (function () {
         this.setTransId($("#last-trans-id").val(), $("#latest-trans-id").val());
         this.autoRefreshComponent.start();
         this.monitoringBetsCopyHtml.init();
+        this.saveFilter.init($("#icon-save"));
         this.$betListTableContainer.find('[data-toggle="tooltip"]').tooltip();
     };
     MonitoringBetsView.prototype.registerToggleFilter = function () {
@@ -472,6 +423,6 @@ var MonitoringBetsView = /** @class */ (function () {
     return MonitoringBetsView;
 }());
 $(function () {
-    new MonitoringBetsView(new AutoRefreshComponent(), new MonitoringBetsCopyHtml()).init();
+    new MonitoringBetsView(new AutoRefreshComponent(), new MonitoringBetsCopyHtml(), new SaveFilterView()).init();
 });
 //# sourceMappingURL=monitoring-bets.js.map

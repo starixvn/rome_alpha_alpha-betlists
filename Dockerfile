@@ -42,6 +42,7 @@ RUN `
 		App_Data\SPNames\Docker\DBAGE.bodb_AGE.BODBDownlineNet.xml, `
 		App_Data\SPNames\Docker\DBAGE.bodb02.BODBDownlineNet.xml, `
 		App_Data\SPNames\Docker\DBARC.bodb_Archive.BODBDownlineNet.xml, `
+		App_Data\SPNames\Docker\DBBOF.bodb02.BODBDownlineNet.xml, `
 		App_Data\SPNames\Docker\DBCust.CustDB.BODBDownlineNet.xml, `
 		App_Data\SPNames\Docker\DBCust.IPDB.BODBDownlineNet.xml, `
 		App_Data\SPNames\Docker\DBLOG.bodb_CustomerLog.BODBDownlineNet.xml, `
@@ -51,6 +52,7 @@ RUN `
 		App_Data\SPNames\Internal\DBAGE.bodb_AGE.BODBDownlineNetView.xml, `
 		App_Data\SPNames\Internal\DBAGE.bodb02.BODBDownlineNetView.xml, `
 		App_Data\SPNames\Internal\DBARC.bodb_Archive.BODBDownlineNetView.xml, `
+		App_Data\SPNames\Internal\DBBOF.bodb02.BODBDownlineNetView.xml, `
 		App_Data\SPNames\Internal\DBCust.CustDB.BODBDownlineNetView.xml, `
 		App_Data\SPNames\Internal\DBCust.IPDB.BODBDownlineNet.xml, `
 		App_Data\SPNames\Internal\DBLOG.bodb_CustomerLog.BODBDownlineNetView.xml, `
