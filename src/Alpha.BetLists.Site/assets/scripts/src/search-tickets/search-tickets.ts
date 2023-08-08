@@ -1,6 +1,6 @@
 ﻿"use strict";
 
-class FindTicketView {
+class SearchTicketView {
     $: JQueryStatic;
 
     $refNo: JQuery;
@@ -86,8 +86,8 @@ class FindTicketView {
 }
 
 $(function () {
-    const findTicketView = new FindTicketView(
+    const searchTicketView = new SearchTicketView(
         $);
 
-    findTicketView.init();
+    searchTicketView.init();
 })

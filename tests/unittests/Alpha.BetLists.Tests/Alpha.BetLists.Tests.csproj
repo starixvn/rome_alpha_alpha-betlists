@@ -431,7 +431,7 @@
     <Compile Include="Services\ProductServiceImplTests.cs" />
     <Compile Include="Services\ReportDateServiceImplTests.cs" />
     <Compile Include="Services\WinLossByMatchServiceImplTests.cs" />
-    <Compile Include="Services\FindTicketsServiceTests.cs" />
+    <Compile Include="Services\SearchTicketsServiceTests.cs" />
     <Compile Include="Services\WinLossServiceTests.cs" />
     <Compile Include="TestData\LastBetsTestData.cs" />
     <Compile Include="TestData\UserLevelTestCases.cs" />

@@ -25,19 +25,20 @@ namespace Alpha.BetLists.Site.Tests.Controllers
             user.LevelId.Returns(UserLevel.Agent.Value);
             var reportDateService = Substitute.For<ReportDateService>();
             ReportDateServiceImpl.Instance = reportDateService;
+            reportDateService.GetBalanceUpDay().Returns(DefaultVariablesTest.BalanceUpDate);
             reportDateService.GetMoveBetsDay().Returns(DefaultVariablesTest.MoveBetDate);
 
             SearchTicketsController = new SearchTicketsController(mediator);
         }
 
         [Fact]
-        public void Index_Always_CallsMediatorSendSearchTicketsQuery()
+        public void BetData_Always_CallsMediatorSendSearchTicketsQuery()
         {
             // Arrange
             var message = new SearchTicketsQuery(user);
 
             // Act
-            SearchTicketsController.Index(message);
+            SearchTicketsController.BetData(message);
 
             // Assert
             mediator.Received().Send(message);

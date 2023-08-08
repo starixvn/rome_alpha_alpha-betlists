@@ -1,6 +1,6 @@
 "use strict";
-var FindTicketView = /** @class */ (function () {
-    function FindTicketView($) {
+var SearchTicketView = /** @class */ (function () {
+    function SearchTicketView($) {
         var _this = this;
         this.getBetsUrl = "";
         this.init = function () {
@@ -50,12 +50,12 @@ var FindTicketView = /** @class */ (function () {
         };
         this.$ = $;
     }
-    FindTicketView.prototype.registerEvents = function () {
+    SearchTicketView.prototype.registerEvents = function () {
         this.$submitButton.prop("disabled", true);
         this.$submitButton.on("click", this.getTickets);
         this.onChangeRefNoTextBox();
     };
-    FindTicketView.prototype.updateBtnStateOnTextChange = function () {
+    SearchTicketView.prototype.updateBtnStateOnTextChange = function () {
         var content = this.$("#ref-no").val().trim();
         if (content) {
             this.$("#ref-no").val(content);
@@ -65,10 +65,10 @@ var FindTicketView = /** @class */ (function () {
             this.$("#submit-betList-form").prop("disabled", true);
         }
     };
-    return FindTicketView;
+    return SearchTicketView;
 }());
 $(function () {
-    var findTicketView = new FindTicketView($);
-    findTicketView.init();
+    var searchTicketView = new SearchTicketView($);
+    searchTicketView.init();
 });
 //# sourceMappingURL=search-tickets.js.map
