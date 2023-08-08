@@ -39,6 +39,7 @@ var SearchTicketView = /** @class */ (function () {
                 return;
             }
             _this.$betListTableContainer.children('tbody').html(responseHtml);
+            _this.expandParlay();
         };
         this.onChangeRefNoTextBox = function () {
             _this.$refNo.on('change keyup', function () {
@@ -50,6 +51,11 @@ var SearchTicketView = /** @class */ (function () {
         };
         this.$ = $;
     }
+    SearchTicketView.prototype.expandParlay = function () {
+        var parlayClickableId = "#r" + this.$refNo.val() + " a#hidden0";
+        var parlayItem = $(parlayClickableId);
+        parlayItem && parlayItem[0] && parlayItem[0].click();
+    };
     SearchTicketView.prototype.registerEvents = function () {
         this.$submitButton.prop("disabled", true);
         this.$submitButton.on("click", this.getTickets);
@@ -68,7 +74,6 @@ var SearchTicketView = /** @class */ (function () {
     return SearchTicketView;
 }());
 $(function () {
-    var searchTicketView = new SearchTicketView($);
-    searchTicketView.init();
+    new SearchTicketView($).init();
 });
 //# sourceMappingURL=search-tickets.js.map

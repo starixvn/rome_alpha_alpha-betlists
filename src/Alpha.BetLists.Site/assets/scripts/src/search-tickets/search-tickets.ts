@@ -34,7 +34,7 @@ class SearchTicketView {
         }, 1000);
     };
 
-    cacheDOMElements = () => {
+    private cacheDOMElements = () => {
         this.$refNo = this.$("#ref-no");
         this.$submitButton = this.$("#submit-betList-form");
         this.$betListTableContainer = this.$("#tbl-betlist");
@@ -55,15 +55,22 @@ class SearchTicketView {
 
         this.$betListTableContainer.children('tbody').html(responseHtml);
 
+        this.expandParlay();
     };
 
-    registerEvents() {
+    private expandParlay() {
+        const parlayClickableId = `#r${this.$refNo.val()} a#hidden0`;
+        const parlayItem = $(parlayClickableId);
+        parlayItem && parlayItem[0] && parlayItem[0].click();
+    }
+
+    private registerEvents() {
         this.$submitButton.prop("disabled", true);
         this.$submitButton.on("click", this.getTickets);
         this.onChangeRefNoTextBox();
     }
 
-    onChangeRefNoTextBox = () => {
+    private onChangeRefNoTextBox = () => {
         this.$refNo.on('change keyup', () => {
             this.updateBtnStateOnTextChange();
         });
@@ -73,7 +80,7 @@ class SearchTicketView {
         });
     }
 
-    updateBtnStateOnTextChange() {
+    private updateBtnStateOnTextChange() {
         const content = this.$("#ref-no").val().trim();
         if (content) {
             this.$("#ref-no").val(content);
@@ -86,8 +93,5 @@ class SearchTicketView {
 }
 
 $(function () {
-    const searchTicketView = new SearchTicketView(
-        $);
-
-    searchTicketView.init();
+    new SearchTicketView($).init();
 })
