@@ -377,7 +377,7 @@
     <Compile Include="Criteria\LastBets\GetRunningOutrightMatchCriteriaTests.cs" />
     <Compile Include="Criteria\MemberBetList\GetBetListAllByDateCriteriaTests.cs" />
     <Compile Include="Criteria\RiskAnalysisIPMatching\GetRiskAnalysisIPMatchingCriteriaTests.cs" />
-    <Compile Include="Criteria\FindTickets\FindTicketsCriteriaTests.cs" />
+    <Compile Include="Criteria\SearchTickets\SearchTicketsCriteriaTests.cs" />
     <Compile Include="Criteria\SmartPunter\InternalAdminCheckerCommandTests.cs" />
     <Compile Include="Criteria\SmartPunter\NAPUserPermissionCriteriaTests.cs" />
     <Compile Include="Criteria\SmartPunter\SmartPunterSMACheckerCommandTests.cs" />
