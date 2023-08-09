@@ -114,34 +114,35 @@
 
         private static Tuple<string, string> BuildSportTypesAndLeagues(IEnumerable<SportXml> sportXmlList)
         {
+            if (sportXmlList.Any(
+                s => s.Sport.Equals("0", StringComparison.OrdinalIgnoreCase)
+                    && s.League.Equals("0", StringComparison.OrdinalIgnoreCase)))
+            {
+                return Tuple.Create("0", "0");
+            }
+
             var sportTypes = new HashSet<string>();
             var leagues = new HashSet<string>();
 
             foreach (var item in sportXmlList)
             {
-                if (!item.Sport.Equals("0", StringComparison.OrdinalIgnoreCase))
+                foreach (var sport in item.Sport.SplitByCommaWithNoneEmptyEntries())
                 {
-                    foreach (var sport in item.Sport.SplitByCommaWithNoneEmptyEntries())
+                    if (item.League.Equals("0", StringComparison.OrdinalIgnoreCase))
                     {
-                        if (item.League.Equals("0", StringComparison.OrdinalIgnoreCase))
+                        sportTypes.Add(sport);
+                    }
+                    else
+                    {
+                        foreach (var league in item.League.SplitByCommaWithNoneEmptyEntries())
                         {
-                            sportTypes.Add(sport);
-                        }
-                        else
-                        {
-                            foreach (var league in item.League.SplitByCommaWithNoneEmptyEntries())
-                            {
-                                leagues.Add(league);
-                            }
+                            leagues.Add(league);
                         }
                     }
                 }
             }
 
-            var sportTypeIds = sportTypes.Count == 0 ? "0" : string.Join(",", sportTypes);
-            var leagueIds = leagues.Count == 0 ? "0" : string.Join(",", leagues);
-
-            return Tuple.Create(sportTypeIds, leagueIds);
+            return Tuple.Create(string.Join(",", sportTypes), string.Join(",", leagues));
         }
 
         private static string BuildMembers(byte filterByMembers, string members, string myWatchlistMembers)

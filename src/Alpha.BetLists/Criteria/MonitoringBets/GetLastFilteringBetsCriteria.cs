@@ -19,8 +19,8 @@
             TransId = transId;
             MemberList = memberList;
             BetTypeList = betTypeList;
-            SportTypeList = sportTypeList;
-            LeagueList = leagueList;
+            SportTypeList = sportTypeList ?? string.Empty;
+            LeagueList = leagueList ?? string.Empty;
             LiveIndicator = liveIndicator;
             MinStake = minStake;
             LimitRowCount = limitRowCount;
@@ -49,8 +49,6 @@
 
         public override bool IsValid()
             => !string.IsNullOrWhiteSpace(BetTypeList)
-            && !string.IsNullOrWhiteSpace(SportTypeList)
-            && !string.IsNullOrWhiteSpace(LeagueList)
             && MinStake >= 0
             && LimitRowCount > 0;
     }

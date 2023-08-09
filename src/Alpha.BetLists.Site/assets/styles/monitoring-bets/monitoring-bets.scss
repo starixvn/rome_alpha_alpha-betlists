@@ -3,23 +3,14 @@
 
 :root {
     --main-color: #333333;
-    --color-minus: #DD3333;
-    --color-bettype: #3873E9;
-    --color-favorite: #DD3333;
 }
 
 :root [data-theme='light'] {
     --main-color: #333333;
-    --color-minus: #DD3333;
-    --color-bettype: #3873E9;
-    --color-favorite: #DD3333;
 }
 
 :root [data-theme='dark'] {
     --main-color: #ededed;
-    --color-minus: #E54748;
-    --color-bettype: #41A4FF;
-    --color-favorite: #E54748;
 }
 #info-note.message-modal {
     width: auto;
@@ -132,30 +123,17 @@
         width: 100px;
     }
 
-    .bl_underdog, .underdog, .bl_btype, .bettype, oddstype, .minus-value, .bl_favorite, .favorite {
-        font-weight: normal !important;
-    }
-
-    .bl_btype, .bettype {
-        color: var(--color-bettype);
-    }
 
     .oddstype {
         color: var(--main-color);
     }
 
-    .minus-value {
-        color: var(--color-minus);
-    }
-
-    .bl_favorite, .favorite {
-        color: var(--color-favorite);
-    }
-
     .w-order {
-        color: var(--main-color);
-        font-weight: normal;
         text-align: right;
+    }
+
+    .country {
+        font-size: 11px;
     }
 
     .line-username {
