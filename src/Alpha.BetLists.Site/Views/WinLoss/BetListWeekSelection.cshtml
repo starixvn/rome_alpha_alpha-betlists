@@ -15,4 +15,4 @@
         </ul>
     </div>
 </div>
-@Html.Partial("~/Views/Shared/WinLossTable.cshtml", Model)
+@Html.Partial("~/Views/Shared/WinLossTable.cshtml", Model, new ViewDataDictionary { ["WinLossBetListNew"] = true })

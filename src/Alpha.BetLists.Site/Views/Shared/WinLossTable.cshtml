@@ -1,5 +1,8 @@
 ﻿@using Alpha.BetLists.Site.ViewModels.WinLoss
 @model WinLossViewModel
+@{
+    var isWinLossBetListNew = ViewData != null && ViewData.ContainsKey("WinLossBetListNew");
+}
 <div class="scrollable">
     <table class="tblRpt tblRpt-bordered tblRpt-striped width-100per tablesorter tblRpt-hover tbl-betlist tblRpt-freeze-header" id="tbl-betlist">
         <thead>
@@ -65,7 +68,25 @@
         }
         else
         {
-            @Common.NoInfomation.Render(Model.TotalColumn)
+            if (isWinLossBetListNew)
+            {
+                <tbody>
+                    <tr>
+                    @if (string.IsNullOrWhiteSpace(Model.BetlistOutputParams.ErrMsg))
+                    {
+                        <td colspan="@Model.TotalColumn" class="text-center">@Resources.NoInformationIsAvailable</td>
+                    }
+                    else
+                    {
+                        <td colspan="@Model.TotalColumn" class="text-center error-exceed-row">@Model.BetlistOutputParams.ErrMsg</td>
+                    }
+                    </tr>
+                </tbody>
+            }
+            else
+            {
+                @Common.NoInfomation.Render(Model.TotalColumn)
+            }
         }
     </table>
 </div>

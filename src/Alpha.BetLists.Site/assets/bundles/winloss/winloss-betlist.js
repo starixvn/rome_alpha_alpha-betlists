@@ -456,9 +456,6 @@ var WinLossBetListView = /** @class */ (function () {
         this.betListWeekSelection = $("#betlist-week-selection");
         this.betListUrl = betlistPath + "winloss/betlist?";
         this.tableBetList = this.betListWeekSelection.find("#tbl-betlist");
-        var errorExceedRow = $("#error-exceed-row");
-        errorExceedRow.length
-            && this.tableBetList.find("tbody tr:first td").addClass("error-exceed-row").html(errorExceedRow.val());
     };
     WinLossBetListView.prototype.bindShowHideFilterEvent = function () {
         var hideFilterText = $("#hidden-hide-filter-text").val();
