@@ -11,6 +11,7 @@ namespace Alpha.BetLists.Site.Tests.Handler.MonitoringBets
     using BetLists.Models;
     using Constants;
     using Fanex.BetList.Core.Entities;
+    using Fanex.Caching;
     using Fixtures;
     using Handlers.MonitoringBets;
     using KellermanSoftware.CompareNetObjects;
@@ -47,6 +48,7 @@ namespace Alpha.BetLists.Site.Tests.Handler.MonitoringBets
         {
             this.betlistFixture = betlistFixture;
             userSession = Substitute.For<IUserSession>();
+            var cache = Substitute.For<ICache>();
 
             Thread.CurrentThread.CurrentCulture = new CultureInfo(LanguageCode.English);
             Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
@@ -71,6 +73,7 @@ namespace Alpha.BetLists.Site.Tests.Handler.MonitoringBets
                 this.betlistFixture.IpService,
                 encryptionService,
                 betlistFixture.IpInfoService,
+                cache,
                 usernameSuggestionService);
 
             user = Substitute.For<IUser>();

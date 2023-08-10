@@ -11,6 +11,7 @@
     using Alpha.BetLists.Params.MonitoringBets;
     using Alpha.BetLists.Services;
     using Alpha.BetLists.Site.Constants;
+    using Alpha.BetLists.Site.Requests;
     using Alpha.BetLists.Site.Requests.MonitoringBets;
     using Alpha.BetLists.Site.ViewModels.MonitoringBets;
     using Alpha.IPInfo.Services;
@@ -19,6 +20,7 @@
     using Alpha.Web.Models;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
+    using Fanex.Caching;
     using MediatR;
     using Sunplus.Agent.Model.Entities;
 
@@ -41,6 +43,8 @@
         private readonly MonitoringBetsService monitoringBetService;
         private readonly EncryptionService encryptionService;
         private readonly UsernameSuggestionService usernameSuggestionService;
+        private readonly ICache cache;
+        private readonly CacheService redisCacheService;
 
         public MonitoringBetsHandler(
             IUserSession userSession,
@@ -51,17 +55,20 @@
             IPService ipService,
             EncryptionService encryptionService,
             IIPInfoService ipInfoService,
+            ICache cache,
             UsernameSuggestionService usernameSuggestionService) : base(builder, ticketHelper, monitorService, ipService, ipInfoService)
         {
             this.userSession = userSession;
             this.monitoringBetService = monitoringBetService;
             this.encryptionService = encryptionService;
             this.usernameSuggestionService = usernameSuggestionService;
+            this.cache = cache;
+            redisCacheService = new CacheService(this.cache);
         }
 
         public async Task<MonitoringBetsViewModel> Handle(MonitoringBetsQuery message)
         {
-            var filters = await monitoringBetService.GetSavedFilters(message.ViewerId, message.SubAccId, AddFilterParamSession);
+            var filters = await monitoringBetService.GetSavedFilters(message.ViewerId, message.SubAccId, GetAddFilterParam(message));
 
             var filterId = -1;
             var isShowFilterPlaceHolder = true;
@@ -122,7 +129,7 @@
 
         public async Task<ManageFiltersViewModel> Handle(ManageFiltersQuery message)
             => new ManageFiltersViewModel(
-                await monitoringBetService.GetFilters(message.ViewerId, message.SubAccId, AddFilterParamSession),
+                await monitoringBetService.GetFilters(message.ViewerId, message.SubAccId, GetAddFilterParam(message)),
                 message);
 
         public Task<Result> Handle(UpdateFilterCommand message)
@@ -144,7 +151,7 @@
             {
                 if (id == 0)
                 {
-                    AddFilterParamSession = null;
+                    SetAddFilterParamCahe(message, null);
                     results.Add(new Result());
                 }
                 else
@@ -165,14 +172,13 @@
 
         public Result Handle(ApplyFilterCommand message)
         {
-            AddFilterParamSession = BuildAddFilterParam(message);
-
+            SetAddFilterParamCahe(message, BuildAddFilterParam(message));
             return new Result();
         }
 
         public async Task<Result> Handle(AddCustomFilterCommand message)
         {
-            var customAddFilterParam = AddFilterParamSession;
+            var customAddFilterParam = GetAddFilterParam(message);
 
             if (customAddFilterParam == null)
             {
@@ -199,7 +205,7 @@
 
             if (result.ErrCode == 0)
             {
-                AddFilterParamSession = null;
+                SetAddFilterParamCahe(message, null);
             }
 
             return result;
@@ -329,6 +335,32 @@
 
         private string LatestTransIdCacheKeyByFilter(int viewerId, int filterId)
             => encryptionService.CfsEncode($"LatestTransId_{viewerId}_{filterId}", NumberOfEncodeResult);
+
+        private AddFilterParam GetAddFilterParam(BaseQuery query)
+        {
+            try
+            {
+                return redisCacheService.Get<AddFilterParam>(GetFilterCacheKey(query));
+            }
+            catch
+            {
+                return AddFilterParamSession;
+            }
+        }
+
+        private void SetAddFilterParamCahe(BaseQuery query, AddFilterParam filter)
+        {
+            try
+            {
+                redisCacheService.Set<AddFilterParam>(GetFilterCacheKey(query), filter);
+            }
+            catch
+            {
+                AddFilterParamSession = filter;
+            }
+        }
+
+        private string GetFilterCacheKey(BaseQuery query) => $"{ query.AdminId }-{ query.CustId}-{ query.SubAccId}-filter";
 
         private AddFilterParam AddFilterParamSession
         {

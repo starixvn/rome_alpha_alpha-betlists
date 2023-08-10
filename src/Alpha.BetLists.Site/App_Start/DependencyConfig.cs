@@ -29,6 +29,7 @@
     using Fanex.BetList.Core.RemotingRef;
     using Fanex.BetList.Core.TicketHelper;
     using Fanex.Caching;
+    using Fanex.Caching.Redis;
     using Fanex.Data.Repository;
     using Fanex.RemotingRef;
     using Handlers.Parlay;
@@ -163,6 +164,11 @@
             container.RegisterSingleton<ICacheRef, CacheRef>();
             container.RegisterSingleton<IRemotingRefService, RemotingRefService>();
             container.RegisterSingleton<ICacheService>(new CacheService());
+            container.RegisterSingleton<ICache>(new RedisCache(new RedisCacheOptions
+            {
+                ConnectionString = AppSettings.RedisConfigurationOptions,
+                ApplicationName = "Betlist"
+            }));
             container.Register<ForecastService, ForecastServiceImpl>(Lifestyle.Singleton);
             container.Register<ProductService>(
                 () => new ProductServiceImpl(

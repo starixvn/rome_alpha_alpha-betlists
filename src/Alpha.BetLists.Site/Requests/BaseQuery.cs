@@ -9,7 +9,9 @@
         protected BaseQuery(IUser viewer)
         {
             // Default data, if query string had data, then get from query string.
+            AdminId = viewer.AdminId;
             CustId = viewer.Id;
+            SubAccId = viewer.SubAccId;
             Site = viewer.Site;
             CurrencyId = viewer.CurrencyId;
             CustName = viewer.Name;
@@ -29,7 +31,11 @@
             MainDomain = viewer.MainDomain;
         }
 
+        public int AdminId { get; set; }
+
         public int CustId { get; set; }
+
+        public int SubAccId { get; set; }
 
         public string Site { get; set; }
 

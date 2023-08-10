@@ -115,6 +115,8 @@
 
         public static int IPV6CacheInMinutes => int.Parse(GetConfigValue("IPInfo:IPV6CacheInMinutes"));
 
+        public static string RedisConfigurationOptions => GetConfigValue("RedisConfigurationOptions:Alpha.NetThrottling");
+
         public static IEnumerable<string> MonitoringBetsBettypes
         {
             get
