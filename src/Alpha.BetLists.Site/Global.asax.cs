@@ -73,8 +73,12 @@
                     .UseCacheService(new UMCacheService(new CacheService()))
                     .UseRestClient(new UMRestClient(umConfig))
                     .UseHttpContext(new HttpContextHelper());
-                GlobalFilters.Filters.Add(new CheckUMFilterAttribute(
+
+                if (!AppSettings.IsStandaloneReport)
+                {
+                    GlobalFilters.Filters.Add(new CheckUMFilterAttribute(
                     new MaintenanceService(UMClientManager.RestClient, UMClientManager.CacheService, UMClientManager.UMClientConfigs, UMClientManager.HttpContext), null));
+                }
 
                 GlobalFilters.Filters.Add(new CheckBelongingFilter(!AppSettings.IsStandaloneReport));
                 GlobalFilters.Filters.Add(new NoCacheFilter());
