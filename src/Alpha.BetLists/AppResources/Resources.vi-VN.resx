@@ -514,4 +514,7 @@
   <data name="RefNo" xml:space="preserve">
     <value>Số tham chiếu</value>
   </data>
+  <data name="SearchTickets" xml:space="preserve">
+    <value>Tìm Vé Cược</value>
+  </data>
 </root>

@@ -504,4 +504,7 @@
   <data name="RefNo" xml:space="preserve">
     <value>หมายเลขอ้างอิง</value>
   </data>
+  <data name="SearchTickets" xml:space="preserve">
+    <value>ค้นหาตั๋วเดิมพัน</value>
+  </data>
 </root>

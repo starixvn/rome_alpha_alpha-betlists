@@ -504,4 +504,7 @@
   <data name="RefNo" xml:space="preserve">
     <value>参照号码</value>
   </data>
+  <data name="SearchTickets" xml:space="preserve">
+    <value>搜索注单</value>
+  </data>
 </root>
