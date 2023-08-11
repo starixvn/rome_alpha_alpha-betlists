@@ -95,6 +95,10 @@
             get
             {
                 var currentAppPath = HttpRuntime.AppDomainAppVirtualPath;
+                if (currentAppPath == null)
+                {
+                    return string.Empty;
+                }
                 return currentAppPath.Equals("/", StringComparison.OrdinalIgnoreCase) && !HttpContext.Current.Session.IsCookieless ?
                     "site-betlists/" : string.Empty;
             }

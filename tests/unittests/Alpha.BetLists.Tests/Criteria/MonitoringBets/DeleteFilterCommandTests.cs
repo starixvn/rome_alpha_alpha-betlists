@@ -43,11 +43,11 @@
         [InlineData(0, -1, 0)]
         [InlineData(1, -1, 1)]
         [InlineData(1, -1, 0)]
-        [InlineData(0, 0, 0)]
+        [InlineData(0, -1, 0)]
         public void IsValid_InvalidParam_ReturnsFalse(int custId, int subAccId, int filterId)
         {
             // Arrange
-            var param = new DeleteFilterParam(custId, custId, filterId, "EN", "1.2.3.4");
+            var param = new DeleteFilterParam(custId, subAccId, filterId, "EN", "1.2.3.4");
             var criteria = new DeleteFilterCommand(param);
 
             // Act

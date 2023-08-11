@@ -28,7 +28,7 @@
         BetListBaseHandler,
         IAsyncRequestHandler<MonitoringBetsQuery, MonitoringBetsViewModel>,
         IAsyncRequestHandler<ManageFiltersQuery, ManageFiltersViewModel>,
-        IRequestHandler<ApplyFilterCommand, Result>,
+        IAsyncRequestHandler<ApplyFilterCommand, Result>,
         IAsyncRequestHandler<AddCustomFilterCommand, Result>,
         IAsyncRequestHandler<AddFilterCommand, Result>,
         IAsyncRequestHandler<UpdateFilterCommand, Result>,
@@ -68,7 +68,7 @@
 
         public async Task<MonitoringBetsViewModel> Handle(MonitoringBetsQuery message)
         {
-            var filters = await monitoringBetService.GetSavedFilters(message.ViewerId, message.SubAccId, GetAddFilterParam(message));
+            var filters = await monitoringBetService.GetSavedFilters(message.ViewerId, message.SubAccId, await GetUnsavedFilterParam(message));
 
             var filterId = -1;
             var isShowFilterPlaceHolder = true;
@@ -129,7 +129,7 @@
 
         public async Task<ManageFiltersViewModel> Handle(ManageFiltersQuery message)
             => new ManageFiltersViewModel(
-                await monitoringBetService.GetFilters(message.ViewerId, message.SubAccId, GetAddFilterParam(message)),
+                await monitoringBetService.GetFilters(message.ViewerId, message.SubAccId, await GetUnsavedFilterParam(message)),
                 message);
 
         public Task<Result> Handle(UpdateFilterCommand message)
@@ -151,7 +151,7 @@
             {
                 if (id == 0)
                 {
-                    SetAddFilterParamCahe(message, null);
+                    await SetAddFilterParamCahe(message, null);
                     results.Add(new Result());
                 }
                 else
@@ -170,15 +170,15 @@
         public Task<IEnumerable<MyWatchlistMember>> Handle(GetMyWatchlistMembersQuery message)
             => monitoringBetService.GetMyWatchlistMembers(message.ViewerId);
 
-        public Result Handle(ApplyFilterCommand message)
+        public async Task<Result> Handle(ApplyFilterCommand message)
         {
-            SetAddFilterParamCahe(message, BuildAddFilterParam(message));
+            await SetAddFilterParamCahe(message, BuildAddFilterParam(message));
             return new Result();
         }
 
         public async Task<Result> Handle(AddCustomFilterCommand message)
         {
-            var customAddFilterParam = GetAddFilterParam(message);
+            var customAddFilterParam = await GetUnsavedFilterParam(message);
 
             if (customAddFilterParam == null)
             {
@@ -205,7 +205,7 @@
 
             if (result.ErrCode == 0)
             {
-                SetAddFilterParamCahe(message, null);
+                await SetAddFilterParamCahe(message, null);
             }
 
             return result;
@@ -336,11 +336,11 @@
         private string LatestTransIdCacheKeyByFilter(int viewerId, int filterId)
             => encryptionService.CfsEncode($"LatestTransId_{viewerId}_{filterId}", NumberOfEncodeResult);
 
-        private AddFilterParam GetAddFilterParam(BaseQuery query)
+        private async Task<AddFilterParam> GetUnsavedFilterParam(BaseQuery query)
         {
             try
             {
-                return redisCacheService.Get<AddFilterParam>(GetFilterCacheKey(query));
+                return await redisCacheService.GetAsync<AddFilterParam>(GetFilterCacheKey(query));
             }
             catch
             {
@@ -348,11 +348,11 @@
             }
         }
 
-        private void SetAddFilterParamCahe(BaseQuery query, AddFilterParam filter)
+        private async Task SetAddFilterParamCahe(BaseQuery query, AddFilterParam filter)
         {
             try
             {
-                redisCacheService.Set<AddFilterParam>(GetFilterCacheKey(query), filter);
+                await redisCacheService.SetAsync(GetFilterCacheKey(query), filter);
             }
             catch
             {

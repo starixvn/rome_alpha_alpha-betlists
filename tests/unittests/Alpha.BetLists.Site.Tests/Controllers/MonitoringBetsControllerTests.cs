@@ -9,6 +9,7 @@ namespace Alpha.BetLists.Site.Tests.Controllers
     using System.Collections.Generic;
     using System.Globalization;
     using System.Threading;
+    using Alpha.BetLists.Configurations;
     using BetLists.Models;
     using Constants;
     using KellermanSoftware.CompareNetObjects;
@@ -27,7 +28,6 @@ namespace Alpha.BetLists.Site.Tests.Controllers
         private readonly MonitoringBetsController controller;
         private readonly IUser user;
         private readonly CompareLogic compareLogic;
-
         public MonitoringBetsControllerTests()
         {
             mediator = Substitute.For<IMediator>();
@@ -47,7 +47,11 @@ namespace Alpha.BetLists.Site.Tests.Controllers
         {
             // Arrange
             var message = new MonitoringBetsQuery(user);
-
+            var handlerResult = new MonitoringBetsViewModel(1,
+                new List<SavedFilter>() {
+                    new SavedFilter(1, "Test", true, "1,2", 100, 1, "0", "0", "0", 1),
+                }, true, 1, "1", "1", message, null, null, null);
+            mediator.Send(message).Returns(handlerResult);
             // Act
             await controller.Index(message);
 
@@ -61,16 +65,17 @@ namespace Alpha.BetLists.Site.Tests.Controllers
             // Arrange
             var message = new MonitoringBetsQuery(user);
 
-            var expectedResult = new MonitoringBetsViewModel(0, new List<SavedFilter>(), false, 0, string.Empty, string.Empty, message, null, null, null);
+            var handlerResult = new MonitoringBetsViewModel(0, new List<SavedFilter>(), false, 0, string.Empty, string.Empty, message, null, null, null);
 
             mediator
-                .Send(message).Returns(Task.FromResult(expectedResult));
+                .Send(message).Returns(Task.FromResult(handlerResult));
 
             // Act
-            var result = await controller.Index(message) as RedirectToRouteResult;
+
+            var result = await controller.Index(message) as RedirectResult;
 
             // Assert
-            Assert.Equal("FilterConfiguration", result.RouteValues["action"]);
+            Assert.Equal($"~/{AppSettings.BetlistRouting}MonitoringBets/FilterConfiguration?welcome=true", result.Url);
         }
 
         [Fact]
@@ -264,19 +269,17 @@ namespace Alpha.BetLists.Site.Tests.Controllers
         }
 
         [Fact]
-        public async Task ApplyFilterCommand_InternalUser_ReturnsForbiddenResult()
+        public async Task ApplyFilterCommand_InvalidCommand_ReturnsBadRequestResult()
         {
             // Arrange
             user.IsInternal.Returns(true);
             var message = new ApplyFilterCommand(user);
-            message.FilterName = "Default";
-
             // Act
             var actualResult = await controller.ApplyFilter(message) as JsonResult;
             var actualData = (Result)actualResult.Data;
 
             // Assert
-            Assert.Equal(AppResources.Resources.NotAuthorized, actualData.ErrMsg);
+            Assert.Equal(AppResources.Resources.BadRequest, actualData.ErrMsg);
         }
 
         [Fact]
@@ -319,6 +322,47 @@ namespace Alpha.BetLists.Site.Tests.Controllers
             var message = new AddFilterCommand(user);
             // Act
             var actualResult = await controller.AddFilter(message) as JsonResult;
+            var actualData = (Result)actualResult.Data;
+
+            // Assert
+            Assert.Equal(AppResources.Resources.BadRequest, actualData.ErrMsg);
+        }
+
+        [Fact]
+        public async Task AddCustomFilterCommand_ValidCommand_CallMediatorAddCustomFilterCommand()
+        {
+            // Arrange
+            var message = new AddCustomFilterCommand(user);
+            message.FilterName = "Default";
+            // Act
+            await controller.AddCustomFilter(message);
+
+            // Assert
+            await mediator.Received().Send(message);
+        }
+
+        [Fact]
+        public async Task AddCustomFilterCommand_InternalUser_ReturnsForbiddenResult()
+        {
+            // Arrange
+            user.IsInternal.Returns(true);
+            var message = new AddCustomFilterCommand(user);
+
+            // Act
+            var actualResult = await controller.AddCustomFilter(message) as JsonResult;
+            var actualData = (Result)actualResult.Data;
+
+            // Assert
+            Assert.Equal(AppResources.Resources.NotAuthorized, actualData.ErrMsg);
+        }
+
+        [Fact]
+        public async Task AddCustomFilterCommand_InvalidCommand_ReturnsForbiddenResult()
+        {
+            // Arrange
+            var message = new AddCustomFilterCommand(user);
+            // Act
+            var actualResult = await controller.AddCustomFilter(message) as JsonResult;
             var actualData = (Result)actualResult.Data;
 
             // Assert

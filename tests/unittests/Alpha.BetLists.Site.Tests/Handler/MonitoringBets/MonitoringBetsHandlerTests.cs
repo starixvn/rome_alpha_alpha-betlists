@@ -8,6 +8,8 @@ namespace Alpha.BetLists.Site.Tests.Handler.MonitoringBets
     using System.Globalization;
     using System.Linq;
     using System.Threading;
+    using Alpha.BetLists.Site.Requests;
+    using Alpha.Web.Models;
     using BetLists.Models;
     using Constants;
     using Fanex.BetList.Core.Entities;
@@ -36,11 +38,14 @@ namespace Alpha.BetLists.Site.Tests.Handler.MonitoringBets
         private readonly EncryptionService encryptionService;
         private readonly ISmartPunterBetListMonitor monitorService;
         private readonly IEnumerable<TicketDto> tickets;
+        private readonly IEnumerable<SavedFilter> savedFilters;
+        private readonly ICache cache;
         private readonly IEnumerable<TicketDto> newTickets = new List<TicketDto> {
             new TicketDto { TransId = 30 },
             new TicketDto { TransId = 20 }
         };
 
+        private readonly ICacheService redisCacheService;
         private readonly IUserSession userSession;
         private readonly UsernameSuggestionService usernameSuggestionService;
 
@@ -48,7 +53,9 @@ namespace Alpha.BetLists.Site.Tests.Handler.MonitoringBets
         {
             this.betlistFixture = betlistFixture;
             userSession = Substitute.For<IUserSession>();
-            var cache = Substitute.For<ICache>();
+            this.cache = Substitute.For<ICache>();
+
+            redisCacheService = Substitute.For<CacheService>(cache);
 
             Thread.CurrentThread.CurrentCulture = new CultureInfo(LanguageCode.English);
             Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
@@ -57,6 +64,11 @@ namespace Alpha.BetLists.Site.Tests.Handler.MonitoringBets
 
             tickets = CreateTickets();
             service.GetLastFilteringBets(Arg.Any<GetLastFilteringBetsParams>()).Returns(tickets);
+            savedFilters = new List<SavedFilter>()
+            {
+                new SavedFilter(1, "Test", true, "1,2", 100, 1, "0", "0", "0", 1),
+            };
+            service.GetSavedFilters(Arg.Any<int>(), Arg.Any<int>(), Arg.Any<AddFilterParam>()).Returns(savedFilters);
 
             encryptionService = Substitute.For<EncryptionService>();
             encryptionService.CfsEncode(Arg.Any<string>(), Arg.Any<int>()).Returns("EncodedString");
@@ -89,14 +101,14 @@ namespace Alpha.BetLists.Site.Tests.Handler.MonitoringBets
             // Arrange
             var message = new MonitoringBetsQuery(user);
             var expectedViewModel = new MonitoringBetsViewModel(
-                0,
-                new List<SavedFilter>(),
+                1,
+                savedFilters,
                 false,
-                0,
+                tickets.First().TransId,
                 "EncodedString",
                 "EncodedString",
                 message,
-                null,
+                new BetListData(tickets, null),
                 betlistFixture.HtmlBuilder,
                 betlistFixture.TicketHelper);
 
@@ -143,23 +155,31 @@ namespace Alpha.BetLists.Site.Tests.Handler.MonitoringBets
         }
 
         [Fact]
-        public async Task HandleDeleteFiltersCommand_Always_CallsDeleteFilters()
+        public async Task HandleDeleteFiltersCommand_HasCanDeleteFilters_CallsDeleteFilters()
         {
             // Arrange
             var message = new DeleteFiltersCommand(user);
-
-            var param = new DeleteFilterParam(
-                message.ViewerId,
-                message.SubAccId,
-                1,
-                "EN",
-                message.IP);
+            message.Ids = "1,2,3";
 
             // Act
             await handler.Handle(message);
 
             // Assert
             await service.Received().DeleteFilter(Arg.Any<DeleteFilterParam>());
+        }
+
+        [Fact]
+        public async Task HandleDeleteFiltersCommand_NotHasCanDeleteFilters_NotCallsDeleteFilters()
+        {
+            // Arrange
+            var message = new DeleteFiltersCommand(user);
+            message.Ids = "0";
+
+            // Act
+            await handler.Handle(message);
+
+            // Assert
+            await service.DidNotReceive().DeleteFilter(Arg.Any<DeleteFilterParam>());
         }
 
         [Fact]
@@ -178,21 +198,6 @@ namespace Alpha.BetLists.Site.Tests.Handler.MonitoringBets
             await service.Received().GetSports(message.GroupSport);
         }
 
-        //[Fact]
-        //public async Task HandleCheckUsernamesQuery_Always_CallsGetSports()
-        //{
-        //    // Arrange
-        //    var message = new CheckUsernamesQuery(user)
-        //    {
-        //        Usernames = "member01,member02"
-        //    };
-
-        //    // Act
-        //    await handler.Handle(message);
-
-        //    // Assert
-        //    await service.Received().CheckUsernames(message.ViewerId, message.Usernames);
-        //}
 
         [Fact]
         public async Task HandleGetMyWatchlistMembersQuery_Always_CallsGetMyWatchlistMembers()
@@ -207,48 +212,45 @@ namespace Alpha.BetLists.Site.Tests.Handler.MonitoringBets
             await service.Received().GetMyWatchlistMembers(message.ViewerId);
         }
 
-        //[Fact]
-        //public async Task HandleApplyFilterCommand_Always_CallsBuildSavedFilter()
-        //{
-        //    // Arrange
-        //    var message = new ApplyFilterCommand(user)
-        //    {
-        //        FilterName = "Default",
-        //        BetType = "1,2,3",
-        //        Stake = 10,
-        //        Sports = new[] { new SportXml() { League = "Basketball", Sport = "Soccer" } },
-        //        LiveStatus = 1,
-        //        InputList = "0",
-        //        InputListMembers = "0",
-        //        MyWatchlist = "0",
-        //        MyWatchlistMembers = "0",
-        //        FilterByMembers = 1
-        //    };
+        [Fact]
+        public void ApplyFilterCommand_Always_ReturnSuccess()
+        {
+            // Arrange
+            var message = new ApplyFilterCommand(user);
 
-        //    var param = new AddFilterParam(
-        //        message.ViewerId,
-        //        message.SubAccId,
-        //        message.FilterName,
-        //        message.IsDefault,
-        //        message.BetType,
-        //        message.Stake,
-        //        message.Sports,
-        //        message.LiveStatus,
-        //        message.InputList,
-        //        message.InputListMembers,
-        //        message.MyWatchlist,
-        //        message.MyWatchlistMembers,
-        //        message.FilterByMembers,
-        //        message.LanguageKey,
-        //        message.IP);
+            // Act
+            var actualResult = handler.Handle(message);
 
-        //    // Act
-        //    await handler.Handle(message);
+            // Assert
+            Assert.True(compareLogic.Compare(new Result(), actualResult).AreEqual);
+        }
 
-        //    // Assert
-        //    service.Received().BuildSavedFilter(Arg.Any<AddFilterParam>());
-        //}
+        [Fact]
+        public async Task AddCustomFilterCommand_NotHasUnsavedFilter_NotCallsAddFilter()
+        {
+            // Arrange
+            var message = new AddCustomFilterCommand(user);
 
+            // Act
+            var actualResult = await handler.Handle(message);
+
+            // Assert
+            await service.DidNotReceive().AddFilter(Arg.Any<AddFilterParam>());
+        }
+
+
+        [Fact]
+        public async Task AddFilterCommand_Always_CallsAddFilter()
+        {
+            // Arrange
+            var message = new AddFilterCommand(user);
+
+            // Act
+            await handler.Handle(message);
+
+            // Assert
+            await service.Received().AddFilter(Arg.Any<AddFilterParam>());
+        }
 
         [Fact]
         public async Task HandleGetLastFilteringBetsQuery_Always_ReturnsCorrectViewModel()
