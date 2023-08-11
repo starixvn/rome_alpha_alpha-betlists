@@ -333,6 +333,12 @@ class SportLeagueMatchTreeViewComponent {
 
     public addIconLoading() {
         this.checkboxListContainer.html('<li><span class="lds-spinner"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></li>');
+        this.selectAll.prop("checked", false);
+        if (this.treeviewOption.enableExpandAll) {
+            this.expandAll.prop("checked", false);
+            this.selectedOnly.prop("checked", false);
+        }
+
         this.disableFilerAndSelectAll(true);
     }
 
