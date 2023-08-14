@@ -39,16 +39,14 @@
         }
 
         [Theory]
-        [InlineData("", "0", "0", 1, 1)]
-        [InlineData("0", "", "0", 1, 1)]
-        [InlineData("0", "0", "", 1, 1)]
-        [InlineData("0", "0", "", 0, 1)]
-        [InlineData("0", "0", "", 1, 0)]
-        public void IsValid_InvalidParam_ReturnsFalse(string betTypeList, string sportTypeList, string leagueList, int minStake, int limitRowCount)
+        [InlineData("", 1, 1)]        
+        [InlineData("0", -1, 1)]
+        [InlineData("0", 1, 0)]
+        public void IsValid_InvalidParam_ReturnsFalse(string betTypeList, int minStake, int limitRowCount)
         {
             // Arrange
             var criteria = new GetLastFilteringBetsCriteria(1, 1,
-                "0", sportTypeList, leagueList, betTypeList,
+                "0", string.Empty, string.Empty, betTypeList,
             1, minStake, limitRowCount);
 
             // Act

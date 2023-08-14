@@ -32,13 +32,13 @@
         {
             this.betlistFixture = betlistFixture;
             user = betlistFixture.User;
-            query = new CancelledBetQuery(user);
 
             reportData = new PagedReportData<BetListData>(new List<BetListData> { BetListDataTest.BetListData }, 1, 50, 50);
 
             var reportDateService = Substitute.For<ReportDateService>();
             ReportDateServiceImpl.Instance = reportDateService;
             reportDateService.GetBalanceUpDay().Returns(DefaultVariablesTest.BalanceUpDate);
+            query = new CancelledBetQuery(user);
         }
 
         [Fact]

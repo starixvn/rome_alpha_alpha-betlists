@@ -39,7 +39,6 @@ namespace Alpha.BetLists.Site.Tests.Handler.MonitoringBets
         private readonly ISmartPunterBetListMonitor monitorService;
         private readonly IEnumerable<TicketDto> tickets;
         private readonly IEnumerable<SavedFilter> savedFilters;
-        private readonly ICache cache;
         private readonly IEnumerable<TicketDto> newTickets = new List<TicketDto> {
             new TicketDto { TransId = 30 },
             new TicketDto { TransId = 20 }
@@ -53,9 +52,8 @@ namespace Alpha.BetLists.Site.Tests.Handler.MonitoringBets
         {
             this.betlistFixture = betlistFixture;
             userSession = Substitute.For<IUserSession>();
-            this.cache = Substitute.For<ICache>();
 
-            redisCacheService = Substitute.For<RedisCacheService>(cache);
+            redisCacheService = Substitute.For<RedisCacheService>();
 
             Thread.CurrentThread.CurrentCulture = new CultureInfo(LanguageCode.English);
             Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
@@ -212,20 +210,39 @@ namespace Alpha.BetLists.Site.Tests.Handler.MonitoringBets
         }
 
         [Fact]
-        public void ApplyFilterCommand_Always_ReturnSuccess()
+        public async Task ApplyFilterCommand_Always_ReturnSuccess()
         {
             // Arrange
             var message = new ApplyFilterCommand(user);
 
             // Act
-            var actualResult = handler.Handle(message);
+            var actualResult = await handler.Handle(message);
 
             // Assert
             Assert.True(compareLogic.Compare(new Result(), actualResult).AreEqual);
         }
 
+
         [Fact]
-        public async Task AddCustomFilterCommand_NotHasUnsavedFilter_NotCallsAddFilter()
+        public async Task AddUnsavedFilterCommand_HasUnsavedFilter_CallsAddFilter()
+        {
+            // Arrange
+            var message = new AddUnsavedFilterCommand(user);
+            var unsavedFilter = new AddFilterParam(1, 1, "UnsavedFilter", false, "1", 10,
+                                new[] { new SportXml() { League = "Basketball", Sport = "Soccer" } },
+                                1, "0", "0", "0", "0", 1, "En", "1.2.3.4");
+            redisCacheService.GetAsync<AddFilterParam>(Arg.Any<string>()).Returns(unsavedFilter);
+            service.AddFilter(Arg.Any<AddFilterParam>()).Returns(new Result());
+
+            // Act
+            var actualResult = await handler.Handle(message);
+
+            // Assert
+            await service.Received().AddFilter(Arg.Any<AddFilterParam>());
+        }
+
+        [Fact]
+        public async Task AddUnsavedFilterCommand_NotHasUnsavedFilter_NotCallsAddFilter()
         {
             // Arrange
             var message = new AddUnsavedFilterCommand(user);

@@ -131,7 +131,7 @@
             await monitoringBetsService.DeleteFilter(param);
 
             // Assert
-            dataFixture.DynamicRepository.ReceivedWithAnyArgs();
+            dataFixture.DynamicRepository.Received().ExecuteAsync(Arg.Any<DeleteFilterCommand>());
         }
 
         [Fact]
