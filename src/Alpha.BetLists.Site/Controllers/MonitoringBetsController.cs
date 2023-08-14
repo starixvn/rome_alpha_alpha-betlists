@@ -86,10 +86,10 @@
             => Json(await ValidateAndDoAction(message), JsonRequestBehavior.DenyGet);
 
         [HttpPost, AntiXsrfFilter]
-        public async Task<ActionResult> AddCustomFilter(AddCustomFilterCommand message)
+        public async Task<ActionResult> AddCustomFilter(AddUnsavedFilterCommand message)
             => Json(await ValidateAndDoAction(message), JsonRequestBehavior.DenyGet);
 
-        private async Task<Result> ValidateAndDoAction(AddCustomFilterCommand message)
+        private async Task<Result> ValidateAndDoAction(AddUnsavedFilterCommand message)
         {
             if (message.IsInternal)
             {

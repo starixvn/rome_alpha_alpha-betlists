@@ -487,6 +487,7 @@
     <Compile Include="Services\MonitoringBetsService.cs" />
     <Compile Include="Services\MoveStatementHistoryService.cs" />
     <Compile Include="Services\ProductDetailService.cs" />
+    <Compile Include="Services\RedisCacheService.cs" />
     <Compile Include="Services\RiskAnalysisIPMatchingService.cs" />
     <Compile Include="Services\MemberBetListService.cs" />
     <Compile Include="Services\RunningBetListByBetTypeAndMatchService.cs" />

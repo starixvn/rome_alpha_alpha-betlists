@@ -4,7 +4,7 @@
     using Alpha.Web.Models;
     using MediatR;
 
-    public class UpdateFilterCommand : AddCustomFilterCommand, IRequest<Result>
+    public class UpdateFilterCommand : AddUnsavedFilterCommand, IRequest<Result>
     {
         public UpdateFilterCommand(IUser viewer) : base(viewer)
         {

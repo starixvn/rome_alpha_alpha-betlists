@@ -45,7 +45,7 @@ namespace Alpha.BetLists.Site.Tests.Handler.MonitoringBets
             new TicketDto { TransId = 20 }
         };
 
-        private readonly ICacheService redisCacheService;
+        private readonly RedisCacheService redisCacheService;
         private readonly IUserSession userSession;
         private readonly UsernameSuggestionService usernameSuggestionService;
 
@@ -55,7 +55,7 @@ namespace Alpha.BetLists.Site.Tests.Handler.MonitoringBets
             userSession = Substitute.For<IUserSession>();
             this.cache = Substitute.For<ICache>();
 
-            redisCacheService = Substitute.For<CacheService>(cache);
+            redisCacheService = Substitute.For<RedisCacheService>(cache);
 
             Thread.CurrentThread.CurrentCulture = new CultureInfo(LanguageCode.English);
             Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
@@ -85,8 +85,7 @@ namespace Alpha.BetLists.Site.Tests.Handler.MonitoringBets
                 this.betlistFixture.IpService,
                 encryptionService,
                 betlistFixture.IpInfoService,
-                cache,
-                usernameSuggestionService);
+                redisCacheService);
 
             user = Substitute.For<IUser>();
             user.Id.Returns(2);
@@ -229,7 +228,7 @@ namespace Alpha.BetLists.Site.Tests.Handler.MonitoringBets
         public async Task AddCustomFilterCommand_NotHasUnsavedFilter_NotCallsAddFilter()
         {
             // Arrange
-            var message = new AddCustomFilterCommand(user);
+            var message = new AddUnsavedFilterCommand(user);
 
             // Act
             var actualResult = await handler.Handle(message);

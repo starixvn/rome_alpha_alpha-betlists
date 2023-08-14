@@ -9,9 +9,7 @@
         protected BaseQuery(IUser viewer)
         {
             // Default data, if query string had data, then get from query string.
-            AdminId = viewer.AdminId;
             CustId = viewer.Id;
-            SubAccId = viewer.SubAccId;
             Site = viewer.Site;
             CurrencyId = viewer.CurrencyId;
             CustName = viewer.Name;
@@ -20,6 +18,8 @@
             ViewerLevelId = viewer.LevelId;
             ViewerLevel = Enumeration.FromValue<UserLevel>(ViewerLevelId);
             ViewerIdOrViewerAdminId = viewer.IsInternal ? viewer.AdminId : viewer.Id;
+            AdminId = viewer.AdminId;
+            SubAccId = viewer.SubAccId;
             DisplayVNIP = viewer.IsAdminCanViewVNIP;
             Language = viewer.Language;
             IsEnabledJackpot = viewer.IsEnabledJackpot;
@@ -31,11 +31,7 @@
             MainDomain = viewer.MainDomain;
         }
 
-        public int AdminId { get; set; }
-
         public int CustId { get; set; }
-
-        public int SubAccId { get; set; }
 
         public string Site { get; set; }
 
@@ -58,6 +54,10 @@
         public byte ViewerLevelId { get; }
 
         public int ViewerIdOrViewerAdminId { get; }
+
+        public int AdminId { get; }
+
+        public int SubAccId { get; }
 
         public bool DisplayVNIP { get; }
 

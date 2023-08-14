@@ -8,10 +8,7 @@
     {
         public GetLastFilteringBetsQuery(IUser viewer) : base(viewer)
         {
-            SubAccId = viewer.SubAccId;
         }
-
-        public int SubAccId { get; }
 
         public int FilterId { get; set; }
 

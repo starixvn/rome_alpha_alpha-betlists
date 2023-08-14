@@ -164,11 +164,6 @@
             container.RegisterSingleton<ICacheRef, CacheRef>();
             container.RegisterSingleton<IRemotingRefService, RemotingRefService>();
             container.RegisterSingleton<ICacheService>(new CacheService());
-            container.RegisterSingleton<ICache>(new RedisCache(new RedisCacheOptions
-            {
-                ConnectionString = AppSettings.RedisConfigurationOptions,
-                ApplicationName = "Betlist"
-            }));
             container.Register<ForecastService, ForecastServiceImpl>(Lifestyle.Singleton);
             container.Register<ProductService>(
                 () => new ProductServiceImpl(
@@ -221,6 +216,13 @@
                 Lifestyle.Singleton);
             container.RegisterSingleton<MonitoringBetsService, MonitoringBetsServiceImpl>();
             container.RegisterSingleton<UsernameSuggestionService, UsernameSuggestionServiceImpl>();
+            container.Register<RedisCacheService>(
+                () => new RedisCacheServiceImpl(new RedisCache(new RedisCacheOptions
+                {
+                    ConnectionString = AppSettings.NetThrottlingRedisConfigurationOptions,
+                    ApplicationName = "Alpha-BetLists"
+                })),
+                Lifestyle.Singleton);
         }
 
         private static void RegisterStaticInstances(Container container)

@@ -332,7 +332,7 @@ namespace Alpha.BetLists.Site.Tests.Controllers
         public async Task AddCustomFilterCommand_ValidCommand_CallMediatorAddCustomFilterCommand()
         {
             // Arrange
-            var message = new AddCustomFilterCommand(user);
+            var message = new AddUnsavedFilterCommand(user);
             message.FilterName = "Default";
             // Act
             await controller.AddCustomFilter(message);
@@ -346,7 +346,7 @@ namespace Alpha.BetLists.Site.Tests.Controllers
         {
             // Arrange
             user.IsInternal.Returns(true);
-            var message = new AddCustomFilterCommand(user);
+            var message = new AddUnsavedFilterCommand(user);
 
             // Act
             var actualResult = await controller.AddCustomFilter(message) as JsonResult;
@@ -360,7 +360,7 @@ namespace Alpha.BetLists.Site.Tests.Controllers
         public async Task AddCustomFilterCommand_InvalidCommand_ReturnsForbiddenResult()
         {
             // Arrange
-            var message = new AddCustomFilterCommand(user);
+            var message = new AddUnsavedFilterCommand(user);
             // Act
             var actualResult = await controller.AddCustomFilter(message) as JsonResult;
             var actualData = (Result)actualResult.Data;

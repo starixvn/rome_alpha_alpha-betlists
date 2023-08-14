@@ -4,12 +4,11 @@
     using Alpha.Web.Models;
     using MediatR;
 
-    public class AddCustomFilterCommand : BaseQuery, IRequest<Result>
+    public class AddUnsavedFilterCommand : BaseQuery, IRequest<Result>
     {
-        public AddCustomFilterCommand(IUser viewer) : base(viewer)
+        public AddUnsavedFilterCommand(IUser viewer) : base(viewer)
         {
             IsInternal = viewer.IsInternal;
-            SubAccId = viewer.SubAccId;
             LanguageKey = viewer.LangKey;
             IP = viewer.IP;
         }
@@ -19,8 +18,6 @@
         public bool IsDefault { get; set; }
 
         public bool IsInternal { get; }
-
-        public int SubAccId { get; }
 
         public string LanguageKey { get; }
 

@@ -6,7 +6,7 @@
     using Alpha.Web.Models;
     using MediatR;
 
-    public class AddFilterCommand : AddCustomFilterCommand, IRequest<Result>
+    public class AddFilterCommand : AddUnsavedFilterCommand, IRequest<Result>
     {
         public AddFilterCommand(IUser viewer) : base(viewer)
         {

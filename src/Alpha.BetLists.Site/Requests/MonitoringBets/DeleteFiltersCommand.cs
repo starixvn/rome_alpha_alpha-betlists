@@ -10,7 +10,6 @@
         public DeleteFiltersCommand(IUser viewer) : base(viewer)
         {
             IsInternal = viewer.IsInternal;
-            SubAccId = viewer.SubAccId;
             LanguageKey = viewer.LangKey;
             IP = viewer.IP;
         }
@@ -18,8 +17,6 @@
         public string Ids { get; set; }
 
         public bool IsInternal { get; }
-
-        public int SubAccId { get; }
 
         public string LanguageKey { get; }
 

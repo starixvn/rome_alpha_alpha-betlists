@@ -29,4 +29,4 @@
 </div>
 @Html.AntiForgeryToken()
 @Html.Hidden("hidden-FilterNameRequiredError", Resources.FilterConfigurationFilterNameRequiredError)
-@Html.Hidden("hidden-SaveFilterUrl", Url.Action($"Add{(Model ? string.Empty : "Custom")}Filter", $"{AppSettings.BetlistRouting}MonitoringBets"))
+@Html.Hidden("hidden-SaveFilterUrl", Url.Action(Model ? "AddFilter" : "AddCustomFilter", $"{AppSettings.BetlistRouting}MonitoringBets"))

@@ -8,7 +8,6 @@
     {
         public MonitoringBetsQuery(IUser viewer) : base(viewer)
         {
-            SubAccId = viewer.SubAccId;
             IsInternal = viewer.IsInternal;
         }
 
@@ -17,8 +16,6 @@
         public int LimitRowCount { get; set; } = 100;
 
         public bool AutoStart { get; set; } = true;
-
-        public int SubAccId { get; }
 
         public bool IsInternal { get; }
     }

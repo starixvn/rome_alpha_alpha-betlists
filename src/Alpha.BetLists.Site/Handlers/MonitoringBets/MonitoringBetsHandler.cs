@@ -20,7 +20,6 @@
     using Alpha.Web.Models;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
-    using Fanex.Caching;
     using MediatR;
     using Sunplus.Agent.Model.Entities;
 
@@ -29,7 +28,7 @@
         IAsyncRequestHandler<MonitoringBetsQuery, MonitoringBetsViewModel>,
         IAsyncRequestHandler<ManageFiltersQuery, ManageFiltersViewModel>,
         IAsyncRequestHandler<ApplyFilterCommand, Result>,
-        IAsyncRequestHandler<AddCustomFilterCommand, Result>,
+        IAsyncRequestHandler<AddUnsavedFilterCommand, Result>,
         IAsyncRequestHandler<AddFilterCommand, Result>,
         IAsyncRequestHandler<UpdateFilterCommand, Result>,
         IAsyncRequestHandler<DeleteFiltersCommand, IEnumerable<Result>>,
@@ -42,9 +41,7 @@
         private readonly IUserSession userSession;
         private readonly MonitoringBetsService monitoringBetService;
         private readonly EncryptionService encryptionService;
-        private readonly UsernameSuggestionService usernameSuggestionService;
-        private readonly ICache cache;
-        private readonly CacheService redisCacheService;
+        private readonly RedisCacheService redisCacheService;
 
         public MonitoringBetsHandler(
             IUserSession userSession,
@@ -55,20 +52,17 @@
             IPService ipService,
             EncryptionService encryptionService,
             IIPInfoService ipInfoService,
-            ICache cache,
-            UsernameSuggestionService usernameSuggestionService) : base(builder, ticketHelper, monitorService, ipService, ipInfoService)
+            RedisCacheService redisCacheService) : base(builder, ticketHelper, monitorService, ipService, ipInfoService)
         {
             this.userSession = userSession;
             this.monitoringBetService = monitoringBetService;
             this.encryptionService = encryptionService;
-            this.usernameSuggestionService = usernameSuggestionService;
-            this.cache = cache;
-            redisCacheService = new CacheService(this.cache);
+            this.redisCacheService = redisCacheService;
         }
 
         public async Task<MonitoringBetsViewModel> Handle(MonitoringBetsQuery message)
         {
-            var filters = await monitoringBetService.GetSavedFilters(message.ViewerId, message.SubAccId, await GetUnsavedFilterParam(message));
+            var filters = await monitoringBetService.GetSavedFilters(message.ViewerId, message.SubAccId, await GetUnsavedFilterParamCache(message));
 
             var filterId = -1;
             var isShowFilterPlaceHolder = true;
@@ -129,7 +123,7 @@
 
         public async Task<ManageFiltersViewModel> Handle(ManageFiltersQuery message)
             => new ManageFiltersViewModel(
-                await monitoringBetService.GetFilters(message.ViewerId, message.SubAccId, await GetUnsavedFilterParam(message)),
+                await monitoringBetService.GetFilters(message.ViewerId, message.SubAccId, await GetUnsavedFilterParamCache(message)),
                 message);
 
         public Task<Result> Handle(UpdateFilterCommand message)
@@ -151,7 +145,7 @@
             {
                 if (id == 0)
                 {
-                    await SetAddFilterParamCahe(message, null);
+                    await SetUnsavedFilterParamCache(message, null);
                     results.Add(new Result());
                 }
                 else
@@ -172,15 +166,15 @@
 
         public async Task<Result> Handle(ApplyFilterCommand message)
         {
-            await SetAddFilterParamCahe(message, BuildAddFilterParam(message));
+            await SetUnsavedFilterParamCache(message, BuildAddFilterParam(message));
             return new Result();
         }
 
-        public async Task<Result> Handle(AddCustomFilterCommand message)
+        public async Task<Result> Handle(AddUnsavedFilterCommand message)
         {
-            var customAddFilterParam = await GetUnsavedFilterParam(message);
+            var unsavedFilterParam = await GetUnsavedFilterParamCache(message);
 
-            if (customAddFilterParam == null)
+            if (unsavedFilterParam == null)
             {
                 return new Result();
             }
@@ -190,22 +184,22 @@
                 message.SubAccId,
                 message.FilterName,
                 message.IsDefault,
-                customAddFilterParam.BetType,
-                customAddFilterParam.Stake,
-                customAddFilterParam.Sports,
-                customAddFilterParam.LiveStatus,
-                customAddFilterParam.InputList,
-                customAddFilterParam.InputListMembers,
-                customAddFilterParam.MyWatchlist,
-                customAddFilterParam.MyWatchlistMembers,
-                customAddFilterParam.FilterByMembers,
+                unsavedFilterParam.BetType,
+                unsavedFilterParam.Stake,
+                unsavedFilterParam.Sports,
+                unsavedFilterParam.LiveStatus,
+                unsavedFilterParam.InputList,
+                unsavedFilterParam.InputListMembers,
+                unsavedFilterParam.MyWatchlist,
+                unsavedFilterParam.MyWatchlistMembers,
+                unsavedFilterParam.FilterByMembers,
                 message.LanguageKey,
-                customAddFilterParam.IP
+                unsavedFilterParam.IP
             ));
 
             if (result.ErrCode == 0)
             {
-                await SetAddFilterParamCahe(message, null);
+                await SetUnsavedFilterParamCache(message, null);
             }
 
             return result;
@@ -309,6 +303,7 @@
                         ticket.IsHighlight = true;
                     }
                 }
+
                 WriteLog(param.CustId, newTickets);
             }
 
@@ -336,7 +331,7 @@
         private string LatestTransIdCacheKeyByFilter(int viewerId, int filterId)
             => encryptionService.CfsEncode($"LatestTransId_{viewerId}_{filterId}", NumberOfEncodeResult);
 
-        private async Task<AddFilterParam> GetUnsavedFilterParam(BaseQuery query)
+        private async Task<AddFilterParam> GetUnsavedFilterParamCache(BaseQuery query)
         {
             try
             {
@@ -344,33 +339,41 @@
             }
             catch
             {
-                return AddFilterParamSession;
+                return UnsavedFilterParamSession;
             }
         }
 
-        private async Task SetAddFilterParamCahe(BaseQuery query, AddFilterParam filter)
+        private async Task SetUnsavedFilterParamCache(BaseQuery query, AddFilterParam filter)
         {
             try
             {
-                await redisCacheService.SetAsync(GetFilterCacheKey(query), filter);
+                if (filter == null)
+                {
+                    await redisCacheService.RemoveAsync(GetFilterCacheKey(query));
+                }
+                else
+                {
+                    await redisCacheService.SetAsync(GetFilterCacheKey(query), filter);
+                }
             }
             catch
             {
-                AddFilterParamSession = filter;
+                UnsavedFilterParamSession = filter;
             }
         }
 
-        private string GetFilterCacheKey(BaseQuery query) => $"{ query.AdminId }-{ query.CustId}-{ query.SubAccId}-filter";
+        private static string GetFilterCacheKey(BaseQuery query)
+            => $"{SessionKey.LastBetsMonitoringUnsavedFilter}-{query.AdminId}-{query.CustId}-{query.SubAccId}";
 
-        private AddFilterParam AddFilterParamSession
+        private AddFilterParam UnsavedFilterParamSession
         {
             get
             {
-                return userSession.GetProperty<AddFilterParam>(SessionKey.LastBetsMonitoringCustomFilter);
+                return userSession.GetProperty<AddFilterParam>(SessionKey.LastBetsMonitoringUnsavedFilter);
             }
             set
             {
-                userSession.SetProperty(SessionKey.LastBetsMonitoringCustomFilter, value);
+                userSession.SetProperty(SessionKey.LastBetsMonitoringUnsavedFilter, value);
             }
         }
     }
