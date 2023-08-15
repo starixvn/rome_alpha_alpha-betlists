@@ -48,11 +48,6 @@ class SearchTicketView {
     };
 
     private successGetLastBets = (responseHtml: any) => {
-        if ((responseHtml.ErrorCode && responseHtml.ErrorCode !== "0") ||
-            (responseHtml.ErrCode && responseHtml.ErrCode !== "0")) {
-            return;
-        }
-
         this.$betListTableContainer.children('tbody').html(responseHtml);
 
         this.expandParlay();

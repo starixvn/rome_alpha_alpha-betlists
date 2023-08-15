@@ -34,10 +34,6 @@ var SearchTicketView = /** @class */ (function () {
             AJAXHelper.get(_this.getBetsUrl, { RefNo: _this.$refNo.val() }, _this.successGetLastBets);
         };
         this.successGetLastBets = function (responseHtml) {
-            if ((responseHtml.ErrorCode && responseHtml.ErrorCode !== "0") ||
-                (responseHtml.ErrCode && responseHtml.ErrCode !== "0")) {
-                return;
-            }
             _this.$betListTableContainer.children('tbody').html(responseHtml);
             _this.expandParlay();
         };
