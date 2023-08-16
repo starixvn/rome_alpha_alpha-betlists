@@ -34,9 +34,16 @@ var ManageFiltersView = /** @class */ (function () {
     ManageFiltersView.prototype.handleOnClickButtonDeleteAllFilters = function () {
         var _this = this;
         this.inlineMessageComponent.hide();
-        window.top.bootboxConfirm($("#hidden-confirmMessageRemoveAllFilters").val(), undefined, function () {
-            _this.handleDeleteFilters($("#hidden-allFilterIds").val());
-        });
+        try {
+            window.top.bootboxConfirm($("#hidden-confirmMessageRemoveAllFilters").val(), undefined, function () {
+                _this.handleDeleteFilters($("#hidden-allFilterIds").val());
+            });
+        }
+        catch (e) { // internal cannot access window.top (error: cross-origin frame)
+            if (confirm($("#hidden-confirmMessageRemoveAllFilters").val())) {
+                this.handleDeleteFilters($("#hidden-allFilterIds").val());
+            }
+        }
     };
     ManageFiltersView.prototype.handleToggleCollapseExpand = function ($target, getSiblingRowsWithCustomData) {
         if (getSiblingRowsWithCustomData === void 0) { getSiblingRowsWithCustomData = true; }
@@ -74,10 +81,18 @@ var ManageFiltersView = /** @class */ (function () {
         var _this = this;
         this.inlineMessageComponent.hide();
         var iconBin = $(e.target);
-        window.top.bootboxConfirm($("#hidden-confirmMessageRemoveFilter").val(), undefined, function () {
-            var filterId = iconBin.closest("tr").data("filterid");
-            _this.handleDeleteFilters(filterId);
-        });
+        try {
+            window.top.bootboxConfirm($("#hidden-confirmMessageRemoveFilter").val(), undefined, function () {
+                var filterId = iconBin.closest("tr").data("filterid");
+                _this.handleDeleteFilters(filterId);
+            });
+        }
+        catch (e) { // internal cannot access window.top (error: cross-origin frame)
+            if (confirm($("#hidden-confirmMessageRemoveFilter").val())) {
+                var filterId = iconBin.closest("tr").data("filterid");
+                this.handleDeleteFilters(filterId);
+            }
+        }
     };
     ManageFiltersView.prototype.handleDeleteFilters = function (ids) {
         var _this = this;

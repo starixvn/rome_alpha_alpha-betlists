@@ -19,9 +19,9 @@
 
     public interface MonitoringBetsService
     {
-        Task<IEnumerable<SavedFilter>> GetSavedFilters(int custId, int subAccId, AddFilterParam customFilter);
+        Task<IEnumerable<SavedFilter>> GetSavedFilters(int custId, int subAccId, AddFilterParam unsavedFilter);
 
-        Task<IEnumerable<FilterConfiguration>> GetFilters(int custId, int subAccId, AddFilterParam customFilter);
+        Task<IEnumerable<FilterConfiguration>> GetFilters(int custId, int subAccId, AddFilterParam unsavedFilter);
 
         Task<Result> AddFilter(AddFilterParam param);
 
@@ -49,7 +49,11 @@
         };
         private static readonly HashSet<string> SpecialFilterNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
         {
-            "Unsaved Filter"
+            "Unsaved Filter",
+            "未保存筛选",
+            "未保存篩選",
+            "ตัวกรองที่ไม่ได้บันทึก",
+            "Bộ Lọc Chưa Lưu"
         };
         private readonly IPartialUMService partialUMService;
         private readonly IDynamicRepository dynamicRepository;
@@ -65,7 +69,7 @@
             this.dynamicRepository = dynamicRepository;
         }
 
-        public async Task<IEnumerable<SavedFilter>> GetSavedFilters(int custId, int subAccId, AddFilterParam customFilter)
+        public async Task<IEnumerable<SavedFilter>> GetSavedFilters(int custId, int subAccId, AddFilterParam unsavedFilter)
         {
             var filterConfiguration = (await GetFilterConfiguration(custId, subAccId))
                 .Select(f =>
@@ -87,15 +91,15 @@
                 })
                 .ToList();
 
-            if (customFilter != null)
+            if (unsavedFilter != null)
             {
-                filterConfiguration.Insert(0, BuildSavedFilter(customFilter));
+                filterConfiguration.Insert(0, BuildUnsavedFilter(unsavedFilter));
             }
 
             return filterConfiguration;
         }
 
-        private static SavedFilter BuildSavedFilter(AddFilterParam customFilter)
+        private static SavedFilter BuildUnsavedFilter(AddFilterParam customFilter)
         {
             var (sportTypes, leagues) = BuildSportTypesAndLeagues(customFilter.Sports);
 
@@ -160,7 +164,7 @@
             return $"{members},{myWatchlistMembers}".Trim(',');
         }
 
-        public async Task<IEnumerable<FilterConfiguration>> GetFilters(int custId, int subAccId, AddFilterParam customFilter)
+        public async Task<IEnumerable<FilterConfiguration>> GetFilters(int custId, int subAccId, AddFilterParam unsavedFilter)
         {
             var filterConfiguration = (await GetFilterConfiguration(custId, subAccId))
                 .Select(item =>
@@ -173,9 +177,9 @@
                 })
                 .ToList();
 
-            if (customFilter != null)
+            if (unsavedFilter != null)
             {
-                filterConfiguration.Insert(0, BuildFilterConfiguration(customFilter));
+                filterConfiguration.Insert(0, BuildUnsavedFilterConfiguration(unsavedFilter));
             }
 
             return filterConfiguration;
@@ -189,7 +193,7 @@
             return (await dynamicRepository.FetchAsync<FilterConfiguration>(criteria)).OrderByDescending(f => f.FilterId);
         }
 
-        private static FilterConfiguration BuildFilterConfiguration(AddFilterParam param)
+        private static FilterConfiguration BuildUnsavedFilterConfiguration(AddFilterParam param)
         {
             var filterXml = new FilterXml
             {
@@ -207,7 +211,7 @@
 
             return new FilterConfiguration(
                 param.FilterId,
-                param.FilterName,
+                Resources.UnsavedFilter,
                 string.Empty,
                 filterXml,
                 param.IsDefault,
@@ -250,7 +254,7 @@
                     yield return new Sport(
                         group.Key,
                         sportTypeName,
-                        BuildLeagues(group.Key, group).ToList());
+                        BuildLeagues(group.Key, group).OrderBy(l => l.LeagueName).ToList());
                 }
             }
         }

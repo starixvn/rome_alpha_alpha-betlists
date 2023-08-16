@@ -43,8 +43,8 @@ var MonitoringBetsCopyHtml = /** @class */ (function () {
         html.push('<tbody>');
         tableReport.find("tbody tr").each(function () {
             html.push('<tr>');
-            $(this).find("td").each(function () {
-                html.push('<td>', this.innerText, '</td>');
+            $(this).find("td").each(function (index) {
+                html.push('<td>', index === 1 ? "'" : "", this.innerText, '</td>');
             });
             html.push('</tr>');
         });

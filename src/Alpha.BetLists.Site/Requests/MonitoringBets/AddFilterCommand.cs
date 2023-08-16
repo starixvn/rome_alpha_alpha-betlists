@@ -41,8 +41,7 @@
         private bool IsValidLiveStatus()
             => LiveStatus == LiveStatusConstants.All
             || LiveStatus == LiveStatusConstants.Live
-            || LiveStatus == LiveStatusConstants.NonLive
-            || LiveStatus == LiveStatusConstants.Mix;
+            || LiveStatus == LiveStatusConstants.NonLive;
 
         private bool IsValidFilterByMembers()
         {

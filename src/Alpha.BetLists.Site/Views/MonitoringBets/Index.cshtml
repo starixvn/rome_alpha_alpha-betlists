@@ -19,7 +19,13 @@
     <div class="bl_title">
         <div class="box">
             <div>@Resources.LastBets</div>
-            <div>@Html.Partial("IconInformation", new List<string>() { Resources.ipnote })</div>
+            <div>
+                <div class="form-group icon">
+                    <span id="icon-information" class="icon icon-information-outline"></span>
+                    <a href="@Model.UserGuideLink" target="_blank" class="icon icon-book"></a>
+                </div>
+                @{ Html.RenderPartial("~/Views/Shared/IconInformationPopup.cshtml", new List<string>() { Resources.ipnote }); }
+            </div>
             <div class="push">
                 <div class="list-icon">
                     <ul>

@@ -1186,15 +1186,6 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mix.
-        /// </summary>
-        public static string Mix {
-            get {
-                return ResourceManager.GetString("Mix", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Monitored Member.
         /// </summary>
         public static string MonitoredMember {
@@ -1551,6 +1542,15 @@ namespace Alpha.BetLists.AppResources {
         public static string RefNo {
             get {
                 return ResourceManager.GetString("RefNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ref No.
+        /// </summary>
+        public static string RefNo_Duplicate_1_ {
+            get {
+                return ResourceManager.GetString("RefNo_Duplicate[1]", resourceCulture);
             }
         }
         

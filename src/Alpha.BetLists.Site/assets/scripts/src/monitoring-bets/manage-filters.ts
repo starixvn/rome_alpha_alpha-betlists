@@ -55,9 +55,15 @@ class ManageFiltersView {
 
     private handleOnClickButtonDeleteAllFilters() {
         this.inlineMessageComponent.hide();
-        window.top.bootboxConfirm($("#hidden-confirmMessageRemoveAllFilters").val(), undefined, () => {
-            this.handleDeleteFilters($("#hidden-allFilterIds").val());
-        });
+        try {
+            window.top.bootboxConfirm($("#hidden-confirmMessageRemoveAllFilters").val(), undefined, () => {
+                this.handleDeleteFilters($("#hidden-allFilterIds").val());
+            });
+        } catch (e) { // internal cannot access window.top (error: cross-origin frame)
+            if (confirm($("#hidden-confirmMessageRemoveAllFilters").val())) {
+                this.handleDeleteFilters($("#hidden-allFilterIds").val());
+            }
+        }
     }
 
     private handleToggleCollapseExpand($target, getSiblingRowsWithCustomData = true) {
@@ -97,10 +103,17 @@ class ManageFiltersView {
     private handleOnClickIconDelete(e) {
         this.inlineMessageComponent.hide();
         const iconBin = $(e.target);
-        window.top.bootboxConfirm($("#hidden-confirmMessageRemoveFilter").val(), undefined, () => {
-            const filterId = iconBin.closest("tr").data("filterid");
-            this.handleDeleteFilters(filterId);
-        });
+        try {
+            window.top.bootboxConfirm($("#hidden-confirmMessageRemoveFilter").val(), undefined, () => {
+                const filterId = iconBin.closest("tr").data("filterid");
+                this.handleDeleteFilters(filterId);
+            });
+        } catch (e) { // internal cannot access window.top (error: cross-origin frame)
+            if (confirm($("#hidden-confirmMessageRemoveFilter").val())) {
+                const filterId = iconBin.closest("tr").data("filterid");
+                this.handleDeleteFilters(filterId);
+            }
+        }
     }
 
     private handleDeleteFilters(ids) {

@@ -20,6 +20,7 @@
     using Alpha.Web.Models;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
+    using Fanex.Caching;
     using MediatR;
     using Sunplus.Agent.Model.Entities;
 
@@ -37,6 +38,7 @@
         IAsyncRequestHandler<GetLastFilteringBetsQuery, FilteringBetDataViewModel>
     {
         private const int NumberOfEncodeResult = 6;
+        private const int UnsavedFilterCacheInDays = 7;
 
         private readonly IUserSession userSession;
         private readonly MonitoringBetsService monitoringBetService;
@@ -353,7 +355,13 @@
                 }
                 else
                 {
-                    await redisCacheService.SetAsync(GetFilterCacheKey(query), filter);
+                    await redisCacheService.SetAsync(
+                        GetFilterCacheKey(query),
+                        filter,
+                        new CacheItemOptions()
+                        {
+                            AbsoluteExpiration = DateTimeOffset.Now.AddDays(UnsavedFilterCacheInDays)
+                        });
                 }
             }
             catch

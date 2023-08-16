@@ -556,7 +556,7 @@
     <value>输入账号/昵称 (分隔以逗号、标签及输入)</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>取消</value>
   </data>
   <data name="FilterConfiguration" xml:space="preserve">
     <value>筛选配置</value>
@@ -583,10 +583,10 @@
     <value>体育组别</value>
   </data>
   <data name="EnterMembers" xml:space="preserve">
-    <value>Enter Member(s)</value>
+    <value>输入会员</value>
   </data>
   <data name="AddedSuccessfully" xml:space="preserve">
-    <value>Added successfully</value>
+    <value>添加成功</value>
   </data>
   <data name="SelectMembers" xml:space="preserve">
     <value>选择会员</value>
@@ -661,7 +661,7 @@
     <value>请选择体育项目</value>
   </data>
   <data name="FilterConfigurationFilterByMembersRequiredError" xml:space="preserve">
-    <value>Please enter or select Member(s)</value>
+    <value>请输入会员账号或选择会员</value>
   </data>
   <data name="FilterConfigurationFilterNameRequiredError" xml:space="preserve">
     <value>请输入筛选名称</value>
@@ -682,7 +682,7 @@
     <value>开启</value>
   </data>
   <data name="MemberNotFound" xml:space="preserve">
-    <value>Member not found</value>
+    <value>未找到会员用户名</value>
   </data>
   <data name="MemberAlreadyExists" xml:space="preserve">
     <value>此用户名已存在</value>
@@ -742,17 +742,11 @@
   <data name="Others" xml:space="preserve">
     <value>其他</value>
   </data>
-  <data name="Mix" xml:space="preserve">
-    <value>混合</value>
-  </data>
   <data name="Copied" xml:space="preserve">
     <value>复制</value>
   </data>
   <data name="Copy" xml:space="preserve">
     <value>复制</value>
-  </data>
-  <data name="Username" xml:space="preserve">
-    <value>用户名</value>&gt;&gt;&gt;&gt;&gt;&gt;&gt; ea69fd3f (abc)
   </data>
   <data name="MyFilters" xml:space="preserve">
     <value>我的筛选</value>
@@ -760,7 +754,7 @@
   <data name="MostRecentTickets" xml:space="preserve">
     <value>最近的注单</value>
   </data>
-  <data name="RefNo" xml:space="preserve">
+  <data name="RefNo_Duplicate[1]" xml:space="preserve">
     <value>参照号码</value>
   </data>
   <data name="IP" xml:space="preserve">
@@ -792,5 +786,8 @@
   </data>
   <data name="PleaseSelect" xml:space="preserve">
     <value>请选择</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>用户名</value>
   </data>
 </root>

@@ -106,8 +106,8 @@
 
         public static bool IsStandaloneReport => GetConfigValue("IsStandaloneReport") == "1";
 
-        public static bool IsMBCSite => !string.IsNullOrWhiteSpace(GetConfigValue("SiteGroup"))
-            && !GetConfigValue("SiteGroup").Equals("789y", StringComparison.OrdinalIgnoreCase);
+        public static bool IsMBCSite => !string.IsNullOrWhiteSpace(GetConfigValue("SiteLabel"))
+            && !GetConfigValue("SiteLabel").Equals("789y", StringComparison.OrdinalIgnoreCase);
 
         public static bool DisabledVietnamese => IsMBCSite;
 
@@ -131,6 +131,8 @@
                 return monitoringBetsBettypes;
             }
         }
+
+        public static string JsVersion => GetConfigValue("JsVersion");
 
         public static string GetConfigValue(string configName) => AppSettingValues[configName];
 

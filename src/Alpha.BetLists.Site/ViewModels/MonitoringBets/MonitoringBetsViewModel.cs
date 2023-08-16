@@ -2,9 +2,11 @@
 {
     using System.Collections.Generic;
     using System.Web.Mvc;
+    using Alpha.BetLists.Configurations;
     using Alpha.BetLists.Models;
     using Alpha.BetLists.Models.MonitoringBets;
     using Alpha.BetLists.Site.Requests.MonitoringBets;
+    using Alpha.Web.Helpers;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
 
@@ -58,5 +60,10 @@
 
         private static SelectListItem BuildSelectListItem(int value, bool selected)
             => new SelectListItem { Text = value.ToString(), Value = value.ToString(), Selected = selected };
+
+        public string UserGuideLink
+            => AppSettings.IsMBCSite
+            ? MicroSites.HowToUseUrl("~/Index.aspx?linktomessagesite=186142")
+            : MicroSites.MessageUrl("~/StaticMessage/Guide?id=186142");
     }
 }

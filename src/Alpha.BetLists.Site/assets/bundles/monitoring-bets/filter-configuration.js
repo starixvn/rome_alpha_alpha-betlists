@@ -6,26 +6,6 @@ var AJAXHelper = /** @class */ (function () {
         var _this = this;
         $.getJSON(url, onSuccess).fail(function (jqXHR) { return _this.handleOnFail(jqXHR); });
     };
-    AJAXHelper.postJSON = function (url, formData, onSuccess, onComplete) {
-        var _this = this;
-        $.blockUI();
-        return $.ajax({
-            url: url,
-            headers: {
-                __RequestVerificationToken: $("input[name='__RequestVerificationToken']").val(),
-                'X-Requested-With': 'XMLHttpRequest'
-            },
-            dataType: "json",
-            type: "POST",
-            data: formData,
-            success: function (result) {
-                onSuccess(result);
-                $.unblockUI();
-            },
-            error: function (jqXHR) { return _this.handleOnFail(jqXHR); },
-            complete: onComplete
-        });
-    };
     AJAXHelper.post = function (url, formData, onSuccess, onComplete) {
         var _this = this;
         $.blockUI();
@@ -47,10 +27,10 @@ var AJAXHelper = /** @class */ (function () {
     };
     AJAXHelper.handleOnFail = function (jqXHR) {
         $.unblockUI();
-        if (jqXHR.statusText === "abort") {
-            return;
-        }
         if (jqXHR) {
+            if (jqXHR.statusText === "abort") {
+                return;
+            }
             if (jqXHR.status === 401) {
                 window.top["age"].SignOut();
             }
@@ -864,7 +844,7 @@ var FilterConfigurationView = /** @class */ (function () {
     FilterConfigurationView.prototype.handleApplyFilter = function () {
         var _this = this;
         this.addFilterFormData.filterName = "Default";
-        AJAXHelper.postJSON("ApplyFilter", this.addFilterFormData, function (result) {
+        AJAXHelper.post("ApplyFilter", this.addFilterFormData, function (result) {
             if (result.ErrCode) {
                 _this.inlineMessage.showError(result.ErrMsg);
             }
@@ -880,7 +860,7 @@ var FilterConfigurationView = /** @class */ (function () {
         var formDataPopup = this.getFormDataPopup();
         if (formDataPopup) {
             this.addFilterFormData = $.extend(this.addFilterFormData, formDataPopup);
-            AJAXHelper.postJSON("AddFilter", this.addFilterFormData, function (result) {
+            AJAXHelper.post("AddFilter", this.addFilterFormData, function (result) {
                 _this.inlineMessagePopup.show(result);
                 if (!result.ErrCode) {
                     reloadPageCallback();

@@ -566,10 +566,10 @@
     <value>Nhập các tên người dùng/biệt danh (cách nhau bằng dấu phẩy, tab hoặc enter)</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Hủy</value>
   </data>
   <data name="FilterConfiguration" xml:space="preserve">
-    <value>Cấu Hình Bộ Lọc</value>
+    <value>Cài Đặt Bộ Lọc</value>
   </data>
   <data name="Apply" xml:space="preserve">
     <value>Áp dụng</value>
@@ -593,10 +593,10 @@
     <value>Nhóm Thể Thao</value>
   </data>
   <data name="EnterMembers" xml:space="preserve">
-    <value>Enter Member(s)</value>
+    <value>Nhập Member</value>
   </data>
   <data name="AddedSuccessfully" xml:space="preserve">
-    <value>Added successfully</value>
+    <value>Đã thêm vào thành công</value>
   </data>
   <data name="SelectMembers" xml:space="preserve">
     <value>Chọn Member</value>
@@ -671,7 +671,7 @@
     <value>Vui lòng chọn môn thể thao</value>
   </data>
   <data name="FilterConfigurationFilterByMembersRequiredError" xml:space="preserve">
-    <value>Please enter or select Member(s)</value>
+    <value>Vui lòng nhập tên người dùng của Member hoặc chọn Member</value>
   </data>
   <data name="FilterConfigurationFilterNameRequiredError" xml:space="preserve">
     <value>Vui lòng nhập tên bộ lọc</value>
@@ -686,7 +686,7 @@
     <value>Đặ̣t làm bộ lọc mặc định</value>
   </data>
   <data name="MemberNotFound" xml:space="preserve">
-    <value>Member not found</value>
+    <value>Không tìm thấy tên người dùng của Member</value>
   </data>
   <data name="MemberAlreadyExists" xml:space="preserve">
     <value>Tên người dùng đã tồn tại</value>
@@ -747,9 +747,6 @@ Vui lòng chọn tiêu chí cho bộ lọc dựa trên nhu cầu theo dõi
   <data name="Others" xml:space="preserve">
     <value>Khác</value>
   </data>
-  <data name="Mix" xml:space="preserve">
-    <value>Kết Hợp</value>
-  </data>
   <data name="Copied" xml:space="preserve">
     <value>Đã sao chép</value>
   </data>
@@ -765,7 +762,7 @@ Vui lòng chọn tiêu chí cho bộ lọc dựa trên nhu cầu theo dõi
   <data name="MostRecentTickets" xml:space="preserve">
     <value>Vé Cược Gần Đây</value>
   </data>
-  <data name="RefNo" xml:space="preserve">
+  <data name="RefNo_Duplicate[1]" xml:space="preserve">
     <value>Số Tham Chiếu</value>
   </data>
   <data name="IP" xml:space="preserve">
@@ -775,22 +772,22 @@ Vui lòng chọn tiêu chí cho bộ lọc dựa trên nhu cầu theo dõi
     <value>Không có thay đổi để cập nhật.</value>
   </data>
   <data name="SaveAndApply" xml:space="preserve">
-    <value>Save &amp; Apply</value>
+    <value>Lưu &amp; Áp Dụng</value>
   </data>
   <data name="MonitoredMember" xml:space="preserve">
     <value>Monitored Member</value>
   </data>
   <data name="UnsavedFilter" xml:space="preserve">
-    <value>Unsaved Filter</value>
+    <value>Bộ Lọc Chưa Lưu</value>
   </data>
   <data name="FilterNameAlreadyExists" xml:space="preserve">
     <value>Tên bộ lọc đã tồn tại.</value>
   </data>
   <data name="ManuallyEntered" xml:space="preserve">
-    <value>Manually Entered</value>
+    <value>Nhập thủ công</value>
   </data>
   <data name="FromMonitoredList" xml:space="preserve">
-    <value>From Monitored List</value>
+    <value>Từ danh sách theo dõi</value>
   </data>
   <data name="SaveFilter" xml:space="preserve">
     <value>Lưu Bộ Lọc</value>

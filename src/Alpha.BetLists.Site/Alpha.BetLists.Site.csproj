@@ -974,8 +974,12 @@
     <Content Include="assets\styles\monitoring-bets\manage-filters.min.css">
       <DependentUpon>manage-filters.css</DependentUpon>
     </Content>
-    <Content Include="assets\styles\monitoring-bets\monitoring-bets.css" />
-    <Content Include="assets\styles\monitoring-bets\monitoring-bets.min.css" />
+    <Content Include="assets\styles\monitoring-bets\monitoring-bets.css">
+      <DependentUpon>monitoring-bets.scss</DependentUpon>
+    </Content>
+    <Content Include="assets\styles\monitoring-bets\monitoring-bets.min.css">
+      <DependentUpon>monitoring-bets.css</DependentUpon>
+    </Content>
     <Content Include="assets\styles\parlay-detail-dark.css">
       <DependentUpon>parlay-detail-dark.scss</DependentUpon>
     </Content>
@@ -1340,6 +1344,7 @@
     <Content Include="Views\SearchTickets\Index.cshtml" />
     <Content Include="Views\Shared\WinLossTableNew.cshtml" />
     <Content Include="Views\Shared\WinLossTableData.cshtml" />
+    <Content Include="Views\Shared\IconInformationPopup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_GlobalResources\Resources.Designer.cs">

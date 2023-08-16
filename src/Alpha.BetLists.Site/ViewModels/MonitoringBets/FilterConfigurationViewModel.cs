@@ -48,7 +48,6 @@
                 yield return BuildSelectListItem(AppResources.Resources.All, LiveStatusConstants.All, true);
                 yield return BuildSelectListItem(AppResources.Resources.Live, LiveStatusConstants.Live);
                 yield return BuildSelectListItem(AppResources.Resources.NonLive, LiveStatusConstants.NonLive);
-                yield return BuildSelectListItem(AppResources.Resources.Mix, LiveStatusConstants.Mix);
             }
         }
 
