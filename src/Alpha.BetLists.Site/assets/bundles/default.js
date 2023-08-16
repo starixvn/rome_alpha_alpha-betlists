@@ -877,7 +877,7 @@ var BetList;
                 function VGamingResultDetails() {
                     var _this = _super !== null && _super.apply(this, arguments) || this;
                     _this.ViewResultDetails = function (matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, betId, matchCode, transDesc, betcheck) {
-                        var params = '?custId=' + _this.CustId +
+                        var params = '?custId=' + (transDesc || _this.CustId) +
                             '&roleId=' + _this.ViewerLevelId +
                             '&gameRoundId=' + betcheck +
                             '&gameId=' + betTypeId +

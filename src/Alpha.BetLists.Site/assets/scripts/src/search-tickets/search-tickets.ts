@@ -19,7 +19,7 @@ class SearchTicketView {
         this.registerEvents();
 
         setTimeout(() => {
-            let mainDomain = this.$("#MainDomain").val();
+            let mainDomain = this.$("#MainDomainForFeedback").val();
             if (mainDomain.length) {
                 mainDomain = mainDomain.indexOf("http") === -1
                     ? location.origin.split(":")[0] + ":" + mainDomain + "/site-main"
