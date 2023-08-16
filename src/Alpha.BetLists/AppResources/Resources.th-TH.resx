@@ -501,4 +501,10 @@
   <data name="ipnote" xml:space="preserve">
     <value>ข้อมูลประเทศ ได้รับมาจาก IP2Location™ และ DNSstuff ซึ่งใช้สำหรับการอ้างอิงเท่านั้น โดยไม่มีการรับประกัน หากท่านจำเป็นที่จะได้รับข้อมูลที่เป็นปัจจุบันและถูกต้อง โปรดตรวจสอบจากแหล่งข้อมูลที่เชื่อถือได้</value>
   </data>
+  <data name="RefNo" xml:space="preserve">
+    <value>หมายเลขอ้างอิง</value>
+  </data>
+  <data name="SearchTickets" xml:space="preserve">
+    <value>ค้นหาตั๋วเดิมพัน</value>
+  </data>
 </root>

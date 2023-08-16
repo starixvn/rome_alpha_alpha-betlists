@@ -42,5 +42,9 @@
   {
     "outputFile": "assets/styles/winloss.css",
     "inputFile": "assets/styles/winloss.scss"
+  },
+  {
+    "outputFile": "assets/styles/search-tickets/search-tickets.css",
+    "inputFile": "assets/styles/search-tickets/search-tickets.scss"
   }
 ]

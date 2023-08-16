@@ -39,6 +39,8 @@
 
         public bool IsInternal => userSession.IsInternal;
 
+        public string MainDomain => userSession?.GetProperty<string>(SessionKey.MainDomainSessionKey);
+
         public bool IsAdminCanViewVNIP => userSession.IsAdminCanViewVNIP;
 
         public string LangKey => userSession.LangKey;

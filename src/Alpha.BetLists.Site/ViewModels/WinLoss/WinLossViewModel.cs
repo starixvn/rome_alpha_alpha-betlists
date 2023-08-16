@@ -17,13 +17,17 @@
             bool isGroupHeadline = false,
             bool showMemberName = false,
             string[] excludingTicketStatus = null,
-            BetlistOutputParams betlistOutputParams = null)
+            BetlistOutputParams betlistOutputParams = null,
+            bool showFooter = false,
+            bool showOrder = false)
             : base(query, betListData, builder, ticketHelper, showMemberName)
         {
             Footer = new Footer(betListData, baseQuery.ViewerLevel, showMemberName, excludingTicketStatus);
             ShowContributionAmountRoundNote = showContributionAmountRoundNote;
             IsGroupHeadline = isGroupHeadline;
             BetlistOutputParams = betlistOutputParams ?? new BetlistOutputParams();
+            ShowFooter = showFooter;
+            ShowOrder = showOrder;
         }
 
         public bool AllowToViewSuperPT => baseQuery.ViewerLevel.IsSuperLevel();
@@ -37,5 +41,7 @@
         public Footer Footer { get; }
 
         public BetlistOutputParams BetlistOutputParams { get; }
+        public bool ShowFooter { get; }
+        public bool ShowOrder { get; }
     }
 }

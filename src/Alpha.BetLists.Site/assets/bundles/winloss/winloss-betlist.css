@@ -45,7 +45,6 @@
   padding-top: 0;
   padding-right: 0; }
 
-
 /*******************************************/
 /* Effect of dropdownlist */
 /*******************************************/
@@ -119,7 +118,8 @@
 .filter {
   display: table;
   width: 100%;
-  clear: both; }
+  clear: both;
+  padding-top: 0; }
   .filter #historicreport-switch {
     text-decoration: none !important; }
   .filter .multiselect .multiselect-selected-text {

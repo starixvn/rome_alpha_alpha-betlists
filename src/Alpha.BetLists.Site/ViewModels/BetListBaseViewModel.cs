@@ -51,7 +51,7 @@
             DisplayVNIP = baseQuery.DisplayVNIP;
             Title = GetTitle(query).ToUpperInvariant();
             TotalColumn = TotalColumnByViewLevelId[ViewerLevel] + (showMemberName ? 1 : 0);
-            ShowMemberName = showMemberName;            
+            ShowMemberName = showMemberName;
         }
 
         public string CustName { get; protected set; }
@@ -78,15 +78,45 @@
 
         public bool IsHistoricReport { get; protected set; }
 
-        public string ResultsPath => HttpContext.Current.Session.IsCookieless ?
-            $"/site-results/(S({UserSession.Current.GetProperty<string>(SessionKey.MainSessionID)}))/"
-            : AppPathHelper.GetAppPath(AppSettings.ResultAppPath, "~");
+        public string ResultsPath
+        {
+            get
+            {
+                if (HttpContext.Current == null)
+                {
+                    return AppPathHelper.GetAppPath(AppSettings.ResultAppPath, "~");
+                }
+                return HttpContext.Current.Session.IsCookieless ?
+                        $"/site-results/(S({UserSession.Current.GetProperty<string>(SessionKey.MainSessionID)}))/"
+                        : AppPathHelper.GetAppPath(AppSettings.ResultAppPath, "~");
+            }
+        }
 
-        public string OldMainPath => HttpContext.Current.Session.IsCookieless ?
-            $"/ex-main/(S({UserSession.Current.GetProperty<string>(SessionKey.MainSessionID)}))/" : MicroSites.OldMainUrl("~");
+        public string OldMainPath
+        {
+            get
+            {
+                if (HttpContext.Current == null)
+                {
+                    return MicroSites.OldMainUrl("~");
+                }
+                return HttpContext.Current.Session.IsCookieless ?
+                    $"/ex-main/(S({UserSession.Current.GetProperty<string>(SessionKey.MainSessionID)}))/" : MicroSites.OldMainUrl("~");
+            }
+        }
 
-        public string TotalBetsForecastPath => HttpContext.Current.Session.IsCookieless ?
-            $"/ex-totalbetsforecast/(S({UserSession.Current.GetProperty<string>(SessionKey.MainSessionID)}))/" : AppPathHelper.GetAppPath(AppSettings.TotalBetsForecastAppPath, "~");
+        public string TotalBetsForecastPath
+        {
+            get
+            {
+                if (HttpContext.Current == null)
+                {
+                    return AppPathHelper.GetAppPath(AppSettings.TotalBetsForecastAppPath, "~");
+                }
+                return HttpContext.Current.Session.IsCookieless ?
+                $"/ex-totalbetsforecast/(S({UserSession.Current.GetProperty<string>(SessionKey.MainSessionID)}))/" : AppPathHelper.GetAppPath(AppSettings.TotalBetsForecastAppPath, "~");
+            }
+        }
 
         public string SiteMainPath => AppPathHelper.GetAppPath(AppSettings.MainAppPath, "~");
 

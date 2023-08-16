@@ -808,6 +808,14 @@
     <Content Include="assets\bundles\running-betlist\running-betlist.min.js">
       <DependentUpon>running-betlist.js</DependentUpon>
     </Content>
+    <Content Include="assets\bundles\search-tickets\search-tickets.css" />
+    <Content Include="assets\bundles\search-tickets\search-tickets.js" />
+    <Content Include="assets\bundles\search-tickets\search-tickets.min.css">
+      <DependentUpon>search-tickets.css</DependentUpon>
+    </Content>
+    <Content Include="assets\bundles\search-tickets\search-tickets.min.js">
+      <DependentUpon>search-tickets.js</DependentUpon>
+    </Content>
     <Content Include="assets\bundles\winloss\winloss-betlist.css" />
     <Content Include="assets\bundles\winloss\winloss-betlist.js" />
     <Content Include="assets\bundles\winloss\winloss-betlist.min.css">
@@ -917,6 +925,12 @@
     </Content>
     <Content Include="assets\styles\parlay-detail.min.css">
       <DependentUpon>parlay-detail.css</DependentUpon>
+    </Content>
+    <Content Include="assets\styles\search-tickets\search-tickets.css">
+      <DependentUpon>search-tickets.scss</DependentUpon>
+    </Content>
+    <Content Include="assets\styles\search-tickets\search-tickets.min.css">
+      <DependentUpon>search-tickets.css</DependentUpon>
     </Content>
     <Content Include="assets\styles\winloss.css">
       <DependentUpon>winloss.scss</DependentUpon>
@@ -1084,6 +1098,7 @@
     <Content Include="App_Data\securitycode.staginginternal2.json">
       <DependentUpon>securitycode.json</DependentUpon>
     </Content>
+    <Content Include="assets\styles\search-tickets\search-tickets.scss" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -1245,6 +1260,9 @@
     <Content Include="Web.staginginternal2.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
+    <Content Include="Views\SearchTickets\Index.cshtml" />
+    <Content Include="Views\Shared\WinLossTableNew.cshtml" />
+    <Content Include="Views\Shared\WinLossTableData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_GlobalResources\Resources.Designer.cs">
@@ -1265,6 +1283,7 @@
     <Compile Include="Controllers\BetListByBetTypeAndMatchController.cs" />
     <Compile Include="Controllers\BetListByBetTypeController.cs" />
     <Compile Include="Controllers\CancelledBetController.cs" />
+    <Compile Include="Controllers\SearchTicktesController.cs" />
     <Compile Include="Controllers\DailyStatementController.cs" />
     <Compile Include="Controllers\CashOutHistoryController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
@@ -1291,6 +1310,7 @@
     <Compile Include="Handlers\CasinoDetails\CasinoDetailsExcelHandler.cs" />
     <Compile Include="Handlers\CasinoDetails\CasinoDetailsHandler.cs" />
     <Compile Include="Handlers\CashOutHistory\CashOutHistoryHandler.cs" />
+    <Compile Include="Handlers\SearchTickets\SearchTicketsHandler.cs" />
     <Compile Include="Handlers\JackpotDetails\JackpotDetailsExcelHandler.cs" />
     <Compile Include="Handlers\JackpotDetails\JackpotDetailsHandler.cs" />
     <Compile Include="Handlers\BetBuilder\BetBuilderHandler.cs" />
@@ -1353,6 +1373,7 @@
     <Compile Include="Requests\BetListByBetType\BetListByBetTypeExcelQuery.cs" />
     <Compile Include="Requests\BetListByBetType\BetListByBetTypeQuery.cs" />
     <Compile Include="Requests\DailyStatement\DailyStatementExcelQuery.cs" />
+    <Compile Include="Requests\SearchTickets\SearchTicketsQuery.cs" />
     <Compile Include="Requests\JackpotDetails\JackpotDetailsExcelQuery.cs" />
     <Compile Include="Requests\JackpotDetails\JackpotDetailsQuery.cs" />
     <Compile Include="Requests\DailyStatement\DailyStatementQuery.cs" />
@@ -1409,6 +1430,7 @@
     <Compile Include="ViewModels\DailyStatement\DailyStatementViewModel.cs" />
     <Compile Include="ViewModels\CorrectScore\CorrectScoreViewModel.cs" />
     <Compile Include="ViewModels\ExcelFileViewModel.cs" />
+    <Compile Include="ViewModels\SearchTickets\SearchTicketsViewModel.cs" />
     <Compile Include="ViewModels\JackpotDetails\JackpotDetailsViewModel.cs" />
     <Compile Include="ViewModels\MemberBetList\MemberBetListViewModel.cs" />
     <Compile Include="ViewModels\MoveStatementHistory\MoveStatementHistoryViewModel.cs" />
@@ -1467,6 +1489,7 @@
     <TypeScriptCompile Include="assets\scripts\src\betlist\status\result-details\other-result-details.ts" />
     <TypeScriptCompile Include="assets\scripts\src\cancelled-betlist\cancelled-betlist-constants.ts" />
     <TypeScriptCompile Include="assets\scripts\src\cancelled-betlist\cancelled-betlist.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\common\ajax-helper.ts" />
     <TypeScriptCompile Include="assets\scripts\src\common\app-path.ts" />
     <TypeScriptCompile Include="assets\scripts\src\common\icon-note.ts" />
     <TypeScriptCompile Include="assets\scripts\src\common\popup-details.ts" />
@@ -1487,6 +1510,7 @@
     <TypeScriptCompile Include="assets\scripts\src\components\statusmultiselection.ts" />
     <TypeScriptCompile Include="assets\scripts\src\components\productmultiselection.ts" />
     <TypeScriptCompile Include="assets\scripts\src\components\week-selection.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\search-tickets\search-tickets.ts" />
     <TypeScriptCompile Include="assets\scripts\src\last-bets\last-bets.ts" />
     <TypeScriptCompile Include="assets\scripts\src\components\single-selection-dropdown.ts" />
     <TypeScriptCompile Include="assets\scripts\src\member-betlist\member-betlist-init.ts" />
@@ -1532,6 +1556,7 @@
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.8.22.0.31243\analyzers\SonarAnalyzer.CSharp.dll" />
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.8.22.0.31243\analyzers\SonarAnalyzer.dll" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup />
   <ItemGroup>
     <Content Include="App_GlobalResources\Resources.resx">

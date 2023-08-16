@@ -25,6 +25,8 @@
             LimitedDateToShowInfo = viewer.LimitedDateToShowInfo;
             IsEnableSabaPromotion = viewer.IsEnableSabaPromotion;
             IsEnableSabaPromotionForHeadline = viewer.IsEnableSabaPromotionForHeadline;
+            IsInternal = viewer.IsInternal;
+            MainDomain = viewer.MainDomain;
         }
 
         public int CustId { get; set; }
@@ -66,6 +68,10 @@
         public bool IsEnableSabaPromotion { get; }
 
         public bool IsEnableSabaPromotionForHeadline { get; }
+
+        public bool IsInternal { get; }
+
+        public string MainDomain { get; }
 
         public bool Is789Y => AppSettings.SiteLabel.Equals(AppSettings.SiteLabel789y);
     }

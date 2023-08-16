@@ -1,9 +1,18 @@
 ﻿﻿@using Alpha.BetLists.AppResources;
-@helper Render(int colspan)
+@helper Render(int colspan, bool withBody = true)
 {
-    <tbody>
+    if (withBody)
+    {
+        <tbody>
+            <tr>
+                <td colspan="@colspan" class="text-center">@Resources.NoInformationIsAvailable</td>
+            </tr>
+        </tbody>
+    }
+    else
+    {
         <tr>
             <td colspan="@colspan" class="text-center">@Resources.NoInformationIsAvailable</td>
         </tr>
-    </tbody>
+    }
 }
