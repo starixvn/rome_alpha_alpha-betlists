@@ -7,7 +7,7 @@ var SearchTicketView = /** @class */ (function () {
             _this.cacheDOMElements();
             _this.registerEvents();
             setTimeout(function () {
-                var mainDomain = _this.$("#MainDomain").val();
+                var mainDomain = _this.$("#MainDomainForFeedback").val();
                 if (mainDomain.length) {
                     mainDomain = mainDomain.indexOf("http") === -1
                         ? location.origin.split(":")[0] + ":" + mainDomain + "/site-main"

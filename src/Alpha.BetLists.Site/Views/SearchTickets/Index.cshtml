@@ -40,7 +40,7 @@
     </div>
 
 </form>
-@Html.Hidden("MainDomain", Model.MainDomain)
+@Html.Hidden("MainDomainForFeedback", Model.MainDomain)
 @Html.Hidden("get-bets-url", @Url.Action("BetData", $"{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}SearchTickets"))
 @Html.Partial("WinLossTableNew", Model)
 
