@@ -62,6 +62,25 @@ var AJAXHelper = /** @class */ (function () {
             }
         }
     };
+    AJAXHelper.get = function (url, formData, onSuccess, onComplete) {
+        var _this = this;
+        $.blockUI();
+        return $.ajax({
+            url: url,
+            headers: {
+                __RequestVerificationToken: $("input[name='__RequestVerificationToken']").val(),
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            type: "GET",
+            data: formData,
+            success: function (result) {
+                onSuccess(result);
+                $.unblockUI();
+            },
+            error: function (jqXHR) { return _this.handleOnFail(jqXHR); },
+            complete: onComplete
+        });
+    };
     return AJAXHelper;
 }());
 //# sourceMappingURL=ajax-helper.js.map
