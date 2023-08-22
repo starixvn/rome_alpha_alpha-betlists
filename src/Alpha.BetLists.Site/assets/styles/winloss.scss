@@ -56,11 +56,10 @@
     }
 }
 
-.tbl-betlist {
-    &.error-exceed-row {
-        color: $msg-error-color;
-    }
+.tbl-betlist .error-exceed-row {
+    color: $msg-error-color;
 }
+
 
 .filter {
     padding-top: 0;

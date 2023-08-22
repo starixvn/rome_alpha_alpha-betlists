@@ -1222,7 +1222,6 @@
     <Content Include="Views\WinLoss\IndexNew.cshtml" />
     <Content Include="Views\WinLoss\BetList.cshtml" />
     <Content Include="Views\WinLoss\BetListWeekSelection.cshtml" />
-    <Content Include="Views\WinLoss\GetData.cshtml" />
     <Content Include="Views\Shared\IconInformation.cshtml" />
     <Content Include="Web.AppSettings.staging.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>

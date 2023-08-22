@@ -38,7 +38,7 @@
   .tblRpt-freeze-header tbody tr:last-child td {
     border-bottom: 0; }
 
-.tbl-betlist.error-exceed-row {
+.tbl-betlist .error-exceed-row {
   color: #fe0000; }
 
 .filter {

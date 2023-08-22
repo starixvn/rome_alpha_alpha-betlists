@@ -47,10 +47,6 @@
     </div>
     @Html.Hidden("winloss-detail-report-path", Alpha.BetLists.Site.Helpers.UrlHelper.MapReportsPath("~/winlossdetail/"))
     @Html.Hidden("resource-ids", Model.ResourceIds)
-    @if (!string.IsNullOrWhiteSpace(Model.BetlistOutputParams.ErrMsg))
-    {
-        @Html.Hidden("error-exceed-row", Model.BetlistOutputParams.ErrMsg)
-    }
     <input type="hidden" id="language" data-currentlanguage="@Model.Language" />
     @Html.Hidden("cust-name", Model.CustName)
     @Html.Hidden("hidden-hide-filter-text", Resources.HideFilter)
