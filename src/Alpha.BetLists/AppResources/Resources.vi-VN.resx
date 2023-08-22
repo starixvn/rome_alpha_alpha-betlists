@@ -517,4 +517,7 @@
   <data name="SearchTickets" xml:space="preserve">
     <value>Tìm Vé Cược</value>
   </data>
+  <data name="CanOnlyViewDataAfterTimeHistoryReportWithFormat" xml:space="preserve">
+    <value>Bạn chỉ có thể xem dữ liệu báo cáo với thời gian đã kết toán sau ngày {0} (mm/dd/yyyy).</value>
+  </data>
 </root>

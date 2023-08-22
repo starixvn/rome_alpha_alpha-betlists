@@ -528,4 +528,7 @@
   <data name="RefNo" xml:space="preserve">
     <value>Ref No</value>
   </data>
+  <data name="CanOnlyViewDataAfterTimeHistoryReportWithFormat" xml:space="preserve">
+    <value>You can only view the report data with settled time from {0} (mm/dd/yyyy).</value>
+  </data>
 </root>

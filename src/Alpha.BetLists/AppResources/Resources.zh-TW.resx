@@ -507,4 +507,7 @@
   <data name="SearchTickets" xml:space="preserve">
     <value>搜索注單</value>
   </data>
+  <data name="CanOnlyViewDataAfterTimeHistoryReportWithFormat" xml:space="preserve">
+    <value>只能查看結算日{0} (月/日/年) 後的報表資訊。</value>
+  </data>
 </root>

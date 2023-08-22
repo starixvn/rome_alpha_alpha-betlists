@@ -232,6 +232,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You can only view the report data with settled time from {0} (mm/dd/yyyy)..
+        /// </summary>
+        public static string CanOnlyViewDataAfterTimeHistoryReportWithFormat {
+            get {
+                return ResourceManager.GetString("CanOnlyViewDataAfterTimeHistoryReportWithFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cash Out.
         /// </summary>
         public static string CashOut {
