@@ -24,7 +24,7 @@
         public static bool IsOutRight(int betType) => betType == BetTypeIdConstants.Outright;
 
         public static bool IsLeapGaming(int betType)
-            => BetTypeIdConstants.LeapGamingMin <= betType && betType <= BetTypeIdConstants.LeapGamingMax;
+            => BetTypeIdConstants.LeapGamingMin == betType;
 
         public static bool IsHappy5LinkedGames(int betType)
             => BetTypeIdConstants.Happy5LinkedGamesMin <= betType && betType <= BetTypeIdConstants.Happy5LinkedGamesMax;

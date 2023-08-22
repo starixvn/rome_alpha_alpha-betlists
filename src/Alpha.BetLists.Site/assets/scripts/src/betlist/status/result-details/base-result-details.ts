@@ -101,7 +101,7 @@
                 return this.virtualGamesResult;
             }
 
-            if (betTypeId >= 5301 && betTypeId <= 5399) {
+            if (betTypeId == 5301) {
                 this.LeapGamingResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.LeapGamingResult) ? new LeapGamingResultDetails() : this.LeapGamingResult;
                 return this.LeapGamingResult;
             }
