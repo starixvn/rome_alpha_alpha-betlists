@@ -19,7 +19,7 @@
         {
             RefNo = query.RefNo;
             ViewDataInstructionMessage = string.Format(
-                Resources.CanOnlyViewDataAfterTimeHistoryReport,
+                Resources.CanOnlyViewDataAfterTimeHistoryReportWithFormat,
                 query.MinDate.ToShortDateWithSlash());
             Title = Resources.SearchTickets;
             MainDomain = query.IsInternal ? query.MainDomain : string.Empty;

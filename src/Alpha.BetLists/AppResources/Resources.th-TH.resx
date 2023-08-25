@@ -507,4 +507,7 @@
   <data name="SearchTickets" xml:space="preserve">
     <value>ค้นหาตั๋วเดิมพัน</value>
   </data>
+  <data name="CanOnlyViewDataAfterTimeHistoryReportWithFormat" xml:space="preserve">
+    <value>คุณสามารถดูรายงานซึ่งมีวันที่คำนวนผลตั้งแต่ {0} (ดด/วว/ปปปป) เป็นต้นไปเท่านั้น</value>
+  </data>
 </root>
