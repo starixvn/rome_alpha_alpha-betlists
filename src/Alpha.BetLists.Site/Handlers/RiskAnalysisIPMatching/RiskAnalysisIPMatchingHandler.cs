@@ -1,15 +1,15 @@
 ﻿namespace Alpha.BetLists.Site.Handlers.RiskAnalysisIPMatching
 {
-    using System.Threading.Tasks;
     using Alpha.BetLists.Site.Requests.RiskAnalysisIPMatching;
     using Alpha.BetLists.Site.ViewModels.RiskAnalysisIPMatching;
     using Alpha.IPInfo.Services;
+    using AlphaPlus.SmartPunter.Services;
+    using AlphaPlus.Utilities.IP;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using MediatR;
     using Services;
-    using SmartPunter.Services;
-    using Utilities.IP;
+    using System.Threading.Tasks;
 
     public class RiskAnalysisIPMatchingHandler :
         BetListBaseHandler, 

@@ -1,7 +1,7 @@
 ﻿namespace Alpha.BetLists.Site.Helpers
 {
     using Alpha.BetLists.Site.Constants;
-    using Sunplus.Agent.Model.Entities;
+    using AlphaPlus.User.Models;
     using System;
     using System.Collections.Generic;
     using System.Linq;

@@ -1,8 +1,8 @@
 ﻿namespace Alpha.BetLists.Site.Handlers.WinLoss
 {
-    using System;
-    using System.Threading.Tasks;
     using Alpha.IPInfo.Services;
+    using AlphaPlus.SmartPunter.Services;
+    using AlphaPlus.Utilities.IP;
     using AppResources;
     using BetLists.Models;
     using Extensions;
@@ -14,8 +14,8 @@
     using Params;
     using Requests.WinLoss;
     using Services;
-    using SmartPunter.Services;
-    using Utilities.IP;
+    using System;
+    using System.Threading.Tasks;
     using ViewModels;
     using ViewModels.WinLoss;
 

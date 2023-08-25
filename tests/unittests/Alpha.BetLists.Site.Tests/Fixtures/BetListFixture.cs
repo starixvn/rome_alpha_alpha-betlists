@@ -2,15 +2,15 @@
 {
     using Alpha.BetLists.Services;
     using Alpha.BetLists.Site.Helpers;
+    using Alpha.IPInfo.Services;
+    using AlphaPlus.SmartPunter.Services;
+    using AlphaPlus.Utilities.IP;
+    using BetListNPOI.HSSF.UserModel;
     using BetLists.Models;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Utils;
-    using BetListNPOI.HSSF.UserModel;
     using NSubstitute;
-    using SmartPunter.Services;
-    using Utilities.IP;
-    using Alpha.IPInfo.Services;
     using System.Collections.Generic;
     using System.Threading.Tasks;
 

@@ -2,7 +2,7 @@
 {
     using System.Linq;
     using System.Threading.Tasks;
-    using Alpha.PartialUM.Services;
+    using AlphaPlus.PartialUM.Services;
     using Criteria.SearchTickets;
     using Fanex.BetList.Core.Entities;
     using Fanex.Data.Repository;

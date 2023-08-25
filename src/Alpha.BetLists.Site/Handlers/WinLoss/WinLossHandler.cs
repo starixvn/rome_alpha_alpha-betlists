@@ -1,8 +1,8 @@
 ﻿namespace Alpha.BetLists.Site.Handlers.WinLoss
 {
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
     using Alpha.IPInfo.Services;
+    using AlphaPlus.SmartPunter.Services;
+    using AlphaPlus.Utilities.IP;
     using Extensions;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
@@ -10,8 +10,8 @@
     using Params;
     using Requests.WinLoss;
     using Services;
-    using SmartPunter.Services;
-    using Utilities.IP;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
     using ViewModels.WinLoss;
 
     public class WinLossHandler :

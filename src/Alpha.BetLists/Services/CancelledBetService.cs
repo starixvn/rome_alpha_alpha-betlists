@@ -6,7 +6,7 @@
     using Alpha.BetLists.Criteria.CancelledBet;
     using Alpha.BetLists.Models;
     using Alpha.BetLists.Params;
-    using Alpha.PartialUM.Services;
+    using AlphaPlus.PartialUM.Services;
     using Extensions;
     using Fanex.BetList.Core.Entities;
     using Fanex.Data.Repository;

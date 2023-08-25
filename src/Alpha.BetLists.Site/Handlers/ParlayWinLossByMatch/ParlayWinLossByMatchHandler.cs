@@ -1,17 +1,16 @@
 ﻿namespace Alpha.BetLists.Site.Handlers.ParlayWinLossByMatch
 {
-    using System.Threading.Tasks;
     using Alpha.IPInfo.Services;
+    using AlphaPlus.SmartPunter.Services;
+    using AlphaPlus.Utilities.IP;
     using BetLists.Models;
-    using Extensions;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using MediatR;
     using Params;
     using Requests.WinLossByMatch;
     using Services;
-    using SmartPunter.Services;
-    using Utilities.IP;
+    using System.Threading.Tasks;
     using ViewModels.ParlayWinLossByMatch;
 
     public class ParlayWinLossByMatchHandler

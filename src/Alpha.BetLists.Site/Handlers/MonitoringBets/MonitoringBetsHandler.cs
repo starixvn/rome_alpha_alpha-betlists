@@ -14,13 +14,13 @@
     using Alpha.BetLists.Site.Requests.MonitoringBets;
     using Alpha.BetLists.Site.ViewModels.MonitoringBets;
     using Alpha.IPInfo.Services;
-    using Alpha.SmartPunter.Services;
-    using Alpha.Utilities.IP;
     using Alpha.Web.Models;
+    using AlphaPlus.SmartPunter.Services;
+    using AlphaPlus.User.Models;
+    using AlphaPlus.Utilities.IP;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using MediatR;
-    using Sunplus.Agent.Model.Entities;
 
     public class MonitoringBetsHandler :
         BetListBaseHandler,

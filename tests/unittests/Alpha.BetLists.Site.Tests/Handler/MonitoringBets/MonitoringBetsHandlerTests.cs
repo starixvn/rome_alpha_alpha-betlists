@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using Alpha.BetLists.Models.MonitoringBets;
-using Sunplus.Agent.Model.Entities;
 
 namespace Alpha.BetLists.Site.Tests.Handler.MonitoringBets
 {
@@ -9,6 +8,7 @@ namespace Alpha.BetLists.Site.Tests.Handler.MonitoringBets
     using System.Linq;
     using System.Threading;
     using Alpha.Web.Models;
+    using AlphaPlus.User.Models;
     using BetLists.Models;
     using Constants;
     using Fanex.BetList.Core.Entities;
@@ -20,7 +20,7 @@ namespace Alpha.BetLists.Site.Tests.Handler.MonitoringBets
     using Requests.MonitoringBets;
     using Services;
     using Site.ViewModels.MonitoringBets;
-    using SmartPunter.Services;
+    using AlphaPlus.SmartPunter.Services;
     using Xunit;
     using UserLevel = BetLists.Models.UserLevel;
 

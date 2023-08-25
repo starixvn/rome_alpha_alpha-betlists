@@ -52,10 +52,6 @@
             }
         }
 
-        public static bool EnabledStaticData => GetConfigValue("EnabledStaticData") == "1";
-
-        public static bool IsIntegrationTest => GetConfigValue("IsIntegrationTest") == "1";
-
         public static int RunningMatchCacheTime => Converter.ToInt(GetConfigValue("RunningMatchCacheTime"));
 
         public static string RemoteRefURL => GetConfigValue("RemoteRefURL");

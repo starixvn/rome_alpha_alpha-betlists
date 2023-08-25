@@ -210,7 +210,7 @@
             return products;
         }
 
-        private Tuple<IEnumerable<JackpotOfferedBySite>, IEnumerable<JackpotOfferedByCurrency>> GetEnabledJackpotProductIdsForCustomer()
+        private (IEnumerable<JackpotOfferedBySite>, IEnumerable<JackpotOfferedByCurrency>) GetEnabledJackpotProductIdsForCustomer()
             => cacheService.GetOrSet(
                 "Alpha.BetLists.Services.Impl.ProductServiceImpl.OfferedJackpot",
                 () => dynamicRepository.FetchMultiple<JackpotOfferedBySite, JackpotOfferedByCurrency>(new GetEnableJackpotProductCriteria()),

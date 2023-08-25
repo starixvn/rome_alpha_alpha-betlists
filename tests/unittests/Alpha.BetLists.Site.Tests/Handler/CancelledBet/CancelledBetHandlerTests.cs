@@ -1,21 +1,19 @@
 ﻿namespace Alpha.BetLists.Site.Tests.Handler.CancelledBet
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using Alpha.BetLists.Models;
     using Alpha.BetLists.Params;
     using Alpha.BetLists.Services;
     using Alpha.BetLists.Site.Handlers.CancelledBet;
     using Alpha.BetLists.Site.Requests.CancelledBet;
     using Alpha.IPInfo.Services;
-    using Alpha.Utilities.IP;
+    using AlphaPlus.SmartPunter.Services;
+    using AlphaPlus.Utilities.IP;
     using BetLists.Tests.TestData;
     using Constants;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using NSubstitute;
-    using SmartPunter.Services;
+    using System;
     using Xunit;
 
     [Trait("Category", "CancelledBet")]

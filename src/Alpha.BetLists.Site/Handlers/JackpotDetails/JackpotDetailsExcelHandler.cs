@@ -1,7 +1,8 @@
 ﻿namespace Alpha.BetLists.Site.Handlers.JackpotDetails
 {
-    using System.Threading.Tasks;
     using Alpha.IPInfo.Services;
+    using AlphaPlus.SmartPunter.Services;
+    using AlphaPlus.Utilities.IP;
     using AppResources;
     using BetLists.Models;
     using Fanex.BetList.Core.Builder;
@@ -11,8 +12,7 @@
     using ONEbook.SpreadSheets.BetListNPOI;
     using Requests.JackpotDetails;
     using Services;
-    using SmartPunter.Services;
-    using Utilities.IP;
+    using System.Threading.Tasks;
     using ViewModels;
     using ViewModels.JackpotDetails;
 

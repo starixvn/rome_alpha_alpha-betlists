@@ -1,12 +1,12 @@
 ﻿namespace Alpha.BetLists.Site.Handlers.BetListByBetType
 {
     using Alpha.IPInfo.Services;
+    using AlphaPlus.SmartPunter.Services;
+    using AlphaPlus.Utilities.IP;
     using BetLists.Models;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using ONEbook.SpreadSheets;
-    using SmartPunter.Services;
-    using Utilities.IP;
     using ViewModels;
     using static ONEbook.SpreadSheets.Column;
 

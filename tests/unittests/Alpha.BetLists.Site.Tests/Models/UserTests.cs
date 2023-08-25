@@ -2,9 +2,9 @@
 {
     using System.Collections.Specialized;
     using Alpha.BetLists.Configurations;
+    using AlphaPlus.User.Models;
     using NSubstitute;
     using Site.Models;
-    using Sunplus.Agent.Model.Entities;
     using Xunit;
 
     [Trait("Category", "BaseBetList")]

@@ -1,7 +1,7 @@
 ﻿namespace Alpha.BetLists.Tests.Fixtures
 {
     using Alpha.BetLists.Services;
-    using Alpha.PartialUM.Services;
+    using AlphaPlus.PartialUM.Services;
     using Fanex.Caching;
     using Fanex.Data.Repository;
     using NSubstitute;

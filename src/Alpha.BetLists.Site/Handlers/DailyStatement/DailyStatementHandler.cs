@@ -1,15 +1,15 @@
 ﻿namespace Alpha.BetLists.Site.Handlers.DailyStatement
 {
-    using System.Threading.Tasks;
     using Alpha.IPInfo.Services;
+    using AlphaPlus.SmartPunter.Services;
+    using AlphaPlus.Utilities.IP;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using MediatR;
     using Params;
     using Requests.DailyStatement;
     using Services;
-    using SmartPunter.Services;
-    using Utilities.IP;
+    using System.Threading.Tasks;
     using ViewModels.DailyStatement;
 
     public class DailyStatementHandler : BetListBaseHandler, IAsyncRequestHandler<DailyStatementQuery, DailyStatementViewModel>

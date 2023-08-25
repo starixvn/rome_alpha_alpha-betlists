@@ -4,11 +4,10 @@
     using System.Collections.Generic;
     using System.Linq;
     using Alpha.BetLists.Configurations;
-    using BetLists.Constants;
     using BetLists.Models;
     using Constants;
-    using Sunplus.Agent.Model.Entities;
-    using Sunplus.Agent.Model.Entities.Permission;
+    using AlphaPlus.User.Models;
+    using ProductIdConstants = BetLists.Constants.ProductIdConstants;
 
     public class User : IUser
     {

@@ -1,8 +1,8 @@
 ﻿namespace Alpha.BetLists.Site.Handlers.LastBets
 {
-    using System.Linq;
-    using System.Threading.Tasks;
     using Alpha.IPInfo.Services;
+    using AlphaPlus.SmartPunter.Services;
+    using AlphaPlus.Utilities.IP;
     using AppResources;
     using BetLists.Constants;
     using BetLists.Models;
@@ -12,8 +12,8 @@
     using Params.LastBets;
     using Requests.LastBets;
     using Services;
-    using SmartPunter.Services;
-    using Utilities.IP;
+    using System.Linq;
+    using System.Threading.Tasks;
     using ViewModels.LastBets;
     using Web.Models;
 

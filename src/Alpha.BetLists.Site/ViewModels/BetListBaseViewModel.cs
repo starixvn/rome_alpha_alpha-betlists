@@ -5,13 +5,13 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Web;
     using Alpha.BetLists.Site.Constants;
+    using AlphaPlus.User.Models;
     using AppResources;
     using BetLists.Models;
     using Configurations;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Requests;
-    using Sunplus.Agent.Model.Entities;
     using Web.Helpers;
 
     [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1304:NonPrivateReadonlyFieldsMustBeginWithUpperCaseLetter", Justification = "Reviewed.")]

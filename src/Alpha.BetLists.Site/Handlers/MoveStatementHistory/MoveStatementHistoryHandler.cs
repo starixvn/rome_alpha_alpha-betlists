@@ -6,8 +6,8 @@
     using Alpha.BetLists.Site.Requests.MoveStatementHistory;
     using Alpha.BetLists.Site.ViewModels.MoveStatementHistory;
     using Alpha.IPInfo.Services;
-    using Alpha.SmartPunter.Services;
-    using Alpha.Utilities.IP;
+    using AlphaPlus.SmartPunter.Services;
+    using AlphaPlus.Utilities.IP;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using MediatR;

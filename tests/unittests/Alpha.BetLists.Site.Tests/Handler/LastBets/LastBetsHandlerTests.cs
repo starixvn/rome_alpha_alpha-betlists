@@ -16,7 +16,7 @@
     using Requests.LastBets;
     using Services;
     using Site.ViewModels.LastBets;
-    using SmartPunter.Services;
+    using AlphaPlus.SmartPunter.Services;
     using Web.Models;
     using Xunit;
     using UserLevel = BetLists.Models.UserLevel;

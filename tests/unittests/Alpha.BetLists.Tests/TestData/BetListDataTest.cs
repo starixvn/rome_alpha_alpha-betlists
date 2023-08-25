@@ -33,11 +33,9 @@
 
         public static readonly IEnumerable<int> BettypeIds = fixture.CreateMany<int>();
 
-        public static readonly Tuple<IEnumerable<TicketDto>, IEnumerable<TicketData>> BetListDataTuple
-            = new Tuple<IEnumerable<TicketDto>, IEnumerable<TicketData>>(Tickets, TicketData);
+        public static readonly (IEnumerable<TicketDto>, IEnumerable<TicketData>) BetListDataTuple = (Tickets, TicketData);
 
-        public static readonly Tuple<IEnumerable<TicketDto>, IEnumerable<TicketData>> OldBetListDataTuple
-            = new Tuple<IEnumerable<TicketDto>, IEnumerable<TicketData>>(OldTickets, OldTicketData);
+        public static readonly (IEnumerable<TicketDto>, IEnumerable<TicketData>) OldBetListDataTuple = (OldTickets, OldTicketData);
 
         public static readonly BetListData BetListData
             = new BetListData(Tickets, TicketData.ToList<ITicketData>());
@@ -51,8 +49,7 @@
 
         public static readonly IEnumerable<MatchDetail> MatchDetails = fixture.CreateMany<MatchDetail>();
 
-        public static readonly Tuple<IEnumerable<ComboParlayDetail>, IEnumerable<MatchDetail>> ComboParlayDetailTuple
-            = new Tuple<IEnumerable<ComboParlayDetail>, IEnumerable<MatchDetail>>(ComboParlayDetails, MatchDetails);
+        public static readonly (IEnumerable<ComboParlayDetail>, IEnumerable<MatchDetail>) ComboParlayDetailTuple = (ComboParlayDetails, MatchDetails);
 
         public static readonly ComboParlayDetailData ComboParlayDetailData
             = new ComboParlayDetailData(ComboParlayDetails, MatchDetails, 0);

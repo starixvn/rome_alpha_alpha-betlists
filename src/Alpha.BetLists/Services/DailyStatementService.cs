@@ -1,10 +1,9 @@
 ﻿namespace Alpha.BetLists.Services
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using Alpha.PartialUM.Services;
+    using AlphaPlus.PartialUM.Services;
     using Criteria.DailyStatement;
     using Extensions;
     using Fanex.BetList.Core.Entities;
@@ -36,16 +35,15 @@
         public async Task<BetListData> GetBetList(DailyStatementParam param)
         {
             var balanceUpDate = reportDateService.GetBalanceUpDay();
-            Tuple<IEnumerable<TicketDto>, IEnumerable<TicketData>> betListDataTuple;
 
-            betListDataTuple = param.WinLossDate.IsBefore(balanceUpDate)
+            var betListDataTuple = param.WinLossDate.IsBefore(balanceUpDate)
                 ? await GetBetListByDayOld(param)
                 : await GetBetListByDay(param);
 
             return new BetListData(betListDataTuple.Item1, betListDataTuple.Item2.ToList<ITicketData>());
         }
 
-        private async Task<Tuple<IEnumerable<TicketDto>, IEnumerable<TicketData>>> GetBetListByDayOld(DailyStatementParam param)
+        private async Task<(IEnumerable<TicketDto>, IEnumerable<TicketData>)> GetBetListByDayOld(DailyStatementParam param)
         {
             var criteria = new GetAllBetListByDayOldCriteria(
                 param.CustId,
@@ -58,7 +56,7 @@
             return await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
         }
 
-        private async Task<Tuple<IEnumerable<TicketDto>, IEnumerable<TicketData>>> GetBetListByDay(DailyStatementParam param)
+        private async Task<(IEnumerable<TicketDto>, IEnumerable<TicketData>)> GetBetListByDay(DailyStatementParam param)
         {
             var criteria = new GetAllBetListByDayCriteria(
                 param.CustId,

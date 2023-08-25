@@ -12,7 +12,7 @@
     @RenderSection("Styles", required: false)
     @Alpha.Web.Helpers.GoogleAnalyticHepler.GtagScript()
 </head>
-<body data-theme="@(string.IsNullOrWhiteSpace(Sunplus.Agent.Model.Entities.UserSession.Current.DarkModeName) ? "light" : "dark")">
+<body data-theme="@(string.IsNullOrWhiteSpace(AlphaPlus.User.Models.UserSession.Current.DarkModeName) ? "light" : "dark")">
     @Alpha.Web.Helpers.GoogleAnalyticHepler.GtagNoScript()
     @RenderBody()
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
@@ -21,14 +21,14 @@
     @StaticResources.RenderScripts($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}assets/bundles/default")
     @Html.Partial("DetailsPopup")
     @RenderSection("Scripts", required: false)
-    @Html.Hidden("MainDomain", Sunplus.Agent.Model.Entities.UserSession.Current.GetProperty<string>("MainDomain"))
+    @Html.Hidden("MainDomain", AlphaPlus.User.Models.UserSession.Current.GetProperty<string>("MainDomain"))
     @Html.Hidden("BetListUrl", $"//{Request.Headers["Host"]}")
-    @Html.Hidden("ReportDomain", $"//{Sunplus.Agent.Model.Entities.UserSession.Current.GetProperty<string>("ReportDomainSessionKey")}")
-    @Html.Hidden("ReportSessionId", $"{Sunplus.Agent.Model.Entities.UserSession.Current.GetProperty<string>("ReportSessionID")}")
+    @Html.Hidden("ReportDomain", $"//{AlphaPlus.User.Models.UserSession.Current.GetProperty<string>("ReportDomainSessionKey")}")
+    @Html.Hidden("ReportSessionId", $"{AlphaPlus.User.Models.UserSession.Current.GetProperty<string>("ReportSessionID")}")
     @Html.Hidden("SessionId", $"{Session.SessionID}")
     @if (Session.IsCookieless && Alpha.BetLists.Configurations.AppSettings.IsStandaloneReport)
     {
-        var currentSession = Sunplus.Agent.Model.Entities.UserSession.Current;
+        var currentSession = AlphaPlus.User.Models.UserSession.Current;
         var mainDomain = currentSession.GetProperty<string>(Alpha.BetLists.Site.Constants.SessionKey.MainDomainSessionKey);
         var mainSessionId = currentSession.GetProperty<string>(Alpha.BetLists.Site.Constants.SessionKey.MainSessionID);
         @Html.Hidden("CookielessSiteMainUrl", $"{mainDomain}/(S({mainSessionId})){Alpha.BetLists.Configurations.AppSettings.MainAppPath}/");

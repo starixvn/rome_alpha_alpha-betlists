@@ -1,17 +1,17 @@
 ﻿namespace Alpha.BetLists.Site.Handlers.SearchTickets
 {
-    using System.Threading.Tasks;
     using Alpha.IPInfo.Services;
+    using AlphaPlus.SmartPunter.Services;
+    using AlphaPlus.Utilities.IP;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using MediatR;
     using Params;
     using Requests.SearchTickets;
     using Services;
-    using SmartPunter.Services;
-    using Utilities.IP;
-    using ViewModels.SearchTickets;
     using System.Linq;
+    using System.Threading.Tasks;
+    using ViewModels.SearchTickets;
 
     public class SearchTicketsHandler : BetListBaseHandler, IAsyncRequestHandler<SearchTicketsQuery, SearchTicketsViewModel>
     {
