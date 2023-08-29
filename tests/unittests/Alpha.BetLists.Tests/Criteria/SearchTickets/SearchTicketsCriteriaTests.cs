@@ -12,7 +12,7 @@
         public void GetSettingKey_Always_ReturnsCorrectSettingKey()
         {
             // Arrange
-            var criteria = new SearchTicketsCriteria(1, 1, UserLevel.Agent, DateTime.Now);
+            var criteria = new SearchTicketsCriteria(1, 1, UserLevel.Agent, DateTime.Now, DateTime.Now);
 
             // Act
             var actualSettingKey = criteria.GetSettingKey();
@@ -28,7 +28,7 @@
         public void IsValid_InvalidCriteria_ReturnsFalse(long refNo, int uplineId)
         {
             // Arrange
-            var criteria = new SearchTicketsCriteria(refNo, uplineId, UserLevel.Agent, DateTime.Now);
+            var criteria = new SearchTicketsCriteria(refNo, uplineId, UserLevel.Agent, DateTime.Now, DateTime.Now);
 
             // Act
             var actualIsValid = criteria.IsValid();
@@ -41,7 +41,7 @@
         public void IsValid_ValidCriteria_ReturnsTrue()
         {
             // Arrange
-            var criteria = new SearchTicketsCriteria(1, 1, UserLevel.Agent, DateTime.Now);
+            var criteria = new SearchTicketsCriteria(1, 1, UserLevel.Agent, DateTime.Now, DateTime.Now);
 
             // Act
             var actualIsValid = criteria.IsValid();

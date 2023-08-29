@@ -32,7 +32,7 @@
 
         public async Task<BetListData> GetBetList(SearchTicketsParam param)
         {
-            var criteria = new SearchTicketsCriteria(param.RefNo, param.UplineId, param.CustLevel, reportDateService.GetMoveBetsDay());
+            var criteria = new SearchTicketsCriteria(param.RefNo, param.UplineId, param.CustLevel, reportDateService.GetMoveBetsDay(), reportDateService.GetBalanceUpDay());
 
             partialUMService.ThrowIfUM(criteria.GetSettingKey());
 
