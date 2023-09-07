@@ -7,10 +7,12 @@
 
 :root [data-theme='light'] {
     --main-color: #333333;
+    --color-icon-book: #0b599c;
 }
 
 :root [data-theme='dark'] {
     --main-color: #ededed;
+    --color-icon-book: #41A4FF;
 }
 #info-note.message-modal {
     width: auto;
@@ -32,6 +34,13 @@
         float: none;
         margin: 0px 0px 10px 5px;
         top: -2px;
+    }
+
+    .icon-book {
+        margin: 0px 0px 10px 5px;
+        top: -1px;
+        color: var(--color-icon-book);
+        text-decoration: none!important;
     }
 
     .list-icon {

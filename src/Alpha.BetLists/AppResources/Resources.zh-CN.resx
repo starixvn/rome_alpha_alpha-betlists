@@ -700,11 +700,10 @@
     <value>先设置您的筛选标准</value>
   </data>
   <data name="FilterConfigurationWelcomeContent" xml:space="preserve">
-    <value>第一次使用&lt;strong&gt;最后投注&lt;/strong&gt;功能？请根据您对投注注单的监控需求设置筛选标准，并且不要忘记保存您筛选标准以供日后使用。
- 来尝试一下吧！</value>
+    <value>第一次使用&lt;strong&gt;最后投注&lt;/strong&gt;功能？请根据您对投注注单的监控需求设置筛选标准，并且不要忘记保存您筛选标准以供日后使用。</value>
   </data>
   <data name="FilterConfigurationWelcomeContent2" xml:space="preserve">
-    <value>来尝试一下吧</value>
+    <value>来尝试一下吧！</value>
   </data>
   <data name="FilterConfigurationAllSportsContent" xml:space="preserve">
     <value>监控所有体育注单</value>

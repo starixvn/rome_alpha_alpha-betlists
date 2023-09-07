@@ -1,6 +1,5 @@
 ﻿namespace Alpha.BetLists.Models
 {
-    using Alpha.BetLists.Helpers;
     using Fanex.BetList.Core.Entities;
 
     public class TicketDto : Ticket
@@ -11,6 +10,6 @@
 
         public bool IsHighlight { get; set; }
 
-        public string BetType => BetTypeHelper.GetBetTypeName(BetTypeId);
+        public string BetType { get; set; }
     }
 }

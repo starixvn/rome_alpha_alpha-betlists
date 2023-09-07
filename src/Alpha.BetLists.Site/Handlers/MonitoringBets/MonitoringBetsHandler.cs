@@ -284,8 +284,7 @@
             long latestTransId)
         {
             var tickets = await monitoringBetService.GetLastFilteringBets(param);
-
-            UpdateInWatchlistState(memberInWatchlistIds, tickets);
+            AssignBetTypeNameAndMyWatchlistIcon(memberInWatchlistIds, tickets);
 
             await AssignCountry(tickets, displayVNIP);
             var betListData = new BetListData(tickets, null);
@@ -314,16 +313,14 @@
             return Tuple.Create(betListData, latestTransId);
         }
 
-        private void UpdateInWatchlistState(IEnumerable<int> memberInWatchlistIds, IEnumerable<TicketDto> tickets)
+        private void AssignBetTypeNameAndMyWatchlistIcon(IEnumerable<int> memberInWatchlistIds, IEnumerable<TicketDto> tickets)
         {
-            if (memberInWatchlistIds.Any())
-            {
-                var memberInWatchlistHashSet = new HashSet<int>(memberInWatchlistIds);
+            var memberInWatchlistHashSet = new HashSet<int>(memberInWatchlistIds ?? Enumerable.Empty<int>());
 
-                foreach (var ticket in tickets)
-                {
-                    ticket.IsInWatchlist = memberInWatchlistHashSet.Contains((int)ticket.CustId);
-                }
+            foreach (var ticket in tickets)
+            {
+                ticket.BetType = TicketHelper.GetBetTypeNameById(ticket.BetTypeId);
+                ticket.IsInWatchlist = memberInWatchlistHashSet.Contains((int)ticket.CustId);
             }
         }
 

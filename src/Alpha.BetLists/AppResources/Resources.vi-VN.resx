@@ -705,8 +705,7 @@
   </data>
   <data name="FilterConfigurationWelcomeContent" xml:space="preserve">
     <value>Lần đầu tiên sử dụng chức năng &lt;strong&gt;Cược Gần Nhất&lt;/strong&gt;?
-Vui lòng chọn tiêu chí cho bộ lọc dựa trên nhu cầu theo dõi vé cược của bạn, và đừng quên lưu lại cấu hình bộ lọc này để sử dụng trong lần sau.
-Đừng ngần ngại trải nghiệm chức năng mới này!</value>
+Vui lòng chọn tiêu chí cho bộ lọc dựa trên nhu cầu theo dõi vé cược của bạn, và đừng quên lưu lại cấu hình bộ lọc này để sử dụng trong lần sau.</value>
   </data>
   <data name="FilterConfigurationWelcomeContent2" xml:space="preserve">
     <value>Đừng ngần ngại trải nghiệm chức năng mới này!</value>

@@ -65,18 +65,20 @@ var AJAXHelper = /** @class */ (function () {
 }());
 //# sourceMappingURL=ajax-helper.js.map
 "use strict";
-var defaultValue = 60;
 var AutoRefreshOption = /** @class */ (function () {
-    function AutoRefreshOption(onText, offText, callback) {
+    function AutoRefreshOption(onText, offText, callback, onOffStatus) {
         if (onText === void 0) { onText = "ON"; }
         if (offText === void 0) { offText = "OFF"; }
         if (callback === void 0) { callback = Function(); }
+        if (onOffStatus === void 0) { onOffStatus = Function(); }
         this.onText = onText;
         this.offText = offText;
         this.callback = callback;
+        this.onOffStatus = onOffStatus;
         this.onText = onText;
         this.offText = offText;
         this.callback = callback;
+        this.onOffStatus = onOffStatus;
     }
     return AutoRefreshOption;
 }());
@@ -91,8 +93,11 @@ var AutoRefreshComponent = /** @class */ (function () {
             .data("running", "0")
             .text(this.autoRefreshOption.offText);
         this.labelCountDown = this.autoRefresh.find("#lbl-count-down");
-        this.labelCountDown.text(defaultValue).data("original", defaultValue);
-        this.autoRefresh.find("#btn-status").click(function () { return _this.labelStatusText.data("running") === "1" ? _this.stop() : _this.start(); });
+        this.autoRefresh.find("#btn-status").click(function () {
+            var running = _this.labelStatusText.data("running") === "1";
+            running ? _this.stop() : _this.start();
+            option.onOffStatus(!running);
+        });
         this.autoRefresh.find(".auto-refresh-menu-item").click(function (e) {
             var second = $(e.target).text();
             _this.labelCountDown.text(second).data("original", second);
@@ -125,6 +130,12 @@ var AutoRefreshComponent = /** @class */ (function () {
         this.labelCountDown
             .removeClass("show-loading")
             .text(this.labelCountDown.data("original"));
+    };
+    AutoRefreshComponent.prototype.enable = function () {
+        this.autoRefresh.find("#btn-status").prop("disabled", false);
+    };
+    AutoRefreshComponent.prototype.disable = function () {
+        this.autoRefresh.find("#btn-status").prop("disabled", true);
     };
     AutoRefreshComponent.prototype.decrement = function () {
         var _this = this;
@@ -175,11 +186,12 @@ var InlineMessageComponent = /** @class */ (function () {
 var SaveFilterView = /** @class */ (function () {
     function SaveFilterView() {
     }
-    SaveFilterView.prototype.init = function (element) {
+    SaveFilterView.prototype.init = function (element, getSelectedFilterParamsFunc) {
         var _this = this;
+        if (getSelectedFilterParamsFunc === void 0) { getSelectedFilterParamsFunc = undefined; }
         if (element.length) {
-            var saveFilterPopup_1 = $("#save-filter-popup");
             this.inlineMessagePopup = new InlineMessageComponent("inline-message-popup");
+            var saveFilterPopup_1 = $("#save-filter-popup");
             this.filterNameInput = saveFilterPopup_1.find("#txt-filterName");
             this.isDefaultCheckbox = saveFilterPopup_1.find("#chk-isDefault");
             saveFilterPopup_1
@@ -190,26 +202,27 @@ var SaveFilterView = /** @class */ (function () {
                 _this.isDefaultCheckbox.prop("checked", false);
                 _this.inlineMessagePopup.hide();
             });
-            saveFilterPopup_1.find("#btn-save-filter-popup").click(function () { return _this.handleSaveFilterPopup(function () { return Common.Utils.ReloadPageAfterTimeout(_this.getCurrentUrlWithoutQueryString()); }); });
-            /*saveFilterPopup.find("#btn-save-filter-apply-popup").click(
-                () => this.handleSaveFilterPopup(() => {
-                    const url = this.getCurrentUrlWithoutQueryString();
-                    const mainPage = this.getMainPageUrl(url);
-                    Common.Utils.ReloadPageAfterTimeout(`${mainPage}?filterName=${this.addFilterFormData.filterName}`);
-                })
-            );*/
+            saveFilterPopup_1.find("#btn-save-filter-popup").click(function () { return _this.handleSaveFilterPopup(getSelectedFilterParamsFunc); });
             element.click(function () {
                 saveFilterPopup_1.modal("show");
             });
         }
     };
-    SaveFilterView.prototype.handleSaveFilterPopup = function (reloadPageCallback) {
+    SaveFilterView.prototype.handleSaveFilterPopup = function (getSelectedFilterParamsFunc) {
         var _this = this;
         var formDataPopup = this.getFormDataPopup();
         if (formDataPopup) {
             AJAXHelper.post($("#hidden-SaveFilterUrl").val(), formDataPopup, function (result) {
                 _this.inlineMessagePopup.show(result);
-                !result.ErrCode && reloadPageCallback();
+                if (!result.ErrCode) {
+                    var url = undefined;
+                    if (getSelectedFilterParamsFunc) {
+                        var filterParam = getSelectedFilterParamsFunc();
+                        filterParam.filterName = formDataPopup.filterName;
+                        url = window.location.href.split("?")[0] + "?" + $.param(filterParam);
+                    }
+                    Common.Utils.ReloadPageAfterTimeout(url);
+                }
             });
         }
     };
@@ -224,9 +237,6 @@ var SaveFilterView = /** @class */ (function () {
             filterName: filterName,
             isDefault: isDefault
         };
-    };
-    SaveFilterView.prototype.getCurrentUrlWithoutQueryString = function () {
-        return window.location.href.split("?")[0];
     };
     return SaveFilterView;
 }());
@@ -294,24 +304,6 @@ var MonitoringBetsView = /** @class */ (function () {
         this.isCalling = false;
         this.lastTransIdCacheKeyByFilter = "";
         this.latestTransIdCacheKeyByFilter = "";
-        this.cacheElements = function () {
-            _this.$msgError = $("#msg-error");
-            _this.$betListTableContainer = $("#bet-list-table-container");
-            _this.getBetsUrl = $("#get-bets-url").val();
-            _this.dropdownFilter = $("#monitoring-bets-filter");
-            _this.dropdownMostRecentTicket = $("#most-recent-tickets");
-        };
-        this.registerEvents = function () {
-            _this.registerToggleFilter();
-            _this.dropdownFilter.multiselect({
-                maxHeight: 300,
-                onChange: function () { return _this.loadLastBets(true); }
-            });
-            _this.dropdownMostRecentTicket.multiselect({
-                onChange: function () { return _this.loadLastBets(true); }
-            });
-            _this.autoRefreshComponent.init(new AutoRefreshOption($("#hidden-OnText").val(), $("#hidden-OffText").val(), function () { return _this.loadLastBets(false); }));
-        };
         this.loadLastBets = function (isResetTransId) {
             if (isResetTransId) {
                 _this.setTransId(0, 0);
@@ -319,9 +311,6 @@ var MonitoringBetsView = /** @class */ (function () {
             _this.isCalling && _this.abortRequest();
             _this.isCalling = true;
             _this.ajaxRequest = AJAXHelper.post(_this.getBetsUrl, _this.getParam(), _this.successGetLastBets, _this.completeGetLastBets);
-        };
-        this.abortRequest = function () {
-            _this.ajaxRequest && _this.ajaxRequest.abort();
         };
         this.successGetLastBets = function (responseHtml) {
             if ((responseHtml.ErrorCode && responseHtml.ErrorCode !== "0") ||
@@ -343,27 +332,69 @@ var MonitoringBetsView = /** @class */ (function () {
             _this.setTransId(lastTransId, latestTransId);
             _this.isCalling = false;
         };
-        this.showError = function () {
-            _this.$msgError.removeClass("hide");
-            // protection level, avoid through too many exceptions on server
-        };
         this.completeGetLastBets = function () {
             _this.autoRefreshComponent.isOn() && _this.autoRefreshComponent.start();
         };
         this.autoRefreshComponent = autoRefreshComponent;
         this.monitoringBetsCopyHtml = monitoringBetsCopyHtml;
-        this.saveFilter = saveFilter;
+        this.saveFilterView = saveFilter;
     }
     MonitoringBetsView.prototype.init = function () {
+        var _this = this;
         this.localStorage = alphaReports.localStorage;
         this.cacheElements();
         this.registerEvents();
         this.setTransIdCacheKeyByFilter($("#last-trans-id-cache-key-by-filter").val(), $("#latest-trans-id-cache-key-by-filter").val());
         this.setTransId($("#last-trans-id").val(), $("#latest-trans-id").val());
-        this.autoRefreshComponent.start();
         this.monitoringBetsCopyHtml.init();
-        this.saveFilter.init($("#icon-save"));
+        this.saveFilterView.init(this.iconSaveFilter, function () { return _this.getSelectedFilterParams(); });
         this.$betListTableContainer.find('[data-toggle="tooltip"]').tooltip();
+        var filterId = this.dropdownFilter.find(":selected").val();
+        this.iconSaveFilter.toggleClass("hide", filterId !== "0");
+        if (!filterId) {
+            this.autoRefreshComponent.disable();
+        }
+        else if (this.autoRefreshComponent.isOn()) {
+            this.autoRefreshComponent.start();
+        }
+        this.initFeedback();
+    };
+    MonitoringBetsView.prototype.cacheElements = function () {
+        this.$msgError = $("#msg-error");
+        this.$betListTableContainer = $("#bet-list-table-container");
+        this.getBetsUrl = $("#get-bets-url").val();
+        this.iconSaveFilter = $("#icon-save-filter");
+    };
+    MonitoringBetsView.prototype.registerEvents = function () {
+        var _this = this;
+        this.registerToggleFilter();
+        this.dropdownFilter = $("#monitoring-bets-filter").select2({
+            minimumResultsForSearch: -1,
+            dropdownAutoWidth: true
+        });
+        this.dropdownFilter.on("change.select2", function () {
+            _this.loadLastBets(true);
+            _this.autoRefreshComponent.enable();
+            _this.autoRefreshComponent.start();
+            var filterId = _this.dropdownFilter.find(":selected").val();
+            _this.iconSaveFilter.toggleClass("hide", filterId !== "0");
+            Common.Utils.UpdateCurrentUrl(_this.getSelectedFilterParams());
+        });
+        this.dropdownMostRecentTicket = $("#most-recent-tickets").select2({
+            minimumResultsForSearch: -1
+        });
+        this.dropdownMostRecentTicket.on("change.select2", function () {
+            if (_this.dropdownFilter.find(":selected").val()) {
+                _this.loadLastBets(true);
+                Common.Utils.UpdateCurrentUrl(_this.getSelectedFilterParams());
+            }
+        });
+        this.autoRefreshComponent.init(new AutoRefreshOption($("#hidden-OnText").val(), $("#hidden-OffText").val(), function () { return _this.loadLastBets(false); }, function (onOffStatus) { return Common.Utils.UpdateCurrentUrl(_this.getSelectedFilterParams(onOffStatus)); }));
+        $(".navigation").click(function (e) {
+            var $this = $(e.target);
+            var url = $this.attr("href") + "?" + $.param(_this.getSelectedFilterParams());
+            $this.attr("href", url);
+        });
     };
     MonitoringBetsView.prototype.registerToggleFilter = function () {
         var filterContainer = $("#form-monitoring-bets");
@@ -385,6 +416,26 @@ var MonitoringBetsView = /** @class */ (function () {
             }
         });
     };
+    MonitoringBetsView.prototype.initFeedback = function () {
+        setTimeout(function () {
+            var feedbackId = 4;
+            var popupHeight = 450;
+            if ($("#hidden-IsInternal").val() === "1") {
+                var mainDomain = $("#MainDomain").val();
+                mainDomain = mainDomain.indexOf("http") === -1
+                    ? location.origin.split(":")[0] + ":" + mainDomain + "/site-main"
+                    : mainDomain;
+                window.top.postMessage({
+                    event_id: "winlossdetailnew-feedback",
+                    feedback_id: feedbackId,
+                    popup_height: popupHeight
+                }, mainDomain);
+            }
+            else {
+                window.top.indexManager.initFeedbackFunction(feedbackId, undefined, popupHeight);
+            }
+        }, 1000);
+    };
     MonitoringBetsView.prototype.setTransIdCacheKeyByFilter = function (lastTransId, lastestTransId) {
         this.lastTransIdCacheKeyByFilter = lastTransId;
         this.latestTransIdCacheKeyByFilter = lastestTransId;
@@ -396,7 +447,7 @@ var MonitoringBetsView = /** @class */ (function () {
     MonitoringBetsView.prototype.getParam = function () {
         var lastTransId = this.localStorage.get(this.lastTransIdCacheKeyByFilter);
         var latestTransId = this.localStorage.get(this.latestTransIdCacheKeyByFilter);
-        var selectedFilter = this.dropdownFilter.find("option:selected:first");
+        var selectedFilter = this.dropdownFilter.find(":selected");
         var FilterId = selectedFilter.val();
         var MemberList = selectedFilter.data("members");
         var BetTypeList = selectedFilter.data("bet-types");
@@ -405,7 +456,7 @@ var MonitoringBetsView = /** @class */ (function () {
         var EvenStatus = selectedFilter.data("event-status");
         var MinStake = selectedFilter.data("stake");
         var FilterByMembers = selectedFilter.data("filter-by-member");
-        var LimitRowCount = this.dropdownMostRecentTicket.find("option:selected:first").val();
+        var LimitRowCount = this.dropdownMostRecentTicket.find(":selected").val();
         return {
             FilterId: FilterId,
             TransId: lastTransId ? lastTransId : 0,
@@ -418,6 +469,21 @@ var MonitoringBetsView = /** @class */ (function () {
             LimitRowCount: LimitRowCount,
             FilterByMembers: FilterByMembers,
             LatestTransId: latestTransId
+        };
+    };
+    MonitoringBetsView.prototype.abortRequest = function () {
+        this.ajaxRequest && this.ajaxRequest.abort();
+    };
+    MonitoringBetsView.prototype.showError = function () {
+        this.$msgError.removeClass("hide");
+        // protection level, avoid through too many exceptions on server
+    };
+    MonitoringBetsView.prototype.getSelectedFilterParams = function (autoStart) {
+        if (autoStart === void 0) { autoStart = undefined; }
+        return {
+            filterName: $.trim(this.dropdownFilter.find(":selected").text()),
+            limitRowCount: this.dropdownMostRecentTicket.find(":selected").val(),
+            autoStart: autoStart || this.autoRefreshComponent.isOn()
         };
     };
     return MonitoringBetsView;

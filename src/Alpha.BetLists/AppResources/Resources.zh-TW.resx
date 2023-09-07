@@ -700,8 +700,7 @@
     <value>先設置您的篩選標準</value>
   </data>
   <data name="FilterConfigurationWelcomeContent" xml:space="preserve">
-    <value>第一次使用&lt;strong&gt;最後投注&lt;/strong&gt;功能？請根據您對投注注單的監控需求設置篩選標準，並且不要忘記保存您篩選標準以供日後使用。
- 來嘗試一下吧！</value>
+    <value>第一次使用&lt;strong&gt;最後投注&lt;/strong&gt;功能？請根據您對投注注單的監控需求設置篩選標準，並且不要忘記保存您篩選標準以供日後使用。</value>
   </data>
   <data name="FilterConfigurationWelcomeContent2" xml:space="preserve">
     <value>來嘗試一下吧！</value>
