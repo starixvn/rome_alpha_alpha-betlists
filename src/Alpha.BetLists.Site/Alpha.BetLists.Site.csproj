@@ -1174,6 +1174,24 @@
       <DependentUpon>securitycode.json</DependentUpon>
     </Content>
     <Content Include="assets\styles\search-tickets\search-tickets.scss" />
+    <Content Include="App_Data\activitytracking.napinternal3.json">
+      <DependentUpon>activitytracking.json</DependentUpon>
+    </Content>
+    <Content Include="App_Data\activitytracking.pro3.json">
+      <DependentUpon>activitytracking.json</DependentUpon>
+    </Content>
+    <Content Include="App_Data\ProductSection.napinternal3.config">
+      <DependentUpon>ProductSection.config</DependentUpon>
+    </Content>
+    <Content Include="App_Data\ProductSection.pro3.config">
+      <DependentUpon>ProductSection.config</DependentUpon>
+    </Content>
+    <Content Include="App_Data\securitycode.napinternal3.json">
+      <DependentUpon>securitycode.json</DependentUpon>
+    </Content>
+    <Content Include="App_Data\securitycode.pro3.json">
+      <DependentUpon>securitycode.json</DependentUpon>
+    </Content>
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -1345,6 +1363,24 @@
     <Content Include="Views\Shared\WinLossTableNew.cshtml" />
     <Content Include="Views\Shared\WinLossTableData.cshtml" />
     <Content Include="Views\Shared\IconInformationPopup.cshtml" />
+    <Content Include="Web.AppSettings.napinternal3.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.pro3.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionStrings.napinternal3.config">
+      <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionStrings.pro3.config">
+      <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.napinternal3.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </Content>
+    <Content Include="Web.pro3.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_GlobalResources\Resources.Designer.cs">
