@@ -77,7 +77,7 @@
             });
 
             AppSettings.AppSettingValues = new NameValueCollection();
-            AppSettings.AppSettingValues.Add("SiteLabel", "Nova88");
+            AppSettings.AppSettingValues.Add("SiteLabel", "MBC");
         }
 
         private void InitWorkbook()
