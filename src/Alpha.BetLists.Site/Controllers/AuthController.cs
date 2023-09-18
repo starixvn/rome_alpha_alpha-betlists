@@ -16,15 +16,13 @@ using Alpha.Web.Filters;
 using Fanex.Cryptography.Aes;
 using Fanex.Logging.Extensions.Web;
 using Newtonsoft.Json;
-using ONEbook.UM;
 using ONEbook.UM.AspNetMVC.Filters;
-using ONEbook.UM.Services;
 using Sunplus.Agent.Model.BL;
 using Sunplus.Agent.Model.Entities;
 
 namespace Alpha.BetLists.Site.Controllers
 {
-    [SessionState(SessionStateBehavior.Required), AllowProtectedMode, AllowAnonymous]
+    [SessionState(SessionStateBehavior.Required), AllowProtectedMode, AllowAnonymous, SkipUMFilter]
     public class AuthController : Controller
     {
         private const string English = "en-US";
@@ -322,7 +320,6 @@ namespace Alpha.BetLists.Site.Controllers
             userSession.SetProperty(SessionKey.ReportDomainSessionKey, sessions[38]);
 
             SetRealtimeValues(parameters, userSession);
-            SetUMFilter();
         }
 
         private static void SetOutputValuesToSession(string[] parameters, IUserSession session)
@@ -348,15 +345,6 @@ namespace Alpha.BetLists.Site.Controllers
         private bool IsLoggedIn()
         {
             return Request.IsAuthenticated;
-        }
-
-        private void SetUMFilter()
-        {
-            if (!Session.IsCookieless && !GlobalFilters.Filters.Any(filter => filter.Instance is CheckUMFilterAttribute))
-            {
-                GlobalFilters.Filters.Add(new CheckUMFilterAttribute(
-                    new MaintenanceService(UMClientManager.RestClient, UMClientManager.CacheService, UMClientManager.UMClientConfigs, UMClientManager.HttpContext), null));
-            }
         }
     }
 }
