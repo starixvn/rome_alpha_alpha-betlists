@@ -40,7 +40,10 @@
         margin: 0px 0px 10px 5px;
         top: -1px;
         color: var(--color-icon-book);
-        text-decoration: none!important;
+        text-decoration: none !important;
+        @media screen and (max-device-width: 1024px){
+            font-size: 17px;
+        }
     }
 
     .list-icon {

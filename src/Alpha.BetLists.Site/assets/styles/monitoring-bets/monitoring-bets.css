@@ -45,6 +45,9 @@
   top: -1px;
   color: var(--color-icon-book);
   text-decoration: none !important; }
+  @media screen and (max-device-width: 1024px) {
+    .bl_title .icon-book {
+      font-size: 17px; } }
 
 .bl_title .list-icon {
   float: right; }
