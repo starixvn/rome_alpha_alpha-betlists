@@ -10,7 +10,6 @@
     using Alpha.BetLists.Site.Requests.MonitoringBets;
     using Alpha.BetLists.Site.ViewModels.MonitoringBets;
     using Alpha.NetThrottling.Mvc;
-    using Alpha.Web.Filters;
     using Alpha.Web.Models;
     using MediatR;
 
@@ -42,11 +41,11 @@
 
         public Task<ActionResult> ManageFilters(ManageFiltersQuery message) => View(message);
 
-        [HttpPost, AntiXsrfFilter]
+        [HttpPost]
         public async Task<ActionResult> UpdateFilter(UpdateFilterCommand message)
             => Json(await ValidateAndDoAction(message), JsonRequestBehavior.DenyGet);
 
-        [HttpPost, AntiXsrfFilter]
+        [HttpPost]
         public async Task<ActionResult> DeleteFilters(DeleteFiltersCommand message)
         {
             IEnumerable<Result> results;
@@ -75,17 +74,17 @@
         public Task<ActionResult> GetMyWatchlistMembers(GetMyWatchlistMembersQuery message)
             => Json(message, JsonRequestBehavior.AllowGet);
 
-        [HttpPost, AntiXsrfFilter]
+        [HttpPost]
         public async Task<ActionResult> ApplyFilter(ApplyFilterCommand message)
             => Json(
                 message.IsValid() ? await mediator.Send(message) : BadRequestResult(),
                 JsonRequestBehavior.DenyGet);
 
-        [HttpPost, AntiXsrfFilter]
+        [HttpPost]
         public async Task<ActionResult> AddFilter(AddFilterCommand message)
             => Json(await ValidateAndDoAction(message), JsonRequestBehavior.DenyGet);
 
-        [HttpPost, AntiXsrfFilter]
+        [HttpPost]
         public async Task<ActionResult> AddCustomFilter(AddUnsavedFilterCommand message)
             => Json(await ValidateAndDoAction(message), JsonRequestBehavior.DenyGet);
 
