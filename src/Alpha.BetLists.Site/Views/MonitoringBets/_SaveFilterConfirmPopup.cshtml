@@ -27,6 +27,5 @@
         </div>
     </div>
 </div>
-@Html.AntiForgeryToken()
 @Html.Hidden("hidden-FilterNameRequiredError", Resources.FilterConfigurationFilterNameRequiredError)
 @Html.Hidden("hidden-SaveFilterUrl", Url.Action(Model ? "AddFilter" : "AddCustomFilter", $"{AppSettings.BetlistRouting}MonitoringBets"))
