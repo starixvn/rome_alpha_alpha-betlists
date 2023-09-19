@@ -72,5 +72,7 @@
 
         internal virtual IList<int> GetEnableProductsByGameName(string gameName)
             => userSession.GetProperty<IList<int>>(SessionKey.GameEnable + gameName);
+
+        public string IP => userSession.UserLoginIp;
     }
 }

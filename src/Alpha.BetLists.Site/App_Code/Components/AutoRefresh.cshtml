@@ -1,0 +1,39 @@
+﻿@helper Render(int[] seconds, int defaultSelected, bool autoStart)
+{
+    <div class="form-group">
+        <div class="btn-group-refresh@(autoStart ? string.Empty : " off")" id="auto-refresh">
+            <button type="button" class="button-refresh" id="btn-status">
+                <span class="ic-reload"></span>
+                <span id="lbl-status-text" data-running=""></span>
+            </button>
+            <button type="button"
+                    class="button-refresh dropdown-toggle"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false">
+                <span class="countdown">
+                    <span id="lbl-count-down" data-original="@defaultSelected">@defaultSelected</span>
+                    <span class="lds-spinner">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                </span>
+                <span class="caret"></span>
+                <span class="sr-only"></span>
+            </button>
+            <ul class="dropdown-menu">
+                @foreach (var item in seconds)
+                {
+                    <li class="auto-refresh-menu-item"><a href="javascript:;">@item</a></li>
+                }
+            </ul>
+        </div>
+    </div>
+}

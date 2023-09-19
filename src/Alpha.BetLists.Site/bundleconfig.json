@@ -126,6 +126,58 @@
       "assets/scripts/src/common/icon-note.js"
     ]
   },
+  {
+    "outputFileName": "assets/bundles/monitoring-bets/monitoring-bets.js",
+    "inputFiles": [
+      "assets/scripts/src/common/ajax-helper.js",
+      "assets/scripts/src/components/autorefresh.js",
+      "assets/scripts/src/components/inline-message.js",
+      "assets/scripts/src/monitoring-bets/save-filter.js",
+      "assets/scripts/src/monitoring-bets/monitoring-bets-copyhtml.js",
+      "assets/scripts/src/monitoring-bets/monitoring-bets.js"
+    ]
+  },
+  {
+    "outputFileName": "assets/bundles/monitoring-bets/monitoring-bets.css",
+    "inputFiles": [
+      "assets/styles/components/autorefresh.css",
+      "assets/styles/monitoring-bets/monitoring-bets.css"
+    ]
+  },
+  {
+    "outputFileName": "assets/bundles/monitoring-bets/manage-filters.js",
+    "inputFiles": [
+      "assets/scripts/src/common/ajax-helper.js",
+      "assets/scripts/src/components/inline-message.js",
+      "assets/scripts/src/monitoring-bets/save-filter.js",
+      "assets/scripts/src/monitoring-bets/manage-filters.js"
+    ]
+  },
+  {
+    "outputFileName": "assets/bundles/monitoring-bets/manage-filters.css",
+    "inputFiles": [
+      "assets/styles/monitoring-bets/manage-filters.css"
+    ]
+  },
+  {
+    "outputFileName": "assets/bundles/monitoring-bets/filter-configuration.js",
+    "inputFiles": [
+      "assets/scripts/src/common/ajax-helper.js",
+      "assets/scripts/src/components/inline-message.js",
+      "assets/scripts/src/components/dropdown-list.js",
+      "assets/scripts/src/components/sportleaguematch-treeview.js",
+      "assets/scripts/src/components/username-tagsinput.js",
+      "assets/scripts/src/monitoring-bets/filter-configuration.js"
+    ]
+  },
+  {
+    "outputFileName": "assets/bundles/monitoring-bets/filter-configuration.css",
+    "inputFiles": [
+      "assets/styles/components/treeview.css",
+      "assets/styles/components/username-tagsinput.css",
+      "assets/styles/monitoring-bets/filter-configuration.css"
+    ]
+  },
   /************************** Dark Mode ************************/
   {
     "outputFileName": "assets/bundles/default-dark.css",

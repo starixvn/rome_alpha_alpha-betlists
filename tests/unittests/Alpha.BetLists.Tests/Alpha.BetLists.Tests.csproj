@@ -359,6 +359,14 @@
     <Compile Include="Criteria\GetCashOutHistoryCriteria.cs" />
     <Compile Include="Criteria\GetProductsDetailCriteriaTests.cs" />
     <Compile Include="Criteria\LastBets\GetMatchInfoByIdCriteriaTests.cs" />
+    <Compile Include="Criteria\MonitoringBets\UpdateFilterCommandTests.cs" />
+    <Compile Include="Criteria\MonitoringBets\GetMonitoredWatchlistMembersCriteriaTests.cs" />
+    <Compile Include="Criteria\MonitoringBets\GetLeaguesCriteriaTests.cs" />
+    <Compile Include="Criteria\MonitoringBets\GetLastFilteringBetsCriteriaTests.cs" />
+    <Compile Include="Criteria\MonitoringBets\GetFiltersCriteriaTests.cs" />
+    <Compile Include="Criteria\MonitoringBets\DeleteFilterCommandTests.cs" />
+    <Compile Include="Criteria\MonitoringBets\CheckUsernamesCriteriaTests.cs" />
+    <Compile Include="Criteria\MonitoringBets\AddfilterCommandTests.cs" />
     <Compile Include="Criteria\MoveStatementHistory\GetBetListMoveStatementHistoryCriteriaTests.cs" />
     <Compile Include="Criteria\ProgressiveJackpot\GetEnableJackpotProductCriteriaTest.cs" />
     <Compile Include="Criteria\ProgressiveJackpot\GetJackpotDetailsCriteriaTests.cs" />
@@ -417,6 +425,7 @@
     <Compile Include="Services\ForecastServiceImplTests.cs" />
     <Compile Include="Services\CashOutHistoryServiceTests.cs" />
     <Compile Include="Services\JackpotDetailsServiceImplTests.cs" />
+    <Compile Include="Services\MonitoringBetsServiceImplTests.cs" />
     <Compile Include="Services\LastBetsServiceImplTests.cs" />
     <Compile Include="Services\MoveStatementHistoryServiceImplTests.cs" />
     <Compile Include="Services\ProductDetailServiceImplTests.cs" />
@@ -464,6 +473,7 @@
   <ItemGroup>
     <Content Include="SAGaming.css" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

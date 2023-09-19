@@ -6,6 +6,7 @@
     {
         private const string ShortDateWithSlash = "MM/dd/yyyy";
         private const string ShortDate = "MMddyyyy";
+        private const string LongDateTimeWithSlash = "MM/dd/yyyy hh:mm:ss tt";
 
         public static bool IsBefore(this DateTime dateTime, DateTime otherDateTime)
             => dateTime < otherDateTime;
@@ -41,5 +42,8 @@
 
             return date.AddDays(-1 * diff).Date;
         }
+        
+        public static string ToLongDateTimeWithSlash(this DateTime dateTime)
+            => dateTime.ToString(LongDateTimeWithSlash);
     }
 }

@@ -54,5 +54,25 @@
 
             return results;
         }
+
+        public static string RemoveDuplicate(this string value)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                return value;
+            }
+
+            var hashSet = new HashSet<int>();
+            var valueArray = value.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (var item in valueArray)
+            {
+                if (int.TryParse(item, out var intValue))
+                {
+                    hashSet.Add(intValue);
+                }
+            }
+
+            return string.Join(",", hashSet);
+        }
     }
 }

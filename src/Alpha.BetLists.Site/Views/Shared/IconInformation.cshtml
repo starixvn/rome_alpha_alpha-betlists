@@ -1,24 +1,5 @@
 ﻿@model List<string>
-
 <div class="form-group icon">
     <span id="icon-information" class="icon icon-information-outline"></span>
 </div>
-
-<div class="modal fade message-modal" id="info-note" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-sm" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="icon icon-close close" data-dismiss="modal" aria-label=""><span aria-hidden="true"></span></button>
-                <h4 class="modal-title"></h4>
-            </div>
-            <div class="modal-body">
-                <div id="msg-content">
-                    @foreach (var note in Model)
-                    {
-                        <p>- @note</p>
-                    }
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+@{ Html.RenderPartial("~/Views/Shared/IconInformationPopup.cshtml", Model); }

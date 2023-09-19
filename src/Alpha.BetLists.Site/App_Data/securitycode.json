@@ -12,8 +12,9 @@
     "RiskAnalysisIPMatching",
     "Parlay",
     "WinLoss",
-    "SearchTickets",
-    "BetList"
+    "SearchTickets",    
+    "BetList",
+    "MonitoringBets"
   ],
   "statementPaths": [],
   "sites": [],

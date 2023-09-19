@@ -18,6 +18,8 @@
             ViewerLevelId = viewer.LevelId;
             ViewerLevel = Enumeration.FromValue<UserLevel>(ViewerLevelId);
             ViewerIdOrViewerAdminId = viewer.IsInternal ? viewer.AdminId : viewer.Id;
+            AdminId = viewer.AdminId;
+            SubAccId = viewer.SubAccId;
             DisplayVNIP = viewer.IsAdminCanViewVNIP;
             Language = viewer.Language;
             IsEnabledJackpot = viewer.IsEnabledJackpot;
@@ -52,6 +54,10 @@
         public byte ViewerLevelId { get; }
 
         public int ViewerIdOrViewerAdminId { get; }
+
+        public int AdminId { get; }
+
+        public int SubAccId { get; }
 
         public bool DisplayVNIP { get; }
 

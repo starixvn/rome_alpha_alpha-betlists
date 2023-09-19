@@ -9,5 +9,22 @@
 
             return false;
         }
+
+        public static ReloadPageAfterTimeout(url = undefined, timeout = 3000) {
+            setTimeout(function () {
+                if (url) {
+                    window.location.href = url;
+                } else {
+                    window.location.reload();
+                }
+            }, timeout);
+        }
+
+        public static UpdateCurrentUrl(formData) {
+            try {
+                window.top.indexManager.updateCurrentUrl($.param(formData));
+            } catch (e) {
+            }
+        }
     }
 }

@@ -17,9 +17,17 @@
     {
         Task<IEnumerable<TicketDto>> GetLastBets(GetLastBetsParam param);
 
+        Task<IEnumerable<TicketDto>> GetLastBets(ICriteria criteria, int cacheTime);
+
         bool CanViewLastBets(CheckCanViewLastBetsParam param);
 
         MatchInfo GetMatchInfoById(int matchId, int cacheTime);
+        
+        MatchInfo GetMatchInfo(int matchId, List<MatchInfo> matches, int cacheTime);
+        
+        Task<List<MatchInfo>> GetRunningOutrightMatches(int cacheTime);
+        
+        Task<List<MatchInfo>> GetRunningOtherMatches(int cacheTime);
     }
 
     public class LastBetsServiceImpl : LastBetsService
@@ -43,19 +51,25 @@
             this.partialUMService = partialUMService;
         }
 
-        public async Task<IEnumerable<TicketDto>> GetLastBets(GetLastBetsParam param)
-        {
-            var criteria = new GetLastBetsCriteria(param.BetType, param.CustId, param.TransId, param.PageSize);
+        public Task<IEnumerable<TicketDto>> GetLastBets(GetLastBetsParam param)
+            => GetLastBets(
+                new GetLastBetsCriteria(param.BetType, param.CustId, param.TransId, param.PageSize),
+                param.RunningMatchCacheTime);
 
+        public async Task<IEnumerable<TicketDto>> GetLastBets(ICriteria criteria, int cacheTime)
+        {
             partialUMService.ThrowIfUM(criteria.GetSettingKey());
 
             var tickets = await dynamicRepository.FetchAsync<TicketDto>(criteria);
 
             if (tickets.Any())
             {
-                var cacheTime = param.RunningMatchCacheTime;
-                var outrightMatches = await GetRunningOutrightMatches(cacheTime);
-                var otherMatches = await GetRunningOtherMatches(cacheTime);
+                var outrightMatchesTask = GetRunningOutrightMatches(cacheTime);
+                var otherMatchesTask = GetRunningOtherMatches(cacheTime);
+                await Task.WhenAll(outrightMatchesTask, otherMatchesTask);
+
+                var outrightMatches = await outrightMatchesTask;
+                var otherMatches = await otherMatchesTask;
 
                 foreach (var ticket in tickets)
                 {
@@ -96,7 +110,7 @@
             ticket.EventDate = matchInfo.EventDate;
         }
 
-        private MatchInfo GetMatchInfo(int matchId, List<MatchInfo> matches, int cacheTime)
+        public MatchInfo GetMatchInfo(int matchId, List<MatchInfo> matches, int cacheTime)
         {
             var cachedKey = $"{RunningMatchesCacheKey}_{matchId}";
             var matchInfo = matches.FirstOrDefault(match => match.MatchId == matchId)
@@ -119,7 +133,7 @@
             return matchInfo;
         }
 
-        private async Task<List<MatchInfo>> GetRunningOutrightMatches(int cacheTime)
+        public async Task<List<MatchInfo>> GetRunningOutrightMatches(int cacheTime)
         {
             var cacheKey = RunningOutrightMatchesCacheKey;
 
@@ -131,7 +145,7 @@
             return matches.ToList();
         }
 
-        private async Task<List<MatchInfo>> GetRunningOtherMatches(int cacheTime)
+        public async Task<List<MatchInfo>> GetRunningOtherMatches(int cacheTime)
         {
             var cacheKey = RunningOtherMatchesCacheKey;
 

@@ -82,7 +82,7 @@
                 .Received()
                 .FetchMultipleAsync<TicketDto, TicketData>(Arg.Is<GetBetListWinLossByDateCriteria>(c =>
                     c.CustId == param.CustId
-                    && c.ProductIds == param.ProductIds.JoinWithComma()
+                    && c.ProductIds == param.ProductIds.JoinWithComma(",")
                     && c.FromDate == param.FromDate
                     && c.ToDate == param.ToDate
                     && c.MoveBetsDate == reportDateService.GetMoveBetsDay()));
@@ -196,7 +196,7 @@
                 .Received()
                 .FetchMultipleAsync<TicketDto, TicketData>(Arg.Is<GetBetListWinLossByDateOldCriteria>(c =>
                     c.CustId == param.CustId
-                    && c.ProductIds == param.ProductIds.JoinWithComma()
+                    && c.ProductIds == param.ProductIds.JoinWithComma(",")
                     && c.FromDate == param.FromDate
                     && c.ToDate == param.ToDate
                     && c.Language == param.Language));
@@ -243,7 +243,7 @@
                 .Received()
                 .FetchMultipleAsync<TicketDto, TicketData>(Arg.Is<GetBetListWinLossByDateOldCriteria>(c =>
                     c.CustId == param.CustId
-                    && c.ProductIds == param.ProductIds.JoinWithComma()
+                    && c.ProductIds == param.ProductIds.JoinWithComma(",")
                     && c.FromDate == param.FromDate
                     && c.ToDate == reportDateService.GetBalanceUpDay().AddDays(-1)
                     && c.Language == param.Language));
@@ -252,7 +252,7 @@
                 .Received()
                 .FetchMultipleAsync<TicketDto, TicketData>(Arg.Is<GetBetListWinLossByDateCriteria>(c =>
                     c.CustId == param.CustId
-                    && c.ProductIds == param.ProductIds.JoinWithComma()
+                    && c.ProductIds == param.ProductIds.JoinWithComma(",")
                     && c.FromDate == reportDateService.GetBalanceUpDay()
                     && c.ToDate == param.ToDate
                     && c.MoveBetsDate == reportDateService.GetMoveBetsDay()));

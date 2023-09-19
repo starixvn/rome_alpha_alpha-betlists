@@ -510,4 +510,283 @@
   <data name="CanOnlyViewDataAfterTimeHistoryReportWithFormat" xml:space="preserve">
     <value>คุณสามารถดูรายงานซึ่งมีวันที่คำนวนผลตั้งแต่ {0} (ดด/วว/ปปปป) เป็นต้นไปเท่านั้น</value>
   </data>
+  <data name="InputMembers" xml:space="preserve">
+    <value>Input Member(s)</value>
+  </data>
+  <data name="EnteredMembers" xml:space="preserve">
+    <value>ชื่อสมาชิกที่ป้อนไว้</value>
+  </data>
+  <data name="InvalidUsername" xml:space="preserve">
+    <value>Invalid username</value>
+  </data>
+  <data name="Live" xml:space="preserve">
+    <value>สด</value>
+  </data>
+  <data name="ManageFilters" xml:space="preserve">
+    <value>จัดการตัวกรอง</value>
+  </data>
+  <data name="Members" xml:space="preserve">
+    <value>Members</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>ไม่ใช่</value>
+  </data>
+  <data name="NonLive" xml:space="preserve">
+    <value>ก่อนเริ่มแข่ง</value>
+  </data>
+  <data name="NotAMember" xml:space="preserve">
+    <value>ไม่ใช่สมาชิก</value>
+  </data>
+  <data name="RemoveAllFilters" xml:space="preserve">
+    <value>ลบตัวกรองทั้งหมด</value>
+  </data>
+  <data name="SetDefault" xml:space="preserve">
+    <value>ตั้งค่าเริ่มต้น</value>
+  </data>
+  <data name="SpecificMembers" xml:space="preserve">
+    <value>ระบุสมาชิก</value>
+  </data>
+  <data name="SpecificSports" xml:space="preserve">
+    <value>ระบุประเภทกีฬา</value>
+  </data>
+  <data name="Sports" xml:space="preserve">
+    <value>Sports</value>
+  </data>
+  <data name="UsernameTagsInputPlaceHolder" xml:space="preserve">
+    <value>ป้อนชื่อผู้ใช้/ชื่อเล่น (คั่นด้วยเครื่องหมายจุลภาค แท็บ หรือขึ้นบรรทัดใหม่)</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>ยกเลิก</value>
+  </data>
+  <data name="FilterConfiguration" xml:space="preserve">
+    <value>การกำหนดค่าตัวกรอง</value>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>นำไปใช้</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>บันทึก</value>
+  </data>
+  <data name="FilterByTickets" xml:space="preserve">
+    <value>กรองตามตั๋วเดิมพัน</value>
+  </data>
+  <data name="FilterBySports" xml:space="preserve">
+    <value>กรองตามประเภทกีฬา</value>
+  </data>
+  <data name="FilterByMembers" xml:space="preserve">
+    <value>กรองตามรายชื่อสมาชิก</value>
+  </data>
+  <data name="LiveStatus" xml:space="preserve">
+    <value>สถานะการไลฟ์</value>
+  </data>
+  <data name="SportGroup" xml:space="preserve">
+    <value>กลุ่มของกีฬา</value>
+  </data>
+  <data name="EnterMembers" xml:space="preserve">
+    <value>ป้อนรายชื่อสมาชิก</value>
+  </data>
+  <data name="AddedSuccessfully" xml:space="preserve">
+    <value>เพิ่มเรียบร้อยแล้ว</value>
+  </data>
+  <data name="SelectMembers" xml:space="preserve">
+    <value>เลือกสมาชิก</value>
+  </data>
+  <data name="SearchMemberUsernameOrNickname" xml:space="preserve">
+    <value>ค้นหาสมาชิกจากชื่อผู้ใช้/ชื่อเล่น</value>
+  </data>
+  <data name="NoMemberUsernameFound" xml:space="preserve">
+    <value>No member username found</value>
+  </data>
+  <data name="AllIncludedNewlyAddedMembers" xml:space="preserve">
+    <value>ทั้งหมด (รวมสมาชิกที่เพิ่มเข้ามาใหม่ด้วย)</value>
+  </data>
+  <data name="MajorSports" xml:space="preserve">
+    <value>กีฬาหลัก</value>
+  </data>
+  <data name="MinorSports" xml:space="preserve">
+    <value>กีฬารอง</value>
+  </data>
+  <data name="SelectBettype" xml:space="preserve">
+    <value>เลือกชนิดเดิมพัน</value>
+  </data>
+  <data name="NewView" xml:space="preserve">
+    <value>ไปยังมุมมองแบบใหม่</value>
+  </data>
+  <data name="ClassicView" xml:space="preserve">
+    <value>กลับเป็นมุมมองคลาสสิก</value>
+  </data>
+  <data name="NotAuthorized" xml:space="preserve">
+    <value>คุณไม่มีอำนาจในการเข้าใช้งานฟังก์ชันนี้</value>
+  </data>
+  <data name="RemovedSuccessfully" xml:space="preserve">
+    <value>ถูกลบเรียบร้อยแล้ว</value>
+  </data>
+  <data name="UpdateSuccessfully" xml:space="preserve">
+    <value>อัพเดทเสร็จสมบูรณ์</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>ปฏิบัติ</value>
+  </data>
+  <data name="AllMembers" xml:space="preserve">
+    <value>สมาชิกทั้งหมด</value>
+  </data>
+  <data name="AllSports" xml:space="preserve">
+    <value>กีฬาทั้งหมด</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>กลับ</value>
+  </data>
+  <data name="BetType" xml:space="preserve">
+    <value>ประเภทการเดิมพัน</value>
+  </data>
+  <data name="ConfirmMessageRemoveAllFilters" xml:space="preserve">
+    <value>แน่ใจว่าต้องการลบตัวกรองทั้งหมด? หลังจากลบออกแล้วจะไม่สามารถกู้คืนได้</value>
+  </data>
+  <data name="ConfirmMessageRemoveFilter" xml:space="preserve">
+    <value>แน่ใจว่าต้องการลบตัวกรองนี้? หลังจากลบออกแล้วจะไม่สามารถกู้คืนได้</value>
+  </data>
+  <data name="CreatedTime" xml:space="preserve">
+    <value>วันที่สร้างขึ้น</value>
+  </data>
+  <data name="FilterName" xml:space="preserve">
+    <value>ชื่อตัวกรอง</value>
+  </data>
+  <data name="FilterConfigurationBetTypesRequiredError" xml:space="preserve">
+    <value>กรุณาเลือกประเภทการเดิมพัน</value>
+  </data>
+  <data name="FilterConfigurationStakeRequiredError" xml:space="preserve">
+    <value>กรุณาใส่ค่าเงินเดิมพัน</value>
+  </data>
+  <data name="FilterConfigurationSportsRequiredError" xml:space="preserve">
+    <value>กรุณาเลือกประเภทกีฬา</value>
+  </data>
+  <data name="FilterConfigurationFilterByMembersRequiredError" xml:space="preserve">
+    <value>กรุณาป้อนชื่อหรือกดเลือกสมาชิก</value>
+  </data>
+  <data name="FilterConfigurationFilterNameRequiredError" xml:space="preserve">
+    <value>โปรดป้อนชื่อตัวกรอง</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>ตกลง</value>
+  </data>
+  <data name="SaveToMyFilters" xml:space="preserve">
+    <value>บันทึกไปยังตัวกรองของฉัน</value>
+  </data>
+  <data name="SetAsDefaultFilter" xml:space="preserve">
+    <value>ตั้งค่าเป็นตัวกรองเริ่มต้น</value>
+  </data>
+  <data name="Off" xml:space="preserve">
+    <value>ปิด</value>
+  </data>
+  <data name="On" xml:space="preserve">
+    <value>เปิด</value>
+  </data>
+  <data name="MemberNotFound" xml:space="preserve">
+    <value>ไม่พบสมาชิก</value>
+  </data>
+  <data name="MemberAlreadyExists" xml:space="preserve">
+    <value>มีสมาชิกชื่อนี้อยู่แล้ว</value>
+  </data>
+  <data name="MaxNoUsernames" xml:space="preserve">
+    <value>สูงสุด: สมาชิก # คน</value>
+  </data>
+  <data name="SearchSportLeague" xml:space="preserve">
+    <value>ค้นหากีฬา/ลีก</value>
+  </data>
+  <data name="SportLeagueNotFound" xml:space="preserve">
+    <value>ไม่พบกีฬา/ลีก</value>
+  </data>
+  <data name="FilterConfigurationWelcomeTitle" xml:space="preserve">
+    <value>กำหนดเงื่อนไขการกรองของคุณก่อน</value>
+  </data>
+  <data name="FilterConfigurationWelcomeContent" xml:space="preserve">
+    <value>ใช้งานฟังก์ชั่น &lt;b&gt;เดิมพันล่าสุด&lt;/b&gt; เป็นครั้งแรกหรือไม่? โปรดตั้งค่าเกณฑ์การกรองตามความต้องการของคุณสำหรับตั๋วเดิมพัน และอย่าลืมบันทึกตัวกรองของคุณเพื่อใช้ในภายหลัง</value>
+  </data>
+  <data name="FilterConfigurationWelcomeContent2" xml:space="preserve">
+    <value>ลองดูสิ!</value>
+  </data>
+  <data name="FilterConfigurationAllSportsContent" xml:space="preserve">
+    <value>ตรวจสอบตั๋วเดิมพันของกีฬาทุกประเภท</value>
+  </data>
+  <data name="FilterConfigurationAllSportsContent2" xml:space="preserve">
+    <value>กีฬาใหม่จะถูกเพิ่มเข้ามาโดยอัตโนมัติ</value>
+  </data>
+  <data name="FilterConfigurationSpecificSportsContent" xml:space="preserve">
+    <value>ตรวจสอบตั๋วเดิมพันตามเงื่อนไขที่เลือกไว้ (กีฬา/ลีก)</value>
+  </data>
+  <data name="FilterConfigurationSpecificSportsContent2" xml:space="preserve">
+    <value>ลีกทีจบแล้วจะถูกลบออกจากเงื่อนไขการกรอง</value>
+  </data>
+  <data name="FilterConfigurationAllMembersContent" xml:space="preserve">
+    <value>ตรวจสอบตั๋วเดิมพันของสมาชิกทั้งหมด</value>
+  </data>
+  <data name="FilterConfigurationAllMembersContent2" xml:space="preserve">
+    <value>สมาชิกใหม่จะถูกเพิ่มเข้ามาโดยอัตโนมัติ</value>
+  </data>
+  <data name="FilterConfigurationSpecificMembersContent" xml:space="preserve">
+    <value>ตรวจสอบตั๋วเดิมพันของสมาชิกที่เลือกไว้ ซึ่งสามารถเพิ่มด้วยตนเองหรือเลือกจากรายการเฝ้าดูของฉัน</value>
+  </data>
+  <data name="ExpandAll" xml:space="preserve">
+    <value>ขยายทั้งหมด</value>
+  </data>
+  <data name="SelectedOnly" xml:space="preserve">
+    <value>เฉพาะที่เลือกไว้</value>
+  </data>
+  <data name="BetTypes" xml:space="preserve">
+    <value>ประเภทการเดิมพัน</value>
+  </data>
+  <data name="AllLeagues" xml:space="preserve">
+    <value>ทุกลีก</value>
+  </data>
+  <data name="Others" xml:space="preserve">
+    <value>อื่นๆ</value>
+  </data>
+  <data name="Copied" xml:space="preserve">
+    <value>คัดลอก</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>สำเนา</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>ชื่อผู้ใช้ระบบ</value>
+  </data>
+  <data name="MostRecentTickets" xml:space="preserve">
+    <value>ตั๋วเดิมพันล่าสุด</value>
+  </data>
+  <data name="RefNo_Duplicate[1]" xml:space="preserve">
+    <value>หมายเลขอ้างอิง</value>
+  </data>
+  <data name="IP" xml:space="preserve">
+    <value>เลขไอพี</value>
+  </data>
+  <data name="NoChangeToUpdate" xml:space="preserve">
+    <value>ไม่มีการเปลี่ยนแปลงในการอัปเดตนี้</value>
+  </data>
+  <data name="SaveAndApply" xml:space="preserve">
+    <value>บันทึกและนำไปใช้</value>
+  </data>
+  <data name="MonitoredMember" xml:space="preserve">
+    <value>Monitored Member</value>
+  </data>
+  <data name="UnsavedFilter" xml:space="preserve">
+    <value>ตัวกรองที่ไม่ได้บันทึก</value>
+  </data>
+  <data name="ManuallyEntered" xml:space="preserve">
+    <value>ป้อนค่าด้วยตนเอง</value>
+  </data>
+  <data name="FromMonitoredList" xml:space="preserve">
+    <value>มาจากรายการที่ตรวจสอบ</value>
+  </data>
+  <data name="SaveFilter" xml:space="preserve">
+    <value>บันทึกตัวกรอง</value>
+  </data>
+  <data name="PleaseSelect" xml:space="preserve">
+    <value>กรุณาเลือก</value>
+  </data>
+  <data name="FilterNameAlreadyExists" xml:space="preserve">
+    <value>มีชื่อตัวกรองนี้อยู่แล้ว</value>
+  </data>
+  <data name="MyFilters" xml:space="preserve">
+    <value>ตัวกรองของฉัน</value>
+  </data>
 </root>

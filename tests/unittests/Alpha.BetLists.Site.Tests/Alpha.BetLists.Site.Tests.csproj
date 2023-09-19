@@ -412,6 +412,7 @@
     <Compile Include="Controllers\CorrectScoreControllerTests.cs" />
     <Compile Include="Controllers\DailyStatementControllerTests.cs" />
     <Compile Include="Controllers\JackpotDetailsControllerTests.cs" />
+    <Compile Include="Controllers\MonitoringBetsControllerTests.cs" />
     <Compile Include="Controllers\LastBetsControllerTests.cs" />
     <Compile Include="Controllers\MoveStatementHistoryControllerTests.cs" />
     <Compile Include="Controllers\RiskAnalysisIPMatchingControllerTests.cs" />
@@ -446,6 +447,7 @@
     <Compile Include="Handler\CorrectScore\CorrectScoreExcelHandlerTests.cs" />
     <Compile Include="Handler\CorrectScore\CorrectScoreHandlerTests.cs" />
     <Compile Include="Handler\MemberBetList\MemberBetListHandlerTests.cs" />
+    <Compile Include="Handler\MonitoringBets\MonitoringBetsHandlerTests.cs" />
     <Compile Include="Handler\MoveStatementHistory\MoveStatementHistoryHandlerTests.cs" />
     <Compile Include="Handler\RiskAnalysisIPMatching\RiskAnalysisIPMatchingHandlerTests.cs" />
     <Compile Include="Handler\RiskAnalysisIPMatching\RiskAnalysisIPMatchingHelperTests.cs" />

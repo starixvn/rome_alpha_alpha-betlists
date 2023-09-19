@@ -247,7 +247,7 @@
             matchCode?: string,
             transDesc?: number,
             betcheck?: string) => {
-            var params = '?custId=' + this.CustId +
+            var params = '?custId=' + (transDesc || this.CustId) +
                 '&roleId=' + this.ViewerLevelId +
                 '&gameRoundId=' + betcheck +
                 '&gameId=' + betTypeId +

@@ -33,6 +33,10 @@
 
             SystemTime.Today = DefaultVariables.CurrentDate;
 
+            var reportDateService = Substitute.For<ReportDateService>();
+            ReportDateServiceImpl.Instance = reportDateService;
+            reportDateService.GetMoveBetsDay().Returns(DefaultVariablesTest.MoveBetDate);
+
             query = new RunningBetListQuery(user)
             {
                 CustId = 1,
@@ -47,10 +51,6 @@
                 query.GetAll,
                 query.Language,
                 query.CustName);
-
-            var reportDateService = Substitute.For<ReportDateService>();
-            ReportDateServiceImpl.Instance = reportDateService;
-            reportDateService.GetMoveBetsDay().Returns(DefaultVariablesTest.MoveBetDate);
         }
 
         [Fact]

@@ -1,5 +1,6 @@
 ﻿namespace Alpha.BetLists.Site.Tests.Handler.CasinoDetails
 {
+    using System.Threading.Tasks;
     using BetLists.Models;
     using BetLists.Tests.TestData;
     using Fanex.BetDetails.Casino.Models;
@@ -59,7 +60,7 @@
         }
 
         [Fact]
-        public void Handle_Always_ReturnsCasinoBetDetailsViewModel()
+        public async Task Handle_Always_ReturnsCasinoBetDetailsViewModel()
         {
             // Arrange
             var compareLogic = new CompareLogic();
@@ -83,7 +84,7 @@
                 betlistFixture.TicketHelper);
 
             // Act
-            var actualViewModel = handler.Handle(message);
+            var actualViewModel = await handler.Handle(message);
 
             // Assert
             Assert.True(compareLogic.Compare(expectedViewModel, actualViewModel).AreEqual);

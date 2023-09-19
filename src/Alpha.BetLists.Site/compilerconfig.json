@@ -40,6 +40,34 @@
     "inputFile": "assets/styles/error/error-dark.scss"
   },
   {
+    "outputFile": "assets/styles/monitoring-bets/monitoring-bets.css",
+    "inputFile": "assets/styles/monitoring-bets/monitoring-bets.scss"
+  },
+  {
+    "outputFile": "assets/styles/components/autorefresh.css",
+    "inputFile": "assets/styles/components/autorefresh.scss"
+  },
+  {
+    "outputFile": "assets/styles/filter-configuration.css",
+    "inputFile": "assets/styles/filter-configuration.scss"
+  },
+  {
+    "outputFile": "assets/styles/components/username-tagsinput.css",
+    "inputFile": "assets/styles/components/username-tagsinput.scss"
+  },
+  {
+    "outputFile": "assets/styles/components/treeview.css",
+    "inputFile": "assets/styles/components/treeview.scss"
+  },
+  {
+    "outputFile": "assets/styles/monitoring-bets/manage-filters.css",
+    "inputFile": "assets/styles/monitoring-bets/manage-filters.scss"
+  },
+  {
+    "outputFile": "assets/styles/monitoring-bets/filter-configuration.css",
+    "inputFile": "assets/styles/monitoring-bets/filter-configuration.scss"
+  },
+  {
     "outputFile": "assets/styles/winloss.css",
     "inputFile": "assets/styles/winloss.scss"
   },

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Alpha.BetLists.Models
+﻿namespace Alpha.BetLists.Models
 {
     using System;
 

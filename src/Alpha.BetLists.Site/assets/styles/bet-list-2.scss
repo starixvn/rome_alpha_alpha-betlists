@@ -11,7 +11,31 @@ body {
 a {
     text-decoration: none;
 }
+.space-between {
+    display: flex;
+    justify-content: space-between;
 
+    .switch-version {
+        position: relative;
+        top: auto;
+        margin-top: 5px;
+
+        .btn-switch-version {
+            text-decoration: none !important;
+            background: #d3dfec;
+            color: #0b599c;
+            border-color: #d3dfec;
+            padding: 6px 12px;
+            align-items: center;
+            font-weight: 500;
+            margin-bottom: 5px;
+
+            .icon-swap-horizontal {
+                top: 0;
+            }
+        }
+    }
+}
 .tbl-betlist {
     border-collapse: collapse;
     background-color: #fff;

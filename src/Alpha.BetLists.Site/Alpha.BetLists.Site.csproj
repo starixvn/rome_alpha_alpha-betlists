@@ -705,6 +705,7 @@
     </Content>
     <Content Include="App_Data\SPNames\Docker\DBAGE.bodb_AGE.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Docker\DBARC.bodb_Archive.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Docker\DBBOF.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Docker\DBCUST.CustDB.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Docker\DBCust.IPDB.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Docker\DBLOG.bodb_CustomerLog.BODBDownlineNet.xml" />
@@ -714,6 +715,7 @@
     <Content Include="App_Data\SPNames\Internal\DBAGE.bodb02.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Internal\DBAGE.bodb_AGE.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Internal\DBARC.bodb_Archive.BODBDownlineNetView.xml" />
+    <Content Include="App_Data\SPNames\Internal\DBBOF.bodb02.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Internal\DBCUST.CustDB.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Internal\DBCust.IPDB.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Internal\DBLOG.bodb_CustomerLog.BODBDownlineNetView.xml" />
@@ -721,6 +723,7 @@
     <Content Include="App_Data\SPNames\Internal\DBPOLICY.bodb02.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Local\DBACC.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Local\DBAGE.bodb_AGE.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Local\DBBOF.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Local\DBCust.IPDB.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Local\DBPOLICY.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Local\DBCust.CustDB.BODBDownlineNet.xml" />
@@ -735,6 +738,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="App_Data\SPNames\SIT\DBARC.bodb_Archive.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\SIT\DBBOF.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DBCUST.CustDB.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DBCust.IPDB.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DBLOG.bodb_CustomerLog.BODBDownlineNet.xml" />
@@ -797,6 +801,30 @@
     </Content>
     <Content Include="assets\bundles\last-bets.min.js">
       <DependentUpon>last-bets.js</DependentUpon>
+    </Content>
+    <Content Include="assets\bundles\monitoring-bets\filter-configuration.css" />
+    <Content Include="assets\bundles\monitoring-bets\filter-configuration.js" />
+    <Content Include="assets\bundles\monitoring-bets\filter-configuration.min.css">
+      <DependentUpon>filter-configuration.css</DependentUpon>
+    </Content>
+    <Content Include="assets\bundles\monitoring-bets\filter-configuration.min.js">
+      <DependentUpon>filter-configuration.js</DependentUpon>
+    </Content>
+    <Content Include="assets\bundles\monitoring-bets\manage-filters.css" />
+    <Content Include="assets\bundles\monitoring-bets\manage-filters.js" />
+    <Content Include="assets\bundles\monitoring-bets\manage-filters.min.css">
+      <DependentUpon>manage-filters.css</DependentUpon>
+    </Content>
+    <Content Include="assets\bundles\monitoring-bets\manage-filters.min.js">
+      <DependentUpon>manage-filters.js</DependentUpon>
+    </Content>
+    <Content Include="assets\bundles\monitoring-bets\monitoring-bets.css" />
+    <Content Include="assets\bundles\monitoring-bets\monitoring-bets.js" />
+    <Content Include="assets\bundles\monitoring-bets\monitoring-bets.min.css">
+      <DependentUpon>monitoring-bets.css</DependentUpon>
+    </Content>
+    <Content Include="assets\bundles\monitoring-bets\monitoring-bets.min.js">
+      <DependentUpon>monitoring-bets.js</DependentUpon>
     </Content>
     <Content Include="assets\bundles\parlay-detail-dark.css" />
     <Content Include="assets\bundles\parlay-detail-dark.min.css">
@@ -877,6 +905,24 @@
     <Content Include="assets\styles\bet-list.min.css">
       <DependentUpon>bet-list.css</DependentUpon>
     </Content>
+    <Content Include="assets\styles\components\autorefresh.css">
+      <DependentUpon>autorefresh.scss</DependentUpon>
+    </Content>
+    <Content Include="assets\styles\components\autorefresh.min.css">
+      <DependentUpon>autorefresh.css</DependentUpon>
+    </Content>
+    <Content Include="assets\styles\components\treeview.css">
+      <DependentUpon>treeview.scss</DependentUpon>
+    </Content>
+    <Content Include="assets\styles\components\treeview.min.css">
+      <DependentUpon>treeview.css</DependentUpon>
+    </Content>
+    <Content Include="assets\styles\components\username-tagsinput.css">
+      <DependentUpon>username-tagsinput.scss</DependentUpon>
+    </Content>
+    <Content Include="assets\styles\components\username-tagsinput.min.css">
+      <DependentUpon>username-tagsinput.css</DependentUpon>
+    </Content>
     <Content Include="assets\styles\details-popup.css">
       <DependentUpon>details-popup.scss</DependentUpon>
     </Content>
@@ -915,6 +961,24 @@
     </Content>
     <Content Include="assets\styles\last-bets.min.css">
       <DependentUpon>last-bets.css</DependentUpon>
+    </Content>
+    <Content Include="assets\styles\monitoring-bets\filter-configuration.css">
+      <DependentUpon>filter-configuration.scss</DependentUpon>
+    </Content>
+    <Content Include="assets\styles\monitoring-bets\filter-configuration.min.css">
+      <DependentUpon>filter-configuration.css</DependentUpon>
+    </Content>
+    <Content Include="assets\styles\monitoring-bets\manage-filters.css">
+      <DependentUpon>manage-filters.scss</DependentUpon>
+    </Content>
+    <Content Include="assets\styles\monitoring-bets\manage-filters.min.css">
+      <DependentUpon>manage-filters.css</DependentUpon>
+    </Content>
+    <Content Include="assets\styles\monitoring-bets\monitoring-bets.css">
+      <DependentUpon>monitoring-bets.scss</DependentUpon>
+    </Content>
+    <Content Include="assets\styles\monitoring-bets\monitoring-bets.min.css">
+      <DependentUpon>monitoring-bets.css</DependentUpon>
     </Content>
     <Content Include="assets\styles\parlay-detail-dark.css">
       <DependentUpon>parlay-detail-dark.scss</DependentUpon>
@@ -1061,9 +1125,18 @@
     <Content Include="App_Code\Components\DateRangePickerJQuery.cshtml" />
     <Content Include="assets\scripts\typings\globals\moment\typings.json" />
     <Content Include="App_Code\Components\ProductAndProductDetailDropdown.cshtml" />
+    <Content Include="App_Code\Components\AutoRefresh.cshtml" />
+    <Content Include="assets\styles\components\autorefresh.scss" />
+    <Content Include="assets\styles\components\username-tagsinput.scss" />
+    <Content Include="assets\styles\components\treeview.scss" />
+    <Content Include="assets\styles\monitoring-bets\manage-filters.scss" />
+    <Content Include="assets\styles\monitoring-bets\filter-configuration.scss" />
     <Content Include="App_Code\Components\WeekSelection.cshtml" />
     <Content Include="App_Code\Components\BreadcrumbLevel.cshtml" />
     <Content Include="assets\styles\winloss.scss" />
+    <Content Include="App_Code\Components\UsernameTagsInput.cshtml" />
+    <Content Include="App_Code\Common\SwitchVersionButton.cshtml" />
+    <Content Include="assets\styles\monitoring-bets\monitoring-bets.scss" />
     <Content Include="App_Data\activitytracking.staging.json">
       <DependentUpon>activitytracking.json</DependentUpon>
     </Content>
@@ -1224,6 +1297,13 @@
     <Content Include="Views\WinLoss\IndexNew.cshtml" />
     <Content Include="Views\WinLoss\BetList.cshtml" />
     <Content Include="Views\WinLoss\BetListWeekSelection.cshtml" />
+    <Content Include="Views\MonitoringBets\Index.cshtml" />
+    <Content Include="Views\MonitoringBets\FilterConfiguration.cshtml" />
+    <Content Include="Views\MonitoringBets\ManageFilters.cshtml" />
+    <Content Include="Views\MonitoringBets\BetData.cshtml" />
+    <Content Include="Views\MonitoringBets\_WelcomePopup.cshtml" />
+    <Content Include="Views\MonitoringBets\_SaveFilterConfirmPopup.cshtml" />
+    <Content Include="Views\MonitoringBets\Tickets.cshtml" />
     <Content Include="Views\Shared\IconInformation.cshtml" />
     <Content Include="Web.AppSettings.staging.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
@@ -1264,6 +1344,7 @@
     <Content Include="Views\SearchTickets\Index.cshtml" />
     <Content Include="Views\Shared\WinLossTableNew.cshtml" />
     <Content Include="Views\Shared\WinLossTableData.cshtml" />
+    <Content Include="Views\Shared\IconInformationPopup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_GlobalResources\Resources.Designer.cs">
@@ -1292,6 +1373,7 @@
     <Compile Include="Controllers\BetBuilderController.cs" />
     <Compile Include="Controllers\CombinationMixParlayController.cs" />
     <Compile Include="Controllers\CorrectScoreController.cs" />
+    <Compile Include="Controllers\MonitoringBetsController.cs" />
     <Compile Include="Controllers\MoveStatementHistoryController.cs" />
     <Compile Include="Controllers\RiskAnalysisIPMatchingController.cs" />
     <Compile Include="Controllers\MemberBetListController.cs" />
@@ -1302,6 +1384,7 @@
       <DependentUpon>Error.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Content>
+    <Compile Include="Controllers\UsernameSuggestionController.cs" />
     <Compile Include="Handlers\BetListByBetTypeAndMatch\BetListByBetTypeAndMatchExcelHandler.cs" />
     <Compile Include="Handlers\BetListByBetTypeAndMatch\BetListByBetTypeAndMatchHandler.cs" />
     <Compile Include="Handlers\BetListByBetType\BetListByBetTypeExcelBaseHandler.cs" />
@@ -1315,10 +1398,12 @@
     <Compile Include="Handlers\JackpotDetails\JackpotDetailsExcelHandler.cs" />
     <Compile Include="Handlers\JackpotDetails\JackpotDetailsHandler.cs" />
     <Compile Include="Handlers\BetBuilder\BetBuilderHandler.cs" />
+    <Compile Include="Handlers\MonitoringBets\MonitoringBetsHandler.cs" />
     <Compile Include="Handlers\MoveStatementHistory\MoveStatementHistoryHandler.cs" />
     <Compile Include="Handlers\RiskAnalysisIPMatching\RiskAnalysisIPMatchingHelper.cs" />
     <Compile Include="Handlers\RiskAnalysisIPMatching\RiskAnalysisIPMatchingHandler.cs" />
     <Compile Include="Handlers\RiskAnalysisIPMatching\RiskAnalysisIPMatchingExcelHandler.cs" />
+    <Compile Include="Handlers\UsernameSuggestion\UsernameSuggestionHandler.cs" />
     <Compile Include="Handlers\WinLoss\WinLossNewHandler.cs" />
     <Compile Include="Helpers\BrowserHelper.cs">
       <SonarQubeExclude>true</SonarQubeExclude>
@@ -1383,6 +1468,17 @@
     <Compile Include="Requests\CorrectScore\CorrectScoreExcelQuery.cs" />
     <Compile Include="Requests\CorrectScore\CorrectScoreQuery.cs" />
     <Compile Include="Requests\MemberBetList\MemberBetListQuery.cs" />
+    <Compile Include="Requests\MonitoringBets\AddUnsavedFilterCommand.cs" />
+    <Compile Include="Requests\MonitoringBets\AddFilterCommand.cs" />
+    <Compile Include="Requests\MonitoringBets\ApplyFilterCommand.cs" />
+    <Compile Include="Requests\MonitoringBets\DeleteFiltersCommand.cs" />
+    <Compile Include="Requests\MonitoringBets\FilterBySportsQuery.cs" />
+    <Compile Include="Requests\MonitoringBets\FilterConfigurationQuery.cs" />
+    <Compile Include="Requests\MonitoringBets\GetMyWatchlistMembersQuery.cs" />
+    <Compile Include="Requests\MonitoringBets\GetLastFilteringBetsQuery.cs" />
+    <Compile Include="Requests\MonitoringBets\ManageFiltersQuery.cs" />
+    <Compile Include="Requests\MonitoringBets\MonitoringBetsQuery.cs" />
+    <Compile Include="Requests\MonitoringBets\UpdateFilterCommand.cs" />
     <Compile Include="Requests\MoveStatementHistory\MoveStatementHistoryQuery.cs" />
     <Compile Include="Requests\RiskAnalysisIPMatching\RiskAnalysisIPMatchingQuery.cs" />
     <Compile Include="Requests\RiskAnalysisIPMatching\RiskAnalysisIPMatchingExcelQuery.cs" />
@@ -1396,6 +1492,8 @@
     <Compile Include="Requests\Parlay\ComboParlayDetailQuery.cs" />
     <Compile Include="Requests\Parlay\ComboParlayQuery.cs" />
     <Compile Include="Requests\Parlay\MixParlayQuery.cs" />
+    <Compile Include="Requests\UsernameSuggestion\CheckUsernamesQuery.cs" />
+    <Compile Include="Requests\UsernameSuggestion\UsernameSuggestionQuery.cs" />
     <Compile Include="Requests\WinLossByMatch\WinLossByMatchExcelQuery.cs" />
     <Compile Include="Requests\WinLossByMatch\WinLossByMatchQuery.cs" />
     <Compile Include="Requests\WinLoss\WinLossExcelQuery.cs" />
@@ -1434,6 +1532,10 @@
     <Compile Include="ViewModels\SearchTickets\SearchTicketsViewModel.cs" />
     <Compile Include="ViewModels\JackpotDetails\JackpotDetailsViewModel.cs" />
     <Compile Include="ViewModels\MemberBetList\MemberBetListViewModel.cs" />
+    <Compile Include="ViewModels\MonitoringBets\FilteringBetDataViewModel.cs" />
+    <Compile Include="ViewModels\MonitoringBets\FilterConfigurationViewModel.cs" />
+    <Compile Include="ViewModels\MonitoringBets\ManageFiltersViewModel.cs" />
+    <Compile Include="ViewModels\MonitoringBets\MonitoringBetsViewModel.cs" />
     <Compile Include="ViewModels\MoveStatementHistory\MoveStatementHistoryViewModel.cs" />
     <Compile Include="ViewModels\RiskAnalysisIPMatching\RiskAnalysisIPMatchingViewModel.cs" />
     <Compile Include="ViewModels\RunningBetList\RunningBetListViewModel.cs" />
@@ -1503,6 +1605,9 @@
     <TypeScriptCompile Include="assets\scripts\src\betlist\status\result-details\base-result-details.ts" />
     <TypeScriptCompile Include="assets\scripts\src\betlist\status\result-details\casino-result-details.ts" />
     <TypeScriptCompile Include="assets\scripts\src\betlist\status\result-details\sportsbook-result-details.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\components\dropdown-list.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\components\inline-message.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\components\autorefresh.ts" />
     <TypeScriptCompile Include="assets\scripts\src\components\breadcrumb-level.ts" />
     <TypeScriptCompile Include="assets\scripts\src\components\daterangepicker-jquery.ts" />
     <TypeScriptCompile Include="assets\scripts\src\components\daterangepicker.ts" />
@@ -1510,12 +1615,19 @@
     <TypeScriptCompile Include="assets\scripts\src\components\product-productdetail-dropdown.ts" />
     <TypeScriptCompile Include="assets\scripts\src\components\statusmultiselection.ts" />
     <TypeScriptCompile Include="assets\scripts\src\components\productmultiselection.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\components\username-tagsinput.ts" />
     <TypeScriptCompile Include="assets\scripts\src\components\week-selection.ts" />
     <TypeScriptCompile Include="assets\scripts\src\search-tickets\search-tickets.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\components\sportleaguematch-treeview.ts" />
     <TypeScriptCompile Include="assets\scripts\src\last-bets\last-bets.ts" />
     <TypeScriptCompile Include="assets\scripts\src\components\single-selection-dropdown.ts" />
     <TypeScriptCompile Include="assets\scripts\src\member-betlist\member-betlist-init.ts" />
     <TypeScriptCompile Include="assets\scripts\src\member-betlist\member-betlist.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\monitoring-bets\filter-configuration.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\monitoring-bets\manage-filters.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\monitoring-bets\monitoring-bets-copyhtml.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\monitoring-bets\monitoring-bets.ts" />
+    <TypeScriptCompile Include="assets\scripts\src\monitoring-bets\save-filter.ts" />
     <TypeScriptCompile Include="assets\scripts\src\running-betlist\running-betlist.ts" />
     <TypeScriptCompile Include="assets\scripts\src\winloss\winloss-betlist.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\app\casino-detail\casino-detail-tests.ts" />

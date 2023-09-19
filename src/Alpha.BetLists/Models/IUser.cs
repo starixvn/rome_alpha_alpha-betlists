@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace Alpha.BetLists.Models
+﻿namespace Alpha.BetLists.Models
 {
+    using System;
+
     public interface IUser
     {
         int Id { get; }
@@ -39,5 +39,7 @@ namespace Alpha.BetLists.Models
         string MainDomain { get; }
 
         bool AutoFollowBetIsDummyAgent { get; }
+
+        string IP { get; }
     }
 }

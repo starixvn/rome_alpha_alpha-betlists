@@ -13,6 +13,7 @@
     {
         [ThreadStatic]
         private static NameValueCollection appSettingValues;
+        private static IEnumerable<string> monitoringBetsBettypes;
 
         internal static NameValueCollection AppSettingValues
         {
@@ -94,6 +95,10 @@
             get
             {
                 var currentAppPath = HttpRuntime.AppDomainAppVirtualPath;
+                if (currentAppPath == null)
+                {
+                    return string.Empty;
+                }
                 return currentAppPath.Equals("/", StringComparison.OrdinalIgnoreCase) && !HttpContext.Current.Session.IsCookieless ?
                     "site-betlists/" : string.Empty;
             }
@@ -101,8 +106,8 @@
 
         public static bool IsStandaloneReport => GetConfigValue("IsStandaloneReport") == "1";
 
-        public static bool IsMBCSite => !string.IsNullOrWhiteSpace(GetConfigValue("SiteGroup"))
-            && !GetConfigValue("SiteGroup").Equals("789y", StringComparison.OrdinalIgnoreCase);
+        public static bool IsMBCSite => !string.IsNullOrWhiteSpace(GetConfigValue("SiteLabel"))
+            && !GetConfigValue("SiteLabel").Equals("789y", StringComparison.OrdinalIgnoreCase);
 
         public static bool DisabledVietnamese => IsMBCSite;
 
@@ -113,6 +118,21 @@
         public static int IPV4CacheInMinutes => int.Parse(GetConfigValue("IPInfo:IPV4CacheInMinutes"));
 
         public static int IPV6CacheInMinutes => int.Parse(GetConfigValue("IPInfo:IPV6CacheInMinutes"));
+
+        public static string NetThrottlingRedisConfigurationOptions
+            => GetConfigValue("RedisConfigurationOptions:Alpha.NetThrottling");
+
+        public static IEnumerable<string> MonitoringBetsBettypes
+        {
+            get
+            {
+                monitoringBetsBettypes = monitoringBetsBettypes ?? GetConfigValue("MonitoringBets:Bettypes").SplitByCommaWithNoneEmptyEntries();
+
+                return monitoringBetsBettypes;
+            }
+        }
+
+        public static string JsVersion => GetConfigValue("JsVersion");
 
         public static string GetConfigValue(string configName) => AppSettingValues[configName];
 

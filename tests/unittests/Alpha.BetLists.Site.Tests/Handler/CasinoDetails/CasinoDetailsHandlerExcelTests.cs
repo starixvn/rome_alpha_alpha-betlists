@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
     using BetLists.Models;
     using BetLists.Tests.TestData;
     using Builders.ExcelBuilders;
@@ -78,7 +79,7 @@
         }
 
         [Fact]
-        public void HandlerExportCasinoDetailsExcelQuery_Always_ReturnsExcelFileViewModel()
+        public async Task HandlerExportCasinoDetailsExcelQuery_Always_ReturnsExcelFileViewModel()
         {
             // Arrange
             var param = CasinoDetailsHandler.CreateCasinoDetailsParam(message);
@@ -93,7 +94,7 @@
             var expectedViewModel = new ExcelFileViewModel(casinoDetailsViewModel.Title, BetListDataTest.ExcelFileContent);
 
             // Act
-            var actualViewModel = casinoDetailsExcelHandler.Handle(message);
+            var actualViewModel = await casinoDetailsExcelHandler.Handle(message);
 
             // Assert
             Assert.True(comparer.Compare(expectedViewModel, actualViewModel).AreEqual);

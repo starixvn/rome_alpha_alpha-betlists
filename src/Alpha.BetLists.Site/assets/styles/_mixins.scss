@@ -1,20 +1,26 @@
-﻿
+﻿@mixin user-select-none() {
+    -webkit-user-select: none; /* Chrome all / Safari all */
+    -moz-user-select: none; /* Firefox all */
+    -ms-user-select: none; /* IE 10+ */
+    user-select: none; /* Likely future */
+}
+
 @mixin css3-prefix($property, $value) {
-  -webkit-#{$property}: #{$value};
-   -khtml-#{$property}: #{$value};
-     -moz-#{$property}: #{$value};
-       -o-#{$property}: #{$value};
-          #{$property}: #{$value};
+    -webkit-#{$property}: #{$value};
+    -khtml-#{$property}: #{$value};
+    -moz-#{$property}: #{$value};
+    -o-#{$property}: #{$value};
+    #{$property}: #{$value};
 }
 
 /// Box Shadow
-
 @mixin box-shadow($x: 2px, $y: 2px, $blur: 5px, $color: rgba(0,0,0,.4), $inset: "") {
-  @if ($inset != "") {
-    @include css3-prefix('box-shadow', $inset $x $y $blur $color);
-  } @else {
-    @include css3-prefix('box-shadow', $x $y $blur $color);
-  }
+    @if ($inset != "") {
+        @include css3-prefix('box-shadow', $inset $x $y $blur $color);
+    }
+    @else {
+        @include css3-prefix('box-shadow', $x $y $blur $color);
+    }
 }
 
 @mixin box-shadow-multiple($string) {
@@ -25,7 +31,6 @@
 /// Border Radius
 /// @param {Size} $radius [5px] - Radius
 /// @require {mixin} css3-prefix
-
 @mixin border-radius($radius: 5px) {
     @include css3-prefix('border-radius', $radius);
 }
@@ -33,9 +38,8 @@
 /// Box Sizing
 /// @param {*} $type [border-box] - Type
 /// @require {mixin} css3-prefix
-
 @mixin box-sizing($type: border-box) {
-  @include css3-prefix('box-sizing', $type);
+    @include css3-prefix('box-sizing', $type);
 }
 
 //Keyframes
@@ -43,12 +47,15 @@
     @-webkit-keyframes #{$animationName} {
         @content;
     }
+
     @-moz-keyframes #{$animationName} {
         @content;
     }
+
     @-o-keyframes #{$animationName} {
         @content;
     }
+
     @keyframes #{$animationName} {
         @content;
     }
@@ -57,19 +64,18 @@
 /// Transform
 /// @param {List} $params - Params
 /// @require {mixin} css3-prefix
-
 @mixin transform($params) {
-  @include css3-prefix('transform', $params);
+    @include css3-prefix('transform', $params);
 }
 
 /*******************************************/
 /* Effect of dropdownlist */
 /*******************************************/
 @mixin effect-special() {
-    @include border-radius(1px);    
-   -webkit-shadow: 0 10px 20px rgba(0,0,0,.19),0 6px 6px rgba(0,0,0,.23);
-   -moz-box-shadow: 0 10px 20px rgba(0,0,0,.19),0 6px 6px rgba(0,0,0,.23);
-   box-shadow: 0 10px 20px rgba(0,0,0,.19),0 6px 6px rgba(0,0,0,.23);
+    @include border-radius(1px);
+    -webkit-shadow: 0 10px 20px rgba(0,0,0,.19),0 6px 6px rgba(0,0,0,.23);
+    -moz-box-shadow: 0 10px 20px rgba(0,0,0,.19),0 6px 6px rgba(0,0,0,.23);
+    box-shadow: 0 10px 20px rgba(0,0,0,.19),0 6px 6px rgba(0,0,0,.23);
 }
 
 /*******************************************/
@@ -97,7 +103,6 @@
             @include transform(scale(1));
         }
     }
-    
 }
 
 @mixin ripple-effect-icon($background: #b1aea3, $top: 0, $margin-left: -3px, $margin-right: -4px, $width: 26px, $height: 26px) {
@@ -106,7 +111,7 @@
     &:after {
         position: relative;
         content: '';
-    }      
+    }
 
     &:hover:after {
         position: absolute;

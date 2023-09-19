@@ -72,6 +72,25 @@ var Common;
     var Utils = /** @class */ (function () {
         function Utils() {
         }
+        Utils.ReloadPageAfterTimeout = function (url, timeout) {
+            if (url === void 0) { url = undefined; }
+            if (timeout === void 0) { timeout = 3000; }
+            setTimeout(function () {
+                if (url) {
+                    window.location.href = url;
+                }
+                else {
+                    window.location.reload();
+                }
+            }, timeout);
+        };
+        Utils.UpdateCurrentUrl = function (formData) {
+            try {
+                window.top.indexManager.updateCurrentUrl($.param(formData));
+            }
+            catch (e) {
+            }
+        };
         Utils.IsNullOrUndefinedOrEmpty = function (value) { return value === null || value === undefined || value === ''; };
         Utils.ParseBoolean = function (value) {
             if (!Utils.IsNullOrUndefinedOrEmpty(value)) {
@@ -103,6 +122,9 @@ var Common;
 var AlphaCore = /** @class */ (function () {
     function AlphaCore($, store) {
         var _this = this;
+        this.nonDigitalCharsRegex = /\D/g;
+        this.leadingZerosRegex = /^0+(?!$)/;
+        this.thousandsSeparatorRegex = /\B(?=(\d{3})+(?!\d))/g;
         this.format = {
             monthFormat: "MMMM - yyyy",
             shortDateWithSlash_DatePicker: "MM/DD/YYYY",
@@ -223,6 +245,10 @@ var AlphaCore = /** @class */ (function () {
         };
         this.formatNumber = function (value) { return value.toLocaleString("en-US"); };
         this.formatCurrency = function (value) { return value.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,"); };
+        this.forceInputDecimal = function (value) { return value
+            .replace(_this.nonDigitalCharsRegex, "")
+            .replace(_this.leadingZerosRegex, "")
+            .replace(_this.thousandsSeparatorRegex, ","); };
         this.$ = $;
         this.store = store;
     }
@@ -669,7 +695,7 @@ var BetList;
                 function SabaClubResultDetails() {
                     var _this = _super !== null && _super.apply(this, arguments) || this;
                     _this.ViewResultDetails = function (matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, betId, matchCode, transDesc, betcheck) {
-                        var params = '?custId=' + _this.CustId +
+                        var params = '?custId=' + (transDesc || _this.CustId) +
                             '&roleId=' + _this.ViewerLevelId +
                             '&gameRoundId=' + betcheck +
                             '&gameId=' + betTypeId +

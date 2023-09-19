@@ -2,6 +2,7 @@
 <Functions>
   <Function Name="Base Functions">
     <Setting Key="Age_SelBalanceUpDay" SpName="Age_SelBalanceUpDay" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_CustomerSelUserSearch" SpName="Age_CustomerSelUserSearch" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
   </Function>
   <Function Name="Products">
     <Setting Key="Age_Rpt_GetProductList" SpName="Age_Rpt_GetProductList" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
