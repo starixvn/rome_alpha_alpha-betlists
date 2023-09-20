@@ -26,5 +26,12 @@
     @Html.Hidden("ReportDomain", $"//{Sunplus.Agent.Model.Entities.UserSession.Current.GetProperty<string>("ReportDomainSessionKey")}")
     @Html.Hidden("ReportSessionId", $"{Sunplus.Agent.Model.Entities.UserSession.Current.GetProperty<string>("ReportSessionID")}")
     @Html.Hidden("SessionId", $"{Session.SessionID}")
+    @if (Session.IsCookieless && Alpha.BetLists.Configurations.AppSettings.IsStandaloneReport)
+    {
+        var currentSession = Sunplus.Agent.Model.Entities.UserSession.Current;
+        var mainDomain = currentSession.GetProperty<string>(Alpha.BetLists.Site.Constants.SessionKey.MainDomainSessionKey);
+        var mainSessionId = currentSession.GetProperty<string>(Alpha.BetLists.Site.Constants.SessionKey.MainSessionID);
+        @Html.Hidden("CookielessSiteMainUrl", $"{mainDomain}/(S({mainSessionId})){Alpha.BetLists.Configurations.AppSettings.MainAppPath}/");
+    }
 </body>
 </html>

@@ -37,7 +37,11 @@ var AJAXHelper = /** @class */ (function () {
             else if (jqXHR.status === 500 && jqXHR.responseText) {
                 var jsonData = JSON.parse(jqXHR.responseText);
                 if (jsonData.UMFrom && jsonData.UMTo) {
-                    location.href = window.top["alpha"].urls.mainRootPath + "PartialUM/Index?umfrom=" + jsonData.UMFrom + "&umto=" + jsonData.UMTo;
+                    var cookielessSiteMainUrl = $("#CookielessSiteMainUrl");
+                    var siteMainUrl = cookielessSiteMainUrl.length
+                        ? cookielessSiteMainUrl.val()
+                        : window.top["alpha"].urls.mainRootPath;
+                    location.href = siteMainUrl + "partialum/index?" + $.param(jsonData);
                 }
             }
         }
