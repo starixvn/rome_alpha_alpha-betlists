@@ -10,7 +10,6 @@ using Alpha.NetThrottling.Mvc;
 using Alpha.Web.Filters;
 using AlphaPlus.User.Models;
 using Fanex.Cryptography.Aes;
-using Fanex.Products;
 using ONEbook.UM.AspNetMVC.Filters;
 
 namespace Alpha.BetLists.Site.Controllers
@@ -93,11 +92,6 @@ namespace Alpha.BetLists.Site.Controllers
         private void SetUserSessionsAndAuth(string[] parameters)
         {
             FormsAuthentication.SetAuthCookie(parameters[0], false);
-        }
-
-        private static void SetUserStatusToSession(IUserSession session, Hashtable userData)
-        {
-            ProductManager.SetProductsStatusToSession(userData);
         }
 
         private ActionResult RedirectToSpecificUrl()
