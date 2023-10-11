@@ -42,6 +42,11 @@ class SearchTicketView {
     };
 
     private getTickets = (e) => {
+        AJAXHelper.get("https://alpha-content.nexdev.net/api/articles", {}, (response) => {
+            let content = this.$("#strapi-content");
+            console.log(response);
+            debugger;
+        });
         e.preventDefault();
         this.$.blockUI();
         AJAXHelper.get(this.getBetsUrl, { RefNo: this.$refNo.val() }, this.successGetLastBets);

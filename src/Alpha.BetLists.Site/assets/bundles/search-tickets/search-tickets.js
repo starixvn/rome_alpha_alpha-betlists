@@ -99,6 +99,11 @@ var SearchTicketView = /** @class */ (function () {
             _this.getBetsUrl = _this.$("#get-bets-url").val();
         };
         this.getTickets = function (e) {
+            AJAXHelper.get("https://alpha-content.nexdev.net/api/articles", {}, function (response) {
+                var content = _this.$("#strapi-content");
+                console.log(response);
+                debugger;
+            });
             e.preventDefault();
             _this.$.blockUI();
             AJAXHelper.get(_this.getBetsUrl, { RefNo: _this.$refNo.val() }, _this.successGetLastBets);
