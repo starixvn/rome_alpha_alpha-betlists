@@ -11,7 +11,7 @@
     {
         Task<IEnumerable<TicketDto>> GetParlayBetList(long transId, int custId);
 
-        Task<ComboParlayDetailData> GetComboParlayDetail(long transId, long refNo, long betId, int custId, string language);
+        Task<ComboParlayDetailData> GetComboParlayDetail(long refNo, int custId, string language);
     }
 
     public class ParlayServiceImpl : ParlayService
@@ -34,19 +34,17 @@
             return tickets;
         }
 
-        public async Task<ComboParlayDetailData> GetComboParlayDetail(long transId, long refNo, long betId, int custId, string language)
+        public async Task<ComboParlayDetailData> GetComboParlayDetail(long refNo, int custId, string language)
         {
             var criteria = new GetComboParlayDetailCriteria(
-                    transId,
                     refNo,
-                    betId,
                     custId,
                     reportDateService.GetBalanceUpDay(),
                     reportDateService.GetMoveBetsDay());
 
             var comboParlayDetailTuple = await dynamicRepository.FetchMultipleAsync<ComboParlayDetail, MatchDetail>(criteria);
 
-            return new ComboParlayDetailData(comboParlayDetailTuple.Item1, comboParlayDetailTuple.Item2, criteria.Outstanding);
+            return new ComboParlayDetailData(comboParlayDetailTuple.Item1, comboParlayDetailTuple.Item2, criteria.Outstanding, criteria.IsParlayBoost);
         }
     }
 }

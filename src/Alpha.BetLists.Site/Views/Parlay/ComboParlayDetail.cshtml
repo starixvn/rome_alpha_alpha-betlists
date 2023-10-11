@@ -34,8 +34,15 @@ else
                     }
                 </td>
                 <td class="text-right bl_underdog">
-                    <div class="divWidth50">
-                        @Html.Raw(item.Odds)
+                    <div class="divWidth80">
+                        @if(Model.IsParlayBoost)
+                        {
+                            @ParlayBoostOdds.Render(item.Odds, item.BoostOdds, item.BoostRate);
+                        }
+                        else
+                        {
+                            Html.Raw(item.Odds);
+                        }
                     </div>
                 </td>
                 <td class="text-right bl_underdog">
@@ -79,7 +86,7 @@ else
                             </div>
                         </th>
                         <th>
-                            <div class="divWidth50">
+                            <div class="divWidth80">
                                 @Resources.odds
                             </div>
                         </th>
@@ -132,7 +139,7 @@ else
                             </div>
                         </th>
                         <th>
-                            <div class="divWidth50">
+                            <div class="divWidth80">
                             </div>
                         </th>
                         <th>
@@ -164,7 +171,7 @@ else
                                 </div>
                             </th>
                             <th>
-                                <div class="divWidth50">
+                                <div class="divWidth80">
                                 </div>
                             </th>
                             <th>

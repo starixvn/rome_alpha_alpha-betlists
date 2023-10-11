@@ -21,7 +21,16 @@
                     <div>@eventDetail</div>
                 }
             </td>
-            <td class="text-right bl_underdog">@Html.Raw(item.Odds)</td>
+            <td class="text-right bl_underdog">
+                @if (Model.IsParlayBoost)
+                {
+                    @ParlayBoostOdds.Render(item.Odds, item.BoostOdds, item.BoostRate);
+                }
+                else
+                {
+                    Html.Raw(item.Odds);
+                }
+            </td>
             <td class="text-right bl_underdog">@Html.Raw(item.Stake)</td>
             <td class="text-right">
                 <div class="bl_underdog">@Html.Raw(item.WinLost)</div>
