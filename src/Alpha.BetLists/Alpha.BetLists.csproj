@@ -360,6 +360,7 @@
     <Compile Include="Criteria\CancelledBet\GetCancelledBetCriteria.cs" />
     <Compile Include="Constants\ErrorCodeConstants.cs" />
     <Compile Include="Criteria\CorrectScore\GetRunningCorrectScoreCriteria.cs" />
+    <Compile Include="Criteria\GetOddsOfMixParlayCriteria.cs" />
     <Compile Include="Criteria\SearchTickets\SearchTicketsCriteria.cs" />
     <Compile Include="Criteria\GetBalanceUpDayAndMoveBetsDayCriteria.cs" />
     <Compile Include="Criteria\GetFollowBetAccountsCriteria.cs" />
@@ -448,6 +449,7 @@
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductDetail.cs" />
     <Compile Include="Models\ScoreMap.cs" />
+    <Compile Include="Models\OddsMixParlayModel.cs" />
     <Compile Include="Models\Sport.cs" />
     <Compile Include="Models\StatusModel.cs" />
     <Compile Include="Models\TicketDto.cs" />

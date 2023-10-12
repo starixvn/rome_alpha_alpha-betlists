@@ -40,15 +40,18 @@
         private readonly IDynamicRepository dynamicRepository;
         private readonly ICacheService cacheService;
         private readonly IPartialUMService partialUMService;
+        private readonly ParlayService parlayService;
 
         public LastBetsServiceImpl(
             IDynamicRepository dynamicRepository,
             ICacheService cacheService,
-            IPartialUMService partialUMService)
+            IPartialUMService partialUMService,
+            ParlayService parlayService)
         {
             this.dynamicRepository = dynamicRepository;
             this.cacheService = cacheService;
             this.partialUMService = partialUMService;
+            this.parlayService = parlayService;
         }
 
         public Task<IEnumerable<TicketDto>> GetLastBets(GetLastBetsParam param)
@@ -78,6 +81,8 @@
 
                     AssignMatchInfoToTicket(ticket, matchInfo);
                 }
+
+                await parlayService.UpdateOddsMixParlay(tickets);
             }
 
             return tickets;

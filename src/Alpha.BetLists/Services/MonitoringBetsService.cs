@@ -58,15 +58,18 @@
         private readonly IPartialUMService partialUMService;
         private readonly IDynamicRepository dynamicRepository;
         private readonly LastBetsService lastBetsService;
+        private readonly ParlayService parlayService;
 
         public MonitoringBetsServiceImpl(
             IPartialUMService partialUMService,
             LastBetsService lastBetsService,
-            IDynamicRepository dynamicRepository)
+            IDynamicRepository dynamicRepository,
+            ParlayService parlayService)
         {
             this.partialUMService = partialUMService;
             this.lastBetsService = lastBetsService;
             this.dynamicRepository = dynamicRepository;
+            this.parlayService = parlayService;
         }
 
         public async Task<IEnumerable<SavedFilter>> GetSavedFilters(int custId, int subAccId, AddFilterParam unsavedFilter)
@@ -325,8 +328,9 @@
         public Task<IEnumerable<MyWatchlistMember>> GetMyWatchlistMembers(int agentId)
             => dynamicRepository.FetchAsync<MyWatchlistMember>(new GetMonitoredWatchlistMembersCriteria(agentId));
 
-        public Task<IEnumerable<TicketDto>> GetLastFilteringBets(GetLastFilteringBetsParams param)
-            => lastBetsService.GetLastBets(
+        public async Task<IEnumerable<TicketDto>> GetLastFilteringBets(GetLastFilteringBetsParams param)
+        {
+            var tickets = await lastBetsService.GetLastBets(
                 new GetLastFilteringBetsCriteria(
                     param.CustId,
                     param.TransId,
@@ -338,5 +342,10 @@
                     param.MinStake,
                     param.LimitRowCount),
                 AppSettings.RunningMatchCacheTime);
+
+            await parlayService.UpdateOddsMixParlay(tickets);
+
+            return tickets;
+        }
     }
 }
