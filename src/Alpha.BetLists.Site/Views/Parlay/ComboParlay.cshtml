@@ -1,4 +1,5 @@
 ﻿@using Alpha.BetLists.Site.ViewModels.Parlay
+@using Fanex.BetList.Core.App_GlobalResources
 @model ComboParlayViewModel
 @if (Model.HasValidData)
 {
@@ -8,7 +9,7 @@
             @unitStakeByOfferNames.Key x <span class="unit-stake">@unitStakeByOfferNames.Value</span>
         </div>
     }
-
+    <div class="max-payout" style="display: none;">(@CoreBetList.MaxPayoutAlert)<span class="icon-max-payout" title="@CoreBetList.MaxPayoutAlertInfo"></span></div>
     <div class="line"></div>
 
     foreach (var ticket in Model.BetListData.Tickets)

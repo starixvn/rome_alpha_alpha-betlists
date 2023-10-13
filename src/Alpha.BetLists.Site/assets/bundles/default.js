@@ -1284,6 +1284,7 @@ var BetList;
                     _this.showComboMixParlayTickets = function (transId, transIndex, url) {
                         var ticketsContent = $('#divEvent_' + transId + transIndex);
                         var comboOfferName = $('#combinationOfferName_' + transId + transIndex);
+                        var maxPayoutDiv = $('#maxPayout_' + transId + transIndex);
                         if (ticketsContent.html() === '') {
                             var getComboMixParlaySetting = {
                                 method: 'GET',
@@ -1297,6 +1298,12 @@ var BetList;
                                     ticketsContent.html(responseHtml);
                                     if (ticketsContent.find(".offer-name-list").length) {
                                         comboOfferName.hide();
+                                        if (maxPayoutDiv.length) {
+                                            maxPayoutDiv.hide();
+                                            ticketsContent.find(".max-payout").each(function () {
+                                                $(this).show();
+                                            });
+                                        }
                                     }
                                 },
                             };
@@ -1306,11 +1313,13 @@ var BetList;
                             if (ticketsContent.is(':visible')) {
                                 ticketsContent.hide();
                                 comboOfferName.show();
+                                maxPayoutDiv.show();
                             }
                             else {
                                 ticketsContent.show();
                                 if (ticketsContent.find(".offer-name-list").length) {
                                     comboOfferName.hide();
+                                    maxPayoutDiv.hide();
                                 }
                             }
                         }

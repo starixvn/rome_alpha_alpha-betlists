@@ -98,6 +98,7 @@
         private showComboMixParlayTickets = (transId: string, transIndex: string, url: string) => {
             const ticketsContent: JQuery = $('#divEvent_' + transId + transIndex);
             const comboOfferName = $('#combinationOfferName_' + transId + transIndex);
+            var maxPayoutDiv = $('#maxPayout_' + transId + transIndex);
 
             if (ticketsContent.html() === '') {
                 const getComboMixParlaySetting: JQueryAjaxSettings = {
@@ -112,6 +113,12 @@
                         ticketsContent.html(responseHtml);
                         if (ticketsContent.find(".offer-name-list").length) {
                             comboOfferName.hide();
+                            if (maxPayoutDiv.length) {
+                                maxPayoutDiv.hide();
+                                ticketsContent.find(".max-payout").each(function () {
+                                    $(this).show();
+                                });
+                            }
                         }
                     },
                 }
@@ -122,11 +129,13 @@
                 if (ticketsContent.is(':visible')) {
                     ticketsContent.hide();
                     comboOfferName.show();
+                    maxPayoutDiv.show();
                 }
                 else {
                     ticketsContent.show();
                     if (ticketsContent.find(".offer-name-list").length) {
                         comboOfferName.hide();
+                        maxPayoutDiv.hide();
                     }
                 }
             }
