@@ -10,7 +10,6 @@
         public GetParlayWinLossByMatchCriteria(
             int custId,
             int betType,
-            string language,
             DateTime fromDate,
             DateTime toDate,
             DateTime moveBetsDate,
@@ -18,7 +17,6 @@
         {
             CustId = custId;
             BetType = betType;
-            Language = language;
             FromDate = fromDate;
             ToDate = toDate;
             MoveBetsDate = moveBetsDate;
@@ -28,8 +26,6 @@
         public int CustId { get; }
 
         public int BetType { get; }
-
-        public string Language { get; }
 
         public DateTime FromDate { get; }
 
