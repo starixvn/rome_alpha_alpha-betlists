@@ -55,7 +55,9 @@
   </Function>
 
   <Function Name="Mix Parlay">
-    <Setting Key="Age_BetList_MixParlay_OddsSel" SpName="Age_BetList_MixParlay_OddsSel" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0"/>
+    <Setting Key="Age_BetList_MixParlay_OddsSel" SpName="Age_BetList_MixParlay_OddsSel" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
+      <Mapping DataField="modds" ObjectProperty="MasterOdds"></Mapping>
+    </Setting>
     <Setting Key="Age_BetList_SelParlayDetail" SpName="Age_BetList_SelParlayDetail" DbName="DBACC.bodb02.BODBDownlineNet" Plain="0">
       <Mapping DataField="BetType" ObjectProperty="BetTypeId"></Mapping>
       <Mapping DataField="SportType" ObjectProperty="SportTypeId"></Mapping>

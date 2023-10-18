@@ -37,11 +37,11 @@ else
                     <div class="divWidth80">
                         @if(Model.IsParlayBoost)
                         {
-                            @ParlayBoostOdds.Render(item.Odds, item.BoostOdds, item.BoostRate);
+                            @ParlayBoostOdds.Render(item.Odds, item.MasterOdds, item.BoostRate);
                         }
                         else
                         {
-                            @Html.Raw(item.Odds);
+                            @Html.Raw(item.MasterOdds);
                         }
                     </div>
                 </td>

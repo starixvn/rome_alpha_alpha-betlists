@@ -31,7 +31,7 @@
             ComboParlayDetail = comboParlayDetail;
             MatchDetails = matchDetails;
             Odds = GetOdds();
-            BoostOdds = ConvertByBetType.CommValue(comboParlayDetail.MasterOdds);
+            MasterOdds = ConvertByBetType.CommValue(comboParlayDetail.MasterOdds);
             BoostRate = ConvertByBetType.FormatBoostRate(comboParlayDetail.ExtraValue);
             string statusResource;
             Status = statusToResources.TryGetValue(ComboParlayDetail.Status?.ToLowerInvariant() ?? string.Empty, out statusResource) ? statusResource : string.Empty;
@@ -58,7 +58,7 @@
 
         public string Odds { get; }
 
-        public string BoostOdds { get; }
+        public string MasterOdds { get; }
 
         public string BoostRate { get; }
 

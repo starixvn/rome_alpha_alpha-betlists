@@ -69,7 +69,10 @@
                 {
                     if (transIds.Any(i => i == ticket.TransId))
                     {
-                        ticket.Odds = GetOdds(odds, ticket.TransId);
+                        var oddsItem = GetOdds(odds, ticket.TransId);
+
+                        ticket.Odds = oddsItem.Odds;
+                        ticket.MasterOdds = oddsItem.MasterOdds;
                     }
                 }
             }
@@ -78,17 +81,17 @@
         private static IEnumerable<TicketDto> GetMixParlayMissingOdds(IEnumerable<TicketDto> tickets)
             => tickets.Where(i => i.BetTypeId == BetTypeIdConstants.CombinationMixParlay && i.BetTeam == "1" && i.Odds == 0);
 
-        private static decimal GetOdds(IEnumerable<OddsMixParlayModel> oddsList, long transId)
+        private static OddsMixParlayModel GetOdds(IEnumerable<OddsMixParlayModel> oddsList, long transId)
         {
             foreach (var item in oddsList)
             {
                 if (item.TransId == transId)
                 {
-                    return item.Odds;
+                    return item;
                 }
             }
 
-            return 0;
+            return new OddsMixParlayModel();
         }
     }
 }
