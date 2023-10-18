@@ -24,11 +24,11 @@
             <td class="text-right bl_underdog">
                 @if (Model.IsParlayBoost)
                 {
-                    @ParlayBoostOdds.Render(item.Odds, item.BoostOdds, item.BoostRate);
+                    @ParlayBoostOdds.Render(item.Odds, item.MasterOdds, item.BoostRate);
                 }
                 else
                 {
-                    Html.Raw(item.Odds);
+                    @Html.Raw(item.MasterOdds);
                 }
             </td>
             <td class="text-right bl_underdog">@Html.Raw(item.Stake)</td>
