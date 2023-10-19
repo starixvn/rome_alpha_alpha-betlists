@@ -4,7 +4,7 @@
     <Setting Key="Acc_BetList_CashOut_History" SpName="Acc_BetList_CashOut_History" DbName="DBACC.bodb02.BODBDownlineNet" />
   </Function>
   <Function Name="Parlay">
-    <Setting Key="Acc_BetlistCombinationParlay_Details" SpName="Acc_BetlistCombinationParlay_Details_xpre" DbName="DBACC.bodb02.BODBDownlineNet" Plain="0">
+    <Setting Key="Acc_BetlistCombinationParlay_Details" SpName="Acc_BetlistCombinationParlay_Details" DbName="DBACC.bodb02.BODBDownlineNet" Plain="0">
       <Mapping DataField="modds" ObjectProperty="MasterOdds" />
     </Setting>
   </Function>
@@ -31,7 +31,7 @@
     <Setting Key="Acc_BetList_BetBuilder_Detail" SpName="Acc_BetList_BetBuilder_Detail" DbName="DBACC.bodb02.BODBDownlineNet" Plain="0" />
   </Function>
   <Function Name="Bet List">
-    <Setting Key="Age_BetList_SearchByRefNo" SpName="Age_BetList_SearchByRefNo_xpre" DbName="DBACC.bodb02.BODBDownlineNet" Plain="0">
+    <Setting Key="Age_BetList_SearchByRefNo" SpName="Age_BetList_SearchByRefNo" DbName="DBACC.bodb02.BODBDownlineNet" Plain="0">
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="TicketDto"></Mapping>
@@ -59,7 +59,7 @@
     </Setting>
   </Function>
   <Function Name="Move Statement History">
-    <Setting Key="Age_BetList_SelMovingEventByTransId" SpName="Age_BetList_SelMovingEventByTransId_xpre" DbName="DBACC.bodb02.BODBDownlineNet" Plain="0">
+    <Setting Key="Age_BetList_SelMovingEventByTransId" SpName="Age_BetList_SelMovingEventByTransId" DbName="DBACC.bodb02.BODBDownlineNet" Plain="0">
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="TicketDto"></Mapping>
