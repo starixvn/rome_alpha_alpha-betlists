@@ -17,18 +17,14 @@ describe("Choice_TicketDetails_", function () {
             var refNo = "111";
             var winLossDate = new Date();
             var custId = "1";
-            var transId = "2";
-            var betId = "3";
             var betTeam = "1";
             var params = '?refno=' + refNo
                 + '&winlostdate=' + winLossDate
-                + '&transid=' + transId
-                + '&betid=' + betId
                 + '&custid=' + custId
                 + '&betteam=' + betTeam;
             // Act
             BetList.Choice.TicketDetails.ParlayTicketDetails.Instance
-                .ShowComboParlayDetails(refNo, winLossDate, transId, betId, custId, betTeam);
+                .ShowComboParlayDetails(refNo, winLossDate, custId, betTeam);
             // Assert
             expect(popupDetailsShow).toHaveBeenCalledWith('betlist-path/Parlay/ComboParlayDetail' + params, "", 800, 438);
         });

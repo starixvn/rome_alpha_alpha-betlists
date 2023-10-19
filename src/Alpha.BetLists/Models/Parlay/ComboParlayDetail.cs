@@ -41,6 +41,8 @@
 
         public string Status { get; }
 
+        public decimal MasterOdds { get; }
+
         public decimal Odds { get; }
 
         public decimal Stake { get; }
@@ -48,5 +50,7 @@
         public decimal WinLost { get; }
 
         public decimal PlayerComm { get; }
+
+        public decimal ExtraValue { get; }
     }
 }

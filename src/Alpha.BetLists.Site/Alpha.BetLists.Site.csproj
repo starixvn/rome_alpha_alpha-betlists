@@ -173,7 +173,7 @@
       <HintPath>..\..\packages\Fanex.BetList.CG.2.0.0\lib\net461\Fanex.BetList.CG.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.Core, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.Core.3.0.0.6\lib\net461\Fanex.BetList.Core.dll</HintPath>
+      <HintPath>..\..\packages\Fanex.BetList.Core.3.0.0.8\lib\net461\Fanex.BetList.Core.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.Core.RemotingRef, Version=1.1.0.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.Core.RemotingRef.2.0.0\lib\net461\Fanex.BetList.Core.RemotingRef.dll</HintPath>
@@ -947,6 +947,7 @@
     <Content Include="assets\styles\images\ajax-loader.gif" />
     <Content Include="assets\styles\images\firstGoal.gif" />
     <Content Include="assets\styles\images\green-star.gif" />
+    <Content Include="assets\styles\images\ico_parlay_boost.svg" />
     <Content Include="assets\styles\images\lastGoal.gif" />
     <Content Include="assets\styles\images\lotto_ball.png" />
     <Content Include="assets\styles\images\note_title.gif" />
@@ -1192,6 +1193,7 @@
     <Content Include="App_Data\securitycode.pro3.json">
       <DependentUpon>securitycode.json</DependentUpon>
     </Content>
+    <Content Include="App_Code\Blocks\ParlayBoostOdds.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>

@@ -16,7 +16,7 @@
         {
             // Arrange
             var custLevel = Enumeration.FromValue<UserLevel>(custLevelId);
-            var criteria = new GetParlayWinLossByMatchCriteria(0, 0, "En", DateTime.Now, DateTime.Now, DateTime.Now, custLevel);
+            var criteria = new GetParlayWinLossByMatchCriteria(0, 0, DateTime.Now, DateTime.Now, DateTime.Now, custLevel);
 
             // Act
             var actualSettingKey = criteria.GetSettingKey();
@@ -32,7 +32,7 @@
         public void IsValid_InvalidCustId_ReturnsFalse(int custId)
         {
             // Arrange
-            var criteria = new GetParlayWinLossByMatchCriteria(custId, 1, string.Empty, DateTime.Now, DateTime.Now, DateTime.Now, UserLevel.Agent);
+            var criteria = new GetParlayWinLossByMatchCriteria(custId, 1, DateTime.Now, DateTime.Now, DateTime.Now, UserLevel.Agent);
 
             // Act
             var actualIsValid = criteria.IsValid();
@@ -48,7 +48,7 @@
         public void IsValid_InvalidBetType_ReturnsFalse(int betType)
         {
             // Arrange
-            var criteria = new GetParlayWinLossByMatchCriteria(1, betType, string.Empty, DateTime.Now, DateTime.Now, DateTime.Now, UserLevel.Agent);
+            var criteria = new GetParlayWinLossByMatchCriteria(1, betType, DateTime.Now, DateTime.Now, DateTime.Now, UserLevel.Agent);
 
             // Act
             var actualIsValid = criteria.IsValid();
@@ -61,7 +61,7 @@
         public void IsValid_InvalidDateRange_ReturnsFalse()
         {
             // Arrange
-            var criteria = new GetParlayWinLossByMatchCriteria(1, 1, string.Empty, DateTime.Now, DateTime.Now.AddDays(-1), DateTime.Now, UserLevel.Agent);
+            var criteria = new GetParlayWinLossByMatchCriteria(1, 1, DateTime.Now, DateTime.Now.AddDays(-1), DateTime.Now, UserLevel.Agent);
 
             // Act
             var actualIsValid = criteria.IsValid();
@@ -74,7 +74,7 @@
         public void IsValid_ValidCriteria_ReturnsTrue()
         {
             // Arrange
-            var criteria = new GetParlayWinLossByMatchCriteria(1, 1, string.Empty, DateTime.Now, DateTime.Now, DateTime.Now, UserLevel.Agent);
+            var criteria = new GetParlayWinLossByMatchCriteria(1, 1, DateTime.Now, DateTime.Now, DateTime.Now, UserLevel.Agent);
 
             // Act
             var actualIsValid = criteria.IsValid();

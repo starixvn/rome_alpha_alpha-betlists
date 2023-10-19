@@ -146,9 +146,7 @@
         private async Task<ComboParlayDetailViewModel> GetComboParlayDetail(ComboParlayDetailQuery message, bool isExportingExcel = false)
         {
             var comboParlayDetailData = await parlayService.GetComboParlayDetail(
-                message.TransId,
                 message.RefNo,
-                message.BetId,
                 message.CustId,
                 message.Language);
 

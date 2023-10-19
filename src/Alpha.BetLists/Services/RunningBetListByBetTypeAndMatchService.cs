@@ -1,5 +1,7 @@
 ﻿namespace Alpha.BetLists.Services
 {
+    using System.Collections;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using Criteria.RunningBetListByBetTypeAndMatch;
@@ -17,7 +19,7 @@
     {
         private readonly IDynamicRepository dynamicRepository;
 
-        public RunningBetListByBetTypeAndMatchServiceImpl(IDynamicRepository dynamicRepository)
+        public RunningBetListByBetTypeAndMatchServiceImpl(IDynamicRepository dynamicRepository, ParlayService parlayService)
         {
             this.dynamicRepository = dynamicRepository;
         }
@@ -35,5 +37,6 @@
 
             return new BetListData(betListDataTuple.Item1, betListDataTuple.Item2.ToList<ITicketData>());
         }
+
     }
 }

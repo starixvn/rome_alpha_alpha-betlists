@@ -35,7 +35,6 @@
             var criteria = new GetParlayWinLossByMatchCriteria(
                 param.CustId,
                 param.BetType,
-                param.Language,
                 param.FromDate.GetGreaterDate(param.LimitedDate),
                 param.ToDate,
                 reportDateService.GetMoveBetsDay(),

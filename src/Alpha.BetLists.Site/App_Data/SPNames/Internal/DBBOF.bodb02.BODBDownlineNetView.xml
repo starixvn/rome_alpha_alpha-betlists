@@ -15,6 +15,7 @@
       <Mapping DataField="mdiscount" ObjectProperty="MasterDiscount" Class="TicketDto"></Mapping>
       <Mapping DataField="sdiscount" ObjectProperty="SuperDiscount" Class="TicketDto"></Mapping>
       <Mapping DataField="liveindicator" ObjectProperty="IsLive" Class="TicketDto"></Mapping>
+      <Mapping DataField="modds" ObjectProperty="MasterOdds" Class="TicketDto"></Mapping>
     </Setting>
   </Function>
 </Functions>

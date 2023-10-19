@@ -6,26 +6,18 @@
     public class GetComboParlayDetailCriteria : CriteriaBase
     {
         public GetComboParlayDetailCriteria(
-            long transId,
             long refNo,
-            long betId,
             int custId,
             DateTime balanceUpDate,
             DateTime moveBetDate)
         {
-            TransId = transId;
             RefNo = refNo;
-            BetId = betId;
             CustId = custId;
             BalanceUpDay = balanceUpDate;
             MoveBetDay = moveBetDate;
         }
-
-        public long TransId { get; }
-
+      
         public long RefNo { get; }
-
-        public long BetId { get; }
 
         public int CustId { get; }
 
@@ -35,8 +27,10 @@
 
         public decimal Outstanding { get; set; }
 
+        public bool IsParlayBoost { get; set; }
+
         public override string GetSettingKey() => "Acc_BetlistCombinationParlay_Details";
 
-        public override bool IsValid() => TransId > 0;
+        public override bool IsValid() => RefNo > 0;
     }
 }

@@ -20,20 +20,16 @@
             // Arrange
             const refNo = "111";
             const winLossDate: Date = new Date();
-            const custId = "1";
-            const transId = "2";
-            const betId = "3";
+            const custId = "1";           
             const betTeam = "1";
             const params = '?refno=' + refNo
-                + '&winlostdate=' + winLossDate
-                + '&transid=' + transId
-                + '&betid=' + betId
+                + '&winlostdate=' + winLossDate               
                 + '&custid=' + custId
                 + '&betteam=' + betTeam;
 
             // Act
             BetList.Choice.TicketDetails.ParlayTicketDetails.Instance
-                .ShowComboParlayDetails(refNo, winLossDate, transId, betId, custId, betTeam);
+                .ShowComboParlayDetails(refNo, winLossDate, custId, betTeam);
 
             // Assert
             expect(popupDetailsShow).toHaveBeenCalledWith('betlist-path/Parlay/ComboParlayDetail' + params, "", 800, 438);

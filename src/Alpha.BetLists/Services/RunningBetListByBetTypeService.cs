@@ -17,13 +17,16 @@
     {
         private readonly IDynamicRepository dynamicRepository;
         private readonly IPartialUMService partialUMService;
+        private readonly ParlayService parlayService;
 
         public RunningBetListByBetTypeServiceImpl(
             IDynamicRepository dynamicRepository,
-            IPartialUMService partialUMService)
+            IPartialUMService partialUMService,
+            ParlayService parlayService)
         {
             this.dynamicRepository = dynamicRepository;
             this.partialUMService = partialUMService;
+            this.parlayService = parlayService;
         }
 
         public async Task<IEnumerable<TicketDto>> GetBetList(RunningBetListByBetTypeParam param)
@@ -32,7 +35,11 @@
 
             partialUMService.ThrowIfUM(criteria.GetSettingKey());
 
-            return await dynamicRepository.FetchAsync<TicketDto>(criteria);
+            var tickets = await dynamicRepository.FetchAsync<TicketDto>(criteria);
+            await parlayService.UpdateOddsMixParlay(tickets);
+
+            return tickets;
+
         }
     }
 }

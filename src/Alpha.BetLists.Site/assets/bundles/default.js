@@ -1254,11 +1254,9 @@ var BetList;
                 __extends(ParlayTicketDetails, _super);
                 function ParlayTicketDetails() {
                     var _this = _super !== null && _super.apply(this, arguments) || this;
-                    _this.ShowComboParlayDetails = function (refNo, winlostDate, transId, betId, custId, betTeam) {
+                    _this.ShowComboParlayDetails = function (refNo, winlostDate, custId, betTeam) {
                         var params = '?refno=' + refNo
                             + '&winlostdate=' + winlostDate
-                            + '&transid=' + transId
-                            + '&betid=' + betId
                             + '&custid=' + custId
                             + '&betteam=' + betTeam;
                         Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'Parlay/ComboParlayDetail' + params, "", 800, 438);

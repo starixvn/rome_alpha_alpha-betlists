@@ -54,11 +54,9 @@
             return this.instance;
         }
 
-        public ShowComboParlayDetails = (refNo: string, winlostDate: Date, transId: string, betId: string, custId: string, betTeam: string) => {
+        public ShowComboParlayDetails = (refNo: string, winlostDate: Date, custId: string, betTeam: string) => {
             const params = '?refno=' + refNo
-                + '&winlostdate=' + winlostDate
-                + '&transid=' + transId
-                + '&betid=' + betId
+                + '&winlostdate=' + winlostDate               
                 + '&custid=' + custId
                 + '&betteam=' + betTeam;
 

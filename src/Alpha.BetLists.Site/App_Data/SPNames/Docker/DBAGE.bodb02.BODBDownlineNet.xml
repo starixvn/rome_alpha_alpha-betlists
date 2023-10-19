@@ -55,6 +55,9 @@
   </Function>
 
   <Function Name="Mix Parlay">
+    <Setting Key="Age_BetList_MixParlay_OddsSel" SpName="Age_BetList_MixParlay_OddsSel" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
+      <Mapping DataField="modds" ObjectProperty="MasterOdds"></Mapping>
+    </Setting>
     <Setting Key="Age_BetList_SelParlayDetail" SpName="Age_BetList_SelParlayDetail" DbName="DBACC.bodb02.BODBDownlineNet" Plain="0">
       <Mapping DataField="BetType" ObjectProperty="BetTypeId"></Mapping>
       <Mapping DataField="SportType" ObjectProperty="SportTypeId"></Mapping>
@@ -435,6 +438,7 @@
       <Mapping DataField="sdiscount" ObjectProperty="SuperDiscount" Class="TicketDto"></Mapping>
       <Mapping DataField="liveindicator" ObjectProperty="IsLive" Class="TicketDto"></Mapping>
       <Mapping DataField="betstatus" ObjectProperty="EventStatus" Class="TicketDto"></Mapping>
+      <Mapping DataField="modds" ObjectProperty="MasterOdds" Class="TicketDto"></Mapping>
     </Setting>
     <Setting Key="Ost_LastBets_HDP" SpName="Age_Monitor_BetlistSel_Ag_HDP" DbName="DBOST.bodb_ost.BODBDownlineNet" Plain="0">
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto"></Mapping>
@@ -455,6 +459,7 @@
       <Mapping DataField="sdiscount" ObjectProperty="SuperDiscount" Class="TicketDto"></Mapping>
       <Mapping DataField="liveindicator" ObjectProperty="IsLive" Class="TicketDto"></Mapping>
       <Mapping DataField="betstatus" ObjectProperty="EventStatus" Class="TicketDto"></Mapping>
+      <Mapping DataField="modds" ObjectProperty="MasterOdds" Class="TicketDto"></Mapping>
     </Setting>
     <Setting Key="Ost_LastBets_OU" SpName="Age_Monitor_BetlistSel_Ag_OU" DbName="DBOST.bodb_ost.BODBDownlineNet" Plain="0">
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto"></Mapping>
@@ -475,6 +480,7 @@
       <Mapping DataField="sdiscount" ObjectProperty="SuperDiscount" Class="TicketDto"></Mapping>
       <Mapping DataField="liveindicator" ObjectProperty="IsLive" Class="TicketDto"></Mapping>
       <Mapping DataField="betstatus" ObjectProperty="EventStatus" Class="TicketDto"></Mapping>
+      <Mapping DataField="modds" ObjectProperty="MasterOdds" Class="TicketDto"></Mapping>
     </Setting>
     <Setting Key="Ost_LastBets_Other" SpName="Age_Monitor_BetlistSel_Ag_OtherBettypes" DbName="DBOST.bodb_ost.BODBDownlineNet" Plain="0">
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto"></Mapping>
@@ -495,6 +501,7 @@
       <Mapping DataField="sdiscount" ObjectProperty="SuperDiscount" Class="TicketDto"></Mapping>
       <Mapping DataField="liveindicator" ObjectProperty="IsLive" Class="TicketDto"></Mapping>
       <Mapping DataField="betstatus" ObjectProperty="EventStatus" Class="TicketDto"></Mapping>
+      <Mapping DataField="modds" ObjectProperty="MasterOdds" Class="TicketDto"></Mapping>
     </Setting>
 
     <Setting Key="Age_Monitor_MatchSelByID" SpName="Age_Monitor_MatchSelByID" DbName="DBBOF.bodb02.BODBDownlineNet" Plain="0"></Setting>

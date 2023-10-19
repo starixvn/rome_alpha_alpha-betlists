@@ -47,6 +47,7 @@
                 ComboParlayDetailWrapperGroups = ComboParlayDetailWrappers.GroupBy(w => w.WinLostDate).OrderBy(i => i.Key);
 
                 OutStanding = ConvertByBetType.Stake(comboParlayDetailData.Outstanding);
+                IsParlayBoost = comboParlayDetailData.IsParlayBoost;
                 TotalWinLost = ConvertByBetType.Winloss(comboParlayDetailData.ComboParlayDetails.Sum(d => d.WinLost + d.PlayerComm));
                 IsRunningTicket = !comboParlayDetailData.ComboParlayDetails.Any();
             }
@@ -65,6 +66,8 @@
         public string TotalWinLost { get; }
 
         public string OutStanding { get; }
+
+        public bool IsParlayBoost { get; }
 
         public string Title { get; }
 

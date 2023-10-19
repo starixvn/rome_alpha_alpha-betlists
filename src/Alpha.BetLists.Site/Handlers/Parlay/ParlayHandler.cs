@@ -52,9 +52,7 @@
         public async Task<ComboParlayDetailViewModel> Handle(ComboParlayDetailQuery message)
         {
             var comboParlayDetailData = await parlayService.GetComboParlayDetail(
-                          message.TransId,
                           message.RefNo,
-                          message.BetId,
                           message.CustId,
                           message.Language);
 
