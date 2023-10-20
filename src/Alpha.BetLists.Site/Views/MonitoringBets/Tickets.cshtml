@@ -27,6 +27,7 @@
             @Odds.Render(Model.Builder, ticket, Model.BetListData.TicketData, Model.TicketHelper.GetOddsTypeNameById)
             @Stake.Render(Model.Builder, ticket, Model.TicketHelper)
             @LastBetsStatus.Render(ticket, Model.TicketHelper, Model.DisplayVNIP)
+            @Platform.Render(ticket.Platform)
         </tr>
     }
 }

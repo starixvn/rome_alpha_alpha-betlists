@@ -19,9 +19,9 @@
     {
         private static readonly IDictionary<UserLevel, int> TotalColumnByViewLevelId = new Dictionary<UserLevel, int>
         {
-            { UserLevel.Agent, 8 },
-            { UserLevel.Master, 9 },
-            { UserLevel.Super, 10 }
+            { UserLevel.Agent, 9 },
+            { UserLevel.Master, 10 },
+            { UserLevel.Super, 11 }
         };
 
         protected readonly BaseQuery baseQuery;

@@ -86,6 +86,8 @@
                     .Map(J, ticket => BuildPtCommmission(ticket, null, UserLevel.Agent));
             }
 
+            AddPlatform(mapper, viewerLevel);
+
             return mapper;
         }
 

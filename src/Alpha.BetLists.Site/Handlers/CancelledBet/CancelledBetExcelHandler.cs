@@ -20,6 +20,7 @@
     using MediatR;
     using ONEbook.SpreadSheets;
     using ONEbook.SpreadSheets.BetListNPOI;
+    using static ONEbook.SpreadSheets.Column;
 
     public class CancelledBetExcelHandler : BetListExcelBaseHandler, IAsyncRequestHandler<CancelledBetExcelQuery, ExcelFileViewModel>
     {
@@ -95,7 +96,10 @@
 
         protected internal override Mapper<TicketDto> GetBodyRowMapper(UserLevel viewerLevel, BetListBaseViewModel viewModel)
         {
-            return GetTicketDtoRowMapperIncludeUsername(viewModel, showWinLoss: false);
+            var mapper = GetTicketDtoRowMapperIncludeUsername(viewModel, showWinLoss: false);
+            mapper.Map(H, ticket => BuildPlatform(ticket.Platform));
+
+            return mapper;
         }
 
         private string GetExcelTitle(CancelledBetViewModel viewModel)

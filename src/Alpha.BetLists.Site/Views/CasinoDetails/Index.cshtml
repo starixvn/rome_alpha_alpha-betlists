@@ -50,6 +50,7 @@
                     <th class="col-pt">@Resources.masterPT/ @Resources.lblComm</th>
                 }
                 <th class="col-pt">@Resources.agentPT/ @Resources.lblComm</th>
+                <th class="col-platform">@Resources.platform</th>
             </tr>
         </thead>
         @if (Model.DetailData.Tickets.Any())
@@ -78,6 +79,7 @@
                                 @PositionTaking.Render(ticket, ticketData, UserLevel.Master)
                             }
                             @PositionTaking.Render(ticket, ticketData, UserLevel.Agent)
+                            @Platform.Render((ticket as TicketDto).Platform)
                         </tr>
                         isEvenRow = !isEvenRow;
                         i++;

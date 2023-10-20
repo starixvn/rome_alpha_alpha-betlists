@@ -72,6 +72,15 @@
             return rtfText;
         }
 
+        public static IRichTextString BuildPlatform(string platform, RTFHelper rtfHelper)
+        {
+            rtfHelper.RTFRenderer.AddText(platform);
+            var rtfText = rtfHelper.RTFRenderer.Render();
+            rtfHelper.RTFRenderer.Clear();
+
+            return rtfText;
+        }
+
         private static void RenderPtPercent(RTFNumber rtfNumber, RTFHelper rtfHelper, ITicket ticket, PTComm positionTakingComm)
         {
             if (ticket.BetTypeId == 33 || ticket.BetTypeId == 1233)

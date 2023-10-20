@@ -1,6 +1,8 @@
 ﻿namespace Alpha.BetLists.Models
 {
+    using Alpha.BetLists.AppResources;
     using Fanex.BetList.Core.Entities;
+    using System.Resources;
 
     public class TicketDto : Ticket
     {
@@ -11,5 +13,18 @@
         public bool IsHighlight { get; set; }
 
         public string BetType { get; set; }
+
+        public int? DeviceType { get; set; }
+
+        public string Platform
+        {
+            get
+            {
+                ResourceManager rm = new ResourceManager(typeof(Resources));
+                var deviceInfo = rm.GetString(string.Format("Platform_{0}", DeviceType ?? 0));
+
+                return deviceInfo ?? Resources.Platform_Uncategorized;
+            }
+        }
     }
 }

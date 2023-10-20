@@ -132,6 +132,8 @@
 
             AddPtCommissionForSuper(mapper, viewerLevel, ticketData);
 
+            AddPlatform(mapper, viewerLevel);
+
             return mapper;
         }
 
@@ -180,6 +182,22 @@
                     .Map(I, ticket => BuildPtCommmission(ticket, ticketData, UserLevel.Master))
                     .Map(J, ticket => BuildPtCommmission(ticket, ticketData, UserLevel.Agent));
             }
+        }
+
+        protected void AddPlatform(Mapper<TicketDto> mapper, UserLevel viewerLevel)
+        {
+            string platformColId = I;
+            if (viewerLevel.IsSuperLevel())
+            {
+                platformColId = K;
+            }
+
+            if (viewerLevel.IsMasterLevel())
+            {
+                platformColId = J;
+            }
+
+            mapper.Map(platformColId, ticket => BuildPlatform(ticket.Platform));
         }
 
         protected internal virtual Mapper<TicketDto> GetFooterRowMapper(Footer footer)
@@ -238,6 +256,9 @@
 
         protected virtual IRichTextString BuildPtCommmission(ITicket ticket, List<ITicketData> ticketData, UserLevel userLevel)
             => BetListExcelBuilderExt.BuildPtCommmission(ticket, ticketData, userLevel, RtfHelper);
+
+        protected virtual IRichTextString BuildPlatform(string platform)
+            => BetListExcelBuilderExt.BuildPlatform(platform, RtfHelper);
 
         protected virtual IRichTextString BuildFooter(Footer footerData)
             => BetListExcelBuilderExt.BuildFooter(
