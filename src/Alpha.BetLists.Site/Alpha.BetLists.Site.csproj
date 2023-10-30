@@ -1204,8 +1204,8 @@
       <DependentUpon>securitycode.json</DependentUpon>
     </Content>
     <Content Include="App_Code\Blocks\ParlayBoostOdds.cshtml" />
-    <Content Include="App_Data\activitytracking.pro22.json">
     <Content Include="App_Code\Blocks\Platform.cshtml" />
+    <Content Include="App_Data\activitytracking.pro22.json">
       <DependentUpon>activitytracking.json</DependentUpon>
     </Content>
     <Content Include="App_Data\ProductSection.pro22.config">
