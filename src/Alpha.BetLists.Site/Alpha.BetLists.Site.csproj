@@ -1406,7 +1406,6 @@
     </Compile>
     <Compile Include="Constants\SessionKey.cs" />
     <Compile Include="Constants\UserSelectedDateRangeOptionConstant.cs" />
-    <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\BetListBaseController.cs" />
     <Compile Include="Controllers\BetListByBetTypeAndMatchController.cs" />
     <Compile Include="Controllers\BetListByBetTypeController.cs" />
