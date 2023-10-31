@@ -48,7 +48,7 @@
             return $"{path}?{queryString}";
         }
 
-        internal static string ReportDomain => MainDomain ?? string.Empty;
+        internal static string ReportDomain => "/site-reports";
 
         internal static string MainDomain => UserSession.Current.GetProperty<string>("MainDomain");
 
