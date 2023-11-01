@@ -76,7 +76,7 @@
     }
 </table>
 @Html.Hidden("betlist-path", Response.ApplyAppPathModifier($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}"))
-@Html.Hidden("results-path", Session.IsCookieless ? $"/site-results/(S({UserSession.Current.GetProperty<string>(SessionKey.MainSessionID)}))/" : AppPathHelper.GetAppPath(AppSettings.ResultAppPath, "~"))
+@Html.Hidden("results-path", Session.IsCookieless ? $"/site-results/(S({Session.SessionID}))/" : AppPathHelper.GetAppPath(AppSettings.ResultAppPath, "~"))
 @Html.Hidden("cust-id", Model.CustId)
 @Html.Hidden("viewer-id", Model.ViewerIdOrViewerAdminId)
 @Html.Hidden("viewer-level-id", Model.ViewerLevelId)

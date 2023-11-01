@@ -99,8 +99,8 @@
 </div>
 @Pager.Render(Model.PagingViewModel)
 @Html.Hidden("betlist-path", Response.ApplyAppPathModifier($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}"))
-@Html.Hidden("old-main-path", Session.IsCookieless ? $"/ex-main/(S({UserSession.Current.GetProperty<string>(SessionKey.MainSessionID)}))/" : MicroSites.OldMainUrl("~/"))
-@Html.Hidden("results-path", Session.IsCookieless ? $"/site-results/(S({UserSession.Current.GetProperty<string>(SessionKey.MainSessionID)}))/" : AppPathHelper.GetAppPath(AppSettings.ResultAppPath, "~"))
+@Html.Hidden("old-main-path", Session.IsCookieless ? $"/ex-main/(S({Session.SessionID}))/" : MicroSites.OldMainUrl("~/"))
+@Html.Hidden("results-path", Session.IsCookieless ? $"/site-results/(S({Session.SessionID}))/" : AppPathHelper.GetAppPath(AppSettings.ResultAppPath, "~"))
 @Html.Hidden("site-main-path", AppPathHelper.GetAppPath(AppSettings.MainAppPath, "~"))
 @Html.Hidden("cust-id", Model.CustId)
 @Html.Hidden("viewer-id", Model.ViewerId)
