@@ -8,12 +8,10 @@ namespace Alpha.BetLists.Site.Tests.Handler.MonitoringBets
     using System.Globalization;
     using System.Linq;
     using System.Threading;
-    using Alpha.BetLists.Site.Requests;
     using Alpha.Web.Models;
     using BetLists.Models;
     using Constants;
     using Fanex.BetList.Core.Entities;
-    using Fanex.Caching;
     using Fixtures;
     using Handlers.MonitoringBets;
     using KellermanSoftware.CompareNetObjects;
@@ -44,7 +42,6 @@ namespace Alpha.BetLists.Site.Tests.Handler.MonitoringBets
             new TicketDto { TransId = 20 }
         };
 
-        private readonly RedisCacheService redisCacheService;
         private readonly IUserSession userSession;
         private readonly UsernameSuggestionService usernameSuggestionService;
 
@@ -52,8 +49,6 @@ namespace Alpha.BetLists.Site.Tests.Handler.MonitoringBets
         {
             this.betlistFixture = betlistFixture;
             userSession = Substitute.For<IUserSession>();
-
-            redisCacheService = Substitute.For<RedisCacheService>();
 
             Thread.CurrentThread.CurrentCulture = new CultureInfo(LanguageCode.English);
             Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
@@ -82,8 +77,7 @@ namespace Alpha.BetLists.Site.Tests.Handler.MonitoringBets
                 monitorService,
                 this.betlistFixture.IpService,
                 encryptionService,
-                betlistFixture.IpInfoService,
-                redisCacheService);
+                betlistFixture.IpInfoService);
 
             user = Substitute.For<IUser>();
             user.Id.Returns(2);
@@ -231,7 +225,6 @@ namespace Alpha.BetLists.Site.Tests.Handler.MonitoringBets
             var unsavedFilter = new AddFilterParam(1, 1, "UnsavedFilter", false, "1", 10,
                                 new[] { new SportXml() { League = "Basketball", Sport = "Soccer" } },
                                 1, "0", "0", "0", "0", 1, "En", "1.2.3.4");
-            redisCacheService.GetAsync<AddFilterParam>(Arg.Any<string>()).Returns(unsavedFilter);
             service.AddFilter(Arg.Any<AddFilterParam>()).Returns(new Result());
 
             // Act

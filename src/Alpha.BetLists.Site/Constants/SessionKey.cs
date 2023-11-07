@@ -47,6 +47,6 @@
         public const string ReportDomainSessionKey = "ReportDomainSessionKey";
         public const string ReportSessionID = "ReportSessionID";
 
-        public const string LastBetsMonitoringUnsavedFilter = "LastBetsMonitoringUnsavedFilter";
+        public const string LastBetsMonitoringUnsavedFilter = "LastBetsMonitoringUnsavedFilter_{0}_{1}";
     }
 }

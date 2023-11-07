@@ -29,7 +29,6 @@
     using Fanex.BetList.Core.RemotingRef;
     using Fanex.BetList.Core.TicketHelper;
     using Fanex.Caching;
-    using Fanex.Caching.Redis;
     using Fanex.Data.Repository;
     using Fanex.RemotingRef;
     using Handlers.Parlay;
@@ -216,13 +215,6 @@
                 Lifestyle.Singleton);
             container.RegisterSingleton<MonitoringBetsService, MonitoringBetsServiceImpl>();
             container.RegisterSingleton<UsernameSuggestionService, UsernameSuggestionServiceImpl>();
-            container.Register<RedisCacheService>(
-                () => new RedisCacheServiceImpl(new RedisCache(new RedisCacheOptions
-                {
-                    ConnectionString = AppSettings.NetThrottlingRedisConfigurationOptions,
-                    ApplicationName = "Alpha-BetLists"
-                })),
-                Lifestyle.Singleton);
         }
 
         private static void RegisterStaticInstances(Container container)

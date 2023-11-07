@@ -11,7 +11,6 @@
     using Alpha.BetLists.Params.MonitoringBets;
     using Alpha.BetLists.Services;
     using Alpha.BetLists.Site.Constants;
-    using Alpha.BetLists.Site.Requests;
     using Alpha.BetLists.Site.Requests.MonitoringBets;
     using Alpha.BetLists.Site.ViewModels.MonitoringBets;
     using Alpha.IPInfo.Services;
@@ -20,7 +19,6 @@
     using Alpha.Web.Models;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
-    using Fanex.Caching;
     using MediatR;
     using Sunplus.Agent.Model.Entities;
 
@@ -38,12 +36,10 @@
         IAsyncRequestHandler<GetLastFilteringBetsQuery, FilteringBetDataViewModel>
     {
         private const int NumberOfEncodeResult = 6;
-        private const int UnsavedFilterCacheInDays = 7;
 
         private readonly IUserSession userSession;
         private readonly MonitoringBetsService monitoringBetService;
         private readonly EncryptionService encryptionService;
-        private readonly RedisCacheService redisCacheService;
 
         public MonitoringBetsHandler(
             IUserSession userSession,
@@ -53,18 +49,19 @@
             ISmartPunterBetListMonitor monitorService,
             IPService ipService,
             EncryptionService encryptionService,
-            IIPInfoService ipInfoService,
-            RedisCacheService redisCacheService) : base(builder, ticketHelper, monitorService, ipService, ipInfoService)
+            IIPInfoService ipInfoService) : base(builder, ticketHelper, monitorService, ipService, ipInfoService)
         {
             this.userSession = userSession;
             this.monitoringBetService = monitoringBetService;
             this.encryptionService = encryptionService;
-            this.redisCacheService = redisCacheService;
         }
 
         public async Task<MonitoringBetsViewModel> Handle(MonitoringBetsQuery message)
         {
-            var filters = await monitoringBetService.GetSavedFilters(message.ViewerId, message.SubAccId, await GetUnsavedFilterParamCache(message));
+            var filters = await monitoringBetService.GetSavedFilters(
+                message.ViewerId,
+                message.SubAccId,
+                GetUnsavedFilterParamSession(message.ViewerId, message.SubAccId));
 
             var filterId = -1;
             var isShowFilterPlaceHolder = true;
@@ -125,7 +122,10 @@
 
         public async Task<ManageFiltersViewModel> Handle(ManageFiltersQuery message)
             => new ManageFiltersViewModel(
-                await monitoringBetService.GetFilters(message.ViewerId, message.SubAccId, await GetUnsavedFilterParamCache(message)),
+                await monitoringBetService.GetFilters(
+                    message.ViewerId,
+                    message.SubAccId,
+                    GetUnsavedFilterParamSession(message.ViewerId, message.SubAccId)),
                 message);
 
         public Task<Result> Handle(UpdateFilterCommand message)
@@ -147,7 +147,7 @@
             {
                 if (id == 0)
                 {
-                    await SetUnsavedFilterParamCache(message, null);
+                    SetUnsavedFilterParamSession(message.ViewerId, message.SubAccId, null);
                     results.Add(new Result());
                 }
                 else
@@ -166,15 +166,15 @@
         public Task<IEnumerable<MyWatchlistMember>> Handle(GetMyWatchlistMembersQuery message)
             => monitoringBetService.GetMyWatchlistMembers(message.ViewerId);
 
-        public async Task<Result> Handle(ApplyFilterCommand message)
+        public Task<Result> Handle(ApplyFilterCommand message)
         {
-            await SetUnsavedFilterParamCache(message, BuildAddFilterParam(message));
-            return new Result();
+            SetUnsavedFilterParamSession(message.ViewerId, message.SubAccId, BuildAddFilterParam(message));
+            return Task.FromResult(new Result());
         }
 
         public async Task<Result> Handle(AddUnsavedFilterCommand message)
         {
-            var unsavedFilterParam = await GetUnsavedFilterParamCache(message);
+            var unsavedFilterParam = GetUnsavedFilterParamSession(message.ViewerId, message.SubAccId);
 
             if (unsavedFilterParam == null)
             {
@@ -201,7 +201,7 @@
 
             if (result.ErrCode == 0)
             {
-                await SetUnsavedFilterParamCache(message, null);
+                SetUnsavedFilterParamSession(message.ViewerId, message.SubAccId, null);
             }
 
             return result;
@@ -330,56 +330,13 @@
         private string LatestTransIdCacheKeyByFilter(int viewerId, int filterId)
             => encryptionService.CfsEncode($"LatestTransId_{viewerId}_{filterId}", NumberOfEncodeResult);
 
-        private async Task<AddFilterParam> GetUnsavedFilterParamCache(BaseQuery query)
-        {
-            try
-            {
-                return await redisCacheService.GetAsync<AddFilterParam>(GetFilterCacheKey(query));
-            }
-            catch
-            {
-                return UnsavedFilterParamSession;
-            }
-        }
+        private AddFilterParam GetUnsavedFilterParamSession(int custId, int subAccId)
+            => userSession.GetProperty<AddFilterParam>(UnsavedFilterSessionKey(custId, subAccId));
 
-        private async Task SetUnsavedFilterParamCache(BaseQuery query, AddFilterParam filter)
-        {
-            try
-            {
-                if (filter == null)
-                {
-                    await redisCacheService.RemoveAsync(GetFilterCacheKey(query));
-                }
-                else
-                {
-                    await redisCacheService.SetAsync(
-                        GetFilterCacheKey(query),
-                        filter,
-                        new CacheItemOptions()
-                        {
-                            AbsoluteExpiration = DateTimeOffset.Now.AddDays(UnsavedFilterCacheInDays)
-                        });
-                }
-            }
-            catch
-            {
-                UnsavedFilterParamSession = filter;
-            }
-        }
+        private void SetUnsavedFilterParamSession(int custId, int subAccId, AddFilterParam value)
+            => userSession.SetProperty(UnsavedFilterSessionKey(custId, subAccId), value);
 
-        private static string GetFilterCacheKey(BaseQuery query)
-            => $"{SessionKey.LastBetsMonitoringUnsavedFilter}-{query.AdminId}-{query.CustId}-{query.SubAccId}";
-
-        private AddFilterParam UnsavedFilterParamSession
-        {
-            get
-            {
-                return userSession.GetProperty<AddFilterParam>(SessionKey.LastBetsMonitoringUnsavedFilter);
-            }
-            set
-            {
-                userSession.SetProperty(SessionKey.LastBetsMonitoringUnsavedFilter, value);
-            }
-        }
+        private static string UnsavedFilterSessionKey(int custId, int subAccId)
+            => string.Format(SessionKey.LastBetsMonitoringUnsavedFilter, custId, subAccId);
     }
 }
