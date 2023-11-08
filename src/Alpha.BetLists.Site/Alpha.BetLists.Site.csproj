@@ -960,7 +960,6 @@
     <Content Include="assets\styles\winloss.min.css">
       <DependentUpon>winloss.css</DependentUpon>
     </Content>
-    <Content Include="ex-main\Error.aspx" />
     <Content Include="Global.asax" />
     <Content Include="App_Data\SPNames\Local\DBARC.bodb_Archive.BODBDownlineNet.xml">
       <SubType>Designer</SubType>
@@ -1425,10 +1424,6 @@
     <Compile Include="Controllers\LastBetsController.cs" />
     <Compile Include="Controllers\CasinoDetailsController.cs" />
     <Compile Include="Controllers\RunningBetListController.cs" />
-    <Content Include="ex-main\Error.aspx.cs">
-      <DependentUpon>Error.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
     <Compile Include="Controllers\UsernameSuggestionController.cs" />
     <Compile Include="Handlers\BetListByBetTypeAndMatch\BetListByBetTypeAndMatchExcelHandler.cs" />
     <Compile Include="Handlers\BetListByBetTypeAndMatch\BetListByBetTypeAndMatchHandler.cs" />
