@@ -1102,6 +1102,15 @@
     <Content Include="assets\styles\last-bets-dark.scss" />
     <Content Include="assets\styles\parlay-detail-dark.scss" />
     <Content Include="App_Data\ProductSection.config" />
+    <Content Include="Web.AppSettings.pro22.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionStrings.pro22.config">
+      <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.pro22.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </Content>
     <Content Include="WhoAmI.aspx" />
     <Content Include="bundleconfig2.json" />
     <Content Include="compilerconfig2.json" />
@@ -1196,6 +1205,33 @@
       <DependentUpon>securitycode.json</DependentUpon>
     </Content>
     <Content Include="App_Code\Blocks\ParlayBoostOdds.cshtml" />
+    <Content Include="App_Data\activitytracking.pro22.json">
+      <DependentUpon>activitytracking.json</DependentUpon>
+    </Content>
+    <Content Include="App_Data\ProductSection.pro22.config">
+      <DependentUpon>ProductSection.config</DependentUpon>
+    </Content>
+    <Content Include="App_Data\securitycode.pro22.json">
+      <DependentUpon>securitycode.json</DependentUpon>
+    </Content>
+    <Content Include="App_Data\activitytracking.pro12.json">
+      <DependentUpon>activitytracking.json</DependentUpon>
+    </Content>
+    <Content Include="App_Data\activitytracking.pro32.json">
+      <DependentUpon>activitytracking.json</DependentUpon>
+    </Content>
+    <Content Include="App_Data\ProductSection.pro12.config">
+      <DependentUpon>ProductSection.config</DependentUpon>
+    </Content>
+    <Content Include="App_Data\ProductSection.pro32.config">
+      <DependentUpon>ProductSection.config</DependentUpon>
+    </Content>
+    <Content Include="App_Data\securitycode.pro12.json">
+      <DependentUpon>securitycode.json</DependentUpon>
+    </Content>
+    <Content Include="App_Data\securitycode.pro32.json">
+      <DependentUpon>securitycode.json</DependentUpon>
+    </Content>
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -1383,6 +1419,24 @@
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
     <Content Include="Web.pro3.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.pro12.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.pro32.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionStrings.pro12.config">
+      <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionStrings.pro32.config">
+      <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.pro12.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </Content>
+    <Content Include="Web.pro32.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
   </ItemGroup>
