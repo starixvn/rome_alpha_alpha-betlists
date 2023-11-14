@@ -28,7 +28,7 @@ namespace BetList {
         isCalling = false;
         pageSize: number = 10;
 
-        timeToGetLastBets: number = 2000;
+        timeToGetLastBets: number = 30000;
         timeToRetryGetLastBets: number = 600000;
         getLastBetsTimeOut: number = 0;
         ajaxRequest: JQueryXHR;

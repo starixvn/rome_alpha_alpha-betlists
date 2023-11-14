@@ -8,7 +8,7 @@ var BetList;
             this.getBetsUrl = "";
             this.isCalling = false;
             this.pageSize = 10;
-            this.timeToGetLastBets = 2000;
+            this.timeToGetLastBets = 30000;
             this.timeToRetryGetLastBets = 600000;
             this.getLastBetsTimeOut = 0;
             this.lastTransIdCacheKey = "";
