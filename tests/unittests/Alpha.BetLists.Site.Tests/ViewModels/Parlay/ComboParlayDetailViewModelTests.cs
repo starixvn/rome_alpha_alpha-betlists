@@ -131,7 +131,7 @@
         {
             // Arrange
             var comboParlayDetails = new Fixture().CreateMany<ComboParlayDetail>(5100);
-            var compoParlayDetailData = new ComboParlayDetailData(comboParlayDetails, BetListDataTest.MatchDetails, 10);
+            var compoParlayDetailData = new ComboParlayDetailData(comboParlayDetails, BetListDataTest.MatchDetails, 10, false);
 
             // Act
             var viewModel = new ComboParlayDetailViewModel(query, compoParlayDetailData, ticketHelper, false);
@@ -145,7 +145,7 @@
         {
             // Arrange
             var comboParlayDetails = new Fixture().CreateMany<ComboParlayDetail>(4999);
-            var compoParlayDetailData = new ComboParlayDetailData(comboParlayDetails, BetListDataTest.MatchDetails, 10);
+            var compoParlayDetailData = new ComboParlayDetailData(comboParlayDetails, BetListDataTest.MatchDetails, 10, false);
 
             // Act
             var viewModel = new ComboParlayDetailViewModel(query, compoParlayDetailData, ticketHelper, false);
@@ -173,7 +173,7 @@
         public void IsRunningTicket_WhenHasNoData_True()
         {
             // Arrange
-            var comboParlayDetailsData = new ComboParlayDetailData(new List<ComboParlayDetail>(), new List<MatchDetail>(), 0);
+            var comboParlayDetailsData = new ComboParlayDetailData(new List<ComboParlayDetail>(), new List<MatchDetail>(), 0, false);
             var viewModel = new ComboParlayDetailViewModel(query, comboParlayDetailsData, ticketHelper, false);
 
             // Act
@@ -203,7 +203,7 @@
         public void ComboParlayDetailViewModelCtor_IsExportingExcel_InitData()
         {
             // Arrange
-            var comboParlayDetailsData = new ComboParlayDetailData(BetListDataTest.ComboParlayDetailsHuge, BetListDataTest.MatchDetails, 10);
+            var comboParlayDetailsData = new ComboParlayDetailData(BetListDataTest.ComboParlayDetailsHuge, BetListDataTest.MatchDetails, 10, false);
 
             // Act
             var viewModel = new ComboParlayDetailViewModel(query, comboParlayDetailsData, ticketHelper, false, isExportingExcel: true);

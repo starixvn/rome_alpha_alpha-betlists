@@ -22,6 +22,7 @@
         private readonly MonitoringBetsServiceImpl monitoringBetsService;
         private readonly LastBetsService lastBetsService;
         private readonly FanexDataFixture dataFixture;
+        private readonly ParlayService parlayService;
 
         private readonly CompareLogic compareLogic;
 
@@ -33,6 +34,7 @@
                 ["UsersAlwaysAllowAccessBetsListMonitoring"] = "1176086"
             };
             lastBetsService = Substitute.For<LastBetsService>();
+            parlayService = Substitute.For<ParlayService>();
             this.dataFixture = dataFixture;
 
             dataFixture.DynamicRepository
@@ -47,7 +49,7 @@
                 .Fetch<MatchInfo>(Arg.Any<GetRunningOtherMatchCriteria>())
                 .Returns(LastBetsTestData.RunningOtherMatch);
 
-            monitoringBetsService = new MonitoringBetsServiceImpl(dataFixture.PartialUMService, lastBetsService, dataFixture.DynamicRepository);
+            monitoringBetsService = new MonitoringBetsServiceImpl(dataFixture.PartialUMService, lastBetsService, dataFixture.DynamicRepository, parlayService);
 
             compareLogic = new CompareLogic();
         }

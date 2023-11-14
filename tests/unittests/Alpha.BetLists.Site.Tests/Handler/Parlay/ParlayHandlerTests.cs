@@ -116,9 +116,7 @@
 
             // Assert
             parlayServiceFixture.ParlayService.Received().GetComboParlayDetail(
-                Arg.Is<long>(t => t == query.TransId),
                 Arg.Is<long>(r => r == query.RefNo),
-                Arg.Is<long>(b => b == query.BetId),
                 Arg.Is<int>(c => c == query.CustId),
                 Arg.Is<string>(l => l == query.Language));
         }

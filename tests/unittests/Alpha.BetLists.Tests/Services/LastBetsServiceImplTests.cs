@@ -20,9 +20,11 @@
     {
         private readonly LastBetsServiceImpl lastBetsService;
         private readonly CompareLogic compareLogic;
+        private readonly ParlayService parlayService;
 
         public LastBetsServiceImplTests(FanexDataFixture dataFixture)
         {
+            parlayService = Substitute.For<ParlayService>();
             AppSettings.AppSettingValues = new NameValueCollection
             {
                 ["EnableBetsListMonitoring"] = "true",
@@ -41,7 +43,7 @@
                 .Fetch<MatchInfo>(Arg.Any<GetRunningOtherMatchCriteria>())
                 .Returns(LastBetsTestData.RunningOtherMatch);
 
-            lastBetsService = new LastBetsServiceImpl(dataFixture.DynamicRepository, dataFixture.CacheService, dataFixture.PartialUMService);
+            lastBetsService = new LastBetsServiceImpl(dataFixture.DynamicRepository, dataFixture.CacheService, dataFixture.PartialUMService, parlayService);
 
             compareLogic = new CompareLogic();
         }

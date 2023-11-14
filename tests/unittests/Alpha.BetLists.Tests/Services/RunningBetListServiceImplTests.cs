@@ -18,15 +18,17 @@
     {
         private readonly RunningBetListServiceImpl runningBetListService;
         private readonly FanexDataFixture dataFixture;
+        private readonly ParlayService parlayService;
 
         public RunningBetListServiceImplTests(FanexDataFixture dataFixture)
         {
+            parlayService = Substitute.For<ParlayService>();
             this.dataFixture = dataFixture;
             this.dataFixture.DynamicRepository
                 .FetchMultipleAsync<TicketDto, TicketData>(Arg.Any<GetBetListRunningByDateCriteria>())
                 .Returns(BetListDataTest.BetListDataTuple);
 
-            runningBetListService = new RunningBetListServiceImpl(this.dataFixture.DynamicRepository, dataFixture.PartialUMService);
+            runningBetListService = new RunningBetListServiceImpl(this.dataFixture.DynamicRepository, dataFixture.PartialUMService, parlayService);
         }
 
         [Fact]

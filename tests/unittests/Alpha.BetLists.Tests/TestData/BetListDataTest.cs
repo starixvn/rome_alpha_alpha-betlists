@@ -52,7 +52,7 @@
         public static readonly (IEnumerable<ComboParlayDetail>, IEnumerable<MatchDetail>) ComboParlayDetailTuple = (ComboParlayDetails, MatchDetails);
 
         public static readonly ComboParlayDetailData ComboParlayDetailData
-            = new ComboParlayDetailData(ComboParlayDetails, MatchDetails, 0);
+            = new ComboParlayDetailData(ComboParlayDetails, MatchDetails, 0, false);
 
         public static readonly IRichTextString TransRtf = new HSSFRichTextString("Trans");
 

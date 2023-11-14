@@ -49,15 +49,14 @@
         {
             // Arrange
             dataFixture.DynamicRepository.FetchMultipleAsync<ComboParlayDetail, MatchDetail>(
-                Arg.Is<GetComboParlayDetailCriteria>(c => c.TransId == 123
-                && c.RefNo == 0
-                && c.BetId == 1
+                Arg.Is<GetComboParlayDetailCriteria>(c => 
+                c.RefNo == 0
                 && c.CustId == 1
                 && c.BalanceUpDay == reportDateService.GetBalanceUpDay()
                 && c.MoveBetDay == reportDateService.GetMoveBetsDay())).Returns(BetListDataTest.ComboParlayDetailTuple);
 
             // Act
-            var actualData = parlayService.GetComboParlayDetail(123, 0, 1, 1, "en").GetAwaiter().GetResult();
+            var actualData = parlayService.GetComboParlayDetail(123, 1, "en").GetAwaiter().GetResult();
 
             // Assert
             Assert.True(BetListDataTest.ComboParlayDetails.SequenceEqual(actualData.ComboParlayDetails)
