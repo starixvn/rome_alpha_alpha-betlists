@@ -4,11 +4,14 @@
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Linq;
+    using System.Net;
     using System.Reflection;
     using System.Web;
     using System.Web.Helpers;
+    using System.Web.Hosting;
     using System.Web.Mvc;
     using System.Web.Routing;
+    using Alpha.BetLists.Services;
     using Alpha.Logging;
     using Alpha.NetThrottling.Mvc;
     using Alpha.NetThrottling.Utils;
@@ -20,6 +23,7 @@
     using Fanex.Data;
     using Fanex.Data.CrossCutting.WrappingException;
     using Fanex.Data.OldConnectionStringProvider;
+    using Fanex.Logging;
     using Fanex.Logging.Extensions.Database;
     using Fanex.Logging.Extensions.Web;
     using Fanex.RemotingRef;
@@ -91,6 +95,38 @@
             RefDataTypeContainer
                 .ConnectTo(new Uri(AppSettings.RemoteRefURL))
                 .FromApplication("Alpha.BetLists.Site");
+
+            if (AppSettings.IsEnabledLoggingApplicationStartEnd)
+            {
+                try
+                {
+                    var lastBetsService = DependencyResolver.Current.GetService<LastBetsService>();
+                    lastBetsService.GetRunningOutrightMatches(AppSettings.RunningMatchCacheTime);
+                    lastBetsService.GetRunningOtherMatches(AppSettings.RunningMatchCacheTime);
+                }
+                finally
+                {
+                    var error = Server.GetLastError()?.ToString();
+                    var hostError = HostingEnvironment.InitializationException?.ToString();
+                    var errorMessage = $"{error}{hostError}";
+                    errorMessage = string.IsNullOrWhiteSpace(errorMessage) ? string.Empty : $"But then error: {errorMessage}";
+
+                    LogService.Error($"Alpha_Running_Betlist: {Hostname()} started. {errorMessage}");
+                }
+            }
+        }
+
+        protected void Application_End()
+        {
+            if (AppSettings.IsEnabledLoggingApplicationStartEnd)
+            {
+                var error = Server.GetLastError()?.ToString();
+                var hostError = HostingEnvironment.InitializationException?.ToString();
+                var errorMessage = $"{error}{hostError}";
+                var shutdownReason = HostingEnvironment.ShutdownReason;
+
+                LogService.Error($"Alpha_Running_Betlist: {Hostname()} ended. Reason: {shutdownReason}. {errorMessage}");
+            }
         }
 
         protected void Application_Error()
@@ -130,6 +166,11 @@
             FileVersionInfo versionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
 
             return $"{versionInfo.FileVersion}.{AppSettings.JsVersion}";
+        }
+
+        private static string Hostname()
+        {
+            return Dns.GetHostName();
         }
     }
 }
