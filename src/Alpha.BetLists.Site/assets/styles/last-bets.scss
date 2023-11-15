@@ -121,9 +121,9 @@ input:checked + .switch .slider:after {
 .btn.btn-countdown {
     background-color: #eee;
     color: #212121;
-    padding: 6px 4px 2px 8px;
+    padding: 2px 4px 2px 8px;
     font-size: 13px;
-    width: 90px;
+    min-width: 90px;
     margin: 0 8px;
 
     &:focus, &:active {
@@ -168,7 +168,7 @@ input:checked + .switch .slider:after {
     }
 }
 .dropdown .caret {
-    top: 13px;
+    top: 12px;
     right: 12px;
     position: absolute;
 }

@@ -103,9 +103,9 @@ input:checked + .switch .slider:after {
   margin: 8px 5px; }
 
 .btn.btn-countdown {
-  padding: 6px 4px 2px 8px;
+  padding: 4px 4px 2px 8px;
   font-size: 13px;
-  width: 90px;
+  min-width: 90px;
   border: 1px solid #292929;
   background-color: #171717;
   margin: 0 8px;
@@ -128,7 +128,7 @@ input:checked + .switch .slider:after {
     font-size: 20px;
     position: relative;
     color: #EDEDED;
-    top: -4px;
+    top: -2px;
     font-weight: normal; }
   .btn.btn-countdown .icon-refresh:after {
     opacity: 0; }
@@ -137,7 +137,7 @@ input:checked + .switch .slider:after {
     top: -1px; }
 
 .dropdown .caret {
-  top: 13px;
+  top: 12px;
   right: 12px;
   position: absolute; }
 
