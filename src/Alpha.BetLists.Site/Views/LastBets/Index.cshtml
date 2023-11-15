@@ -21,16 +21,16 @@
 </div>
 <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="tab-report-type @(Model.IsSelectedBetType(BetTypeIdConstants.AllBetTypes) ?"active":string.Empty)">
-        @Html.ActionLink(Resources.AllBetTypes, "Index", $"{AppSettings.BetlistRouting}LastBets", new { BetType = BetTypeIdConstants.AllBetTypes, IsAutoRefresh = Model.IsAutoRefresh, PageSize = Model.PageSize }, new { id = "tab-all-bet-types" })
+        @Html.ActionLink(Resources.AllBetTypes, "Index", $"{AppSettings.BetlistRouting}LastBets", new { BetType = BetTypeIdConstants.AllBetTypes, PageSize = Model.PageSize }, new { id = "tab-all-bet-types" })
     </li>
     <li role="presentation" class="tab-report-type @(Model.IsSelectedBetType(BetTypeIdConstants.Handicap) ?"active":string.Empty)">
-        @Html.ActionLink(Resources.Handicap, "Index", $"{AppSettings.BetlistRouting}LastBets", new { BetType = BetTypeIdConstants.Handicap, IsAutoRefresh = Model.IsAutoRefresh, PageSize = Model.PageSize }, new { id = "tab-handicap" })
+        @Html.ActionLink(Resources.Handicap, "Index", $"{AppSettings.BetlistRouting}LastBets", new { BetType = BetTypeIdConstants.Handicap, PageSize = Model.PageSize }, new { id = "tab-handicap" })
     </li>
     <li role="presentation" class="tab-report-type @(Model.IsSelectedBetType(BetTypeIdConstants.OverUnder) ?"active":string.Empty)">
-        @Html.ActionLink(Resources.OverUnder, "Index", $"{AppSettings.BetlistRouting}LastBets", new { BetType = BetTypeIdConstants.OverUnder, IsAutoRefresh = Model.IsAutoRefresh, PageSize = Model.PageSize }, new { id = "tab-over-under" })
+        @Html.ActionLink(Resources.OverUnder, "Index", $"{AppSettings.BetlistRouting}LastBets", new { BetType = BetTypeIdConstants.OverUnder, PageSize = Model.PageSize }, new { id = "tab-over-under" })
     </li>
     <li role="presentation" class="tab-report-type @(Model.IsSelectedBetType(BetTypeIdConstants.OtherBetTypes) ?"active":string.Empty)">
-        @Html.ActionLink(Resources.OtherBetTypes, "Index", $"{AppSettings.BetlistRouting}LastBets", new { BetType = BetTypeIdConstants.OtherBetTypes, IsAutoRefresh = Model.IsAutoRefresh, PageSize = Model.PageSize }, new { id = "tab-other-bet-types" })
+        @Html.ActionLink(Resources.OtherBetTypes, "Index", $"{AppSettings.BetlistRouting}LastBets", new { BetType = BetTypeIdConstants.OtherBetTypes, PageSize = Model.PageSize }, new { id = "tab-other-bet-types" })
     </li>
 </ul>
 <div class="space-between">
@@ -41,22 +41,19 @@
             <li id="page-size-20" class="page-size @(Model.IsSelectedPageSize(20) ? "active" : string.Empty)">20</li>
             <li id="page-size-30" class="page-size @(Model.IsSelectedPageSize(30) ? "active" : string.Empty)">30</li>
         </ul>
-        <div id="btn-turn-off-on" class="btn-turn-off-on">
-            <input type="checkbox" id="chb-switch" @(Model.IsAutoRefresh ? "checked" : string.Empty) />
-            <label id="lbl-switch" class="switch">
-                <span class="slider" data-on="@Resources.On" data-off="@Resources.Off"></span>
-            </label>
+        <div class="btn-turn-off-on">
             <div class="dropdown btn btn-default btn-countdown">
                 <span class="icon-refresh"></span>
                 <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span id="ddlRefresh">@Resources.Off</span>
+                    <span id="ddlRefresh">@Resources.Off.ToUpperInvariant()</span>
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" id="refresh-value" aria-labelledby="dropdownMenu2">
-                    <li><a href="javascript:;" data-refresh-value="0">@Resources.Off</a></li>
-                    <li><a href="javascript:;" data-refresh-value="2">2</a></li>
-                    <li><a href="javascript:;" data-refresh-value="60">60</a></li>
-                    <li><a href="javascript:;" data-refresh-value="90">90</a></li>
+                    <li><a href="javascript:;" data-refresh-value="0">@Resources.Off.ToUpperInvariant()</a></li>
+                    @foreach (var second in Model.AutoRefreshSeconds)
+                    {
+                        <li><a href="javascript:;" data-refresh-value="@second">@second</a></li>
+                    }
                 </ul>
             </div>
             <span>@Resources.AutoRefresh</span>
@@ -72,7 +69,6 @@
 </div>
 
 <input id="bet-type" type="hidden" value="@Model.BetType" />
-<input id="is-auto-refresh" type="hidden" value="@(Model.IsAutoRefresh ? "true":"false")" />
 <input id="get-bets-url" type="hidden" value="@Url.Action("BetData",$"{AppSettings.BetlistRouting}LastBets")" />
 <input id="last-trans-id-cache-key" type="hidden" value="@Model.LastTransIdCacheKey" />
 <input id="latest-trans-id-cache-key" type="hidden" value="@Model.LatestTransIdCacheKey" />

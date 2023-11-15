@@ -127,21 +127,6 @@ describe("LastBets", () => {
             // assert
             expect(lastBetsView.changeLastBetRange).toHaveBeenCalled();
         });
-
-        it("_Always_Binds shortcut.add", () => {
-            // assert
-            expect(lastBetsView.shortcut.add).toHaveBeenCalledWith("Shift+P", lastBetsView.setGetLastBetsTimeOutByShortcut);
-        });
-        it("_Always_Binds $lblSwitch.click", () => {
-            // arrange
-            spyOn(lastBetsView.$chbSwitch, "click");
-
-            // act
-            lastBetsView.$lblSwitch.click();
-
-            // assert
-            expect(lastBetsView.$chbSwitch.click).toHaveBeenCalled();
-        });
     });
     describe("_changeLastBetRange", () => {
         it("_Always_Active selected element", () => {
@@ -468,56 +453,6 @@ describe("LastBets", () => {
 
             // assert
             expect(lastBetsView.$loadingIcon.hasClass("hide")).toBeTruthy();
-        });
-    });
-    describe("_setGetLastBetsTimeOut", () => {
-        it("_Has getLastBetsTimeOut_Clear getLastBetsTimeOut", () => {
-            // arrange
-            jasmine.clock().install();
-            let spy = { func: jasmine.any(Function) };
-            spyOn(spy, "func");
-            lastBetsView.getLastBetsTimeOut = setTimeout(spy.func, 1000);
-
-            // act
-            lastBetsView.setGetLastBetsTimeOut();
-            jasmine.clock().tick(1001);
-
-            // assert
-            expect(spy.func).not.toHaveBeenCalled();
-            expect(lastBetsView.getLastBetsTimeOut).toBe(0);
-            jasmine.clock().uninstall();
-        });
-        it("_Not Have getLastBetsTimeOut_Call setTimeout", () => {
-            // arrange
-            jasmine.clock().install();
-            lastBetsView.getLastBetsTimeOut = 0;
-
-            // act
-            lastBetsView.setGetLastBetsTimeOut();
-            jasmine.clock().tick(2001);
-
-            // assert
-            expect(lastBetsView.loadLastBets).toHaveBeenCalled();
-            jasmine.clock().uninstall();
-        });
-    });
-    describe("_setGetLastBetsTimeOutByShortcut", () => {
-        beforeEach(() => {
-            // arrange
-            loadFixtures("normal-template.html");
-
-            cacheElements.and.callThrough();
-            lastBetsView.Init(shortcut, store);
-
-            spyOn(lastBetsView, "setGetLastBetsTimeOut");
-            spyOn(lastBetsView.$lblSwitch, "click");
-
-            // act
-            lastBetsView.setGetLastBetsTimeOutByShortcut();
-        });
-        it("_Always_Calls $lblSwitch.click", () => {
-            // assert
-            expect(lastBetsView.$lblSwitch.click).toHaveBeenCalled();
         });
     });
 
