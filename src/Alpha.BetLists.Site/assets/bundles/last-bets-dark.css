@@ -96,3 +96,50 @@ input:checked + .switch .slider:after {
 
 .stake {
   color: #FF4F50; }
+
+.btn-turn-off-on {
+  display: inline-flex;
+  align-items: center;
+  margin: 8px 5px; }
+
+.btn.btn-countdown {
+  padding: 6px 4px 2px 8px;
+  font-size: 13px;
+  width: 90px;
+  border: 1px solid #292929;
+  background-color: #171717;
+  margin: 0 8px;
+  color: #EDEDED; }
+  .btn.btn-countdown:focus, .btn.btn-countdown:active {
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+    color: #EDEDED;
+    outline: none; }
+  .btn.btn-countdown:hover {
+    background-color: #3c3c3c; }
+  .btn.btn-countdown .icon-refresh, .btn.btn-countdown .dropdown-toggle {
+    display: inline-block;
+    vertical-align: middle; }
+  .btn.btn-countdown .dropdown-toggle {
+    border: 0;
+    background: inherit; }
+  .btn.btn-countdown .icon-refresh:before {
+    content: '\e933';
+    font-family: 'Iconalpha';
+    font-size: 20px;
+    position: relative;
+    color: #EDEDED;
+    top: -4px;
+    font-weight: normal; }
+  .btn.btn-countdown .icon-refresh:after {
+    opacity: 0; }
+  .btn.btn-countdown #ddlRefresh {
+    position: relative;
+    top: -1px; }
+
+.dropdown .caret {
+  top: 13px;
+  right: 12px;
+  position: absolute; }
+
+.dropdown .dropdown-menu, .dropup .dropdown-menu {
+  width: 90px; }
