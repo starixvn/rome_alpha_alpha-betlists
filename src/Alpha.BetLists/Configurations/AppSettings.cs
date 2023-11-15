@@ -111,6 +111,12 @@
 
         public static int IPV6CacheInMinutes => int.Parse(GetConfigValue("IPInfo:IPV6CacheInMinutes"));
 
+        public static string IPInfoCommonCacheRedis
+            => GetConfigValue("RedisConfigurationOptions:Alpha.BetListsCommonIPInfo");
+
+        public static string IPInfoIndividualCacheRedis
+            => GetConfigValue("RedisConfigurationOptions:Alpha.BetListsIndividualIPInfo");
+
         public static IEnumerable<string> MonitoringBetsBettypes
         {
             get

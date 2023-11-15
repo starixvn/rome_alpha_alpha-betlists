@@ -105,11 +105,11 @@ input:checked + .switch .slider:after {
 .btn.btn-countdown {
   padding: 4px 4px 2px 8px;
   font-size: 13px;
-  min-width: 90px;
   border: 1px solid #292929;
   background-color: #171717;
   margin: 0 8px;
-  color: #EDEDED; }
+  color: #EDEDED;
+  min-width: 95px; }
   .btn.btn-countdown:focus, .btn.btn-countdown:active {
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
     color: #EDEDED;
@@ -133,8 +133,8 @@ input:checked + .switch .slider:after {
   .btn.btn-countdown .icon-refresh:after {
     opacity: 0; }
   .btn.btn-countdown #ddlRefresh {
-    position: relative;
-    top: -1px; }
+    min-width: 24px;
+    display: inline-block; }
 
 .dropdown .caret {
   top: 12px;
@@ -142,4 +142,4 @@ input:checked + .switch .slider:after {
   position: absolute; }
 
 .dropdown .dropdown-menu, .dropup .dropdown-menu {
-  width: 90px; }
+  width: 95px; }
