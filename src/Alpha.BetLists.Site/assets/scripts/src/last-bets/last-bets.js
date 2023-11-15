@@ -48,6 +48,13 @@ var BetList;
                 _this.$lblSwitch.off("click").on("click", function () {
                     self.$chbSwitch.click();
                 });
+                $("#refresh-value a")
+                    .off()
+                    .click(function () {
+                    self.stopCountdown(this.innerText);
+                    var seconds = +$(this).data("refresh-value");
+                    seconds && self.startCountdown(seconds);
+                });
             };
             this.changeLastBetRange = function (element) {
                 var range = element.html();
@@ -202,6 +209,16 @@ var BetList;
                     ? queryString.replace(regex, "$1" + paramName + "=" + paramValue)
                     : queryString + (queryString.indexOf("?") >= 0 ? "&" : "?") + paramName + "=" + paramValue;
                 return newQueryString;
+            };
+            this.stopCountdown = function (offText) {
+                clearTimeout(_this.getLastBetsTimeOut);
+                $("#ddlRefresh").text(offText);
+            };
+            this.startCountdown = function (value) {
+                clearTimeout(_this.getLastBetsTimeOut);
+                $("#ddlRefresh").text(value);
+                _this.timeToGetLastBets = value * 1000;
+                _this.getLastBetsTimeOut = setTimeout(function () { return _this.loadLastBets(true); }, _this.timeToGetLastBets);
             };
         }
         Object.defineProperty(LastBetsView, "Instance", {

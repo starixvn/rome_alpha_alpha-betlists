@@ -82,6 +82,14 @@ namespace BetList {
             this.$lblSwitch.off("click").on("click", () => {
                 self.$chbSwitch.click();
             });
+
+            $("#refresh-value a")
+                .off()
+                .click(function () {
+                    self.stopCountdown(this.innerText);
+                    const seconds = +$(this).data("refresh-value");
+                    seconds && self.startCountdown(seconds);
+                });
         };
 
         changeLastBetRange = (element: JQuery) => {
@@ -276,6 +284,16 @@ namespace BetList {
                 : queryString + (queryString.indexOf("?") >= 0 ? "&" : "?") + paramName + "=" + paramValue;
 
             return newQueryString;
+        };
+        stopCountdown = (offText: string) => {
+            clearTimeout(this.getLastBetsTimeOut);
+            $("#ddlRefresh").text(offText);
+        };
+        startCountdown = (value: number) => {
+            clearTimeout(this.getLastBetsTimeOut);
+            $("#ddlRefresh").text(value);
+            this.timeToGetLastBets = value * 1000;
+            this.getLastBetsTimeOut = setTimeout(() => this.loadLastBets(true), this.timeToGetLastBets);
         };
     }
 }
