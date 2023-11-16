@@ -59,7 +59,11 @@
 
         protected internal override Mapper<TicketDto> GetBodyRowMapper(UserLevel viewerLevel, BetListBaseViewModel viewModel)
         {
-            return GetTicketDtoRowMapperExcludeUsername(viewModel);
+            var mapper = GetTicketDtoRowMapperExcludeUsername(viewModel);
+
+            mapper.Map(Column.H, ticket => BuildPlatform(ticket.Platform));
+
+            return mapper;
         }
     }
 }
