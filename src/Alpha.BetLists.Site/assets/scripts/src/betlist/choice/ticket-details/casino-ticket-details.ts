@@ -264,7 +264,7 @@
                 + '&transType=' + transType
                 + '&sportName=ION&productId=52';
 
-            let width = 1187;
+            let width = 1510;
             let roleId = Number(this.ViewerLevelId);
 
             if (roleId <= 3) {

@@ -1665,7 +1665,7 @@ var BetList;
                             + '&custid=' + custId
                             + '&transType=' + transType
                             + '&sportName=ION&productId=52';
-                        var width = 1187;
+                        var width = 1510;
                         var roleId = Number(_this.ViewerLevelId);
                         if (roleId <= 3) {
                             width -= 105;
