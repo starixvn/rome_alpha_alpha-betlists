@@ -87,7 +87,7 @@
                 + "&productId=6";
         }
 
-        private ShowDetailsPopup = (params: string) => Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, "", 1260);
+        private ShowDetailsPopup = (params: string) => Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, "", 1500);
     }
 
     export class AllbetTicketDetails extends BaseTicketDetails {
@@ -104,7 +104,7 @@
                 + '&transType=' + transType
                 + '&sportName=Allbet&productId=21';
 
-            let width = 1187;
+            let width = 1500;
             let roleId = Number(this.ViewerLevelId);
 
             if (roleId <= 3) {
@@ -171,7 +171,7 @@
                 + '&transType=' + transType
                 + '&sportName=AE Sexy&productId=45';
 
-            let width = 1187;
+            let width = 1500;
             let roleId = Number(this.ViewerLevelId);
 
             if (roleId <= 3) {
@@ -202,7 +202,7 @@
                 + '&transType=' + transType
                 + '&sportName=SA Gaming&productId=39';
 
-            let width = 1161;
+            let width = 1500;
             let roleId = Number(this.ViewerLevelId);
 
             if (roleId <= 3) {
@@ -233,7 +233,7 @@
                 + '&transType=' + transType
                 + '&sportName=IBCBetLiveCasino&productId=46';
 
-            let width = 1187;
+            let width = 1500;
             let roleId = Number(this.ViewerLevelId);
 
             if (roleId <= 3) {
@@ -295,7 +295,7 @@
                 + '&transType=' + transType
                 + '&sportName=BBin&productId=47';
 
-            let width = 1187;
+            let width = 1500;
             let roleId = Number(this.ViewerLevelId);
 
             if (roleId <= 3) {
@@ -326,7 +326,7 @@
                 + '&transType=' + transType
                 + '&sportName=Funky Games&productId=50';
 
-            let width = 1187;
+            let width = 1500;
             let roleId = Number(this.ViewerLevelId);
 
             if (roleId <= 3) {
@@ -357,7 +357,7 @@
                 + '&transType=' + transType
                 + '&sportName=WM&productId=51';
 
-            let width = 1287;
+            let width = 1500;
             let roleId = Number(this.ViewerLevelId);
 
             if (roleId <= 3) {
@@ -388,7 +388,7 @@
                 + '&transType=' + transType
                 + '&sportName=GDG&productId=59';
 
-            let width = 1287;
+            let width = 1500;
             let roleId = Number(this.ViewerLevelId);
 
             if (roleId <= 3) {
@@ -419,7 +419,7 @@
                 + '&transType=' + transType
                 + '&sportName=BG&productId=57';
 
-            let width = 1287;
+            let width = 1500;
             let roleId = Number(this.ViewerLevelId);
 
             if (roleId <= 3) {
@@ -450,7 +450,7 @@
                 + '&transType=' + transType
                 + '&sportName=PP Live Casino&productId=65';
 
-            let width = 1287;
+            let width = 1500;
             let roleId = Number(this.ViewerLevelId);
 
             if (roleId <= 3) {
@@ -481,7 +481,7 @@
                 + '&transType=' + transType
                 + '&sportName=FGG&productId=70';
 
-            let width = 1287;
+            let width = 1500;
             let roleId = Number(this.ViewerLevelId);
 
             if (roleId <= 3) {
@@ -512,7 +512,7 @@
                 + '&transType=' + transType
                 + '&sportName=SEAL Entertainment&productId=72';
 
-            let width = 1287;
+            let width = 1500;
             let roleId = Number(this.ViewerLevelId);
 
             if (roleId <= 3) {
@@ -543,7 +543,7 @@
                 + '&transType=' + transType
                 + '&sportName=MG-RNG&productId=73';
 
-            let width = 1347;
+            let width = 1500;
             let roleId = Number(this.ViewerLevelId);
 
             if (roleId <= 3) {
@@ -574,7 +574,7 @@
                 + '&transType=' + transType
                 + '&sportName=Jili&productId=75';
 
-            let width = 1347;
+            let width = 1500;
             let roleId = Number(this.ViewerLevelId);
 
             if (roleId <= 3) {
@@ -605,7 +605,7 @@
                 + '&transType=' + transType
                 + '&sportName=YeeBet&productId=76';
 
-            let width = 1287;
+            let width = 1500;
             let roleId = Number(this.ViewerLevelId);
 
             if (roleId <= 3) {
