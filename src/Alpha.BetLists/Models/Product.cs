@@ -76,5 +76,7 @@
         public string TypeName { get; }
 
         public int OrderNo { get; }
+
+        public bool IsHide { get; }
     }
 }

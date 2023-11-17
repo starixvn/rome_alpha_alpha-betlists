@@ -45,7 +45,7 @@
                 message.CustId = await autoFollowBetService.GetRealCustId(message.ViewerId, message.CustId);
             }
 
-            var validUserSelectedProductIds = productService.FilterProductIdsByCustomer(message.ViewerId, 
+            var validUserSelectedProductIds = productService.FilterProductIds(
                 message.Site, message.CurrencyId, message.MinDate, message.ProductIds.ToListInt(), message.IsEnableSabaPromotion);
 
             var runningBetListParam = new RunningBetListParam(
@@ -60,7 +60,7 @@
 
             var betlistData = await runningBetListService.GetBetList(runningBetListParam);
             await AssignCountry(betlistData.Tickets, message.DisplayVNIP);
-            var products = productService.GetProductsForCustomer(message.ViewerId, message.Site, message.CurrencyId, message.MinDate, message.IsEnableSabaPromotion);
+            var products = productService.GetAllOfferedProducts(message.Site, message.CurrencyId, message.MinDate, message.IsEnableSabaPromotion);
             var supportScoreMapBetTypeIds = forecastService.GetBetTypeIdsSupportScoreMap();
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
