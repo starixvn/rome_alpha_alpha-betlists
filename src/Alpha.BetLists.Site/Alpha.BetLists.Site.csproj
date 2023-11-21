@@ -142,7 +142,7 @@
       <HintPath>..\..\packages\Fanex.BetDetails.BetBuilder.1.0.0.1\lib\net461\Fanex.BetDetails.BetBuilder.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetDetails.Casino, Version=1.0.0.5, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetDetails.Casino.1.0.0.5-DeviceInfo-01\lib\net461\Fanex.BetDetails.Casino.dll</HintPath>
+      <HintPath>..\..\packages\Fanex.BetDetails.Casino.1.0.0.5\lib\net461\Fanex.BetDetails.Casino.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.AdvantPlay, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.AdvantPlay.2.0.0\lib\net461\Fanex.BetList.AdvantPlay.dll</HintPath>
