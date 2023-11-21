@@ -809,7 +809,7 @@ Vui lòng chọn tiêu chí cho bộ lọc dựa trên nhu cầu theo dõi
   <data name="Platform_Uncategorized" xml:space="preserve">
     <value>Chưa phân loại</value>
   </data>
-  <data name="Platform_4" xml:space="preserve">
+  <data name="Platform_99" xml:space="preserve">
     <value>Chưa phân loại</value>
   </data>
 </root>

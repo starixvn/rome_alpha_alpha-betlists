@@ -1501,6 +1501,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to N/A.
+        /// </summary>
+        public static string Platform_0 {
+            get {
+                return ResourceManager.GetString("Platform_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Desktop.
         /// </summary>
         public static string Platform_1 {
@@ -1530,9 +1539,9 @@ namespace Alpha.BetLists.AppResources {
         /// <summary>
         ///   Looks up a localized string similar to Uncategorized.
         /// </summary>
-        public static string Platform_4 {
+        public static string Platform_99 {
             get {
-                return ResourceManager.GetString("Platform_4", resourceCulture);
+                return ResourceManager.GetString("Platform_99", resourceCulture);
             }
         }
         
