@@ -20,6 +20,7 @@
     using static ONEbook.SpreadSheets.Column;
     using System.Linq;
     using System.Threading.Tasks;
+    using System.Collections.Generic;
 
     public class CancelledBetExcelHandler : BetListExcelBaseHandler, IAsyncRequestHandler<CancelledBetExcelQuery, ExcelFileViewModel>
     {
