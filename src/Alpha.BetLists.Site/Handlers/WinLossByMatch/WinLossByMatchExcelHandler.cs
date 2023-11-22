@@ -81,6 +81,19 @@
                     .Map(K, ticket => BuildPtCommmission(ticket, ticketData, UserLevel.Agent));
             }
 
+            string platformColId = J;
+            if (viewerLevel.IsSuperLevel())
+            {
+                platformColId = L;
+            }
+
+            if (viewerLevel.IsMasterLevel())
+            {
+                platformColId = K;
+            }
+
+            mapper.Map(platformColId, ticket => BuildPlatform(ticket.Platform));
+
             return mapper;
         }
 

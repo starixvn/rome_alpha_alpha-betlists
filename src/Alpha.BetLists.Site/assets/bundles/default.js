@@ -1466,7 +1466,7 @@ var BetList;
                             + "&sportName=" + sportName
                             + "&productId=6";
                     };
-                    _this.ShowDetailsPopup = function (params) { return Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, "", 1120); };
+                    _this.ShowDetailsPopup = function (params) { return Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, "", 1500); };
                     return _this;
                 }
                 Object.defineProperty(CasinoTicketDetails, "Instance", {
@@ -1489,7 +1489,7 @@ var BetList;
                             + '&custid=' + custId
                             + '&transType=' + transType
                             + '&sportName=Allbet&productId=21';
-                        var width = 1047;
+                        var width = 1500;
                         var roleId = Number(_this.ViewerLevelId);
                         if (roleId <= 3) {
                             width -= 105;
@@ -1521,7 +1521,7 @@ var BetList;
                             + '&custid=' + custId
                             + '&bettype=' + betType
                             + '&productId=' + 6;
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'JackpotDetails/Index' + params, "", 1120);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'JackpotDetails/Index' + params, "", 1260);
                     };
                     return _this;
                 }
@@ -1545,7 +1545,7 @@ var BetList;
                             + '&custid=' + custId
                             + '&bettype=' + betType
                             + '&productId=' + 32;
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'JackpotDetails/Index' + params, "", 1120);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'JackpotDetails/Index' + params, "", 1260);
                     };
                     return _this;
                 }
@@ -1569,7 +1569,7 @@ var BetList;
                             + '&custid=' + custId
                             + '&transType=' + transType
                             + '&sportName=AE Sexy&productId=45';
-                        var width = 1047;
+                        var width = 1500;
                         var roleId = Number(_this.ViewerLevelId);
                         if (roleId <= 3) {
                             width -= 105;
@@ -1601,7 +1601,7 @@ var BetList;
                             + '&custid=' + custId
                             + '&transType=' + transType
                             + '&sportName=SA Gaming&productId=39';
-                        var width = 1147;
+                        var width = 1500;
                         var roleId = Number(_this.ViewerLevelId);
                         if (roleId <= 3) {
                             width -= 105;
@@ -1633,7 +1633,7 @@ var BetList;
                             + '&custid=' + custId
                             + '&transType=' + transType
                             + '&sportName=IBCBetLiveCasino&productId=46';
-                        var width = 1047;
+                        var width = 1500;
                         var roleId = Number(_this.ViewerLevelId);
                         if (roleId <= 3) {
                             width -= 105;
@@ -1665,7 +1665,7 @@ var BetList;
                             + '&custid=' + custId
                             + '&transType=' + transType
                             + '&sportName=ION&productId=52';
-                        var width = 1047;
+                        var width = 1510;
                         var roleId = Number(_this.ViewerLevelId);
                         if (roleId <= 3) {
                             width -= 105;
@@ -1697,7 +1697,7 @@ var BetList;
                             + '&custid=' + custId
                             + '&transType=' + transType
                             + '&sportName=BBin&productId=47';
-                        var width = 1047;
+                        var width = 1500;
                         var roleId = Number(_this.ViewerLevelId);
                         if (roleId <= 3) {
                             width -= 105;
@@ -1729,7 +1729,7 @@ var BetList;
                             + '&custid=' + custId
                             + '&transType=' + transType
                             + '&sportName=Funky Games&productId=50';
-                        var width = 1047;
+                        var width = 1500;
                         var roleId = Number(_this.ViewerLevelId);
                         if (roleId <= 3) {
                             width -= 105;
@@ -1761,7 +1761,7 @@ var BetList;
                             + '&custid=' + custId
                             + '&transType=' + transType
                             + '&sportName=WM&productId=51';
-                        var width = 1147;
+                        var width = 1500;
                         var roleId = Number(_this.ViewerLevelId);
                         if (roleId <= 3) {
                             width -= 105;
@@ -1793,7 +1793,7 @@ var BetList;
                             + '&custid=' + custId
                             + '&transType=' + transType
                             + '&sportName=GDG&productId=59';
-                        var width = 1147;
+                        var width = 1500;
                         var roleId = Number(_this.ViewerLevelId);
                         if (roleId <= 3) {
                             width -= 105;
@@ -1825,7 +1825,7 @@ var BetList;
                             + '&custid=' + custId
                             + '&transType=' + transType
                             + '&sportName=BG&productId=57';
-                        var width = 1147;
+                        var width = 1500;
                         var roleId = Number(_this.ViewerLevelId);
                         if (roleId <= 3) {
                             width -= 105;
@@ -1857,7 +1857,7 @@ var BetList;
                             + '&custid=' + custId
                             + '&transType=' + transType
                             + '&sportName=PP Live Casino&productId=65';
-                        var width = 1147;
+                        var width = 1500;
                         var roleId = Number(_this.ViewerLevelId);
                         if (roleId <= 3) {
                             width -= 105;
@@ -1889,7 +1889,7 @@ var BetList;
                             + '&custid=' + custId
                             + '&transType=' + transType
                             + '&sportName=FGG&productId=70';
-                        var width = 1147;
+                        var width = 1500;
                         var roleId = Number(_this.ViewerLevelId);
                         if (roleId <= 3) {
                             width -= 105;
@@ -1921,7 +1921,7 @@ var BetList;
                             + '&custid=' + custId
                             + '&transType=' + transType
                             + '&sportName=SEAL Entertainment&productId=72';
-                        var width = 1147;
+                        var width = 1500;
                         var roleId = Number(_this.ViewerLevelId);
                         if (roleId <= 3) {
                             width -= 105;
@@ -1953,7 +1953,7 @@ var BetList;
                             + '&custid=' + custId
                             + '&transType=' + transType
                             + '&sportName=MG-RNG&productId=73';
-                        var width = 1207;
+                        var width = 1500;
                         var roleId = Number(_this.ViewerLevelId);
                         if (roleId <= 3) {
                             width -= 105;
@@ -1985,7 +1985,7 @@ var BetList;
                             + '&custid=' + custId
                             + '&transType=' + transType
                             + '&sportName=Jili&productId=75';
-                        var width = 1207;
+                        var width = 1500;
                         var roleId = Number(_this.ViewerLevelId);
                         if (roleId <= 3) {
                             width -= 105;
@@ -2017,7 +2017,7 @@ var BetList;
                             + '&custid=' + custId
                             + '&transType=' + transType
                             + '&sportName=YeeBet&productId=76';
-                        var width = 1147;
+                        var width = 1500;
                         var roleId = Number(_this.ViewerLevelId);
                         if (roleId <= 3) {
                             width -= 105;

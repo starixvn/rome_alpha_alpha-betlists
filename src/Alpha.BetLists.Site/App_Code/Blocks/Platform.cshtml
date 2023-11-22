@@ -1,0 +1,9 @@
+﻿@using System.Resources
+@using Alpha.BetLists.AppResources
+
+@helper Render(string platform)
+{
+    <td class="platform-block bl_underdog text-center">
+        @(new HtmlString(platform))
+    </td>
+}

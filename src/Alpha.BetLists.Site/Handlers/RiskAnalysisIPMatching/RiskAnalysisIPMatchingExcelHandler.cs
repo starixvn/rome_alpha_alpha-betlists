@@ -80,7 +80,8 @@
                 .Map(H, ticket => BuildStatus(ticket, viewModel))
                 .Map(I, ticket => BuildPtCommmission(ticket, ticketData, viewerLevel))
                 .Map(J, ticket => BuildPtCommmission(ticket, ticketData, UserLevel.Master))
-                .Map(K, ticket => BuildPtCommmission(ticket, ticketData, UserLevel.Agent));
+                .Map(K, ticket => BuildPtCommmission(ticket, ticketData, UserLevel.Agent))
+                .Map(L, ticket => BuildPlatform(ticket.Platform));
 
             return mapper;
         }

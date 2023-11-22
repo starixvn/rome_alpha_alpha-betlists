@@ -25,7 +25,7 @@
             : base(query, betListData, builder, ticketHelper, showMemberName: true)
         {
             LatestTransId = latestTransId;
-            TotalColumn = 7;
+            TotalColumn = 8;
             SupportScoreMapBetTypeIds = supportScoreMapBetTypeIds;
             this.lastBetsService = lastBetsService ?? DependencyResolver.Current.GetService<LastBetsService>();
             this.query = query;

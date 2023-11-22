@@ -10,9 +10,9 @@
     {
         private static readonly IDictionary<UserLevel, int> FooterStatusColSpanByViewLevelId = new Dictionary<UserLevel, int>
         {
-            { UserLevel.Agent, 2 },
-            { UserLevel.Master, 3 },
-            { UserLevel.Super, 4 }
+            { UserLevel.Agent, 3 },
+            { UserLevel.Master, 4 },
+            { UserLevel.Super, 5 }
         };
 
         public Footer(BetListData betListData, UserLevel viewerLevel, bool showMemberName, string[] excludingTicketStatus = null)

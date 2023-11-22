@@ -794,4 +794,22 @@ Vui lòng chọn tiêu chí cho bộ lọc dựa trên nhu cầu theo dõi
   <data name="PleaseSelect" xml:space="preserve">
     <value>Vui lòng chọn</value>
   </data>
+  <data name="platform" xml:space="preserve">
+    <value>Nền tảng</value>
+  </data>
+  <data name="Platform_1" xml:space="preserve">
+    <value>Máy tính</value>
+  </data>
+  <data name="Platform_2" xml:space="preserve">
+    <value>Điện thoại</value>
+  </data>
+  <data name="Platform_3" xml:space="preserve">
+    <value>Ứng dụng</value>
+  </data>
+  <data name="Platform_Uncategorized" xml:space="preserve">
+    <value>Chưa phân loại</value>
+  </data>
+  <data name="Platform_99" xml:space="preserve">
+    <value>Chưa phân loại</value>
+  </data>
 </root>

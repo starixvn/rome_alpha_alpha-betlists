@@ -22,6 +22,7 @@
                 @PositionTaking.Render(ticket, Model.BetListData.TicketData, UserLevel.Master)
             }
             @PositionTaking.Render(ticket, Model.BetListData.TicketData, UserLevel.Agent)
+            @Platform.Render(ticket.Platform)
         </tr>
     }
     @Common.Footer.Render(

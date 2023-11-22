@@ -38,6 +38,8 @@
 
             AddPtCommissionForSuper(mapper, viewerLevel, ticketData);
 
+            AddPlatform(mapper, viewerLevel);
+
             return mapper;
         }
     }

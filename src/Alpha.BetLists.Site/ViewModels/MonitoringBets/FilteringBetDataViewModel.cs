@@ -22,7 +22,7 @@
             LastTransIdCacheKeyByFilter = lastTransIdCacheKeyByFilter;
             LatestTransIdCacheKeyByFilter = latestTransIdCacheKeyByFilter;
 
-            TotalColumn = 9;
+            TotalColumn = 10;
         }
 
         public long LatestTransId { get; }
