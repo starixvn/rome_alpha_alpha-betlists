@@ -138,8 +138,8 @@
     <Reference Include="Fanex.BetDetails.BetBuilder, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetDetails.BetBuilder.1.0.0.1\lib\net461\Fanex.BetDetails.BetBuilder.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.BetDetails.Casino, Version=1.0.0.5, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetDetails.Casino.1.0.0.5\lib\net461\Fanex.BetDetails.Casino.dll</HintPath>
+    <Reference Include="Fanex.BetDetails.Casino, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetDetails.Casino.2.0.0-standard4\lib\netstandard2.0\Fanex.BetDetails.Casino.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.AdvantPlay, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.AdvantPlay.2.0.0\lib\net461\Fanex.BetList.AdvantPlay.dll</HintPath>
@@ -581,7 +581,7 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="TplNetCore, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\TplNetCore.1.0.1-beta2\lib\netstandard2.0\TplNetCore.dll</HintPath>
+      <HintPath>..\..\packages\TplNetCore.1.0.1-beta4\lib\netstandard2.0\TplNetCore.dll</HintPath>
     </Reference>
     <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -1205,6 +1205,7 @@
     </Content>
     <Content Include="Web.napinternal.config">
       <DependentUpon>Web.local.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.napinternal2.config">
       <DependentUpon>Web.local.config</DependentUpon>
