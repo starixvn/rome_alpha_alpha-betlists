@@ -1,5 +1,9 @@
 ﻿namespace Alpha.BetLists.Site.App_Start
 {
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Reflection;
+    using System.Web.Mvc;
     using Alpha.BetLists.Site.Handlers.RiskAnalysisIPMatching;
     using Alpha.IPInfo.DataAccess;
     using Alpha.IPInfo.Models;
@@ -43,10 +47,6 @@
     using SimpleInjector;
     using SimpleInjector.Integration.Web;
     using SimpleInjector.Integration.Web.Mvc;
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Reflection;
-    using System.Web.Mvc;
     using AppSettings = Configurations.AppSettings;
 
     public static class DependencyConfig
@@ -121,9 +121,8 @@
             container.Register<ISmartPunterDataAccess, SmartPunterDataAccess>(Lifestyle.Singleton);
             container.Register<IBetBuilderDataAccess, BetBuilderDataAccess>(Lifestyle.Singleton);
             container.Register<ICasinoDetailsDataAccess, CasinoDetailsDataAccess>(Lifestyle.Singleton);
-            container.Register<IPartialUMDataAccess, PartialUMDataAccess>(Lifestyle.Singleton);
             container.Register<IIPInfoDataAccess, IPInfoDataAccess>(Lifestyle.Singleton);
-            container.Register<IBetListRepository, BetListRepository>(Lifestyle.Singleton);
+            container.Register<IPartialUMDataAccess, PartialUMDataAccess>(Lifestyle.Singleton);
         }
 
         private static void RegisterServices(Container container)

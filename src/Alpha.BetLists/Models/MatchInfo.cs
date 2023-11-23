@@ -57,32 +57,32 @@
             LeagueGroupId = leagueGroupId;
         }
 
-        public int MatchId { get; }
+        public int MatchId { get; set; }
 
-        public string MatchCode { get; }
+        public string MatchCode { get; set; }
 
-        public int SportType { get; }
+        public int SportType { get; set; }
 
-        public int LeagueId { get; }
+        public int LeagueId { get; set; }
 
-        public int LeagueGroupId { get; }
+        public int LeagueGroupId { get; set; }
 
-        public int HomeId { get; }
+        public int HomeId { get; set; }
 
-        public int AwayId { get; }
+        public int AwayId { get; set; }
 
-        public string Race { get; }
+        public string Race { get; set; }
 
-        public string ShowTime { get; }
+        public string ShowTime { get; set; }
 
-        public string Status { get; }
+        public string Status { get; set; }
 
-        public bool IsNeutral { get; }
+        public bool IsNeutral { get; set; }
 
-        public string BetStatus { get; }
+        public string BetStatus { get; set; }
 
-        public byte SettlementStatus { get; }
+        public byte SettlementStatus { get; set; }
 
-        public DateTime EventDate { get; }
+        public DateTime EventDate { get; set; }
     }
 }

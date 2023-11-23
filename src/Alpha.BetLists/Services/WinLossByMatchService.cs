@@ -1,10 +1,8 @@
 ﻿namespace Alpha.BetLists.Services
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using Alpha.BetLists.DataAccesses;
     using AlphaPlus.PartialUM.Services;
     using Criteria.WinLossByMatch;
     using Fanex.BetList.Core.Entities;
@@ -23,18 +21,15 @@
         private readonly ReportDateService reportDateService;
         private readonly IDynamicRepository dynamicRepository;
         private readonly IPartialUMService partialUMService;
-        private readonly IBetListRepository betlistRepository;
 
         public WinLossByMatchServiceImpl(
             ReportDateService reportDateService,
             IDynamicRepository dynamicRepository,
-            IPartialUMService partialUMService,
-            IBetListRepository betlistRepository)
+            IPartialUMService partialUMService)
         {
             this.reportDateService = reportDateService;
             this.dynamicRepository = dynamicRepository;
             this.partialUMService = partialUMService;
-            this.betlistRepository = betlistRepository;
         }
 
         public async Task<BetListData> GetBetList(WinLossByMatchParam param)
@@ -74,8 +69,7 @@
 
             partialUMService.ThrowIfUM(criteria.GetSettingKey());
 
-            //return await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
-            return betlistRepository.FetchMultiple(criteria);
+            return await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
         }
 
         private async Task<(IEnumerable<TicketDto>, IEnumerable<TicketData>)> GetWinlossRacing(WinLossByMatchParam param)
@@ -91,9 +85,7 @@
 
             partialUMService.ThrowIfUM(criteria.GetSettingKey());
 
-            //return await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
-            return betlistRepository.FetchMultiple(criteria);
-
+            return await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
         }
 
         private async Task<(IEnumerable<TicketDto>, IEnumerable<TicketData>)> GetWinlossOthers(WinLossByMatchParam param)
@@ -107,13 +99,11 @@
                 param.BetType,
                 param.CustName,
                 param.LiveIndicator,
-                param.CustLevel);
+                param.CustLevel.Value);
 
             partialUMService.ThrowIfUM(criteria.GetSettingKey());
 
-            //return await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
-            return betlistRepository.FetchMultiple(criteria);
-
+            return await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
         }
 
         private async Task<(IEnumerable<TicketDto>, IEnumerable<TicketData>)> GetWinlossByBettype(WinLossByMatchParam param)
@@ -123,14 +113,12 @@
                 param.FromDate,
                 param.ToDate,
                 reportDateService.GetMoveBetsDay(),
-                param.CustLevel,
+                param.CustLevel.Value,
                 param.BetType);
 
             partialUMService.ThrowIfUM(criteria.GetSettingKey());
 
-            //return await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
-            return betlistRepository.FetchMultiple(criteria);
-
+            return await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
         }
     }
 }

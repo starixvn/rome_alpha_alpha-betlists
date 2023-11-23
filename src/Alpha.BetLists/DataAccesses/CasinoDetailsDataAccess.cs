@@ -1,5 +1,6 @@
 ﻿namespace Alpha.BetLists.DataAccesses
 {
+    using Alpha.BetLists.Models;
     using Alpha.BetLists.Services;
     using Criteria.CasinoDetails;
     using Fanex.BetDetails.Casino.DataAccesses;
@@ -7,19 +8,16 @@
     using Fanex.BetDetails.Casino.Params;
     using Fanex.BetList.Core.Entities;
     using Fanex.Data.Repository;
-    using Models;
 
     public class CasinoDetailsDataAccess : ICasinoDetailsDataAccess
     {
         private readonly IDynamicRepository dynamicRepository;
         private readonly ReportDateService reportDateService;
-        private readonly IBetListRepository betlistRepository;
 
-        public CasinoDetailsDataAccess(IDynamicRepository dynamicRepository, ReportDateService reportDateService, IBetListRepository betlistRepository)
+        public CasinoDetailsDataAccess(IDynamicRepository dynamicRepository, ReportDateService reportDateService)
         {
             this.dynamicRepository = dynamicRepository;
             this.reportDateService = reportDateService;
-            this.betlistRepository = betlistRepository;
         }
 
         public PagedData<ITicket> GetCasinoDetails(CasinoDetailsParam param)
@@ -34,8 +32,7 @@
                 reportDateService.GetMoveBetsDay(),
                 reportDateService.GetBalanceUpDay());
 
-            //var tickets = dynamicRepository.Fetch<TicketDto>(criteria);
-            var tickets = betlistRepository.Fetch(criteria);
+            var tickets = dynamicRepository.Fetch<TicketDto>(criteria);
             return new PagedData<ITicket>(tickets, criteria.PageIndex, criteria.PageSize, criteria.TotalRows);
         }
     }

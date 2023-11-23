@@ -29,18 +29,19 @@
         }
 
         public int Order { get; }
+        
+        public string RefId { get; set; }
 
-        public string RefId { get; }
 
-        public int ResourceId { get; }
+        public int ResourceId { get; set; }
 
         public string DisplayName { get; set; }
 
-        public int ProductId { get; }
+        public int ProductId { get; set; }
 
-        public int SportType { get; }
+        public int SportType { get; set; }
 
-        public int BetType { get; }
+        public int BetType { get; set; }
 
         public int LeagueGroupId { get; }
 

@@ -3,7 +3,6 @@
     using System;
     using Fanex.Data;
     using Fanex.Data.Repository;
-    using Models;
 
     public class GetWinLossByMatchCriteria : CriteriaBase
     {
@@ -16,7 +15,7 @@
              int betType,
              string custName,
              bool liveIndicator,
-             UserLevel custLevel)
+             int roleId)
         {
             FromDate = fromDate;
             ToDate = toDate;
@@ -27,7 +26,7 @@
 
             CustName = custName;
             LiveIndicator = liveIndicator;
-            RoleId = custLevel.Value;
+            RoleId = roleId;
         }
 
         public int CustId { get; }

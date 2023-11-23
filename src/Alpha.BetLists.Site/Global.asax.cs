@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Configuration;
     using System.Diagnostics;
     using System.Linq;
     using System.Net;
@@ -23,9 +24,7 @@
     using Configurations;
     using Fanex.Caching;
     using Fanex.Data;
-    using Fanex.Data.SqlServer;
     using Fanex.Logging;
-    using Fanex.Logging.Extensions.Database;
     using Fanex.Logging.Extensions.Web;
     using Fanex.RemotingRef;
     using Helpers;
@@ -53,19 +52,24 @@
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
-            DependencyConfig.Init();
-
-            AppSettings.Verify();
-
+            var connectionStrings = ConfigurationManager.ConnectionStrings
+                .Cast<ConnectionStringSettings>()
+                .ToDictionary(
+                    connection => connection.Name,
+                    connection => new ConnectionConfiguration(connection.Name, connection.ConnectionString, connection.ProviderName),
+                    StringComparer.OrdinalIgnoreCase);
             DbSettingProviderManager
                 .StartNewSession()
-                .WithSqlServer(resourcePath: AppSettings.StoredProcedurePath)
+                .Use(connectionStrings)
+                .Use(AppSettings.FanexDataServiceApi)
+                .Register(resourcePath: AppSettings.StoredProcedurePath)
                 .Run();
 
+            DependencyConfig.Init();
+            AppSettings.Verify();
             ShareSession.Init();
-
             LoggingConfig.ExceptionHandler = new ExceptionHandlerAdapter();
-            LoggingConfig.Init(getDbExceptionInfo: DatabaseInfoGetters.GetDbExceptionInfo);
+            LoggingConfig.Init();
 
             GlobalFilters.Filters.Add(new NetThrottlingFilterAttribute(false));
 
@@ -76,15 +80,13 @@
                 .UseRestClient(new UMRestClient(umConfig))
                 .UseHttpContext(new ONEbook.UM.Helpers.HttpContextHelper());
 
-                GlobalFilters.Filters.Add(new CheckUMFilterAttribute(
+            GlobalFilters.Filters.Add(new CheckUMFilterAttribute(
                 new MaintenanceService(UMClientManager.RestClient, UMClientManager.CacheService, UMClientManager.UMClientConfigs, UMClientManager.HttpContext), null));
-
             GlobalFilters.Filters.Add(new CheckBelongingFilter(!AppSettings.IsStandaloneReport));
             GlobalFilters.Filters.Add(new NoCacheFilter());
             GlobalFilters.Filters.Add(new AfterLoginFlowFilter(!AppSettings.IsStandaloneReport));
             GlobalFilters.Filters.Add(new PartialUMExceptionFilter(true));
             GlobalFilters.Filters.Add(new ProtectedModeFilter(!AppSettings.IsStandaloneReport));
-
 
             ModelBinders.Binders.DefaultBinder = new QueryEntityModelBinder();
 

@@ -28,6 +28,8 @@
 
         public static string StoredProcedurePath => GetConfigValue("StoredProcedurePath");
 
+        public static string FanexDataServiceApi => GetConfigValue("FanexDataServiceApi");
+
         public static string MainAppPath => GetConfigValue("MainAppPath") ?? "site-main";
 
         public static string ResultAppPath => GetConfigValue("ResultSiteVirtualPath") ?? "site-results";

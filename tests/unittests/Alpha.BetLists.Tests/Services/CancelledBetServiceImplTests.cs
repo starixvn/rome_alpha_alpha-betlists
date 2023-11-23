@@ -24,7 +24,7 @@
             dataFixture.DynamicRepository
                 .FetchMultipleAsync<TicketDto, TicketData>(Arg.Any<GetCancelledBetCriteria>()).Returns(BetListDataTest.BetListDataTuple);
 
-            service = new CancelledBetServiceImpl(dataFixture.DynamicRepository, dataFixture.PartialUMService, dataFixture.BetListRepository);
+            service = new CancelledBetServiceImpl(dataFixture.DynamicRepository, dataFixture.PartialUMService);
             this.dataFixture = dataFixture;
         }
 

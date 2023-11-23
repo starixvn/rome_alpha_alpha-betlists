@@ -1,13 +1,12 @@
 ﻿namespace Alpha.BetLists.Criteria.SmartPunter
 {
-    using AlphaPlus.SmartPunter.Criteria;
     using Fanex.Data.Repository;
 
     public class NAPUserPermissionCriteria : CriteriaBase
     {
-        public NAPUserPermissionCriteria(NAPUserPermission criteriaData)
+        public NAPUserPermissionCriteria(int custId)
         {
-            CustId = criteriaData.CustId;
+            CustId = custId;
         }
 
         public int CustId { get; }

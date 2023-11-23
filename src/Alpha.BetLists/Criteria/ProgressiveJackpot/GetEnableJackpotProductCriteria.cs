@@ -5,7 +5,6 @@
 
     public class GetEnableJackpotProductCriteria : CriteriaBase
     {
-
         public bool IsTest => AppSettings.LocalTest;
 
         public override string GetSettingKey() => "Acc_GameLaunchSel";

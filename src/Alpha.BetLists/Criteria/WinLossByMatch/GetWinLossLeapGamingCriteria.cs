@@ -3,7 +3,6 @@
     using System;
     using Fanex.Data;
     using Fanex.Data.Repository;
-    using Models;
 
     public class GetWinLossByBetTypeCriteria : CriteriaBase
     {
@@ -12,14 +11,14 @@
             DateTime fromDate,
             DateTime toDate,
             DateTime moveBetsDate,
-            UserLevel custLevel,
+            byte roleId,
             int bettype)
         {
             CustId = custId;
             FromDate = fromDate;
             ToDate = toDate;
             MoveBetsDate = moveBetsDate;
-            RoleId = custLevel.Value;
+            RoleId = roleId;
             BetType = bettype;
         }
 

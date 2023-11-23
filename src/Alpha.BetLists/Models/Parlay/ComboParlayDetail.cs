@@ -6,7 +6,6 @@
     {
         public ComboParlayDetail()
         {
-
         }
 
         public ComboParlayDetail(
@@ -31,26 +30,26 @@
             PlayerComm = playerComm;
         }
 
-        public DateTime WinLostDate { get; }
+        public DateTime WinLostDate { get; set; }
 
-        public long TransId { get; }
+        public long TransId { get; set; }
 
-        public long Serial { get; }
+        public long Serial { get; set; }
 
-        public int StatusId { get; }
+        public int StatusId { get; set; }
 
-        public string Status { get; }
+        public string Status { get; set; }
 
-        public decimal MasterOdds { get; }
+        public decimal MasterOdds { get; set; }
 
-        public decimal Odds { get; }
+        public decimal Odds { get; set; }
 
-        public decimal Stake { get; }
+        public decimal Stake { get; set; }
 
-        public decimal WinLost { get; }
+        public decimal WinLost { get; set; }
 
-        public decimal PlayerComm { get; }
+        public decimal PlayerComm { get; set; }
 
-        public decimal ExtraValue { get; }
+        public decimal ExtraValue { get; set; }
     }
 }

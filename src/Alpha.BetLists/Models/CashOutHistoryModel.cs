@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Xml.Linq;
-
-namespace Alpha.BetLists.Models
+﻿namespace Alpha.BetLists.Models
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Xml.Linq;
+
     public class CashOutHistoryModel
     {
         public long TransId { get; set; }

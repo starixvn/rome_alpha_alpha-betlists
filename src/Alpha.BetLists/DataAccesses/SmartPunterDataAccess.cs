@@ -20,7 +20,7 @@
 
         public bool CheckInternalAdmin(InternalAdminChecker commandData)
         {
-            var command = new InternalAdminCheckerCommand(commandData);
+            var command = new InternalAdminCheckerCommand(commandData.CustId);
 
             dynamicRepository.Execute(command);
 
@@ -29,7 +29,7 @@
 
         public bool CheckPermission(NAPUserPermission criteriaData, string functionName)
         {
-            var criteria = new NAPUserPermissionCriteria(criteriaData);
+            var criteria = new NAPUserPermissionCriteria(criteriaData.CustId);
 
             var permissions = dynamicRepository.Fetch<NapUserFunctionPermission>(criteria);
 
@@ -38,7 +38,7 @@
 
         public SMACustomer CheckSmartPunter(SmartPunterSMAChecker commandData)
         {
-            var command = new SmartPunterSMACheckerCommand(commandData);
+            var command = new SmartPunterSMACheckerCommand(commandData.CustId, commandData.Username);
 
             dynamicRepository.Execute(command);
 
@@ -47,21 +47,36 @@
 
         public void CheckSmartPunterAndWriteLog(SmartPunterSMACheckerWriteLog commandData)
         {
-            var command = new SmartPunterSMACheckerWriteLogCommand(commandData);
+            var command = new SmartPunterSMACheckerWriteLogCommand(
+                commandData.ListUserName,
+                commandData.ActionId,
+                commandData.IsRestricted,
+                commandData.UserId,
+                commandData.IP);
 
             dynamicRepository.Execute(command);
         }
 
         public void WriteLog(SmartPunterWriteLog commandData)
         {
-            var command = new SmartPunterWriteLogCommand(commandData);
+            var command = new SmartPunterWriteLogCommand(
+                commandData.ListUserName,
+                commandData.ActionId,
+                commandData.IsRestricted,
+                commandData.UserId,
+                commandData.IP);
 
             dynamicRepository.Execute(command);
         }
 
         public void WriteLogNoData(SmartPunterWriteLogNoData commandData)
         {
-            var command = new SmartPunterWriteLogNoDataCommand(commandData);
+            var command = new SmartPunterWriteLogNoDataCommand(
+                commandData.CustId,
+                commandData.ActionId,
+                commandData.IsRestricted,
+                commandData.UserId,
+                commandData.IP);
 
             dynamicRepository.Execute(command);
         }

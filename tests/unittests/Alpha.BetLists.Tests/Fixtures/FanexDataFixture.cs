@@ -1,6 +1,5 @@
 ﻿namespace Alpha.BetLists.Tests.Fixtures
 {
-    using Alpha.BetLists.DataAccesses;
     using Alpha.BetLists.Services;
     using AlphaPlus.PartialUM.Services;
     using Fanex.Caching;
@@ -15,7 +14,6 @@
             CacheService = Substitute.For<ICacheService>();
             PartialUMService = Substitute.For<IPartialUMService>();
             ReportDateService = Substitute.For<ReportDateService>();
-            BetListRepository = Substitute.For<BetListRepository>();
         }
 
         public ReportDateService ReportDateService;
@@ -25,7 +23,5 @@
         public ICacheService CacheService { get; }
 
         public IPartialUMService PartialUMService { get; }
-
-        public IBetListRepository BetListRepository { get; }
     }
 }

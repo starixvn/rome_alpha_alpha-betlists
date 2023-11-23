@@ -2,6 +2,10 @@
 {
     public class NapUserFunctionPermission
     {
+        public NapUserFunctionPermission()
+        {
+        }
+
         public NapUserFunctionPermission(int groupId, string fileNames, string funcName, byte actualPolicy)
         {
             GroupId = groupId;
@@ -10,12 +14,12 @@
             ActualPolicy = actualPolicy;
         }
 
-        public int GroupId { get; }
+        public int GroupId { get; set; }
 
-        public string FileNames { get; }
+        public string FileNames { get; set; }
 
-        public string FuncName { get; }
+        public string FuncName { get; set; }
 
-        public byte ActualPolicy { get; }
+        public byte ActualPolicy { get; set; }
     }
 }

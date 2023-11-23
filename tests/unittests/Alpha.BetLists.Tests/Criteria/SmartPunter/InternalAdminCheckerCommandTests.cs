@@ -11,8 +11,7 @@
         public void GetSettingKey_Always_ReturnsValidSettingKey()
         {
             // Arrange
-            var commandData = new InternalAdminChecker(0);
-            var criteria = new InternalAdminCheckerCommand(commandData);
+            var criteria = new InternalAdminCheckerCommand(0);
             var expectedSettingKey = "Acc_CustomerIsInternalAdmin";
 
             // Act
@@ -29,8 +28,7 @@
         public void IsValid_InvalidCustId_ReturnsFalse(int custId)
         {
             // Arrange
-            var commandData = new InternalAdminChecker(custId);
-            var criteria = new InternalAdminCheckerCommand(commandData);
+            var criteria = new InternalAdminCheckerCommand(custId);
 
             // Act
             var actualIsValid = criteria.IsValid();
@@ -43,8 +41,7 @@
         public void IsValid_ValidCriteria_ReturnsTrue()
         {
             // Arrange
-            var commandData = new InternalAdminChecker(1);
-            var criteria = new InternalAdminCheckerCommand(commandData);
+            var criteria = new InternalAdminCheckerCommand(1);
 
             // Act
             var actualIsValid = criteria.IsValid();

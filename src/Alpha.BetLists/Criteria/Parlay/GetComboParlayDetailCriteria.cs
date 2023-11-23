@@ -25,7 +25,7 @@
 
         public DateTime MoveBetDay { get; }
 
-        public decimal Outstanding { get; set; }
+        public decimal? Outstanding { get; set; }
 
         public bool IsParlayBoost { get; set; }
 

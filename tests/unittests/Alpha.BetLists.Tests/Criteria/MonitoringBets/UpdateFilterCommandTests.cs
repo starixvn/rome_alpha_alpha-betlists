@@ -1,6 +1,4 @@
-﻿using Alpha.BetLists.Params.MonitoringBets;
-
-namespace Alpha.BetLists.Tests.Criteria.MonitoringBets
+﻿namespace Alpha.BetLists.Tests.Criteria.MonitoringBets
 {
     using Alpha.BetLists.Criteria.MonitoringBets;
     using Xunit;
@@ -12,7 +10,7 @@ namespace Alpha.BetLists.Tests.Criteria.MonitoringBets
         public void GetSettingKey_Always_ReturnsValidSettingKey()
         {
             // Arrange
-            var criteria = new UpdateFilterCommand(new UpdateFilterParam(1, 1, 1, "Default", true, "EN", "1.2.3.4"));
+            var criteria = new UpdateFilterCommand(1, 1, 1, "Default", true, "EN", "1.2.3.4", false);
 
             var expectedSettingKey = "Age_CustLastBetFilter_Upd";
 
@@ -27,7 +25,7 @@ namespace Alpha.BetLists.Tests.Criteria.MonitoringBets
         public void IsValid_ValidSportParam_ReturnsTrue()
         {
             // Arrange
-            var criteria = new UpdateFilterCommand(new UpdateFilterParam(1, 1, 1, "Default", true, "EN", "1.2.3.4"));
+            var criteria = new UpdateFilterCommand(1, 1, 1, "Default", true, "EN", "1.2.3.4", false);
 
             // Act
             var actualIsValid = criteria.IsValid();
@@ -46,7 +44,7 @@ namespace Alpha.BetLists.Tests.Criteria.MonitoringBets
         public void IsValid_InvalidParam_ReturnsFalse(int custId, int subAccId, int filterId)
         {
             // Arrange
-            var criteria = new UpdateFilterCommand(new UpdateFilterParam(custId, subAccId, filterId, "", true, "EN", "1.2.3.4"));
+            var criteria = new UpdateFilterCommand(custId, subAccId, filterId, "", true, "EN", "1.2.3.4", false);
 
             // Act
             var actualIsValid = criteria.IsValid();

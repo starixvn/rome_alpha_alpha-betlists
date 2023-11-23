@@ -14,12 +14,12 @@
             LeagueGroupId = leagueGroupId;
         }
 
-        public int SportType { get; }
+        public int SportType { get; set; }
 
-        public int LeagueId { get; }
+        public int LeagueId { get; set; }
 
-        public string LeagueName { get; }
+        public string LeagueName { get; set; }
 
-        public int LeagueGroupId { get; }
+        public int LeagueGroupId { get; set; }
     }
 }

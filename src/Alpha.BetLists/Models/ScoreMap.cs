@@ -18,12 +18,12 @@
             InfoId = infoId;
         }
 
-        public int TypeId { get; }
+        public int TypeId { get; set; }
 
-        public int EventType { get; }
+        public int EventType { get; set; }
 
-        public string FirstId { get; }
+        public string FirstId { get; set; }
 
-        public string InfoId { get; }
+        public string InfoId { get; set; }
     }
 }

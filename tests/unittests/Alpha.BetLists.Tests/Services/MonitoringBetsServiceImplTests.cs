@@ -19,10 +19,10 @@
     [Collection("FanexDataCollection")]
     public class MonitoringBetsServiceImplTests
     {
+        private readonly ParlayService parlayService;
         private readonly MonitoringBetsServiceImpl monitoringBetsService;
         private readonly LastBetsService lastBetsService;
         private readonly FanexDataFixture dataFixture;
-        private readonly ParlayService parlayService;
 
         private readonly CompareLogic compareLogic;
 
@@ -94,7 +94,8 @@
                 "0",
                 1,
                 "EN",
-                "1.2.3.4");
+                "1.2.3.4",
+                false);
 
             // Act
             await monitoringBetsService.AddFilter(param);
@@ -114,7 +115,8 @@
                 "",
                 true,
                 "EN",
-                "1.2.3.4");
+                "1.2.3.4",
+                false);
 
             // Act
             await monitoringBetsService.UpdateFilter(param);
