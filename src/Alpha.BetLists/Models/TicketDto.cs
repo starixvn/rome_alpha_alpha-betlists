@@ -24,9 +24,8 @@
                 {
                     return Resources.Platform_NA;
                 }
-
-                ResourceManager rm = new ResourceManager(typeof(Resources));
-                var deviceInfo = rm.GetString(string.Format("Platform_{0}", DeviceType.ToString()));
+                
+                var deviceInfo = Resources.ResourceManager.GetString(string.Format("Platform_{0}", DeviceType.ToString()));
 
                 return deviceInfo ?? Resources.Platform_Uncategorized;
             }
