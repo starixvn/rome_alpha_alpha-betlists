@@ -38,31 +38,31 @@
       <HintPath>..\..\packages\Alpha.IPInfo.1.0.0\lib\netstandard2.0\Alpha.IPInfo.dll</HintPath>
     </Reference>
     <Reference Include="Alpha.NetThrottling, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Alpha.NetThrottling.2.0.0-standard3\lib\net461\Alpha.NetThrottling.dll</HintPath>
+      <HintPath>..\..\packages\Alpha.NetThrottling.2.0.0\lib\net461\Alpha.NetThrottling.dll</HintPath>
     </Reference>
     <Reference Include="Alpha.NetThrottling.Mvc, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Alpha.NetThrottling.Mvc.2.0.0-standard2\lib\net461\Alpha.NetThrottling.Mvc.dll</HintPath>
+      <HintPath>..\..\packages\Alpha.NetThrottling.Mvc.2.0.0\lib\net461\Alpha.NetThrottling.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="Alpha.PartialUM, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Alpha.PartialUM.2.0.0-standard3\lib\net461\Alpha.PartialUM.dll</HintPath>
+      <HintPath>..\..\packages\Alpha.PartialUM.2.0.0\lib\net461\Alpha.PartialUM.dll</HintPath>
     </Reference>
     <Reference Include="Alpha.Web, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Alpha.Web.2.0.0-standard4\lib\net461\Alpha.Web.dll</HintPath>
+      <HintPath>..\..\packages\Alpha.Web.2.0.0\lib\net461\Alpha.Web.dll</HintPath>
     </Reference>
     <Reference Include="AlphaPlus.Configurations, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\AlphaPlus.Configurations.1.0.0-beta5\lib\netstandard2.0\AlphaPlus.Configurations.dll</HintPath>
+      <HintPath>..\..\packages\AlphaPlus.Configurations.1.0.0\lib\netstandard2.0\AlphaPlus.Configurations.dll</HintPath>
     </Reference>
     <Reference Include="AlphaPlus.PartialUM, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\AlphaPlus.PartialUM.1.0.0-beta2\lib\netstandard2.0\AlphaPlus.PartialUM.dll</HintPath>
+      <HintPath>..\..\packages\AlphaPlus.PartialUM.1.0.0\lib\netstandard2.0\AlphaPlus.PartialUM.dll</HintPath>
     </Reference>
     <Reference Include="AlphaPlus.SmartPunter, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\AlphaPlus.SmartPunter.1.0.0-beta1\lib\netstandard2.0\AlphaPlus.SmartPunter.dll</HintPath>
+      <HintPath>..\..\packages\AlphaPlus.SmartPunter.1.0.0\lib\netstandard2.0\AlphaPlus.SmartPunter.dll</HintPath>
     </Reference>
     <Reference Include="AlphaPlus.User.Models, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\AlphaPlus.User.Models.1.0.0-beta91\lib\netstandard2.0\AlphaPlus.User.Models.dll</HintPath>
+      <HintPath>..\..\packages\AlphaPlus.User.Models.1.0.0\lib\netstandard2.0\AlphaPlus.User.Models.dll</HintPath>
     </Reference>
     <Reference Include="AlphaPlus.Utilities.IP, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\AlphaPlus.Utilities.IP.1.0.0-beta1\lib\netstandard2.0\AlphaPlus.Utilities.IP.dll</HintPath>
+      <HintPath>..\..\packages\AlphaPlus.Utilities.IP.1.0.0\lib\netstandard2.0\AlphaPlus.Utilities.IP.dll</HintPath>
     </Reference>
     <Reference Include="BetListNPOI, Version=2.6.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
       <HintPath>..\..\packages\BetListNPOI.2.6.0\lib\netstandard2.0\BetListNPOI.dll</HintPath>
@@ -198,7 +198,7 @@
       <HintPath>..\..\packages\StackExchange.Redis.2.6.122\lib\net461\StackExchange.Redis.dll</HintPath>
     </Reference>
     <Reference Include="Sunplus.Agent.Utilities, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Sunplus.Agent.Utilities.4.0.0-beta3\lib\net461\Sunplus.Agent.Utilities.dll</HintPath>
+      <HintPath>..\..\packages\Sunplus.Agent.Utilities.4.0.0\lib\net461\Sunplus.Agent.Utilities.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -324,7 +324,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="TplNetCore, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\TplNetCore.1.0.1-beta4\lib\netstandard2.0\TplNetCore.dll</HintPath>
+      <HintPath>..\..\packages\TplNetCore.1.0.1\lib\netstandard2.0\TplNetCore.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
