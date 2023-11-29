@@ -1,7 +1,6 @@
 ﻿namespace Alpha.BetLists.Site.Helpers
 {
-    using Alpha.BetLists.Site.Constants;
-    using Sunplus.Agent.Model.Entities;
+    using AlphaPlus.User.Models;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -31,7 +30,7 @@
         internal static string MapReportsDomain(string appPath)
         {
             var cookieless = HttpContext.Current.Session.IsCookieless ?
-                $"/(S({UserSession.Current.GetProperty<string>(SessionKey.ReportSessionID)}))" :
+                $"/(S({HttpContext.Current.Session.SessionID}))" :
                 string.Empty;
 
             return IsStandaloneReport ? $"{ReportDomain}{cookieless}{appPath?.Replace("~", string.Empty)}" : MicroSites.ReportsUrl(appPath);
@@ -49,7 +48,7 @@
             return $"{path}?{queryString}";
         }
 
-        internal static string ReportDomain => UserSession.Current.GetProperty<string>(SessionKey.ReportDomainSessionKey) ?? string.Empty;
+        internal static string ReportDomain => "/site-reports";
 
         internal static string MainDomain => UserSession.Current.GetProperty<string>("MainDomain");
 

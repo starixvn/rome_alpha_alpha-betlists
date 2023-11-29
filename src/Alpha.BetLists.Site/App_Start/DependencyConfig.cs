@@ -1,9 +1,5 @@
 ﻿namespace Alpha.BetLists.Site.App_Start
 {
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Reflection;
-    using System.Web.Mvc;
     using Alpha.BetLists.Site.Handlers.RiskAnalysisIPMatching;
     using Alpha.IPInfo.DataAccess;
     using Alpha.IPInfo.Models;
@@ -12,11 +8,17 @@
     using Alpha.NetThrottling.Models;
     using Alpha.NetThrottling.Resolvers;
     using Alpha.NetThrottling.Utils;
-    using Alpha.PartialUM.DataAccess;
-    using Alpha.PartialUM.Services;
+    using Alpha.PartialUM.Helpers;
+    using Alpha.Web.Helpers;
+    using AlphaPlus.PartialUM.DataAccess;
+    using AlphaPlus.PartialUM.Helpers;
+    using AlphaPlus.PartialUM.Services;
+    using AlphaPlus.SmartPunter.DataAccesses;
+    using AlphaPlus.SmartPunter.Services;
+    using AlphaPlus.User.Models;
+    using AlphaPlus.Utilities.IP;
     using BetLists.Helpers;
     using BetLists.Models;
-    using Configurations;
     using Controllers;
     using DataAccesses;
     using Fanex.BetDetails.BetBuilder.DataAccesses;
@@ -32,7 +34,6 @@
     using Fanex.Data.Repository;
     using Fanex.RemotingRef;
     using Handlers.Parlay;
-    using Helpers;
     using MediatR;
     using Models;
     using ONEbook.SpreadSheets;
@@ -41,19 +42,19 @@
     using SimpleInjector;
     using SimpleInjector.Integration.Web;
     using SimpleInjector.Integration.Web.Mvc;
-    using SmartPunter.DataAccesses;
-    using SmartPunter.Services;
-    using StaticData.Models;
-    using Sunplus.Agent.Model.Base;
-    using Sunplus.Agent.Model.Entities;
-    using Sunplus.Agent.Model.Entities.Permission;
-    using Utilities.IP;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Reflection;
+    using System.Web.Mvc;
+    using AppSettings = Configurations.AppSettings;
 
     public static class DependencyConfig
     {
         [SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Reviewed")]
         public static void Init()
         {
+            UserSession.Init(new HttpContextHelper());
+
             var container = new Container();
 
             container.Options.DefaultScopedLifestyle = new WebRequestLifestyle();
@@ -115,15 +116,7 @@
 
         private static void RegisterDataAccesses(Container container)
         {
-            if (AppSettings.EnabledStaticData)
-            {
-                StaticData.AppStart.DependencyRegister.Register(container);
-            }
-            else
-            {
-                container.Register<IDynamicRepository, DynamicRepository>(Lifestyle.Singleton);
-            }
-
+            container.Register<IDynamicRepository, DynamicRepository>(Lifestyle.Singleton);
             container.Register<ISmartPunterDataAccess, SmartPunterDataAccess>(Lifestyle.Singleton);
             container.Register<IBetBuilderDataAccess, BetBuilderDataAccess>(Lifestyle.Singleton);
             container.Register<ICasinoDetailsDataAccess, CasinoDetailsDataAccess>(Lifestyle.Singleton);
@@ -143,7 +136,7 @@
                 () => SmartPunterBetListMonitor.CreateInstance(
                     container.GetInstance<IUserSession>(),
                     container.GetInstance<ISmartPunterService>(),
-                    IPHelper.CustomerIP),
+                    Helpers.IPHelper.CustomerIP),
                 Lifestyle.Singleton);
 
             container.Register<IPService, IPServiceImpl>(Lifestyle.Singleton);
@@ -190,16 +183,10 @@
 
             container.Register<MoveStatementHistoryService, MoveStatementHistoryServiceImpl>(Lifestyle.Singleton);
             
-            if (AppSettings.IsIntegrationTest)
-            {
-                container.RegisterSingleton<IUser, StaticUserSession>();
-            }
-            else
-            {
-                container.RegisterSingleton<IUser, User>();
-            }
+           container.RegisterSingleton<IUser, User>();
 
-            container.Register<IPartialUMService, PartialUMService>(Lifestyle.Singleton);
+            container.RegisterSingleton<IPartialUMSectionHelper, PartialUMSectionHelper>();
+            container.RegisterSingleton<IPartialUMService, PartialUMService>();
             container.RegisterSingleton<AutoFollowBetService, AutoFollowBetServiceImpl>();
             container.Register<IIPInfoService>(
                 () => new IPInfoService(

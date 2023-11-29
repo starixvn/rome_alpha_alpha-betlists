@@ -167,7 +167,7 @@ var BetList;
                         this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new BaseResultDetails() : this.instance;
                         return this.instance;
                     },
-                    enumerable: true,
+                    enumerable: false,
                     configurable: true
                 });
                 return BaseResultDetails;

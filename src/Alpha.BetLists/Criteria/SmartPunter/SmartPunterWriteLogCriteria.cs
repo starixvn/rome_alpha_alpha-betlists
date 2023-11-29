@@ -1,6 +1,6 @@
 ﻿namespace Alpha.BetLists.Criteria.SmartPunter
 {
-    using Alpha.SmartPunter.Criteria;
+    using AlphaPlus.SmartPunter.Criteria;
     using Fanex.Data.Repository;
 
     public class SmartPunterWriteLogCommand : NonQueryCommand

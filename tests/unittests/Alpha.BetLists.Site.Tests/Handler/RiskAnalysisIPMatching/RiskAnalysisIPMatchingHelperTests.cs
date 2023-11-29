@@ -2,7 +2,7 @@
 {
     using Alpha.BetLists.Site.Handlers.RiskAnalysisIPMatching;
     using Alpha.BetLists.Site.Requests.RiskAnalysisIPMatching;
-    using Alpha.Utilities.IP;
+    using AlphaPlus.Utilities.IP;
     using BetLists.Tests.TestData;
     using Fixtures;
     using NSubstitute;

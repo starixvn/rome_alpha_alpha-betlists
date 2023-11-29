@@ -5,7 +5,7 @@
     using Alpha.BetLists.Criteria.MoveStatementHistory;
     using Alpha.BetLists.Models;
     using Alpha.BetLists.Params;
-    using Alpha.PartialUM.Services;
+    using AlphaPlus.PartialUM.Services;
     using Fanex.Data.Repository;
 
     public interface MoveStatementHistoryService

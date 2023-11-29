@@ -1,23 +1,23 @@
 ﻿namespace Alpha.BetLists.Site.Handlers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
+    using Alpha.IPInfo.Services;
+    using AlphaPlus.SmartPunter.Services;
+    using AlphaPlus.Utilities.IP;
     using AppResources;
+    using BetListNPOI.SS.UserModel;
     using BetLists.Models;
     using Builders.ExcelBuilders;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Utils;
-    using BetListNPOI.SS.UserModel;
     using ONEbook.SpreadSheets;
-    using SmartPunter.Services;
-    using Utilities.IP;
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
     using ViewModels;
     using ViewModels.Blocks;
     using static ONEbook.SpreadSheets.Column;
-    using Alpha.IPInfo.Services;
 
     /// <summary>
     /// Bet list excel base builder for default method that help to export Excel.

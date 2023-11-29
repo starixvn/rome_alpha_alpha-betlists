@@ -1,15 +1,15 @@
 ﻿namespace Alpha.BetLists.Site.Handlers.CasinoDetails
 {
-    using System.Threading.Tasks;
     using Alpha.IPInfo.Services;
+    using AlphaPlus.SmartPunter.Services;
+    using AlphaPlus.Utilities.IP;
     using Fanex.BetDetails.Casino.Params;
     using Fanex.BetDetails.Casino.Services;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using MediatR;
     using Requests.CasinoDetails;
-    using SmartPunter.Services;
-    using Utilities.IP;
+    using System.Threading.Tasks;
     using ViewModels.CasinoDetails;
 
     public class CasinoDetailsHandler : BetListBaseHandler, IAsyncRequestHandler<CasinoDetailsQuery, CasinoDetailsViewModel>

@@ -1,9 +1,8 @@
 ﻿namespace Alpha.BetLists.Site.Handlers.CasinoDetails
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
     using Alpha.IPInfo.Services;
+    using AlphaPlus.SmartPunter.Services;
+    using AlphaPlus.Utilities.IP;
     using AppResources;
     using BetListNPOI.SS.UserModel;
     using BetLists.Models;
@@ -14,8 +13,9 @@
     using ONEbook.SpreadSheets;
     using ONEbook.SpreadSheets.BetListNPOI;
     using Requests.CasinoDetails;
-    using SmartPunter.Services;
-    using Utilities.IP;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
     using ViewModels;
     using ViewModels.CasinoDetails;
     using static ONEbook.SpreadSheets.Column;

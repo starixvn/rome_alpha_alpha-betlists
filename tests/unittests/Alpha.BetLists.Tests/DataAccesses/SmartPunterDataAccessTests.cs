@@ -1,13 +1,13 @@
 ﻿namespace Alpha.BetLists.Tests.DataAccesses
 {
     using System.Collections.Generic;
+    using AlphaPlus.SmartPunter.Criteria;
+    using AlphaPlus.SmartPunter.DataAccesses;
     using BetLists.Criteria.SmartPunter;
     using BetLists.DataAccesses;
     using BetLists.Models;
     using Fixtures;
     using NSubstitute;
-    using SmartPunter.Criteria;
-    using SmartPunter.DataAccesses;
     using Xunit;
 
     [Trait("Category", "BetListBaseDataAccess")]

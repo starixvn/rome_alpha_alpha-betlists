@@ -3,7 +3,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Alpha.BetLists.Criteria.RiskAnalysisIPMatching;
-    using Alpha.PartialUM.Services;
+    using AlphaPlus.PartialUM.Services;
     using Fanex.BetList.Core.Entities;
     using Fanex.Data.Repository;
     using Models;

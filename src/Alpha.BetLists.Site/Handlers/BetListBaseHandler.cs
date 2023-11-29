@@ -1,5 +1,15 @@
 ﻿namespace Alpha.BetLists.Site.Handlers
 {
+    using Alpha.BetLists.Extensions;
+    using Alpha.BetLists.Site.Requests.WinLoss;
+    using Alpha.BetLists.Site.ViewModels.Components;
+    using Alpha.IPInfo.Services;
+    using AlphaPlus.SmartPunter.Services;
+    using AlphaPlus.Utilities.IP;
+    using BetLists.Models;
+    using Fanex.BetList.Core.Builder;
+    using Fanex.BetList.Core.Entities;
+    using Fanex.Logging.Extensions.Web;
     using System;
     using System.Collections.Generic;
     using System.IO;
@@ -7,16 +17,6 @@
     using System.Threading.Tasks;
     using System.Web.Hosting;
     using System.Web.Mvc;
-    using Alpha.BetLists.Extensions;
-    using Alpha.BetLists.Site.Requests.WinLoss;
-    using Alpha.BetLists.Site.ViewModels.Components;
-    using Alpha.IPInfo.Services;
-    using BetLists.Models;
-    using Fanex.BetList.Core.Builder;
-    using Fanex.BetList.Core.Entities;
-    using Fanex.Logging.Extensions.Web;
-    using SmartPunter.Services;
-    using Utilities.IP;
 
     public class BetListBaseHandler
     {

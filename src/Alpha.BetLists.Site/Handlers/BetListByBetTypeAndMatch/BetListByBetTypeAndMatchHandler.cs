@@ -1,15 +1,15 @@
 ﻿namespace Alpha.BetLists.Site.Handlers.BetListByBetTypeAndMatch
 {
-    using System.Threading.Tasks;
     using Alpha.IPInfo.Services;
+    using AlphaPlus.SmartPunter.Services;
+    using AlphaPlus.Utilities.IP;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using MediatR;
     using Params;
     using Requests.BetListByBetTypeAndMatch;
     using Services;
-    using SmartPunter.Services;
-    using Utilities.IP;
+    using System.Threading.Tasks;
     using ViewModels.BetListByBetTypeAndMatch;
 
     public class BetListByBetTypeAndMatchHandler : BetListBaseHandler,

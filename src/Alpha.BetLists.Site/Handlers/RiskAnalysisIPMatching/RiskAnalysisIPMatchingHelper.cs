@@ -2,10 +2,10 @@
 {
     using Alpha.BetLists.Models;
     using Alpha.BetLists.Site.Requests.RiskAnalysisIPMatching;
+    using AlphaPlus.Utilities.IP;
     using Params;
     using Services;
     using System.Threading.Tasks;
-    using Utilities.IP;
 
     public interface RiskAnalysisIPMatchingHelper
     {

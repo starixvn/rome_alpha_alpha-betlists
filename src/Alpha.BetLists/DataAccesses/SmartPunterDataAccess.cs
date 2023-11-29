@@ -2,12 +2,12 @@
 {
     using System;
     using System.Linq;
+    using AlphaPlus.SmartPunter.Criteria;
+    using AlphaPlus.SmartPunter.DataAccesses;
+    using AlphaPlus.SmartPunter.Models;
     using Criteria.SmartPunter;
     using Fanex.Data.Repository;
     using Models;
-    using SmartPunter.Criteria;
-    using SmartPunter.DataAccesses;
-    using SmartPunter.Models;
 
     public class SmartPunterDataAccess : ISmartPunterDataAccess
     {

@@ -52,10 +52,6 @@
             }
         }
 
-        public static bool EnabledStaticData => GetConfigValue("EnabledStaticData") == "1";
-
-        public static bool IsIntegrationTest => GetConfigValue("IsIntegrationTest") == "1";
-
         public static int RunningMatchCacheTime => Converter.ToInt(GetConfigValue("RunningMatchCacheTime"));
 
         public static string RemoteRefURL => GetConfigValue("RemoteRefURL");
@@ -94,13 +90,9 @@
         {
             get
             {
-                var currentAppPath = HttpRuntime.AppDomainAppVirtualPath;
-                if (currentAppPath == null)
-                {
-                    return string.Empty;
-                }
-                return currentAppPath.Equals("/", StringComparison.OrdinalIgnoreCase) && !HttpContext.Current.Session.IsCookieless ?
-                    "site-betlists/" : string.Empty;
+                var context = HttpContext.Current;
+                var cookieless = context.Session.IsCookieless ? $"/(S({context.Session.SessionID}))" : string.Empty;
+                return IsStandaloneReport ? $"site-betlists{cookieless}/" : string.Empty;
             }
         }
 

@@ -209,7 +209,7 @@ var BetList;
                 this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new LastBetsView() : this.instance;
                 return this.instance;
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         return LastBetsView;

@@ -7,7 +7,6 @@
     using Alpha.BetLists.Services;
     using Alpha.BetLists.Tests.Fixtures;
     using Alpha.BetLists.Tests.TestData;
-    using Alpha.Web.Helpers;
     using BetLists.Params;
     using Fanex.BetList.Core.Entities;
     using NSubstitute;

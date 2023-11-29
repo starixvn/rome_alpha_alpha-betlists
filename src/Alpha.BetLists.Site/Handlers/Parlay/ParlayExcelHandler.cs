@@ -1,25 +1,24 @@
 ﻿namespace Alpha.BetLists.Site.Handlers.Parlay
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
+    using Alpha.IPInfo.Services;
+    using AlphaPlus.SmartPunter.Services;
+    using AlphaPlus.Utilities.IP;
     using AppResources;
+    using BetListNPOI.SS.UserModel;
     using BetLists.Models;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Utils;
     using MediatR;
-    using BetListNPOI.SS.UserModel;
     using ONEbook.SpreadSheets;
     using Requests.Parlay;
     using Services;
-    using SmartPunter.Services;
-    using Utilities.IP;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
     using ViewModels;
     using ViewModels.Parlay;
-
     using static ONEbook.SpreadSheets.Column;
-    using Alpha.IPInfo.Services;
 
     public class ParlayExcelHandler : BetListExcelBaseHandler, IAsyncRequestHandler<ComboParlayDetailExcelQuery, ExcelFileViewModel>
     {

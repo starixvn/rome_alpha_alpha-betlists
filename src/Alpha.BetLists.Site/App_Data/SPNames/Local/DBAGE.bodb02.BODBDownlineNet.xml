@@ -59,7 +59,7 @@
       <Mapping DataField="Hdp1" ObjectProperty="Handicap1"></Mapping>
       <Mapping DataField="Hdp2" ObjectProperty="Handicap2"></Mapping>
       <Mapping DataField="LiveIndicator" ObjectProperty="IsLive"></Mapping>
-      <Mapping DataField="BetStatus" ObjectProperty="EventStatus" Class="TicketDto"></Mapping>
+      <Mapping DataField="BetStatus" ObjectProperty="EventStatus"></Mapping>
     </Setting>
   </Function>
   <Function Name="Win Loss By Match">

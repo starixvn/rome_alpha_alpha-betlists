@@ -16,14 +16,16 @@
     public class RunningBetListByBetTypeAndMatchServiceImplTests
     {
         private readonly RunningBetListByBetTypeAndMatchServiceImpl service;
+        private readonly ParlayService parlayService;
 
         public RunningBetListByBetTypeAndMatchServiceImplTests(FanexDataFixture dataFixture)
         {
+            parlayService = Substitute.For<ParlayService>();
             dataFixture.DynamicRepository
                 .FetchMultipleAsync<TicketDto, TicketData>(Arg.Any<GetBetListRunningByBetTypeAndMatchCriteria>())
                 .Returns(BetListDataTest.BetListDataTuple);
 
-            service = new RunningBetListByBetTypeAndMatchServiceImpl(dataFixture.DynamicRepository);
+            service = new RunningBetListByBetTypeAndMatchServiceImpl(dataFixture.DynamicRepository, parlayService);
         }
 
         [Fact]

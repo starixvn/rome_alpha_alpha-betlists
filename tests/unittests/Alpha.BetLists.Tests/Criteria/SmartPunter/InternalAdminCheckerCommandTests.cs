@@ -1,6 +1,6 @@
 ﻿namespace Alpha.BetLists.Tests.Criteria.SmartPunter
 {
-    using Alpha.SmartPunter.Criteria;
+    using AlphaPlus.SmartPunter.Criteria;
     using BetLists.Criteria.SmartPunter;
     using Xunit;
 

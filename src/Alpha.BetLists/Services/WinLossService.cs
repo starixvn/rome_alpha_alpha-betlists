@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Alpha.BetLists.AppResources;
-    using Alpha.PartialUM.Services;
+    using AlphaPlus.PartialUM.Services;
     using Criteria.WinLossByDate;
     using Extensions;
     using Fanex.BetList.Core.Entities;

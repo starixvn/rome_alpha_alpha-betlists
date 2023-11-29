@@ -13,7 +13,7 @@ var BetList;
                     this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new IpDetails() : this.instance;
                     return this.instance;
                 },
-                enumerable: true,
+                enumerable: false,
                 configurable: true
             });
             return IpDetails;

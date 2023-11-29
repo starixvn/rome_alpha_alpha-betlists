@@ -1,7 +1,8 @@
 ﻿namespace Alpha.BetLists.Site.Handlers.BetListByBetType
 {
-    using System.Threading.Tasks;
     using Alpha.IPInfo.Services;
+    using AlphaPlus.SmartPunter.Services;
+    using AlphaPlus.Utilities.IP;
     using BetLists.Models;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
@@ -9,8 +10,7 @@
     using Params;
     using Requests.BetListByBetType;
     using Services;
-    using SmartPunter.Services;
-    using Utilities.IP;
+    using System.Threading.Tasks;
     using ViewModels.BetListByBetType;
 
     public class BetListByBetTypeHandler : BetListBaseHandler, IAsyncRequestHandler<BetListByBetTypeQuery, BetListByBetTypeViewModel>

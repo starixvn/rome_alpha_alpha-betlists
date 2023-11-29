@@ -4,14 +4,12 @@
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Web;
-    using Alpha.BetLists.Site.Constants;
     using AppResources;
     using BetLists.Models;
     using Configurations;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Requests;
-    using Sunplus.Agent.Model.Entities;
     using Web.Helpers;
 
     [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1304:NonPrivateReadonlyFieldsMustBeginWithUpperCaseLetter", Justification = "Reviewed.")]
@@ -87,7 +85,7 @@
                     return AppPathHelper.GetAppPath(AppSettings.ResultAppPath, "~");
                 }
                 return HttpContext.Current.Session.IsCookieless ?
-                        $"/site-results/(S({UserSession.Current.GetProperty<string>(SessionKey.MainSessionID)}))/"
+                        $"/site-results/(S({HttpContext.Current.Session.SessionID}))/"
                         : AppPathHelper.GetAppPath(AppSettings.ResultAppPath, "~");
             }
         }
@@ -101,7 +99,7 @@
                     return MicroSites.OldMainUrl("~");
                 }
                 return HttpContext.Current.Session.IsCookieless ?
-                    $"/ex-main/(S({UserSession.Current.GetProperty<string>(SessionKey.MainSessionID)}))/" : MicroSites.OldMainUrl("~");
+                    $"/ex-main/(S({HttpContext.Current.Session.SessionID}))/" : MicroSites.OldMainUrl("~");
             }
         }
 
@@ -114,7 +112,7 @@
                     return AppPathHelper.GetAppPath(AppSettings.TotalBetsForecastAppPath, "~");
                 }
                 return HttpContext.Current.Session.IsCookieless ?
-                $"/ex-totalbetsforecast/(S({UserSession.Current.GetProperty<string>(SessionKey.MainSessionID)}))/" : AppPathHelper.GetAppPath(AppSettings.TotalBetsForecastAppPath, "~");
+                $"/ex-totalbetsforecast/(S({HttpContext.Current.Session.SessionID}))/" : AppPathHelper.GetAppPath(AppSettings.TotalBetsForecastAppPath, "~");
             }
         }
 

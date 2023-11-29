@@ -5,6 +5,8 @@
     using Alpha.BetLists.Site.ViewModels.Blocks;
     using Alpha.BetLists.Site.ViewModels.RiskAnalysisIPMatching;
     using Alpha.IPInfo.Services;
+    using AlphaPlus.SmartPunter.Services;
+    using AlphaPlus.Utilities.IP;
     using AppResources;
     using BetLists.Models;
     using Fanex.BetList.Core.Builder;
@@ -12,9 +14,7 @@
     using MediatR;
     using ONEbook.SpreadSheets;
     using ONEbook.SpreadSheets.BetListNPOI;
-    using SmartPunter.Services;
     using System.Threading.Tasks;
-    using Utilities.IP;
     using ViewModels;
     using static ONEbook.SpreadSheets.Column;
 

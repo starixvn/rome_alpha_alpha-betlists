@@ -5,7 +5,6 @@
     using System.Linq;
     using Alpha.BetLists.Criteria.ProgressiveJackpot;
     using BetLists.Criteria;
-    using BetLists.DataAccesses;
     using BetLists.Models;
     using BetLists.Params;
     using BetLists.Services;
@@ -58,7 +57,7 @@
 
             var bySite = new List<JackpotOfferedBySite> { new JackpotOfferedBySite(1, "site1"), new JackpotOfferedBySite(2, "site2") };
             var byCurrency = new List<JackpotOfferedByCurrency> { new JackpotOfferedByCurrency(1, 21), new JackpotOfferedByCurrency(2, 20) };
-            var dataJackpot = new Tuple<IEnumerable<JackpotOfferedBySite>, IEnumerable<JackpotOfferedByCurrency>>(bySite, byCurrency);
+            var dataJackpot = (bySite, byCurrency);
             fanexDataFixture.DynamicRepository.FetchMultiple<JackpotOfferedBySite, JackpotOfferedByCurrency>(Arg.Any<GetEnableJackpotProductCriteria>())
             .Returns(dataJackpot);
         }

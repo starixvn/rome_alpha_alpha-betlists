@@ -68,7 +68,7 @@
 
             var custProducts = cacheService
                 .GetOrSet(
-                $"Alpha.Reports.Services.Impl.ProductsForCustomer-{viewerId}",
+                $"Alpha.Reports.Services.Impl.ProductsForCustomer-{viewerId}-{site}-{currencyId}",
                 () => GetProductsForReport()
                         .Where(product => canViewProduct(product.Id) || CanViewBySite(viewerId, site, currencyId, product.Id))
                         .Select(product => new Product(product.Id, product.Name, product.EndOfSupportDate, getProductName, product.Type, product.OrderNo)),
@@ -184,7 +184,7 @@
         {
             var products = cacheService
                 .GetOrSet(
-                $"Alpha.Reports.Services.Impl.ProductsBySite-{viewerId}",
+                $"Alpha.Reports.Services.Impl.ProductsBySite-{viewerId}-{site}-{currencyId}",
                 () => dynamicRepository.Fetch<ProductBySiteModel>(new GetOfferedProductsBySiteCriteria(viewerId, site, currencyId)),
                 new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(CustProductsCacheTimeInMinutes)));
 
@@ -210,7 +210,7 @@
             return products;
         }
 
-        private Tuple<IEnumerable<JackpotOfferedBySite>, IEnumerable<JackpotOfferedByCurrency>> GetEnabledJackpotProductIdsForCustomer()
+        private (IEnumerable<JackpotOfferedBySite>, IEnumerable<JackpotOfferedByCurrency>) GetEnabledJackpotProductIdsForCustomer()
             => cacheService.GetOrSet(
                 "Alpha.BetLists.Services.Impl.ProductServiceImpl.OfferedJackpot",
                 () => dynamicRepository.FetchMultiple<JackpotOfferedBySite, JackpotOfferedByCurrency>(new GetEnableJackpotProductCriteria()),

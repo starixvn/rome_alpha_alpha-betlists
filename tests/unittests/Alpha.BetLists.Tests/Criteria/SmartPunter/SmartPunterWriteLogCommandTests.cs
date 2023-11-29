@@ -1,5 +1,5 @@
 ﻿using Alpha.BetLists.Criteria.SmartPunter;
-using Alpha.SmartPunter.Criteria;
+using AlphaPlus.SmartPunter.Criteria;
 using Xunit;
 
 namespace Alpha.BetLists.Tests.Criteria.SmartPunter

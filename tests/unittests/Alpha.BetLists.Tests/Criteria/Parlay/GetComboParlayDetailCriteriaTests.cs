@@ -14,9 +14,7 @@
         public GetComboParlayDetailCriteriaTests(AnyValueCreatorFixture anyValueCreator)
         {
             criteria = new GetComboParlayDetailCriteria(
-                transId: anyValueCreator.Create<long>(),
                 refNo: anyValueCreator.Create<long>(),
-                betId: anyValueCreator.Create<long>(),
                 custId: anyValueCreator.Create<int>(),
                 balanceUpDate: anyValueCreator.Create<DateTime>(),
                 moveBetDate: anyValueCreator.Create<DateTime>());

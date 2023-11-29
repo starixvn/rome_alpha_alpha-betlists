@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using Alpha.PartialUM.Services;
+    using AlphaPlus.PartialUM.Services;
     using Criteria.LastBets;
     using Fanex.BetList.Core.Entities;
     using Fanex.Caching;

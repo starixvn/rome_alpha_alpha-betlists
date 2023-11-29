@@ -1,7 +1,8 @@
 ﻿namespace Alpha.BetLists.Site.Handlers.CombinationMixParlay
 {
-    using System.Threading.Tasks;
     using Alpha.IPInfo.Services;
+    using AlphaPlus.SmartPunter.Services;
+    using AlphaPlus.Utilities.IP;
     using AppResources;
     using BetListByBetType;
     using BetLists.Models;
@@ -12,8 +13,7 @@
     using ONEbook.SpreadSheets.BetListNPOI;
     using Requests.CombinationMixParlay;
     using Services;
-    using SmartPunter.Services;
-    using Utilities.IP;
+    using System.Threading.Tasks;
     using ViewModels;
     using ViewModels.CombinationMixParlay;
 

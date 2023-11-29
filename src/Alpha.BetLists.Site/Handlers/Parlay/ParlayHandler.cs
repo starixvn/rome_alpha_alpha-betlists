@@ -1,16 +1,16 @@
 ﻿namespace Alpha.BetLists.Site.Handlers.Parlay
 {
-    using System.Threading.Tasks;
     using Alpha.BetLists.Site.Helpers;
     using Alpha.IPInfo.Services;
+    using AlphaPlus.SmartPunter.Services;
+    using AlphaPlus.Utilities.IP;
     using BetLists.Models;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using MediatR;
     using Requests.Parlay;
     using Services;
-    using SmartPunter.Services;
-    using Utilities.IP;
+    using System.Threading.Tasks;
     using ViewModels.Parlay;
 
     public class ParlayHandler : BetListBaseHandler,

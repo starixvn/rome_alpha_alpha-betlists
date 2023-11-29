@@ -1,20 +1,20 @@
 ﻿namespace Alpha.BetLists.Site.Handlers.WinLoss
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
     using Alpha.BetLists.Models;
     using Alpha.BetLists.Params;
     using Alpha.BetLists.Services;
     using Alpha.BetLists.Site.Requests.WinLoss;
     using Alpha.BetLists.Site.ViewModels.WinLoss;
     using Alpha.IPInfo.Services;
-    using Alpha.SmartPunter.Services;
-    using Alpha.Utilities.IP;
+    using AlphaPlus.SmartPunter.Services;
+    using AlphaPlus.Utilities.IP;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using MediatR;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
 
     public class WinLossNewHandler :
         BetListBaseHandler,

@@ -1,7 +1,8 @@
 ﻿namespace Alpha.BetLists.Site.Handlers.CombinationMixParlay
 {
-    using System.Threading.Tasks;
     using Alpha.IPInfo.Services;
+    using AlphaPlus.SmartPunter.Services;
+    using AlphaPlus.Utilities.IP;
     using BetListByBetType;
     using BetLists.Models;
     using Fanex.BetList.Core.Builder;
@@ -9,8 +10,7 @@
     using MediatR;
     using Requests.CombinationMixParlay;
     using Services;
-    using SmartPunter.Services;
-    using Utilities.IP;
+    using System.Threading.Tasks;
     using ViewModels.CombinationMixParlay;
 
     public class CombinationMixParlayHandler : BetListBaseHandler,
