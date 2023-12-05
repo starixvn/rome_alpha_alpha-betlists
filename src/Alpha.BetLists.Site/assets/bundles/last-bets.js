@@ -8,7 +8,7 @@ var BetList;
             this.getBetsUrl = "";
             this.isCalling = false;
             this.pageSize = 10;
-            this.timeToGetLastBets = 30000;
+            this.timeToGetLastBets = 0;
             this.timeToRetryGetLastBets = 600000;
             this.getLastBetsTimeOut = 0;
             this.lastTransIdCacheKey = "";
@@ -31,22 +31,28 @@ var BetList;
                 _this.$loadingIcon = $("#loading-icon");
                 _this.$msgError = $("#msg-error");
                 _this.$betListTableContainer = $("#bet-list-table-container");
-                _this.$chbSwitch = $("#chb-switch");
-                _this.$lblSwitch = $("#lbl-switch");
-                _this.$isAutoRefresh = $("#is-auto-refresh");
                 _this.betType = parseInt($("#bet-type").val(), 0);
                 _this.getBetsUrl = $("#get-bets-url").val();
                 _this.pageSize = parseInt($(".page-size.active").html());
+                _this.btnAutoRefresh = $("#ddlRefresh");
             };
             this.registerEvents = function () {
                 var self = _this;
                 _this.$pageSize.click(function () {
                     self.changeLastBetRange($(this));
                 });
-                _this.shortcut.add("Shift+P", _this.setGetLastBetsTimeOutByShortcut);
-                _this.$chbSwitch.off("click").on("click", _this.setGetLastBetsTimeOut);
-                _this.$lblSwitch.off("click").on("click", function () {
-                    self.$chbSwitch.click();
+                $("#refresh-value a")
+                    .off()
+                    .click(function () {
+                    var seconds = +$(this).data("refresh-value");
+                    if (isNaN(seconds) || seconds === 0) {
+                        self.timeToGetLastBets = 0;
+                        self.stopAutoRefresh(this.innerText);
+                    }
+                    else {
+                        self.timeToGetLastBets = seconds;
+                        self.startAutoRefresh();
+                    }
                 });
             };
             this.changeLastBetRange = function (element) {
@@ -55,9 +61,6 @@ var BetList;
                 _this.$pageSize.removeClass("active");
                 element.addClass("active");
                 _this.replaceHrefParam("PageSize", _this.pageSize);
-                if (_this.getLastBetsTimeOut !== 0) {
-                    clearTimeout(_this.getLastBetsTimeOut);
-                }
                 _this.loadLastBets(false);
             };
             this.loadLastBets = function (isAutoLoad) {
@@ -127,10 +130,7 @@ var BetList;
                 }
                 var latestTransId = _this.$betListTableContainer.find("#latest-trans-id").val();
                 _this.localStorage.set(_this.latestTransIdCacheKey, latestTransId);
-                if (_this.convertAttributeToBool(_this.$isAutoRefresh.val())) {
-                    var self_1 = _this;
-                    _this.getLastBetsTimeOut = setTimeout(function () { self_1.loadLastBets(true); }, _this.timeToGetLastBets);
-                }
+                _this.timeToGetLastBets && _this.startAutoRefresh();
                 _this.isCalling = false;
             };
             this.showError = function () {
@@ -141,23 +141,6 @@ var BetList;
             };
             this.completeGetLastBets = function () {
                 _this.$loadingIcon.addClass("hide");
-            };
-            this.setGetLastBetsTimeOutByShortcut = function () {
-                _this.$lblSwitch.click();
-            };
-            this.setGetLastBetsTimeOut = function () {
-                if (_this.getLastBetsTimeOut !== 0) {
-                    clearTimeout(_this.getLastBetsTimeOut);
-                    _this.getLastBetsTimeOut = 0;
-                    _this.$isAutoRefresh.val("false");
-                    _this.replaceHrefParam("IsAutoRefresh", "false");
-                }
-                else {
-                    var self_2 = _this;
-                    _this.getLastBetsTimeOut = setTimeout(function () { self_2.loadLastBets(true); }, _this.timeToGetLastBets);
-                    _this.$isAutoRefresh.val("true");
-                    _this.replaceHrefParam("IsAutoRefresh", "true");
-                }
             };
             this.localStorage = {
                 get: function (key) {
@@ -202,6 +185,28 @@ var BetList;
                     ? queryString.replace(regex, "$1" + paramName + "=" + paramValue)
                     : queryString + (queryString.indexOf("?") >= 0 ? "&" : "?") + paramName + "=" + paramValue;
                 return newQueryString;
+            };
+            this.stopAutoRefresh = function (offText) {
+                _this.clearTimeoutAndSetAutoRefreshText(offText);
+            };
+            this.startAutoRefresh = function () {
+                _this.clearTimeoutAndSetAutoRefreshText(_this.timeToGetLastBets);
+                _this.getLastBetsTimeOut = setTimeout(function () { return _this.countdown(); }, 1000);
+            };
+            this.countdown = function () {
+                var value = +_this.btnAutoRefresh.text();
+                if (value === 1) {
+                    _this.clearTimeoutAndSetAutoRefreshText("...");
+                    _this.loadLastBets(true);
+                }
+                else {
+                    _this.btnAutoRefresh.text(--value);
+                    _this.getLastBetsTimeOut = setTimeout(function () { return _this.countdown(); }, 1000);
+                }
+            };
+            this.clearTimeoutAndSetAutoRefreshText = function (text) {
+                clearTimeout(_this.getLastBetsTimeOut);
+                _this.btnAutoRefresh.text(text);
             };
         }
         Object.defineProperty(LastBetsView, "Instance", {

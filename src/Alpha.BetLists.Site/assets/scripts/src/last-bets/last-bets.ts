@@ -19,22 +19,21 @@ namespace BetList {
         $loadingIcon: JQuery;
         $msgError: JQuery;
         $betListTableContainer: JQuery;
-        $chbSwitch: JQuery;
-        $lblSwitch: JQuery;
-        $isAutoRefresh: JQuery;
 
         betType: number = 0;
         getBetsUrl: string = "";
         isCalling = false;
         pageSize: number = 10;
 
-        timeToGetLastBets: number = 30000;
+        timeToGetLastBets: number = 0;
         timeToRetryGetLastBets: number = 600000;
         getLastBetsTimeOut: number = 0;
         ajaxRequest: JQueryXHR;
 
         lastTransIdCacheKey: string = "";
         latestTransIdCacheKey: string = "";
+
+        btnAutoRefresh: JQuery;
 
         public Init = (shortcut: any, store: any) => {
             this.shortcut = shortcut;
@@ -59,14 +58,12 @@ namespace BetList {
             this.$loadingIcon = $("#loading-icon");
             this.$msgError = $("#msg-error");
             this.$betListTableContainer = $("#bet-list-table-container");
-            this.$chbSwitch = $("#chb-switch");
-            this.$lblSwitch = $("#lbl-switch");
-
-            this.$isAutoRefresh = $("#is-auto-refresh");
 
             this.betType = parseInt($("#bet-type").val(), 0);
             this.getBetsUrl = $("#get-bets-url").val();
             this.pageSize = parseInt($(".page-size.active").html());
+
+            this.btnAutoRefresh = $("#ddlRefresh");
         };
 
         registerEvents = () => {
@@ -76,12 +73,18 @@ namespace BetList {
                 self.changeLastBetRange($(this));
             });
 
-            this.shortcut.add("Shift+P", this.setGetLastBetsTimeOutByShortcut);
-
-            this.$chbSwitch.off("click").on("click", this.setGetLastBetsTimeOut);
-            this.$lblSwitch.off("click").on("click", () => {
-                self.$chbSwitch.click();
-            });
+            $("#refresh-value a")
+                .off()
+                .click(function () {
+                    const seconds = +$(this).data("refresh-value");
+                    if (isNaN(seconds) || seconds === 0) {
+                        self.timeToGetLastBets = 0;
+                        self.stopAutoRefresh(this.innerText)
+                    } else {
+                        self.timeToGetLastBets = seconds;
+                        self.startAutoRefresh();
+                    }
+                });
         };
 
         changeLastBetRange = (element: JQuery) => {
@@ -92,10 +95,6 @@ namespace BetList {
             element.addClass("active");
 
             this.replaceHrefParam("PageSize", this.pageSize);
-
-            if (this.getLastBetsTimeOut !== 0) {
-                clearTimeout(this.getLastBetsTimeOut);
-            }
 
             this.loadLastBets(false);
         };
@@ -184,10 +183,7 @@ namespace BetList {
             let latestTransId = this.$betListTableContainer.find("#latest-trans-id").val();
             this.localStorage.set(this.latestTransIdCacheKey, latestTransId);
 
-            if (this.convertAttributeToBool(this.$isAutoRefresh.val())) {
-                let self = this;
-                this.getLastBetsTimeOut = setTimeout(() => { self.loadLastBets(true); }, this.timeToGetLastBets);
-            }
+            this.timeToGetLastBets && this.startAutoRefresh();
 
             this.isCalling = false;
         };
@@ -201,24 +197,6 @@ namespace BetList {
         };
         completeGetLastBets = () => {
             this.$loadingIcon.addClass("hide");
-        };
-
-        setGetLastBetsTimeOutByShortcut = () => {
-            this.$lblSwitch.click();
-        };
-
-        setGetLastBetsTimeOut = () => {
-            if (this.getLastBetsTimeOut !== 0) {
-                clearTimeout(this.getLastBetsTimeOut);
-                this.getLastBetsTimeOut = 0;
-                this.$isAutoRefresh.val("false");
-                this.replaceHrefParam("IsAutoRefresh", "false");
-            } else {
-                let self = this;
-                this.getLastBetsTimeOut = setTimeout(() => { self.loadLastBets(true); }, this.timeToGetLastBets);
-                this.$isAutoRefresh.val("true");
-                this.replaceHrefParam("IsAutoRefresh", "true");
-            }
         };
 
         localStorage = {
@@ -277,6 +255,27 @@ namespace BetList {
 
             return newQueryString;
         };
+        stopAutoRefresh = (offText: string) => {
+            this.clearTimeoutAndSetAutoRefreshText(offText);
+        };
+        startAutoRefresh = () => {
+            this.clearTimeoutAndSetAutoRefreshText(this.timeToGetLastBets);
+            this.getLastBetsTimeOut = setTimeout(() => this.countdown(), 1000);
+        };
+        countdown = () => {
+            let value = +this.btnAutoRefresh.text();
+            if (value === 1) {
+                this.clearTimeoutAndSetAutoRefreshText("...");
+                this.loadLastBets(true);
+            } else {
+                this.btnAutoRefresh.text(--value);
+                this.getLastBetsTimeOut = setTimeout(() => this.countdown(), 1000);
+            }
+        };
+        clearTimeoutAndSetAutoRefreshText = (text) => {
+            clearTimeout(this.getLastBetsTimeOut);
+            this.btnAutoRefresh.text(text);
+        }
     }
 }
 

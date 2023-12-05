@@ -13,7 +13,5 @@
         public int BetType { get; set; } = -1;
 
         public int PageSize { get; set; } = 10;
-
-        public bool IsAutoRefresh { get; set; } = true;
     }
 }

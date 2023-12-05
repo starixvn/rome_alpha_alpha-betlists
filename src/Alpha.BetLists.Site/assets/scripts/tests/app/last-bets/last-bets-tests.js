@@ -99,18 +99,6 @@ describe("LastBets", function () {
             // assert
             expect(lastBetsView.changeLastBetRange).toHaveBeenCalled();
         });
-        it("_Always_Binds shortcut.add", function () {
-            // assert
-            expect(lastBetsView.shortcut.add).toHaveBeenCalledWith("Shift+P", lastBetsView.setGetLastBetsTimeOutByShortcut);
-        });
-        it("_Always_Binds $lblSwitch.click", function () {
-            // arrange
-            spyOn(lastBetsView.$chbSwitch, "click");
-            // act
-            lastBetsView.$lblSwitch.click();
-            // assert
-            expect(lastBetsView.$chbSwitch.click).toHaveBeenCalled();
-        });
     });
     describe("_changeLastBetRange", function () {
         it("_Always_Active selected element", function () {
@@ -383,49 +371,6 @@ describe("LastBets", function () {
             lastBetsView.completeGetLastBets();
             // assert
             expect(lastBetsView.$loadingIcon.hasClass("hide")).toBeTruthy();
-        });
-    });
-    describe("_setGetLastBetsTimeOut", function () {
-        it("_Has getLastBetsTimeOut_Clear getLastBetsTimeOut", function () {
-            // arrange
-            jasmine.clock().install();
-            var spy = { func: jasmine.any(Function) };
-            spyOn(spy, "func");
-            lastBetsView.getLastBetsTimeOut = setTimeout(spy.func, 1000);
-            // act
-            lastBetsView.setGetLastBetsTimeOut();
-            jasmine.clock().tick(1001);
-            // assert
-            expect(spy.func).not.toHaveBeenCalled();
-            expect(lastBetsView.getLastBetsTimeOut).toBe(0);
-            jasmine.clock().uninstall();
-        });
-        it("_Not Have getLastBetsTimeOut_Call setTimeout", function () {
-            // arrange
-            jasmine.clock().install();
-            lastBetsView.getLastBetsTimeOut = 0;
-            // act
-            lastBetsView.setGetLastBetsTimeOut();
-            jasmine.clock().tick(2001);
-            // assert
-            expect(lastBetsView.loadLastBets).toHaveBeenCalled();
-            jasmine.clock().uninstall();
-        });
-    });
-    describe("_setGetLastBetsTimeOutByShortcut", function () {
-        beforeEach(function () {
-            // arrange
-            loadFixtures("normal-template.html");
-            cacheElements.and.callThrough();
-            lastBetsView.Init(shortcut, store);
-            spyOn(lastBetsView, "setGetLastBetsTimeOut");
-            spyOn(lastBetsView.$lblSwitch, "click");
-            // act
-            lastBetsView.setGetLastBetsTimeOutByShortcut();
-        });
-        it("_Always_Calls $lblSwitch.click", function () {
-            // assert
-            expect(lastBetsView.$lblSwitch.click).toHaveBeenCalled();
         });
     });
     describe("_localStorage.get", function () {

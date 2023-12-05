@@ -31,6 +31,7 @@
     using Fanex.BetList.Core.RemotingRef;
     using Fanex.BetList.Core.TicketHelper;
     using Fanex.Caching;
+    using Fanex.Caching.Redis;
     using Fanex.Data.Repository;
     using Fanex.RemotingRef;
     using Handlers.Parlay;
@@ -197,7 +198,8 @@
                         IPV4CacheInMinutes = AppSettings.IPV4CacheInMinutes,
                         IPV6CacheInMinutes = AppSettings.IPV6CacheInMinutes
                     },
-                    container.GetInstance<ICacheService>(),
+                    GetCacheServiceInstance(AppSettings.IPInfoCommonCacheRedis),
+                    GetCacheServiceInstance(AppSettings.IPInfoIndividualCacheRedis),
                     container.GetInstance<IIPInfoDataAccess>()),
                 Lifestyle.Singleton);
             container.RegisterSingleton<MonitoringBetsService, MonitoringBetsServiceImpl>();
@@ -218,5 +220,14 @@
             container.Register<ICacheServiceFactory, CacheServiceFactory>(Lifestyle.Scoped);
             container.Register<IResolver, BaseResolver>(Lifestyle.Scoped);
         }
+
+        private static ICacheService GetCacheServiceInstance(string redisConnectionString)
+            => string.IsNullOrWhiteSpace(redisConnectionString)
+            ? new CacheService()
+            : new CacheService(new RedisCache(new RedisCacheOptions
+            {
+                ConnectionString = redisConnectionString,
+                ApplicationName = "Alpha-BetLists"
+            }));
     }
 }
