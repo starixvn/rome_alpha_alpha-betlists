@@ -4,6 +4,7 @@
     using Alpha.BetLists.Site.Requests.WinLoss;
     using Alpha.BetLists.Site.ViewModels.Components;
     using Alpha.IPInfo.Services;
+    using AlphaPlus.Configurations;
     using AlphaPlus.SmartPunter.Services;
     using AlphaPlus.Utilities.IP;
     using BetLists.Models;
@@ -35,6 +36,7 @@
             IpService = ipService;
             IpInfoService = ipInfoService;
             TicketHelper.IsVnIp = IpService.IsVNIP;
+            TicketHelper.HideSabaText = AppSettings.IsSiteLabel777;
             GetOddsTypeName = ticketHelper.GetOddsTypeNameById;
         }
 

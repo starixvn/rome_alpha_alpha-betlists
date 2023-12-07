@@ -19,8 +19,9 @@
             string race,
             string showTime,
             byte settlementStatus,
-            DateTime eventDate)
-            : this(sportType, status, matchId, leagueId, matchCode, homeId, awayId, race, showTime, false, string.Empty, settlementStatus, eventDate)
+            DateTime eventDate,
+            int leagueGroupId)
+            : this(sportType, status, matchId, leagueId, matchCode, homeId, awayId, race, showTime, false, string.Empty, settlementStatus, eventDate, leagueGroupId)
         {
         }
 
@@ -37,7 +38,8 @@
             bool isNeutral,
             string betStatus,
             byte settlementStatus,
-            DateTime eventDate)
+            DateTime eventDate,
+            int leagueGroupId)
         {
             SportType = sportType;
             Status = status;
@@ -52,6 +54,7 @@
             BetStatus = betStatus;
             SettlementStatus = settlementStatus;
             EventDate = eventDate;
+            LeagueGroupId = leagueGroupId;
         }
 
         public int MatchId { get; }
@@ -61,6 +64,8 @@
         public int SportType { get; }
 
         public int LeagueId { get; }
+
+        public int LeagueGroupId { get; }
 
         public int HomeId { get; }
 

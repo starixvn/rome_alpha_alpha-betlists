@@ -8,6 +8,7 @@
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Requests.BetListByBetTypeAndMatch;
+    using AlphaPlus.Configurations;
 
     public class BetListByBetTypeAndMatchViewModel : BetListByBetTypeViewModel
     {
@@ -23,6 +24,7 @@
             IsLive = query.IsLive;
             BetTeam = query.BetTeam;
             LeagueId = betListData.Tickets.Any() ? betListData.Tickets.FirstOrDefault().LeagueId : 0;
+            LeagueGroupId = betListData.Tickets.Any() ? betListData.Tickets.FirstOrDefault().LeagueGroupId : 0;
             Title = GetTitle(query.BetType).ToUpperInvariant();
         }
 
@@ -34,11 +36,18 @@
 
         public int LeagueId { get; }
 
+        public int LeagueGroupId { get; }
+
         public string GetTitle(int betType)
             => BetTypeHelper.IsOutRight(betType)
             ? CacheRefServiceHelper.GetBetTypeName(betType)
             : LeagueId == 0
             ? CacheRefServiceHelper.GetBetTypeName(betType)
-            : $"{CacheRefServiceHelper.GetLeagueName(LeagueId)} {CacheRefServiceHelper.GetBetTypeName(betType)}";
+            : $"{GetLeagueName(LeagueId, LeagueGroupId)} {CacheRefServiceHelper.GetBetTypeName(betType)}";
+
+        private string GetLeagueName(int leagueId, int leagueGroupId)
+            => AppSettings.IsSiteLabel777 ?
+            CacheRefServiceHelper.GetLeagueName(leagueId, leagueGroupId) :
+            CacheRefServiceHelper.GetLeagueName(leagueId);
     }
 }

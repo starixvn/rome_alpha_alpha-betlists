@@ -43,6 +43,7 @@ namespace Alpha.BetLists.DataAccesses
             IsLive = r.Table.Columns.Contains("liveindicator") && Converter.ToBool(r["liveindicator"]),
             IsNeutral = r.Table.Columns.Contains("isNeutral") && Converter.ToBool(r["isNeutral"]),
             LeagueId = r.Table.Columns.Contains("leagueid") ? Converter.To<int>(r["leagueid"]) : 0,
+            LeagueGroupId = r.Table.Columns.Contains("leaguegroupid") ? Converter.To<int>(r["leaguegroupid"]) : 0,
             LiveHomeScore = r.Table.Columns.Contains("livehomescore") ? Converter.To<int>(r["livehomescore"]) : 0,
             LiveAwayScore = r.Table.Columns.Contains("liveawayscore") ? Converter.To<int>(r["liveawayscore"]) : 0,
 
