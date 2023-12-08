@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using Alpha.BetLists.DataAccesses;
     using AlphaPlus.PartialUM.Services;
     using Criteria.DailyStatement;
     using Extensions;
@@ -21,15 +22,18 @@
         private readonly ReportDateService reportDateService;
         private readonly IDynamicRepository dynamicRepository;
         private readonly IPartialUMService partialUMService;
+        private readonly IBetListRepository betlistRepository;
 
         public DailyStatementServiceImpl(
             ReportDateService reportDateService,
             IDynamicRepository dynamicRepository,
-            IPartialUMService partialUMService)
+            IPartialUMService partialUMService,
+            IBetListRepository betlistRepository)
         {
             this.reportDateService = reportDateService;
             this.dynamicRepository = dynamicRepository;
             this.partialUMService = partialUMService;
+            this.betlistRepository = betlistRepository;
         }
 
         public async Task<BetListData> GetBetList(DailyStatementParam param)
@@ -53,7 +57,8 @@
 
             partialUMService.ThrowIfUM(criteria.GetSettingKey());
 
-            return await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
+            //return await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
+            return betlistRepository.FetchMultiple(criteria);
         }
 
         private async Task<(IEnumerable<TicketDto>, IEnumerable<TicketData>)> GetBetListByDay(DailyStatementParam param)
@@ -66,7 +71,8 @@
 
             partialUMService.ThrowIfUM(criteria.GetSettingKey());
 
-            return await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
+            //return await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
+            return betlistRepository.FetchMultiple(criteria);
         }
     }
 }
