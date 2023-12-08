@@ -48,8 +48,8 @@
 
             partialUMService.ThrowIfUM(criteria.GetSettingKey());
 
-            //var betListDataTuple = await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
-            var betListDataTuple = betlistRepository.FetchMultiple(criteria);
+            var betListDataTuple = await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
+            //var betListDataTuple = betlistRepository.FetchMultiple(criteria);
 
             return new PagedReportData<BetListData>(
                 new List<BetListData>

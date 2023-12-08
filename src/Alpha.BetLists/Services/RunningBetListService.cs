@@ -47,8 +47,8 @@
 
             partialUMService.ThrowIfUM(criteria.GetSettingKey());
 
-            //var betListDataTuple = await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
-            var betListDataTuple = betlistRepository.FetchMultiple(criteria);
+            var betListDataTuple = await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
+            //var betListDataTuple = betlistRepository.FetchMultiple(criteria);
             await parlayService.UpdateOddsMixParlay(betListDataTuple.Item1);
 
             return new BetListData(betListDataTuple.Item1, betListDataTuple.Item2.ToList<ITicketData>());

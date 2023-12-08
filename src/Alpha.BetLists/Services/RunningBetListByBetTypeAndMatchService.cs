@@ -31,14 +31,21 @@
 
         public async Task<BetListData> GetBetList(RunningBetListByBetTypeAndMatchParam param)
         {
-            var betListDataTuple = betlistRepository.FetchMultiple(
-                new GetBetListRunningByBetTypeAndMatchCriteria(
+            var betListDataTuple = await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(new GetBetListRunningByBetTypeAndMatchCriteria(
                     param.MatchId,
                     param.CustId,
                     param.BetType,
                     param.LiveIndicator,
                     param.BetTeam,
                     param.CustLevel));
+            //var betListDataTuple = betlistRepository.FetchMultiple(
+            //    new GetBetListRunningByBetTypeAndMatchCriteria(
+            //        param.MatchId,
+            //        param.CustId,
+            //        param.BetType,
+            //        param.LiveIndicator,
+            //        param.BetTeam,
+            //        param.CustLevel));
 
             return new BetListData(betListDataTuple.Item1, betListDataTuple.Item2.ToList<ITicketData>());
         }

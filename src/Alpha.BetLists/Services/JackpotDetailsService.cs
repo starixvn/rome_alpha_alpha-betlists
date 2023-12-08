@@ -30,17 +30,17 @@
         }
 
         public async Task<IEnumerable<TicketDto>> GetJackpotDetails(JackpotDetailsParam param)
-             => betlistRepository.Fetch(
-                new GetJackpotDetailsCriteria(param.TransId,
-                    param.CustId,
-                    param.BetType,
-                    reportDateService.GetMoveBetsDay(),
-                    reportDateService.GetBalanceUpDay()));
-        //=> await dynamicRepository.FetchAsync<TicketDto>(
-        //    new GetJackpotDetailsCriteria(param.TransId,
-        //        param.CustId,
-        //        param.BetType,
-        //        reportDateService.GetMoveBetsDay(),
-        //        reportDateService.GetBalanceUpDay()));
+        //=> betlistRepository.Fetch(
+        //   new GetJackpotDetailsCriteria(param.TransId,
+        //       param.CustId,
+        //       param.BetType,
+        //       reportDateService.GetMoveBetsDay(),
+        //       reportDateService.GetBalanceUpDay()));
+        => await dynamicRepository.FetchAsync<TicketDto>(
+            new GetJackpotDetailsCriteria(param.TransId,
+                param.CustId,
+                param.BetType,
+                reportDateService.GetMoveBetsDay(),
+                reportDateService.GetBalanceUpDay()));
     }
 }

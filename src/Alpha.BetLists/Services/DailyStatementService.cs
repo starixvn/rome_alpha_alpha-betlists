@@ -57,8 +57,8 @@
 
             partialUMService.ThrowIfUM(criteria.GetSettingKey());
 
-            //return await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
-            return betlistRepository.FetchMultiple(criteria);
+            return await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
+            //return betlistRepository.FetchMultiple(criteria);
         }
 
         private async Task<(IEnumerable<TicketDto>, IEnumerable<TicketData>)> GetBetListByDay(DailyStatementParam param)
@@ -71,8 +71,8 @@
 
             partialUMService.ThrowIfUM(criteria.GetSettingKey());
 
-            //return await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
-            return betlistRepository.FetchMultiple(criteria);
+            return await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
+            //return betlistRepository.FetchMultiple(criteria);
         }
     }
 }

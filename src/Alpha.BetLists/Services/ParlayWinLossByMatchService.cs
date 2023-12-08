@@ -46,8 +46,8 @@
 
             partialUMService.ThrowIfUM(criteria.GetSettingKey());
 
-            //var tickets = await dynamicRepository.FetchAsync<TicketDto>(criteria);
-            var tickets = betlistRepository.Fetch(criteria);
+            var tickets = await dynamicRepository.FetchAsync<TicketDto>(criteria);
+            //var tickets = betlistRepository.Fetch(criteria);
 
             return tickets;
         }

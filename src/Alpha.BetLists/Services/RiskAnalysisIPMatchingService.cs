@@ -41,8 +41,8 @@
 
             partialUMService.ThrowIfUM(criteria.GetSettingKey());
 
-            //var betListDataTuple = await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
-            var betListDataTuple = betlistRepository.FetchMultiple(criteria);
+            var betListDataTuple = await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
+            //var betListDataTuple = betlistRepository.FetchMultiple(criteria);
             return new BetListData(
                 betListDataTuple.Item1.OrderByDescending(ticket => ticket.TransDate), 
                 betListDataTuple.Item2.ToList<ITicketData>());

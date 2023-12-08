@@ -36,8 +36,8 @@
 
             partialUMService.ThrowIfUM(criteria.GetSettingKey());
 
-            //return await dynamicRepository.FetchAsync<TicketDto>(criteria);
-            return betlistRepository.Fetch(criteria);
+            return await dynamicRepository.FetchAsync<TicketDto>(criteria);
+            //return betlistRepository.Fetch(criteria);
         }
     }
 }
