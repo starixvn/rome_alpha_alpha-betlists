@@ -73,7 +73,7 @@
             var expectedProductIds = Enumerable.Empty<int>();
 
             // Act
-            var actualProductIds = productService.FilterProductIds(custId, string.Empty, 1, DateTime.Now, productIds, false);
+            var actualProductIds = productService.FilterProductIdsByCustomer(custId, string.Empty, 1, DateTime.Now, productIds);
 
             // Assert
             Assert.Equal(expectedProductIds, actualProductIds);
@@ -95,7 +95,7 @@
             fanexDataFixture.DynamicRepository.Fetch<Product>(Arg.Any<GetProductsCriteria>()).Returns(allCustomerProductIds);
 
             // Act
-            var actualProductIds = productService.FilterProductIds(custId, string.Empty, 1, DateTime.Now, productIds, false);
+            var actualProductIds = productService.FilterProductIdsByCustomer(custId, string.Empty, 1, DateTime.Now, productIds);
 
             // Assert
             Assert.Equal(expectedProductIds, actualProductIds);
@@ -112,7 +112,7 @@
             var expectedProductIds = Enumerable.Empty<int>();
 
             // Act
-            var actualProductIds = productService.FilterProductIds(custId, string.Empty, 1, DateTime.Now, productIds, false);
+            var actualProductIds = productService.FilterProductIdsByCustomer(custId, string.Empty, 1, DateTime.Now, productIds);
 
             // Assert
             Assert.Equal(expectedProductIds, actualProductIds);
@@ -134,7 +134,7 @@
             fanexDataFixture.DynamicRepository.Fetch<Product>(Arg.Any<GetProductsCriteria>()).Returns(allCustomerProductIds);
 
             // Act
-            var actualProductIds = productService.FilterProductIds(custId, string.Empty, 1, DateTime.Now, productIds, false);
+            var actualProductIds = productService.FilterProductIdsByCustomer(custId, string.Empty, 1, DateTime.Now, productIds);
 
             // Assert
             Assert.Equal(expectedProductIds, actualProductIds);
@@ -153,7 +153,7 @@
             };
 
             // Act
-            var actualProducts = productService.GetProductsByGroupHeadline(param, false);
+            var actualProducts = productService.GetProductsByGroupHeadline(param);
 
             // Assert
             Assert.True(compareLogic.Compare(expectedProducts, actualProducts.ToList()).AreEqual);
@@ -168,7 +168,7 @@
 
             // Act
             var actualProductIds = productService.FilterProductIdsByGroupHeadline(productIds,
-                new GetProductsByGroupHeadlineParam(0, DefaultVariables.CurrentDate), false);
+                new GetProductsByGroupHeadlineParam(0, DefaultVariables.CurrentDate));
 
             // Assert
             Assert.Equal(expectedProductIds, actualProductIds);
@@ -183,7 +183,7 @@
 
             // Act
             var actualProductIds = productService.FilterProductIdsByGroupHeadline(productIds,
-                new GetProductsByGroupHeadlineParam(0, DefaultVariables.CurrentDate), false);
+                new GetProductsByGroupHeadlineParam(0, DefaultVariables.CurrentDate));
 
             // Assert
             Assert.Equal(expectedProductIds, actualProductIds);
@@ -198,7 +198,7 @@
 
             // Act
             var actualProductIds = productService.FilterProductIdsByGroupHeadline(productIds,
-                new GetProductsByGroupHeadlineParam(0, DefaultVariables.CurrentDate), false);
+                new GetProductsByGroupHeadlineParam(0, DefaultVariables.CurrentDate));
 
             // Assert
             Assert.Equal(expectedProductIds, actualProductIds);
@@ -216,7 +216,7 @@
             fanexDataFixture.DynamicRepository.Fetch<ProductBySiteModel>(Arg.Any<GetOfferedProductsBySiteCriteria>()).Returns(products);
 
             // Act
-            var act = productService.CanViewProduct(1, site, 1, 21);
+            var act = productService.CanViewBySite(1, site, 1, 21);
 
             // Assert
             Assert.False(act);
@@ -236,35 +236,10 @@
             fanexDataFixture.DynamicRepository.Fetch<ProductBySiteModel>(Arg.Any<GetOfferedProductsBySiteCriteria>()).Returns(products);
 
             // Act
-            var act = productService.CanViewProduct(1, site, 1, 23);
+            var act = productService.CanViewBySite(1, site, 1, 23);
 
             // Assert
             Assert.True(act);
-        }
-
-        [Fact]
-        public void GetProductsForCustomer_EnableSabaPromotion_ReturnSabaProtionProduct()
-        {
-            // Arrange
-
-            // Act
-            var act = productService.GetProducts(1, string.Empty, 1, DateTime.MinValue, isEnableSabaPromotion: true);
-
-            // Assert
-            Assert.Equal(37, act.First().Id);
-        }
-
-        [Fact]
-        public void GetProductsByGroupHeadline_EnableSabaPromotion_ReturnSabaProtionProduct()
-        {
-            // Arrange
-            var param = new GetProductsByGroupHeadlineParam(1, DateTime.MinValue);
-
-            // Act
-            var act = productService.GetProductsByGroupHeadline(param, isEnableSabaPromotion: true);
-
-            // Assert
-            Assert.Equal(37, act.First().Id);
         }
 
         [Fact]

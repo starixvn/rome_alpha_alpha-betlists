@@ -46,7 +46,7 @@
             }
 
             var validUserSelectedProductIds = productService.FilterProductIds(
-                message.Site, message.CurrencyId, message.MinDate, message.ProductIds.ToListInt(), message.IsEnableSabaPromotion);
+                message.Site, message.CurrencyId, message.MinDate, message.ProductIds.ToListInt());
 
             var runningBetListParam = new RunningBetListParam(
                 message.CustId,
@@ -60,7 +60,7 @@
 
             var betlistData = await runningBetListService.GetBetList(runningBetListParam);
             await AssignCountry(betlistData.Tickets, message.DisplayVNIP);
-            var products = productService.GetAllOfferedProducts(message.Site, message.CurrencyId, message.MinDate, message.IsEnableSabaPromotion);
+            var products = productService.GetAllOfferedProducts(message.Site, message.CurrencyId, message.MinDate);
             var supportScoreMapBetTypeIds = forecastService.GetBetTypeIdsSupportScoreMap();
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);

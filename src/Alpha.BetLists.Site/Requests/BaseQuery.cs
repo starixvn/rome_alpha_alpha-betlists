@@ -25,8 +25,6 @@
             IsEnabledJackpot = viewer.IsEnabledJackpot;
 
             LimitedDateToShowInfo = viewer.LimitedDateToShowInfo;
-            IsEnableSabaPromotion = viewer.IsEnableSabaPromotion;
-            IsEnableSabaPromotionForHeadline = viewer.IsEnableSabaPromotionForHeadline;
             IsInternal = viewer.IsInternal;
             MainDomain = viewer.MainDomain;
         }
@@ -70,8 +68,6 @@
         public bool IsEnabledJackpot { get; set; }
 
         public DateTime LimitedDateToShowInfo { get; set; }
-
-        public bool IsEnableSabaPromotion { get; }
 
         public bool IsEnableSabaPromotionForHeadline { get; }
 
