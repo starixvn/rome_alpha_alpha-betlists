@@ -60,13 +60,6 @@
 
         public DateTime LimitedDateToShowInfo => userSession.GetProperty<DateTime>(SessionKey.CustomerDatelimit);
 
-        public bool IsEnableSabaPromotion
-            => AppSettings.OfferSabaPromotionSites.Any(site => site == "*" || site.Equals(userSession.Site, StringComparison.OrdinalIgnoreCase));
-
-        public bool IsEnableSabaPromotionForHeadline
-            => AppSettings.OfferSabaPromotionHeadlineSites.Any(site => site == "*" || site.Equals(userSession.Site, StringComparison.OrdinalIgnoreCase))
-            || IsEnableSabaPromotion;
-
         public bool AutoFollowBetIsDummyAgent => userSession.AutoFollowBetIsDummyAgent;
 
         internal virtual IList<int> GetEnableProductsByGameName(string gameName)

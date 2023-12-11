@@ -32,10 +32,6 @@
 
         DateTime LimitedDateToShowInfo { get; }
 
-        bool IsEnableSabaPromotion { get; }
-
-        bool IsEnableSabaPromotionForHeadline { get; }
-
         string MainDomain { get; }
 
         bool AutoFollowBetIsDummyAgent { get; }

@@ -69,8 +69,6 @@
 
         public DateTime LimitedDateToShowInfo { get; set; }
 
-        public bool IsEnableSabaPromotionForHeadline { get; }
-
         public bool IsInternal { get; }
 
         public string MainDomain { get; }
