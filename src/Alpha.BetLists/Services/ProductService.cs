@@ -43,8 +43,8 @@
     {
         private const int CustProductsCacheTimeInMinutes = 5;
         private const int CacheDayforJackpot = 7;
-        private const string ProductsCacheKey = "Alpha.BetLists.Services.Impl.ProductServiceImpl.Products-{0}-{1}-{2}";
-
+        private const string ProductsCacheKey = "Alpha.BetLists.Services.Impl.ProductServiceImpl.Products";
+        private readonly Func<int, bool> canViewProduct;
         private readonly Func<int, string> getProductName;
         private readonly IDynamicRepository dynamicRepository;
         private readonly ICacheService cacheService;
@@ -55,11 +55,13 @@
             IDynamicRepository dynamicRepository,
             ProductDataAccess productDataAccess,
             ICacheService cacheService,
+            Func<int, bool> canViewProduct,
             Func<int, string> getProductName)
         {
             this.dynamicRepository = dynamicRepository;
             this.productDataAccess = productDataAccess;
             this.cacheService = cacheService;
+            this.canViewProduct = canViewProduct;
             this.getProductName = getProductName;
         }
 
@@ -178,10 +180,10 @@
                $"{ProductsCacheKey}--{site}--{currencyId}",
                () => dynamicRepository.Fetch<Product>(new GetProductsCriteria(site, currencyId))
                    .Where(product => !product.IsHide)
-                   .Select(product => new Product(product.Id, product.Name, product.IsEnable, getProductName, product.Type, product.OrderNo)),
+                   .Select(product => new Product(product.Id, product.Name, product.EndOfSupportDate, getProductName, product.Type, product.OrderNo)),
                new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(CustProductsCacheTimeInMinutes)));
 
-            return products.Where(i => IsRemainSupportProduct(i, minReportDate));
+            return products.Where(i => IsRemainSupportProduct(i, minReportDate) && canViewProduct(i.Id));
         }
 
         private IEnumerable<Product> GetOfferedProductsAndSabaPromotion(IEnumerable<Product> custProducts, bool isEnableSabaPromotion)

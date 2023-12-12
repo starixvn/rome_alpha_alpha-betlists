@@ -165,6 +165,7 @@
                     container.GetInstance<IDynamicRepository>(),
                     container.GetInstance<ProductDataAccess>(),
                     container.GetInstance<ICacheService>(),
+                    UserPermission.IsShowOrNotExistProduct,
                     CacheRefServiceHelper.GetProductName),
                 Lifestyle.Singleton);
             container.RegisterSingleton<ProductDetailService>(
