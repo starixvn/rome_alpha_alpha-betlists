@@ -40,7 +40,7 @@
     {
         private const int CustProductsCacheTimeInMinutes = 5;
         private const int CacheDayforJackpot = 7;
-        private const string ProductsCacheKey = "Alpha.BetLists.Services.Impl.ProductServiceImpl.Products";
+        private const string ProductsCacheKey = "Alpha.BetLists.Services.Impl.ProductServiceImpl.Products-{0}-{1}-{2}";
         private readonly Func<int, bool> canViewProduct;
         private readonly Func<int, string> getProductName;
         private readonly IDynamicRepository dynamicRepository;
@@ -69,7 +69,7 @@
             var custProducts = cacheService
                 .GetOrSet(
                 $"Alpha.Reports.Services.Impl.ProductsForCustomer-{viewerId}-{site}-{currencyId}",
-                () => GetProductsForReport()
+                () => GetProductsForReport(viewerId, site, currencyId)
                         .Where(product => canViewProduct(product.Id) || CanViewBySite(viewerId, site, currencyId, product.Id))
                         .Select(product => new Product(product.Id, product.Name, product.EndOfSupportDate, getProductName, product.Type, product.OrderNo)),
                 new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(CustProductsCacheTimeInMinutes)));
@@ -199,11 +199,11 @@
            => !product.EndOfSupportDate.HasValue
            || minReportDate <= product.EndOfSupportDate.Value;
 
-        private IEnumerable<Product> GetProductsForReport()
+        private IEnumerable<Product> GetProductsForReport(int viewerId, string site, int currencyId)
         {
             var products = cacheService
                 .GetOrSet(
-                ProductsCacheKey,
+                string.Format(ProductsCacheKey, viewerId, site, currencyId),
                 () => dynamicRepository.Fetch<Product>(new GetProductsCriteria()),
                 new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromDays(1)));
 
