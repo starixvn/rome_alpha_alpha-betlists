@@ -37,8 +37,8 @@ namespace Alpha.BetLists.DataAccesses
             HomeId = r.Table.Columns.Contains("homeid") ? Converter.To<long>(r["homeid"]) : 0,
             EventDate = r.Table.Columns.Contains("eventdate") ? Converter.ToDateTime(r["eventdate"]) : DateTime.Now,
             IP = r.Table.Columns.Contains("ip") ? Converter.ToString2(r["ip"]) : string.Empty,
-            IsLive = r.Table.Columns.Contains("liveindicator") ? Converter.ToBool(r["liveindicator"]) : false,
-            IsNeutral = r.Table.Columns.Contains("isNeutral") ? Converter.ToBool(r["isNeutral"]) : false,
+            IsLive = r.Table.Columns.Contains("liveindicator") && Converter.ToBool(r["liveindicator"]),
+            IsNeutral = r.Table.Columns.Contains("isNeutral") && Converter.ToBool(r["isNeutral"]),
             LeagueId = r.Table.Columns.Contains("leagueid") ? Converter.To<int>(r["leagueid"]) : 0,
             LiveHomeScore = r.Table.Columns.Contains("livehomescore") ? Converter.To<int>(r["livehomescore"]) : 0,
             LiveAwayScore = r.Table.Columns.Contains("liveawayscore") ? Converter.To<int>(r["liveawayscore"]) : 0,
@@ -95,7 +95,6 @@ namespace Alpha.BetLists.DataAccesses
         public IList<TicketDto> Fetch(dynamic criteria)
         {
             var tickets = new List<TicketDto>();
-            var outputList = new List<TicketData>();
 
             using (var db = ObjectDbFactory.CreateInstance(criteria.GetSettingKey()))
             {
