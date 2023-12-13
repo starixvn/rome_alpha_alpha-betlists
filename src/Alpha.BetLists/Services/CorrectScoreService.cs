@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using Alpha.BetLists.DataAccesses;
     using AlphaPlus.PartialUM.Services;
     using Criteria.CorrectScore;
     using Fanex.Data.Repository;
@@ -17,13 +18,16 @@
     {
         private readonly IDynamicRepository dynamicRepository;
         private readonly IPartialUMService partialUMService;
+        private readonly IBetListRepository betlistRepository;
 
         public CorrectScoreServiceImpl(
             IDynamicRepository dynamicRepository,
-            IPartialUMService partialUMService)
+            IPartialUMService partialUMService,
+            IBetListRepository betlistRepository)
         {
             this.dynamicRepository = dynamicRepository;
             this.partialUMService = partialUMService;
+            this.betlistRepository = betlistRepository;
         }
 
         public async Task<IEnumerable<TicketDto>> GetBetList(CorrectScoreParam param)
@@ -33,6 +37,7 @@
             partialUMService.ThrowIfUM(criteria.GetSettingKey());
 
             return await dynamicRepository.FetchAsync<TicketDto>(criteria);
+            //return betlistRepository.Fetch(criteria);
         }
     }
 }

@@ -2,6 +2,7 @@
 {
     using System.Linq;
     using System.Threading.Tasks;
+    using Alpha.BetLists.DataAccesses;
     using AlphaPlus.PartialUM.Services;
     using Criteria.MemberBetList;
     using Extensions;
@@ -19,13 +20,16 @@
     {
         private readonly IDynamicRepository dynamicRepository;
         private readonly IPartialUMService partialUMService;
+        private readonly IBetListRepository betlistRepository;
 
         public MemberBetListServiceImpl(
             IDynamicRepository dynamicRepository,
-            IPartialUMService partialUMService)
+            IPartialUMService partialUMService,
+            IBetListRepository betlistRepository)
         {
             this.dynamicRepository = dynamicRepository;
             this.partialUMService = partialUMService;
+            this.betlistRepository = betlistRepository;
         }
 
         public async Task<BetListData> GetBetList(MemberBetListParam param)
@@ -40,6 +44,7 @@
             partialUMService.ThrowIfUM(criteria.GetSettingKey());
 
             var betListDataTuple = await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
+            //var betListDataTuple = betlistRepository.FetchMultiple(criteria);
 
             return new BetListData(betListDataTuple.Item1, betListDataTuple.Item2.ToList<ITicketData>());
         }

@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using Alpha.BetLists.DataAccesses;
     using AlphaPlus.PartialUM.Services;
     using Criteria.LastBets;
     using Fanex.BetList.Core.Entities;
@@ -41,17 +42,20 @@
         private readonly ICacheService cacheService;
         private readonly IPartialUMService partialUMService;
         private readonly ParlayService parlayService;
+        private readonly IBetListRepository betlistRepository;
 
         public LastBetsServiceImpl(
             IDynamicRepository dynamicRepository,
             ICacheService cacheService,
             IPartialUMService partialUMService,
-            ParlayService parlayService)
+            ParlayService parlayService,
+            IBetListRepository betlistRepository)
         {
             this.dynamicRepository = dynamicRepository;
             this.cacheService = cacheService;
             this.partialUMService = partialUMService;
             this.parlayService = parlayService;
+            this.betlistRepository = betlistRepository;
         }
 
         public Task<IEnumerable<TicketDto>> GetLastBets(GetLastBetsParam param)
@@ -64,7 +68,7 @@
             partialUMService.ThrowIfUM(criteria.GetSettingKey());
 
             var tickets = await dynamicRepository.FetchAsync<TicketDto>(criteria);
-
+            //var tickets = betlistRepository.Fetch(criteria);
             if (tickets.Any())
             {
                 var outrightMatchesTask = GetRunningOutrightMatches(cacheTime);
