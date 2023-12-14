@@ -2,6 +2,7 @@
 using Fanex.BetList.Core.Entities;
 using Fanex.Common;
 using Fanex.Data;
+using Fanex.Data.Repository;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,15 +11,15 @@ namespace Alpha.BetLists.DataAccesses
 {
     public interface IBetListRepository
     {
-        IList<TicketDto> Fetch(dynamic criteria);
-        (IList<TicketDto>, List<TicketData>) FetchMultiple(dynamic criteria);
+        IList<TicketDto> Fetch(ICriteria criteria);
+
+        (IList<TicketDto>, List<TicketData>) FetchMultiple(ICriteria criteria);
     }
 
     public class BetListRepository : IBetListRepository
     {
         private readonly Func<DataRow, TicketDto> mapTicketObjectFunction = r => new TicketDto
         {
-
             ActualStake = r.Table.Columns.Contains("actual_stake") ? Converter.To<decimal>(r["actual_stake"]) : 0,
 
             AgentWinlost = r.Table.Columns.Contains("awinlost") ? Converter.ToDecimal(r["awinlost"]) : 0,
@@ -51,7 +52,7 @@ namespace Alpha.BetLists.DataAccesses
             MasterOdds = r.Table.Columns.Contains("modds") ? Converter.ToDecimal(r["modds"]) : 0,
             MatchCode = r.Table.Columns.Contains("matchcode") ? Converter.ToString2(r["matchcode"]) : string.Empty,
             MatchId = r.Table.Columns.Contains("matchid") ? Converter.To<int>(r["matchid"]) : 0,
-            Odds = r.Table.Columns.Contains("odds") ? Converter.ToDecimal(r["odds"]) : 0,            
+            Odds = r.Table.Columns.Contains("odds") ? Converter.ToDecimal(r["odds"]) : 0,
             OddsType = r.Table.Columns.Contains("OddsType") ? Converter.ToString2(r["OddsType"]) : string.Empty,
             PlayerComm = r.Table.Columns.Contains("PlayerComm") ? Converter.ToDecimal(r["PlayerComm"]) : 0,
             Race = r.Table.Columns.Contains("race") ? Converter.ToString2(r["race"]) : string.Empty,
@@ -87,14 +88,17 @@ namespace Alpha.BetLists.DataAccesses
             RefCode = r.Table.Columns.Contains("refcode") ? Converter.To<long>(r["refcode"]) : 0,
             SettlementStatus = r.Table.Columns.Contains("SettlementStatus") ? Converter.To<byte>(r["SettlementStatus"]) : (byte)0,
             SiteId = r.Table.Columns.Contains("SiteId") ? Converter.ToString2(r["SiteId"]) : "",
-            JackpotInfo = r.Table.Columns.Contains("JackpotInfo") ? Converter.ToString2(r["JackpotInfo"]) : string.Empty,            
+            JackpotInfo = r.Table.Columns.Contains("JackpotInfo") ? Converter.ToString2(r["JackpotInfo"]) : string.Empty,
             DeviceType = r.Table.Columns.Contains("DeviceType") && !r.IsNull("DeviceType") ? Converter.To<int>(r["DeviceType"]) : (int?)null,
-            
         };
 
-        public IList<TicketDto> Fetch(dynamic criteria)
+        public IList<TicketDto> Fetch(ICriteria criteria)
         {
             var tickets = new List<TicketDto>();
+            if (!criteria.IsValid())
+            {
+                return tickets;
+            }
 
             using (var db = ObjectDbFactory.CreateInstance(criteria.GetSettingKey()))
             {
@@ -106,17 +110,21 @@ namespace Alpha.BetLists.DataAccesses
                     foreach (DataRow row in currentTable.Rows)
                     {
                         tickets.Add(mapTicketObjectFunction(row));
-                    }                    
+                    }
                 }
             }
 
             return tickets;
         }
 
-        public (IList<TicketDto>, List<TicketData>) FetchMultiple(dynamic criteria)
+        public (IList<TicketDto>, List<TicketData>) FetchMultiple(ICriteria criteria)
         {
             var tickets = new List<TicketDto>();
             var outputList = new List<TicketData>();
+            if (!criteria.IsValid())
+            {
+                return (tickets, outputList);
+            }
 
             using (var db = ObjectDbFactory.CreateInstance(criteria.GetSettingKey()))
             {
