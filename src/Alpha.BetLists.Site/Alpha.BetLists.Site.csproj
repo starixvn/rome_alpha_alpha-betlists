@@ -588,6 +588,9 @@
     <AdditionalFiles Include="..\..\SonarQube\alpha-betlist\CSharp\SonarLint.xml">
       <Link>SonarLint.xml</Link>
     </AdditionalFiles>
+    <Content Include="App_Data\activitytracking.dr.json">
+      <DependentUpon>activitytracking.json</DependentUpon>
+    </Content>
     <Content Include="App_Data\activitytracking.local.json">
       <DependentUpon>activitytracking.json</DependentUpon>
     </Content>
@@ -599,6 +602,9 @@
     </Content>
     <Content Include="App_Data\activitytracking.uat.json">
       <DependentUpon>activitytracking.json</DependentUpon>
+    </Content>
+    <Content Include="App_Data\ProductSection.dr.config">
+      <DependentUpon>ProductSection.config</DependentUpon>
     </Content>
     <Content Include="App_Data\ProductSection.local.config">
       <DependentUpon>ProductSection.config</DependentUpon>
@@ -623,6 +629,9 @@
     </Content>
     <Content Include="App_Data\ProductSection.uat2.config">
       <DependentUpon>ProductSection.config</DependentUpon>
+    </Content>
+    <Content Include="App_Data\securitycode.dr.json">
+      <DependentUpon>securitycode.json</DependentUpon>
     </Content>
     <Content Include="App_Data\securitycode.local.json">
       <DependentUpon>securitycode.json</DependentUpon>
@@ -1048,11 +1057,20 @@
     <Content Include="assets\styles\last-bets-dark.scss" />
     <Content Include="assets\styles\parlay-detail-dark.scss" />
     <Content Include="App_Data\ProductSection.config" />
+    <Content Include="Web.AppSettings.dr.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
     <Content Include="Web.AppSettings.pro22.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
+    <Content Include="Web.ConnectionStrings.dr.config">
+      <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
+    </Content>
     <Content Include="Web.ConnectionStrings.pro22.config">
       <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.dr.config">
+      <DependentUpon>Web.local.config</DependentUpon>
     </Content>
     <Content Include="Web.pro22.config">
       <DependentUpon>Web.local.config</DependentUpon>
