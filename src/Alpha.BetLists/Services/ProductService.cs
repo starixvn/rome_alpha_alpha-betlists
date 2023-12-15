@@ -65,9 +65,7 @@
 
         public IEnumerable<Product> GetAllOfferedProducts(string site, int currencyId, DateTime minReportDate)
         {
-            var custProducts = GetOfferedProducts(site, currencyId, minReportDate);
-
-            return GetOfferedProductsAndSabaPromotion(custProducts);
+            return GetOfferedProducts(site, currencyId, minReportDate);
         }
 
         public IEnumerable<int> FilterProductIds(string site, int currencyId, DateTime minReportDate, IEnumerable<int> productIds)
@@ -174,12 +172,6 @@
                new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(CustProductsCacheTimeInMinutes)));
 
             return products.Where(i => IsRemainSupportProduct(i, minReportDate) && canViewProduct(i.Id));
-        }
-
-        private IEnumerable<Product> GetOfferedProductsAndSabaPromotion(IEnumerable<Product> custProducts)
-        {
-
-            return custProducts;
         }
 
         private static bool IsRemainSupportProduct(Product product, DateTime minReportDate)
