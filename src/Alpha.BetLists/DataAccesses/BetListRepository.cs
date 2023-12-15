@@ -99,7 +99,7 @@ namespace Alpha.BetLists.DataAccesses
             var tickets = new List<TicketDto>();
             if (!criteria.IsValid())
             {
-                Logger.Log.Info(JsonConvert.SerializeObject(criteria, Formatting.Indented));
+                Logger.Log.Info(criteria.GetSettingKey() + ":" + JsonConvert.SerializeObject(criteria, Formatting.Indented));
                 return tickets;
             }
 
@@ -126,7 +126,7 @@ namespace Alpha.BetLists.DataAccesses
             var outputList = new List<TicketData>();
             if (!criteria.IsValid())
             {
-                Logger.Log.Info(JsonConvert.SerializeObject(criteria, Formatting.Indented));
+                Logger.Log.Info(criteria.GetSettingKey() + ":" + JsonConvert.SerializeObject(criteria, Formatting.Indented));
                 return (tickets, outputList);
             }
 

@@ -142,7 +142,7 @@
         public IEnumerable<Product> GetProductsByGroupHeadline(GetProductsByGroupHeadlineParam param, bool isEnableSabaPromotion)
         {
             var products = dynamicRepository.Fetch<Product>(new GetProductsByGroupHeadlineCriteria(param.CustId));
-            Logger.Log.Info(JsonConvert.SerializeObject(products, Formatting.Indented));
+            Logger.Log.Info("Products:\n" + JsonConvert.SerializeObject(products, Formatting.Indented));
             var data = products
                 .Where(product => IsRemainSupportProductForGroupHeadline(product, param.MinDate))
                 .Select(product => new Product(product.Id, product.Name, product.IsEnable, getProductName, product.Type, product.OrderNo));
