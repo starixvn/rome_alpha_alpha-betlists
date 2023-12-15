@@ -3,6 +3,8 @@ using Fanex.BetList.Core.Entities;
 using Fanex.Common;
 using Fanex.Data;
 using Fanex.Data.Repository;
+using Fanex.Logging;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -97,6 +99,7 @@ namespace Alpha.BetLists.DataAccesses
             var tickets = new List<TicketDto>();
             if (!criteria.IsValid())
             {
+                Logger.Log.Info(JsonConvert.SerializeObject(criteria, Formatting.Indented));
                 return tickets;
             }
 
@@ -123,6 +126,7 @@ namespace Alpha.BetLists.DataAccesses
             var outputList = new List<TicketData>();
             if (!criteria.IsValid())
             {
+                Logger.Log.Info(JsonConvert.SerializeObject(criteria, Formatting.Indented));
                 return (tickets, outputList);
             }
 

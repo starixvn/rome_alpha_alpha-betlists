@@ -11,7 +11,9 @@
     using Extensions;
     using Fanex.BetList.Core.Entities;
     using Fanex.Data.Repository;
+    using Fanex.Logging;
     using Models;
+    using Newtonsoft.Json;
     using Params;
 
     public interface WinLossService
@@ -63,9 +65,9 @@
                     {
                         param.MaxTotalRow = (param.MaxTotalRow - bettrans14Tickets) + 1;
                     }
-                        
+
                     oldBetListDataTuple = await GetBetListBeforeBalanceUpDay(param, fromDate: fromDate, toDate: previousBalanceUpDate);
-                    var totalTickets = (oldBetListDataTuple.Item3.ErrCode != 0 ? 
+                    var totalTickets = (oldBetListDataTuple.Item3.ErrCode != 0 ?
                         oldBetListDataTuple.Item3.MaxTotalRow : oldBetListDataTuple.Item1.Count()) + bettrans14Tickets;
 
                     if (totalTickets > param.MaxTotalRowConfig)
@@ -119,18 +121,23 @@
                             maxTotalRow: param.MaxTotalRow,
                             isExportExcel: param.IsExcel);
 
+            if (criteria.IsInvalid())
+            {
+                await Logger.Log.InfoAsync(JsonConvert.SerializeObject(criteria, Formatting.Indented));
+            }
+
             partialUMService.ThrowIfUM(criteria.GetSettingKey());
 
             //var result = await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
             var result = betlistRepository.FetchMultiple(criteria);
-            var errFormat = param.IsExcel ? 
-                string.Format(Resources.ExceededMaxTotalRowExportExcelFunc, param.MaxTotalRowConfig) : 
+            var errFormat = param.IsExcel ?
+                string.Format(Resources.ExceededMaxTotalRowExportExcelFunc, param.MaxTotalRowConfig) :
                 string.Format(Resources.ExceededMaxTotalRowWithExcelFunc, criteria.MaxTotalRow, param.MaxTotalRowConfig);
 
             return new Tuple<IEnumerable<TicketDto>, IEnumerable<TicketData>, BetlistOutputParams>(
                 result.Item1,
                 result.Item2,
-                new BetlistOutputParams(criteria.ErrCode, criteria.ErrCode != 0 ? 
+                new BetlistOutputParams(criteria.ErrCode, criteria.ErrCode != 0 ?
                     errFormat : criteria.ErrMsg, criteria.MaxTotalRow));
         }
 
@@ -145,6 +152,11 @@
                             param.Language,
                             maxTotalRow: param.MaxTotalRow,
                             isExportExcel: param.IsExcel);
+
+            if (criteria.IsInvalid())
+            {
+                await Logger.Log.InfoAsync(JsonConvert.SerializeObject(criteria, Formatting.Indented));
+            }
 
             partialUMService.ThrowIfUM(criteria.GetSettingKey());
 

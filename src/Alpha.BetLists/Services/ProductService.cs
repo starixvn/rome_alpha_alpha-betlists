@@ -9,7 +9,9 @@
     using Extensions;
     using Fanex.Caching;
     using Fanex.Data.Repository;
+    using Fanex.Logging;
     using Models;
+    using Newtonsoft.Json;
     using Params;
 
     public interface ProductService
@@ -26,7 +28,7 @@
 
         bool IsEnabledJackpot(string site, int currencyId);
 
-        IEnumerable<Product> GetProductsHaveSupportCancelledBet(int viewerId, 
+        IEnumerable<Product> GetProductsHaveSupportCancelledBet(int viewerId,
             string site,
             int currencyId,
             DateTime minReportDate,
@@ -106,7 +108,7 @@
             return productIdList;
         }
 
-        public IEnumerable<Product> GetProductsHaveSupportCancelledBet(int viewerId, 
+        public IEnumerable<Product> GetProductsHaveSupportCancelledBet(int viewerId,
             string site,
             int currencyId,
             DateTime minReportDate,
@@ -139,7 +141,9 @@
 
         public IEnumerable<Product> GetProductsByGroupHeadline(GetProductsByGroupHeadlineParam param, bool isEnableSabaPromotion)
         {
-            var data = dynamicRepository.Fetch<Product>(new GetProductsByGroupHeadlineCriteria(param.CustId))
+            var products = dynamicRepository.Fetch<Product>(new GetProductsByGroupHeadlineCriteria(param.CustId));
+            Logger.Log.Info(JsonConvert.SerializeObject(products, Formatting.Indented));
+            var data = products
                 .Where(product => IsRemainSupportProductForGroupHeadline(product, param.MinDate))
                 .Select(product => new Product(product.Id, product.Name, product.IsEnable, getProductName, product.Type, product.OrderNo));
 
