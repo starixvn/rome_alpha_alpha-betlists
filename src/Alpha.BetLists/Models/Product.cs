@@ -8,6 +8,12 @@
         {
         }
 
+        public Product(int id, string name, DateTime? endOfSupportDate, bool isEnable, int type, int orderNo)
+            : this(id, name, endOfSupportDate, type, orderNo)
+        {
+            IsEnable = isEnable;
+        }
+
         public Product(int id, string name, DateTime? endOfSupportDate, int type, int orderNo)
         {
             Id = id;

@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Alpha.BetLists.DataAccesses;
     using Constants;
     using Criteria;
     using Criteria.ProgressiveJackpot;
@@ -48,14 +49,17 @@
         private readonly IDynamicRepository dynamicRepository;
         private readonly ICacheService cacheService;
         private const int SabaPromotionProductId = 37;
+        private readonly ProductDataAccess productDataAccess;
 
         public ProductServiceImpl(
             IDynamicRepository dynamicRepository,
+            ProductDataAccess productDataAccess,
             ICacheService cacheService,
             Func<int, bool> canViewProduct,
             Func<int, string> getProductName)
         {
             this.dynamicRepository = dynamicRepository;
+            this.productDataAccess = productDataAccess;
             this.cacheService = cacheService;
             this.canViewProduct = canViewProduct;
             this.getProductName = getProductName;
@@ -141,7 +145,7 @@
 
         public IEnumerable<Product> GetProductsByGroupHeadline(GetProductsByGroupHeadlineParam param, bool isEnableSabaPromotion)
         {
-            var products = dynamicRepository.Fetch<Product>(new GetProductsByGroupHeadlineCriteria(param.CustId));
+            var products = productDataAccess.GetProductsByGroupHeadline(param);
             Logger.Log.Info("Products:\n" + JsonConvert.SerializeObject(products, Formatting.Indented));
             var data = products
                 .Where(product => IsRemainSupportProductForGroupHeadline(product, param.MinDate))

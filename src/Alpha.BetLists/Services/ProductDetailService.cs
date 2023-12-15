@@ -76,7 +76,7 @@
                     }
 
                     if (IsSupportProductDetail(group.Key))
-                    {   
+                    {
                         validProductDetails.AddRange(group.Where(p => resourceIdsHash.ContainsKey(p.ResourceId)));
                     }
                 });
@@ -87,7 +87,7 @@
         }
 
         private async Task<IEnumerable<ProductDetail>> GetProductDetailsAsync()
-            => await ConfiguredCacheService.GetOrSet(
+            => await ConfiguredCacheService.GetOrSetAsync(
                 ProductDetailsCacheKey,
                 () => dynamicRepository.FetchAsync<ProductDetail>(new GetProductsDetailCriteria()),
                 new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromDays(ProductDetailsCacheInDay)));
