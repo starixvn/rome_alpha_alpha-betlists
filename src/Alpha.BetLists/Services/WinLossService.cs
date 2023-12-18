@@ -123,7 +123,7 @@
 
             if (criteria.IsInvalid())
             {
-                await Logger.Log.InfoAsync("GetBetListWinLossByDateCriteria:\n" + JsonConvert.SerializeObject(criteria, Formatting.Indented));
+                await Logger.Log.ErrorAsync("GetBetListWinLossByDateCriteria:\n" + JsonConvert.SerializeObject(criteria, Formatting.Indented));
             }
 
             partialUMService.ThrowIfUM(criteria.GetSettingKey());
@@ -155,7 +155,7 @@
 
             if (criteria.IsInvalid())
             {
-                await Logger.Log.InfoAsync("GetBetListWinLossByDateOldCriteria:\n" + JsonConvert.SerializeObject(criteria, Formatting.Indented));
+                await Logger.Log.ErrorAsync("GetBetListWinLossByDateOldCriteria:\n" + JsonConvert.SerializeObject(criteria, Formatting.Indented));
             }
 
             partialUMService.ThrowIfUM(criteria.GetSettingKey());

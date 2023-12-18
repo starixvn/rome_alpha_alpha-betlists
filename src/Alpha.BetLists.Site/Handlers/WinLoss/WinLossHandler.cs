@@ -12,6 +12,7 @@
     using Requests.WinLoss;
     using Services;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using ViewModels.WinLoss;
 
@@ -52,9 +53,9 @@
                 ? productService.IsEnabledJackpot(message.Site, message.CurrencyId)
                 : message.IsEnabledJackpot;
 
-            if (message.IsGroupHeadline)
+            if (message.IsGroupHeadline && !validUserSelectedProductIds.Any())
             {
-                await Logger.Log.InfoAsync("validUserSelectedProductIds: " + string.Join(", ", validUserSelectedProductIds));
+                await Logger.Log.ErrorAsync("validUserSelectedProductIds: " + string.Join(", ", validUserSelectedProductIds));
             }
 
             var winLossParam = CreateWinLossParam(message, validUserSelectedProductIds, productDetailsXML, message.MaxTotalRow, message.MaxTotalRowConfig);
