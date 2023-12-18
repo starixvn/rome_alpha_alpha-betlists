@@ -76,8 +76,13 @@
 
         public ShowAdvantPlayMiniBetDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
             const params = this.CreatePopupDetailsParam(refNo, winlossDate, custId, transType, "AdvantPlay Mini");
+        }
+
+        public ShoWELiveCasinoBetDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
+            const params = this.CreatePopupDetailsParam(refNo, winlossDate, custId, transType, "WE Live Casino");
             this.ShowDetailsPopup(params);
         }
+
 
         private CreatePopupDetailsParam = (refNo: string, winlossDate: Date, custId: string, transType: string, sportName: string = "Saba Casino"): string => {
             return "?refNo=" + refNo
@@ -689,6 +694,7 @@ let showMGRNGCasinoBetDetails: Function;
 let showJiliBetDetails: Function;
 let showYeeBetBetDetails: Function;
 let showLive22BetDetails: Function;
+let showWELiveCasinoBetDetails: Function;
 
 $(document).ready(() => {
     showRnGCasinoDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowRnGCasinoDetails;
@@ -726,4 +732,5 @@ $(document).ready(() => {
     showJiliBetDetails = BetList.Choice.TicketDetails.JiliTicketDetails.Instance.ShowJiliBetDetails;
     showYeeBetBetDetails = BetList.Choice.TicketDetails.YeeBetTicketDetails.Instance.ShowYeeBetTicketDetails;
     showLive22BetDetails = BetList.Choice.TicketDetails.Live22TicketDetails.Instance.ShowLive22TicketDetails;
+    showWELiveCasinoBetDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShoWELiveCasinoBetDetails;
 })
