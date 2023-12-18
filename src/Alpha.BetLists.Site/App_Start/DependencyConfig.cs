@@ -173,7 +173,8 @@
                     CacheRefServiceHelper.GetProductDetailName,
                     container.GetInstance<ProductService>().CanViewBySite,
                     UserPermission.HasPermissionOnProduct,
-                    container.GetInstance<IDynamicRepository>()));
+                    container.GetInstance<IDynamicRepository>(),
+                    container.GetInstance<ICacheService>()));
             container.Register<CancelledBetService, CancelledBetServiceImpl>();
 
             container.Register<ICasinoDetailsService, CasinoDetailsService>(Lifestyle.Singleton);

@@ -2,6 +2,25 @@
 {
     using System;
 
+    public class CosolidateProduct
+    {
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+
+        public DateTime? EndOfSupportDate { get; set; }
+
+        public string DisplayName { get; set; }
+
+        public bool IsEnable { get; set; }
+
+        public int Type { get; set; }
+
+        public string TypeName { get; set; }
+
+        public int OrderNo { get; set; }
+    }
+
     public class Product
     {
         public Product()

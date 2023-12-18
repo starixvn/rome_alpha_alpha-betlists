@@ -34,17 +34,20 @@
         private readonly Func<int, string, int, int, bool> canViewBySite;
         private readonly Func<int, bool> canViewProduct;
         private readonly IDynamicRepository dynamicRepository;
+        private readonly ICacheService cacheService;
 
         public ProductDetailServiceImpl(
             Func<string, int, string> getProductDetailName,
             Func<int, string, int, int, bool> canViewBySite,
             Func<int, bool> canViewProduct,
-            IDynamicRepository dynamicRepository)
+            IDynamicRepository dynamicRepository,
+            ICacheService cacheService)
         {
             this.getProductDetailName = getProductDetailName;
             this.canViewBySite = canViewBySite;
             this.canViewProduct = canViewProduct;
             this.dynamicRepository = dynamicRepository;
+            this.cacheService = cacheService;
         }
 
         public async Task<string> BuildProductDetailsXMLAsync(IEnumerable<int> validProductIds, string userSelectedResourceIds, bool is789y = false)
@@ -87,7 +90,7 @@
         }
 
         private Task<IEnumerable<ProductDetail>> GetProductDetailsAsync()
-            => ConfiguredCacheService.GetOrSetAsync(
+            => cacheService.GetOrSetAsync(
                 ProductDetailsCacheKey,
                 () => dynamicRepository.FetchAsync<ProductDetail>(new GetProductsDetailCriteria()),
                 new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromDays(ProductDetailsCacheInDay)));
@@ -155,7 +158,7 @@
 
             var canViewProductDetails = CanViewProductDetails(viewerId, site, currencyId);
 
-            return await ConfiguredCacheService.GetOrSetAsync(
+            return await cacheService.GetOrSetAsync(
                 $"{ProductDetailsCacheKey}-{viewerId}",
                 async () => (await GetProductDetailsAsync())
                     .Where(p => canViewProductDetails.ContainsKey(p.ProductId))
