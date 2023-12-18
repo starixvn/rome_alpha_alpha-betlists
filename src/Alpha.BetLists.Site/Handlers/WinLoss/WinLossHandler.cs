@@ -6,11 +6,13 @@
     using Extensions;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
+    using Fanex.Logging;
     using MediatR;
     using Params;
     using Requests.WinLoss;
     using Services;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using ViewModels.WinLoss;
 
@@ -51,6 +53,11 @@
                 ? productService.IsEnabledJackpot(message.Site, message.CurrencyId)
                 : message.IsEnabledJackpot;
 
+            if (message.IsGroupHeadline && !validUserSelectedProductIds.Any())
+            {
+                await Logger.Log.ErrorAsync("validUserSelectedProductIds: " + string.Join(", ", validUserSelectedProductIds));
+            }
+
             var winLossParam = CreateWinLossParam(message, validUserSelectedProductIds, productDetailsXML, message.MaxTotalRow, message.MaxTotalRowConfig);
             var betlistData = await winLossService.GetBetList(winLossParam);
             await AssignCountry(betlistData.Tickets, message.DisplayVNIP);
@@ -64,7 +71,7 @@
             => new WinLossParam(
                message.CustId,
                productIds,
-               message.FromDate,               
+               message.FromDate,
                message.ToDate,
                message.LimitedDateToShowInfo,
                message.Language,

@@ -3,13 +3,16 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Alpha.BetLists.DataAccesses;
     using Constants;
     using Criteria;
     using Criteria.ProgressiveJackpot;
     using Extensions;
     using Fanex.Caching;
     using Fanex.Data.Repository;
+    using Fanex.Logging;
     using Models;
+    using Newtonsoft.Json;
     using Params;
 
     public interface ProductService
@@ -26,7 +29,7 @@
 
         bool IsEnabledJackpot(string site, int currencyId);
 
-        IEnumerable<Product> GetProductsHaveSupportCancelledBet(int viewerId, 
+        IEnumerable<Product> GetProductsHaveSupportCancelledBet(int viewerId,
             string site,
             int currencyId,
             DateTime minReportDate,
@@ -46,14 +49,17 @@
         private readonly IDynamicRepository dynamicRepository;
         private readonly ICacheService cacheService;
         private const int SabaPromotionProductId = 37;
+        private readonly ProductDataAccess productDataAccess;
 
         public ProductServiceImpl(
             IDynamicRepository dynamicRepository,
+            ProductDataAccess productDataAccess,
             ICacheService cacheService,
             Func<int, bool> canViewProduct,
             Func<int, string> getProductName)
         {
             this.dynamicRepository = dynamicRepository;
+            this.productDataAccess = productDataAccess;
             this.cacheService = cacheService;
             this.canViewProduct = canViewProduct;
             this.getProductName = getProductName;
@@ -106,7 +112,7 @@
             return productIdList;
         }
 
-        public IEnumerable<Product> GetProductsHaveSupportCancelledBet(int viewerId, 
+        public IEnumerable<Product> GetProductsHaveSupportCancelledBet(int viewerId,
             string site,
             int currencyId,
             DateTime minReportDate,
@@ -139,8 +145,12 @@
 
         public IEnumerable<Product> GetProductsByGroupHeadline(GetProductsByGroupHeadlineParam param, bool isEnableSabaPromotion)
         {
-            var data = dynamicRepository.Fetch<Product>(new GetProductsByGroupHeadlineCriteria(param.CustId))
-                .Where(product => IsRemainSupportProductForGroupHeadline(product, param.MinDate))
+            //var products = productDataAccess.GetProductsByGroupHeadline(param);
+            var products = dynamicRepository.Fetch<CosolidateProduct>(new GetProductsByGroupHeadlineCriteria(param.CustId));
+            Logger.Log.Info("Products:\n" + JsonConvert.SerializeObject(products, Formatting.Indented));
+            var data = products
+                .Where(product
+                    => IsRemainSupportProductForGroupHeadline(new Product(product.Id, product.Name, product.EndOfSupportDate, product.IsEnable, product.Type, product.OrderNo), param.MinDate))
                 .Select(product => new Product(product.Id, product.Name, product.IsEnable, getProductName, product.Type, product.OrderNo));
 
             if (isEnableSabaPromotion)

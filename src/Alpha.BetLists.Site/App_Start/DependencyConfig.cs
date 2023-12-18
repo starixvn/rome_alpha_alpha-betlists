@@ -124,6 +124,7 @@
             container.Register<IPartialUMDataAccess, PartialUMDataAccess>(Lifestyle.Singleton);
             container.Register<IIPInfoDataAccess, IPInfoDataAccess>(Lifestyle.Singleton);
             container.Register<IBetListRepository, BetListRepository>(Lifestyle.Singleton);
+            container.Register<ProductDataAccess, ProductDataAccessImpl>(Lifestyle.Singleton);
         }
 
         private static void RegisterServices(Container container)
@@ -162,6 +163,7 @@
             container.Register<ProductService>(
                 () => new ProductServiceImpl(
                     container.GetInstance<IDynamicRepository>(),
+                    container.GetInstance<ProductDataAccess>(),
                     container.GetInstance<ICacheService>(),
                     UserPermission.HasPermissionOnProduct,
                     CacheRefServiceHelper.GetProductName),
@@ -171,7 +173,8 @@
                     CacheRefServiceHelper.GetProductDetailName,
                     container.GetInstance<ProductService>().CanViewBySite,
                     UserPermission.HasPermissionOnProduct,
-                    container.GetInstance<IDynamicRepository>()));
+                    container.GetInstance<IDynamicRepository>(),
+                    container.GetInstance<ICacheService>()));
             container.Register<CancelledBetService, CancelledBetServiceImpl>();
 
             container.Register<ICasinoDetailsService, CasinoDetailsService>(Lifestyle.Singleton);
@@ -179,13 +182,13 @@
             container.Register<RunningBetListByBetTypeService, RunningBetListByBetTypeServiceImpl>(Lifestyle.Singleton);
             container.Register<RunningBetListByBetTypeAndMatchService, RunningBetListByBetTypeAndMatchServiceImpl>(Lifestyle.Singleton);
             container.Register<JackpotDetailsService, JackpotDetailsServiceImpl>(Lifestyle.Singleton);
-            container.Register<RiskAnalysisIPMatchingService, RiskAnalysisIPMatchingServiceImpl> (Lifestyle.Singleton);
+            container.Register<RiskAnalysisIPMatchingService, RiskAnalysisIPMatchingServiceImpl>(Lifestyle.Singleton);
             container.Register<RiskAnalysisIPMatchingHelper, RiskAnalysisIPMatchingHelperImpl>(Lifestyle.Singleton);
             container.Register<CashOutHistoryService, CashOutHistoryServiceImpl>(Lifestyle.Singleton);
 
             container.Register<MoveStatementHistoryService, MoveStatementHistoryServiceImpl>(Lifestyle.Singleton);
-            
-           container.RegisterSingleton<IUser, User>();
+
+            container.RegisterSingleton<IUser, User>();
 
             container.RegisterSingleton<IPartialUMSectionHelper, PartialUMSectionHelper>();
             container.RegisterSingleton<IPartialUMService, PartialUMService>();
