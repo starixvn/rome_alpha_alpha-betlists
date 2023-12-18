@@ -86,8 +86,8 @@
                 : string.Empty;
         }
 
-        private async Task<IEnumerable<ProductDetail>> GetProductDetailsAsync()
-            => await ConfiguredCacheService.GetOrSetAsync(
+        private Task<IEnumerable<ProductDetail>> GetProductDetailsAsync()
+            => ConfiguredCacheService.GetOrSetAsync(
                 ProductDetailsCacheKey,
                 () => dynamicRepository.FetchAsync<ProductDetail>(new GetProductsDetailCriteria()),
                 new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromDays(ProductDetailsCacheInDay)));
@@ -155,7 +155,7 @@
 
             var canViewProductDetails = CanViewProductDetails(viewerId, site, currencyId);
 
-            return await ConfiguredCacheService.GetOrSet(
+            return await ConfiguredCacheService.GetOrSetAsync(
                 $"{ProductDetailsCacheKey}-{viewerId}",
                 async () => (await GetProductDetailsAsync())
                     .Where(p => canViewProductDetails.ContainsKey(p.ProductId))
