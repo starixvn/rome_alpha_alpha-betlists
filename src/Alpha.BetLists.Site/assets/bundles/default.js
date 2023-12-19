@@ -1168,7 +1168,7 @@ var BetList;
                     this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new ScoreMap() : this.instance;
                     return this.instance;
                 },
-                enumerable: false,
+                enumerable: true,
                 configurable: true
             });
             return ScoreMap;
@@ -1399,15 +1399,10 @@ $(document).ready(function () {
 });
 //# sourceMappingURL=sportsbook-ticket-details.js.map
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -1499,7 +1494,7 @@ var BetList;
                         this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new CasinoTicketDetails() : this.instance;
                         return this.instance;
                     },
-                    enumerable: false,
+                    enumerable: true,
                     configurable: true
                 });
                 return CasinoTicketDetails;
@@ -1531,7 +1526,7 @@ var BetList;
                         this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new AllbetTicketDetails() : this.instance;
                         return this.instance;
                     },
-                    enumerable: false,
+                    enumerable: true,
                     configurable: true
                 });
                 return AllbetTicketDetails;
@@ -1555,7 +1550,7 @@ var BetList;
                         this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new JackpotTicketDetails() : this.instance;
                         return this.instance;
                     },
-                    enumerable: false,
+                    enumerable: true,
                     configurable: true
                 });
                 return JackpotTicketDetails;
@@ -1579,7 +1574,7 @@ var BetList;
                         this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new PPJackpotTicketDetails() : this.instance;
                         return this.instance;
                     },
-                    enumerable: false,
+                    enumerable: true,
                     configurable: true
                 });
                 return PPJackpotTicketDetails;
@@ -1611,7 +1606,7 @@ var BetList;
                         this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new SexyGamingTicketDetails() : this.instance;
                         return this.instance;
                     },
-                    enumerable: false,
+                    enumerable: true,
                     configurable: true
                 });
                 return SexyGamingTicketDetails;
@@ -1643,7 +1638,7 @@ var BetList;
                         this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new SAGamingTicketDetails() : this.instance;
                         return this.instance;
                     },
-                    enumerable: false,
+                    enumerable: true,
                     configurable: true
                 });
                 return SAGamingTicketDetails;
@@ -1675,7 +1670,7 @@ var BetList;
                         this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new GTCasinoTicketDetails() : this.instance;
                         return this.instance;
                     },
-                    enumerable: false,
+                    enumerable: true,
                     configurable: true
                 });
                 return GTCasinoTicketDetails;
@@ -1707,7 +1702,7 @@ var BetList;
                         this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new IONTicketDetails() : this.instance;
                         return this.instance;
                     },
-                    enumerable: false,
+                    enumerable: true,
                     configurable: true
                 });
                 return IONTicketDetails;
@@ -1739,7 +1734,7 @@ var BetList;
                         this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new BBinTicketDetails() : this.instance;
                         return this.instance;
                     },
-                    enumerable: false,
+                    enumerable: true,
                     configurable: true
                 });
                 return BBinTicketDetails;
@@ -1771,7 +1766,7 @@ var BetList;
                         this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new RNGWarTicketDetails() : this.instance;
                         return this.instance;
                     },
-                    enumerable: false,
+                    enumerable: true,
                     configurable: true
                 });
                 return RNGWarTicketDetails;
@@ -1803,7 +1798,7 @@ var BetList;
                         this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new WMTicketDetails() : this.instance;
                         return this.instance;
                     },
-                    enumerable: false,
+                    enumerable: true,
                     configurable: true
                 });
                 return WMTicketDetails;
@@ -1835,7 +1830,7 @@ var BetList;
                         this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new GDGTicketDetails() : this.instance;
                         return this.instance;
                     },
-                    enumerable: false,
+                    enumerable: true,
                     configurable: true
                 });
                 return GDGTicketDetails;
@@ -1867,7 +1862,7 @@ var BetList;
                         this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new BGTicketDetails() : this.instance;
                         return this.instance;
                     },
-                    enumerable: false,
+                    enumerable: true,
                     configurable: true
                 });
                 return BGTicketDetails;
@@ -1899,7 +1894,7 @@ var BetList;
                         this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new PPLiveCasinoTicketDetails() : this.instance;
                         return this.instance;
                     },
-                    enumerable: false,
+                    enumerable: true,
                     configurable: true
                 });
                 return PPLiveCasinoTicketDetails;
@@ -1931,7 +1926,7 @@ var BetList;
                         this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new FGGTicketDetails() : this.instance;
                         return this.instance;
                     },
-                    enumerable: false,
+                    enumerable: true,
                     configurable: true
                 });
                 return FGGTicketDetails;
@@ -1963,7 +1958,7 @@ var BetList;
                         this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new SealEntertainmentTicketDetails() : this.instance;
                         return this.instance;
                     },
-                    enumerable: false,
+                    enumerable: true,
                     configurable: true
                 });
                 return SealEntertainmentTicketDetails;
@@ -1995,7 +1990,7 @@ var BetList;
                         this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new MGRNGTicketDetails() : this.instance;
                         return this.instance;
                     },
-                    enumerable: false,
+                    enumerable: true,
                     configurable: true
                 });
                 return MGRNGTicketDetails;
@@ -2027,7 +2022,7 @@ var BetList;
                         this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new JiliTicketDetails() : this.instance;
                         return this.instance;
                     },
-                    enumerable: false,
+                    enumerable: true,
                     configurable: true
                 });
                 return JiliTicketDetails;
@@ -2059,12 +2054,44 @@ var BetList;
                         this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new YeeBetTicketDetails() : this.instance;
                         return this.instance;
                     },
-                    enumerable: false,
+                    enumerable: true,
                     configurable: true
                 });
                 return YeeBetTicketDetails;
             }(TicketDetails.BaseTicketDetails));
             TicketDetails.YeeBetTicketDetails = YeeBetTicketDetails;
+            var Live22TicketDetails = /** @class */ (function (_super) {
+                __extends(Live22TicketDetails, _super);
+                function Live22TicketDetails() {
+                    var _this = _super !== null && _super.apply(this, arguments) || this;
+                    _this.ShowLive22TicketDetails = function (refNo, winlossDate, custId, transType) {
+                        var params = '?refno=' + refNo
+                            + '&custid=' + custId
+                            + '&transType=' + transType
+                            + '&sportName=Live22&productId=79';
+                        var width = 1500;
+                        var roleId = Number(_this.ViewerLevelId);
+                        if (roleId <= 3) {
+                            width -= 105;
+                        }
+                        if (roleId <= 2) {
+                            width -= 105;
+                        }
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'Live22 - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                    };
+                    return _this;
+                }
+                Object.defineProperty(Live22TicketDetails, "Instance", {
+                    get: function () {
+                        this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new Live22TicketDetails() : this.instance;
+                        return this.instance;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                return Live22TicketDetails;
+            }(TicketDetails.BaseTicketDetails));
+            TicketDetails.Live22TicketDetails = Live22TicketDetails;
         })(TicketDetails = Choice.TicketDetails || (Choice.TicketDetails = {}));
     })(Choice = BetList.Choice || (BetList.Choice = {}));
 })(BetList || (BetList = {}));
@@ -2102,6 +2129,7 @@ var showSealEntertainmentBetDetails;
 var showMGRNGCasinoBetDetails;
 var showJiliBetDetails;
 var showYeeBetBetDetails;
+var showLive22BetDetails;
 $(document).ready(function () {
     showRnGCasinoDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowRnGCasinoDetails;
     showVoidBridgeDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowMacauGamesDetails;
@@ -2137,6 +2165,7 @@ $(document).ready(function () {
     showMGRNGCasinoBetDetails = BetList.Choice.TicketDetails.MGRNGTicketDetails.Instance.ShowMGRNGCasinoBetDetails;
     showJiliBetDetails = BetList.Choice.TicketDetails.JiliTicketDetails.Instance.ShowJiliBetDetails;
     showYeeBetBetDetails = BetList.Choice.TicketDetails.YeeBetTicketDetails.Instance.ShowYeeBetTicketDetails;
+    showLive22BetDetails = BetList.Choice.TicketDetails.Live22TicketDetails.Instance.ShowLive22TicketDetails;
 });
 //# sourceMappingURL=casino-ticket-details.js.map
 var __extends = (this && this.__extends) || (function () {
