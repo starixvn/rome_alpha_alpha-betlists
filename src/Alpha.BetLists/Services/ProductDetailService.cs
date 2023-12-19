@@ -30,21 +30,18 @@
         private const string ProductDetailsCacheKey = "Alpha.BetLists.Services.Impl.ProductDetailService.ProductDetails";
         private const int CustProductDetailsCacheInMinutes = 5;
 
-        private readonly Func<string, int, string> getProductDetailName;
-        private readonly Func<int, string, int, int, bool> canViewBySite;
-        private readonly Func<int, bool> canViewProduct;
+        private readonly Func<string, int, string> getProductDetailName;        
+        private readonly Func<string, int, int, bool> canViewProduct;
         private readonly IDynamicRepository dynamicRepository;
         private readonly ICacheService cacheService;
 
         public ProductDetailServiceImpl(
-            Func<string, int, string> getProductDetailName,
-            Func<int, string, int, int, bool> canViewBySite,
-            Func<int, bool> canViewProduct,
+            Func<string, int, string> getProductDetailName,            
+            Func<string, int, int, bool> canViewProduct,
             IDynamicRepository dynamicRepository,
             ICacheService cacheService)
         {
-            this.getProductDetailName = getProductDetailName;
-            this.canViewBySite = canViewBySite;
+            this.getProductDetailName = getProductDetailName;            
             this.canViewProduct = canViewProduct;
             this.dynamicRepository = dynamicRepository;
             this.cacheService = cacheService;
@@ -156,7 +153,7 @@
                 return Enumerable.Empty<ProductDetail>();
             }
 
-            var canViewProductDetails = CanViewProductDetails(viewerId, site, currencyId);
+            var canViewProductDetails = CanViewProductDetails(site, currencyId);
 
             return await cacheService.GetOrSetAsync(
                 $"{ProductDetailsCacheKey}-{viewerId}",
@@ -171,13 +168,13 @@
                 new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(CustProductDetailsCacheInMinutes)));
         }
 
-        private IDictionary<int, bool> CanViewProductDetails(int viewerId, string site, int currencyId)
+        private IDictionary<int, bool> CanViewProductDetails(string site, int currencyId)
         {
             var canViewProductDetails = new Dictionary<int, bool>();
 
             foreach (var product in AppSettings.ProductOfferProductDetail)
             {
-                if (canViewBySite(viewerId, site, currencyId, product) || canViewProduct(product))
+                if (canViewProduct(site, currencyId, product))
                 {
                     canViewProductDetails[product] = true;
                 }

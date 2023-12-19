@@ -165,14 +165,13 @@
                     container.GetInstance<IDynamicRepository>(),
                     container.GetInstance<ProductDataAccess>(),
                     container.GetInstance<ICacheService>(),
-                    UserPermission.HasPermissionOnProduct,
+                    UserPermission.IsShowOrNotExistProduct,
                     CacheRefServiceHelper.GetProductName),
                 Lifestyle.Singleton);
             container.RegisterSingleton<ProductDetailService>(
                 () => new ProductDetailServiceImpl(
                     CacheRefServiceHelper.GetProductDetailName,
-                    container.GetInstance<ProductService>().CanViewBySite,
-                    UserPermission.HasPermissionOnProduct,
+                    container.GetInstance<ProductService>().CanViewProduct,
                     container.GetInstance<IDynamicRepository>(),
                     container.GetInstance<ICacheService>()));
             container.Register<CancelledBetService, CancelledBetServiceImpl>();

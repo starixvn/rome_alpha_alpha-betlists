@@ -145,8 +145,7 @@
         private async Task<Tuple<IEnumerable<Product>, IEnumerable<ProductDetail>>> GetProductsAndProductDetails(
             WinLossBetListQuery message)
         {
-            var products = productService.GetProductsForCustomer(
-                message.ViewerId,
+            var products = productService.GetAllOfferedProducts(
                 message.Site,
                 message.CurrencyId,
                 message.MinDate,
