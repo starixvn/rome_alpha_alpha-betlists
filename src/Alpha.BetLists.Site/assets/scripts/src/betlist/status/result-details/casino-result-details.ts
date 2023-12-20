@@ -825,4 +825,32 @@
             Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/Live22Result' + params, "", 835, 675);
         }
     }
+    
+    export class WEResultDetails extends BaseResultDetails implements ResultDetails {
+        public ViewResultDetails = (
+            matchId?: number,
+            race?: number,
+            betTypeId?: number,
+            sportTypeId?: number,
+            refNo?: string,
+            userName?: string,
+            winLostDate?: Date,
+            refNoMixParlay?: number,
+            league?: number,
+            isOutright?: boolean,
+            currencyId?: number,
+            gameId3rd?: string,
+            custId?: number,
+            transId3rd?: string,
+            siteId?: string) => {
+            var params = '?custId=' + custId +
+                '&transId3rd=' + transId3rd +
+                '&gameId3rd=' + gameId3rd +
+                '&currencyId=' + currencyId +
+                '&siteId=' + siteId +
+                '&BetType=' + betTypeId +
+                '&endtime=' + winLostDate +
+                '&productId=80';
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/WEResult' + params, "", 835, 675);
+        }
 }
