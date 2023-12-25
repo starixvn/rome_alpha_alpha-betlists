@@ -588,22 +588,10 @@
     <AdditionalFiles Include="..\..\SonarQube\alpha-betlist\CSharp\SonarLint.xml">
       <Link>SonarLint.xml</Link>
     </AdditionalFiles>
-    <Content Include="App_Data\activitytracking.dr.json">
-      <DependentUpon>activitytracking.json</DependentUpon>
-    </Content>
-    <Content Include="App_Data\activitytracking.local.json">
-      <DependentUpon>activitytracking.json</DependentUpon>
-    </Content>
-    <Content Include="App_Data\activitytracking.napinternal.json">
-      <DependentUpon>activitytracking.json</DependentUpon>
-    </Content>
-    <Content Include="App_Data\activitytracking.napinternal2.json">
-      <DependentUpon>activitytracking.json</DependentUpon>
-    </Content>
-    <Content Include="App_Data\activitytracking.uat.json">
-      <DependentUpon>activitytracking.json</DependentUpon>
-    </Content>
     <Content Include="App_Data\ProductSection.dr.config">
+      <DependentUpon>ProductSection.config</DependentUpon>
+    </Content>
+    <Content Include="App_Data\ProductSection.drinternal.config">
       <DependentUpon>ProductSection.config</DependentUpon>
     </Content>
     <Content Include="App_Data\ProductSection.local.config">
@@ -631,6 +619,9 @@
       <DependentUpon>ProductSection.config</DependentUpon>
     </Content>
     <Content Include="App_Data\securitycode.dr.json">
+      <DependentUpon>securitycode.json</DependentUpon>
+    </Content>
+    <Content Include="App_Data\securitycode.drinternal.json">
       <DependentUpon>securitycode.json</DependentUpon>
     </Content>
     <Content Include="App_Data\securitycode.local.json">
@@ -1016,7 +1007,6 @@
     <Content Include="App_Data\ExcelTemplates\CancelledBet\Agent.xls" />
     <Content Include="App_Data\ExcelTemplates\CancelledBet\Master.xls" />
     <Content Include="App_Data\ExcelTemplates\CancelledBet\Super.xls" />
-    <Content Include="App_Data\activitytracking.json" />
     <Content Include="App_Data\ExcelData\Products.xls" />
     <Content Include="App_Data\ExcelData\RunningBetlist.xls" />
     <Content Include="App_Data\ExcelData\ScoreMaps.xls" />
@@ -1078,24 +1068,6 @@
     <Content Include="WhoAmI.aspx" />
     <Content Include="bundleconfig2.json" />
     <Content Include="compilerconfig2.json" />
-    <Content Include="App_Data\activitytracking.local2.json">
-      <DependentUpon>activitytracking.json</DependentUpon>
-    </Content>
-    <Content Include="App_Data\activitytracking.pro.json">
-      <DependentUpon>activitytracking.json</DependentUpon>
-    </Content>
-    <Content Include="App_Data\activitytracking.pro2.json">
-      <DependentUpon>activitytracking.json</DependentUpon>
-    </Content>
-    <Content Include="App_Data\activitytracking.sit.json">
-      <DependentUpon>activitytracking.json</DependentUpon>
-    </Content>
-    <Content Include="App_Data\activitytracking.sit2.json">
-      <DependentUpon>activitytracking.json</DependentUpon>
-    </Content>
-    <Content Include="App_Data\activitytracking.uat2.json">
-      <DependentUpon>activitytracking.json</DependentUpon>
-    </Content>
     <Content Include="assets\styles\error\error-dark.scss" />
     <Content Include="assets\styles\error\error.scss" />
     <Content Include="App_Code\Components\DateRangePickerJQuery.cshtml" />
@@ -1113,18 +1085,6 @@
     <Content Include="App_Code\Components\UsernameTagsInput.cshtml" />
     <Content Include="App_Code\Common\SwitchVersionButton.cshtml" />
     <Content Include="assets\styles\monitoring-bets\monitoring-bets.scss" />
-    <Content Include="App_Data\activitytracking.staging.json">
-      <DependentUpon>activitytracking.json</DependentUpon>
-    </Content>
-    <Content Include="App_Data\activitytracking.staging2.json">
-      <DependentUpon>activitytracking.json</DependentUpon>
-    </Content>
-    <Content Include="App_Data\activitytracking.staginginternal.json">
-      <DependentUpon>activitytracking.json</DependentUpon>
-    </Content>
-    <Content Include="App_Data\activitytracking.staginginternal2.json">
-      <DependentUpon>activitytracking.json</DependentUpon>
-    </Content>
     <Content Include="App_Data\ProductSection.staging.config">
       <DependentUpon>ProductSection.config</DependentUpon>
     </Content>
@@ -1150,12 +1110,6 @@
       <DependentUpon>securitycode.json</DependentUpon>
     </Content>
     <Content Include="assets\styles\search-tickets\search-tickets.scss" />
-    <Content Include="App_Data\activitytracking.napinternal3.json">
-      <DependentUpon>activitytracking.json</DependentUpon>
-    </Content>
-    <Content Include="App_Data\activitytracking.pro3.json">
-      <DependentUpon>activitytracking.json</DependentUpon>
-    </Content>
     <Content Include="App_Data\ProductSection.napinternal3.config">
       <DependentUpon>ProductSection.config</DependentUpon>
     </Content>
@@ -1170,20 +1124,11 @@
     </Content>
     <Content Include="App_Code\Blocks\ParlayBoostOdds.cshtml" />
     <Content Include="App_Code\Blocks\Platform.cshtml" />
-    <Content Include="App_Data\activitytracking.pro22.json">
-      <DependentUpon>activitytracking.json</DependentUpon>
-    </Content>
     <Content Include="App_Data\ProductSection.pro22.config">
       <DependentUpon>ProductSection.config</DependentUpon>
     </Content>
     <Content Include="App_Data\securitycode.pro22.json">
       <DependentUpon>securitycode.json</DependentUpon>
-    </Content>
-    <Content Include="App_Data\activitytracking.pro12.json">
-      <DependentUpon>activitytracking.json</DependentUpon>
-    </Content>
-    <Content Include="App_Data\activitytracking.pro32.json">
-      <DependentUpon>activitytracking.json</DependentUpon>
     </Content>
     <Content Include="App_Data\ProductSection.pro12.config">
       <DependentUpon>ProductSection.config</DependentUpon>
@@ -1404,6 +1349,15 @@
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
     <Content Include="Web.pro32.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.drinternal.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionStrings.drinternal.config">
+      <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.drinternal.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
   </ItemGroup>
