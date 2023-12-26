@@ -34,7 +34,7 @@
             memberBetListService.GetBetList(Arg.Any<MemberBetListParam>()).Returns(BetListDataTest.BetListData);
 
             productService = Substitute.For<ProductService>();
-            productService.FilterProductIds(Arg.Any<int>(), Arg.Any<string>(), Arg.Any<int>(), Arg.Any<DateTime>(), Arg.Any<IEnumerable<int>>(), false).Returns(BetListDataTest.ProductIds);
+            productService.FilterProductIdsByCustomer(Arg.Any<int>(), Arg.Any<string>(), Arg.Any<int>(), Arg.Any<DateTime>(), Arg.Any<IEnumerable<int>>()).Returns(BetListDataTest.ProductIds);
 
             forecastService = Substitute.For<ForecastService>();
             forecastService.GetBetTypeIdsSupportScoreMap().Returns(BetListDataTest.BettypeIds);
@@ -69,7 +69,7 @@
             query.CustName = "custName";
 
             var validUserSelectedProductIds = Enumerable.Empty<int>();
-            productService.FilterProductIds(Arg.Any<int>(), Arg.Any<string>(), Arg.Any<int>(), Arg.Any<DateTime>(), Arg.Any<IEnumerable<int>>(), false).Returns(validUserSelectedProductIds);
+            productService.FilterProductIdsByCustomer(Arg.Any<int>(), Arg.Any<string>(), Arg.Any<int>(), Arg.Any<DateTime>(), Arg.Any<IEnumerable<int>>()).Returns(validUserSelectedProductIds);
 
             forecastService.GetBetTypeIdsSupportScoreMap().Returns(BetListDataTest.BettypeIds);
 

@@ -17,11 +17,11 @@
 
     public interface ProductService
     {
-        IEnumerable<Product> GetAllOfferedProducts(string site, int currencyId, DateTime minReportDate, bool isEnableSabaPromotion);
+        IEnumerable<Product> GetAllOfferedProducts(string site, int currencyId, DateTime minReportDate);
 
-        IEnumerable<int> FilterProductIds(string site, int currencyId, DateTime minReportDate, IEnumerable<int> productIds, bool isEnableSabaPromotion);
+        IEnumerable<int> FilterProductIds(string site, int currencyId, DateTime minReportDate, IEnumerable<int> productIds);
 
-        IEnumerable<int> FilterProductIdsByGroupHeadline(IEnumerable<int> productIds, GetProductsByGroupHeadlineParam param, bool isEnableSabaPromotion);
+        IEnumerable<int> FilterProductIdsByGroupHeadline(IEnumerable<int> productIds, GetProductsByGroupHeadlineParam param);
 
         string ConcatProductNames(string productIds);
 
@@ -33,8 +33,7 @@
             string site,
             int currencyId,
             DateTime minReportDate,
-            IEnumerable<int> productIds = null,
-            bool isEnableSabaPromotion = false);
+            IEnumerable<int> productIds = null);
 
         bool CanViewProduct(string site, int currencyId, int productId);
     }
@@ -48,7 +47,6 @@
         private readonly Func<int, string> getProductName;
         private readonly IDynamicRepository dynamicRepository;
         private readonly ICacheService cacheService;
-        private const int SabaPromotionProductId = 37;
         private readonly ProductDataAccess productDataAccess;
 
         public ProductServiceImpl(
@@ -65,16 +63,14 @@
             this.getProductName = getProductName;
         }
 
-        public IEnumerable<Product> GetAllOfferedProducts(string site, int currencyId, DateTime minReportDate, bool isEnableSabaPromotion)
+        public IEnumerable<Product> GetAllOfferedProducts(string site, int currencyId, DateTime minReportDate)
         {
-            var custProducts = GetOfferedProducts(site, currencyId, minReportDate);
-
-            return GetOfferedProductsAndSabaPromotion(custProducts, isEnableSabaPromotion);
+            return GetOfferedProducts(site, currencyId, minReportDate);
         }
 
-        public IEnumerable<int> FilterProductIds(string site, int currencyId, DateTime minReportDate, IEnumerable<int> productIds, bool isEnableSabaPromotion = false)
+        public IEnumerable<int> FilterProductIds(string site, int currencyId, DateTime minReportDate, IEnumerable<int> productIds)
         {
-            var customerProductIds = GetAllOfferedProducts(site, currencyId, minReportDate, isEnableSabaPromotion).Select(product => product.Id);
+            var customerProductIds = GetAllOfferedProducts(site, currencyId, minReportDate).Select(product => product.Id);
 
             var productIdList = productIds == null || !productIds.Any()
                 ? customerProductIds
@@ -87,8 +83,7 @@
             string site,
             int currencyId,
             DateTime minReportDate,
-            IEnumerable<int> productIds = null,
-            bool isEnableSabaPromotion = false)
+            IEnumerable<int> productIds = null)
         {
             var supportedProducts = new List<int>
             {
@@ -105,7 +100,7 @@
                 ProductIdConstants.Bitcoin
             };
 
-            var allProducts = GetAllOfferedProducts(site, currencyId, minReportDate, isEnableSabaPromotion).Where(i => supportedProducts.Contains(i.Id));
+            var allProducts = GetAllOfferedProducts(site, currencyId, minReportDate).Where(i => supportedProducts.Contains(i.Id));
 
             var validProducts = productIds == null || !productIds.Any()
                 ? allProducts
@@ -114,7 +109,7 @@
             return validProducts;
         }
 
-        public IEnumerable<Product> GetProductsByGroupHeadline(GetProductsByGroupHeadlineParam param, bool isEnableSabaPromotion)
+        public IEnumerable<Product> GetProductsByGroupHeadline(GetProductsByGroupHeadlineParam param)
         {
             //var products = productDataAccess.GetProductsByGroupHeadline(param);
             var products = dynamicRepository.Fetch<CosolidateProduct>(new GetProductsByGroupHeadlineCriteria(param.CustId));
@@ -124,21 +119,14 @@
                     => IsRemainSupportProductForGroupHeadline(new Product(product.Id, product.Name, product.EndOfSupportDate, product.IsEnable, product.Type, product.OrderNo), param.MinDate))
                 .Select(product => new Product(product.Id, product.Name, product.IsEnable, getProductName, product.Type, product.OrderNo));
 
-            if (isEnableSabaPromotion)
-            {
-                var sabaProduct = new Product(SabaPromotionProductId, null, true, getProductName, 0, 0);
-                var sabaProducts = new List<Product> { sabaProduct };
-                data = sabaProducts.Concat(data);
-            }
-
             return data;
 
             bool IsRemainSupportProductForGroupHeadline(Product product, DateTime? minReportDate)
              => !minReportDate.HasValue || !product.EndOfSupportDate.HasValue || minReportDate.Value <= product.EndOfSupportDate.Value;
         }
 
-        public IEnumerable<int> FilterProductIdsByGroupHeadline(IEnumerable<int> productIds, GetProductsByGroupHeadlineParam param, bool isEnableSabaPromotion)
-            => GetProductsByGroupHeadline(param, isEnableSabaPromotion)
+        public IEnumerable<int> FilterProductIdsByGroupHeadline(IEnumerable<int> productIds, GetProductsByGroupHeadlineParam param)
+            => GetProductsByGroupHeadline(param)
             .Select(product => product.Id)
             .Where(id => productIds == null || !productIds.Any() || productIds.Contains(id));
 
@@ -184,16 +172,6 @@
                new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(CustProductsCacheTimeInMinutes)));
 
             return products.Where(i => IsRemainSupportProduct(i, minReportDate) && canViewProduct(i.Id));
-        }
-
-        private IEnumerable<Product> GetOfferedProductsAndSabaPromotion(IEnumerable<Product> custProducts, bool isEnableSabaPromotion)
-        {
-            if (custProducts != null && isEnableSabaPromotion)
-            {
-                custProducts = new[] { new Product(SabaPromotionProductId, null, true, getProductName, 0, 0) }.Concat(custProducts);
-            }
-
-            return custProducts;
         }
 
         private static bool IsRemainSupportProduct(Product product, DateTime minReportDate)

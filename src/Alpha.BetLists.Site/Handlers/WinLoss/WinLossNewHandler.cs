@@ -148,8 +148,7 @@
             var products = productService.GetAllOfferedProducts(
                 message.Site,
                 message.CurrencyId,
-                message.MinDate,
-                message.IsEnableSabaPromotion);
+                message.MinDate);
             var productDetails = await productDetailService.GetProductDetailsAsync(
                 message.ViewerId,
                 message.Site,
