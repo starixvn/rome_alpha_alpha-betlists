@@ -18,29 +18,21 @@
             @Html.Partial("IconInformation", new List<string>() { Resources.ipnote })
         </div>
     </div>
-    <p class="note_title"><span class="require">* </span> New view will take over from dd/mm/yyyy. You can switch bach to Classic view mm/dd/yyy</p>
+    <p class="note_title"><span class="require">*</span>&nbsp;&nbsp;@Resources.NewViewTakesOverNote</p>
 </div>
-<div class="bg-overlay">
+<div class="bg-overlay hide" id="popup-lastBets">
     <div class="popup-highlight">
-        <button type="button" class="icon icon-close close" title="Close">
-            <span aria-hidden="true"></span>
-        </button>
         <div class="text">
             <div>
-                <p>
-                    <span>New view takes over</span>
-                </p>
-                <p>
-                    From <b>dd/mm/yyyy</b>, the <b>New view</b> will become the <b>primary display</b>. You can still switch back to the Classic view until its discontinuation on dd/mm/yyy.
-                </p>
+                <p><span>@Resources.NewViewTakesOver</span></p>
+                <p>@Html.Raw(Resources.NewViewTakesOverPopup)</p>
             </div>
         </div>
         <div class="action">
             <label class="label">
-                <input type="checkbox">
-                <span>Do not show again</span>
+                <input type="checkbox" id="chk-dontShowAgain" />&nbsp;<span>@Resources.DoNotShowAgain</span>
             </label>
-            <a class="btn-submit">OK</a>
+            <button type="button" class="btn-submit" id="btn-closePopup">OK</button>
         </div>
     </div>
 </div>
@@ -105,6 +97,7 @@
 @Html.Hidden("cust-id", Model.CustId)
 @Html.Hidden("viewer-id", Model.ViewerIdOrViewerAdminId)
 @Html.Hidden("viewer-level-id", Model.ViewerLevelId)
+@Html.Hidden("sub-acc-id", Model.SubAccId)
 
 @section Scripts {
     @StaticResources.AssetScripts.Render("/bundles/site-betlists/last-bets")

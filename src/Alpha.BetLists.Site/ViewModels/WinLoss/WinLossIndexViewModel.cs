@@ -42,6 +42,7 @@
             Products = products;
             ProductDetails = productDetails;
             Language = query.Language;
+            ShowColumns = query.ShowColumns;
         }
 
         public DateRangePickerNewViewModel DateRangePickerViewModel { get; }
@@ -51,5 +52,7 @@
         public IEnumerable<ProductDetailViewModel> ProductDetails { get; }
 
         public string Language { get; }
+
+        public string ShowColumns { get; }
     }
 }

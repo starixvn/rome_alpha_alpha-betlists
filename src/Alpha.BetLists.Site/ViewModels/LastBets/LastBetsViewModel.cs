@@ -23,6 +23,8 @@
             BetType = query.BetType == -1 ? BetTypeIdConstants.AllBetTypes : query.BetType;
             LastTransIdCacheKey = lastTransIdCacheKey;
             LatestTransIdCacheKey = latestTransIdCacheKey;
+
+            SubAccId = query.SubAccId;
         }
 
         public int BetType { get; }
@@ -40,5 +42,7 @@
         public bool IsSelectedPageSize(int pageSize) => pageSize == PageSize;
 
         public int[] AutoRefreshSeconds { get; } = new[] { 30, 60, 90 };
+
+        public int SubAccId { get; }
     }
 }

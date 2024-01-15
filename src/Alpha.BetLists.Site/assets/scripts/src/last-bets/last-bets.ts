@@ -51,6 +51,8 @@ namespace BetList {
             }
 
             this.loadLastBets(false);
+
+            this.initLastBetsPopup();
         };
 
         cacheElements = () => {
@@ -275,7 +277,24 @@ namespace BetList {
         clearTimeoutAndSetAutoRefreshText = (text) => {
             clearTimeout(this.getLastBetsTimeOut);
             this.btnAutoRefresh.text(text);
-        }
+        };
+        initLastBetsPopup = () => {
+            const popup = $("#popup-lastBets");
+            const cookiesName = "HideLastBetsPopup_" + $("#viewer-id").val() + "_" + $("#sub-acc-id").val()
+            const hidePopup = this.localStorage.get(cookiesName);
+            if (hidePopup !== "1") {
+                $("#chk-dontShowAgain").click(() => {
+                    this.localStorage.set(cookiesName, "1");
+                    popup.remove();
+                });
+                $("#btn-closePopup").click(function () {
+                    popup.addClass("hide");
+                });
+                popup.removeClass("hide");
+            } else {
+                popup.remove();
+            }
+        };
     }
 }
 

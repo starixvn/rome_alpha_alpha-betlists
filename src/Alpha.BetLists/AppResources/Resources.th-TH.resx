@@ -807,4 +807,16 @@
   <data name="Platform_99" xml:space="preserve">
     <value>ไม่มีหมวดหมู่</value>
   </data>
+  <data name="DoNotShowAgain" xml:space="preserve">
+    <value>ไม่ต้องแสดงอีกครั้ง</value>
+  </data>
+  <data name="NewViewTakesOver" xml:space="preserve">
+    <value>มุมมองใหม่เข้ามาแทนที่</value>
+  </data>
+  <data name="NewViewTakesOverNote" xml:space="preserve">
+    <value>มุมมองใหม่จะเริ่มใช้แทนที่ตั้งแต่วันที่ 21/02/2024 (dd/mm/yyyy) ทั้งนี้ คุณยังคงสามารถเปลี่ยนกลับไปใช้มุมมองคลาสสิกได้</value>
+  </data>
+  <data name="NewViewTakesOverPopup" xml:space="preserve">
+    <value>ตั้งแต่ &lt;b&gt;21/02/2024 (dd/mm/yyyy) มุมมองใหม่&lt;/b&gt;จะใช้เป็น&lt;b&gt;หน้าจอแสดงผลหลัก&lt;/b&gt; แต่คุณยังคงสามารถเปลี่ยนกลับไปเป็นมุมมองคลาสสิกได้</value>
+  </data>
 </root>

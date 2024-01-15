@@ -25,6 +25,7 @@ var BetList;
                     _this.localStorage.set(_this.latestTransIdCacheKey, 0);
                 }
                 _this.loadLastBets(false);
+                _this.initLastBetsPopup();
             };
             this.cacheElements = function () {
                 _this.$pageSize = $(".page-size");
@@ -207,6 +208,24 @@ var BetList;
             this.clearTimeoutAndSetAutoRefreshText = function (text) {
                 clearTimeout(_this.getLastBetsTimeOut);
                 _this.btnAutoRefresh.text(text);
+            };
+            this.initLastBetsPopup = function () {
+                var popup = $("#popup-lastBets");
+                var cookiesName = "HideLastBetsPopup_" + $("#viewer-id").val() + "_" + $("#sub-acc-id").val();
+                var hidePopup = _this.localStorage.get(cookiesName);
+                if (hidePopup !== "1") {
+                    $("#chk-dontShowAgain").click(function () {
+                        _this.localStorage.set(cookiesName, "1");
+                        popup.remove();
+                    });
+                    $("#btn-closePopup").click(function () {
+                        popup.addClass("hide");
+                    });
+                    popup.removeClass("hide");
+                }
+                else {
+                    popup.remove();
+                }
             };
         }
         Object.defineProperty(LastBetsView, "Instance", {
