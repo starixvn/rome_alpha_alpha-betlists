@@ -18,6 +18,31 @@
             @Html.Partial("IconInformation", new List<string>() { Resources.ipnote })
         </div>
     </div>
+    <p class="note_title"><span class="require">* </span> New view will take over from dd/mm/yyyy. You can switch bach to Classic view mm/dd/yyy</p>
+</div>
+<div class="bg-overlay">
+    <div class="popup-highlight">
+        <button type="button" class="icon icon-close close" title="Close">
+            <span aria-hidden="true"></span>
+        </button>
+        <div class="text">
+            <div>
+                <p>
+                    <span>New view takes over</span>
+                </p>
+                <p>
+                    From <b>dd/mm/yyyy</b>, the <b>New view</b> will become the <b>primary display</b>. You can still switch back to the Classic view until its discontinuation on dd/mm/yyy.
+                </p>
+            </div>
+        </div>
+        <div class="action">
+            <label class="label">
+                <input type="checkbox">
+                <span>Do not show again</span>
+            </label>
+            <a class="btn-submit">OK</a>
+        </div>
+    </div>
 </div>
 <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="tab-report-type @(Model.IsSelectedBetType(BetTypeIdConstants.AllBetTypes) ?"active":string.Empty)">
