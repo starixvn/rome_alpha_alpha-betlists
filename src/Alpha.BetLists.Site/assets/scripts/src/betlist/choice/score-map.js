@@ -16,7 +16,7 @@ var BetList;
                     this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new ScoreMap() : this.instance;
                     return this.instance;
                 },
-                enumerable: false,
+                enumerable: true,
                 configurable: true
             });
             return ScoreMap;
