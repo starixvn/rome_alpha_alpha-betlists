@@ -540,6 +540,7 @@ var WinLossBetListView = /** @class */ (function () {
             if (breadcrumbLevels.length > 1) {
                 reportParams.breadcrumbLevelJson = JSON.stringify(breadcrumbLevels);
             }
+            reportParams.showColumns = $("#hidden-show-columns").val();
             $.extend(reportParams, _this.globalFormData, {
                 custId: $this.data("custid"),
                 custName: $this.data("custname"),

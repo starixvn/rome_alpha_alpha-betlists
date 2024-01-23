@@ -529,6 +529,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Do not show again.
+        /// </summary>
+        public static string DoNotShowAgain {
+            get {
+                return ResourceManager.GetString("DoNotShowAgain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Draw.
         /// </summary>
         public static string draw {
@@ -1236,6 +1245,33 @@ namespace Alpha.BetLists.AppResources {
         public static string NewView {
             get {
                 return ResourceManager.GetString("NewView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New view takes over.
+        /// </summary>
+        public static string NewViewTakesOver {
+            get {
+                return ResourceManager.GetString("NewViewTakesOver", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New view will take over from 21/02/2024 (dd/mm/yyyy).  You can still switch back to Classic view..
+        /// </summary>
+        public static string NewViewTakesOverNote {
+            get {
+                return ResourceManager.GetString("NewViewTakesOverNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From &lt;b&gt;21/02/2024 (dd/mm/yyyy)&lt;/b&gt;, the &lt;b&gt;New view&lt;/b&gt; will become the &lt;b&gt;primary display&lt;/b&gt;. You can still switch back to the Classic view..
+        /// </summary>
+        public static string NewViewTakesOverPopup {
+            get {
+                return ResourceManager.GetString("NewViewTakesOverPopup", resourceCulture);
             }
         }
         
