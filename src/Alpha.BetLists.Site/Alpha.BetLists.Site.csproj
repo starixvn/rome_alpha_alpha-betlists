@@ -1148,6 +1148,33 @@
     <Content Include="App_Data\securitycode.pro32.json">
       <DependentUpon>securitycode.json</DependentUpon>
     </Content>
+    <Content Include="App_Data\securitycode.local4.json">
+      <DependentUpon>securitycode.json</DependentUpon>
+    </Content>
+    <Content Include="App_Data\securitycode.pro4.json">
+      <DependentUpon>securitycode.json</DependentUpon>
+    </Content>
+    <Content Include="App_Data\securitycode.staging4.json">
+      <DependentUpon>securitycode.json</DependentUpon>
+    </Content>
+    <Content Include="App_Data\securitycode.staginginternal4.json">
+      <DependentUpon>securitycode.json</DependentUpon>
+    </Content>
+    <Content Include="App_Data\ProductSection.local4.config" >
+      <DependentUpon>ProductSection.config</DependentUpon>
+    </Content>
+    <Content Include="App_Data\ProductSection.pro4.config" >
+      <DependentUpon>ProductSection.config</DependentUpon>
+    </Content>
+    <Content Include="App_Data\ProductSection.staging4.config" >
+      <DependentUpon>ProductSection.config</DependentUpon>
+    </Content>
+    <Content Include="App_Data\ProductSection.staginginternal4.config" >
+      <DependentUpon>ProductSection.config</DependentUpon>
+    </Content>
+    <Content Include="App_Data\ProductSection.uat4.config" >
+      <DependentUpon>ProductSection.config</DependentUpon>
+    </Content>
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -1365,7 +1392,52 @@
     </Content>
     <Content Include="Web.drinternal.config">
       <DependentUpon>Web.local.config</DependentUpon>
-    </Content>    
+    </Content>
+    <Content Include="Web.AppSettings.napinternal4.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.pro4.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.staging4.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.staginginternal4.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.uat4.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.napinternal4.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </Content>
+    <Content Include="Web.pro4.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </Content>
+    <Content Include="Web.staging4.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </Content>
+    <Content Include="Web.staginginternal4.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionStrings.local4.config">
+      <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionStrings.napinternal4.config">
+      <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionStrings.pro4.config">
+      <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionStrings.staging4.config">
+      <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionStrings.staginginternal4.config">
+      <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionStrings.uat4.config">
+      <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_GlobalResources\Resources.Designer.cs">
