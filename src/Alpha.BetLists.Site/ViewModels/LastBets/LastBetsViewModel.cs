@@ -25,6 +25,7 @@
             LatestTransIdCacheKey = latestTransIdCacheKey;
 
             SubAccId = query.SubAccId;
+            HidePopup = query.HidePopup;
         }
 
         public int BetType { get; }
@@ -44,5 +45,7 @@
         public int[] AutoRefreshSeconds { get; } = new[] { 30, 60, 90 };
 
         public int SubAccId { get; }
+
+        public bool HidePopup { get; }
     }
 }
