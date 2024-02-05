@@ -268,7 +268,9 @@
                 (leagueId, matches) => new League(
                     sportType,
                     leagueId,
-                    leagueId == 0 ? Resources.AllLeagues : CacheRefServiceHelper.GetLeagueName(leagueId)));
+                    0,
+                    leagueId == 0 ? Resources.AllLeagues :
+                    CacheRefServiceHelper.GetLeagueName(leagueId, matches.FirstOrDefault(i => i.LeagueId == leagueId).LeagueGroupId)));
 
         public async Task<Result> AddFilter(AddFilterParam param)
         {
@@ -314,6 +316,7 @@
             partialUMService.ThrowIfUM(criteria.GetSettingKey());
 
             var leagues = await dynamicRepository.FetchAsync<League>(criteria);
+            leagues = SiteGroup777DontSupportPinGoal(leagues);
             if (sportGroup != SportGroupConstants.All)
             {
                 leagues = sportGroup == SportGroupConstants.MajorSports
@@ -347,5 +350,15 @@
 
             return tickets;
         }
+
+        private IEnumerable<League> SiteGroup777DontSupportPinGoal(IEnumerable<League> leagues)
+        {
+            var leagueGroupPinGoal = new List<int> { 113, 122, 151 };
+
+            return AlphaPlus.Configurations.AppSettings.IsSiteLabel777 ?
+            leagues.Where(i => !leagueGroupPinGoal.Contains(i.LeagueGroupId)) :
+            leagues;
+        }
+
     }
 }

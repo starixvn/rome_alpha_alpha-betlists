@@ -17,7 +17,9 @@
             => Instance.GetLeagueName(leagueId.ToString(), LanguageCode, string.Empty);
 
         public static string GetLeagueName(int leagueId, int leagueGroupId)
-            => Instance.GetLeagueName(leagueId.ToString(), leagueGroupId.ToString(), LanguageCode, string.Empty);
+            => AppSettings.IsSiteLabel777 ?
+            Instance.GetLeagueName(leagueId.ToString(), leagueGroupId.ToString(), LanguageCode, string.Empty) :
+            Instance.GetLeagueName(leagueId.ToString(), LanguageCode, string.Empty);
 
         public static string GetProductName(int productId)
         {
@@ -39,7 +41,7 @@
 
             return productName;
         }
-            
+
 
         public static string GetProductDetailName(string refId, int resourceId)
             => Instance.GetResourceDataByRefIdAndResourceId(

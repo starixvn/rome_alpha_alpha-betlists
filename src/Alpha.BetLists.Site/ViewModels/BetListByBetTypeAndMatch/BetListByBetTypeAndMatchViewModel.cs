@@ -43,11 +43,7 @@
             ? CacheRefServiceHelper.GetBetTypeName(betType)
             : LeagueId == 0
             ? CacheRefServiceHelper.GetBetTypeName(betType)
-            : $"{GetLeagueName(LeagueId, LeagueGroupId)} {CacheRefServiceHelper.GetBetTypeName(betType)}";
+            : $"{CacheRefServiceHelper.GetLeagueName(LeagueId, LeagueGroupId)} {CacheRefServiceHelper.GetBetTypeName(betType)}";
 
-        private string GetLeagueName(int leagueId, int leagueGroupId)
-            => AppSettings.IsSiteLabel777 ?
-            CacheRefServiceHelper.GetLeagueName(leagueId, leagueGroupId) :
-            CacheRefServiceHelper.GetLeagueName(leagueId);
     }
 }
