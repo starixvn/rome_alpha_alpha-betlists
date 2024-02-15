@@ -35,6 +35,7 @@
         private static jiliResult: ResultDetails;
         private static live22Result: ResultDetails;
         private static weResult: ResultDetails;
+        private static live22Result: ResultDetails;
 
         public static CreateInstance(betTypeId: number): ResultDetails {
             if (betTypeId === 9 || betTypeId === 29 || betTypeId === 2799) {
@@ -208,6 +209,11 @@
             if (betTypeId >= 10300 && betTypeId <= 10399) {
                 this.weResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.weResult) ? new WEResultDetails() : this.weResult;
                 return this.weResult;
+            }
+
+            if (betTypeId >= 7601 && betTypeId <= 7700) {
+                this.live22Result = Common.Utils.IsNullOrUndefinedOrEmpty(this.live22Result) ? new Live22ResultDetails() : this.live22Result;
+                return this.live22Result;
             }
 
             this.sportsbookResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sportsbookResult) ? new SportsbookResultDetails : this.sportsbookResult;
