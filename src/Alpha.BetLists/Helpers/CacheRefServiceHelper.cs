@@ -3,8 +3,10 @@
     using System.Collections.Generic;
     using System.Text.RegularExpressions;
     using System.Threading;
+    using Alpha.BetLists.Constants;
     using AlphaPlus.Configurations;
     using Fanex.RemotingRef;
+    using System.Linq;
 
     public static class CacheRefServiceHelper
     {
@@ -44,11 +46,16 @@
 
 
         public static string GetProductDetailName(string refId, int resourceId)
-            => Instance.GetResourceDataByRefIdAndResourceId(
-                refId,
-                resourceId.ToString(),
-                LanguageCode,
-                string.Empty);
+        {
+            if (AppSettings.IsSiteLabel777 && ProductDetailIdConstants.SportsbookDetailFor777Site.Contains(resourceId))
+            {
+                var name = Instance.GetResourceDataByRefIdAndResourceId($"{refId}_Saba", resourceId.ToString(), LanguageCode, string.Empty);
+
+                return string.IsNullOrEmpty(name) ? Instance.GetResourceDataByRefIdAndResourceId(refId, resourceId.ToString(), LanguageCode, string.Empty) : name;
+            }
+
+            return Instance.GetResourceDataByRefIdAndResourceId(refId, resourceId.ToString(), LanguageCode, string.Empty);
+        }
 
         public static string GetSportName(int sportTypeId)
             => Instance.GetSportName(sportTypeId.ToString(), LanguageCode, string.Empty);

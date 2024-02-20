@@ -169,7 +169,7 @@
       <HintPath>..\..\packages\Fanex.BetList.CG.2.0.0\lib\net461\Fanex.BetList.CG.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.Core, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.Core.3.0.2.1-saba-01\lib\net461\Fanex.BetList.Core.dll</HintPath>
+      <HintPath>..\..\packages\Fanex.BetList.Core.3.0.2.1-saba-02\lib\net461\Fanex.BetList.Core.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.Core.RemotingRef, Version=1.1.0.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.Core.RemotingRef.2.0.0.1-saba-01\lib\net461\Fanex.BetList.Core.RemotingRef.dll</HintPath>
@@ -1160,19 +1160,19 @@
     <Content Include="App_Data\securitycode.staginginternal4.json">
       <DependentUpon>securitycode.json</DependentUpon>
     </Content>
-    <Content Include="App_Data\ProductSection.local4.config" >
+    <Content Include="App_Data\ProductSection.local4.config">
       <DependentUpon>ProductSection.config</DependentUpon>
     </Content>
-    <Content Include="App_Data\ProductSection.pro4.config" >
+    <Content Include="App_Data\ProductSection.pro4.config">
       <DependentUpon>ProductSection.config</DependentUpon>
     </Content>
-    <Content Include="App_Data\ProductSection.staging4.config" >
+    <Content Include="App_Data\ProductSection.staging4.config">
       <DependentUpon>ProductSection.config</DependentUpon>
     </Content>
-    <Content Include="App_Data\ProductSection.staginginternal4.config" >
+    <Content Include="App_Data\ProductSection.staginginternal4.config">
       <DependentUpon>ProductSection.config</DependentUpon>
     </Content>
-    <Content Include="App_Data\ProductSection.uat4.config" >
+    <Content Include="App_Data\ProductSection.uat4.config">
       <DependentUpon>ProductSection.config</DependentUpon>
     </Content>
     <None Include="compilerconfig.json" />

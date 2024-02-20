@@ -12,7 +12,7 @@
     using Alpha.BetLists.Models;
     using Fanex.Caching;
     using Fanex.Data.Repository;
-
+    
     public interface ProductDetailService
     {
         Task<string> BuildProductDetailsXMLAsync(IEnumerable<int> validProductIds, string userSelectedResourceIds, bool is789y = false);
@@ -158,7 +158,7 @@
             return await cacheService.GetOrSetAsync(
                 $"{ProductDetailsCacheKey}-{viewerId}",
                 async () => (await GetProductDetailsAsync())
-                    .Where(p => canViewProductDetails.ContainsKey(p.ProductId))
+                    .Where(p => canViewProductDetails.ContainsKey(p.ProductId) && SportsbookSupportDetail(p))
                     .Select(product =>
                     {
                         product.DisplayName = getProductDetailName(product.RefId, product.ResourceId);
@@ -181,6 +181,16 @@
             }
 
             return canViewProductDetails;
+        }
+
+        private static bool SportsbookSupportDetail(ProductDetail detail)
+        {
+            if (AlphaPlus.Configurations.AppSettings.IsSiteLabel777 && detail.ProductId == ProductIdConstants.Sportsbook)
+            {
+                return ProductDetailIdConstants.SportsbookDetailFor777Site.Contains(detail.ResourceId);
+            }
+
+            return true;
         }
     }
 }
