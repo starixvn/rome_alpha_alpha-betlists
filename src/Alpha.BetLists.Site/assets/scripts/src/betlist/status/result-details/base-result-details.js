@@ -146,9 +146,9 @@ var BetList;
                         this.live22Result = Common.Utils.IsNullOrUndefinedOrEmpty(this.live22Result) ? new ResultDetails.Live22ResultDetails() : this.live22Result;
                         return this.live22Result;
                     }
-                    if (betTypeId >= 7601 && betTypeId <= 7700) {
-                        this.live22Result = Common.Utils.IsNullOrUndefinedOrEmpty(this.live22Result) ? new ResultDetails.Live22ResultDetails() : this.live22Result;
-                        return this.live22Result;
+                    if (betTypeId >= 10300 && betTypeId <= 10399) {
+                        this.weResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.weResult) ? new ResultDetails.WEResultDetails() : this.weResult;
+                        return this.weResult;
                     }
                     this.sportsbookResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sportsbookResult) ? new ResultDetails.SportsbookResultDetails : this.sportsbookResult;
                     return this.sportsbookResult;
