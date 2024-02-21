@@ -20,37 +20,18 @@
     </div>
     <p class="note_title"><span class="require">*</span>&nbsp;&nbsp;@Resources.NewViewTakesOverNote</p>
 </div>
-@if (!Model.HidePopup)
-{
-    <div class="bg-overlay hide" id="popup-lastBets">
-        <div class="popup-highlight">
-            <div class="text">
-                <div>
-                    <p><span>@Resources.NewViewTakesOver</span></p>
-                    <p>@Html.Raw(Resources.NewViewTakesOverPopup)</p>
-                </div>
-            </div>
-            <div class="action">
-                <label class="label">
-                    <input type="checkbox" id="chk-dontShowAgain" />&nbsp;<span>@Resources.DoNotShowAgain</span>
-                </label>
-                <button type="button" class="btn-submit" id="btn-closePopup">OK</button>
-            </div>
-        </div>
-    </div>
-}
 <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="tab-report-type @(Model.IsSelectedBetType(BetTypeIdConstants.AllBetTypes) ?"active":string.Empty)">
-        @Html.ActionLink(Resources.AllBetTypes, "Index", $"{AppSettings.BetlistRouting}LastBets", new { BetType = BetTypeIdConstants.AllBetTypes, PageSize = Model.PageSize, HidePopup = true }, new { id = "tab-all-bet-types" })
+        @Html.ActionLink(Resources.AllBetTypes, "Index", $"{AppSettings.BetlistRouting}LastBets", new { BetType = BetTypeIdConstants.AllBetTypes, PageSize = Model.PageSize }, new { id = "tab-all-bet-types" })
     </li>
     <li role="presentation" class="tab-report-type @(Model.IsSelectedBetType(BetTypeIdConstants.Handicap) ?"active":string.Empty)">
-        @Html.ActionLink(Resources.Handicap, "Index", $"{AppSettings.BetlistRouting}LastBets", new { BetType = BetTypeIdConstants.Handicap, PageSize = Model.PageSize, HidePopup = true }, new { id = "tab-handicap" })
+        @Html.ActionLink(Resources.Handicap, "Index", $"{AppSettings.BetlistRouting}LastBets", new { BetType = BetTypeIdConstants.Handicap, PageSize = Model.PageSize }, new { id = "tab-handicap" })
     </li>
     <li role="presentation" class="tab-report-type @(Model.IsSelectedBetType(BetTypeIdConstants.OverUnder) ?"active":string.Empty)">
-        @Html.ActionLink(Resources.OverUnder, "Index", $"{AppSettings.BetlistRouting}LastBets", new { BetType = BetTypeIdConstants.OverUnder, PageSize = Model.PageSize, HidePopup = true }, new { id = "tab-over-under" })
+        @Html.ActionLink(Resources.OverUnder, "Index", $"{AppSettings.BetlistRouting}LastBets", new { BetType = BetTypeIdConstants.OverUnder, PageSize = Model.PageSize }, new { id = "tab-over-under" })
     </li>
     <li role="presentation" class="tab-report-type @(Model.IsSelectedBetType(BetTypeIdConstants.OtherBetTypes) ?"active":string.Empty)">
-        @Html.ActionLink(Resources.OtherBetTypes, "Index", $"{AppSettings.BetlistRouting}LastBets", new { BetType = BetTypeIdConstants.OtherBetTypes, PageSize = Model.PageSize, HidePopup = true }, new { id = "tab-other-bet-types" })
+        @Html.ActionLink(Resources.OtherBetTypes, "Index", $"{AppSettings.BetlistRouting}LastBets", new { BetType = BetTypeIdConstants.OtherBetTypes, PageSize = Model.PageSize }, new { id = "tab-other-bet-types" })
     </li>
 </ul>
 <div class="space-between">
