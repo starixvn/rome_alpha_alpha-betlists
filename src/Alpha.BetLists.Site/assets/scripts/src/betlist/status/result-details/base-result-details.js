@@ -142,6 +142,10 @@ var BetList;
                         this.jiliResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.jiliResult) ? new ResultDetails.JiliResultDetails() : this.jiliResult;
                         return this.jiliResult;
                     }
+                    if (betTypeId >= 7601 && betTypeId <= 7700) {
+                        this.live22Result = Common.Utils.IsNullOrUndefinedOrEmpty(this.live22Result) ? new ResultDetails.Live22ResultDetails() : this.live22Result;
+                        return this.live22Result;
+                    }
                     this.sportsbookResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sportsbookResult) ? new ResultDetails.SportsbookResultDetails : this.sportsbookResult;
                     return this.sportsbookResult;
                 };
@@ -167,7 +171,7 @@ var BetList;
                         this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new BaseResultDetails() : this.instance;
                         return this.instance;
                     },
-                    enumerable: false,
+                    enumerable: true,
                     configurable: true
                 });
                 return BaseResultDetails;
