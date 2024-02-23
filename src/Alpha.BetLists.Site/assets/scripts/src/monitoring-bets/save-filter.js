@@ -10,12 +10,14 @@ var SaveFilterView = /** @class */ (function () {
             var saveFilterPopup_1 = $("#save-filter-popup");
             this.filterNameInput = saveFilterPopup_1.find("#txt-filterName");
             this.isDefaultCheckbox = saveFilterPopup_1.find("#chk-isDefault");
+            this.isNotifyCheckbox = saveFilterPopup_1.find("#chk-isNotify");
             saveFilterPopup_1
                 .on("shown.bs.modal", function () { return _this.filterNameInput.focus(); })
                 .on("hide.bs.modal", function () {
                 _this.filterNameInput.val("");
                 TipsyHelper.clear(_this.filterNameInput);
                 _this.isDefaultCheckbox.prop("checked", false);
+                _this.isNotifyCheckbox.prop("checked", false);
                 _this.inlineMessagePopup.hide();
             });
             saveFilterPopup_1.find("#btn-save-filter-popup").click(function () { return _this.handleSaveFilterPopup(getSelectedFilterParamsFunc); });
@@ -30,7 +32,10 @@ var SaveFilterView = /** @class */ (function () {
         if (formDataPopup) {
             AJAXHelper.post($("#hidden-SaveFilterUrl").val(), formDataPopup, function (result) {
                 _this.inlineMessagePopup.show(result);
-                if (!result.ErrCode) {
+                if (result.ErrCode) {
+                    $(".lnk-chatbot").click(function () { location.href = $("#chatbot-path").val(); });
+                }
+                else {
                     var url = undefined;
                     if (getSelectedFilterParamsFunc) {
                         var filterParam = getSelectedFilterParamsFunc();
@@ -49,9 +54,11 @@ var SaveFilterView = /** @class */ (function () {
             return;
         }
         var isDefault = this.isDefaultCheckbox.is(":checked");
+        var isNotify = this.isNotifyCheckbox.is(":checked");
         return {
             filterName: filterName,
-            isDefault: isDefault
+            isDefault: isDefault,
+            isNotify: isNotify
         };
     };
     return SaveFilterView;

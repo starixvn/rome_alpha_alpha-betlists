@@ -5,20 +5,24 @@ class SaveFilterView {
     private inlineMessagePopup: InlineMessageComponent;
     private filterNameInput: JQuery;
     private isDefaultCheckbox: JQuery;
-
-    init(element: JQuery, getSelectedFilterParamsFunc = undefined) {
+    private isNotifyCheckbox: JQuery;
+    init(element: JQuery,
+        getSelectedFilterParamsFunc = undefined) {
         if (element.length) {
             this.inlineMessagePopup = new InlineMessageComponent("inline-message-popup");
 
             const saveFilterPopup = $("#save-filter-popup");
             this.filterNameInput = saveFilterPopup.find("#txt-filterName");
             this.isDefaultCheckbox = saveFilterPopup.find("#chk-isDefault");
+            this.isNotifyCheckbox = saveFilterPopup.find("#chk-isNotify");
+
             saveFilterPopup
                 .on("shown.bs.modal", () => this.filterNameInput.focus())
                 .on("hide.bs.modal", () => {
                     this.filterNameInput.val("");
                     TipsyHelper.clear(this.filterNameInput);
                     this.isDefaultCheckbox.prop("checked", false);
+                    this.isNotifyCheckbox.prop("checked", false);
                     this.inlineMessagePopup.hide();
                 });
             saveFilterPopup.find("#btn-save-filter-popup").click(() => this.handleSaveFilterPopup(getSelectedFilterParamsFunc));
@@ -34,7 +38,9 @@ class SaveFilterView {
         if (formDataPopup) {
             AJAXHelper.post($("#hidden-SaveFilterUrl").val(), formDataPopup, (result) => {
                 this.inlineMessagePopup.show(result);
-                if (!result.ErrCode) {
+                if (result.ErrCode) {
+                    $(".lnk-chatbot").click(() => { location.href = $("#chatbot-path").val(); });
+                } else {
                     let url = undefined;
                     if (getSelectedFilterParamsFunc) {
                         const filterParam = getSelectedFilterParamsFunc();
@@ -56,9 +62,11 @@ class SaveFilterView {
         }
 
         const isDefault = this.isDefaultCheckbox.is(":checked");
+        const isNotify = this.isNotifyCheckbox.is(":checked");
         return {
             filterName,
-            isDefault
+            isDefault,
+            isNotify
         };
     }
 }

@@ -12,14 +12,18 @@
             string filterName,
             bool isDefault,
             string languageKey,
-            string ip) : base(custId, subAccId, filterId, languageKey, ip)
+            string ip,
+            bool isNotify) : base(custId, subAccId, filterId, languageKey, ip)
         {
             FilterName = filterName;
             IsDefault = isDefault;
+            IsNotify = isNotify;
         }
 
         public string FilterName { get; }
 
         public bool IsDefault { get; }
+
+        public bool IsNotify { get; }
     }
 }

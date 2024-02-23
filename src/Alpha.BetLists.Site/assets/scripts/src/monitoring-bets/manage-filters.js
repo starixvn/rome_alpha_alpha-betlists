@@ -1,7 +1,8 @@
 "use strict";
 var ManageFiltersView = /** @class */ (function () {
-    function ManageFiltersView(saveFilter) {
+    function ManageFiltersView(saveFilter, topWindow) {
         this.saveFilter = saveFilter;
+        this.topWindow = topWindow;
     }
     ManageFiltersView.prototype.init = function () {
         var _this = this;
@@ -23,6 +24,7 @@ var ManageFiltersView = /** @class */ (function () {
         table.find(".filter-by-members").click(function () {
             self.handleToggleCollapseExpand($(this));
         });
+        table.find(".div-notify").click(function (e) { return _this.handleOnClickDivNotify(e, radioDefaultFilter); });
         table.find(".ic-edit").click(function (e) { return _this.handleOnClickIconEdit(e, iconCloseList, radioDefaultFilter); });
         table.find(".ic-delete").click(function (e) { return _this.handleOnClickIconDelete(e); });
         table.find(".ic-check").click(function (e) { return _this.handleOnClickIconCheck(e); });
@@ -75,7 +77,70 @@ var ManageFiltersView = /** @class */ (function () {
         $("#span-filter-name-" + filterId).addClass("hide");
         var filterName = $("#input-filter-name-" + filterId).removeClass("hide").val();
         var isDefault = $("#radio-default-" + filterId).prop("disabled", false).is(":checked");
-        this.originalData = { filterId: filterId, filterName: filterName, isDefault: isDefault };
+        var isNotify = $("#div-notify-" + filterId).hasClass("ic-notification");
+        $("#radio-default-" + filterId).prop("disabled", false);
+        this.originalData = { filterId: filterId, filterName: filterName, isDefault: isDefault, isNotify: isNotify };
+    };
+    ManageFiltersView.prototype.handleOnClickDivNotify = function (e, radioDefaultFilter) {
+        var _this = this;
+        var divNotify = $(e.target);
+        var filterId = divNotify.closest("tr").data("filterid");
+        var isNotify = $("#div-notify-" + filterId).hasClass("ic-notification");
+        var message = isNotify ? $("#confirmTurnOffNotification").val() : $("#confirmTurnOnNotification").val();
+        this.topWindow.bootboxConfirm(message, undefined, function () {
+            var filterNameElement = $("#input-filter-name-" + filterId);
+            var filterName = $.trim(filterNameElement.val());
+            if (!filterName) {
+                TipsyHelper.showError(filterNameElement, $("#hidden-filterNameRequiredError").val());
+                return;
+            }
+            var isDefault = $("#radio-default-" + filterId).is(":checked");
+            _this.originalData = { filterId: filterId, filterName: filterName, isDefault: isDefault, isNotify: !isNotify };
+            _this.handleOnClickIconClose(divNotify.closest("tr").find(".ic-close"), radioDefaultFilter);
+            var formData = {
+                filterId: filterId,
+                filterName: filterName,
+                isDefault: isDefault,
+                isNotify: !isNotify
+            };
+            AJAXHelper.post("UpdateFilter", formData, function (result) {
+                _this.inlineMessageComponent.show(result);
+                _this.originalData.isNotify = isNotify;
+                if (result.ErrCode) {
+                    divNotify.removeClass("ic-notification").removeClass("ic-notification-off");
+                    divNotify.addClass(_this.originalData.isNotify ? "ic-notification" : "ic-notification-off");
+                    $(".lnk-chatbot").click(function () { location.href = $("#chatbot-path").val(); });
+                }
+                else {
+                    Common.Utils.ReloadPageAfterTimeout();
+                }
+            });
+        });
+    };
+    ManageFiltersView.prototype.handleOnClickRadioDefault = function (e, radioDefaultFilter) {
+        var _this = this;
+        var radioDefault = $(e.target);
+        var filterId = radioDefault.closest("tr").data("filterid");
+        var filterNameElement = $("#input-filter-name-" + filterId);
+        var filterName = $.trim(filterNameElement.val());
+        if (!filterName) {
+            TipsyHelper.showError(filterNameElement, $("#hidden-filterNameRequiredError").val());
+            return;
+        }
+        var isDefault = $("#radio-default-" + filterId).is(":checked");
+        var isNotify = $("#div-notify-" + filterId).hasClass("ic-notification");
+        this.originalData = { filterId: filterId, filterName: filterName, isDefault: isDefault, isNotify: isNotify };
+        this.handleOnClickIconClose(radioDefault.closest("tr").find(".ic-close"), radioDefault);
+        var formData = {
+            filterId: filterId,
+            filterName: filterName,
+            isDefault: $("#radio-default-" + filterId).is(":checked"),
+            isNotify: isNotify
+        };
+        AJAXHelper.post("UpdateFilter", formData, function (result) {
+            _this.inlineMessageComponent.show(result);
+            result.ErrCode || Common.Utils.ReloadPageAfterTimeout();
+        });
     };
     ManageFiltersView.prototype.handleOnClickIconDelete = function (e) {
         var _this = this;
@@ -129,11 +194,13 @@ var ManageFiltersView = /** @class */ (function () {
         var formData = {
             filterId: filterId,
             filterName: filterName,
-            isDefault: $("#radio-default-" + filterId).is(":checked")
+            isDefault: $("#radio-default-" + filterId).is(":checked"),
+            isNotify: $("#div-notify-" + filterId).hasClass("ic-notification")
         };
         if (this.originalData.filterId === formData.filterId
             && this.originalData.filterName === formData.filterName
-            && this.originalData.isDefault === formData.isDefault) {
+            && this.originalData.isDefault === formData.isDefault
+            && this.originalData.isNotify === formData.isNotify) {
             this.inlineMessageComponent.showError($("#hidden-noChangeToUpdate").val());
         }
         else {
@@ -151,6 +218,9 @@ var ManageFiltersView = /** @class */ (function () {
         var filterName = $("#span-filter-name-" + filterId).removeClass("hide").text();
         $("#input-filter-name-" + filterId).addClass("hide").val(filterName);
         $("#radio-default-" + filterId).prop("disabled", true);
+        var divNotify = $("#div-notify-" + filterId);
+        divNotify.removeClass("ic-notification").removeClass("ic-notification-off");
+        divNotify.addClass(this.originalData.isNotify ? "ic-notification" : "ic-notification-off");
         // reset UI to original data
         radioDefaultFilter.prop("checked", true);
         this.originalData = {};
@@ -184,6 +254,6 @@ var ManageFiltersView = /** @class */ (function () {
     return ManageFiltersView;
 }());
 $(function () {
-    new ManageFiltersView(new SaveFilterView()).init();
+    new ManageFiltersView(new SaveFilterView(), window.top).init();
 });
 //# sourceMappingURL=manage-filters.js.map

@@ -136,7 +136,8 @@
                 message.FilterName,
                 message.IsDefault,
                 message.LanguageKey,
-                message.IP));
+                message.IP,
+                message.IsNotify));
 
         public async Task<IEnumerable<Result>> Handle(DeleteFiltersCommand message)
         {
@@ -196,7 +197,8 @@
                 unsavedFilterParam.MyWatchlistMembers,
                 unsavedFilterParam.FilterByMembers,
                 message.LanguageKey,
-                unsavedFilterParam.IP
+                unsavedFilterParam.IP,
+                message.IsNotify
             ));
 
             if (result.ErrCode == 0)
@@ -226,7 +228,8 @@
                 message.MyWatchlistMembers,
                 message.FilterByMembers,
                 message.LanguageKey,
-                message.IP);
+                message.IP,
+                message.IsNotify);
 
         private static string CheckIdList(string idList)
             => string.IsNullOrWhiteSpace(idList) || idList == "0"

@@ -448,6 +448,24 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to disable notifications of this filter via Telegram?.
+        /// </summary>
+        public static string confirmTurnOffNotification {
+            get {
+                return ResourceManager.GetString("confirmTurnOffNotification", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to enable notifications of this filter via Telegram? Note: The maximum number of notification filters is 3.
+        /// </summary>
+        public static string confirmTurnOnNotification {
+            get {
+                return ResourceManager.GetString("confirmTurnOnNotification", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The contribution amount will be rounded to 4 decimal places..
         /// </summary>
         public static string ContributionAmountRoundNote {
@@ -543,6 +561,15 @@ namespace Alpha.BetLists.AppResources {
         public static string draw {
             get {
                 return ResourceManager.GetString("draw", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable Chatbot &amp; Last Bets Notification to use Last Bets Notification feature. &lt;a class=&quot;lnk-chatbot&quot;&gt;Go to Chatbot&lt;/a&gt;.
+        /// </summary>
+        public static string EnableChatBot_LastBets {
+            get {
+                return ResourceManager.GetString("EnableChatBot_LastBets", resourceCulture);
             }
         }
         
@@ -1389,6 +1416,24 @@ namespace Alpha.BetLists.AppResources {
         public static string NoteCancelledBetPage {
             get {
                 return ResourceManager.GetString("NoteCancelledBetPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notification.
+        /// </summary>
+        public static string Notification {
+            get {
+                return ResourceManager.GetString("Notification", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notify via Telegram when new tickets match your filters.
+        /// </summary>
+        public static string NotifyLastBetsViaTelegram {
+            get {
+                return ResourceManager.GetString("NotifyLastBetsViaTelegram", resourceCulture);
             }
         }
         

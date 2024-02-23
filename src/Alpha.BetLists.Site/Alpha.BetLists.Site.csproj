@@ -679,6 +679,7 @@
     <Content Include="App_Data\SPNames\Docker\DBAGE.bodb_AGE.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Docker\DBARC.bodb_Archive.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Docker\DBBOF.bodb02.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Docker\DBBOT.bodb_Chatbot.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Docker\DBCUST.CustDB.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Docker\DBCust.IPDB.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Docker\DBLOG.bodb_CustomerLog.BODBDownlineNet.xml" />
@@ -689,6 +690,7 @@
     <Content Include="App_Data\SPNames\Internal\DBAGE.bodb_AGE.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Internal\DBARC.bodb_Archive.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Internal\DBBOF.bodb02.BODBDownlineNetView.xml" />
+    <Content Include="App_Data\SPNames\Internal\DBBOT.bodb_Chatbot.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Internal\DBCUST.CustDB.BODBDownlineNetView.xml" />
     <Content Include="App_Data\SPNames\Internal\DBCust.IPDB.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Internal\DBLOG.bodb_CustomerLog.BODBDownlineNetView.xml" />
@@ -698,6 +700,7 @@
     <Content Include="App_Data\SPNames\Local\DBAGE.bodb_AGE.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Local\DBBOF.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Local\DBCust.IPDB.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Local\DBBOT.bodb_Chatbot.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Local\DBPOLICY.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Local\DBCust.CustDB.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Local\DBAGE.bodb02.BODBDownlineNet.xml">
@@ -712,6 +715,7 @@
     </Content>
     <Content Include="App_Data\SPNames\SIT\DBARC.bodb_Archive.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DBBOF.bodb02.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\SIT\DBBOT.bodb_Chatbot.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DBCUST.CustDB.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DBCust.IPDB.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DBLOG.bodb_CustomerLog.BODBDownlineNet.xml" />

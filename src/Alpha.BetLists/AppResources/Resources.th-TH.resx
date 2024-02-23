@@ -822,4 +822,20 @@
   <data name="Last3Months" xml:space="preserve">
     <value>3 เดือนที่ผ่านมา</value>
   </data>
+  <data name="NotifyLastBetsViaTelegram" xml:space="preserve">
+    <value>แจ้งเตือนผ่านเทเลแกรมเมื่อมีตั๋วใหม่ตรงกับตัวกรองของคุณ</value>
+  </data>
+  <data name="Notification" xml:space="preserve">
+    <value>การแจ้งเตือน</value>
+  </data>
+  <data name="confirmTurnOffNotification" xml:space="preserve">
+    <value>คุณแน่ใจว่าจะปิดรับการแจ้งเตือนของตัวกรองนี้ผ่านเทเลแกรม?</value>
+  </data>
+  <data name="confirmTurnOnNotification" xml:space="preserve">
+    <value>คุณแน่ใจหรือว่าจะเปิดรับการแจ้งเตือนของตัวกรองนี้ผ่านทางเทเลแกรม?
+หมายเหตุ: ตัวกรองสูงสุดสำหรับการแจ้งเตือนคือ 3</value>
+  </data>
+  <data name="EnableChatBot_LastBets" xml:space="preserve">
+    <value>ให้แชทบอท และการแจ้งเดือนตั๋วเดิมพันล่าสุด ใช้คุณสมบัติการแจ้งเตือนตั๋วเดิมพันล่าสุด&lt;a class="lnk-chatbot"&gt;ไปยังแชทบอท&lt;/a&gt;</value>
+  </data>
 </root>

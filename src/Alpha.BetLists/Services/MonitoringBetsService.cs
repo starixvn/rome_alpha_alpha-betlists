@@ -74,6 +74,8 @@
 
         public async Task<IEnumerable<SavedFilter>> GetSavedFilters(int custId, int subAccId, AddFilterParam unsavedFilter)
         {
+            var isEnableNotifications = await IsEnableChatBotNotifications(custId, subAccId);
+
             var filterConfiguration = (await GetFilterConfiguration(custId, subAccId))
                 .Select(f =>
                 {
@@ -84,6 +86,7 @@
                         f.FilterId,
                         f.FilterName,
                         f.IsDefault,
+                        isEnableNotifications && f.IsNotify,
                         filterXml.BetType,
                         filterXml.Stake,
                         filterXml.LiveStatus,
@@ -110,6 +113,7 @@
                 0,
                 Resources.UnsavedFilter,
                 false,
+                customFilter.IsNotify,
                 customFilter.BetType,
                 customFilter.Stake,
                 customFilter.LiveStatus,
@@ -169,12 +173,15 @@
 
         public async Task<IEnumerable<FilterConfiguration>> GetFilters(int custId, int subAccId, AddFilterParam unsavedFilter)
         {
+            var isEnableNotifications = await IsEnableChatBotNotifications(custId, subAccId);
             var filterConfiguration = (await GetFilterConfiguration(custId, subAccId))
                 .Select(item =>
                 {
                     var filterXml = item.FilterXml;
                     filterXml.BetTypeNames = BuildBetTypeNames(filterXml.BetType);
                     filterXml.FlatternSports = BuildSports(FlattenSports(filterXml.Sports)).ToList();
+
+                    item.IsNotify = isEnableNotifications && item.IsNotify;
 
                     return item;
                 })
@@ -218,6 +225,7 @@
                 string.Empty,
                 filterXml,
                 param.IsDefault,
+                param.IsNotify,
                 DateTime.MinValue,
                 param.MyWatchlistMembers,
                 param.InputListMembers);
@@ -280,6 +288,12 @@
                 return new Result(AlreadyExistsErrorCode, Resources.FilterNameAlreadyExists);
             }
 
+            if (param.IsNotify && !(await IsEnableChatBotNotifications(param.CustId, param.SubAccId)))
+            {
+                const int EnableChatBotFunctionErrorCode = 90021;
+                return new Result(EnableChatBotFunctionErrorCode, Resources.EnableChatBot_LastBets);
+            }
+
             var command = new AddFilterCommand(param);
             partialUMService.ThrowIfUM(command.GetSettingKey());
 
@@ -291,6 +305,12 @@
 
         public async Task<Result> UpdateFilter(UpdateFilterParam param)
         {
+            if (param.IsNotify && !(await IsEnableChatBotNotifications(param.CustId, param.SubAccId)))
+            {
+                const int EnableChatBotFunctionErrorCode = 90021;
+                return new Result(EnableChatBotFunctionErrorCode, Resources.EnableChatBot_LastBets);
+            }
+
             var command = new UpdateFilterCommand(param);
             partialUMService.ThrowIfUM(command.GetSettingKey());
 
@@ -349,6 +369,14 @@
             await parlayService.UpdateOddsMixParlay(tickets);
 
             return tickets;
+        }
+
+        private async Task<bool> IsEnableChatBotNotifications(int custId, int subAccId)
+        {
+            var command = new CheckEnableChatBotNotificationsCommand(custId, subAccId);
+            await dynamicRepository.ExecuteAsync(command);
+
+            return command.Status;
         }
 
         private IEnumerable<League> SiteGroup777DontSupportPinGoal(IEnumerable<League> leagues)

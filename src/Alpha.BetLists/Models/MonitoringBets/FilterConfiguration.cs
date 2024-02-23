@@ -18,6 +18,7 @@
             string filterValue,
             FilterXml filterXml,
             bool isDefault,
+            bool isNotify,
             DateTime createdDate,
             string watchList,
             string inputList)
@@ -27,6 +28,7 @@
             FilterValue = filterValue;
             this.filterXml = filterXml;
             IsDefault = isDefault;
+            IsNotify = isNotify;
             CreatedDate = createdDate;
             WatchList = watchList;
             InputList = inputList;
@@ -49,6 +51,8 @@
         }
 
         public bool IsDefault { get; }
+
+        public bool IsNotify { get; set; }
 
         public DateTime CreatedDate { get; }
 

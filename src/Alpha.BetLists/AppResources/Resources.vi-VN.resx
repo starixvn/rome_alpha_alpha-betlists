@@ -827,4 +827,19 @@ Vui lòng chọn tiêu chí cho bộ lọc dựa trên nhu cầu theo dõi
   <data name="Last3Months" xml:space="preserve">
     <value>3 tháng trước</value>
   </data>
+  <data name="confirmTurnOnNotification" xml:space="preserve">
+    <value>Bạn có chắc muốn bật thông báo cho bộ lọc này trên Telegram không? Lưu ý: Chỉ có thể bật thông báo cho tối đa 3 bộ lọc.</value>
+  </data>
+  <data name="confirmTurnOffNotification" xml:space="preserve">
+    <value>Bạn có chắc muốn tắt thông báo cho bộ lọc này trên Telegram không?</value>
+  </data>
+  <data name="NotifyLastBetsViaTelegram" xml:space="preserve">
+    <value>Nhận thông báo qua Telegram khi có vé cược mới khớp với bộ lọc của bạn</value>
+  </data>
+  <data name="EnableChatBot_LastBets" xml:space="preserve">
+    <value>Bật Chatbot và Thông Báo Cược Gần Nhất để sử dụng tính năng Thông Báo Cược Gần Nhất. &lt;a class="lnk-chatbot"&gt;Đi đến Chatbot&lt;/a&gt;</value>
+  </data>
+  <data name="Notification" xml:space="preserve">
+    <value>Thông báo</value>
+  </data>
 </root>

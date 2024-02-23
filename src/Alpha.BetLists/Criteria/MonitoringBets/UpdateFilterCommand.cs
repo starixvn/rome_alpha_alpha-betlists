@@ -8,11 +8,14 @@
         {
             FilterName = param.FilterName;
             IsDefault = param.IsDefault;
+            IsNotify = param.IsNotify;
         }
 
         public string FilterName { get; }
 
         public bool IsDefault { get; }
+
+        public bool IsNotify { get; }
 
         public override string GetSettingKey()
             => "Age_CustLastBetFilter_Upd";

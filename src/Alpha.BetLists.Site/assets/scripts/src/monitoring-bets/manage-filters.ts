@@ -8,9 +8,11 @@ class ManageFiltersView {
     private inlineMessageComponent: InlineMessageComponent;
     private originalData: any;
     private saveFilter: SaveFilterView;
+    private topWindow: any;
 
-    constructor(saveFilter: SaveFilterView) {
+    constructor(saveFilter: SaveFilterView, topWindow: any) {
         this.saveFilter = saveFilter;
+        this.topWindow = topWindow;
     }
 
     init() {
@@ -38,6 +40,7 @@ class ManageFiltersView {
             self.handleToggleCollapseExpand($(this));
         });
 
+        table.find(".div-notify").click(e => this.handleOnClickDivNotify(e, radioDefaultFilter));
         table.find(".ic-edit").click(e => this.handleOnClickIconEdit(e, iconCloseList, radioDefaultFilter));
 
         table.find(".ic-delete").click(e => this.handleOnClickIconDelete(e));
@@ -97,7 +100,80 @@ class ManageFiltersView {
         $(`#span-filter-name-${filterId}`).addClass("hide");
         const filterName = $(`#input-filter-name-${filterId}`).removeClass("hide").val();
         const isDefault = $(`#radio-default-${filterId}`).prop("disabled", false).is(":checked");
-        this.originalData = { filterId, filterName, isDefault };
+        const isNotify = $(`#div-notify-${filterId}`).hasClass("ic-notification");
+        $(`#radio-default-${filterId}`).prop("disabled", false);
+        this.originalData = { filterId, filterName, isDefault, isNotify };
+    }
+
+    private handleOnClickDivNotify(e, radioDefaultFilter) {
+        const divNotify = $(e.target);
+        const filterId = divNotify.closest("tr").data("filterid");
+        const isNotify = $(`#div-notify-${filterId}`).hasClass("ic-notification");
+        const message = isNotify ? $("#confirmTurnOffNotification").val() : $("#confirmTurnOnNotification").val();
+
+        this.topWindow.bootboxConfirm(
+            message,
+            undefined,
+            () => {
+                const filterNameElement = $(`#input-filter-name-${filterId}`);
+                const filterName = $.trim(filterNameElement.val());
+                if (!filterName) {
+                    TipsyHelper.showError(filterNameElement, $("#hidden-filterNameRequiredError").val());
+                    return;
+                }
+
+                const isDefault = $(`#radio-default-${filterId}`).is(":checked");
+                this.originalData = { filterId, filterName, isDefault, isNotify: !isNotify };
+                this.handleOnClickIconClose(divNotify.closest("tr").find(".ic-close"), radioDefaultFilter);
+
+                const formData = {
+                    filterId,
+                    filterName,
+                    isDefault: isDefault,
+                    isNotify: !isNotify
+                };
+
+                AJAXHelper.post("UpdateFilter", formData, (result) => {
+                    this.inlineMessageComponent.show(result);
+                    this.originalData.isNotify = isNotify;
+                    if (result.ErrCode) {
+                        divNotify.removeClass("ic-notification").removeClass("ic-notification-off");
+                        divNotify.addClass(this.originalData.isNotify ? "ic-notification" : "ic-notification-off");
+                        $(".lnk-chatbot").click(() => { location.href = $("#chatbot-path").val(); });
+                    } else {
+                        Common.Utils.ReloadPageAfterTimeout();
+                    }
+                });
+            });
+    }
+
+    private handleOnClickRadioDefault(e, radioDefaultFilter) {
+        const radioDefault = $(e.target);
+
+        const filterId = radioDefault.closest("tr").data("filterid");
+        const filterNameElement = $(`#input-filter-name-${filterId}`);
+        const filterName = $.trim(filterNameElement.val());
+        if (!filterName) {
+            TipsyHelper.showError(filterNameElement, $("#hidden-filterNameRequiredError").val());
+            return;
+        }
+
+        const isDefault = $(`#radio-default-${filterId}`).is(":checked");
+        const isNotify = $(`#div-notify-${filterId}`).hasClass("ic-notification");
+        this.originalData = { filterId, filterName, isDefault, isNotify };
+        this.handleOnClickIconClose(radioDefault.closest("tr").find(".ic-close"), radioDefault);
+
+        const formData = {
+            filterId,
+            filterName,
+            isDefault: $(`#radio-default-${filterId}`).is(":checked"),
+            isNotify: isNotify
+        };
+
+        AJAXHelper.post("UpdateFilter", formData, (result) => {
+            this.inlineMessageComponent.show(result);
+            result.ErrCode || Common.Utils.ReloadPageAfterTimeout();
+        });
     }
 
     private handleOnClickIconDelete(e) {
@@ -152,12 +228,14 @@ class ManageFiltersView {
         const formData = {
             filterId,
             filterName,
-            isDefault: $(`#radio-default-${filterId}`).is(":checked")
+            isDefault: $(`#radio-default-${filterId}`).is(":checked"),
+            isNotify: $(`#div-notify-${filterId}`).hasClass("ic-notification")
         };
 
         if (this.originalData.filterId === formData.filterId
             && this.originalData.filterName === formData.filterName
-            && this.originalData.isDefault === formData.isDefault) {
+            && this.originalData.isDefault === formData.isDefault
+            && this.originalData.isNotify === formData.isNotify) {
             this.inlineMessageComponent.showError($("#hidden-noChangeToUpdate").val());
         } else {
             AJAXHelper.post("UpdateFilter", formData, (result) => {
@@ -176,6 +254,10 @@ class ManageFiltersView {
         const filterName = $(`#span-filter-name-${filterId}`).removeClass("hide").text();
         $(`#input-filter-name-${filterId}`).addClass("hide").val(filterName);
         $(`#radio-default-${filterId}`).prop("disabled", true);
+
+        const divNotify = $(`#div-notify-${filterId}`);
+        divNotify.removeClass("ic-notification").removeClass("ic-notification-off");
+        divNotify.addClass(this.originalData.isNotify ? "ic-notification" : "ic-notification-off");
 
         // reset UI to original data
         radioDefaultFilter.prop("checked", true);
@@ -212,5 +294,5 @@ class ManageFiltersView {
 }
 
 $(function () {
-    new ManageFiltersView(new SaveFilterView()).init();
+    new ManageFiltersView(new SaveFilterView(), window.top).init();
 });

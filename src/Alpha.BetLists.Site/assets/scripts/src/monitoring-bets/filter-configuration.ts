@@ -14,6 +14,7 @@ class FilterConfigurationView {
     private inlineMessagePopup: InlineMessageComponent;
     private filterNameInput: JQuery;
     private isDefaultCheckbox: JQuery;
+    private isNotifyCheckbox: JQuery;
 
     private addFilterFormData: any;
 
@@ -104,12 +105,14 @@ class FilterConfigurationView {
         const saveFilterPopup = $("#save-filter-popup");
         this.filterNameInput = saveFilterPopup.find("#txt-filterName");
         this.isDefaultCheckbox = saveFilterPopup.find("#chk-isDefault");
+        this.isNotifyCheckbox = saveFilterPopup.find("#chk-isNotify");
         saveFilterPopup
             .on("shown.bs.modal", () => this.filterNameInput.focus())
             .on("hide.bs.modal", () => {
                 this.filterNameInput.val("");
                 TipsyHelper.clear(this.filterNameInput);
                 this.isDefaultCheckbox.prop("checked", false);
+                this.isNotifyCheckbox.prop("checked", false);
                 this.inlineMessagePopup.hide();
             });
         saveFilterPopup.find("#btn-save-filter-popup").click(
@@ -255,9 +258,11 @@ class FilterConfigurationView {
         }
 
         const isDefault = this.isDefaultCheckbox.is(":checked");
+        const isNotify = this.isNotifyCheckbox.is(":checked");
         return {
             filterName,
-            isDefault
+            isDefault,
+            isNotify
         };
     }
 
@@ -278,7 +283,9 @@ class FilterConfigurationView {
             this.addFilterFormData = $.extend(this.addFilterFormData, formDataPopup);
             AJAXHelper.post("AddFilter", this.addFilterFormData, (result) => {
                 this.inlineMessagePopup.show(result);
-                if (!result.ErrCode) {
+                if (result.ErrCode) {
+                    $(".lnk-chatbot").click(() => { location.href = $("#chatbot-path").val(); });
+                } else {
                     reloadPageCallback();
                     this.addFilterFormData = null;
                 }
@@ -287,7 +294,7 @@ class FilterConfigurationView {
     }
 
     private getMainPageUrl(filterName: string) {
-        return window.location.href.split("?")[0].replace(/FilterConfiguration/i, "") + "?filterName=" + filterName;
+        return window.location.href.split("?")[0].replace(/FilterConfiguration/i, "") + "?filterName=" + encodeURIComponent(filterName);
     }
 
     private scrollTopInlineMessage($element = undefined) {
