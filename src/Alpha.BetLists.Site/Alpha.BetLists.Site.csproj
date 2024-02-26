@@ -609,6 +609,9 @@
     <Content Include="App_Data\ProductSection.napinternal2.config">
       <DependentUpon>ProductSection.config</DependentUpon>
     </Content>
+    <Content Include="App_Data\ProductSection.napinternal4.config">
+      <DependentUpon>ProductSection.config</DependentUpon>
+    </Content>
     <Content Include="App_Data\ProductSection.pro.config">
       <DependentUpon>ProductSection.config</DependentUpon>
     </Content>
@@ -637,6 +640,9 @@
       <DependentUpon>securitycode.json</DependentUpon>
     </Content>
     <Content Include="App_Data\securitycode.napinternal2.json">
+      <DependentUpon>securitycode.json</DependentUpon>
+    </Content>
+    <Content Include="App_Data\securitycode.napinternal4.json">
       <DependentUpon>securitycode.json</DependentUpon>
     </Content>
     <Content Include="App_Data\securitycode.pro.json">
