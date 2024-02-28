@@ -6,11 +6,12 @@
         {
         }
 
-        public League(int sportType, int leagueId, string leagueName = null)
+        public League(int sportType, int leagueId, int leagueGroupId = 0, string leagueName = null)
         {
             SportType = sportType;
             LeagueId = leagueId;
             LeagueName = leagueName;
+            LeagueGroupId = leagueGroupId;
         }
 
         public int SportType { get; }
@@ -18,5 +19,7 @@
         public int LeagueId { get; }
 
         public string LeagueName { get; }
+
+        public int LeagueGroupId { get; }
     }
 }

@@ -109,6 +109,7 @@
             ticket.MatchCode = matchInfo.MatchCode;
             ticket.SportTypeId = matchInfo.SportType;
             ticket.LeagueId = matchInfo.LeagueId;
+            ticket.LeagueGroupId = matchInfo.LeagueGroupId;
             ticket.HomeId = matchInfo.HomeId;
             ticket.AwayId = matchInfo.AwayId;
             ticket.Race = matchInfo.Race;
