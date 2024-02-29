@@ -404,6 +404,10 @@ var BetList;
                         this.live22Result = Common.Utils.IsNullOrUndefinedOrEmpty(this.live22Result) ? new ResultDetails.Live22ResultDetails() : this.live22Result;
                         return this.live22Result;
                     }
+                    if (betTypeId >= 10300 && betTypeId <= 10399) {
+                        this.weResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.weResult) ? new ResultDetails.WEResultDetails() : this.weResult;
+                        return this.weResult;
+                    }
                     this.sportsbookResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sportsbookResult) ? new ResultDetails.SportsbookResultDetails : this.sportsbookResult;
                     return this.sportsbookResult;
                 };
@@ -1090,6 +1094,25 @@ var BetList;
                 return Live22ResultDetails;
             }(ResultDetails.BaseResultDetails));
             ResultDetails.Live22ResultDetails = Live22ResultDetails;
+            var WEResultDetails = /** @class */ (function (_super) {
+                __extends(WEResultDetails, _super);
+                function WEResultDetails() {
+                    var _this = _super !== null && _super.apply(this, arguments) || this;
+                    _this.ViewResultDetails = function (matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, currencyId, gameId3rd, custId, transId3rd, siteId) {
+                        var params = '?custId=' + custId +
+                            '&transId3rd=' + transId3rd +
+                            '&gameId3rd=' + gameId3rd +
+                            '&currencyId=' + currencyId +
+                            '&siteId=' + siteId +
+                            '&BetType=' + betTypeId +
+                            '&productId=80';
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/WEResult' + params, "", 835, 675);
+                    };
+                    return _this;
+                }
+                return WEResultDetails;
+            }(ResultDetails.BaseResultDetails));
+            ResultDetails.WEResultDetails = WEResultDetails;
         })(ResultDetails = Status.ResultDetails || (Status.ResultDetails = {}));
     })(Status = BetList.Status || (BetList.Status = {}));
 })(BetList || (BetList = {}));
@@ -1480,7 +1503,6 @@ var BetList;
                     };
                     _this.ShowAdvantPlayMiniBetDetails = function (refNo, winlossDate, custId, transType) {
                         var params = _this.CreatePopupDetailsParam(refNo, winlossDate, custId, transType, "AdvantPlay Mini");
-                        _this.ShowDetailsPopup(params);
                     };
                     _this.CreatePopupDetailsParam = function (refNo, winlossDate, custId, transType, sportName) {
                         if (sportName === void 0) { sportName = "Saba Casino"; }
@@ -2096,6 +2118,38 @@ var BetList;
                 return Live22TicketDetails;
             }(TicketDetails.BaseTicketDetails));
             TicketDetails.Live22TicketDetails = Live22TicketDetails;
+            var WETicketDetails = /** @class */ (function (_super) {
+                __extends(WETicketDetails, _super);
+                function WETicketDetails() {
+                    var _this = _super !== null && _super.apply(this, arguments) || this;
+                    _this.ShoWELiveCasinoBetDetails = function (refNo, winlossDate, custId, transType) {
+                        var params = '?refno=' + refNo
+                            + '&custid=' + custId
+                            + '&transType=' + transType
+                            + '&sportName=WE Live Casino&productId=80';
+                        var width = 1500;
+                        var roleId = Number(_this.ViewerLevelId);
+                        if (roleId <= 3) {
+                            width -= 105;
+                        }
+                        if (roleId <= 2) {
+                            width -= 105;
+                        }
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'WE Live Casino - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                    };
+                    return _this;
+                }
+                Object.defineProperty(WETicketDetails, "Instance", {
+                    get: function () {
+                        this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new WETicketDetails() : this.instance;
+                        return this.instance;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                return WETicketDetails;
+            }(TicketDetails.BaseTicketDetails));
+            TicketDetails.WETicketDetails = WETicketDetails;
         })(TicketDetails = Choice.TicketDetails || (Choice.TicketDetails = {}));
     })(Choice = BetList.Choice || (BetList.Choice = {}));
 })(BetList || (BetList = {}));
@@ -2134,6 +2188,7 @@ var showMGRNGCasinoBetDetails;
 var showJiliBetDetails;
 var showYeeBetBetDetails;
 var showLive22BetDetails;
+var showWELiveCasinoBetDetails;
 $(document).ready(function () {
     showRnGCasinoDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowRnGCasinoDetails;
     showVoidBridgeDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowMacauGamesDetails;
@@ -2170,6 +2225,7 @@ $(document).ready(function () {
     showJiliBetDetails = BetList.Choice.TicketDetails.JiliTicketDetails.Instance.ShowJiliBetDetails;
     showYeeBetBetDetails = BetList.Choice.TicketDetails.YeeBetTicketDetails.Instance.ShowYeeBetTicketDetails;
     showLive22BetDetails = BetList.Choice.TicketDetails.Live22TicketDetails.Instance.ShowLive22TicketDetails;
+    showWELiveCasinoBetDetails = BetList.Choice.TicketDetails.WETicketDetails.Instance.ShoWELiveCasinoBetDetails;
 });
 //# sourceMappingURL=casino-ticket-details.js.map
 var __extends = (this && this.__extends) || (function () {

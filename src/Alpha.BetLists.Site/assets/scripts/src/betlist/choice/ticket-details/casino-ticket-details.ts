@@ -76,8 +76,8 @@
 
         public ShowAdvantPlayMiniBetDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
             const params = this.CreatePopupDetailsParam(refNo, winlossDate, custId, transType, "AdvantPlay Mini");
-            this.ShowDetailsPopup(params);
         }
+
 
         private CreatePopupDetailsParam = (refNo: string, winlossDate: Date, custId: string, transType: string, sportName: string = "Saba Casino"): string => {
             return "?refNo=" + refNo
@@ -652,6 +652,37 @@
                 'Live22 - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
         }
     }
+    
+    export class WETicketDetails extends BaseTicketDetails {
+        private static instance: WETicketDetails;
+
+        public static get Instance() {
+            this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new WETicketDetails() : this.instance;
+            return this.instance;
+        }
+
+        public ShoWELiveCasinoBetDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
+            const params = '?refno=' + refNo
+                + '&custid=' + custId
+                + '&transType=' + transType
+                + '&sportName=WE Live Casino&productId=80';
+
+            let width = 1500;
+            let roleId = Number(this.ViewerLevelId);
+
+            if (roleId <= 3) {
+                width -= 105;
+            }
+
+            if (roleId <= 2) {
+                width -= 105;
+            }
+
+            Common.PopupDetails.Instance(window.top).Show(
+                Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params,
+                'WE Live Casino - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+        }
+    }
 }
 
 let showRnGCasinoDetails: Function;
@@ -689,6 +720,7 @@ let showMGRNGCasinoBetDetails: Function;
 let showJiliBetDetails: Function;
 let showYeeBetBetDetails: Function;
 let showLive22BetDetails: Function;
+let showWELiveCasinoBetDetails: Function;
 
 $(document).ready(() => {
     showRnGCasinoDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowRnGCasinoDetails;
@@ -726,4 +758,5 @@ $(document).ready(() => {
     showJiliBetDetails = BetList.Choice.TicketDetails.JiliTicketDetails.Instance.ShowJiliBetDetails;
     showYeeBetBetDetails = BetList.Choice.TicketDetails.YeeBetTicketDetails.Instance.ShowYeeBetTicketDetails;
     showLive22BetDetails = BetList.Choice.TicketDetails.Live22TicketDetails.Instance.ShowLive22TicketDetails;
+    showWELiveCasinoBetDetails = BetList.Choice.TicketDetails.WETicketDetails.Instance.ShoWELiveCasinoBetDetails;
 })
