@@ -22,14 +22,33 @@
                 }
             </td>
             <td class="text-right bl_underdog">
-                @if (Model.IsParlayBoost)
+                @if (Model.IsMixParlay)
                 {
-                    @ParlayBoostOdds.Render(item.Odds, item.MasterOdds, item.BoostRate);
+                    Html.Raw(item.MasterOdds);
                 }
                 else
                 {
-                    @Html.Raw(item.MasterOdds);
+                    if (Model.IsParlayBoost)
+                    {
+                        ParlayBoostOdds.Render(item.Odds, item.MasterOdds, item.BoostRate);
+                    }
+                    else
+                    {
+                        if (item.ShowBothOdds)
+                        {
+                            <span class="underdog strikethrough">@item.Odds</span>
+                            <br />
+                            <span class="oddstype">
+                                <span class="underdog">@item.MasterOdds</span>
+                            </span>
+                        }
+                        else
+                        {
+                            @Html.Raw(item.MasterOdds);
+                        }
+                    }
                 }
+
             </td>
             <td class="text-right bl_underdog">@Html.Raw(item.Stake)</td>
             <td class="text-right">

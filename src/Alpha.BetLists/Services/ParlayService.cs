@@ -54,7 +54,7 @@
 
             var comboParlayDetailTuple = await dynamicRepository.FetchMultipleAsync<ComboParlayDetail, MatchDetail>(criteria);
 
-            return new ComboParlayDetailData(comboParlayDetailTuple.Item1, comboParlayDetailTuple.Item2, criteria.Outstanding, criteria.IsParlayBoost);
+            return new ComboParlayDetailData(comboParlayDetailTuple.Item1, comboParlayDetailTuple.Item2, criteria.Outstanding, criteria.IsParlayBoost, criteria.IsMixParlay);
         }
 
         public async Task UpdateOddsMixParlay(IEnumerable<TicketDto> tickets)

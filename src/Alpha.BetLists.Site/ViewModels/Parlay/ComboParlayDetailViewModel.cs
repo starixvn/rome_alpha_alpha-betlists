@@ -48,6 +48,7 @@
 
                 OutStanding = ConvertByBetType.Stake(comboParlayDetailData.Outstanding);
                 IsParlayBoost = comboParlayDetailData.IsParlayBoost;
+                IsMixParlay = comboParlayDetailData.IsMixParlay;
                 TotalWinLost = ConvertByBetType.Winloss(comboParlayDetailData.ComboParlayDetails.Sum(d => d.WinLost + d.PlayerComm));
                 IsRunningTicket = !comboParlayDetailData.ComboParlayDetails.Any();
             }
@@ -68,6 +69,8 @@
         public string OutStanding { get; }
 
         public bool IsParlayBoost { get; }
+
+        public bool IsMixParlay { get; }
 
         public string Title { get; }
 

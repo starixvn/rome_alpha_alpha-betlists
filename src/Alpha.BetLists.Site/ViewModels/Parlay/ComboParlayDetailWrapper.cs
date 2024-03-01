@@ -64,6 +64,8 @@
 
         public List<string> Events { get; }
 
+        public bool ShowBothOdds => ConvertByBetType.IsShowSecondOdds(ComboParlayDetail.Odds, ComboParlayDetail.MasterOdds);
+
         private List<string> GetEvents(ITicketHelper ticketHelper)
         {
             var events = new List<string>();
