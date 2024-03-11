@@ -66,7 +66,8 @@
                             ProductIdConstants.SexyGaming,
                             ProductIdConstants.Pragmatic,
                             ProductIdConstants.SpadeGaming,
-                            ProductIdConstants.MgRng
+                            ProductIdConstants.MgRng,
+                            ProductIdConstants.Live22
                         };
 
                         if (productids.Any(i => i == group.Key))
