@@ -25,6 +25,6 @@
             => message.IsValid() ? await PartialView<WinLossBetListWeekSelectionViewModel>(message) : View(InvalidBetListView);
 
         public async Task<ActionResult> BetList(WinLossBetListQuery message)
-            => message.IsValid() ? await PartialView(message) : View(InvalidBetListView);
+            => message.IsValid() ? await PartialView<WinLossViewModel>(message) : View(InvalidBetListView);
     }
 }

@@ -1,5 +1,6 @@
 ﻿namespace Alpha.BetLists.Site.Requests.WinLoss
 {
+    using System;
     using Alpha.BetLists.Models;
     using Alpha.BetLists.Site.ViewModels.WinLoss;
     using MediatR;
@@ -9,6 +10,10 @@
         public WinLossIndexQuery(IUser viewer) : base(viewer)
         {
         }
+
+        public DateTime? WeekFromDate { get; set; }
+
+        public DateTime? WeekToDate { get; set; }
 
         public string ShowColumns { get; set; }
 

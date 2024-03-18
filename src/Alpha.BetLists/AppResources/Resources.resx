@@ -843,4 +843,7 @@
   <data name="NewViewTakesOverPopup" xml:space="preserve">
     <value>From &lt;b&gt;21/02/2024 (dd/mm/yyyy)&lt;/b&gt;, the &lt;b&gt;New view&lt;/b&gt; will become the &lt;b&gt;primary display&lt;/b&gt;. You can still switch back to the Classic view.</value>
   </data>
+  <data name="Last3Months" xml:space="preserve">
+    <value>Last 3 Months</value>
+  </data>
 </root>

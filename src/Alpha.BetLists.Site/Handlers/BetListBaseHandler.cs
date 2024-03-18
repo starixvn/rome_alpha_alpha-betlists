@@ -1,5 +1,13 @@
 ﻿namespace Alpha.BetLists.Site.Handlers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Web.Hosting;
+    using System.Web.Mvc;
+    using Alpha.BetLists.AppResources;
     using Alpha.BetLists.Extensions;
     using Alpha.BetLists.Site.Requests.WinLoss;
     using Alpha.BetLists.Site.ViewModels.Components;
@@ -11,13 +19,6 @@
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Fanex.Logging.Extensions.Web;
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using System.Web.Hosting;
-    using System.Web.Mvc;
 
     public class BetListBaseHandler
     {
@@ -99,7 +100,6 @@
                                 p.Id,
                                 p.DisplayName,
                                 userSelectedProductIds.ContainsKey(p.Id),
-                                p.EndOfSupportDate.HasValue && p.EndOfSupportDate < message.HistoricPivotDate,
                                 null)));
                         }
                         else
@@ -108,16 +108,12 @@
                                 p.Id,
                                 p.DisplayName,
                                 userSelectedProductIds.ContainsKey(p.Id),
-                                p.EndOfSupportDate.HasValue && p.EndOfSupportDate < message.HistoricPivotDate,
                                 null)).ToList();
-                            var isGroupProductChecked = message.FromDate >= message.HistoricPivotDate
-                                ? children.Where(p => !p.OnlyShowHistoric).All(p => p.Checked)
-                                : children.All(p => p.Checked);
+                            var isGroupProductChecked = children.All(p => p.Checked);
                             productList.Add(new ProductViewModel(
                                 item.Key.Type,
                                 item.Key.TypeName,
                                 isGroupProductChecked,
-                                false,
                                 children));
                         }
                     });
@@ -139,28 +135,18 @@
 
 
         protected internal static IEnumerable<WeekSelectionViewModel> BuildWeekSelectionViewModels(
-            IEnumerable<TicketDto> tickets,
+            IEnumerable<WinLossWeekData> weekData,
             DateTime fromDate,
             DateTime toDate,
-            DateTime? selectedFromDate,
-            DateTime? selectedToDate)
+            DateTime? selectedFromDate = null,
+            DateTime? selectedToDate = null)
         {
-            var weekSelections = BuildWeekSelectionViewModels(fromDate, toDate, selectedFromDate, selectedToDate);
-
-            foreach (var item in weekSelections)
+            var weekDataHash = new HashSet<string>();
+            foreach (var item in weekData)
             {
-                item.IsEnable = tickets.Any(t => item.FromDate <= t.WinlostDate && t.WinlostDate <= item.ToDate);
+                weekDataHash.Add(GetDisplayWeek(item.StartOfWeek, item.EndOfWeek));
             }
 
-            return weekSelections;
-        }
-
-        protected internal static IEnumerable<WeekSelectionViewModel> BuildWeekSelectionViewModels(
-            DateTime fromDate,
-            DateTime toDate,
-            DateTime? selectedFromDate,
-            DateTime? selectedToDate)
-        {
             var weekSelections = new List<WeekSelectionViewModel>();
             var startDate = fromDate.Date;
             var endDate = toDate.Date;
@@ -169,15 +155,28 @@
             {
                 var endDateStartOfWeek = endDate.StartOfWeek();
                 var startDateOrEndDateStartOfWeek = startDate < endDateStartOfWeek ? endDateStartOfWeek : startDate;
-                weekSelections.Add(
-                    new WeekSelectionViewModel(startDateOrEndDateStartOfWeek, endDate, selectedFromDate, selectedToDate));
+                var weekSelection = new WeekSelectionViewModel(
+                    startDateOrEndDateStartOfWeek,
+                    endDate,
+                    GetDisplayWeek(startDateOrEndDateStartOfWeek, endDate),
+                    selectedFromDate,
+                    selectedToDate);
+                weekSelection.IsEnable = weekDataHash.Contains(weekSelection.Display);
+                weekSelections.Add(weekSelection);
 
                 endDate = endDateStartOfWeek.AddDays(-1);
             }
 
             return weekSelections;
         }
-        
+
+        protected internal static string GetDisplayWeek(DateTime fromDate, DateTime toDate)
+        {
+            var displayToDate = $"{toDate.ToString("dd")} {Resources.ResourceManager.GetString(toDate.ToString("MMM"))}";
+
+            return fromDate == toDate ? displayToDate : $"{fromDate.ToString("dd")} - {displayToDate}";
+        }
+
         protected internal async Task AssignCountry(IEnumerable<ITicket> tickets, bool displayVNIP)
         {
             var ipList = tickets

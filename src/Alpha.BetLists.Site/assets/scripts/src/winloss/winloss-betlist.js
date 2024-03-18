@@ -73,7 +73,6 @@ var WinLossBetListView = /** @class */ (function () {
     WinLossBetListView.prototype.renderComponents = function () {
         var _this = this;
         this.dateRangePickerComponent.render(new DateRangePickerJQueryOption(function (dateRange) {
-            _this.constraintDateRangeAndProductDropdownList(dateRange);
             $.extend(_this.globalFormData, dateRange, _this.productAndProductDetailDropdownComponent.getCheckedValues());
             if (_this.isInvalidGlobalFormData()) {
                 return;
@@ -88,7 +87,6 @@ var WinLossBetListView = /** @class */ (function () {
             _this.getBetListWeekSelection();
         }));
         var dateRange = this.dateRangePickerComponent.getDateRangeValues();
-        this.constraintDateRangeAndProductDropdownList(dateRange);
         this.weekSelectionComponent.init(new WeekSelectionOption(function (dateRange) {
             if (_this.isInvalidGlobalFormData()) {
                 return;
@@ -123,15 +121,6 @@ var WinLossBetListView = /** @class */ (function () {
             $this.attr("href", _this.buildWinLossReportUrl(reportParams));
         }));
     };
-    WinLossBetListView.prototype.constraintDateRangeAndProductDropdownList = function (dateRange) {
-        var historicPivotDate = moment(this.dateRangePickerComponent.getHistoricPivotDate());
-        if (moment(dateRange.fromDate).isSameOrAfter(historicPivotDate)) {
-            this.productAndProductDetailDropdownComponent.hideHistoricProducts();
-        }
-        else {
-            this.productAndProductDetailDropdownComponent.showHistoricProducts();
-        }
-    };
     WinLossBetListView.prototype.getDateRangePickerLocale = function (language) {
         var locale = {
             "th-TH": "th",
@@ -157,6 +146,12 @@ var WinLossBetListView = /** @class */ (function () {
             _this.breadcrumbLevelComponent.bindEvents();
             _this.bindExportExcelEvent();
             _this.updateCurrentUrl();
+            var activeWeek = _this.weekSelectionComponent.getActiveWeek();
+            // update fromDate/toDate of globalFormData to activeWeek
+            if (Object.keys(activeWeek).length) {
+                _this.globalFormData.fromDate = activeWeek.weekFromDate;
+                _this.globalFormData.toDate = activeWeek.weekToDate;
+            }
             _this.betListWeekSelection.unblock();
         }).fail(function (jqXHR) { return _this.handleAjaxError(jqXHR, _this.betListWeekSelection); });
     };

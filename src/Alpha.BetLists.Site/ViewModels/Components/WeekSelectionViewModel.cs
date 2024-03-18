@@ -1,18 +1,19 @@
 ﻿namespace Alpha.BetLists.Site.ViewModels.Components
 {
     using System;
-    using Alpha.BetLists.AppResources;
 
     public class WeekSelectionViewModel
     {
         public WeekSelectionViewModel(
             DateTime fromDate,
             DateTime toDate,
+            string display,
             DateTime? selectedFromDate,
             DateTime? selectedToDate)
         {
             FromDate = fromDate;
             ToDate = toDate;
+            Display = display;
             IsActive = selectedFromDate.HasValue
                 && selectedToDate.HasValue
                 && selectedFromDate.Value == fromDate
@@ -23,17 +24,7 @@
 
         public DateTime ToDate { get; }
 
-        public string Display
-        {
-            get
-            {
-                var displayToDate = $"{ToDate.ToString("dd")} {Resources.ResourceManager.GetString(ToDate.ToString("MMM"))}";
-
-                return FromDate == ToDate
-                    ? displayToDate
-                    : $"{FromDate.ToString("dd")} - {displayToDate}";
-            }
-        }
+        public string Display { get; }
 
         public bool IsActive { get; }
 

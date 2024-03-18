@@ -70,13 +70,10 @@ var DateRangePickerJQueryOption = /** @class */ (function () {
 }());
 var DateRangePickerJQueryComponent = /** @class */ (function () {
     function DateRangePickerJQueryComponent() {
-        this.historyMaxDateRange = 30;
     }
     DateRangePickerJQueryComponent.prototype.render = function (options) {
         var _this = this;
         var dateRangePicker = $("#" + options.selectorId);
-        this.historicPivotDateText = dateRangePicker.data("historicpivotdate");
-        var historicPivotDate = moment(this.historicPivotDateText);
         this.fromDate = dateRangePicker.data("fromdate");
         this.toDate = dateRangePicker.data("todate");
         dateRangePicker
@@ -93,32 +90,10 @@ var DateRangePickerJQueryComponent = /** @class */ (function () {
             singleMonth: true,
             monthSelect: true,
             yearSelect: true,
-            autoClose: true
+            maxDays: 92
         }).bind("datepicker-change", function (_, obj) {
-            var startDate = moment(obj.date1);
-            var endDate = moment(obj.date2);
-            if (endDate.isBefore(historicPivotDate) && endDate.diff(startDate, "d") > _this.historyMaxDateRange) {
-                try {
-                    window.top.bootboxAlert(dateRangePicker.data("label-maxdataretrievehistoryerror"));
-                }
-                catch (e) {
-                    alert(dateRangePicker.data("label-maxdataretrievehistoryerror"));
-                }
-                dateRangePicker.data("dateRangePicker").setDateRange(_this.fromDate, _this.toDate, false);
-                return;
-            }
-            if (startDate.isBefore(historicPivotDate) && endDate.isSameOrAfter(historicPivotDate) && endDate.diff(startDate, "d") > _this.historyMaxDateRange) {
-                try {
-                    window.top.bootboxAlert(dateRangePicker.data("label-maxdataretrievehistoryerror"));
-                }
-                catch (e) {
-                    alert(dateRangePicker.data("label-maxdataretrievehistoryerror"));
-                }
-                dateRangePicker.data("dateRangePicker").setDateRange(_this.fromDate, _this.toDate, false);
-                return;
-            }
-            _this.fromDate = startDate.format(alphaReports.format.shortDateWithSlash_DatePicker);
-            _this.toDate = endDate.format(alphaReports.format.shortDateWithSlash_DatePicker);
+            _this.fromDate = moment(obj.date1).format(alphaReports.format.shortDateWithSlash_DatePicker);
+            _this.toDate = moment(obj.date2).format(alphaReports.format.shortDateWithSlash_DatePicker);
         })
             .bind("datepicker-closed", function () { return options.onClosed(_this.getDateRangeValues()); })
             .data("dateRangePicker").setDateRange(this.fromDate, this.toDate, false);
@@ -130,7 +105,11 @@ var DateRangePickerJQueryComponent = /** @class */ (function () {
         var yesterday = moment(today).subtract(1, "d");
         var thisWeekStartOfDay = moment(today).startOf("isoWeek");
         var lastMonthStartOfDay = moment(today).subtract(1, "M").startOf("M");
-        return [
+        var lastMonthEndOfDay = moment(lastMonthStartOfDay).endOf("M").toDate();
+        var last3MonthsStartOfDay = moment(today).subtract(3, "M").startOf("M");
+        var realLastMonthStartOfDay = lastMonthStartOfDay.diff(minDate) >= 0 ? lastMonthStartOfDay.toDate() : minDate.toDate();
+        var realLast3MonthsStartOfDay = last3MonthsStartOfDay.diff(minDate) >= 0 ? last3MonthsStartOfDay.toDate() : minDate.toDate();
+        var shortcuts = [
             {
                 name: dateRangePicker.data("label-today"),
                 dates: function () {
@@ -176,10 +155,7 @@ var DateRangePickerJQueryComponent = /** @class */ (function () {
             {
                 name: dateRangePicker.data("label-lastmonth"),
                 dates: function () {
-                    return [
-                        lastMonthStartOfDay.diff(minDate) >= 0 ? lastMonthStartOfDay.toDate() : minDate.toDate(),
-                        moment(lastMonthStartOfDay).endOf("M").toDate()
-                    ];
+                    return [realLastMonthStartOfDay, lastMonthEndOfDay];
                 }
             },
             {
@@ -192,12 +168,18 @@ var DateRangePickerJQueryComponent = /** @class */ (function () {
                 }
             }
         ];
+        if (realLastMonthStartOfDay !== realLast3MonthsStartOfDay) {
+            shortcuts.push({
+                name: dateRangePicker.data("label-last3months"),
+                dates: function () {
+                    return [realLast3MonthsStartOfDay, lastMonthEndOfDay];
+                }
+            });
+        }
+        return shortcuts;
     };
     DateRangePickerJQueryComponent.prototype.getDateRangeValues = function () {
         return { fromDate: this.fromDate, toDate: this.toDate };
-    };
-    DateRangePickerJQueryComponent.prototype.getHistoricPivotDate = function () {
-        return this.historicPivotDateText;
     };
     return DateRangePickerJQueryComponent;
 }());
@@ -295,7 +277,6 @@ var ProductAndProductDetailDropdownComponent = /** @class */ (function () {
             minWidth: 250,
             maxHeight: 250,
             showTooltip: false,
-            expandGroupsByDefault: false,
             listData: productList,
             onCheck: function () {
                 var productId = this.value;
@@ -500,7 +481,6 @@ var WinLossBetListView = /** @class */ (function () {
     WinLossBetListView.prototype.renderComponents = function () {
         var _this = this;
         this.dateRangePickerComponent.render(new DateRangePickerJQueryOption(function (dateRange) {
-            _this.constraintDateRangeAndProductDropdownList(dateRange);
             $.extend(_this.globalFormData, dateRange, _this.productAndProductDetailDropdownComponent.getCheckedValues());
             if (_this.isInvalidGlobalFormData()) {
                 return;
@@ -515,7 +495,6 @@ var WinLossBetListView = /** @class */ (function () {
             _this.getBetListWeekSelection();
         }));
         var dateRange = this.dateRangePickerComponent.getDateRangeValues();
-        this.constraintDateRangeAndProductDropdownList(dateRange);
         this.weekSelectionComponent.init(new WeekSelectionOption(function (dateRange) {
             if (_this.isInvalidGlobalFormData()) {
                 return;
@@ -550,15 +529,6 @@ var WinLossBetListView = /** @class */ (function () {
             $this.attr("href", _this.buildWinLossReportUrl(reportParams));
         }));
     };
-    WinLossBetListView.prototype.constraintDateRangeAndProductDropdownList = function (dateRange) {
-        var historicPivotDate = moment(this.dateRangePickerComponent.getHistoricPivotDate());
-        if (moment(dateRange.fromDate).isSameOrAfter(historicPivotDate)) {
-            this.productAndProductDetailDropdownComponent.hideHistoricProducts();
-        }
-        else {
-            this.productAndProductDetailDropdownComponent.showHistoricProducts();
-        }
-    };
     WinLossBetListView.prototype.getDateRangePickerLocale = function (language) {
         var locale = {
             "th-TH": "th",
@@ -584,6 +554,12 @@ var WinLossBetListView = /** @class */ (function () {
             _this.breadcrumbLevelComponent.bindEvents();
             _this.bindExportExcelEvent();
             _this.updateCurrentUrl();
+            var activeWeek = _this.weekSelectionComponent.getActiveWeek();
+            // update fromDate/toDate of globalFormData to activeWeek
+            if (Object.keys(activeWeek).length) {
+                _this.globalFormData.fromDate = activeWeek.weekFromDate;
+                _this.globalFormData.toDate = activeWeek.weekToDate;
+            }
             _this.betListWeekSelection.unblock();
         }).fail(function (jqXHR) { return _this.handleAjaxError(jqXHR, _this.betListWeekSelection); });
     };

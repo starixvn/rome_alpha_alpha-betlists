@@ -819,4 +819,7 @@
   <data name="NewViewTakesOverPopup" xml:space="preserve">
     <value>從 &lt;b&gt;21/02/2024 (dd/mm/yyyy)&lt;/b&gt; 開始，&lt;b&gt;新版&lt;/b&gt;將成爲&lt;b&gt;主要顯示頁面&lt;/b&gt;。 您仍然可以切換至經典版。</value>
   </data>
+  <data name="Last3Months" xml:space="preserve">
+    <value>過去3個月</value>
+  </data>
 </root>
