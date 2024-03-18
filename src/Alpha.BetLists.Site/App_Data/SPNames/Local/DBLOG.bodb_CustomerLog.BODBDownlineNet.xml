@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Functions SiteId="105" SiteName="Bet Lists">
   <Function Name="Write/View Logs">
-    <Setting Key="IS_UpdFunctionUsage" SpName="IS_UpdFunctionUsage" DbName="DBLOG.bodb_CustomerLog.BODBDownlineNet" Plain="0" />
+    <Setting Key="IS_UpdFunctionUsage" SpName="IS_UpdFunctionUsage" DbName="DBLOG.bodb_CustomerLog.wsv_alp" Plain="0" />
   </Function>
   <Function Name="Smart Punter Write Log">
-    <Setting Key="Age_UserLog_SmartPunterInsMultiple" SpName="Age_UserLog_SmartPunterInsMultiple" DbName="DBLOG.bodb_CustomerLog.BODBDownlineNet" />
-    <Setting Key="NAP_UserLog_SmartPunterIns" SpName="NAP_UserLog_SmartPunterIns" DbName="DBLOG.bodb_CustomerLog.BODBDownlineNet" />
+    <Setting Key="Age_UserLog_SmartPunterInsMultiple" SpName="Age_UserLog_SmartPunterInsMultiple" DbName="DBLOG.bodb_CustomerLog.wsv_alp" />
+    <Setting Key="NAP_UserLog_SmartPunterIns" SpName="NAP_UserLog_SmartPunterIns" DbName="DBLOG.bodb_CustomerLog.wsv_alp" />
   </Function>
 </Functions>

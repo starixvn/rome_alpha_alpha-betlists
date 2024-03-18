@@ -38,26 +38,26 @@ WORKDIR C:\Compiled
 RUN `
     if defined REDMINE_IDS `
     FOR %P IN ( `
-        App_Data\SPNames\Docker\DBACC.bodb02.BODBDownlineNet.xml, `		
-		App_Data\SPNames\Docker\DBAGE.bodb_AGE.BODBDownlineNet.xml, `
-		App_Data\SPNames\Docker\DBAGE.bodb02.BODBDownlineNet.xml, `
-		App_Data\SPNames\Docker\DBARC.bodb_Archive.BODBDownlineNet.xml, `
-		App_Data\SPNames\Docker\DBBOF.bodb02.BODBDownlineNet.xml, `
-		App_Data\SPNames\Docker\DBCust.CustDB.BODBDownlineNet.xml, `
-		App_Data\SPNames\Docker\DBCust.IPDB.BODBDownlineNet.xml, `
-		App_Data\SPNames\Docker\DBLOG.bodb_CustomerLog.BODBDownlineNet.xml, `
-		App_Data\SPNames\Docker\DBONUSER.ON_USER.BODBDownlineNet.xml, `
-		App_Data\SPNames\Docker\DBPOLICY.bodb02.BODBDownlineNet.xml, `
-		App_Data\SPNames\Internal\DBACC.bodb02.BODBDownlineNetView.xml, `
-		App_Data\SPNames\Internal\DBAGE.bodb_AGE.BODBDownlineNetView.xml, `
-		App_Data\SPNames\Internal\DBAGE.bodb02.BODBDownlineNetView.xml, `
-		App_Data\SPNames\Internal\DBARC.bodb_Archive.BODBDownlineNetView.xml, `
-		App_Data\SPNames\Internal\DBBOF.bodb02.BODBDownlineNetView.xml, `
-		App_Data\SPNames\Internal\DBCust.CustDB.BODBDownlineNetView.xml, `
-		App_Data\SPNames\Internal\DBCust.IPDB.BODBDownlineNet.xml, `
-		App_Data\SPNames\Internal\DBLOG.bodb_CustomerLog.BODBDownlineNetView.xml, `
-		App_Data\SPNames\Internal\DBONUSER.ON_USER.BODBDownlineNetView.xml, `
-		App_Data\SPNames\Internal\DBPOLICY.bodb02.BODBDownlineNetView.xml `
+        App_Data\SPNames\Docker\DBACC.bodb02.wsv_alp.xml, `		
+		App_Data\SPNames\Docker\DBAGE.bodb_AGE.wsv_alp.xml, `
+		App_Data\SPNames\Docker\DBAGE.bodb02.wsv_alp.xml, `
+		App_Data\SPNames\Docker\DBARC.bodb_Archive.wsv_alp.xml, `
+		App_Data\SPNames\Docker\DBBOF.bodb02.wsv_alp.xml, `
+		App_Data\SPNames\Docker\DBCust.CustDB.wsv_alp.xml, `
+		App_Data\SPNames\Docker\DBCust.IPDB.wsv_alp.xml, `
+		App_Data\SPNames\Docker\DBLOG.bodb_CustomerLog.wsv_alp.xml, `
+		App_Data\SPNames\Docker\DBONUSER.ON_USER.wsv_alp.xml, `
+		App_Data\SPNames\Docker\DBPOLICY.bodb02.wsv_alp.xml, `
+		App_Data\SPNames\Internal\DBACC.bodb02.wsv_alpv.xml, `
+		App_Data\SPNames\Internal\DBAGE.bodb_AGE.wsv_alpv.xml, `
+		App_Data\SPNames\Internal\DBAGE.bodb02.wsv_alpv.xml, `
+		App_Data\SPNames\Internal\DBARC.bodb_Archive.wsv_alpv.xml, `
+		App_Data\SPNames\Internal\DBBOF.bodb02.wsv_alpv.xml, `
+		App_Data\SPNames\Internal\DBCust.CustDB.wsv_alpv.xml, `
+		App_Data\SPNames\Internal\DBCust.IPDB.wsv_alp.xml, `
+		App_Data\SPNames\Internal\DBLOG.bodb_CustomerLog.wsv_alpv.xml, `
+		App_Data\SPNames\Internal\DBONUSER.ON_USER.wsv_alpv.xml, `
+		App_Data\SPNames\Internal\DBPOLICY.bodb02.wsv_alpv.xml `
     ) `
     DO curl --fail -o C:\sp-result.xml --form file=@"%P" --form "redmineIds=%REDMINE_IDS%" -X POST %ROCKETOR_API% `
         && xcopy C:\sp-result.xml "%P" /Y
