@@ -150,6 +150,10 @@ var BetList;
                         this.weResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.weResult) ? new ResultDetails.WEResultDetails() : this.weResult;
                         return this.weResult;
                     }
+                    if (betTypeId >= 10000 && betTypeId <= 10299) {
+                        this.uuSlotsResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.uuSlotsResult) ? new ResultDetails.UUSlotsResultDetails() : this.uuSlotsResult;
+                        return this.uuSlotsResult;
+                    }
                     this.sportsbookResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sportsbookResult) ? new ResultDetails.SportsbookResultDetails : this.sportsbookResult;
                     return this.sportsbookResult;
                 };
