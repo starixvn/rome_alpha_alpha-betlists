@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Functions SiteId="105" SiteName="Bet Lists">
   <Function Name="Win Loss">
-    <Setting Key="Age_BetList_SelWinLossByDate_Mem_Old" SpName="Age_BetList_SelWinLossByDate_Mem_Old" DbName="DBARC.bodb_Archive.BODBDownlineNet" Plain="0">
+    <Setting Key="Age_BetList_SelWinLossByDate_Mem_Old" SpName="Age_BetList_SelWinLossByDate_Mem_Old" DbName="DBARC.bodb_Archive.wsv_alp" Plain="0">
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="TicketDto"></Mapping>
@@ -29,7 +29,7 @@
     </Setting>
   </Function>
   <Function Name="Daily Statement">
-    <Setting Key="Age_BetList_SelByDayAll_Mem_WH" SpName="Age_BetList_SelByDayAll_Mem_Old" DbName="DBARC.bodb_Archive.BODBDownlineNet" Plain="0">
+    <Setting Key="Age_BetList_SelByDayAll_Mem_WH" SpName="Age_BetList_SelByDayAll_Mem_Old" DbName="DBARC.bodb_Archive.wsv_alp" Plain="0">
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="TicketDto"></Mapping>

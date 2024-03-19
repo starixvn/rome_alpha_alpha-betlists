@@ -1,25 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Functions SiteId="105" SiteName="Bet Lists">
   <Function Name="Smart Punter">
-    <Setting Key="Age_CustomerSelCheckSmartPunterSMA" SpName="Age_CustomerSelCheckSmartPunterSMA" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
-    <Setting Key="Age_CustomerSelCheckListSmartPunter" SpName="Age_CustomerSelCheckListSmartPunter" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_CustomerSelCheckSmartPunterSMA" SpName="Age_CustomerSelCheckSmartPunterSMA" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    <Setting Key="Age_CustomerSelCheckListSmartPunter" SpName="Age_CustomerSelCheckListSmartPunter" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
   </Function>
   <Function Name="Progressive Jackpot">
-    <Setting Key="Acc_GameLaunchSel" SpName="Acc_GameLaunchSel" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Acc_GameLaunchSel" SpName="Acc_GameLaunchSel" DbName="DBCUST.CustDB.wsv_alp" Plain="0" />
   </Function>
   <Function Name="Partial UM">
-    <Setting Key="Acc_CheckUM_ByReport" SpName="Acc_CheckUM_ByReport" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Acc_CheckUM_ByReport" SpName="Acc_CheckUM_ByReport" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
   </Function>
   <Function Name="Auto Follow Bet">
-    <Setting Key="Age_Customer_FollowBetAccountListSelByAgent" SpName="Age_Customer_FollowBetAccountListSelByAgent" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_Customer_FollowBetAccountListSelByAgent" SpName="Age_Customer_FollowBetAccountListSelByAgent" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
   </Function>
   <Function Name="Last Bets Monitoring">
-    <Setting Key="Age_CustLastBetFilter_Sel" SpName="Age_CustLastBetFilter_Sel" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
-    <Setting Key="Age_CustLastBetFilter_Ins" SpName="Age_CustLastBetFilter_Ins" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
-    <Setting Key="Age_CustLastBetFilter_Upd" SpName="Age_CustLastBetFilter_Upd" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
-    <Setting Key="Age_CustLastBetFilter_Del" SpName="Age_CustLastBetFilter_Del" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
-    <Setting Key="Acc_WLMonitored_Player_WatchList_Sel" SpName="Acc_WLMonitored_Player_WatchList_Sel" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
-    <Setting Key="Age_CustLastBetFilter_Check" SpName="Age_CustLastBetFilter_Check" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
-    <Setting Key="Acc_CustomerUpdUserSearch" SpName="Acc_CustomerUpdUserSearch" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_CustLastBetFilter_Sel" SpName="Age_CustLastBetFilter_Sel" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    <Setting Key="Age_CustLastBetFilter_Ins" SpName="Age_CustLastBetFilter_Ins" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    <Setting Key="Age_CustLastBetFilter_Upd" SpName="Age_CustLastBetFilter_Upd" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    <Setting Key="Age_CustLastBetFilter_Del" SpName="Age_CustLastBetFilter_Del" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    <Setting Key="Acc_WLMonitored_Player_WatchList_Sel" SpName="Acc_WLMonitored_Player_WatchList_Sel" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    <Setting Key="Age_CustLastBetFilter_Check" SpName="Age_CustLastBetFilter_Check" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    <Setting Key="Acc_CustomerUpdUserSearch" SpName="Acc_CustomerUpdUserSearch" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
   </Function>
 </Functions>

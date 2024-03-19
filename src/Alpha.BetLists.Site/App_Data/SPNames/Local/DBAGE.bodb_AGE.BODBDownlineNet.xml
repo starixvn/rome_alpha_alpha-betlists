@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Functions>
   <Function Name="Running BetList">
-    <Setting Key="Age_BetList_SelRunningByDate_Mem" SpName="Age_BetList_SelRunning_Mem" DbName="DBBOF.bodb02.BODBDownlineNet" Plain="0">
+    <Setting Key="Age_BetList_SelRunningByDate_Mem" SpName="Age_BetList_SelRunning_Mem" DbName="DBBOF.bodb02.wsv_alp" Plain="0">
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="TicketDto"></Mapping>
@@ -29,7 +29,7 @@
     </Setting>
   </Function>
   <Function Name="Running BetList By BetType">
-    <Setting Key="Age_BetList_SelRunningByBettype_Ag" SpName="Age_BetList_SelRunningByBettype_Ag" DbName="DBBOF.bodb02.BODBDownlineNet" Plain="0">
+    <Setting Key="Age_BetList_SelRunningByBettype_Ag" SpName="Age_BetList_SelRunningByBettype_Ag" DbName="DBBOF.bodb02.wsv_alp" Plain="0">
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="TicketDto"></Mapping>
@@ -51,7 +51,7 @@
       <Mapping DataField="comstatus" ObjectProperty="CommStatus" Class="TicketDto"></Mapping>
       <Mapping DataField="modds" ObjectProperty="MasterOdds" Class="TicketDto"></Mapping>
     </Setting>
-    <Setting Key="Age_BetList_SelRunningByBettype_MAg" SpName="Age_BetList_SelRunningByBettype_MAg" DbName="DBBOF.bodb02.BODBDownlineNet" Plain="0">
+    <Setting Key="Age_BetList_SelRunningByBettype_MAg" SpName="Age_BetList_SelRunningByBettype_MAg" DbName="DBBOF.bodb02.wsv_alp" Plain="0">
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="TicketDto"></Mapping>
@@ -75,7 +75,7 @@
     </Setting>
   </Function>
   <Function Name="Running BetList By BetType And Match">
-    <Setting Key="Age_BetList_SelRunningByBettypeMatch_SAg" SpName="Age_BetList_SelRunningByBettypeMatch_SAg" DbName="DBBOF.bodb02.BODBDownlineNet" Plain="0">
+    <Setting Key="Age_BetList_SelRunningByBettypeMatch_SAg" SpName="Age_BetList_SelRunningByBettypeMatch_SAg" DbName="DBBOF.bodb02.wsv_alp" Plain="0">
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="TicketDto"></Mapping>
