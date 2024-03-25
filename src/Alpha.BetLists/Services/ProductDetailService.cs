@@ -12,7 +12,7 @@
     using Alpha.BetLists.Models;
     using Fanex.Caching;
     using Fanex.Data.Repository;
-    
+
     public interface ProductDetailService
     {
         Task<string> BuildProductDetailsXMLAsync(IEnumerable<int> validProductIds, string userSelectedResourceIds, bool is789y = false);
@@ -30,18 +30,18 @@
         private const string ProductDetailsCacheKey = "Alpha.BetLists.Services.Impl.ProductDetailService.ProductDetails";
         private const int CustProductDetailsCacheInMinutes = 5;
 
-        private readonly Func<string, int, string> getProductDetailName;        
+        private readonly Func<string, int, string> getProductDetailName;
         private readonly Func<string, int, int, bool> canViewProduct;
         private readonly IDynamicRepository dynamicRepository;
         private readonly ICacheService cacheService;
 
         public ProductDetailServiceImpl(
-            Func<string, int, string> getProductDetailName,            
+            Func<string, int, string> getProductDetailName,
             Func<string, int, int, bool> canViewProduct,
             IDynamicRepository dynamicRepository,
             ICacheService cacheService)
         {
-            this.getProductDetailName = getProductDetailName;            
+            this.getProductDetailName = getProductDetailName;
             this.canViewProduct = canViewProduct;
             this.dynamicRepository = dynamicRepository;
             this.cacheService = cacheService;
@@ -60,26 +60,10 @@
                 {
                     if (is789y)
                     {
-                        var productids = new List<int>
-                        {
-                            ProductIdConstants.Allbet,
-                            ProductIdConstants.SexyGaming,
-                            ProductIdConstants.Pragmatic,
-                            ProductIdConstants.SpadeGaming,
-                            ProductIdConstants.MgRng,
-                            ProductIdConstants.Live22
-                        };
-
-                        if (productids.Any(i => i == group.Key))
-                        {
-                            validProductDetails.AddRange(group.Select(i => i));
-                        }
+                        validProductDetails.AddRange(group.Where(i => !IsSupportProductDetail(i.ProductId)));
                     }
 
-                    if (IsSupportProductDetail(group.Key))
-                    {
-                        validProductDetails.AddRange(group.Where(p => resourceIdsHash.ContainsKey(p.ResourceId)));
-                    }
+                    validProductDetails.AddRange(group.Where(p => resourceIdsHash.ContainsKey(p.ResourceId)));
                 });
 
             return validProductDetails.Any()
