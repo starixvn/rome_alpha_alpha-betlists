@@ -415,7 +415,6 @@
     <Compile Include="DataAccesses\CasinoDetailsDataAccess.cs" />
     <Compile Include="DataAccesses\BetBuilderDataAccess.cs" />
     <Compile Include="DataAccesses\IPInfoDataAccess.cs" />
-    <Compile Include="DataAccesses\ProductDataAccess.cs" />
     <Compile Include="DataAccesses\SmartPunterDataAccess.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />

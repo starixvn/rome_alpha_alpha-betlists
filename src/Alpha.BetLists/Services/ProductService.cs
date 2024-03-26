@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Alpha.BetLists.DataAccesses;
     using Constants;
     using Criteria;
     using Criteria.ProgressiveJackpot;
@@ -47,17 +46,15 @@
         private readonly Func<int, string> getProductName;
         private readonly IDynamicRepository dynamicRepository;
         private readonly ICacheService cacheService;
-        private readonly ProductDataAccess productDataAccess;
+        private readonly int[] IgnoreCheckProductStatusTypes = new[] { 41, 53 };
 
         public ProductServiceImpl(
             IDynamicRepository dynamicRepository,
-            ProductDataAccess productDataAccess,
             ICacheService cacheService,
             Func<int, bool> canViewProduct,
             Func<int, string> getProductName)
         {
             this.dynamicRepository = dynamicRepository;
-            this.productDataAccess = productDataAccess;
             this.cacheService = cacheService;
             this.canViewProduct = canViewProduct;
             this.getProductName = getProductName;
@@ -171,7 +168,7 @@
                    .Select(product => new Product(product.Id, product.Name, product.EndOfSupportDate, getProductName, product.Type, product.OrderNo)),
                new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(CustProductsCacheTimeInMinutes)));
 
-            return products.Where(i => IsRemainSupportProduct(i, minReportDate) && canViewProduct(i.Id));
+            return products.Where(i => IsRemainSupportProduct(i, minReportDate) && (IgnoreCheckProductStatusTypes.Contains(i.Type) || canViewProduct(i.Id)));
         }
 
         private static bool IsRemainSupportProduct(Product product, DateTime minReportDate)

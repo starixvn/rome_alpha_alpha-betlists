@@ -124,7 +124,6 @@
             container.Register<IPartialUMDataAccess, PartialUMDataAccess>(Lifestyle.Singleton);
             container.Register<IIPInfoDataAccess, IPInfoDataAccess>(Lifestyle.Singleton);
             container.Register<IBetListRepository, BetListRepository>(Lifestyle.Singleton);
-            container.Register<ProductDataAccess, ProductDataAccessImpl>(Lifestyle.Singleton);
         }
 
         private static void RegisterServices(Container container)
@@ -163,7 +162,6 @@
             container.Register<ProductService>(
                 () => new ProductServiceImpl(
                     container.GetInstance<IDynamicRepository>(),
-                    container.GetInstance<ProductDataAccess>(),
                     container.GetInstance<ICacheService>(),
                     UserPermission.IsShowOrNotExistProduct,
                     CacheRefServiceHelper.GetProductName),

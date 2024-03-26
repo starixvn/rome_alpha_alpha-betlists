@@ -38,7 +38,6 @@
         {
             this.fanexDataFixture = fanexDataFixture;
 
-            Func<int, bool> canViewProduct = (productId) => true;
             getProductName = (productId) => $"Product {productId}";
 
             var data = new List<Product>
@@ -52,7 +51,7 @@
            };
 
             fanexDataFixture.DynamicRepository.Fetch<Product>(Arg.Any<GetProductsByGroupHeadlineCriteria>()).Returns(data);
-            productService = new ProductServiceImpl(fanexDataFixture.DynamicRepository, fanexDataFixture.CacheService, canViewProduct, getProductName);
+            productService = new ProductServiceImpl(fanexDataFixture.DynamicRepository, fanexDataFixture.CacheService, getProductName);
             compareLogic = new CompareLogic();
 
             var bySite = new List<JackpotOfferedBySite> { new JackpotOfferedBySite(1, "site1"), new JackpotOfferedBySite(2, "site2") };
@@ -259,6 +258,7 @@
             // Assert
             Assert.False(act);
         }
+
         [Fact]
         public void IsEnabledJackpot_SupportJackpotBySite_ReturnFalse()
         {
