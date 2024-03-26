@@ -1033,7 +1033,7 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Lose.
+        ///   Looks up a localized string similar to Lost.
         /// </summary>
         public static string lose {
             get {
