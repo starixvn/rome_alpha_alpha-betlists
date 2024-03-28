@@ -37,7 +37,7 @@
         private static weResult: ResultDetails;
 
         public static CreateInstance(betTypeId: number): ResultDetails {
-            if (betTypeId === 9 || betTypeId === 29 || betTypeId === 2799) {
+            if (betTypeId === 9 || betTypeId === 29 || betTypeId === 2799 || betTypeId === 10449) {
                 this.mixParlayResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.mixParlayResult) ? new MixParlayResultDetails() : this.mixParlayResult;
                 return this.mixParlayResult;
             }
