@@ -1187,6 +1187,7 @@
     <Content Include="App_Data\ProductSection.uat4.config">
       <DependentUpon>ProductSection.config</DependentUpon>
     </Content>
+    <Content Include="App_Data\securitycode.uat4.json" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -1450,6 +1451,7 @@
     <Content Include="Web.ConnectionStrings.uat4.config">
       <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
     </Content>
+    <Content Include="Web.uat4.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_GlobalResources\Resources.Designer.cs">

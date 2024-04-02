@@ -9,6 +9,7 @@ namespace Alpha.BetLists.Constants
         public const int Basketball = 13;
         public const int Cricket = 14;
         public const int Tennis = 20;
+        public const int IceHockey = 23;
 
         public static readonly IEnumerable<int> SportsbookDetailFor777Site = new List<int>
         {
@@ -16,7 +17,8 @@ namespace Alpha.BetLists.Constants
             Soccer,
             Basketball,
             Cricket,
-            Tennis
+            Tennis,
+            IceHockey
         };
     }
 }
