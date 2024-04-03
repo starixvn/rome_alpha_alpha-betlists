@@ -381,14 +381,12 @@ var BetList;
                 __extends(VGamingResultDetails, _super);
                 function VGamingResultDetails() {
                     var _this = _super !== null && _super.apply(this, arguments) || this;
-                    _this.ViewResultDetails = function (matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, betId, matchCode, transDesc, betcheck) {
-                        var params = '?custId=' + (transDesc || _this.CustId) +
-                            '&roleId=' + _this.ViewerLevelId +
-                            '&gameRoundId=' + betcheck +
-                            '&gameId=' + betTypeId +
-                            '&sportId=' + sportTypeId +
-                            '&siteId=' + matchCode +
-                            '&currencyName=' + userName +
+                    _this.ViewResultDetails = function (matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, currencyId, gameId3rd, custId, transId3rd, siteId) {
+                        var params = '?custId=' + custId +
+                            '&transId3rd=' + transId3rd +
+                            '&currencyId=' + currencyId +
+                            '&siteId=' + siteId +
+                            '&BetType=' + betTypeId +
                             '&productId=66';
                         Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/VGamingResult' + params, "", 835, 675);
                     };
