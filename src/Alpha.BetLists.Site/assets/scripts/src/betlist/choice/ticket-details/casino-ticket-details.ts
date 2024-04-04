@@ -696,7 +696,7 @@
             const params = '?refno=' + refNo
                 + '&custid=' + custId
                 + '&transType=' + transType
-                + '&sportName=UUSlots&productId=78';
+                + '&sportName=UUSLOTS&productId=78';
 
             let width = 1500;
             let roleId = Number(this.ViewerLevelId);
@@ -711,7 +711,7 @@
 
             Common.PopupDetails.Instance(window.top).Show(
                 Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params,
-                'UU Slots - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                'UU SLOTS - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
         }
     }
 }
