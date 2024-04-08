@@ -33,12 +33,13 @@
 
             if (AppSettings.IsSiteLabel777)
             {
-                var sabaWord = Instance.GetResourceDataByRefIdAndResourceId("Saba", "Saba", LanguageCode, "Saba");
-                var sabaWords = new List<string> { $" {sabaWord}", $"{sabaWord} ", sabaWord };
-                foreach (var word in sabaWords)
-                {
-                    productName = Regex.Replace(productName, word, string.Empty, RegexOptions.IgnoreCase);
-                }
+                var productNameFor777 = Instance.GetResourceDataByRefIdAndResourceId(
+                    "Product_Saba",
+                    productId.ToString(),
+                    LanguageCode,
+                    productName);
+
+                return productNameFor777;
             }
 
             return productName;

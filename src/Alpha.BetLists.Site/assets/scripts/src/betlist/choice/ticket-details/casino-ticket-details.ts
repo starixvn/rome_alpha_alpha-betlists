@@ -714,6 +714,38 @@
                 'UU SLOTS - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
         }
     }
+
+    export class SabaxDTicketDetails extends BaseTicketDetails {
+        private static instance: SabaxDTicketDetails;
+
+        public static get Instance() {
+            this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new SabaxDTicketDetails() : this.instance;
+            return this.instance;
+        }
+
+        public ShowSabaxDTicketDetails = (refNo: string, winlossDate: Date, custId: string, transType: string, sportName: string) => {
+            const params = '?refno=' + refNo
+                + '&custid=' + custId
+                + '&transType=' + transType
+                + '&sportName=' + sportName
+                + '&productId=86';
+
+            let width = 1500;
+            let roleId = Number(this.ViewerLevelId);
+
+            if (roleId <= 3) {
+                width -= 105;
+            }
+
+            if (roleId <= 2) {
+                width -= 105;
+            }
+
+            Common.PopupDetails.Instance(window.top).Show(
+                Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params,
+                sportName + ' - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+        }
+    }
 }
 
 let showRnGCasinoDetails: Function;
@@ -753,6 +785,7 @@ let showYeeBetBetDetails: Function;
 let showLive22BetDetails: Function;
 let showWELiveCasinoBetDetails: Function;
 let showUUSlotsBetDetails: Function;
+let showSabaxDDetails: Function;
 
 $(document).ready(() => {
     showRnGCasinoDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowRnGCasinoDetails;
@@ -792,4 +825,5 @@ $(document).ready(() => {
     showLive22BetDetails = BetList.Choice.TicketDetails.Live22TicketDetails.Instance.ShowLive22TicketDetails;
     showWELiveCasinoBetDetails = BetList.Choice.TicketDetails.WETicketDetails.Instance.ShoWELiveCasinoBetDetails;
     showUUSlotsBetDetails = BetList.Choice.TicketDetails.UUSlotsTicketDetails.Instance.ShowUUSlotsTicketDetails;
+    showSabaxDDetails = BetList.Choice.TicketDetails.SabaxDTicketDetails.Instance.ShowSabaxDTicketDetails;
 })

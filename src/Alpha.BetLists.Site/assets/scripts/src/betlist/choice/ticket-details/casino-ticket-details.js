@@ -755,6 +755,39 @@ var BetList;
                 return UUSlotsTicketDetails;
             }(TicketDetails.BaseTicketDetails));
             TicketDetails.UUSlotsTicketDetails = UUSlotsTicketDetails;
+            var SabaxDTicketDetails = /** @class */ (function (_super) {
+                __extends(SabaxDTicketDetails, _super);
+                function SabaxDTicketDetails() {
+                    var _this = _super !== null && _super.apply(this, arguments) || this;
+                    _this.ShowSabaxDTicketDetails = function (refNo, winlossDate, custId, transType, sportName) {
+                        var params = '?refno=' + refNo
+                            + '&custid=' + custId
+                            + '&transType=' + transType
+                            + '&sportName=' + sportName
+                            + '&productId=86';
+                        var width = 1500;
+                        var roleId = Number(_this.ViewerLevelId);
+                        if (roleId <= 3) {
+                            width -= 105;
+                        }
+                        if (roleId <= 2) {
+                            width -= 105;
+                        }
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, sportName + ' - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                    };
+                    return _this;
+                }
+                Object.defineProperty(SabaxDTicketDetails, "Instance", {
+                    get: function () {
+                        this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new SabaxDTicketDetails() : this.instance;
+                        return this.instance;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                return SabaxDTicketDetails;
+            }(TicketDetails.BaseTicketDetails));
+            TicketDetails.SabaxDTicketDetails = SabaxDTicketDetails;
         })(TicketDetails = Choice.TicketDetails || (Choice.TicketDetails = {}));
     })(Choice = BetList.Choice || (BetList.Choice = {}));
 })(BetList || (BetList = {}));
@@ -795,6 +828,7 @@ var showYeeBetBetDetails;
 var showLive22BetDetails;
 var showWELiveCasinoBetDetails;
 var showUUSlotsBetDetails;
+var showSabaxDDetails;
 $(document).ready(function () {
     showRnGCasinoDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowRnGCasinoDetails;
     showVoidBridgeDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowMacauGamesDetails;
@@ -833,5 +867,6 @@ $(document).ready(function () {
     showLive22BetDetails = BetList.Choice.TicketDetails.Live22TicketDetails.Instance.ShowLive22TicketDetails;
     showWELiveCasinoBetDetails = BetList.Choice.TicketDetails.WETicketDetails.Instance.ShoWELiveCasinoBetDetails;
     showUUSlotsBetDetails = BetList.Choice.TicketDetails.UUSlotsTicketDetails.Instance.ShowUUSlotsTicketDetails;
+    showSabaxDDetails = BetList.Choice.TicketDetails.SabaxDTicketDetails.Instance.ShowSabaxDTicketDetails;
 });
 //# sourceMappingURL=casino-ticket-details.js.map
