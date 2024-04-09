@@ -1,32 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.1585
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34316.72
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alpha.BetLists.Site", "src\Alpha.BetLists.Site\Alpha.BetLists.Site.csproj", "{69690E23-A8B5-4D96-8EBE-907A9FC1CA3E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alpha.BetLists", "src\Alpha.BetLists\Alpha.BetLists.csproj", "{415FE6C8-C743-47C1-B520-BDBE3B1DA2BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alpha.BetLists.Tests", "tests\unittests\Alpha.BetLists.Tests\Alpha.BetLists.Tests.csproj", "{7C0D171F-2D9D-4986-9148-81C465A3A711}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alpha.BetLists.Site.Tests", "tests\unittests\Alpha.BetLists.Site.Tests\Alpha.BetLists.Site.Tests.csproj", "{FB380412-8A33-4B4B-8497-C1D944A9D20C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alpha.BetLists.Builders", "src\Alpha.BetLists.Builders\Alpha.BetLists.Builders.csproj", "{C4D18432-0C45-40E3-B851-30DDF6E809EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alpha.BetLists.Builders.Tests", "tests\unittests\Alpha.BetLists.Builders.Tests\Alpha.BetLists.Builders.Tests.csproj", "{40E53E15-ABD2-4DD6-8456-342B3749A55E}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SonarQube", "SonarQube", "{902C1E73-BAA5-42DA-ABC1-9056F5AE94B1}"
-	ProjectSection(SolutionItems) = preProject
-		SonarQube\Alpha-BetListCSharp.ruleset = SonarQube\Alpha-BetListCSharp.ruleset
-		SonarQube\SolutionBinding.sqconfig = SonarQube\SolutionBinding.sqconfig
-		SonarQube\alpha-betlist\CSharp\SonarLint.xml = SonarQube\alpha-betlist\CSharp\SonarLint.xml
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{84BB840B-DF42-4155-ADF7-216FD1975F26}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "unittests", "unittests", "{6DA53851-4FB0-43C1-8E41-A4DAD3CCF985}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{F4417210-A05D-4B3F-BAF2-C5AEEB039F2F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AD45504A-1AD8-4424-88C7-59884844EC45}"
 	ProjectSection(SolutionItems) = preProject
@@ -51,23 +34,11 @@ Global
 		{415FE6C8-C743-47C1-B520-BDBE3B1DA2BF}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{415FE6C8-C743-47C1-B520-BDBE3B1DA2BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{415FE6C8-C743-47C1-B520-BDBE3B1DA2BF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7C0D171F-2D9D-4986-9148-81C465A3A711}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7C0D171F-2D9D-4986-9148-81C465A3A711}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7C0D171F-2D9D-4986-9148-81C465A3A711}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7C0D171F-2D9D-4986-9148-81C465A3A711}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FB380412-8A33-4B4B-8497-C1D944A9D20C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FB380412-8A33-4B4B-8497-C1D944A9D20C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FB380412-8A33-4B4B-8497-C1D944A9D20C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FB380412-8A33-4B4B-8497-C1D944A9D20C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C4D18432-0C45-40E3-B851-30DDF6E809EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C4D18432-0C45-40E3-B851-30DDF6E809EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C4D18432-0C45-40E3-B851-30DDF6E809EA}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{C4D18432-0C45-40E3-B851-30DDF6E809EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C4D18432-0C45-40E3-B851-30DDF6E809EA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{40E53E15-ABD2-4DD6-8456-342B3749A55E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{40E53E15-ABD2-4DD6-8456-342B3749A55E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{40E53E15-ABD2-4DD6-8456-342B3749A55E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{40E53E15-ABD2-4DD6-8456-342B3749A55E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -75,14 +46,10 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{69690E23-A8B5-4D96-8EBE-907A9FC1CA3E} = {84BB840B-DF42-4155-ADF7-216FD1975F26}
 		{415FE6C8-C743-47C1-B520-BDBE3B1DA2BF} = {84BB840B-DF42-4155-ADF7-216FD1975F26}
-		{7C0D171F-2D9D-4986-9148-81C465A3A711} = {6DA53851-4FB0-43C1-8E41-A4DAD3CCF985}
-		{FB380412-8A33-4B4B-8497-C1D944A9D20C} = {6DA53851-4FB0-43C1-8E41-A4DAD3CCF985}
 		{C4D18432-0C45-40E3-B851-30DDF6E809EA} = {84BB840B-DF42-4155-ADF7-216FD1975F26}
-		{40E53E15-ABD2-4DD6-8456-342B3749A55E} = {6DA53851-4FB0-43C1-8E41-A4DAD3CCF985}
-		{6DA53851-4FB0-43C1-8E41-A4DAD3CCF985} = {F4417210-A05D-4B3F-BAF2-C5AEEB039F2F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Logging.6.0.1304.0\lib\NET45
 		SolutionGuid = {EDFCC31A-82A7-4E54-AA79-F1A839E9870F}
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Logging.6.0.1304.0\lib\NET45
 	EndGlobalSection
 EndGlobal

@@ -58,3 +58,4 @@ tests/unittests/Alpha.BetLists.Tests/Lucky3/ViewDetail.cshtml
 /.vs/Alpha.BetLists/v15/Server/sqlite3/storage.ide-shm
 /.vs/Alpha.BetLists/v15/Server/sqlite3/storage.ide-wal
 /.vs/Alpha.BetLists/DesignTimeBuild/.dtbcache
+/.vs/**

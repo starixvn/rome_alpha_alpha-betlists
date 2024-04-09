@@ -101,7 +101,7 @@
 
         private static IEnumerable<Assembly> GetAssemblies()
         {
-            yield return typeof(WinLossController).Assembly;
+            yield return typeof(HomeController).Assembly;
         }
 
         private static void RegisterBetListCore(Container container)

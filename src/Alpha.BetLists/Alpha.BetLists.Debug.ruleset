@@ -1,5 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<RuleSet Name="SonarQube - Rome / Alpha Bet List Sonar way" ToolsVersion="14.0">
-  <Include Path="..\..\build\analysisrules\fanexrules.error.ruleset" Action="Default" />
-  <Include Path="..\..\sonarqube\alpha-betlistcsharp.ruleset" Action="Default" />
-</RuleSet>

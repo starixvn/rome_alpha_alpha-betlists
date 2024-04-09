@@ -713,267 +713,6 @@
     <Content Include="App_Data\SPNames\SIT\DBPOLICY.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Themes\error2-dark.png" />
     <Content Include="App_Themes\error2.png" />
-    <Content Include="assets\bundles\cancelled-betlist\cancelled-betlist.js" />
-    <Content Include="assets\bundles\cancelled-betlist\cancelled-betlist.min.js">
-      <DependentUpon>cancelled-betlist.js</DependentUpon>
-    </Content>
-    <Content Include="assets\bundles\casino-detail\casino-detail.js" />
-    <Content Include="assets\bundles\casino-detail\casino-detail.min.js">
-      <DependentUpon>casino-detail.js</DependentUpon>
-    </Content>
-    <Content Include="assets\bundles\default-dark.css" />
-    <Content Include="assets\bundles\default-dark.min.css">
-      <DependentUpon>default-dark.css</DependentUpon>
-    </Content>
-    <Content Include="assets\bundles\default.css" />
-    <Content Include="assets\bundles\default.js" />
-    <Content Include="assets\bundles\default.min.css">
-      <DependentUpon>default.css</DependentUpon>
-    </Content>
-    <Content Include="assets\bundles\default.min.js">
-      <DependentUpon>default.js</DependentUpon>
-    </Content>
-    <Content Include="assets\bundles\default2.css" />
-    <Content Include="assets\bundles\default2.min.css">
-      <DependentUpon>default2.css</DependentUpon>
-    </Content>
-    <Content Include="assets\bundles\error\error-dark.css" />
-    <Content Include="assets\bundles\error\error-dark.min.css">
-      <DependentUpon>error-dark.css</DependentUpon>
-    </Content>
-    <Content Include="assets\bundles\error\error.css" />
-    <Content Include="assets\bundles\error\error.min.css">
-      <DependentUpon>error.css</DependentUpon>
-    </Content>
-    <Content Include="assets\bundles\filter.css" />
-    <Content Include="assets\bundles\filter.min.css">
-      <DependentUpon>filter.css</DependentUpon>
-    </Content>
-    <Content Include="assets\bundles\icon-note.js" />
-    <Content Include="assets\bundles\icon-note.min.js">
-      <DependentUpon>icon-note.js</DependentUpon>
-    </Content>
-    <Content Include="assets\bundles\last-bets-dark.css" />
-    <Content Include="assets\bundles\last-bets-dark.min.css">
-      <DependentUpon>last-bets-dark.css</DependentUpon>
-    </Content>
-    <Content Include="assets\bundles\member-betlist\member-betlist.js" />
-    <Content Include="assets\bundles\member-betlist\member-betlist.min.js">
-      <DependentUpon>member-betlist.js</DependentUpon>
-    </Content>
-    <Content Include="assets\bundles\last-bets.css" />
-    <Content Include="assets\bundles\last-bets.js" />
-    <Content Include="assets\bundles\last-bets.min.css">
-      <DependentUpon>last-bets.css</DependentUpon>
-    </Content>
-    <Content Include="assets\bundles\last-bets.min.js">
-      <DependentUpon>last-bets.js</DependentUpon>
-    </Content>
-    <Content Include="assets\bundles\monitoring-bets\filter-configuration.css" />
-    <Content Include="assets\bundles\monitoring-bets\filter-configuration.js" />
-    <Content Include="assets\bundles\monitoring-bets\filter-configuration.min.css">
-      <DependentUpon>filter-configuration.css</DependentUpon>
-    </Content>
-    <Content Include="assets\bundles\monitoring-bets\filter-configuration.min.js">
-      <DependentUpon>filter-configuration.js</DependentUpon>
-    </Content>
-    <Content Include="assets\bundles\monitoring-bets\manage-filters.css" />
-    <Content Include="assets\bundles\monitoring-bets\manage-filters.js" />
-    <Content Include="assets\bundles\monitoring-bets\manage-filters.min.css">
-      <DependentUpon>manage-filters.css</DependentUpon>
-    </Content>
-    <Content Include="assets\bundles\monitoring-bets\manage-filters.min.js">
-      <DependentUpon>manage-filters.js</DependentUpon>
-    </Content>
-    <Content Include="assets\bundles\monitoring-bets\monitoring-bets.css" />
-    <Content Include="assets\bundles\monitoring-bets\monitoring-bets.js" />
-    <Content Include="assets\bundles\monitoring-bets\monitoring-bets.min.css">
-      <DependentUpon>monitoring-bets.css</DependentUpon>
-    </Content>
-    <Content Include="assets\bundles\monitoring-bets\monitoring-bets.min.js">
-      <DependentUpon>monitoring-bets.js</DependentUpon>
-    </Content>
-    <Content Include="assets\bundles\parlay-detail-dark.css" />
-    <Content Include="assets\bundles\parlay-detail-dark.min.css">
-      <DependentUpon>parlay-detail-dark.css</DependentUpon>
-    </Content>
-    <Content Include="assets\bundles\parlay-detail.css" />
-    <Content Include="assets\bundles\parlay-detail.min.css">
-      <DependentUpon>parlay-detail.css</DependentUpon>
-    </Content>
-    <Content Include="assets\bundles\running-betlist\running-betlist.js" />
-    <Content Include="assets\bundles\running-betlist\running-betlist.min.js">
-      <DependentUpon>running-betlist.js</DependentUpon>
-    </Content>
-    <Content Include="assets\bundles\search-tickets\search-tickets.css" />
-    <Content Include="assets\bundles\search-tickets\search-tickets.js" />
-    <Content Include="assets\bundles\search-tickets\search-tickets.min.css">
-      <DependentUpon>search-tickets.css</DependentUpon>
-    </Content>
-    <Content Include="assets\bundles\search-tickets\search-tickets.min.js">
-      <DependentUpon>search-tickets.js</DependentUpon>
-    </Content>
-    <Content Include="assets\bundles\winloss\winloss-betlist.css" />
-    <Content Include="assets\bundles\winloss\winloss-betlist.js" />
-    <Content Include="assets\bundles\winloss\winloss-betlist.min.css">
-      <DependentUpon>winloss-betlist.css</DependentUpon>
-    </Content>
-    <Content Include="assets\bundles\winloss\winloss-betlist.min.js">
-      <DependentUpon>winloss-betlist.js</DependentUpon>
-    </Content>
-    <Content Include="assets\scripts\tests\app\templates\Cancelled-betlist\cancelled-betlist-template-with-hide-filter.html" />
-    <Content Include="assets\scripts\tests\app\templates\Cancelled-betlist\cancelled-betlist-template.html" />
-    <Content Include="assets\scripts\tests\app\templates\common-template.html" />
-    <Content Include="assets\scripts\tests\app\templates\daterangepicker-template.html" />
-    <Content Include="assets\scripts\tests\app\templates\iframe-template.html" />
-    <Content Include="assets\scripts\tests\app\templates\last-bets\not-reset-trans-id-template.html" />
-    <Content Include="assets\scripts\tests\app\templates\last-bets\reset-trans-id-template.html" />
-    <Content Include="assets\scripts\tests\app\templates\last-bets\normal-template.html" />
-    <Content Include="assets\scripts\tests\app\templates\member-betlist\member-betlist-template.html" />
-    <Content Include="assets\scripts\tests\app\templates\member-betlist\member-betlist-with-hide-filter.html" />
-    <Content Include="assets\scripts\tests\app\templates\parlay-template.html" />
-    <Content Include="assets\scripts\tests\app\templates\popup-template.html" />
-    <Content Include="assets\scripts\tests\app\templates\running-betlist\running-betlist-template.html" />
-    <Content Include="assets\scripts\tests\app\templates\running-betlist\running-betlist-with-uncheck-getall-template.html" />
-    <Content Include="assets\scripts\tests\libs\bootstrap-datetimepicker.js" />
-    <Content Include="assets\scripts\tests\libs\bootstrap-modal.js" />
-    <Content Include="assets\scripts\tests\libs\cookie.js" />
-    <Content Include="assets\scripts\tests\libs\datepicker.js" />
-    <Content Include="assets\scripts\tests\libs\jasmine-jquery.js" />
-    <Content Include="assets\scripts\tests\libs\jasmine.js" />
-    <Content Include="assets\scripts\tests\libs\jquery-blockui.js" />
-    <Content Include="assets\scripts\tests\libs\jquery.js" />
-    <Content Include="assets\scripts\tests\libs\moment.js" />
-    <Content Include="assets\scripts\tests\libs\multiselect.js" />
-    <Content Include="assets\scripts\tests\libs\nexDatePicker.js" />
-    <Content Include="assets\scripts\tests\libs\pagination\jquery.draggable.js" />
-    <Content Include="assets\scripts\tests\libs\pagination\jquery.linkbutton.js" />
-    <Content Include="assets\scripts\tests\libs\pagination\jquery.pagination.js" />
-    <Content Include="assets\scripts\tests\libs\pagination\jquery.parser.js" />
-    <Content Include="assets\scripts\tests\libs\pagination\jquery.resizable.js" />
-    <Content Include="assets\scripts\tests\libs\shortcut.js" />
-    <Content Include="assets\scripts\tests\libs\store.js" />
-    <Content Include="assets\scripts\tests\libs\tooltip.js" />
-    <Content Include="assets\styles\bet-list-2.css">
-      <DependentUpon>bet-list-2.scss</DependentUpon>
-    </Content>
-    <Content Include="assets\styles\bet-list-2.min.css">
-      <DependentUpon>bet-list-2.css</DependentUpon>
-    </Content>
-    <Content Include="assets\styles\bet-list-dark.css">
-      <DependentUpon>bet-list-dark.scss</DependentUpon>
-    </Content>
-    <Content Include="assets\styles\bet-list-dark.min.css">
-      <DependentUpon>bet-list-dark.css</DependentUpon>
-    </Content>
-    <Content Include="assets\styles\bet-list.css">
-      <DependentUpon>bet-list.scss</DependentUpon>
-    </Content>
-    <Content Include="assets\styles\bet-list.min.css">
-      <DependentUpon>bet-list.css</DependentUpon>
-    </Content>
-    <Content Include="assets\styles\components\autorefresh.css">
-      <DependentUpon>autorefresh.scss</DependentUpon>
-    </Content>
-    <Content Include="assets\styles\components\autorefresh.min.css">
-      <DependentUpon>autorefresh.css</DependentUpon>
-    </Content>
-    <Content Include="assets\styles\components\treeview.css">
-      <DependentUpon>treeview.scss</DependentUpon>
-    </Content>
-    <Content Include="assets\styles\components\treeview.min.css">
-      <DependentUpon>treeview.css</DependentUpon>
-    </Content>
-    <Content Include="assets\styles\components\username-tagsinput.css">
-      <DependentUpon>username-tagsinput.scss</DependentUpon>
-    </Content>
-    <Content Include="assets\styles\components\username-tagsinput.min.css">
-      <DependentUpon>username-tagsinput.css</DependentUpon>
-    </Content>
-    <Content Include="assets\styles\details-popup.css">
-      <DependentUpon>details-popup.scss</DependentUpon>
-    </Content>
-    <Content Include="assets\styles\details-popup.min.css">
-      <DependentUpon>details-popup.css</DependentUpon>
-    </Content>
-    <Content Include="assets\styles\error\error-dark.css" />
-    <Content Include="assets\styles\error\error-dark.min.css" />
-    <Content Include="assets\styles\error\error.css" />
-    <Content Include="assets\styles\error\error.min.css" />
-    <Content Include="assets\styles\error\images\error-bg-dark.png" />
-    <Content Include="assets\styles\error\images\error-bg.png" />
-    <Content Include="assets\styles\filter.css">
-      <DependentUpon>filter.scss</DependentUpon>
-    </Content>
-    <Content Include="assets\styles\filter.min.css">
-      <DependentUpon>filter.css</DependentUpon>
-    </Content>
-    <Content Include="assets\styles\images\1F.gif" />
-    <Content Include="assets\styles\images\1L.gif" />
-    <Content Include="assets\styles\images\ajax-loader-small.gif" />
-    <Content Include="assets\styles\images\ajax-loader.gif" />
-    <Content Include="assets\styles\images\firstGoal.gif" />
-    <Content Include="assets\styles\images\green-star.gif" />
-    <Content Include="assets\styles\images\ico_parlay_boost.svg" />
-    <Content Include="assets\styles\images\icon-info-circle.png" />
-    <Content Include="assets\styles\images\icon-info-circle-dark.png" />
-    <Content Include="assets\styles\images\lastGoal.gif" />
-    <Content Include="assets\styles\images\lotto_ball.png" />
-    <Content Include="assets\styles\images\note_title.gif" />
-    <Content Include="assets\styles\last-bets-dark.css">
-      <DependentUpon>last-bets-dark.scss</DependentUpon>
-    </Content>
-    <Content Include="assets\styles\last-bets-dark.min.css">
-      <DependentUpon>last-bets-dark.css</DependentUpon>
-    </Content>
-    <Content Include="assets\styles\last-bets.css">
-      <DependentUpon>last-bets.scss</DependentUpon>
-    </Content>
-    <Content Include="assets\styles\last-bets.min.css">
-      <DependentUpon>last-bets.css</DependentUpon>
-    </Content>
-    <Content Include="assets\styles\monitoring-bets\filter-configuration.css">
-      <DependentUpon>filter-configuration.scss</DependentUpon>
-    </Content>
-    <Content Include="assets\styles\monitoring-bets\filter-configuration.min.css">
-      <DependentUpon>filter-configuration.css</DependentUpon>
-    </Content>
-    <Content Include="assets\styles\monitoring-bets\manage-filters.css">
-      <DependentUpon>manage-filters.scss</DependentUpon>
-    </Content>
-    <Content Include="assets\styles\monitoring-bets\manage-filters.min.css">
-      <DependentUpon>manage-filters.css</DependentUpon>
-    </Content>
-    <Content Include="assets\styles\monitoring-bets\monitoring-bets.css">
-      <DependentUpon>monitoring-bets.scss</DependentUpon>
-    </Content>
-    <Content Include="assets\styles\monitoring-bets\monitoring-bets.min.css">
-      <DependentUpon>monitoring-bets.css</DependentUpon>
-    </Content>
-    <Content Include="assets\styles\parlay-detail-dark.css">
-      <DependentUpon>parlay-detail-dark.scss</DependentUpon>
-    </Content>
-    <Content Include="assets\styles\parlay-detail-dark.min.css">
-      <DependentUpon>parlay-detail-dark.css</DependentUpon>
-    </Content>
-    <Content Include="assets\styles\parlay-detail.css">
-      <DependentUpon>parlay-detail.scss</DependentUpon>
-    </Content>
-    <Content Include="assets\styles\parlay-detail.min.css">
-      <DependentUpon>parlay-detail.css</DependentUpon>
-    </Content>
-    <Content Include="assets\styles\search-tickets\search-tickets.css">
-      <DependentUpon>search-tickets.scss</DependentUpon>
-    </Content>
-    <Content Include="assets\styles\search-tickets\search-tickets.min.css">
-      <DependentUpon>search-tickets.css</DependentUpon>
-    </Content>
-    <Content Include="assets\styles\winloss.css">
-      <DependentUpon>winloss.scss</DependentUpon>
-    </Content>
-    <Content Include="assets\styles\winloss.min.css">
-      <DependentUpon>winloss.css</DependentUpon>
-    </Content>
     <Content Include="Global.asax" />
     <Content Include="App_Data\SPNames\Local\DBARC.bodb_Archive.BODBDownlineNet.xml">
       <SubType>Designer</SubType>
@@ -988,39 +727,24 @@
     <Content Include="Views\Shared\InvalidBetList.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\WinLoss\Index.cshtml" />
-    <Content Include="assets\styles\bet-list.scss" />
-    <Content Include="assets\styles\_mixins.scss" />
-    <Content Include="assets\styles\_variables.scss" />
     <Content Include="bundleconfig.json" />
     <Content Include="App_Data\AuthorizationSection.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="assets\scripts\typings\globals\jquery\typings.json" />
-    <Content Include="assets\scripts\typings\globals\bootstrap\typings.json" />
-    <Content Include="assets\styles\details-popup.scss" />
     <Content Include="App_Code\Common\Footer.cshtml" />
     <Content Include="App_Code\Common\NoInfomation.cshtml" />
     <Content Include="App_Data\ExcelTemplates\WinLoss\Agent.xls" />
     <Content Include="App_Data\ExcelTemplates\WinLoss\Master.xls" />
     <Content Include="App_Data\ExcelTemplates\WinLoss\Super.xls" />
     <Content Include="App_Data\ExcelTemplates\Parlay\ComboParlayDetail.xls" />
-    <Content Include="assets\styles\bet-list-2.scss" />
     <Content Include="App_Data\ExcelTemplates\WinLossByMatch\Agent.xls" />
     <Content Include="App_Data\ExcelTemplates\WinLossByMatch\Master.xls" />
     <Content Include="App_Data\ExcelTemplates\WinLossByMatch\Super.xls" />
-    <Content Include="assets\scripts\tests\chutzpah.json" />
-    <Content Include="assets\scripts\typings.json" />
-    <Content Include="assets\scripts\typings\globals\jasmine\typings.json" />
-    <Content Include="assets\scripts\typings\globals\jasmine-jquery\typings.json" />
     <Content Include="App_Data\ExcelData\Lucky3.xls" />
     <Content Include="Alpha.BetLists.Site.Debug.ruleset" />
     <Content Include="Alpha.BetLists.Site.ruleset" />
-    <Content Include="assets\styles\last-bets.scss" />
     <Content Include="App_Code\Components\ProductMultiSelection.cshtml" />
-    <Content Include="assets\scripts\typings\globals\jquery.blockui\typings.json" />
     <Content Include="App_Code\Components\DateRangePicker.cshtml" />
-    <Content Include="assets\styles\filter.scss" />
     <Content Include="App_Data\ExcelTemplates\DailyStatement\Member.xls" />
     <Content Include="App_Data\ExcelTemplates\CancelledBet\Agent.xls" />
     <Content Include="App_Data\ExcelTemplates\CancelledBet\Master.xls" />
@@ -1056,14 +780,9 @@
     <Content Include="App_Data\ExcelTemplates\JackpotDetails\Agent.xls" />
     <Content Include="App_Data\ExcelTemplates\JackpotDetails\Master.xls" />
     <Content Include="App_Code\Components\StatusMultiSelection.cshtml" />
-    <Content Include="assets\styles\parlay-detail.scss" />
     <Content Include="App_Code\Blocks\LastBetsStatus.cshtml" />
     <Content Include="App_Data\ExcelTemplates\RiskAnalysisIPMatching\Super.xls" />
     <Content Include="App_Data\securitycode.json" />
-    <Content Include="assets\styles\_variables-dark.scss" />
-    <Content Include="assets\styles\bet-list-dark.scss" />
-    <Content Include="assets\styles\last-bets-dark.scss" />
-    <Content Include="assets\styles\parlay-detail-dark.scss" />
     <Content Include="App_Data\ProductSection.config" />
     <Content Include="Web.AppSettings.local4.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
@@ -1089,23 +808,13 @@
     <Content Include="WhoAmI.aspx" />
     <Content Include="bundleconfig2.json" />
     <Content Include="compilerconfig2.json" />
-    <Content Include="assets\styles\error\error-dark.scss" />
-    <Content Include="assets\styles\error\error.scss" />
     <Content Include="App_Code\Components\DateRangePickerJQuery.cshtml" />
-    <Content Include="assets\scripts\typings\globals\moment\typings.json" />
     <Content Include="App_Code\Components\ProductAndProductDetailDropdown.cshtml" />
     <Content Include="App_Code\Components\AutoRefresh.cshtml" />
-    <Content Include="assets\styles\components\autorefresh.scss" />
-    <Content Include="assets\styles\components\username-tagsinput.scss" />
-    <Content Include="assets\styles\components\treeview.scss" />
-    <Content Include="assets\styles\monitoring-bets\manage-filters.scss" />
-    <Content Include="assets\styles\monitoring-bets\filter-configuration.scss" />
     <Content Include="App_Code\Components\WeekSelection.cshtml" />
     <Content Include="App_Code\Components\BreadcrumbLevel.cshtml" />
-    <Content Include="assets\styles\winloss.scss" />
     <Content Include="App_Code\Components\UsernameTagsInput.cshtml" />
     <Content Include="App_Code\Common\SwitchVersionButton.cshtml" />
-    <Content Include="assets\styles\monitoring-bets\monitoring-bets.scss" />
     <Content Include="App_Data\ProductSection.staging.config">
       <DependentUpon>ProductSection.config</DependentUpon>
     </Content>
@@ -1130,7 +839,6 @@
     <Content Include="App_Data\securitycode.staginginternal2.json">
       <DependentUpon>securitycode.json</DependentUpon>
     </Content>
-    <Content Include="assets\styles\search-tickets\search-tickets.scss" />
     <Content Include="App_Data\ProductSection.napinternal3.config">
       <DependentUpon>ProductSection.config</DependentUpon>
     </Content>
@@ -1196,18 +904,7 @@
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
     <Content Include="Views\Shared\DetailsPopup.cshtml" />
-    <Content Include="Views\Parlay\MixParlay.cshtml" />
-    <Content Include="Views\Parlay\ComboParlay.cshtml" />
-    <Content Include="Views\Parlay\ComboParlayDetail.cshtml" />
-    <Content Include="Views\WinLossByMatch\Index.cshtml" />
     <Content Include="Views\Shared\WinLossTable.cshtml" />
-    <Content Include="Views\ParlayWinLossByMatch\Index.cshtml" />
-    <Content Include="Views\RunningBetList\Index.cshtml" />
-    <Content Include="Views\CancelledBet\Index.cshtml" />
-    <Content Include="Views\MemberBetList\Index.cshtml" />
-    <Content Include="Views\DailyStatement\Index.cshtml" />
-    <Content Include="Views\LastBets\Index.cshtml" />
-    <Content Include="Views\LastBets\BetData.cshtml" />
     <Content Include="Web.ConnectionStrings.local.config">
       <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
     </Content>
@@ -1267,19 +964,8 @@
     <Content Include="Web.uat2.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
-    <Content Include="Views\JackpotDetails\Index.cshtml" />
-    <Content Include="Views\BetBuilder\ViewDetail.cshtml" />
-    <Content Include="Views\Parlay\ComboParlayDetailMobile.cshtml" />
-    <Content Include="Views\RiskAnalysisIPMatching\Index.cshtml" />
-    <Content Include="Views\CashOutHistory\Index.cshtml" />
-    <Content Include="Views\MoveStatementHistory\Index.cshtml" />
     <Content Include="PartialUMConfigs\PartialUMSection.config" />
-    <Content Include="Views\CasinoDetails\Index.cshtml" />
-    <Content Include="Views\CorrectScore\Index.cshtml" />
     <Content Include="Views\Shared\TableWithoutWinLoss.cshtml" />
-    <Content Include="Views\CombinationMixParlay\Index.cshtml" />
-    <Content Include="Views\BetListByBetType\Index.cshtml" />
-    <Content Include="Views\BetListByBetTypeAndMatch\Index.cshtml" />
     <Content Include="Web.ConnectionStrings.config" />
     <Content Include="Web.AppSettings.local.config">
       <SubType>Designer</SubType>
@@ -1312,17 +998,7 @@
     <Content Include="Web.ConnectionStrings.uat2.config">
       <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
     </Content>
-    <Content Include="Views\Error\Blocked.cshtml" />
-    <Content Include="Views\WinLoss\IndexNew.cshtml" />
-    <Content Include="Views\WinLoss\BetList.cshtml" />
-    <Content Include="Views\WinLoss\BetListWeekSelection.cshtml" />
-    <Content Include="Views\MonitoringBets\Index.cshtml" />
-    <Content Include="Views\MonitoringBets\FilterConfiguration.cshtml" />
-    <Content Include="Views\MonitoringBets\ManageFilters.cshtml" />
-    <Content Include="Views\MonitoringBets\BetData.cshtml" />
-    <Content Include="Views\MonitoringBets\_WelcomePopup.cshtml" />
-    <Content Include="Views\MonitoringBets\_SaveFilterConfirmPopup.cshtml" />
-    <Content Include="Views\MonitoringBets\Tickets.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\IconInformation.cshtml" />
     <Content Include="Web.AppSettings.staging.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
@@ -1360,7 +1036,6 @@
     <Content Include="Web.staginginternal2.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
-    <Content Include="Views\SearchTickets\Index.cshtml" />
     <Content Include="Views\Shared\WinLossTableNew.cshtml" />
     <Content Include="Views\Shared\WinLossTableData.cshtml" />
     <Content Include="Views\Shared\IconInformationPopup.cshtml" />
@@ -1470,26 +1145,7 @@
     </Compile>
     <Compile Include="Constants\SessionKey.cs" />
     <Compile Include="Constants\UserSelectedDateRangeOptionConstant.cs" />
-    <Compile Include="Controllers\BetListBaseController.cs" />
-    <Compile Include="Controllers\BetListByBetTypeAndMatchController.cs" />
-    <Compile Include="Controllers\BetListByBetTypeController.cs" />
-    <Compile Include="Controllers\CancelledBetController.cs" />
-    <Compile Include="Controllers\SearchTicktesController.cs" />
-    <Compile Include="Controllers\DailyStatementController.cs" />
-    <Compile Include="Controllers\CashOutHistoryController.cs" />
-    <Compile Include="Controllers\ErrorController.cs" />
-    <Compile Include="Controllers\JackpotDetailsController.cs" />
-    <Compile Include="Controllers\BetBuilderController.cs" />
-    <Compile Include="Controllers\CombinationMixParlayController.cs" />
-    <Compile Include="Controllers\CorrectScoreController.cs" />
-    <Compile Include="Controllers\MonitoringBetsController.cs" />
-    <Compile Include="Controllers\MoveStatementHistoryController.cs" />
-    <Compile Include="Controllers\RiskAnalysisIPMatchingController.cs" />
-    <Compile Include="Controllers\MemberBetListController.cs" />
-    <Compile Include="Controllers\LastBetsController.cs" />
-    <Compile Include="Controllers\CasinoDetailsController.cs" />
-    <Compile Include="Controllers\RunningBetListController.cs" />
-    <Compile Include="Controllers\UsernameSuggestionController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Handlers\BetListByBetTypeAndMatch\BetListByBetTypeAndMatchExcelHandler.cs" />
     <Compile Include="Handlers\BetListByBetTypeAndMatch\BetListByBetTypeAndMatchHandler.cs" />
     <Compile Include="Handlers\BetListByBetType\BetListByBetTypeExcelBaseHandler.cs" />
@@ -1527,10 +1183,6 @@
     <Compile Include="Requests\CancelledBet\CancelledBetBaseQuery.cs" />
     <Compile Include="Requests\CancelledBet\CancelledBetExcelQuery.cs" />
     <Compile Include="Requests\CancelledBet\CancelledBetQuery.cs" />
-    <Compile Include="Controllers\ParlayController.cs" />
-    <Compile Include="Controllers\ParlayWinLossByMatchController.cs" />
-    <Compile Include="Controllers\WinLossByMatchController.cs" />
-    <Compile Include="Controllers\WinLossController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1685,80 +1337,6 @@
       <Project>{415fe6c8-c743-47c1-b520-bdbe3b1da2bf}</Project>
       <Name>Alpha.BetLists</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <TypeScriptCompile Include="assets\scripts\src\casino-detail\casino-detail.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\betlist\choice\score-map.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\betlist\choice\ticket-details\other-ticket-details.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\betlist\status\result-details\other-result-details.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\cancelled-betlist\cancelled-betlist-constants.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\cancelled-betlist\cancelled-betlist.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\common\ajax-helper.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\common\app-path.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\common\icon-note.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\common\popup-details.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\common\core.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\common\utils.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\betlist\status\ip-details.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\betlist\choice\ticket-details\base-ticket-details.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\betlist\choice\ticket-details\casino-ticket-details.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\betlist\choice\ticket-details\sportsbook-ticket-details.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\betlist\status\result-details\base-result-details.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\betlist\status\result-details\casino-result-details.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\betlist\status\result-details\sportsbook-result-details.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\components\dropdown-list.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\components\inline-message.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\components\autorefresh.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\components\breadcrumb-level.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\components\daterangepicker-jquery.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\components\daterangepicker.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\components\pager.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\components\product-productdetail-dropdown.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\components\statusmultiselection.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\components\productmultiselection.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\components\username-tagsinput.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\components\week-selection.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\search-tickets\search-tickets.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\components\sportleaguematch-treeview.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\last-bets\last-bets.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\components\single-selection-dropdown.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\member-betlist\member-betlist-init.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\member-betlist\member-betlist.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\monitoring-bets\filter-configuration.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\monitoring-bets\manage-filters.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\monitoring-bets\monitoring-bets-copyhtml.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\monitoring-bets\monitoring-bets.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\monitoring-bets\save-filter.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\running-betlist\running-betlist.ts" />
-    <TypeScriptCompile Include="assets\scripts\src\winloss\winloss-betlist.ts" />
-    <TypeScriptCompile Include="assets\scripts\tests\app\casino-detail\casino-detail-tests.ts" />
-    <TypeScriptCompile Include="assets\scripts\tests\app\choice\ticket-details\score-map-tests.ts" />
-    <TypeScriptCompile Include="assets\scripts\tests\app\choice\ticket-details\base-ticket-details-tests.ts" />
-    <TypeScriptCompile Include="assets\scripts\tests\app\choice\ticket-details\other-ticket-details-tests.ts" />
-    <TypeScriptCompile Include="assets\scripts\tests\app\choice\ticket-details\sportsbook-ticket-details-tests.ts" />
-    <TypeScriptCompile Include="assets\scripts\tests\app\choice\ticket-details\casino-ticket-details-tests.ts" />
-    <TypeScriptCompile Include="assets\scripts\tests\app\common\popup-details-tests.ts" />
-    <TypeScriptCompile Include="assets\scripts\tests\app\components\daterangepicker-tests.ts" />
-    <TypeScriptCompile Include="assets\scripts\tests\app\components\pager-tests.ts" />
-    <TypeScriptCompile Include="assets\scripts\tests\app\components\statusmultiselection-tests.ts" />
-    <TypeScriptCompile Include="assets\scripts\tests\app\components\productmultiselection-tests.ts" />
-    <TypeScriptCompile Include="assets\scripts\tests\app\components\single-selection-dropdown-tests.ts" />
-    <TypeScriptCompile Include="assets\scripts\tests\app\last-bets\last-bets-tests.ts" />
-    <TypeScriptCompile Include="assets\scripts\tests\app\member-betlist\member-betlist-test.ts" />
-    <TypeScriptCompile Include="assets\scripts\tests\app\running-betlist\running-betlist-test.ts" />
-    <TypeScriptCompile Include="assets\scripts\tests\app\status\ip-details-tests.ts" />
-    <TypeScriptCompile Include="assets\scripts\tests\app\status\other-result-details-tests.ts" />
-    <TypeScriptCompile Include="assets\scripts\tests\app\status\sportsbook-result-details-tests.ts" />
-    <TypeScriptCompile Include="assets\scripts\tests\app\status\casino-result-details-tests.ts" />
-    <TypeScriptCompile Include="assets\scripts\tests\app\status\base-result-details-tests.ts" />
-    <TypeScriptCompile Include="assets\scripts\typings\globals\bootstrap\index.d.ts" />
-    <TypeScriptCompile Include="assets\scripts\typings\globals\jasmine-jquery\index.d.ts" />
-    <TypeScriptCompile Include="assets\scripts\typings\globals\jasmine\index.d.ts" />
-    <TypeScriptCompile Include="assets\scripts\typings\globals\jquery.blockui\index.d.ts" />
-    <TypeScriptCompile Include="assets\scripts\typings\globals\jquery.cookie\index.d.ts" />
-    <TypeScriptCompile Include="assets\scripts\typings\globals\jquery\index.d.ts" />
-    <TypeScriptCompile Include="assets\scripts\typings\globals\moment\index.d.ts" />
-    <TypeScriptCompile Include="assets\scripts\typings\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
