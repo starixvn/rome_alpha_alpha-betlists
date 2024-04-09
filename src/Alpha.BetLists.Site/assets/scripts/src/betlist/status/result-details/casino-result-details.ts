@@ -542,7 +542,6 @@
             Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/CGResult' + params, "", 835, 675);
         }
     }
-
     export class VGamingResultDetails extends BaseResultDetails implements ResultDetails {
         public ViewResultDetails = (
             matchId?: number,
@@ -555,22 +554,20 @@
             refNoMixParlay?: number,
             league?: number,
             isOutright?: boolean,
-            betId?: number,
-            matchCode?: string,
-            transDesc?: number,
-            betcheck?: string) => {
-            var params = '?custId=' + (transDesc || this.CustId) +
-                '&roleId=' + this.ViewerLevelId +
-                '&gameRoundId=' + betcheck +
-                '&gameId=' + betTypeId +
-                '&sportId=' + sportTypeId +
-                '&siteId=' + matchCode +
-                '&currencyName=' + userName +
+            currencyId?: number,
+            gameId3rd?: string,
+            custId?: number,
+            transId3rd?: string,
+            siteId?: string) => {
+            var params = '?custId=' + custId +
+                '&transId3rd=' + transId3rd +
+                '&currencyId=' + currencyId +
+                '&siteId=' + siteId +
+                '&BetType=' + betTypeId +
                 '&productId=66';
             Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/VGamingResult' + params, "", 835, 675);
         }
     }
-
 
     export class AdvantPlayResultDetails extends BaseResultDetails implements ResultDetails {
         public ViewResultDetails = (
