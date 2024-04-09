@@ -5,6 +5,39 @@
     using System.Linq;
     using System;
     using Fanex.Data;
+    using System.Collections.Generic;
+
+    [AllowAnonymous]
+    public class HomeController : Controller
+    {
+        public ActionResult Index(int id = 0)
+        {
+            id = id <= 0 ? 100 : id;
+            var repository = new DynamicRepository();
+            var mySet = new HashSet<decimal>();
+
+            for (var i = 0; i < id; i++)
+            {
+                var criteria = new GetCasinoDetailsCriteria(
+                   240528025538527232,
+                   65596555,
+                   1,
+                   21,
+                   1,
+                   500,
+                   new DateTime(2024, 4, 5),
+                   new DateTime(2024, 3, 20));
+
+                var tickets = repository.Fetch<TicketDto>(criteria).ToList();
+                var odds = tickets.Select(s => s.MasterDiscount).ToList();
+                odds.ForEach(o => mySet.Add(o));
+            }
+
+            var json = Newtonsoft.Json.JsonConvert.SerializeObject(mySet);
+            ViewBag.MyJson = json;
+            return View();
+        }
+    }
 
     public class GetCasinoDetailsCriteria : CriteriaBase
     {
@@ -43,7 +76,8 @@
 
         public override string GetSettingKey()
         {
-            return "Acc_BetList_Detail_" + ProductId;
+            var random = new Random(DateTimeOffset.UtcNow.Second);
+            return "Acc_BetList_Detail_" + random.Next(0, 100);
         }
 
         public override bool IsValid()
@@ -52,27 +86,4 @@
         }
     }
 
-    [AllowAnonymous]
-    public class HomeController : Controller
-    {
-        public ActionResult Index()
-        {
-            var repository = new DynamicRepository();
-            var criteria = new GetCasinoDetailsCriteria(
-               240528025538527232,
-               65596555,
-               1,
-               21,
-               1,
-               500,
-               new DateTime(2024, 4, 5),
-               new DateTime(2024, 3, 20));
-
-            var tickets = repository.Fetch<TicketDto>(criteria);
-            var odds = tickets.Select(s => s.MasterDiscount);
-            var json = Newtonsoft.Json.JsonConvert.SerializeObject(odds);
-            ViewBag.MyJson = json;
-            return View();
-        }
-    }
 }
