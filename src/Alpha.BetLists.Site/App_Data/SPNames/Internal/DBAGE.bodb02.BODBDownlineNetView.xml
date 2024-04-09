@@ -1110,7 +1110,7 @@
       <Mapping DataField="scomm" ObjectProperty="SuperComm" />
       <Mapping DataField="sdiscount" ObjectProperty="SuperDiscount" />
     </Setting>
-    <Setting Key="Acc_BetList_Detail_78" SpName="Acc_BetList_RNG_Detail" DbName="DBACC.bodb02.wsv_alp" Plain="0">
+    <Setting Key="Acc_BetList_Detail_78" SpName="Acc_BetList_RNG_Detail" DbName="DBACC.bodb02.wsv_alpv" Plain="0">
       <Mapping DataField="SportType" ObjectProperty="SportTypeId" />
       <Mapping DataField="BetType" ObjectProperty="BetTypeId" />
       <Mapping DataField="actual_stake" ObjectProperty="ActualStake" />
