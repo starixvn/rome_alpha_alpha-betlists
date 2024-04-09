@@ -1,9 +1,0 @@
-﻿@using Fanex.BetList.Core.Entities
-@using Fanex.BetList.Core.Builder
-
-@helper Render(IBetListHTMLBuilder builder, ITicket ticket, List<ITicketData> ticketData, GetCachePropertyById getOddsTypeNameFunc)
-{
-    <td class="odds-block bl_underdog nonbreak text-right">
-        @(new HtmlString(builder.BuildOdds(ticket, ticketData, getOddsTypeNameFunc)))
-    </td>
-}

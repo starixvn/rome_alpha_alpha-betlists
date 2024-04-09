@@ -36,7 +36,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>Alpha.BetLists.Site.Debug.ruleset</CodeAnalysisRuleSet>
     <NoWarn>618</NoWarn>
     <TypeScriptTarget>ES5</TypeScriptTarget>
     <TypeScriptJSXEmit>React</TypeScriptJSXEmit>
@@ -59,7 +58,6 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>Alpha.BetLists.Site.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Alpha.Auth, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -597,9 +595,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <AdditionalFiles Include="..\..\SonarQube\alpha-betlist\CSharp\SonarLint.xml">
-      <Link>SonarLint.xml</Link>
-    </AdditionalFiles>
     <Content Include="App_Data\ProductSection.dr.config">
       <DependentUpon>ProductSection.config</DependentUpon>
     </Content>
@@ -711,77 +706,14 @@
     <Content Include="App_Data\SPNames\SIT\DBLOG.bodb_CustomerLog.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DBONUSER.ON_USER.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DBPOLICY.bodb02.BODBDownlineNet.xml" />
-    <Content Include="App_Themes\error2-dark.png" />
-    <Content Include="App_Themes\error2.png" />
     <Content Include="Global.asax" />
     <Content Include="App_Data\SPNames\Local\DBARC.bodb_Archive.BODBDownlineNet.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="App_Code\Blocks\Trans.cshtml" />
-    <Content Include="App_Code\Blocks\Choice.cshtml" />
-    <Content Include="App_Code\Blocks\Odds.cshtml" />
-    <Content Include="App_Code\Blocks\Stake.cshtml" />
-    <Content Include="App_Code\Blocks\WinLoss.cshtml" />
-    <Content Include="App_Code\Blocks\Status.cshtml" />
-    <Content Include="App_Code\Blocks\PositionTaking.cshtml" />
-    <Content Include="Views\Shared\InvalidBetList.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="bundleconfig.json" />
     <Content Include="App_Data\AuthorizationSection.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="App_Code\Common\Footer.cshtml" />
-    <Content Include="App_Code\Common\NoInfomation.cshtml" />
-    <Content Include="App_Data\ExcelTemplates\WinLoss\Agent.xls" />
-    <Content Include="App_Data\ExcelTemplates\WinLoss\Master.xls" />
-    <Content Include="App_Data\ExcelTemplates\WinLoss\Super.xls" />
-    <Content Include="App_Data\ExcelTemplates\Parlay\ComboParlayDetail.xls" />
-    <Content Include="App_Data\ExcelTemplates\WinLossByMatch\Agent.xls" />
-    <Content Include="App_Data\ExcelTemplates\WinLossByMatch\Master.xls" />
-    <Content Include="App_Data\ExcelTemplates\WinLossByMatch\Super.xls" />
-    <Content Include="App_Data\ExcelData\Lucky3.xls" />
-    <Content Include="Alpha.BetLists.Site.Debug.ruleset" />
-    <Content Include="Alpha.BetLists.Site.ruleset" />
-    <Content Include="App_Code\Components\ProductMultiSelection.cshtml" />
-    <Content Include="App_Code\Components\DateRangePicker.cshtml" />
-    <Content Include="App_Data\ExcelTemplates\DailyStatement\Member.xls" />
-    <Content Include="App_Data\ExcelTemplates\CancelledBet\Agent.xls" />
-    <Content Include="App_Data\ExcelTemplates\CancelledBet\Master.xls" />
-    <Content Include="App_Data\ExcelTemplates\CancelledBet\Super.xls" />
-    <Content Include="App_Data\ExcelData\Products.xls" />
-    <Content Include="App_Data\ExcelData\RunningBetlist.xls" />
-    <Content Include="App_Data\ExcelData\ScoreMaps.xls" />
-    <Content Include="App_Data\ExcelData\MemberBetlist.xls" />
-    <Content Include="App_Data\ExcelData\EmptyData.xls" />
-    <Content Include="App_Data\ExcelTemplates\BetListByBetType\Agent.xls" />
-    <Content Include="App_Data\ExcelTemplates\BetListByBetType\Master.xls" />
-    <Content Include="App_Data\ExcelTemplates\BetListByBetType\Super.xls" />
-    <Content Include="App_Data\ExcelTemplates\CorrectScore\Agent.xls" />
-    <Content Include="App_Data\ExcelTemplates\CorrectScore\Master.xls" />
-    <Content Include="App_Data\ExcelTemplates\CorrectScore\Super.xls" />
-    <Content Include="App_Data\ExcelTemplates\MixParlay\Agent.xls" />
-    <Content Include="App_Data\ExcelTemplates\MixParlay\Master.xls" />
-    <Content Include="App_Data\ExcelTemplates\MixParlay\Super.xls" />
-    <Content Include="App_Data\ExcelTemplates\CombinationMixParlay\Agent.xls" />
-    <Content Include="App_Data\ExcelTemplates\CombinationMixParlay\Master.xls" />
-    <Content Include="App_Data\ExcelTemplates\CombinationMixParlay\Super.xls" />
-    <Content Include="App_Data\ExcelTemplates\BetListByBetTypeAndMatch\Agent.xls" />
-    <Content Include="App_Data\ExcelTemplates\BetListByBetTypeAndMatch\Master.xls" />
-    <Content Include="App_Data\ExcelTemplates\BetListByBetTypeAndMatch\Super.xls" />
-    <Content Include="App_Code\Components\Pager.cshtml" />
-    <Content Include="App_Data\ExcelTemplates\CasinoDetails\Agent.xls" />
-    <Content Include="App_Data\ExcelTemplates\CasinoDetails\Master.xls" />
-    <Content Include="App_Data\ExcelTemplates\CasinoDetails\Super.xls" />
-    <Content Include="App_Data\ExcelTemplates\BullfightingByMatch\Agent.xls" />
-    <Content Include="App_Data\ExcelTemplates\BullfightingByMatch\Master.xls" />
-    <Content Include="App_Data\ExcelTemplates\BullfightingByMatch\Super.xls" />
-    <Content Include="App_Data\ExcelTemplates\JackpotDetails\Super.xls" />
-    <Content Include="App_Data\ExcelTemplates\JackpotDetails\Agent.xls" />
-    <Content Include="App_Data\ExcelTemplates\JackpotDetails\Master.xls" />
-    <Content Include="App_Code\Components\StatusMultiSelection.cshtml" />
-    <Content Include="App_Code\Blocks\LastBetsStatus.cshtml" />
-    <Content Include="App_Data\ExcelTemplates\RiskAnalysisIPMatching\Super.xls" />
     <Content Include="App_Data\securitycode.json" />
     <Content Include="App_Data\ProductSection.config" />
     <Content Include="Web.AppSettings.local4.config">
@@ -808,13 +740,6 @@
     <Content Include="WhoAmI.aspx" />
     <Content Include="bundleconfig2.json" />
     <Content Include="compilerconfig2.json" />
-    <Content Include="App_Code\Components\DateRangePickerJQuery.cshtml" />
-    <Content Include="App_Code\Components\ProductAndProductDetailDropdown.cshtml" />
-    <Content Include="App_Code\Components\AutoRefresh.cshtml" />
-    <Content Include="App_Code\Components\WeekSelection.cshtml" />
-    <Content Include="App_Code\Components\BreadcrumbLevel.cshtml" />
-    <Content Include="App_Code\Components\UsernameTagsInput.cshtml" />
-    <Content Include="App_Code\Common\SwitchVersionButton.cshtml" />
     <Content Include="App_Data\ProductSection.staging.config">
       <DependentUpon>ProductSection.config</DependentUpon>
     </Content>
@@ -851,8 +776,6 @@
     <Content Include="App_Data\securitycode.pro3.json">
       <DependentUpon>securitycode.json</DependentUpon>
     </Content>
-    <Content Include="App_Code\Blocks\ParlayBoostOdds.cshtml" />
-    <Content Include="App_Code\Blocks\Platform.cshtml" />
     <Content Include="App_Data\ProductSection.pro22.config">
       <DependentUpon>ProductSection.config</DependentUpon>
     </Content>
@@ -903,8 +826,6 @@
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
-    <Content Include="Views\Shared\DetailsPopup.cshtml" />
-    <Content Include="Views\Shared\WinLossTable.cshtml" />
     <Content Include="Web.ConnectionStrings.local.config">
       <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
     </Content>
@@ -965,7 +886,6 @@
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
     <Content Include="PartialUMConfigs\PartialUMSection.config" />
-    <Content Include="Views\Shared\TableWithoutWinLoss.cshtml" />
     <Content Include="Web.ConnectionStrings.config" />
     <Content Include="Web.AppSettings.local.config">
       <SubType>Designer</SubType>
@@ -999,7 +919,6 @@
       <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
     </Content>
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Shared\IconInformation.cshtml" />
     <Content Include="Web.AppSettings.staging.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
@@ -1036,9 +955,6 @@
     <Content Include="Web.staginginternal2.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
-    <Content Include="Views\Shared\WinLossTableNew.cshtml" />
-    <Content Include="Views\Shared\WinLossTableData.cshtml" />
-    <Content Include="Views\Shared\IconInformationPopup.cshtml" />
     <Content Include="Web.AppSettings.napinternal3.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
@@ -1137,176 +1053,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="App_Start\DependencyConfig.cs">
-      <SonarQubeExclude>true</SonarQubeExclude>
-    </Compile>
     <Compile Include="App_Start\RouteConfig.cs">
-      <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
-    <Compile Include="Constants\SessionKey.cs" />
-    <Compile Include="Constants\UserSelectedDateRangeOptionConstant.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Handlers\BetListByBetTypeAndMatch\BetListByBetTypeAndMatchExcelHandler.cs" />
-    <Compile Include="Handlers\BetListByBetTypeAndMatch\BetListByBetTypeAndMatchHandler.cs" />
-    <Compile Include="Handlers\BetListByBetType\BetListByBetTypeExcelBaseHandler.cs" />
-    <Compile Include="Handlers\BetListByBetType\BetListByBetTypeExcelHandler.cs" />
-    <Compile Include="Handlers\CancelledBet\CancelledBetExcelHandler.cs" />
-    <Compile Include="Handlers\CancelledBet\CancelledBetHandler.cs" />
-    <Compile Include="Handlers\CasinoDetails\CasinoDetailsExcelHandler.cs" />
-    <Compile Include="Handlers\CasinoDetails\CasinoDetailsHandler.cs" />
-    <Compile Include="Handlers\CashOutHistory\CashOutHistoryHandler.cs" />
-    <Compile Include="Handlers\SearchTickets\SearchTicketsHandler.cs" />
-    <Compile Include="Handlers\JackpotDetails\JackpotDetailsExcelHandler.cs" />
-    <Compile Include="Handlers\JackpotDetails\JackpotDetailsHandler.cs" />
-    <Compile Include="Handlers\BetBuilder\BetBuilderHandler.cs" />
-    <Compile Include="Handlers\MonitoringBets\MonitoringBetsHandler.cs" />
-    <Compile Include="Handlers\MoveStatementHistory\MoveStatementHistoryHandler.cs" />
-    <Compile Include="Handlers\RiskAnalysisIPMatching\RiskAnalysisIPMatchingHelper.cs" />
-    <Compile Include="Handlers\RiskAnalysisIPMatching\RiskAnalysisIPMatchingHandler.cs" />
-    <Compile Include="Handlers\RiskAnalysisIPMatching\RiskAnalysisIPMatchingExcelHandler.cs" />
-    <Compile Include="Handlers\UsernameSuggestion\UsernameSuggestionHandler.cs" />
-    <Compile Include="Handlers\WinLoss\WinLossNewHandler.cs" />
-    <Compile Include="Helpers\BrowserHelper.cs">
-      <SonarQubeExclude>true</SonarQubeExclude>
-    </Compile>
-    <Compile Include="Requests\BetBuilder\BetBuilderDetailQuery.cs" />
-    <Compile Include="Requests\CashOut\CashOutHistoryQuery.cs" />
-    <Compile Include="Requests\CasinoDetails\CasinoDetailsExcelQuery.cs" />
-    <Compile Include="Requests\CasinoDetails\CasinoDetailsQuery.cs" />
-    <Compile Include="Handlers\BetListByBetType\BetListByBetTypeHandler.cs" />
-    <Compile Include="Handlers\CombinationMixParlay\CombinationMixParlayExcelHandler.cs" />
-    <Compile Include="Handlers\CombinationMixParlay\CombinationMixParlayHandler.cs" />
-    <Compile Include="Handlers\CorrectScore\CorrectScoreExcelHandler.cs" />
-    <Compile Include="Handlers\CorrectScore\CorrectScoreHandler.cs" />
-    <Compile Include="Requests\BetListByBetTypeAndMatch\BetListByBetTypeAndMatchExcelQuery.cs" />
-    <Compile Include="Requests\BetListByBetTypeAndMatch\BetListByBetTypeAndMatchQuery.cs" />
-    <Compile Include="Requests\CancelledBet\CancelledBetBaseQuery.cs" />
-    <Compile Include="Requests\CancelledBet\CancelledBetExcelQuery.cs" />
-    <Compile Include="Requests\CancelledBet\CancelledBetQuery.cs" />
+    <Compile Include="Controllers\TicketDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="Handlers\BetListExcelBaseHandler.cs" />
-    <Compile Include="Handlers\BetListBaseHandler.cs" />
-    <Compile Include="Handlers\DailyStatement\DailyStatementExcelHandler.cs" />
-    <Compile Include="Handlers\DailyStatement\DailyStatementHandler.cs" />
-    <Compile Include="Handlers\MemberBetList\MemberBetListHandler.cs" />
-    <Compile Include="Handlers\LastBets\LastBetsHandler.cs" />
-    <Compile Include="Handlers\RunningBetList\RunningBetListHandler.cs" />
-    <Compile Include="Handlers\ParlayWinLossByMatch\ParlayWinLossByMatchExcelHanlder.cs" />
-    <Compile Include="Handlers\ParlayWinLossByMatch\ParlayWinLossByMatchHandler.cs" />
-    <Compile Include="Handlers\Parlay\ComboParlayDetailWorkbook.cs">
-      <SonarQubeExclude>true</SonarQubeExclude>
-    </Compile>
-    <Compile Include="Handlers\Parlay\ParlayExcelHandler.cs" />
-    <Compile Include="Handlers\Parlay\ParlayHandler.cs" />
-    <Compile Include="Handlers\WinLossByMatch\WinLossByMatchExcelHandler.cs" />
-    <Compile Include="Handlers\WinLossByMatch\WinLossByMatchHandler.cs" />
-    <Compile Include="Handlers\WinLoss\WinLossExcelHandler.cs" />
-    <Compile Include="Handlers\WinLoss\WinLossHandler.cs" />
-    <Compile Include="Helpers\IPHelper.cs">
-      <SonarQubeExclude>true</SonarQubeExclude>
-    </Compile>
-    <Compile Include="Helpers\QueryEntityModelBinder.cs" />
-    <Compile Include="Helpers\UrlHelper.cs" />
-    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Requests\BaseQuery.cs" />
-    <Compile Include="Requests\BetListByBetType\BetListByBetTypeExcelQuery.cs" />
-    <Compile Include="Requests\BetListByBetType\BetListByBetTypeQuery.cs" />
-    <Compile Include="Requests\DailyStatement\DailyStatementExcelQuery.cs" />
-    <Compile Include="Requests\SearchTickets\SearchTicketsQuery.cs" />
-    <Compile Include="Requests\JackpotDetails\JackpotDetailsExcelQuery.cs" />
-    <Compile Include="Requests\JackpotDetails\JackpotDetailsQuery.cs" />
-    <Compile Include="Requests\DailyStatement\DailyStatementQuery.cs" />
-    <Compile Include="Requests\CombinationMixParlay\CombinationMixParlayExcelQuery.cs" />
-    <Compile Include="Requests\CombinationMixParlay\CombinationMixParlayQuery.cs" />
-    <Compile Include="Requests\CorrectScore\CorrectScoreExcelQuery.cs" />
-    <Compile Include="Requests\CorrectScore\CorrectScoreQuery.cs" />
-    <Compile Include="Requests\MemberBetList\MemberBetListQuery.cs" />
-    <Compile Include="Requests\MonitoringBets\AddUnsavedFilterCommand.cs" />
-    <Compile Include="Requests\MonitoringBets\AddFilterCommand.cs" />
-    <Compile Include="Requests\MonitoringBets\ApplyFilterCommand.cs" />
-    <Compile Include="Requests\MonitoringBets\DeleteFiltersCommand.cs" />
-    <Compile Include="Requests\MonitoringBets\FilterBySportsQuery.cs" />
-    <Compile Include="Requests\MonitoringBets\FilterConfigurationQuery.cs" />
-    <Compile Include="Requests\MonitoringBets\GetMyWatchlistMembersQuery.cs" />
-    <Compile Include="Requests\MonitoringBets\GetLastFilteringBetsQuery.cs" />
-    <Compile Include="Requests\MonitoringBets\ManageFiltersQuery.cs" />
-    <Compile Include="Requests\MonitoringBets\MonitoringBetsQuery.cs" />
-    <Compile Include="Requests\MonitoringBets\UpdateFilterCommand.cs" />
-    <Compile Include="Requests\MoveStatementHistory\MoveStatementHistoryQuery.cs" />
-    <Compile Include="Requests\RiskAnalysisIPMatching\RiskAnalysisIPMatchingQuery.cs" />
-    <Compile Include="Requests\RiskAnalysisIPMatching\RiskAnalysisIPMatchingExcelQuery.cs" />
-    <Compile Include="Requests\RunningBetList\RunningBetListQuery.cs" />
-    <Compile Include="Requests\LastBets\CheckCanViewLastBetsQuery.cs" />
-    <Compile Include="Requests\LastBets\GetLastBetsQuery.cs" />
-    <Compile Include="Requests\LastBets\LastBetsQuery.cs" />
-    <Compile Include="Requests\ParlayWinLossByMatch\ParlayWinLossByMatchExcelQuery.cs" />
-    <Compile Include="Requests\ParlayWinLossByMatch\ParlayWinLossByMatchQuery.cs" />
-    <Compile Include="Requests\Parlay\ComboParlayDetailExcelQuery.cs" />
-    <Compile Include="Requests\Parlay\ComboParlayDetailQuery.cs" />
-    <Compile Include="Requests\Parlay\ComboParlayQuery.cs" />
-    <Compile Include="Requests\Parlay\MixParlayQuery.cs" />
-    <Compile Include="Requests\UsernameSuggestion\CheckUsernamesQuery.cs" />
-    <Compile Include="Requests\UsernameSuggestion\UsernameSuggestionQuery.cs" />
-    <Compile Include="Requests\WinLossByMatch\WinLossByMatchExcelQuery.cs" />
-    <Compile Include="Requests\WinLossByMatch\WinLossByMatchQuery.cs" />
-    <Compile Include="Requests\WinLoss\WinLossExcelQuery.cs" />
-    <Compile Include="Requests\WinLoss\WinLossBetListQuery.cs" />
-    <Compile Include="Requests\WinLoss\WinLossBetListWeekSelectionQuery.cs" />
-    <Compile Include="Requests\WinLoss\WinLossIndexQuery.cs" />
-    <Compile Include="Requests\WinLoss\WinLossQuery.cs" />
-    <Compile Include="ViewModels\BetListBaseViewModel.cs" />
-    <Compile Include="ViewModels\BetListByBetTypeAndMatch\BetListByBetTypeAndMatchViewModel.cs" />
-    <Compile Include="ViewModels\BetListByBetType\BetListByBetTypeViewModel.cs" />
-    <Compile Include="ViewModels\Blocks\Footer.cs" />
-    <Compile Include="ViewModels\Blocks\WinLostBlockViewModel.cs" />
-    <Compile Include="ViewModels\CashOutHistory\CashOutHistoryViewModel.cs" />
-    <Compile Include="ViewModels\CasinoDetails\CasinoDetailsViewModel.cs" />
-    <Compile Include="ViewModels\CombinationMixParlay\CombinationMixParlayViewModel.cs" />
-    <Compile Include="ViewModels\Components\BreadcrumbLevelViewModel.cs" />
-    <Compile Include="ViewModels\Components\DateRangePickerNewViewModel.cs" />
-    <Compile Include="ViewModels\Components\GroupProductViewModel.cs" />
-    <Compile Include="ViewModels\Components\PagerViewModel.cs">
-      <SonarQubeExclude>true</SonarQubeExclude>
-    </Compile>
-    <Compile Include="ViewModels\Components\ProductDetailViewModel.cs" />
-    <Compile Include="ViewModels\Components\ProductViewModel.cs" />
-    <Compile Include="ViewModels\Components\StatusMultiSelectionViewModel.cs" />
-    <Compile Include="ViewModels\Components\DateRangePickerViewModel.cs">
-      <SonarQubeExclude>true</SonarQubeExclude>
-    </Compile>
-    <Compile Include="ViewModels\CancelledBet\CancelledBetViewModel.cs" />
-    <Compile Include="ViewModels\Components\ProductMultiSelectionViewModel.cs">
-      <SonarQubeExclude>true</SonarQubeExclude>
-    </Compile>
-    <Compile Include="ViewModels\Components\WeekSelectionViewModel.cs" />
-    <Compile Include="ViewModels\DailyStatement\DailyStatementViewModel.cs" />
-    <Compile Include="ViewModels\CorrectScore\CorrectScoreViewModel.cs" />
-    <Compile Include="ViewModels\ExcelFileViewModel.cs" />
-    <Compile Include="ViewModels\SearchTickets\SearchTicketsViewModel.cs" />
-    <Compile Include="ViewModels\JackpotDetails\JackpotDetailsViewModel.cs" />
-    <Compile Include="ViewModels\MemberBetList\MemberBetListViewModel.cs" />
-    <Compile Include="ViewModels\MonitoringBets\FilteringBetDataViewModel.cs" />
-    <Compile Include="ViewModels\MonitoringBets\FilterConfigurationViewModel.cs" />
-    <Compile Include="ViewModels\MonitoringBets\ManageFiltersViewModel.cs" />
-    <Compile Include="ViewModels\MonitoringBets\MonitoringBetsViewModel.cs" />
-    <Compile Include="ViewModels\MoveStatementHistory\MoveStatementHistoryViewModel.cs" />
-    <Compile Include="ViewModels\RiskAnalysisIPMatching\RiskAnalysisIPMatchingViewModel.cs" />
-    <Compile Include="ViewModels\RunningBetList\RunningBetListViewModel.cs" />
-    <Compile Include="ViewModels\LastBets\BetDataViewModel.cs" />
-    <Compile Include="ViewModels\LastBets\LastBetsViewModel.cs" />
-    <Compile Include="ViewModels\ParlayWinLossByMatch\ParlayWinLossByMatchViewModel.cs" />
-    <Compile Include="ViewModels\Parlay\ComboParlayDetailWrapper.cs" />
-    <Compile Include="ViewModels\Parlay\ComboParlayDetailViewModel.cs" />
-    <Compile Include="ViewModels\Parlay\ComboParlayViewModel.cs" />
-    <Compile Include="ViewModels\Parlay\MixParlayViewModel.cs" />
-    <Compile Include="ViewModels\WinLossByMatch\WinLossByMatchViewModel.cs" />
-    <Compile Include="ViewModels\WinLoss\WinLossBetListWeekSelectionViewModel.cs" />
-    <Compile Include="ViewModels\WinLoss\WinLossIndexViewModel.cs" />
-    <Compile Include="ViewModels\WinLoss\WinLossViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config">
@@ -1329,24 +1084,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Alpha.BetLists.Builders\Alpha.BetLists.Builders.csproj">
-      <Project>{c4d18432-0c45-40e3-b851-30ddf6e809ea}</Project>
-      <Name>Alpha.BetLists.Builders</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Alpha.BetLists\Alpha.BetLists.csproj">
-      <Project>{415fe6c8-c743-47c1-b520-bdbe3b1da2bf}</Project>
-      <Name>Alpha.BetLists</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.8.22.0.31243\analyzers\Google.Protobuf.dll" />
-    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.8.22.0.31243\analyzers\SonarAnalyzer.CFG.dll" />
-    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.8.22.0.31243\analyzers\SonarAnalyzer.CSharp.dll" />
-    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.8.22.0.31243\analyzers\SonarAnalyzer.dll" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup />

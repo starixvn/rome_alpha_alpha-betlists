@@ -1,9 +1,0 @@
-﻿@using Fanex.BetList.Core.Entities
-@using Fanex.BetList.Core.Builder
-
-@helper Render(IBetListHTMLBuilder builder, ITicket ticket, ITicketHelper helper, List<ITicketData> ticketData, bool isShowScoreMap)
-{
-    <td class="choice-block text-right sport-@(ticket.SportTypeId)">
-        @(new HtmlString(builder.BuildChoice(ticket, helper, ticketData, isShowScoreMap)))
-    </td>
-}

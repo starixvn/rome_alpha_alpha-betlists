@@ -5,10 +5,6 @@ VisualStudioVersion = 17.8.34316.72
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alpha.BetLists.Site", "src\Alpha.BetLists.Site\Alpha.BetLists.Site.csproj", "{69690E23-A8B5-4D96-8EBE-907A9FC1CA3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alpha.BetLists", "src\Alpha.BetLists\Alpha.BetLists.csproj", "{415FE6C8-C743-47C1-B520-BDBE3B1DA2BF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alpha.BetLists.Builders", "src\Alpha.BetLists.Builders\Alpha.BetLists.Builders.csproj", "{C4D18432-0C45-40E3-B851-30DDF6E809EA}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{84BB840B-DF42-4155-ADF7-216FD1975F26}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AD45504A-1AD8-4424-88C7-59884844EC45}"
@@ -29,27 +25,15 @@ Global
 		{69690E23-A8B5-4D96-8EBE-907A9FC1CA3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69690E23-A8B5-4D96-8EBE-907A9FC1CA3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69690E23-A8B5-4D96-8EBE-907A9FC1CA3E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{415FE6C8-C743-47C1-B520-BDBE3B1DA2BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{415FE6C8-C743-47C1-B520-BDBE3B1DA2BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{415FE6C8-C743-47C1-B520-BDBE3B1DA2BF}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{415FE6C8-C743-47C1-B520-BDBE3B1DA2BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{415FE6C8-C743-47C1-B520-BDBE3B1DA2BF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C4D18432-0C45-40E3-B851-30DDF6E809EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C4D18432-0C45-40E3-B851-30DDF6E809EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C4D18432-0C45-40E3-B851-30DDF6E809EA}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{C4D18432-0C45-40E3-B851-30DDF6E809EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C4D18432-0C45-40E3-B851-30DDF6E809EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{69690E23-A8B5-4D96-8EBE-907A9FC1CA3E} = {84BB840B-DF42-4155-ADF7-216FD1975F26}
-		{415FE6C8-C743-47C1-B520-BDBE3B1DA2BF} = {84BB840B-DF42-4155-ADF7-216FD1975F26}
-		{C4D18432-0C45-40E3-B851-30DDF6E809EA} = {84BB840B-DF42-4155-ADF7-216FD1975F26}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {EDFCC31A-82A7-4E54-AA79-F1A839E9870F}
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Logging.6.0.1304.0\lib\NET45
+		SolutionGuid = {EDFCC31A-82A7-4E54-AA79-F1A839E9870F}
 	EndGlobalSection
 EndGlobal

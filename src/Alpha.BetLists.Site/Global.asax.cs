@@ -8,35 +8,16 @@
     using System.Reflection;
     using System.Web;
     using System.Web.Helpers;
-    using System.Web.Hosting;
     using System.Web.Mvc;
     using System.Web.Routing;
-    using Alpha.BetLists.Services;
-    using Alpha.NetThrottling.Mvc;
     using Alpha.NetThrottling.Utils;
-    using Alpha.PartialUM.Filters;
     using AlphaPlus.Logging;
     using AlphaPlus.Logging.Web;
     using AlphaPlus.User.Models;
-    using App_Start;
-    using Auth.Filters;
-    using Configurations;
-    using Fanex.Caching;
     using Fanex.Data;
     using Fanex.Data.SqlServer;
-    using Fanex.Logging;
     using Fanex.Logging.Extensions.Database;
     using Fanex.Logging.Extensions.Web;
-    using Fanex.RemotingRef;
-    using Helpers;
-    using ONEbook.UM;
-    using ONEbook.UM.AspNetMVC.Filters;
-    using ONEbook.UM.Configurations;
-    using ONEbook.UM.NETFramework;
-    using ONEbook.UM.Services;
-    using ONEbook.UM.Transport;
-    using Web;
-    using Web.Filters;
     using Web.Helpers;
 
     public class MvcApplication : System.Web.HttpApplication
@@ -53,78 +34,19 @@
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
-            DependencyConfig.Init();
-
-            AppSettings.Verify();
-
             DbSettingProviderManager
                 .StartNewSession()
-                .WithSqlServer(resourcePath: AppSettings.StoredProcedurePath)
+                .WithSqlServer(resourcePath: "App_Data/SPNames/Local")
                 .Run();
 
-            ShareSession.Init();
-
+            
             LoggingConfig.ExceptionHandler = new ExceptionHandlerAdapter();
             LoggingConfig.Init(getDbExceptionInfo: DatabaseInfoGetters.GetDbExceptionInfo);
-
-            GlobalFilters.Filters.Add(new NetThrottlingFilterAttribute(false));
-
-            var umConfig = new UMClientConfiguration().Initialize();
-            UMClientManager
-                .UseConfig(umConfig)
-                .UseCacheService(new UMCacheService(new CacheService()))
-                .UseRestClient(new UMRestClient(umConfig))
-                .UseHttpContext(new ONEbook.UM.Helpers.HttpContextHelper());
-
-                GlobalFilters.Filters.Add(new CheckUMFilterAttribute(
-                new MaintenanceService(UMClientManager.RestClient, UMClientManager.CacheService, UMClientManager.UMClientConfigs, UMClientManager.HttpContext), null));
-
-            GlobalFilters.Filters.Add(new CheckBelongingFilter(!AppSettings.IsStandaloneReport));
-            GlobalFilters.Filters.Add(new NoCacheFilter());
-            GlobalFilters.Filters.Add(new AfterLoginFlowFilter(!AppSettings.IsStandaloneReport));
-            GlobalFilters.Filters.Add(new PartialUMExceptionFilter(true));
-            GlobalFilters.Filters.Add(new ProtectedModeFilter(!AppSettings.IsStandaloneReport));
-
-
-            ModelBinders.Binders.DefaultBinder = new QueryEntityModelBinder();
-
-            StaticResources.Init(GetBuildVersion());
-
-            RefDataTypeContainer
-                .ConnectTo(new Uri(AppSettings.RemoteRefURL))
-                .FromApplication("Alpha.BetLists.Site");
-
-            if (AppSettings.IsEnabledLoggingApplicationStartEnd)
-            {
-                try
-                {
-                    var lastBetsService = DependencyResolver.Current.GetService<LastBetsService>();
-                    lastBetsService.GetRunningOutrightMatches(AppSettings.RunningMatchCacheTime);
-                    lastBetsService.GetRunningOtherMatches(AppSettings.RunningMatchCacheTime);
-                }
-                finally
-                {
-                    var error = Server.GetLastError()?.ToString();
-                    var hostError = HostingEnvironment.InitializationException?.ToString();
-                    var errorMessage = $"{error}{hostError}";
-                    errorMessage = string.IsNullOrWhiteSpace(errorMessage) ? string.Empty : $"But then error: {errorMessage}";
-
-                    LogService.Error($"Alpha_Running_Betlist: {Hostname()} started. {errorMessage}");
-                }
-            }
+            
         }
 
         protected void Application_End()
         {
-            if (AppSettings.IsEnabledLoggingApplicationStartEnd)
-            {
-                var error = Server.GetLastError()?.ToString();
-                var hostError = HostingEnvironment.InitializationException?.ToString();
-                var errorMessage = $"{error}{hostError}";
-                var shutdownReason = HostingEnvironment.ShutdownReason;
-
-                LogService.Error($"Alpha_Running_Betlist: {Hostname()} ended. Reason: {shutdownReason}. {errorMessage}");
-            }
         }
 
         protected void Application_Error()
@@ -158,13 +80,6 @@
                 });
         }
 
-        private static string GetBuildVersion()
-        {
-            Assembly assembly = Assembly.GetCallingAssembly();
-            FileVersionInfo versionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
-
-            return $"{versionInfo.FileVersion}.{AppSettings.JsVersion}";
-        }
 
         private static string Hostname()
         {
