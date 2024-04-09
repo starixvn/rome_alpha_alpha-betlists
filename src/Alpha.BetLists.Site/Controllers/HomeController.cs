@@ -4,86 +4,77 @@
     using Fanex.Data.Repository;
     using System.Linq;
     using System;
-    using Fanex.Data;
     using System.Collections.Generic;
+    using Fanex.Data;
+    using System.Threading.Tasks;
 
     [AllowAnonymous]
     public class HomeController : Controller
     {
-        public ActionResult Index(int id = 0)
+        private static Random random = new Random(DateTimeOffset.UtcNow.Second);
+        private static DynamicRepository repository = new DynamicRepository();
+
+        public ActionResult Index()
         {
-            id = id <= 0 ? 100 : id;
-            var repository = new DynamicRepository();
-            var mySet = new HashSet<decimal>();
+            return Content("OK");
+        }
 
-            for (var i = 0; i < id; i++)
+        public async Task<ActionResult> First()
+        {
+            var criteria = new JacobCriteria { Index = 1 };
+            var model = await repository.FetchAsync<JacobDto>(criteria).ConfigureAwait(false);
+            return Json(model);
+        }
+
+        public async Task<ActionResult> Second()
+        {
+            var criteria = new JacobCriteria { Index = 2 };
+            var model = await repository.FetchAsync<JacobDto>(criteria).ConfigureAwait(false);
+            return Json(model);
+        }
+
+        public async Task<ActionResult> Random(int id = 0)
+        {
+            var loopCount = id <= 0 ? 100 : id;
+            var mySet = new HashSet<decimal>();            
+            var tasks = new List<Task>();
+            for (var i = 0; i < loopCount; i++)
             {
-                var criteria = new GetCasinoDetailsCriteria(
-                   240528025538527232,
-                   65596555,
-                   1,
-                   21,
-                   1,
-                   500,
-                   new DateTime(2024, 4, 5),
-                   new DateTime(2024, 3, 20));
-
-                var tickets = repository.Fetch<TicketDto>(criteria).ToList();
-                var odds = tickets.Select(s => s.MasterDiscount).ToList();
-                odds.ForEach(o => mySet.Add(o));
+                var task = DoTask(mySet);
+                tasks.Add(task);
+                if(tasks.Count > 2)
+                {
+                    var finishedTask = await Task.WhenAny(tasks.ToArray());
+                    tasks.Remove(finishedTask);                    
+                }
             }
 
-            var json = Newtonsoft.Json.JsonConvert.SerializeObject(mySet);
-            ViewBag.MyJson = json;
-            return View();
+            await Task.WhenAll(tasks.ToArray());
+
+            return Json(mySet);
+        }
+
+        private async Task DoTask(HashSet<decimal> mySet)
+        {
+            var randomIndex = random.Next(1, 3);
+            var criteria = new JacobCriteria { Index = randomIndex };
+            var model = await repository.FetchAsync<JacobDto>(criteria).ConfigureAwait(false);
+            var discount = model.Select(s => s.Discount).ToList();
+            discount.ForEach(d => mySet.Add(d));
         }
     }
 
-    public class GetCasinoDetailsCriteria : CriteriaBase
+    public class JacobCriteria : CriteriaBase
     {
-        public long RefNo { get; }
-
-        public int CustId { get; }
-
-        public byte TransType { get; }
-
         [SpParam(Ignored = true)]
-        public int ProductId { get; }
-
-        public int PageIndex { get; }
-
-        public int PageSize { get; }
-
-        public int TotalRows { get; set; }
-
-        [SpParam(SqlParamName = "movebetsday")]
-        public DateTime MoveBetsDate { get; }
-
-        [SpParam(SqlParamName = "BalanceUpDay")]
-        public DateTime BalanceUpDate { get; }
-
-        public GetCasinoDetailsCriteria(long refNo, int custId, byte transType, int productId, int pageIndex, int pageSize, DateTime moveBetsDate, DateTime balanceUpDate)
-        {
-            RefNo = refNo;
-            CustId = custId;
-            TransType = transType;
-            ProductId = productId;
-            PageIndex = pageIndex;
-            PageSize = pageSize;
-            MoveBetsDate = moveBetsDate;
-            BalanceUpDate = balanceUpDate;
-        }
+        public int Index { get; set; }
 
         public override string GetSettingKey()
         {
-            var random = new Random(DateTimeOffset.UtcNow.Second);
-            return "Acc_BetList_Detail_" + random.Next(0, 100);
+            return "JACOB_BetList_Detail_" + Index;
         }
 
-        public override bool IsValid()
-        {
-            return RefNo > 0 && CustId > 0 && ProductId > 0;
-        }
+        public override bool IsValid() => true;
     }
 
 }
