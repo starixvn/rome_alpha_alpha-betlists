@@ -13,11 +13,13 @@
     {
         private readonly IDynamicRepository dynamicRepository;
         private readonly ReportDateService reportDateService;
+        private readonly IBetListRepository betlistRepository;
 
-        public CasinoDetailsDataAccess(IDynamicRepository dynamicRepository, ReportDateService reportDateService)
+        public CasinoDetailsDataAccess(IDynamicRepository dynamicRepository, ReportDateService reportDateService, IBetListRepository betlistRepository)
         {
             this.dynamicRepository = dynamicRepository;
             this.reportDateService = reportDateService;
+            this.betlistRepository = betlistRepository;
         }
 
         public PagedData<ITicket> GetCasinoDetails(CasinoDetailsParam param)
@@ -32,8 +34,8 @@
                 reportDateService.GetMoveBetsDay(),
                 reportDateService.GetBalanceUpDay());
 
-            var tickets = dynamicRepository.Fetch<TicketDto>(criteria);
-
+            //var tickets = dynamicRepository.Fetch<TicketDto>(criteria);
+            var tickets = betlistRepository.Fetch(criteria);
             return new PagedData<ITicket>(tickets, criteria.PageIndex, criteria.PageSize, criteria.TotalRows);
         }
     }
