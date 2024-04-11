@@ -130,8 +130,8 @@
 
             partialUMService.ThrowIfUM(criteria.GetSettingKey());
 
-            //var result = await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
-            var result = betlistRepository.FetchMultiple(criteria);
+            var result = await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
+            //var result = betlistRepository.FetchMultiple(criteria);
             var errFormat = param.IsExcel ?
                 string.Format(Resources.ExceededMaxTotalRowExportExcelFunc, param.MaxTotalRowConfig) :
                 string.Format(Resources.ExceededMaxTotalRowWithExcelFunc, criteria.MaxTotalRow, param.MaxTotalRowConfig);

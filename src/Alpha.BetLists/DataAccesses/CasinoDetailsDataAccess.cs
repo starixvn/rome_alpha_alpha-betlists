@@ -34,8 +34,8 @@
                 reportDateService.GetMoveBetsDay(),
                 reportDateService.GetBalanceUpDay());
 
-            //var tickets = dynamicRepository.Fetch<TicketDto>(criteria);
-            var tickets = betlistRepository.Fetch(criteria);
+            var tickets = dynamicRepository.Fetch<TicketDto>(criteria);
+            //var tickets = betlistRepository.Fetch(criteria);
             return new PagedData<ITicket>(tickets, criteria.PageIndex, criteria.PageSize, criteria.TotalRows);
         }
     }
