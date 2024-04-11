@@ -22,6 +22,7 @@
     <Setting Key="Age_CustomerStatusSel" SpName="Age_CustomerStatusSel" DbName="DBAGE.bodb02.wsv_alp" Plain="0" />
   </Function>
   <Function Name="Win Loss">
+    <Setting Key="Age_Rpt_WinlossDetail_WeekDataSel" SpName="Age_Rpt_WinlossDetail_WeekDataSel" DbName="DBAGE.bodb02.wsv_alp" Plain="0" />
     <Setting Key="Age_BetList_SelWinLossByDate_Mem" SpName="Age_BetList_SelWinLossByDate_Mem" DbName="DBAGE.bodb02.wsv_alp" Plain="0">
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="TicketDto"></Mapping>

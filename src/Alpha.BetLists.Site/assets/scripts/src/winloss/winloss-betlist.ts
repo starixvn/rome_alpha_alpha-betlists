@@ -106,7 +106,6 @@ class WinLossBetListView {
     private renderComponents() {
         this.dateRangePickerComponent.render(new DateRangePickerJQueryOption(
             (dateRange) => {
-                this.constraintDateRangeAndProductDropdownList(dateRange);
                 $.extend(this.globalFormData, dateRange, this.productAndProductDetailDropdownComponent.getCheckedValues());
                 if (this.isInvalidGlobalFormData()) {
                     return;
@@ -128,7 +127,6 @@ class WinLossBetListView {
             }));
 
         const dateRange = this.dateRangePickerComponent.getDateRangeValues();
-        this.constraintDateRangeAndProductDropdownList(dateRange);
 
         this.weekSelectionComponent.init(
             new WeekSelectionOption((dateRange) => {
@@ -172,15 +170,6 @@ class WinLossBetListView {
         }));
     }
 
-    private constraintDateRangeAndProductDropdownList(dateRange) {
-        const historicPivotDate = moment(this.dateRangePickerComponent.getHistoricPivotDate());
-        if (moment(dateRange.fromDate).isSameOrAfter(historicPivotDate)) {
-            this.productAndProductDetailDropdownComponent.hideHistoricProducts();
-        } else {
-            this.productAndProductDetailDropdownComponent.showHistoricProducts();
-        }
-    }
-
     private getDateRangePickerLocale(language: string) {
         const locale = {
             "th-TH": "th",
@@ -214,6 +203,13 @@ class WinLossBetListView {
             this.breadcrumbLevelComponent.bindEvents();
             this.bindExportExcelEvent();
             this.updateCurrentUrl();
+
+            const activeWeek = this.weekSelectionComponent.getActiveWeek();
+            // update fromDate/toDate of globalFormData to activeWeek
+            if (Object.keys(activeWeek).length) {
+                this.globalFormData.fromDate = activeWeek.weekFromDate;
+                this.globalFormData.toDate = activeWeek.weekToDate;
+            }
 
             this.betListWeekSelection.unblock();
         }).fail((jqXHR) => this.handleAjaxError(jqXHR, this.betListWeekSelection));

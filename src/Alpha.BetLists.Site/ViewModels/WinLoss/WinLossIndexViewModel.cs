@@ -37,7 +37,6 @@
             DateRangePickerViewModel = new DateRangePickerNewViewModel(
                 query.FromDate,
                 query.ToDate,
-                query.HistoricPivotDate,
                 query.MinDate);
             Products = products;
             ProductDetails = productDetails;

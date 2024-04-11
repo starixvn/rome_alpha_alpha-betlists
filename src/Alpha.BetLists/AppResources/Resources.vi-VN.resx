@@ -824,4 +824,7 @@ Vui lòng chọn tiêu chí cho bộ lọc dựa trên nhu cầu theo dõi
   <data name="NewViewTakesOverPopup" xml:space="preserve">
     <value>Từ ngày &lt;b&gt;21/02/2024 (dd/mm/yyyy)&lt;/b&gt;, &lt;b&gt;Phiên Bản Mới&lt;/b&gt; sẽ được &lt;b&gt;hiển thị chính&lt;/b&gt;. Bạn vẫn có thể chuyển về Phiên Bản Cũ.</value>
   </data>
+  <data name="Last3Months" xml:space="preserve">
+    <value>3 tháng trước</value>
+  </data>
 </root>

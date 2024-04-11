@@ -407,6 +407,7 @@
     <Compile Include="Criteria\WinLoss\GetBetListWinLossByDateCriteria.cs" />
     <Compile Include="Criteria\WinLoss\GetBetListWinLossByDateOldCriteria.cs" />
     <Compile Include="Criteria\GetProductsByGroupHeadlineCriteria.cs" />
+    <Compile Include="Criteria\WinLoss\GetWinLossWeekDataCriteria.cs" />
     <Compile Include="DataAccesses\BetListRepository.cs" />
     <Compile Include="DataAccesses\CasinoDetailsDataAccess.cs" />
     <Compile Include="DataAccesses\BetBuilderDataAccess.cs" />
@@ -451,6 +452,7 @@
     <Compile Include="Models\StatusModel.cs" />
     <Compile Include="Models\TicketDto.cs" />
     <Compile Include="Models\UserLevel.cs" />
+    <Compile Include="Models\WinLossWeekData.cs" />
     <Compile Include="Params\SearchTicketsParam.cs" />
     <Compile Include="Models\UsernameErrCode.cs" />
     <Compile Include="Models\UsernameSuggestion.cs" />
@@ -475,6 +477,7 @@
     <Compile Include="Params\WinLossByMatchParam.cs" />
     <Compile Include="Params\CashOutHistoryParam.cs" />
     <Compile Include="Params\WinLossParam.cs" />
+    <Compile Include="Params\WinLossWeekDataParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AutoFollowBetService.cs" />
     <Compile Include="Services\DailyStatementService.cs" />

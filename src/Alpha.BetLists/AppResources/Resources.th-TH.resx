@@ -819,4 +819,7 @@
   <data name="NewViewTakesOverPopup" xml:space="preserve">
     <value>ตั้งแต่ &lt;b&gt;21/02/2024 (dd/mm/yyyy) มุมมองใหม่&lt;/b&gt;จะใช้เป็น&lt;b&gt;หน้าจอแสดงผลหลัก&lt;/b&gt; แต่คุณยังคงสามารถเปลี่ยนกลับไปเป็นมุมมองคลาสสิกได้</value>
   </data>
+  <data name="Last3Months" xml:space="preserve">
+    <value>3 เดือนที่ผ่านมา</value>
+  </data>
 </root>

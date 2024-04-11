@@ -1,6 +1,7 @@
 ﻿namespace Alpha.BetLists.Site.ViewModels.WinLoss
 {
     using System.Collections.Generic;
+    using System.Linq;
     using Alpha.BetLists.Models;
     using Alpha.BetLists.Site.Requests.WinLoss;
     using Alpha.BetLists.Site.ViewModels.Components;
@@ -33,7 +34,9 @@
                   betlistOutputParams)
         {
             WeekSelections = weekSelections;
-            BreadcrumbLevels = JsonConvert.DeserializeObject<IEnumerable<BreadcrumbLevelViewModel>>(query.BreadcrumbLevelJson);
+            BreadcrumbLevels = string.IsNullOrWhiteSpace(query.BreadcrumbLevelJson)
+                ? Enumerable.Empty<BreadcrumbLevelViewModel>()
+                : JsonConvert.DeserializeObject<IEnumerable<BreadcrumbLevelViewModel>>(query.BreadcrumbLevelJson);
         }
 
         public IEnumerable<WeekSelectionViewModel> WeekSelections { get; }

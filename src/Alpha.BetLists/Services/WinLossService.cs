@@ -19,6 +19,8 @@
     public interface WinLossService
     {
         Task<BetListData> GetBetList(WinLossParam param);
+
+        Task<IEnumerable<WinLossWeekData>> GetWinLossWeekData(WinLossWeekDataParam param);
     }
 
     public class WinLossServiceImpl : WinLossService
@@ -171,6 +173,29 @@
                 result.Item2,
                 new BetlistOutputParams(criteria.ErrCode, criteria.ErrCode != 0 ?
                     errFormat : criteria.ErrMsg, criteria.MaxTotalRow));
+        }
+
+        public Task<IEnumerable<WinLossWeekData>> GetWinLossWeekData(WinLossWeekDataParam param)
+        {
+            // ProductDetailsXML of SP get data of Bet List: LeagueGroupID
+            // ProductDetailsXML of SP check Week Data: LeagueGroupId
+            // Need to replace ID to Id
+            var productDetailsXML = string.IsNullOrWhiteSpace(param.ProductDetailsXML)
+                ? param.ProductDetailsXML
+                : param.ProductDetailsXML.Replace("LeagueGroupID=", "LeagueGroupId=");
+
+            var reportDate = reportDateService.GetBalanceUpDayAndMoveBetsDay();
+            var criteria = new GetWinLossWeekDataCriteria(
+                param.ViewerId,
+                param.FromDate.GetGreaterDate(param.LimitedDate),
+                param.ToDate,
+                reportDate.BalanceUpDay,
+                reportDate.MoveBetsDay,
+                param.ProductIds.JoinWithComma(),
+                productDetailsXML,
+                param.Username);
+
+            return dynamicRepository.FetchAsync<WinLossWeekData>(criteria);
         }
     }
 }

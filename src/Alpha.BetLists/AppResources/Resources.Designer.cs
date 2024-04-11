@@ -943,6 +943,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Last 3 Months.
+        /// </summary>
+        public static string Last3Months {
+            get {
+                return ResourceManager.GetString("Last3Months", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Last Bets.
         /// </summary>
         public static string LastBets {
