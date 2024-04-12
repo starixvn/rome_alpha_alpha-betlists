@@ -14,7 +14,8 @@
     "WinLoss",
     "SearchTickets",
     "BetList",
-    "MonitoringBets"
+    "MonitoringBets",
+    "BookedBet"
   ],
   "statementPaths": [],
   "sites": [],

@@ -84,6 +84,8 @@ a {
     width: 50px; }
   .tbl-betlist .col-type, .tbl-betlist .col-status {
     width: 85px; }
+  .tbl-betlist .col-booked-status {
+    width: auto; }
   .tbl-betlist .col-pt {
     width: 100px; }
 
@@ -593,6 +595,12 @@ span.icon-boost {
   font-style: italic; }
   .max-payout span {
     margin-left: 4px; }
+
+.booked-icon {
+  padding: 0px 10px;
+  background-color: #F27C06;
+  color: white;
+  border-radius: 2px; }
 
 #details-modal .modal-dialog {
   margin: 30px auto; }

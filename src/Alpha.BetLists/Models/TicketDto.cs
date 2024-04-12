@@ -1,11 +1,15 @@
 ﻿namespace Alpha.BetLists.Models
 {
     using Alpha.BetLists.AppResources;
+    using Alpha.BetLists.Constants;
     using Fanex.BetList.Core.Entities;
-    using System.Resources;
 
     public class TicketDto : Ticket
     {
+        public string BookedBetStatus => BookedBetStatusConstants.All.ContainsKey(StatusId.Value) ? BookedBetStatusConstants.All[StatusId.Value] : Status;
+
+        public string Reason { get; set; }
+
         public string Country { get; set; }
 
         public bool IsInWatchlist { get; set; }

@@ -60,6 +60,10 @@
         public static string GetSportName(int sportTypeId)
             => Instance.GetSportName(sportTypeId.ToString(), LanguageCode, string.Empty);
 
+        public static string GetBookedBetReason(string reason)
+            => $"{AppResources.Resources.Reason}: {Instance.GetResourceDataByRefIdAndResourceId("BookedBet_Reason", reason, LanguageCode, reason)}";
+
+
         internal static IRemotingRefService Instance
         {
             get

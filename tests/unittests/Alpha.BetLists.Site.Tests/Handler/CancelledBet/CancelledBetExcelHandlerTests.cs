@@ -23,7 +23,7 @@
         private readonly Workbook<TicketDto> workbook;
         private readonly CancelledBetService service;
         private readonly ProductService productService;
-        private readonly CancelledBetExcelHandler handler;
+        private readonly BookedBetExcelHandler handler;
         private readonly CancelledBetExcelQuery query;
         private readonly ReportDateService reportDateService;
 
@@ -43,7 +43,7 @@
             workbook.Body(Arg.Any<IEnumerable<TicketDto>>(), Arg.Any<Mapper<TicketDto>>()).Returns(workbook);
             workbook.Footer(Arg.Any<TicketDto>(), Arg.Any<Mapper<TicketDto>>()).Returns(workbook);
 
-            handler = new CancelledBetExcelHandler(
+            handler = new BookedBetExcelHandler(
                 service,
                 productService,
                 reportDateService,

@@ -4,10 +4,14 @@ class DateRangePickerJQueryOption {
     constructor(
         public onClosed = Function(),
         public language = "default",
-        public selectorId = "daterange-picker") {
+        public selectorId = "daterange-picker",
+        public showShortcuts = true,
+        public autoClose = true) {
         this.onClosed = onClosed;
         this.language = language;
         this.selectorId = selectorId;
+        this.showShortcuts = showShortcuts;
+        this.autoClose = autoClose;
     }
 }
 
@@ -27,14 +31,15 @@ class DateRangePickerJQueryComponent {
                 language: options.language,
                 startDate: dateRangePicker.data("mindate"),
                 endDate: dateRangePicker.data("maxdate"),
-                showShortcuts: true,
+                showShortcuts: options.showShortcuts,
                 shortcuts: null,
                 customShortcuts: this.getPredefinedRanges(dateRangePicker),
                 duration: 0,
                 singleMonth: true,
                 monthSelect: true,
                 yearSelect: true,
-                maxDays: 92
+                maxDays: 92,
+                autoClose: options.autoClose
             }).bind("datepicker-change", (_, obj) => {
                 this.fromDate = moment(obj.date1).format(alphaReports.format.shortDateWithSlash_DatePicker);
                 this.toDate = moment(obj.date2).format(alphaReports.format.shortDateWithSlash_DatePicker);

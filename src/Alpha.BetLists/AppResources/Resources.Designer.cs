@@ -313,11 +313,80 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to BookedBet.
+        /// </summary>
+        public static string BookedBet {
+            get {
+                return ResourceManager.GetString("BookedBet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Booked Bet List.
+        /// </summary>
+        public static string BookedBetList {
+            get {
+                return ResourceManager.GetString("BookedBetList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Booked Bet is a new feature in member site.
+        ///
+        ///&lt;p&gt;1. This function allows customers to reserved their favorite market and odds. If the market and odds are reached, the system will automatically place bet based on the criteria member reserved. After the bet is successfully placed, the system will send a personal message to notify customer.&lt;p/&gt;
+        ///
+        ///&lt;p&gt;2. In addition, the tickets of a successfully place &quot;Booked Bet&quot; will also be displayed in statement bet list and booked list.&lt;p/&gt;
+        ///
+        ///&lt;p&gt;3. At the same time, cus [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string BookedNote {
+            get {
+                return ResourceManager.GetString("BookedNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Booked Stake.
+        /// </summary>
+        public static string BookedStake {
+            get {
+                return ResourceManager.GetString("BookedStake", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Booked Time.
+        /// </summary>
+        public static string BookedTime {
+            get {
+                return ResourceManager.GetString("BookedTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Booking.
+        /// </summary>
+        public static string Booking {
+            get {
+                return ResourceManager.GetString("Booking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string Cancel {
             get {
                 return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancelled.
+        /// </summary>
+        public static string Cancelled {
+            get {
+                return ResourceManager.GetString("Cancelled", resourceCulture);
             }
         }
         
@@ -862,6 +931,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ID: .
+        /// </summary>
+        public static string Id {
+            get {
+                return ResourceManager.GetString("Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Input Member(s).
         /// </summary>
         public static string InputMembers {
@@ -1357,6 +1435,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No Status Found.
+        /// </summary>
+        public static string NoStatusFound {
+            get {
+                return ResourceManager.GetString("NoStatusFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Not a Member.
         /// </summary>
         public static string NotAMember {
@@ -1627,6 +1714,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Procressing Bet.
+        /// </summary>
+        public static string ProcressingBet {
+            get {
+                return ResourceManager.GetString("ProcressingBet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Product.
         /// </summary>
         public static string Product {
@@ -1650,6 +1746,15 @@ namespace Alpha.BetLists.AppResources {
         public static string ProgressiveJackpotWonDetails {
             get {
                 return ResourceManager.GetString("ProgressiveJackpotWonDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reason.
+        /// </summary>
+        public static string Reason {
+            get {
+                return ResourceManager.GetString("Reason", resourceCulture);
             }
         }
         
@@ -1812,6 +1917,15 @@ namespace Alpha.BetLists.AppResources {
         public static string SearchSportLeague {
             get {
                 return ResourceManager.GetString("SearchSportLeague", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search Status.
+        /// </summary>
+        public static string SearchStatus {
+            get {
+                return ResourceManager.GetString("SearchStatus", resourceCulture);
             }
         }
         
@@ -2041,6 +2155,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Successful.
+        /// </summary>
+        public static string Successful {
+            get {
+                return ResourceManager.GetString("Successful", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Super PT.
         /// </summary>
         public static string superPT {
@@ -2136,6 +2259,15 @@ namespace Alpha.BetLists.AppResources {
         public static string UnsavedFilter {
             get {
                 return ResourceManager.GetString("UnsavedFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unsuccessful.
+        /// </summary>
+        public static string Unsuccessful {
+            get {
+                return ResourceManager.GetString("Unsuccessful", resourceCulture);
             }
         }
         

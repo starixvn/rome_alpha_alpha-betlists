@@ -13,7 +13,8 @@
     "Parlay",
     "WinLoss",
     "SearchTickets",
-    "BetList"
+    "BetList",
+    "BookedBet"
   ],
   "statementPaths": [],
   "sites": [],

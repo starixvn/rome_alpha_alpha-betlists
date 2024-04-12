@@ -169,7 +169,7 @@
       <HintPath>..\..\packages\Fanex.BetList.CG.2.0.0\lib\net461\Fanex.BetList.CG.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.Core, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.Core.3.0.2.9\lib\net461\Fanex.BetList.Core.dll</HintPath>
+      <HintPath>..\..\packages\Fanex.BetList.Core.3.0.3-booked-02\lib\net461\Fanex.BetList.Core.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.Core.RemotingRef, Version=1.1.0.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.Core.RemotingRef.2.0.0.2\lib\net461\Fanex.BetList.Core.RemotingRef.dll</HintPath>
@@ -713,6 +713,10 @@
     <Content Include="App_Data\SPNames\SIT\DBPOLICY.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Themes\error2-dark.png" />
     <Content Include="App_Themes\error2.png" />
+    <Content Include="assets\bundles\booked-betlist\booked-betlist.js" />
+    <Content Include="assets\bundles\booked-betlist\booked-betlist.min.js">
+      <DependentUpon>booked-betlist.js</DependentUpon>
+    </Content>
     <Content Include="assets\bundles\cancelled-betlist\cancelled-betlist.js" />
     <Content Include="assets\bundles\cancelled-betlist\cancelled-betlist.min.js">
       <DependentUpon>cancelled-betlist.js</DependentUpon>
@@ -1191,6 +1195,8 @@
       <DependentUpon>ProductSection.config</DependentUpon>
     </Content>
     <Content Include="App_Data\securitycode.uat4.json" />
+    <Content Include="App_Code\Components\BookedBetStatusDropdown.cshtml" />
+    <Content Include="App_Data\ExcelTemplates\BookedBet\index.xls" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -1455,6 +1461,12 @@
       <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
     </Content>
     <Content Include="Web.uat4.config" />
+    <Content Include="Features\BookedBet\Views\BetList.cshtml" />
+    <Content Include="Features\BookedBet\Views\Index.cshtml" />
+    <Content Include="Features\BookedBet\Views\web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Features\BookedBet\Views\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_GlobalResources\Resources.Designer.cs">
@@ -1473,6 +1485,7 @@
     <Compile Include="Controllers\BetListBaseController.cs" />
     <Compile Include="Controllers\BetListByBetTypeAndMatchController.cs" />
     <Compile Include="Controllers\BetListByBetTypeController.cs" />
+    <Compile Include="Features\BookedBet\BookedBetController.cs" />
     <Compile Include="Controllers\CancelledBetController.cs" />
     <Compile Include="Controllers\SearchTicktesController.cs" />
     <Compile Include="Controllers\DailyStatementController.cs" />
@@ -1490,6 +1503,13 @@
     <Compile Include="Controllers\CasinoDetailsController.cs" />
     <Compile Include="Controllers\RunningBetListController.cs" />
     <Compile Include="Controllers\UsernameSuggestionController.cs" />
+    <Compile Include="Features\BookedBet\BookedBetHandler.cs" />
+    <Compile Include="Features\BookedBet\Requests\BookedBetBaseQuery.cs" />
+    <Compile Include="Features\BookedBet\Requests\BookedBetDataQuery.cs" />
+    <Compile Include="Features\BookedBet\Requests\BookedBetExcelQuery.cs" />
+    <Compile Include="Features\BookedBet\Requests\BookedBetQuery.cs" />
+    <Compile Include="Features\BookedBet\BookedBetExcelHandler.cs" />
+    <Compile Include="Features\BookedBet\ViewModel\BookedBetBaseViewModel.cs" />
     <Compile Include="Handlers\BetListByBetTypeAndMatch\BetListByBetTypeAndMatchExcelHandler.cs" />
     <Compile Include="Handlers\BetListByBetTypeAndMatch\BetListByBetTypeAndMatchHandler.cs" />
     <Compile Include="Handlers\BetListByBetType\BetListByBetTypeExcelBaseHandler.cs" />
@@ -1611,6 +1631,8 @@
     <Compile Include="ViewModels\BetListByBetType\BetListByBetTypeViewModel.cs" />
     <Compile Include="ViewModels\Blocks\Footer.cs" />
     <Compile Include="ViewModels\Blocks\WinLostBlockViewModel.cs" />
+    <Compile Include="Features\BookedBet\ViewModel\BookedBetDataViewModel.cs" />
+    <Compile Include="Features\BookedBet\ViewModel\BookedBetViewModel.cs" />
     <Compile Include="ViewModels\CashOutHistory\CashOutHistoryViewModel.cs" />
     <Compile Include="ViewModels\CasinoDetails\CasinoDetailsViewModel.cs" />
     <Compile Include="ViewModels\CombinationMixParlay\CombinationMixParlayViewModel.cs" />
@@ -1687,6 +1709,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="Features\BookedBet\Scripts\index.ts" />
+    <TypeScriptCompile Include="Features\BookedBet\Scripts\status-dropdown.ts" />
     <TypeScriptCompile Include="assets\scripts\src\casino-detail\casino-detail.ts" />
     <TypeScriptCompile Include="assets\scripts\src\betlist\choice\score-map.ts" />
     <TypeScriptCompile Include="assets\scripts\src\betlist\choice\ticket-details\other-ticket-details.ts" />

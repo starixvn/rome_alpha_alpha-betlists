@@ -1,0 +1,15 @@
+﻿@using Alpha.BetLists.AppResources;
+
+@helper Render()
+{   
+    <div class="form-group">
+        <label class="label-form-control">Status</label>
+        <div id="dropdown-status"
+             data-label-selectall="@Resources.SelectAll"
+             data-label-selected="@Resources.nSelected"
+             data-label-noneselected="@Resources.NoneSelected"
+             data-label-all="@Resources.All"
+             data-label-noitemfound="@Resources.NoStatusFound"
+             data-label-filterplaceholder="@Resources.SearchStatus"></div>
+    </div>
+}

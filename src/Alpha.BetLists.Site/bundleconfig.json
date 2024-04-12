@@ -1,5 +1,16 @@
 ﻿[
   {
+    "outputFileName": "assets/bundles/booked-betlist/booked-betlist.js",
+    "inputFiles": [
+      "assets/scripts/src/components/breadcrumb-level.js",
+      "assets/scripts/src/components/daterangepicker-jquery.js",
+      "Features/BookedBet/Scripts/status-dropdown.js",
+      "assets/scripts/src/monitoring-bets/monitoring-bets-copyhtml.js",
+      "Features/BookedBet/Scripts/index.js"
+    ]
+  },
+
+  {
     "outputFileName": "assets/bundles/default.css",
     "inputFiles": [
       "assets/styles/bet-list.css",

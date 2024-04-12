@@ -223,6 +223,6 @@ var WinLossBetListView = /** @class */ (function () {
     return WinLossBetListView;
 }());
 $(function () {
-    new WinLossBetListView(new DateRangePickerJQueryComponent(), new ProductAndProductDetailDropdownComponent(), new WeekSelectionComponent(), new BreadcrumbLevelComponent(), window.productList, window.productDetailList).init();
+    new WinLossBetListView(new DateRangePickerJQueryComponent(), new ProductAndProductDetailDropdownComponent(), new WeekSelectionComponent(), new BreadcrumbLevelComponent(), window.productList, window.statusList).init();
 });
 //# sourceMappingURL=winloss-betlist.js.map

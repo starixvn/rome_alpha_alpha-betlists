@@ -845,5 +845,67 @@
   </data>
   <data name="Last3Months" xml:space="preserve">
     <value>Last 3 Months</value>
+ </data>
+  <data name="SearchStatus" xml:space="preserve">
+    <value>Search Status</value>
+  </data>
+  <data name="NoStatusFound" xml:space="preserve">
+    <value>No Status Found</value>
+  </data>
+  <data name="BookedBetList" xml:space="preserve">
+    <value>Booked Bet List</value>
+  </data>
+  <data name="BookedStake" xml:space="preserve">
+    <value>Booked Stake</value>
+  </data>
+  <data name="Booking" xml:space="preserve">
+    <value>Booking</value>
+  </data>
+  <data name="Successful" xml:space="preserve">
+    <value>Successful</value>
+  </data>
+  <data name="Unsuccessful" xml:space="preserve">
+    <value>Unsuccessful</value>
+  </data>
+  <data name="Cancelled" xml:space="preserve">
+    <value>Cancelled</value>
+  </data>
+  <data name="ProcressingBet" xml:space="preserve">
+    <value>Procressing Bet</value>
+  </data>
+  <data name="BookedBet" xml:space="preserve">
+    <value>BookedBet</value>
+  </data>
+  <data name="BookedTime" xml:space="preserve">
+    <value>Booked Time</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>ID: </value>
+  </data>
+  <data name="BookedNote" xml:space="preserve">
+    <value>Booked Bet is a new feature in member site.
+
+&lt;p&gt;1. This function allows customers to reserved their favorite market and odds. If the market and odds are reached, the system will automatically place bet based on the criteria member reserved. After the bet is successfully placed, the system will send a personal message to notify customer.&lt;p/&gt;
+
+&lt;p&gt;2. In addition, the tickets of a successfully place "Booked Bet" will also be displayed in statement bet list and booked list.&lt;p/&gt;
+
+&lt;p&gt;3. At the same time, customers can choose to cancel Booked Bet or make reservations again for their favorite market and odds.&lt;p/&gt;
+
+&lt;p&gt;4. All reservation bets will be retained in the Booked Bet list for 7 days, which is determined based on the date of the event. Once the event starts or ends, and the Booked Bet does not match the market and odds member selected, the status will change and display "unsuccessful".&lt;p/&gt;
+
+&lt;p&gt;The following is the status classification of Booked Bet:&lt;p/&gt;
+
+&lt;p&gt;・Booking&lt;p/&gt;
+
+&lt;p&gt;・Successful&lt;p/&gt;
+
+&lt;p&gt;・Unsuccessful&lt;p/&gt;
+
+&lt;p&gt;・Cancelled&lt;p/&gt;
+
+&lt;p&gt;The available bet types for Booked Bet are as follows: FT Handicap, 1H Handicap, FT Over/Under, 1H Over/Under&lt;p/&gt;</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>Reason</value>
   </data>
 </root>

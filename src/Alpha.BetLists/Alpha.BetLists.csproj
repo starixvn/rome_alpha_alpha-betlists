@@ -95,7 +95,7 @@
       <HintPath>..\..\packages\Fanex.BetList.BBIN.2.0.0.1\lib\net461\Fanex.BetList.BBIN.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.Core, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.Core.3.0.2.9\lib\net461\Fanex.BetList.Core.dll</HintPath>
+      <HintPath>..\..\packages\Fanex.BetList.Core.3.0.3-booked-02\lib\net461\Fanex.BetList.Core.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.GTCasino, Version=2.0.0.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.GTCasino.2.0.0.1\lib\net461\Fanex.BetList.GTCasino.dll</HintPath>
@@ -347,10 +347,12 @@
     <Compile Include="Constants\ProductDetailIdConstants.cs" />
     <Compile Include="Constants\SportGroupConstants.cs" />
     <Compile Include="Constants\SportTypeIdConstants.cs" />
+    <Compile Include="Constants\BookedBetStatusConstants.cs" />
     <Compile Include="Constants\TicketStatusIdConstants.cs" />
     <Compile Include="Constants\ProductIdConstants.cs" />
     <Compile Include="Constants\BetTypeIdConstants.cs" />
     <Compile Include="Criteria\BetBuilder\GetBetBuilderDetailCriteria.cs" />
+    <Compile Include="Criteria\BookedBet\GetBookedBetCriteria.cs" />
     <Compile Include="Criteria\DailyStatement\GetAllBetListByDayCriteria.cs" />
     <Compile Include="Criteria\DailyStatement\GetAllBetListByDayOldCriteria.cs" />
     <Compile Include="Criteria\CancelledBet\GetCancelledBetCriteria.cs" />
@@ -453,6 +455,7 @@
     <Compile Include="Models\TicketDto.cs" />
     <Compile Include="Models\UserLevel.cs" />
     <Compile Include="Models\WinLossWeekData.cs" />
+    <Compile Include="Params\BookedBetParam.cs" />
     <Compile Include="Params\SearchTicketsParam.cs" />
     <Compile Include="Models\UsernameErrCode.cs" />
     <Compile Include="Models\UsernameSuggestion.cs" />
@@ -480,6 +483,7 @@
     <Compile Include="Params\WinLossWeekDataParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AutoFollowBetService.cs" />
+    <Compile Include="Services\BookedBetService.cs" />
     <Compile Include="Services\DailyStatementService.cs" />
     <Compile Include="Services\ForecastService.cs" />
     <Compile Include="Services\EncryptionService.cs" />

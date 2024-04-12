@@ -106,6 +106,10 @@ a {
         width: 85px;
     }
 
+    .col-booked-status{
+        width: auto;
+    }
+
     .col-pt {
         width: 100px;
     }
@@ -597,4 +601,10 @@ span.icon-boost {
     position: relative;
     top: 1px;
     margin-right: 4px;
+}
+.booked-icon {
+    padding: 0px 10px;
+    background-color: #F27C06;
+    color: white;
+    border-radius: 2px;
 }

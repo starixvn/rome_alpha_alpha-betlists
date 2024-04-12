@@ -1,15 +1,21 @@
 "use strict";
 var DateRangePickerJQueryOption = /** @class */ (function () {
-    function DateRangePickerJQueryOption(onClosed, language, selectorId) {
+    function DateRangePickerJQueryOption(onClosed, language, selectorId, showShortcuts, autoClose) {
         if (onClosed === void 0) { onClosed = Function(); }
         if (language === void 0) { language = "default"; }
         if (selectorId === void 0) { selectorId = "daterange-picker"; }
+        if (showShortcuts === void 0) { showShortcuts = true; }
+        if (autoClose === void 0) { autoClose = true; }
         this.onClosed = onClosed;
         this.language = language;
         this.selectorId = selectorId;
+        this.showShortcuts = showShortcuts;
+        this.autoClose = autoClose;
         this.onClosed = onClosed;
         this.language = language;
         this.selectorId = selectorId;
+        this.showShortcuts = showShortcuts;
+        this.autoClose = autoClose;
     }
     return DateRangePickerJQueryOption;
 }());
@@ -28,14 +34,15 @@ var DateRangePickerJQueryComponent = /** @class */ (function () {
             language: options.language,
             startDate: dateRangePicker.data("mindate"),
             endDate: dateRangePicker.data("maxdate"),
-            showShortcuts: true,
+            showShortcuts: options.showShortcuts,
             shortcuts: null,
             customShortcuts: this.getPredefinedRanges(dateRangePicker),
             duration: 0,
             singleMonth: true,
             monthSelect: true,
             yearSelect: true,
-            maxDays: 92
+            maxDays: 92,
+            autoClose: options.autoClose
         }).bind("datepicker-change", function (_, obj) {
             _this.fromDate = moment(obj.date1).format(alphaReports.format.shortDateWithSlash_DatePicker);
             _this.toDate = moment(obj.date2).format(alphaReports.format.shortDateWithSlash_DatePicker);

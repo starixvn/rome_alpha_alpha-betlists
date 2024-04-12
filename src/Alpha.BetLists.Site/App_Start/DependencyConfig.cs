@@ -207,6 +207,7 @@
                 Lifestyle.Singleton);
             container.RegisterSingleton<MonitoringBetsService, MonitoringBetsServiceImpl>();
             container.RegisterSingleton<UsernameSuggestionService, UsernameSuggestionServiceImpl>();
+            container.RegisterSingleton<BookedBetService, BookedBetServiceImpl>();
         }
 
         private static void RegisterStaticInstances(Container container)

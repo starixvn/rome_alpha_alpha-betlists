@@ -1,0 +1,56 @@
+﻿@{
+    Layout = null;
+}
+@model BookedBetBaseViewModel
+<table class="tblRpt tblRpt-bordered tblRpt-striped width-100per tablesorter tblRpt-hover tbl-betlist tblRpt-freeze-header" id="tbl-betlist">
+    <thead>
+        <tr>
+            <th class="col-number">#</th>
+            <th class="col-member">@Resources.member</th>
+            <th class="col-transtime">@Resources.BookedTime</th>
+            <th>@Resources.choice</th>
+            <th class="col-odds">@Resources.odds</th>
+            <th class="col-stake">@Resources.BookedStake</th>
+            <th class="col-booked-status">@Resources.status</th>
+        </tr>
+    </thead>
+    @if (Model.BetListData.Tickets.Any())
+    {
+        <tbody>
+            @for (int i = 0; i < Model.BetListData.Total; i++)
+            {
+                var ticket = Model.BetListData.Tickets.ElementAt(i);
+            <tr id="r@(ticket.TransId)">
+                <td class='w-order text-center'>@(i + 1)</td>
+                <td class="text-center">@ticket.UserName</td>
+                <td class="trans-block text-center nonbreak">
+                    <div class="time">
+                        @Resources.Id @ticket.TransId.ToString()
+                        <div class="time">@ticket.TransDate.ToString()</div>
+                    </div>
+                </td>                
+                @Choice.Render(Model.Builder, ticket, Model.TicketHelper, Model.BetListData.TicketData, Model.CanViewScoreMap(ticket))
+                @Odds.Render(Model.Builder, ticket, Model.BetListData.TicketData, Model.TicketHelper.GetOddsTypeNameById)
+                @Stake.Render(Model.Builder, ticket, Model.TicketHelper)
+                <td class="status-block text-center sport-@(ticket.SportTypeId)">
+                    <div class="status">@ticket.BookedBetStatus</div>
+                    <div class="reason"> @Model.GetReason(ticket)</div>
+                    @if (Model.DisplayVNIP)
+                    {
+                        <div class="iplink" onclick="OpenIPInfo('@ticket.IP');">@ticket.IP</div>
+                        if (!string.IsNullOrWhiteSpace(ticket.Country))
+                        {
+                            <div class="country">@ticket.Country</div>
+                        }
+                    }
+                </td>
+            </tr>
+            }
+        </tbody>
+    }
+    else
+    {
+        @Common.NoInfomation.Render(Model.TotalColumn)
+    }
+</table>
+

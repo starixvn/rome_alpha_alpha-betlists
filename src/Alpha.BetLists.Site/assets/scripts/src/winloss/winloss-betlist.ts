@@ -2,7 +2,7 @@
 interface Window {
     $: JQueryStatic,
     productList: any,
-    productDetailList: any,
+    statusList: any,
     indexManager: any,
     alpha: any
 }
@@ -296,5 +296,5 @@ $(function () {
         new WeekSelectionComponent(),
         new BreadcrumbLevelComponent(),
         window.productList,
-        window.productDetailList).init();
+        window.statusList).init();
 });

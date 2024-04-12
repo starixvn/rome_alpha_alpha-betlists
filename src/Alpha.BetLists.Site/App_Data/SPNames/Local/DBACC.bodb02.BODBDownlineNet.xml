@@ -31,6 +31,14 @@
     <Setting Key="Acc_BetList_BetBuilder_Detail" SpName="Acc_BetList_BetBuilder_Detail" DbName="DBACC.bodb02.wsv_alp" Plain="0" />
   </Function>
   <Function Name="Bet List">
+    <Setting Key="Age_BetList_SelBookedBet" SpName="Age_BetList_SelBookedBet" DbName="DBACC.bodb02.wsv_alp" Plain="0" >
+      <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto"></Mapping>
+      <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="TicketDto"></Mapping>
+      <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="TicketDto"></Mapping>
+      <Mapping DataField="hdp2" ObjectProperty="Handicap2" Class="TicketDto"></Mapping>
+      <Mapping DataField="actual_stake" ObjectProperty="ActualStake" Class="TicketDto"></Mapping>
+      <Mapping DataField="liveindicator" ObjectProperty="IsLive" Class="TicketDto"></Mapping>
+    </Setting>
     <Setting Key="Age_BetList_SearchByRefNo" SpName="Age_BetList_SearchByRefNo" DbName="DBACC.bodb02.wsv_alp" Plain="0">
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="TicketDto"></Mapping>

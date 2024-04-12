@@ -1,0 +1,68 @@
+﻿@model BookedBetViewModel
+@{
+    ViewBag.Title = Resources.BookedBetList;
+    var jsonSettings = new JsonSerializerSettings { Formatting = Formatting.None, NullValueHandling = NullValueHandling.Ignore };
+}
+@section Styles {
+    @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-betlists/filter-new")
+    @StaticResources.RenderStyles($"~/{AppSettings.BetlistRouting}assets/bundles/winloss/winloss-betlist")
+}
+@section Scripts {
+    <script type="text/javascript">
+
+        var statusList = $.parseJSON('@Html.Raw(JsonConvert.SerializeObject(Model.StatusMultiSelectionViewModel, jsonSettings))');
+    </script>
+    @StaticResources.AssetScripts.Render("/bundles/site-betlists/filter-new")
+    @StaticResources.AssetScripts.RenderCommon("/bundles-v2/site-betlists/monitoring-bets")
+    @StaticResources.RenderScripts($"~/{AppSettings.BetlistRouting}assets/bundles/booked-betlist/booked-betlist")
+    @StaticResources.RenderScripts($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}assets/bundles/icon-note")
+}
+    <div class="flex">
+        <div class="bl_title">
+            <div class="box">
+                <div>
+                    @Resources.BookedBetList
+                </div>
+                <div>
+                    @Html.Partial("IconInformation", new List<string>() { Resources.BookedNote, Resources.ipnote })
+                </div>
+
+                <div class="push">
+                    <div class="list-icon">
+                        <ul>
+                            <li><span class="icon-arrow-up-drop-circle icon-filter" id="icon-filter" title="@Resources.HideFilter"></span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-inline filter" id="form-filter">
+            @DateRangePickerJQuery.Render(Model.DateRangePickerViewModel)
+            @BookedBetStatusDropdown.Render()
+        </div>
+        <div class="breadcrumb-table">
+            <div class="list-icon">
+                <ul>
+                    <li><span id="icon-copy" class="icon icon-content-copy" data-toggle="tooltip" data-placement="top" title="@Resources.Copy"></span></li>
+                    <li>
+                        <a href="javascript:;"
+                           id="icon-excel"
+                           class="icon icon-excel icon-excel-new"
+                           title="@Resources.ExportToExcel"
+                           data-url="@Response.ApplyAppPathModifier($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}BookedBet/excel")"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="betlist-data">
+            @Html.Partial("~/Features/BookedBet/Views/BetList.cshtml", (BookedBetBaseViewModel)Model)
+        </div>
+
+        <input type="hidden" id="language" data-currentlanguage="@Model.Language" />
+        @Html.Hidden("cust-name", Model.CustName)
+        @Html.Hidden("hidden-hide-filter-text", Resources.HideFilter)
+        @Html.Hidden("hidden-show-filter-text", Resources.ShowFilter)
+        @Html.Hidden("betlist-path", Response.ApplyAppPathModifier($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}"))
+        @Html.Hidden("old-main-path", Model.OldMainPath)
+        @Html.Hidden("hidden-CopiedText", Resources.Copied)
+    </div>

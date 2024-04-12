@@ -28,7 +28,7 @@
         private readonly IPService ipService;
         private readonly IIPInfoService ipInfoService;
         private readonly IUser user;
-        private CancelledBetHandler handler;
+        private BookedBetHandler handler;
 
         public CancelledBetHandlerTests()
         {
@@ -43,7 +43,7 @@
             ticketHelper = Substitute.For<ITicketHelper>();
             user = Substitute.For<IUser>();
             user.LevelId.Returns(UserLevel.Agent.Value);
-            handler = new CancelledBetHandler(
+            handler = new BookedBetHandler(
                 service,
                 productService,
                 reportDateService,
