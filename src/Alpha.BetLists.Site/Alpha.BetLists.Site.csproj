@@ -79,14 +79,8 @@
     <Reference Include="Fanex.Cryptography.Aes, Version=1.0.0.5, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Cryptography.Aes.1.0.0.5\lib\net461\Fanex.Cryptography.Aes.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.Data, Version=4.2.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.Data.4.2.2\lib\net461\Fanex.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="Fanex.Data.Repository, Version=4.2.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.Data.Repository.4.2.2\lib\net461\Fanex.Data.Repository.dll</HintPath>
-    </Reference>
-    <Reference Include="Fanex.Data.SqlServer, Version=4.2.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.Data.SqlServer.4.2.2\lib\net461\Fanex.Data.SqlServer.dll</HintPath>
+    <Reference Include="Fanex.Data.ProxyClient, Version=0.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Data.ProxyClient.0.0.3-alpha02\lib\netstandard2.0\Fanex.Data.ProxyClient.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib, Version=1.3.3.11, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SharpZipLib.1.3.3\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
@@ -118,8 +112,8 @@
     <Reference Include="Microsoft.Web.RedisSessionStateProvider, Version=2.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Web.RedisSessionStateProvider.2.2.6\lib\net40\Microsoft.Web.RedisSessionStateProvider.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Pipelines.Sockets.Unofficial, Version=1.0.0.0, Culture=neutral, PublicKeyToken=42ea0a778e13fbe2, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Pipelines.Sockets.Unofficial.2.2.8\lib\net461\Pipelines.Sockets.Unofficial.dll</HintPath>
