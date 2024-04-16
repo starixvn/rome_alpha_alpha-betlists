@@ -412,6 +412,10 @@ var BetList;
                         this.uuSlotsResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.uuSlotsResult) ? new ResultDetails.UUSlotsResultDetails() : this.uuSlotsResult;
                         return this.uuSlotsResult;
                     }
+                    if (betTypeId >= 10801 && betTypeId <= 11000) {
+                        this.sabaxDResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sabaxDResult) ? new ResultDetails.SabaxDResultDetails() : this.sabaxDResult;
+                        return this.sabaxDResult;
+                    }
                     this.sportsbookResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sportsbookResult) ? new ResultDetails.SportsbookResultDetails : this.sportsbookResult;
                     return this.sportsbookResult;
                 };
@@ -1135,6 +1139,23 @@ var BetList;
                 return UUSlotsResultDetails;
             }(ResultDetails.BaseResultDetails));
             ResultDetails.UUSlotsResultDetails = UUSlotsResultDetails;
+            var SabaxDResultDetails = /** @class */ (function (_super) {
+                __extends(SabaxDResultDetails, _super);
+                function SabaxDResultDetails() {
+                    var _this = _super !== null && _super.apply(this, arguments) || this;
+                    _this.ViewResultDetails = function (matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, currencyId, gameId3rd, custId, transId3rd, siteId) {
+                        var params = '?custId=' + custId +
+                            '&transId3rd=' + transId3rd +
+                            '&currencyId=' + currencyId +
+                            '&siteId=' + siteId +
+                            '&productId=86';
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/SabaxDResult' + params, "", 835, 675);
+                    };
+                    return _this;
+                }
+                return SabaxDResultDetails;
+            }(ResultDetails.BaseResultDetails));
+            ResultDetails.SabaxDResultDetails = SabaxDResultDetails;
         })(ResultDetails = Status.ResultDetails || (Status.ResultDetails = {}));
     })(Status = BetList.Status || (BetList.Status = {}));
 })(BetList || (BetList = {}));

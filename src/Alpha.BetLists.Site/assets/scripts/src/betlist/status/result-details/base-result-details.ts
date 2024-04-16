@@ -36,6 +36,7 @@
         private static live22Result: ResultDetails;
         private static weResult: ResultDetails;
         private static uuSlotsResult: ResultDetails;
+        private static sabaxDResult: ResultDetails;
 
         public static CreateInstance(betTypeId: number): ResultDetails {
             if (betTypeId === 9 || betTypeId === 29 || betTypeId === 2799 || betTypeId === 10449) {
@@ -214,6 +215,11 @@
             if (betTypeId >= 10000 && betTypeId <= 10299) {
                 this.uuSlotsResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.uuSlotsResult) ? new UUSlotsResultDetails() : this.uuSlotsResult;
                 return this.uuSlotsResult;
+            }
+
+            if (betTypeId >= 10801 && betTypeId <= 11000) {
+                this.sabaxDResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sabaxDResult) ? new SabaxDResultDetails() : this.sabaxDResult;
+                return this.sabaxDResult;
             }
 
             this.sportsbookResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sportsbookResult) ? new SportsbookResultDetails : this.sportsbookResult;
