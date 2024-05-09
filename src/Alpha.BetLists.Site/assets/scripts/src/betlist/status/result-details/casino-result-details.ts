@@ -729,6 +729,7 @@
             siteId?: string) => {
             var params = '?custId=' + custId +
                 '&transId3rd=' + transId3rd +
+                '&gameId3rd=' + gameId3rd +
                 '&currencyId=' + currencyId +
                 '&siteId=' + siteId +
                 '&BetType=' + betTypeId +
