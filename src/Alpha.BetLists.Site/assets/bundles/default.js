@@ -1027,6 +1027,7 @@ var BetList;
                     _this.ViewResultDetails = function (matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, currencyId, gameId3rd, custId, transId3rd, siteId) {
                         var params = '?custId=' + custId +
                             '&transId3rd=' + transId3rd +
+                            '&gameId3rd=' + gameId3rd +
                             '&currencyId=' + currencyId +
                             '&siteId=' + siteId +
                             '&BetType=' + betTypeId +
