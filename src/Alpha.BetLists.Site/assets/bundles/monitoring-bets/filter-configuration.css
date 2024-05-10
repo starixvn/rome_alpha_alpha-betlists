@@ -208,6 +208,7 @@
   .treeview .filter-hidden, .treeview .selected-only-hidden {
     display: none; }
 
+
 :root {
   --tagsinput-border-color: #D1D1D1;
   --tagsinput-color: #10663E;
