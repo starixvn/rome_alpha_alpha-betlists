@@ -148,7 +148,7 @@
       <HintPath>..\..\packages\Fanex.BetList.AdvantPlayMini.2.0.0\lib\net461\Fanex.BetList.AdvantPlayMini.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.Allbet, Version=2.0.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.Allbet.2.0.0.2-API-02\lib\net461\Fanex.BetList.Allbet.dll</HintPath>
+      <HintPath>..\..\packages\Fanex.BetList.Allbet.2.0.0.2\lib\net461\Fanex.BetList.Allbet.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.BBIN, Version=2.0.0.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.BBIN.2.0.0.1\lib\net461\Fanex.BetList.BBIN.dll</HintPath>
@@ -217,7 +217,7 @@
       <HintPath>..\..\packages\Fanex.BetList.Live22.1.0.0.1\lib\net461\Fanex.BetList.Live22.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.LiveCasinoCore, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.LiveCasinoCore.1.0.0.3-GamingAPI-01\lib\net461\Fanex.BetList.LiveCasinoCore.dll</HintPath>
+      <HintPath>..\..\packages\Fanex.BetList.LiveCasinoCore.1.0.0.3\lib\net461\Fanex.BetList.LiveCasinoCore.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.MaxGame, Version=2.0.0.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.MaxGame.2.0.0.2\lib\net461\Fanex.BetList.MaxGame.dll</HintPath>
@@ -262,7 +262,7 @@
       <HintPath>..\..\packages\Fanex.BetList.SealEntertainment.2.0.0.1\lib\net461\Fanex.BetList.SealEntertainment.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.SexyGaming, Version=2.0.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.SexyGaming.2.0.0.2-API-02\lib\net461\Fanex.BetList.SexyGaming.dll</HintPath>
+      <HintPath>..\..\packages\Fanex.BetList.SexyGaming.2.0.0.2\lib\net461\Fanex.BetList.SexyGaming.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.Spadegaming, Version=2.0.0.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.Spadegaming.2.0.0.1\lib\net461\Fanex.BetList.Spadegaming.dll</HintPath>

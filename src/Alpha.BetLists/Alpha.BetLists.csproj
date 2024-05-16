@@ -104,7 +104,7 @@
       <HintPath>..\..\packages\Fanex.Betlist.Jili.1.0.0.2\lib\net461\Fanex.BetList.Jili.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.LiveCasinoCore, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.LiveCasinoCore.1.0.0.3-GamingAPI-01\lib\net461\Fanex.BetList.LiveCasinoCore.dll</HintPath>
+      <HintPath>..\..\packages\Fanex.BetList.LiveCasinoCore.1.0.0.3\lib\net461\Fanex.BetList.LiveCasinoCore.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.MGRNGCasino, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.MGRNGCasino.2.0.0\lib\net461\Fanex.BetList.MGRNGCasino.dll</HintPath>
