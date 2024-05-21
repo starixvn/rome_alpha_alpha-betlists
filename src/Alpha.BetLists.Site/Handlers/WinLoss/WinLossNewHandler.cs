@@ -49,9 +49,8 @@
             var productDetails = productsAndProductDetails.Item2;
 
             var validUserSelectedProductIds = GetValidUserSelectedProductIds(products, message.UserSelectedProductIds);
-            var validUserSelectedResourceIds = GetValidUserSelectedResourceIds(productDetails, message.UserSelectedResourceIds);
-            validUserSelectedProductIds = await productDetailService.RemoveProductIdsAsync(validUserSelectedProductIds, validUserSelectedResourceIds);
-            var productDetailsXML = await productDetailService.BuildProductDetailsXMLAsync(validUserSelectedProductIds, message.ResourceIds, message.Is789Y);
+            var validResourceIds = await productDetailService.FilterResourceIdsByCustomer(message.ViewerId, message.Site, message.CurrencyId, message.ResourceIds);
+            var productDetailsXML = await productDetailService.BuildProductDetailsXMLAsync(validResourceIds, message.Is789Y);
 
             var winLossWeekDataParam = new WinLossWeekDataParam(
                 message.ViewerId,
@@ -104,9 +103,8 @@
             var productDetails = productsAndProductDetails.Item2;
 
             var validUserSelectedProductIds = GetValidUserSelectedProductIds(products, message.UserSelectedProductIds);
-            var validUserSelectedResourceIds = GetValidUserSelectedResourceIds(productDetails, message.UserSelectedResourceIds);
-            validUserSelectedProductIds = await productDetailService.RemoveProductIdsAsync(validUserSelectedProductIds, validUserSelectedResourceIds);
-            var productDetailsXML = await productDetailService.BuildProductDetailsXMLAsync(validUserSelectedProductIds, message.ResourceIds, message.Is789Y);
+            var validResourceIds = await productDetailService.FilterResourceIdsByCustomer(message.ViewerId, message.Site, message.CurrencyId, message.ResourceIds);            
+            var productDetailsXML = await productDetailService.BuildProductDetailsXMLAsync(validResourceIds, message.Is789Y);
 
             var winLossWeekDataParam = new WinLossWeekDataParam(
                 message.ViewerId,
@@ -158,8 +156,7 @@
             var productDetails = productsAndProductDetails.Item2;
 
             var validUserSelectedProductIds = GetValidUserSelectedProductIds(products, message.UserSelectedProductIds);
-            var validUserSelectedResourceIds = GetValidUserSelectedResourceIds(productDetails, message.UserSelectedResourceIds);
-            validUserSelectedProductIds = await productDetailService.RemoveProductIdsAsync(validUserSelectedProductIds, validUserSelectedResourceIds);
+            var validResourceIds = await productDetailService.FilterResourceIdsByCustomer(message.ViewerId, message.Site, message.CurrencyId, message.ResourceIds);
 
             var winLossParam = new WinLossParam(
                 message.CustId,
@@ -168,7 +165,7 @@
                 message.ToDate,
                 message.LimitedDateToShowInfo,
                 message.Language,
-                await productDetailService.BuildProductDetailsXMLAsync(validUserSelectedProductIds, message.ResourceIds, message.Is789Y),
+                await productDetailService.BuildProductDetailsXMLAsync(validResourceIds, message.Is789Y),
                 message.MaxTotalRow,
                 message.MaxTotalRowConfig);
 
@@ -208,12 +205,5 @@
             => products
             .Where(product => userSelectedProductIds.ContainsKey(product.Id))
             .Select(product => product.Id);
-
-        private static IEnumerable<int> GetValidUserSelectedResourceIds(
-            IEnumerable<ProductDetail> productDetails,
-            IDictionary<int, bool> userSelectedResourceIds)
-            => productDetails
-            .Where(p => userSelectedResourceIds.ContainsKey(p.ResourceId))
-            .Select(p => p.ResourceId);
     }
 }

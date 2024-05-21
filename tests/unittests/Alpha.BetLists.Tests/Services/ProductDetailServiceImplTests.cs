@@ -59,13 +59,13 @@
             AppSettings.AppSettingValues = new NameValueCollection();
             AppSettings.AppSettingValues.Add("ProductOfferProductDetail", "1");
 
-            var expected = $"<ROOT><ProductDetail ProductId=\"{ProductIdConstants.Pragmatic}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupID=\"0\" TicketType=\"0\"/>"
-                + $"<ProductDetail ProductId=\"{ProductIdConstants.Pragmatic}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupID=\"0\" TicketType=\"0\"/>"
-                + $"<ProductDetail ProductId=\"{ProductIdConstants.Sportsbook}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupID=\"0\" TicketType=\"0\"/>"
-                + $"<ProductDetail ProductId=\"{ProductIdConstants.Sportsbook}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupID=\"0\" TicketType=\"0\"/>"
-                + $"<ProductDetail ProductId=\"{ProductIdConstants.Allbet}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupID=\"0\" TicketType=\"0\"/>"
-                + $"<ProductDetail ProductId=\"{ProductIdConstants.SexyGaming}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupID=\"0\" TicketType=\"0\"/>"
-                + $"<ProductDetail ProductId=\"{ProductIdConstants.SpadeGaming}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupID=\"0\" TicketType=\"0\"/></ROOT>";
+            var expected = $"<ROOT><ProductDetail ProductId=\"{ProductIdConstants.Pragmatic}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupId=\"0\" TicketType=\"0\"/>"
+                + $"<ProductDetail ProductId=\"{ProductIdConstants.Pragmatic}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupId=\"0\" TicketType=\"0\"/>"
+                + $"<ProductDetail ProductId=\"{ProductIdConstants.Sportsbook}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupId=\"0\" TicketType=\"0\"/>"
+                + $"<ProductDetail ProductId=\"{ProductIdConstants.Sportsbook}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupId=\"0\" TicketType=\"0\"/>"
+                + $"<ProductDetail ProductId=\"{ProductIdConstants.Allbet}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupId=\"0\" TicketType=\"0\"/>"
+                + $"<ProductDetail ProductId=\"{ProductIdConstants.SexyGaming}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupId=\"0\" TicketType=\"0\"/>"
+                + $"<ProductDetail ProductId=\"{ProductIdConstants.SpadeGaming}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupId=\"0\" TicketType=\"0\"/></ROOT>";
 
             // Act
             var actualResult = await productDetailService.BuildProductDetailsXMLAsync(validProductIds, userSelectedResourceIds, is789y: true);
@@ -90,8 +90,8 @@
 
             // Assert
             Assert.Equal(
-                $"<ROOT><ProductDetail ProductId=\"{ProductIdConstants.Sportsbook}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupID=\"0\" TicketType=\"0\"/>"
-                + $"<ProductDetail ProductId=\"{ProductIdConstants.Sportsbook}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupID=\"0\" TicketType=\"0\"/></ROOT>",
+                $"<ROOT><ProductDetail ProductId=\"{ProductIdConstants.Sportsbook}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupId=\"0\" TicketType=\"0\"/>"
+                + $"<ProductDetail ProductId=\"{ProductIdConstants.Sportsbook}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupId=\"0\" TicketType=\"0\"/></ROOT>",
                 actualResult);
         }
 
@@ -110,10 +110,10 @@
 
             // Assert
             Assert.Equal(
-                $"<ROOT><ProductDetail ProductId=\"{ProductIdConstants.Pragmatic}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupID=\"0\" TicketType=\"0\"/>"
-                + $"<ProductDetail ProductId=\"{ProductIdConstants.Pragmatic}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupID=\"0\" TicketType=\"0\"/>"
-                + $"<ProductDetail ProductId=\"{ProductIdConstants.Sportsbook}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupID=\"0\" TicketType=\"0\"/>"
-                + $"<ProductDetail ProductId=\"{ProductIdConstants.Sportsbook}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupID=\"0\" TicketType=\"0\"/></ROOT>",
+                $"<ROOT><ProductDetail ProductId=\"{ProductIdConstants.Pragmatic}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupId=\"0\" TicketType=\"0\"/>"
+                + $"<ProductDetail ProductId=\"{ProductIdConstants.Pragmatic}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupId=\"0\" TicketType=\"0\"/>"
+                + $"<ProductDetail ProductId=\"{ProductIdConstants.Sportsbook}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupId=\"0\" TicketType=\"0\"/>"
+                + $"<ProductDetail ProductId=\"{ProductIdConstants.Sportsbook}\" Sporttype=\"200\" Bettype=\"0\" LeagueGroupId=\"0\" TicketType=\"0\"/></ROOT>",
                 actualResult);
         }
 

@@ -177,13 +177,6 @@
 
         public Task<IEnumerable<WinLossWeekData>> GetWinLossWeekData(WinLossWeekDataParam param)
         {
-            // ProductDetailsXML of SP get data of Bet List: LeagueGroupID
-            // ProductDetailsXML of SP check Week Data: LeagueGroupId
-            // Need to replace ID to Id
-            var productDetailsXML = string.IsNullOrWhiteSpace(param.ProductDetailsXML)
-                ? param.ProductDetailsXML
-                : param.ProductDetailsXML.Replace("LeagueGroupID=", "LeagueGroupId=");
-
             var reportDate = reportDateService.GetBalanceUpDayAndMoveBetsDay();
             var criteria = new GetWinLossWeekDataCriteria(
                 param.ViewerId,
@@ -192,7 +185,7 @@
                 reportDate.BalanceUpDay,
                 reportDate.MoveBetsDay,
                 param.ProductIds.JoinWithComma(),
-                productDetailsXML,
+                param.ProductDetailsXML,
                 param.Username);
 
             return dynamicRepository.FetchAsync<WinLossWeekData>(criteria);
