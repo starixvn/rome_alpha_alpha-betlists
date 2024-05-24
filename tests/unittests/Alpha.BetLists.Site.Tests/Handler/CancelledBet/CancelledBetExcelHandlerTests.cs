@@ -68,8 +68,8 @@
             var productIds = new List<int> { 1, 2, 3, 4, 5, 6 };
             var betlistData = new PagedReportData<BetListData>(new List<BetListData> { BetListDataTest.BetListData }, 1, 50, 100);
             service.GetCancelledBet(Arg.Any<CancelledBetParam>()).Returns(betlistData);
-            productService.FilterProductIdsByCustomer(Arg.Any<int>(), Arg.Any<string>(), Arg.Any<int>(), Arg.Any<DateTime>(), Arg.Any<IEnumerable<int>>()).Returns(productIds);
-            productService.GetProductsForCustomer(Arg.Any<int>(), Arg.Any<string>(), Arg.Any<int>(), Arg.Any<DateTime>()).Returns(Enumerable.Empty<Product>());
+            productService.FilterProductIds(Arg.Any<string>(), Arg.Any<int>(), Arg.Any<DateTime>(), Arg.Any<IEnumerable<int>>()).Returns(productIds);
+            productService.GetAllOfferedProducts(Arg.Any<string>(), Arg.Any<int>(), Arg.Any<DateTime>()).Returns(Enumerable.Empty<Product>());
             reportDateService.GetMoveBetsDay().Returns(DateTime.Now);
 
             //// Act
@@ -77,8 +77,8 @@
 
             //// Assert
             service.Received().GetCancelledBet(Arg.Any<CancelledBetParam>());
-            productService.Received().FilterProductIdsByCustomer(Arg.Any<int>(), Arg.Any<string>(), Arg.Any<int>(), Arg.Any<DateTime>(), Arg.Any<IEnumerable<int>>());
-            productService.Received().GetProductsForCustomer(Arg.Any<int>(), Arg.Any<string>(), Arg.Any<int>(), Arg.Any<DateTime>());
+            productService.Received().FilterProductIds(Arg.Any<string>(), Arg.Any<int>(), Arg.Any<DateTime>(), Arg.Any<IEnumerable<int>>());
+            productService.Received().GetAllOfferedProducts(Arg.Any<string>(), Arg.Any<int>(), Arg.Any<DateTime>());
         }
 
         [Fact]
@@ -88,8 +88,8 @@
             var productIds = new List<int> { 1, 2, 3, 4, 5, 6 };
             var betlistData = new PagedReportData<BetListData>(new List<BetListData> { BetListDataTest.BetListData }, 1, 50, 100);
             service.GetCancelledBet(Arg.Any<CancelledBetParam>()).Returns(betlistData);
-            productService.FilterProductIdsByCustomer(Arg.Any<int>(), Arg.Any<string>(), Arg.Any<int>(), Arg.Any<DateTime>(), productIds).Returns(productIds);
-            productService.GetProductsForCustomer(Arg.Any<int>(), Arg.Any<string>(), Arg.Any<int>(), Arg.Any<DateTime>()).Returns(Enumerable.Empty<Product>());
+            productService.FilterProductIds(Arg.Any<string>(), Arg.Any<int>(), Arg.Any<DateTime>(), productIds).Returns(productIds);
+            productService.GetAllOfferedProducts(Arg.Any<string>(), Arg.Any<int>(), Arg.Any<DateTime>()).Returns(Enumerable.Empty<Product>());
             reportDateService.GetMoveBetsDay().Returns(DateTime.Now);
 
             //// Act
@@ -106,8 +106,8 @@
             var productIds = new List<int> { 1, 2, 3, 4, 5, 6 };
             var betlistData = new PagedReportData<BetListData>(new List<BetListData> { BetListDataTest.BetListData }, 1, 50, 100);
             service.GetCancelledBet(Arg.Any<CancelledBetParam>()).Returns(betlistData);
-            productService.FilterProductIdsByCustomer(Arg.Any<int>(), Arg.Any<string>(), Arg.Any<int>(), Arg.Any<DateTime>(), productIds).Returns(productIds);
-            productService.GetProductsForCustomer(Arg.Any<int>(), Arg.Any<string>(), Arg.Any<int>(), Arg.Any<DateTime>()).Returns(Enumerable.Empty<Product>());
+            productService.FilterProductIds(Arg.Any<string>(), Arg.Any<int>(), Arg.Any<DateTime>(), productIds).Returns(productIds);
+            productService.GetAllOfferedProducts(Arg.Any<string>(), Arg.Any<int>(), Arg.Any<DateTime>()).Returns(Enumerable.Empty<Product>());
 
             //// Act
             handler.Handle(query).GetAwaiter().GetResult();
@@ -123,8 +123,8 @@
             var productIds = new List<int> { 1, 2, 3, 4, 5, 6 };
             var betlistData = new PagedReportData<BetListData>(new List<BetListData> { BetListDataTest.BetListData }, 1, 50, 100);
             service.GetCancelledBet(Arg.Any<CancelledBetParam>()).Returns(betlistData);
-            productService.FilterProductIdsByCustomer(Arg.Any<int>(), Arg.Any<string>(), Arg.Any<int>(), Arg.Any<DateTime>(), productIds).Returns(productIds);
-            productService.GetProductsForCustomer(Arg.Any<int>(), Arg.Any<string>(), Arg.Any<int>(), Arg.Any<DateTime>()).Returns(Enumerable.Empty<Product>());
+            productService.FilterProductIds(Arg.Any<string>(), Arg.Any<int>(), Arg.Any<DateTime>(), productIds).Returns(productIds);
+            productService.GetAllOfferedProducts(Arg.Any<string>(), Arg.Any<int>(), Arg.Any<DateTime>()).Returns(Enumerable.Empty<Product>());
             reportDateService.GetMoveBetsDay().Returns(DateTime.Now);
 
             //// Act
@@ -141,8 +141,8 @@
             var productIds = new List<int> { 1, 2, 3, 4, 5, 6 };
             var betlistData = new PagedReportData<BetListData>(new List<BetListData> { BetListDataTest.BetListData }, 1, 50, 100);
             service.GetCancelledBet(Arg.Any<CancelledBetParam>()).Returns(betlistData);
-            productService.FilterProductIdsByCustomer(Arg.Any<int>(), Arg.Any<string>(), Arg.Any<int>(), Arg.Any<DateTime>(), productIds).Returns(productIds);
-            productService.GetProductsForCustomer(Arg.Any<int>(), Arg.Any<string>(), Arg.Any<int>(), Arg.Any<DateTime>()).Returns(Enumerable.Empty<Product>());
+            productService.FilterProductIds(Arg.Any<string>(), Arg.Any<int>(), Arg.Any<DateTime>(), productIds).Returns(productIds);
+            productService.GetAllOfferedProducts(Arg.Any<string>(), Arg.Any<int>(), Arg.Any<DateTime>()).Returns(Enumerable.Empty<Product>());
             reportDateService.GetMoveBetsDay().Returns(DateTime.Now);
 
             //// Act

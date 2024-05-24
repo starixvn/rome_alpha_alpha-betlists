@@ -22,7 +22,7 @@
                 .FetchAsync<TicketDto>(Arg.Any<GetRunningCorrectScoreCriteria>())
                 .Returns(BetListDataTest.Tickets);
 
-            correctScoreService = new CorrectScoreServiceImpl(dataFixture.DynamicRepository, dataFixture.PartialUMService);
+            correctScoreService = new CorrectScoreServiceImpl(dataFixture.DynamicRepository, dataFixture.PartialUMService, dataFixture.BetListRepository);
         }
 
         [Fact]

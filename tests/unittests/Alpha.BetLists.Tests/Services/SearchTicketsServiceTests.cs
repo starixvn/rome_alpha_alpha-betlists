@@ -30,7 +30,7 @@
                 .FetchMultipleAsync<TicketDto, TicketData>(Arg.Any<SearchTicketsCriteria>())
                 .Returns(BetListDataTest.BetListDataTuple);
 
-            searchTicketsService = new SearchTicketsServiceImpl(reportDateService, dataFixture.DynamicRepository, dataFixture.PartialUMService);
+            searchTicketsService = new SearchTicketsServiceImpl(reportDateService, dataFixture.DynamicRepository, dataFixture.PartialUMService, dataFixture.BetListRepository);
         }
 
         [Fact]

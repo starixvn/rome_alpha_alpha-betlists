@@ -25,6 +25,7 @@
         private readonly ProductServiceImpl productService;
         private readonly CompareLogic compareLogic;
         private readonly Func<int, string> getProductName;
+        private readonly Func<int, bool> canViewProduct;
 
         private readonly IEnumerable<Product> allCustomerProductIds = new List<Product>
         {
@@ -39,7 +40,7 @@
             this.fanexDataFixture = fanexDataFixture;
 
             getProductName = (productId) => $"Product {productId}";
-
+            canViewProduct = (id) => true;
             var data = new List<Product>
             {
                new Product(id: 1, name: null, isEnable: true),
@@ -51,7 +52,7 @@
            };
 
             fanexDataFixture.DynamicRepository.Fetch<Product>(Arg.Any<GetProductsByGroupHeadlineCriteria>()).Returns(data);
-            productService = new ProductServiceImpl(fanexDataFixture.DynamicRepository, fanexDataFixture.CacheService, getProductName);
+            productService = new ProductServiceImpl(fanexDataFixture.DynamicRepository, fanexDataFixture.CacheService, canViewProduct, getProductName);
             compareLogic = new CompareLogic();
 
             var bySite = new List<JackpotOfferedBySite> { new JackpotOfferedBySite(1, "site1"), new JackpotOfferedBySite(2, "site2") };
@@ -61,18 +62,15 @@
             .Returns(dataJackpot);
         }
 
-        [Theory]
-        [InlineData(0)]
-        [InlineData(-1)]
-        [InlineData(int.MinValue)]
-        public void FilterProductIdsByCustomer_NullProductIdsAndInvalidCustId_ReturnsEmptyProductIds(int custId)
+        [Theory]        
+        public void FilterProductIdsByCustomer_NullProductIdsAndInvalidCustId_ReturnsEmptyProductIds()
         {
             // Arrange
             IEnumerable<int> productIds = null;
             var expectedProductIds = Enumerable.Empty<int>();
 
             // Act
-            var actualProductIds = productService.FilterProductIdsByCustomer(custId, string.Empty, 1, DateTime.Now, productIds);
+            var actualProductIds = productService.FilterProductIds(string.Empty, 1, DateTime.Now, productIds);
 
             // Assert
             Assert.Equal(expectedProductIds, actualProductIds);
@@ -81,7 +79,7 @@
         [Theory]
         [InlineData(1)]
         [InlineData(int.MaxValue)]
-        public void FilterProductIdsByCustomer_NullProductIdsAndValidCustId_ReturnsAllCustomerProductIds(int custId)
+        public void FilterProductIdsByCustomer_NullProductIdsAndValidCustId_ReturnsAllCustomerProductIds(string site)
         {
             // Arrange
             IEnumerable<int> productIds = null;
@@ -94,24 +92,21 @@
             fanexDataFixture.DynamicRepository.Fetch<Product>(Arg.Any<GetProductsCriteria>()).Returns(allCustomerProductIds);
 
             // Act
-            var actualProductIds = productService.FilterProductIdsByCustomer(custId, string.Empty, 1, DateTime.Now, productIds);
+            var actualProductIds = productService.FilterProductIds(site, 1, DateTime.Now, productIds);
 
             // Assert
             Assert.Equal(expectedProductIds, actualProductIds);
         }
 
         [Theory]
-        [InlineData(0)]
-        [InlineData(-1)]
-        [InlineData(int.MinValue)]
-        public void FilterProductIdsByCustomer_EmptyProductIdsAndInvalidCustId_ReturnsEmptyProductIds(int custId)
+        public void FilterProductIdsByCustomer_EmptyProductIdsAndInvalidCustId_ReturnsEmptyProductIds()
         {
             // Arrange
             var productIds = Enumerable.Empty<int>();
             var expectedProductIds = Enumerable.Empty<int>();
 
             // Act
-            var actualProductIds = productService.FilterProductIdsByCustomer(custId, string.Empty, 1, DateTime.Now, productIds);
+            var actualProductIds = productService.FilterProductIds(string.Empty, -1, DateTime.Now, productIds);
 
             // Assert
             Assert.Equal(expectedProductIds, actualProductIds);
@@ -133,7 +128,7 @@
             fanexDataFixture.DynamicRepository.Fetch<Product>(Arg.Any<GetProductsCriteria>()).Returns(allCustomerProductIds);
 
             // Act
-            var actualProductIds = productService.FilterProductIdsByCustomer(custId, string.Empty, 1, DateTime.Now, productIds);
+            var actualProductIds = productService.FilterProductIds("best-odds", 1, DateTime.Now, productIds);
 
             // Assert
             Assert.Equal(expectedProductIds, actualProductIds);
@@ -208,14 +203,14 @@
         {
             // Arrange
             var site = "IBC";
-            var products = new List<ProductBySiteModel>() { new ProductBySiteModel(22), new ProductBySiteModel(23) };
-            IEnumerable<ProductBySiteModel> cachedProducts;
+            var products = new List<Product>() { new Product(22, "p 22", true), new Product(23, "p 23", true) };
+            IEnumerable<Product> cachedProducts;
             fanexDataFixture.CacheService.TryGet($"Alpha.Reports.Services.Impl.ProductsBySite-{site}", out cachedProducts).Returns(false);
 
-            fanexDataFixture.DynamicRepository.Fetch<ProductBySiteModel>(Arg.Any<GetOfferedProductsBySiteCriteria>()).Returns(products);
+            fanexDataFixture.DynamicRepository.Fetch<Product>(Arg.Any<GetOfferedProductBySiteCurrencyCriteria>()).Returns(products);
 
             // Act
-            var act = productService.CanViewBySite(1, site, 1, 21);
+            var act = productService.CanViewProduct(site, 1, 21);
 
             // Assert
             Assert.False(act);
@@ -226,16 +221,16 @@
         {
             // Arrange
             var site = "IBC";
-            var products = new List<ProductBySiteModel>() { new ProductBySiteModel(22), new ProductBySiteModel(23) };
-            fanexDataFixture.CacheService.GetOrSet(Arg.Any<string>(), Arg.Any<Func<IEnumerable<ProductBySiteModel>>>(), Arg.Any<CacheItemOptions>()).Returns(x =>
+            var products = new List<Product>() { new Product(22, "p 22", true), new Product(23, "p 23", true) };
+            fanexDataFixture.CacheService.GetOrSet(Arg.Any<string>(), Arg.Any<Func<IEnumerable<Product>>>(), Arg.Any<CacheItemOptions>()).Returns(x =>
             {
-                var func = x.ArgAt<Func<IEnumerable<ProductBySiteModel>>>(1);
+                var func = x.ArgAt<Func<IEnumerable<Product>>>(1);
                 return func();
             });
-            fanexDataFixture.DynamicRepository.Fetch<ProductBySiteModel>(Arg.Any<GetOfferedProductsBySiteCriteria>()).Returns(products);
+            fanexDataFixture.DynamicRepository.Fetch<Product>(Arg.Any<GetOfferedProductBySiteCurrencyCriteria>()).Returns(products);
 
             // Act
-            var act = productService.CanViewBySite(1, site, 1, 23);
+            var act = productService.CanViewProduct(site, 1, 23);
 
             // Assert
             Assert.True(act);

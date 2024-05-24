@@ -36,6 +36,6 @@
                 };
 
         private static MatchInfo CreateMatchInfo(int matchId)
-            => new MatchInfo(0, string.Empty, matchId, 0, string.Empty, 0, 0, string.Empty, string.Empty, 0, DateTime.Today);
+            => new MatchInfo(0, string.Empty, matchId, 0, string.Empty, 0, 0, string.Empty, string.Empty, 0, DateTime.Today, 0);
     }
 }
