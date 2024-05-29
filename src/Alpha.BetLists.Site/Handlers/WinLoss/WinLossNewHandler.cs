@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using Alpha.BetLists.Extensions;
     using Alpha.BetLists.Models;
     using Alpha.BetLists.Params;
     using Alpha.BetLists.Services;
@@ -49,7 +50,7 @@
             var productDetails = productsAndProductDetails.Item2;
 
             var validUserSelectedProductIds = GetValidUserSelectedProductIds(products, message.UserSelectedProductIds);
-            var validResourceIds = await productDetailService.FilterResourceIdsByCustomer(message.ViewerId, message.Site, message.CurrencyId, message.ResourceIds);
+            var validResourceIds = await productDetailService.FilterResourceIdsByCustomer(message.Site, message.CurrencyId, message.ResourceIds);
             var productDetailsXML = await productDetailService.BuildProductDetailsXMLAsync(validResourceIds, message.Is789Y);
 
             var winLossWeekDataParam = new WinLossWeekDataParam(
@@ -103,7 +104,7 @@
             var productDetails = productsAndProductDetails.Item2;
 
             var validUserSelectedProductIds = GetValidUserSelectedProductIds(products, message.UserSelectedProductIds);
-            var validResourceIds = await productDetailService.FilterResourceIdsByCustomer(message.ViewerId, message.Site, message.CurrencyId, message.ResourceIds);            
+            var validResourceIds = await productDetailService.FilterResourceIdsByCustomer(message.Site, message.CurrencyId, message.ResourceIds);            
             var productDetailsXML = await productDetailService.BuildProductDetailsXMLAsync(validResourceIds, message.Is789Y);
 
             var winLossWeekDataParam = new WinLossWeekDataParam(
@@ -156,7 +157,7 @@
             var productDetails = productsAndProductDetails.Item2;
 
             var validUserSelectedProductIds = GetValidUserSelectedProductIds(products, message.UserSelectedProductIds);
-            var validResourceIds = await productDetailService.FilterResourceIdsByCustomer(message.ViewerId, message.Site, message.CurrencyId, message.ResourceIds);
+            var validResourceIds = await productDetailService.FilterResourceIdsByCustomer(message.Site, message.CurrencyId, message.ResourceIds);
 
             var winLossParam = new WinLossParam(
                 message.CustId,
@@ -192,7 +193,6 @@
                 message.CurrencyId,
                 message.MinDate);
             var productDetails = await productDetailService.GetProductDetailsAsync(
-                message.ViewerId,
                 message.Site,
                 message.CurrencyId);
 

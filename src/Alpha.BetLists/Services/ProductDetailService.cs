@@ -18,9 +18,9 @@
     {
         Task<string> BuildProductDetailsXMLAsync(IEnumerable<int> userSelectedResourceIds, bool is789y = false);
 
-        Task<IEnumerable<ProductDetail>> GetProductDetailsAsync(int viewerId, string site, int currencyId);
+        Task<IEnumerable<ProductDetail>> GetProductDetailsAsync(string site, int currencyId);
 
-        Task<IEnumerable<int>> FilterResourceIdsByCustomer(int viewerId, string site, int currencyId, string resourceIds);
+        Task<IEnumerable<int>> FilterResourceIdsByCustomer(string site, int currencyId, string resourceIds);
     }
 
     public class ProductDetailServiceImpl : ProductDetailService
@@ -46,9 +46,9 @@
             this.cacheService = cacheService;
         }
 
-        public async Task<IEnumerable<int>> FilterResourceIdsByCustomer(int viewerId, string site, int currencyId, string resourceIds)
-            => FilterResourceIdsByCustomer(await GetProductDetailsAsync(viewerId, site, currencyId), resourceIds);
-      
+        public async Task<IEnumerable<int>> FilterResourceIdsByCustomer(string site, int currencyId, string resourceIds)
+            => FilterResourceIdsByCustomer(await GetProductDetailsAsync(site, currencyId), resourceIds);
+
         public async Task<string> BuildProductDetailsXMLAsync(IEnumerable<int> userSelectedResourceIds, bool is789y = false)
         {
             var validProductDetails = new List<ProductDetail>();
@@ -58,7 +58,7 @@
                 .ToList()
                 .ForEach(group =>
                 {
-                    if(is789y)
+                    if (is789y)
                     {
                         validProductDetails.AddRange(group.Where(i => !IsSupportProductDetail(i.ProductId)));
                     }
@@ -80,32 +80,36 @@
                 return xml.ToString();
             }
         }
-        
-        public async Task<IEnumerable<ProductDetail>> GetProductDetailsAsync(int viewerId, string site, int currencyId)
-        {
-            var canViewProductDetails = CanViewProductDetailsByProduct(site, currencyId);
 
+        public async Task<IEnumerable<ProductDetail>> GetProductDetailsAsync(string site, int currencyId)
+        {
             var details = await cacheService.GetOrSetAsync(
-                $"{ProductDetailsCacheKey}-{viewerId}",
-                async () => (await GetAllProductDetailsAsync())
-                    .Where(p => canViewProductDetails.ContainsKey(p.ProductId) && CanViewProductDetailByResourceId(p.ResourceId)),
+                $"{ProductDetailsCacheKey}-{site}-{currencyId}",
+                async () =>
+                {
+                    var canViewProductDetails = CanViewProductDetailsByProduct(site, currencyId);
+
+                    return GroupByProductDetail(await GetAllProductDetailsAsync())
+                    .Where(p => canViewProductDetails.ContainsKey(p.ProductId) && CanViewProductDetailByResourceId(p.ResourceId));
+                },
                 new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(CustProductDetailsCacheInMinutes)));
 
-            return GroupByProductDetail(details);
+            return details;
         }
 
         private IEnumerable<ProductDetail> GroupByProductDetail(IEnumerable<ProductDetail> productDetails)
             => productDetails
-                .GroupBy(r => r.ResourceId)
-                .Select(products =>
-                {
-                    var product = products.FirstOrDefault();
-                    product.DisplayName = getProductDetailName(product.ResourceId);
+            .GroupBy(r => r.ResourceId)
+            .Select(products =>
+            {
+                var product = products.FirstOrDefault();
+                product.DisplayName = getProductDetailName(product.ResourceId);
 
-                    return product;
-                })
-                .OrderBy(product => product.ProductId)
-                .ThenBy(product => product.Order);
+                return product;
+            })
+            .ToList()
+            .OrderBy(product => product.ProductId)
+            .ThenBy(product => product.Order);
 
         private IEnumerable<int> FilterResourceIdsByCustomer(IEnumerable<ProductDetail> productDetails, string resourceIds)
         {
@@ -154,6 +158,7 @@
                 ProductDetailsCacheKey,
                 () => dynamicRepository.FetchAsync<ProductDetail>(new GetProductsDetailCriteria()),
                 new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromDays(ProductDetailsCacheInDay)));
+
         private static bool IsSupportProductDetail(int productId)
             => AppSettings.ProductOfferProductDetail.Any(i => i == productId);
     }
