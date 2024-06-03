@@ -93,6 +93,7 @@ namespace Alpha.BetLists.DataAccesses
             SiteId = r.Table.Columns.Contains("SiteId") ? Converter.ToString2(r["SiteId"]) : "",
             JackpotInfo = r.Table.Columns.Contains("JackpotInfo") ? Converter.ToString2(r["JackpotInfo"]) : string.Empty,
             DeviceType = r.Table.Columns.Contains("DeviceType") && !r.IsNull("DeviceType") ? Converter.To<int>(r["DeviceType"]) : (int?)null,
+            EventStatus = r.Table.Columns.Contains("BetStatus") ? Converter.ToString2(r["BetStatus"]) : "",
         };
 
         private readonly Func<DataRow, TicketDto> mapTicketObjectFunction1 = r => new TicketDto
@@ -168,6 +169,7 @@ namespace Alpha.BetLists.DataAccesses
             SiteId = r.Table.Columns.Contains("SiteId") ? Converter.ToString2(r["SiteId"]) : "",
             JackpotInfo = r.Table.Columns.Contains("JackpotInfo") ? Converter.ToString2(r["JackpotInfo"]) : string.Empty,
             DeviceType = r.Table.Columns.Contains("DeviceType") && !r.IsNull("DeviceType") ? Converter.To<int>(r["DeviceType"]) : (int?)null,
+            EventStatus = r.Table.Columns.Contains("BetStatus") ? Converter.ToString2(r["BetStatus"]) : "",
         };
 
         public IList<TicketDto> Fetch(ICriteria criteria)
