@@ -10,18 +10,17 @@
     using Alpha.BetLists.Criteria;
     using Alpha.BetLists.Extensions;
     using Alpha.BetLists.Models;
+    using AlphaPlus = AlphaPlus.Configurations;
     using Fanex.Caching;
     using Fanex.Data.Repository;
 
     public interface ProductDetailService
     {
-        Task<string> BuildProductDetailsXMLAsync(IEnumerable<int> validProductIds, string userSelectedResourceIds, bool is789y = false);
+        Task<string> BuildProductDetailsXMLAsync(IEnumerable<int> userSelectedResourceIds, bool is789y = false);
 
-        Task<IEnumerable<int>> RemoveProductIdsAsync(IEnumerable<int> productIds, string userSelectedResourceIds);
+        Task<IEnumerable<ProductDetail>> GetProductDetailsAsync(string site, int currencyId);
 
-        Task<IEnumerable<int>> RemoveProductIdsAsync(IEnumerable<int> productIds, IEnumerable<int> resourceIds);
-
-        Task<IEnumerable<ProductDetail>> GetProductDetailsAsync(int viewerId, string site, int currencyId);
+        Task<IEnumerable<int>> FilterResourceIdsByCustomer(string site, int currencyId, string resourceIds);
     }
 
     public class ProductDetailServiceImpl : ProductDetailService
@@ -30,13 +29,13 @@
         private const string ProductDetailsCacheKey = "Alpha.BetLists.Services.Impl.ProductDetailService.ProductDetails";
         private const int CustProductDetailsCacheInMinutes = 5;
 
-        private readonly Func<string, int, string> getProductDetailName;
+        private readonly Func<int, string> getProductDetailName;
         private readonly Func<string, int, int, bool> canViewProduct;
         private readonly IDynamicRepository dynamicRepository;
         private readonly ICacheService cacheService;
 
         public ProductDetailServiceImpl(
-            Func<string, int, string> getProductDetailName,
+            Func<int, string> getProductDetailName,
             Func<string, int, int, bool> canViewProduct,
             IDynamicRepository dynamicRepository,
             ICacheService cacheService)
@@ -47,13 +46,14 @@
             this.cacheService = cacheService;
         }
 
-        public async Task<string> BuildProductDetailsXMLAsync(IEnumerable<int> validProductIds, string userSelectedResourceIds, bool is789y = false)
+        public async Task<IEnumerable<int>> FilterResourceIdsByCustomer(string site, int currencyId, string resourceIds)
+            => FilterResourceIdsByCustomer(await GetProductDetailsAsync(site, currencyId), resourceIds);
+
+        public async Task<string> BuildProductDetailsXMLAsync(IEnumerable<int> userSelectedResourceIds, bool is789y = false)
         {
             var validProductDetails = new List<ProductDetail>();
-            var resourceIdsHash = userSelectedResourceIds.ToIntDictionary();
 
-            (await GetProductDetailsAsync())
-                .Where(p => validProductIds.Contains(p.ProductId))
+            (await GetAllProductDetailsAsync())
                 .GroupBy(p => p.ProductId)
                 .ToList()
                 .ForEach(group =>
@@ -63,97 +63,72 @@
                         validProductDetails.AddRange(group.Where(i => !IsSupportProductDetail(i.ProductId)));
                     }
 
-                    validProductDetails.AddRange(group.Where(p => resourceIdsHash.ContainsKey(p.ResourceId)));
+                    validProductDetails.AddRange(group.Where(p => userSelectedResourceIds.Contains(p.ResourceId)));
                 });
 
-            return validProductDetails.Any()
-                ? BuildProductDetailsXML(validProductDetails)
-                : string.Empty;
-        }
+            return BuildProductDetailsXML(validProductDetails);
 
-        private Task<IEnumerable<ProductDetail>> GetProductDetailsAsync()
-            => cacheService.GetOrSetAsync(
-                ProductDetailsCacheKey,
-                () => dynamicRepository.FetchAsync<ProductDetail>(new GetProductsDetailCriteria()),
-                new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromDays(ProductDetailsCacheInDay)));
-
-        private static string BuildProductDetailsXML(IEnumerable<ProductDetail> productDetails)
-        {
-            var xml = new StringBuilder("<ROOT>");
-            foreach (var product in productDetails)
+            string BuildProductDetailsXML(IEnumerable<ProductDetail> productDetails)
             {
-                foreach (var leagueId in product.LeagueGroupIds)
+                var xml = new StringBuilder("<ROOT>");
+                foreach (var product in productDetails)
                 {
-                    foreach (var typeId in product.TicketTypeIds)
-                    {
-                        xml.AppendFormat(
-                            "<ProductDetail ProductId=\"{0}\" Sporttype=\"{1}\" Bettype=\"{2}\" LeagueGroupID=\"{3}\" TicketType=\"{4}\"/>",
-                            product.ProductId,
-                            product.SportType,
-                            product.BetType,
-                            leagueId,
-                            typeId);
-                    }
+                    xml.Append(product.ToString());
                 }
-            }
-            xml.Append("</ROOT>");
+                xml.Append("</ROOT>");
 
-            return xml.ToString();
+                return xml.ToString();
+            }
         }
 
-        public Task<IEnumerable<int>> RemoveProductIdsAsync(IEnumerable<int> productIds, string userSelectedResourceIds)
-            => RemoveProductIdsAsync(productIds, userSelectedResourceIds.ToListInt());
-
-        public async Task<IEnumerable<int>> RemoveProductIdsAsync(IEnumerable<int> productIds, IEnumerable<int> resourceIds)
+        public async Task<IEnumerable<ProductDetail>> GetProductDetailsAsync(string site, int currencyId)
         {
-            var removedProductIds = new List<int>(productIds);
-
-            (await GetProductDetailsAsync())
-                .Where(p => productIds.Contains(p.ProductId))
-                .GroupBy(p => p.ProductId)
-                .ToList()
-                .ForEach(group =>
+            var details = await cacheService.GetOrSetAsync(
+                $"{ProductDetailsCacheKey}-{site}-{currencyId}",
+                async () =>
                 {
-                    if (IsSupportProductDetail(group.Key))
-                    {
-                        var intersectResourceIds = group.Select(p => p.ResourceId).Intersect(resourceIds);
+                    var canViewProductDetails = CanViewProductDetailsByProduct(site, currencyId);
 
-                        if (!intersectResourceIds.Any())
-                        {
-                            removedProductIds.RemoveAll(id => id == group.Key);
-                        }
-                    }
-                });
+                    return GroupByProductDetail(await GetAllProductDetailsAsync())
+                    .Where(p => canViewProductDetails.ContainsKey(p.ProductId) && CanViewProductDetailByResourceId(p.ResourceId));
+                },
+                new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(CustProductDetailsCacheInMinutes)));
 
-            return removedProductIds;
+            return details;
         }
 
-        private static bool IsSupportProductDetail(int productId)
-            => AppSettings.ProductOfferProductDetail.Any(i => i == productId);
-
-        public async Task<IEnumerable<ProductDetail>> GetProductDetailsAsync(int viewerId, string site, int currencyId)
-        {
-            if (viewerId <= 0)
+        private IEnumerable<ProductDetail> GroupByProductDetail(IEnumerable<ProductDetail> productDetails)
+            => productDetails
+            .GroupBy(r => r.ResourceId)
+            .Select(products =>
             {
-                return Enumerable.Empty<ProductDetail>();
+                var product = products.FirstOrDefault();
+                product.DisplayName = getProductDetailName(product.ResourceId);
+
+                return product;
+            })
+            .ToList()
+            .OrderBy(product => product.ProductId)
+            .ThenBy(product => product.Order);
+
+        private IEnumerable<int> FilterResourceIdsByCustomer(IEnumerable<ProductDetail> productDetails, string resourceIds)
+        {
+            if (IsSelectAllProductDetails())
+            {
+                return productDetails.Select(p => p.ResourceId);
             }
 
-            var canViewProductDetails = CanViewProductDetails(site, currencyId);
+            var resourceIdsHash = resourceIds.ToIntDictionary();
 
-            return await cacheService.GetOrSetAsync(
-                $"{ProductDetailsCacheKey}-{viewerId}",
-                async () => (await GetProductDetailsAsync())
-                    .Where(p => canViewProductDetails.ContainsKey(p.ProductId) && SportsbookSupportDetail(p))
-                    .Select(product =>
-                    {
-                        product.DisplayName = getProductDetailName(product.RefId, product.ResourceId);
+            return productDetails
+                .Where(p => resourceIdsHash.ContainsKey(p.ResourceId))
+                .Select(p => p.ResourceId);
 
-                        return product;
-                    }),
-                new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(CustProductDetailsCacheInMinutes)));
+            bool IsSelectAllProductDetails()
+            => resourceIds != null && resourceIds == DefaultVariables.AllProductDetails;
         }
 
-        private IDictionary<int, bool> CanViewProductDetails(string site, int currencyId)
+        private IDictionary<int, bool> CanViewProductDetailsByProduct(string site, int currencyId)
         {
             var canViewProductDetails = new Dictionary<int, bool>();
 
@@ -168,14 +143,23 @@
             return canViewProductDetails;
         }
 
-        private static bool SportsbookSupportDetail(ProductDetail detail)
+        private static bool CanViewProductDetailByResourceId(int resourceId)
         {
-            if (AlphaPlus.Configurations.AppSettings.IsSiteLabel777 && detail.ProductId == ProductIdConstants.Sportsbook)
+            if (AlphaPlus.AppSettings.IsSiteLabel777)
             {
-                return ProductDetailIdConstants.SportsbookDetailFor777Site.Contains(detail.ResourceId);
+                return !ProductDetailIdConstants.ExcludedProductDetailFor777.Contains(resourceId);
             }
 
             return true;
         }
+
+        private Task<IEnumerable<ProductDetail>> GetAllProductDetailsAsync()
+            => cacheService.GetOrSetAsync(
+                ProductDetailsCacheKey,
+                () => dynamicRepository.FetchAsync<ProductDetail>(new GetProductsDetailCriteria()),
+                new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromDays(ProductDetailsCacheInDay)));
+
+        private static bool IsSupportProductDetail(int productId)
+            => AppSettings.ProductOfferProductDetail.Any(i => i == productId);
     }
 }

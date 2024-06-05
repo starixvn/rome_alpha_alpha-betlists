@@ -61,9 +61,7 @@
         }
 
         public IEnumerable<Product> GetAllOfferedProducts(string site, int currencyId, DateTime minReportDate)
-        {
-            return GetOfferedProducts(site, currencyId, minReportDate);
-        }
+            => GetOfferedProducts(site, currencyId, minReportDate);
 
         public IEnumerable<int> FilterProductIds(string site, int currencyId, DateTime minReportDate, IEnumerable<int> productIds)
         {

@@ -47,15 +47,13 @@
             InitWorkbook();
 
             productService = Substitute.For<ProductService>();
-            productService.FilterProductIdsByCustomer(Arg.Any<int>(), Arg.Any<string>(), Arg.Any<int>(), Arg.Any<DateTime>(), Arg.Any<IEnumerable<int>>())
+            productService.FilterProductIds(Arg.Any<string>(), Arg.Any<int>(), Arg.Any<DateTime>(), Arg.Any<IEnumerable<int>>())
                 .Returns(callInfo => callInfo.Args()[4]);
 
             productDetailService= Substitute.For<ProductDetailService>();
-            productDetailService.BuildProductDetailsXMLAsync(Arg.Any<IEnumerable<int>>(), Arg.Any<string>(), false)
+            productDetailService.BuildProductDetailsXMLAsync(Arg.Any<IEnumerable<int>>(), false)
                 .Returns(BetListDataTest.ProductDetailsXML);
-            productDetailService.RemoveProductIdsAsync(Arg.Any<IEnumerable<int>>(), Arg.Any<string>())
-                .Returns(new List<int> { 1 });
-
+            
             winLossExcelHandler = new WinLossExcelHandler(
                 winLossService,
                 this.betlistFixture.HtmlBuilder,

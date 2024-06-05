@@ -25,37 +25,43 @@
 
         public static string GetProductName(int productId)
         {
-            var productName = Instance.GetResourceDataByRefIdAndResourceId(
-                    "Product",
-                    productId.ToString(),
-                    LanguageCode,
-                    string.Empty);
-
             if (AppSettings.IsSiteLabel777)
             {
                 var productNameFor777 = Instance.GetResourceDataByRefIdAndResourceId(
                     "Product_Saba",
                     productId.ToString(),
                     LanguageCode,
-                    productName);
+                    string.Empty);
 
-                return productNameFor777;
+                return string.IsNullOrEmpty(productNameFor777) ?
+                    Instance.GetResourceDataByRefIdAndResourceId(
+                        "Product",
+                        productId.ToString(),
+                        LanguageCode,
+                        string.Empty) :
+                    productNameFor777;
             }
 
-            return productName;
+            return Instance.GetResourceDataByRefIdAndResourceId(
+                "Product",
+                productId.ToString(),
+                LanguageCode,
+                string.Empty); ;
         }
 
 
-        public static string GetProductDetailName(string refId, int resourceId)
-        {
-            if (AppSettings.IsSiteLabel777 && ProductDetailIdConstants.SportsbookDetailFor777Site.Contains(resourceId))
+        public static string GetProductDetailName(int resourceId)
+        {   
+            if (AppSettings.IsSiteLabel777)
             {
-                var name = Instance.GetResourceDataByRefIdAndResourceId($"{refId}_Saba", resourceId.ToString(), LanguageCode, string.Empty);
+                var productNameFor777 = Instance.GetResourceDataByRefIdAndResourceId("ProductDetail_Saba", resourceId.ToString(), LanguageCode, string.Empty);
 
-                return string.IsNullOrEmpty(name) ? Instance.GetResourceDataByRefIdAndResourceId(refId, resourceId.ToString(), LanguageCode, string.Empty) : name;
+                return string.IsNullOrEmpty(productNameFor777) ? 
+                    Instance.GetResourceDataByRefIdAndResourceId("ProductDetail", resourceId.ToString(), LanguageCode, string.Empty) : 
+                    productNameFor777;
             }
 
-            return Instance.GetResourceDataByRefIdAndResourceId(refId, resourceId.ToString(), LanguageCode, string.Empty);
+            return Instance.GetResourceDataByRefIdAndResourceId("ProductDetail", resourceId.ToString(), LanguageCode, string.Empty);
         }
 
         public static string GetSportName(int sportTypeId)

@@ -12,17 +12,23 @@
             int productId,
             int sportType,
             int betType,
-            string leagueGroupId,
-            string ticketType)
+            int order,
+            int leagueGroupId,
+            int ticketType,
+            int childResourceId)
         {
             RefId = refId;
             ResourceId = resourceId;
             ProductId = productId;
             SportType = sportType;
             BetType = betType;
+            Order = order;
             LeagueGroupId = leagueGroupId;
             TicketType = ticketType;
+            ChildResourceId = childResourceId;
         }
+
+        public int Order { get; }
 
         public string RefId { get; }
 
@@ -36,12 +42,19 @@
 
         public int BetType { get; }
 
-        public string LeagueGroupId { get; }
+        public int LeagueGroupId { get; }
 
-        public string[] LeagueGroupIds => LeagueGroupId != null ? LeagueGroupId.Split(',') : new string[] { };
+        public int TicketType { get; }
 
-        public string TicketType { get; }
+        public int ChildResourceId { get; }
 
-        public string[] TicketTypeIds => TicketType != null ? TicketType.Split(',') : new string[] { };
+        public override string ToString()
+            => string.Format(
+                    "<ProductDetail ProductId=\"{0}\" Sporttype=\"{1}\" Bettype=\"{2}\" LeagueGroupId=\"{3}\" TicketType=\"{4}\"/>",
+                    ProductId,
+                    SportType,
+                    BetType,
+                    LeagueGroupId,
+                    TicketType);
     }
 }

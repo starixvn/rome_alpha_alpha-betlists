@@ -22,7 +22,7 @@
                 .FetchAsync<TicketDto>(Arg.Any<GetBetListMoveStatementHistoryCriteria>())
                 .Returns(BetListDataTest.Tickets);
 
-            moveStatementHistoryService = new MoveStatementHistoryServiceImpl(dataFixture.DynamicRepository, dataFixture.PartialUMService);
+            moveStatementHistoryService = new MoveStatementHistoryServiceImpl(dataFixture.DynamicRepository, dataFixture.PartialUMService, dataFixture.BetListRepository);
         }
 
         [Fact]

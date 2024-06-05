@@ -24,7 +24,7 @@
                 .FetchAsync<TicketDto>(Arg.Any<GetBetListRunningByBetTypeCriteria>())
                 .Returns(BetListDataTest.Tickets);
 
-            runningBetListByBetTypeService = new RunningBetListByBetTypeServiceImpl(dataFixture.DynamicRepository, dataFixture.PartialUMService, parlayService);
+            runningBetListByBetTypeService = new RunningBetListByBetTypeServiceImpl(dataFixture.DynamicRepository, dataFixture.PartialUMService, parlayService, dataFixture.BetListRepository);
         }
 
         [Fact]
