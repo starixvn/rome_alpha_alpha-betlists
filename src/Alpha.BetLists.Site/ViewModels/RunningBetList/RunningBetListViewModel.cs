@@ -10,6 +10,7 @@
     using Extensions;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
+    using Fanex.BetList.Core.Utils;
     using MemberBetList;
     using Params;
     using Requests.RunningBetList;
@@ -91,6 +92,33 @@
             };
 
             return Helpers.UrlHelper.AddQueryStringParamsFunc(link, routeValues);
+        }
+
+        public static string GetMemberWin(decimal? amount)
+            => amount.HasValue ? ConvertByBetType.Winloss(amount.Value) : "-";
+
+        public string GetSMARiskAmount(TicketDto ticket)
+        {
+            var amount = 0m;
+            if(!ticket.MemberWin.HasValue)
+            {
+                return "-";
+            }
+
+            if(ViewerLevel.IsSuperLevel())
+            {
+                amount = ticket.MemberWin.Value * ticket.SuperPositionTaking;
+            }
+            else if(ViewerLevel.IsMasterLevel())
+            {
+                amount = ticket.MemberWin.Value * ticket.MasterPositionTaking;
+            }
+            else
+            {
+                amount = ticket.MemberWin.Value * ticket.AgentPositionTaking;
+            }
+
+            return ConvertByBetType.Winloss(amount);
         }
     }
 }

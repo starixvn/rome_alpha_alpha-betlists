@@ -115,6 +115,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agent Risk.
+        /// </summary>
+        public static string AgentRisk {
+            get {
+                return ResourceManager.GetString("AgentRisk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All.
         /// </summary>
         public static string All {
@@ -1141,6 +1150,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Master Risk.
+        /// </summary>
+        public static string MasterRisk {
+            get {
+                return ResourceManager.GetString("MasterRisk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Data before {0} can be retrieved 31 days in max, please review your date range..
         /// </summary>
         public static string MaxDataRetrieveHistoryError {
@@ -1200,6 +1218,15 @@ namespace Alpha.BetLists.AppResources {
         public static string MemberNotFound {
             get {
                 return ResourceManager.GetString("MemberNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Member Win.
+        /// </summary>
+        public static string MemberRisk {
+            get {
+                return ResourceManager.GetString("MemberRisk", resourceCulture);
             }
         }
         
@@ -2091,6 +2118,15 @@ namespace Alpha.BetLists.AppResources {
         public static string superptcomm {
             get {
                 return ResourceManager.GetString("superptcomm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Super Risk.
+        /// </summary>
+        public static string SuperRisk {
+            get {
+                return ResourceManager.GetString("SuperRisk", resourceCulture);
             }
         }
         

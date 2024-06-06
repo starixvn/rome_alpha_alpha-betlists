@@ -858,4 +858,17 @@
   <data name="EnableChatBot_LastBets" xml:space="preserve">
     <value>Enable Chatbot &amp; Last Bets Notification to use Last Bets Notification feature. &lt;a class="lnk-chatbot"&gt;Go to Chatbot&lt;/a&gt;</value>
   </data>
+    <data name="MemberRisk" xml:space="preserve">
+    <value>Member Win</value>
+  </data>
+  <data name="MasterRisk" xml:space="preserve">
+    <value>Master Risk</value>
+  </data>
+  <data name="SuperRisk" xml:space="preserve">
+    <value>Super Risk</value>
+  </data>
+  <data name="AgentRisk" xml:space="preserve">
+    <value>Agent Risk</value>
+  </data>
+
 </root>

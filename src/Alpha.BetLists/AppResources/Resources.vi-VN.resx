@@ -839,4 +839,16 @@ Vui lòng chọn tiêu chí cho bộ lọc dựa trên nhu cầu theo dõi
   <data name="Notification" xml:space="preserve">
     <value>Thông báo</value>
   </data>
+  <data name="MemberRisk" xml:space="preserve">
+    <value>Member Thắng</value>
+  </data>
+  <data name="SuperRisk" xml:space="preserve">
+    <value>Rủi Ro Của Super</value>
+  </data>
+  <data name="MasterRisk" xml:space="preserve">
+    <value>Rủi Ro của Master</value>
+  </data>
+  <data name="AgentRisk" xml:space="preserve">
+    <value>Rủi Ro Của Agent</value>
+  </data>
 </root>

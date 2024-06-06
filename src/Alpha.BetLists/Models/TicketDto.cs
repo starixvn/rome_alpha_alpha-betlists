@@ -30,5 +30,7 @@
                 return deviceInfo ?? Resources.Platform_Uncategorized;
             }
         }
+
+        public decimal? MemberWin { get; set; }
     }
 }
