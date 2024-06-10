@@ -46,7 +46,6 @@
         private readonly Func<int, string> getProductName;
         private readonly IDynamicRepository dynamicRepository;
         private readonly ICacheService cacheService;
-        private readonly int[] IgnoreCheckProductStatusTypes = new[] { 41, 53 };
 
         public ProductServiceImpl(
             IDynamicRepository dynamicRepository,
@@ -166,7 +165,7 @@
                    .Select(product => new Product(product.Id, product.Name, product.EndOfSupportDate, getProductName, product.Type, product.OrderNo)),
                new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(CustProductsCacheTimeInMinutes)));
 
-            return products.Where(i => IsRemainSupportProduct(i, minReportDate) && (IgnoreCheckProductStatusTypes.Contains(i.Type) || canViewProduct(i.Id)));
+            return products.Where(i => IsRemainSupportProduct(i, minReportDate) && canViewProduct(i.Id));
         }
 
         private static bool IsRemainSupportProduct(Product product, DateTime minReportDate)
