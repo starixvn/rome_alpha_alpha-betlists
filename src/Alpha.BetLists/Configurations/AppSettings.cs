@@ -125,6 +125,8 @@
 
         public static bool IsEnabledLoggingApplicationStartEnd => GetConfigValue("EnableLogApplicationStartEnd") == "1";
 
+        public static string WLDetailSettingKeySites() => GetConfigValue("WLDetail.SettingKey:Sites");
+
         public static string GetConfigValue(string configName) => AppSettingValues[configName];
 
         public static void Verify()

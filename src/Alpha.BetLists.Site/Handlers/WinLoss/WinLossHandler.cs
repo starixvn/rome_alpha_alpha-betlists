@@ -76,6 +76,7 @@
                message.LimitedDateToShowInfo,
                message.Language,
                productDetailsXML,
+               message.Site,
                maxTotalRow,
                maxTotalRowConfig);
     }
