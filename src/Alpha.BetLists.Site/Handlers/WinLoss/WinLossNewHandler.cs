@@ -74,6 +74,7 @@
                     message.LimitedDateToShowInfo,
                     message.Language,
                     productDetailsXML,
+                    message.Site,
                     message.MaxTotalRow,
                     message.MaxTotalRowConfig);
 
@@ -129,6 +130,7 @@
                     message.LimitedDateToShowInfo,
                     message.Language,
                     productDetailsXML,
+                    message.Site,
                     message.MaxTotalRow,
                     message.MaxTotalRowConfig);
 
@@ -167,6 +169,7 @@
                 message.LimitedDateToShowInfo,
                 message.Language,
                 await productDetailService.BuildProductDetailsXMLAsync(validResourceIds, message.Is789Y),
+                message.Site,
                 message.MaxTotalRow,
                 message.MaxTotalRowConfig);
 

@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
     using Alpha.BetLists.AppResources;
     using Alpha.BetLists.DataAccesses;
+    using Alpha.BetLists.Helpers;
     using AlphaPlus.PartialUM.Services;
     using Criteria.WinLossByDate;
     using Extensions;
@@ -113,6 +114,7 @@
 
         private async Task<Tuple<IEnumerable<TicketDto>, IEnumerable<TicketData>, BetlistOutputParams>> GetBetList(WinLossParam param, DateTime fromDate)
         {
+            var subfix = FanexDataSettingKeyHelper.GetWinLossDetailSettingKeySubfix(param.SiteName);
             var criteria = new GetBetListWinLossByDateCriteria(
                             param.CustId,
                             param.ProductIds.JoinWithComma(),
@@ -120,6 +122,7 @@
                             fromDate,
                             param.ToDate,
                             reportDateService.GetMoveBetsDay(),
+                            subfix,
                             maxTotalRow: param.MaxTotalRow,
                             isExportExcel: param.IsExcel);
 

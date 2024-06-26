@@ -422,6 +422,7 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Helpers\BetTypeHelper.cs" />
     <Compile Include="Helpers\CacheRefServiceHelper.cs" />
+    <Compile Include="Helpers\FanexDataSettingKeyHelper.cs" />
     <Compile Include="Models\BalanceUpDayAndMoveBetsDay.cs" />
     <Compile Include="Models\BetListData.cs" />
     <Compile Include="Models\BetlistOutputParams.cs">

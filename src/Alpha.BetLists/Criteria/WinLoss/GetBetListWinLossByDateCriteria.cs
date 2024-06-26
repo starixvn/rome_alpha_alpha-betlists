@@ -13,6 +13,7 @@
             DateTime fromDate,
             DateTime toDate,
             DateTime moveBetsDate,
+            string subfix,
             bool showProgressiveBonus = false,
             int maxTotalRow = 10000,
             bool isExportExcel = false)
@@ -28,6 +29,7 @@
             ErrMsg = string.Empty;
             MaxTotalRow = maxTotalRow;
             IsExportExcel = isExportExcel;
+            Subfix = subfix;
         }
 
         public int CustId { get; }
@@ -53,7 +55,10 @@
 
         public bool IsExportExcel { get; }
 
-        public override string GetSettingKey() => "Age_BetList_SelWinLossByDate_Mem";
+        [SpParam(Ignored = true)]
+        public string Subfix { get; }
+
+        public override string GetSettingKey() => $"Age_BetList_SelWinLossByDate_Mem{Subfix}";
 
         public override bool IsValid() =>
             CustId > 0
