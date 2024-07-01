@@ -1,7 +1,9 @@
 ﻿namespace Alpha.BetLists.Site.Controllers
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Web.Mvc;
+    using Alpha.BetLists.Site.ViewModels.Components;
     using Alpha.BetLists.Site.ViewModels.WinLoss;
     using MediatR;
     using Requests.WinLoss;
@@ -23,6 +25,9 @@
 
         public async Task<ActionResult> BetListWeekSelection(WinLossBetListWeekSelectionQuery message)
             => message.IsValid() ? await PartialView<WinLossBetListWeekSelectionViewModel>(message) : View(InvalidBetListView);
+
+        public async Task<ActionResult> GetWeeks(WinLossWeeksQuery message)
+            => message.IsValid() ? await PartialView<IEnumerable<WeekSelectionViewModel>>(message) : View(InvalidBetListView);
 
         public async Task<ActionResult> BetList(WinLossBetListQuery message)
             => message.IsValid() ? await PartialView<WinLossViewModel>(message) : View(InvalidBetListView);

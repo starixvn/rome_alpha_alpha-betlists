@@ -13,7 +13,6 @@
     {
         public WinLossBetListWeekSelectionViewModel(
             WinLossBetListWeekSelectionQuery query,
-            IEnumerable<WeekSelectionViewModel> weekSelections,
             BetListData betListData,
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper,
@@ -33,13 +32,10 @@
                   excludingTicketStatus,
                   betlistOutputParams)
         {
-            WeekSelections = weekSelections;
             BreadcrumbLevels = string.IsNullOrWhiteSpace(query.BreadcrumbLevelJson)
                 ? Enumerable.Empty<BreadcrumbLevelViewModel>()
                 : JsonConvert.DeserializeObject<IEnumerable<BreadcrumbLevelViewModel>>(query.BreadcrumbLevelJson);
         }
-
-        public IEnumerable<WeekSelectionViewModel> WeekSelections { get; }
 
         public IEnumerable<BreadcrumbLevelViewModel> BreadcrumbLevels { get; set; }
     }

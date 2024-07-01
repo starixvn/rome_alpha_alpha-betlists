@@ -19,6 +19,8 @@ class WinLossBetListView {
     private betListWeekSelectionUrl: string;
     private betListWeekSelection: JQuery;
 
+    private betListWeeksUrl: string;
+
     private betListUrl: string;
     private tableBetList: JQuery;
 
@@ -58,6 +60,7 @@ class WinLossBetListView {
         };
         const betlistPath = $("#betlist-path").val();
         this.betListWeekSelectionUrl = betlistPath + "winloss/betlistweekselection?";
+        this.betListWeeksUrl = betlistPath + "winloss/getweeks?";
         this.betListWeekSelection = $("#betlist-week-selection");
         this.betListUrl = betlistPath + "winloss/betlist?";
         this.tableBetList = this.betListWeekSelection.find("#tbl-betlist");
@@ -111,6 +114,7 @@ class WinLossBetListView {
                     return;
                 }
 
+                this.getWeeks();
                 this.getBetListWeekSelection();
             }, this.getDateRangePickerLocale($("#language").data("currentlanguage"))));
 
@@ -123,6 +127,7 @@ class WinLossBetListView {
                     return;
                 }
 
+                this.getWeeks();
                 this.getBetListWeekSelection();
             }));
 
@@ -199,7 +204,6 @@ class WinLossBetListView {
             this.betListWeekSelection.html(html);
 
             this.tableBetList = this.betListWeekSelection.find("#tbl-betlist");
-            this.weekSelectionComponent.bindEvents();
             this.breadcrumbLevelComponent.bindEvents();
             this.bindExportExcelEvent();
             this.updateCurrentUrl();
@@ -213,6 +217,12 @@ class WinLossBetListView {
 
             this.betListWeekSelection.unblock();
         }).fail((jqXHR) => this.handleAjaxError(jqXHR, this.betListWeekSelection));
+    }
+
+    private getWeeks() {
+        $.get(`${this.betListWeeksUrl}${$.param(this.globalFormData)}`, (html) =>
+            this.weekSelectionComponent.reRender(html)
+        ).fail((jqXHR) => this.handleAjaxError(jqXHR));
     }
 
     private getBetListData() {
@@ -232,7 +242,7 @@ class WinLossBetListView {
         return this.globalFormData.productIds.length === 0;
     }
 
-    private handleAjaxError(jqXHR, element: JQuery) {
+    private handleAjaxError(jqXHR, element: JQuery = undefined) {
         if (jqXHR.status === 429) {
             window.location.href = window.top.alpha.urls.mainRootPath + "error/blocked";
         } else if (jqXHR.status === 500 && jqXHR.responseText) {
@@ -245,7 +255,7 @@ class WinLossBetListView {
                 window.location.href = `${siteMainUrl}partialum/index?${$.param(responseObject)}`;
             }
         } else {
-            element.unblock();
+            element && element.unblock();
         }
     }
 
