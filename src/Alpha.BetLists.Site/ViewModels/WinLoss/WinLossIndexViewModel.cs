@@ -24,7 +24,6 @@
             BetlistOutputParams betlistOutputParams = null)
             : base(
                 query,
-                weekSelections,
                 betListData,
                 builder,
                 ticketHelper,
@@ -40,6 +39,7 @@
                 query.MinDate);
             Products = products;
             ProductDetails = productDetails;
+            WeekSelections = weekSelections;
             Language = query.Language;
             ShowColumns = query.ShowColumns;
         }
@@ -49,6 +49,8 @@
         public IEnumerable<ProductViewModel> Products { get; }
 
         public IEnumerable<ProductDetailViewModel> ProductDetails { get; }
+
+        public IEnumerable<WeekSelectionViewModel> WeekSelections { get; }
 
         public string Language { get; }
 

@@ -26,9 +26,8 @@
                 @Resources.memberBetList - @Model.CustName
             </div>
             <div>
-                @Html.Partial("IconInformation", new List<string>() { Resources.ipnote, Resources.CommissionRoundNote, Resources.ContributionAmountRoundNote })
+                @{ Html.RenderPartial("IconInformation", new List<string>() { Resources.ipnote, Resources.CommissionRoundNote, Resources.ContributionAmountRoundNote }); }
             </div>
-
             <div class="push">
                 <div class="list-icon">
                     <ul>
@@ -42,8 +41,11 @@
         @DateRangePickerJQuery.Render(Model.DateRangePickerViewModel)
         @ProductAndProductDetailDropdown.Render()
     </div>
+    <div class="label-week-box" id="week-selection">
+        @{ Html.RenderPartial("~/Views/WinLoss/GetWeeks.cshtml", Model.WeekSelections); }
+    </div>
     <div id="betlist-week-selection" class="cover-week-selection">
-        @Html.Partial("~/Views/WinLoss/BetListWeekSelection.cshtml", Model)
+        @{ Html.RenderPartial("~/Views/WinLoss/BetListWeekSelection.cshtml", Model); }
     </div>
     @Html.Hidden("winloss-detail-report-path", Alpha.BetLists.Site.Helpers.UrlHelper.MapReportsPath("~/winlossdetail/"))
     @Html.Hidden("resource-ids", Model.ResourceIds)

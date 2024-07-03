@@ -16,8 +16,13 @@ class WeekSelectionComponent {
         this.bindEvents();
     }
 
+    reRender(html: string) {
+        this.getWeekContainer().html(html);
+        this.bindEvents();
+    }
+
     bindEvents() {
-        const labelWeeks = $("#" + this.weekSelectionOption.selectorId).find(".label-week:not(.disabled)");
+        const labelWeeks = this.getWeekContainer().find(".label-week:not(.disabled)");
         labelWeeks
             .off()
             .click((e) => {
@@ -29,7 +34,7 @@ class WeekSelectionComponent {
     }
 
     getActiveWeek() {
-        const activeWeek = $("#" + this.weekSelectionOption.selectorId).find(".label-week.active");
+        const activeWeek = this.getWeekContainer().find(".label-week.active");
         if (activeWeek.length) {
             const firstActiveWeek = activeWeek.eq(0);
             return {
@@ -39,5 +44,9 @@ class WeekSelectionComponent {
         }
 
         return {};
+    }
+
+    private getWeekContainer(): JQuery {
+        return $("#" + this.weekSelectionOption.selectorId);
     }
 }

@@ -1103,7 +1103,6 @@
     <Content Include="assets\styles\components\treeview.scss" />
     <Content Include="assets\styles\monitoring-bets\manage-filters.scss" />
     <Content Include="assets\styles\monitoring-bets\filter-configuration.scss" />
-    <Content Include="App_Code\Components\WeekSelection.cshtml" />
     <Content Include="App_Code\Components\BreadcrumbLevel.cshtml" />
     <Content Include="assets\styles\winloss.scss" />
     <Content Include="App_Code\Components\UsernameTagsInput.cshtml" />
@@ -1458,6 +1457,7 @@
       <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
     </Content>
     <Content Include="Web.uat4.config" />
+    <Content Include="Views\WinLoss\GetWeeks.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_GlobalResources\Resources.Designer.cs">
@@ -1609,6 +1609,7 @@
     <Compile Include="Requests\WinLoss\WinLossBetListWeekSelectionQuery.cs" />
     <Compile Include="Requests\WinLoss\WinLossIndexQuery.cs" />
     <Compile Include="Requests\WinLoss\WinLossQuery.cs" />
+    <Compile Include="Requests\WinLoss\WinLossWeeksQuery.cs" />
     <Compile Include="ViewModels\BetListBaseViewModel.cs" />
     <Compile Include="ViewModels\BetListByBetTypeAndMatch\BetListByBetTypeAndMatchViewModel.cs" />
     <Compile Include="ViewModels\BetListByBetType\BetListByBetTypeViewModel.cs" />

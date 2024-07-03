@@ -27,6 +27,7 @@ var WinLossBetListView = /** @class */ (function () {
         };
         var betlistPath = $("#betlist-path").val();
         this.betListWeekSelectionUrl = betlistPath + "winloss/betlistweekselection?";
+        this.betListWeeksUrl = betlistPath + "winloss/getweeks?";
         this.betListWeekSelection = $("#betlist-week-selection");
         this.betListUrl = betlistPath + "winloss/betlist?";
         this.tableBetList = this.betListWeekSelection.find("#tbl-betlist");
@@ -77,6 +78,7 @@ var WinLossBetListView = /** @class */ (function () {
             if (_this.isInvalidGlobalFormData()) {
                 return;
             }
+            _this.getWeeks();
             _this.getBetListWeekSelection();
         }, this.getDateRangePickerLocale($("#language").data("currentlanguage"))));
         this.productAndProductDetailDropdownComponent.render(new ProductAndProductDetailDropdownOption(this.productList, this.productDetailList, function (productsAndResources) {
@@ -84,6 +86,7 @@ var WinLossBetListView = /** @class */ (function () {
             if (_this.isInvalidGlobalFormData()) {
                 return;
             }
+            _this.getWeeks();
             _this.getBetListWeekSelection();
         }));
         var dateRange = this.dateRangePickerComponent.getDateRangeValues();
@@ -142,7 +145,6 @@ var WinLossBetListView = /** @class */ (function () {
         $.get(this.betListWeekSelectionUrl + $.param(formData), function (html) {
             _this.betListWeekSelection.html(html);
             _this.tableBetList = _this.betListWeekSelection.find("#tbl-betlist");
-            _this.weekSelectionComponent.bindEvents();
             _this.breadcrumbLevelComponent.bindEvents();
             _this.bindExportExcelEvent();
             _this.updateCurrentUrl();
@@ -154,6 +156,12 @@ var WinLossBetListView = /** @class */ (function () {
             }
             _this.betListWeekSelection.unblock();
         }).fail(function (jqXHR) { return _this.handleAjaxError(jqXHR, _this.betListWeekSelection); });
+    };
+    WinLossBetListView.prototype.getWeeks = function () {
+        var _this = this;
+        $.get("" + this.betListWeeksUrl + $.param(this.globalFormData), function (html) {
+            return _this.weekSelectionComponent.reRender(html);
+        }).fail(function (jqXHR) { return _this.handleAjaxError(jqXHR); });
     };
     WinLossBetListView.prototype.getBetListData = function () {
         var _this = this;
@@ -170,6 +178,7 @@ var WinLossBetListView = /** @class */ (function () {
         return this.globalFormData.productIds.length === 0;
     };
     WinLossBetListView.prototype.handleAjaxError = function (jqXHR, element) {
+        if (element === void 0) { element = undefined; }
         if (jqXHR.status === 429) {
             window.location.href = window.top.alpha.urls.mainRootPath + "error/blocked";
         }
@@ -184,7 +193,7 @@ var WinLossBetListView = /** @class */ (function () {
             }
         }
         else {
-            element.unblock();
+            element && element.unblock();
         }
     };
     WinLossBetListView.prototype.updateCurrentUrl = function () {

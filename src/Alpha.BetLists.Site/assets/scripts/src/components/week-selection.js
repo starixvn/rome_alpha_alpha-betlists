@@ -17,9 +17,13 @@ var WeekSelectionComponent = /** @class */ (function () {
         this.weekSelectionOption = options;
         this.bindEvents();
     };
+    WeekSelectionComponent.prototype.reRender = function (html) {
+        this.getWeekContainer().html(html);
+        this.bindEvents();
+    };
     WeekSelectionComponent.prototype.bindEvents = function () {
         var _this = this;
-        var labelWeeks = $("#" + this.weekSelectionOption.selectorId).find(".label-week:not(.disabled)");
+        var labelWeeks = this.getWeekContainer().find(".label-week:not(.disabled)");
         labelWeeks
             .off()
             .click(function (e) {
@@ -30,7 +34,7 @@ var WeekSelectionComponent = /** @class */ (function () {
         });
     };
     WeekSelectionComponent.prototype.getActiveWeek = function () {
-        var activeWeek = $("#" + this.weekSelectionOption.selectorId).find(".label-week.active");
+        var activeWeek = this.getWeekContainer().find(".label-week.active");
         if (activeWeek.length) {
             var firstActiveWeek = activeWeek.eq(0);
             return {
@@ -39,6 +43,9 @@ var WeekSelectionComponent = /** @class */ (function () {
             };
         }
         return {};
+    };
+    WeekSelectionComponent.prototype.getWeekContainer = function () {
+        return $("#" + this.weekSelectionOption.selectorId);
     };
     return WeekSelectionComponent;
 }());

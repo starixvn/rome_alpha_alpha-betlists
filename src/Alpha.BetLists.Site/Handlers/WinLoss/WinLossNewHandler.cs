@@ -4,11 +4,11 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using Alpha.BetLists.Extensions;
     using Alpha.BetLists.Models;
     using Alpha.BetLists.Params;
     using Alpha.BetLists.Services;
     using Alpha.BetLists.Site.Requests.WinLoss;
+    using Alpha.BetLists.Site.ViewModels.Components;
     using Alpha.BetLists.Site.ViewModels.WinLoss;
     using Alpha.IPInfo.Services;
     using AlphaPlus.SmartPunter.Services;
@@ -21,6 +21,7 @@
         BetListBaseHandler,
         IAsyncRequestHandler<WinLossIndexQuery, WinLossIndexViewModel>,
         IAsyncRequestHandler<WinLossBetListWeekSelectionQuery, WinLossBetListWeekSelectionViewModel>,
+        IAsyncRequestHandler<WinLossWeeksQuery, IEnumerable<WeekSelectionViewModel>>,
         IAsyncRequestHandler<WinLossBetListQuery, WinLossViewModel>
     {
         private readonly WinLossService winLossService;
@@ -105,7 +106,7 @@
             var productDetails = productsAndProductDetails.Item2;
 
             var validUserSelectedProductIds = GetValidUserSelectedProductIds(products, message.UserSelectedProductIds);
-            var validResourceIds = await productDetailService.FilterResourceIdsByCustomer(message.Site, message.CurrencyId, message.ResourceIds);            
+            var validResourceIds = await productDetailService.FilterResourceIdsByCustomer(message.Site, message.CurrencyId, message.ResourceIds);
             var productDetailsXML = await productDetailService.BuildProductDetailsXMLAsync(validResourceIds, message.Is789Y);
 
             var winLossWeekDataParam = new WinLossWeekDataParam(
@@ -142,13 +143,35 @@
 
             return new WinLossBetListWeekSelectionViewModel(
                 message,
-                BuildWeekSelectionViewModels(weekData, message.FromDate, message.ToDate),
                 betlistData,
                 Builder,
                 TicketHelper,
                 showContributionAmountRoundNote,
                 message.IsGroupHeadline,
                 betlistOutputParams: betlistData.BetlistOutputParams);
+        }
+
+        public async Task<IEnumerable<WeekSelectionViewModel>> Handle(WinLossWeeksQuery message)
+        {
+            var productsAndProductDetails = await GetProductsAndProductDetails(message);
+            var products = productsAndProductDetails.Item1;
+            var productDetails = productsAndProductDetails.Item2;
+
+            var validUserSelectedProductIds = GetValidUserSelectedProductIds(products, message.UserSelectedProductIds);
+            var validResourceIds = await productDetailService.FilterResourceIdsByCustomer(message.Site, message.CurrencyId, message.ResourceIds);
+            var productDetailsXML = await productDetailService.BuildProductDetailsXMLAsync(validResourceIds, message.Is789Y);
+
+            var winLossWeekDataParam = new WinLossWeekDataParam(
+                message.ViewerId,
+                message.FromDate,
+                message.ToDate,
+                message.LimitedDateToShowInfo,
+                validUserSelectedProductIds,
+                productDetailsXML,
+                message.CustName);
+            var weekData = await winLossService.GetWinLossWeekData(winLossWeekDataParam);
+
+            return BuildWeekSelectionViewModels(weekData, message.FromDate, message.ToDate);
         }
 
         public async Task<WinLossViewModel> Handle(WinLossBetListQuery message)
