@@ -774,7 +774,7 @@ Vui lòng chọn tiêu chí cho bộ lọc dựa trên nhu cầu theo dõi
     <value>Lưu &amp; Áp Dụng</value>
   </data>
   <data name="MonitoredMember" xml:space="preserve">
-    <value>Monitored Member</value>
+    <value>Đang theo dõi</value>
   </data>
   <data name="UnsavedFilter" xml:space="preserve">
     <value>Bộ Lọc Chưa Lưu</value>

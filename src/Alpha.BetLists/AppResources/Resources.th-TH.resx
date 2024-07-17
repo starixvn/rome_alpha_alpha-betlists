@@ -766,7 +766,7 @@
     <value>บันทึกและนำไปใช้</value>
   </data>
   <data name="MonitoredMember" xml:space="preserve">
-    <value>Monitored Member</value>
+    <value>สมาชิกที่กำลังเฝ้าดู</value>
   </data>
   <data name="UnsavedFilter" xml:space="preserve">
     <value>ตัวกรองที่ไม่ได้บันทึก</value>

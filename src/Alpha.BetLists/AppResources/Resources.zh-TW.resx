@@ -769,7 +769,7 @@
     <value>保存並應用</value>
   </data>
   <data name="MonitoredMember" xml:space="preserve">
-    <value>Monitored Member</value>
+    <value>監控會員</value>
   </data>
   <data name="UnsavedFilter" xml:space="preserve">
     <value>未保存篩選</value>
