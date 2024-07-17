@@ -746,6 +746,37 @@
                 sportName + ' - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
         }
     }
+
+    export class FastSpinTicketDetails extends BaseTicketDetails {
+        private static instance: FastSpinTicketDetails;
+
+        public static get Instance() {
+            this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new FastSpinTicketDetails() : this.instance;
+            return this.instance;
+        }
+
+        public ShowFastSpinTicketDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
+            const params = '?refno=' + refNo
+                + '&custid=' + custId
+                + '&transType=' + transType
+                + '&sportName=FastSpin&productId=87';
+
+            let width = 1500;
+            let roleId = Number(this.ViewerLevelId);
+
+            if (roleId <= 3) {
+                width -= 105;
+            }
+
+            if (roleId <= 2) {
+                width -= 105;
+            }
+
+            Common.PopupDetails.Instance(window.top).Show(
+                Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params,
+                'FastSpin - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+        }
+    }
 }
 
 let showRnGCasinoDetails: Function;
@@ -786,6 +817,7 @@ let showLive22BetDetails: Function;
 let showWELiveCasinoBetDetails: Function;
 let showUUSlotsBetDetails: Function;
 let showSabaxDDetails: Function;
+let showFastSpinBetDetails: Function;
 
 $(document).ready(() => {
     showRnGCasinoDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowRnGCasinoDetails;
@@ -826,4 +858,5 @@ $(document).ready(() => {
     showWELiveCasinoBetDetails = BetList.Choice.TicketDetails.WETicketDetails.Instance.ShoWELiveCasinoBetDetails;
     showUUSlotsBetDetails = BetList.Choice.TicketDetails.UUSlotsTicketDetails.Instance.ShowUUSlotsTicketDetails;
     showSabaxDDetails = BetList.Choice.TicketDetails.SabaxDTicketDetails.Instance.ShowSabaxDTicketDetails;
+    showFastSpinBetDetails = BetList.Choice.TicketDetails.FastSpinTicketDetails.Instance.ShowFastSpinTicketDetails;
 })
