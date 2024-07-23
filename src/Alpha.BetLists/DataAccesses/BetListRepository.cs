@@ -98,12 +98,24 @@ namespace Alpha.BetLists.DataAccesses
 
         private readonly Func<DataRow, TicketDto> mapTicketObjectFunction1 = r => new TicketDto
         {
-            ActualStake = r.Table.Columns.Contains("actual_stake") ? Converter.To<decimal>(r["actual_stake"]) : 0,
+            SuperWinlost = r.Table.Columns.Contains("swinlost") ? Converter.ToDecimal(r["swinlost"]) : 0,
+            SuperPositionTaking = r.Table.Columns.Contains("spositiontaking") ? Converter.ToDecimal(r["spositiontaking"]) : 0,
+            SuperComm = r.Table.Columns.Contains("scomm") ? Converter.ToDecimal(r["scomm"]) : 0,
+            SuperDiscount = r.Table.Columns.Contains("sdiscount") ? Converter.ToDecimal(r["sdiscount"]) : 0,
+
+            MasterWinlost = r.Table.Columns.Contains("mwinlost") ? Converter.ToDecimal(r["mwinlost"]) : 0,
+            MasterPositionTaking = r.Table.Columns.Contains("mpositiontaking") ? Converter.ToDecimal(r["mpositiontaking"]) : 0,
+            Comm = r.Table.Columns.Contains("comm") ? Converter.ToDecimal(r["comm"]) : 0,
+            MasterDiscount = r.Table.Columns.Contains("adiscount") ? Converter.ToDecimal(r["adiscount"]) : 0,
+            MasterOdds = r.Table.Columns.Contains("modds") ? Converter.ToDecimal(r["modds"]) : 0,
 
             AgentWinlost = r.Table.Columns.Contains("awinlost") ? Converter.ToDecimal(r["awinlost"]) : 0,
             AgentPositionTaking = r.Table.Columns.Contains("apositiontaking") ? Converter.ToDecimal(r["apositiontaking"]) : 0,
-            Comm = r.Table.Columns.Contains("comm") ? Converter.ToDecimal(r["comm"]) : 0,
-            AgentDiscount = r.Table.Columns.Contains("discount") ? Converter.ToDecimal(r["discount"]) : 0,
+            AgentComm = r.Table.Columns.Contains("acomm") ? Converter.ToDecimal(r["acomm"]) : 0,
+            AgentDiscount = r.Table.Columns.Contains("discount") ? Converter.ToDecimal(r["discount"]) : 0,            
+
+            ActualStake = r.Table.Columns.Contains("actual_stake") ? Converter.To<decimal>(r["actual_stake"]) : 0,            
+            PlayerComm = r.Table.Columns.Contains("commission") ? Converter.ToDecimal(r["commission"]) : 0,
 
             AwayId = r.Table.Columns.Contains("awayid") ? Converter.To<long>(r["awayid"]) : 0,
             BetId = r.Table.Columns.Contains("betid") ? Converter.To<long>(r["betid"]) : 0,
@@ -122,47 +134,29 @@ namespace Alpha.BetLists.DataAccesses
             LeagueGroupId = r.Table.Columns.Contains("leaguegroupid") ? Converter.To<int>(r["leaguegroupid"]) : 0,
             LiveHomeScore = r.Table.Columns.Contains("livehomescore") ? Converter.To<int>(r["livehomescore"]) : 0,
             LiveAwayScore = r.Table.Columns.Contains("liveawayscore") ? Converter.To<int>(r["liveawayscore"]) : 0,
-
-            MasterWinlost = r.Table.Columns.Contains("mwinlost") ? Converter.ToDecimal(r["mwinlost"]) : 0,
-            MasterPositionTaking = r.Table.Columns.Contains("mpositiontaking") ? Converter.ToDecimal(r["mpositiontaking"]) : 0,
-            AgentComm = r.Table.Columns.Contains("acomm") ? Converter.ToDecimal(r["acomm"]) : 0,
-            MasterDiscount = r.Table.Columns.Contains("adiscount") ? Converter.ToDecimal(r["adiscount"]) : 0,
-
-            MasterOdds = r.Table.Columns.Contains("modds") ? Converter.ToDecimal(r["modds"]) : 0,
             MatchCode = r.Table.Columns.Contains("matchcode") ? Converter.ToString2(r["matchcode"]) : string.Empty,
             MatchId = r.Table.Columns.Contains("matchid") ? Converter.To<int>(r["matchid"]) : 0,
             Odds = r.Table.Columns.Contains("odds") ? Converter.ToDecimal(r["odds"]) : 0,
-            OddsType = r.Table.Columns.Contains("OddsType") ? Converter.ToString2(r["OddsType"]) : string.Empty,
-            PlayerComm = r.Table.Columns.Contains("PlayerComm") ? Converter.ToDecimal(r["PlayerComm"]) : 0,
+            OddsType = r.Table.Columns.Contains("OddsType") ? Converter.ToString2(r["OddsType"]) : string.Empty,            
             Race = r.Table.Columns.Contains("race") ? Converter.ToString2(r["race"]) : string.Empty,
             RefNo = r.Table.Columns.Contains("refno") ? Converter.ToString2(r["refno"]) : string.Empty,
             ShowTime = r.Table.Columns.Contains("showtime") ? Converter.ToString2(r["showtime"]) : string.Empty,
             SportTypeId = r.Table.Columns.Contains("sporttype") ? Converter.To<int>(r["sporttype"]) : 0,
             Stake = r.Table.Columns.Contains("stake") ? Converter.To<decimal>(r["stake"]) : 0,
             Status = r.Table.Columns.Contains("status") ? Converter.ToString2(r["status"]) : string.Empty,
-
-            SuperWinlost = r.Table.Columns.Contains("swinlost") ? Converter.ToDecimal(r["swinlost"]) : 0,
-            SuperPositionTaking = r.Table.Columns.Contains("spositiontaking") ? Converter.ToDecimal(r["spositiontaking"]) : 0,
-            SuperComm = r.Table.Columns.Contains("scomm") ? Converter.ToDecimal(r["scomm"]) : 0,
-            SuperDiscount = r.Table.Columns.Contains("sdiscount") ? Converter.ToDecimal(r["sdiscount"]) : 0,
-
             TransDate = r.Table.Columns.Contains("transdate") ? Converter.ToDateTime(r["transdate"]) : DateTime.MinValue,
             TransId = r.Table.Columns.Contains("transid") ? Converter.To<long>(r["transid"]) : 0,
             UserName = r.Table.Columns.Contains("username") ? Converter.ToString2(r["username"]) : string.Empty,
             Winlost = r.Table.Columns.Contains("winlost") ? Converter.ToDecimal(r["winlost"]) : 0,
             WinlostDate = r.Table.Columns.Contains("winlostdate") ? Convert.ToDateTime(r["winlostdate"]) : DateTime.MinValue,
             TransDesc = r.Table.Columns.Contains("transdesc") ? Converter.ToString2(r["transdesc"]) : string.Empty,
-
             BetCheck = r.Table.Columns.Contains("betcheck") ? Converter.ToString2(r["betcheck"]) : string.Empty,
             OddsSpread = r.Table.Columns.Contains("OddsSpread") ? Converter.ToDecimal(r["OddsSpread"]) : 0,
-
             OriginalBetType = r.Table.Columns.Contains("OriginalBetType") ? Converter.To<int>(r["OriginalBetType"]) : 0,
             BetdaqId = r.Table.Columns.Contains("BetdaqId") ? Converter.To<long>(r["BetdaqId"]) : 0,
             ExtraInfo = r.Table.Columns.Contains("ExtraInfo") ? Converter.ToString2(r["ExtraInfo"]) : string.Empty,
-
             Currency = r.Table.Columns.Contains("Currency") ? Converter.ToString2(r["Currency"]) : string.Empty,
             CurrencyId = r.Table.Columns.Contains("CurrencyId") ? Converter.ToInt(r["CurrencyId"]) : 0,
-
             WalletType = r.Table.Columns.Contains("wallettype") ? Converter.To<byte>(r["wallettype"]) : (byte)0,
             RefCode = r.Table.Columns.Contains("refcode") ? Converter.To<long>(r["refcode"]) : 0,
             SettlementStatus = r.Table.Columns.Contains("SettlementStatus") ? Converter.To<byte>(r["SettlementStatus"]) : (byte)0,
