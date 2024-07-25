@@ -6,6 +6,7 @@
             int filterId,
             string filterName,
             bool isDefault,
+            bool isNotify,
             string betTypes,
             int stake,
             byte eventStatus,
@@ -17,6 +18,7 @@
             FilterId = filterId;
             FilterName = filterName;
             IsDefault = isDefault;
+            IsNotify = isNotify;
             BetTypes = betTypes;
             Stake = stake;
             EventStatus = eventStatus;
@@ -31,6 +33,8 @@
         public string FilterName { get; }
 
         public bool IsDefault { get; }
+
+        public bool IsNotify { get; }
 
         public string BetTypes { get; }
 

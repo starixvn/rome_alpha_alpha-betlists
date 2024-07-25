@@ -21,7 +21,8 @@
             string myWatchlistMembers,
             byte filterByMembers,
             string languageKey,
-            string ip) : base(custId, subAccId, 0, filterName, isDefault, languageKey, ip)
+            string ip,
+            bool isNotify) : base(custId, subAccId, 0, filterName, isDefault, languageKey, ip, isNotify)
         {
             BetType = betType;
             Stake = stake;

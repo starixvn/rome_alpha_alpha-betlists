@@ -9,12 +9,17 @@
                 <h4 class="modal-title">@Resources.SaveToMyFilters</h4>
             </div>
             <div class="modal-body">
+                <div id="inline-message-popup" class="msg hide"></div>
                 <label class="ttl">@Resources.FilterName <span class="require">*</span></label>
                 <input type="text" id="txt-filterName" autocomplete="off" maxlength="50" />
-                <div id="inline-message-popup" class="msg hide"></div>
             </div>
             <div class="modal-footer">
                 <label><input type="checkbox" id="chk-isDefault" /><span>@Resources.SetAsDefaultFilter</span></label>
+            </div>
+            <div class="modal-footer">
+                <label><input type="checkbox" id="chk-isNotify" /><span>@Resources.NotifyLastBetsViaTelegram</span></label>
+            </div>
+            <div class="modal-footer">
                 <div class="block-btn">
                     <button type="button" class="button button-cancel" data-dismiss="modal">@Resources.Cancel</button>
                     <button type="button" class="button button-save" id="btn-save-filter-popup">@(Model ? Resources.Save : Resources.SaveFilter)</button>
@@ -29,3 +34,4 @@
 </div>
 @Html.Hidden("hidden-FilterNameRequiredError", Resources.FilterConfigurationFilterNameRequiredError)
 @Html.Hidden("hidden-SaveFilterUrl", Url.Action(Model ? "AddFilter" : "AddCustomFilter", $"{AppSettings.BetlistRouting}MonitoringBets"))
+@Html.Hidden("chatbot-path", AppPathHelper.GetAppPath(AppSettings.MainAppPath, "~/TelegramChatBot/Setup"))

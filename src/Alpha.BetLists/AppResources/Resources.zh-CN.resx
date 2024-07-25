@@ -822,4 +822,19 @@
   <data name="Last3Months" xml:space="preserve">
     <value>过去3个月</value>
   </data>
+  <data name="NotifyLastBetsViaTelegram" xml:space="preserve">
+    <value>当新注单符合您的筛选，会在Telegram上收到通知。</value>
+  </data>
+  <data name="Notification" xml:space="preserve">
+    <value>通告</value>
+  </data>
+  <data name="EnableChatBot_LastBets" xml:space="preserve">
+    <value>启用Chatbot及最后投注通知以使用最后投注通知功能。&lt;a class="lnk-chatbot"&gt;前往到Chatbot&lt;/a&gt;</value>
+  </data>
+  <data name="confirmTurnOnNotification" xml:space="preserve">
+    <value>您确定要通过 Telegram 启用此筛选通知吗？ 注目：筛选通知数量最多为 3</value>
+  </data>
+  <data name="confirmTurnOffNotification" xml:space="preserve">
+    <value>您确定要通过 Telegram 禁用此筛选的通知吗？</value>
+  </data>
 </root>

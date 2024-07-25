@@ -22,6 +22,7 @@
             WatchList = param.MyWatchlist;
             Language = param.LanguageKey;
             IP = param.IP;
+            IsNotify = param.IsNotify;
         }
 
         public int CustId { get; }
@@ -31,6 +32,8 @@
         public string FilterName { get; }
 
         public bool IsDefault { get; }
+
+        public bool IsNotify { get; }
 
         public string BetType { get; }
 

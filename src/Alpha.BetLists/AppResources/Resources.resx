@@ -846,4 +846,19 @@
   <data name="Last3Months" xml:space="preserve">
     <value>Last 3 Months</value>
   </data>
+  <data name="NotifyLastBetsViaTelegram" xml:space="preserve">
+    <value>Notify via Telegram when new tickets match your filters</value>
+  </data>
+  <data name="Notification" xml:space="preserve">
+    <value>Notification</value>
+  </data>
+  <data name="confirmTurnOffNotification" xml:space="preserve">
+    <value>Are you sure you want to disable notifications of this filter via Telegram?</value>
+  </data>
+  <data name="confirmTurnOnNotification" xml:space="preserve">
+    <value>Are you sure you want to enable notifications of this filter via Telegram? Note: The maximum number of notification filters is 3</value>
+  </data>
+  <data name="EnableChatBot_LastBets" xml:space="preserve">
+    <value>Enable Chatbot &amp; Last Bets Notification to use Last Bets Notification feature. &lt;a class="lnk-chatbot"&gt;Go to Chatbot&lt;/a&gt;</value>
+  </data>
 </root>

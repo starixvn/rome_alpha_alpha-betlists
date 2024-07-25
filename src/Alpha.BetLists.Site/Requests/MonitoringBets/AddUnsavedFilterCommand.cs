@@ -1,5 +1,6 @@
 ﻿namespace Alpha.BetLists.Site.Requests.MonitoringBets
 {
+    using System.Web.Mvc;
     using Alpha.BetLists.Models;
     using Alpha.Web.Models;
     using MediatR;
@@ -13,9 +14,12 @@
             IP = viewer.IP;
         }
 
+        [AllowHtml]
         public string FilterName { get; set; }
 
         public bool IsDefault { get; set; }
+
+        public bool IsNotify { get; set; }
 
         public bool IsInternal { get; }
 

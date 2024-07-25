@@ -1,5 +1,6 @@
 ﻿namespace Alpha.BetLists.Site.Requests.MonitoringBets
 {
+    using System.Web.Mvc;
     using Alpha.BetLists.Models;
     using Alpha.BetLists.Site.ViewModels.MonitoringBets;
     using MediatR;
@@ -10,6 +11,7 @@
         {
         }
 
+        [AllowHtml]
         public string FilterName { get; set; }
 
         public int LimitRowCount { get; set; }

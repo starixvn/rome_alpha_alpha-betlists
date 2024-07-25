@@ -107,7 +107,8 @@
         </div>
     </div>
     <div class="block-btn">@RenderButtonGroup()</div>
-    @if (Model.ShowWelcomePopup) { @Html.Partial("_WelcomePopup") }
+    @if (Model.ShowWelcomePopup)
+    {@Html.Partial("_WelcomePopup")}
     @Html.Partial("_SaveFilterConfirmPopup", true)
 </div>
 @Html.Hidden("hidden-BetTypesRequiredError", Resources.FilterConfigurationBetTypesRequiredError)

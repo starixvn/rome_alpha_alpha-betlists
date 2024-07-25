@@ -58,12 +58,14 @@ var FilterConfigurationView = /** @class */ (function () {
         var saveFilterPopup = $("#save-filter-popup");
         this.filterNameInput = saveFilterPopup.find("#txt-filterName");
         this.isDefaultCheckbox = saveFilterPopup.find("#chk-isDefault");
+        this.isNotifyCheckbox = saveFilterPopup.find("#chk-isNotify");
         saveFilterPopup
             .on("shown.bs.modal", function () { return _this.filterNameInput.focus(); })
             .on("hide.bs.modal", function () {
             _this.filterNameInput.val("");
             TipsyHelper.clear(_this.filterNameInput);
             _this.isDefaultCheckbox.prop("checked", false);
+            _this.isNotifyCheckbox.prop("checked", false);
             _this.inlineMessagePopup.hide();
         });
         saveFilterPopup.find("#btn-save-filter-popup").click(function () { return _this.handleSaveFilterPopup(function () {
@@ -197,9 +199,11 @@ var FilterConfigurationView = /** @class */ (function () {
             return;
         }
         var isDefault = this.isDefaultCheckbox.is(":checked");
+        var isNotify = this.isNotifyCheckbox.is(":checked");
         return {
             filterName: filterName,
-            isDefault: isDefault
+            isDefault: isDefault,
+            isNotify: isNotify
         };
     };
     FilterConfigurationView.prototype.handleApplyFilter = function () {
@@ -221,7 +225,10 @@ var FilterConfigurationView = /** @class */ (function () {
             this.addFilterFormData = $.extend(this.addFilterFormData, formDataPopup);
             AJAXHelper.post("AddFilter", this.addFilterFormData, function (result) {
                 _this.inlineMessagePopup.show(result);
-                if (!result.ErrCode) {
+                if (result.ErrCode) {
+                    $(".lnk-chatbot").click(function () { location.href = $("#chatbot-path").val(); });
+                }
+                else {
                     reloadPageCallback();
                     _this.addFilterFormData = null;
                 }
@@ -229,7 +236,7 @@ var FilterConfigurationView = /** @class */ (function () {
         }
     };
     FilterConfigurationView.prototype.getMainPageUrl = function (filterName) {
-        return window.location.href.split("?")[0].replace(/FilterConfiguration/i, "") + "?filterName=" + filterName;
+        return window.location.href.split("?")[0].replace(/FilterConfiguration/i, "") + "?filterName=" + encodeURIComponent(filterName);
     };
     FilterConfigurationView.prototype.scrollTopInlineMessage = function ($element) {
         if ($element === void 0) { $element = undefined; }

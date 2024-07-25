@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Functions SiteId="105" SiteName="Bet Lists">
+  <Function Name="Monitoring Bets">
+    <Setting Key="Age_Chatbot_StatusCheck" SpName="Age_Chatbot_StatusCheck" DbName="DBBOT.bodb_Chatbot.wsv_alpv" Plain="0" />
+  </Function>
+</Functions>
