@@ -37,6 +37,7 @@
         private static weResult: ResultDetails;
         private static uuSlotsResult: ResultDetails;
         private static sabaxDResult: ResultDetails;
+        private static fastSpinResult: ResultDetails;
 
         public static CreateInstance(betTypeId: number): ResultDetails {
             if (betTypeId === 9 || betTypeId === 29 || betTypeId === 2799 || betTypeId === 10449) {
@@ -220,6 +221,11 @@
             if (betTypeId >= 10801 && betTypeId <= 11000) {
                 this.sabaxDResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sabaxDResult) ? new SabaxDResultDetails() : this.sabaxDResult;
                 return this.sabaxDResult;
+            }
+
+            if (betTypeId >= 11100 && betTypeId <= 11299) {
+                this.fastSpinResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.fastSpinResult) ? new FastSpinResultDetails() : this.fastSpinResult;
+                return this.fastSpinResult;
             }
 
             this.sportsbookResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sportsbookResult) ? new SportsbookResultDetails : this.sportsbookResult;

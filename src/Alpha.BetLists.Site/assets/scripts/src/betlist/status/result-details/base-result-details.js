@@ -158,6 +158,10 @@ var BetList;
                         this.sabaxDResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sabaxDResult) ? new ResultDetails.SabaxDResultDetails() : this.sabaxDResult;
                         return this.sabaxDResult;
                     }
+                    if (betTypeId >= 11100 && betTypeId <= 11299) {
+                        this.fastSpinResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.fastSpinResult) ? new ResultDetails.FastSpinResultDetails() : this.fastSpinResult;
+                        return this.fastSpinResult;
+                    }
                     this.sportsbookResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sportsbookResult) ? new ResultDetails.SportsbookResultDetails : this.sportsbookResult;
                     return this.sportsbookResult;
                 };
