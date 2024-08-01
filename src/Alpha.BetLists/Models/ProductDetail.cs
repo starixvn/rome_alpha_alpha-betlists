@@ -28,10 +28,9 @@
             ChildResourceId = childResourceId;
         }
 
-        public int Order { get; }
+        public int Order { get; set; }
         
         public string RefId { get; set; }
-
 
         public int ResourceId { get; set; }
 
@@ -43,11 +42,11 @@
 
         public int BetType { get; set; }
 
-        public int LeagueGroupId { get; }
+        public int LeagueGroupId { get; set; }
 
-        public int TicketType { get; }
+        public int TicketType { get; set; }
 
-        public int ChildResourceId { get; }
+        public int ChildResourceId { get; set; }
 
         public override string ToString()
             => string.Format(
