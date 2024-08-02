@@ -963,4 +963,32 @@
             Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/FACHAIResult' + params, "", 835, 675);
         }
     }
+
+    export class NextspinResultDetails extends BaseResultDetails implements ResultDetails {
+        public ViewResultDetails = (
+            matchId?: number,
+            race?: number,
+            betTypeId?: number,
+            sportTypeId?: number,
+            refNo?: string,
+            userName?: string,
+            winLostDate?: Date,
+            refNoMixParlay?: number,
+            league?: number,
+            isOutright?: boolean,
+            currencyId?: number,
+            gameId3rd?: string,
+            custId?: number,
+            transId3rd?: string,
+            siteId?: string) => {
+            var params = '?custId=' + custId +
+                '&transId3rd=' + transId3rd +
+                '&gameId3rd=' + gameId3rd +
+                '&currencyId=' + currencyId +
+                '&siteId=' + siteId +
+                '&endtime=' + winLostDate +
+                '&productId=85';
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/NextspinResult' + params, "", 835, 675);
+        }
+    }
 }

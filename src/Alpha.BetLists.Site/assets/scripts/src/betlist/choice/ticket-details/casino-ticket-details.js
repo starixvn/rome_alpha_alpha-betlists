@@ -852,6 +852,38 @@ var BetList;
                 return FACHAITicketDetails;
             }(TicketDetails.BaseTicketDetails));
             TicketDetails.FACHAITicketDetails = FACHAITicketDetails;
+            var NextspinTicketDetails = /** @class */ (function (_super) {
+                __extends(NextspinTicketDetails, _super);
+                function NextspinTicketDetails() {
+                    var _this = _super !== null && _super.apply(this, arguments) || this;
+                    _this.ShowNextspinTicketDetails = function (refNo, winlossDate, custId, transType) {
+                        var params = '?refno=' + refNo
+                            + '&custid=' + custId
+                            + '&transType=' + transType
+                            + '&sportName=Nextspin&productId=85';
+                        var width = 1500;
+                        var roleId = Number(_this.ViewerLevelId);
+                        if (roleId <= 3) {
+                            width -= 105;
+                        }
+                        if (roleId <= 2) {
+                            width -= 105;
+                        }
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'Nextspin - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                    };
+                    return _this;
+                }
+                Object.defineProperty(NextspinTicketDetails, "Instance", {
+                    get: function () {
+                        this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new NextspinTicketDetails() : this.instance;
+                        return this.instance;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                return NextspinTicketDetails;
+            }(TicketDetails.BaseTicketDetails));
+            TicketDetails.NextspinTicketDetails = NextspinTicketDetails;
         })(TicketDetails = Choice.TicketDetails || (Choice.TicketDetails = {}));
     })(Choice = BetList.Choice || (BetList.Choice = {}));
 })(BetList || (BetList = {}));
@@ -895,6 +927,7 @@ var showUUSlotsBetDetails;
 var showSabaxDDetails;
 var showFastSpinBetDetails;
 var showFACHAIBetDetails;
+var showNextspinBetDetails;
 $(document).ready(function () {
     showRnGCasinoDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowRnGCasinoDetails;
     showVoidBridgeDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowMacauGamesDetails;
@@ -936,5 +969,6 @@ $(document).ready(function () {
     showSabaxDDetails = BetList.Choice.TicketDetails.SabaxDTicketDetails.Instance.ShowSabaxDTicketDetails;
     showFastSpinBetDetails = BetList.Choice.TicketDetails.FastSpinTicketDetails.Instance.ShowFastSpinTicketDetails;
     showFACHAIBetDetails = BetList.Choice.TicketDetails.FACHAITicketDetails.Instance.ShowFACHAITicketDetails;
+    showNextspinBetDetails = BetList.Choice.TicketDetails.NextspinTicketDetails.Instance.ShowNextspinTicketDetails;
 });
 //# sourceMappingURL=casino-ticket-details.js.map

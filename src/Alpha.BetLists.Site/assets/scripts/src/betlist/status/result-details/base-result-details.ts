@@ -39,6 +39,7 @@
         private static sabaxDResult: ResultDetails;
         private static fastSpinResult: ResultDetails;
         private static faCHAIResult: ResultDetails;
+        private static nextspinResult: ResultDetails;
 
         public static CreateInstance(betTypeId: number): ResultDetails {
             if (betTypeId === 9 || betTypeId === 29 || betTypeId === 2799 || betTypeId === 10449) {
@@ -232,6 +233,11 @@
             if (betTypeId >= 11300 && betTypeId <= 11399) {
                 this.faCHAIResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.faCHAIResult) ? new FACHAIResultDetails() : this.faCHAIResult;
                 return this.faCHAIResult;
+            }
+
+            if (betTypeId >= 10450 && betTypeId <= 10750) {
+                this.nextspinResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.nextspinResult) ? new NextspinResultDetails() : this.nextspinResult;
+                return this.nextspinResult;
             }
 
             this.sportsbookResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sportsbookResult) ? new SportsbookResultDetails : this.sportsbookResult;

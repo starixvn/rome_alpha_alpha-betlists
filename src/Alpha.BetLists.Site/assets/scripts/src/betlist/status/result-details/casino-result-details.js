@@ -659,6 +659,25 @@ var BetList;
                 return FACHAIResultDetails;
             }(ResultDetails.BaseResultDetails));
             ResultDetails.FACHAIResultDetails = FACHAIResultDetails;
+            var NextspinResultDetails = /** @class */ (function (_super) {
+                __extends(NextspinResultDetails, _super);
+                function NextspinResultDetails() {
+                    var _this = _super !== null && _super.apply(this, arguments) || this;
+                    _this.ViewResultDetails = function (matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, currencyId, gameId3rd, custId, transId3rd, siteId) {
+                        var params = '?custId=' + custId +
+                            '&transId3rd=' + transId3rd +
+                            '&gameId3rd=' + gameId3rd +
+                            '&currencyId=' + currencyId +
+                            '&siteId=' + siteId +
+                            '&endtime=' + winLostDate +
+                            '&productId=85';
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/NextspinResult' + params, "", 835, 675);
+                    };
+                    return _this;
+                }
+                return NextspinResultDetails;
+            }(ResultDetails.BaseResultDetails));
+            ResultDetails.NextspinResultDetails = NextspinResultDetails;
         })(ResultDetails = Status.ResultDetails || (Status.ResultDetails = {}));
     })(Status = BetList.Status || (BetList.Status = {}));
 })(BetList || (BetList = {}));
