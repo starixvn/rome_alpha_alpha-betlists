@@ -141,8 +141,8 @@
     <Reference Include="Fanex.BetDetails.Casino, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetDetails.Casino.2.0.0-standard4\lib\netstandard2.0\Fanex.BetDetails.Casino.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.BetList.AdvantPlay, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.AdvantPlay.2.0.0\lib\net461\Fanex.BetList.AdvantPlay.dll</HintPath>
+    <Reference Include="Fanex.BetList.AdvantPlay, Version=2.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.AdvantPlay.2.0.0.2\lib\net461\Fanex.BetList.AdvantPlay.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.AdvantPlayMini, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.AdvantPlayMini.2.0.0\lib\net461\Fanex.BetList.AdvantPlayMini.dll</HintPath>
@@ -1466,7 +1466,7 @@
     <Content Include="Web.ConnectionStrings.sit.config">
       <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
     </Content>
-	<Content Include="Web.ConnectionStrings.sit2.config">
+    <Content Include="Web.ConnectionStrings.sit2.config">
       <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
     </Content>
   </ItemGroup>
