@@ -5,7 +5,6 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Alpha.BetLists.AppResources;
-    using Alpha.BetLists.DataAccesses;
     using Alpha.BetLists.Helpers;
     using AlphaPlus.PartialUM.Services;
     using Criteria.WinLossByDate;
@@ -29,18 +28,15 @@
         private readonly ReportDateService reportDateService;
         private readonly IDynamicRepository dynamicRepository;
         private readonly IPartialUMService partialUMService;
-        private readonly IBetListRepository betlistRepository;
 
         public WinLossServiceImpl(
             ReportDateService reportDateService,
             IDynamicRepository dynamicRepository,
-            IPartialUMService partialUMService,
-            IBetListRepository betlistRepository)
+            IPartialUMService partialUMService)
         {
             this.reportDateService = reportDateService;
             this.dynamicRepository = dynamicRepository;
             this.partialUMService = partialUMService;
-            this.betlistRepository = betlistRepository;
         }
 
         public async Task<BetListData> GetBetList(WinLossParam param)
@@ -133,8 +129,7 @@
 
             partialUMService.ThrowIfUM(criteria.GetSettingKey());
 
-            //var result = await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
-            var result = betlistRepository.FetchMultiple(criteria);
+            var result = await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
             var errFormat = param.IsExcel ?
                 string.Format(Resources.ExceededMaxTotalRowExportExcelFunc, param.MaxTotalRowConfig) :
                 string.Format(Resources.ExceededMaxTotalRowWithExcelFunc, criteria.MaxTotalRow, param.MaxTotalRowConfig);
@@ -165,8 +160,7 @@
 
             partialUMService.ThrowIfUM(criteria.GetSettingKey());
 
-            //var result = await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
-            var result = betlistRepository.FetchMultiple(criteria);
+            var result = await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
             var errFormat = param.IsExcel ?
                 string.Format(Resources.ExceededMaxTotalRowExportExcelFunc, param.MaxTotalRowConfig) :
                 string.Format(Resources.ExceededMaxTotalRowWithExcelFunc, criteria.MaxTotalRow, param.MaxTotalRowConfig);

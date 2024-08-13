@@ -37,7 +37,7 @@
                 .FetchMultipleAsync<TicketDto, TicketData>(Arg.Any<GetBetListWinLossByDateOldCriteria>())
                 .Returns(BetListDataTest.OldBetListDataTuple);
 
-            winLossService = new WinLossServiceImpl(reportDateService, this.dataFixture.DynamicRepository, dataFixture.PartialUMService, dataFixture.BetListRepository);
+            winLossService = new WinLossServiceImpl(reportDateService, this.dataFixture.DynamicRepository, dataFixture.PartialUMService);
         }
 
         [Fact]
@@ -51,7 +51,8 @@
                 DateTime.Today.AddDays(2),
                 DateTime.MinValue,
                 "en",
-                BetListDataTest.ProductDetailsXML);
+                BetListDataTest.ProductDetailsXML,
+                "xyz");
 
             // Act
             var actualBetListData = winLossService.GetBetList(param).GetAwaiter().GetResult();
@@ -72,7 +73,8 @@
                 DateTime.Today.AddDays(2),
                 DateTime.MinValue,
                 "en",
-                BetListDataTest.ProductDetailsXML);
+                BetListDataTest.ProductDetailsXML,
+                "xyz");
 
             // Act
             winLossService.GetBetList(param).GetAwaiter().GetResult();
@@ -100,7 +102,8 @@
                 DateTime.Today.AddDays(2),
                 limiteDate,
                 "en",
-                BetListDataTest.ProductDetailsXML);
+                BetListDataTest.ProductDetailsXML,
+                "xyz");
 
             // Act
             winLossService.GetBetList(param).GetAwaiter().GetResult();
@@ -123,7 +126,8 @@
                 DateTime.Today.AddDays(-2),
                 limitedDate,
                 "en",
-                BetListDataTest.ProductDetailsXML);
+                BetListDataTest.ProductDetailsXML,
+                "xyz");
 
             // Act
             winLossService.GetBetList(param).GetAwaiter().GetResult();
@@ -145,7 +149,8 @@
                 DateTime.Today.AddDays(2),
                 limitedDate,
                 "en",
-                BetListDataTest.ProductDetailsXML);
+                BetListDataTest.ProductDetailsXML,
+                "xyz");
 
             // Act
             winLossService.GetBetList(param).GetAwaiter().GetResult();
@@ -165,7 +170,8 @@
                 DateTime.Today.AddDays(-2),
                 DateTime.MinValue,
                 "en",
-                BetListDataTest.ProductDetailsXML);
+                BetListDataTest.ProductDetailsXML,
+                "xyz");
 
             // Act
             var actualBetListData = winLossService.GetBetList(param).GetAwaiter().GetResult();
@@ -186,7 +192,8 @@
                 DateTime.Today.AddDays(-2),
                 DateTime.MinValue,
                 "en",
-                BetListDataTest.ProductDetailsXML);
+                BetListDataTest.ProductDetailsXML,
+                "xyz");
 
             // Act
             winLossService.GetBetList(param).GetAwaiter().GetResult();
@@ -212,7 +219,8 @@
                 DateTime.Today.AddDays(2),
                 DateTime.MinValue,
                 "en",
-                BetListDataTest.ProductDetailsXML);
+                BetListDataTest.ProductDetailsXML,
+                "xyz");
 
             // Act
             var actualBetListData = winLossService.GetBetList(param).GetAwaiter().GetResult();
@@ -233,7 +241,8 @@
                 DateTime.Today.AddDays(2),
                 DateTime.MinValue,
                 "en",
-                BetListDataTest.ProductDetailsXML);
+                BetListDataTest.ProductDetailsXML,
+                "xyz");
 
             // Act
             winLossService.GetBetList(param).GetAwaiter().GetResult();
@@ -269,7 +278,8 @@
                 DateTime.Today.AddDays(2),
                 DateTime.MinValue,
                 "en",
-                BetListDataTest.ProductDetailsXML);
+                BetListDataTest.ProductDetailsXML,
+                "xyz");
             param.IsExcel = false;
             dataFixture.DynamicRepository
                 .FetchMultipleAsync<TicketDto, TicketData>(Arg.Any<GetBetListWinLossByDateOldCriteria>())
@@ -302,7 +312,8 @@
                 DateTime.Today.AddDays(2),
                 DateTime.MinValue,
                 "en",
-                BetListDataTest.ProductDetailsXML);
+                BetListDataTest.ProductDetailsXML,
+                "xyz");
             param.IsExcel = true;
             dataFixture.DynamicRepository
                 .FetchMultipleAsync<TicketDto, TicketData>(Arg.Any<GetBetListWinLossByDateOldCriteria>())

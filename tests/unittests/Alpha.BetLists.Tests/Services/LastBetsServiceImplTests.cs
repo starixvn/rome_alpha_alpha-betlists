@@ -18,9 +18,9 @@
     [Collection("FanexDataCollection")]
     public class LastBetsServiceImplTests
     {
+        private readonly ParlayService parlayService;
         private readonly LastBetsServiceImpl lastBetsService;
         private readonly CompareLogic compareLogic;
-        private readonly ParlayService parlayService;
 
         public LastBetsServiceImplTests(FanexDataFixture dataFixture)
         {
@@ -43,7 +43,7 @@
                 .Fetch<MatchInfo>(Arg.Any<GetRunningOtherMatchCriteria>())
                 .Returns(LastBetsTestData.RunningOtherMatch);
 
-            lastBetsService = new LastBetsServiceImpl(dataFixture.DynamicRepository, dataFixture.CacheService, dataFixture.PartialUMService, parlayService, dataFixture.BetListRepository);
+            lastBetsService = new LastBetsServiceImpl(dataFixture.DynamicRepository, dataFixture.CacheService, dataFixture.PartialUMService, parlayService);
 
             compareLogic = new CompareLogic();
         }

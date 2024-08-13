@@ -1,17 +1,21 @@
 ﻿namespace Alpha.BetLists.Criteria.MonitoringBets
 {
-    using Alpha.BetLists.Params.MonitoringBets;
     using Fanex.Data.Repository;
 
     public class DeleteFilterCommand : NonQueryCommand
     {
-        public DeleteFilterCommand(DeleteFilterParam param)
+        public DeleteFilterCommand(
+            int custId,
+            int subAccId,
+            int filterId,
+            string language,
+            string ip)
         {
-            CustId = param.CustId;
-            SubAccId = param.SubAccId;
-            FilterId = param.FilterId;
-            Language = param.LanguageKey;
-            IP = param.IP;
+            CustId = custId;
+            SubAccId = subAccId;
+            FilterId = filterId;
+            Language = language;
+            IP = ip;
         }
 
         public int CustId { get; }

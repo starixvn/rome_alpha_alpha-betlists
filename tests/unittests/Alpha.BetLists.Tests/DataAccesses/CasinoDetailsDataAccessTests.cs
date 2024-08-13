@@ -23,7 +23,7 @@
         public CasinoDetailsDataAccessTests(FanexDataFixture dataFixture)
         {
             this.dataFixture = dataFixture;
-            dataAccess = new CasinoDetailsDataAccess(dataFixture.DynamicRepository, dataFixture.ReportDateService, dataFixture.BetListRepository);
+            dataAccess = new CasinoDetailsDataAccess(dataFixture.DynamicRepository, dataFixture.ReportDateService);
         }
 
         [Fact]

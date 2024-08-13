@@ -11,8 +11,7 @@
         public void GetSettingKey_Always_ReturnsValidSettingKey()
         {
             // Arrange
-            var commandData = new NAPUserPermission(0);
-            var criteria = new NAPUserPermissionCriteria(commandData);
+            var criteria = new NAPUserPermissionCriteria(0);
             var expectedSettingKey = "Acc_Con_FileNameSelByCustID";
 
             // Act
@@ -29,8 +28,7 @@
         public void IsValid_InvalidCustId_ReturnsFalse(int custId)
         {
             // Arrange
-            var commandData = new NAPUserPermission(custId);
-            var criteria = new NAPUserPermissionCriteria(commandData);
+            var criteria = new NAPUserPermissionCriteria(custId);
 
             // Act
             var actualIsValid = criteria.IsValid();
@@ -43,8 +41,7 @@
         public void IsValid_ValidCriteria_ReturnsTrue()
         {
             // Arrange
-            var commandData = new NAPUserPermission(1);
-            var criteria = new NAPUserPermissionCriteria(commandData);
+            var criteria = new NAPUserPermissionCriteria(1);
 
             // Act
             var actualIsValid = criteria.IsValid();

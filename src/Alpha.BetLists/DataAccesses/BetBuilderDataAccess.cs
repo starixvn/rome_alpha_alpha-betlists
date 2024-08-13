@@ -18,7 +18,7 @@
 
         public IEnumerable<BetBuilderDetailModel> GetBetBuilderDetail(IGetBetBuilderDetailParameter criteria)
         {
-            var command = new GetBetBuilderDetailCriteria(criteria);
+            var command = new GetBetBuilderDetailCriteria(criteria.CustomerId, criteria.TransactionId);
 
             return dynamicRepository.Fetch<BetBuilderDetailModel>(command);
         }

@@ -11,8 +11,7 @@
         public void GetSettingKey_Always_ReturnsValidSettingKey()
         {
             // Arrange
-            var commandData = new SmartPunterSMAChecker(0);
-            var criteria = new SmartPunterSMACheckerCommand(commandData);
+            var criteria = new SmartPunterSMACheckerCommand(0, null);
             var expectedSettingKey = "Age_CustomerSelCheckSmartPunterSMA";
 
             // Act
@@ -26,8 +25,7 @@
         public void IsValid_CustIdIsNullAndUsernameIsNull_ReturnsFalse()
         {
             // Arrange
-            var commandData = new SmartPunterSMAChecker(null, null);
-            var criteria = new SmartPunterSMACheckerCommand(commandData);
+            var criteria = new SmartPunterSMACheckerCommand(null, null);
 
             // Act
             var actualIsValid = criteria.IsValid();
@@ -40,8 +38,7 @@
         public void IsValid_CustIdIsNotNull_ReturnsTrue()
         {
             // Arrange
-            var commandData = new SmartPunterSMAChecker(1, null);
-            var criteria = new SmartPunterSMACheckerCommand(commandData);
+            var criteria = new SmartPunterSMACheckerCommand(1, null);
 
             // Act
             var actualIsValid = criteria.IsValid();
@@ -54,8 +51,7 @@
         public void IsValid_UsernameIsNotNull_ReturnsTrue()
         {
             // Arrange
-            var commandData = new SmartPunterSMAChecker(null, string.Empty);
-            var criteria = new SmartPunterSMACheckerCommand(commandData);
+            var criteria = new SmartPunterSMACheckerCommand(null, string.Empty);
 
             // Act
             var actualIsValid = criteria.IsValid();

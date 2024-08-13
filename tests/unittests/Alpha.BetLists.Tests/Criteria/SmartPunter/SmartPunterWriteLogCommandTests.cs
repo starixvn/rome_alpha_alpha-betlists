@@ -11,8 +11,7 @@ namespace Alpha.BetLists.Tests.Criteria.SmartPunter
         public void GetSettingKey_Always_ReturnsValidSettingKey()
         {
             // Arrange
-            var commandData = new SmartPunterWriteLog(string.Empty, 0, false, 0, string.Empty);
-            var criteria = new SmartPunterWriteLogCommand(commandData);
+            var criteria = new SmartPunterWriteLogCommand(string.Empty, 0, false, 0, string.Empty);
             var expectedSettingKey = "Age_UserLog_SmartPunterInsMultiple";
 
             // Act
@@ -28,8 +27,7 @@ namespace Alpha.BetLists.Tests.Criteria.SmartPunter
         public void IsValid_ListUserNameIsNullOrEmpty_ReturnsFalse(string listUserName)
         {
             // Arrange
-            var commandData = new SmartPunterWriteLog(listUserName, 0, false, 0, string.Empty);
-            var criteria = new SmartPunterWriteLogCommand(commandData);
+            var criteria = new SmartPunterWriteLogCommand(listUserName, 0, false, 0, string.Empty);
 
             // Act
             var actualIsValid = criteria.IsValid();
@@ -43,8 +41,7 @@ namespace Alpha.BetLists.Tests.Criteria.SmartPunter
         public void IsValid_ValidCriteria_ReturnTrue()
         {
             // Arrange
-            var commandData = new SmartPunterWriteLog("username", 0, false, 0, string.Empty);
-            var criteria = new SmartPunterWriteLogCommand(commandData);
+            var criteria = new SmartPunterWriteLogCommand("username", 0, false, 0, string.Empty);
 
             // Act
             var actualIsValid = criteria.IsValid();

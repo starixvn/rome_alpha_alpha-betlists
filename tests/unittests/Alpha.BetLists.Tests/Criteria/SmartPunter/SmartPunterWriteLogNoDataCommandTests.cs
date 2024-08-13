@@ -11,8 +11,7 @@
         public void GetSettingKey_Always_ReturnsValidSettingKey()
         {
             // Arrange
-            var commandData = new SmartPunterWriteLogNoData(0, 0, false, 0, string.Empty);
-            var criteria = new SmartPunterWriteLogNoDataCommand(commandData);
+            var criteria = new SmartPunterWriteLogNoDataCommand(0, 0, false, 0, string.Empty);
             var expectedSettingKey = "NAP_UserLog_SmartPunterIns";
 
             // Act
@@ -30,8 +29,7 @@
         public void IsValid_InvalidCustId_ReturnsFalse(int custId)
         {
             // Arrange
-            var commandData = new SmartPunterWriteLogNoData(custId, 0, false, 0, string.Empty);
-            var criteria = new SmartPunterWriteLogNoDataCommand(commandData);
+            var criteria = new SmartPunterWriteLogNoDataCommand(custId, 0, false, 0, string.Empty);
 
             // Act
             var actualIsValid = criteria.IsValid();
@@ -44,8 +42,7 @@
         public void IsValid_ValidCriteria_ReturnsFalse()
         {
             // Arrange
-            var commandData = new SmartPunterWriteLogNoData(1, 0, false, 0, string.Empty);
-            var criteria = new SmartPunterWriteLogNoDataCommand(commandData);
+            var criteria = new SmartPunterWriteLogNoDataCommand(1, 0, false, 0, string.Empty);
 
             // Act
             var actualIsValid = criteria.IsValid();

@@ -2,7 +2,9 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
+    using System.Text;
     using System.Threading.Tasks;
     using Alpha.BetLists.AppResources;
     using Alpha.BetLists.Configurations;
@@ -46,14 +48,6 @@
             SportTypeIdConstants.Badminton,
             SportTypeIdConstants.ESports,
             SportTypeIdConstants.Tennis
-        };
-        private static readonly HashSet<string> SpecialFilterNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
-        {
-            "Unsaved Filter",
-            "未保存筛选",
-            "未保存篩選",
-            "ตัวกรองที่ไม่ได้บันทึก",
-            "Bộ Lọc Chưa Lưu"
         };
         private readonly IPartialUMService partialUMService;
         private readonly IDynamicRepository dynamicRepository;
@@ -282,19 +276,38 @@
 
         public async Task<Result> AddFilter(AddFilterParam param)
         {
-            if (SpecialFilterNames.Contains(param.FilterName))
+            var rm = Resources.ResourceManager;
+            var languages = new[] { "en-US", "th-TH", "vi-VN", "zh-CN", "zh-TW" };
+            foreach (var item in languages)
             {
-                const int AlreadyExistsErrorCode = 90020;
-                return new Result(AlreadyExistsErrorCode, Resources.FilterNameAlreadyExists);
+                if (rm.GetString("UnsavedFilter", new CultureInfo(item)).Equals(param.FilterName, StringComparison.OrdinalIgnoreCase))
+                {
+                    const int AlreadyExistsErrorCode = 90020;
+                    return new Result(AlreadyExistsErrorCode, Resources.FilterNameAlreadyExists);
+                }
             }
 
-            if (param.IsNotify && !(await IsEnableChatBotNotifications(param.CustId, param.SubAccId)))
+            if (param.IsNotify && !await IsEnableChatBotNotifications(param.CustId, param.SubAccId))
             {
                 const int EnableChatBotFunctionErrorCode = 90021;
                 return new Result(EnableChatBotFunctionErrorCode, Resources.EnableChatBot_LastBets);
             }
 
-            var command = new AddFilterCommand(param);
+            var command = new AddFilterCommand(
+                param.CustId,
+                param.SubAccId,
+                param.FilterName,
+                param.IsDefault,
+                param.BetType,
+                param.Stake,
+                BuildSportListXml(param.Sports),
+                param.LiveStatus,
+                param.FilterByMembers,
+                param.InputList,
+                param.MyWatchlist,
+                param.LanguageKey,
+                param.IP,
+                param.IsNotify);
             partialUMService.ThrowIfUM(command.GetSettingKey());
 
             await dynamicRepository.ExecuteAsync(command);
@@ -303,15 +316,45 @@
                 command.ErrCode == 0 ? Resources.AddedSuccessfully : command.ErrMsg);
         }
 
+        private static string BuildSportListXml(SportXml[] sports)
+        {
+            var xml = new StringBuilder("<SportList>");
+
+            foreach (var item in sports)
+            {
+                AppendSportXml(xml, item);
+            }
+
+            xml.Append("</SportList>");
+
+            return xml.ToString();
+        }
+
+        private static void AppendSportXml(StringBuilder xml, SportXml sport)
+            => xml
+            .Append("<Sport s=\"")
+            .Append(sport.Sport)
+            .Append("\" l=\"")
+            .Append(sport.League)
+            .Append("\"/>");
+
         public async Task<Result> UpdateFilter(UpdateFilterParam param)
         {
-            if (param.IsNotify && !(await IsEnableChatBotNotifications(param.CustId, param.SubAccId)))
+            if (param.IsNotify && !await IsEnableChatBotNotifications(param.CustId, param.SubAccId))
             {
                 const int EnableChatBotFunctionErrorCode = 90021;
                 return new Result(EnableChatBotFunctionErrorCode, Resources.EnableChatBot_LastBets);
             }
 
-            var command = new UpdateFilterCommand(param);
+            var command = new UpdateFilterCommand(
+                param.CustId,
+                param.SubAccId,
+                param.FilterId,
+                param.FilterName,
+                param.IsDefault,
+                param.LanguageKey,
+                param.IP,
+                param.IsNotify);
             partialUMService.ThrowIfUM(command.GetSettingKey());
 
             await dynamicRepository.ExecuteAsync(command);
@@ -322,7 +365,12 @@
 
         public async Task<Result> DeleteFilter(DeleteFilterParam param)
         {
-            var command = new DeleteFilterCommand(param);
+            var command = new DeleteFilterCommand(
+                param.CustId,
+                param.SubAccId,
+                param.FilterId,
+                param.LanguageKey,
+                param.IP);
             partialUMService.ThrowIfUM(command.GetSettingKey());
 
             await dynamicRepository.ExecuteAsync(command);

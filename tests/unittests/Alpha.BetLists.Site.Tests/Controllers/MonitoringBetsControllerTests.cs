@@ -49,7 +49,7 @@ namespace Alpha.BetLists.Site.Tests.Controllers
             var message = new MonitoringBetsQuery(user);
             var handlerResult = new MonitoringBetsViewModel(1,
                 new List<SavedFilter>() {
-                    new SavedFilter(1, "Test", true, "1,2", 100, 1, "0", "0", "0", 1),
+                    new SavedFilter(1, "Test", true, false, "1,2", 100, 1, "0", "0", "0", 1),
                 }, true, 1, "1", "1", message, null, null, null);
             mediator.Send(message).Returns(handlerResult);
             // Act
@@ -86,7 +86,7 @@ namespace Alpha.BetLists.Site.Tests.Controllers
 
             var expectedResult = new MonitoringBetsViewModel(1, new List<SavedFilter>()
             {
-                new SavedFilter(1, "Test", true, "1,2", 100, 1, "0", "0", "0", 1),
+                new SavedFilter(1, "Test", true, false, "1,2", 100, 1, "0", "0", "0", 1),
             }, false, 0, string.Empty, string.Empty, message, null, null, null);
             mediator
                 .Send(message).Returns(Task.FromResult(expectedResult));

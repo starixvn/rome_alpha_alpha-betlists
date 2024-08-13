@@ -26,7 +26,7 @@
                 .FetchMultipleAsync<TicketDto, TicketData>(Arg.Any<GetRiskAnalysisIPMatchingCriteria>())
                 .Returns(BetListDataTest.BetListDataTuple);
 
-            service = new RiskAnalysisIPMatchingServiceImpl(this.dataFixture.DynamicRepository, this.dataFixture.PartialUMService, dataFixture.BetListRepository);
+            service = new RiskAnalysisIPMatchingServiceImpl(this.dataFixture.DynamicRepository, this.dataFixture.PartialUMService);
         }
 
         [Fact]

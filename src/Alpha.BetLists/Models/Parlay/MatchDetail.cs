@@ -14,12 +14,12 @@
             IsNeutral = isNeutral;
         }
 
-        public long Serial { get; }
+        public long Serial { get; set; }
 
-        public int HomeId { get; }
+        public int HomeId { get; set; }
 
-        public int AwayId { get; }
+        public int AwayId { get; set; }
 
-        public bool IsNeutral { get;}
+        public bool IsNeutral { get; set; }
     }
 }

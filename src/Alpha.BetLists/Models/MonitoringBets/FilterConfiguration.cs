@@ -34,11 +34,11 @@
             InputList = inputList;
         }
 
-        public int FilterId { get; }
+        public int FilterId { get; set; }
 
-        public string FilterName { get; }
+        public string FilterName { get; set; }
 
-        public string FilterValue { get; }
+        public string FilterValue { get; set; }
 
         public FilterXml FilterXml
         {
@@ -50,15 +50,15 @@
             }
         }
 
-        public bool IsDefault { get; }
+        public bool IsDefault { get; set; }
 
         public bool IsNotify { get; set; }
 
-        public DateTime CreatedDate { get; }
+        public DateTime CreatedDate { get; set; }
 
-        public string WatchList { get; }
+        public string WatchList { get; set; }
 
-        public string InputList { get; }
+        public string InputList { get; set; }
 
         private static FilterXml Deserialize(string xml)
         {

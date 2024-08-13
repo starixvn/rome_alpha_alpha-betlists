@@ -1,13 +1,12 @@
 ﻿namespace Alpha.BetLists.Criteria.SmartPunter
 {
-    using AlphaPlus.SmartPunter.Criteria;
     using Fanex.Data.Repository;
 
     public class InternalAdminCheckerCommand : NonQueryCommand
     {
-        public InternalAdminCheckerCommand(InternalAdminChecker commandData)
+        public InternalAdminCheckerCommand(int custId)
         {
-            CustId = commandData.CustId;
+            CustId = custId;
         }
 
         public int CustId { get; }

@@ -1,18 +1,16 @@
 ﻿namespace Alpha.BetLists.Criteria.SearchTickets
 {
     using System;
-    using Fanex.Data;
     using Fanex.Data.Repository;
-    using Models;
 
     public class SearchTicketsCriteria : CriteriaBase
     {
         public SearchTicketsCriteria(
-             long refNo, int uplineId, UserLevel custLevel, DateTime moveBetsDay, DateTime balanceUpDay)
+             long refNo, int uplineId, byte roleId, DateTime moveBetsDay, DateTime balanceUpDay)
         {
             RefNo = refNo;
             UplineId = uplineId;
-            RoleId = custLevel.Value;
+            RoleId = roleId;
             MoveBetsDay = moveBetsDay;
             BalanceUpDay = balanceUpDay;
         }

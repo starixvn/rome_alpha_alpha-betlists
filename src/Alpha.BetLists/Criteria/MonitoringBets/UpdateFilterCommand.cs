@@ -1,14 +1,20 @@
 ﻿namespace Alpha.BetLists.Criteria.MonitoringBets
 {
-    using Alpha.BetLists.Params.MonitoringBets;
-
     public class UpdateFilterCommand : DeleteFilterCommand
     {
-        public UpdateFilterCommand(UpdateFilterParam param) : base(param)
+        public UpdateFilterCommand(
+            int custId,
+            int subAccId,
+            int filterId,
+            string filterName,
+            bool isDefault,
+            string language,
+            string ip,
+            bool isNotify) : base(custId, subAccId, filterId, language, ip)
         {
-            FilterName = param.FilterName;
-            IsDefault = param.IsDefault;
-            IsNotify = param.IsNotify;
+            FilterName = filterName;
+            IsDefault = isDefault;
+            IsNotify = isNotify;
         }
 
         public string FilterName { get; }

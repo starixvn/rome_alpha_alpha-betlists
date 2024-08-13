@@ -1,17 +1,21 @@
 ﻿namespace Alpha.BetLists.Criteria.SmartPunter
 {
-    using AlphaPlus.SmartPunter.Criteria;
     using Fanex.Data.Repository;
 
     public class SmartPunterWriteLogNoDataCommand : NonQueryCommand
     {
-        public SmartPunterWriteLogNoDataCommand(SmartPunterWriteLogNoData commandData)
+        public SmartPunterWriteLogNoDataCommand(
+            int? custId,
+            int actionId,
+            bool isRestricted,
+            int userId,
+            string ip)
         {
-            CustId = commandData.CustId;
-            ActionId = commandData.ActionId;
-            IsRestricted = commandData.IsRestricted;
-            UserId = commandData.UserId;
-            IP = commandData.IP;
+            CustId = custId;
+            ActionId = actionId;
+            IsRestricted = isRestricted;
+            UserId = userId;
+            IP = ip;
         }
 
         public int? CustId { get; }

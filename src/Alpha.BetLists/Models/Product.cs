@@ -61,22 +61,22 @@
             IsEnable = isEnable;
         }
 
-        public int Id { get; }
+        public int Id { get; set; }
 
-        public string Name { get; }
+        public string Name { get; set; }
 
-        public DateTime? EndOfSupportDate { get; }
+        public DateTime? EndOfSupportDate { get; set; }
 
-        public string DisplayName { get; }
+        public string DisplayName { get; set; }
 
-        public bool IsEnable { get; }
+        public bool IsEnable { get; set; }
 
-        public int Type { get; }
+        public int Type { get; set; }
 
-        public string TypeName { get; }
+        public string TypeName { get; set; }
 
-        public int OrderNo { get; }
+        public int OrderNo { get; set; }
 
-        public bool IsHide { get; }
+        public bool IsHide { get; set; }
     }
 }

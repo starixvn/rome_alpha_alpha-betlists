@@ -13,12 +13,14 @@ namespace Alpha.BetLists.Criteria.MonitoringBets
         }
 
         public int CustId { get; }
+
         public int SubAccId { get; }
+
         public int FunctionID { get; }
+
         public bool Status { get; set; }
 
-        public override string GetSettingKey()
-            => "Age_Chatbot_StatusCheck";
+        public override string GetSettingKey() => "Age_Chatbot_StatusCheck";
 
         public override bool IsValid() => CustId > 0 && SubAccId >= 0;
     }

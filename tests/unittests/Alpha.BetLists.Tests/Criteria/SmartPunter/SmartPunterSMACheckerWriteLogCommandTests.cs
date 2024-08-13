@@ -11,8 +11,7 @@
         public void GetSettingKey_Always_ReturnsValidSettingKey()
         {
             // Arrange
-            var commandData = new SmartPunterSMACheckerWriteLog(string.Empty, 0, false, 0, string.Empty);
-            var criteria = new SmartPunterSMACheckerWriteLogCommand(commandData);
+            var criteria = new SmartPunterSMACheckerWriteLogCommand(string.Empty, 0, false, 0, string.Empty);
             var expectedSettingKey = "Age_CustomerSelCheckListSmartPunter";
 
             // Act

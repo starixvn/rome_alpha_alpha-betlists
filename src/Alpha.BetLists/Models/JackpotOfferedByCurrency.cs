@@ -4,7 +4,6 @@
     {
         public JackpotOfferedByCurrency()
         {
-
         }
 
         public JackpotOfferedByCurrency(int product, int currency)
@@ -13,8 +12,8 @@
             Product = product;
         }
 
-        public int Currency { get; }
+        public int Currency { get; set; }
 
-        public int Product { get; }
+        public int Product { get; set; }
     }
 }

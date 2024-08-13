@@ -1,20 +1,21 @@
 ﻿namespace Alpha.BetLists.Services
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
+    using Alpha.BetLists.Constants;
     using Alpha.BetLists.Criteria;
+    using Alpha.BetLists.Extensions;
     using Criteria.Parlay;
     using Fanex.Data.Repository;
     using Models;
     using Models.Parlay;
-    using Alpha.BetLists.Constants;
-    using System.Linq;
 
     public interface ParlayService
     {
         Task UpdateOddsMixParlay(IEnumerable<TicketDto> tickets);
 
-        Task<IEnumerable<OddsMixParlayModel>> GetOddsMixParlay(IEnumerable<long> transIds);
+        Task<IEnumerable<OddsMixParlayModel>> GetOddsMixParlay(string transIdList);
 
         Task<IEnumerable<TicketDto>> GetParlayBetList(long transId, int custId);
 
@@ -34,8 +35,8 @@
             this.dynamicRepository = dynamicRepository;
         }
 
-        public async Task<IEnumerable<OddsMixParlayModel>> GetOddsMixParlay(IEnumerable<long> transIds)
-            => await dynamicRepository.FetchAsync<OddsMixParlayModel>(new GetOddsOfMixParlayCriteria(transIds));
+        public async Task<IEnumerable<OddsMixParlayModel>> GetOddsMixParlay(string transIdList)
+            => await dynamicRepository.FetchAsync<OddsMixParlayModel>(new GetOddsOfMixParlayCriteria(transIdList));
 
         public async Task<IEnumerable<TicketDto>> GetParlayBetList(long transId, int custId)
         {
@@ -54,7 +55,7 @@
 
             var comboParlayDetailTuple = await dynamicRepository.FetchMultipleAsync<ComboParlayDetail, MatchDetail>(criteria);
 
-            return new ComboParlayDetailData(comboParlayDetailTuple.Item1, comboParlayDetailTuple.Item2, criteria.Outstanding, criteria.IsParlayBoost);
+            return new ComboParlayDetailData(comboParlayDetailTuple.Item1, comboParlayDetailTuple.Item2, criteria.Outstanding ?? 0, criteria.IsParlayBoost);
         }
 
         public async Task UpdateOddsMixParlay(IEnumerable<TicketDto> tickets)
@@ -63,7 +64,7 @@
             if (ticketsMissingOdds.Any())
             {
                 var transIds = ticketsMissingOdds.Select(i => i.TransId);
-                var odds = await GetOddsMixParlay(transIds);
+                var odds = await GetOddsMixParlay(transIds.JoinWithComma());
 
                 foreach (var ticket in tickets)
                 {

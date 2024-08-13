@@ -22,7 +22,7 @@
                 .FetchAsync<TicketDto>(Arg.Any<GetJackpotDetailsCriteria>())
                 .Returns(BetListDataTest.Tickets);
 
-            jackpotDetailsService = new JackpotDetailsServiceImpl(dataFixture.DynamicRepository, dataFixture.ReportDateService, dataFixture.BetListRepository);
+            jackpotDetailsService = new JackpotDetailsServiceImpl(dataFixture.DynamicRepository, dataFixture.ReportDateService);
         }
 
         [Fact]

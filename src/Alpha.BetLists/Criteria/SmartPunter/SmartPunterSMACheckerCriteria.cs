@@ -1,14 +1,13 @@
 ﻿namespace Alpha.BetLists.Criteria.SmartPunter
 {
-    using AlphaPlus.SmartPunter.Criteria;
     using Fanex.Data.Repository;
 
     public class SmartPunterSMACheckerCommand : NonQueryCommand
     {
-        public SmartPunterSMACheckerCommand(SmartPunterSMAChecker commandData)
+        public SmartPunterSMACheckerCommand(int? custId, string username)
         {
-            CustId = commandData.CustId;
-            Username = commandData.Username;
+            CustId = custId;
+            Username = username;
         }
 
         public int? CustId { get; }

@@ -34,7 +34,7 @@
                 .FetchMultipleAsync<TicketDto, TicketData>(Arg.Any<GetAllBetListByDayOldCriteria>())
                 .Returns(BetListDataTest.OldBetListDataTuple);
 
-            dailyStatementService = new DailyStatementServiceImpl(reportDateService, dataFixture.DynamicRepository, dataFixture.PartialUMService, dataFixture.BetListRepository);
+            dailyStatementService = new DailyStatementServiceImpl(reportDateService, dataFixture.DynamicRepository, dataFixture.PartialUMService);
         }
 
         [Fact]

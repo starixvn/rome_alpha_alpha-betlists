@@ -13,7 +13,7 @@
         {
             // Arrange
             var expectedSettingKey = "Age_BetList_SelWinLossByBetType";
-            var criteria = new GetWinLossByBetTypeCriteria(1, DateTime.Now, DateTime.Now, DateTime.Now, UserLevel.Super, 1);
+            var criteria = new GetWinLossByBetTypeCriteria(1, DateTime.Now, DateTime.Now, DateTime.Now, UserLevel.Super.Value, 1);
 
             // Act
             var actualSettingKey = criteria.GetSettingKey();
@@ -26,7 +26,7 @@
         public void IsValid_Always_ReturnsCorrectIsValid()
         {
             // Arrange
-            var criteria = new GetWinLossByBetTypeCriteria(1, DateTime.Now, DateTime.Now, DateTime.Now, UserLevel.Super, 1);
+            var criteria = new GetWinLossByBetTypeCriteria(1, DateTime.Now, DateTime.Now, DateTime.Now, UserLevel.Super.Value, 1);
 
             // Act
             var actualIsValid = criteria.IsValid();
@@ -39,7 +39,7 @@
         public void IsValid_CustIdIsInvalide_ReturnsFalse()
         {
             // Arrange
-            var criteria = new GetWinLossByBetTypeCriteria(0, DateTime.Now, DateTime.Now, DateTime.Now, UserLevel.Super, 1);
+            var criteria = new GetWinLossByBetTypeCriteria(0, DateTime.Now, DateTime.Now, DateTime.Now, UserLevel.Super.Value, 1);
 
             // Act
             var actualIsValid = criteria.IsValid();
@@ -52,7 +52,7 @@
         public void IsValid_FromToIsInvalide_ReturnsFalse()
         {
             // Arrange
-            var criteria = new GetWinLossByBetTypeCriteria(1, DateTime.Now.AddDays(1), DateTime.Now, DateTime.Now, UserLevel.Super, 1);
+            var criteria = new GetWinLossByBetTypeCriteria(1, DateTime.Now.AddDays(1), DateTime.Now, DateTime.Now, UserLevel.Super.Value, 1);
 
             // Act
             var actualIsValid = criteria.IsValid();

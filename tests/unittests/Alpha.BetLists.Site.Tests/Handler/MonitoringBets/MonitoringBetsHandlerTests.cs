@@ -59,7 +59,7 @@ namespace Alpha.BetLists.Site.Tests.Handler.MonitoringBets
             service.GetLastFilteringBets(Arg.Any<GetLastFilteringBetsParams>()).Returns(tickets);
             savedFilters = new List<SavedFilter>()
             {
-                new SavedFilter(1, "Test", true, "1,2", 100, 1, "0", "0", "0", 1),
+                new SavedFilter(1, "Test", true, false, "1,2", 100, 1, "0", "0", "0", 1),
             };
             service.GetSavedFilters(Arg.Any<int>(), Arg.Any<int>(), Arg.Any<AddFilterParam>()).Returns(savedFilters);
 
@@ -136,7 +136,8 @@ namespace Alpha.BetLists.Site.Tests.Handler.MonitoringBets
                 "Default",
                 true,
                 message.LanguageKey,
-                message.IP);
+                message.IP,
+                false);
 
             // Act
             await handler.Handle(message);
@@ -224,7 +225,7 @@ namespace Alpha.BetLists.Site.Tests.Handler.MonitoringBets
             var message = new AddUnsavedFilterCommand(user);
             var unsavedFilter = new AddFilterParam(1, 1, "UnsavedFilter", false, "1", 10,
                                 new[] { new SportXml() { League = "Basketball", Sport = "Soccer" } },
-                                1, "0", "0", "0", "0", 1, "En", "1.2.3.4");
+                                1, "0", "0", "0", "0", 1, "En", "1.2.3.4", false);
             service.AddFilter(Arg.Any<AddFilterParam>()).Returns(new Result());
 
             // Act
@@ -290,7 +291,7 @@ namespace Alpha.BetLists.Site.Tests.Handler.MonitoringBets
             var message = new MonitoringBetsQuery(user);
             var expected = new List<SavedFilter>()
             {
-                new SavedFilter(1,"Test",true,"1,2",100,1,"0","0","0",1),
+                new SavedFilter(1, "Test", true, false, "1,2", 100, 1, "0", "0", "0", 1),
             };
 
             service.GetSavedFilters(message.ViewerId, message.SubAccId, null).Returns(Task.FromResult(expected).Result);

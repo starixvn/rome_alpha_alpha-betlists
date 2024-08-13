@@ -4,7 +4,6 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Alpha.BetLists.Criteria.CancelledBet;
-    using Alpha.BetLists.DataAccesses;
     using Alpha.BetLists.Models;
     using Alpha.BetLists.Params;
     using AlphaPlus.PartialUM.Services;
@@ -21,16 +20,13 @@
     {
         private readonly IDynamicRepository dynamicRepository;
         private readonly IPartialUMService partialUMService;
-        private readonly IBetListRepository betlistRepository;
 
         public CancelledBetServiceImpl(
             IDynamicRepository dynamicRepository,
-            IPartialUMService partialUMService,
-            IBetListRepository betlistRepository)
+            IPartialUMService partialUMService)
         {
             this.dynamicRepository = dynamicRepository;
             this.partialUMService = partialUMService;
-            this.betlistRepository = betlistRepository;
         }
 
         public async Task<PagedReportData<BetListData>> GetCancelledBet(CancelledBetParam parameter)
@@ -49,7 +45,6 @@
             partialUMService.ThrowIfUM(criteria.GetSettingKey());
 
             var betListDataTuple = await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
-            //var betListDataTuple = betlistRepository.FetchMultiple(criteria);
 
             return new PagedReportData<BetListData>(
                 new List<BetListData>

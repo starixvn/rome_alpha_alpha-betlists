@@ -12,7 +12,7 @@
         {
             // Arrange
             var param = new GetBetBuilderDetailParameter();
-            var criteria = new GetBetBuilderDetailCriteria(param);
+            var criteria = new GetBetBuilderDetailCriteria(0, 0);
 
             // Act
             var act = criteria.IsValid();
@@ -26,7 +26,7 @@
         {
             // Arrange
             var param = new GetBetBuilderDetailParameter();
-            var criteria = new GetBetBuilderDetailCriteria(param);
+            var criteria = new GetBetBuilderDetailCriteria(0, 0);
 
             // Act
             var act = criteria.GetSettingKey();

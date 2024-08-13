@@ -1,7 +1,6 @@
 ﻿namespace Alpha.BetLists.Tests.Criteria.MonitoringBets
 {
     using Alpha.BetLists.Criteria.MonitoringBets;
-    using Alpha.BetLists.Params.MonitoringBets;
     using Xunit;
 
     [Trait("Category", "DeleteFilter")]
@@ -11,8 +10,7 @@
         public void GetSettingKey_Always_ReturnsValidSettingKey()
         {
             // Arrange
-            var param = new DeleteFilterParam(1, 0, 1, "EN", "1.2.3.4");
-            var criteria = new DeleteFilterCommand(param);
+            var criteria = new DeleteFilterCommand(1, 0, 1, "EN", "1.2.3.4");
 
             var expectedSettingKey = "Age_CustLastBetFilter_Del";
 
@@ -27,8 +25,7 @@
         public void IsValid_ValidParam_ReturnsTrue()
         {
             // Arrange
-            var param = new DeleteFilterParam(1, 0, 1, "EN", "1.2.3.4");
-            var criteria = new DeleteFilterCommand(param);
+            var criteria = new DeleteFilterCommand(1, 0, 1, "EN", "1.2.3.4");
 
             // Act
             var actualIsValid = criteria.IsValid();
@@ -47,8 +44,7 @@
         public void IsValid_InvalidParam_ReturnsFalse(int custId, int subAccId, int filterId)
         {
             // Arrange
-            var param = new DeleteFilterParam(custId, subAccId, filterId, "EN", "1.2.3.4");
-            var criteria = new DeleteFilterCommand(param);
+            var criteria = new DeleteFilterCommand(custId, subAccId, filterId, "EN", "1.2.3.4");
 
             // Act
             var actualIsValid = criteria.IsValid();

@@ -4,7 +4,6 @@
     {
         public JackpotOfferedBySite()
         {
-
         }
 
         public JackpotOfferedBySite(int product, string site)
@@ -13,8 +12,8 @@
             Product = product;
         }
 
-        public string Site { get; }
+        public string Site { get; set; }
 
-        public int Product { get; }
+        public int Product { get; set; }
     }
 }

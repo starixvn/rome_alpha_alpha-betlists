@@ -14,8 +14,8 @@
     [Collection("FanexDataCollection")]
     public class RunningBetListByBetTypeServiceImplTests
     {
-        private readonly RunningBetListByBetTypeServiceImpl runningBetListByBetTypeService;
         private readonly ParlayService parlayService;
+        private readonly RunningBetListByBetTypeServiceImpl runningBetListByBetTypeService;
 
         public RunningBetListByBetTypeServiceImplTests(FanexDataFixture dataFixture)
         {
@@ -24,7 +24,7 @@
                 .FetchAsync<TicketDto>(Arg.Any<GetBetListRunningByBetTypeCriteria>())
                 .Returns(BetListDataTest.Tickets);
 
-            runningBetListByBetTypeService = new RunningBetListByBetTypeServiceImpl(dataFixture.DynamicRepository, dataFixture.PartialUMService, parlayService, dataFixture.BetListRepository);
+            runningBetListByBetTypeService = new RunningBetListByBetTypeServiceImpl(dataFixture.DynamicRepository, dataFixture.PartialUMService, parlayService);
         }
 
         [Fact]
