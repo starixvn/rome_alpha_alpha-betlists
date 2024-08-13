@@ -124,7 +124,7 @@
     <value>วาง</value>
   </data>
   <data name="BetList" xml:space="preserve">
-    <value>ตั๋วเดิมพัน</value>
+    <value>รายการเดิมพัน</value>
   </data>
   <data name="NoInformationIsAvailable" xml:space="preserve">
     <value>ไม่มีข้อมูล</value>
@@ -133,13 +133,13 @@
     <value>เวลาการดำเนินการ</value>
   </data>
   <data name="choice" xml:space="preserve">
-    <value>เลือก</value>
+    <value>ตัวเลือก</value>
   </data>
   <data name="odds" xml:space="preserve">
-    <value>ราคา</value>
+    <value>อัตราต่อรอง</value>
   </data>
   <data name="stake" xml:space="preserve">
-    <value>เงินเดิมพัน </value>
+    <value>ยอดเดิมพัน</value>
   </data>
   <data name="lblWinLoss" xml:space="preserve">
     <value>ได้ เสีย</value>
@@ -148,25 +148,22 @@
     <value>สถานะ</value>
   </data>
   <data name="agentPT" xml:space="preserve">
-    <value>ค่าแบ่งสู้ของเอเย่น</value>
+    <value>ความเสี่ยง</value>
   </data>
   <data name="masterPT" xml:space="preserve">
-    <value>ค่าแบ่งสู้ของมาสเตอร์</value>
+    <value>ความเสี่ยง</value>
   </data>
   <data name="superPT" xml:space="preserve">
-    <value>ค่าแบ่งสู้ของซุปเปอร์</value>
-  </data>
-  <data name="lblComm" xml:space="preserve">
-    <value>คอมมิชชั่น</value>
+    <value>ความเสี่ยง</value>
   </data>
   <data name="subTotal" xml:space="preserve">
-    <value>ยอดรวม</value>
+    <value>ยอดรวมย่อย</value>
   </data>
   <data name="Subtotal_com" xml:space="preserve">
     <value>ผลรวมย่อย คอมมิชชั่น</value>
   </data>
   <data name="Subtotal_wl" xml:space="preserve">
-    <value>ผลรวมย่อย( ชนะ แพ้ )</value>
+    <value>ยอดรวมย่อย( ชนะ แพ้ )</value>
   </data>
   <data name="Note" xml:space="preserve">
     <value>หมายเหตุ</value>
@@ -184,7 +181,7 @@
     <value>รายการการวางเดิมพันของสมาชิก</value>
   </data>
   <data name="running" xml:space="preserve">
-    <value>ยอมรับการวางเดิมพันแล้ว</value>
+    <value>ที่รับแล้ว</value>
   </data>
   <data name="reject" xml:space="preserve">
     <value>ปฏิเสธ</value>
@@ -223,10 +220,10 @@
     <value>การแข่งขัน</value>
   </data>
   <data name="outstanding" xml:space="preserve">
-    <value>การเดิมพันที่ยังไม่สิ้นสุด</value>
+    <value>เดิมพันที่ยังไม่สิ้นสุด</value>
   </data>
   <data name="BetlistRunning" xml:space="preserve">
-    <value>รายการการเดิมพัน ( ยอมรับการวางเดิมพันแล้ว )</value>
+    <value>รายการเดิมพัน (ที่รับแล้ว)</value>
   </data>
   <data name="Today" xml:space="preserve">
     <value>วันนี้</value>
@@ -259,13 +256,13 @@
     <value>ถึง</value>
   </data>
   <data name="Submit" xml:space="preserve">
-    <value>ตกลง</value>
+    <value>ส่ง</value>
   </data>
   <data name="SelectProducts" xml:space="preserve">
     <value>เลือกผลิตภัณฑ์</value>
   </data>
   <data name="AllProducts" xml:space="preserve">
-    <value>สินค้าทั้งหมด</value>
+    <value>ผลิตภัณฑ์ทั้งหมด</value>
   </data>
   <data name="Selected" xml:space="preserve">
     <value>เลือก</value>
@@ -277,10 +274,10 @@
     <value>สามารถดูรายงานซึ่งมีวันที่คำนวนผลตั้งแต่ {0} ขึ้นไปเท่านั้น</value>
   </data>
   <data name="DailyStatement" xml:space="preserve">
-    <value>บัญชีรายวัน</value>
+    <value>รายการเดินบัญชีรายวัน</value>
   </data>
   <data name="GetAll" xml:space="preserve">
-    <value>ได้รับทั้งหมด</value>
+    <value>แสดงทั้งหมด</value>
   </data>
   <data name="HideFilter" xml:space="preserve">
     <value>ซ่อนตัวกรอง</value>
@@ -301,7 +298,7 @@
     <value>ตัวแทนทั้งหมด</value>
   </data>
   <data name="Agent" xml:space="preserve">
-    <value>ตัวแทน</value>
+    <value>เอเย่นต์</value>
   </data>
   <data name="AllMember" xml:space="preserve">
     <value>สมาชิกทั้งหมด</value>
@@ -313,7 +310,7 @@
     <value>โมฆะ / ปฏิเสธ / คืนเงินตั๋วเดิมพัน</value>
   </data>
   <data name="CancelledBet" xml:space="preserve">
-    <value>ยกเลิกการวางเดิมพัน</value>
+    <value>การเดิมพันที่ยกเลิก</value>
   </data>
   <data name="LastBetsMonitoring" xml:space="preserve">
     <value>ตรวจสอบเดิมพันสุดท้าย</value>
@@ -322,7 +319,7 @@
     <value>การเดิมพันทุกประเภท</value>
   </data>
   <data name="Handicap" xml:space="preserve">
-    <value>ราคาต่อรอง</value>
+    <value>แฮนดิแคป</value>
   </data>
   <data name="OverUnder" xml:space="preserve">
     <value>สูง/ต่ำ</value>
@@ -352,13 +349,13 @@
     <value>บอลชุด</value>
   </data>
   <data name="agentptcomm" xml:space="preserve">
-    <value>ค่าแบ่งสู้ของเอเย่น/ คอมมิชชั่น</value>
+    <value>ความเสี่ยง/ค่าคอมเอเย่นต์</value>
   </data>
   <data name="masterptcomm" xml:space="preserve">
-    <value>ค่าแบ่งสู้ของมาสเตอร์/ คอมมิชชั่น</value>
+    <value>ความเสี่ยง/ค่าคอมมาสเตอร์</value>
   </data>
   <data name="superptcomm" xml:space="preserve">
-    <value>ค่าแบ่งสู้ของซุปเปอร์/ คอมมิชชั่น</value>
+    <value>ความเสี่ยง/ค่าคอมซุปเปอร์</value>
   </data>
   <data name="ContributionAmountRoundNote" xml:space="preserve">
     <value>ยอดกองทุนสมทบจะถูกปัดเศษทศนิยมเป็น 4 ตำแหน่ง</value>
@@ -532,7 +529,7 @@
     <value>ไม่ใช่</value>
   </data>
   <data name="NonLive" xml:space="preserve">
-    <value>ก่อนเริ่มแข่ง</value>
+    <value>ไม่สด</value>
   </data>
   <data name="NotAMember" xml:space="preserve">
     <value>ไม่ใช่สมาชิก</value>
@@ -625,7 +622,7 @@
     <value>อัพเดทเสร็จสมบูรณ์</value>
   </data>
   <data name="Action" xml:space="preserve">
-    <value>ปฏิบัติ</value>
+    <value>การดำเนินการ</value>
   </data>
   <data name="AllMembers" xml:space="preserve">
     <value>สมาชิกทั้งหมด</value>
@@ -667,7 +664,7 @@
     <value>โปรดป้อนชื่อตัวกรอง</value>
   </data>
   <data name="Yes" xml:space="preserve">
-    <value>ตกลง</value>
+    <value>ใช่</value>
   </data>
   <data name="SaveToMyFilters" xml:space="preserve">
     <value>บันทึกไปยังตัวกรองของฉัน</value>
@@ -748,7 +745,7 @@
     <value>สำเนา</value>
   </data>
   <data name="Username" xml:space="preserve">
-    <value>ชื่อผู้ใช้ระบบ</value>
+    <value>ชื่อผู้ใช้</value>
   </data>
   <data name="MostRecentTickets" xml:space="preserve">
     <value>ตั๋วเดิมพันล่าสุด</value>
@@ -757,7 +754,7 @@
     <value>หมายเลขอ้างอิง</value>
   </data>
   <data name="IP" xml:space="preserve">
-    <value>เลขไอพี</value>
+    <value>ไอพี</value>
   </data>
   <data name="NoChangeToUpdate" xml:space="preserve">
     <value>ไม่มีการเปลี่ยนแปลงในการอัปเดตนี้</value>
@@ -837,5 +834,8 @@
   </data>
   <data name="EnableChatBot_LastBets" xml:space="preserve">
     <value>ให้แชทบอท และการแจ้งเดือนตั๋วเดิมพันล่าสุด ใช้คุณสมบัติการแจ้งเตือนตั๋วเดิมพันล่าสุด&lt;a class="lnk-chatbot"&gt;ไปยังแชทบอท&lt;/a&gt;</value>
+  </data>
+  <data name="Master" xml:space="preserve">
+    <value>มาสเตอร์</value>
   </data>
 </root>
