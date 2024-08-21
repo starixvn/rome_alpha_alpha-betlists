@@ -808,6 +808,37 @@
                 'FA CHAI - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
         }
     }
+    
+    export class NextspinTicketDetails extends BaseTicketDetails {
+        private static instance: NextspinTicketDetails;
+
+        public static get Instance() {
+            this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new NextspinTicketDetails() : this.instance;
+            return this.instance;
+        }
+
+        public ShowNextspinTicketDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
+            const params = '?refno=' + refNo
+                + '&custid=' + custId
+                + '&transType=' + transType
+                + '&sportName=Nextspin&productId=85';
+
+            let width = 1500;
+            let roleId = Number(this.ViewerLevelId);
+
+            if (roleId <= 3) {
+                width -= 105;
+            }
+
+            if (roleId <= 2) {
+                width -= 105;
+            }
+
+            Common.PopupDetails.Instance(window.top).Show(
+                Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params,
+                'Nextspin - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+        }
+    }
 }
 
 let showRnGCasinoDetails: Function;
@@ -850,6 +881,7 @@ let showUUSlotsBetDetails: Function;
 let showSabaxDDetails: Function;
 let showFastSpinBetDetails: Function;
 let showFACHAIBetDetails: Function;
+let showNextspinBetDetails: Function;
 
 $(document).ready(() => {
     showRnGCasinoDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowRnGCasinoDetails;
@@ -892,4 +924,5 @@ $(document).ready(() => {
     showSabaxDDetails = BetList.Choice.TicketDetails.SabaxDTicketDetails.Instance.ShowSabaxDTicketDetails;
     showFastSpinBetDetails = BetList.Choice.TicketDetails.FastSpinTicketDetails.Instance.ShowFastSpinTicketDetails;
     showFACHAIBetDetails = BetList.Choice.TicketDetails.FACHAITicketDetails.Instance.ShowFACHAITicketDetails;
+    showNextspinBetDetails = BetList.Choice.TicketDetails.NextspinTicketDetails.Instance.ShowNextspinTicketDetails;
 })
