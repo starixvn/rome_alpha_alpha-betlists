@@ -678,6 +678,24 @@ var BetList;
                 return NextspinResultDetails;
             }(ResultDetails.BaseResultDetails));
             ResultDetails.NextspinResultDetails = NextspinResultDetails;
+            var ONCasinoResultDetails = /** @class */ (function (_super) {
+                __extends(ONCasinoResultDetails, _super);
+                function ONCasinoResultDetails() {
+                    var _this = _super !== null && _super.apply(this, arguments) || this;
+                    _this.ViewResultDetails = function (matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, currencyId, gameId3rd, custId, transId3rd, siteId) {
+                        var params = '?custId=' + custId +
+                            '&transId3rd=' + transId3rd +
+                            '&currencyId=' + currencyId +
+                            '&siteId=' + siteId +
+                            '&endtime=' + winLostDate +
+                            '&productId=96';
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/ONCasinoResult' + params, "", 835, 675);
+                    };
+                    return _this;
+                }
+                return ONCasinoResultDetails;
+            }(ResultDetails.BaseResultDetails));
+            ResultDetails.ONCasinoResultDetails = ONCasinoResultDetails;
         })(ResultDetails = Status.ResultDetails || (Status.ResultDetails = {}));
     })(Status = BetList.Status || (BetList.Status = {}));
 })(BetList || (BetList = {}));
