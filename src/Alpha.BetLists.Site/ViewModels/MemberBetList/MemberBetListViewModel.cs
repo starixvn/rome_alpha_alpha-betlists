@@ -43,7 +43,7 @@
             IEnumerable<int> supportScoreMapBetTypeIds,
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper)
-            : base(query, betListData, builder, ticketHelper, query.IsEnabledJackpot, false, false, ExcludingTicketStatus)
+            : base(query, betListData, builder, ticketHelper, query.IsEnabledJackpot, false, false, ExcludingTicketStatus, null, false, false, supportRiskAmount: true)
         {
             this.query = query;
 
@@ -60,7 +60,6 @@
             ViewDataInstructionMessage = string.Format(
                 Resources.CanOnlyViewDataAfterTimeHistoryReport,
                 query.MinDate.ToShortDateWithSlash());
-            TotalColumn = TotalColumn + 2;
         }
 
         public string ViewDataInstructionMessage { get; }
@@ -117,33 +116,6 @@
             };
 
             return Helpers.UrlHelper.AddQueryStringParamsFunc(link, routeValues);
-        }
-
-        public static string GetMemberWin(decimal? amount)
-            => amount.HasValue ? ConvertByBetType.Winloss(amount.Value) : "-";
-
-        public string GetSMARiskAmount(TicketDto ticket)
-        {
-            var amount = 0m;
-            if (!ticket.MemberWin.HasValue)
-            {
-                return "-";
-            }
-
-            if (ViewerLevel.IsSuperLevel())
-            {
-                amount = ticket.MemberWin.Value * ticket.SuperPositionTaking;
-            }
-            else if (ViewerLevel.IsMasterLevel())
-            {
-                amount = ticket.MemberWin.Value * ticket.MasterPositionTaking;
-            }
-            else
-            {
-                amount = ticket.MemberWin.Value * ticket.AgentPositionTaking;
-            }
-
-            return ConvertByBetType.Winloss(amount);
         }
     }
 }

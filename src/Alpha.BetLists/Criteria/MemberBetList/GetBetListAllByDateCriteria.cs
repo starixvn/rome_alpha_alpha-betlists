@@ -18,7 +18,6 @@
             ToDate = toDate;
             UserName = userName;
             ProductIds = productIds;
-            Is789y = AppSettings.IsSiteLabel777;
         }
 
         public int CustId { get; }
@@ -30,8 +29,6 @@
         public string UserName { get; }
 
         public string ProductIds { get; }
-
-        public bool Is789y { get; }
 
         public override string GetSettingKey() => "Age_BetList_SelAllByDate_Mem";
 

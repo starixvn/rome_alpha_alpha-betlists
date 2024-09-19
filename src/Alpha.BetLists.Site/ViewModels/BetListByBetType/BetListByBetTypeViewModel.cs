@@ -24,8 +24,9 @@
             BetListData betListData,
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper,
-            IEnumerable<int> supportScoreMapBetTypeIds = null)
-            : base(query, betListData, builder, ticketHelper, true)
+            IEnumerable<int> supportScoreMapBetTypeIds = null,
+            bool supportRiskAmount = false)
+            : base(query, betListData, builder, ticketHelper, true, supportRiskAmount)
         {
             SupportScoreMapBetTypeIds = supportScoreMapBetTypeIds;
             Title = CacheRefServiceHelper.GetBetTypeName(query.BetType).ToUpperInvariant();

@@ -16,7 +16,7 @@
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper,
             IEnumerable<int> supportScoreMapBetTypeIds = null)
-            : base(query, betListData, builder, ticketHelper, supportScoreMapBetTypeIds)
+            : base(query, betListData, builder, ticketHelper, supportScoreMapBetTypeIds, supportRiskAmount: true)
         {
             Title = Resources.parlay.ToUpperInvariant();
         }

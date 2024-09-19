@@ -2,6 +2,9 @@
 {
     using Alpha.BetLists.AppResources;
     using Fanex.BetList.Core.Entities;
+    using Fanex.BetList.Core.Utils;
+    using Fanex.BetList.Core.Utils.StringExt;
+    using Fanex.Common;
     using System.Resources;
 
     public class TicketDto : Ticket
@@ -24,13 +27,30 @@
                 {
                     return Resources.Platform_NA;
                 }
-                
+
                 var deviceInfo = Resources.ResourceManager.GetString(string.Format("Platform_{0}", DeviceType.ToString()));
 
                 return deviceInfo ?? Resources.Platform_Uncategorized;
             }
         }
 
-        public decimal? MemberWin { get; set; }
+        public decimal? MemberWin
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(ExtraInfo) && ExtraInfo.HasAttributeInXmlTag("p1", "pa"))
+                {
+                    var payoutXml = ExtraInfo.GetXmlTagAttributeValue("p1", "pa");
+                    var payout = Converter.ToDecimal(payoutXml);
+
+                    return payout - ActualStake;
+                }
+
+                return null;
+            }
+        }
+
+        public string MemberWinText
+            => MemberWin.HasValue ? ConvertByBetType.Winloss(MemberWin.Value) : "-";
     }
 }

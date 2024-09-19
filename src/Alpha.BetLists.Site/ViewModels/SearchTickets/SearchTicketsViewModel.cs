@@ -15,7 +15,7 @@
             BetListData betListData,
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper)
-            : base(query, betListData, builder, ticketHelper, query.IsEnabledJackpot, false, true)
+            : base(query, betListData, builder, ticketHelper, query.IsEnabledJackpot, false, supportRiskAmount: true)
         {
             RefNo = query.RefNo;
             ViewDataInstructionMessage = string.Format(

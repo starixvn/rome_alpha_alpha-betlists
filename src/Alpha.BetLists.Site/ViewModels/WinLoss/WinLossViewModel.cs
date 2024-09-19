@@ -19,10 +19,11 @@
             string[] excludingTicketStatus = null,
             BetlistOutputParams betlistOutputParams = null,
             bool showFooter = false,
-            bool showOrder = false)
-            : base(query, betListData, builder, ticketHelper, showMemberName)
+            bool showOrder = false,
+            bool supportRiskAmount = false)
+            : base(query, betListData, builder, ticketHelper, showMemberName, supportRiskAmount)
         {
-            Footer = new Footer(betListData, baseQuery.ViewerLevel, showMemberName, excludingTicketStatus);
+            Footer = new Footer(betListData, baseQuery.ViewerLevel, showMemberName, excludingTicketStatus, supportRiskAmount);
             ShowContributionAmountRoundNote = showContributionAmountRoundNote;
             IsGroupHeadline = isGroupHeadline;
             BetlistOutputParams = betlistOutputParams ?? new BetlistOutputParams();

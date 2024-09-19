@@ -15,7 +15,7 @@
             ITicketHelper ticketHelper,
             string lastTransIdCacheKey,
             string latestTransIdCacheKey)
-            : base(query, betListData, builder, ticketHelper, showMemberName: true)
+            : base(query, betListData, builder, ticketHelper, showMemberName: true, supportRiskAmount: true)
         {
             PageSize = query.PageSize;
             ResetLastTransId = query.BetType == -1;

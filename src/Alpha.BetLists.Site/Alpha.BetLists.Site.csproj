@@ -1465,7 +1465,6 @@
     <Content Include="Web.ConnectionStrings.uat4.config">
       <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
     </Content>
-    <Content Include="Views\MemberBetList\WinLossTable.cshtml" />
     <Content Include="Web.uat4.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

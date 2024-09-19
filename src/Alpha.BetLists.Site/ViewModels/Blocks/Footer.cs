@@ -15,7 +15,7 @@
             { UserLevel.Super, 5 }
         };
 
-        public Footer(BetListData betListData, UserLevel viewerLevel, bool showMemberName, string[] excludingTicketStatus = null)
+        public Footer(BetListData betListData, UserLevel viewerLevel, bool showMemberName, string[] excludingTicketStatus = null, bool supportRiksAmount = false)
         {
             if (betListData != null)
             {
@@ -27,7 +27,7 @@
                     NotContainExcludingStatus(ticket, excludingTicketStatus) ? ticket.PlayerComm : 0);
             }
 
-            StatusColSpan = FooterStatusColSpanByViewLevelId[viewerLevel];
+            StatusColSpan = FooterStatusColSpanByViewLevelId[viewerLevel] + (supportRiksAmount ? 2 : 0);
             SubTotalWinLoss = ConvertByBetType.Winloss(TotalWinLoss);
             SubTotalCommission = ConvertByBetType.Comm(TotalCommission);
             Total = ConvertByBetType.Winloss(TotalWinLoss + TotalCommission);

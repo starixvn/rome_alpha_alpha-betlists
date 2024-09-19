@@ -12,7 +12,7 @@
             BetListData betListData,
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper)
-            : base(query, betListData, builder, ticketHelper)
+            : base(query, betListData, builder, ticketHelper, showMemberName: false, supportRiskAmount: true)
         {
             TicketHelper.IsShowOddsWithChoice = true;
         }
