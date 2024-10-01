@@ -29,7 +29,9 @@ var BetList;
                             + '&betid=' + betId
                             + '&transdesc=' + transdesc
                             + '&isViewResultFromBetList=true';
-                        Common.PopupDetails.Instance(window.top).Show(_this.ResultDetailsPath + params, "", 730, 250);
+                        var baseballSport = 8;
+                        var width = sportTypeId == baseballSport ? 1000 : 730;
+                        Common.PopupDetails.Instance(window.top).Show(_this.ResultDetailsPath + params, "", width, 250);
                     };
                     return _this;
                 }
