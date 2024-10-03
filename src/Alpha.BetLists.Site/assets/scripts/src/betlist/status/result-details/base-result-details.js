@@ -170,6 +170,10 @@ var BetList;
                         this.nextspinResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.nextspinResult) ? new ResultDetails.NextspinResultDetails() : this.nextspinResult;
                         return this.nextspinResult;
                     }
+                    if (betTypeId >= 11850 && betTypeId <= 11899) {
+                        this.onCasinoResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.onCasinoResult) ? new ResultDetails.ONCasinoResultDetails() : this.onCasinoResult;
+                        return this.onCasinoResult;
+                    }
                     this.sportsbookResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sportsbookResult) ? new ResultDetails.SportsbookResultDetails : this.sportsbookResult;
                     return this.sportsbookResult;
                 };
