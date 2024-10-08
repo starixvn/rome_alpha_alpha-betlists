@@ -31,5 +31,8 @@
 
         public async Task<ActionResult> BetList(WinLossBetListQuery message)
             => message.IsValid() ? await PartialView<WinLossViewModel>(message) : View(InvalidBetListView);
+
+        public async Task<ActionResult> Index2(WinLossIndexQuery message)
+            => message.IsValid() ? await View<WinLossIndexViewModel>(message) : View(InvalidBetListView);
     }
 }

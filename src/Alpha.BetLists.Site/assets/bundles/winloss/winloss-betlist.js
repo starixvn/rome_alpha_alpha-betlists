@@ -549,8 +549,12 @@ var WinLossBetListView = /** @class */ (function () {
         return locale[language] || "default";
     };
     WinLossBetListView.prototype.buildWinLossReportUrl = function (reportFormData) {
-        var action = reportFormData.custLevelId === 4 ? "master" : (reportFormData.custLevelId === 3 ? "agent" : "member");
-        return $("#winloss-detail-report-path").val() + action + "new?" + $.param(reportFormData);
+        var winlossDetailUrl = $("#winloss-detail-report-path").val();
+        if (winlossDetailUrl.toLowerCase().indexOf('index2') === -1) {
+            var action = reportFormData.custLevelId === 4 ? "master" : (reportFormData.custLevelId === 3 ? "agent" : "member");
+            winlossDetailUrl += action + "new";
+        }
+        return winlossDetailUrl + "?" + $.param(reportFormData);
     };
     WinLossBetListView.prototype.getBetListWeekSelection = function () {
         var _this = this;
