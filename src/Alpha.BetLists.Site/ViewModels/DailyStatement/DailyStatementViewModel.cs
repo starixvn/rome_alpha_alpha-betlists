@@ -28,14 +28,15 @@
             BetListData betListData,
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper,
-            IEnumerable<int> supportScoreMapBetTypeIds = null)
-            : base(query, betListData, builder, ticketHelper, false)
+            IEnumerable<int> supportScoreMapBetTypeIds = null,
+            bool supportRiskAmount = true)
+            : base(query, betListData, builder, ticketHelper, false, supportRiskAmount)
         {
             this.query = query;
 
             SupportScoreMapBetTypeIds = supportScoreMapBetTypeIds;
 
-            Footer = new Footer(betListData, baseQuery.ViewerLevel, false, ExcludedTicketStatus);
+            Footer = new Footer(betListData, baseQuery.ViewerLevel, false, ExcludedTicketStatus, supportRiskAmount);
             TransType = query.TransType;
             Title = $"{Resources.DailyStatement} {query.WinLossDate.ToShortDateString()} - {CustName}";
         }

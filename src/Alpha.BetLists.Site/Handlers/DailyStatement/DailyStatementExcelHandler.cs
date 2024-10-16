@@ -44,7 +44,7 @@
 
             var dailyStatementViewModel = new DailyStatementViewModel(message, betlistData, Builder, TicketHelper);
 
-            workbook = workbook.UseTemplate(GetTemplateInfo(UserLevel.Member));
+            workbook = workbook.UseTemplate(GetTemplateInfo(message.ViewerLevel));
             RtfHelper = message.RtfHelper ?? InitRTFHelper((workbook as NpoiWorkbook<TicketDto>).Workbook);
 
             var fileContent = workbook
@@ -60,8 +60,16 @@
         protected internal override Mapper<TicketDto> GetBodyRowMapper(UserLevel viewerLevel, BetListBaseViewModel viewModel)
         {
             var mapper = GetTicketDtoRowMapperExcludeUsername(viewModel);
-
-            mapper.Map(Column.H, ticket => BuildPlatform(ticket.Platform));
+            if(viewModel.SupportRiskAmount)
+            {
+                mapper.Map(Column.H, ticket => ticket.MemberWinText);
+                mapper.Map(Column.I, ticket => viewModel.GetSMARiskAmount(ticket));
+                mapper.Map(Column.J, ticket => BuildPlatform(ticket.Platform));
+            }    
+            else
+            {
+                mapper.Map(Column.H, ticket => BuildPlatform(ticket.Platform));
+            }
 
             return mapper;
         }

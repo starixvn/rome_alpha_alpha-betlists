@@ -25,7 +25,7 @@
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper,
             IEnumerable<int> supportScoreMapBetTypeIds = null,
-            bool supportRiskAmount = false)
+            bool supportRiskAmount = true)
             : base(query, betListData, builder, ticketHelper, true, supportRiskAmount)
         {
             SupportScoreMapBetTypeIds = supportScoreMapBetTypeIds;

@@ -56,5 +56,15 @@
 
             return new ExcelFileViewModel(viewModel.Title, fileContent);
         }
+
+        protected internal override Mapper<TicketDto> GetBodyRowMapper(UserLevel viewerLevel, BetListBaseViewModel viewModel)
+        {
+            var mapper = GetTicketDtoRowMapperExcludeUsername(viewModel);
+            mapper.Map(Column.I, ticket => ticket.MemberWinText);
+            mapper.Map(Column.J, ticket => viewModel.GetSMARiskAmount(ticket));
+            mapper.Map(Column.K, ticket => BuildPlatform(ticket.Platform));
+
+            return mapper;
+        }
     }
 }

@@ -51,6 +51,6 @@
         }
 
         public string MemberWinText
-            => MemberWin.HasValue ? ConvertByBetType.Winloss(MemberWin.Value) : "-";
+            => MemberWin.HasValue ? ConvertByBetType.Winloss(MemberWin.Value) : Resources.Platform_NA;
     }
 }

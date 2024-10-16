@@ -14,6 +14,19 @@
             <th class="col-odds">@Resources.odds</th>
             <th class="col-stake">@Resources.stake</th>
             <th class="col-status">@Resources.status</th>
+            <th class="col-stake">@Resources.MemberRisk</th>
+            @if (Model.ViewerLevel.IsSuperLevel())
+            {
+                <th class="col-stake">@Resources.SuperRisk</th>
+            }
+            @if (Model.ViewerLevel.IsMasterLevel())
+            {
+                <th class="col-stake">@Resources.MasterRisk</th>
+            }
+            @if (Model.ViewerLevel.IsAgentLevel())
+            {
+                <th class="col-stake">@Resources.AgentRisk</th>
+            }
             <th class="col-platform">@Resources.platform</th>
         </tr>
     </thead>
@@ -26,16 +39,23 @@
 
                 foreach (var ticket in Model.BetListData.Tickets)
                 {
-                    <tr id="r@(ticket.TransId)">
-                        <td class='w-order text-center'>@i</td>
-                        <td class="text-center">@ticket.UserName</td>
-                        @Trans.Render(Model.Builder, ticket)
-                        @Choice.Render(Model.Builder, ticket, Model.TicketHelper, Model.BetListData.TicketData, Model.CanViewScoreMap(ticket))
-                        @Odds.Render(Model.Builder, ticket, Model.BetListData.TicketData, Model.TicketHelper.GetOddsTypeNameById)
-                        @Stake.Render(Model.Builder, ticket, Model.TicketHelper)
-                        @LastBetsStatus.Render(ticket, Model.TicketHelper, Model.DisplayVNIP)
-                        @Platform.Render(ticket.Platform)
-                    </tr>
+                        <tr id="r@(ticket.TransId)">
+                            <td class='w-order text-center'>@i</td>
+                            <td class="text-center">@ticket.UserName</td>
+                            @Trans.Render(Model.Builder, ticket)
+                            @Choice.Render(Model.Builder, ticket, Model.TicketHelper, Model.BetListData.TicketData, Model.CanViewScoreMap(ticket))
+                            @Odds.Render(Model.Builder, ticket, Model.BetListData.TicketData, Model.TicketHelper.GetOddsTypeNameById)
+                            @Stake.Render(Model.Builder, ticket, Model.TicketHelper)
+                            @LastBetsStatus.Render(ticket, Model.TicketHelper, Model.DisplayVNIP)
+                            <td class="member-risk-block bl_underdog text-center">
+                                @ticket.MemberWinText
+                            </td>
+
+                            <td class="member-risk-block bl_underdog text-center">
+                                @Model.GetSMARiskAmount(ticket)
+                            </td>
+                            @Platform.Render(ticket.Platform)
+                        </tr>
 
                     i++;
                 }

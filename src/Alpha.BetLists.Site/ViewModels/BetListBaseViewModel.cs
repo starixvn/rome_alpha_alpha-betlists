@@ -12,6 +12,7 @@
     using Fanex.BetList.Core.Utils;
     using Requests;
     using Web.Helpers;
+    using Alpha.BetLists.AppResources;
 
     [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1304:NonPrivateReadonlyFieldsMustBeginWithUpperCaseLetter", Justification = "Reviewed.")]
     public abstract class BetListBaseViewModel
@@ -151,7 +152,7 @@
             var amount = 0m;
             if (!ticket.MemberWin.HasValue)
             {
-                return "-";
+                return Resources.Platform_NA;
             }
 
             if (ViewerLevel.IsSuperLevel())
