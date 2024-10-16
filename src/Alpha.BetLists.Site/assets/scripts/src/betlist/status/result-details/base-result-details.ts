@@ -53,7 +53,8 @@
                 return this.fishingWorldResult;
             }
 
-            if (betTypeId >= 1611 && betTypeId <= 1699) {
+            if ((betTypeId >= 1611 && betTypeId <= 1699) ||
+                (betTypeId >= 13200 && betTypeId <= 13499)) {
                 this.SabaClubResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.SabaClubResult) ? new SabaClubResultDetails() : this.SabaClubResult;
                 return this.SabaClubResult;
             }
@@ -171,7 +172,8 @@
                 return this.habaneroResult;
             }
 
-            if (betTypeId >= 3802 && betTypeId <= 3899) {
+            if ((betTypeId >= 3802 && betTypeId <= 3899) ||
+                (betTypeId >= 13500 && betTypeId <= 13799)){
                 this.VGamingResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.VGamingResult) ? new VGamingResultDetails() : this.VGamingResult;
                 return this.VGamingResult;
             }
