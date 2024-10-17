@@ -198,6 +198,7 @@ var BetList;
                             '&transId3rd=' + transId3rd +
                             '&gameId3rd=' + gameId3rd +
                             '&currencyId=' + currencyId +
+                            '&betType=' + betTypeId +
                             '&siteId=' + siteId +
                             '&productId=55';
                         Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/PGSoftResult' + params, "", 835, 675);
