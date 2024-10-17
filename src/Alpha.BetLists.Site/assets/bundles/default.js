@@ -274,7 +274,8 @@ var BetList;
                         this.fishingWorldResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.fishingWorldResult) ? new ResultDetails.FishingWorldResultDetails() : this.fishingWorldResult;
                         return this.fishingWorldResult;
                     }
-                    if (betTypeId >= 1611 && betTypeId <= 1699) {
+                    if ((betTypeId >= 1611 && betTypeId <= 1699) ||
+                        (betTypeId >= 13200 && betTypeId <= 13499)) {
                         this.SabaClubResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.SabaClubResult) ? new ResultDetails.SabaClubResultDetails() : this.SabaClubResult;
                         return this.SabaClubResult;
                     }
@@ -372,7 +373,8 @@ var BetList;
                         this.habaneroResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.habaneroResult) ? new ResultDetails.HabaneroResultDetails() : this.habaneroResult;
                         return this.habaneroResult;
                     }
-                    if (betTypeId >= 3802 && betTypeId <= 3899) {
+                    if ((betTypeId >= 3802 && betTypeId <= 3899) ||
+                        (betTypeId >= 13500 && betTypeId <= 13799)) {
                         this.VGamingResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.VGamingResult) ? new ResultDetails.VGamingResultDetails() : this.VGamingResult;
                         return this.VGamingResult;
                     }
@@ -753,6 +755,7 @@ var BetList;
                             '&transId3rd=' + transId3rd +
                             '&gameId3rd=' + gameId3rd +
                             '&currencyId=' + currencyId +
+                            '&betType=' + betTypeId +
                             '&siteId=' + siteId +
                             '&productId=55';
                         Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/PGSoftResult' + params, "", 835, 675);
