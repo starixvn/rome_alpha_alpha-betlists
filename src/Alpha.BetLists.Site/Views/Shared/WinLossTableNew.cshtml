@@ -79,13 +79,7 @@
                 @PositionTaking.Render(ticket, Model.BetListData.TicketData, UserLevel.Agent)
                 @if (Model.SupportRiskAmount)
                 {
-                    <td class="member-risk-block bl_underdog text-center">
-                        @ticket.MemberWinText
-                    </td>
-
-                    <td class="member-risk-block bl_underdog text-center">
-                        @Model.GetSMARiskAmount(ticket)
-                    </td>
+                    @RiskAmount.Render(ticket.MemberWinText, Model.GetSMARiskAmount(ticket))
                 }
                 @Platform.Render(ticket.Platform)
             </tr>

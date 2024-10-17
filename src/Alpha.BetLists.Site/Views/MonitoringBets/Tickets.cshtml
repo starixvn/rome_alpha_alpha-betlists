@@ -27,13 +27,7 @@
     @Odds.Render(Model.Builder, ticket, Model.BetListData.TicketData, Model.TicketHelper.GetOddsTypeNameById)
     @Stake.Render(Model.Builder, ticket, Model.TicketHelper)
     @LastBetsStatus.Render(ticket, Model.TicketHelper, Model.DisplayVNIP)
-    <td class="member-risk-block bl_underdog text-center">
-        @ticket.MemberWinText
-    </td>
-
-    <td class="member-risk-block bl_underdog text-center">
-        @Model.GetSMARiskAmount(ticket)
-    </td>
+    @RiskAmount.Render(ticket.MemberWinText, Model.GetSMARiskAmount(ticket))
     @Platform.Render(ticket.Platform)
 </tr>
     }

@@ -1,7 +1,6 @@
 ﻿namespace Alpha.BetLists.Criteria.MemberBetList
 {
     using System;
-    using AlphaPlus.Configurations;
     using Fanex.Data.Repository;
 
     public class GetBetListAllByDateCriteria : CriteriaBase

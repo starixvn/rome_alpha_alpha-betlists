@@ -1202,6 +1202,7 @@
       <DependentUpon>ProductSection.config</DependentUpon>
     </Content>
     <Content Include="App_Data\securitycode.uat4.json" />
+    <Content Include="App_Code\Blocks\RiskAmount.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>

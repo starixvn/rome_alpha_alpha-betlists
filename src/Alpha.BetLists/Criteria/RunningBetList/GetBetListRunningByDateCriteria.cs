@@ -1,7 +1,6 @@
 ﻿namespace Alpha.BetLists.Criteria.RunningBetList
 {
     using System;
-    using AlphaPlus.Configurations;
     using Fanex.Data.Repository;
 
     public class GetBetListRunningByDateCriteria : CriteriaBase

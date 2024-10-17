@@ -44,35 +44,29 @@
             @for (int i = 0; i < Model.BetListData.Total; i++)
             {
                 var ticket = Model.BetListData.Tickets.ElementAt(i);
-                <tr id="r@(ticket.TransId)">
-                    <td class='w-order text-center'>@(i + 1)</td>
-                    <td class="text-center">@ticket.UserName</td>
-                    @Trans.Render(Model.Builder, ticket)
-                    @Choice.Render(Model.Builder, ticket, Model.TicketHelper, Model.BetListData.TicketData, Model.CanViewScoreMap(ticket))
-                    @Odds.Render(Model.Builder, ticket, Model.BetListData.TicketData, Model.TicketHelper.GetOddsTypeNameById)
-                    @Stake.Render(Model.Builder, ticket, Model.TicketHelper)
-                    @Status.Render(Model.Builder, ticket, Model.TicketHelper, Model.BetListData.TicketData, Model.DisplayVNIP)
-                    @if (Model.AllowToViewSuperPT)
-                    {
-                        @PositionTaking.Render(ticket, Model.BetListData.TicketData, UserLevel.Super)
-                    }
-                    @if (Model.AllowToViewMasterPT)
-                    {
-                        @PositionTaking.Render(ticket, Model.BetListData.TicketData, UserLevel.Master)
-                    }
-                    @PositionTaking.Render(ticket, Model.BetListData.TicketData, UserLevel.Agent)
-                    @if (Model.SupportRiskAmount)
-                    {
-                        <td class="member-risk-block bl_underdog text-center">
-                            @ticket.MemberWinText
-                        </td>
-
-                        <td class="member-risk-block bl_underdog text-center">
-                            @Model.GetSMARiskAmount(ticket)
-                        </td>
-                    }
-                    @Platform.Render(ticket.Platform)
-                </tr>
+            <tr id="r@(ticket.TransId)">
+                <td class='w-order text-center'>@(i + 1)</td>
+                <td class="text-center">@ticket.UserName</td>
+                @Trans.Render(Model.Builder, ticket)
+                @Choice.Render(Model.Builder, ticket, Model.TicketHelper, Model.BetListData.TicketData, Model.CanViewScoreMap(ticket))
+                @Odds.Render(Model.Builder, ticket, Model.BetListData.TicketData, Model.TicketHelper.GetOddsTypeNameById)
+                @Stake.Render(Model.Builder, ticket, Model.TicketHelper)
+                @Status.Render(Model.Builder, ticket, Model.TicketHelper, Model.BetListData.TicketData, Model.DisplayVNIP)
+                @if (Model.AllowToViewSuperPT)
+                {
+                    @PositionTaking.Render(ticket, Model.BetListData.TicketData, UserLevel.Super)
+                }
+                @if (Model.AllowToViewMasterPT)
+                {
+                    @PositionTaking.Render(ticket, Model.BetListData.TicketData, UserLevel.Master)
+                }
+                @PositionTaking.Render(ticket, Model.BetListData.TicketData, UserLevel.Agent)
+                @if (Model.SupportRiskAmount)
+                {
+                    @RiskAmount.Render(ticket.MemberWinText, Model.GetSMARiskAmount(ticket))
+                }
+                @Platform.Render(ticket.Platform)
+            </tr>
             }
         </tbody>
     }
