@@ -42,9 +42,10 @@
             var betlistData = await dailyStatementService.GetBetList(param);
             await AssignCountry(betlistData.Tickets, message.DisplayVNIP);
 
-            var dailyStatementViewModel = new DailyStatementViewModel(message, betlistData, Builder, TicketHelper);
+            var dailyStatementViewModel = new DailyStatementViewModel(message, betlistData, Builder, TicketHelper, null, message.SupportRiskAmount);
 
-            workbook = workbook.UseTemplate(GetTemplateInfo(message.ViewerLevel));
+            workbook = workbook.UseTemplate(message.SupportRiskAmount ? GetRiskAmountTemplateInfo(message.ViewerLevel) : GetTemplateInfo(message.ViewerLevel));
+
             RtfHelper = message.RtfHelper ?? InitRTFHelper((workbook as NpoiWorkbook<TicketDto>).Workbook);
 
             var fileContent = workbook
@@ -57,15 +58,16 @@
             return new ExcelFileViewModel("BetList", fileContent);
         }
 
+
         protected internal override Mapper<TicketDto> GetBodyRowMapper(UserLevel viewerLevel, BetListBaseViewModel viewModel)
         {
             var mapper = GetTicketDtoRowMapperExcludeUsername(viewModel);
-            if(viewModel.SupportRiskAmount)
+            if (viewModel.SupportRiskAmount)
             {
                 mapper.Map(Column.H, ticket => ticket.MemberWinText);
                 mapper.Map(Column.I, ticket => viewModel.GetSMARiskAmount(ticket));
                 mapper.Map(Column.J, ticket => BuildPlatform(ticket.Platform));
-            }    
+            }
             else
             {
                 mapper.Map(Column.H, ticket => BuildPlatform(ticket.Platform));
@@ -73,5 +75,13 @@
 
             return mapper;
         }
+
+        private TemplateInfo GetRiskAmountTemplateInfo(UserLevel viewerLevel)
+            => new TemplateInfo(
+                   GetExcelTemplatePath($"{viewerLevel.DisplayName}-RiskAmount"),
+                   noInfomationText: Resources.NoInformationIsAvailable,
+                   bodyStartIndex: 3,
+                   bodyEndIndex: 4,
+                   footerEndIndex: 5);
     }
 }

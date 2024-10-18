@@ -29,7 +29,7 @@
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper,
             IEnumerable<int> supportScoreMapBetTypeIds = null,
-            bool supportRiskAmount = true)
+            bool supportRiskAmount = false)
             : base(query, betListData, builder, ticketHelper, false, supportRiskAmount)
         {
             this.query = query;

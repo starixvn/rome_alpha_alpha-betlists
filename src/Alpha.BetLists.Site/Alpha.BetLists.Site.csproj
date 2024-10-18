@@ -1203,6 +1203,9 @@
     </Content>
     <Content Include="App_Data\securitycode.uat4.json" />
     <Content Include="App_Code\Blocks\RiskAmount.cshtml" />
+    <Content Include="App_Data\ExcelTemplates\DailyStatement\Agent-RiskAmount.xls" />
+    <Content Include="App_Data\ExcelTemplates\DailyStatement\Master-RiskAmount.xls" />
+    <Content Include="App_Data\ExcelTemplates\DailyStatement\Super-RiskAmount.xls" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>

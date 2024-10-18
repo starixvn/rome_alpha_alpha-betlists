@@ -5,7 +5,7 @@
     using Fanex.BetList.Core.Utils;
     using Fanex.BetList.Core.Utils.StringExt;
     using Fanex.Common;
-    using System.Resources;
+    using Fanex.BetList.Core.Utils.TicketExt;
 
     public class TicketDto : Ticket
     {
@@ -38,7 +38,7 @@
         {
             get
             {
-                if (!string.IsNullOrEmpty(ExtraInfo) && ExtraInfo.HasAttributeInXmlTag("p1", "pa"))
+                if (!string.IsNullOrEmpty(ExtraInfo) && ExtraInfo.HasAttributeInXmlTag("p1", "pa") && this.IsRunningWaiting())
                 {
                     var payoutXml = ExtraInfo.GetXmlTagAttributeValue("p1", "pa");
                     var payout = Converter.ToDecimal(payoutXml);
