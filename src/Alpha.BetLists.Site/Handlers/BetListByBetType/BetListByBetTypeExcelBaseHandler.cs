@@ -27,7 +27,7 @@
         {
             var ticketData = viewModel.BetListData.TicketData;
 
-            var mapper = GetTicketDtoRowMapperExcludeUsername(viewModel);
+            var mapper = GetTicketDtoRowMapperIncludeUsername(viewModel, showWinLoss: false);
             mapper.Map(Column.H, ticket => BuildPtCommmission(ticket, ticketData, viewerLevel));
             if (viewerLevel.IsSuperLevel())
             {
