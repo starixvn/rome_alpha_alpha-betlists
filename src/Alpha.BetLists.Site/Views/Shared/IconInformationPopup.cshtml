@@ -10,7 +10,7 @@
                 <div id="msg-content">
                     @foreach (var note in Model)
                     {
-                        <p>- @note</p>
+                        <p>- @Html.Raw(note)</p>
                     }
                 </div>
             </div>

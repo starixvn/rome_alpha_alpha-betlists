@@ -1240,6 +1240,15 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Member Win: The potential net winning amount a Member can receive from &lt;b&gt;a Sportsbook running bet ticket. &lt;/b&gt;.
+        /// </summary>
+        public static string MemberWinNote {
+            get {
+                return ResourceManager.GetString("MemberWinNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Minor Sports.
         /// </summary>
         public static string MinorSports {
@@ -1794,6 +1803,15 @@ namespace Alpha.BetLists.AppResources {
         public static string result {
             get {
                 return ResourceManager.GetString("result", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your Risk Amount: The potential risk you bear if the Member wins the ticket, calculated as: &lt;b&gt;Your Risk Amount = Member Win * Your Position Taking&lt;/b&gt;.
+        /// </summary>
+        public static string RiskAmountNote {
+            get {
+                return ResourceManager.GetString("RiskAmountNote", resourceCulture);
             }
         }
         

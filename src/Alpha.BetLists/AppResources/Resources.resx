@@ -858,7 +858,7 @@
   <data name="EnableChatBot_LastBets" xml:space="preserve">
     <value>Enable Chatbot &amp; Last Bets Notification to use Last Bets Notification feature. &lt;a class="lnk-chatbot"&gt;Go to Chatbot&lt;/a&gt;</value>
   </data>
-    <data name="MemberRisk" xml:space="preserve">
+  <data name="MemberRisk" xml:space="preserve">
     <value>Member Win</value>
   </data>
   <data name="MasterRisk" xml:space="preserve">
@@ -870,5 +870,10 @@
   <data name="AgentRisk" xml:space="preserve">
     <value>Agent Risk</value>
   </data>
-
+  <data name="MemberWinNote" xml:space="preserve">
+    <value>Member Win: The potential net winning amount a Member can receive from &lt;b&gt;a Sportsbook running bet ticket. &lt;/b&gt;</value>
+  </data>
+  <data name="RiskAmountNote" xml:space="preserve">
+    <value>Your Risk Amount: The potential risk you bear if the Member wins the ticket, calculated as: &lt;b&gt;Your Risk Amount = Member Win * Your Position Taking&lt;/b&gt;</value>
+  </data>
 </root>

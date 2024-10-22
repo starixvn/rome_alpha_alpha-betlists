@@ -20,6 +20,12 @@
                 {
                     notes.Add(Resources.ContributionAmountRoundNote);
                 }
+
+                if(Model.SupportRiskAmount)
+                {
+                    notes.Add(Resources.MemberWinNote);
+                    notes.Add(Resources.RiskAmountNote);
+                }
             }
 
             @Html.Partial("IconInformation", notes)
