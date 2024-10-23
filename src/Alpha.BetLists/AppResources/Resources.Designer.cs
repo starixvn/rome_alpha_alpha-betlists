@@ -1222,7 +1222,7 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Member Win.
+        ///   Looks up a localized string similar to To Win.
         /// </summary>
         public static string MemberRisk {
             get {
@@ -1240,7 +1240,7 @@ namespace Alpha.BetLists.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Member Win: The potential net winning amount a Member can receive from &lt;b&gt;a Sportsbook running bet ticket. &lt;/b&gt;.
+        ///   Looks up a localized string similar to &lt;b&gt;To Win&lt;/b&gt;: The potential net winning amount a Member can receive from a Sportsbook running bet ticket. &lt;b&gt;Your Risk Amount&lt;/b&gt;: The potential risk you bear if the Member wins the ticket, calculated as: &lt;b&gt;Your Risk Amount = To Win * Your Position Taking. &lt;/b&gt;These values do not apply to &lt;b&gt;Sportsbook settled tickets or other product tickets&lt;/b&gt; (both running and settled), and will be displayed as &lt;b&gt;&apos;N/A&apos;&lt;/b&gt; (Not Applicable)..
         /// </summary>
         public static string MemberWinNote {
             get {
@@ -1803,15 +1803,6 @@ namespace Alpha.BetLists.AppResources {
         public static string result {
             get {
                 return ResourceManager.GetString("result", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Your Risk Amount: The potential risk you bear if the Member wins the ticket, calculated as: &lt;b&gt;Your Risk Amount = Member Win * Your Position Taking&lt;/b&gt;.
-        /// </summary>
-        public static string RiskAmountNote {
-            get {
-                return ResourceManager.GetString("RiskAmountNote", resourceCulture);
             }
         }
         
