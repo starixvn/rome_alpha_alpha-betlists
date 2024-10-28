@@ -63,9 +63,19 @@
             => new SelectListItem { Text = value.ToString(), Value = value.ToString(), Selected = selected };
 
         public string UserGuideLink
-            => AppSettings.IsMBCSite
-            ? MicroSites.HowToUseUrl("~/Index.aspx?linktomessagesite=186142")
-            : MicroSites.MessageUrl("~/StaticMessage/Guide?id=186142");
+        {
+            get
+            {
+                if (AppSettings.SupportedNewHandbook)
+                {
+                    return MicroSites.HowToUseUrl("~/Default/GetBySlug?slug=last-bets");
+                }
+
+                return AppSettings.IsMBCSite
+                    ? MicroSites.HowToUseUrl("~/Index.aspx?linktomessagesite=186142")
+                    : MicroSites.MessageUrl("~/StaticMessage/Guide?id=186142");
+            }
+        }
 
         public string ShutdownOldLastBetsKey { get; }
     }
