@@ -41,6 +41,7 @@
         private static faCHAIResult: ResultDetails;
         private static nextspinResult: ResultDetails;
         private static onCasinoResult: ResultDetails;
+        private static sexyGamingResult: ResultDetails;
 
         public static CreateInstance(betTypeId: number): ResultDetails {
             if (betTypeId === 9 || betTypeId === 29 || betTypeId === 2799 || betTypeId === 10449) {
@@ -64,14 +65,18 @@
                 return this.rngCasinoResult;
             }
 
+            if (betTypeId >= 3101 && betTypeId <= 3150) {
+                this.sexyGamingResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.weResult) ? new SexyGamingResultDetails() : this.sexyGamingResult;
+                return this.sexyGamingResult;
+            }
+
             if (betTypeId >= 4001 && betTypeId <= 4100 || betTypeId >= 5800 && betTypeId <= 5999) {
                 this.macauGamesResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.macauGamesResult) ? new MacauGamesResultDetails() : this.macauGamesResult;
                 return this.macauGamesResult;
             }
 
             if ((betTypeId >= 2401 && betTypeId <= 2499) ||
-                (betTypeId >= 3001 && betTypeId <= 3099) ||
-                (betTypeId >= 3101 && betTypeId <= 3149) ||
+                (betTypeId >= 3001 && betTypeId <= 3099) ||                
                 (betTypeId >= 3151 && betTypeId <= 3200) ||
                 (betTypeId >= 3201 && betTypeId <= 3299) ||
                 (betTypeId >= 3401 && betTypeId <= 3499)) {
