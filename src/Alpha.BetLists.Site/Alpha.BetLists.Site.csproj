@@ -1031,7 +1031,9 @@
     <Content Include="assets\scripts\typings\globals\jquery.blockui\typings.json" />
     <Content Include="App_Code\Components\DateRangePicker.cshtml" />
     <Content Include="assets\styles\filter.scss" />
-    <Content Include="App_Data\ExcelTemplates\DailyStatement\Member.xls" />
+    <Content Include="App_Data\ExcelTemplates\DailyStatement\Agent.xls" />
+    <Content Include="App_Data\ExcelTemplates\DailyStatement\Super.xls" />
+    <Content Include="App_Data\ExcelTemplates\DailyStatement\Master.xls" />
     <Content Include="App_Data\ExcelTemplates\CancelledBet\Agent.xls" />
     <Content Include="App_Data\ExcelTemplates\CancelledBet\Master.xls" />
     <Content Include="App_Data\ExcelTemplates\CancelledBet\Super.xls" />
@@ -1200,6 +1202,10 @@
       <DependentUpon>ProductSection.config</DependentUpon>
     </Content>
     <Content Include="App_Data\securitycode.uat4.json" />
+    <Content Include="App_Code\Blocks\RiskAmount.cshtml" />
+    <Content Include="App_Data\ExcelTemplates\DailyStatement\Agent-RiskAmount.xls" />
+    <Content Include="App_Data\ExcelTemplates\DailyStatement\Master-RiskAmount.xls" />
+    <Content Include="App_Data\ExcelTemplates\DailyStatement\Super-RiskAmount.xls" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>

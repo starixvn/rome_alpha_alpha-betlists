@@ -1,5 +1,6 @@
 ﻿@using Alpha.BetLists.Configurations
 @using Alpha.BetLists.Site.ViewModels.MonitoringBets
+
 @model MonitoringBetsViewModel
 @{
     ViewBag.Title = "Last Bets Monitoring";
@@ -44,7 +45,8 @@
             <select id="monitoring-bets-filter" style="width: 160px" data-placeholder="@Resources.PleaseSelect">
                 @if (Model.IsShowFilterPlaceHolder)
                 {
-                    <option></option>}
+                    <option></option>
+}
                 @foreach (var savedFilter in Model.Filters)
                 {
                     <option value="@savedFilter.FilterId"
@@ -91,6 +93,19 @@
                     <th class="col-odds">@Resources.odds</th>
                     <th class="col-stake">@Resources.stake</th>
                     <th class="col-status">@Resources.IP</th>
+                    <th class="col-stake">@Resources.MemberRisk</th>
+                    @if (Model.ViewerLevel.IsSuperLevel())
+                    {
+                        <th class="col-stake">@Resources.SuperRisk</th>
+                    }
+                    @if (Model.ViewerLevel.IsMasterLevel())
+                    {
+                        <th class="col-stake">@Resources.MasterRisk</th>
+                    }
+                    @if (Model.ViewerLevel.IsAgentLevel())
+                    {
+                        <th class="col-stake">@Resources.AgentRisk</th>
+                    }
                     <th class="col-platform">@Resources.platform</th>
                 </tr>
             </thead>

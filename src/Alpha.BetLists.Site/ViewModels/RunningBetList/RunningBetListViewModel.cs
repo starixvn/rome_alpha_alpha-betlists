@@ -10,6 +10,7 @@
     using Extensions;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
+    using Fanex.BetList.Core.Utils;
     using MemberBetList;
     using Params;
     using Requests.RunningBetList;
@@ -27,7 +28,7 @@
             IEnumerable<int> supportScoreMapBetTypeIds,
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper)
-            : base(query, betListData, builder, ticketHelper, false)
+            : base(query, betListData, builder, ticketHelper, false, supportRiskAmount: true)
         {
             this.query = query;
 
@@ -91,6 +92,6 @@
             };
 
             return Helpers.UrlHelper.AddQueryStringParamsFunc(link, routeValues);
-        }
+        }        
     }
 }

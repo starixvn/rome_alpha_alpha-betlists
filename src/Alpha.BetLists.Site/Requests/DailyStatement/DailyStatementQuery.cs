@@ -14,5 +14,7 @@
         public DateTime WinLossDate { get; set; }
 
         public int TransType { get; set; }
+
+        public bool SupportRiskAmount => TransType == 3;
     }
 }

@@ -21,7 +21,7 @@
 
                 var notes = new List<string>()
                 {
-                    Resources.ipnote, 
+                    Resources.ipnote,
                     Model.ViewDataInstructionMessage,
                     Resources.CommissionRoundNote
                 };
@@ -30,6 +30,8 @@
                 {
                     notes.Add(Resources.ContributionAmountRoundNote);
                 }
+
+                notes.Add(Resources.MemberWinNote);
             }
 
             @Html.Partial("IconInformation", notes)

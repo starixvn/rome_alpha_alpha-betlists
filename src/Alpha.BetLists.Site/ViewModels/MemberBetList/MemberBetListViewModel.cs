@@ -9,6 +9,7 @@
     using Extensions;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
+    using Fanex.BetList.Core.Utils;
     using Params;
     using Requests.MemberBetList;
     using Utils;
@@ -42,7 +43,7 @@
             IEnumerable<int> supportScoreMapBetTypeIds,
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper)
-            : base(query, betListData, builder, ticketHelper, query.IsEnabledJackpot, false, false, ExcludingTicketStatus)
+            : base(query, betListData, builder, ticketHelper, query.IsEnabledJackpot, false, false, ExcludingTicketStatus, null, false, false, supportRiskAmount: true)
         {
             this.query = query;
 

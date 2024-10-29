@@ -16,7 +16,7 @@
             BetListData betListData,
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper)
-            : base(query, betListData, builder, ticketHelper, false, false, true, excludingTicketStatus)
+            : base(query, betListData, builder, ticketHelper, false, false, true, excludingTicketStatus, null, false, false, supportRiskAmount: true)
         {
             Date = query.Date;
             IP = query.IP;

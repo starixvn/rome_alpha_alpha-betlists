@@ -41,7 +41,7 @@
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
-            return new DailyStatementViewModel(message, betlistData, Builder, TicketHelper, supportScoreMapBetTypeIds);
+            return new DailyStatementViewModel(message, betlistData, Builder, TicketHelper, supportScoreMapBetTypeIds, message.SupportRiskAmount);
         }
 
         protected internal static DailyStatementParam CreateDailyStatementParam(DailyStatementQuery message)

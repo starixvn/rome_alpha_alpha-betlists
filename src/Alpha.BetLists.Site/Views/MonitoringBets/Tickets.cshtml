@@ -9,26 +9,27 @@
     var i = 1;
     foreach (var ticket in Model.BetListData.Tickets)
     {
-        <tr id="r@(ticket.TransId)" class="@(ticket.IsHighlight ? "row-highlight" : string.Empty)">
-            <td class="w-order">@(i++)</td>
-            <td class="trans-block text-center">@ticket.TransId</td>
-            <td class="trans-block text-center nonbreak">@ticket.TransDate.ToString()</td>
-            <td>
-                <div class="line-username">
-                    <span>@ticket.UserName</span>
-                    @if (ticket.IsInWatchlist)
-                    {
-                        <span class="icon-mywatchlist" data-toggle="tooltip" data-placement="bottom" title="@Resources.MonitoredMember"></span>
-                    }
-                </div>
-            </td>
-            <td class="text-center">@ticket.BetType</td>
-            @Choice.Render(Model.Builder, ticket, Model.TicketHelper, Model.BetListData.TicketData, Model.CanViewScoreMap(ticket))
-            @Odds.Render(Model.Builder, ticket, Model.BetListData.TicketData, Model.TicketHelper.GetOddsTypeNameById)
-            @Stake.Render(Model.Builder, ticket, Model.TicketHelper)
-            @LastBetsStatus.Render(ticket, Model.TicketHelper, Model.DisplayVNIP)
-            @Platform.Render(ticket.Platform)
-        </tr>
+<tr id="r@(ticket.TransId)" class="@(ticket.IsHighlight ? "row-highlight" : string.Empty)">
+    <td class="w-order">@(i++)</td>
+    <td class="trans-block text-center">@ticket.TransId</td>
+    <td class="trans-block text-center nonbreak">@ticket.TransDate.ToString()</td>
+    <td>
+        <div class="line-username">
+            <span>@ticket.UserName</span>
+            @if (ticket.IsInWatchlist)
+            {
+                <span class="icon-mywatchlist" data-toggle="tooltip" data-placement="bottom" title="@Resources.MonitoredMember"></span>
+            }
+        </div>
+    </td>
+    <td class="text-center">@ticket.BetType</td>
+    @Choice.Render(Model.Builder, ticket, Model.TicketHelper, Model.BetListData.TicketData, Model.CanViewScoreMap(ticket))
+    @Odds.Render(Model.Builder, ticket, Model.BetListData.TicketData, Model.TicketHelper.GetOddsTypeNameById)
+    @Stake.Render(Model.Builder, ticket, Model.TicketHelper)
+    @LastBetsStatus.Render(ticket, Model.TicketHelper, Model.DisplayVNIP)
+    @RiskAmount.Render(ticket.MemberWinText, Model.GetSMARiskAmount(ticket))
+    @Platform.Render(ticket.Platform)
+</tr>
     }
 }
 else

@@ -9,8 +9,10 @@
     using Configurations;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
+    using Fanex.BetList.Core.Utils;
     using Requests;
     using Web.Helpers;
+    using Alpha.BetLists.AppResources;
 
     [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1304:NonPrivateReadonlyFieldsMustBeginWithUpperCaseLetter", Justification = "Reviewed.")]
     public abstract class BetListBaseViewModel
@@ -29,7 +31,8 @@
             BetListData betListData,
             IBetListHTMLBuilder builder,
             ITicketHelper ticketHelper,
-            bool showMemberName = false)
+            bool showMemberName = false,
+            bool supportRiskAmount = false)
         {
             baseQuery = query;
             CustName = query.CustName;
@@ -48,8 +51,9 @@
             ViewerLevel = baseQuery.ViewerLevel;
             DisplayVNIP = baseQuery.DisplayVNIP;
             Title = GetTitle(query).ToUpperInvariant();
-            TotalColumn = TotalColumnByViewLevelId[ViewerLevel] + (showMemberName ? 1 : 0);
+            TotalColumn = TotalColumnByViewLevelId[ViewerLevel] + (showMemberName ? 1 : 0) + (supportRiskAmount ? 2 : 0);
             ShowMemberName = showMemberName;
+            SupportRiskAmount = supportRiskAmount;
         }
 
         public string CustName { get; protected set; }
@@ -130,6 +134,8 @@
 
         public bool ShowMemberName { get; }
 
+        public bool SupportRiskAmount { get; }
+
         public string GetTitle(BaseQuery query)
             => HasDateParam(query)
             ? $"{Resources.memberBetList} {query.FromDate.ToShortDateString()} --> {query.ToDate.ToShortDateString()} - {query.CustName}"
@@ -140,5 +146,29 @@
 
         // TODO: will implement here
         public virtual bool CanViewScoreMap(ITicket ticket) => false;
+
+        public string GetSMARiskAmount(TicketDto ticket)
+        {
+            var amount = 0m;
+            if (!ticket.MemberWin.HasValue)
+            {
+                return Resources.Platform_NA;
+            }
+
+            if (ViewerLevel.IsSuperLevel())
+            {
+                amount = ticket.MemberWin.Value * ticket.SuperPositionTaking;
+            }
+            else if (ViewerLevel.IsMasterLevel())
+            {
+                amount = ticket.MemberWin.Value * ticket.MasterPositionTaking;
+            }
+            else
+            {
+                amount = ticket.MemberWin.Value * ticket.AgentPositionTaking;
+            }
+
+            return ConvertByBetType.Winloss(amount);
+        }
     }
 }
