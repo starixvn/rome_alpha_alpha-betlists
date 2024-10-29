@@ -139,7 +139,7 @@
     <value>赔率</value>
   </data>
   <data name="stake" xml:space="preserve">
-    <value>投注额</value>
+    <value>本金</value>
   </data>
   <data name="lblWinLoss" xml:space="preserve">
     <value>输赢</value>
@@ -155,9 +155,6 @@
   </data>
   <data name="superPT" xml:space="preserve">
     <value>超级总代理占成数</value>
-  </data>
-  <data name="lblComm" xml:space="preserve">
-    <value>佣金</value>
   </data>
   <data name="subTotal" xml:space="preserve">
     <value>小计</value>

@@ -139,7 +139,7 @@
     <value>賠率</value>
   </data>
   <data name="stake" xml:space="preserve">
-    <value>投注額 </value>
+    <value>本金</value>
   </data>
   <data name="lblWinLoss" xml:space="preserve">
     <value>輸贏</value>
@@ -155,9 +155,6 @@
   </data>
   <data name="superPT" xml:space="preserve">
     <value>超级总代理占成数</value>
-  </data>
-  <data name="lblComm" xml:space="preserve">
-    <value>佣金</value>
   </data>
   <data name="subTotal" xml:space="preserve">
     <value>小計</value>
@@ -349,7 +346,7 @@
     <value>之第</value>
   </data>
   <data name="parlay" xml:space="preserve">
-    <value>过关</value>
+    <value>過關</value>
   </data>
   <data name="agentptcomm" xml:space="preserve">
     <value>代理占成数/ 佣金</value>

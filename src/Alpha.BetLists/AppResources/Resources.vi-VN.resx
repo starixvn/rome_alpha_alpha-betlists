@@ -157,9 +157,6 @@
   <data name="superPT" xml:space="preserve">
     <value>PT của Super</value>
   </data>
-  <data name="lblComm" xml:space="preserve">
-    <value>Hoa hồng</value>
-  </data>
   <data name="subTotal" xml:space="preserve">
     <value>Tổng phụ</value>
   </data>
@@ -298,7 +295,7 @@
     <value>bets</value>
   </data>
   <data name="member" xml:space="preserve">
-    <value>Thành viên</value>
+    <value>Member</value>
   </data>
   <data name="AllAgent" xml:space="preserve">
     <value>Tất cả Agent</value>
@@ -341,7 +338,7 @@
     <value>Loại cược khác</value>
   </data>
   <data name="lblMixParlay" xml:space="preserve">
-    <value>Cược tổng hợp</value>
+    <value>Cược Xiên</value>
   </data>
   <data name="Page" xml:space="preserve">
     <value>Trang</value>
@@ -350,7 +347,7 @@
     <value>trên</value>
   </data>
   <data name="parlay" xml:space="preserve">
-    <value>Cược tổng hợp</value>
+    <value>Cược Xiên</value>
   </data>
   <data name="agentptcomm" xml:space="preserve">
     <value>PT của Agent/ Hoa hồng</value>

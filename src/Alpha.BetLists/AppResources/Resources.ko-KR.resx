@@ -153,9 +153,6 @@
   <data name="superPT" xml:space="preserve">
     <value>슈퍼 PT</value>
   </data>
-  <data name="lblComm" xml:space="preserve">
-    <value>수수료</value>
-  </data>
   <data name="subTotal" xml:space="preserve">
     <value>총 하위</value>
   </data>

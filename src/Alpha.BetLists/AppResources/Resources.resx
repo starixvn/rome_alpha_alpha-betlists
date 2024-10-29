@@ -156,9 +156,6 @@
   <data name="superPT" xml:space="preserve">
     <value>Super PT</value>
   </data>
-  <data name="lblComm" xml:space="preserve">
-    <value>Comm</value>
-  </data>
   <data name="Subtotal_com" xml:space="preserve">
     <value>Subtotal(Com.)</value>
   </data>
@@ -313,7 +310,7 @@
     <value>Member</value>
   </data>
   <data name="AllAgent" xml:space="preserve">
-    <value>All Agent</value>
+    <value>All Agents</value>
   </data>
   <data name="Agent" xml:space="preserve">
     <value>Agent</value>

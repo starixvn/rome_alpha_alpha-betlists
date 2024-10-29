@@ -154,9 +154,6 @@
   <data name="superPT" xml:space="preserve">
     <value>Super PT</value>
   </data>
-  <data name="lblComm" xml:space="preserve">
-    <value>手数料</value>
-  </data>
   <data name="subTotal" xml:space="preserve">
     <value>Sub Total</value>
   </data>

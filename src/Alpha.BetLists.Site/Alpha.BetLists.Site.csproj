@@ -139,7 +139,7 @@
       <HintPath>..\..\packages\Fanex.BetDetails.BetBuilder.1.0.0.2\lib\net461\Fanex.BetDetails.BetBuilder.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetDetails.Casino, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetDetails.Casino.2.0.0-standard4\lib\netstandard2.0\Fanex.BetDetails.Casino.dll</HintPath>
+      <HintPath>..\..\packages\Fanex.BetDetails.Casino.2.0.0\lib\netstandard2.0\Fanex.BetDetails.Casino.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.AdvantPlay, Version=2.0.0.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.AdvantPlay.2.0.0.2\lib\net461\Fanex.BetList.AdvantPlay.dll</HintPath>
@@ -169,7 +169,7 @@
       <HintPath>..\..\packages\Fanex.BetList.CG.2.0.0\lib\net461\Fanex.BetList.CG.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.Core, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.Core.3.0.4.2\lib\net461\Fanex.BetList.Core.dll</HintPath>
+      <HintPath>..\..\packages\Fanex.BetList.Core.3.0.4.3\lib\net461\Fanex.BetList.Core.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.Core.RemotingRef, Version=1.1.0.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.Core.RemotingRef.2.0.0.2\lib\net461\Fanex.BetList.Core.RemotingRef.dll</HintPath>
