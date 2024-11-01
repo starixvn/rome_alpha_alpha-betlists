@@ -283,13 +283,16 @@ var BetList;
                         this.rngCasinoResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.rngCasinoResult) ? new ResultDetails.RnGCasinoResultDetails : this.rngCasinoResult;
                         return this.rngCasinoResult;
                     }
+                    if (betTypeId >= 3101 && betTypeId <= 3150) {
+                        this.sexyGamingResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.weResult) ? new ResultDetails.SexyGamingResultDetails() : this.sexyGamingResult;
+                        return this.sexyGamingResult;
+                    }
                     if (betTypeId >= 4001 && betTypeId <= 4100 || betTypeId >= 5800 && betTypeId <= 5999) {
                         this.macauGamesResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.macauGamesResult) ? new ResultDetails.MacauGamesResultDetails() : this.macauGamesResult;
                         return this.macauGamesResult;
                     }
                     if ((betTypeId >= 2401 && betTypeId <= 2499) ||
                         (betTypeId >= 3001 && betTypeId <= 3099) ||
-                        (betTypeId >= 3101 && betTypeId <= 3149) ||
                         (betTypeId >= 3151 && betTypeId <= 3200) ||
                         (betTypeId >= 3201 && betTypeId <= 3299) ||
                         (betTypeId >= 3401 && betTypeId <= 3499)) {
@@ -1142,6 +1145,24 @@ var BetList;
                 return WEResultDetails;
             }(ResultDetails.BaseResultDetails));
             ResultDetails.WEResultDetails = WEResultDetails;
+            var SexyGamingResultDetails = /** @class */ (function (_super) {
+                __extends(SexyGamingResultDetails, _super);
+                function SexyGamingResultDetails() {
+                    var _this = _super !== null && _super.apply(this, arguments) || this;
+                    _this.ViewResultDetails = function (matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, currencyId, gameId3rd, custId, transId3rd, siteId) {
+                        var params = '?custId=' + custId +
+                            '&transId3rd=' + transId3rd +
+                            '&site=' + gameId3rd +
+                            '&currencyId=' + currencyId +
+                            '&siteId=' + siteId;
+                        '&productId=45';
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/SexyGamingResult' + params, "", 835, 675);
+                    };
+                    return _this;
+                }
+                return SexyGamingResultDetails;
+            }(ResultDetails.BaseResultDetails));
+            ResultDetails.SexyGamingResultDetails = SexyGamingResultDetails;
             var UUSlotsResultDetails = /** @class */ (function (_super) {
                 __extends(UUSlotsResultDetails, _super);
                 function UUSlotsResultDetails() {
