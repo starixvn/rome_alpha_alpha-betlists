@@ -195,8 +195,8 @@ var BetList;
                     this.CustId = $('#cust-id').val();
                     this.ViewerLevelId = $('#viewer-level-id').val();
                     this.IsHistoricReport = Common.Utils.ParseBoolean($('#is-historic-report').val());
-                    this.ViewResultDetails = function (matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, betId, betCheck, custId, transDesc, siteId) {
-                        ResultDetailsFactory.CreateInstance(betTypeId).ViewResultDetails(matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, betId, betCheck, custId, transDesc, siteId);
+                    this.ViewResultDetails = function (matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, betId, betteam, custId, betcheck, siteId, transDesc) {
+                        ResultDetailsFactory.CreateInstance(betTypeId).ViewResultDetails(matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, betId, betteam, custId, betcheck, siteId, transDesc);
                     };
                 }
                 Object.defineProperty(BaseResultDetails, "Instance", {

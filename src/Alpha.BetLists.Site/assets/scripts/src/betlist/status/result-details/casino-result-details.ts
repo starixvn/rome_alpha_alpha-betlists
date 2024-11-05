@@ -785,13 +785,15 @@
             gameId3rd?: string,
             custId?: number,
             transId3rd?: string,
-            siteId?: string) => {
+            siteId?: string,
+            transDesc?: string) => {
             var params = '?custId=' + custId +
                 '&transId3rd=' + transId3rd +
                 '&gameId3rd=' + gameId3rd +
                 '&currencyId=' + currencyId +
                 '&siteId=' + siteId +
                 '&BetType=' + betTypeId +
+                '&TransDesc=' + transDesc +
                 '&productId=75';
             Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/JiliResult' + params, "", 835, 675);
         }
@@ -867,13 +869,13 @@
             league?: number,
             isOutright?: boolean,
             currencyId?: number,
-            gameId3rd?: string,
+            site?: string,
             custId?: number,
             transId3rd?: string,
             siteId?: string) => {
             var params = '?custId=' + custId +
                 '&transId3rd=' + transId3rd +
-                '&site=' + gameId3rd +
+                '&site=' + site +
                 '&currencyId=' + currencyId +
                 '&siteId=' + siteId 
                 '&productId=45';

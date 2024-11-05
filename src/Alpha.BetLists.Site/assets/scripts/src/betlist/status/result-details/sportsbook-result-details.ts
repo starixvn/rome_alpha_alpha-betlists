@@ -11,10 +11,11 @@
             league?: number,
             isOutright?: boolean,
             betId?: number,
-            betCheck?: string,
+            gameId3rd?: string,
             custId?: number,
-            transDesc?: string,
-            siteId?: string): void;
+            transId3rd?: string,
+            siteId?: string,
+            transdesc?: string): void;
     }
 
     export class SportsbookResultDetails extends BaseResultDetails implements ResultDetails {

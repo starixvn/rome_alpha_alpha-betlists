@@ -453,8 +453,8 @@ var BetList;
                     this.CustId = $('#cust-id').val();
                     this.ViewerLevelId = $('#viewer-level-id').val();
                     this.IsHistoricReport = Common.Utils.ParseBoolean($('#is-historic-report').val());
-                    this.ViewResultDetails = function (matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, betId, betCheck, custId, transDesc, siteId) {
-                        ResultDetailsFactory.CreateInstance(betTypeId).ViewResultDetails(matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, betId, betCheck, custId, transDesc, siteId);
+                    this.ViewResultDetails = function (matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, betId, betteam, custId, betcheck, siteId, transDesc) {
+                        ResultDetailsFactory.CreateInstance(betTypeId).ViewResultDetails(matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, betId, betteam, custId, betcheck, siteId, transDesc);
                     };
                 }
                 Object.defineProperty(BaseResultDetails, "Instance", {
@@ -1091,13 +1091,14 @@ var BetList;
                 __extends(JiliResultDetails, _super);
                 function JiliResultDetails() {
                     var _this = _super !== null && _super.apply(this, arguments) || this;
-                    _this.ViewResultDetails = function (matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, currencyId, gameId3rd, custId, transId3rd, siteId) {
+                    _this.ViewResultDetails = function (matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, currencyId, gameId3rd, custId, transId3rd, siteId, transDesc) {
                         var params = '?custId=' + custId +
                             '&transId3rd=' + transId3rd +
                             '&gameId3rd=' + gameId3rd +
                             '&currencyId=' + currencyId +
                             '&siteId=' + siteId +
                             '&BetType=' + betTypeId +
+                            '&TransDesc=' + transDesc +
                             '&productId=75';
                         Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/JiliResult' + params, "", 835, 675);
                     };
@@ -1149,10 +1150,10 @@ var BetList;
                 __extends(SexyGamingResultDetails, _super);
                 function SexyGamingResultDetails() {
                     var _this = _super !== null && _super.apply(this, arguments) || this;
-                    _this.ViewResultDetails = function (matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, currencyId, gameId3rd, custId, transId3rd, siteId) {
+                    _this.ViewResultDetails = function (matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, currencyId, site, custId, transId3rd, siteId) {
                         var params = '?custId=' + custId +
                             '&transId3rd=' + transId3rd +
-                            '&site=' + gameId3rd +
+                            '&site=' + site +
                             '&currencyId=' + currencyId +
                             '&siteId=' + siteId;
                         '&productId=45';

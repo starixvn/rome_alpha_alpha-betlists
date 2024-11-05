@@ -286,11 +286,12 @@
             league: number,
             isOutright: boolean,
             betId: number,
-            betCheck?: string,
+            betteam?: string,
             custId?: number,
-            transDesc?: string,
-            siteId?: string) => {
-            ResultDetailsFactory.CreateInstance(betTypeId).ViewResultDetails(matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, betId, betCheck, custId, transDesc, siteId)
+            betcheck?: string,
+            siteId?: string,
+            transDesc?: string) => {
+            ResultDetailsFactory.CreateInstance(betTypeId).ViewResultDetails(matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, betId, betteam, custId, betcheck, siteId, transDesc)
         }
     }
 }
