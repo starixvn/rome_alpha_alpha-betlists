@@ -548,14 +548,17 @@ div.ticket-list div.void > div.match, div.ticket-list div.void div.firstGoal, di
       div#info-note.message-modal .modal-dialog .modal-content .modal-body #msg-content {
         font-size: 14px; } }
 
-.box {
+.bl_title .box {
   display: flex;
   align-items: center; }
-  .box .form-group {
+  .bl_title .box .form-group {
     margin: 0; }
-    .box .form-group .icon {
+    .bl_title .box .form-group .icon {
       margin: 0 0 0 10px;
       top: -2px; }
+
+.box {
+  display: flex; }
 
 .push {
   margin-left: auto; }
