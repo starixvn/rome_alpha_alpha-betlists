@@ -549,7 +549,13 @@ div.ticket-list div.void > div.match, div.ticket-list div.void div.firstGoal, di
         font-size: 14px; } }
 
 .box {
-  display: flex; }
+  display: flex;
+  align-items: center; }
+  .box .form-group {
+    margin: 0; }
+    .box .form-group .icon {
+      margin: 0 0 0 10px;
+      top: -2px; }
 
 .push {
   margin-left: auto; }
@@ -593,4 +599,3 @@ span.icon-boost {
   font-style: italic; }
   .max-payout span {
     margin-left: 4px; }
-
