@@ -873,4 +873,10 @@
   <data name="MemberWinNote" xml:space="preserve">
     <value>&lt;b&gt;To Win&lt;/b&gt;: The potential net winning amount a Member can receive from a Sportsbook running bet ticket. &lt;b&gt;Your Risk Amount&lt;/b&gt;: The potential risk you bear if the Member wins the ticket, calculated as: &lt;b&gt;Your Risk Amount = To Win * Your Position Taking. &lt;/b&gt;These values do not apply to &lt;b&gt;Sportsbook settled tickets or other product tickets&lt;/b&gt; (both running and settled), and will be displayed as &lt;b&gt;'N/A'&lt;/b&gt; (Not Applicable).</value>
   </data>
+  <data name="ShutdownOldLastBetsMessage" xml:space="preserve">
+    <value>From &lt;b&gt;10/12/2024 (dd/mm/yyyy)&lt;/b&gt;, Classic View will no longer be available and will be replaced by the New View. Enjoy an improved user experience with the New View.</value>
+  </data>
+  <data name="SwitchToNewView" xml:space="preserve">
+    <value>Switch to New View</value>
+  </data>
 </root>

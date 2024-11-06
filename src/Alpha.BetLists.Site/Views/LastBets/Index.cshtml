@@ -15,7 +15,7 @@
             @Resources.LastBets
         </div>
         <div>
-            @Html.Partial("IconInformation", new List<string>() { Resources.ipnote, Resources.MemberWinNote})
+            @Html.Partial("IconInformation", new List<string>() { Resources.ipnote, Resources.MemberWinNote })
         </div>
     </div>
     <p class="note_title"><span class="require">*</span>&nbsp;&nbsp;@Resources.NewViewTakesOverNote</p>
@@ -82,7 +82,8 @@
 @Html.Hidden("viewer-id", Model.ViewerIdOrViewerAdminId)
 @Html.Hidden("viewer-level-id", Model.ViewerLevelId)
 @Html.Hidden("sub-acc-id", Model.SubAccId)
-
+@Html.Hidden("hidden-ShutdownOldLastBetsKey", Model.ShutdownOldLastBetsKey)
+@Html.Partial("~/Views/Shared/ShutdownOldViewPopup.cshtml")
 @section Scripts {
     @StaticResources.AssetScripts.Render("/bundles/site-betlists/last-bets")
     @StaticResources.RenderScripts($"~/{AppSettings.BetlistRouting}assets/bundles/last-bets")

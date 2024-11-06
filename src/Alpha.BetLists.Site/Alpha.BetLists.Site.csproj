@@ -1481,6 +1481,7 @@
     <Content Include="Web.ConnectionStrings.sit2.config">
       <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
     </Content>
+    <Content Include="Views\Shared\ShutdownOldViewPopup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_GlobalResources\Resources.Designer.cs">

@@ -25,6 +25,7 @@ var BetList;
                     _this.localStorage.set(_this.latestTransIdCacheKey, 0);
                 }
                 _this.loadLastBets(false);
+                _this.registerShowShutdownOldLastBetsPopup();
             };
             this.cacheElements = function () {
                 _this.$pageSize = $(".page-size");
@@ -207,6 +208,20 @@ var BetList;
             this.clearTimeoutAndSetAutoRefreshText = function (text) {
                 clearTimeout(_this.getLastBetsTimeOut);
                 _this.btnAutoRefresh.text(text);
+            };
+            this.registerShowShutdownOldLastBetsPopup = function () {
+                var localStorageKey = $("#hidden-ShutdownOldLastBetsKey").val();
+                var numberOfDisplayShutdownCount = +(_this.localStorage.get(localStorageKey) || "0");
+                if (numberOfDisplayShutdownCount < 5) {
+                    var $popup_1 = $("#shutdown-old-view-modal");
+                    $popup_1.modal({ show: true, backdrop: false });
+                    ++numberOfDisplayShutdownCount;
+                    _this.localStorage.set(localStorageKey, numberOfDisplayShutdownCount.toString());
+                    $("#dont-show-again-model").click(function () {
+                        _this.localStorage.set(localStorageKey, "5");
+                        $popup_1.modal("hide");
+                    });
+                }
             };
         }
         Object.defineProperty(LastBetsView, "Instance", {

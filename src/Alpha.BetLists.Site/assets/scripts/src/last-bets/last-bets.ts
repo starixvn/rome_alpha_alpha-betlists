@@ -51,6 +51,7 @@ namespace BetList {
             }
 
             this.loadLastBets(false);
+            this.registerShowShutdownOldLastBetsPopup();
         };
 
         cacheElements = () => {
@@ -276,6 +277,24 @@ namespace BetList {
             clearTimeout(this.getLastBetsTimeOut);
             this.btnAutoRefresh.text(text);
         };
+
+        registerShowShutdownOldLastBetsPopup = () => {
+            const localStorageKey = $("#hidden-ShutdownOldLastBetsKey").val();
+            let numberOfDisplayShutdownCount = +(this.localStorage.get(localStorageKey) || "0");
+
+            if (numberOfDisplayShutdownCount < 5) {
+                const $popup = $("#shutdown-old-view-modal");
+                $popup.modal({ show: true, backdrop: false });
+
+                ++numberOfDisplayShutdownCount;
+                this.localStorage.set(localStorageKey, numberOfDisplayShutdownCount.toString());
+
+                $("#dont-show-again-model").click(() => {
+                    this.localStorage.set(localStorageKey, "5");
+                    $popup.modal("hide");
+                });
+            }
+        }
     }
 }
 

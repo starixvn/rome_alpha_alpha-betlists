@@ -46,7 +46,7 @@
                 @if (Model.IsShowFilterPlaceHolder)
                 {
                     <option></option>
-}
+                }
                 @foreach (var savedFilter in Model.Filters)
                 {
                     <option value="@savedFilter.FilterId"
@@ -130,3 +130,5 @@
 @Html.Hidden("hidden-CopiedText", Resources.Copied)
 @Html.Hidden("hidden-HideFilterText", Resources.HideFilter)
 @Html.Hidden("hidden-ShowFilterText", Resources.ShowFilter)
+@Html.Hidden("hidden-ShutdownOldLastBetsKey", Model.ShutdownOldLastBetsKey)
+@Html.Partial("~/Views/Shared/ShutdownOldViewPopup.cshtml")
