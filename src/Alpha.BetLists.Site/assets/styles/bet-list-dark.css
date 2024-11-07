@@ -557,6 +557,15 @@ div.ticket-list div.void > div.match, div.ticket-list div.void div.firstGoal, di
       div#info-note.message-modal .modal-dialog .modal-content .modal-body #msg-content {
         font-size: 14px; } }
 
+.bl_title .box {
+  display: flex;
+  align-items: center; }
+  .bl_title .box .form-group {
+    margin: 0; }
+    .bl_title .box .form-group .icon {
+      margin: 0 0 0 10px;
+      top: -2px; }
+
 .box {
   display: flex; }
 
@@ -602,4 +611,3 @@ span.icon-boost {
   font-style: italic; }
   .max-payout span {
     margin-left: 4px; }
-

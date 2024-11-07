@@ -42,6 +42,7 @@
             };
             AutoStart = query.AutoStart;
             IsInternal = query.IsInternal;
+            ShutdownOldLastBetsKey = $"ShutdownOldLastBetsMessage-Hide-{query.ViewerId}-{query.SubAccId}";
         }
 
         public int FilterId { get; }
@@ -65,5 +66,7 @@
             => AppSettings.IsMBCSite
             ? MicroSites.HowToUseUrl("~/Index.aspx?linktomessagesite=186142")
             : MicroSites.MessageUrl("~/StaticMessage/Guide?id=186142");
+
+        public string ShutdownOldLastBetsKey { get; }
     }
 }

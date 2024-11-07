@@ -1,0 +1,17 @@
+﻿<div class="modal fade" id="shutdown-old-view-modal" tabindex="-1" role="dialog" aria-labelledby="shutdown-old-view-modal" style="transform: translate(0px, 0px);left: 0px;top: 45px;box-shadow: none;">
+    <div class="modal-dialog modal-sm" role="document" style="transform: translate(0, 0);left: 0;top: 0;margin: 0;min-width: 500px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="icon icon-close close" style="right: 12px; top: 10px;" data-dismiss="modal" aria-label=""><span aria-hidden="true"></span></button>
+                <h4 class="modal-title"><span class="icon-information-outline" style="font-size: 20px; top: -1px; float: none;">&nbsp;</span>@Resources.SwitchToNewView</h4>
+            </div>
+            <div class="modal-body">
+                <p>@Html.Raw(Resources.ShutdownOldLastBetsMessage)</p>
+                <label for="dont-show-again-model" style="font-weight: normal; cursor: pointer;">
+                    <input type="checkbox" id="dont-show-again-model" />@Resources.DoNotShowAgain
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+ 

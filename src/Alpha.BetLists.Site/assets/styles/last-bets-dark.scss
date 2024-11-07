@@ -177,3 +177,23 @@ input:checked + .switch .slider:after {
 .dropdown .dropdown-menu, .dropup .dropdown-menu {
     width: 95px;
 }
+// shutdown-old-view-modal
+#shutdown-old-view-modal {
+    top: 40px !important;
+
+    .icon-information-outline {
+        top: -2px !important;
+    }
+
+    .modal-content .modal-header {
+        height: 42px;
+
+        .modal-title {
+            padding-bottom: 7px !important;
+        }
+
+        .icon-close {
+            top: 5px !important;
+        }
+    }
+}

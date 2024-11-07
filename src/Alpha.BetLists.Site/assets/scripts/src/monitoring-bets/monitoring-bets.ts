@@ -50,6 +50,7 @@ class MonitoringBetsView {
         }
 
         this.initFeedback();
+        this.registerShowShutdownOldLastBetsPopup();
     }
 
     private cacheElements() {
@@ -237,6 +238,24 @@ class MonitoringBetsView {
             filterName: $.trim(this.dropdownFilter.find(":selected").text()),
             limitRowCount: this.dropdownMostRecentTicket.find(":selected").val(),
             autoStart: autoStart || this.autoRefreshComponent.isOn()
+        }
+    }
+
+    private registerShowShutdownOldLastBetsPopup() {
+        const localStorageKey = $("#hidden-ShutdownOldLastBetsKey").val();
+        let numberOfDisplayShutdownCount = +(this.localStorage.get(localStorageKey) || "0");
+
+        if (numberOfDisplayShutdownCount < 5) {
+            const $popup = $("#shutdown-old-view-modal");
+            $popup.modal({ show: true, backdrop: false });
+
+            ++numberOfDisplayShutdownCount;
+            this.localStorage.set(localStorageKey, numberOfDisplayShutdownCount.toString());
+
+            $("#dont-show-again-model").click(() => {
+                this.localStorage.set(localStorageKey, "5");
+                $popup.modal("hide");
+            });
         }
     }
 }

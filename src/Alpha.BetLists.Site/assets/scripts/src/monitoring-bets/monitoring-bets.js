@@ -60,6 +60,7 @@ var MonitoringBetsView = /** @class */ (function () {
             this.autoRefreshComponent.start();
         }
         this.initFeedback();
+        this.registerShowShutdownOldLastBetsPopup();
     };
     MonitoringBetsView.prototype.cacheElements = function () {
         this.$msgError = $("#msg-error");
@@ -187,6 +188,21 @@ var MonitoringBetsView = /** @class */ (function () {
             limitRowCount: this.dropdownMostRecentTicket.find(":selected").val(),
             autoStart: autoStart || this.autoRefreshComponent.isOn()
         };
+    };
+    MonitoringBetsView.prototype.registerShowShutdownOldLastBetsPopup = function () {
+        var _this = this;
+        var localStorageKey = $("#hidden-ShutdownOldLastBetsKey").val();
+        var numberOfDisplayShutdownCount = +(this.localStorage.get(localStorageKey) || "0");
+        if (numberOfDisplayShutdownCount < 5) {
+            var $popup_1 = $("#shutdown-old-view-modal");
+            $popup_1.modal({ show: true, backdrop: false });
+            ++numberOfDisplayShutdownCount;
+            this.localStorage.set(localStorageKey, numberOfDisplayShutdownCount.toString());
+            $("#dont-show-again-model").click(function () {
+                _this.localStorage.set(localStorageKey, "5");
+                $popup_1.modal("hide");
+            });
+        }
     };
     return MonitoringBetsView;
 }());

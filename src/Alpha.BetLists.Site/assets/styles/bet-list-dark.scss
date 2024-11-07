@@ -690,7 +690,21 @@ div.ticket-list div.void > div.match, div.ticket-list div.void div.firstGoal, di
         }
     }
 }
+.bl_title {
+    .box {
+        display: flex;
+        align-items: center;
 
+        .form-group {
+            margin: 0;
+
+            .icon {
+                margin: 0 0 0 10px;
+                top: -2px;
+            }
+        }
+    }
+}
 .box {
     display: flex;
 }
