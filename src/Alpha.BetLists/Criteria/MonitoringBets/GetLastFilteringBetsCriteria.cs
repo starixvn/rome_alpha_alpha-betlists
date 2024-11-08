@@ -1,11 +1,14 @@
 ﻿namespace Alpha.BetLists.Criteria.MonitoringBets
 {
+    using Alpha.BetLists.Models;
+    using Fanex.Data;
     using Fanex.Data.Repository;
 
     public class GetLastFilteringBetsCriteria : CriteriaBase
     {
         public GetLastFilteringBetsCriteria(
             int custId,
+            UserLevel userLevel,
             long transId, 
             string memberList,
             string sportTypeList, 
@@ -16,6 +19,7 @@
             int limitRowCount)
         {
             CustId = custId;
+            UserLevel = userLevel;
             TransId = transId;
             MemberList = memberList;
             BetTypeList = betTypeList;
@@ -27,7 +31,10 @@
         }
 
         public int CustId { get; }
-        
+
+        [SpParam(Ignored = true)]
+        public UserLevel UserLevel { get; }
+
         public long TransId { get; }
         
         public string MemberList { get; }
@@ -45,7 +52,19 @@
         public int LimitRowCount { get; }
 
         public override string GetSettingKey()
-            => "Age_BetList_LastBets_Ag";
+        {
+            if (UserLevel.IsSuperLevel())
+            {
+                return "Age_BetList_LastBets_SAg";
+            }
+
+            if (UserLevel.IsMasterLevel())
+            {
+                return "Age_BetList_LastBets_MAg";
+            }
+
+            return "Age_BetList_LastBets_Ag";
+        }
 
         public override bool IsValid()
             => !string.IsNullOrWhiteSpace(BetTypeList)

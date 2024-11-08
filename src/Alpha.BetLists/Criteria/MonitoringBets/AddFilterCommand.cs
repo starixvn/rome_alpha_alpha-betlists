@@ -6,6 +6,7 @@
     {
         public AddFilterCommand(
             int custId,
+            byte roleId,
             int subAccId,
             string filterName,
             bool isDefault,
@@ -21,6 +22,7 @@
             bool isNotify)
         {
             CustId = custId;
+            RoleId = roleId;
             SubAccId = subAccId;
             FilterName = filterName;
             IsDefault = isDefault;
@@ -37,6 +39,8 @@
         }
 
         public int CustId { get; }
+
+        public byte RoleId { get; }
 
         public int SubAccId { get; }
 

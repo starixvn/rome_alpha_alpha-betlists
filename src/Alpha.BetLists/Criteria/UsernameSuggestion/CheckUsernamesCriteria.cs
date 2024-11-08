@@ -4,13 +4,16 @@
 
     public class CheckUsernamesCriteria : CriteriaBase
     {
-        public CheckUsernamesCriteria(int agentId, string usernames)
+        public CheckUsernamesCriteria(int agentId, byte roleId, string usernames)
         {
             AgentId = agentId;
+            RoleId = roleId;
             Usernames = usernames;
         }
 
         public int AgentId { get; }
+
+        public byte RoleId { get; }
 
         public string Usernames { get; }
 

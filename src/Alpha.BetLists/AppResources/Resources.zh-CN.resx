@@ -855,4 +855,7 @@
   <data name="SwitchToNewView" xml:space="preserve">
     <value>切换到新版本</value>
   </data>
+  <data name="FilterConfigurationSpecificSuperMasterContent" xml:space="preserve">
+    <value>可手动添加特定会员以监控其注单。</value>
+  </data>
 </root>

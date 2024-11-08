@@ -1,9 +1,12 @@
-﻿namespace Alpha.BetLists.Params.MonitoringBets
+﻿using Alpha.BetLists.Models;
+
+namespace Alpha.BetLists.Params.MonitoringBets
 {
     public class GetLastFilteringBetsParams
     {
         public GetLastFilteringBetsParams(
             int custId,
+            UserLevel userLevel,
             long transId, 
             string memberList,
             string sportTypeList, 
@@ -14,6 +17,7 @@
             int limitRowCount)
         {
             CustId = custId;
+            UserLevel = userLevel;
             TransId = transId;
             MemberList = memberList;
             BetTypeList = betTypeList;
@@ -25,7 +29,9 @@
         }
         
         public int CustId { get; }
-        
+
+        public UserLevel UserLevel { get; }
+
         public long TransId { get; }
         
         public string MemberList { get; }

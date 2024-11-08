@@ -82,6 +82,7 @@
 
                     var param = new GetLastFilteringBetsParams(
                         message.ViewerId,
+                        message.ViewerLevel,
                         0,
                         memberList,
                         defaultFilter.SportTypes,
@@ -184,6 +185,7 @@
 
             var result = await monitoringBetService.AddFilter(new AddFilterParam(
                 message.ViewerId,
+                message.ViewerLevelId,
                 message.SubAccId,
                 message.FilterName,
                 message.IsDefault,
@@ -215,6 +217,7 @@
         private static AddFilterParam BuildAddFilterParam(AddFilterCommand message)
             => new AddFilterParam(
                 message.ViewerId,
+                message.ViewerLevelId,
                 message.SubAccId,
                 message.FilterName,
                 message.IsDefault,
@@ -245,6 +248,7 @@
 
             var param = new GetLastFilteringBetsParams(
                 message.ViewerId,
+                message.ViewerLevel,
                 message.TransId == 0 ? 0 : message.TransId - 1,
                 memberList,
                 message.SportTypeList,

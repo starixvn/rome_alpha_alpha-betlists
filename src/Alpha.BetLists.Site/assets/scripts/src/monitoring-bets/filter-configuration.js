@@ -52,7 +52,7 @@ var FilterConfigurationView = /** @class */ (function () {
         var rdoSpecificMembers = $("#rdo-specific-members").change(function () {
             if (rdoSpecificMembers.is(":checked")) {
                 membersContainer.removeClass("hide");
-                _this.getMyWatchlistMembers();
+                $("#my-watchlist-members").length && _this.getMyWatchlistMembers();
             }
         });
         var saveFilterPopup = $("#save-filter-popup");

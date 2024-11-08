@@ -29,7 +29,7 @@
 
         public async Task<IEnumerable<UsernameErrCode>> Handle(CheckUsernamesQuery message)
         {
-            var usernames = await usernameSuggestionService.CheckUsernames(message.ViewerId, message.Usernames);
+            var usernames = await usernameSuggestionService.CheckUsernames(message.ViewerId, message.ViewerLevelId, message.Usernames);
 
             if (message.FromSuggestion)
             {

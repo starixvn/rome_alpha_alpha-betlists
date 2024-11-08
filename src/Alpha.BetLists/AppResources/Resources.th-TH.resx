@@ -860,4 +860,7 @@
   <data name="SwitchToNewView" xml:space="preserve">
     <value>เปลี่ยนไปยัง มุมมองแบบใหม่</value>
   </data>
+  <data name="FilterConfigurationSpecificSuperMasterContent" xml:space="preserve">
+    <value>ตรวจสอบตั๋วเดิมพันของสมาชิกที่เลือก โดยสามารถเพิ่มสมาชิกเฉพาะได้ด้วยตนเอง</value>
+  </data>
 </root>

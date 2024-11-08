@@ -223,7 +223,7 @@ namespace Alpha.BetLists.Site.Tests.Handler.MonitoringBets
         {
             // Arrange
             var message = new AddUnsavedFilterCommand(user);
-            var unsavedFilter = new AddFilterParam(1, 1, "UnsavedFilter", false, "1", 10,
+            var unsavedFilter = new AddFilterParam(1, 2, 1, "UnsavedFilter", false, "1", 10,
                                 new[] { new SportXml() { League = "Basketball", Sport = "Soccer" } },
                                 1, "0", "0", "0", "0", 1, "En", "1.2.3.4", false);
             service.AddFilter(Arg.Any<AddFilterParam>()).Returns(new Result());

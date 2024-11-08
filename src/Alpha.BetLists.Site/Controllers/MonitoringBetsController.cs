@@ -39,7 +39,12 @@
         [HttpPost, DisableNetThrottling]
         public Task<ActionResult> BetData(GetLastFilteringBetsQuery message) => View(message);
 
-        public Task<ActionResult> ManageFilters(ManageFiltersQuery message) => View(message);
+        public Task<ActionResult> ManageFilters(ManageFiltersQuery message)
+        {
+            ViewBag.RoleId = viewer.LevelId;
+
+            return View(message);
+        }
 
         [HttpPost]
         public async Task<ActionResult> UpdateFilter(UpdateFilterCommand message)
@@ -66,7 +71,7 @@
         }
 
         public ActionResult FilterConfiguration(FilterConfigurationQuery message)
-            => View(new FilterConfigurationViewModel(message));
+            => View(new FilterConfigurationViewModel(message, viewer));
 
         public Task<ActionResult> FilterBySports(FilterBySportsQuery message)
             => Json(message, JsonRequestBehavior.AllowGet);

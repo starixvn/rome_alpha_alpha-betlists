@@ -23,6 +23,7 @@
         private readonly MonitoringBetsServiceImpl monitoringBetsService;
         private readonly LastBetsService lastBetsService;
         private readonly FanexDataFixture dataFixture;
+        private readonly UserLevel userLevel;
 
         private readonly CompareLogic compareLogic;
 
@@ -52,6 +53,7 @@
             monitoringBetsService = new MonitoringBetsServiceImpl(dataFixture.PartialUMService, lastBetsService, dataFixture.DynamicRepository, parlayService);
 
             compareLogic = new CompareLogic();
+            userLevel = Enumeration.FromValue<UserLevel>(2);
         }
 
         [Fact]
@@ -81,6 +83,7 @@
 
             var param = new AddFilterParam(
                 0,
+                2,
                 1,
                 "New filter",
                 true,
@@ -175,7 +178,7 @@
         public async Task GetLastFilteringBets_Always_CallsDynamicRepository()
         {
             // Arrange & Act
-            var param = new GetLastFilteringBetsParams(1,1,"0", "0", "0", "0",1,10,10);
+            var param = new GetLastFilteringBetsParams(1, userLevel, 1, "0", "0", "0", "0",1,10,10);
             await monitoringBetsService.GetLastFilteringBets(param);
 
             // Assert

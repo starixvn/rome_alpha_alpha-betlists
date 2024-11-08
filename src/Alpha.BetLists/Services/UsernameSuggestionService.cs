@@ -18,7 +18,7 @@
 
         Task UpdateUserSearch(int userId, string search, string firstName, string lastName, string nickname);
 
-        Task<IEnumerable<UsernameErrCode>> CheckUsernames(int agentId, string usernames);
+        Task<IEnumerable<UsernameErrCode>> CheckUsernames(int agentId, byte roleId, string usernames);
     }
 
     public class UsernameSuggestionServiceImpl : UsernameSuggestionService
@@ -44,7 +44,7 @@
         public Task UpdateUserSearch(int userId, string search, string firstName, string lastName, string nickname)
             => dynamicRepository.ExecuteAsync(new UpdateUserSearchCriteria(userId, search, firstName, lastName, nickname));
 
-        public Task<IEnumerable<UsernameErrCode>> CheckUsernames(int agentId, string usernames)
-            => dynamicRepository.FetchAsync<UsernameErrCode>(new CheckUsernamesCriteria(agentId, usernames));
+        public Task<IEnumerable<UsernameErrCode>> CheckUsernames(int agentId, byte roleId, string usernames)
+            => dynamicRepository.FetchAsync<UsernameErrCode>(new CheckUsernamesCriteria(agentId, roleId, usernames));
     }
 }

@@ -8,6 +8,7 @@
     {
         public AddFilterParam(
             int custId,
+            byte roleId,
             int subAccId,
             string filterName,
             bool isDefault,
@@ -24,6 +25,7 @@
             string ip,
             bool isNotify) : base(custId, subAccId, 0, filterName, isDefault, languageKey, ip, isNotify)
         {
+            RoleId = roleId;
             BetType = betType;
             Stake = stake;
             Sports = sports;
@@ -34,6 +36,7 @@
             MyWatchlistMembers = myWatchlistMembers;
             FilterByMembers = filterByMembers;
         }
+        public byte RoleId { get; }
 
         public string BetType { get; }
 

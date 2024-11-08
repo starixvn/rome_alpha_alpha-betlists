@@ -98,7 +98,7 @@ class FilterConfigurationView {
         const rdoSpecificMembers = $("#rdo-specific-members").change(() => {
             if (rdoSpecificMembers.is(":checked")) {
                 membersContainer.removeClass("hide");
-                this.getMyWatchlistMembers();
+                $("#my-watchlist-members").length && this.getMyWatchlistMembers();
             }
         });
 

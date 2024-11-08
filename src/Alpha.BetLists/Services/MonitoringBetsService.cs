@@ -295,6 +295,7 @@
 
             var command = new AddFilterCommand(
                 param.CustId,
+                param.RoleId,
                 param.SubAccId,
                 param.FilterName,
                 param.IsDefault,
@@ -404,6 +405,7 @@
             var tickets = await lastBetsService.GetLastBets(
                 new GetLastFilteringBetsCriteria(
                     param.CustId,
+                    param.UserLevel,
                     param.TransId,
                     param.MemberList,
                     param.SportTypeList,

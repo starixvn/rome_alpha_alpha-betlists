@@ -5,17 +5,20 @@
     using Alpha.BetLists.Configurations;
     using Alpha.BetLists.Constants;
     using Alpha.BetLists.Helpers;
+    using Alpha.BetLists.Models;
     using Alpha.BetLists.Site.Requests.MonitoringBets;
 
     public class FilterConfigurationViewModel
     {
-        public FilterConfigurationViewModel(FilterConfigurationQuery message)
+        public FilterConfigurationViewModel(FilterConfigurationQuery message, IUser viewer )
         {
             FilterName = message.FilterName;
             LimitRowCount = message.LimitRowCount;
             AutoStart = message.AutoStart;
             ShowWelcomePopup = message.Welcome;
+            ViewerLevel = Enumeration.FromValue<UserLevel>(viewer.LevelId);
         }
+        public UserLevel ViewerLevel { get; }
 
         public string FilterName { get; }
 

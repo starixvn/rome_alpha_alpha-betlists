@@ -12,6 +12,7 @@
             // Arrange
             var criteria = new AddFilterCommand(
                     1,
+                    2,
                     1,
                     "Test",
                     true,
@@ -41,6 +42,7 @@
             // Arrange
             var criteria = new AddFilterCommand(
                     1,
+                    2,
                     1,
                     "Default",
                     true,
@@ -73,6 +75,7 @@
             // Arrange
             var criteria = new AddFilterCommand(
                     custId,
+                    2,
                     subAccId,
                     filterName,
                     true,

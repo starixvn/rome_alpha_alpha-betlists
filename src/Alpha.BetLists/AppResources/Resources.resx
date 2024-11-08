@@ -879,4 +879,7 @@
   <data name="SwitchToNewView" xml:space="preserve">
     <value>Switch to New View</value>
   </data>
+  <data name="FilterConfigurationSpecificSuperMasterContent" xml:space="preserve">
+    <value>Monitor tickets of the selected Member(s), which can be added manually.</value>
+  </data>
 </root>

@@ -1,17 +1,24 @@
 ﻿namespace Alpha.BetLists.Tests.Criteria.MonitoringBets
 {
     using Alpha.BetLists.Criteria.MonitoringBets;
+    using Alpha.BetLists.Models;
     using Xunit;
 
     [Trait("Category", "GetLastFilteringBets")]
     public class GetLastFilteringBetsCriteriaTests
     {
+        private UserLevel userLevel;
+        public GetLastFilteringBetsCriteriaTests()
+        {
+            userLevel = Enumeration.FromValue<UserLevel>(2);
+        }
+
         [Fact]
         public void GetSettingKey_Always_ReturnsValidSettingKey()
         {
             // Arrange
             var criteria = new GetLastFilteringBetsCriteria(
-                1, 1, "0", "0",
+                1, userLevel, 1, "0", "0",
                 "0", "0", 1, 10, 10);
 
             var expectedSettingKey = "Age_BetList_LastBets_Ag";
@@ -28,7 +35,7 @@
         {
             // Arrange
             var criteria = new GetLastFilteringBetsCriteria(
-                1, 1, "0", "0",
+                1, userLevel, 1, "0", "0",
                 "0", "0", 1, 10, 10);
 
             // Act
@@ -45,7 +52,7 @@
         public void IsValid_InvalidParam_ReturnsFalse(string betTypeList, int minStake, int limitRowCount)
         {
             // Arrange
-            var criteria = new GetLastFilteringBetsCriteria(1, 1,
+            var criteria = new GetLastFilteringBetsCriteria(1, userLevel, 1,
                 "0", string.Empty, string.Empty, betTypeList,
             1, minStake, limitRowCount);
 
