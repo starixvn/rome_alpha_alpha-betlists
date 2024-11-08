@@ -113,7 +113,13 @@ a {
 
 .space-fixed-title {
     padding: 20px 0;
+
+    + .fixed-top {
+        background: #fff;
+        height: 40px;
+    }
 }
+
 
 .bl_title {
     color: #9d1c1c;
