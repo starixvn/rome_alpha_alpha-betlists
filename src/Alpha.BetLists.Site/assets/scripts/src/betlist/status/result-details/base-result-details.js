@@ -183,6 +183,10 @@ var BetList;
                         this.playtechResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.playtechResult) ? new ResultDetails.PlaytechResultDetails() : this.playtechResult;
                         return this.playtechResult;
                     }
+                    if (betTypeId >= 11400 && betTypeId <= 11499) {
+                        this.gpiResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.gpiResult) ? new ResultDetails.GPIResultDetails() : this.gpiResult;
+                        return this.gpiResult;
+                    }
                     this.sportsbookResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sportsbookResult) ? new ResultDetails.SportsbookResultDetails : this.sportsbookResult;
                     return this.sportsbookResult;
                 };
