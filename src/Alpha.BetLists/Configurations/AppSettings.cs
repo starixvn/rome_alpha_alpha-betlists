@@ -137,6 +137,29 @@
             Require(SiteLabel, nameof(SiteLabel));
         }
 
+        public static bool SupportedNewHandbook
+        {
+            get
+            {
+                var marketsSupportedNewHandbook = GetConfigValue("MarketsSupportedNewHandbook");
+                if (string.IsNullOrWhiteSpace(marketsSupportedNewHandbook))
+                {
+                    return false;
+                }
+
+                if (string.Equals("*", marketsSupportedNewHandbook, StringComparison.OrdinalIgnoreCase))
+                {
+                    return true;
+                }
+
+                var label = GetConfigValue("SiteLabel");
+
+                return marketsSupportedNewHandbook
+                    .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                    .Any(s => string.Equals(s, label, StringComparison.OrdinalIgnoreCase));
+            }
+        }
+
         private static void Require(string key, string keyName)
         {
             if (string.IsNullOrWhiteSpace(key))
