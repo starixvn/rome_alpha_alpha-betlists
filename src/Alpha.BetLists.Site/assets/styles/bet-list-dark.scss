@@ -113,7 +113,13 @@ a {
 
 .space-fixed-title {
     padding: 20px 0;
+
+    + .fixed-top {
+        background: #171717;
+        height: 40px;
+    }
 }
+
 
 .bl_title {
     font-weight: bold;

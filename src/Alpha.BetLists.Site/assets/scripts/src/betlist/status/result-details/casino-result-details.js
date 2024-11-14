@@ -716,6 +716,26 @@ var BetList;
                 return ONCasinoResultDetails;
             }(ResultDetails.BaseResultDetails));
             ResultDetails.ONCasinoResultDetails = ONCasinoResultDetails;
+            var PlaytechResultDetails = /** @class */ (function (_super) {
+                __extends(PlaytechResultDetails, _super);
+                function PlaytechResultDetails() {
+                    var _this = _super !== null && _super.apply(this, arguments) || this;
+                    _this.ViewResultDetails = function (matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, currencyId, gameId3rd, custId, transId3rd, siteId) {
+                        var params = '?custId=' + custId +
+                            '&transId3rd=' + transId3rd +
+                            '&gameId3rd=' + gameId3rd +
+                            '&currencyId=' + currencyId +
+                            '&siteId=' + siteId +
+                            '&BetType=' + betTypeId +
+                            '&endtime=' + winLostDate +
+                            '&productId=100';
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/PlaytechResult' + params, "", 835, 675);
+                    };
+                    return _this;
+                }
+                return PlaytechResultDetails;
+            }(ResultDetails.BaseResultDetails));
+            ResultDetails.PlaytechResultDetails = PlaytechResultDetails;
         })(ResultDetails = Status.ResultDetails || (Status.ResultDetails = {}));
     })(Status = BetList.Status || (BetList.Status = {}));
 })(BetList || (BetList = {}));

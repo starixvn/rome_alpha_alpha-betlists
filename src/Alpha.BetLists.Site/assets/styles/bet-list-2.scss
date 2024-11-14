@@ -110,7 +110,14 @@ a {
         width: 100px;
     }
 }
+.space-fixed-title {
+    padding: 20px 0;
 
+    + .fixed-top {
+        background: #171717;
+        height: 40px;
+    }
+}
 .bl_title {
     color: #9d1c1c;
     font-weight: bold;
