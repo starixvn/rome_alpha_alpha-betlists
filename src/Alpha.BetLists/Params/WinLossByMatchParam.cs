@@ -1,6 +1,7 @@
 ﻿namespace Alpha.BetLists.Params
 {
     using System;
+    using Alpha.BetLists.Helpers;
     using Models;
 
     public class WinLossByMatchParam
@@ -8,6 +9,7 @@
         public WinLossByMatchParam(
             int custId,
             int leagueId,
+            byte leagueType,
             int matchId,
             int betType,
             string race,
@@ -32,6 +34,7 @@
             FromDate = fromDate;
             ToDate = toDate;
             CustLevel = custLevel;
+            EventType = BetTypeHelper.GetEventType(leagueType);
         }
 
         public int CustId { get; }
@@ -39,6 +42,8 @@
         public int BetType { get; }
 
         public int LeagueId { get; }
+
+        public byte EventType { get; }
 
         public int MatchId { get; }
 

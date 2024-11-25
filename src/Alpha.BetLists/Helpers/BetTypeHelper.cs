@@ -1,5 +1,6 @@
 ﻿namespace Alpha.BetLists.Helpers
 {
+    using System.Collections.Generic;
     using System.Linq;
     using Alpha.BetLists.AppResources;
     using Constants;
@@ -22,6 +23,12 @@
             BetTypeIdConstants.VirtualHorseRacing_WinPlace
         };
 
+        private static readonly IDictionary<byte, byte> LeagueTypeEventTypeMapping = new Dictionary<byte, byte>
+        {
+            { 1, 5 },
+            { 0, 1 }
+        };
+
         public static bool IsOutRight(int betType) => betType == BetTypeIdConstants.Outright;
 
         public static bool IsLeapGaming(int betType)
@@ -38,5 +45,12 @@
             => betTypeId == BetTypeIdConstants.MonitoringBetsOthers
             ? Resources.Others
             : CacheRefServiceHelper.GetBetTypeName(betTypeId);
+
+        public static byte GetEventType(byte leagueType)
+        {
+            const byte defaultEventType = 1;
+
+            return LeagueTypeEventTypeMapping.ContainsKey(leagueType) ? LeagueTypeEventTypeMapping[leagueType] : defaultEventType;
+        }
     }
 }

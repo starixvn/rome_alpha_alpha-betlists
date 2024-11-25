@@ -42,6 +42,7 @@
             => new WinLossByMatchParam(
                 message.CustId,
                 message.LeagueId,
+                message.LeagueType,
                 message.MatchId,
                 message.BetType,
                 message.Race,
