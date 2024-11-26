@@ -41,6 +41,8 @@
 
         public string Username { get; }
 
+        public bool IsReward { get; } = false;
+
         public override string GetSettingKey() => "Age_Rpt_WinlossDetail_WeekDataSel";
 
         public override bool IsValid() => CustId > 0 && FromDate <= ToDate && !string.IsNullOrWhiteSpace(Username);

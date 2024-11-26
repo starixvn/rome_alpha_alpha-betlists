@@ -109,37 +109,21 @@
             var validResourceIds = await productDetailService.FilterResourceIdsByCustomer(message.Site, message.CurrencyId, message.ResourceIds);
             var productDetailsXML = await productDetailService.BuildProductDetailsXMLAsync(validResourceIds, message.Is789Y);
 
-            var winLossWeekDataParam = new WinLossWeekDataParam(
-                message.ViewerId,
+            var winLossParam = new WinLossParam(
+                message.CustId,
+                validUserSelectedProductIds,
                 message.FromDate,
                 message.ToDate,
                 message.LimitedDateToShowInfo,
-                validUserSelectedProductIds,
+                message.Language,
                 productDetailsXML,
-                message.CustName);
-            var weekData = await winLossService.GetWinLossWeekData(winLossWeekDataParam);
+                message.Site,
+                message.MaxTotalRow,
+                message.MaxTotalRowConfig);
+            var betlistData = await winLossService.GetBetList(winLossParam);
+            await AssignCountry(betlistData.Tickets, message.DisplayVNIP);
 
-            BetListData betlistData = new BetListData(Enumerable.Empty<TicketDto>(), new List<ITicketData>());
-
-            if (weekData.Any())
-            {
-                var winLossParam = new WinLossParam(
-                    message.CustId,
-                    validUserSelectedProductIds,
-                    message.FromDate,
-                    message.ToDate,
-                    message.LimitedDateToShowInfo,
-                    message.Language,
-                    productDetailsXML,
-                    message.Site,
-                    message.MaxTotalRow,
-                    message.MaxTotalRowConfig);
-
-                betlistData = await winLossService.GetBetList(winLossParam);
-                await AssignCountry(betlistData.Tickets, message.DisplayVNIP);
-
-                WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
-            }
+            WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
             return new WinLossBetListWeekSelectionViewModel(
                 message,

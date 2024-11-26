@@ -1485,6 +1485,7 @@
       <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
     </Content>
     <Content Include="Views\Shared\ShutdownOldViewPopup.cshtml" />
+    <Content Include="Views\WinLoss\Index2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_GlobalResources\Resources.Designer.cs">

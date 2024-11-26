@@ -187,8 +187,14 @@ class WinLossBetListView {
     }
 
     private buildWinLossReportUrl(reportFormData) {
-        const action = reportFormData.custLevelId === 4 ? "master" : (reportFormData.custLevelId === 3 ? "agent" : "member");
-        return $("#winloss-detail-report-path").val() + action + "new?" + $.param(reportFormData);
+        let winlossDetailUrl = $("#winloss-detail-report-path").val();
+
+        if (winlossDetailUrl.toLowerCase().indexOf('index2') === -1) {
+            const action = reportFormData.custLevelId === 4 ? "master" : (reportFormData.custLevelId === 3 ? "agent" : "member");
+            winlossDetailUrl += `${action}new`;
+        }
+
+        return `${winlossDetailUrl}?${$.param(reportFormData)}`;
     }
 
     private getBetListWeekSelection() {
