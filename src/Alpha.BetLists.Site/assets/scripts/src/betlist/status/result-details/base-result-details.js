@@ -8,7 +8,7 @@ var BetList;
                 function ResultDetailsFactory() {
                 }
                 ResultDetailsFactory.CreateInstance = function (betTypeId) {
-                    if (betTypeId === 9 || betTypeId === 29 || betTypeId === 2799 || betTypeId === 10449) {
+                    if (betTypeId === 9 || betTypeId === 29 || betTypeId === 2799 || betTypeId === 10449 || betTypeId === 11099) {
                         this.mixParlayResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.mixParlayResult) ? new ResultDetails.MixParlayResultDetails() : this.mixParlayResult;
                         return this.mixParlayResult;
                     }

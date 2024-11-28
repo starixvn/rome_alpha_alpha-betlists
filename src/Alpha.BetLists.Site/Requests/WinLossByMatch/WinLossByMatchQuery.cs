@@ -15,6 +15,8 @@
 
         public int LeagueId { get; set; }
 
+        public byte LeagueType { get; set; }
+
         public int MatchId { get; set; }
 
         public string Race { get; set; }

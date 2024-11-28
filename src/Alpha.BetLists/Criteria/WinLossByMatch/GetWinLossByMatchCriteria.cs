@@ -12,6 +12,7 @@
              DateTime toDate,
              DateTime moveBetsDay,
              int matchId,
+             byte eventType,
              int betType,
              string custName,
              bool liveIndicator,
@@ -22,6 +23,7 @@
             MoveBetsDay = moveBetsDay;
             CustId = custId;
             MatchId = matchId;
+            EventType = eventType;
             BetType = betType;
 
             CustName = custName;
@@ -32,6 +34,8 @@
         public int CustId { get; }
 
         public int MatchId { get; }
+
+        public byte EventType { get; }
 
         public int BetType { get; }
 

@@ -96,6 +96,7 @@
                 param.ToDate,
                 reportDateService.GetMoveBetsDay(),
                 param.MatchId,
+                param.EventType,
                 param.BetType,
                 param.CustName,
                 param.LiveIndicator,

@@ -91,7 +91,7 @@
                 LiveIndicator = 1
             };
 
-            var expectedParam = new WinLossByMatchParam(1, 2, 3, 4, "5", 1, "en", "CustName", DateTime.Today, DateTime.Today, UserLevel.Agent);
+            var expectedParam = new WinLossByMatchParam(1, 2, 0, 3, 4, "5", 1, "en", "CustName", DateTime.Today, DateTime.Today, UserLevel.Agent);
 
             // Act
             winLossHandler.Handle(query).GetAwaiter().GetResult();
@@ -124,7 +124,7 @@
             // Arrange
             var query = CreateWinLossByMatchQuery();
 
-            var expectedParam = new WinLossByMatchParam(1, 2, 3, 4, "5", 1, "en", "CustName", DateTime.Today, DateTime.Today, UserLevel.Super);
+            var expectedParam = new WinLossByMatchParam(1, 2, 0, 3, 4, "5", 1, "en", "CustName", DateTime.Today, DateTime.Today, UserLevel.Super);
 
             // Act
             var actualParam = WinLossByMatchHandler.CreateWinLossParam(query);

@@ -17,6 +17,7 @@
         {
             BetType = query.BetType;
             LeagueId = query.LeagueId;
+            LeagueType = query.LeagueType;
             MatchId = query.MatchId;
             Race = query.Race;
             LiveIndicator = query.LiveIndicator;
@@ -26,6 +27,8 @@
         public int BetType { get; }
 
         public int LeagueId { get; }
+
+        public byte LeagueType { get; }
 
         public int MatchId { get; }
 
