@@ -18,10 +18,10 @@
         }
 
         [DisableNetThrottling]
-        public async Task<ActionResult> Index(LastBetsQuery query) => await View(query);
+        public async Task<ActionResult> Indexxxxxxx(LastBetsQuery query) => await View(query);
 
         [DisableNetThrottling]
-        public async Task<ActionResult> BetData(GetLastBetsQuery message)
+        public async Task<ActionResult> BetDataaaaaaa(GetLastBetsQuery message)
         {
             var canViewLastBets = await mediator.Send(new CheckCanViewLastBetsQuery(viewer));
 
@@ -31,6 +31,6 @@
             }
 
             return await View(message);
-        }        
+        }
     }
 }

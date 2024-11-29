@@ -75,7 +75,6 @@
             @Html.ActionLink(Resources.FilterConfiguration, "FilterConfiguration", $"{AppSettings.BetlistRouting}MonitoringBets", null, new { target = "main", @class = "button-link navigation" })
         </div>
         <div class="form-group col-item">
-            @Common.SwitchVersionButton.ClassicView(Url.Action("Index", $"{AppSettings.BetlistRouting}LastBets"))
             <span class="ic-copy" title="@Resources.Copy" id="icon-copy"></span>
         </div>
     </div>
