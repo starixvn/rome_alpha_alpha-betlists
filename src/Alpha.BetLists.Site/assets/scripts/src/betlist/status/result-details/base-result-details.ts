@@ -44,6 +44,7 @@
         private static sexyGamingResult: ResultDetails;
         private static playtechResult: ResultDetails;
         private static gpiResult: ResultDetails;
+        private static gpiLCResult: ResultDetails;
 
         public static CreateInstance(betTypeId: number): ResultDetails {
             if (betTypeId === 9 || betTypeId === 29 || betTypeId === 2799 || betTypeId === 10449 || betTypeId === 11099) {
@@ -263,6 +264,11 @@
             if (betTypeId >= 11400 && betTypeId <= 11499) {
                 this.gpiResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.gpiResult) ? new GPIResultDetails() : this.gpiResult;
                 return this.gpiResult;
+            }
+
+            if (betTypeId >= 11500 && betTypeId <= 11599) {
+                this.gpiLCResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.gpiLCResult) ? new GPILiveCasinoResultDetails() : this.gpiLCResult;
+                return this.gpiLCResult;
             }
 
             this.sportsbookResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sportsbookResult) ? new SportsbookResultDetails : this.sportsbookResult;

@@ -23,5 +23,6 @@ namespace Alpha.BetLists.Constants
         public const int Allbet = 21;
         public const int MgRng = 73;
         public const int Live22 = 79;
+        public const int GPILiveCasino = 90;
     }
 }

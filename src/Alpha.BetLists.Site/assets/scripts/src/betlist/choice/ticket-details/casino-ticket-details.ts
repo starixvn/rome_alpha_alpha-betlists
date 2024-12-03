@@ -933,6 +933,37 @@
                 'GPI - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
         }
     }
+
+    export class GPILiveCasinoTicketDetails extends BaseTicketDetails {
+        private static instance: GPILiveCasinoTicketDetails;
+
+        public static get Instance() {
+            this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new GPILiveCasinoTicketDetails() : this.instance;
+            return this.instance;
+        }
+
+        public ShowGPILCTicketDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
+            const params = '?refno=' + refNo
+                + '&custid=' + custId
+                + '&transType=' + transType
+                + '&sportName=GPI Live Casino&productId=90';
+
+            let width = 1500;
+            let roleId = Number(this.ViewerLevelId);
+
+            if (roleId <= 3) {
+                width -= 105;
+            }
+
+            if (roleId <= 2) {
+                width -= 105;
+            }
+
+            Common.PopupDetails.Instance(window.top).Show(
+                Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params,
+                'GPI Live Casino - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+        }
+    }
 }
 
 let showRnGCasinoDetails: Function;
@@ -979,6 +1010,7 @@ let showNextspinBetDetails: Function;
 let showONLiveCasinoBetDetails: Function;
 let showPlaytechBetDetails: Function;
 let showGPIBetDetails: Function;
+let showGPILCBetDetails: Function;
 
 $(document).ready(() => {
     showRnGCasinoDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowRnGCasinoDetails;
@@ -1025,4 +1057,5 @@ $(document).ready(() => {
     showONLiveCasinoBetDetails = BetList.Choice.TicketDetails.ONCasinoTicketDetails.Instance.ShowONCasinoTicketDetails;
     showPlaytechBetDetails = BetList.Choice.TicketDetails.PlaytechTicketDetails.Instance.ShowPlaytechTicketDetails;
     showGPIBetDetails = BetList.Choice.TicketDetails.GPIRNGTicketDetails.Instance.ShowGPIBetDetails;
+    showGPILCBetDetails = BetList.Choice.TicketDetails.GPILiveCasinoTicketDetails.Instance.ShowGPILCTicketDetails;
 })
