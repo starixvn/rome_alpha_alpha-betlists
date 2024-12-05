@@ -14,13 +14,16 @@
             CasinoDetailsParam param,
             PagedData<ITicket> detailData,
             IBetListHTMLBuilder builder,
-            ITicketHelper ticketHelper)
+            ITicketHelper ticketHelper,
+            string exportExcelURl = "Excel")
             : base(query.SportName, query.ViewerId, query.ViewerLevelId, param, detailData, builder, ticketHelper)
         {
             DisplayVNIP = query.DisplayVNIP;
+            ExportExcelUrl = exportExcelURl;
         }
 
         public bool DisplayVNIP { get; }
+        public string ExportExcelUrl { get; }
 
         public Components.PagerViewModel PagingViewModel =>
           new Components.PagerViewModel(PagerViewModel.PageIndex, PagerViewModel.PageSize, PagerViewModel.TotalRecords);

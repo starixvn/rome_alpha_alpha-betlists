@@ -14,7 +14,7 @@
 <div class="bl_title no-border-bottom fixed-top">
     <div class="bl-export-excel">
         <a id="icon-excel" class="icon icon-excel" title="@Resources.ExportToExcel"
-           href="@Url.Action("Excel", $"{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}CasinoDetails",
+           href="@Url.Action($"{Model.ExportExcelUrl}", $"{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}CasinoDetails",
                 new { RefNo = Model.RefNo,
                     CustId=Model.CustId,
                     TransType = Model.TransType,

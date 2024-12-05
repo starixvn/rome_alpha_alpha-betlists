@@ -6,6 +6,8 @@
     using AppResources;
     using BetListNPOI.SS.UserModel;
     using BetLists.Models;
+    using Fanex.BetDetails.Casino.Models;
+    using Fanex.BetDetails.Casino.Params;
     using Fanex.BetDetails.Casino.Services;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
@@ -20,7 +22,10 @@
     using ViewModels.CasinoDetails;
     using static ONEbook.SpreadSheets.Column;
 
-    public class CasinoDetailsExcelHandler : BetListExcelBaseHandler, IAsyncRequestHandler<CasinoDetailsExcelQuery, ExcelFileViewModel>
+    public class CasinoDetailsExcelHandler : BetListExcelBaseHandler,
+        IAsyncRequestHandler<CasinoDetailsExcelQuery, ExcelFileViewModel>,
+        IAsyncRequestHandler<LiveCasinoDetailsExcelQuery, ExcelFileViewModel>,
+        IAsyncRequestHandler<RNGCasinoDetailsExcelQuery, ExcelFileViewModel>
     {
         private int currentRowIndex = 1;
         private Workbook<TicketDto> workbook;
@@ -40,11 +45,32 @@
             this.casinoDetailsService = casinoDetailsService;
             this.workbook = workbook;
         }
-
         public async Task<ExcelFileViewModel> Handle(CasinoDetailsExcelQuery message)
         {
             var param = CasinoDetailsHandler.CreateCasinoDetailsParam(message);
-            var betlistData = casinoDetailsService.GetCasinoDetails(param);
+            var betlistData = casinoDetailsService.GetLiveCasinoDetails(param);
+
+            return await BuildExcelViewModel(betlistData, message, param);
+        }
+
+        public async Task<ExcelFileViewModel> Handle(LiveCasinoDetailsExcelQuery message)
+        {
+            var param = CasinoDetailsHandler.CreateCasinoDetailsParam(message);
+            var betlistData = casinoDetailsService.GetLiveCasinoDetails(param);
+
+            return await BuildExcelViewModel(betlistData, message, param);
+        }
+
+        public async Task<ExcelFileViewModel> Handle(RNGCasinoDetailsExcelQuery message)
+        {
+            var param = CasinoDetailsHandler.CreateCasinoDetailsParam(message);
+            var betlistData = casinoDetailsService.GetRNGCasinoDetails(param);
+
+            return await BuildExcelViewModel(betlistData, message, param);
+        }
+
+        private async Task<ExcelFileViewModel> BuildExcelViewModel(PagedData<ITicket> betlistData, CasinoDetailsExcelQuery message, CasinoDetailsParam param)
+        {
             await AssignCountry(betlistData.Tickets, message.DisplayVNIP);
 
             var viewModel = new CasinoDetailsViewModel(message, param, betlistData, null, TicketHelper);

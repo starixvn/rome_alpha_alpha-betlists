@@ -82,10 +82,6 @@ var BetList;
                         this.BGResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.BGResult) ? new ResultDetails.BGResultDetails() : this.BGResult;
                         return this.BGResult;
                     }
-                    if (betTypeId >= 5701 && betTypeId <= 5799) {
-                        this.GDGResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.GDGResult) ? new ResultDetails.GDGResultDetails() : this.GDGResult;
-                        return this.GDGResult;
-                    }
                     if (betTypeId >= 6001 && betTypeId <= 6300) {
                         this.PGSoftCasinoResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.PGSoftCasinoResult) ? new ResultDetails.PGSoftCasinoResultDetails() : this.PGSoftCasinoResult;
                         return this.PGSoftCasinoResult;

@@ -24,5 +24,6 @@ namespace Alpha.BetLists.Constants
         public const int MgRng = 73;
         public const int Live22 = 79;
         public const int GPILiveCasino = 90;
+        public const int GPI = 48;
     }
 }

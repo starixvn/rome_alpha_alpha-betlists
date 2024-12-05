@@ -32,6 +32,41 @@
                 reportDateService.GetMoveBetsDay(),
                 reportDateService.GetBalanceUpDay());
 
+            return GetDetails(criteria);
+        }
+
+        public PagedData<ITicket> GetLiveCasinoDetails(CasinoDetailsParam param)
+        {
+            var criteria = new GetLiveCasinoDetailsCriteria(
+                   param.RefNo,
+                   param.CustId,
+                   param.TransType,
+                   param.ProductId,
+                   param.PageIndex,
+                   param.PageSize,
+                   reportDateService.GetMoveBetsDay(),
+                   reportDateService.GetBalanceUpDay());
+
+            return GetDetails(criteria);
+        }
+
+        public PagedData<ITicket> GetRNGCasinoDetails(CasinoDetailsParam param)
+        {
+            var criteria = new GetRNGCasinoDetailsCriteria(
+                   param.RefNo,
+                   param.CustId,
+                   param.TransType,
+                   param.ProductId,
+                   param.PageIndex,
+                   param.PageSize,
+                   reportDateService.GetMoveBetsDay(),
+                   reportDateService.GetBalanceUpDay());
+
+            return GetDetails(criteria);
+        }
+
+        private PagedData<ITicket> GetDetails(GetCasinoDetailsCriteria criteria)
+        {
             var tickets = dynamicRepository.Fetch<TicketDto>(criteria);
             return new PagedData<ITicket>(tickets, criteria.PageIndex, criteria.PageSize, criteria.TotalRows);
         }

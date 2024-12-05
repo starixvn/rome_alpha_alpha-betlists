@@ -18,7 +18,6 @@
         private static PGSoftCasinoResult: ResultDetails;
         private static JokerResult: ResultDetails;
         private static LeapGamingResult: ResultDetails;
-        private static GDGResult: ResultDetails;
         private static BGResult: ResultDetails;
         private static maxGameResult: ResultDetails;
         private static linkedGamesResult: ResultDetails;
@@ -136,10 +135,7 @@
                 this.BGResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.BGResult) ? new BGResultDetails() : this.BGResult;
                 return this.BGResult;
             }
-            if (betTypeId >= 5701 && betTypeId <= 5799) {
-                this.GDGResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.GDGResult) ? new GDGResultDetails() : this.GDGResult;
-                return this.GDGResult;
-            }
+
             if (betTypeId >= 6001 && betTypeId <= 6300) {
                 this.PGSoftCasinoResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.PGSoftCasinoResult) ? new PGSoftCasinoResultDetails() : this.PGSoftCasinoResult;
                 return this.PGSoftCasinoResult;

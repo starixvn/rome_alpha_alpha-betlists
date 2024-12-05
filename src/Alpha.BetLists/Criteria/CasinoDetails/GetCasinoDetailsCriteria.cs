@@ -1,7 +1,6 @@
 ﻿namespace Alpha.BetLists.Criteria.CasinoDetails
 {
     using System;
-    using Alpha.BetLists.Helpers;
     using Fanex.Data;
     using Fanex.Data.Repository;
 
@@ -49,11 +48,7 @@
         public DateTime BalanceUpDate { get; }
 
         public override string GetSettingKey()
-        {
-            var settingKey = FanexDataSettingKeyHelper.GetTicketDetailSettingKey(ProductId);
-
-            return string.IsNullOrWhiteSpace(settingKey) ? "Acc_BetList_Detail_" + ProductId : settingKey;
-        }
+            => "Acc_BetList_Detail_" + ProductId;
 
         public override bool IsValid()
             => RefNo > 0

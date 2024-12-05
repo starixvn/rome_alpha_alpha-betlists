@@ -138,8 +138,8 @@
     <Reference Include="Fanex.BetDetails.BetBuilder, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetDetails.BetBuilder.1.0.0.2\lib\net461\Fanex.BetDetails.BetBuilder.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.BetDetails.Casino, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetDetails.Casino.2.0.0\lib\netstandard2.0\Fanex.BetDetails.Casino.dll</HintPath>
+    <Reference Include="Fanex.BetDetails.Casino, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetDetails.Casino.2.0.1-beta-01\lib\netstandard2.0\Fanex.BetDetails.Casino.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.AdvantPlay, Version=2.0.0.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.AdvantPlay.2.0.0.2\lib\net461\Fanex.BetList.AdvantPlay.dll</HintPath>
@@ -1597,6 +1597,10 @@
     <Compile Include="Requests\BaseQuery.cs" />
     <Compile Include="Requests\BetListByBetType\BetListByBetTypeExcelQuery.cs" />
     <Compile Include="Requests\BetListByBetType\BetListByBetTypeQuery.cs" />
+    <Compile Include="Requests\CasinoDetails\LiveCasinoDetailsExcelQuery.cs" />
+    <Compile Include="Requests\CasinoDetails\LiveCasinoDetailsQuery.cs" />
+    <Compile Include="Requests\CasinoDetails\RNGDetailsExcelQuery.cs" />
+    <Compile Include="Requests\CasinoDetails\RNGDetailsQuery.cs" />
     <Compile Include="Requests\DailyStatement\DailyStatementExcelQuery.cs" />
     <Compile Include="Requests\SearchTickets\SearchTicketsQuery.cs" />
     <Compile Include="Requests\JackpotDetails\JackpotDetailsExcelQuery.cs" />

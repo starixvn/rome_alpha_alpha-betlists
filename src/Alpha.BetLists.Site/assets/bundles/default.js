@@ -340,10 +340,6 @@ var BetList;
                         this.BGResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.BGResult) ? new ResultDetails.BGResultDetails() : this.BGResult;
                         return this.BGResult;
                     }
-                    if (betTypeId >= 5701 && betTypeId <= 5799) {
-                        this.GDGResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.GDGResult) ? new ResultDetails.GDGResultDetails() : this.GDGResult;
-                        return this.GDGResult;
-                    }
                     if (betTypeId >= 6001 && betTypeId <= 6300) {
                         this.PGSoftCasinoResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.PGSoftCasinoResult) ? new ResultDetails.PGSoftCasinoResultDetails() : this.PGSoftCasinoResult;
                         return this.PGSoftCasinoResult;
@@ -1743,7 +1739,7 @@ var BetList;
                             + "&sportName=" + sportName
                             + "&productId=6";
                     };
-                    _this.ShowDetailsPopup = function (params) { return Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, "", 1500); };
+                    _this.ShowDetailsPopup = function (params) { return Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/RNG' + params, "", 1500); };
                     return _this;
                 }
                 Object.defineProperty(CasinoTicketDetails, "Instance", {
@@ -1774,7 +1770,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'Allbet - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/LiveCasino' + params, 'Allbet - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
                     };
                     return _this;
                 }
@@ -1854,7 +1850,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'AE Sexy - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/LiveCasino' + params, 'AE Sexy - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
                     };
                     return _this;
                 }
@@ -1886,7 +1882,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'SA Gaming - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/LiveCasino' + params, 'SA Gaming - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
                     };
                     return _this;
                 }
@@ -1918,7 +1914,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'IBCBet Live Casino - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/LiveCasino' + params, 'IBCBet Live Casino - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
                     };
                     return _this;
                 }
@@ -1950,7 +1946,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'ION - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/LiveCasino' + params, 'ION - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
                     };
                     return _this;
                 }
@@ -2014,7 +2010,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'Funky Games - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/RNG' + params, 'Funky Games - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
                     };
                     return _this;
                 }
@@ -2046,7 +2042,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'WM - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/LiveCasino' + params, 'WM - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
                     };
                     return _this;
                 }
@@ -2061,38 +2057,6 @@ var BetList;
                 return WMTicketDetails;
             }(TicketDetails.BaseTicketDetails));
             TicketDetails.WMTicketDetails = WMTicketDetails;
-            var GDGTicketDetails = /** @class */ (function (_super) {
-                __extends(GDGTicketDetails, _super);
-                function GDGTicketDetails() {
-                    var _this = _super !== null && _super.apply(this, arguments) || this;
-                    _this.ShowGDGBetDetails = function (refNo, winlossDate, custId, transType) {
-                        var params = '?refno=' + refNo
-                            + '&custid=' + custId
-                            + '&transType=' + transType
-                            + '&sportName=GDG&productId=59';
-                        var width = 1500;
-                        var roleId = Number(_this.ViewerLevelId);
-                        if (roleId <= 3) {
-                            width -= 105;
-                        }
-                        if (roleId <= 2) {
-                            width -= 105;
-                        }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'GDG - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
-                    };
-                    return _this;
-                }
-                Object.defineProperty(GDGTicketDetails, "Instance", {
-                    get: function () {
-                        this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new GDGTicketDetails() : this.instance;
-                        return this.instance;
-                    },
-                    enumerable: true,
-                    configurable: true
-                });
-                return GDGTicketDetails;
-            }(TicketDetails.BaseTicketDetails));
-            TicketDetails.GDGTicketDetails = GDGTicketDetails;
             var BGTicketDetails = /** @class */ (function (_super) {
                 __extends(BGTicketDetails, _super);
                 function BGTicketDetails() {
@@ -2110,7 +2074,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'BG - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/LiveCasino' + params, 'BG - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
                     };
                     return _this;
                 }
@@ -2142,7 +2106,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'PP Live Casino - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/LiveCasino' + params, 'PP Live Casino - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
                     };
                     return _this;
                 }
@@ -2174,7 +2138,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'FGG - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/LiveCasino' + params, 'FGG - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
                     };
                     return _this;
                 }
@@ -2206,7 +2170,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'SEAL Entertainment - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/RNG' + params, 'SEAL Entertainment - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
                     };
                     return _this;
                 }
@@ -2238,7 +2202,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'MG-RNG - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/RNG' + params, 'MG-RNG - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
                     };
                     return _this;
                 }
@@ -2270,7 +2234,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'Jili - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/RNG' + params, 'Jili - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
                     };
                     return _this;
                 }
@@ -2302,7 +2266,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'YeeBet - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/LiveCasino' + params, 'YeeBet - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
                     };
                     return _this;
                 }
@@ -2334,7 +2298,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'Live22 - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/RNG' + params, 'Live22 - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
                     };
                     return _this;
                 }
@@ -2366,7 +2330,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'WE Live Casino - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/LiveCasino' + params, 'WE Live Casino - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
                     };
                     return _this;
                 }
@@ -2398,7 +2362,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'UU SLOTS - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/RNG' + params, 'UU SLOTS - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
                     };
                     return _this;
                 }
@@ -2431,7 +2395,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, sportName + ' - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/RNG' + params, sportName + ' - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
                     };
                     return _this;
                 }
@@ -2463,7 +2427,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'FastSpin - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/RNG' + params, 'FastSpin - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
                     };
                     return _this;
                 }
@@ -2495,7 +2459,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'FA CHAI - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/RNG' + params, 'FA CHAI - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
                     };
                     return _this;
                 }
@@ -2527,7 +2491,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'Nextspin - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/RNG' + params, 'Nextspin - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
                     };
                     return _this;
                 }
@@ -2559,7 +2523,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'ON Casino - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/LiveCasino' + params, 'ON Casino - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
                     };
                     return _this;
                 }
@@ -2591,7 +2555,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'Playtech - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/RNG' + params, 'Playtech - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
                     };
                     return _this;
                 }
@@ -2623,7 +2587,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'GPI - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/RNG' + params, 'GPI - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
                     };
                     return _this;
                 }
@@ -2655,7 +2619,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'GPI Live Casino - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/LiveCasino' + params, 'GPI Live Casino - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
                     };
                     return _this;
                 }
@@ -2694,7 +2658,6 @@ var showRNGWARBetDetails;
 var showIONCasinoBetDetails;
 var showJokerBetDetails;
 var showWMBetDetails;
-var showGDGBetDetails;
 var showBGBetDetails;
 var showMaxGameBetDetails;
 var showPragmaticLiveCasinoBetsDetails;
@@ -2740,7 +2703,6 @@ $(document).ready(function () {
     showRNGWARBetDetails = BetList.Choice.TicketDetails.RNGWarTicketDetails.Instance.ShowRNGWarBetDetails;
     showJokerBetDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowJokerDetails;
     showWMBetDetails = BetList.Choice.TicketDetails.WMTicketDetails.Instance.ShowWMBetDetails;
-    showGDGBetDetails = BetList.Choice.TicketDetails.GDGTicketDetails.Instance.ShowGDGBetDetails;
     showBGBetDetails = BetList.Choice.TicketDetails.BGTicketDetails.Instance.ShowBGBetDetails;
     showMaxGameBetDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowMaxGameDetails;
     showPragmaticLiveCasinoBetsDetails = BetList.Choice.TicketDetails.PPLiveCasinoTicketDetails.Instance.ShowPragmaticLiveCasinoBetsDetails;
