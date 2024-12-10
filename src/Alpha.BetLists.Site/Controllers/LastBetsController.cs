@@ -18,7 +18,7 @@
         }
 
         [DisableNetThrottling]
-        public async Task<ActionResult> Indexxxxxxx(LastBetsQuery query) => await View(query);
+        public async Task<ActionResult> Indexxxxxxx(LastBetsQuery query) => await View("Index", query);
 
         [DisableNetThrottling]
         public async Task<ActionResult> BetDataaaaaaa(GetLastBetsQuery message)
@@ -30,7 +30,7 @@
                 return Json(canViewLastBets, JsonRequestBehavior.AllowGet);
             }
 
-            return await View(message);
+            return await View("BetData", message);
         }
     }
 }
