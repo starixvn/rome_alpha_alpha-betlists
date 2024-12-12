@@ -1,7 +1,10 @@
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -754,6 +757,23 @@ var BetList;
                 return GPIResultDetails;
             }(ResultDetails.BaseResultDetails));
             ResultDetails.GPIResultDetails = GPIResultDetails;
+            var SabaKenoResultDetails = /** @class */ (function (_super) {
+                __extends(SabaKenoResultDetails, _super);
+                function SabaKenoResultDetails() {
+                    var _this = _super !== null && _super.apply(this, arguments) || this;
+                    _this.ViewResultDetails = function (matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, currencyId, gameId3rd, custId, transId3rd, siteId) {
+                        var params = '?custId=' + custId +
+                            '&transId3rd=' + transId3rd +
+                            '&currencyId=' + currencyId +
+                            '&siteId=' + siteId +
+                            '&productId=102';
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/SabaKenoResult' + params, "", 835, 675);
+                    };
+                    return _this;
+                }
+                return SabaKenoResultDetails;
+            }(ResultDetails.BaseResultDetails));
+            ResultDetails.SabaKenoResultDetails = SabaKenoResultDetails;
             var PlayStarResultDetails = /** @class */ (function (_super) {
                 __extends(PlayStarResultDetails, _super);
                 function PlayStarResultDetails() {

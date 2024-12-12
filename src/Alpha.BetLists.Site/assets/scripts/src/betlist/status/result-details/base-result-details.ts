@@ -44,9 +44,10 @@
         private static playtechResult: ResultDetails;
         private static gpiResult: ResultDetails;
         private static gpiLCResult: ResultDetails;
+        private static sabaKenoResult: ResultDetails;
         private static playStarResult: ResultDetails;
         private static askmeslotResult: ResultDetails;
-
+        
         public static CreateInstance(betTypeId: number): ResultDetails {
             if (betTypeId === 9 || betTypeId === 29 || betTypeId === 2799 || betTypeId === 10449 || betTypeId === 11099) {
                 this.mixParlayResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.mixParlayResult) ? new MixParlayResultDetails() : this.mixParlayResult;
@@ -280,6 +281,10 @@
                 return this.askmeslotResult;
             }
 
+            if (betTypeId >= 12300 && betTypeId <= 12499) {
+                this.sabaKenoResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sabaKenoResult) ? new SabaKenoResultDetails() : this.sabaKenoResult;
+                return this.sabaKenoResult;
+            }
             this.sportsbookResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sportsbookResult) ? new SportsbookResultDetails : this.sportsbookResult;
             return this.sportsbookResult;
         }
