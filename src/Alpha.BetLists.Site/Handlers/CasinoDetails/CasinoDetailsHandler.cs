@@ -37,7 +37,7 @@
             var betlistData = casinoDetailsService.GetCasinoDetails(param);
             await AssignCountry(betlistData.Tickets, message.DisplayVNIP);
 
-            return new CasinoDetailsViewModel(message, param, betlistData, Builder, TicketHelper);
+            return new CasinoDetailsViewModel(message, param, betlistData, Builder, TicketHelper, "BBinExcel");
         }
 
         public async Task<CasinoDetailsViewModel> Handle(LiveCasinoDetailsQuery message)

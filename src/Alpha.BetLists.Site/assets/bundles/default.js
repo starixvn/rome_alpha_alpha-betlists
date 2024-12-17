@@ -1978,7 +1978,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'BBIN - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/BBinIndex' + params, 'BBIN - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
                     };
                     return _this;
                 }

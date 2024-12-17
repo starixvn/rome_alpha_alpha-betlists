@@ -48,7 +48,7 @@
         public async Task<ExcelFileViewModel> Handle(CasinoDetailsExcelQuery message)
         {
             var param = CasinoDetailsHandler.CreateCasinoDetailsParam(message);
-            var betlistData = casinoDetailsService.GetLiveCasinoDetails(param);
+            var betlistData = casinoDetailsService.GetCasinoDetails(param);
 
             return await BuildExcelViewModel(betlistData, message, param);
         }
