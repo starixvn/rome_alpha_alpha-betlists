@@ -31,7 +31,7 @@
             var message = new CasinoDetailsQuery(user);
 
             // Act
-            controller.Index(message).GetAwaiter().GetResult();
+            controller.BBinIndex(message).GetAwaiter().GetResult();
 
             // Assert
             mediator.Received().Send(message);
@@ -46,7 +46,7 @@
                 .Returns(new ExcelFileViewModel("Excel File", new byte[0]));
 
             // Act
-            controller.Excel(message).GetAwaiter().GetResult();
+            controller.BBinExcel(message).GetAwaiter().GetResult();
 
             // Assert
             mediator.Received().Send<ExcelFileViewModel>(message);
