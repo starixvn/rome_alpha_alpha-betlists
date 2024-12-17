@@ -11,10 +11,10 @@
         {
         }
 
-        public async Task<ActionResult> Index(CasinoDetailsQuery message)
-            => await View(message);
+        public async Task<ActionResult> BBinIndex(CasinoDetailsQuery message)
+            => await View("Index", message);
 
-        public async Task<FileContentResult> Excel(CasinoDetailsExcelQuery message)
+        public async Task<FileContentResult> BBinExcel(CasinoDetailsExcelQuery message)
             => await ExcelView(message);
 
         public async Task<ActionResult> LiveCasino(LiveCasinoDetailsQuery message)
