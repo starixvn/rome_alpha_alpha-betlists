@@ -1103,4 +1103,31 @@
             Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/GPIResult' + params, "", 835, 675);
         }
     }
+
+    export class GPILiveCasinoResultDetails extends BaseResultDetails implements ResultDetails {
+        public ViewResultDetails = (
+            matchId?: number,
+            race?: number,
+            betTypeId?: number,
+            sportTypeId?: number,
+            refNo?: string,
+            userName?: string,
+            winLostDate?: Date,
+            refNoMixParlay?: number,
+            league?: number,
+            isOutright?: boolean,
+            currencyId?: number,
+            gameId3rd?: string,
+            custId?: number,
+            transId3rd?: string,
+            siteId?: string) => {
+            var params = '?custId=' + custId +
+                '&transId3rd=' + transId3rd +
+                '&currencyId=' + currencyId +
+                '&siteId=' + siteId +
+                '&endtime=' + winLostDate +
+                '&productId=90';
+            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/GPILiveCasinoResult' + params, "", 835, 675);
+        }
+    }
 }

@@ -88,8 +88,8 @@
     <Reference Include="Fanex.BetDetails.BetBuilder, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetDetails.BetBuilder.1.0.0.2\lib\net461\Fanex.BetDetails.BetBuilder.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.BetDetails.Casino, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetDetails.Casino.2.0.0\lib\netstandard2.0\Fanex.BetDetails.Casino.dll</HintPath>
+    <Reference Include="Fanex.BetDetails.Casino, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetDetails.Casino.2.0.1\lib\netstandard2.0\Fanex.BetDetails.Casino.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.BBIN, Version=2.0.0.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.BBIN.2.0.0.1\lib\net461\Fanex.BetList.BBIN.dll</HintPath>
@@ -352,6 +352,8 @@
     <Compile Include="Constants\ProductIdConstants.cs" />
     <Compile Include="Constants\BetTypeIdConstants.cs" />
     <Compile Include="Criteria\BetBuilder\GetBetBuilderDetailCriteria.cs" />
+    <Compile Include="Criteria\CasinoDetails\GetLiveCasinoDetailsCriteria.cs" />
+    <Compile Include="Criteria\CasinoDetails\GetRNGCasinoDetailsCriteria.cs" />
     <Compile Include="Criteria\DailyStatement\GetAllBetListByDayCriteria.cs" />
     <Compile Include="Criteria\DailyStatement\GetAllBetListByDayOldCriteria.cs" />
     <Compile Include="Criteria\CancelledBet\GetCancelledBetCriteria.cs" />

@@ -82,10 +82,6 @@ var BetList;
                         this.BGResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.BGResult) ? new ResultDetails.BGResultDetails() : this.BGResult;
                         return this.BGResult;
                     }
-                    if (betTypeId >= 5701 && betTypeId <= 5799) {
-                        this.GDGResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.GDGResult) ? new ResultDetails.GDGResultDetails() : this.GDGResult;
-                        return this.GDGResult;
-                    }
                     if (betTypeId >= 6001 && betTypeId <= 6300) {
                         this.PGSoftCasinoResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.PGSoftCasinoResult) ? new ResultDetails.PGSoftCasinoResultDetails() : this.PGSoftCasinoResult;
                         return this.PGSoftCasinoResult;
@@ -186,6 +182,10 @@ var BetList;
                     if (betTypeId >= 11400 && betTypeId <= 11499) {
                         this.gpiResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.gpiResult) ? new ResultDetails.GPIResultDetails() : this.gpiResult;
                         return this.gpiResult;
+                    }
+                    if (betTypeId >= 11500 && betTypeId <= 11599) {
+                        this.gpiLCResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.gpiLCResult) ? new ResultDetails.GPILiveCasinoResultDetails() : this.gpiLCResult;
+                        return this.gpiLCResult;
                     }
                     this.sportsbookResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sportsbookResult) ? new ResultDetails.SportsbookResultDetails : this.sportsbookResult;
                     return this.sportsbookResult;
