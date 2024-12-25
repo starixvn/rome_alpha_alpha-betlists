@@ -42,6 +42,7 @@
             WeekSelections = weekSelections;
             Language = query.Language;
             ShowColumns = query.ShowColumns;
+            LevelType = query.LevelType;
         }
 
         public DateRangePickerNewViewModel DateRangePickerViewModel { get; }
@@ -55,5 +56,7 @@
         public string Language { get; }
 
         public string ShowColumns { get; }
+
+        public byte LevelType { get; }
     }
 }

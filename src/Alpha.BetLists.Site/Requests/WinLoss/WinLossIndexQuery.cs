@@ -17,6 +17,8 @@
 
         public string ShowColumns { get; set; }
 
+        public byte LevelType { get; set; }
+
         public override bool IsValid()
             => base.IsValid() && IsValidWeekRange();
 
