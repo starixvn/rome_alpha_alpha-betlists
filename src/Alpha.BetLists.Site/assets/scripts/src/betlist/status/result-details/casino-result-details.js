@@ -772,6 +772,24 @@ var BetList;
                 return GPILiveCasinoResultDetails;
             }(ResultDetails.BaseResultDetails));
             ResultDetails.GPILiveCasinoResultDetails = GPILiveCasinoResultDetails;
+            var VS2RacingResultDetails = /** @class */ (function (_super) {
+                __extends(VS2RacingResultDetails, _super);
+                function VS2RacingResultDetails() {
+                    var _this = _super !== null && _super.apply(this, arguments) || this;
+                    _this.ViewResultDetails = function (matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, currencyId, gameId3rd, custId, transId3rd, siteId) {
+                        var params = '?custId=' + custId +
+                            '&matchId=' + matchId +
+                            '&currencyId=' + currencyId +
+                            '&siteId=' + siteId +
+                            '&endtime=' + winLostDate +
+                            '&productId=96';
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/ONCasinoResult' + params, "", 835, 675);
+                    };
+                    return _this;
+                }
+                return VS2RacingResultDetails;
+            }(ResultDetails.BaseResultDetails));
+            ResultDetails.VS2RacingResultDetails = VS2RacingResultDetails;
         })(ResultDetails = Status.ResultDetails || (Status.ResultDetails = {}));
     })(Status = BetList.Status || (BetList.Status = {}));
 })(BetList || (BetList = {}));

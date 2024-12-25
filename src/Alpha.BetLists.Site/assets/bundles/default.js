@@ -266,7 +266,7 @@ var BetList;
                 function ResultDetailsFactory() {
                 }
                 ResultDetailsFactory.CreateInstance = function (betTypeId) {
-                    if (betTypeId === 9 || betTypeId === 29 || betTypeId === 2799 || betTypeId === 10449 || betTypeId === 11099) {
+                    if (betTypeId === 9 || betTypeId === 29 || betTypeId === 2799 || betTypeId === 10449) {
                         this.mixParlayResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.mixParlayResult) ? new ResultDetails.MixParlayResultDetails() : this.mixParlayResult;
                         return this.mixParlayResult;
                     }
@@ -274,8 +274,7 @@ var BetList;
                         this.fishingWorldResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.fishingWorldResult) ? new ResultDetails.FishingWorldResultDetails() : this.fishingWorldResult;
                         return this.fishingWorldResult;
                     }
-                    if ((betTypeId >= 1611 && betTypeId <= 1699) ||
-                        (betTypeId >= 13200 && betTypeId <= 13499)) {
+                    if (betTypeId >= 1611 && betTypeId <= 1699) {
                         this.SabaClubResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.SabaClubResult) ? new ResultDetails.SabaClubResultDetails() : this.SabaClubResult;
                         return this.SabaClubResult;
                     }
@@ -283,16 +282,13 @@ var BetList;
                         this.rngCasinoResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.rngCasinoResult) ? new ResultDetails.RnGCasinoResultDetails : this.rngCasinoResult;
                         return this.rngCasinoResult;
                     }
-                    if (betTypeId >= 3101 && betTypeId <= 3150) {
-                        this.sexyGamingResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.weResult) ? new ResultDetails.SexyGamingResultDetails() : this.sexyGamingResult;
-                        return this.sexyGamingResult;
-                    }
                     if (betTypeId >= 4001 && betTypeId <= 4100 || betTypeId >= 5800 && betTypeId <= 5999) {
                         this.macauGamesResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.macauGamesResult) ? new ResultDetails.MacauGamesResultDetails() : this.macauGamesResult;
                         return this.macauGamesResult;
                     }
                     if ((betTypeId >= 2401 && betTypeId <= 2499) ||
                         (betTypeId >= 3001 && betTypeId <= 3099) ||
+                        (betTypeId >= 3101 && betTypeId <= 3149) ||
                         (betTypeId >= 3151 && betTypeId <= 3200) ||
                         (betTypeId >= 3201 && betTypeId <= 3299) ||
                         (betTypeId >= 3401 && betTypeId <= 3499)) {
@@ -340,6 +336,10 @@ var BetList;
                         this.BGResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.BGResult) ? new ResultDetails.BGResultDetails() : this.BGResult;
                         return this.BGResult;
                     }
+                    if (betTypeId >= 5701 && betTypeId <= 5799) {
+                        this.GDGResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.GDGResult) ? new ResultDetails.GDGResultDetails() : this.GDGResult;
+                        return this.GDGResult;
+                    }
                     if (betTypeId >= 6001 && betTypeId <= 6300) {
                         this.PGSoftCasinoResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.PGSoftCasinoResult) ? new ResultDetails.PGSoftCasinoResultDetails() : this.PGSoftCasinoResult;
                         return this.PGSoftCasinoResult;
@@ -372,8 +372,7 @@ var BetList;
                         this.habaneroResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.habaneroResult) ? new ResultDetails.HabaneroResultDetails() : this.habaneroResult;
                         return this.habaneroResult;
                     }
-                    if ((betTypeId >= 3802 && betTypeId <= 3899) ||
-                        (betTypeId >= 13500 && betTypeId <= 13799)) {
+                    if (betTypeId >= 3802 && betTypeId <= 3899) {
                         this.VGamingResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.VGamingResult) ? new ResultDetails.VGamingResultDetails() : this.VGamingResult;
                         return this.VGamingResult;
                     }
@@ -433,18 +432,6 @@ var BetList;
                         this.onCasinoResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.onCasinoResult) ? new ResultDetails.ONCasinoResultDetails() : this.onCasinoResult;
                         return this.onCasinoResult;
                     }
-                    if (betTypeId >= 12500 && betTypeId <= 12599) {
-                        this.playtechResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.playtechResult) ? new ResultDetails.PlaytechResultDetails() : this.playtechResult;
-                        return this.playtechResult;
-                    }
-                    if (betTypeId >= 11400 && betTypeId <= 11499) {
-                        this.gpiResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.gpiResult) ? new ResultDetails.GPIResultDetails() : this.gpiResult;
-                        return this.gpiResult;
-                    }
-                    if (betTypeId >= 11500 && betTypeId <= 11599) {
-                        this.gpiLCResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.gpiLCResult) ? new ResultDetails.GPILiveCasinoResultDetails() : this.gpiLCResult;
-                        return this.gpiLCResult;
-                    }
                     this.sportsbookResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sportsbookResult) ? new ResultDetails.SportsbookResultDetails : this.sportsbookResult;
                     return this.sportsbookResult;
                 };
@@ -461,8 +448,8 @@ var BetList;
                     this.CustId = $('#cust-id').val();
                     this.ViewerLevelId = $('#viewer-level-id').val();
                     this.IsHistoricReport = Common.Utils.ParseBoolean($('#is-historic-report').val());
-                    this.ViewResultDetails = function (matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, betId, betteam, custId, betcheck, siteId, transDesc) {
-                        ResultDetailsFactory.CreateInstance(betTypeId).ViewResultDetails(matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, betId, betteam, custId, betcheck, siteId, transDesc);
+                    this.ViewResultDetails = function (matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, betId, betCheck, custId, transDesc, siteId) {
+                        ResultDetailsFactory.CreateInstance(betTypeId).ViewResultDetails(matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, betId, betCheck, custId, transDesc, siteId);
                     };
                 }
                 Object.defineProperty(BaseResultDetails, "Instance", {
@@ -766,7 +753,6 @@ var BetList;
                             '&transId3rd=' + transId3rd +
                             '&gameId3rd=' + gameId3rd +
                             '&currencyId=' + currencyId +
-                            '&betType=' + betTypeId +
                             '&siteId=' + siteId +
                             '&productId=55';
                         Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/PGSoftResult' + params, "", 835, 675);
@@ -1099,14 +1085,13 @@ var BetList;
                 __extends(JiliResultDetails, _super);
                 function JiliResultDetails() {
                     var _this = _super !== null && _super.apply(this, arguments) || this;
-                    _this.ViewResultDetails = function (matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, currencyId, gameId3rd, custId, transId3rd, siteId, transDesc) {
+                    _this.ViewResultDetails = function (matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, currencyId, gameId3rd, custId, transId3rd, siteId) {
                         var params = '?custId=' + custId +
                             '&transId3rd=' + transId3rd +
                             '&gameId3rd=' + gameId3rd +
                             '&currencyId=' + currencyId +
                             '&siteId=' + siteId +
                             '&BetType=' + betTypeId +
-                            '&TransDesc=' + transDesc +
                             '&productId=75';
                         Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/JiliResult' + params, "", 835, 675);
                     };
@@ -1154,24 +1139,6 @@ var BetList;
                 return WEResultDetails;
             }(ResultDetails.BaseResultDetails));
             ResultDetails.WEResultDetails = WEResultDetails;
-            var SexyGamingResultDetails = /** @class */ (function (_super) {
-                __extends(SexyGamingResultDetails, _super);
-                function SexyGamingResultDetails() {
-                    var _this = _super !== null && _super.apply(this, arguments) || this;
-                    _this.ViewResultDetails = function (matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, currencyId, site, custId, transId3rd, siteId) {
-                        var params = '?custId=' + custId +
-                            '&transId3rd=' + transId3rd +
-                            '&site=' + site +
-                            '&currencyId=' + currencyId +
-                            '&siteId=' + siteId;
-                        '&productId=45';
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/SexyGamingResult' + params, "", 835, 675);
-                    };
-                    return _this;
-                }
-                return SexyGamingResultDetails;
-            }(ResultDetails.BaseResultDetails));
-            ResultDetails.SexyGamingResultDetails = SexyGamingResultDetails;
             var UUSlotsResultDetails = /** @class */ (function (_super) {
                 __extends(UUSlotsResultDetails, _super);
                 function UUSlotsResultDetails() {
@@ -1284,62 +1251,6 @@ var BetList;
                 return ONCasinoResultDetails;
             }(ResultDetails.BaseResultDetails));
             ResultDetails.ONCasinoResultDetails = ONCasinoResultDetails;
-            var PlaytechResultDetails = /** @class */ (function (_super) {
-                __extends(PlaytechResultDetails, _super);
-                function PlaytechResultDetails() {
-                    var _this = _super !== null && _super.apply(this, arguments) || this;
-                    _this.ViewResultDetails = function (matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, currencyId, gameId3rd, custId, transId3rd, siteId) {
-                        var params = '?custId=' + custId +
-                            '&transId3rd=' + transId3rd +
-                            '&gameId3rd=' + gameId3rd +
-                            '&currencyId=' + currencyId +
-                            '&siteId=' + siteId +
-                            '&BetType=' + betTypeId +
-                            '&endtime=' + winLostDate +
-                            '&productId=100';
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/PlaytechResult' + params, "", 835, 675);
-                    };
-                    return _this;
-                }
-                return PlaytechResultDetails;
-            }(ResultDetails.BaseResultDetails));
-            ResultDetails.PlaytechResultDetails = PlaytechResultDetails;
-            var GPIResultDetails = /** @class */ (function (_super) {
-                __extends(GPIResultDetails, _super);
-                function GPIResultDetails() {
-                    var _this = _super !== null && _super.apply(this, arguments) || this;
-                    _this.ViewResultDetails = function (matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, currencyId, gameId3rd, custId, transId3rd, siteId) {
-                        var params = '?custId=' + custId +
-                            '&transId3rd=' + transId3rd +
-                            '&currencyId=' + currencyId +
-                            '&siteId=' + siteId +
-                            '&BetType=' + betTypeId +
-                            '&productId=48';
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/GPIResult' + params, "", 835, 675);
-                    };
-                    return _this;
-                }
-                return GPIResultDetails;
-            }(ResultDetails.BaseResultDetails));
-            ResultDetails.GPIResultDetails = GPIResultDetails;
-            var GPILiveCasinoResultDetails = /** @class */ (function (_super) {
-                __extends(GPILiveCasinoResultDetails, _super);
-                function GPILiveCasinoResultDetails() {
-                    var _this = _super !== null && _super.apply(this, arguments) || this;
-                    _this.ViewResultDetails = function (matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, currencyId, gameId3rd, custId, transId3rd, siteId) {
-                        var params = '?custId=' + custId +
-                            '&transId3rd=' + transId3rd +
-                            '&currencyId=' + currencyId +
-                            '&siteId=' + siteId +
-                            '&endtime=' + winLostDate +
-                            '&productId=90';
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/GPILiveCasinoResult' + params, "", 835, 675);
-                    };
-                    return _this;
-                }
-                return GPILiveCasinoResultDetails;
-            }(ResultDetails.BaseResultDetails));
-            ResultDetails.GPILiveCasinoResultDetails = GPILiveCasinoResultDetails;
         })(ResultDetails = Status.ResultDetails || (Status.ResultDetails = {}));
     })(Status = BetList.Status || (BetList.Status = {}));
 })(BetList || (BetList = {}));
@@ -1730,7 +1641,6 @@ var BetList;
                     };
                     _this.ShowAdvantPlayMiniBetDetails = function (refNo, winlossDate, custId, transType) {
                         var params = _this.CreatePopupDetailsParam(refNo, winlossDate, custId, transType, "AdvantPlay Mini");
-                        _this.ShowDetailsPopup(params);
                     };
                     _this.CreatePopupDetailsParam = function (refNo, winlossDate, custId, transType, sportName) {
                         if (sportName === void 0) { sportName = "Saba Casino"; }
@@ -1740,7 +1650,7 @@ var BetList;
                             + "&sportName=" + sportName
                             + "&productId=6";
                     };
-                    _this.ShowDetailsPopup = function (params) { return Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/RNG' + params, "", 1500); };
+                    _this.ShowDetailsPopup = function (params) { return Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, "", 1500); };
                     return _this;
                 }
                 Object.defineProperty(CasinoTicketDetails, "Instance", {
@@ -1771,7 +1681,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/LiveCasino' + params, 'Allbet - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'Allbet - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
                     };
                     return _this;
                 }
@@ -1851,7 +1761,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/LiveCasino' + params, 'AE Sexy - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'AE Sexy - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
                     };
                     return _this;
                 }
@@ -1883,7 +1793,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/LiveCasino' + params, 'SA Gaming - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'SA Gaming - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
                     };
                     return _this;
                 }
@@ -1915,7 +1825,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/LiveCasino' + params, 'IBCBet Live Casino - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'IBCBet Live Casino - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
                     };
                     return _this;
                 }
@@ -1947,7 +1857,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/LiveCasino' + params, 'ION - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'ION - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
                     };
                     return _this;
                 }
@@ -1979,7 +1889,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/BBinIndex' + params, 'BBIN - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'BBIN - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
                     };
                     return _this;
                 }
@@ -2011,7 +1921,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/RNG' + params, 'Funky Games - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'Funky Games - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
                     };
                     return _this;
                 }
@@ -2043,7 +1953,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/LiveCasino' + params, 'WM - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'WM - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
                     };
                     return _this;
                 }
@@ -2058,6 +1968,38 @@ var BetList;
                 return WMTicketDetails;
             }(TicketDetails.BaseTicketDetails));
             TicketDetails.WMTicketDetails = WMTicketDetails;
+            var GDGTicketDetails = /** @class */ (function (_super) {
+                __extends(GDGTicketDetails, _super);
+                function GDGTicketDetails() {
+                    var _this = _super !== null && _super.apply(this, arguments) || this;
+                    _this.ShowGDGBetDetails = function (refNo, winlossDate, custId, transType) {
+                        var params = '?refno=' + refNo
+                            + '&custid=' + custId
+                            + '&transType=' + transType
+                            + '&sportName=GDG&productId=59';
+                        var width = 1500;
+                        var roleId = Number(_this.ViewerLevelId);
+                        if (roleId <= 3) {
+                            width -= 105;
+                        }
+                        if (roleId <= 2) {
+                            width -= 105;
+                        }
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'GDG - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                    };
+                    return _this;
+                }
+                Object.defineProperty(GDGTicketDetails, "Instance", {
+                    get: function () {
+                        this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new GDGTicketDetails() : this.instance;
+                        return this.instance;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                return GDGTicketDetails;
+            }(TicketDetails.BaseTicketDetails));
+            TicketDetails.GDGTicketDetails = GDGTicketDetails;
             var BGTicketDetails = /** @class */ (function (_super) {
                 __extends(BGTicketDetails, _super);
                 function BGTicketDetails() {
@@ -2075,7 +2017,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/LiveCasino' + params, 'BG - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'BG - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
                     };
                     return _this;
                 }
@@ -2107,7 +2049,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/LiveCasino' + params, 'PP Live Casino - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'PP Live Casino - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
                     };
                     return _this;
                 }
@@ -2139,7 +2081,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/LiveCasino' + params, 'FGG - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'FGG - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
                     };
                     return _this;
                 }
@@ -2171,7 +2113,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/RNG' + params, 'SEAL Entertainment - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'SEAL Entertainment - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
                     };
                     return _this;
                 }
@@ -2203,7 +2145,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/RNG' + params, 'MG-RNG - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'MG-RNG - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
                     };
                     return _this;
                 }
@@ -2235,7 +2177,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/RNG' + params, 'Jili - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'Jili - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
                     };
                     return _this;
                 }
@@ -2267,7 +2209,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/LiveCasino' + params, 'YeeBet - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'YeeBet - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
                     };
                     return _this;
                 }
@@ -2299,7 +2241,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/RNG' + params, 'Live22 - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'Live22 - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
                     };
                     return _this;
                 }
@@ -2331,7 +2273,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/LiveCasino' + params, 'WE Live Casino - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'WE Live Casino - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
                     };
                     return _this;
                 }
@@ -2363,7 +2305,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/RNG' + params, 'UU SLOTS - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'UU SLOTS - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
                     };
                     return _this;
                 }
@@ -2396,7 +2338,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/RNG' + params, sportName + ' - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, sportName + ' - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
                     };
                     return _this;
                 }
@@ -2428,7 +2370,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/RNG' + params, 'FastSpin - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'FastSpin - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
                     };
                     return _this;
                 }
@@ -2460,7 +2402,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/RNG' + params, 'FA CHAI - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'FA CHAI - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
                     };
                     return _this;
                 }
@@ -2492,7 +2434,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/RNG' + params, 'Nextspin - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'Nextspin - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
                     };
                     return _this;
                 }
@@ -2524,7 +2466,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/LiveCasino' + params, 'ON Casino - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/Index' + params, 'ON Casino - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
                     };
                     return _this;
                 }
@@ -2539,102 +2481,6 @@ var BetList;
                 return ONCasinoTicketDetails;
             }(TicketDetails.BaseTicketDetails));
             TicketDetails.ONCasinoTicketDetails = ONCasinoTicketDetails;
-            var PlaytechTicketDetails = /** @class */ (function (_super) {
-                __extends(PlaytechTicketDetails, _super);
-                function PlaytechTicketDetails() {
-                    var _this = _super !== null && _super.apply(this, arguments) || this;
-                    _this.ShowPlaytechTicketDetails = function (refNo, winlossDate, custId, transType) {
-                        var params = '?refno=' + refNo
-                            + '&custid=' + custId
-                            + '&transType=' + transType
-                            + '&sportName=Playtech&productId=100';
-                        var width = 1500;
-                        var roleId = Number(_this.ViewerLevelId);
-                        if (roleId <= 3) {
-                            width -= 105;
-                        }
-                        if (roleId <= 2) {
-                            width -= 105;
-                        }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/RNG' + params, 'Playtech - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
-                    };
-                    return _this;
-                }
-                Object.defineProperty(PlaytechTicketDetails, "Instance", {
-                    get: function () {
-                        this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new PlaytechTicketDetails() : this.instance;
-                        return this.instance;
-                    },
-                    enumerable: true,
-                    configurable: true
-                });
-                return PlaytechTicketDetails;
-            }(TicketDetails.BaseTicketDetails));
-            TicketDetails.PlaytechTicketDetails = PlaytechTicketDetails;
-            var GPIRNGTicketDetails = /** @class */ (function (_super) {
-                __extends(GPIRNGTicketDetails, _super);
-                function GPIRNGTicketDetails() {
-                    var _this = _super !== null && _super.apply(this, arguments) || this;
-                    _this.ShowGPIBetDetails = function (refNo, winlossDate, custId, transType) {
-                        var params = '?refno=' + refNo
-                            + '&custid=' + custId
-                            + '&transType=' + transType
-                            + '&sportName=GPI&productId=48';
-                        var width = 1500;
-                        var roleId = Number(_this.ViewerLevelId);
-                        if (roleId <= 3) {
-                            width -= 105;
-                        }
-                        if (roleId <= 2) {
-                            width -= 105;
-                        }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/RNG' + params, 'GPI - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
-                    };
-                    return _this;
-                }
-                Object.defineProperty(GPIRNGTicketDetails, "Instance", {
-                    get: function () {
-                        this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new GPIRNGTicketDetails() : this.instance;
-                        return this.instance;
-                    },
-                    enumerable: true,
-                    configurable: true
-                });
-                return GPIRNGTicketDetails;
-            }(TicketDetails.BaseTicketDetails));
-            TicketDetails.GPIRNGTicketDetails = GPIRNGTicketDetails;
-            var GPILiveCasinoTicketDetails = /** @class */ (function (_super) {
-                __extends(GPILiveCasinoTicketDetails, _super);
-                function GPILiveCasinoTicketDetails() {
-                    var _this = _super !== null && _super.apply(this, arguments) || this;
-                    _this.ShowGPILCTicketDetails = function (refNo, winlossDate, custId, transType) {
-                        var params = '?refno=' + refNo
-                            + '&custid=' + custId
-                            + '&transType=' + transType
-                            + '&sportName=GPI Live Casino&productId=90';
-                        var width = 1500;
-                        var roleId = Number(_this.ViewerLevelId);
-                        if (roleId <= 3) {
-                            width -= 105;
-                        }
-                        if (roleId <= 2) {
-                            width -= 105;
-                        }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/LiveCasino' + params, 'GPI Live Casino - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
-                    };
-                    return _this;
-                }
-                Object.defineProperty(GPILiveCasinoTicketDetails, "Instance", {
-                    get: function () {
-                        this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new GPILiveCasinoTicketDetails() : this.instance;
-                        return this.instance;
-                    },
-                    enumerable: true,
-                    configurable: true
-                });
-                return GPILiveCasinoTicketDetails;
-            }(TicketDetails.BaseTicketDetails));
-            TicketDetails.GPILiveCasinoTicketDetails = GPILiveCasinoTicketDetails;
         })(TicketDetails = Choice.TicketDetails || (Choice.TicketDetails = {}));
     })(Choice = BetList.Choice || (BetList.Choice = {}));
 })(BetList || (BetList = {}));
@@ -2659,6 +2505,7 @@ var showRNGWARBetDetails;
 var showIONCasinoBetDetails;
 var showJokerBetDetails;
 var showWMBetDetails;
+var showGDGBetDetails;
 var showBGBetDetails;
 var showMaxGameBetDetails;
 var showPragmaticLiveCasinoBetsDetails;
@@ -2679,9 +2526,6 @@ var showFastSpinBetDetails;
 var showFACHAIBetDetails;
 var showNextspinBetDetails;
 var showONLiveCasinoBetDetails;
-var showPlaytechBetDetails;
-var showGPIBetDetails;
-var showGPILCBetDetails;
 $(document).ready(function () {
     showRnGCasinoDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowRnGCasinoDetails;
     showVoidBridgeDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowMacauGamesDetails;
@@ -2704,6 +2548,7 @@ $(document).ready(function () {
     showRNGWARBetDetails = BetList.Choice.TicketDetails.RNGWarTicketDetails.Instance.ShowRNGWarBetDetails;
     showJokerBetDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowJokerDetails;
     showWMBetDetails = BetList.Choice.TicketDetails.WMTicketDetails.Instance.ShowWMBetDetails;
+    showGDGBetDetails = BetList.Choice.TicketDetails.GDGTicketDetails.Instance.ShowGDGBetDetails;
     showBGBetDetails = BetList.Choice.TicketDetails.BGTicketDetails.Instance.ShowBGBetDetails;
     showMaxGameBetDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowMaxGameDetails;
     showPragmaticLiveCasinoBetsDetails = BetList.Choice.TicketDetails.PPLiveCasinoTicketDetails.Instance.ShowPragmaticLiveCasinoBetsDetails;
@@ -2724,9 +2569,6 @@ $(document).ready(function () {
     showFACHAIBetDetails = BetList.Choice.TicketDetails.FACHAITicketDetails.Instance.ShowFACHAITicketDetails;
     showNextspinBetDetails = BetList.Choice.TicketDetails.NextspinTicketDetails.Instance.ShowNextspinTicketDetails;
     showONLiveCasinoBetDetails = BetList.Choice.TicketDetails.ONCasinoTicketDetails.Instance.ShowONCasinoTicketDetails;
-    showPlaytechBetDetails = BetList.Choice.TicketDetails.PlaytechTicketDetails.Instance.ShowPlaytechTicketDetails;
-    showGPIBetDetails = BetList.Choice.TicketDetails.GPIRNGTicketDetails.Instance.ShowGPIBetDetails;
-    showGPILCBetDetails = BetList.Choice.TicketDetails.GPILiveCasinoTicketDetails.Instance.ShowGPILCTicketDetails;
 });
 //# sourceMappingURL=casino-ticket-details.js.map
 var __extends = (this && this.__extends) || (function () {

@@ -175,6 +175,10 @@ var BetList;
                         this.onCasinoResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.onCasinoResult) ? new ResultDetails.ONCasinoResultDetails() : this.onCasinoResult;
                         return this.onCasinoResult;
                     }
+                    if (betTypeId >= 2700 && betTypeId <= 2799) {
+                        this.virtualRaceResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.virtualRaceResult) ? new ResultDetails.VirtualRacingResultDetails() : this.virtualRaceResult;
+                        return this.virtualRaceResult;
+                    }
                     if (betTypeId >= 12500 && betTypeId <= 12599) {
                         this.playtechResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.playtechResult) ? new ResultDetails.PlaytechResultDetails() : this.playtechResult;
                         return this.playtechResult;

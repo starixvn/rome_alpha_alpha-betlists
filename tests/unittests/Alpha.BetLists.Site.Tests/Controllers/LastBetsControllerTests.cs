@@ -42,7 +42,7 @@
             var message = new LastBetsQuery(user);
 
             // Act
-            controller.Index(message).GetAwaiter().GetResult();
+            controller.Indexxxxxxx(message).GetAwaiter().GetResult();
 
             // Assert
             mediator.Received().Send(message);
@@ -62,7 +62,7 @@
             mediator.Send(Arg.Any<CheckCanViewLastBetsQuery>()).Returns(errorResult);
 
             // Act
-            var actualResult = controller.BetData(message).GetAwaiter().GetResult();
+            var actualResult = controller.BetDataaaaaaa(message).GetAwaiter().GetResult();
 
             // Assert
             Assert.True(compareLogic.Compare(actualResult, actualResult).AreEqual);
@@ -77,7 +77,7 @@
             mediator.Send(Arg.Any<CheckCanViewLastBetsQuery>()).Returns(checkCanViewLastBetsResult);
 
             // Act
-            controller.BetData(message).GetAwaiter().GetResult();
+            controller.BetDataaaaaaa(message).GetAwaiter().GetResult();
 
             // Assert
             mediator.Received().Send(message);

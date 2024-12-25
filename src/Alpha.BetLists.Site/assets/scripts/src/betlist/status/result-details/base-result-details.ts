@@ -44,6 +44,7 @@
         private static playtechResult: ResultDetails;
         private static gpiResult: ResultDetails;
         private static gpiLCResult: ResultDetails;
+        private static virtualRaceResult: ResultDetails;
 
         public static CreateInstance(betTypeId: number): ResultDetails {
             if (betTypeId === 9 || betTypeId === 29 || betTypeId === 2799 || betTypeId === 10449 || betTypeId === 11099) {
@@ -250,6 +251,11 @@
             if (betTypeId >= 11850 && betTypeId <= 11899) {
                 this.onCasinoResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.onCasinoResult) ? new ONCasinoResultDetails() : this.onCasinoResult;
                 return this.onCasinoResult;
+            }
+
+            if (betTypeId >= 2700 && betTypeId <= 2799) {
+                this.virtualRaceResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.virtualRaceResult) ? new VirtualRacingResultDetails() : this.virtualRaceResult;
+                return this.virtualRaceResult;
             }
 
             if (betTypeId >= 12500 && betTypeId <= 12599) {

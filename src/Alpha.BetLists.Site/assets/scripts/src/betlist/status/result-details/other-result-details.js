@@ -31,6 +31,29 @@ var BetList;
                 return LeapGamingResultDetails;
             }(ResultDetails.BaseResultDetails));
             ResultDetails.LeapGamingResultDetails = LeapGamingResultDetails;
+            var VirtualRacingResultDetails = /** @class */ (function (_super) {
+                __extends(VirtualRacingResultDetails, _super);
+                function VirtualRacingResultDetails() {
+                    var _this = _super !== null && _super.apply(this, arguments) || this;
+                    _this.ViewResultDetails = function (matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, betId, transdesc) {
+                        var params = '?matchid=' + matchId
+                            + '&bettypeid=' + betTypeId
+                            + '&race=' + race
+                            + '&endtime=' + winLostDate
+                            + '&sportId=' + sportTypeId
+                            + '&leagueId=' + league
+                            + '&isOutright=' + isOutright
+                            + '&refnum=' + refNo
+                            + '&betid=' + betId
+                            + '&transdesc=' + transdesc
+                            + '&isViewResultFromBetList=true';
+                        Common.PopupDetails.Instance(window.top).Show(_this.ResultDetailsPath + params, "", 1000, 300);
+                    };
+                    return _this;
+                }
+                return VirtualRacingResultDetails;
+            }(ResultDetails.BaseResultDetails));
+            ResultDetails.VirtualRacingResultDetails = VirtualRacingResultDetails;
         })(ResultDetails = Status.ResultDetails || (Status.ResultDetails = {}));
     })(Status = BetList.Status || (BetList.Status = {}));
 })(BetList || (BetList = {}));
