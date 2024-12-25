@@ -76,6 +76,7 @@ var BetList;
                     };
                     _this.ShowAdvantPlayMiniBetDetails = function (refNo, winlossDate, custId, transType) {
                         var params = _this.CreatePopupDetailsParam(refNo, winlossDate, custId, transType, "AdvantPlay Mini");
+                        _this.ShowDetailsPopup(params);
                     };
                     _this.CreatePopupDetailsParam = function (refNo, winlossDate, custId, transType, sportName) {
                         if (sportName === void 0) { sportName = "Saba Casino"; }

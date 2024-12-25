@@ -76,6 +76,7 @@
 
         public ShowAdvantPlayMiniBetDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
             const params = this.CreatePopupDetailsParam(refNo, winlossDate, custId, transType, "AdvantPlay Mini");
+            this.ShowDetailsPopup(params);
         }
 
 
