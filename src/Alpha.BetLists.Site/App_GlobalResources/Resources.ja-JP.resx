@@ -118,6 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="HttpError_Default" xml:space="preserve">
-    <value>Sorry, there was an unexpected issue on the server. Please seek help from our customer support. [{0}]</value>
+    <value>申し訳ありませんが、サーバーで予期しない問題が発生しました。カスタマーサポートにお問い合わせください。[{0}]</value>
   </data>
 </root>

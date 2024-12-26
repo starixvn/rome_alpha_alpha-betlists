@@ -854,6 +854,9 @@ Vui lòng chọn tiêu chí cho bộ lọc dựa trên nhu cầu theo dõi
   <data name="MemberWinNote" xml:space="preserve">
     <value>&lt;b&gt;Dự Kiến Thắng&lt;/b&gt;: Số tiền thắng thực dự đoán từ vé cược đang diễn ra của Sportsbook mà Member có thể nhận. &lt;b&gt;Tiền Rủi Ro Của Bạn&lt;/b&gt;: Số tiền rủi ro bạn phải chịu nếu Member thắng cược, được tính như sau: &lt;b&gt;Tiền Rủi Ro Của Bạn = Dự Kiến Thắng * Position Taking Của Bạn&lt;/b&gt;. Các giá trị này không áp dụng cho &lt;b&gt;vé cược đã kết toán của Sportsbook hoặc vé cược từ các sản phẩm khác&lt;/b&gt; (cả đang diễn ra và đã kết toán), và sẽ hiển thị là '&lt;b&gt;N/A&lt;/b&gt;' (Not Applicable - Không Áp Dụng).</value>
   </data>
+  <data name="number" xml:space="preserve">
+    <value>#</value>
+  </data>
   <data name="ShutdownOldLastBetsMessage" xml:space="preserve">
     <value>Từ ngày &lt;b&gt;10/12/2024 (dd/mm/yyyy)&lt;/b&gt;, Phiên Bản Cũ sẽ không còn được hỗ trợ và sẽ được thay thế bằng Phiên Bản Mới. Hãy tận hưởng trải nghiệm người dùng được cải thiện với Phiên Bản Mới.</value>
   </data>
