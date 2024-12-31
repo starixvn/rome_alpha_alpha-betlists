@@ -754,6 +754,24 @@ var BetList;
                 return GPIResultDetails;
             }(ResultDetails.BaseResultDetails));
             ResultDetails.GPIResultDetails = GPIResultDetails;
+            var PlayStarResultDetails = /** @class */ (function (_super) {
+                __extends(PlayStarResultDetails, _super);
+                function PlayStarResultDetails() {
+                    var _this = _super !== null && _super.apply(this, arguments) || this;
+                    _this.ViewResultDetails = function (matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, currencyId, gameId3rd, custId, transId3rd, siteId) {
+                        var params = '?custId=' + custId +
+                            '&transId3rd=' + transId3rd +
+                            '&currencyId=' + currencyId +
+                            '&siteId=' + siteId +
+                            '&BetType=' + betTypeId +
+                            '&productId=91';
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/PlayStarResult' + params, "", 835, 675);
+                    };
+                    return _this;
+                }
+                return PlayStarResultDetails;
+            }(ResultDetails.BaseResultDetails));
+            ResultDetails.PlayStarResultDetails = PlayStarResultDetails;
             var GPILiveCasinoResultDetails = /** @class */ (function (_super) {
                 __extends(GPILiveCasinoResultDetails, _super);
                 function GPILiveCasinoResultDetails() {

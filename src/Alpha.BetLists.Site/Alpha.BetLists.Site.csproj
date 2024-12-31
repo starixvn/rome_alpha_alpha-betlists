@@ -249,6 +249,9 @@
     <Reference Include="Fanex.BetList.PGSoft, Version=2.0.0.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.PGSoft.2.0.0.2\lib\net461\Fanex.BetList.PGSoft.dll</HintPath>
     </Reference>
+    <Reference Include="Fanex.BetList.PlayStar, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.PlayStar.1.0.0\lib\net461\Fanex.BetList.PlayStar.dll</HintPath>
+    </Reference>
     <Reference Include="Fanex.BetList.Playtech, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.BetList.Playtech.1.0.0\lib\net461\Fanex.BetList.Playtech.dll</HintPath>
     </Reference>
