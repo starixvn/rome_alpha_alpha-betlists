@@ -253,7 +253,7 @@
                 return this.onCasinoResult;
             }
 
-            if (betTypeId >= 2700 && betTypeId <= 2799) {
+            if (betTypeId >= 2770 && betTypeId <= 2789) {
                 this.virtualRaceResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.virtualRaceResult) ? new VirtualRacingResultDetails() : this.virtualRaceResult;
                 return this.virtualRaceResult;
             }
