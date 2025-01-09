@@ -917,6 +917,38 @@ var BetList;
                 return PlaytechTicketDetails;
             }(TicketDetails.BaseTicketDetails));
             TicketDetails.PlaytechTicketDetails = PlaytechTicketDetails;
+            var PlayStarTicketDetails = /** @class */ (function (_super) {
+                __extends(PlayStarTicketDetails, _super);
+                function PlayStarTicketDetails() {
+                    var _this = _super !== null && _super.apply(this, arguments) || this;
+                    _this.ShowPlayStarBetDetails = function (refNo, winlossDate, custId, transType) {
+                        var params = '?refno=' + refNo
+                            + '&custid=' + custId
+                            + '&transType=' + transType
+                            + '&sportName=PLAYSTAR&productId=91';
+                        var width = 1500;
+                        var roleId = Number(_this.ViewerLevelId);
+                        if (roleId <= 3) {
+                            width -= 105;
+                        }
+                        if (roleId <= 2) {
+                            width -= 105;
+                        }
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/RNG' + params, 'PLAYSTAR - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                    };
+                    return _this;
+                }
+                Object.defineProperty(PlayStarTicketDetails, "Instance", {
+                    get: function () {
+                        this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new PlayStarTicketDetails() : this.instance;
+                        return this.instance;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                return PlayStarTicketDetails;
+            }(TicketDetails.BaseTicketDetails));
+            TicketDetails.PlayStarTicketDetails = PlayStarTicketDetails;
             var GPIRNGTicketDetails = /** @class */ (function (_super) {
                 __extends(GPIRNGTicketDetails, _super);
                 function GPIRNGTicketDetails() {
@@ -1028,6 +1060,7 @@ var showONLiveCasinoBetDetails;
 var showPlaytechBetDetails;
 var showGPIBetDetails;
 var showGPILCBetDetails;
+var showPlayStarBetDetails;
 $(document).ready(function () {
     showRnGCasinoDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowRnGCasinoDetails;
     showVoidBridgeDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowMacauGamesDetails;
@@ -1072,6 +1105,7 @@ $(document).ready(function () {
     showONLiveCasinoBetDetails = BetList.Choice.TicketDetails.ONCasinoTicketDetails.Instance.ShowONCasinoTicketDetails;
     showPlaytechBetDetails = BetList.Choice.TicketDetails.PlaytechTicketDetails.Instance.ShowPlaytechTicketDetails;
     showGPIBetDetails = BetList.Choice.TicketDetails.GPIRNGTicketDetails.Instance.ShowGPIBetDetails;
+    showPlayStarBetDetails = BetList.Choice.TicketDetails.PlayStarTicketDetails.Instance.ShowPlayStarBetDetails;
     showGPILCBetDetails = BetList.Choice.TicketDetails.GPILiveCasinoTicketDetails.Instance.ShowGPILCTicketDetails;
 });
 //# sourceMappingURL=casino-ticket-details.js.map
