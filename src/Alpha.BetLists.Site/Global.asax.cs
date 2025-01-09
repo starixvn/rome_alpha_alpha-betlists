@@ -7,6 +7,7 @@
     using System.Linq;
     using System.Net;
     using System.Reflection;
+    using System.Threading;
     using System.Web;
     using System.Web.Helpers;
     using System.Web.Hosting;
@@ -40,6 +41,8 @@
 
     public class MvcApplication : System.Web.HttpApplication
     {
+        private readonly int MinThreads = 200;
+
         protected void Application_Start()
         {
             AlphaPlus.Configurations.ConfigurationManager.Init(new ConfigurationHelper());
@@ -114,6 +117,8 @@
                     LogService.Error($"Alpha_Running_Betlist: {Hostname()} started. {errorMessage}");
                 }
             }
+
+            ThreadPool.SetMinThreads(MinThreads, MinThreads);
         }
 
         protected void Application_End()
