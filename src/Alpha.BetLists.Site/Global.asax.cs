@@ -41,7 +41,7 @@
 
     public class MvcApplication : System.Web.HttpApplication
     {
-        private readonly int MinThreads = 200;
+        private readonly int MinThreads = 300;
 
         protected void Application_Start()
         {
