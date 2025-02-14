@@ -450,6 +450,10 @@ var BetList;
                         this.playStarResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.playStarResult) ? new ResultDetails.PlayStarResultDetails() : this.playStarResult;
                         return this.playStarResult;
                     }
+                    if (betTypeId >= 15000 && betTypeId <= 15199) {
+                        this.askmeslotResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.askmeslotResult) ? new ResultDetails.ASKMESLOTResultDetails() : this.askmeslotResult;
+                        return this.askmeslotResult;
+                    }
                     this.sportsbookResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sportsbookResult) ? new ResultDetails.SportsbookResultDetails : this.sportsbookResult;
                     return this.sportsbookResult;
                 };
@@ -1363,6 +1367,24 @@ var BetList;
                 return GPILiveCasinoResultDetails;
             }(ResultDetails.BaseResultDetails));
             ResultDetails.GPILiveCasinoResultDetails = GPILiveCasinoResultDetails;
+            var ASKMESLOTResultDetails = /** @class */ (function (_super) {
+                __extends(ASKMESLOTResultDetails, _super);
+                function ASKMESLOTResultDetails() {
+                    var _this = _super !== null && _super.apply(this, arguments) || this;
+                    _this.ViewResultDetails = function (matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, currencyId, gameId3rd, custId, transId3rd, siteId) {
+                        var params = '?custId=' + custId +
+                            '&transId3rd=' + transId3rd +
+                            '&currencyId=' + currencyId +
+                            '&siteId=' + siteId +
+                            '&BetType=' + betTypeId +
+                            '&productId=103';
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/ASKMESLOTResult' + params, "", 835, 675);
+                    };
+                    return _this;
+                }
+                return ASKMESLOTResultDetails;
+            }(ResultDetails.BaseResultDetails));
+            ResultDetails.ASKMESLOTResultDetails = ASKMESLOTResultDetails;
         })(ResultDetails = Status.ResultDetails || (Status.ResultDetails = {}));
     })(Status = BetList.Status || (BetList.Status = {}));
 })(BetList || (BetList = {}));
@@ -2690,6 +2712,38 @@ var BetList;
                 return GPILiveCasinoTicketDetails;
             }(TicketDetails.BaseTicketDetails));
             TicketDetails.GPILiveCasinoTicketDetails = GPILiveCasinoTicketDetails;
+            var ASKMESLOTTicketDetails = /** @class */ (function (_super) {
+                __extends(ASKMESLOTTicketDetails, _super);
+                function ASKMESLOTTicketDetails() {
+                    var _this = _super !== null && _super.apply(this, arguments) || this;
+                    _this.ShowASKMESLOTBetDetails = function (refNo, winlossDate, custId, transType) {
+                        var params = '?refno=' + refNo
+                            + '&custid=' + custId
+                            + '&transType=' + transType
+                            + '&sportName=ASKMESLOT&productId=103';
+                        var width = 1500;
+                        var roleId = Number(_this.ViewerLevelId);
+                        if (roleId <= 3) {
+                            width -= 105;
+                        }
+                        if (roleId <= 2) {
+                            width -= 105;
+                        }
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/RNG' + params, 'ASKMESLOT - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                    };
+                    return _this;
+                }
+                Object.defineProperty(ASKMESLOTTicketDetails, "Instance", {
+                    get: function () {
+                        this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new ASKMESLOTTicketDetails() : this.instance;
+                        return this.instance;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                return ASKMESLOTTicketDetails;
+            }(TicketDetails.BaseTicketDetails));
+            TicketDetails.ASKMESLOTTicketDetails = ASKMESLOTTicketDetails;
         })(TicketDetails = Choice.TicketDetails || (Choice.TicketDetails = {}));
     })(Choice = BetList.Choice || (BetList.Choice = {}));
 })(BetList || (BetList = {}));
@@ -2738,6 +2792,7 @@ var showPlaytechBetDetails;
 var showGPIBetDetails;
 var showGPILCBetDetails;
 var showPlayStarBetDetails;
+var showASKMESLOTBetDetails;
 $(document).ready(function () {
     showRnGCasinoDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowRnGCasinoDetails;
     showVoidBridgeDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowMacauGamesDetails;
@@ -2783,7 +2838,7 @@ $(document).ready(function () {
     showPlaytechBetDetails = BetList.Choice.TicketDetails.PlaytechTicketDetails.Instance.ShowPlaytechTicketDetails;
     showGPIBetDetails = BetList.Choice.TicketDetails.GPIRNGTicketDetails.Instance.ShowGPIBetDetails;
     showPlayStarBetDetails = BetList.Choice.TicketDetails.PlayStarTicketDetails.Instance.ShowPlayStarBetDetails;
-    showGPILCBetDetails = BetList.Choice.TicketDetails.GPILiveCasinoTicketDetails.Instance.ShowGPILCTicketDetails;
+    showASKMESLOTBetDetails = BetList.Choice.TicketDetails.ASKMESLOTTicketDetails.Instance.ShowASKMESLOTBetDetails;
 });
 //# sourceMappingURL=casino-ticket-details.js.map
 var __extends = (this && this.__extends) || (function () {
