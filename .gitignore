@@ -60,3 +60,10 @@ tests/unittests/Alpha.BetLists.Tests/Lucky3/ViewDetail.cshtml
 /.vs/Alpha.BetLists/DesignTimeBuild/.dtbcache
 /.vs/**
 /.vs/*
+*.csproj.dtcache.json
+/src/Alpha.BetLists.Builders/.vs/Alpha.BetLists.Builders.csproj.dtbcache.json
+/src/Alpha.BetLists.Site/.vs/Alpha.BetLists.Site.csproj.dtbcache.json
+/src/Alpha.BetLists/.vs/Alpha.BetLists.csproj.dtbcache.json
+/tests/unittests/Alpha.BetLists.Builders.Tests/.vs/Alpha.BetLists.Builders.Tests.csproj.dtbcache.json
+/tests/unittests/Alpha.BetLists.Site.Tests/.vs/Alpha.BetLists.Site.Tests.csproj.dtbcache.json
+/tests/unittests/Alpha.BetLists.Tests/.vs/Alpha.BetLists.Tests.csproj.dtbcache.json
