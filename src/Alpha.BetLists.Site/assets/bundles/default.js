@@ -2086,7 +2086,8 @@ var BetList;
                         var params = '?refno=' + refNo
                             + '&custid=' + custId
                             + '&transType=' + transType
-                            + '&sportName=Funky Games&productId=50';
+                            + '&productId=50'
+                            + '&sportType=224&title={0} - Detailed Bet list - ' + winlossDate.toString().split(' ')[0];
                         var width = 1500;
                         var roleId = Number(_this.ViewerLevelId);
                         if (roleId <= 3) {
@@ -2095,7 +2096,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/RNG' + params, 'Funky Games - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/RNG' + params, null, width, 800);
                     };
                     return _this;
                 }

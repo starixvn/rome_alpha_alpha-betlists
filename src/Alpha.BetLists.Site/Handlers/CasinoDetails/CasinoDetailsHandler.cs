@@ -1,5 +1,6 @@
 ﻿namespace Alpha.BetLists.Site.Handlers.CasinoDetails
 {
+    using Alpha.BetLists.Helpers;
     using Alpha.IPInfo.Services;
     using AlphaPlus.SmartPunter.Services;
     using AlphaPlus.Utilities.IP;
@@ -54,6 +55,7 @@
             var param = CreateCasinoDetailsParam(message);
             var betlistData = casinoDetailsService.GetRNGCasinoDetails(param);
             await AssignCountry(betlistData.Tickets, message.DisplayVNIP);
+            message.SportName = message.SportType == 0 ? message.SportName : GetPopupDetailTitle(message.SportType, message.Title);
 
             return new CasinoDetailsViewModel(message, param, betlistData, Builder, TicketHelper, "RNGExcel");
         }
@@ -66,5 +68,7 @@
                 message.ProductId,
                 message.PageIndex,
                 message.PageSize);
+        protected internal string GetPopupDetailTitle(int sportType, string titleFormat)
+            => string.Format(titleFormat, CacheRefServiceHelper.GetSportName(sportType));
     }
 }
