@@ -20,10 +20,22 @@
         {
             DisplayVNIP = query.DisplayVNIP;
             ExportExcelUrl = exportExcelURl;
+            SportType = query.SportType;
         }
 
         public bool DisplayVNIP { get; }
         public string ExportExcelUrl { get; }
+        public int SportType { get; }
+
+        protected override string GetTitle()
+        {
+            if(SportType != 0)
+            {
+                return SportName;
+            }
+
+            return base.GetTitle();
+        }
 
         public Components.PagerViewModel PagingViewModel =>
           new Components.PagerViewModel(PagerViewModel.PageIndex, PagerViewModel.PageSize, PagerViewModel.TotalRecords);

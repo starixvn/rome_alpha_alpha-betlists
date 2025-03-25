@@ -21,6 +21,10 @@
 
         public string SportName { get; set; }
 
+        public int SportType { get; set; }
+
+        public string Title { get; set; }
+
         public int ProductId { get; set; }
 
         public int PageIndex { get; set; }

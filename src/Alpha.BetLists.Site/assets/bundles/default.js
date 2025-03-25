@@ -498,12 +498,9 @@ $(document).ready(function () {
 });
 //# sourceMappingURL=base-result-details.js.map
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -583,12 +580,9 @@ var BetList;
 })(BetList || (BetList = {}));
 //# sourceMappingURL=sportsbook-result-details.js.map
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -1412,17 +1406,32 @@ var BetList;
                 return ASKMESLOTResultDetails;
             }(ResultDetails.BaseResultDetails));
             ResultDetails.ASKMESLOTResultDetails = ASKMESLOTResultDetails;
+            var FunkyGamesResultDetails = /** @class */ (function (_super) {
+                __extends(FunkyGamesResultDetails, _super);
+                function FunkyGamesResultDetails() {
+                    var _this = _super !== null && _super.apply(this, arguments) || this;
+                    _this.ViewResultDetails = function (matchId, race, betTypeId, sportTypeId, refNo, userName, winLostDate, refNoMixParlay, league, isOutright, currencyId, gameId3rd, custId, transId3rd, siteId) {
+                        var params = '?custId=' + custId +
+                            '&transId3rd=' + transId3rd +
+                            '&currencyId=' + currencyId +
+                            '&siteId=' + siteId +
+                            '&BetType=' + betTypeId +
+                            '&productId=104';
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.ResultsAppPath() + 'ThirdParty/FunkyGamesResult' + params, "", 835, 675);
+                    };
+                    return _this;
+                }
+                return FunkyGamesResultDetails;
+            }(ResultDetails.BaseResultDetails));
+            ResultDetails.FunkyGamesResultDetails = FunkyGamesResultDetails;
         })(ResultDetails = Status.ResultDetails || (Status.ResultDetails = {}));
     })(Status = BetList.Status || (BetList.Status = {}));
 })(BetList || (BetList = {}));
 //# sourceMappingURL=casino-result-details.js.map
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -1534,12 +1543,9 @@ var BetList;
 })(BetList || (BetList = {}));
 //# sourceMappingURL=base-ticket-details.js.map
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -1731,12 +1737,9 @@ $(document).ready(function () {
 });
 //# sourceMappingURL=sportsbook-ticket-details.js.map
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -2083,7 +2086,8 @@ var BetList;
                         var params = '?refno=' + refNo
                             + '&custid=' + custId
                             + '&transType=' + transType
-                            + '&sportName=Funky Games&productId=50';
+                            + '&productId=50'
+                            + '&sportType=224&title={0} - Detailed Bet list - ' + winlossDate.toString().split(' ')[0];
                         var width = 1500;
                         var roleId = Number(_this.ViewerLevelId);
                         if (roleId <= 3) {
@@ -2092,7 +2096,7 @@ var BetList;
                         if (roleId <= 2) {
                             width -= 105;
                         }
-                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/RNG' + params, 'Funky Games - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/RNG' + params, null, width, 800);
                     };
                     return _this;
                 }
@@ -2812,6 +2816,37 @@ var BetList;
                 return ASKMESLOTTicketDetails;
             }(TicketDetails.BaseTicketDetails));
             TicketDetails.ASKMESLOTTicketDetails = ASKMESLOTTicketDetails;
+            var FunkyGamesTicketDetails = /** @class */ (function (_super) {
+                __extends(FunkyGamesTicketDetails, _super);
+                function FunkyGamesTicketDetails() {
+                    var _this = _super !== null && _super.apply(this, arguments) || this;
+                    _this.ShowFunkyGamesBetDetails = function (refNo, winlossDate, custId, transType) {
+                        var params = "?refno=" + refNo + "&custid=" + custId + "&transType=" + transType + "&sportName=Funky Games&productId=104";
+                        var width = 1500;
+                        var roleId = Number(_this.ViewerLevelId);
+                        if (roleId <= 3) {
+                            width -= 105;
+                        }
+                        if (roleId <= 2) {
+                            width -= 105;
+                        }
+                        Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CasinoDetails/RNG' + params, 'Funky Games - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+                    };
+                    return _this;
+                }
+                Object.defineProperty(FunkyGamesTicketDetails, "Instance", {
+                    get: function () {
+                        this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance)
+                            ? new FunkyGamesTicketDetails()
+                            : this.instance;
+                        return this.instance;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                return FunkyGamesTicketDetails;
+            }(TicketDetails.BaseTicketDetails));
+            TicketDetails.FunkyGamesTicketDetails = FunkyGamesTicketDetails;
         })(TicketDetails = Choice.TicketDetails || (Choice.TicketDetails = {}));
     })(Choice = BetList.Choice || (BetList.Choice = {}));
 })(BetList || (BetList = {}));
@@ -2862,6 +2897,7 @@ var showGPILCBetDetails;
 var showPlayStarBetDetails;
 var showASKMESLOTBetDetails;
 var showSabaKenoDetails;
+var showFunkyGamesBetDetails;
 $(document).ready(function () {
     showRnGCasinoDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowRnGCasinoDetails;
     showVoidBridgeDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowMacauGamesDetails;
@@ -2909,15 +2945,13 @@ $(document).ready(function () {
     showPlayStarBetDetails = BetList.Choice.TicketDetails.PlayStarTicketDetails.Instance.ShowPlayStarBetDetails;
     showASKMESLOTBetDetails = BetList.Choice.TicketDetails.ASKMESLOTTicketDetails.Instance.ShowASKMESLOTBetDetails;
     showSabaKenoDetails = BetList.Choice.TicketDetails.SabaKenoTicketDetails.Instance.ShowSabaKenoDetails;
+    showFunkyGamesBetDetails = BetList.Choice.TicketDetails.FunkyGamesTicketDetails.Instance.ShowFunkyGamesBetDetails;
 });
 //# sourceMappingURL=casino-ticket-details.js.map
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
